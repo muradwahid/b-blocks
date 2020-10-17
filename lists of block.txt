@@ -1,6 +1,6 @@
 Lists                                       - Status
 From Ultimate Gutenberg
-01. Section Heading
+01. Section Heading                         - Complete
 02. Posts Grid
 03. Post Masonry
 04. Posts Carousel
