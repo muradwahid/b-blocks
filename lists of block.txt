@@ -25,7 +25,7 @@ From Shortcodes Ultimate
 02. Tabs
 03. Spoiler
 04. Accordion
-05. Divider
+05. Divider                                 - Complete
 06. Spacer
 07. Highlight
 08. Label
