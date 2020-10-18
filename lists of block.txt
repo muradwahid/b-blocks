@@ -21,13 +21,12 @@ From Ultimate Gutenberg
 19. Wp Search
 
 From Shortcodes Ultimate
-01. Heading
 02. Tabs
 03. Spoiler
 04. Accordion
 05. Divider                                 - Complete
-06. Spacer
-07. Highlight
+06. Spacer                                  - Complete
+07. Highlight                               - Complete
 08. Label
 09. Quote
 10. Pull quote
@@ -36,8 +35,7 @@ From Shortcodes Ultimate
 13. Lists
 14. Button
 15. Service
-16. Box
-17. Note
+17. Note                                    - Complete
 18. Expand
 19. Lightbox
 20. Tooltip

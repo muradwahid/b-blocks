@@ -1,7 +1,6 @@
-const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
-registerBlockType('wasek/b-blocks', {
+registerBlockType('b-blocks/block', {
 	// Build In attributes
 	title: 'B Block',
 	description: 'Simple B Block',
@@ -17,7 +16,7 @@ registerBlockType('wasek/b-blocks', {
 	edit: props => {
 		return (
 			<div>
-				<h2 className="demoHeading">My Demo Gutenberg Block</h2>
+				<h2>My Demo Gutenberg Block</h2>
 			</div>
 		);
 	},
@@ -25,7 +24,7 @@ registerBlockType('wasek/b-blocks', {
 	save: props => {
 		return (
 			<div>
-				<h2 className="demoHeading">My Demo Gutenberg Block</h2>
+				<h2>My Demo Gutenberg Block</h2>
 			</div>
 		);
 	},
