@@ -66,7 +66,7 @@ From Shortcodes Ultimate
 45. User Data
 46. Post Data
 47. Template
-48. QR Code
+48. QR Code                                 - Complete
 49. Scheduler
 
 

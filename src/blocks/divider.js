@@ -2,6 +2,7 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, ButtonGroup, Button } = wp.components;
 
+
 // Variables
 const fontSizes = [
     { name: 'Small', slug: 'small', size: 13 },
@@ -52,7 +53,7 @@ registerBlockType('b-blocks/divider', {
         divideMB: { type: 'number', default: 15 },
         dividePosition: { type: 'string', default: 'center' },
 
-        enableToTop: { type: 'boolean', default: false },
+        toggleToTop: { type: 'boolean', default: false },
         toTopLabel: { type: 'string', default: 'Go to top', source: 'html', selector: '.b_blocks_to_top_link' },
         toTopFontSize: { type: 'number' },
         toTopColor: { type: 'string', default: '#777' },
@@ -61,7 +62,7 @@ registerBlockType('b-blocks/divider', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, dividePosition, enableToTop, toTopLabel, toTopFontSize, toTopColor, toTopPosition }, setAttributes } = props;
+        const { attributes: { divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, dividePosition, toggleToTop, toTopLabel, toTopFontSize, toTopColor, toTopPosition }, setAttributes } = props;
 
         const containerStyle = { padding: `${divideMT}px 0 ${divideMB}px 0` };
 
@@ -70,8 +71,6 @@ registerBlockType('b-blocks/divider', {
 
         const toTopWrapStyle = { textAlign: toTopPosition };
         const toTopStyle = { fontSize: `${toTopFontSize}px`, color: toTopColor };
-
-        console.log(divideWidthType)
 
         return ([
             <InspectorControls>
@@ -114,10 +113,9 @@ registerBlockType('b-blocks/divider', {
 
                 <PanelBody title="Go To Top Settings">
                     {/* Enable/Disable Go To Top */}
-                    {firstTitle('Enable/Disable Go To Top:')}
-                    <CheckboxControl label="Go To Top" help="Enable/Disable Go To Top" checked={enableToTop} onChange={toggle => setAttributes({ enableToTop: toggle })} />
+                    <CheckboxControl label="Enable/Disable Go To Top" help="Checked to enable 'Go To Top' link" checked={toggleToTop} onChange={cng => setAttributes({ toggleToTop: cng })} />
 
-                    {enableToTop && <span>
+                    {toggleToTop && <span>
                         {/* Go To Top Font Size */}
                         {otherTitle('Go To Top Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={toTopFontSize} onChange={cng => setAttributes({ toTopFontSize: cng })} />
@@ -135,7 +133,7 @@ registerBlockType('b-blocks/divider', {
 
 
             <div style={containerStyle}>
-                {enableToTop && <div style={toTopWrapStyle}>
+                {toggleToTop && <div style={toTopWrapStyle}>
                     <RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={toTopLabel} onChange={cng => { setAttributes({ toTopLabel: cng }) }} style={toTopStyle} />
                 </div>}
 
@@ -147,7 +145,7 @@ registerBlockType('b-blocks/divider', {
     },
 
     save: props => {
-        const { divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, dividePosition, enableToTop, toTopLabel, toTopFontSize, toTopColor, toTopPosition } = props.attributes;
+        const { divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, dividePosition, toggleToTop, toTopLabel, toTopFontSize, toTopColor, toTopPosition } = props.attributes;
 
         const containerStyle = { padding: `${divideMT}px 0 ${divideMB}px 0` };
 
@@ -159,7 +157,7 @@ registerBlockType('b-blocks/divider', {
 
         return (
             <div style={containerStyle}>
-                {enableToTop && <div style={toTopWrapStyle}>
+                {toggleToTop && <div style={toTopWrapStyle}>
                     <RichText.Content className="b_blocks_to_top_link" tagName="a" href="#" value={toTopLabel} style={toTopStyle} />
                 </div>}
 

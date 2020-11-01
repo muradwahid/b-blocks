@@ -1,3 +1,33 @@
 html{
     scroll-behavior: smooth;
 }
+
+
+// Posts
+.b_blocks_posts{
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .b_blocks_article{
+        .meta{
+            > span{
+                display: inline-flex;
+                align-items: center;
+                margin-right: 10px;
+
+                a{
+                    color: inherit;
+                }
+            }
+        }
+
+        .excerpt{
+            p{
+                margin: 0;
+                font-size: inherit;
+            }
+        }
+    }
+}

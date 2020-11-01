@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl } = wp.components;
 
 
 // Variables
@@ -52,6 +52,7 @@ registerBlockType('b-blocks/note', {
         padLR: { type: 'number', default: 15 },
         borderRadius: { type: 'number', default: 5 },
 
+        toggleHead: { type: 'boolean', default: true },
         head: { type: 'string', source: 'html', selector: '.b_blocks_note_head' },
         headTag: { type: 'string', default: 'h2' },
         headFontSize: { type: 'number' },
@@ -71,7 +72,7 @@ registerBlockType('b-blocks/note', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { BGColor, padTB, padLR, borderRadius, head, headTag, headFontSize, headColor, headPB, headMB, sepThick, sepStyle, sepColor, content, contentFontSize, contentColor, contentMB }, setAttributes } = props;
+        const { attributes: { BGColor, padTB, padLR, borderRadius, toggleHead, head, headTag, headFontSize, headColor, headPB, headMB, sepThick, sepStyle, sepColor, content, contentFontSize, contentColor, contentMB }, setAttributes } = props;
 
         const containerStyle = { backgroundColor: BGColor, padding: `${padTB}px ${padLR}px`, borderRadius: `${borderRadius}px` }
 
@@ -103,42 +104,49 @@ registerBlockType('b-blocks/note', {
 
                 {/* Heading Settings */}
                 <PanelBody title="Heading Settings">
-                    {/* Heading Tag */}
-                    {firstTitle('Heading Tag:')}
-                    <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={headingTags} />
+                    {/* Enable/Disable Heading */}
+                    <CheckboxControl label="Enable/Disable Heading" help="Unchecked to Disable Heading" checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
-                    {/* Heading Font Size */}
-                    {otherTitle('Heading Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
+                    {toggleHead && <span>
+                        {/* Heading Tag */}
+                        {otherTitle('Heading Tag:')}
+                        <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={headingTags} />
 
-                    {/* Heading Color */}
-                    {otherTitle('Heading Color:')}
-                    <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} />
+                        {/* Heading Font Size */}
+                        {otherTitle('Heading Font Size:')}
+                        <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
 
-                    {/* Empty Space After Heading */}
-                    {otherTitle('Empty Space After Heading:')}
-                    <RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={50} step={1} />
+                        {/* Heading Color */}
+                        {otherTitle('Heading Color:')}
+                        <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} />
+
+                        {/* Empty Space After Heading */}
+                        {otherTitle('Empty Space After Heading:')}
+                        <RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={50} step={1} />
+                    </span>}
                 </PanelBody>
 
 
-                {/* Separator Settings */}
-                <PanelBody title="Separator Settings">
-                    {/* Separator Thickness */}
-                    {firstTitle('Separator Thickness:')}
-                    <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={20} step={.1} />
+                {toggleHead && <span>
+                    {/* Separator Settings */}
+                    <PanelBody title="Separator Settings">
+                        {/* Separator Thickness */}
+                        {firstTitle('Separator Thickness:')}
+                        <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={20} step={.1} />
 
-                    {/* Separator Style */}
-                    {otherTitle('Separator Style:')}
-                    <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyle} />
+                        {/* Separator Style */}
+                        {otherTitle('Separator Style:')}
+                        <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyle} />
 
-                    {/* Separator Color */}
-                    {otherTitle('Separator Color:')}
-                    <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} />
+                        {/* Separator Color */}
+                        {otherTitle('Separator Color:')}
+                        <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} />
 
-                    {/* Empty Space After Separator */}
-                    {otherTitle('Empty Space After Separator:')}
-                    <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
-                </PanelBody>
+                        {/* Empty Space After Separator */}
+                        {otherTitle('Empty Space After Separator:')}
+                        <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
+                    </PanelBody>
+                </span>}
 
 
                 {/* Content Settings */}
@@ -159,15 +167,15 @@ registerBlockType('b-blocks/note', {
 
 
             <div style={containerStyle}>
-                <RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} />
+                {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} /></span>}
 
-                <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} style={contentStyle} />
-            </div>
+                < RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} style={contentStyle} />
+            </div >
         ]);
     },
 
     save: props => {
-        const { BGColor, padTB, padLR, borderRadius, head, headTag, headFontSize, headColor, headPB, headMB, sepThick, sepStyle, sepColor, content, contentFontSize, contentColor, contentMB } = props.attributes;
+        const { BGColor, padTB, padLR, borderRadius, toggleHead, head, headTag, headFontSize, headColor, headPB, headMB, sepThick, sepStyle, sepColor, content, contentFontSize, contentColor, contentMB } = props.attributes;
 
         const containerStyle = { backgroundColor: BGColor, padding: `${padTB}px ${padLR}px`, borderRadius: `${borderRadius}px` }
 
@@ -177,7 +185,7 @@ registerBlockType('b-blocks/note', {
 
         return (
             <div style={containerStyle}>
-                <RichText.Content className="b_blocks_note_head" tagName={headTag} value={head} style={headStyle} />
+                {toggleHead && <span><RichText.Content className="b_blocks_note_head" tagName={headTag} value={head} style={headStyle} /></span>}
 
                 <RichText.Content className="b_blocks_note_content" tagName="p" value={content} style={contentStyle} />
             </div>

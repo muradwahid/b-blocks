@@ -22,3 +22,22 @@
     box-shadow: none!important;
     outline: 0;
 }
+
+.b_blocks_tab_panel{
+    .components-tab-panel__tabs{
+        display: flex;
+        justify-content: space-between;
+
+        button{
+            width: 50%;
+
+            &:focus{
+                border-top: none;
+            }
+        }
+        .active-tab{
+            border-bottom: 3px solid #007cba;
+            font-weight: bold;
+        }
+    }
+}

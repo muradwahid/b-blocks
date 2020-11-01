@@ -2,6 +2,7 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker } = wp.components;
 
+
 // Variables
 const fontSizes = [
     { name: 'Small', slug: 'small', size: 13 },
@@ -21,7 +22,7 @@ registerBlockType('b-blocks/highlight-text', {
     // Build In attributes
     title: 'Highlight Text',
     description: 'Text Highlight',
-    icon: 'text',
+    icon: 'align-wide',
     category: 'bBlocks',
 
     // Custom Attributes
