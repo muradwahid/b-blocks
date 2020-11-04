@@ -1,3 +1,4 @@
+// Panel Title
 .components-panel__body-title{
     button{
         font-size: 16px;
@@ -10,7 +11,7 @@
     font-weight: 500;
 }
 
-
+// Size Type
 .b_blocks_size_type{
     margin: 0;
     text-align: right;
@@ -23,6 +24,7 @@
     outline: 0;
 }
 
+// Tab Panel
 .b_blocks_tab_panel{
     .components-tab-panel__tabs{
         display: flex;
@@ -36,8 +38,25 @@
             }
         }
         .active-tab{
-            border-bottom: 3px solid #007cba;
+            border-bottom: 3px solid #4527a4;
             font-weight: bold;
         }
+    }
+}
+
+// Spinner
+.components-spinner{
+    background-color: #4527a4;
+}
+
+// Checkbox
+.block-editor-block-inspector .components-base-control{
+    margin-bottom: 0;
+}
+.components-base-control__field{
+    display: flex;
+
+    .components-checkbox-control__input[type=checkbox]{
+        border-radius: 4px;
     }
 }

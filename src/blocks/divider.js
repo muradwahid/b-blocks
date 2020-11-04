@@ -1,45 +1,27 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, ButtonGroup, Button } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, ButtonGroup, Button } = wp.components;
 
 
 // Variables
-const fontSizes = [
-    { name: 'Small', slug: 'small', size: 13 },
-    { name: 'Normal', slug: 'normal', size: 16 },
-    { name: 'Medium', slug: 'medium', size: 20 },
-    { name: 'Large', slug: 'large', size: 36 },
-    { name: 'Huge', slug: 'huge', size: 48 }
-];
-
-const borderStyle = [
-    { label: 'Solid', value: 'solid' },
-    { label: 'Dashed', value: 'dashed' },
-    { label: 'Dotted', value: 'dotted' },
-    { label: 'Double', value: 'double' },
-    { label: 'Groove', value: 'groove' },
-    { label: 'Inset', value: 'inset' },
-    { label: 'Outset', value: 'outset' },
-    { label: 'Ridge', value: 'ridge' }
-];
-
-const alignOptions = [
-    { label: 'Left', value: 'left' },
-    { label: 'Center', value: 'center' },
-    { label: 'Right', value: 'right' }
-];
+import options from '../Const/options';
+const { fontSizes, aligns, borderStyles, colors } = options;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
-const otherTitle = title => <p className="panel_single-title" style={{ marginTop: '25px' }}>{title}</p>;
+import func from '../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+
+// Icon
+import icons from '../Const/icons';
 
 
 registerBlockType('b-blocks/divider', {
     // Build In attributes
     title: 'Divider',
     description: 'Divider of your Section',
-    icon: 'minus',
+    icon: icons.minus,
     category: 'bBlocks',
 
     // Custom Attributes
@@ -91,11 +73,11 @@ registerBlockType('b-blocks/divider', {
 
                     {/* Divider Style */}
                     {otherTitle('Divider Style:')}
-                    <SelectControl value={divideStyle} onChange={cng => setAttributes({ divideStyle: cng })} options={borderStyle} />
+                    <SelectControl value={divideStyle} onChange={cng => setAttributes({ divideStyle: cng })} options={borderStyles} />
 
                     {/* Divider Color */}
                     {otherTitle('Divider Color:')}
-                    <ColorPalette value={divideColor} onChange={cng => setAttributes({ divideColor: cng })} />
+                    <ColorPalette value={divideColor} onChange={cng => setAttributes({ divideColor: cng })} colors={colors} />
 
                     {/* Empty Space Before Divider */}
                     {otherTitle('Empty Space Before Divider:')}
@@ -107,13 +89,13 @@ registerBlockType('b-blocks/divider', {
 
                     {/* Divider Position */}
                     {otherTitle('Divider Position:')}
-                    <SelectControl value={dividePosition} onChange={cng => setAttributes({ dividePosition: cng })} options={alignOptions} />
+                    <SelectControl value={dividePosition} onChange={cng => setAttributes({ dividePosition: cng })} options={aligns} />
                 </PanelBody>
 
 
                 <PanelBody title="Go To Top Settings">
                     {/* Enable/Disable Go To Top */}
-                    <CheckboxControl label="Enable/Disable Go To Top" help="Checked to enable 'Go To Top' link" checked={toggleToTop} onChange={cng => setAttributes({ toggleToTop: cng })} />
+                    <ToggleControl label={toggleToTop ? "Disable 'Go To Top' link" : "Enable 'Go To Top' link"} checked={toggleToTop} onChange={cng => setAttributes({ toggleToTop: cng })} />
 
                     {toggleToTop && <span>
                         {/* Go To Top Font Size */}
@@ -122,11 +104,11 @@ registerBlockType('b-blocks/divider', {
 
                         {/* Go To Top Color */}
                         {otherTitle('Go To Top Color:')}
-                        <ColorPalette value={toTopColor} onChange={cng => setAttributes({ toTopColor: cng })} />
+                        <ColorPalette value={toTopColor} onChange={cng => setAttributes({ toTopColor: cng })} colors={colors} />
 
                         {/* Go To Top Position */}
                         {otherTitle('Go To Top Position:')}
-                        <SelectControl value={toTopPosition} onChange={cng => setAttributes({ toTopPosition: cng })} options={alignOptions} />
+                        <SelectControl value={toTopPosition} onChange={cng => setAttributes({ toTopPosition: cng })} options={aligns} />
                     </span>}
                 </PanelBody>
             </InspectorControls>,
@@ -166,5 +148,11 @@ registerBlockType('b-blocks/divider', {
                 </div>
             </div>
         );
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
     },
 });

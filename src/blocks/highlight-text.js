@@ -4,25 +4,24 @@ const { PanelBody, FontSizePicker } = wp.components;
 
 
 // Variables
-const fontSizes = [
-    { name: 'Small', slug: 'small', size: 13 },
-    { name: 'Normal', slug: 'normal', size: 16 },
-    { name: 'Medium', slug: 'medium', size: 20 },
-    { name: 'Large', slug: 'large', size: 36 },
-    { name: 'Huge', slug: 'huge', size: 48 }
-];
+import options from '../Const/options';
+const { fontSizes, colors } = options;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
-const otherTitle = title => <p className="panel_single-title" style={{ marginTop: '25px' }}>{title}</p>;
+import func from '../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+
+// Icon
+import icons from '../Const/icons';
 
 
 registerBlockType('b-blocks/highlight-text', {
     // Build In attributes
     title: 'Highlight Text',
     description: 'Text Highlight',
-    icon: 'align-wide',
+    icon: icons.paint,
     category: 'bBlocks',
 
     // Custom Attributes
@@ -49,11 +48,11 @@ registerBlockType('b-blocks/highlight-text', {
 
                     {/* Color */}
                     {otherTitle('Color:')}
-                    <ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} />
+                    <ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
 
                     {/* Background Color */}
                     {otherTitle('Background Color:')}
-                    <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} />
+                    <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
                 </PanelBody>
             </InspectorControls>,
 
@@ -70,5 +69,11 @@ registerBlockType('b-blocks/highlight-text', {
         return (
             <RichText.Content className="b_blocks_highlighter" tagName="mark" value={text} style={textStyle} />
         )
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
     },
 });

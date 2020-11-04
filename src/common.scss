@@ -29,5 +29,11 @@ html{
                 font-size: inherit;
             }
         }
+
+        a{
+            text-decoration: none;
+            display: inline-block;
+            transition: all .3s ease;
+        }
     }
 }

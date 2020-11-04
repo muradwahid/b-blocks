@@ -3,6 +3,12 @@ const { registerFormatType, applyFormat, removeFormat, getActiveFormat } = wp.ri
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody } = wp.components;
 
+
+// Variables
+import options from '../../Const/options';
+const { colors } = options;
+
+
 const allOptions = [
     { name: 'color', title: 'Text Color' },
     { name: 'background-color', title: 'Text Background Color' }
@@ -44,7 +50,7 @@ allOptions.forEach(({ name, title }) => {
                             }
 
                             onChange(removeFormat(value, type));
-                        }} />
+                        }} colors={colors} />
                     </PanelBody>
                 </InspectorControls>
             );

@@ -1,54 +1,27 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
 
 
 // Variables
-const headingTags = [
-    { label: 'Heading 1', value: 'h1' },
-    { label: 'Heading 2', value: 'h2' },
-    { label: 'Heading 3', value: 'h3' },
-    { label: 'Heading 4', value: 'h4' },
-    { label: 'Heading 5', value: 'h5' },
-    { label: 'Heading 6', value: 'h6' }
-];
-
-const fontSizes = [
-    { name: 'Small', slug: 'small', size: 13 },
-    { name: 'Normal', slug: 'normal', size: 16 },
-    { name: 'Medium', slug: 'medium', size: 20 },
-    { name: 'Large', slug: 'large', size: 36 },
-    { name: 'Huge', slug: 'huge', size: 48 }
-];
-
-const borderStyle = [
-    { label: 'Solid', value: 'solid' },
-    { label: 'Dashed', value: 'dashed' },
-    { label: 'Dotted', value: 'dotted' },
-    { label: 'Double', value: 'double' },
-    { label: 'Groove', value: 'groove' },
-    { label: 'Inset', value: 'inset' },
-    { label: 'Outset', value: 'outset' },
-    { label: 'Ridge', value: 'ridge' }
-];
-
-const alignOptions = [
-    { label: 'Left', value: 'left' },
-    { label: 'Center', value: 'center' },
-    { label: 'Right', value: 'right' }
-];
+import options from '../Const/options';
+const { hTags, fontSizes, aligns, borderStyles, colors } = options;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
-const otherTitle = title => <p className="panel_single-title" style={{ marginTop: '25px' }}>{title}</p>;
+import func from '../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+
+// Icon
+import icons from '../Const/icons';
 
 
 registerBlockType('b-blocks/section-heading', {
     // Build In attributes
     title: 'Section Heading',
     description: 'Awesome Section Heading',
-    icon: 'heading',
+    icon: icons.h,
     category: 'bBlocks',
 
     // Custom Attributes
@@ -92,7 +65,7 @@ registerBlockType('b-blocks/section-heading', {
                 <PanelBody title="Content Settings">
                     {/* Content Alignment */}
                     {firstTitle('Content Alignment:')}
-                    <SelectControl value={alignment} onChange={cng => setAttributes({ alignment: cng })} options={alignOptions} />
+                    <SelectControl value={alignment} onChange={cng => setAttributes({ alignment: cng })} options={aligns} />
                 </PanelBody>
 
 
@@ -100,7 +73,7 @@ registerBlockType('b-blocks/section-heading', {
                 <PanelBody title="Heading Settings">
                     {/* Heading Tag */}
                     {firstTitle('Heading Tag:')}
-                    <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={headingTags} />
+                    <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={hTags} />
 
                     {/* Heading Font Size */}
                     {otherTitle('Heading Font Size:')}
@@ -108,7 +81,7 @@ registerBlockType('b-blocks/section-heading', {
 
                     {/* Heading Color */}
                     {otherTitle('Heading Color:')}
-                    <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} />
+                    <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} colors={colors} />
 
                     {/* Empty Space After Heading */}
                     {otherTitle('Empty Space After Heading:')}
@@ -128,11 +101,11 @@ registerBlockType('b-blocks/section-heading', {
 
                     {/* Separator Style */}
                     {otherTitle('Separator Style:')}
-                    <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyle} />
+                    <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyles} />
 
                     {/* Separator Color */}
                     {otherTitle('Separator Color:')}
-                    <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} />
+                    <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} colors={colors} />
 
                     {/* Empty Space After Separator */}
                     {otherTitle('Empty Space After Separator:')}
@@ -143,7 +116,7 @@ registerBlockType('b-blocks/section-heading', {
                 {/* Description Settings */}
                 <PanelBody title="Description Settings">
                     {/* Enable/Disable Description */}
-                    <CheckboxControl label="Enable/Disable Description" help="Unchecked to Disable Description" checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
+                    <ToggleControl label={toggleDesc ? 'Disable Description' : 'Enable Description'} checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
 
                     {toggleDesc && <span>
                         {/* Description Font Size */}
@@ -152,7 +125,7 @@ registerBlockType('b-blocks/section-heading', {
 
                         {/* Description Color */}
                         {otherTitle('Description Color:')}
-                        <ColorPalette value={descColor} onChange={cng => setAttributes({ descColor: cng })} />
+                        <ColorPalette value={descColor} onChange={cng => setAttributes({ descColor: cng })} colors={colors} />
 
                         {/* Empty Space After Description */}
                         {otherTitle('Empty Space After Description:')}
@@ -196,5 +169,11 @@ registerBlockType('b-blocks/section-heading', {
                 {toggleDesc && <span><RichText.Content className="b_blocks_section_description" tagName="p" value={desc} style={descStyle} /></span>}
             </div>
         );
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
     },
 });

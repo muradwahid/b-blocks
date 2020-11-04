@@ -1,48 +1,27 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
 
 
 // Variables
-const headingTags = [
-    { label: 'Heading 1', value: 'h1' },
-    { label: 'Heading 2', value: 'h2' },
-    { label: 'Heading 3', value: 'h3' },
-    { label: 'Heading 4', value: 'h4' },
-    { label: 'Heading 5', value: 'h5' },
-    { label: 'Heading 6', value: 'h6' }
-];
-
-const fontSizes = [
-    { name: 'Small', slug: 'small', size: 13 },
-    { name: 'Normal', slug: 'normal', size: 16 },
-    { name: 'Medium', slug: 'medium', size: 20 },
-    { name: 'Large', slug: 'large', size: 36 },
-    { name: 'Huge', slug: 'huge', size: 48 }
-];
-
-const borderStyle = [
-    { label: 'Solid', value: 'solid' },
-    { label: 'Dashed', value: 'dashed' },
-    { label: 'Dotted', value: 'dotted' },
-    { label: 'Double', value: 'double' },
-    { label: 'Groove', value: 'groove' },
-    { label: 'Inset', value: 'inset' },
-    { label: 'Outset', value: 'outset' },
-    { label: 'Ridge', value: 'ridge' }
-];
+import options from '../Const/options';
+const { hTags, fontSizes, borderStyles, colors } = options;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
-const otherTitle = title => <p className="panel_single-title" style={{ marginTop: '25px' }}>{title}</p>;
+import func from '../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+
+// Icon
+import icons from '../Const/icons';
 
 
 registerBlockType('b-blocks/note', {
     // Build In attributes
     title: 'Note',
     description: 'Create Note by Block',
-    icon: 'welcome-write-blog',
+    icon: icons.note,
     category: 'bBlocks',
 
     // Custom Attributes
@@ -86,7 +65,7 @@ registerBlockType('b-blocks/note', {
                 <PanelBody title="Note Settings">
                     {/* Note Background Color */}
                     {firstTitle('Note Background Color:')}
-                    <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} />
+                    <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
                     {/* Note Top Bottom Padding */}
                     {otherTitle('Note Top Bottom Padding:')}
@@ -105,12 +84,12 @@ registerBlockType('b-blocks/note', {
                 {/* Heading Settings */}
                 <PanelBody title="Heading Settings">
                     {/* Enable/Disable Heading */}
-                    <CheckboxControl label="Enable/Disable Heading" help="Unchecked to Disable Heading" checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
+                    <ToggleControl label={toggleHead ? 'Disable Heading' : 'Enable Heading'} checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
                     {toggleHead && <span>
                         {/* Heading Tag */}
                         {otherTitle('Heading Tag:')}
-                        <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={headingTags} />
+                        <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={hTags} />
 
                         {/* Heading Font Size */}
                         {otherTitle('Heading Font Size:')}
@@ -118,7 +97,7 @@ registerBlockType('b-blocks/note', {
 
                         {/* Heading Color */}
                         {otherTitle('Heading Color:')}
-                        <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} />
+                        <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} colors={colors} />
 
                         {/* Empty Space After Heading */}
                         {otherTitle('Empty Space After Heading:')}
@@ -136,11 +115,11 @@ registerBlockType('b-blocks/note', {
 
                         {/* Separator Style */}
                         {otherTitle('Separator Style:')}
-                        <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyle} />
+                        <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyles} />
 
                         {/* Separator Color */}
                         {otherTitle('Separator Color:')}
-                        <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} />
+                        <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} colors={colors} />
 
                         {/* Empty Space After Separator */}
                         {otherTitle('Empty Space After Separator:')}
@@ -157,7 +136,7 @@ registerBlockType('b-blocks/note', {
 
                     {/* Content Color */}
                     {otherTitle('Content Color:')}
-                    <ColorPalette value={contentColor} onChange={cng => setAttributes({ contentColor: cng })} />
+                    <ColorPalette value={contentColor} onChange={cng => setAttributes({ contentColor: cng })} colors={colors} />
 
                     {/* Empty Space After Content */}
                     {otherTitle('Empty Space After Content:')}
@@ -190,5 +169,11 @@ registerBlockType('b-blocks/note', {
                 <RichText.Content className="b_blocks_note_content" tagName="p" value={content} style={contentStyle} />
             </div>
         );
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
     },
 });

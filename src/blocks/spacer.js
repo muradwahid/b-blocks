@@ -4,14 +4,19 @@ const { PanelBody, RangeControl } = wp.components;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
+import func from '../Const/functions';
+const { firstTitle } = func;
+
+
+// Icon
+import icons from '../Const/icons';
 
 
 registerBlockType('b-blocks/spacer', {
     // Build In attributes
     title: 'Spacer',
     description: 'Space in content',
-    icon: 'button',
+    icon: icons.rectangle,
     category: 'bBlocks',
 
     // Custom Attributes
@@ -44,5 +49,11 @@ registerBlockType('b-blocks/spacer', {
         return (
             <div style={{ height: `${height}px` }}></div>
         )
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
     },
 });

@@ -2,107 +2,71 @@ const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data;
 
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } = wp.components;
 
 
 // Variables
-const postsOrderByOptions = [
-    { label: 'Author', value: 'author' },
-    { label: 'Title', value: 'title' },
-    { label: 'Date', value: 'date' },
-    { label: 'Last Modified', value: 'modified' },
-];
-
-const postsOrderOptions = [
-    { label: 'Ascending', value: 'asc' },
-    { label: 'Descending', value: 'desc' }
-];
-
-const getMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-const alignOptions = [
-    { label: 'Left', value: 'left' },
-    { label: 'Center', value: 'center' },
-    { label: 'Right', value: 'right' },
-    { label: 'Justify', value: 'justify' }
-];
-
-const headingTags = [
-    { label: 'Heading 1', value: 'h1' },
-    { label: 'Heading 2', value: 'h2' },
-    { label: 'Heading 3', value: 'h3' },
-    { label: 'Heading 4', value: 'h4' },
-    { label: 'Heading 5', value: 'h5' },
-    { label: 'Heading 6', value: 'h6' }
-];
-
-const fontSizes = [
-    { name: 'Small', slug: 'small', size: 13 },
-    { name: 'Normal', slug: 'normal', size: 16 },
-    { name: 'Medium', slug: 'medium', size: 20 },
-    { name: 'Large', slug: 'large', size: 36 },
-    { name: 'Huge', slug: 'huge', size: 48 }
-];
-
-const textTransforms = [
-    { label: 'None', value: 'none' },
-    { label: 'Capitalize', value: 'capitalize' },
-    { label: 'Uppercase', value: 'uppercase' },
-    { label: 'Lowercase', value: 'lowercase' },
-];
+import options from '../../Const/options';
+const { fontSizes, colors, aligns, fontWeights, textTransforms, layouts, postsOrdersBy, postsOrders, getMonth, shadows } = options;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
-const otherTitle = title => <p className="panel_single-title" style={{ marginTop: '25px' }}>{title}</p>;
+import func from '../../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+
+// Icon
+import icons from '../../Const/icons';
 
 
 registerBlockType('b-blocks/posts', {
     // Build In attributes
     title: 'Posts',
-    icon: 'embed-post',
+    icon: icons.postEmbed,
     category: 'bBlocks',
     keywords: ['Specific Category Posts'],
 
     // Custom Attributes
     attributes: {
         selectedCategories: { type: 'array', default: [] },
-        postsPerPageAll: { type: 'boolean', default: true },
+        postsPerPageAll: { type: 'boolean', default: 'true' },
         postsPerPage: { type: 'number', default: 10 },
         postsOrderBy: { type: 'string', default: 'date' },
         postsOrder: { type: 'string', default: 'desc' },
 
+        layout: { type: 'string', default: 'grid' },
         columns: { type: 'number', default: 3 },
         columnGap: { type: 'number', default: 15 },
         rowGap: { type: 'number', default: 30 },
+        shadow: { type: 'string', default: 'shadow-lg' },
 
-        contentAlign: { type: 'string', default: 'center' },
+        contentAlign: { type: 'string', default: 'left' },
         contentEqualHight: { type: 'string', default: 'true' },
-        contentBGColor: { type: 'string', default: '#f4f4f4' },
-        postTextPTB: { type: 'number', default: 10 },
-        postTextPLR: { type: 'number', default: 10 },
+        contentBGColor: { type: 'string', default: '#fff' },
+        postTextPTB: { type: 'number', default: 15 },
+        postTextPLR: { type: 'number', default: 25 },
 
         featureImgShow: { type: 'string', default: 'true' },
 
         titleShow: { type: 'string', default: 'true' },
         titleFontSize: { type: 'number' },
-        titleColor: { type: 'string', default: '#006799' },
+        titleColor: { type: 'string', default: '#4527a4' },
         titleMB: { type: 'number', default: 15 },
 
         metaShow: { type: 'boolean', default: 'true' },
         metaAuthorShow: { type: 'boolean', default: 'true' },
         metaDateShow: { type: 'boolean', default: 'true' },
         metaCategoryShow: { type: 'boolean', default: 'true' },
-        metaCommentShow: { type: 'boolean', default: 'true' },
-        metaFontSize: { type: 'number', default: 14 },
-        metaTransform: { type: 'string', default: 'capitalize' },
+        metaCommentShow: { type: 'boolean', default: 'false' },
+        metaFontSize: { type: 'number', default: 13 },
+        metaTransform: { type: 'string', default: 'uppercase' },
         metaTextColor: { type: 'string', default: '#333' },
-        metaLinkColor: { type: 'string', default: '#65a8d4' },
-        metaIconColor: { type: 'string', default: '#777' },
+        metaLinkColor: { type: 'string', default: '#8344c5' },
+        metaIconColor: { type: 'string', default: '#4527a4' },
         metaMB: { type: 'number', default: 15 },
 
         excerptShow: { type: 'boolean', default: 'true' },
-        excerptLength: { type: 'number', default: 45 },
+        excerptLength: { type: 'number', default: 25 },
         excerptAlign: { type: 'string', default: 'justify' },
         excerptFontSize: { type: 'number' },
         excerptColor: { type: 'string', default: '#333' },
@@ -111,13 +75,16 @@ registerBlockType('b-blocks/posts', {
         readMoreShow: { type: 'boolean', default: 'true' },
         readMoreLabel: { type: 'string', default: 'Read More' },
         readMoreAlign: { type: 'string', default: 'right' },
-        readMoreFontSize: { type: 'number' },
+        readMoreFontSize: { type: 'number', default: 14 },
         readMoreTransform: { type: 'string', default: 'capitalize' },
-        readMorePTB: { type: 'number', default: 10 },
-        readMorePLR: { type: 'number', default: 20 },
-        readMoreRadius: { type: 'number', default: 3 },
+        readMoreFontWeight: { type: 'string', default: '600' },
+        readMorePTB: { type: 'number', default: 8 },
+        readMorePLR: { type: 'number', default: 25 },
+        readMoreRadius: { type: 'number', default: 0 },
         readMoreTextColor: { type: 'string', default: '#fff' },
-        readMoreBGColor: { type: 'string', default: '#333' },
+        readMoreBGColor: { type: 'string', default: '#4527a4' },
+        readMoreTextHovColor: { type: 'string', default: '#fff' },
+        readMoreBGHovColor: { type: 'string', default: '#8344c5' },
     },
 
     // Build In Functions
@@ -126,7 +93,7 @@ registerBlockType('b-blocks/posts', {
 
         const query = {
             categories: selectedCategories,
-            per_page: postsPerPageAll ? -1 : postsPerPage, // set -1 to display ALL
+            per_page: postsPerPageAll == 'true' ? -1 : postsPerPage, // set -1 to display ALL
             orderby: postsOrderBy,
             order: postsOrder,
         }
@@ -139,7 +106,7 @@ registerBlockType('b-blocks/posts', {
         };
 
     })(({ select, posts, categories, media, attributes, setAttributes }) => {
-        const { selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, columns, columnGap, rowGap, contentAlign, contentEqualHight, postTextPTB, postTextPLR, contentBGColor, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMorePTB, readMorePLR, readMoreRadius, readMoreTextColor, readMoreBGColor } = attributes;
+        const { selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, shadow, contentAlign, contentEqualHight, postTextPTB, postTextPLR, contentBGColor, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMorePTB, readMorePLR, readMoreRadius, readMoreTextColor, readMoreBGColor, readMoreTextHovColor, readMoreBGHovColor } = attributes;
 
         // Render HTML and Excerpt count
         const renderHTML = rawHTML => <span dangerouslySetInnerHTML={{ __html: rawHTML }} />;
@@ -147,7 +114,7 @@ registerBlockType('b-blocks/posts', {
 
         // Posts and Categories Check
         if (!posts || !categories) {
-            return <h3>Loading...</h3>;
+            return <h3 style={{ color: '#4527a4' }}><Spinner /> Loading...</h3>;
         }
 
         // Single Category Func
@@ -163,7 +130,9 @@ registerBlockType('b-blocks/posts', {
 
 
         // Styles
-        const postsStyle = { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gridGap: `${rowGap}px ${columnGap}px` }
+        const postsStyle = { display: layout == 'grid' ? 'grid' : layout == 'masonry' ? 'block' : 'grid', columns: columns, gridTemplateColumns: `repeat(${columns}, 1fr)`, gridGap: `${rowGap}px ${columnGap}px` }
+
+        const articleStyle = { breakInside: 'avoid', marginBottom: layout == 'masonry' ? `${rowGap}px` : '' }
 
         const articleInnerWrapStyle = { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: contentAlign, height: contentEqualHight == 'true' ? '100%' : 'auto', backgroundColor: contentBGColor }
 
@@ -173,18 +142,18 @@ registerBlockType('b-blocks/posts', {
         const metaStyle = { textAlign: contentAlign, fontSize: `${metaFontSize}px`, textTransform: metaTransform, color: metaTextColor, margin: `0 0 ${metaMB}px 0` }
         const excerptStyle = { textAlign: excerptAlign, fontSize: `${excerptFontSize}px`, color: excerptColor, margin: `0 0 ${excerptMB}px 0` }
 
-        const readMoreWrapStyle = { textAlign: readMoreAlign, padding: `0 ${postTextPLR}px ${postTextPTB}px ${postTextPLR}px` }
-        const readMoreStyle = { display: 'inline-block', fontSize: `${readMoreFontSize}px`, textTransform: readMoreTransform, padding: `${readMorePTB}px ${readMorePLR}px`, borderRadius: `${readMoreRadius}px`, color: readMoreTextColor, backgroundColor: readMoreBGColor }
+        const readMoreWrapStyle = { textAlign: readMoreAlign, padding: `0 ${postTextPLR}px ${postTextPTB}px ${postTextPLR}px`, marginBottom: '10px' }
+        const readMoreStyle = { display: 'inline-block', fontSize: `${readMoreFontSize}px`, textTransform: readMoreTransform, fontWeight: readMoreFontWeight, padding: `${readMorePTB}px ${readMorePLR}px`, borderRadius: `${readMoreRadius}px`, color: readMoreTextColor, backgroundColor: readMoreBGColor, transition: 'all .3s ease' }
 
         return [
-            <InspectorControls>
+            posts && posts.length !== 0 && <InspectorControls>
                 {/* Posts Query */}
-                <PanelBody title="Posts Query">
+                <PanelBody title="Posts Query" initialOpen={true}>
                     {/* Select Categories */}
                     {categories && categories.length !== 0 ? <span>
                         {firstTitle('Select Categories:')}
                         {categories.map(cat => {
-                            isInc = selectedCategories.includes(cat.id);
+                            const isInc = selectedCategories.includes(cat.id);
 
                             return (
                                 <CheckboxControl label={cat.name} key={cat.id} checked={isInc} onChange={cng => setAttributes({ selectedCategories: cng ? [...selectedCategories, cat.id] : selectedCategories.filter(id => id !== cat.id) })} />
@@ -196,7 +165,7 @@ registerBlockType('b-blocks/posts', {
 
                     {/* Posts Per Page */}
                     {otherTitle('Post Per Page:')}
-                    <CheckboxControl label="Show All Posts" checked={postsPerPageAll} onChange={cng => setAttributes({ postsPerPageAll: cng })} />
+                    <ToggleControl label={postsPerPageAll == 'true' ? 'Show Some Posts' : 'Show All Posts'} checked={postsPerPageAll == 'true' ? true : false} onChange={cng => setAttributes({ postsPerPageAll: cng.toString() })} />
 
                     {!postsPerPageAll && <span>
                         <RangeControl value={postsPerPage} onChange={cng => setAttributes({ postsPerPage: cng })} min={1} max={36} step={1} />
@@ -204,18 +173,22 @@ registerBlockType('b-blocks/posts', {
 
                     {/* Posts Order By */}
                     {otherTitle('Post Order By:')}
-                    <SelectControl value={postsOrderBy} onChange={cng => setAttributes({ postsOrderBy: cng })} options={postsOrderByOptions} />
+                    <SelectControl value={postsOrderBy} onChange={cng => setAttributes({ postsOrderBy: cng })} options={postsOrdersBy} />
 
                     {/* Posts Order */}
                     {otherTitle('Post Order:')}
-                    <SelectControl value={postsOrder} onChange={cng => setAttributes({ postsOrder: cng })} options={postsOrderOptions} />
+                    <SelectControl value={postsOrder} onChange={cng => setAttributes({ postsOrder: cng })} options={postsOrders} />
                 </PanelBody>
 
 
                 {/* Layout Settings */}
-                <PanelBody title="Layout Settings">
+                <PanelBody title="Layout Settings" initialOpen={false}>
+                    {/* Layout Type */}
+                    {firstTitle('Layout Type:')}
+                    <SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={layouts} />
+
                     {/* Columns */}
-                    {firstTitle('Columns:')}
+                    {otherTitle('Columns:')}
                     <RangeControl value={columns} onChange={cng => setAttributes({ columns: cng })} min={1} max={6} step={1} />
 
                     {/* Column Gap */}
@@ -225,14 +198,18 @@ registerBlockType('b-blocks/posts', {
                     {/* Row Gap */}
                     {otherTitle('Row Gap:')}
                     <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={100} step={1} />
+
+                    {/* Article Shadow */}
+                    {otherTitle('Article Shadow:')}
+                    <SelectControl value={shadow} onChange={cng => setAttributes({ shadow: cng })} options={shadows} />
                 </PanelBody>
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings">
+                <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Content Alignment */}
                     {firstTitle('Content Alignment:')}
-                    <SelectControl value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} options={alignOptions} />
+                    <SelectControl value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} options={aligns} />
 
                     {/* Content Height */}
                     {otherTitle('Content Height:')}
@@ -240,7 +217,7 @@ registerBlockType('b-blocks/posts', {
 
                     {/* Content Background Color */}
                     {otherTitle('Content Background Color:')}
-                    <ColorPalette value={contentBGColor} onChange={cng => setAttributes({ contentBGColor: cng })} />
+                    <ColorPalette value={contentBGColor} onChange={cng => setAttributes({ contentBGColor: cng })} colors={colors} />
 
                     {/* Post Text Top Bottom Padding */}
                     {otherTitle('Post Text Top Bottom Padding:')}
@@ -253,7 +230,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Feature Image Settings */}
-                <PanelBody title="Feature Image Settings">
+                <PanelBody title="Feature Image Settings" initialOpen={false}>
                     {/* Show/Hide Title */}
                     {firstTitle('Show/Hide Feature Image:')}
                     <ToggleControl label={featureImgShow == 'true' ? 'Hide Feature Image' : 'Show Feature Image'} checked={featureImgShow == 'true' ? true : false} onChange={cng => setAttributes({ featureImgShow: cng.toString() })} />
@@ -261,7 +238,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Title Settings */}
-                <PanelBody title="Title Settings">
+                <PanelBody title="Title Settings" initialOpen={false}>
                     {/* Show/Hide Title */}
                     {firstTitle('Show/Hide Title:')}
                     <ToggleControl label={titleShow == 'true' ? 'Hide Title' : 'Show Title'} checked={titleShow == 'true' ? true : false} onChange={cng => setAttributes({ titleShow: cng.toString() })} />
@@ -273,7 +250,7 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Title Color */}
                         {otherTitle('Title Color:')}
-                        <ColorPalette value={titleColor} onChange={cng => setAttributes({ titleColor: cng })} />
+                        <ColorPalette value={titleColor} onChange={cng => setAttributes({ titleColor: cng })} colors={colors} />
 
                         {/* Title Bottom Margin */}
                         {otherTitle('Title Bottom Margin:')}
@@ -283,7 +260,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Meta Data Settings */}
-                <PanelBody title="Meta Data Settings">
+                <PanelBody title="Meta Data Settings" initialOpen={false}>
                     {/* Show/Hide Meta Data */}
                     {firstTitle('Show/Hide Meta Data:')}
                     <ToggleControl label={metaShow == 'true' ? 'Hide Meta Data' : 'Show Meta Data'} checked={metaShow == 'true' ? true : false} onChange={cng => setAttributes({ metaShow: cng.toString() })} />
@@ -316,15 +293,15 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Meta Data Text Color */}
                         {otherTitle('Meta Data Text Color:')}
-                        <ColorPalette value={metaTextColor} onChange={cng => setAttributes({ metaTextColor: cng })} />
+                        <ColorPalette value={metaTextColor} onChange={cng => setAttributes({ metaTextColor: cng })} colors={colors} />
 
                         {/* Meta Data Link Color */}
                         {otherTitle('Meta Data Link Color:')}
-                        <ColorPalette value={metaLinkColor} onChange={cng => setAttributes({ metaLinkColor: cng })} />
+                        <ColorPalette value={metaLinkColor} onChange={cng => setAttributes({ metaLinkColor: cng })} colors={colors} />
 
                         {/* Meta Data Icon Color */}
                         {otherTitle('Meta Data Icon Color:')}
-                        <ColorPalette value={metaIconColor} onChange={cng => setAttributes({ metaIconColor: cng })} />
+                        <ColorPalette value={metaIconColor} onChange={cng => setAttributes({ metaIconColor: cng })} colors={colors} />
 
                         {/* Meta Data Bottom Margin */}
                         {otherTitle('Meta Data Bottom Margin:')}
@@ -334,7 +311,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Excerpt Settings */}
-                <PanelBody title="Excerpt Settings">
+                <PanelBody title="Excerpt Settings" initialOpen={false}>
                     {/* Show/Hide Excerpt */}
                     {firstTitle('Show/Hide Excerpt:')}
                     <ToggleControl label={excerptShow == 'true' ? 'Hide Excerpt' : 'Show Excerpt'} checked={excerptShow == 'true' ? true : false} onChange={cng => setAttributes({ excerptShow: cng.toString() })} />
@@ -346,7 +323,7 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Excerpt Alignment */}
                         {otherTitle('Excerpt Alignment:')}
-                        <SelectControl value={excerptAlign} onChange={cng => setAttributes({ excerptAlign: cng })} options={alignOptions} />
+                        <SelectControl value={excerptAlign} onChange={cng => setAttributes({ excerptAlign: cng })} options={aligns} />
 
                         {/* Excerpt Font Size */}
                         {otherTitle('Excerpt Font Size:')}
@@ -354,7 +331,7 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Excerpt Color */}
                         {otherTitle('Excerpt Color:')}
-                        <ColorPalette value={excerptColor} onChange={cng => setAttributes({ excerptColor: cng })} />
+                        <ColorPalette value={excerptColor} onChange={cng => setAttributes({ excerptColor: cng })} colors={colors} />
 
                         {/* Excerpt Bottom Margin */}
                         {otherTitle('Excerpt Bottom Margin:')}
@@ -363,7 +340,7 @@ registerBlockType('b-blocks/posts', {
                 </PanelBody>
 
                 {/* Read More Link Settings */}
-                <PanelBody title="Read More Link Settings">
+                <PanelBody title="Read More Link Settings" initialOpen={false}>
                     {/* Show/Hide Read More Link */}
                     {firstTitle('Show/Hide Read More Link:')}
                     <ToggleControl label={readMoreShow == 'true' ? 'Hide Read More Link' : 'Show Read More Link'} checked={readMoreShow == 'true' ? true : false} onChange={cng => setAttributes({ readMoreShow: cng.toString() })} />
@@ -375,15 +352,19 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Read More Link Alignment */}
                         {otherTitle('Read More Link Alignment:')}
-                        <SelectControl value={readMoreAlign} onChange={cng => setAttributes({ readMoreAlign: cng })} options={alignOptions} />
+                        <SelectControl value={readMoreAlign} onChange={cng => setAttributes({ readMoreAlign: cng })} options={aligns} />
 
                         {/* Read More Link Font Size */}
                         {otherTitle('Read More Link Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={readMoreFontSize} onChange={cng => setAttributes({ readMoreFontSize: cng })} />
 
-                        {/* Meta Data Text Transform */}
-                        {otherTitle('Meta Data Text Transform:')}
+                        {/* Read More Link Text Transform */}
+                        {otherTitle('Read More Link Text Transform:')}
                         <SelectControl value={readMoreTransform} onChange={cng => setAttributes({ readMoreTransform: cng })} options={textTransforms} />
+
+                        {/* Read More Link Font Weight */}
+                        {otherTitle('Read More Link Font Weight:')}
+                        <SelectControl value={readMoreFontWeight} onChange={cng => setAttributes({ readMoreFontWeight: cng })} options={fontWeights} />
 
                         {/* Read More Link Top Bottom Padding */}
                         {otherTitle('Read More Link Top Bottom Padding:')}
@@ -400,28 +381,27 @@ registerBlockType('b-blocks/posts', {
 
                     {otherTitle('Read More Link Colors:')}
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
-                        // onSelect={tabName => console.log('Selecting tab', tabName)}
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
                             return <span>
                                 {'normal' == tab.name && <span>
                                     {/* Read More Text Color */}
                                     {otherTitle('Read More Text Color:')}
-                                    <ColorPalette value={readMoreTextColor} onChange={cng => setAttributes({ readMoreTextColor: cng })} />
+                                    <ColorPalette value={readMoreTextColor} onChange={cng => setAttributes({ readMoreTextColor: cng })} colors={colors} />
 
                                     {/* Read More Background Color */}
                                     {otherTitle('Read More Background Color:')}
-                                    <ColorPalette value={readMoreBGColor} onChange={cng => setAttributes({ readMoreBGColor: cng })} />
+                                    <ColorPalette value={readMoreBGColor} onChange={cng => setAttributes({ readMoreBGColor: cng })} colors={colors} />
                                 </span>}
 
                                 {'hover' == tab.name && <span>
-                                    {/* Read More TextHover Color */}
-                                    {otherTitle('Read More TextHover Color:')}
-                                    <ColorPalette value={readMoreTextHovColor} onChange={cng => setAttributes({ readMoreTextHovColor: cng })} />
+                                    {/* Read More Text Hover Color */}
+                                    {otherTitle('Read More Text Hover Color:')}
+                                    <ColorPalette value={readMoreTextHovColor} onChange={cng => setAttributes({ readMoreTextHovColor: cng })} colors={colors} />
 
-                                    {/* Read More BackgroundHover Color */}
-                                    {otherTitle('Read More BackgroundHover Color:')}
-                                    <ColorPalette value={readMoreBGHovColor} onChange={cng => setAttributes({ readMoreBGHovColor: cng })} />
+                                    {/* Read More Background Hover Color */}
+                                    {otherTitle('Read More Background Hover Color:')}
+                                    <ColorPalette value={readMoreBGHovColor} onChange={cng => setAttributes({ readMoreBGHovColor: cng })} colors={colors} />
                                 </span>}
                             </span>
                         }}
@@ -442,9 +422,19 @@ registerBlockType('b-blocks/posts', {
                     const d = new Date(date);
                     const convertDate = `${getMonth[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 
+                    const readMoreHov = e => {
+                        e.target.style.color = readMoreTextHovColor;
+                        e.target.style.backgroundColor = readMoreBGHovColor;
+                    }
+
+                    const readMoreHovLeave = e => {
+                        e.target.style.color = readMoreTextColor;
+                        e.target.style.backgroundColor = readMoreBGColor;
+                    }
+
                     return (
-                        <article div key={id} className="b_blocks_article" >
-                            <div className="b_blocks_article_inner_wrap" style={articleInnerWrapStyle}>
+                        <article div key={id} className="b_blocks_article" style={articleStyle}>
+                            <div className={`b_blocks_article_inner_wrap ${shadow} rounded`} style={articleInnerWrapStyle}>
                                 <div className="post_content">
                                     {featureImgShow == 'true' && featured_media > 0 && <div div className="feature_img">
                                         {media(featured_media) && <a href={link} target="_blank"><img src={media(featured_media).source_url} alt={media(featured_media).caption.rendered} /></a>}
@@ -480,14 +470,20 @@ registerBlockType('b-blocks/posts', {
                                     </div>
                                 </div>
 
-                                {readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" style={readMoreStyle}>{readMoreLabel}</a></div>}
+                                {readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>}
                             </div>
                         </article>
                     );
                 })}
-            </div> : <h3>No posts found!! Please add some posts</h3>
+            </div> : <h3 style={{ color: '#4527a4', textAlign: 'center' }}>No posts found!! Please add some posts</h3>
         ];
     }),
 
-    save: () => null
+    save: () => null,
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
+    },
 });

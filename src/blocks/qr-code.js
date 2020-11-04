@@ -4,15 +4,19 @@ const { PanelBody, RangeControl, TextControl } = wp.components;
 
 
 // Functions
-const firstTitle = title => <p className="panel_single-title">{title}</p>;
-const otherTitle = title => <p className="panel_single-title" style={{ marginTop: '25px' }}>{title}</p>;
+import func from '../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+
+// Icon
+import icons from '../Const/icons';
 
 
 registerBlockType('b-blocks/qr-code', {
     // Build In attributes
     title: 'QR Code',
     description: 'Show QR Code in posts and pages',
-    icon: 'admin-site-alt3',
+    icon: icons.qrCode,
     category: 'bBlocks',
 
     // Custom Attributes
@@ -63,5 +67,11 @@ registerBlockType('b-blocks/qr-code', {
                 <img src={qrUrl} />
             </div>
         );
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
     },
 });
