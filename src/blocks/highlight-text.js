@@ -23,6 +23,7 @@ registerBlockType('b-blocks/highlight-text', {
     description: 'Text Highlight',
     icon: icons.paint,
     category: 'bBlocks',
+    keywords: ['Highlight', 'Highlight Text', 'Color Text'],
 
     // Custom Attributes
     attributes: {
@@ -36,12 +37,12 @@ registerBlockType('b-blocks/highlight-text', {
     edit: props => {
         const { attributes: { text, fontS, color, BGColor }, setAttributes } = props;
 
-        const textStyle = { padding: '3px 5px', fontSize: fontS, color: color, backgroundColor: BGColor }
+        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
 
         return ([
             <InspectorControls>
                 {/* Highlight Text Settings */}
-                <PanelBody title="Highlight Text Settings">
+                <PanelBody title="Highlight Text Settings" initialOpen={true}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={fontS} onChange={cng => setAttributes({ fontS: cng })} />
@@ -64,7 +65,7 @@ registerBlockType('b-blocks/highlight-text', {
     save: props => {
         const { text, fontS, color, BGColor } = props.attributes;
 
-        const textStyle = { padding: '3px 5px', fontSize: fontS, color: color, backgroundColor: BGColor }
+        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
 
         return (
             <RichText.Content className="b_blocks_highlighter" tagName="mark" value={text} style={textStyle} />

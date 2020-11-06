@@ -6,6 +6,7 @@ registerBlockType('b-blocks/block', {
 	description: 'Simple B Block',
 	icon: 'shield',
 	category: 'bBlocks',
+	keywords: ['Block', 'Block', 'Block'],
 
 	// Custom Attributes
 	attributes: {
@@ -27,5 +28,11 @@ registerBlockType('b-blocks/block', {
 				<h2>My Demo Gutenberg Block</h2>
 			</div>
 		);
+	},
+
+	example: {
+		attributes: {
+			'preview': true,
+		},
 	},
 });

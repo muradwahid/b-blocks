@@ -28,7 +28,7 @@ registerFormatType(type, {
 
         return [
             <InspectorControls>
-                <PanelBody icon='admin-customizer' title="Text Highlight">
+                <PanelBody icon='admin-customizer' title="Text Highlight" initialOpen={false}>
                     <PanelRow>
                         <label htmlFor="b_blocks_text_highlight_toggle">{isActive ? 'Remove Text Highlight' : 'Text Highlight'}</label>
 

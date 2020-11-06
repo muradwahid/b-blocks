@@ -2,7 +2,7 @@ const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data;
 
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner, Button, ButtonGroup, Tooltip } = wp.components;
 
 
 // Variables
@@ -209,7 +209,13 @@ registerBlockType('b-blocks/posts', {
                 <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Content Alignment */}
                     {firstTitle('Content Alignment:')}
-                    <SelectControl value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} options={aligns} />
+                    <ButtonGroup className="b_blocks_button_groups">
+                        {Object.values(aligns).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={contentAlign === obj.value} aria-pressed={contentAlign === obj.value} onClick={() => setAttributes({ contentAlign: obj.value })}></Button>
+                            </Tooltip>
+                        ))}
+                    </ButtonGroup>
 
                     {/* Content Height */}
                     {otherTitle('Content Height:')}
@@ -225,7 +231,7 @@ registerBlockType('b-blocks/posts', {
 
                     {/* Post Text Left Right Padding */}
                     {otherTitle('Post Text Left Right Padding:')}
-                    <RangeControl value={postTextPLR} onChange={cng => setAttributes({ postTextPLR: cng })} min={0} max={30} step={1} />
+                    <RangeControl value={postTextPLR} onChange={cng => setAttributes({ postTextPLR: cng })} min={0} max={50} step={1} />
                 </PanelBody>
 
 
@@ -289,7 +295,13 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Meta Data Text Transform */}
                         {otherTitle('Meta Data Text Transform:')}
-                        <SelectControl value={metaTransform} onChange={cng => setAttributes({ metaTransform: cng })} options={textTransforms} />
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(textTransforms).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} isMedium isPrimary={metaTransform === obj.value} aria-pressed={metaTransform === obj.value} onClick={() => setAttributes({ metaTransform: obj.value })}>{obj.icon}</Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
 
                         {/* Meta Data Text Color */}
                         {otherTitle('Meta Data Text Color:')}
@@ -323,7 +335,13 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Excerpt Alignment */}
                         {otherTitle('Excerpt Alignment:')}
-                        <SelectControl value={excerptAlign} onChange={cng => setAttributes({ excerptAlign: cng })} options={aligns} />
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(aligns).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={excerptAlign === obj.value} aria-pressed={excerptAlign === obj.value} onClick={() => setAttributes({ excerptAlign: obj.value })}></Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
 
                         {/* Excerpt Font Size */}
                         {otherTitle('Excerpt Font Size:')}
@@ -352,7 +370,13 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Read More Link Alignment */}
                         {otherTitle('Read More Link Alignment:')}
-                        <SelectControl value={readMoreAlign} onChange={cng => setAttributes({ readMoreAlign: cng })} options={aligns} />
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(aligns).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={readMoreAlign === obj.value} aria-pressed={readMoreAlign === obj.value} onClick={() => setAttributes({ readMoreAlign: obj.value })}></Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
 
                         {/* Read More Link Font Size */}
                         {otherTitle('Read More Link Font Size:')}
@@ -360,7 +384,13 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Read More Link Text Transform */}
                         {otherTitle('Read More Link Text Transform:')}
-                        <SelectControl value={readMoreTransform} onChange={cng => setAttributes({ readMoreTransform: cng })} options={textTransforms} />
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(textTransforms).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} isMedium isPrimary={readMoreTransform === obj.value} aria-pressed={readMoreTransform === obj.value} onClick={() => setAttributes({ readMoreTransform: obj.value })}>{obj.icon}</Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
 
                         {/* Read More Link Font Weight */}
                         {otherTitle('Read More Link Font Weight:')}

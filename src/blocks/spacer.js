@@ -18,6 +18,7 @@ registerBlockType('b-blocks/spacer', {
     description: 'Space in content',
     icon: icons.rectangle,
     category: 'bBlocks',
+    keywords: ['Spacer', 'Empty Space', 'Empty'],
 
     // Custom Attributes
     attributes: {
@@ -31,15 +32,15 @@ registerBlockType('b-blocks/spacer', {
         return ([
             <InspectorControls>
                 {/* Spacer Settings */}
-                <PanelBody title="Divider Settings">
+                <PanelBody title="Divider Settings" initialOpen={true}>
                     {/* Spacer Height/Size */}
                     {firstTitle('Spacer Height/Size:')}
-                    <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={300} step={1} />
+                    <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={500} step={1} />
                 </PanelBody>
             </InspectorControls>,
 
 
-            <div style={{ height: `${height}px`, color: '#9a9a9a', backgroundColor: '#edf3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>This content & background color will not show in frontend</div>
+            <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: '#edf3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>This content & background color will not show in front End</div>
         ])
     },
 

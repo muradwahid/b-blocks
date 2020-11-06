@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
 
 
 // Variables
@@ -23,6 +23,7 @@ registerBlockType('b-blocks/section-heading', {
     description: 'Awesome Section Heading',
     icon: icons.h,
     category: 'bBlocks',
+    keywords: ['Section', 'Section Head', 'Heading'],
 
     // Custom Attributes
     attributes: {
@@ -31,19 +32,19 @@ registerBlockType('b-blocks/section-heading', {
         head: { type: 'string', source: 'html', selector: '.b_blocks_section_head' },
         headTag: { type: 'string', default: 'h2' },
         headFontSize: { type: 'number' },
-        headColor: { type: 'string', default: '#333' },
+        headColor: { type: 'string', default: '#4527a4' },
         headMB: { type: 'number', default: 10 },
 
         sepWidth: { type: 'number', default: 150 },
         sepThick: { type: 'number', default: 3 },
         sepStyle: { type: 'string', default: 'solid' },
-        sepColor: { type: 'string', default: '#777' },
+        sepColor: { type: 'string', default: '#8344c5' },
         sepMB: { type: 'number', default: 5 },
 
         toggleDesc: { type: 'boolean', default: true },
         desc: { type: 'string', source: 'html', selector: '.b_blocks_section_description' },
         descFontSize: { type: 'number', default: 16 },
-        descColor: { type: 'string', default: '#555' },
+        descColor: { type: 'string', default: '#777' },
         descMB: { type: 'number', default: 15 },
     },
 
@@ -62,18 +63,30 @@ registerBlockType('b-blocks/section-heading', {
         return ([
             <InspectorControls>
                 {/* Content Settings */}
-                <PanelBody title="Content Settings">
+                <PanelBody title="Content Settings" initialOpen={true}>
                     {/* Content Alignment */}
                     {firstTitle('Content Alignment:')}
-                    <SelectControl value={alignment} onChange={cng => setAttributes({ alignment: cng })} options={aligns} />
+                    <ButtonGroup className="b_blocks_button_groups">
+                        {Object.values(aligns).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={alignment === obj.value} aria-pressed={alignment === obj.value} onClick={() => setAttributes({ alignment: obj.value })}></Button>
+                            </Tooltip>
+                        ))}
+                    </ButtonGroup>
                 </PanelBody>
 
 
                 {/* Heading Settings */}
-                <PanelBody title="Heading Settings">
+                <PanelBody title="Heading Settings" initialOpen={false}>
                     {/* Heading Tag */}
                     {firstTitle('Heading Tag:')}
-                    <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={hTags} />
+                    <ButtonGroup className="b_blocks_button_groups">
+                        {Object.values(hTags).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} isMedium isPrimary={headTag === obj.value} aria-pressed={headTag === obj.value} onClick={() => setAttributes({ headTag: obj.value })}>{obj.icon}</Button>
+                            </Tooltip>
+                        ))}
+                    </ButtonGroup>
 
                     {/* Heading Font Size */}
                     {otherTitle('Heading Font Size:')}
@@ -90,7 +103,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Separator Settings */}
-                <PanelBody title="Separator Settings">
+                <PanelBody title="Separator Settings" initialOpen={false}>
                     {/* Separator Width */}
                     {firstTitle('Separator Width:')}
                     <RangeControl value={sepWidth} onChange={cng => setAttributes({ sepWidth: cng })} min={0} max={1920} step={1} />
@@ -114,7 +127,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Description Settings */}
-                <PanelBody title="Description Settings">
+                <PanelBody title="Description Settings" initialOpen={false}>
                     {/* Enable/Disable Description */}
                     <ToggleControl label={toggleDesc ? 'Disable Description' : 'Enable Description'} checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
 

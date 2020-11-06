@@ -1,3 +1,6 @@
+$primaryColor: #4527a4;
+$secondaryColor: #8344c5;
+
 // Panel Title
 .components-panel__body-title{
     button{
@@ -9,19 +12,6 @@
     font-size: 14px;
     font-style: italic;
     font-weight: 500;
-}
-
-// Size Type
-.b_blocks_size_type{
-    margin: 0;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px;
-}
-.b_blocks_size_type button{
-    box-shadow: none!important;
-    outline: 0;
 }
 
 // Tab Panel
@@ -49,7 +39,7 @@
     background-color: #4527a4;
 }
 
-// Checkbox
+// Checkbox Control
 .block-editor-block-inspector .components-base-control{
     margin-bottom: 0;
 }
@@ -58,5 +48,127 @@
 
     .components-checkbox-control__input[type=checkbox]{
         border-radius: 4px;
+        border-color: $primaryColor;
+
+        &:checked{
+            background-color: $secondaryColor;
+            border-color: $primaryColor;
+        }
+        &:focus{
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px $primaryColor;
+        }
+    }
+}
+
+// Font Size Picker
+.components-font-size-picker__controls{
+    display: grid;
+    grid-template-columns: 1.7fr 1fr 1fr;
+
+    .components-font-size-picker__number-container{
+        margin-right: 8px;
+        
+        .components-font-size-picker__number{
+            margin: 0;
+        }
+    }
+}
+
+// Buttons
+// Inserter
+.block-editor-inserter{
+    button{
+        background-color: transparent !important;
+
+        svg{
+            fill: $primaryColor;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 2px solid $primaryColor;
+            border-radius: 50%;
+        }
+    }
+}
+
+// Button Group
+.b_blocks_button_groups{
+    .components-button, .is-primary{
+        border: 1px solid $secondaryColor;
+        box-shadow: none;
+        padding: 6px 10.5px;
+
+        &:hover{
+            color: $primaryColor;
+        }
+    }
+
+    .is-primary{
+        color: #fff;
+        background-color: $primaryColor;
+
+        &:hover{
+            background-color: $secondaryColor !important;
+        }
+        &:focus{
+            outline: 2px solid $secondaryColor !important;
+        }
+    }
+}
+
+// Size Type
+.b_blocks_size_type{
+    margin: 0;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+.b_blocks_size_type button{
+    box-shadow: none!important;
+    outline: 0;
+}
+
+// Toggle Control
+.components-form-toggle{
+    .components-form-toggle__track{
+        border: 1px solid $primaryColor;
+    }
+    &.is-checked .components-form-toggle__track{
+        background-color: $secondaryColor;
+    }
+    .components-form-toggle__input:focus+.components-form-toggle__track{
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px $primaryColor;
+    }
+
+    .components-form-toggle__thumb{
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+    }
+}
+
+// Range Control
+.components-range-control__wrapper{
+    .components-range-control__track{
+        background-color: $secondaryColor;
+    }
+
+    .css-5p7d2w-ThumbWrapper{
+        width: 14px;
+        height: 14px;
+        margin-top: 8px;
+
+        .css-hdouys-Thumb{
+            background-color: $primaryColor;
+            border: 1px solid $primaryColor;
+        }
+        .css-3llzg4-Thumb{
+            border: 2px solid $primaryColor;
+            box-shadow: none;
+        }
+    }
+
+    .components-range-control__tooltip{
+        background-color: $primaryColor;
     }
 }

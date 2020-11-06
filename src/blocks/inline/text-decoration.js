@@ -35,7 +35,7 @@ allOptions.forEach(({ name, title }) => {
 
             return [
                 <InspectorControls>
-                    <PanelBody icon='minus' title={title}>
+                    <PanelBody icon='minus' title={title} initialOpen={false}>
                         <PanelRow>
                             <label htmlFor={`b_blocks_text_${name}_toggle`}>{isActive ? `Remove ${title}` : title}</label>
 

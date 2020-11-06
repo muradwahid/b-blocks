@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
 
 
 // Variables
@@ -23,6 +23,7 @@ registerBlockType('b-blocks/note', {
     description: 'Create Note by Block',
     icon: icons.note,
     category: 'bBlocks',
+    keywords: ['Note', 'Note Text', 'Store Text'],
 
     // Custom Attributes
     attributes: {
@@ -35,13 +36,13 @@ registerBlockType('b-blocks/note', {
         head: { type: 'string', source: 'html', selector: '.b_blocks_note_head' },
         headTag: { type: 'string', default: 'h2' },
         headFontSize: { type: 'number' },
-        headColor: { type: 'string', default: '#333' },
+        headColor: { type: 'string', default: '#4527a4' },
         headPB: { type: 'number', default: 5 },
         headMB: { type: 'number', default: 5 },
 
         sepThick: { type: 'number', default: 2 },
         sepStyle: { type: 'string', default: 'solid' },
-        sepColor: { type: 'string', default: '#777' },
+        sepColor: { type: 'string', default: '#8344c5' },
 
         content: { type: 'string', source: 'html', selector: '.b_blocks_note_content' },
         contentFontSize: { type: 'number' },
@@ -62,7 +63,7 @@ registerBlockType('b-blocks/note', {
         return ([
             <InspectorControls>
                 {/* Note Settings */}
-                <PanelBody title="Note Settings">
+                <PanelBody title="Note Settings" initialOpen={true}>
                     {/* Note Background Color */}
                     {firstTitle('Note Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
@@ -82,14 +83,20 @@ registerBlockType('b-blocks/note', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title="Heading Settings">
+                <PanelBody title="Heading Settings" initialOpen={false}>
                     {/* Enable/Disable Heading */}
                     <ToggleControl label={toggleHead ? 'Disable Heading' : 'Enable Heading'} checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
                     {toggleHead && <span>
                         {/* Heading Tag */}
                         {otherTitle('Heading Tag:')}
-                        <SelectControl value={headTag} onChange={cng => setAttributes({ headTag: cng })} options={hTags} />
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(hTags).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} isMedium isPrimary={headTag === obj.value} aria-pressed={headTag === obj.value} onClick={() => setAttributes({ headTag: obj.value })}>{obj.icon}</Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
 
                         {/* Heading Font Size */}
                         {otherTitle('Heading Font Size:')}
@@ -108,7 +115,7 @@ registerBlockType('b-blocks/note', {
 
                 {toggleHead && <span>
                     {/* Separator Settings */}
-                    <PanelBody title="Separator Settings">
+                    <PanelBody title="Separator Settings" initialOpen={false}>
                         {/* Separator Thickness */}
                         {firstTitle('Separator Thickness:')}
                         <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={20} step={.1} />
@@ -129,7 +136,7 @@ registerBlockType('b-blocks/note', {
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings">
+                <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Content Font Size */}
                     {firstTitle('Content Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: cng })} />

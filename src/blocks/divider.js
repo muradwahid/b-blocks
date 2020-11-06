@@ -1,11 +1,11 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, ButtonGroup, Button } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
 
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, aligns, borderStyles, colors } = options;
+const { fontSizes, aligns, borderStyles, colors, sizeTypes } = options;
 
 
 // Functions
@@ -23,6 +23,7 @@ registerBlockType('b-blocks/divider', {
     description: 'Divider of your Section',
     icon: icons.minus,
     category: 'bBlocks',
+    keywords: ['Divide', 'Divider', 'Divider Line'],
 
     // Custom Attributes
     attributes: {
@@ -30,7 +31,7 @@ registerBlockType('b-blocks/divider', {
         divideWidthType: { type: 'string', default: 'px' },
         divideThick: { type: 'number', default: 3 },
         divideStyle: { type: 'string', default: 'solid' },
-        divideColor: { type: 'string', default: '#777' },
+        divideColor: { type: 'string', default: '#8344c5' },
         divideMT: { type: 'number', default: 10 },
         divideMB: { type: 'number', default: 15 },
         dividePosition: { type: 'string', default: 'center' },
@@ -38,7 +39,7 @@ registerBlockType('b-blocks/divider', {
         toggleToTop: { type: 'boolean', default: false },
         toTopLabel: { type: 'string', default: 'Go to top', source: 'html', selector: '.b_blocks_to_top_link' },
         toTopFontSize: { type: 'number' },
-        toTopColor: { type: 'string', default: '#777' },
+        toTopColor: { type: 'string', default: '#4527a4' },
         toTopPosition: { type: 'string', default: 'right' },
     },
 
@@ -57,13 +58,15 @@ registerBlockType('b-blocks/divider', {
         return ([
             <InspectorControls>
                 {/* Divider Settings */}
-                <PanelBody title="Divider Settings">
+                <PanelBody title="Divider Settings" initialOpen={true}>
                     {/* Divider Width */}
                     {firstTitle('Divider Width:')}
-                    <ButtonGroup aria-label="Size Type" className="b_blocks_size_type">
-                        <Button key="px" isSmall isPrimary={divideWidthType === "px"} aria-pressed={divideWidthType === "px"} onClick={() => setAttributes({ divideWidthType: "px", divideWidth: 450 })}>px</Button>
-
-                        <Button key="%" isSmall isPrimary={divideWidthType === "%"} aria-pressed={divideWidthType === "%"} onClick={() => setAttributes({ divideWidthType: "%", divideWidth: 100 })}>%</Button>
+                    <ButtonGroup className="b_blocks_button_groups b_blocks_size_type">
+                        {Object.values(sizeTypes).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} isSmall isPrimary={divideWidthType === obj.value} aria-pressed={divideWidthType === obj.value} onClick={() => setAttributes({ divideWidthType: obj.value, divideWidth: obj.def })}>{obj.value}</Button>
+                            </Tooltip>
+                        ))}
                     </ButtonGroup>
                     <RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={("%" == divideWidthType) ? 100 : 960} step={1} />
 
@@ -89,11 +92,17 @@ registerBlockType('b-blocks/divider', {
 
                     {/* Divider Position */}
                     {otherTitle('Divider Position:')}
-                    <SelectControl value={dividePosition} onChange={cng => setAttributes({ dividePosition: cng })} options={aligns} />
+                    <ButtonGroup className="b_blocks_button_groups">
+                        {Object.values(aligns).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={dividePosition === obj.value} aria-pressed={dividePosition === obj.value} onClick={() => setAttributes({ dividePosition: obj.value })}></Button>
+                            </Tooltip>
+                        ))}
+                    </ButtonGroup>
                 </PanelBody>
 
 
-                <PanelBody title="Go To Top Settings">
+                <PanelBody title="Go To Top Settings" initialOpen={false}>
                     {/* Enable/Disable Go To Top */}
                     <ToggleControl label={toggleToTop ? "Disable 'Go To Top' link" : "Enable 'Go To Top' link"} checked={toggleToTop} onChange={cng => setAttributes({ toggleToTop: cng })} />
 
@@ -108,7 +117,13 @@ registerBlockType('b-blocks/divider', {
 
                         {/* Go To Top Position */}
                         {otherTitle('Go To Top Position:')}
-                        <SelectControl value={toTopPosition} onChange={cng => setAttributes({ toTopPosition: cng })} options={aligns} />
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(aligns).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={toTopPosition === obj.value} aria-pressed={toTopPosition === obj.value} onClick={() => setAttributes({ toTopPosition: obj.value })}></Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
                     </span>}
                 </PanelBody>
             </InspectorControls>,

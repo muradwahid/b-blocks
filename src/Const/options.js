@@ -15,30 +15,30 @@ const options = {
     ],
 
     tags: [
-        { label: 'Paragraph', value: 'p' },
-        { label: 'Heading 1', value: 'h1' },
-        { label: 'Heading 2', value: 'h2' },
-        { label: 'Heading 3', value: 'h3' },
-        { label: 'Heading 4', value: 'h4' },
-        { label: 'Heading 5', value: 'h5' },
-        { label: 'Heading 6', value: 'h6' },
-        { label: 'Span', value: 'span' }
+        { label: 'Paragraph', value: 'p', icon: 'P' },
+        { label: 'Heading 1', value: 'h1', icon: 'H1' },
+        { label: 'Heading 2', value: 'h2', icon: 'H2' },
+        { label: 'Heading 3', value: 'h3', icon: 'H3' },
+        { label: 'Heading 4', value: 'h4', icon: 'H4' },
+        { label: 'Heading 5', value: 'h5', icon: 'H5' },
+        { label: 'Heading 6', value: 'h6', icon: 'H6' },
+        { label: 'Span', value: 'span', icon: 'S' }
     ],
 
     hTags: [
-        { label: 'Heading 1', value: 'h1' },
-        { label: 'Heading 2', value: 'h2' },
-        { label: 'Heading 3', value: 'h3' },
-        { label: 'Heading 4', value: 'h4' },
-        { label: 'Heading 5', value: 'h5' },
-        { label: 'Heading 6', value: 'h6' }
+        { label: 'Heading 1', value: 'h1', icon: 'H1' },
+        { label: 'Heading 2', value: 'h2', icon: 'H2' },
+        { label: 'Heading 3', value: 'h3', icon: 'H3' },
+        { label: 'Heading 4', value: 'h4', icon: 'H4' },
+        { label: 'Heading 5', value: 'h5', icon: 'H5' },
+        { label: 'Heading 6', value: 'h6', icon: 'H6' }
     ],
 
     aligns: [
-        { label: 'Left', value: 'left' },
-        { label: 'Center', value: 'center' },
-        { label: 'Right', value: 'right' },
-        { label: 'Justify', value: 'justify' }
+        { label: 'Left', value: 'left', icon: 'editor-alignleft' },
+        { label: 'Center', value: 'center', icon: 'editor-aligncenter' },
+        { label: 'Right', value: 'right', icon: 'editor-alignright' },
+        { label: 'Justify', value: 'justify', icon: 'editor-justify' }
     ],
 
     borderStyles: [
@@ -70,10 +70,15 @@ const options = {
     ],
 
     textTransforms: [
-        { label: 'None', value: 'none' },
-        { label: 'Capitalize', value: 'capitalize' },
-        { label: 'Uppercase', value: 'uppercase' },
-        { label: 'Lowercase', value: 'lowercase' },
+        { label: 'Capitalize', value: 'capitalize', icon: 'Tt' },
+        { label: 'Uppercase', value: 'uppercase', icon: 'TT' },
+        { label: 'Lowercase', value: 'lowercase', icon: 'tt' },
+        { label: 'None', value: 'none', icon: 'NO' },
+    ],
+
+    sizeTypes: [
+        { label: 'Pixel', value: 'px', icon: 'px', def: 450 },
+        { label: 'Percentage', value: '%', icon: '%', def: 100 }
     ],
 
     layouts: [

@@ -11,7 +11,7 @@ registerFormatType('b-blocks/remove-formatting', {
     edit({ isActive, value, onChange }) {
         return (
             <InspectorControls>
-                <PanelBody title="Remove All Formatting">
+                <PanelBody title="Remove All Formatting" initialOpen={false}>
                     <Button isDefault={true} onClick={() => onChange({ ...value, formats: Array(value.formats.length) })}>Remove All formatting</Button>
                 </PanelBody>
             </InspectorControls>

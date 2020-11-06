@@ -18,6 +18,7 @@ registerBlockType('b-blocks/qr-code', {
     description: 'Show QR Code in posts and pages',
     icon: icons.qrCode,
     category: 'bBlocks',
+    keywords: ['QR', 'QR Code', 'Code'],
 
     // Custom Attributes
     attributes: {
@@ -30,13 +31,13 @@ registerBlockType('b-blocks/qr-code', {
     edit: props => {
         const { attributes: { url, dimension, alignment }, setAttributes } = props;
 
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}}`;
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}`;
 
 
         return ([
             <InspectorControls>
                 {/* QR Code Settings */}
-                <PanelBody title="QR Code Settings">
+                <PanelBody title="QR Code Settings" initialOpen={true}>
                     {/* Website url */}
                     {firstTitle('Website url:')}
                     <TextControl value={url} onChange={cng => setAttributes({ url: cng })} />
