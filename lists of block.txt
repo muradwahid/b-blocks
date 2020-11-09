@@ -3,8 +3,8 @@ From Ultimate Gutenberg
 01. Section Heading                         - Complete
 02. Posts Grid                              - Complete
 03. Post Masonry                            - Complete
-04. Posts Carousel
-05. Section
+04. Posts Carousel                          - Complete
+05. Section                                 - Complete
 06. Multi Button
 07. Info Box
 08. Testimonials
@@ -21,7 +21,7 @@ From Ultimate Gutenberg
 19. Wp Search
 
 From Shortcodes Ultimate
-02. Tabs
+02. Tabs                                    - Complete
 03. Spoiler
 04. Accordion
 05. Divider                                 - Complete

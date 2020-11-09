@@ -1,3 +1,6 @@
+$primaryColor: #4527a4;
+$secondaryColor: #8344c5;
+
 html{
     scroll-behavior: smooth;
 }
@@ -34,6 +37,59 @@ html{
             text-decoration: none;
             display: inline-block;
             transition: all .3s ease;
+        }
+    }
+}
+
+
+// Tabs
+.b_blocks_tabs{
+    .nav.nav-pills{
+        .nav-link{
+            box-shadow: none;
+            border: 1px solid $primaryColor;
+
+            &.active{
+                color: #fff!important;
+                background-color: $primaryColor;
+                border-color: transparent;
+
+                .b_blocks_remove_tab_btn{
+                    color: #fff!important;
+                }
+            }
+
+            .b_blocks_remove_tab_btn{
+                color: $primaryColor!important;
+            }
+        }
+    }
+    >.pills{
+        .nav-link{
+            margin-right: 5px;
+        }
+    }
+    >.vertical-pills{
+        .nav-link{
+            margin-bottom: 5px;
+        }
+    }
+
+    .nav.nav-tabs{
+        border-bottom: 1px solid $primaryColor;
+
+        .nav-link{
+            box-shadow: none;
+
+            &.active, &:hover{
+                background-color: transparent;
+                border-color: $primaryColor;
+                border-bottom-width: 3px;
+            }
+
+            .b_blocks_remove_tab_btn{
+                color: $primaryColor!important;
+            }
         }
     }
 }
