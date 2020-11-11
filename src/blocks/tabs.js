@@ -49,7 +49,7 @@ registerBlockType('b-blocks/tabs', {
 
     // edit function
     edit: (props) => {
-        const { attributes: { info = [], layout, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes } = props;
+        const { attributes: { info = [], layout, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
 
         const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
 
@@ -115,7 +115,7 @@ registerBlockType('b-blocks/tabs', {
 
         return ([
             <InspectorControls>
-                <PanelBody title="Tabs Settings">
+                <PanelBody title="Tabs Settings" initialOpen={true}>
                     {/* Layout */}
                     {firstTitle('Layout:')}
                     <SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={tabLayouts} />
@@ -138,7 +138,7 @@ registerBlockType('b-blocks/tabs', {
                 </PanelBody>
 
 
-                <PanelBody title="Title Settings">
+                <PanelBody title="Title Settings" initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <ButtonGroup className="b_blocks_button_groups">
@@ -165,7 +165,7 @@ registerBlockType('b-blocks/tabs', {
                 </PanelBody>
 
 
-                <PanelBody title="Title Settings">
+                <PanelBody title="Title Settings" initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: cng })} />
@@ -209,7 +209,7 @@ registerBlockType('b-blocks/tabs', {
                             </div> : <h3>Select a layout</h3>
                 }
 
-                <Button icon="plus-alt" onClick={title => { setAttributes({ info: [...info, { index: info.length }] }) }} style={{ color: '#4527a4', fontSize: '18px' }}>Add New Tab</Button>
+                {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ info: [...info, { index: info.length }] }) }} style={{ color: '#4527a4', fontSize: '18px' }}>Add New Tab</Button>}
             </div >
         ]);
     },

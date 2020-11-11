@@ -36,10 +36,10 @@ registerBlockType('b-blocks/section', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { BGColor, PT, PR, PB, PL }, setAttributes } = props;
+        const { attributes: { BGColor, PT, PR, PB, PL }, setAttributes, isSelected } = props;
 
         const sectionStyle = {
-            backgroundColor: '#dbd0ff', padding: `${PT}px ${PR}px ${PB}px ${PL}px`, position: 'relative',
+            backgroundColor: `${isSelected ? '#dbd0ff' : BGColor}`, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, position: 'relative',
             zIndex: '10'
         }
 
@@ -69,7 +69,7 @@ registerBlockType('b-blocks/section', {
             <div className="b_blocks_section" style={sectionStyle}>
                 <InnerBlocks template={[['b-blocks/section-heading']]} />
 
-                <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />
+                {isSelected && <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />}
             </div>
         ])
     },

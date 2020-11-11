@@ -172,3 +172,24 @@ $secondaryColor: #8344c5;
         background-color: $primaryColor;
     }
 }
+
+
+// Slider
+.b_blocks_remove_slide_btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    color: $primaryColor!important;
+    border-radius: 0 0 0 50%;
+    z-index: 15;
+
+    &:hover{
+        color: $secondaryColor!important;
+    }
+
+    svg{
+        width: 26px;
+        height: 26px;
+    }
+}

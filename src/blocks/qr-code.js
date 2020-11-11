@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, RangeControl, TextControl } = wp.components;
+const { PanelBody, RangeControl, TextControl, PanelRow } = wp.components;
 
 
 // Functions
@@ -29,7 +29,7 @@ registerBlockType('b-blocks/qr-code', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { url, dimension, alignment }, setAttributes } = props;
+        const { attributes: { url, dimension, alignment }, setAttributes, isSelected } = props;
 
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}`;
 
@@ -54,6 +54,12 @@ registerBlockType('b-blocks/qr-code', {
                 </BlockControls>
 
                 <img src={qrUrl} />
+
+                {isSelected && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
+                    <label htmlFor="bBlocksQRWebUrlField" style={{ marginRight: '20px', fontWeight: 'bold' }}>Website url:</label>
+
+                    <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksQRWebUrlField" value={url} onChange={cng => setAttributes({ url: cng })} />
+                </div>}
             </div>
         ]);
     },

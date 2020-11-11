@@ -27,7 +27,7 @@ registerBlockType('b-blocks/spacer', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { height }, setAttributes } = props;
+        const { attributes: { height }, setAttributes, isSelected } = props;
 
         return ([
             <InspectorControls>
@@ -40,7 +40,7 @@ registerBlockType('b-blocks/spacer', {
             </InspectorControls>,
 
 
-            <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: '#edf3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>This content & background color will not show in front End</div>
+            <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>{isSelected && 'This content & background color will not show in front End'}</div>
         ])
     },
 

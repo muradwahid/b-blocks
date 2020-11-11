@@ -1,5 +1,6 @@
 // Import Blocks
 import './blocks/posts/posts.js';
+import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/tabs.js';
