@@ -193,3 +193,17 @@ $secondaryColor: #8344c5;
         height: 26px;
     }
 }
+
+// Modal
+.modal-backdrop{
+    z-index: -1!important;
+}
+
+.b_blocks_close_modal_btn{
+    color: $primaryColor!important;
+
+    svg{
+        width: 26px;
+        height: 26px;
+    }
+}

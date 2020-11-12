@@ -105,6 +105,13 @@ const options = {
         { label: 'Small Shadow', value: 'shadow-sm' },
         { label: 'Regular Shadow', value: 'shadow' },
         { label: 'Large Shadow', value: 'shadow-lg' }
-    ]
+    ],
+
+    modalSizes: [
+        { label: 'Small', value: 'modal-sm', icon: 'SM' },
+        { label: 'Default', value: '', icon: 'DF' },
+        { label: 'Large', value: 'modal-lg', icon: 'LG' },
+        { label: 'Extra Large', value: 'modal-xl', icon: 'XL' },
+    ],
 }
 export default options;

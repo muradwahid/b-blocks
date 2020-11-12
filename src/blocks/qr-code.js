@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, RangeControl, TextControl, PanelRow } = wp.components;
+const { PanelBody, RangeControl, TextControl } = wp.components;
 
 
 // Functions

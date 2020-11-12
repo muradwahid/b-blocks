@@ -5,6 +5,24 @@ html{
     scroll-behavior: smooth;
 }
 
+// Button
+.b_blocks_btn{
+    color: #fff!important;
+    background-color: $primaryColor;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 50px;
+    outline: 0;
+    transition: all .3s ease;
+
+    &:hover{
+        background-color: $secondaryColor;
+    }
+
+    &:focus{
+        outline: 0;
+    }
+}
 
 // Posts
 .b_blocks_posts{

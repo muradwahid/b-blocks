@@ -1,12 +1,11 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette, MediaUpload } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, IconButton } = wp.components;
-const { useInstanceId } = wp.compose;
+const { PanelBody, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, IconButton } = wp.components;
 
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, colors, hTags, aligns, sizeTypes } = options;
+const { colors, hTags, aligns, sizeTypes } = options;
 
 
 // Functions
