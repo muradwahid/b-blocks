@@ -5,6 +5,7 @@ import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/modal.js';
 import './blocks/tabs.js';
+import './blocks/accordion.js';
 import './blocks/collapse.js';
 import './blocks/note.js';
 import './blocks/qr-code.js';

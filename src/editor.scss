@@ -130,6 +130,11 @@ $secondaryColor: #8344c5;
 }
 
 // Toggle Control
+.components-toggle-control{
+    label{
+        margin-bottom: 3px;
+    }
+}
 .components-form-toggle{
     .components-form-toggle__track{
         border: 1px solid $primaryColor;
@@ -170,6 +175,26 @@ $secondaryColor: #8344c5;
 
     .components-range-control__tooltip{
         background-color: $primaryColor;
+    }
+}
+
+// Radio Control
+.components-radio-control__option{
+    .components-radio-control__input[type=radio]{
+        border: 1px solid $primaryColor;
+
+        &:checked{
+            background-color: $primaryColor;
+            border-color: $primaryColor;
+        }
+
+        &:focus{
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px $primaryColor;
+        }
+    }
+
+    label{
+        margin-bottom: 1px;
     }
 }
 

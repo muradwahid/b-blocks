@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
-const { RichText, InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, TabPanel, TextControl, SelectControl } = wp.components;
+const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
+const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TabPanel, TextControl, SelectControl } = wp.components;
 
 
 // Variables
@@ -110,28 +110,28 @@ registerBlockType('b-blocks/collapse', {
                     {otherTitle('Collapse Button Border Radius:')}
                     <RangeControl value={collBtnRadius} onChange={cng => setAttributes({ collBtnRadius: cng })} min={0} max={50} step={1} />
 
-                    {otherTitle('Read More Link Colors:')}
+                    {otherTitle('Collapse Button Colors:')}
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
                             return <span>
                                 {'normal' == tab.name && <span>
-                                    {/* Read More Text Color */}
-                                    {otherTitle('Read More Text Color:')}
+                                    {/* Collapse Button Text Color */}
+                                    {otherTitle('Collapse Button Text Color:')}
                                     <ColorPalette value={collBtnTextColor} onChange={cng => setAttributes({ collBtnTextColor: cng })} colors={colors} />
 
-                                    {/* Read More Background Color */}
-                                    {otherTitle('Read More Background Color:')}
+                                    {/* Collapse Button Background Color */}
+                                    {otherTitle('Collapse Button Background Color:')}
                                     <ColorPalette value={collBtnBGColor} onChange={cng => setAttributes({ collBtnBGColor: cng })} colors={colors} />
                                 </span>}
 
                                 {'hover' == tab.name && <span>
-                                    {/* Read More Text Hover Color */}
-                                    {otherTitle('Read More Text Hover Color:')}
+                                    {/* Collapse Button Text Hover Color */}
+                                    {otherTitle('Collapse Button Text Hover Color:')}
                                     <ColorPalette value={collBtnTextHovColor} onChange={cng => setAttributes({ collBtnTextHovColor: cng })} colors={colors} />
 
-                                    {/* Read More Background Hover Color */}
-                                    {otherTitle('Read More Background Hover Color:')}
+                                    {/* Collapse Button Background Hover Color */}
+                                    {otherTitle('Collapse Button Background Hover Color:')}
                                     <ColorPalette value={collBtnBGHovColor} onChange={cng => setAttributes({ collBtnBGHovColor: cng })} colors={colors} />
                                 </span>}
                             </span>
@@ -166,8 +166,8 @@ registerBlockType('b-blocks/collapse', {
 
 
                 {/* Collapse */}
-                <div class="collapse" id={`bBlocksCollapse-${clientId}`}>
-                    <div class="collapse_content" style={contentStyle}>
+                <div className="collapse" id={`bBlocksCollapse-${clientId}`}>
+                    <div className="collapse_content" style={contentStyle}>
                         <InnerBlocks />
                     </div>
                 </div>
@@ -202,8 +202,8 @@ registerBlockType('b-blocks/collapse', {
 
 
                 {/* Collapse */}
-                <div class="collapse" id={`bBlocksCollapse-${clientId}`}>
-                    <div class="collapse_content" style={contentStyle}>
+                <div className="collapse" id={`bBlocksCollapse-${clientId}`}>
+                    <div className="collapse_content" style={contentStyle}>
                         <InnerBlocks.Content />
                     </div>
                 </div>

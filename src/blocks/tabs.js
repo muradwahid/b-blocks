@@ -177,32 +177,32 @@ registerBlockType('b-blocks/tabs', {
                 {
                     layout == 'tab' ? <div className="tabs" style={containerStyle}>
                         <nav>
-                            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                            <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                                 {infoTitle(info)}
                             </div>
                         </nav>
-                        <div class="tab-content" id="nav-tabContent">
+                        <div className="tab-content" id="nav-tabContent">
                             {infoDesc(info)}
                         </div>
                     </div> :
 
                         layout == 'pills' ? <div className="pills" style={containerStyle}>
-                            <div class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 {infoTitle(info)}
                             </div>
-                            <div class="tab-content">
+                            <div className="tab-content">
                                 {infoDesc(info)}
                             </div>
                         </div> :
 
-                            layout == 'vertical-pills' ? <div class="row vertical-pills" style={containerStyle}>
-                                <div class="col-3 pl-0">
-                                    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
+                                <div className="col-3 pl-0">
+                                    <div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                                         {infoTitle(info)}
                                     </div>
                                 </div>
-                                <div class="col-9 pr-0">
-                                    <div class="tab-content">
+                                <div className="col-9 pr-0">
+                                    <div className="tab-content">
                                         {infoDesc(info)}
                                     </div>
                                 </div>
@@ -262,32 +262,32 @@ registerBlockType('b-blocks/tabs', {
                 {
                     layout == 'tab' ? <div className="tabs" style={containerStyle}>
                         <nav>
-                            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                            <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                                 {infoTitle(info)}
                             </div>
                         </nav>
-                        <div class="tab-content" id="nav-tabContent">
+                        <div className="tab-content" id="nav-tabContent">
                             {infoDesc(info)}
                         </div>
                     </div> :
 
                         layout == 'pills' ? <div className="pills" style={containerStyle}>
-                            <div class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 {infoTitle(info)}
                             </div>
-                            <div class="tab-content">
+                            <div className="tab-content">
                                 {infoDesc(info)}
                             </div>
                         </div> :
 
-                            layout == 'vertical-pills' ? <div class="row vertical-pills" style={containerStyle}>
-                                <div class="col-3 pl-0">
-                                    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
+                                <div className="col-3 pl-0">
+                                    <div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                                         {infoTitle(info)}
                                     </div>
                                 </div>
-                                <div class="col-9 pr-0">
-                                    <div class="tab-content">
+                                <div className="col-9 pr-0">
+                                    <div className="tab-content">
                                         {infoDesc(info)}
                                     </div>
                                 </div>

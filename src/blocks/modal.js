@@ -62,15 +62,16 @@ registerBlockType('b-blocks/modal', {
     edit: props => {
         const { attributes: { modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnTextColor, modalBtnBGColor, modalBtnTextHovColor, modalBtnBGHovColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor }, setAttributes, clientId, isSelected } = props;
 
+        // Styles
         const headingStyle = { fontSize: `${headingFontSize}px`, color: headingColor, margin: 0 };
 
         const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnTextColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
+        // Functions
         const modalBtnHov = e => {
             e.target.style.color = modalBtnTextHovColor;
             e.target.style.backgroundColor = modalBtnBGHovColor;
         }
-
         const modalBtnHovLeave = e => {
             e.target.style.color = modalBtnTextColor;
             e.target.style.backgroundColor = modalBtnBGColor;
@@ -246,22 +247,22 @@ registerBlockType('b-blocks/modal', {
 
 
                 {/* Modal */}
-                <div class={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
+                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
 
-                    <div class={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
-                        <div class="modal-content">
-                            {modalHead && <div class="modal-header">
+                    <div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
+                        <div className="modal-content">
+                            {modalHead && <div className="modal-header">
                                 {headingShow && < RichText className="b_blocks_modal_heading" key="editable" tagName={headingTag} placeholder="Write Modal Heading" value={heading} onChange={cng => { setAttributes({ heading: cng }) }} style={headingStyle} />}
 
                                 {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" title="Remove this slide" data-dismiss="modal" aria-label="Close" />}
                             </div>}
 
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <InnerBlocks />
                             </div>
 
-                            {modalFoot && <div class="modal-footer">
-                                {modalFootClose && <button type="button" class="b_blocks_btn" data-dismiss="modal">Close</button>}
+                            {modalFoot && <div className="modal-footer">
+                                {modalFootClose && <button type="button" className="b_blocks_btn" data-dismiss="modal">Close</button>}
                             </div>}
                         </div>
                     </div>
@@ -274,15 +275,16 @@ registerBlockType('b-blocks/modal', {
     save: props => {
         const { attributes: { modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnTextColor, modalBtnBGColor, modalBtnTextHovColor, modalBtnBGHovColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor }, clientId } = props;
 
+        // Styles
         const headingStyle = { fontSize: `${headingFontSize}px`, color: headingColor, margin: 0 };
 
         const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnTextColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
+        // Functions
         const modalBtnHov = e => {
             e.target.style.color = modalBtnTextHovColor;
             e.target.style.backgroundColor = modalBtnBGHovColor;
         }
-
         const modalBtnHovLeave = e => {
             e.target.style.color = modalBtnTextColor;
             e.target.style.backgroundColor = modalBtnBGColor;
@@ -297,22 +299,22 @@ registerBlockType('b-blocks/modal', {
 
 
                 {/* Modal */}
-                <div class={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
+                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
 
-                    <div class={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
-                        <div class="modal-content">
-                            {modalHead && <div class="modal-header">
+                    <div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
+                        <div className="modal-content">
+                            {modalHead && <div className="modal-header">
                                 {headingShow && < RichText.Content className="b_blocks_modal_heading" tagName={headingTag} value={heading} style={headingStyle} />}
 
                                 {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" data-dismiss="modal" aria-label="Close" />}
                             </div>}
 
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <InnerBlocks.Content />
                             </div>
 
-                            {modalFoot && <div class="modal-footer">
-                                {modalFootClose && <button type="button" class="b_blocks_btn" data-dismiss="modal">Close</button>}
+                            {modalFoot && <div className="modal-footer">
+                                {modalFootClose && <button type="button" className="b_blocks_btn" data-dismiss="modal">Close</button>}
                             </div>}
                         </div>
                     </div>
