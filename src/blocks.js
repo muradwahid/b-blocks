@@ -3,6 +3,7 @@ import './blocks/posts/posts.js';
 import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
+import './blocks/mail-to.js';
 import './blocks/modal.js';
 import './blocks/tabs.js';
 import './blocks/accordion.js';
@@ -15,7 +16,7 @@ import './blocks/progress-bar.js';
 import './blocks/spacer';
 import './blocks/divider.js';
 import './blocks/inline.js';
-import './blocks/tabs.js';
+import './blocks/selection.js';
 
 //  Import CSS.
 import './editor.scss';

@@ -113,5 +113,11 @@ const options = {
         { label: 'Large', value: 'modal-lg', icon: 'LG' },
         { label: 'Extra Large', value: 'modal-xl', icon: 'XL' },
     ],
+
+    userSelect: [
+        { label: 'Auto', value: 'auto', icon: 'AUTO' },
+        { label: 'All', value: 'all', icon: 'ALL' },
+        { label: 'None', value: 'none', icon: 'NONE' },
+    ],
 }
 export default options;
