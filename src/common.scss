@@ -171,3 +171,21 @@ html{
         }
     }
 }
+
+// Card
+.b_blocks_card{
+    .alignleft{
+        display: block;
+        text-align: left;
+        float: none;
+    }
+    .alignright{
+        display: block;
+        text-align: right;
+        float: none;
+    }
+
+    a{
+        text-decoration: none!important;
+    }
+}

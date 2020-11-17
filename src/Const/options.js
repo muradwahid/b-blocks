@@ -22,7 +22,8 @@ const options = {
         { label: 'Heading 4', value: 'h4', icon: 'H4' },
         { label: 'Heading 5', value: 'h5', icon: 'H5' },
         { label: 'Heading 6', value: 'h6', icon: 'H6' },
-        { label: 'Span', value: 'span', icon: 'S' }
+        { label: 'Span', value: 'span', icon: 'SPAN' },
+        { label: 'Div', value: 'div', icon: 'DIV' }
     ],
 
     hTags: [
