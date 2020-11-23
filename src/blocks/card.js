@@ -95,8 +95,7 @@ registerBlockType('b-blocks/card', {
                 {imgShow && isSelected && <div style={mediaUpStyle}>
                     <MediaUpload type="image" value={img} onSelect={cng => setAttributes({ img: cng })} render={({ open }) =>
                         img ? <IconButton icon="controls-repeat" onClick={open} style={{ color: '#4527a4' }}>Replace Card Image</IconButton> : <IconButton icon="upload" onClick={open} style={{ color: '#4527a4' }}>Upload Card Image</IconButton>} />
-                </div>
-                }
+                </div>}
 
                 {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} />}
             </div >;

@@ -1,3 +1,6 @@
+// Icon
+import icons from './icons';
+
 const options = {
     fontSizes: [
         { name: 'Small', slug: 'small', size: 13 },
@@ -82,10 +85,7 @@ const options = {
         { label: 'Percentage', value: '%', icon: '%', def: 100 }
     ],
 
-    layouts: [
-        { label: 'Grid', value: 'grid' },
-        { label: 'Masonry', value: 'masonry' },
-    ],
+
 
     postsOrdersBy: [
         { label: 'Author', value: 'author' },

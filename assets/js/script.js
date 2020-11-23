@@ -1,9 +1,21 @@
 ; (function ($) {
     $(document).ready(function () {
-        // Drop Cap
-        // var dropContent = $('.b_blocks_dropcap').text();
-        // var repDropFirstLetter = dropContent.replace(dropContent.charAt(0), '<span class="b_blocks_dropcap_letter">' + dropContent.charAt(0) + '</span>');
+        // setTimeout(() => {
+        //     const geData = $(".bBlocksAdvancePostsSlider");
 
-        // $('.b_blocks_dropcap').html(repDropFirstLetter);
+
+        //     $(".b_blocks_ap_posts_layout_change_btn").on('click', function () {
+        //         const blockID = $(".bBlocksAdvancePostsSlider").attr('data-id');
+        //         console.log(blockID);
+        //         $(`#${blockID}`).lightSlider();
+        //     });
+
+        //     const blockID = geData.attr('data-id');
+        //     // const blockID = geData.attr('data-id');
+        //     const ifSlide = geData.attr('data-slider');
+
+
+        //     $(`#${blockID}`).lightSlider();
+        // }, 10000);
     });
 })(jQuery);

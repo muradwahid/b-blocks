@@ -34,9 +34,9 @@ registerBlockType('b-blocks/accordion', {
         headingTransform: { type: 'string', default: 'uppercase' },
         headingPTB: { type: 'number', default: 12 },
         headingPLR: { type: 'number', default: 30 },
-        headingTextColor: { type: 'string', default: '#4527a4' },
+        headingColor: { type: 'string', default: '#4527a4' },
         headingBGColor: { type: 'string', default: '#f1f1f1' },
-        headingTextHovColor: { type: 'string', default: '#fff' },
+        headingHovColor: { type: 'string', default: '#fff' },
         headingBGHovColor: { type: 'string', default: '#4527a4' },
 
         contentPTB: { type: 'number', default: 15 },
@@ -45,10 +45,10 @@ registerBlockType('b-blocks/accordion', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingTextColor, headingBGColor, headingTextHovColor, headingBGHovColor, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingBGHovColor, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
 
         // Styles
-        const titleLinkStyle = { color: headingTextColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
+        const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
 
         const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: '1px solid #4527a4', borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
 
@@ -58,11 +58,11 @@ registerBlockType('b-blocks/accordion', {
 
         // Functions
         const headingHov = e => {
-            e.target.style.color = headingTextHovColor;
+            e.target.style.color = headingHovColor;
             e.target.style.backgroundColor = headingBGHovColor;
         }
         const headingHovLeave = e => {
-            e.target.style.color = headingTextColor;
+            e.target.style.color = headingColor;
             e.target.style.backgroundColor = headingBGColor;
         }
 
@@ -105,8 +105,8 @@ registerBlockType('b-blocks/accordion', {
         return ([
             <InspectorControls>
                 <PanelBody title="Heading Settings" initialOpen={true}>
-                    {/* Heading Text Align */}
-                    {otherTitle('Heading Text Align:')}
+                    {/* Text Align */}
+                    {otherTitle('Text Align:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -115,12 +115,12 @@ registerBlockType('b-blocks/accordion', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Heading Font Size */}
-                    {otherTitle('Heading Font Size:')}
+                    {/* Font Size */}
+                    {otherTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: cng })} />
 
-                    {/* Heading Text Transform */}
-                    {otherTitle('HeadingText Transform:')}
+                    {/* Text Transform */}
+                    {otherTitle('Text Transform:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(textTransforms).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -129,36 +129,36 @@ registerBlockType('b-blocks/accordion', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Heading Top Bottom Padding */}
-                    {otherTitle('Heading Top Bottom Padding:')}
+                    {/* Top Bottom Padding */}
+                    {otherTitle('Top Bottom Padding:')}
                     <RangeControl value={headingPTB} onChange={cng => setAttributes({ headingPTB: cng })} min={0} max={50} step={1} />
 
-                    {/* Heading Left Right Padding */}
-                    {otherTitle('Heading Left Right Padding:')}
+                    {/* Left Right Padding */}
+                    {otherTitle('Left Right Padding:')}
                     <RangeControl value={headingPLR} onChange={cng => setAttributes({ headingPLR: cng })} min={0} max={150} step={1} />
 
-                    {otherTitle('Heading Colors:')}
+                    {otherTitle('Colors:')}
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
                             return <span>
                                 {'normal' == tab.name && <span>
-                                    {/* Heading Text Color */}
-                                    {otherTitle('Heading Text Color:')}
-                                    <ColorPalette value={headingTextColor} onChange={cng => setAttributes({ headingTextColor: cng })} colors={colors} />
+                                    {/* Color */}
+                                    {otherTitle('Color:')}
+                                    <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
 
-                                    {/* Heading Background Color */}
-                                    {otherTitle('Heading Background Color:')}
+                                    {/* Background Color */}
+                                    {otherTitle('Background Color:')}
                                     <ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
                                 </span>}
 
                                 {'hover' == tab.name && <span>
-                                    {/* Heading Text Hover Color */}
-                                    {otherTitle('Heading Text Hover Color:')}
-                                    <ColorPalette value={headingTextHovColor} onChange={cng => setAttributes({ headingTextHovColor: cng })} colors={colors} />
+                                    {/* Hover Color */}
+                                    {otherTitle('Hover Color:')}
+                                    <ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
 
-                                    {/* Heading Background Hover Color */}
-                                    {otherTitle('Heading Background Hover Color:')}
+                                    {/* Hover Background Color */}
+                                    {otherTitle('Hover Background Color:')}
                                     <ColorPalette value={headingBGHovColor} onChange={cng => setAttributes({ headingBGHovColor: cng })} colors={colors} />
                                 </span>}
                             </span>
@@ -167,13 +167,14 @@ registerBlockType('b-blocks/accordion', {
                 </PanelBody>
 
 
+                {/* Content Settings */}
                 <PanelBody title="Content Settings" initialOpen={false}>
-                    {/* Content Top Bottom Padding */}
-                    {firstTitle('Content Top Bottom Padding:')}
+                    {/* Top Bottom Padding */}
+                    {firstTitle('Top Bottom Padding:')}
                     <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={50} step={1} />
 
-                    {/* Content Left Right Padding */}
-                    {otherTitle('Content Left Right Padding:')}
+                    {/* Left Right Padding */}
+                    {otherTitle('Left Right Padding:')}
                     <RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
                 </PanelBody>
             </InspectorControls >,
@@ -190,10 +191,10 @@ registerBlockType('b-blocks/accordion', {
     },
 
     save: props => {
-        const { attributes: { accordions, headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingTextColor, headingBGColor, headingTextHovColor, headingBGHovColor, contentPTB, contentPLR }, clientId } = props;
+        const { attributes: { accordions, headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingBGHovColor, contentPTB, contentPLR }, clientId } = props;
 
         // Styles
-        const titleLinkStyle = { color: headingTextColor, backgroundColor: headingBGColor, display: 'block', textDecoration: 'none' };
+        const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, display: 'block', textDecoration: 'none' };
 
         const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: '1px solid #4527a4', borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
 
@@ -201,11 +202,11 @@ registerBlockType('b-blocks/accordion', {
 
         // Functions
         const headingHov = e => {
-            e.target.style.color = headingTextHovColor;
+            e.target.style.color = headingHovColor;
             e.target.style.backgroundColor = headingBGHovColor;
         }
         const headingHovLeave = e => {
-            e.target.style.color = headingTextColor;
+            e.target.style.color = headingColor;
             e.target.style.backgroundColor = headingBGColor;
         }
 

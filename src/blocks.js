@@ -1,4 +1,5 @@
 // Import Blocks
+import './blocks/posts/advance-posts.js';
 import './blocks/posts/posts.js';
 import './blocks/slider.js';
 import './blocks/section.js';

@@ -45,3 +45,4 @@ add_action( 'init', 'b_blocks_init' );
 
 // Posts Block
 require 'blocks/posts/posts.php';
+require 'blocks/posts/advance-posts.php';
