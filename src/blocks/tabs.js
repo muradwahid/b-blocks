@@ -1,4 +1,3 @@
-// Importing code libraries for this block
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls } = wp.blockEditor;
 const { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, ButtonGroup, Tooltip, SelectControl } = wp.components;
@@ -12,15 +11,12 @@ const tabLayouts = [
     { label: 'Vertical Pills', value: 'vertical-pills' },
 ]
 
-
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/tabs', {
     // Build In attributes
@@ -51,6 +47,7 @@ registerBlockType('b-blocks/tabs', {
     edit: (props) => {
         const { attributes: { info = [], layout, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
 
+        // Styles
         const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
 
         const titleStyle = { position: 'relative', color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform };
@@ -58,6 +55,7 @@ registerBlockType('b-blocks/tabs', {
         const tabRemoveStyle = { position: 'absolute', right: 0, top: 0, padding: 0, minWidth: '20px', height: '20px' };
         const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px` };
 
+        // Components
         const infoTitle = value => {
             return (
                 value.sort((a, b) => a.index - b.index).map(tab => {
@@ -138,6 +136,7 @@ registerBlockType('b-blocks/tabs', {
                 </PanelBody>
 
 
+                {/* Title Settings */}
                 <PanelBody title="Title Settings" initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
@@ -165,7 +164,8 @@ registerBlockType('b-blocks/tabs', {
                 </PanelBody>
 
 
-                <PanelBody title="Title Settings" initialOpen={false}>
+                {/* Content Settings */}
+                <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: cng })} />
@@ -218,11 +218,13 @@ registerBlockType('b-blocks/tabs', {
     save: (props) => {
         const { info, layout, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize } = props.attributes;
 
+        // Styles
         const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
 
         const titleStyle = { color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform };
         const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px` };
 
+        // Components
         const infoTitle = value => {
             return (
                 value.sort((a, b) => a.index - b.index).map(tab => {

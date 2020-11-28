@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
 const { PanelBody, RangeControl } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { colors } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/section', {
     // Build In attributes
@@ -24,6 +20,9 @@ registerBlockType('b-blocks/section', {
     icon: icons.section,
     category: 'bBlocks',
     keywords: ['Section', 'Section Content', 'Inner Block'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -38,10 +37,7 @@ registerBlockType('b-blocks/section', {
     edit: props => {
         const { attributes: { BGColor, PT, PR, PB, PL }, setAttributes, isSelected } = props;
 
-        const sectionStyle = {
-            backgroundColor: `${isSelected ? '#dbd0ff' : BGColor}`, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, position: 'relative',
-            zIndex: '10'
-        }
+        const sectionStyle = { backgroundColor: `${isSelected ? '#dbd0ff' : BGColor}`, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, position: 'relative', zIndex: 0 }
 
         return ([
             <InspectorControls>
@@ -51,17 +47,21 @@ registerBlockType('b-blocks/section', {
                     {firstTitle('Background Color:')}
                     < ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
+                    {/* Padding Top */}
                     {otherTitle('Padding Top:')}
-                    < RangeControl value={PT} onChange={cng => setAttributes({ PT: cng })} min={0} max={150} step={1} />
+                    <RangeControl value={PT} onChange={cng => setAttributes({ PT: cng })} min={0} max={150} step={1} />
 
+                    {/* Padding Right */}
                     {otherTitle('Padding Right:')}
-                    < RangeControl value={PR} onChange={cng => setAttributes({ PR: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={PR} onChange={cng => setAttributes({ PR: cng })} min={0} max={100} step={1} />
 
+                    {/* Padding Bottom */}
                     {otherTitle('Padding Bottom:')}
-                    < RangeControl value={PB} onChange={cng => setAttributes({ PB: cng })} min={0} max={150} step={1} />
+                    <RangeControl value={PB} onChange={cng => setAttributes({ PB: cng })} min={0} max={150} step={1} />
 
+                    {/* Padding Left */}
                     {otherTitle('Padding Left:')}
-                    < RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={100} step={1} />
                 </PanelBody >
             </InspectorControls >,
 

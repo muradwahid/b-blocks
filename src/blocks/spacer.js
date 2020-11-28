@@ -2,15 +2,12 @@ const { registerBlockType } = wp.blocks;
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, RangeControl } = wp.components;
 
-
 // Functions
 import func from '../Const/functions';
 const { firstTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/spacer', {
     // Build In attributes
@@ -19,6 +16,9 @@ registerBlockType('b-blocks/spacer', {
     icon: icons.rectangle,
     category: 'bBlocks',
     keywords: ['Spacer', 'Empty Space', 'Empty'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -32,9 +32,9 @@ registerBlockType('b-blocks/spacer', {
         return ([
             <InspectorControls>
                 {/* Spacer Settings */}
-                <PanelBody title="Divider Settings" initialOpen={true}>
-                    {/* Spacer Height/Size */}
-                    {firstTitle('Spacer Height/Size:')}
+                <PanelBody title="Spacer Settings" initialOpen={true}>
+                    {/* Height/Size */}
+                    {firstTitle('Height/Size:')}
                     <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={500} step={1} />
                 </PanelBody>
             </InspectorControls>,

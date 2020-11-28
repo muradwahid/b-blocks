@@ -85,8 +85,6 @@ const options = {
         { label: 'Percentage', value: '%', icon: '%', def: 100 }
     ],
 
-
-
     postsOrdersBy: [
         { label: 'Author', value: 'author' },
         { label: 'Title', value: 'title' },

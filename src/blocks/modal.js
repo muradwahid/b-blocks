@@ -24,9 +24,14 @@ registerBlockType('b-blocks/modal', {
     icon: icons.modal,
     category: 'bBlocks',
     keywords: ['Modal', 'My Modal', 'Popup'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
+        cId: { type: 'string' },
+
         modalFade: { type: 'boolean', default: true },
         modalStaticBackdrop: { type: 'boolean', default: false },
         modalScrollable: { type: 'boolean', default: true },
@@ -41,10 +46,10 @@ registerBlockType('b-blocks/modal', {
         modalBtnPTB: { type: 'number', default: 12 },
         modalBtnPLR: { type: 'number', default: 30 },
         modalBtnRadius: { type: 'number', default: 3 },
-        modalBtnTextColor: { type: 'string', default: '#fff' },
+        modalBtnColor: { type: 'string', default: '#fff' },
         modalBtnBGColor: { type: 'string', default: '#4527a4' },
-        modalBtnTextHovColor: { type: 'string', default: '#fff' },
-        modalBtnBGHovColor: { type: 'string', default: '#8344c5' },
+        modalBtnHovColor: { type: 'string', default: '#fff' },
+        modalBtnHovBGColor: { type: 'string', default: '#8344c5' },
 
         modalHead: { type: 'boolean', default: true },
         modalHeadClose: { type: 'boolean', default: true },
@@ -60,20 +65,22 @@ registerBlockType('b-blocks/modal', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnTextColor, modalBtnBGColor, modalBtnTextHovColor, modalBtnBGHovColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { cId, modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnColor, modalBtnBGColor, modalBtnHovColor, modalBtnHovBGColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const headingStyle = { fontSize: `${headingFontSize}px`, color: headingColor, margin: 0 };
 
-        const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnTextColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
+        const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
         // Functions
+        clientId && setAttributes({ cId: clientId });
+
         const modalBtnHov = e => {
-            e.target.style.color = modalBtnTextHovColor;
-            e.target.style.backgroundColor = modalBtnBGHovColor;
+            e.target.style.color = modalBtnHovColor;
+            e.target.style.backgroundColor = modalBtnHovBGColor;
         }
         const modalBtnHovLeave = e => {
-            e.target.style.color = modalBtnTextColor;
+            e.target.style.color = modalBtnColor;
             e.target.style.backgroundColor = modalBtnBGColor;
         }
 
@@ -110,12 +117,8 @@ registerBlockType('b-blocks/modal', {
 
 
                 <PanelBody title="Modal Button Settings" initialOpen={false}>
-                    {/* Modal Button Label */}
-                    {firstTitle('Modal Button Label:')}
-                    <TextControl value={modalBtnLabel} onChange={cng => setAttributes({ modalBtnLabel: cng })} />
-
-                    {/* Modal Button Alignment */}
-                    {otherTitle('Modal Button Alignment:')}
+                    {/* Alignment */}
+                    {firstTitle('Alignment:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -124,12 +127,12 @@ registerBlockType('b-blocks/modal', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Modal Button Font Size */}
-                    {otherTitle('Modal Button Font Size:')}
+                    {/* Font Size */}
+                    {otherTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={modalBtnFontSize} onChange={cng => setAttributes({ modalBtnFontSize: cng })} />
 
-                    {/* Modal Button Text Transform */}
-                    {otherTitle('Modal Button Text Transform:')}
+                    {/* Text Transform */}
+                    {otherTitle('Text Transform:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(textTransforms).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -138,45 +141,45 @@ registerBlockType('b-blocks/modal', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Modal Button Font Weight */}
-                    {otherTitle('Modal Button Font Weight:')}
+                    {/* Font Weight */}
+                    {otherTitle('Font Weight:')}
                     <SelectControl value={modalBtnFontWeight} onChange={cng => setAttributes({ modalBtnFontWeight: cng })} options={fontWeights} />
 
-                    {/* Modal Button Top Bottom Padding */}
-                    {otherTitle('Modal Button Top Bottom Padding:')}
+                    {/* Top Bottom Padding */}
+                    {otherTitle('Top Bottom Padding:')}
                     <RangeControl value={modalBtnPTB} onChange={cng => setAttributes({ modalBtnPTB: cng })} min={0} max={50} step={1} />
 
-                    {/* Modal Button Left Right Padding */}
-                    {otherTitle('Modal Button Left Right Padding:')}
+                    {/* Left Right Padding */}
+                    {otherTitle('Left Right Padding:')}
                     <RangeControl value={modalBtnPLR} onChange={cng => setAttributes({ modalBtnPLR: cng })} min={0} max={150} step={1} />
 
-                    {/* Modal Button Border Radius */}
-                    {otherTitle('Modal Button Border Radius:')}
+                    {/* Border Radius */}
+                    {otherTitle('Border Radius:')}
                     <RangeControl value={modalBtnRadius} onChange={cng => setAttributes({ modalBtnRadius: cng })} min={0} max={50} step={1} />
 
-                    {otherTitle('Read More Link Colors:')}
+                    {otherTitle('Colors:')}
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
                             return <span>
                                 {'normal' == tab.name && <span>
-                                    {/* Read More Text Color */}
-                                    {otherTitle('Read More Text Color:')}
-                                    <ColorPalette value={modalBtnTextColor} onChange={cng => setAttributes({ modalBtnTextColor: cng })} colors={colors} />
+                                    {/* Color */}
+                                    {otherTitle('Color:')}
+                                    <ColorPalette value={modalBtnColor} onChange={cng => setAttributes({ modalBtnColor: cng })} colors={colors} />
 
-                                    {/* Read More Background Color */}
-                                    {otherTitle('Read More Background Color:')}
+                                    {/* Background Color */}
+                                    {otherTitle('Background Color:')}
                                     <ColorPalette value={modalBtnBGColor} onChange={cng => setAttributes({ modalBtnBGColor: cng })} colors={colors} />
                                 </span>}
 
                                 {'hover' == tab.name && <span>
-                                    {/* Read More Text Hover Color */}
-                                    {otherTitle('Read More Text Hover Color:')}
-                                    <ColorPalette value={modalBtnTextHovColor} onChange={cng => setAttributes({ modalBtnTextHovColor: cng })} colors={colors} />
+                                    {/* Hover Color */}
+                                    {otherTitle('Hover Color:')}
+                                    <ColorPalette value={modalBtnHovColor} onChange={cng => setAttributes({ modalBtnHovColor: cng })} colors={colors} />
 
-                                    {/* Read More Background Hover Color */}
-                                    {otherTitle('Read More Background Hover Color:')}
-                                    <ColorPalette value={modalBtnBGHovColor} onChange={cng => setAttributes({ modalBtnBGHovColor: cng })} colors={colors} />
+                                    {/* Hover Background Color */}
+                                    {otherTitle('Hover Background Color:')}
+                                    <ColorPalette value={modalBtnHovBGColor} onChange={cng => setAttributes({ modalBtnHovBGColor: cng })} colors={colors} />
                                 </span>}
                             </span>
                         }}
@@ -273,20 +276,20 @@ registerBlockType('b-blocks/modal', {
     },
 
     save: props => {
-        const { attributes: { modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnTextColor, modalBtnBGColor, modalBtnTextHovColor, modalBtnBGHovColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor }, clientId } = props;
+        const { cId, modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnColor, modalBtnBGColor, modalBtnHovColor, modalBtnHovBGColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor } = props.attributes;
 
         // Styles
         const headingStyle = { fontSize: `${headingFontSize}px`, color: headingColor, margin: 0 };
 
-        const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnTextColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
+        const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
         // Functions
         const modalBtnHov = e => {
-            e.target.style.color = modalBtnTextHovColor;
-            e.target.style.backgroundColor = modalBtnBGHovColor;
+            e.target.style.color = modalBtnHovColor;
+            e.target.style.backgroundColor = modalBtnHovBGColor;
         }
         const modalBtnHovLeave = e => {
-            e.target.style.color = modalBtnTextColor;
+            e.target.style.color = modalBtnColor;
             e.target.style.backgroundColor = modalBtnBGColor;
         }
 
@@ -294,12 +297,12 @@ registerBlockType('b-blocks/modal', {
             <div className="b_blocks_modal">
                 {/* Button trigger modal */}
                 <div style={{ textAlign: modalBtnAlign }}>
-                    <button type="button" data-toggle="modal" data-target={`#bBlocksModal-${clientId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
+                    <button type="button" data-toggle="modal" data-target={`#bBlocksModal-${cId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
                 </div>
 
 
                 {/* Modal */}
-                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
+                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${cId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
 
                     <div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
                         <div className="modal-content">

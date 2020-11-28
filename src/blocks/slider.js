@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette, MediaUpload } = wp.blockEditor;
 const { PanelBody, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, IconButton } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { colors, hTags, aligns, sizeTypes } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/slider', {
     // Build In attributes
@@ -24,9 +20,14 @@ registerBlockType('b-blocks/slider', {
     icon: icons.slider,
     category: 'bBlocks',
     keywords: ['Slider', 'Carousel', 'Slide'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
+        cId: { type: 'string' },
+
         slides: { type: 'array' },
 
         sliderWidth: { type: 'number', default: 100 },
@@ -51,7 +52,7 @@ registerBlockType('b-blocks/slider', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { slides = [], sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, contentColor, headTag, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { cId, slides = [], sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, contentColor, headTag, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const sliderStyle = { width: `${sliderWidth}${sliderWidthType}` }
@@ -66,6 +67,10 @@ registerBlockType('b-blocks/slider', {
 
         const sliderIndicatorsStyle = { backgroundColor: indicatorColor, width: `${indicatorWidth}px`, height: `${indicatorHeight}px`, borderRadius: `${indicatorRadius}${indicatorRadiusType}` }
 
+        // Functions
+        clientId && setAttributes({ cId: clientId });
+
+        // Components
         const slideIndicators = value => {
             return (
                 value.sort((a, b) => a.index - b.index).map(slide => {
@@ -132,8 +137,8 @@ registerBlockType('b-blocks/slider', {
             <InspectorControls>
                 {/* Slider Settings */}
                 <PanelBody title="Slider Settings" initialOpen={true}>
-                    {/* Slider Width */}
-                    {firstTitle('Slider Width:')}
+                    {/* Width */}
+                    {firstTitle('Width:')}
                     <ButtonGroup className="b_blocks_button_groups b_blocks_size_type">
                         {Object.values(sizeTypes).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -143,8 +148,8 @@ registerBlockType('b-blocks/slider', {
                     </ButtonGroup>
                     <RangeControl value={sliderWidth} onChange={cng => setAttributes({ sliderWidth: cng })} min={0} max={("%" == sliderWidthType) ? 100 : 1500} step={1} />
 
-                    {/* Slider Height */}
-                    {otherTitle('Slider Height')}
+                    {/* Height */}
+                    {otherTitle('Height')}
                     <RangeControl value={sliderHeight} onChange={cng => setAttributes({ sliderHeight: cng })} min={0} max={900} step={1} />
 
                     {/* Background Overlay Color */}
@@ -167,8 +172,8 @@ registerBlockType('b-blocks/slider', {
 
                 {/* Content Settings */}
                 <PanelBody title="Content Settings" initialOpen={false}>
-                    {/* Alignment */}
-                    {firstTitle('Alignment:')}
+                    {/* Text Align */}
+                    {firstTitle('Text Align:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -246,7 +251,7 @@ registerBlockType('b-blocks/slider', {
     },
 
     save: props => {
-        const { attributes: { slides, sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, contentColor, headTag, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType }, clientId } = props;
+        const { cId, slides, sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, contentColor, headTag, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType } = props.attributes;
 
         // Styles
         const sliderStyle = { width: `${sliderWidth}${sliderWidthType}` }
@@ -259,6 +264,7 @@ registerBlockType('b-blocks/slider', {
 
         const sliderIndicatorsStyle = { backgroundColor: indicatorColor, width: `${indicatorWidth}px`, height: `${indicatorHeight}px`, borderRadius: `${indicatorRadius}${indicatorRadiusType}` }
 
+        // Components
         const slideIndicators = value => {
             return (
                 value.sort((a, b) => a.index - b.index).map(slide => {
@@ -266,7 +272,7 @@ registerBlockType('b-blocks/slider', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <li data-target={`#bBlocksSlider-${clientId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
+                        <li data-target={`#bBlocksSlider-${cId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
                     );
                 })
             );
@@ -297,7 +303,7 @@ registerBlockType('b-blocks/slider', {
 
         return (
             <div className="b_blocks_slider">
-                <div id={`bBlocksSlider-${clientId}`} className={`carousel slide ${slideFade ? 'carousel-fade' : ''}`} data-ride="carousel" style={sliderStyle}>
+                <div id={`bBlocksSlider-${cId}`} className={`carousel slide ${slideFade ? 'carousel-fade' : ''}`} data-ride="carousel" style={sliderStyle}>
                     <ol className="carousel-indicators" style={{ listStyleType: 'none' }}>
                         {slideIndicators(slides)}
                     </ol>
@@ -306,11 +312,11 @@ registerBlockType('b-blocks/slider', {
                         {slideItem(slides)}
                     </div>
 
-                    <a className="carousel-control-prev" href={`#bBlocksSlider-${clientId}`} role="button" data-slide="prev" style={{ width: '75px' }}>
+                    <a className="carousel-control-prev" href={`#bBlocksSlider-${cId}`} role="button" data-slide="prev" style={{ width: '75px' }}>
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span className="sr-only">Previous</span>
                     </a>
-                    <a className="carousel-control-next" href={`#bBlocksSlider-${clientId}`} role="button" data-slide="next" style={{ width: '75px' }}>
+                    <a className="carousel-control-next" href={`#bBlocksSlider-${cId}`} role="button" data-slide="next" style={{ width: '75px' }}>
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="sr-only">Next</span>
                     </a>

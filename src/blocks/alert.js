@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors, hTags } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
-// Icon
+// Icons
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/alert', {
     // Build In attributes
@@ -24,6 +20,9 @@ registerBlockType('b-blocks/alert', {
     icon: icons.alert,
     category: 'bBlocks',
     keywords: ['Alert', 'Alert Text', 'Alert Close'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -47,6 +46,7 @@ registerBlockType('b-blocks/alert', {
     edit: props => {
         const { attributes: { BGColor, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor }, setAttributes } = props;
 
+        // Styles
         const alertStyle = { backgroundColor: BGColor }
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` }
         const textStyle = { fontSize: `${textFontSize}px`, color: textColor, margin: 0 }
@@ -87,15 +87,16 @@ registerBlockType('b-blocks/alert', {
                             ))}
                         </ButtonGroup>
 
-                        {/* Heading Font Size */}
-                        {otherTitle('Heading Font Size:')}
+                        {/* Font Size */}
+                        {otherTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
 
-                        {/* Heading Color */}
-                        {otherTitle('Heading Color:')}
+                        {/* Color */}
+                        {otherTitle('Color:')}
                         <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} colors={colors} />
 
-                        {otherTitle('Heading Margin Bottom:')}
+                        {/* Margin Bottom */}
+                        {otherTitle('Margin Bottom:')}
                         <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
                     </span>}
                 </PanelBody>
@@ -103,19 +104,19 @@ registerBlockType('b-blocks/alert', {
 
                 {/* Text Settings */}
                 <PanelBody title="Text Settings" initialOpen={false}>
-                    {/* Text Font Size */}
-                    {firstTitle('Text Font Size:')}
+                    {/* Font Size */}
+                    {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={textFontSize} onChange={cng => setAttributes({ textFontSize: cng })} />
 
-                    {/* Text Color */}
-                    {otherTitle('Text Color:')}
+                    {/* Color */}
+                    {otherTitle('Color:')}
                     <ColorPalette value={textColor} onChange={cng => setAttributes({ textColor: cng })} colors={colors} />
                 </PanelBody>
             </InspectorControls>,
 
 
             <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
-                {headShow && <RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} />}
+                <span>{headShow && <RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} />}</span>
 
                 <RichText className="b_blocks_alert_text" key="editable" tagName="p" placeholder="Write Your Alert Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} style={textStyle} />
 
@@ -129,6 +130,7 @@ registerBlockType('b-blocks/alert', {
     save: props => {
         const { BGColor, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor } = props.attributes;
 
+        // Styles
         const alertStyle = { backgroundColor: BGColor }
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` }
         const textStyle = { fontSize: `${textFontSize}px`, color: textColor, margin: 0 }

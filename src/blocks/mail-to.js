@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { InspectorControls, ColorPalette, RichText } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TextControl, SelectControl } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors, aligns, fontWeights, textTransforms } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
-// Icon
+// Icons
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/mailto', {
     // Build In attributes
@@ -24,6 +20,9 @@ registerBlockType('b-blocks/mailto', {
     icon: icons.mail,
     category: 'bBlocks',
     keywords: ['Mail', 'mail to', 'E-mail'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -51,12 +50,12 @@ registerBlockType('b-blocks/mailto', {
         return ([
             <InspectorControls>
                 <PanelBody title="Mail to Button Settings" initialOpen={true}>
-                    {/* Mail to Button Label */}
-                    {firstTitle('Mail to Button Label:')}
+                    {/* Label */}
+                    {firstTitle('Label:')}
                     <TextControl value={mtBtnLabel} onChange={cng => setAttributes({ mtBtnLabel: cng })} />
 
-                    {/* Mail to Button Alignment */}
-                    {otherTitle('Mail to Button Alignment:')}
+                    {/* Alignment */}
+                    {otherTitle('Alignment:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -65,12 +64,12 @@ registerBlockType('b-blocks/mailto', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Mail to Button Font Size */}
-                    {otherTitle('Mail to Button Font Size:')}
+                    {/* Font Size */}
+                    {otherTitle('Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={mtBtnFontSize} onChange={cng => setAttributes({ mtBtnFontSize: cng })} />
 
-                    {/* Mail to Button Text Transform */}
-                    {otherTitle('Mail to Button Text Transform:')}
+                    {/* Text Transform */}
+                    {otherTitle('Text Transform:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(textTransforms).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -79,28 +78,28 @@ registerBlockType('b-blocks/mailto', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Mail to Button Font Weight */}
-                    {otherTitle('Mail to Button Font Weight:')}
+                    {/* Font Weight */}
+                    {otherTitle('Font Weight:')}
                     <SelectControl value={mtBtnFontWeight} onChange={cng => setAttributes({ mtBtnFontWeight: cng })} options={fontWeights} />
 
-                    {/* Mail to Button Top Bottom Padding */}
-                    {otherTitle('Mail to Button Top Bottom Padding:')}
+                    {/* Top Bottom Padding */}
+                    {otherTitle('Top Bottom Padding:')}
                     <RangeControl value={mtBtnPTB} onChange={cng => setAttributes({ mtBtnPTB: cng })} min={0} max={50} step={1} />
 
-                    {/* Mail to Button Left Right Padding */}
-                    {otherTitle('Mail to Button Left Right Padding:')}
+                    {/* Left Right Padding */}
+                    {otherTitle('Left Right Padding:')}
                     <RangeControl value={mtBtnPLR} onChange={cng => setAttributes({ mtBtnPLR: cng })} min={0} max={150} step={1} />
 
-                    {/* Mail to Button Border Radius */}
-                    {otherTitle('Mail to Button Border Radius:')}
+                    {/* Border Radius */}
+                    {otherTitle('Border Radius:')}
                     <RangeControl value={mtBtnRadius} onChange={cng => setAttributes({ mtBtnRadius: cng })} min={0} max={50} step={1} />
 
-                    {/* Mail to Button Color */}
-                    {otherTitle('Mail to Button Color:')}
+                    {/* Color */}
+                    {otherTitle('Color:')}
                     <ColorPalette value={mtBtnColor} onChange={cng => setAttributes({ mtBtnColor: cng })} colors={colors} />
 
-                    {/* Mail to Button Background Color */}
-                    {otherTitle('Mail to Button Background Color:')}
+                    {/* Background Color */}
+                    {otherTitle('Background Color:')}
                     <ColorPalette value={mtBtnBGColor} onChange={cng => setAttributes({ mtBtnBGColor: cng })} colors={colors} />
                 </PanelBody>
             </InspectorControls >,

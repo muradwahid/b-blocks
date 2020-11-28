@@ -3,20 +3,16 @@ const { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, A
 const { PanelBody, FontSizePicker, IconButton, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, RadioControl } = wp.components;
 const ALLOWED_BLOCKS = ['core/button'];
 
-
 // Variables
 import options from '../Const/options';
 const { aligns, fontSizes, colors, tags, hTags, sizeTypes } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
-// Icon
+// Icons
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/card', {
     // Build In attributes
@@ -25,6 +21,9 @@ registerBlockType('b-blocks/card', {
     icon: icons.card,
     category: 'bBlocks',
     keywords: ['Alert', 'Alert Text', 'Alert Close'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -134,35 +133,30 @@ registerBlockType('b-blocks/card', {
                 {/* Card Settings */}
                 < PanelBody title="Card Settings" initialOpen={true} >
                     {/* Layout */}
-                    {firstTitle('Image Position:')}
+                    {firstTitle('Layout:')}
                     <RadioControl selected={layout} onChange={cng => setAttributes({ layout: cng })} options={[
                         { label: 'Vertical', value: 'vertical' },
                         { label: 'Horizontal', value: 'horizontal' },
-                    ]}
-                    />
+                    ]} />
 
-                    {/* Card Align */}
-                    {otherTitle('Card Alignment:')}
+                    {/* Alignment */}
+                    {otherTitle('Alignment:')}
                     <ButtonGroup className="b_blocks_button_groups" >
-                        {
-                            Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={cardAlign === obj.value} aria-pressed={cardAlign === obj.value} onClick={() => setAttributes({ cardAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))
-                        }
+                        {Object.values(aligns).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={cardAlign === obj.value} aria-pressed={cardAlign === obj.value} onClick={() => setAttributes({ cardAlign: obj.value })}></Button>
+                            </Tooltip>
+                        ))}
                     </ButtonGroup>
 
-                    {/* Card Width */}
-                    {otherTitle('Card Width:')}
-                    < ButtonGroup className="b_blocks_button_groups b_blocks_size_type" >
-                        {
-                            Object.values(sizeTypes).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} isSmall isPrimary={cardWidthType === obj.value} aria-pressed={cardWidthType === obj.value} onClick={() => setAttributes({ cardWidthType: obj.value, cardWidth: obj.def })}>{obj.value}</Button>
-                                </Tooltip>
-                            ))
-                        }
+                    {/* Width */}
+                    {otherTitle('Width:')}
+                    <ButtonGroup className="b_blocks_button_groups b_blocks_size_type" >
+                        {Object.values(sizeTypes).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} isSmall isPrimary={cardWidthType === obj.value} aria-pressed={cardWidthType === obj.value} onClick={() => setAttributes({ cardWidthType: obj.value, cardWidth: obj.def })}>{obj.value}</Button>
+                            </Tooltip>
+                        ))}
                     </ButtonGroup >
                     <RangeControl value={cardWidth} onChange={cng => setAttributes({ cardWidth: cng })} min={0} max={("%" == cardWidthType) ? 100 : 1140} step={1} />
                 </PanelBody >
@@ -171,12 +165,11 @@ registerBlockType('b-blocks/card', {
                 {/* Image Settings */}
                 < PanelBody title="Image Settings" initialOpen={false} >
                     {/* Show/Hide Image */}
-                    {firstTitle('Show/Hide Image:')}
                     < ToggleControl label={imgShow ? 'Hide Image' : 'Show Image'} checked={imgShow} onChange={cng => setAttributes({ imgShow: cng })} />
 
                     {imgShow && <span>
-                        {/* Image Position */}
-                        {otherTitle('Image Position:')}
+                        {/* Position */}
+                        {firstTitle('Position:')}
                         <RadioControl selected={imgPos} onChange={cng => setAttributes({ imgPos: cng })} options={[
                             { label: 'Top', value: 'top' },
                             { label: 'Bottom', value: 'bottom' },
@@ -189,22 +182,11 @@ registerBlockType('b-blocks/card', {
                 {/* Header Settings */}
                 < PanelBody title="Header Settings" initialOpen={false} >
                     {/* Show/Hide Header */}
-                    {firstTitle('Show/Hide Header:')}
                     < ToggleControl label={headerShow ? 'Hide Header' : 'Show Header'} checked={headerShow} onChange={cng => setAttributes({ headerShow: cng })} />
 
                     {headerShow && <span>
-                        {/* Header Alignment */}
-                        {firstTitle('Header Alignment:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={headerAlign === obj.value} aria-pressed={headerAlign === obj.value} onClick={() => setAttributes({ headerAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
-
                         {/* Header Tag */}
-                        {otherTitle('Header Tag:')}
+                        {firstTitle('Header Tag:')}
                         <ButtonGroup className="b_blocks_button_groups">
                             {Object.values(hTags).map(obj => (
                                 <Tooltip text={obj.label} position="top">
@@ -213,16 +195,26 @@ registerBlockType('b-blocks/card', {
                             ))}
                         </ButtonGroup>
 
-                        {/* Header Font Size */}
-                        {otherTitle('Header Font Size:')}
+                        {/* Text Align */}
+                        {otherTitle('Text Align:')}
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(aligns).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={headerAlign === obj.value} aria-pressed={headerAlign === obj.value} onClick={() => setAttributes({ headerAlign: obj.value })}></Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
+
+                        {/* Font Size */}
+                        {otherTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={headerFontSize} onChange={cng => setAttributes({ headerFontSize: cng })} />
 
-                        {/* Header Color */}
-                        {otherTitle('Header Color:')}
+                        {/* Color */}
+                        {otherTitle('Color:')}
                         <ColorPalette value={headerColor} onChange={cng => setAttributes({ headerColor: cng })} colors={colors} />
 
-                        {/* Header Background Color */}
-                        {otherTitle('Header Background Color:')}
+                        {/* Background Color */}
+                        {otherTitle('Background Color:')}
                         <ColorPalette value={headerBGColor} onChange={cng => setAttributes({ headerBGColor: cng })} colors={colors} />
                     </span>}
                 </PanelBody >
@@ -230,16 +222,14 @@ registerBlockType('b-blocks/card', {
 
                 {/* Body Settings */}
                 < PanelBody title="Body Settings" initialOpen={false} >
-                    {/* Content Align */}
-                    {firstTitle('Content Alignment:')}
+                    {/* Text Align */}
+                    {firstTitle('Text Align:')}
                     < ButtonGroup className="b_blocks_button_groups" >
-                        {
-                            Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={bodyTextAlign === obj.value} aria-pressed={bodyTextAlign === obj.value} onClick={() => setAttributes({ bodyTextAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))
-                        }
+                        {Object.values(aligns).map(obj => (
+                            <Tooltip text={obj.label} position="top">
+                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={bodyTextAlign === obj.value} aria-pressed={bodyTextAlign === obj.value} onClick={() => setAttributes({ bodyTextAlign: obj.value })}></Button>
+                            </Tooltip>
+                        ))}
                     </ButtonGroup >
 
                     {/* Background Color */}
@@ -259,12 +249,11 @@ registerBlockType('b-blocks/card', {
                 {/* Body Heading Settings */}
                 < PanelBody title="Body Heading Settings" initialOpen={false} >
                     {/* Show/Hide Body Heading */}
-                    {firstTitle('Show/Hide Body Heading:')}
                     < ToggleControl label={bodyHeadShow ? 'Hide Body Heading' : 'Show Body Heading'} checked={bodyHeadShow} onChange={cng => setAttributes({ bodyHeadShow: cng })} />
 
                     {bodyHeadShow && <span>
                         {/* Body Heading Tag */}
-                        {otherTitle('Body Heading Tag:')}
+                        {firstTitle('Body Heading Tag:')}
                         <ButtonGroup className="b_blocks_button_groups">
                             {Object.values(hTags).map(obj => (
                                 <Tooltip text={obj.label} position="top">
@@ -273,16 +262,16 @@ registerBlockType('b-blocks/card', {
                             ))}
                         </ButtonGroup>
 
-                        {/* Body Heading Font Size */}
-                        {otherTitle('Body Heading Font Size:')}
+                        {/* Font Size */}
+                        {otherTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={bodyHeadFontSize} onChange={cng => setAttributes({ bodyHeadFontSize: cng })} />
 
-                        {/* Body Heading Color */}
-                        {otherTitle('Body Heading Color:')}
+                        {/* Color */}
+                        {otherTitle('Color:')}
                         <ColorPalette value={bodyHeadColor} onChange={cng => setAttributes({ bodyHeadColor: cng })} colors={colors} />
 
-                        {/* Body Heading Margin Bottom */}
-                        {otherTitle('Body Heading Margin Bottom:')}
+                        {/* Margin Bottom */}
+                        {otherTitle('Margin Bottom:')}
                         <RangeControl value={bodyHeadMB} onChange={cng => setAttributes({ bodyHeadMB: cng })} min={0} max={50} step={1} />
                     </span>}
                 </PanelBody >
@@ -291,20 +280,19 @@ registerBlockType('b-blocks/card', {
                 {/* Body Description Settings */}
                 < PanelBody title="Body Description Settings" initialOpen={false} >
                     {/* Show/Hide Body Description */}
-                    {firstTitle('Show/Hide Body Description:')}
                     < ToggleControl label={bodyDescShow ? 'Hide Body Description' : 'Show Body Description'} checked={bodyDescShow} onChange={cng => setAttributes({ bodyDescShow: cng })} />
 
                     {bodyDescShow && <span>
-                        {/* Body Description Font Size */}
-                        {otherTitle('Body Description Font Size:')}
+                        {/* Font Size */}
+                        {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={bodyDescFontSize} onChange={cng => setAttributes({ bodyDescFontSize: cng })} />
 
-                        {/* Body Description Color */}
-                        {otherTitle('Body Description Color:')}
+                        {/* Color */}
+                        {otherTitle('Color:')}
                         <ColorPalette value={bodyDescColor} onChange={cng => setAttributes({ bodyDescColor: cng })} colors={colors} />
 
-                        {/* Body Description Margin Bottom */}
-                        {otherTitle('Body Description Margin Bottom:')}
+                        {/* Margin Bottom */}
+                        {otherTitle('Margin Bottom:')}
                         <RangeControl value={bodyDescMB} onChange={cng => setAttributes({ bodyDescMB: cng })} min={0} max={50} step={1} />
                     </span>}
                 </PanelBody >
@@ -313,20 +301,9 @@ registerBlockType('b-blocks/card', {
                 {/* Footer Settings */}
                 < PanelBody title="Footer Settings" initialOpen={false} >
                     {/* Show/Hide Footer */}
-                    {firstTitle('Show/Hide Footer:')}
                     < ToggleControl label={footerShow ? 'Hide Footer' : 'Show Footer'} checked={footerShow} onChange={cng => setAttributes({ footerShow: cng })} />
 
                     {footerShow && <span>
-                        {/* Footer Alignment */}
-                        {firstTitle('Footer Alignment:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={footerAlign === obj.value} aria-pressed={footerAlign === obj.value} onClick={() => setAttributes({ footerAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
-
                         {/* Footer Tag */}
                         {firstTitle('Footer Tag:')}
                         <ButtonGroup className="b_blocks_button_groups">
@@ -337,16 +314,26 @@ registerBlockType('b-blocks/card', {
                             ))}
                         </ButtonGroup>
 
-                        {/* Footer Font Size */}
-                        {otherTitle('Footer Font Size:')}
+                        {/* Text Align */}
+                        {otherTitle('Text Align:')}
+                        <ButtonGroup className="b_blocks_button_groups">
+                            {Object.values(aligns).map(obj => (
+                                <Tooltip text={obj.label} position="top">
+                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={footerAlign === obj.value} aria-pressed={footerAlign === obj.value} onClick={() => setAttributes({ footerAlign: obj.value })}></Button>
+                                </Tooltip>
+                            ))}
+                        </ButtonGroup>
+
+                        {/* Font Size */}
+                        {otherTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={footerFontSize} onChange={cng => setAttributes({ footerFontSize: cng })} />
 
-                        {/* Footer Color */}
-                        {otherTitle('Footer Color:')}
+                        {/* Color */}
+                        {otherTitle('Color:')}
                         <ColorPalette value={footerColor} onChange={cng => setAttributes({ footerColor: cng })} colors={colors} />
 
-                        {/* Footer Background Color */}
-                        {otherTitle('Footer Background Color:')}
+                        {/* Background Color */}
+                        {otherTitle('Background Color:')}
                         <ColorPalette value={footerBGColor} onChange={cng => setAttributes({ footerBGColor: cng })} colors={colors} />
                     </span>}
                 </PanelBody >

@@ -2,15 +2,12 @@ const { registerBlockType } = wp.blocks;
 const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, RangeControl, TextControl } = wp.components;
 
-
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/qr-code', {
     // Build In attributes
@@ -19,6 +16,9 @@ registerBlockType('b-blocks/qr-code', {
     icon: icons.qrCode,
     category: 'bBlocks',
     keywords: ['QR', 'QR Code', 'Code'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -32,7 +32,6 @@ registerBlockType('b-blocks/qr-code', {
         const { attributes: { url, dimension, alignment }, setAttributes, isSelected } = props;
 
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}`;
-
 
         return ([
             <InspectorControls>

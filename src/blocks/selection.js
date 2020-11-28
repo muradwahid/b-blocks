@@ -1,21 +1,17 @@
 const { registerBlockType } = wp.blocks;
-const { RichText, InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip } = wp.components;
-
+const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
+const { PanelBody, Button, ButtonGroup, RangeControl, Tooltip } = wp.components;
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, colors, hTags, userSelect } = options;
-
+const { colors, userSelect } = options;
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/selection', {
     // Build In attributes
@@ -24,6 +20,9 @@ registerBlockType('b-blocks/selection', {
     icon: icons.selection,
     category: 'bBlocks',
     keywords: ['Select', 'Text Selection', 'Block Selection'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -37,14 +36,15 @@ registerBlockType('b-blocks/selection', {
     edit: props => {
         const { attributes: { selection, BGColor, selectionPTB, selectionPLR }, setAttributes } = props;
 
+        // Styles
         const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
 
         return ([
             <InspectorControls>
                 {/* Selection Settings */}
                 <PanelBody title="Selection Settings" initialOpen={true}>
-                    {/* Collapse Button Alignment */}
-                    {otherTitle('Collapse Button Alignment:')}
+                    {/* Selection */}
+                    {firstTitle('Selection:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(userSelect).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -77,6 +77,7 @@ registerBlockType('b-blocks/selection', {
     save: props => {
         const { selection, BGColor, selectionPTB, selectionPLR } = props.attributes;
 
+        // Styles
         const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
 
         return (

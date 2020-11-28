@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TabPanel } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors, aligns, textTransforms } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
-// Icon
+// Icons
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/accordion', {
     // Build In attributes
@@ -24,9 +20,14 @@ registerBlockType('b-blocks/accordion', {
     icon: icons.accordion,
     category: 'bBlocks',
     keywords: ['Accordion', 'Collapse', 'Closing'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
+        cId: { type: 'string' },
+
         accordions: { type: 'array' },
 
         headingAlign: { type: 'string', default: 'left' },
@@ -37,7 +38,7 @@ registerBlockType('b-blocks/accordion', {
         headingColor: { type: 'string', default: '#4527a4' },
         headingBGColor: { type: 'string', default: '#f1f1f1' },
         headingHovColor: { type: 'string', default: '#fff' },
-        headingBGHovColor: { type: 'string', default: '#4527a4' },
+        headingHovBGColor: { type: 'string', default: '#4527a4' },
 
         contentPTB: { type: 'number', default: 15 },
         contentPLR: { type: 'number', default: 20 },
@@ -45,7 +46,7 @@ registerBlockType('b-blocks/accordion', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingBGHovColor, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { cId, accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
@@ -57,9 +58,11 @@ registerBlockType('b-blocks/accordion', {
         const contentStyle = { border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
         // Functions
+        clientId && setAttributes({ cId: clientId });
+
         const headingHov = e => {
             e.target.style.color = headingHovColor;
-            e.target.style.backgroundColor = headingBGHovColor;
+            e.target.style.backgroundColor = headingHovBGColor;
         }
         const headingHovLeave = e => {
             e.target.style.color = headingColor;
@@ -68,13 +71,13 @@ registerBlockType('b-blocks/accordion', {
 
         const accordionItem = value => {
             return (
-                value.sort((a, b) => a.index - b.index).map(acc => {
+                value && 0 !== value.length && value.sort((a, b) => a.index - b.index).map(acc => {
                     const { index, title, description } = acc;
                     const active = index == 0 ? true : false;
 
                     return (
                         <div className="b_blocks_acc_item">
-                            <a data-toggle="collapse" href={`#accCollapse-${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
+                            <a data-toggle="collapse" href={`#accCollapse-${clientId}-${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
 
                                 <Button icon="no-alt" className="b_blocks_remove_acc_btn" onClick={() => {
                                     const newAcc = accordions.filter(item => item.index != index).map(i => {
@@ -90,7 +93,7 @@ registerBlockType('b-blocks/accordion', {
                                 }} style={titleStyle} />
                             </a>
 
-                            <div id={`accCollapse-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle} >
+                            <div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle} >
                                 <RichText tagName="p" placeholder="Enter the description" value={description} onChange={cng => {
                                     const newObj = Object.assign({}, acc, { description: cng });
                                     setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
@@ -106,7 +109,7 @@ registerBlockType('b-blocks/accordion', {
             <InspectorControls>
                 <PanelBody title="Heading Settings" initialOpen={true}>
                     {/* Text Align */}
-                    {otherTitle('Text Align:')}
+                    {firstTitle('Text Align:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -144,7 +147,7 @@ registerBlockType('b-blocks/accordion', {
                             return <span>
                                 {'normal' == tab.name && <span>
                                     {/* Color */}
-                                    {otherTitle('Color:')}
+                                    {firstTitle('Color:')}
                                     <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
 
                                     {/* Background Color */}
@@ -154,12 +157,12 @@ registerBlockType('b-blocks/accordion', {
 
                                 {'hover' == tab.name && <span>
                                     {/* Hover Color */}
-                                    {otherTitle('Hover Color:')}
+                                    {firstTitle('Hover Color:')}
                                     <ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
 
                                     {/* Hover Background Color */}
                                     {otherTitle('Hover Background Color:')}
-                                    <ColorPalette value={headingBGHovColor} onChange={cng => setAttributes({ headingBGHovColor: cng })} colors={colors} />
+                                    <ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
                                 </span>}
                             </span>
                         }}
@@ -191,7 +194,7 @@ registerBlockType('b-blocks/accordion', {
     },
 
     save: props => {
-        const { attributes: { accordions, headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingBGHovColor, contentPTB, contentPLR }, clientId } = props;
+        const { cId, accordions, headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentPTB, contentPLR } = props.attributes;
 
         // Styles
         const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, display: 'block', textDecoration: 'none' };
@@ -203,7 +206,7 @@ registerBlockType('b-blocks/accordion', {
         // Functions
         const headingHov = e => {
             e.target.style.color = headingHovColor;
-            e.target.style.backgroundColor = headingBGHovColor;
+            e.target.style.backgroundColor = headingHovBGColor;
         }
         const headingHovLeave = e => {
             e.target.style.color = headingColor;
@@ -212,17 +215,17 @@ registerBlockType('b-blocks/accordion', {
 
         const accordionItem = value => {
             return (
-                value.sort((a, b) => a.index - b.index).map(acc => {
+                value && 0 !== value.length && value.sort((a, b) => a.index - b.index).map(acc => {
                     const { index, title, description } = acc;
                     const active = index == 0 ? true : false;
 
                     return (
                         <div className="b_blocks_acc_item">
-                            <a data-toggle="collapse" href={`#accCollapse-${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
+                            <a data-toggle="collapse" href={`#accCollapse-${cId}${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
                                 <RichText.Content tagName="h4" value={title} style={titleStyle} />
                             </a>
 
-                            <div id={`accCollapse-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle} >
+                            <div id={`accCollapse-${cId}${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${cId}`} style={contentStyle} >
                                 <RichText.Content tagName="p" value={description} style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
                             </div>
                         </div>
@@ -233,7 +236,7 @@ registerBlockType('b-blocks/accordion', {
 
         return (
             <div className="b_blocks_accordion">
-                <div className="accordion" id={`bBlocksAccordion-${clientId}`}>
+                <div className="accordion" id={`bBlocksAccordion-${cId}`}>
                     {accordionItem(accordions)}
                 </div>
             </div>

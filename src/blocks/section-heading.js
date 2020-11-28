@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { hTags, fontSizes, aligns, borderStyles, colors } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/section-heading', {
     // Build In attributes
@@ -24,10 +20,13 @@ registerBlockType('b-blocks/section-heading', {
     icon: icons.h,
     category: 'bBlocks',
     keywords: ['Section', 'Section Head', 'Heading'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
-        alignment: { type: 'string', default: 'center' },
+        contentAlign: { type: 'string', default: 'center' },
 
         head: { type: 'string', source: 'html', selector: '.b_blocks_section_head' },
         headTag: { type: 'string', default: 'h2' },
@@ -50,10 +49,9 @@ registerBlockType('b-blocks/section-heading', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { alignment, head, headTag, headFontSize, headColor, headMB, sepWidth, sepThick, sepStyle, sepColor, sepMB, toggleDesc, desc, descFontSize, descColor, descMB }, setAttributes } = props;
+        const { attributes: { contentAlign, head, headTag, headFontSize, headColor, headMB, sepWidth, sepThick, sepStyle, sepColor, sepMB, toggleDesc, desc, descFontSize, descColor, descMB }, setAttributes } = props;
 
-        const containerStyle = { textAlign: alignment }
-
+        // Styles
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` };
 
         const separatorStyle = { display: 'inline-block', width: `${sepWidth}px`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` };
@@ -64,12 +62,12 @@ registerBlockType('b-blocks/section-heading', {
             <InspectorControls>
                 {/* Content Settings */}
                 <PanelBody title="Content Settings" initialOpen={true}>
-                    {/* Content Alignment */}
-                    {firstTitle('Content Alignment:')}
+                    {/* Text Align */}
+                    {firstTitle('Text Align:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={alignment === obj.value} aria-pressed={alignment === obj.value} onClick={() => setAttributes({ alignment: obj.value })}></Button>
+                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={contentAlign === obj.value} aria-pressed={contentAlign === obj.value} onClick={() => setAttributes({ contentAlign: obj.value })}></Button>
                             </Tooltip>
                         ))}
                     </ButtonGroup>
@@ -88,40 +86,40 @@ registerBlockType('b-blocks/section-heading', {
                         ))}
                     </ButtonGroup>
 
-                    {/* Heading Font Size */}
-                    {otherTitle('Heading Font Size:')}
+                    {/* Font Size */}
+                    {otherTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
 
-                    {/* Heading Color */}
-                    {otherTitle('Heading Color:')}
+                    {/* Color */}
+                    {otherTitle('Color:')}
                     <ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} colors={colors} />
 
-                    {/* Empty Space After Heading */}
-                    {otherTitle('Empty Space After Heading:')}
+                    {/* Margin Bottom */}
+                    {otherTitle('Margin Bottom:')}
                     <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
                 </PanelBody>
 
 
                 {/* Separator Settings */}
                 <PanelBody title="Separator Settings" initialOpen={false}>
-                    {/* Separator Width */}
-                    {firstTitle('Separator Width:')}
+                    {/* Width */}
+                    {firstTitle('Width:')}
                     <RangeControl value={sepWidth} onChange={cng => setAttributes({ sepWidth: cng })} min={0} max={1920} step={1} />
 
-                    {/* Separator Thickness */}
-                    {firstTitle('Separator Thickness:')}
+                    {/* Thickness */}
+                    {firstTitle('Thickness:')}
                     <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={20} step={.1} />
 
-                    {/* Separator Style */}
-                    {otherTitle('Separator Style:')}
+                    {/* Style */}
+                    {otherTitle('Style:')}
                     <SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyles} />
 
-                    {/* Separator Color */}
-                    {otherTitle('Separator Color:')}
+                    {/* Color */}
+                    {otherTitle('Color:')}
                     <ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} colors={colors} />
 
-                    {/* Empty Space After Separator */}
-                    {otherTitle('Empty Space After Separator:')}
+                    {/* Margin Bottom */}
+                    {otherTitle('Margin Bottom:')}
                     <RangeControl value={sepMB} onChange={cng => setAttributes({ sepMB: cng })} min={0} max={75} step={1} />
                 </PanelBody>
 
@@ -132,25 +130,25 @@ registerBlockType('b-blocks/section-heading', {
                     <ToggleControl label={toggleDesc ? 'Disable Description' : 'Enable Description'} checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
 
                     {toggleDesc && <span>
-                        {/* Description Font Size */}
-                        {firstTitle('Description Font Size:')}
+                        {/* Font Size */}
+                        {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} value={descFontSize} onChange={cng => setAttributes({ descFontSize: cng })} />
 
-                        {/* Description Color */}
-                        {otherTitle('Description Color:')}
+                        {/* Color */}
+                        {otherTitle('Color:')}
                         <ColorPalette value={descColor} onChange={cng => setAttributes({ descColor: cng })} colors={colors} />
 
-                        {/* Empty Space After Description */}
-                        {otherTitle('Empty Space After Description:')}
+                        {/* Margin Bottom */}
+                        {otherTitle('Margin Bottom:')}
                         <RangeControl value={descMB} onChange={cng => setAttributes({ descMB: cng })} min={0} max={100} step={1} />
                     </span>}
                 </PanelBody>
             </InspectorControls>,
 
 
-            <div style={containerStyle}>
+            <div style={{ textAlign: contentAlign }}>
                 <BlockControls>
-                    <AlignmentToolbar value={alignment} onChange={cng => setAttributes({ alignment: cng })} />
+                    <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>
 
                 <RichText className="b_blocks_section_head" key="editable" tagName={headTag} placeholder="Write Section Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} />
@@ -163,10 +161,9 @@ registerBlockType('b-blocks/section-heading', {
     },
 
     save: props => {
-        const { alignment, head, headTag, headFontSize, headColor, headMB, sepWidth, sepThick, sepStyle, sepColor, sepMB, toggleDesc, desc, descFontSize, descColor, descMB } = props.attributes;
+        const { contentAlign, head, headTag, headFontSize, headColor, headMB, sepWidth, sepThick, sepStyle, sepColor, sepMB, toggleDesc, desc, descFontSize, descColor, descMB } = props.attributes;
 
-        const containerStyle = { textAlign: alignment }
-
+        // Styles
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` };
 
         const separatorStyle = { display: 'inline-block', width: `${sepWidth}px`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` };
@@ -174,7 +171,7 @@ registerBlockType('b-blocks/section-heading', {
         const descStyle = { fontSize: `${descFontSize}px`, color: descColor, margin: `${sepMB}px 0 ${descMB}px 0` };
 
         return (
-            <div style={containerStyle}>
+            <div style={{ textAlign: contentAlign }}>
                 <RichText.Content className="b_blocks_section_head" tagName={headTag} value={head} style={headStyle} />
 
                 <div style={separatorStyle}></div>

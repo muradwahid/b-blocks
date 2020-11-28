@@ -114,6 +114,7 @@ function render_b_blocks_advance_posts( $attributes ) {
     return ob_get_clean();
 }
 
+// Components
 // Feature Image
 function bBlocksAPostFeatureImg( $show, $link, $linkNewTab, $post ) {
     if ( 'true' == $show ) {

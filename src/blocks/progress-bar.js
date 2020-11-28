@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, ToggleControl, RangeControl } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { colors } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/progress-bar', {
     // Build In attributes
@@ -24,6 +20,9 @@ registerBlockType('b-blocks/progress-bar', {
     icon: icons.progress,
     category: 'bBlocks',
     keywords: ['Progress', 'Progress Bar', 'Progress Width'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -40,6 +39,7 @@ registerBlockType('b-blocks/progress-bar', {
     edit: props => {
         const { attributes: { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarAnimation }, setAttributes } = props;
 
+        // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
         const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%` }
 
@@ -47,34 +47,34 @@ registerBlockType('b-blocks/progress-bar', {
             <InspectorControls>
                 {/* Progress Settings */}
                 <PanelBody title="Progress Settings" initialOpen={true}>
-                    {/* Progress Background Color */}
-                    {firstTitle('Progress Background Color:')}
+                    {/* Background Color */}
+                    {firstTitle('Background Color:')}
                     <ColorPalette value={progressBG} onChange={cng => setAttributes({ progressBG: cng })} colors={colors} />
 
-                    {/* Progress Height */}
-                    {otherTitle('Progress Height:')}
+                    {/* Height */}
+                    {otherTitle('Height:')}
                     <RangeControl value={progressHeight} onChange={cng => setAttributes({ progressHeight: cng })} min={0} max={150} step={1} />
                 </PanelBody>
 
 
                 {/* Progress Bar Settings */}
                 <PanelBody title="Progress Bar Settings" initialOpen={false}>
-                    {/* Progress Bar Background Color */}
-                    {firstTitle('Progress Bar Background Color:')}
+                    {/* Background Color */}
+                    {firstTitle('Background Color:')}
                     <ColorPalette value={progressBarBG} onChange={cng => setAttributes({ progressBarBG: cng })} colors={colors} />
 
-                    {/* Progress Ber Width */}
-                    {otherTitle('Progress Ber Width:')}
+                    {/* Width */}
+                    {otherTitle('Width:')}
                     <RangeControl value={progressBarWidth} onChange={cng => setAttributes({ progressBarWidth: cng })} min={0} max={100} step={1} />
 
 
-                    {/* Progress Bar Striped */}
-                    {otherTitle('Progress Bar Striped')}
+                    {/* Striped */}
+                    {otherTitle('Striped')}
                     <ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
                     {progressBarStriped && <span>
-                        {/* Progress Bar Animation */}
-                        {otherTitle('Progress Bar Animation')}
+                        {/* Animation */}
+                        {otherTitle('Animation')}
                         <ToggleControl label={progressBarAnimation ? 'Disable Animation' : 'Enable Animation'} checked={progressBarAnimation} onChange={cng => setAttributes({ progressBarAnimation: cng })} />
                     </span>}
                 </PanelBody>
@@ -90,6 +90,7 @@ registerBlockType('b-blocks/progress-bar', {
     save: props => {
         const { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarAnimation } = props.attributes;
 
+        // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
         const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%` }
 

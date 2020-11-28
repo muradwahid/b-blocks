@@ -2,20 +2,16 @@ const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker } = wp.components;
 
-
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors } = options;
-
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
-// Icon
+// Icons
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/highlight-text', {
     // Build In attributes
@@ -24,6 +20,9 @@ registerBlockType('b-blocks/highlight-text', {
     icon: icons.paint,
     category: 'bBlocks',
     keywords: ['Highlight', 'Highlight Text', 'Color Text'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -37,6 +36,7 @@ registerBlockType('b-blocks/highlight-text', {
     edit: props => {
         const { attributes: { text, fontS, color, BGColor }, setAttributes } = props;
 
+        // Styles
         const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
 
         return ([
@@ -65,6 +65,7 @@ registerBlockType('b-blocks/highlight-text', {
     save: props => {
         const { text, fontS, color, BGColor } = props.attributes;
 
+        // Styles
         const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
 
         return (

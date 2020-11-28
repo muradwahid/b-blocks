@@ -7,10 +7,8 @@ const { useEffect } = wp.element;
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner, Button, ButtonGroup, Tooltip } = wp.components;
 
-
 // Icon
 import icons from '../../Const/icons';
-
 
 // Variables
 import options from '../../Const/options';
@@ -27,11 +25,9 @@ const subLayout = {
     ]
 };
 
-
 // Functions
 import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
-
 
 registerBlockType('b-blocks/advance-posts', {
     // Build In attributes
@@ -168,7 +164,7 @@ registerBlockType('b-blocks/advance-posts', {
         }
 
 
-        // Single Posts Functions
+        // Single Posts Components
         const readMoreHov = e => e.target.style.color = readMoreHovColor;
 
         const readMoreHovLeave = e => e.target.style.color = readMoreColor;
@@ -206,7 +202,7 @@ registerBlockType('b-blocks/advance-posts', {
         const postReadMore = link => 'true' == readMoreShow && <div className="read_more" style={readMoreWrapStyle}><a href={link} target={'true' == linkNewTab ? '_blank' : '_self'} style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
 
         return [
-            posts && posts.length !== 0 && <InspectorControls>
+            posts && 0 !== posts.length && <InspectorControls>
                 <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                     tabs={[{ name: 'layout', title: 'Layout', className: 'layout-tab' }, { name: 'style', title: 'Style', className: 'style-tab' }, { name: 'advanced', title: 'Advanced', className: 'advanced-tab', }]}>
                     {tab => {
@@ -247,7 +243,7 @@ registerBlockType('b-blocks/advance-posts', {
                                 {/* Posts Query */}
                                 <PanelBody title="Posts Query" initialOpen={false}>
                                     {/* Select Categories */}
-                                    {categories && categories.length !== 0 ? <span>
+                                    {categories && 0 !== categories.length ? <span>
                                         {firstTitle('Select Categories:')}
                                         {categories.map(cat => {
                                             const isInc = selectedCategories.includes(cat.id);
@@ -340,8 +336,8 @@ registerBlockType('b-blocks/advance-posts', {
                             {'style' == tab.name && <span>
                                 {/* Content Settings */}
                                 <PanelBody title="Content Settings" initialOpen={true}>
-                                    {/* Align */}
-                                    {firstTitle('Align:')}
+                                    {/* Text Align */}
+                                    {firstTitle('Text Align:')}
                                     <ButtonGroup className="b_blocks_button_groups">
                                         {Object.values(aligns).map(obj => (
                                             <Tooltip text={obj.label} position="top">
@@ -433,8 +429,8 @@ registerBlockType('b-blocks/advance-posts', {
                                 {/* Excerpt Settings */}
                                 {'true' == excerptShow && <span>
                                     <PanelBody title="Excerpt Settings" initialOpen={false}>
-                                        {/* Align */}
-                                        {firstTitle('Align:')}
+                                        {/* Text Align */}
+                                        {firstTitle('Text Align:')}
                                         <ButtonGroup className="b_blocks_button_groups">
                                             {Object.values(aligns).map(obj => (
                                                 <Tooltip text={obj.label} position="top">
@@ -461,8 +457,8 @@ registerBlockType('b-blocks/advance-posts', {
                                 {/* Read More Settings */}
                                 {'true' == readMoreShow && <span>
                                     <PanelBody title="Read More Settings" initialOpen={false}>
-                                        {/* Align */}
-                                        {firstTitle('Align:')}
+                                        {/* Text Align */}
+                                        {firstTitle('Text Align:')}
                                         <ButtonGroup className="b_blocks_button_groups">
                                             {Object.values(aligns).map(obj => (
                                                 <Tooltip text={obj.label} position="top">
@@ -522,7 +518,7 @@ registerBlockType('b-blocks/advance-posts', {
             </InspectorControls >,
 
 
-            posts && posts.length !== 0 ? <div className="b_blocks_advance_posts">
+            posts && 0 !== posts.length ? <div className="b_blocks_advance_posts">
                 <BlockControls>
                     <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>

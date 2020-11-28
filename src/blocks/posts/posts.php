@@ -111,6 +111,7 @@ function render_b_blocks_posts( $attributes ) {
     return ob_get_clean();
 }
 
+// Components
 // Feature Image
 function bBlocksPostFeatureImg( $show, $post ) {
     if ( 'true' == $show ) {

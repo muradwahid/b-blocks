@@ -4,10 +4,8 @@ const { withSelect } = wp.data;
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner, Button, ButtonGroup, Tooltip } = wp.components;
 
-
 // Icon
 import icons from '../../Const/icons';
-
 
 // Variables
 import options from '../../Const/options';
@@ -18,11 +16,9 @@ const layouts = [
     { label: 'Masonry', value: 'masonry', icon: icons.masonry },
 ]
 
-
 // Functions
 import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
-
 
 registerBlockType('b-blocks/posts', {
     // Build In attributes
@@ -152,7 +148,7 @@ registerBlockType('b-blocks/posts', {
         }
 
 
-        // Single Posts Functions
+        // Single Posts Components
         const readMoreHov = e => e.target.style.color = readMoreHovColor;
 
         const readMoreHovLeave = e => e.target.style.color = readMoreColor;
@@ -188,7 +184,7 @@ registerBlockType('b-blocks/posts', {
         const postReadMore = link => readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
 
         return [
-            posts && posts.length !== 0 && <InspectorControls>
+            posts && 0 !== posts.length && <InspectorControls>
                 {/* Layouts Settings */}
                 <PanelBody title="Layouts Settings" initialOpen={true}>
                     {/* Layout Type */}
@@ -224,15 +220,13 @@ registerBlockType('b-blocks/posts', {
                 {/* Posts Query */}
                 <PanelBody title="Posts Query" initialOpen={false}>
                     {/* Select Categories */}
-                    {categories && categories.length !== 0 ? <span>
+                    {categories && 0 !== categories.length ? <span>
                         {firstTitle('Select Categories:')}
                         {categories.map(cat => {
                             const isInc = selectedCategories.includes(cat.id);
 
                             return (
                                 <CheckboxControl label={cat.name} key={cat.id} checked={isInc} onChange={cng => setAttributes({ selectedCategories: cng ? [...selectedCategories, cat.id] : selectedCategories.filter(id => id !== cat.id) })} />
-
-                                // <span>{cat.name}</span>
                             );
                         })}
                     </span> : ''}
@@ -307,8 +301,8 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Content Settings */}
                 <PanelBody title="Content Settings" initialOpen={false}>
-                    {/* Align */}
-                    {firstTitle('Align:')}
+                    {/* Text Align */}
+                    {firstTitle('Text Align:')}
                     <ButtonGroup className="b_blocks_button_groups">
                         {Object.values(aligns).map(obj => (
                             <Tooltip text={obj.label} position="top">
@@ -400,8 +394,8 @@ registerBlockType('b-blocks/posts', {
                 {/* Excerpt Settings */}
                 {excerptShow == 'true' && <span>
                     <PanelBody title="Excerpt Settings" initialOpen={false}>
-                        {/* Align */}
-                        {otherTitle('Align:')}
+                        {/* Text Align */}
+                        {otherTitle('Text Align:')}
                         <ButtonGroup className="b_blocks_button_groups">
                             {Object.values(aligns).map(obj => (
                                 <Tooltip text={obj.label} position="top">
@@ -428,8 +422,8 @@ registerBlockType('b-blocks/posts', {
                 {/* Read More Link Settings */}
                 {readMoreShow == 'true' && <span>
                     <PanelBody title="Read More Settings" initialOpen={false}>
-                        {/* Align */}
-                        {firstTitle('Align:')}
+                        {/* Text Align */}
+                        {firstTitle('Text Align:')}
                         <ButtonGroup className="b_blocks_button_groups">
                             {Object.values(aligns).map(obj => (
                                 <Tooltip text={obj.label} position="top">
@@ -480,7 +474,7 @@ registerBlockType('b-blocks/posts', {
             </InspectorControls>,
 
 
-            posts && posts.length !== 0 ? <div className="b_blocks_posts">
+            posts && 0 !== posts.length ? <div className="b_blocks_posts">
                 <BlockControls>
                     <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>

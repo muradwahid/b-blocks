@@ -46,3 +46,8 @@ add_action( 'init', 'b_blocks_init' );
 // Posts Block
 require 'blocks/posts/posts.php';
 require 'blocks/posts/advance-posts.php';
+
+function b_blocks_after_setup_theme() {
+    add_theme_support( 'align-wide' );
+}
+add_action( 'after_setup_theme', 'b_blocks_after_setup_theme' );
