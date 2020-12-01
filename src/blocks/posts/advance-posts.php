@@ -10,6 +10,8 @@ add_action( 'init', 'b_blocks_advance_posts_init' );
 function render_b_blocks_advance_posts( $attributes ) {
     extract( $attributes );
 
+    $align ? $align : $align = 'full';
+
     $selectedCategories ? $selectedCategories : $selectedCategories = [];
     $postsPerPageAll ? $postsPerPageAll : $postsPerPageAll = 'true';
     $postsPerPage || 0 === $postsPerPage ? $postsPerPage : $postsPerPage = 9;
@@ -72,8 +74,10 @@ function render_b_blocks_advance_posts( $attributes ) {
         'order'          => $postsOrder,
     ] );
 
+    $alignClass = '' == $align ? '' : 'align' . $align;
+
     ob_start();
-    echo '<div class="b_blocks_advance_posts">';
+    echo '<div class="b_blocks_advance_posts ' . $alignClass . '">';
 
     if ( 'grid' == $layout ) {
         echo '<div class="b_blocks_grid_posts" style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); grid-gap: ' . $rowGap . 'px ' . $columnGap . 'px;">';

@@ -26,9 +26,14 @@ registerBlockType('b-blocks/posts', {
     icon: icons.postEmbed,
     category: 'bBlocks',
     keywords: ['Specific Category Posts'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
+
         selectedCategories: { type: 'array', default: [] },
         postsPerPageAll: { type: 'boolean', default: 'true' },
         postsPerPage: { type: 'number', default: 10 },

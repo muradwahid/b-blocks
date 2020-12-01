@@ -26,6 +26,7 @@ registerBlockType('b-blocks/accordion', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
         cId: { type: 'string' },
 
         accordions: { type: 'array' },
@@ -235,7 +236,7 @@ registerBlockType('b-blocks/accordion', {
         }
 
         return (
-            <div className="b_blocks_accordion">
+            <div className="b_blocks_accordion" style={{ textAlign: 'inherit' }}>
                 <div className="accordion" id={`bBlocksAccordion-${cId}`}>
                     {accordionItem(accordions)}
                 </div>

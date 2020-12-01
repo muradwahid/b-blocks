@@ -26,6 +26,8 @@ registerBlockType('b-blocks/selection', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         selection: { type: 'string', default: 'auto' },
         BGColor: { type: 'string', default: '#f1f1f1' },
         selectionPTB: { type: 'number', default: 10 },
@@ -78,7 +80,7 @@ registerBlockType('b-blocks/selection', {
         const { selection, BGColor, selectionPTB, selectionPLR } = props.attributes;
 
         // Styles
-        const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
+        const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px`, textAlign: 'inherit' };
 
         return (
             <div className="b_blocks_selection" style={selectionStyle}>

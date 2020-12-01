@@ -26,6 +26,8 @@ registerBlockType('b-blocks/divider', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
+
         divideAlign: { type: 'string', default: 'center' },
         divideWidth: { type: 'number', default: 450 },
         divideWidthType: { type: 'string', default: 'px' },
@@ -141,7 +143,7 @@ registerBlockType('b-blocks/divider', {
         const { divideAlign, divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, toggleToTop, toTopAlign, toTopLabel, toTopFontSize, toTopColor } = props.attributes;
 
         // Styles
-        const containerStyle = { padding: `${divideMT}px 0 ${divideMB}px 0` };
+        const containerStyle = { padding: `${divideMT}px 0 ${divideMB}px 0`, textAlign: 'inherit' };
         const dividerStyle = { display: 'inline-block', width: `${divideWidth}${divideWidthType}`, borderBottom: `${divideThick}px ${divideStyle} ${divideColor}` };
         const toTopStyle = { fontSize: `${toTopFontSize}px`, color: toTopColor, textDecoration: 'none' };
 

@@ -30,6 +30,7 @@ registerBlockType('b-blocks/modal', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
         cId: { type: 'string' },
 
         modalFade: { type: 'boolean', default: true },
@@ -39,7 +40,7 @@ registerBlockType('b-blocks/modal', {
         modalSize: { type: 'string', default: '' },
 
         modalBtnLabel: { type: 'string', default: 'My Modal' },
-        modalBtnAlign: { type: 'string', default: 'center' },
+        modalBtnAlign: { type: 'string', default: 'left' },
         modalBtnFontSize: { type: 'number', default: 16 },
         modalBtnTransform: { type: 'string', default: 'capitalize' },
         modalBtnFontWeight: { type: 'string', default: '600' },
@@ -294,7 +295,7 @@ registerBlockType('b-blocks/modal', {
         }
 
         return (
-            <div className="b_blocks_modal">
+            <div className="b_blocks_modal" style={{ textAlign: 'inherit' }}>
                 {/* Button trigger modal */}
                 <div style={{ textAlign: modalBtnAlign }}>
                     <button type="button" data-toggle="modal" data-target={`#bBlocksModal-${cId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>

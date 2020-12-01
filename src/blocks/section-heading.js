@@ -26,6 +26,8 @@ registerBlockType('b-blocks/section-heading', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
+
         contentAlign: { type: 'string', default: 'center' },
 
         head: { type: 'string', source: 'html', selector: '.b_blocks_section_head' },

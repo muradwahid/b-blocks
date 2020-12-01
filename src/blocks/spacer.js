@@ -22,6 +22,8 @@ registerBlockType('b-blocks/spacer', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
+
         height: { type: 'number', default: 50 }
     },
 
@@ -48,7 +50,7 @@ registerBlockType('b-blocks/spacer', {
         const { height } = props.attributes;
 
         return (
-            <div style={{ height: `${height}px` }}></div>
+            <div style={{ height: `${height}px`, textAlign: 'inherit' }}></div>
         )
     },
 

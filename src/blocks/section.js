@@ -26,6 +26,8 @@ registerBlockType('b-blocks/section', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
+
         BGColor: { type: 'string', default: '#f3f4f5' },
         PT: { type: 'number', default: 50 },
         PR: { type: 'number', default: 15 },
@@ -77,7 +79,7 @@ registerBlockType('b-blocks/section', {
     save: props => {
         const { BGColor, PT, PR, PB, PL } = props.attributes;
 
-        const sectionStyle = { backgroundColor: BGColor, padding: `${PT}px ${PR}px ${PB}px ${PL}px` }
+        const sectionStyle = { backgroundColor: BGColor, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, textAlign: 'inherit' }
 
         return (
             <div className="b_blocks_section" style={sectionStyle}>

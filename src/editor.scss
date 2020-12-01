@@ -6,6 +6,38 @@ $secondaryColor: #8344c5;
     display: contents;
 }
 
+.block-editor-block-list__block[data-align="wide"]{
+    max-width: 100%!important;
+    width: 100%!important;
+}
+
+.wp-block[data-align="wide"]{
+    max-width: 100%!important;
+    width: 94%!important;
+}
+
+@media screen and (max-width: 992px){
+    .wp-block[data-align="wide"] {
+        width: 96%!important;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .wp-block[data-align="wide"] {
+        width: 98%!important;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .wp-block[data-align="wide"] {
+        width: 100%!important;
+    }
+}
+
+.block-editor-block-list__block[data-align="center"] {
+    max-width: 100%!important;
+    width: 100%!important;
+}
 
 // Panel Title
 .components-panel__body-title{

@@ -27,8 +27,10 @@ registerBlockType('b-blocks/card', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         layout: { type: 'string', default: 'vertical' },
-        cardAlign: { type: 'string', default: 'center' },
+        cardAlign: { type: 'string', default: 'left' },
         cardWidth: { type: 'number', default: 450 },
         cardWidthType: { type: 'string', default: 'px' },
 

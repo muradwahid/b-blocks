@@ -26,10 +26,11 @@ registerBlockType('b-blocks/collapse', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
         cId: { type: 'string' },
 
         collBtnLabel: { type: 'string', source: 'html', selector: '.b_blocks_collapse_btn_label' },
-        collBtnAlign: { type: 'string', default: 'center' },
+        collBtnAlign: { type: 'string', default: 'left' },
         collBtnFontSize: { type: 'number', default: 16 },
         collBtnTransform: { type: 'string', default: 'uppercase' },
         collBtnFontWeight: { type: 'string', default: '600' },
@@ -189,7 +190,7 @@ registerBlockType('b-blocks/collapse', {
         }
 
         return (
-            <div className="b_blocks_collapse">
+            <div className="b_blocks_collapse" style={{ textAlign: 'inherit' }}>
                 {/* Button Trigger Collapse */}
                 <div style={{ textAlign: collBtnAlign }}>
                     <button type="button" className="b_blocks_collapse_btn_label" data-toggle="collapse" data-target={`#bBlocksCollapse-${cId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${cId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>{collBtnLabel}</button>

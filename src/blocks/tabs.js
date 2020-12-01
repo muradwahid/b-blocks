@@ -28,6 +28,8 @@ registerBlockType('b-blocks/tabs', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         info: { type: 'array' },
         layout: { type: 'string', default: 'tab' },
 
@@ -260,7 +262,7 @@ registerBlockType('b-blocks/tabs', {
         }
 
         return (
-            <div className="b_blocks_tabs">
+            <div className="b_blocks_tabs" style={{ textAlign: 'inherit' }}>
                 {
                     layout == 'tab' ? <div className="tabs" style={containerStyle}>
                         <nav>

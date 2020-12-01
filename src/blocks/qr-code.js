@@ -22,14 +22,16 @@ registerBlockType('b-blocks/qr-code', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         url: { type: 'string', default: 'https://wasek-bellah.web.app/' },
         dimension: { type: 'number', default: 180 },
-        alignment: { type: 'string', default: 'center' }
+        qrAlign: { type: 'string', default: 'center' }
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { url, dimension, alignment }, setAttributes, isSelected } = props;
+        const { attributes: { url, dimension, qrAlign }, setAttributes, isSelected } = props;
 
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}`;
 
@@ -47,9 +49,9 @@ registerBlockType('b-blocks/qr-code', {
                 </PanelBody>
             </InspectorControls>,
 
-            <div style={{ textAlign: alignment }}>
+            <div style={{ textAlign: qrAlign }}>
                 <BlockControls>
-                    <AlignmentToolbar value={alignment} onChange={cng => setAttributes({ alignment: cng })} />
+                    <AlignmentToolbar value={qrAlign} onChange={cng => setAttributes({ qrAlign: cng })} />
                 </BlockControls>
 
                 <img src={qrUrl} />
@@ -64,12 +66,12 @@ registerBlockType('b-blocks/qr-code', {
     },
 
     save: props => {
-        const { url, dimension, alignment } = props.attributes;
+        const { url, dimension, qrAlign } = props.attributes;
 
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}}`;
 
         return (
-            <div style={{ textAlign: alignment }}>
+            <div style={{ textAlign: qrAlign }}>
                 <img src={qrUrl} />
             </div>
         );

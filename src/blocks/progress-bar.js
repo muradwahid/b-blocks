@@ -26,6 +26,8 @@ registerBlockType('b-blocks/progress-bar', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         progressBG: { type: 'string', default: '#e9ecef' },
         progressHeight: { type: 'number', default: 15 },
 
@@ -91,7 +93,7 @@ registerBlockType('b-blocks/progress-bar', {
         const { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarAnimation } = props.attributes;
 
         // Styles
-        const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
+        const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px', textAlign: 'inherit' }
         const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%` }
 
         return (

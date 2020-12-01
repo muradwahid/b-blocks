@@ -35,13 +35,14 @@ registerBlockType('b-blocks/advance-posts', {
     icon: icons.advancePosts,
     category: 'bBlocks',
     keywords: ['Show Posts', 'Blog Posts', 'Custom Posts'],
-
     supports: {
         align: ['center', 'wide', 'full']
     },
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
+
         selectedCategories: { type: 'array', default: [] },
         postsPerPageAll: { type: 'boolean', default: 'true' },
         postsPerPage: { type: 'number', default: 10 },

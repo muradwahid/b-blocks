@@ -26,6 +26,8 @@ registerBlockType('b-blocks/highlight-text', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         text: { type: 'string', source: 'html', selector: '.b_blocks_highlighter' },
         fontS: { type: 'number' },
         color: { type: 'string', default: '#333' },
@@ -66,7 +68,7 @@ registerBlockType('b-blocks/highlight-text', {
         const { text, fontS, color, BGColor } = props.attributes;
 
         // Styles
-        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
+        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor, textAlign: 'inherit' }
 
         return (
             <RichText.Content className="b_blocks_highlighter" tagName="mark" value={text} style={textStyle} />

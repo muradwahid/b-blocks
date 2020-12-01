@@ -26,6 +26,7 @@ registerBlockType('b-blocks/slider', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'full' },
         cId: { type: 'string' },
 
         slides: { type: 'array' },
@@ -302,7 +303,7 @@ registerBlockType('b-blocks/slider', {
 
 
         return (
-            <div className="b_blocks_slider">
+            <div className="b_blocks_slider" style={{ textAlign: 'inherit' }}>
                 <div id={`bBlocksSlider-${cId}`} className={`carousel slide ${slideFade ? 'carousel-fade' : ''}`} data-ride="carousel" style={sliderStyle}>
                     <ol className="carousel-indicators" style={{ listStyleType: 'none' }}>
                         {slideIndicators(slides)}

@@ -26,10 +26,12 @@ registerBlockType('b-blocks/mailto', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         receiverMail: { type: 'string', default: 'support@bplugins.com' },
 
         mtBtnLabel: { type: 'string', source: 'html', selector: '.b_blocks_mt_btn_label' },
-        mtBtnAlign: { type: 'string', default: 'center' },
+        mtBtnAlign: { type: 'string', default: 'left' },
         mtBtnFontSize: { type: 'number', default: 16 },
         mtBtnTransform: { type: 'string', default: 'uppercase' },
         mtBtnFontWeight: { type: 'string', default: '600' },

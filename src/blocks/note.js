@@ -26,6 +26,8 @@ registerBlockType('b-blocks/note', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'wide' },
+
         BGColor: { type: 'string', default: '#ffff66' },
         padTB: { type: 'number', default: 15 },
         padLR: { type: 'number', default: 15 },
@@ -159,7 +161,7 @@ registerBlockType('b-blocks/note', {
         const { BGColor, padTB, padLR, borderRadius, toggleHead, head, headTag, headFontSize, headColor, headPB, headMB, sepThick, sepStyle, sepColor, content, contentFontSize, contentColor } = props.attributes;
 
         // Styles
-        const containerStyle = { backgroundColor: BGColor, padding: `${padTB}px ${padLR}px`, borderRadius: `${borderRadius}px` }
+        const containerStyle = { backgroundColor: BGColor, padding: `${padTB}px ${padLR}px`, borderRadius: `${borderRadius}px`, textAlign: 'inherit' }
 
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, padding: `0 0  ${headPB}px 0`, margin: `0 0 ${headMB}px 0`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` }
 

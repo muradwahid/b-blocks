@@ -26,6 +26,8 @@ registerBlockType('b-blocks/alert', {
 
     // Custom Attributes
     attributes: {
+        align: { type: 'string', default: 'center' },
+
         BGColor: { type: 'string', default: '#8344c5' },
         dismissShow: { type: 'boolean', default: true },
         dismissColor: { type: 'string', default: '#fff' },
@@ -131,7 +133,7 @@ registerBlockType('b-blocks/alert', {
         const { BGColor, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor } = props.attributes;
 
         // Styles
-        const alertStyle = { backgroundColor: BGColor }
+        const alertStyle = { backgroundColor: BGColor, textAlign: 'inherit' }
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` }
         const textStyle = { fontSize: `${textFontSize}px`, color: textColor, margin: 0 }
 
