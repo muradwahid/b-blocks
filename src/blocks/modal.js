@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { useEffect } = wp.element;
 const { RichText, InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, TabPanel, TextControl, SelectControl } = wp.components;
 
@@ -74,7 +75,9 @@ registerBlockType('b-blocks/modal', {
         const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
         // Functions
-        clientId && setAttributes({ cId: clientId });
+        useEffect(() => {
+            clientId && setAttributes({ cId: clientId });
+        }, [clientId]);
 
         const modalBtnHov = e => {
             e.target.style.color = modalBtnHovColor;

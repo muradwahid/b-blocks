@@ -13,11 +13,6 @@ import icons from '../../Const/icons';
 // Variables
 import options from '../../Const/options';
 const { fontSizes, colors, aligns, fontWeights, textTransforms, postsOrdersBy, postsOrders, getMonth, shadows } = options;
-const layouts = [
-    { label: 'Grid', value: 'grid', icon: icons.grid },
-    { label: 'Slider', value: 'slider', icon: icons.sliderNoColor },
-    { label: 'Masonry', value: 'masonry', icon: icons.masonry },
-];
 
 const subLayout = {
     grid: [
@@ -42,6 +37,14 @@ registerBlockType('b-blocks/advance-posts', {
     // Custom Attributes
     attributes: {
         align: { type: 'string', default: 'full' },
+        cId: { type: 'string' },
+
+        layout: { type: 'string', default: 'grid' },
+        columns: { type: 'number', default: 3 },
+        columnGap: { type: 'number', default: 10 },
+        rowGap: { type: 'number', default: 10 },
+        contentEqualHight: { type: 'string', default: 'true' },
+        sliderContentHeight: { type: 'number', default: 350 },
 
         selectedCategories: { type: 'array', default: [] },
         postsPerPageAll: { type: 'boolean', default: 'true' },
@@ -49,14 +52,10 @@ registerBlockType('b-blocks/advance-posts', {
         postsOrderBy: { type: 'string', default: 'date' },
         postsOrder: { type: 'string', default: 'desc' },
 
-        layout: { type: 'string', default: 'grid' },
-        columns: { type: 'number', default: 3 },
-        columnGap: { type: 'number', default: 10 },
-        rowGap: { type: 'number', default: 10 },
-        contentEqualHight: { type: 'string', default: 'true' },
-
         contentAlign: { type: 'string', default: 'left' },
         contentBGColor: { type: 'string', default: '#fff' },
+        contentBGOverlayColor: { type: 'string', default: '#000' },
+        contentBGOverlayOpacity: { type: 'number', default: .5 },
         postTextPTB: { type: 'number', default: 20 },
         postTextPLR: { type: 'number', default: 25 },
         shadow: { type: 'string', default: 'shadow' },
@@ -119,7 +118,7 @@ registerBlockType('b-blocks/advance-posts', {
         };
 
     })(({ select, posts, categories, media, attributes, setAttributes, clientId }) => {
-        const { selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, contentEqualHight, contentAlign, contentBGColor, postTextPTB, postTextPLR, shadow, featureImgShow, featureImgLink, titleShow, titleLink, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, linkNewTab, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
+        const { cId, layout, columns, columnGap, rowGap, contentEqualHight, sliderContentHeight, selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBGColor, contentBGOverlayColor, contentBGOverlayOpacity, postTextPTB, postTextPLR, shadow, featureImgShow, featureImgLink, titleShow, titleLink, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, linkNewTab, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
 
         // Render HTML and Excerpt count
         const renderHTML = rawHTML => <span dangerouslySetInnerHTML={{ __html: rawHTML }} />;
@@ -157,6 +156,12 @@ registerBlockType('b-blocks/advance-posts', {
 
         const readMoreWrapStyle = { textAlign: readMoreAlign, }
         const readMoreStyle = { display: 'inline-block', fontSize: `${readMoreFontSize}px`, textTransform: readMoreTransform, fontWeight: readMoreFontWeight, color: readMoreColor, transition: 'all .3s ease' }
+
+
+        // Functions
+        useEffect(() => {
+            clientId && setAttributes({ cId: clientId });
+        }, [clientId]);
 
 
         // Components
@@ -214,11 +219,17 @@ registerBlockType('b-blocks/advance-posts', {
                                     {/* Layout Type */}
                                     {firstTitle('Layout Type:')}
                                     <ButtonGroup className="b_blocks_button_groups">
-                                        {Object.values(layouts).map(obj => (
-                                            <Tooltip text={obj.label} position="top">
-                                                <Button className="b_blocks_ap_posts_layout_change_btn" key={obj.value} icon={obj.icon} isMedium isPrimary={layout === obj.value} aria-pressed={layout === obj.value} onClick={() => setAttributes({ layout: obj.value })}></Button>
-                                            </Tooltip>
-                                        ))}
+                                        <Tooltip text="Grid" position="top">
+                                            <Button className="b_blocks_ap_posts_layout_change_btn" icon={icons.grid} isMedium isPrimary={layout === "grid"} aria-pressed={layout === "grid"} onClick={() => setAttributes({ layout: "grid", titleColor: '#4527a4', metaTextColor: '#333', metaLinkColor: '#8344c5', metaIconColor: '#4527a4', excerptColor: '#333', readMoreColor: '#4527a4' })}></Button>
+                                        </Tooltip>
+
+                                        <Tooltip text="Slider" position="top">
+                                            <Button className="b_blocks_ap_posts_layout_change_btn" icon={icons.sliderNoColor} isMedium isPrimary={layout === "slider"} aria-pressed={layout === "slider"} onClick={() => setAttributes({ layout: "slider", titleColor: '#fff', metaTextColor: '#fff', metaLinkColor: '#fff', metaIconColor: '#fff', excerptColor: '#fff', readMoreColor: '#fff' })}></Button>
+                                        </Tooltip>
+
+                                        <Tooltip text="Masonry" position="top">
+                                            <Button className="b_blocks_ap_posts_layout_change_btn" icon={icons.masonry} isMedium isPrimary={layout === "masonry"} aria-pressed={layout === "masonry"} onClick={() => setAttributes({ layout: "masonry", titleColor: '#4527a4', metaTextColor: '#333', metaLinkColor: '#8344c5', metaIconColor: '#4527a4', excerptColor: '#333', readMoreColor: '#4527a4' })}></Button>
+                                        </Tooltip>
                                     </ButtonGroup>
 
                                     {/* Columns */}
@@ -237,6 +248,12 @@ registerBlockType('b-blocks/advance-posts', {
                                         {/* Content Height */}
                                         {otherTitle('Content Height:')}
                                         <ToggleControl label={'true' == contentEqualHight ? 'Disable Equal Height' : 'Enable Equal Height'} checked={'true' == contentEqualHight ? true : false} onChange={cng => setAttributes({ contentEqualHight: cng.toString() })} />
+                                    </span>}
+
+                                    {'slider' == layout && <span>
+                                        {/* Content Height */}
+                                        {otherTitle('Slider Content Height:')}
+                                        <RangeControl value={sliderContentHeight} onChange={cng => setAttributes({ sliderContentHeight: cng })} min={150} max={1000} step={1} />
                                     </span>}
                                 </PanelBody>
 
@@ -350,6 +367,14 @@ registerBlockType('b-blocks/advance-posts', {
                                     {/* Background Color */}
                                     {otherTitle('Background Color:')}
                                     <ColorPalette value={contentBGColor} onChange={cng => setAttributes({ contentBGColor: cng })} colors={colors} />
+
+                                    {/* Background Overlay Color */}
+                                    {otherTitle('Background Overlay Color:')}
+                                    <ColorPalette value={contentBGOverlayColor} onChange={cng => setAttributes({ contentBGOverlayColor: cng })} colors={colors} />
+
+                                    {/* Background Overlay Opacity */}
+                                    {otherTitle('Background Overlay Opacity:')}
+                                    <RangeControl value={contentBGOverlayOpacity} onChange={cng => setAttributes({ contentBGOverlayOpacity: cng })} min={0} max={1} step={0.01} />
 
                                     {/* Top Bottom Padding */}
                                     {otherTitle('Top Bottom Padding:')}
@@ -524,6 +549,32 @@ registerBlockType('b-blocks/advance-posts', {
                     <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>
 
+                {useEffect(() => {
+                    $(`#bBlocksSliderAdvancePosts-${clientId}`).lightSlider({
+                        item: columns,
+                        slideMargin: columnGap,
+                        gallery: false,
+                        enableDrag: false,
+                        loop: false,
+                        slideMove: 1,
+                        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+                        speed: 600,
+                        autoWidth: false,
+                        onSliderLoad: function () {
+                            $('#autoWidth').removeClass('cS-hidden');
+                        }
+                    });
+
+                    let seen = {};
+                    $('.lSAction, .lSPager').each(function () {
+                        let txt = $(this).attr('class');
+                        if (seen[txt])
+                            $(this).remove();
+                        else
+                            seen[txt] = true;
+                    });
+                }, ['slider' == layout, columns, columnGap, postTextPTB, postTextPLR, sliderContentHeight, contentBGOverlayColor, contentBGOverlayOpacity])}
+
 
                 {'grid' == layout ? <div id={`bBlocksGridAdvancePosts-${clientId}`} className="b_blocks_grid_posts" style={gridPostsStyle}>
                     {posts.map(post => {
@@ -591,32 +642,6 @@ registerBlockType('b-blocks/advance-posts', {
 
 
                         'slider' == layout && <span>
-                            {useEffect(() => {
-                                $(`#bBlocksSliderAdvancePosts-${clientId}`).lightSlider({
-                                    item: columns,
-                                    slideMargin: columnGap,
-                                    gallery: false,
-                                    enableDrag: false,
-                                    loop: false,
-                                    slideMove: 1,
-                                    easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
-                                    speed: 600,
-                                    autoWidth: false,
-                                    onSliderLoad: function () {
-                                        $('#autoWidth').removeClass('cS-hidden');
-                                    }
-                                });
-
-                                var seen = {};
-                                $('.lSAction, .lSPager').each(function () {
-                                    var txt = $(this).attr('class');
-                                    if (seen[txt])
-                                        $(this).remove();
-                                    else
-                                        seen[txt] = true;
-                                });
-                            })}
-
                             <div id={`bBlocksSliderAdvancePosts-${clientId}`} className="b_blocks_slider_posts" style={sliderPostsStyle}>
                                 {posts.map(post => {
                                     const { id, date, featured_media, title, uagb_author_info, categories, uagb_comment_info, content, link, _links } = post;
@@ -624,12 +649,23 @@ registerBlockType('b-blocks/advance-posts', {
                                     const d = new Date(date);
                                     const convertDate = `${getMonth[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 
+                                    // Styles
+                                    const articleStyle = { backgroundImage: `url(${'true' == featureImgShow && featured_media > 0 && media(featured_media) && media(featured_media).source_url})`, backgroundPosition: 'center center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', position: 'relative', zIndex: 0 }
+
+                                    const overlayStyle = { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: -1, backgroundColor: contentBGOverlayColor, opacity: contentBGOverlayOpacity }
+
+                                    const contentStyle = { display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: `${postTextPTB}px ${postTextPLR}px`, height: `${sliderContentHeight}px` }
+
                                     return (
-                                        <article className="b_blocks_article" style={{ backgroundImage: `url(${'true' == featureImgShow && featured_media > 0 && media(featured_media) && media(featured_media).source_url})` }}>
-                                            <div class="b_blocks_article_overlay"></div>
+                                        <article className="b_blocks_article" style={articleStyle}>
+                                            <div class="b_blocks_article_overlay" style={overlayStyle}></div>
 
                                             <div className={`b_blocks_article_inner_wrap ${shadow}`}>
-                                                <div class="b_blocks_article_content">
+                                                <div class="b_blocks_article_content" style={contentStyle}>
+                                                    {'true' == metaShow && <p className="meta" style={metaStyle}>
+                                                        {metaCategory(categories)}
+                                                    </p>}
+
                                                     {postTitle(link, title)}
                                                     {postExcerpt(content)}
                                                     {postReadMore(link)}

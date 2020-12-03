@@ -1,5 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data;
+const { useEffect } = wp.element;
 
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner, Button, ButtonGroup, Tooltip } = wp.components;
@@ -33,6 +34,7 @@ registerBlockType('b-blocks/posts', {
     // Custom Attributes
     attributes: {
         align: { type: 'string', default: 'full' },
+        cId: { type: 'string' },
 
         selectedCategories: { type: 'array', default: [] },
         postsPerPageAll: { type: 'boolean', default: 'true' },
@@ -107,7 +109,7 @@ registerBlockType('b-blocks/posts', {
         };
 
     })(({ select, posts, categories, media, attributes, setAttributes, clientId }) => {
-        const { selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, contentEqualHight, contentAlign, contentBGColor, postTextPTB, postTextPLR, shadow, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
+        const { cId, selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, contentEqualHight, contentAlign, contentBGColor, postTextPTB, postTextPLR, shadow, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
 
         // Render HTML and Excerpt count
         const renderHTML = rawHTML => <span dangerouslySetInnerHTML={{ __html: rawHTML }} />;
@@ -145,6 +147,12 @@ registerBlockType('b-blocks/posts', {
 
         const readMoreWrapStyle = { textAlign: readMoreAlign, }
         const readMoreStyle = { display: 'inline-block', fontSize: `${readMoreFontSize}px`, textTransform: readMoreTransform, fontWeight: readMoreFontWeight, color: readMoreColor, transition: 'all .3s ease' }
+
+
+        // Functions
+        useEffect(() => {
+            clientId && setAttributes({ cId: clientId });
+        }, [clientId]);
 
 
         // Components
@@ -485,7 +493,7 @@ registerBlockType('b-blocks/posts', {
                 </BlockControls>
 
 
-                {'grid' == layout ? <div id={`bBlocksGridAdvancePosts-${clientId}`} className="b_blocks_grid_posts" style={gridPostsStyle}>
+                {'grid' == layout ? <div id={`bBlocksGridPosts-${clientId}`} className="b_blocks_grid_posts" style={gridPostsStyle}>
                     {posts.map(post => {
                         const { id, date, featured_media, title, uagb_author_info, categories, uagb_comment_info, content, link, _links } = post;
 
@@ -518,7 +526,7 @@ registerBlockType('b-blocks/posts', {
                 </div> /* Grid Layout */ :
 
 
-                    'masonry' == layout && <div id={`bBlocksMasonryAdvancePosts-${clientId}`} className="b_blocks_masonry_posts" style={masonryPostsStyle}>
+                    'masonry' == layout && <div id={`bBlocksMasonryPosts-${clientId}`} className="b_blocks_masonry_posts" style={masonryPostsStyle}>
                         {posts.map(post => {
                             const { id, date, featured_media, title, uagb_author_info, categories, uagb_comment_info, content, link, _links } = post;
 

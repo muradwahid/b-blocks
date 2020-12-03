@@ -77,7 +77,7 @@ function render_b_blocks_posts( $attributes ) {
     echo '<div class="b_blocks_posts ' . $alignClass . '">';
 
     if ( 'grid' == $layout ) {
-        echo '<div class="b_blocks_grid_posts" style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); grid-gap: ' . $rowGap . 'px ' . $columnGap . 'px;">';
+        echo '<div id="bBlocksGridPosts-' . $cId . '" class="b_blocks_grid_posts" style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); grid-gap: ' . $rowGap . 'px ' . $columnGap . 'px;">';
         foreach ( $posts as $post ) {
             $contentHeight = 'true' == $contentEqualHight ? "100%" : "auto";
 
@@ -94,7 +94,7 @@ function render_b_blocks_posts( $attributes ) {
         echo '</div>';
 
     } else if ( 'masonry' == $layout ) {
-        echo '<div class="b_blocks_masonry_posts" style="columns: ' . $columns . '; gap: ' . $columnGap . 'px;">';
+        echo '<div id="bBlocksMasonryPosts-' . $cId . '" class="b_blocks_masonry_posts" style="columns: ' . $columns . '; gap: ' . $columnGap . 'px;">';
         foreach ( $posts as $post ) {
             echo '<article class="b_blocks_article" style="break-inside: avoid; margin-bottom: ' . $rowGap . 'px;">
                 <div class="post_content ' . $shadow . ' rounded" style="text-align: ' . $contentAlign . '; background-color: ' . $contentBGColor . ';">

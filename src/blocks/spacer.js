@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl } = wp.components;
+const { PanelBody, RangeControl, ResizableBox } = wp.components;
 
 // Functions
 import func from '../Const/functions';
@@ -29,7 +29,7 @@ registerBlockType('b-blocks/spacer', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { height }, setAttributes, isSelected } = props;
+        const { attributes: { height }, setAttributes, isSelected, toggleSelection } = props;
 
         return ([
             <InspectorControls>
@@ -42,7 +42,16 @@ registerBlockType('b-blocks/spacer', {
             </InspectorControls>,
 
 
-            <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>{isSelected && 'This content & background color will not show in front End'}</div>
+            <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>SPACER ---- This content {isSelected && '& background color '}
+
+                <ResizableBox size={{ height }} enable={{ bottom: true }} onResizeStop={(event, direction, elt, delta) => {
+                    setAttributes({ height: parseInt(height + delta.height, 0) });
+                    toggleSelection(true);
+                }} onResizeStart={() => {
+                    toggleSelection(false);
+                }} />
+                will not show in front End
+            </div>
         ])
     },
 

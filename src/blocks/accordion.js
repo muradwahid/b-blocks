@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { useEffect } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TabPanel } = wp.components;
 
@@ -59,7 +60,9 @@ registerBlockType('b-blocks/accordion', {
         const contentStyle = { border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
         // Functions
-        clientId && setAttributes({ cId: clientId });
+        useEffect(() => {
+            clientId && setAttributes({ cId: clientId });
+        }, [clientId]);
 
         const headingHov = e => {
             e.target.style.color = headingHovColor;

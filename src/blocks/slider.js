@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { useEffect } = wp.element;
 const { RichText, InspectorControls, ColorPalette, MediaUpload } = wp.blockEditor;
 const { PanelBody, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, IconButton } = wp.components;
 
@@ -69,7 +70,9 @@ registerBlockType('b-blocks/slider', {
         const sliderIndicatorsStyle = { backgroundColor: indicatorColor, width: `${indicatorWidth}px`, height: `${indicatorHeight}px`, borderRadius: `${indicatorRadius}${indicatorRadiusType}` }
 
         // Functions
-        clientId && setAttributes({ cId: clientId });
+        useEffect(() => {
+            clientId && setAttributes({ cId: clientId });
+        }, [clientId]);
 
         // Components
         const slideIndicators = value => {
