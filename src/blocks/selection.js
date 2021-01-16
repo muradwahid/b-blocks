@@ -1,10 +1,19 @@
 const { registerBlockType } = wp.blocks;
 const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
-const { PanelBody, Button, ButtonGroup, RangeControl, Tooltip } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
-const { colors, userSelect } = options;
+const { colors } = options;
+
+const userSelect = [
+    { label: 'Auto', value: 'auto', icon: 'AUTO' },
+    { label: 'All', value: 'all', icon: 'ALL' },
+    { label: 'None', value: 'none', icon: 'NONE' },
+];
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -47,13 +56,7 @@ registerBlockType('b-blocks/selection', {
                 <PanelBody title="Selection Settings" initialOpen={true}>
                     {/* Selection */}
                     {firstTitle('Selection:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(userSelect).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={selection === obj.value} aria-pressed={selection === obj.value} onClick={() => setAttributes({ selection: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />
 
                     {/* Background Color */}
                     {otherTitle('Background Color:')}
@@ -61,11 +64,11 @@ registerBlockType('b-blocks/selection', {
 
                     {/* Padding Top Bottom */}
                     {otherTitle('Padding Top Bottom:')}
-                    <RangeControl value={selectionPTB} onChange={cng => setAttributes({ selectionPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={selectionPTB} onChange={cng => setAttributes({ selectionPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Padding Left Right */}
                     {otherTitle('Padding Left Right:')}
-                    <RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={150} step={1} />
                 </PanelBody>
             </InspectorControls>,
 

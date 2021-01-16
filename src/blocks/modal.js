@@ -1,22 +1,27 @@
 const { registerBlockType } = wp.blocks;
 const { useEffect } = wp.element;
-const { RichText, InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip, TabPanel, TextControl, SelectControl } = wp.components;
-
+const { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar } = wp.blockEditor;
+const { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPanel, TextControl, SelectControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, hTags, colors, aligns, fontWeights, textTransforms, modalSizes } = options;
+const { fontSizes, hTags, colors, aligns, fontWeights, textTransforms } = options;
+const modalSizes = [
+    { label: 'Small', value: 'modal-sm', icon: 'SM' },
+    { label: 'Default', value: '', icon: 'DF' },
+    { label: 'Large', value: 'modal-lg', icon: 'LG' },
+    { label: 'Extra Large', value: 'modal-xl', icon: 'XL' },
+];
 
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
 const { firstTitle, otherTitle } = func;
 
-
 // Icon
 import icons from '../Const/icons';
-
 
 registerBlockType('b-blocks/modal', {
     // Build In attributes
@@ -40,9 +45,9 @@ registerBlockType('b-blocks/modal', {
         modalVCenter: { type: 'boolean', default: true },
         modalSize: { type: 'string', default: '' },
 
-        modalBtnLabel: { type: 'string', default: 'My Modal' },
+        modalBtnLabel: { type: 'string' },
         modalBtnAlign: { type: 'string', default: 'left' },
-        modalBtnFontSize: { type: 'number', default: 16 },
+        modalBtnFontSize: { type: 'number', default: 15 },
         modalBtnTransform: { type: 'string', default: 'capitalize' },
         modalBtnFontWeight: { type: 'string', default: '600' },
         modalBtnPTB: { type: 'number', default: 12 },
@@ -60,17 +65,23 @@ registerBlockType('b-blocks/modal', {
 
         headingShow: { type: 'boolean', default: true },
         heading: { type: 'string', source: 'html', selector: '.b_blocks_modal_heading' },
-        headingTag: { type: 'string', default: 'h3' },
-        headingFontSize: { type: 'number' },
+        headingTag: { type: 'string', default: 'h2' },
+        headingFontSize: { type: 'number', default: 25 },
         headingColor: { type: 'string', default: '#4527a4' },
+
+        footerTextShow: { type: 'boolean', default: true },
+        footerText: { type: 'string', source: 'html', selector: '.b_blocks_modal_footer_text' },
+        footerTextFontSize: { type: 'number', default: 15 },
+        footerTextColor: { type: 'string', default: '#000' },
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { cId, modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnColor, modalBtnBGColor, modalBtnHovColor, modalBtnHovBGColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { cId, modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnColor, modalBtnBGColor, modalBtnHovColor, modalBtnHovBGColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor, footerTextShow, footerText, footerTextFontSize, footerTextColor }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const headingStyle = { fontSize: `${headingFontSize}px`, color: headingColor, margin: 0 };
+        const footerTextStyle = { fontSize: `${footerTextFontSize}px`, color: footerTextColor, margin: 0 };
 
         const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
@@ -110,40 +121,22 @@ registerBlockType('b-blocks/modal', {
 
                     {/* Modal Size */}
                     {otherTitle('Modal Size:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(modalSizes).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={modalSize === obj.value} aria-pressed={modalSize === obj.value} onClick={() => setAttributes({ modalSize: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={modalSizes} myValue={modalSize} setState={cng => setAttributes({ modalSize: cng })} />
                 </PanelBody>
 
 
                 <PanelBody title="Modal Button Settings" initialOpen={false}>
-                    {/* Alignment */}
-                    {firstTitle('Alignment:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={modalBtnAlign === obj.value} aria-pressed={modalBtnAlign === obj.value} onClick={() => setAttributes({ modalBtnAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    {/* Button Align */}
+                    {firstTitle('Button Align:')}
+                    <BtnGroup options={aligns} myValue={modalBtnAlign} setState={cng => setAttributes({ modalBtnAlign: cng })} icon={true} />
 
                     {/* Font Size */}
                     {otherTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={modalBtnFontSize} onChange={cng => setAttributes({ modalBtnFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={modalBtnFontSize} onChange={cng => setAttributes({ modalBtnFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                     {/* Text Transform */}
                     {otherTitle('Text Transform:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(textTransforms).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={modalBtnTransform === obj.value} aria-pressed={modalBtnTransform === obj.value} onClick={() => setAttributes({ modalBtnTransform: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={textTransforms} myValue={modalBtnTransform} setState={cng => setAttributes({ modalBtnTransform: cng })} />
 
                     {/* Font Weight */}
                     {otherTitle('Font Weight:')}
@@ -151,7 +144,7 @@ registerBlockType('b-blocks/modal', {
 
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
-                    <RangeControl value={modalBtnPTB} onChange={cng => setAttributes({ modalBtnPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={modalBtnPTB} onChange={cng => setAttributes({ modalBtnPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
@@ -191,9 +184,7 @@ registerBlockType('b-blocks/modal', {
                 </PanelBody>
 
 
-                <PanelBody title="Content Settings" initialOpen={false}>
-                    {/* Header */}
-                    {firstTitle('Header:')}
+                <PanelBody title="Header Settings" initialOpen={false}>
                     <ToggleControl label={modalHead ? 'Hide Header' : 'Show Header'} checked={modalHead} onChange={cng => setAttributes({ modalHead: cng })} />
 
                     {modalHead && <span>
@@ -208,30 +199,31 @@ registerBlockType('b-blocks/modal', {
                         {headingShow && <span>
                             {/* Heading Tag */}
                             {firstTitle('Heading Tag:')}
-                            <ButtonGroup className="b_blocks_button_groups">
-                                {Object.values(hTags).map(obj => (
-                                    <Tooltip text={obj.label} position="top">
-                                        <Button key={obj.value} isMedium isPrimary={headingTag === obj.value} aria-pressed={headingTag === obj.value} onClick={() => setAttributes({ headingTag: obj.value })}>{obj.icon}</Button>
-                                    </Tooltip>
-                                ))}
-                            </ButtonGroup>
+                            <BtnGroup options={hTags} myValue={headingTag} setState={(cng, def) => setAttributes({ headingTag: cng, headingFontSize: def })} />
 
                             {/* Heading Font Size */}
                             {otherTitle('Heading Font Size:')}
-                            <FontSizePicker fontSizes={fontSizes} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: cng })} />
+                            <FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: 'undefined' === typeof cng ? 25 : cng })} />
 
                             {/* Heading Color */}
                             {otherTitle('Heading Color:')}
                             <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
                         </span>}
                     </span>}
+                </PanelBody>
 
-
-                    {/* Footer */}
-                    {otherTitle('Footer:')}
-                    <ToggleControl label={modalFoot ? 'Hide Close Button in Footer' : 'Show Close Button in Footer'} checked={modalFoot} onChange={cng => setAttributes({ modalFoot: cng })} />
+                <PanelBody title="Footer Settings" initialOpen={false}>
+                    <ToggleControl label={modalFoot ? 'Hide Footer' : 'Show Footer'} checked={modalFoot} onChange={cng => setAttributes({ modalFoot: cng })} />
 
                     {modalFoot && <span>
+                        {/* Footer Text Font Size */}
+                        {otherTitle('Footer Text Font Size:')}
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={footerTextFontSize} onChange={cng => setAttributes({ footerTextFontSize: 'undefined' === typeof cng ? 15 : cng })} />
+
+                        {/* Footer Text Color */}
+                        {otherTitle('Footer Text Color:')}
+                        <ColorPalette value={footerTextColor} onChange={cng => setAttributes({ footerTextColor: cng })} colors={colors} />
+
                         {/* Close Button in Footer */}
                         {otherTitle('Close Button in Footer:')}
                         <ToggleControl label={modalFootClose ? 'Hide Close Button in Footer' : 'Show Close Button in Footer'} checked={modalFootClose} onChange={cng => setAttributes({ modalFootClose: cng })} />
@@ -241,35 +233,40 @@ registerBlockType('b-blocks/modal', {
 
 
             <div className="b_blocks_modal">
+                <BlockControls>
+                    <AlignmentToolbar value={modalBtnAlign} onChange={cng => setAttributes({ modalBtnAlign: cng })} />
+                </BlockControls>
+
                 {/* Button trigger modal */}
-                <div style={{ textAlign: modalBtnAlign }}>
+                <div style={{ textAlign: modalBtnAlign, position: 'relative' }}>
                     <button type="button" data-toggle="modal" data-target={`#bBlocksModal-${clientId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
+
+                    {isSelected && <div style={{ position: 'absolute', bottom: '-33px', left: `${modalBtnAlign === 'left' ? '0%' : modalBtnAlign === 'center' ? '50%' : modalBtnAlign === 'right' && '100%'}`, transform: `${modalBtnAlign === 'left' ? 'translateX(0)' : modalBtnAlign === 'center' ? 'translateX(-50%)' : modalBtnAlign === 'right' && 'translateX(-100%)'}`, zIndex: 30 }}>
+
+                        <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksModalBtnLabel" value={modalBtnLabel} onChange={cng => setAttributes({ modalBtnLabel: cng })} placeholder="Modal Button Label" />
+                    </div>}
                 </div>
-
-                {isSelected && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
-                    <label htmlFor="bBlocksModalBtnLabel" style={{ marginRight: '20px', fontWeight: 'bold' }}>Modal Button Label:</label>
-
-                    <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksModalBtnLabel" value={modalBtnLabel} onChange={cng => setAttributes({ modalBtnLabel: cng })} />
-                </div>}
 
 
                 {/* Modal */}
-                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
+                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true" style={{ zIndex: 99999 }}>
 
                     <div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
                         <div className="modal-content">
-                            {modalHead && <div className="modal-header">
-                                {headingShow && < RichText className="b_blocks_modal_heading" key="editable" tagName={headingTag} placeholder="Write Modal Heading" value={heading} onChange={cng => { setAttributes({ heading: cng }) }} style={headingStyle} />}
+                            {modalHead && <div className="modal-header" style={{ display: 'block', position: 'relative' }}>
+                                {headingShow && < RichText className="b_blocks_modal_heading" key="editable" tagName={headingTag} placeholder="Write Modal Heading" value={heading} onChange={cng => { setAttributes({ heading: cng }) }} inlineToolbar style={headingStyle} />}
 
-                                {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" title="Remove this slide" data-dismiss="modal" aria-label="Close" />}
+                                {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" title="Remove this slide" data-dismiss="modal" aria-label="Close" style={{ position: "absolute", top: '12px', right: '12px' }} />}
                             </div>}
 
                             <div className="modal-body">
                                 <InnerBlocks />
                             </div>
 
-                            {modalFoot && <div className="modal-footer">
-                                {modalFootClose && <button type="button" className="b_blocks_btn" data-dismiss="modal">Close</button>}
+                            {modalFoot && <div className="modal-footer" style={{ display: 'block' }}>
+                                {footerTextShow && < RichText className="b_blocks_modal_footer_text" key="editable" tagName="p" placeholder="Write Modal Footer Text" value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerTextStyle} />}
+
+                                {modalFootClose && <div style={{ textAlign: 'right' }}><button type="button" className="b_blocks_btn" data-dismiss="modal">Close</button></div>}
                             </div>}
                         </div>
                     </div>
@@ -280,10 +277,11 @@ registerBlockType('b-blocks/modal', {
     },
 
     save: props => {
-        const { cId, modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnColor, modalBtnBGColor, modalBtnHovColor, modalBtnHovBGColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor } = props.attributes;
+        const { cId, modalFade, modalStaticBackdrop, modalScrollable, modalVCenter, modalSize, modalBtnLabel, modalBtnAlign, modalBtnFontSize, modalBtnTransform, modalBtnFontWeight, modalBtnPTB, modalBtnPLR, modalBtnRadius, modalBtnColor, modalBtnBGColor, modalBtnHovColor, modalBtnHovBGColor, modalHead, modalHeadClose, modalFoot, modalFootClose, headingShow, heading, headingTag, headingFontSize, headingColor, footerTextShow, footerText, footerTextFontSize, footerTextColor } = props.attributes;
 
         // Styles
         const headingStyle = { fontSize: `${headingFontSize}px`, color: headingColor, margin: 0 };
+        const footerTextStyle = { fontSize: `${footerTextFontSize}px`, color: footerTextColor, margin: 0 };
 
         const modalBtnStyle = { display: 'inline-block', fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnColor, backgroundColor: modalBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
 
@@ -306,22 +304,24 @@ registerBlockType('b-blocks/modal', {
 
 
                 {/* Modal */}
-                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${cId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true">
+                <div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${cId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabindex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true" style={{ zIndex: 99999 }}>
 
                     <div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
                         <div className="modal-content">
-                            {modalHead && <div className="modal-header">
-                                {headingShow && < RichText.Content className="b_blocks_modal_heading" tagName={headingTag} value={heading} style={headingStyle} />}
+                            {modalHead && <div className="modal-header" style={{ display: 'block', position: 'relative' }}>
+                                {headingShow && <RichText.Content className="b_blocks_modal_heading" tagName={headingTag} value={heading} style={headingStyle} />}
 
-                                {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" data-dismiss="modal" aria-label="Close" />}
+                                {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" data-dismiss="modal" aria-label="Close" style={{ position: "absolute", top: '12px', right: '12px' }} />}
                             </div>}
 
                             <div className="modal-body">
                                 <InnerBlocks.Content />
                             </div>
 
-                            {modalFoot && <div className="modal-footer">
-                                {modalFootClose && <button type="button" className="b_blocks_btn" data-dismiss="modal">Close</button>}
+                            {modalFoot && <div className="modal-footer" style={{ display: 'block' }}>
+                                {footerTextShow && < RichText.Content className="b_blocks_modal_footer_text" tagName="p" value={footerText} style={footerTextStyle} />}
+
+                                {modalFootClose && <div style={{ textAlign: 'right' }}><button type="button" className="b_blocks_btn" data-dismiss="modal">Close</button></div>}
                             </div>}
                         </div>
                     </div>

@@ -1,10 +1,13 @@
 const { registerBlockType } = wp.blocks;
-const { InspectorControls, ColorPalette, RichText } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TextControl, SelectControl } = wp.components;
+const { InspectorControls, ColorPalette, RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
+const { PanelBody, FontSizePicker, RangeControl, TextControl, SelectControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors, aligns, fontWeights, textTransforms } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -28,11 +31,11 @@ registerBlockType('b-blocks/mailto', {
     attributes: {
         align: { type: 'string', default: 'center' },
 
-        receiverMail: { type: 'string', default: 'support@bplugins.com' },
+        receiverMail: { type: 'string' },
 
         mtBtnLabel: { type: 'string', source: 'html', selector: '.b_blocks_mt_btn_label' },
         mtBtnAlign: { type: 'string', default: 'left' },
-        mtBtnFontSize: { type: 'number', default: 16 },
+        mtBtnFontSize: { type: 'number', default: 15 },
         mtBtnTransform: { type: 'string', default: 'uppercase' },
         mtBtnFontWeight: { type: 'string', default: '600' },
         mtBtnPTB: { type: 'number', default: 12 },
@@ -56,29 +59,17 @@ registerBlockType('b-blocks/mailto', {
                     {firstTitle('Label:')}
                     <TextControl value={mtBtnLabel} onChange={cng => setAttributes({ mtBtnLabel: cng })} />
 
-                    {/* Alignment */}
-                    {otherTitle('Alignment:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={mtBtnAlign === obj.value} aria-pressed={mtBtnAlign === obj.value} onClick={() => setAttributes({ mtBtnAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    {/* Button Align */}
+                    {otherTitle('Button Align:')}
+                    <BtnGroup options={aligns} myValue={mtBtnAlign} setState={cng => setAttributes({ mtBtnAlign: cng })} icon={true} />
 
                     {/* Font Size */}
                     {otherTitle('Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={mtBtnFontSize} onChange={cng => setAttributes({ mtBtnFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={mtBtnFontSize} onChange={cng => setAttributes({ mtBtnFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                     {/* Text Transform */}
                     {otherTitle('Text Transform:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(textTransforms).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={mtBtnTransform === obj.value} aria-pressed={mtBtnTransform === obj.value} onClick={() => setAttributes({ mtBtnTransform: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={textTransforms} myValue={mtBtnTransform} setState={cng => setAttributes({ mtBtnTransform: cng })} />
 
                     {/* Font Weight */}
                     {otherTitle('Font Weight:')}
@@ -86,7 +77,7 @@ registerBlockType('b-blocks/mailto', {
 
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
-                    <RangeControl value={mtBtnPTB} onChange={cng => setAttributes({ mtBtnPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={mtBtnPTB} onChange={cng => setAttributes({ mtBtnPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
@@ -107,15 +98,17 @@ registerBlockType('b-blocks/mailto', {
             </InspectorControls >,
 
 
-            <div className="b_blocks_mailto" style={{ textAlign: mtBtnAlign }}>
-                <a className="mailtoui" href={`mailto:${receiverMail}`} style={mtBtnStyle}>
-                    <RichText className="b_blocks_mt_btn_label" key="editable" tagName="span" placeholder="Write Mail to Button Label" value={mtBtnLabel} onChange={cng => { setAttributes({ mtBtnLabel: cng }) }} />
+            <div className="b_blocks_mailto" style={{ textAlign: mtBtnAlign, position: 'relative' }}>
+                <BlockControls>
+                    <AlignmentToolbar value={mtBtnAlign} onChange={cng => setAttributes({ mtBtnAlign: cng })} />
+                </BlockControls>
+
+                <a className="mailtoui" href={`mailto:${receiverMail}`} style={mtBtnStyle} target="_blank">
+                    <RichText className="b_blocks_mt_btn_label" key="editable" tagName="span" placeholder="Write Mail to Button Label" value={mtBtnLabel} onChange={cng => { setAttributes({ mtBtnLabel: cng }) }} inlineToolbar />
                 </a>
 
-                {isSelected && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
-                    <label htmlFor="bBlocksMtReceiverMail" style={{ marginRight: '20px', fontWeight: 'bold' }}>Receiver Email:</label>
-
-                    <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} />
+                {isSelected && <div style={{ position: 'absolute', bottom: '-33px', left: `${mtBtnAlign === 'left' ? '0%' : mtBtnAlign === 'center' ? '50%' : mtBtnAlign === 'right' && '100%'}`, transform: `${mtBtnAlign === 'left' ? 'translateX(0)' : mtBtnAlign === 'center' ? 'translateX(-50%)' : mtBtnAlign === 'right' && 'translateX(-100%)'}`, zIndex: 30 }}>
+                    <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} placeholder="Receiver Email" />
                 </div>}
             </div>
         ])

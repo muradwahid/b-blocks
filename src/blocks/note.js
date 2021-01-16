@@ -1,10 +1,13 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { hTags, fontSizes, borderStyles, colors } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup'
 
 // Functions
 import func from '../Const/functions';
@@ -36,7 +39,7 @@ registerBlockType('b-blocks/note', {
         toggleHead: { type: 'boolean', default: true },
         head: { type: 'string', source: 'html', selector: '.b_blocks_note_head' },
         headTag: { type: 'string', default: 'h2' },
-        headFontSize: { type: 'number' },
+        headFontSize: { type: 'number', default: 25 },
         headColor: { type: 'string', default: '#4527a4' },
         headPB: { type: 'number', default: 5 },
         headMB: { type: 'number', default: 5 },
@@ -46,7 +49,7 @@ registerBlockType('b-blocks/note', {
         sepColor: { type: 'string', default: '#8344c5' },
 
         content: { type: 'string', source: 'html', selector: '.b_blocks_note_content' },
-        contentFontSize: { type: 'number' },
+        contentFontSize: { type: 'number', default: 15 },
         contentColor: { type: 'string', default: '#333' },
     },
 
@@ -71,15 +74,15 @@ registerBlockType('b-blocks/note', {
 
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
-                    <RangeControl value={padTB} onChange={cng => setAttributes({ padTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={padTB} onChange={cng => setAttributes({ padTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
-                    <RangeControl value={padLR} onChange={cng => setAttributes({ padLR: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={padLR} onChange={cng => setAttributes({ padLR: cng })} min={0} max={150} step={1} />
 
                     {/* Border Radius */}
                     {otherTitle('Border Radius:')}
-                    <RangeControl value={borderRadius} onChange={cng => setAttributes({ borderRadius: cng })} min={0} max={30} step={1} />
+                    <RangeControl value={borderRadius} onChange={cng => setAttributes({ borderRadius: cng })} min={0} max={50} step={1} />
                 </PanelBody>
 
 
@@ -91,17 +94,11 @@ registerBlockType('b-blocks/note', {
                     {toggleHead && <span>
                         {/* Heading Tag */}
                         {otherTitle('Heading Tag:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(hTags).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} isMedium isPrimary={headTag === obj.value} aria-pressed={headTag === obj.value} onClick={() => setAttributes({ headTag: obj.value })}>{obj.icon}</Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
 
                         {/* Font Size */}
                         {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headFontSize} onChange={cng => setAttributes({ headFontSize: 'undefined' === typeof cng ? 25 : cng })} />
 
                         {/* Color */}
                         {otherTitle('Color:')}
@@ -109,7 +106,7 @@ registerBlockType('b-blocks/note', {
 
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
-                        <RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={50} step={1} />
+                        <RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={100} step={1} />
                     </span>}
                 </PanelBody>
 
@@ -119,7 +116,7 @@ registerBlockType('b-blocks/note', {
                     <PanelBody title="Separator Settings" initialOpen={false}>
                         {/* Thickness */}
                         {firstTitle('Thickness:')}
-                        <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={20} step={.1} />
+                        <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={50} step={.1} />
 
                         {/* Style */}
                         {otherTitle('Style:')}
@@ -131,7 +128,7 @@ registerBlockType('b-blocks/note', {
 
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
-                        <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
+                        <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
                 </span>}
 
@@ -140,7 +137,7 @@ registerBlockType('b-blocks/note', {
                 <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                     {/* Color */}
                     {otherTitle('Color:')}
@@ -149,10 +146,10 @@ registerBlockType('b-blocks/note', {
             </InspectorControls>,
 
 
-            <div style={containerStyle}>
-                {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} /></span>}
+            <div className="b_blocks_note" style={containerStyle}>
+                {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
-                < RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} style={contentStyle} />
+                < RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
             </div >
         ]);
     },
@@ -168,7 +165,7 @@ registerBlockType('b-blocks/note', {
         const contentStyle = { fontSize: `${contentFontSize}px`, color: contentColor, margin: `0` }
 
         return (
-            <div style={containerStyle}>
+            <div className="b_blocks_note" style={containerStyle}>
                 {toggleHead && <span><RichText.Content className="b_blocks_note_head" tagName={headTag} value={head} style={headStyle} /></span>}
 
                 <RichText.Content className="b_blocks_note_content" tagName="p" value={content} style={contentStyle} />

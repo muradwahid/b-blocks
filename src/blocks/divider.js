@@ -1,10 +1,14 @@
 const { registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { fontSizes, aligns, borderStyles, colors, sizeTypes } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -40,7 +44,7 @@ registerBlockType('b-blocks/divider', {
         toggleToTop: { type: 'boolean', default: false },
         toTopLabel: { type: 'string', default: 'Go to top', source: 'html', selector: '.b_blocks_to_top_link' },
         toTopAlign: { type: 'string', default: 'right' },
-        toTopFontSize: { type: 'number' },
+        toTopFontSize: { type: 'number', default: 15 },
         toTopColor: { type: 'string', default: '#4527a4' },
     },
 
@@ -59,28 +63,17 @@ registerBlockType('b-blocks/divider', {
                 <PanelBody title="Divider Settings" initialOpen={true}>
                     {/* Alignment */}
                     {firstTitle('Alignment:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={divideAlign === obj.value} aria-pressed={divideAlign === obj.value} onClick={() => setAttributes({ divideAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={aligns} myValue={divideAlign} setState={cng => setAttributes({ divideAlign: cng })} icon={true} />
 
                     {/* Width */}
                     {otherTitle('Width:')}
-                    <ButtonGroup className="b_blocks_button_groups b_blocks_size_type">
-                        {Object.values(sizeTypes).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isSmall isPrimary={divideWidthType === obj.value} aria-pressed={divideWidthType === obj.value} onClick={() => setAttributes({ divideWidthType: obj.value, divideWidth: obj.def })}>{obj.value}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
-                    <RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={("%" == divideWidthType) ? 100 : 960} step={1} />
+                    <BtnGroup options={sizeTypes} myValue={divideWidthType} setState={(cng, def) => setAttributes({ divideWidthType: cng, divideWidth: def })} classes="b_blocks_size_type" size="small" />
+
+                    <RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={("%" == divideWidthType) ? 100 : 1920} step={1} />
 
                     {/* Thickness */}
                     {otherTitle('Thickness:')}
-                    <RangeControl value={divideThick} onChange={cng => setAttributes({ divideThick: cng })} min={0} max={20} step={.1} />
+                    <RangeControl value={divideThick} onChange={cng => setAttributes({ divideThick: cng })} min={0} max={50} step={.1} />
 
                     {/* Style */}
                     {otherTitle('Style:')}
@@ -104,32 +97,26 @@ registerBlockType('b-blocks/divider', {
                     {/* Enable/Disable Go To Top */}
                     <ToggleControl label={toggleToTop ? "Disable 'Go To Top' link" : "Enable 'Go To Top' link"} checked={toggleToTop} onChange={cng => setAttributes({ toggleToTop: cng })} />
 
-                    {toggleToTop && <span>
+                    {toggleToTop && <Fragment>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={toTopAlign === obj.value} aria-pressed={toTopAlign === obj.value} onClick={() => setAttributes({ toTopAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        <BtnGroup options={aligns} myValue={toTopAlign} setState={cng => setAttributes({ toTopAlign: cng })} icon={true} />
 
                         {/* Font Size */}
                         {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={toTopFontSize} onChange={cng => setAttributes({ toTopFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={toTopFontSize} onChange={cng => setAttributes({ toTopFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                         {/* Color */}
                         {otherTitle('Color:')}
                         <ColorPalette value={toTopColor} onChange={cng => setAttributes({ toTopColor: cng })} colors={colors} />
-                    </span>}
+                    </Fragment>}
                 </PanelBody>
             </InspectorControls>,
 
 
-            <div style={containerStyle}>
+            <div className="b_blocks_divider" style={containerStyle}>
                 {toggleToTop && <div style={{ textAlign: toTopAlign }}>
-                    <RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={toTopLabel} onChange={cng => { setAttributes({ toTopLabel: cng }) }} style={toTopStyle} />
+                    <RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={toTopLabel} onChange={cng => { setAttributes({ toTopLabel: cng }) }} inlineToolbar style={toTopStyle} />
                 </div>}
 
                 <div style={{ textAlign: divideAlign }}>
@@ -148,7 +135,7 @@ registerBlockType('b-blocks/divider', {
         const toTopStyle = { fontSize: `${toTopFontSize}px`, color: toTopColor, textDecoration: 'none' };
 
         return (
-            <div style={containerStyle}>
+            <div className="b_blocks_divider" style={containerStyle}>
                 {toggleToTop && <div style={{ textAlign: toTopAlign }}>
                     <RichText.Content className="b_blocks_to_top_link" tagName="a" href="#" value={toTopLabel} style={toTopStyle} />
                 </div>}

@@ -6,7 +6,7 @@ const { registerFormatType, unregisterFormatType, toggleFormat } = wp.richText;
 const type = 'b-blocks/text-highlight';
 
 registerFormatType(type, {
-    title: 'Text Highlight',
+    title: 'Inline Highlight',
     tagName: 'mark',
     className: 'b_blocks_text_highlight',
 
@@ -14,9 +14,7 @@ registerFormatType(type, {
         style: 'style',
     },
 
-    edit: (props) => {
-        const { isActive, value, onChange } = props;
-
+    edit: ({ isActive, value, onChange }) => {
         const onToggle = () => {
             onChange(toggleFormat(value, {
                 type,
@@ -28,9 +26,9 @@ registerFormatType(type, {
 
         return [
             <InspectorControls>
-                <PanelBody icon='admin-customizer' title="Text Highlight" initialOpen={false}>
+                <PanelBody icon='admin-customizer' title="Inline Highlight" initialOpen={false}>
                     <PanelRow>
-                        <label htmlFor="b_blocks_text_highlight_toggle">{isActive ? 'Remove Text Highlight' : 'Text Highlight'}</label>
+                        <label htmlFor="b_blocks_text_highlight_toggle">{isActive ? 'Remove Inline Highlight' : 'Inline Highlight'}</label>
 
                         <FormToggle id="b_blocks_text_highlight_toggle" checked={isActive} onChange={onToggle} />
                     </PanelRow>
@@ -38,5 +36,4 @@ registerFormatType(type, {
             </InspectorControls>
         ];
     }
-}
-);
+});

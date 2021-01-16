@@ -24,7 +24,7 @@ registerBlockType('b-blocks/qr-code', {
     attributes: {
         align: { type: 'string', default: 'center' },
 
-        url: { type: 'string', default: 'https://wasek-bellah.web.app/' },
+        url: { type: 'string' },
         dimension: { type: 'number', default: 180 },
         qrAlign: { type: 'string', default: 'center' }
     },
@@ -45,22 +45,23 @@ registerBlockType('b-blocks/qr-code', {
 
                     {/* Dimension */}
                     {otherTitle('Dimension:')}
-                    <RangeControl value={dimension} onChange={cng => setAttributes({ dimension: cng })} min={50} max={500} step={1} />
+                    <RangeControl value={dimension} onChange={cng => setAttributes({ dimension: cng })} min={50} max={1000} step={1} />
                 </PanelBody>
             </InspectorControls>,
 
-            <div style={{ textAlign: qrAlign }}>
+            <div className="b_blocks_qr_code">
                 <BlockControls>
                     <AlignmentToolbar value={qrAlign} onChange={cng => setAttributes({ qrAlign: cng })} />
                 </BlockControls>
 
-                <img src={qrUrl} />
+                <div style={{ textAlign: qrAlign, position: 'relative' }}>
+                    <img src={qrUrl} />
 
-                {isSelected && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
-                    <label htmlFor="bBlocksQRWebUrlField" style={{ marginRight: '20px', fontWeight: 'bold' }}>Website url:</label>
+                    {isSelected && <div style={{ position: 'absolute', bottom: '-33px', left: `${qrAlign === 'left' ? '0%' : qrAlign === 'center' ? '50%' : qrAlign === 'right' && '100%'}`, transform: `${qrAlign === 'left' ? 'translateX(0)' : qrAlign === 'center' ? 'translateX(-50%)' : qrAlign === 'right' && 'translateX(-100%)'}`, zIndex: 30 }}>
 
-                    <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksQRWebUrlField" value={url} onChange={cng => setAttributes({ url: cng })} />
-                </div>}
+                        <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} value={url} onChange={cng => setAttributes({ url: cng })} placeholder="Website url" />
+                    </div>}
+                </div>
             </div>
         ]);
     },
@@ -71,8 +72,10 @@ registerBlockType('b-blocks/qr-code', {
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}}`;
 
         return (
-            <div style={{ textAlign: qrAlign }}>
-                <img src={qrUrl} />
+            <div className="b_blocks_qr_code">
+                <div style={{ textAlign: qrAlign }}>
+                    <img src={qrUrl} />
+                </div>
             </div>
         );
     },

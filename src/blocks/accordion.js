@@ -1,11 +1,14 @@
 const { registerBlockType } = wp.blocks;
-const { useEffect } = wp.element;
+const { useEffect, Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TabPanel } = wp.components;
+const { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors, aligns, textTransforms } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -33,7 +36,7 @@ registerBlockType('b-blocks/accordion', {
         accordions: { type: 'array' },
 
         headingAlign: { type: 'string', default: 'left' },
-        headingFontSize: { type: 'number' },
+        headingFontSize: { type: 'number', default: 20 },
         headingTransform: { type: 'string', default: 'uppercase' },
         headingPTB: { type: 'number', default: 12 },
         headingPLR: { type: 'number', default: 30 },
@@ -42,13 +45,14 @@ registerBlockType('b-blocks/accordion', {
         headingHovColor: { type: 'string', default: '#fff' },
         headingHovBGColor: { type: 'string', default: '#4527a4' },
 
+        contentAlign: { type: 'string', default: 'left' },
         contentPTB: { type: 'number', default: 15 },
         contentPLR: { type: 'number', default: 20 },
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { cId, accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { cId, accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentAlign, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
@@ -57,7 +61,7 @@ registerBlockType('b-blocks/accordion', {
 
         const accRemoveStyle = { position: 'absolute', right: '1px', top: '1px', padding: 0, minWidth: '20px', height: '20px', backgroundColor: '#fff', color: '#4527a4' };
 
-        const contentStyle = { border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
+        const contentStyle = { textAlign: contentAlign, border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
         // Functions
         useEffect(() => {
@@ -91,17 +95,17 @@ registerBlockType('b-blocks/accordion', {
                                     setAttributes({ accordions: newAcc });
                                 }} style={accRemoveStyle} />
 
-                                <RichText tagName="h4" placeholder="Enter the Title" value={title} onChange={cng => {
+                                <RichText tagName="h3" placeholder="Enter the Title" value={title} onChange={cng => {
                                     const newObj = Object.assign({}, acc, { title: cng });
                                     setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
-                                }} style={titleStyle} />
+                                }} inlineToolbar style={titleStyle} />
                             </a>
 
                             <div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle} >
                                 <RichText tagName="p" placeholder="Enter the description" value={description} onChange={cng => {
                                     const newObj = Object.assign({}, acc, { description: cng });
                                     setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
-                                }} style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
+                                }} inlineToolbar style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
                             </div>
                         </div>
                     );
@@ -114,31 +118,19 @@ registerBlockType('b-blocks/accordion', {
                 <PanelBody title="Heading Settings" initialOpen={true}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={headingAlign === obj.value} aria-pressed={headingAlign === obj.value} onClick={() => setAttributes({ headingAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={aligns} myValue={headingAlign} setState={cng => setAttributes({ headingAlign: cng })} icon={true} />
 
                     {/* Font Size */}
                     {otherTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: 'undefined' === typeof cng ? 20 : cng })} />
 
                     {/* Text Transform */}
                     {otherTitle('Text Transform:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(textTransforms).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={headingTransform === obj.value} aria-pressed={headingTransform === obj.value} onClick={() => setAttributes({ headingTransform: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={textTransforms} myValue={headingTransform} setState={cng => setAttributes({ headingTransform: cng })} />
 
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
-                    <RangeControl value={headingPTB} onChange={cng => setAttributes({ headingPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={headingPTB} onChange={cng => setAttributes({ headingPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
@@ -148,8 +140,8 @@ registerBlockType('b-blocks/accordion', {
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
-                            return <span>
-                                {'normal' == tab.name && <span>
+                            return <Fragment>
+                                {'normal' == tab.name && <Fragment>
                                     {/* Color */}
                                     {firstTitle('Color:')}
                                     <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
@@ -157,9 +149,9 @@ registerBlockType('b-blocks/accordion', {
                                     {/* Background Color */}
                                     {otherTitle('Background Color:')}
                                     <ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
-                                </span>}
+                                </Fragment>}
 
-                                {'hover' == tab.name && <span>
+                                {'hover' == tab.name && <Fragment>
                                     {/* Hover Color */}
                                     {firstTitle('Hover Color:')}
                                     <ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
@@ -167,8 +159,8 @@ registerBlockType('b-blocks/accordion', {
                                     {/* Hover Background Color */}
                                     {otherTitle('Hover Background Color:')}
                                     <ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
-                                </span>}
-                            </span>
+                                </Fragment>}
+                            </Fragment>
                         }}
                     </TabPanel>
                 </PanelBody>
@@ -176,9 +168,13 @@ registerBlockType('b-blocks/accordion', {
 
                 {/* Content Settings */}
                 <PanelBody title="Content Settings" initialOpen={false}>
+                    {/* Text Align */}
+                    {firstTitle('Text Align:')}
+                    <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
+
                     {/* Top Bottom Padding */}
-                    {firstTitle('Top Bottom Padding:')}
-                    <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={50} step={1} />
+                    {otherTitle('Top Bottom Padding:')}
+                    <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
@@ -192,20 +188,20 @@ registerBlockType('b-blocks/accordion', {
                     {accordionItem(accordions)}
                 </div>
 
-                {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }} style={{ color: '#4527a4', fontSize: '18px' }}>Add New Accordion</Button>}
+                {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }} style={{ color: '#fff', backgroundColor: '#4527a4', fontSize: '18px', position: 'absolute', bottom: '-25px', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Accordion</Button>}
             </div>
         ])
     },
 
     save: props => {
-        const { cId, accordions, headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentPTB, contentPLR } = props.attributes;
+        const { cId, accordions, headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentAlign, contentPTB, contentPLR } = props.attributes;
 
         // Styles
         const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, display: 'block', textDecoration: 'none' };
 
         const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: '1px solid #4527a4', borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
 
-        const contentStyle = { border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
+        const contentStyle = { textAlign: contentAlign, border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
         // Functions
         const headingHov = e => {
@@ -226,7 +222,7 @@ registerBlockType('b-blocks/accordion', {
                     return (
                         <div className="b_blocks_acc_item">
                             <a data-toggle="collapse" href={`#accCollapse-${cId}${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
-                                <RichText.Content tagName="h4" value={title} style={titleStyle} />
+                                <RichText.Content tagName="h3" value={title} style={titleStyle} />
                             </a>
 
                             <div id={`accCollapse-${cId}${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${cId}`} style={contentStyle} >

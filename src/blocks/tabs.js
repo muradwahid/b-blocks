@@ -1,15 +1,18 @@
 const { registerBlockType } = wp.blocks;
-const { RichText, InspectorControls } = wp.blockEditor;
-const { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, ButtonGroup, Tooltip, SelectControl } = wp.components;
+const { RichText, InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
+const { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
-const { colors, fontSizes, aligns, textTransforms } = options;
+const { colors, fontSizes, aligns, textTransforms, sizeTypes } = options;
 const tabLayouts = [
     { label: 'Tabs', value: 'tab' },
     { label: 'Pills', value: 'pills' },
     { label: 'Vertical Pills', value: 'vertical-pills' },
 ]
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -25,6 +28,9 @@ registerBlockType('b-blocks/tabs', {
     icon: icons.tab,
     category: 'bBlocks',
     keywords: ['Tabs', 'Link Tab', 'List Tab'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
 
     // Custom Attributes
     attributes: {
@@ -33,34 +39,39 @@ registerBlockType('b-blocks/tabs', {
         info: { type: 'array' },
         layout: { type: 'string', default: 'tab' },
 
+        contentAlign: { type: 'string', default: 'left' },
+        width: { type: 'number', default: 100 },
+        widthType: { type: 'string', default: '%' },
+
         PTB: { type: 'number', default: 15 },
         PLR: { type: 'number', default: 15 },
         color: { type: 'string', default: '#333' },
         BGColor: { type: 'string', default: '#f4f5f6' },
 
-        titleAlign: { type: 'string', default: 'center' },
-        titleFontSize: { type: 'number' },
+        titleAlign: { type: 'string', default: 'right' },
+        titleFontSize: { type: 'number', default: 16 },
         titleTextTransform: { type: 'string', default: 'uppercase' },
 
-        contentFontSize: { type: 'number' },
+        contentFontSize: { type: 'number', default: 15 },
     },
 
     // edit function
     edit: (props) => {
-        const { attributes: { info = [], layout, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
+        const { attributes: { info = [], layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
 
         // Styles
         const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
 
-        const titleStyle = { position: 'relative', color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform };
-        // const titleActiveStyle = { color: titleSecondaryColor, backgroundColor: titlePrimaryColor };
+        const titleStyle = { position: 'relative', color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform, width: `${'vertical-pills' == layout ? '100%' : 'auto'}`, margin: `${'vertical-pills' == layout ? '0 0 5px 0' : 'pills' == layout ? '0 5px 0 0' : '0'}` };
+
         const tabRemoveStyle = { position: 'absolute', right: 0, top: 0, padding: 0, minWidth: '20px', height: '20px' };
-        const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px` };
+
+        const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
 
         // Components
         const infoTitle = value => {
             return (
-                value.sort((a, b) => a.index - b.index).map(tab => {
+                value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
 
                     const active = index == 0 ? true : false;
@@ -80,10 +91,10 @@ registerBlockType('b-blocks/tabs', {
                                 setAttributes({ info: newInfo });
                             }} style={tabRemoveStyle} />
 
-                            <RichText tagName="span" placeholder="Enter the title" value={title} onChange={cng => {
+                            <RichText tagName="h4" placeholder="Enter the title" value={title} onChange={cng => {
                                 const newObject = Object.assign({}, tab, { title: cng });
                                 setAttributes({ info: [...info.filter(item => item.index != index), newObject] });
-                            }} />
+                            }} inlineToolbar style={{ margin: 0, color: 'inherit' }} />
 
                         </a>
                     )
@@ -93,7 +104,7 @@ registerBlockType('b-blocks/tabs', {
 
         const infoDesc = value => {
             return (
-                value.sort((a, b) => a.index - b.index).map(tab => {
+                value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
 
                     const active = index == 0 ? true : false;
@@ -105,7 +116,7 @@ registerBlockType('b-blocks/tabs', {
                             <RichText tagName="span" placeholder="Enter Content" value={description} onChange={cng => {
                                 const newObj = Object.assign({}, tab, { description: cng });
                                 setAttributes({ info: [...info.filter(item => item.index != index), newObj] });
-                            }} />
+                            }} inlineToolbar />
 
                         </div>
                     )
@@ -120,13 +131,18 @@ registerBlockType('b-blocks/tabs', {
                     {firstTitle('Layout:')}
                     <SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={tabLayouts} />
 
+                    {otherTitle('Width:')}
+                    <BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes="b_blocks_size_type" size="small" />
+
+                    <RangeControl value={width} onChange={cng => setAttributes({ width: cng })} min={0} max={("%" == widthType) ? 100 : 1920} step={1} />
+
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
                     <RangeControl value={PTB} onChange={cng => setAttributes({ PTB: cng })} min={0} max={100} step={.1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
-                    <RangeControl value={PLR} onChange={cng => setAttributes({ PLR: cng })} min={0} max={100} step={.1} />
+                    <RangeControl value={PLR} onChange={cng => setAttributes({ PLR: cng })} min={0} max={150} step={.1} />
 
                     {/* Color */}
                     {otherTitle('Color:')}
@@ -142,27 +158,15 @@ registerBlockType('b-blocks/tabs', {
                 <PanelBody title="Title Settings" initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={titleAlign === obj.value} aria-pressed={titleAlign === obj.value} onClick={() => setAttributes({ titleAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={aligns} myValue={titleAlign} setState={cng => setAttributes({ titleAlign: cng })} icon={true} />
 
                     {/* Font Size */}
                     {otherTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={16} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: 'undefined' === typeof cng ? 16 : cng })} />
 
                     {/* Text Transform */}
                     {otherTitle('Text Transform:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(textTransforms).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={titleTextTransform === obj.value} aria-pressed={titleTextTransform === obj.value} onClick={() => setAttributes({ titleTextTransform: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={textTransforms} myValue={titleTextTransform} setState={cng => setAttributes({ titleTextTransform: cng })} />
                 </PanelBody>
 
 
@@ -170,66 +174,73 @@ registerBlockType('b-blocks/tabs', {
                 <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
                 </PanelBody>
             </InspectorControls>,
 
 
-            <div className="b_blocks_tabs">
-                {
-                    layout == 'tab' ? <div className="tabs" style={containerStyle}>
-                        <nav>
-                            <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                                {infoTitle(info)}
-                            </div>
-                        </nav>
-                        <div className="tab-content" id="nav-tabContent">
-                            {infoDesc(info)}
-                        </div>
-                    </div> :
+            <div className="b_blocks_tabs" style={{ textAlign: `${contentAlign}` }}>
+                <BlockControls>
+                    <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
+                </BlockControls>
 
-                        layout == 'pills' ? <div className="pills" style={containerStyle}>
-                            <div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                {infoTitle(info)}
-                            </div>
-                            <div className="tab-content">
+                <div style={{ display: 'inline-block', width: `${width}${widthType}`, textAlign: 'initial' }}>
+                    {
+                        layout == 'tab' ? <div className="tabs" style={containerStyle}>
+                            <nav>
+                                <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                    {infoTitle(info)}
+                                </div>
+                            </nav>
+                            <div className="tab-content" id="nav-tabContent" style={{ textAlign: `${contentAlign}` }}>
                                 {infoDesc(info)}
                             </div>
                         </div> :
 
-                            layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
-                                <div className="col-3 pl-0">
-                                    <div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                                        {infoTitle(info)}
-                                    </div>
+                            layout == 'pills' ? <div className="pills" style={containerStyle}>
+                                <div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    {infoTitle(info)}
                                 </div>
-                                <div className="col-9 pr-0">
-                                    <div className="tab-content">
-                                        {infoDesc(info)}
-                                    </div>
+                                <div className="tab-content" style={{ textAlign: `${contentAlign}` }}>
+                                    {infoDesc(info)}
                                 </div>
-                            </div> : <h3>Select a layout</h3>
-                }
+                            </div> :
 
-                {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ info: [...info, { index: info.length }] }) }} style={{ color: '#4527a4', fontSize: '18px' }}>Add New Tab</Button>}
-            </div >
+                                layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
+                                    <div className="col-3 pl-0">
+                                        <div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                                            {infoTitle(info)}
+                                        </div>
+                                    </div>
+                                    <div className="col-9 pr-0">
+                                        <div className="tab-content" style={{ textAlign: `${contentAlign}` }}>
+                                            {infoDesc(info)}
+                                        </div>
+                                    </div>
+                                </div> : <h3>Select a layout</h3>
+                    }
+
+                    {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ info: [...info, { index: info.length }] }) }} style={{ color: '#fff', backgroundColor: '#4527a4', fontSize: '18px', position: 'absolute', bottom: '-25px', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Tab</Button>}
+                </div>
+            </div>
         ]);
     },
 
     // save function
     save: (props) => {
-        const { info, layout, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize } = props.attributes;
+        const { info, layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize } = props.attributes;
 
         // Styles
-        const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
+        const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor, width: `${width}${widthType}`, textAlign: 'initial' }
 
         const titleStyle = { color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform };
-        const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px` };
+
+        const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
 
         // Components
         const infoTitle = value => {
             return (
-                value.sort((a, b) => a.index - b.index).map(tab => {
+                value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
 
                     const active = index == 0 ? true : false;
@@ -237,7 +248,7 @@ registerBlockType('b-blocks/tabs', {
 
                     return (
                         <a className={`nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
-                            <RichText.Content tagName="span" value={title} />
+                            <RichText.Content tagName="h4" value={title} style={{ margin: 0, color: 'inherit' }} />
                         </a>
                     )
                 })
@@ -246,7 +257,7 @@ registerBlockType('b-blocks/tabs', {
 
         const infoDesc = value => {
             return (
-                value.sort((a, b) => a.index - b.index).map(tab => {
+                value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
 
                     const active = index == 0 ? true : false;
@@ -262,7 +273,7 @@ registerBlockType('b-blocks/tabs', {
         }
 
         return (
-            <div className="b_blocks_tabs" style={{ textAlign: 'inherit' }}>
+            <div className="b_blocks_tabs" style={{ textAlign: `${contentAlign}` }}>
                 {
                     layout == 'tab' ? <div className="tabs" style={containerStyle}>
                         <nav>

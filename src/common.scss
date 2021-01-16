@@ -67,6 +67,7 @@ html{
         .nav-link{
             box-shadow: none;
             border: 1px solid $primaryColor;
+            color: $primaryColor!important;
 
             &.active{
                 color: #fff!important;
@@ -91,6 +92,7 @@ html{
     >.vertical-pills{
         .nav-link{
             margin-bottom: 5px;
+            width: 100%;
         }
     }
 

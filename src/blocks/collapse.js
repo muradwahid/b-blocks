@@ -1,11 +1,14 @@
 const { registerBlockType } = wp.blocks;
-const { useEffect } = wp.element;
-const { InspectorControls, ColorPalette, InnerBlocks, RichText } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, RangeControl, Tooltip, TabPanel, SelectControl } = wp.components;
+const { useEffect, Fragment } = wp.element;
+const { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
+const { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { fontSizes, colors, aligns, fontWeights, textTransforms } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -32,7 +35,7 @@ registerBlockType('b-blocks/collapse', {
 
         collBtnLabel: { type: 'string', source: 'html', selector: '.b_blocks_collapse_btn_label' },
         collBtnAlign: { type: 'string', default: 'left' },
-        collBtnFontSize: { type: 'number', default: 16 },
+        collBtnFontSize: { type: 'number', default: 15 },
         collBtnTransform: { type: 'string', default: 'uppercase' },
         collBtnFontWeight: { type: 'string', default: '600' },
         collBtnPTB: { type: 'number', default: 12 },
@@ -73,29 +76,17 @@ registerBlockType('b-blocks/collapse', {
         return ([
             <InspectorControls>
                 <PanelBody title="Collapse Button Settings" initialOpen={true}>
-                    {/* Alignment */}
-                    {firstTitle('Alignment:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={collBtnAlign === obj.value} aria-pressed={collBtnAlign === obj.value} onClick={() => setAttributes({ collBtnAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    {/* Button Align */}
+                    {firstTitle('Button Align:')}
+                    <BtnGroup options={aligns} myValue={collBtnAlign} setState={cng => setAttributes({ collBtnAlign: cng })} icon={true} />
 
                     {/* Font Size */}
                     {otherTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={collBtnFontSize} onChange={cng => setAttributes({ collBtnFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={collBtnFontSize} onChange={cng => setAttributes({ collBtnFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                     {/* Text Transform */}
                     {otherTitle('Text Transform:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(textTransforms).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={collBtnTransform === obj.value} aria-pressed={collBtnTransform === obj.value} onClick={() => setAttributes({ collBtnTransform: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={textTransforms} myValue={collBtnTransform} setState={cng => setAttributes({ collBtnTransform: cng })} />
 
                     {/* Font Weight */}
                     {otherTitle('Font Weight:')}
@@ -103,7 +94,7 @@ registerBlockType('b-blocks/collapse', {
 
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
-                    <RangeControl value={collBtnPTB} onChange={cng => setAttributes({ collBtnPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={collBtnPTB} onChange={cng => setAttributes({ collBtnPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
@@ -118,8 +109,8 @@ registerBlockType('b-blocks/collapse', {
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
-                            return <span>
-                                {'normal' == tab.name && <span>
+                            return <Fragment>
+                                {'normal' == tab.name && <Fragment>
                                     {/* Color */}
                                     {otherTitle('Color:')}
                                     <ColorPalette value={collBtnColor} onChange={cng => setAttributes({ collBtnColor: cng })} colors={colors} />
@@ -127,9 +118,9 @@ registerBlockType('b-blocks/collapse', {
                                     {/* Background Color */}
                                     {otherTitle('Background Color:')}
                                     <ColorPalette value={collBtnBGColor} onChange={cng => setAttributes({ collBtnBGColor: cng })} colors={colors} />
-                                </span>}
+                                </Fragment>}
 
-                                {'hover' == tab.name && <span>
+                                {'hover' == tab.name && <Fragment>
                                     {/* Hover Color */}
                                     {otherTitle('Hover Color:')}
                                     <ColorPalette value={collBtnHovColor} onChange={cng => setAttributes({ collBtnHovColor: cng })} colors={colors} />
@@ -137,8 +128,8 @@ registerBlockType('b-blocks/collapse', {
                                     {/* Hover Background Color */}
                                     {otherTitle('Hover Background Color:')}
                                     <ColorPalette value={collBtnHovBGColor} onChange={cng => setAttributes({ collBtnHovBGColor: cng })} colors={colors} />
-                                </span>}
-                            </span>
+                                </Fragment>}
+                            </Fragment>
                         }}
                     </TabPanel>
                 </PanelBody>
@@ -147,7 +138,7 @@ registerBlockType('b-blocks/collapse', {
                 <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Top Bottom Padding */}
                     {firstTitle('Top Bottom Padding:')}
-                    <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
@@ -157,9 +148,13 @@ registerBlockType('b-blocks/collapse', {
 
 
             <div className="b_blocks_collapse">
+                <BlockControls>
+                    <AlignmentToolbar value={collBtnAlign} onChange={cng => setAttributes({ collBtnAlign: cng })} />
+                </BlockControls>
+
                 <div style={{ textAlign: collBtnAlign }}>
                     <button type="button" data-toggle="collapse" data-target={`#bBlocksCollapse-${clientId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${clientId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>
-                        <RichText className="b_blocks_collapse_btn_label" key="editable" tagName="span" placeholder="Enter Collapse Button Text" value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
+                        <RichText className="b_blocks_collapse_btn_label" key="editable" tagName="span" placeholder="Enter Collapse Button Text" value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} inlineToolbar style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
                     </button>
                 </div>
 

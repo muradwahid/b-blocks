@@ -1,7 +1,8 @@
-const { createElement } = wp.element;
 const { registerFormatType, applyFormat, removeFormat, getActiveFormat } = wp.richText;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody } = wp.components;
+const { Fragment } = wp.element;
+const { RichTextToolbarButton } = wp.blockEditor;
 
 
 // Variables
@@ -10,8 +11,8 @@ const { colors } = options;
 
 
 const allOptions = [
-    { name: 'color', title: 'Text Color' },
-    { name: 'background-color', title: 'Text Background Color' }
+    // { name: 'color', title: 'Inline Color' },
+    { name: 'background-color', title: 'Inline Background Color' }
 ];
 
 allOptions.forEach(({ name, title }) => {

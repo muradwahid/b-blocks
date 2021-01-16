@@ -44,8 +44,8 @@ function b_blocks_init() {
 add_action( 'init', 'b_blocks_init' );
 
 // Posts Block
-require 'blocks/posts/posts.php';
-require 'blocks/posts/advance-posts.php';
+require 'posts.php';
+// require 'advance-posts.php';
 
 function b_blocks_after_setup_theme() {
     add_theme_support( 'align-wide' );

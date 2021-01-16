@@ -18,24 +18,24 @@ const options = {
     ],
 
     tags: [
-        { label: 'Paragraph', value: 'p', icon: 'P' },
-        { label: 'Heading 1', value: 'h1', icon: 'H1' },
-        { label: 'Heading 2', value: 'h2', icon: 'H2' },
-        { label: 'Heading 3', value: 'h3', icon: 'H3' },
-        { label: 'Heading 4', value: 'h4', icon: 'H4' },
-        { label: 'Heading 5', value: 'h5', icon: 'H5' },
-        { label: 'Heading 6', value: 'h6', icon: 'H6' },
-        { label: 'Span', value: 'span', icon: 'SPAN' },
-        { label: 'Div', value: 'div', icon: 'DIV' }
+        { label: 'Paragraph', value: 'p', icon: 'P', def: 15 },
+        { label: 'Heading 1', value: 'h1', icon: 'H1', def: 32 },
+        { label: 'Heading 2', value: 'h2', icon: 'H2', def: 25 },
+        { label: 'Heading 3', value: 'h3', icon: 'H3', def: 20 },
+        { label: 'Heading 4', value: 'h4', icon: 'H4', def: 16 },
+        { label: 'Heading 5', value: 'h5', icon: 'H5', def: 14 },
+        { label: 'Heading 6', value: 'h6', icon: 'H6', def: 12 },
+        { label: 'Span', value: 'span', icon: 'SPAN', def: 15 },
+        { label: 'Div', value: 'div', icon: 'DIV', def: 15 }
     ],
 
     hTags: [
-        { label: 'Heading 1', value: 'h1', icon: 'H1' },
-        { label: 'Heading 2', value: 'h2', icon: 'H2' },
-        { label: 'Heading 3', value: 'h3', icon: 'H3' },
-        { label: 'Heading 4', value: 'h4', icon: 'H4' },
-        { label: 'Heading 5', value: 'h5', icon: 'H5' },
-        { label: 'Heading 6', value: 'h6', icon: 'H6' }
+        { label: 'Heading 1', value: 'h1', icon: 'H1', def: 32 },
+        { label: 'Heading 2', value: 'h2', icon: 'H2', def: 25 },
+        { label: 'Heading 3', value: 'h3', icon: 'H3', def: 20 },
+        { label: 'Heading 4', value: 'h4', icon: 'H4', def: 16 },
+        { label: 'Heading 5', value: 'h5', icon: 'H5', def: 14 },
+        { label: 'Heading 6', value: 'h6', icon: 'H6', def: 12 }
     ],
 
     aligns: [
@@ -81,7 +81,7 @@ const options = {
     ],
 
     sizeTypes: [
-        { label: 'Pixel', value: 'px', icon: 'px', def: 450 },
+        { label: 'Pixel', value: 'px', icon: 'px', def: 650 },
         { label: 'Percentage', value: '%', icon: '%', def: 100 }
     ],
 
@@ -104,19 +104,6 @@ const options = {
         { label: 'Small Shadow', value: 'shadow-sm' },
         { label: 'Regular Shadow', value: 'shadow' },
         { label: 'Large Shadow', value: 'shadow-lg' }
-    ],
-
-    modalSizes: [
-        { label: 'Small', value: 'modal-sm', icon: 'SM' },
-        { label: 'Default', value: '', icon: 'DF' },
-        { label: 'Large', value: 'modal-lg', icon: 'LG' },
-        { label: 'Extra Large', value: 'modal-xl', icon: 'XL' },
-    ],
-
-    userSelect: [
-        { label: 'Auto', value: 'auto', icon: 'AUTO' },
-        { label: 'All', value: 'all', icon: 'ALL' },
-        { label: 'None', value: 'none', icon: 'NONE' },
     ],
 }
 export default options;

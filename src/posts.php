@@ -10,58 +10,60 @@ add_action( 'init', 'b_blocks_posts_init' );
 function render_b_blocks_posts( $attributes ) {
     extract( $attributes );
 
-    $align ? $align : $align = 'full';
+    $align ?? $align = 'full';
 
-    $selectedCategories ? $selectedCategories : $selectedCategories = [];
-    $postsPerPageAll ? $postsPerPageAll : $postsPerPageAll = 'true';
-    $postsPerPage || 0 === $postsPerPage ? $postsPerPage : $postsPerPage = 9;
-    $postsOrderBy ? $postsOrderBy : $postsOrderBy = 'date';
-    $postsOrder ? $postsOrder : $postsOrder = 'desc';
+    $selectedCategories ?? $selectedCategories = [];
+    $postsPerPageAll ?? $postsPerPageAll = 'false';
+    $postsPerPage ?? $postsPerPage = 12;
+    $postsOrderBy ?? $postsOrderBy = 'date';
+    $postsOrder ?? $postsOrder = 'desc';
 
-    $layout ? $layout : $layout = 'grid';
-    $columns || 0 === $columns ? $columns : $columns = 3;
-    $columnGap || 0 === $columnGap ? $columnGap : $columnGap = 10;
-    $rowGap || 0 === $rowGap ? $rowGap : $rowGap = 10;
-    $contentEqualHight ? $contentEqualHight : $contentEqualHight = 'true';
+    $layout ?? $layout = 'grid';
+    $columns ?? $columns = 3;
+    $columnGap ?? $columnGap = 10;
+    $rowGap ?? $rowGap = 10;
+    $contentEqualHight ?? $contentEqualHight = 'true';
 
-    $contentAlign ? $contentAlign : $contentAlign = 'left';
-    $contentBGColor ? $contentBGColor : $contentBGColor = '#fff';
-    $postTextPTB || 0 === $postTextPTB ? $postTextPTB : $postTextPTB = 15;
-    $postTextPLR || 0 === $postTextPLR ? $postTextPLR : $postTextPLR = 25;
-    $shadow ? $shadow : $shadow = 'shadow';
+    $contentAlign ?? $contentAlign = 'left';
+    $contentBGColor ?? $contentBGColor = '#fff';
+    $postTextPTB ?? $postTextPTB = 15;
+    $postTextPLR ?? $postTextPLR = 15;
+    $shadow ?? $shadow = 'shadow';
 
-    $featureImgShow ? $featureImgShow : $featureImgShow = 'true';
+    $featureImgShow ?? $featureImgShow = 'true';
 
-    $titleShow ? $titleShow : $titleShow = 'true';
-    $titleColor ? $titleColor : $titleColor = '#4527a4';
-    $titleMB || 0 === $titleMB ? $titleMB : $titleMB = 15;
+    $titleShow ?? $titleShow = 'true';
+    $titleFontSize ?? $titleFontSize = 20;
+    $titleColor ?? $titleColor = '#4527a4';
+    $titleMB ?? $titleMB = 15;
 
-    $metaShow ? $metaShow : $metaShow = 'true';
-    $metaAuthorShow ? $metaAuthorShow : $metaAuthorShow = 'true';
-    $metaDateShow ? $metaDateShow : $metaDateShow = 'true';
-    $metaCategoryShow ? $metaCategoryShow : $metaCategoryShow = 'true';
-    $metaCommentShow ? $metaCommentShow : $metaCommentShow = 'false';
-    $metaFontSize ? $metaFontSize : $metaFontSize = 13;
-    $metaTransform ? $metaTransform : $metaTransform = 'uppercase';
-    $metaTextColor ? $metaTextColor : $metaTextColor = '#333';
-    $metaLinkColor ? $metaLinkColor : $metaLinkColor = '#8344c5';
-    $metaIconColor ? $metaIconColor : $metaIconColor = '#4527a4';
-    $metaMB || 0 === $metaMB ? $metaMB : $metaMB = 15;
+    $metaShow ?? $metaShow = 'true';
+    $metaAuthorShow ?? $metaAuthorShow = 'true';
+    $metaDateShow ?? $metaDateShow = 'true';
+    $metaCategoryShow ?? $metaCategoryShow = 'true';
+    $metaCommentShow ?? $metaCommentShow = 'false';
+    $metaFontSize ?? $metaFontSize = 13;
+    $metaTransform ?? $metaTransform = 'uppercase';
+    $metaTextColor ?? $metaTextColor = '#333';
+    $metaLinkColor ?? $metaLinkColor = '#8344c5';
+    $metaIconColor ?? $metaIconColor = '#4527a4';
+    $metaMB ?? $metaMB = 15;
 
-    $excerptShow ? $excerptShow : $excerptShow = 'true';
-    $excerptLength || 0 === $excerptLength ? $excerptLength : $excerptLength = 45;
-    $excerptAlign ? $excerptAlign : $excerptAlign = 'justify';
-    $excerptColor ? $excerptColor : $excerptColor = '#333';
-    $excerptMB || 0 === $excerptMB ? $excerptMB : $excerptMB = 15;
+    $excerptShow ?? $excerptShow = 'true';
+    $excerptLength ?? $excerptLength = 45;
+    $excerptAlign ?? $excerptAlign = 'justify';
+    $excerptFontSize ?? $excerptFontSize = 15;
+    $excerptColor ?? $excerptColor = '#333';
+    $excerptMB ?? $excerptMB = 15;
 
-    $readMoreShow ? $readMoreShow : $readMoreShow = 'true';
-    $readMoreLabel || '' === $readMoreLabel ? $readMoreLabel : $readMoreLabel = 'Read More';
-    $readMoreAlign ? $readMoreAlign : $readMoreAlign = 'left';
-    $readMoreFontSize ? $readMoreFontSize : $readMoreFontSize = 14;
-    $readMoreTransform ? $readMoreTransform : $readMoreTransform = 'capitalize';
-    $readMoreFontWeight ? $readMoreFontWeight : $readMoreFontWeight = '600';
-    $readMoreColor ? $readMoreColor : $readMoreColor = '#4527a4';
-    $readMoreHovColor ? $readMoreHovColor : $readMoreHovColor = '#8344c5';
+    $readMoreShow ?? $readMoreShow = 'true';
+    $readMoreLabel ?? $readMoreLabel = 'Read More';
+    $readMoreAlign ?? $readMoreAlign = 'left';
+    $readMoreFontSize ?? $readMoreFontSize = 14;
+    $readMoreTransform ?? $readMoreTransform = 'uppercase';
+    $readMoreFontWeight ?? $readMoreFontWeight = '600';
+    $readMoreColor ?? $readMoreColor = '#4527a4';
+    $readMoreHovColor ?? $readMoreHovColor = '#8344c5';
 
     // All Posts
     $posts = get_posts( [
@@ -162,8 +164,8 @@ function bBlocksPostMetaAuthor( $show, $post, $iconColor, $linkColor ) {
 function bBlocksPostMetaDate( $show, $post, $iconColor, $textColor ) {
     if ( 'true' == $show ) {
         return '<span>
-            <span class="dashicons dashicons-calendar" style="color: ' . $metaIconColor . ';"></span>&nbsp;
-            <span style="color: ' . $metaTextColor . ';">' . get_the_date( 'M j, Y', $post->ID ) . '</span>
+            <span class="dashicons dashicons-calendar" style="color: ' . $iconColor . ';"></span>&nbsp;
+            <span style="color: ' . $textColor . ';">' . get_the_date( 'M j, Y', $post->ID ) . '</span>
         </span>';
     } else {
         return '';

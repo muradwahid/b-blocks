@@ -1,5 +1,5 @@
 const { registerBlockType } = wp.blocks;
-const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
+const { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, FontSizePicker } = wp.components;
 
 // Variables
@@ -28,15 +28,16 @@ registerBlockType('b-blocks/highlight-text', {
     attributes: {
         align: { type: 'string', default: 'center' },
 
+        contentAlign: { type: 'string', default: 'left' },
         text: { type: 'string', source: 'html', selector: '.b_blocks_highlighter' },
-        fontS: { type: 'number' },
+        fontS: { type: 'number', default: 15 },
         color: { type: 'string', default: '#333' },
         BGColor: { type: 'string', default: '#beff14' }
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { text, fontS, color, BGColor }, setAttributes } = props;
+        const { attributes: { contentAlign, text, fontS, color, BGColor }, setAttributes } = props;
 
         // Styles
         const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
@@ -47,7 +48,7 @@ registerBlockType('b-blocks/highlight-text', {
                 <PanelBody title="Highlight Text Settings" initialOpen={true}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={fontS} onChange={cng => setAttributes({ fontS: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontS} onChange={cng => setAttributes({ fontS: 'undefined' === typeof cng ? 15 : cng })} />
 
                     {/* Color */}
                     {otherTitle('Color:')}
@@ -59,19 +60,26 @@ registerBlockType('b-blocks/highlight-text', {
                 </PanelBody>
             </InspectorControls>,
 
+            <div className="b_blocks_highlight_text" style={{ textAlign: contentAlign }}>
+                <BlockControls>
+                    <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
+                </BlockControls>
 
-            <RichText className="b_blocks_highlighter" key="editable" tagName="mark" placeholder="Write Your Highlight Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} style={textStyle} />
+                <RichText className="b_blocks_highlighter" key="editable" tagName="mark" placeholder="Write Your Highlight Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
+            </div>
         ])
     },
 
     save: props => {
-        const { text, fontS, color, BGColor } = props.attributes;
+        const { contentAlign, text, fontS, color, BGColor } = props.attributes;
 
         // Styles
         const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor, textAlign: 'inherit' }
 
         return (
-            <RichText.Content className="b_blocks_highlighter" tagName="mark" value={text} style={textStyle} />
+            <div className="b_blocks_highlight_text" style={{ textAlign: contentAlign }}>
+                <RichText.Content className="b_blocks_highlighter" tagName="mark" value={text} style={textStyle} />
+            </div>
         )
     },
 

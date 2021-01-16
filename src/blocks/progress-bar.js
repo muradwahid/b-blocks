@@ -55,7 +55,7 @@ registerBlockType('b-blocks/progress-bar', {
 
                     {/* Height */}
                     {otherTitle('Height:')}
-                    <RangeControl value={progressHeight} onChange={cng => setAttributes({ progressHeight: cng })} min={0} max={150} step={1} />
+                    <RangeControl value={progressHeight} onChange={cng => setAttributes({ progressHeight: cng })} min={0} max={200} step={1} />
                 </PanelBody>
 
 
@@ -83,7 +83,7 @@ registerBlockType('b-blocks/progress-bar', {
             </InspectorControls>,
 
 
-            <div className="progress" style={progressStyle}>
+            <div className="b_blocks_progress_bar progress" style={progressStyle}>
                 <div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         ])
@@ -97,7 +97,7 @@ registerBlockType('b-blocks/progress-bar', {
         const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%` }
 
         return (
-            <div className="progress" style={progressStyle}>
+            <div className="b_blocks_progress_bar progress" style={progressStyle}>
                 <div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         )

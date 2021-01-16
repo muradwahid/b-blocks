@@ -1,10 +1,14 @@
 const { registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, ButtonGroup, ToggleControl, RangeControl, Tooltip } = wp.components;
+const { PanelBody, FontSizePicker, ToggleControl, RangeControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, colors, hTags } = options;
+const { aligns, fontSizes, colors, hTags } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -29,27 +33,28 @@ registerBlockType('b-blocks/alert', {
         align: { type: 'string', default: 'center' },
 
         BGColor: { type: 'string', default: '#8344c5' },
+        contentAlign: { type: 'string', default: 'left' },
         dismissShow: { type: 'boolean', default: true },
         dismissColor: { type: 'string', default: '#fff' },
 
         headShow: { type: 'boolean', default: false },
         head: { type: 'string', source: 'html', selector: '.b_blocks_alert_head' },
-        headTag: { type: 'string', default: 'h3' },
-        headFontSize: { type: 'number' },
+        headTag: { type: 'string', default: 'h2' },
+        headFontSize: { type: 'number', default: 25 },
         headColor: { type: 'string', default: '#fff' },
         headMB: { type: 'number', default: 15 },
 
         text: { type: 'string', source: 'html', selector: '.b_blocks_alert_text' },
-        textFontSize: { type: 'number' },
+        textFontSize: { type: 'number', default: 15 },
         textColor: { type: 'string', default: '#fff' },
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { BGColor, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor }, setAttributes } = props;
+        const { attributes: { BGColor, contentAlign, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor }, setAttributes } = props;
 
         // Styles
-        const alertStyle = { backgroundColor: BGColor }
+        const alertStyle = { backgroundColor: BGColor, textAlign: contentAlign }
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` }
         const textStyle = { fontSize: `${textFontSize}px`, color: textColor, margin: 0 }
 
@@ -59,17 +64,20 @@ registerBlockType('b-blocks/alert', {
                 <PanelBody title="Alert Settings" initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
+                    <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
+
+                    {otherTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
                     {/* Show/Hide Dismiss Button */}
                     {otherTitle('Show/Hide Dismiss Button:')}
                     <ToggleControl label={dismissShow ? 'Hide Dismiss Button' : 'Show Dismiss Button'} checked={dismissShow} onChange={cng => setAttributes({ dismissShow: cng })} />
 
-                    {dismissShow && <span>
+                    {dismissShow && <Fragment>
                         {/* Dismiss Button Color */}
                         {otherTitle('Dismiss Button Color:')}
                         <ColorPalette value={dismissColor} onChange={cng => setAttributes({ dismissColor: cng })} colors={colors} />
-                    </span>}
+                    </Fragment>}
                 </PanelBody>
 
 
@@ -78,20 +86,14 @@ registerBlockType('b-blocks/alert', {
                     {/* Show/Hide Heading */}
                     <ToggleControl label={headShow ? 'Hide Heading' : 'Show Heading'} checked={headShow} onChange={cng => setAttributes({ headShow: cng })} />
 
-                    {headShow && <span>
+                    {headShow && <Fragment>
                         {/* Heading Tag */}
                         {firstTitle('Heading Tag:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(hTags).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} isMedium isPrimary={headTag === obj.value} aria-pressed={headTag === obj.value} onClick={() => setAttributes({ headTag: obj.value })}>{obj.icon}</Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
 
                         {/* Font Size */}
                         {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headFontSize} onChange={cng => setAttributes({ headFontSize: 'undefined' === typeof cng ? 25 : cng })} />
 
                         {/* Color */}
                         {otherTitle('Color:')}
@@ -99,8 +101,8 @@ registerBlockType('b-blocks/alert', {
 
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
-                        <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
-                    </span>}
+                        <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
+                    </Fragment>}
                 </PanelBody>
 
 
@@ -108,7 +110,7 @@ registerBlockType('b-blocks/alert', {
                 <PanelBody title="Text Settings" initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={textFontSize} onChange={cng => setAttributes({ textFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={textFontSize} onChange={cng => setAttributes({ textFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                     {/* Color */}
                     {otherTitle('Color:')}
@@ -117,35 +119,39 @@ registerBlockType('b-blocks/alert', {
             </InspectorControls>,
 
 
-            <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
-                <span>{headShow && <RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} />}</span>
+            <div className="b_blocks_alert">
+                <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
+                    {headShow && <RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} />}
 
-                <RichText className="b_blocks_alert_text" key="editable" tagName="p" placeholder="Write Your Alert Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} style={textStyle} />
+                    <RichText className="b_blocks_alert_text" key="editable" tagName="p" placeholder="Write Your Alert Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
 
-                {dismissShow && <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true" style={{ color: dismissColor }}>&times;</span>
-                </button>}
+                    {dismissShow && <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" style={{ color: dismissColor }}>&times;</span>
+                    </button>}
+                </div>
             </div>
         ])
     },
 
     save: props => {
-        const { BGColor, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor } = props.attributes;
+        const { BGColor, contentAlign, dismissShow, dismissColor, headShow, head, headTag, headFontSize, headColor, headMB, text, textFontSize, textColor } = props.attributes;
 
         // Styles
-        const alertStyle = { backgroundColor: BGColor, textAlign: 'inherit' }
+        const alertStyle = { backgroundColor: BGColor, textAlign: contentAlign }
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` }
         const textStyle = { fontSize: `${textFontSize}px`, color: textColor, margin: 0 }
 
         return (
-            <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
-                {headShow && <RichText.Content className="b_blocks_alert_head" tagName={headTag} value={head} style={headStyle} />}
+            <div className="b_blocks_alert">
+                <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
+                    {headShow && <RichText.Content className="b_blocks_alert_head" tagName={headTag} value={head} style={headStyle} />}
 
-                <RichText.Content className="b_blocks_alert_text" tagName="p" value={text} style={textStyle} />
+                    <RichText.Content className="b_blocks_alert_text" tagName="p" value={text} style={textStyle} />
 
-                {dismissShow && <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true" style={{ color: dismissColor }}>&times;</span>
-                </button>}
+                    {dismissShow && <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" style={{ color: dismissColor }}>&times;</span>
+                    </button>}
+                </div>
             </div>
         )
     },

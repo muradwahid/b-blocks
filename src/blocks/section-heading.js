@@ -1,10 +1,13 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl, Button, ButtonGroup, Tooltip } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { hTags, fontSizes, aligns, borderStyles, colors } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -26,13 +29,13 @@ registerBlockType('b-blocks/section-heading', {
 
     // Custom Attributes
     attributes: {
-        align: { type: 'string', default: 'full' },
+        align: { type: 'string', default: 'center' },
 
         contentAlign: { type: 'string', default: 'center' },
 
         head: { type: 'string', source: 'html', selector: '.b_blocks_section_head' },
         headTag: { type: 'string', default: 'h2' },
-        headFontSize: { type: 'number' },
+        headFontSize: { type: 'number', default: 25 },
         headColor: { type: 'string', default: '#4527a4' },
         headMB: { type: 'number', default: 10 },
 
@@ -44,7 +47,7 @@ registerBlockType('b-blocks/section-heading', {
 
         toggleDesc: { type: 'boolean', default: true },
         desc: { type: 'string', source: 'html', selector: '.b_blocks_section_description' },
-        descFontSize: { type: 'number', default: 16 },
+        descFontSize: { type: 'number', default: 15 },
         descColor: { type: 'string', default: '#777' },
         descMB: { type: 'number', default: 15 },
     },
@@ -66,13 +69,7 @@ registerBlockType('b-blocks/section-heading', {
                 <PanelBody title="Content Settings" initialOpen={true}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={contentAlign === obj.value} aria-pressed={contentAlign === obj.value} onClick={() => setAttributes({ contentAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
                 </PanelBody>
 
 
@@ -80,17 +77,11 @@ registerBlockType('b-blocks/section-heading', {
                 <PanelBody title="Heading Settings" initialOpen={false}>
                     {/* Heading Tag */}
                     {firstTitle('Heading Tag:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(hTags).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} isMedium isPrimary={headTag === obj.value} aria-pressed={headTag === obj.value} onClick={() => setAttributes({ headTag: obj.value })}>{obj.icon}</Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
 
                     {/* Font Size */}
                     {otherTitle('Font Size:')}
-                    <FontSizePicker fontSizes={fontSizes} value={headFontSize} onChange={cng => setAttributes({ headFontSize: cng })} />
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headFontSize} onChange={cng => setAttributes({ headFontSize: 'undefined' === typeof cng ? 25 : cng })} />
 
                     {/* Color */}
                     {otherTitle('Color:')}
@@ -98,7 +89,7 @@ registerBlockType('b-blocks/section-heading', {
 
                     {/* Margin Bottom */}
                     {otherTitle('Margin Bottom:')}
-                    <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
                 </PanelBody>
 
 
@@ -110,7 +101,7 @@ registerBlockType('b-blocks/section-heading', {
 
                     {/* Thickness */}
                     {firstTitle('Thickness:')}
-                    <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={20} step={.1} />
+                    <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={50} step={.1} />
 
                     {/* Style */}
                     {otherTitle('Style:')}
@@ -122,7 +113,7 @@ registerBlockType('b-blocks/section-heading', {
 
                     {/* Margin Bottom */}
                     {otherTitle('Margin Bottom:')}
-                    <RangeControl value={sepMB} onChange={cng => setAttributes({ sepMB: cng })} min={0} max={75} step={1} />
+                    <RangeControl value={sepMB} onChange={cng => setAttributes({ sepMB: cng })} min={0} max={100} step={1} />
                 </PanelBody>
 
 
@@ -134,7 +125,7 @@ registerBlockType('b-blocks/section-heading', {
                     {toggleDesc && <span>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={descFontSize} onChange={cng => setAttributes({ descFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={descFontSize} onChange={cng => setAttributes({ descFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                         {/* Color */}
                         {otherTitle('Color:')}
@@ -148,16 +139,16 @@ registerBlockType('b-blocks/section-heading', {
             </InspectorControls>,
 
 
-            <div style={{ textAlign: contentAlign }}>
+            <div className="b_blocks_section_heading" style={{ textAlign: contentAlign }}>
                 <BlockControls>
                     <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>
 
-                <RichText className="b_blocks_section_head" key="editable" tagName={headTag} placeholder="Write Section Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} style={headStyle} />
+                <RichText className="b_blocks_section_head" key="editable" tagName={headTag} placeholder="Write Section Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} />
 
                 <div style={separatorStyle}></div>
 
-                {toggleDesc && <span><RichText className="b_blocks_section_description" key="editable" tagName="p" placeholder="Write Section Description" value={desc} onChange={cng => { setAttributes({ desc: cng }) }} style={descStyle} /></span>}
+                {toggleDesc && <span><RichText className="b_blocks_section_description" key="editable" tagName="p" placeholder="Write Section Description" value={desc} onChange={cng => { setAttributes({ desc: cng }) }} inlineToolbar style={descStyle} /></span>}
             </div >
         ]);
     },
@@ -173,7 +164,7 @@ registerBlockType('b-blocks/section-heading', {
         const descStyle = { fontSize: `${descFontSize}px`, color: descColor, margin: `${sepMB}px 0 ${descMB}px 0` };
 
         return (
-            <div style={{ textAlign: contentAlign }}>
+            <div className="b_blocks_section_heading" style={{ textAlign: contentAlign }}>
                 <RichText.Content className="b_blocks_section_head" tagName={headTag} value={head} style={headStyle} />
 
                 <div style={separatorStyle}></div>

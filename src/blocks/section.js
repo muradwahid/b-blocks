@@ -47,23 +47,23 @@ registerBlockType('b-blocks/section', {
                 < PanelBody title="Section Settings" initialOpen={true} >
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
-                    < ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
+                    <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
                     {/* Padding Top */}
                     {otherTitle('Padding Top:')}
-                    <RangeControl value={PT} onChange={cng => setAttributes({ PT: cng })} min={0} max={150} step={1} />
+                    <RangeControl value={PT} onChange={cng => setAttributes({ PT: cng })} min={0} max={100} step={1} />
 
                     {/* Padding Right */}
                     {otherTitle('Padding Right:')}
-                    <RangeControl value={PR} onChange={cng => setAttributes({ PR: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={PR} onChange={cng => setAttributes({ PR: cng })} min={0} max={150} step={1} />
 
                     {/* Padding Bottom */}
                     {otherTitle('Padding Bottom:')}
-                    <RangeControl value={PB} onChange={cng => setAttributes({ PB: cng })} min={0} max={150} step={1} />
+                    <RangeControl value={PB} onChange={cng => setAttributes({ PB: cng })} min={0} max={100} step={1} />
 
                     {/* Padding Left */}
                     {otherTitle('Padding Left:')}
-                    <RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={150} step={1} />
                 </PanelBody >
             </InspectorControls >,
 

@@ -37,12 +37,12 @@ registerBlockType('b-blocks/spacer', {
                 <PanelBody title="Spacer Settings" initialOpen={true}>
                     {/* Height/Size */}
                     {firstTitle('Height/Size:')}
-                    <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={500} step={1} />
+                    <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={1000} step={1} />
                 </PanelBody>
             </InspectorControls>,
 
 
-            <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>SPACER ---- This content {isSelected && '& background color '}
+            <div className="b_blocks_spacer" style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>SPACER ---- This content {isSelected && '& background color '}
 
                 <ResizableBox size={{ height }} enable={{ bottom: true }} onResizeStop={(event, direction, elt, delta) => {
                     setAttributes({ height: parseInt(height + delta.height, 0) });
@@ -59,7 +59,7 @@ registerBlockType('b-blocks/spacer', {
         const { height } = props.attributes;
 
         return (
-            <div style={{ height: `${height}px`, textAlign: 'inherit' }}></div>
+            <div className="b_blocks_spacer" style={{ height: `${height}px`, textAlign: 'inherit' }}></div>
         )
     },
 

@@ -1,9 +1,9 @@
 const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data;
-const { useEffect } = wp.element;
+const { useEffect, Fragment } = wp.element;
 
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner, Button, ButtonGroup, Tooltip } = wp.components;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } = wp.components;
 
 // Icon
 import icons from '../../Const/icons';
@@ -15,7 +15,10 @@ const { fontSizes, colors, aligns, fontWeights, textTransforms, postsOrdersBy, p
 const layouts = [
     { label: 'Grid', value: 'grid', icon: icons.grid },
     { label: 'Masonry', value: 'masonry', icon: icons.masonry },
-]
+];
+
+// Components
+import BtnGroup from '../../GutenComp/BtnGroup';
 
 // Functions
 import func from '../../Const/functions';
@@ -37,8 +40,8 @@ registerBlockType('b-blocks/posts', {
         cId: { type: 'string' },
 
         selectedCategories: { type: 'array', default: [] },
-        postsPerPageAll: { type: 'boolean', default: 'true' },
-        postsPerPage: { type: 'number', default: 10 },
+        postsPerPageAll: { type: 'boolean', default: 'false' },
+        postsPerPage: { type: 'number', default: 12 },
         postsOrderBy: { type: 'string', default: 'date' },
         postsOrder: { type: 'string', default: 'desc' },
 
@@ -57,7 +60,7 @@ registerBlockType('b-blocks/posts', {
         featureImgShow: { type: 'string', default: 'true' },
 
         titleShow: { type: 'string', default: 'true' },
-        titleFontSize: { type: 'number' },
+        titleFontSize: { type: 'number', default: 20 },
         titleColor: { type: 'string', default: '#4527a4' },
         titleMB: { type: 'number', default: 15 },
 
@@ -76,7 +79,7 @@ registerBlockType('b-blocks/posts', {
         excerptShow: { type: 'string', default: 'true' },
         excerptLength: { type: 'number', default: 25 },
         excerptAlign: { type: 'string', default: 'justify' },
-        excerptFontSize: { type: 'number' },
+        excerptFontSize: { type: 'number', default: 15 },
         excerptColor: { type: 'string', default: '#333' },
         excerptMB: { type: 'number', default: 10 },
 
@@ -84,7 +87,7 @@ registerBlockType('b-blocks/posts', {
         readMoreLabel: { type: 'string', default: 'Read More' },
         readMoreAlign: { type: 'string', default: 'left' },
         readMoreFontSize: { type: 'number', default: 14 },
-        readMoreTransform: { type: 'string', default: 'capitalize' },
+        readMoreTransform: { type: 'string', default: 'uppercase' },
         readMoreFontWeight: { type: 'string', default: '600' },
         readMoreColor: { type: 'string', default: '#4527a4' },
         readMoreHovColor: { type: 'string', default: '#8344c5' },
@@ -106,14 +109,15 @@ registerBlockType('b-blocks/posts', {
             posts: select('core').getEntityRecords('postType', 'post', query),
             categories: select('core').getEntityRecords('taxonomy', 'category'),
             media: id => select('core').getMedia(id),
+            authors: select('core').getAuthors()
         };
 
-    })(({ select, posts, categories, media, attributes, setAttributes, clientId }) => {
+    })(({ select, posts, categories, media, authors, attributes, setAttributes, clientId }) => {
         const { cId, selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, contentEqualHight, contentAlign, contentBGColor, postTextPTB, postTextPLR, shadow, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
 
         // Render HTML and Excerpt count
         const renderHTML = rawHTML => <span dangerouslySetInnerHTML={{ __html: rawHTML }} />;
-        const truncate = (str, no_words) => str.split(" ").splice(0, no_words).join(" ");
+        const truncate = (str, no_words) => str && str.split(" ").splice(0, no_words).join(" ");
 
         // Posts and Categories Check
         if (!posts || !categories) {
@@ -134,7 +138,6 @@ registerBlockType('b-blocks/posts', {
 
         // Styles
         const gridPostsStyle = { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gridGap: `${rowGap}px ${columnGap}px` }
-        const sliderPostsStyle = {}
         const masonryPostsStyle = { columns: columns, gap: `${columnGap}px` }
 
         const contentStyle = { textAlign: contentAlign, height: contentEqualHight == 'true' ? '100%' : 'auto', backgroundColor: contentBGColor }
@@ -172,9 +175,9 @@ registerBlockType('b-blocks/posts', {
 
         const postTitle = (link, title) => titleShow == 'true' && <h3 className="title" style={titleStyle}><a href={link} target="_blank" style={{ color: titleColor }}>{title.rendered}</a></h3>;
 
-        const metaAuthor = (author_info) => metaAuthorShow == 'true' && <span>
+        const metaAuthor = authorID => metaAuthorShow == 'true' && <span>
             <Dashicon icon="admin-users" style={{ color: metaIconColor }} />&nbsp;
-            <a href={author_info.author_link} target="_blank" style={{ color: metaLinkColor }}>{author_info.display_name}</a>
+            {authorID && authors && authors.filter(a => a.id == authorID).map(auth => <a href={auth.link} target="_blank" style={{ color: metaLinkColor }}>{auth.name}</a>)}
         </span>;
 
         const metaDate = date => metaDateShow == 'true' && <span>
@@ -187,10 +190,10 @@ registerBlockType('b-blocks/posts', {
             <span style={{ color: metaLinkColor }}>{renderHTML(categories.map(id => `${singleCat(id)}`))}</span>
         </span>;
 
-        const metaComments = (link, comment_info) => metaCommentShow == 'true' && <span>
-            <Dashicon icon="admin-comments" style={{ color: metaIconColor }} />&nbsp;
-            <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? "No Comments" : comment_info === 1 ? "1 Comment" : `${comment_info} Comments`}</a>
-        </span>;
+        // const metaComments = (link, comment_info) => metaCommentShow == 'true' && <span>
+        //     <Dashicon icon="admin-comments" style={{ color: metaIconColor }} />&nbsp;
+        //     <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? "No Comments" : comment_info === 1 ? "1 Comment" : `${comment_info} Comments`}</a>
+        // </span>;
 
         const postExcerpt = content => excerptShow == 'true' && <div className="excerpt" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
 
@@ -202,13 +205,7 @@ registerBlockType('b-blocks/posts', {
                 <PanelBody title="Layouts Settings" initialOpen={true}>
                     {/* Layout Type */}
                     {firstTitle('Layout Type:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(layouts).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button className="b_blocks_ap_posts_layout_change_btn" key={obj.value} icon={obj.icon} isMedium isPrimary={layout === obj.value} aria-pressed={layout === obj.value} onClick={() => setAttributes({ layout: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={layouts} myValue={layout} setState={cng => setAttributes({ layout: cng })} icon={true} />
 
                     {/* Columns */}
                     {otherTitle('Columns:')}
@@ -216,24 +213,24 @@ registerBlockType('b-blocks/posts', {
 
                     {/* Column Gap */}
                     {otherTitle('Column Gap:')}
-                    <RangeControl value={columnGap} onChange={cng => setAttributes({ columnGap: cng })} min={0} max={60} step={1} />
+                    <RangeControl value={columnGap} onChange={cng => setAttributes({ columnGap: cng })} min={0} max={100} step={1} />
 
                     {/* Row Gap */}
                     {otherTitle('Row Gap:')}
-                    <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={150} step={1} />
 
-                    {'grid' == layout && <span>
+                    {'grid' == layout && <Fragment>
                         {/* Content Height */}
                         {otherTitle('Content Height:')}
                         <ToggleControl label={contentEqualHight == 'true' ? 'Disable Equal Height' : 'Enable Equal Height'} checked={contentEqualHight == 'true' ? true : false} onChange={cng => setAttributes({ contentEqualHight: cng.toString() })} />
-                    </span>}
+                    </Fragment>}
                 </PanelBody>
 
 
                 {/* Posts Query */}
                 <PanelBody title="Posts Query" initialOpen={false}>
                     {/* Select Categories */}
-                    {categories && 0 !== categories.length ? <span>
+                    {categories && 0 !== categories.length ? <Fragment>
                         {firstTitle('Select Categories:')}
                         {categories.map(cat => {
                             const isInc = selectedCategories.includes(cat.id);
@@ -242,15 +239,15 @@ registerBlockType('b-blocks/posts', {
                                 <CheckboxControl label={cat.name} key={cat.id} checked={isInc} onChange={cng => setAttributes({ selectedCategories: cng ? [...selectedCategories, cat.id] : selectedCategories.filter(id => id !== cat.id) })} />
                             );
                         })}
-                    </span> : ''}
+                    </Fragment> : null}
 
                     {/* Posts Per Page */}
                     {otherTitle('Post Per Page:')}
                     <ToggleControl label={postsPerPageAll == 'true' ? 'Show Some Posts' : 'Show All Posts'} checked={postsPerPageAll == 'true' ? true : false} onChange={cng => setAttributes({ postsPerPageAll: cng.toString() })} />
 
-                    {!postsPerPageAll && <span>
-                        <RangeControl value={postsPerPage} onChange={cng => setAttributes({ postsPerPage: cng })} min={1} max={36} step={1} />
-                    </span>}
+                    {'false' == postsPerPageAll && <Fragment>
+                        <RangeControl value={postsPerPage} onChange={cng => setAttributes({ postsPerPage: 0 === cng ? 12 : cng })} min={1} max={36} step={1} />
+                    </Fragment>}
 
                     {/* Posts Order By */}
                     {otherTitle('Post Order By:')}
@@ -278,37 +275,37 @@ registerBlockType('b-blocks/posts', {
                     {otherTitle('Meta Data:')}
                     <ToggleControl label={metaShow == 'true' ? 'Hide Meta Data' : 'Show Meta Data'} checked={metaShow == 'true' ? true : false} onChange={cng => setAttributes({ metaShow: cng.toString() })} />
 
-                    {metaShow == 'true' && <span>
+                    {metaShow == 'true' && <Fragment>
                         <ToggleControl label={metaAuthorShow == 'true' ? 'Hide Author' : 'Show Author'} checked={metaAuthorShow == 'true' ? true : false} onChange={cng => setAttributes({ metaAuthorShow: cng.toString() })} />
 
                         <ToggleControl label={metaDateShow == 'true' ? 'Hide Date' : 'Show Date'} checked={metaDateShow == 'true' ? true : false} onChange={cng => setAttributes({ metaDateShow: cng.toString() })} />
 
                         <ToggleControl label={metaCategoryShow == 'true' ? 'Hide Category' : 'Show Category'} checked={metaCategoryShow == 'true' ? true : false} onChange={cng => setAttributes({ metaCategoryShow: cng.toString() })} />
 
-                        <ToggleControl label={metaCommentShow == 'true' ? 'Hide Comment' : 'Show Comment'} checked={metaCommentShow == 'true' ? true : false} onChange={cng => setAttributes({ metaCommentShow: cng.toString() })} />
-                    </span>}
+                        {/* <ToggleControl label={metaCommentShow == 'true' ? 'Hide Comment' : 'Show Comment'} checked={metaCommentShow == 'true' ? true : false} onChange={cng => setAttributes({ metaCommentShow: cng.toString() })} /> */}
+                    </Fragment>}
 
 
                     {/* Excerpt */}
                     {otherTitle('Excerpt:')}
                     <ToggleControl label={excerptShow == 'true' ? 'Hide Excerpt' : 'Show Excerpt'} checked={excerptShow == 'true' ? true : false} onChange={cng => setAttributes({ excerptShow: cng.toString() })} />
 
-                    {excerptShow == 'true' && <span>
+                    {excerptShow == 'true' && <Fragment>
                         {/* Excerpt Length */}
                         <small style={{ fontSize: '13px' }}>Excerpt Length:</small>
                         <RangeControl value={excerptLength} onChange={cng => setAttributes({ excerptLength: cng })} min={0} max={100} step={1} />
-                    </span>}
+                    </Fragment>}
 
 
                     {/* Read More */}
                     {otherTitle('Read More:')}
                     <ToggleControl label={readMoreShow == 'true' ? 'Hide Read More' : 'Show Read More'} checked={readMoreShow == 'true' ? true : false} onChange={cng => setAttributes({ readMoreShow: cng.toString() })} />
 
-                    {readMoreShow == 'true' && <span>
+                    {readMoreShow == 'true' && <Fragment>
                         {/* Read More Label */}
                         <small style={{ fontSize: '13px' }}>Read More Label:</small>
-                        <TextControl value={readMoreLabel} onChange={cng => setAttributes({ readMoreLabel: cng })} />
-                    </span>}
+                        <TextControl value={readMoreLabel} onChange={cng => setAttributes({ readMoreLabel: '' === cng ? 'Read More' : cng })} />
+                    </Fragment>}
                 </PanelBody>
 
 
@@ -316,13 +313,7 @@ registerBlockType('b-blocks/posts', {
                 <PanelBody title="Content Settings" initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
-                    <ButtonGroup className="b_blocks_button_groups">
-                        {Object.values(aligns).map(obj => (
-                            <Tooltip text={obj.label} position="top">
-                                <Button key={obj.value} icon={obj.icon} isMedium isPrimary={contentAlign === obj.value} aria-pressed={contentAlign === obj.value} onClick={() => setAttributes({ contentAlign: obj.value })}></Button>
-                            </Tooltip>
-                        ))}
-                    </ButtonGroup>
+                    <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
 
                     {/* Background Color */}
                     {otherTitle('Background Color:')}
@@ -330,11 +321,11 @@ registerBlockType('b-blocks/posts', {
 
                     {/* Top Bottom Padding */}
                     {otherTitle('Top Bottom Padding:')}
-                    <RangeControl value={postTextPTB} onChange={cng => setAttributes({ postTextPTB: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={postTextPTB} onChange={cng => setAttributes({ postTextPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Left Right Padding */}
                     {otherTitle('Left Right Padding:')}
-                    <RangeControl value={postTextPLR} onChange={cng => setAttributes({ postTextPLR: cng })} min={0} max={50} step={1} />
+                    <RangeControl value={postTextPLR} onChange={cng => setAttributes({ postTextPLR: cng })} min={0} max={150} step={1} />
 
                     {/* Shadow */}
                     {otherTitle('Shadow:')}
@@ -343,19 +334,19 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Feature Image Settings */}
-                {'true' == featureImgShow && <span>
+                {/* {'true' == featureImgShow && <Fragment>
                     <PanelBody title="Feature Image Settings" initialOpen={false}>
 
                     </PanelBody>
-                </span>}
+                </Fragment>} */}
 
 
                 {/* Title Settings */}
-                {titleShow == 'true' && <span>
+                {titleShow == 'true' && <Fragment>
                     <PanelBody title="Title Settings" initialOpen={false}>
                         {/* Font Size */}
-                        {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: cng })} />
+                        {firstTitle('Font Size:')}
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: 'undefined' === typeof cng ? 20 : cng })} />
 
                         {/* Color */}
                         {otherTitle('Color:')}
@@ -363,27 +354,21 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Bottom Margin */}
                         {otherTitle('Bottom Margin:')}
-                        <RangeControl value={titleMB} onChange={cng => setAttributes({ titleMB: cng })} min={0} max={50} step={1} />
+                        <RangeControl value={titleMB} onChange={cng => setAttributes({ titleMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </span>}
+                </Fragment>}
 
 
                 {/* Meta Data Settings */}
-                {metaShow == 'true' && <span>
+                {metaShow == 'true' && <Fragment>
                     <PanelBody title="Meta Data Settings" initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={metaFontSize} onChange={cng => setAttributes({ metaFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={13} value={metaFontSize} onChange={cng => setAttributes({ metaFontSize: 'undefined' === typeof cng ? 13 : cng })} />
 
                         {/* Text Transform */}
                         {otherTitle('Text Transform:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(textTransforms).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} isMedium isPrimary={metaTransform === obj.value} aria-pressed={metaTransform === obj.value} onClick={() => setAttributes({ metaTransform: obj.value })}>{obj.icon}</Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        <BtnGroup options={textTransforms} myValue={metaTransform} setState={cng => setAttributes({ metaTransform: cng })} />
 
                         {/* Text Color */}
                         {otherTitle('Text Color:')}
@@ -399,27 +384,21 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Bottom Margin */}
                         {otherTitle('Bottom Margin:')}
-                        <RangeControl value={metaMB} onChange={cng => setAttributes({ metaMB: cng })} min={0} max={50} step={1} />
+                        <RangeControl value={metaMB} onChange={cng => setAttributes({ metaMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </span>}
+                </Fragment>}
 
 
                 {/* Excerpt Settings */}
-                {excerptShow == 'true' && <span>
+                {excerptShow == 'true' && <Fragment>
                     <PanelBody title="Excerpt Settings" initialOpen={false}>
                         {/* Text Align */}
-                        {otherTitle('Text Align:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={excerptAlign === obj.value} aria-pressed={excerptAlign === obj.value} onClick={() => setAttributes({ excerptAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        {firstTitle('Text Align:')}
+                        <BtnGroup options={aligns} myValue={excerptAlign} setState={cng => setAttributes({ excerptAlign: cng })} icon={true} />
 
                         {/* Font Size */}
                         {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={excerptFontSize} onChange={cng => setAttributes({ excerptFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={excerptFontSize} onChange={cng => setAttributes({ excerptFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
                         {/* Color */}
                         {otherTitle('Color:')}
@@ -427,37 +406,25 @@ registerBlockType('b-blocks/posts', {
 
                         {/* Bottom Margin */}
                         {otherTitle('Bottom Margin:')}
-                        <RangeControl value={excerptMB} onChange={cng => setAttributes({ excerptMB: cng })} min={0} max={50} step={1} />
+                        <RangeControl value={excerptMB} onChange={cng => setAttributes({ excerptMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </span>}
+                </Fragment>}
 
 
                 {/* Read More Link Settings */}
-                {readMoreShow == 'true' && <span>
+                {readMoreShow == 'true' && <Fragment>
                     <PanelBody title="Read More Settings" initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(aligns).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} icon={obj.icon} isMedium isPrimary={readMoreAlign === obj.value} aria-pressed={readMoreAlign === obj.value} onClick={() => setAttributes({ readMoreAlign: obj.value })}></Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        <BtnGroup options={aligns} myValue={readMoreAlign} setState={cng => setAttributes({ readMoreAlign: cng })} icon={true} />
 
                         {/* Font Size */}
                         {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} value={readMoreFontSize} onChange={cng => setAttributes({ readMoreFontSize: cng })} />
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={14} value={readMoreFontSize} onChange={cng => setAttributes({ readMoreFontSize: 'undefined' === typeof cng ? 14 : cng })} />
 
                         {/* Text Transform */}
                         {otherTitle('Text Transform:')}
-                        <ButtonGroup className="b_blocks_button_groups">
-                            {Object.values(textTransforms).map(obj => (
-                                <Tooltip text={obj.label} position="top">
-                                    <Button key={obj.value} isMedium isPrimary={readMoreTransform === obj.value} aria-pressed={readMoreTransform === obj.value} onClick={() => setAttributes({ readMoreTransform: obj.value })}>{obj.icon}</Button>
-                                </Tooltip>
-                            ))}
-                        </ButtonGroup>
+                        <BtnGroup options={textTransforms} myValue={readMoreTransform} setState={cng => setAttributes({ readMoreTransform: cng })} />
 
                         {/* Font Weight */}
                         {otherTitle('Font Weight:')}
@@ -467,23 +434,23 @@ registerBlockType('b-blocks/posts', {
                         <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                             tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                             {tab => {
-                                return <span>
-                                    {'normal' == tab.name && <span>
+                                return <Fragment>
+                                    {'normal' == tab.name && <Fragment>
                                         {/* Color */}
-                                        {otherTitle('Color:')}
+                                        {firstTitle('Color:')}
                                         <ColorPalette value={readMoreColor} onChange={cng => setAttributes({ readMoreColor: cng })} colors={colors} />
-                                    </span>}
+                                    </Fragment>}
 
-                                    {'hover' == tab.name && <span>
+                                    {'hover' == tab.name && <Fragment>
                                         {/* Hover Color */}
-                                        {otherTitle('Hover Color:')}
+                                        {firstTitle('Hover Color:')}
                                         <ColorPalette value={readMoreHovColor} onChange={cng => setAttributes({ readMoreHovColor: cng })} colors={colors} />
-                                    </span>}
-                                </span>
+                                    </Fragment>}
+                                </Fragment>
                             }}
                         </TabPanel>
                     </PanelBody>
-                </span>}
+                </Fragment>}
             </InspectorControls>,
 
 
@@ -495,7 +462,7 @@ registerBlockType('b-blocks/posts', {
 
                 {'grid' == layout ? <div id={`bBlocksGridPosts-${clientId}`} className="b_blocks_grid_posts" style={gridPostsStyle}>
                     {posts.map(post => {
-                        const { id, date, featured_media, title, uagb_author_info, categories, uagb_comment_info, content, link, _links } = post;
+                        const { id, date, featured_media, title, author, categories, uagb_comment_info, content, link, _links } = post;
 
                         const d = new Date(date);
                         const convertDate = `${getMonth[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
@@ -509,10 +476,10 @@ registerBlockType('b-blocks/posts', {
                                         {postTitle(link, title)}
 
                                         {metaShow == 'true' && <p className="meta" style={metaStyle}>
-                                            {metaAuthor(uagb_author_info)}
+                                            {metaAuthor(author)}
                                             {metaDate(convertDate)}
                                             {metaCategory(categories)}
-                                            {metaComments(link, uagb_comment_info)}
+                                            {/* {metaComments(link, uagb_comment_info)} */}
                                         </p>}
 
                                         {postExcerpt(content)}
@@ -528,7 +495,7 @@ registerBlockType('b-blocks/posts', {
 
                     'masonry' == layout && <div id={`bBlocksMasonryPosts-${clientId}`} className="b_blocks_masonry_posts" style={masonryPostsStyle}>
                         {posts.map(post => {
-                            const { id, date, featured_media, title, uagb_author_info, categories, uagb_comment_info, content, link, _links } = post;
+                            const { id, date, featured_media, title, author, categories, uagb_comment_info, content, link, _links } = post;
 
                             const d = new Date(date);
                             const convertDate = `${getMonth[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
@@ -542,10 +509,10 @@ registerBlockType('b-blocks/posts', {
                                             {postTitle(link, title)}
 
                                             {metaShow == 'true' && <p className="meta" style={metaStyle}>
-                                                {metaAuthor(uagb_author_info)}
+                                                {metaAuthor(author)}
                                                 {metaDate(convertDate)}
                                                 {metaCategory(categories)}
-                                                {metaComments(link, uagb_comment_info)}
+                                                {/* {metaComments(link, uagb_comment_info)} */}
                                             </p>}
 
                                             {postExcerpt(content)}

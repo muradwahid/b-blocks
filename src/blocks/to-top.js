@@ -1,0 +1,90 @@
+const { registerBlockType } = wp.blocks;
+const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
+const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+
+// Variables
+import options from '../Const/options';
+const { fontSizes, aligns, colors } = options;
+
+// Components
+import BtnGroup from '../GutenComp/BtnGroup';
+
+// Functions
+import func from '../Const/functions';
+const { firstTitle, otherTitle } = func;
+
+// Icons
+import icons from '../Const/icons';
+
+registerBlockType('b-blocks/to-top', {
+    // Build In attributes
+    title: 'Go To Top',
+    description: 'Back to top your page',
+    icon: icons.toTop,
+    category: 'bBlocks',
+    keywords: ['To Top', 'Back to Top', 'Return to Top'],
+    supports: {
+        align: ['center', 'wide', 'full']
+    },
+
+    // Custom Attributes
+    attributes: {
+        align: { type: 'string', default: 'center' },
+
+        label: { type: 'string', default: 'Go to top', source: 'html', selector: '.b_blocks_to_top_link' },
+        contentAlign: { type: 'string', default: 'right' },
+        fontSize: { type: 'number', default: 15 },
+        color: { type: 'string', default: '#4527a4' },
+    },
+
+    // Build In Functions
+    edit: props => {
+        const { attributes: { contentAlign, label, fontSize, color }, setAttributes } = props;
+
+        // Styles
+        const toTopStyle = { fontSize: `${fontSize}px`, color: color, textDecoration: 'none' };
+
+        return ([
+            <InspectorControls>
+                {/* Go To Top Settings */}
+                <PanelBody title="Go To Top Settings" initialOpen={false}>
+                    {/* Text Align */}
+                    {firstTitle('Text Align:')}
+                    <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
+
+                    {/* Font Size */}
+                    {otherTitle('Font Size:')}
+                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontSize} onChange={cng => setAttributes({ fontSize: 'undefined' === typeof cng ? 15 : cng })} />
+
+                    {/* Color */}
+                    {otherTitle('Color:')}
+                    <ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
+                </PanelBody>
+            </InspectorControls>,
+
+
+            <div className="b_blocks_to_top" style={{ textAlign: contentAlign }}>
+                <RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={label} onChange={cng => { setAttributes({ label: cng }) }} inlineToolbar style={toTopStyle} />
+            </div>
+        ]);
+    },
+
+    save: props => {
+        const { contentAlign, label, fontSize, color } = props.attributes;
+
+        // Styles
+        const toTopStyle = { fontSize: `${fontSize}px`, color: color, textDecoration: 'none' };
+
+        return (
+            <div className="b_blocks_to_top" style={{ textAlign: contentAlign }}>
+                <RichText.Content className="b_blocks_to_top_link" tagName="a" href="#" value={label} style={toTopStyle} />
+            </div>
+        );
+    },
+
+    example: {
+        attributes: {
+            'preview': true,
+        },
+    },
+});
