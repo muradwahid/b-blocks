@@ -36,7 +36,7 @@ registerBlockType('b-blocks/tabs', {
     attributes: {
         align: { type: 'string', default: 'center' },
 
-        info: { type: 'array' },
+        tabs: { type: 'array' },
         layout: { type: 'string', default: 'tab' },
 
         contentAlign: { type: 'string', default: 'left' },
@@ -57,7 +57,7 @@ registerBlockType('b-blocks/tabs', {
 
     // edit function
     edit: (props) => {
-        const { attributes: { info = [], layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
+        const { attributes: { tabs = [], layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
 
         // Styles
         const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
@@ -69,7 +69,7 @@ registerBlockType('b-blocks/tabs', {
         const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
 
         // Components
-        const infoTitle = value => {
+        const tabsTitle = value => {
             return (
                 value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
@@ -84,16 +84,16 @@ registerBlockType('b-blocks/tabs', {
                         <a className={`pr-4 nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
 
                             <Button icon="no-alt" className="b_blocks_remove_tab_btn" onClick={() => {
-                                const newInfo = info.filter(item => item.index != index).map(i => {
+                                const newTabs = tabs.filter(item => item.index != index).map(i => {
                                     if (i.index > index) i.index -= 1;
                                     return i;
                                 });
-                                setAttributes({ info: newInfo });
+                                setAttributes({ tabs: newTabs });
                             }} style={tabRemoveStyle} />
 
                             <RichText tagName="h4" placeholder="Enter the title" value={title} onChange={cng => {
                                 const newObject = Object.assign({}, tab, { title: cng });
-                                setAttributes({ info: [...info.filter(item => item.index != index), newObject] });
+                                setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObject] });
                             }} inlineToolbar style={{ margin: 0, color: 'inherit' }} />
 
                         </a>
@@ -102,7 +102,7 @@ registerBlockType('b-blocks/tabs', {
             )
         }
 
-        const infoDesc = value => {
+        const tabsDesc = value => {
             return (
                 value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
@@ -115,7 +115,7 @@ registerBlockType('b-blocks/tabs', {
 
                             <RichText tagName="span" placeholder="Enter Content" value={description} onChange={cng => {
                                 const newObj = Object.assign({}, tab, { description: cng });
-                                setAttributes({ info: [...info.filter(item => item.index != index), newObj] });
+                                setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObj] });
                             }} inlineToolbar />
 
                         </div>
@@ -189,38 +189,38 @@ registerBlockType('b-blocks/tabs', {
                         layout == 'tab' ? <div className="tabs" style={containerStyle}>
                             <nav>
                                 <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                                    {infoTitle(info)}
+                                    {tabsTitle(tabs)}
                                 </div>
                             </nav>
                             <div className="tab-content" id="nav-tabContent" style={{ textAlign: `${contentAlign}` }}>
-                                {infoDesc(info)}
+                                {tabsDesc(tabs)}
                             </div>
                         </div> :
 
                             layout == 'pills' ? <div className="pills" style={containerStyle}>
                                 <div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                    {infoTitle(info)}
+                                    {tabsTitle(tabs)}
                                 </div>
                                 <div className="tab-content" style={{ textAlign: `${contentAlign}` }}>
-                                    {infoDesc(info)}
+                                    {tabsDesc(tabs)}
                                 </div>
                             </div> :
 
                                 layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
                                     <div className="col-3 pl-0">
                                         <div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                                            {infoTitle(info)}
+                                            {tabsTitle(tabs)}
                                         </div>
                                     </div>
                                     <div className="col-9 pr-0">
                                         <div className="tab-content" style={{ textAlign: `${contentAlign}` }}>
-                                            {infoDesc(info)}
+                                            {tabsDesc(tabs)}
                                         </div>
                                     </div>
                                 </div> : <h3>Select a layout</h3>
                     }
 
-                    {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ info: [...info, { index: info.length }] }) }} style={{ color: '#fff', backgroundColor: '#4527a4', fontSize: '18px', position: 'absolute', bottom: '-25px', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Tab</Button>}
+                    {!tabs.length || isSelected ? <div style={{ position: 'absolute', bottom: '-25px' }}><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }} style={{ color: '#fff', fontSize: '18px', backgroundColor: '#4527a4', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Tab</Button></div> : null}
                 </div>
             </div>
         ]);
@@ -228,7 +228,7 @@ registerBlockType('b-blocks/tabs', {
 
     // save function
     save: (props) => {
-        const { info, layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize } = props.attributes;
+        const { tabs, layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize } = props.attributes;
 
         // Styles
         const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor, width: `${width}${widthType}`, textAlign: 'initial' }
@@ -238,7 +238,7 @@ registerBlockType('b-blocks/tabs', {
         const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
 
         // Components
-        const infoTitle = value => {
+        const tabsTitle = value => {
             return (
                 value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
@@ -255,7 +255,7 @@ registerBlockType('b-blocks/tabs', {
             )
         }
 
-        const infoDesc = value => {
+        const tabsDesc = value => {
             return (
                 value && value.sort((a, b) => a.index - b.index).map(tab => {
                     const { index, title, description } = tab;
@@ -278,32 +278,32 @@ registerBlockType('b-blocks/tabs', {
                     layout == 'tab' ? <div className="tabs" style={containerStyle}>
                         <nav>
                             <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                                {infoTitle(info)}
+                                {tabsTitle(tabs)}
                             </div>
                         </nav>
                         <div className="tab-content" id="nav-tabContent">
-                            {infoDesc(info)}
+                            {tabsDesc(tabs)}
                         </div>
                     </div> :
 
                         layout == 'pills' ? <div className="pills" style={containerStyle}>
                             <div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                {infoTitle(info)}
+                                {tabsTitle(tabs)}
                             </div>
                             <div className="tab-content">
-                                {infoDesc(info)}
+                                {tabsDesc(tabs)}
                             </div>
                         </div> :
 
                             layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
                                 <div className="col-3 pl-0">
                                     <div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                                        {infoTitle(info)}
+                                        {tabsTitle(tabs)}
                                     </div>
                                 </div>
                                 <div className="col-9 pr-0">
                                     <div className="tab-content">
-                                        {infoDesc(info)}
+                                        {tabsDesc(tabs)}
                                     </div>
                                 </div>
                             </div> : <h3>Select a layout</h3>

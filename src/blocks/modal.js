@@ -48,7 +48,7 @@ registerBlockType('b-blocks/modal', {
         modalBtnLabel: { type: 'string' },
         modalBtnAlign: { type: 'string', default: 'left' },
         modalBtnFontSize: { type: 'number', default: 15 },
-        modalBtnTransform: { type: 'string', default: 'capitalize' },
+        modalBtnTransform: { type: 'string', default: 'uppercase' },
         modalBtnFontWeight: { type: 'string', default: '600' },
         modalBtnPTB: { type: 'number', default: 12 },
         modalBtnPLR: { type: 'number', default: 30 },

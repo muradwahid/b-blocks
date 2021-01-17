@@ -97,12 +97,10 @@ registerBlockType('b-blocks/card', {
 
         const footerStyle = { margin: 0, textAlign: footerAlign, fontSize: `${footerFontSize}px`, color: footerColor, backgroundColor: footerBGColor };
 
-        const mediaUpStyle = { position: 'absolute', textAlign: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#fff', borderRadius: '5px', width: 'fit-content' }
-
         // Content
         const cardImg = () => {
             return <div style={{ position: 'relative', minHeight: `${isSelected ? '40px' : 0}` }}>
-                {imgShow && isSelected && <div style={mediaUpStyle}>
+                {imgShow && isSelected && <div className="b_blocks_media_upload">
                     <MediaUpload allowedTypes={['image']} value={img} onSelect={cng => setAttributes({ img: cng })} render={({ open }) =>
                         img ? <div className="b_blocks_media_control">
                             <IconButton icon="controls-repeat" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>Replace Card Image</IconButton>

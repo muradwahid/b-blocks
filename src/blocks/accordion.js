@@ -188,7 +188,7 @@ registerBlockType('b-blocks/accordion', {
                     {accordionItem(accordions)}
                 </div>
 
-                {isSelected && <Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }} style={{ color: '#fff', backgroundColor: '#4527a4', fontSize: '18px', position: 'absolute', bottom: '-25px', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Accordion</Button>}
+                {!accordions.length || isSelected ? <div style={{ position: 'absolute', bottom: '-25px' }}><Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }} style={{ color: '#fff', fontSize: '18px', backgroundColor: '#4527a4', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Accordion</Button></div> : null}
             </div>
         ])
     },

@@ -286,6 +286,15 @@ $secondaryColor: #8344c5;
 }
 
 // Media Button
+.b_blocks_media_upload{
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    width: fit-content;
+}
 .b_blocks_media_control{
     display: flex;
     align-items: center;

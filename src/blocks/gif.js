@@ -114,9 +114,11 @@ registerBlockType('b-blocks/gif', {
                 <figure className="b_blocks_gif_figure" style={{ width: `${width}${widthType}`, display: `${selectedData && 'inline-block'}` }}>
                     {selectedData && <img src={selectedData.images.original.url} alt={selectedData.title} style={{ width: `100%` }} />}
 
-                    {null == selectedData || isSelected ? <div className="b_blocks_media_control b_blocks_gif_media_control">
-                        {selectedData ? <IconButton icon="controls-repeat" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>Replace Gif</IconButton> : <IconButton icon="upload" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>Select Gif</IconButton>}
-                        {selectedData && <IconButton value={null} onClick={() => setAttributes({ selectedData: null })} icon="exit" style={{ color: 'red', fontWeight: 'bold' }}>Remove Gif</IconButton>}
+                    {null == selectedData || isSelected ? <div className="b_blocks_media_upload">
+                        <div className="b_blocks_media_control b_blocks_gif_media_control">
+                            {selectedData ? <IconButton icon="controls-repeat" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>Replace Gif</IconButton> : <IconButton icon="upload" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>Select Gif</IconButton>}
+                            {selectedData && <IconButton value={null} onClick={() => setAttributes({ selectedData: null })} icon="exit" style={{ color: 'red', fontWeight: 'bold' }}>Remove Gif</IconButton>}
+                        </div>
                     </div> : null}
                 </figure>
 
