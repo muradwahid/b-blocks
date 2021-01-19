@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
 
@@ -91,7 +92,7 @@ registerBlockType('b-blocks/note', {
                     {/* Enable/Disable Heading */}
                     <ToggleControl label={toggleHead ? 'Disable Heading' : 'Enable Heading'} checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
-                    {toggleHead && <span>
+                    {toggleHead && <Fragment>
                         {/* Heading Tag */}
                         {otherTitle('Heading Tag:')}
                         <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -107,11 +108,11 @@ registerBlockType('b-blocks/note', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={100} step={1} />
-                    </span>}
+                    </Fragment>}
                 </PanelBody>
 
 
-                {toggleHead && <span>
+                {toggleHead && <Fragment>
                     {/* Separator Settings */}
                     <PanelBody title="Separator Settings" initialOpen={false}>
                         {/* Thickness */}
@@ -130,7 +131,7 @@ registerBlockType('b-blocks/note', {
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </span>}
+                </Fragment>}
 
 
                 {/* Content Settings */}
@@ -146,10 +147,12 @@ registerBlockType('b-blocks/note', {
             </InspectorControls>,
 
 
-            <div className="b_blocks_note" style={containerStyle}>
-                {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
+            <div className="b_blocks_note">
+                <div style={containerStyle}>
+                    {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
-                <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
+                    <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
+                </div>
             </div>
         ]);
     },
@@ -165,10 +168,12 @@ registerBlockType('b-blocks/note', {
         const contentStyle = { fontSize: `${contentFontSize}px`, color: contentColor, margin: `0` }
 
         return (
-            <div className="b_blocks_note" style={containerStyle}>
-                {toggleHead && <span><RichText.Content className="b_blocks_note_head" tagName={headTag} value={head} style={headStyle} /></span>}
+            <div className="b_blocks_note">
+                <div style={containerStyle}>
+                    {toggleHead && <RichText.Content className="b_blocks_note_head" tagName={headTag} value={head} style={headStyle} />}
 
-                <RichText.Content className="b_blocks_note_content" tagName="p" value={content} style={contentStyle} />
+                    <RichText.Content className="b_blocks_note_content" tagName="p" value={content} style={contentStyle} />
+                </div>
             </div>
         );
     },

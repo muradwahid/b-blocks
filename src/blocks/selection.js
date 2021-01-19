@@ -73,8 +73,10 @@ registerBlockType('b-blocks/selection', {
             </InspectorControls>,
 
 
-            <div className="b_blocks_selection" style={selectionStyle}>
-                <InnerBlocks />
+            <div className="b_blocks_selection">
+                <div className="b_blocks_inner_content" style={selectionStyle}>
+                    <InnerBlocks />
+                </div>
             </div>
         ])
     },
@@ -86,8 +88,10 @@ registerBlockType('b-blocks/selection', {
         const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px`, textAlign: 'inherit' };
 
         return (
-            <div className="b_blocks_selection" style={selectionStyle}>
-                <InnerBlocks.Content />
+            <div className="b_blocks_selection">
+                <div className="b_blocks_inner_content" style={selectionStyle}>
+                    <InnerBlocks.Content />
+                </div>
             </div>
         )
     },

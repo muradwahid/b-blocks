@@ -1,5 +1,5 @@
 const { registerBlockType } = wp.blocks;
-const { useEffect } = wp.element;
+const { useEffect, Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPanel, TextControl, SelectControl } = wp.components;
 
@@ -158,8 +158,8 @@ registerBlockType('b-blocks/modal', {
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
                         {tab => {
-                            return <span>
-                                {'normal' == tab.name && <span>
+                            return <Fragment>
+                                {'normal' == tab.name && <Fragment>
                                     {/* Color */}
                                     {otherTitle('Color:')}
                                     <ColorPalette value={modalBtnColor} onChange={cng => setAttributes({ modalBtnColor: cng })} colors={colors} />
@@ -167,9 +167,9 @@ registerBlockType('b-blocks/modal', {
                                     {/* Background Color */}
                                     {otherTitle('Background Color:')}
                                     <ColorPalette value={modalBtnBGColor} onChange={cng => setAttributes({ modalBtnBGColor: cng })} colors={colors} />
-                                </span>}
+                                </Fragment>}
 
-                                {'hover' == tab.name && <span>
+                                {'hover' == tab.name && <Fragment>
                                     {/* Hover Color */}
                                     {otherTitle('Hover Color:')}
                                     <ColorPalette value={modalBtnHovColor} onChange={cng => setAttributes({ modalBtnHovColor: cng })} colors={colors} />
@@ -177,8 +177,8 @@ registerBlockType('b-blocks/modal', {
                                     {/* Hover Background Color */}
                                     {otherTitle('Hover Background Color:')}
                                     <ColorPalette value={modalBtnHovBGColor} onChange={cng => setAttributes({ modalBtnHovBGColor: cng })} colors={colors} />
-                                </span>}
-                            </span>
+                                </Fragment>}
+                            </Fragment>
                         }}
                     </TabPanel>
                 </PanelBody>
@@ -187,7 +187,7 @@ registerBlockType('b-blocks/modal', {
                 <PanelBody title="Header Settings" initialOpen={false}>
                     <ToggleControl label={modalHead ? 'Hide Header' : 'Show Header'} checked={modalHead} onChange={cng => setAttributes({ modalHead: cng })} />
 
-                    {modalHead && <span>
+                    {modalHead && <Fragment>
                         {/* Close Button in Header */}
                         {otherTitle('Close Button in Header:')}
                         <ToggleControl label={modalHeadClose ? 'Hide Close Button in Header' : 'Show Close Button in Header'} checked={modalHeadClose} onChange={cng => setAttributes({ modalHeadClose: cng })} />
@@ -196,7 +196,7 @@ registerBlockType('b-blocks/modal', {
                         {otherTitle('Heading:')}
                         <ToggleControl label={headingShow ? 'Hide Heading' : 'Show Heading'} checked={headingShow} onChange={cng => setAttributes({ headingShow: cng })} />
 
-                        {headingShow && <span>
+                        {headingShow && <Fragment>
                             {/* Heading Tag */}
                             {firstTitle('Heading Tag:')}
                             <BtnGroup options={hTags} myValue={headingTag} setState={(cng, def) => setAttributes({ headingTag: cng, headingFontSize: def })} />
@@ -208,14 +208,14 @@ registerBlockType('b-blocks/modal', {
                             {/* Heading Color */}
                             {otherTitle('Heading Color:')}
                             <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
-                        </span>}
-                    </span>}
+                        </Fragment>}
+                    </Fragment>}
                 </PanelBody>
 
                 <PanelBody title="Footer Settings" initialOpen={false}>
                     <ToggleControl label={modalFoot ? 'Hide Footer' : 'Show Footer'} checked={modalFoot} onChange={cng => setAttributes({ modalFoot: cng })} />
 
-                    {modalFoot && <span>
+                    {modalFoot && <Fragment>
                         {/* Footer Text Font Size */}
                         {otherTitle('Footer Text Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={footerTextFontSize} onChange={cng => setAttributes({ footerTextFontSize: 'undefined' === typeof cng ? 15 : cng })} />
@@ -227,7 +227,7 @@ registerBlockType('b-blocks/modal', {
                         {/* Close Button in Footer */}
                         {otherTitle('Close Button in Footer:')}
                         <ToggleControl label={modalFootClose ? 'Hide Close Button in Footer' : 'Show Close Button in Footer'} checked={modalFootClose} onChange={cng => setAttributes({ modalFootClose: cng })} />
-                    </span>}
+                    </Fragment>}
                 </PanelBody>
             </InspectorControls>,
 
@@ -254,7 +254,7 @@ registerBlockType('b-blocks/modal', {
                     <div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
                         <div className="modal-content">
                             {modalHead && <div className="modal-header" style={{ display: 'block', position: 'relative' }}>
-                                {headingShow && <RichText className="b_blocks_modal_heading" key="editable" tagName={headingTag} placeholder="Write Modal Heading" value={heading} onChange={cng => { setAttributes({ heading: cng }) }} inlineToolbar style={headingStyle} />}
+                                {headingShow && <span><RichText className="b_blocks_modal_heading" key="editable" tagName={headingTag} placeholder="Write Modal Heading" value={heading} onChange={cng => { setAttributes({ heading: cng }) }} inlineToolbar style={headingStyle} /></span>}
 
                                 {modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" title="Remove this slide" data-dismiss="modal" aria-label="Close" style={{ position: "absolute", top: '12px', right: '12px' }} />}
                             </div>}
@@ -264,7 +264,7 @@ registerBlockType('b-blocks/modal', {
                             </div>
 
                             {modalFoot && <div className="modal-footer" style={{ display: 'block' }}>
-                                {footerTextShow && <RichText className="b_blocks_modal_footer_text" key="editable" tagName="p" placeholder="Write Modal Footer Text" value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerTextStyle} />}
+                                {footerTextShow && <span><RichText className="b_blocks_modal_footer_text" key="editable" tagName="p" placeholder="Write Modal Footer Text" value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerTextStyle} /></span>}
 
                                 {modalFootClose && <div style={{ textAlign: 'right' }}><button type="button" className="b_blocks_btn b_blocks_btn_small" data-dismiss="modal">Close</button></div>}
                             </div>}

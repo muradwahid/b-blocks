@@ -42,15 +42,18 @@ registerBlockType('b-blocks/spacer', {
             </InspectorControls>,
 
 
-            <div className="b_blocks_spacer" style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>SPACER ---- This content {isSelected && '& background color '}
+            <div className="b_blocks_spacer">
+                <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
+                    SPACER ---- This content {isSelected && '& background color '}
 
-                <ResizableBox size={{ height }} enable={{ bottom: true }} onResizeStop={(event, direction, elt, delta) => {
-                    setAttributes({ height: parseInt(height + delta.height, 0) });
-                    toggleSelection(true);
-                }} onResizeStart={() => {
-                    toggleSelection(false);
-                }} />
-                will not show in front End
+                    <ResizableBox size={{ height }} enable={{ bottom: true }} onResizeStop={(event, direction, elt, delta) => {
+                        setAttributes({ height: parseInt(height + delta.height, 0) });
+                        toggleSelection(true);
+                    }} onResizeStart={() => {
+                        toggleSelection(false);
+                    }} />
+                    will not show in front End
+                </div>
             </div>
         ])
     },
@@ -59,7 +62,9 @@ registerBlockType('b-blocks/spacer', {
         const { height } = props.attributes;
 
         return (
-            <div className="b_blocks_spacer" style={{ height: `${height}px`, textAlign: 'inherit' }}></div>
+            <div className="b_blocks_spacer">
+                <div style={{ height: `${height}px`, textAlign: 'inherit' }}></div>
+            </div>
         )
     },
 

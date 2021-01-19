@@ -121,7 +121,7 @@ registerBlockType('b-blocks/alert', {
 
             <div className="b_blocks_alert">
                 <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
-                    {headShow && <RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} />}
+                    {headShow && <span><RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
                     <RichText className="b_blocks_alert_text" key="editable" tagName="p" placeholder="Write Your Alert Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
 

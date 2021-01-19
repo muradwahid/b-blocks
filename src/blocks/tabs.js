@@ -94,7 +94,7 @@ registerBlockType('b-blocks/tabs', {
                             <RichText tagName="h4" placeholder="Enter the title" value={title} onChange={cng => {
                                 const newObject = Object.assign({}, tab, { title: cng });
                                 setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObject] });
-                            }} inlineToolbar style={{ margin: 0, color: 'inherit' }} />
+                            }} inlineToolbar style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
 
                         </a>
                     )
@@ -217,7 +217,7 @@ registerBlockType('b-blocks/tabs', {
                                             {tabsDesc(tabs)}
                                         </div>
                                     </div>
-                                </div> : <h3>Select a layout</h3>
+                                </div> : <h3 style={{ fontSize: '20px' }}>Select a layout</h3>
                     }
 
                     {!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>Add New Tab</Button></div> : null}
@@ -248,7 +248,7 @@ registerBlockType('b-blocks/tabs', {
 
                     return (
                         <a className={`nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
-                            <RichText.Content tagName="h4" value={title} style={{ margin: 0, color: 'inherit' }} />
+                            <RichText.Content tagName="h4" value={title} style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
                         </a>
                     )
                 })
@@ -306,7 +306,7 @@ registerBlockType('b-blocks/tabs', {
                                         {tabsDesc(tabs)}
                                     </div>
                                 </div>
-                            </div> : <h3>Select a layout</h3>
+                            </div> : <h3 style={{ fontSize: '20px' }}>Select a layout</h3>
                 }
             </div>
         );

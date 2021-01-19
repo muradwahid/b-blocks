@@ -123,18 +123,18 @@ registerBlockType('b-blocks/card', {
 
         const cardHeader = () => {
             return <Fragment>
-                {headerShow && <RichText className="card-header b_blocks_card_header" key="editable" tagName={headerTag} placeholder="Enter Header Text" value={headerText} onChange={cng => { setAttributes({ headerText: cng }) }} inlineToolbar style={headerStyle} />}
+                {headerShow && <span><RichText className="card-header b_blocks_card_header" key="editable" tagName={headerTag} placeholder="Enter Header Text" value={headerText} onChange={cng => { setAttributes({ headerText: cng }) }} inlineToolbar style={headerStyle} /></span>}
             </Fragment>;
         }
 
         const cardBody = () => {
             return <div className="card-body" style={bodyStyle}>
                 <Fragment>
-                    {bodyHeadShow && <RichText className="card-title b_blocks_card_body_head" key="editable" tagName={bodyHeadTag} placeholder="Enter Body Heading" value={bodyHeadText} onChange={cng => { setAttributes({ bodyHeadText: cng }) }} inlineToolbar style={bodyHeadStyle} />}
+                    {bodyHeadShow && <span><RichText className="card-title b_blocks_card_body_head" key="editable" tagName={bodyHeadTag} placeholder="Enter Body Heading" value={bodyHeadText} onChange={cng => { setAttributes({ bodyHeadText: cng }) }} inlineToolbar style={bodyHeadStyle} /></span>}
                 </Fragment>
 
                 <Fragment>
-                    {bodyDescShow && <RichText className="card-text b_blocks_card_body_desc" key="editable" tagName="p" placeholder="Enter Body Description" value={bodyDescText} onChange={cng => { setAttributes({ bodyDescText: cng }) }} inlineToolbar style={bodyDescStyle} />}
+                    {bodyDescShow && <span><RichText className="card-text b_blocks_card_body_desc" key="editable" tagName="p" placeholder="Enter Body Description" value={bodyDescText} onChange={cng => { setAttributes({ bodyDescText: cng }) }} inlineToolbar style={bodyDescStyle} /></span>}
                 </Fragment>
 
                 <Fragment>
@@ -145,7 +145,7 @@ registerBlockType('b-blocks/card', {
 
         const cardFooter = () => {
             return <Fragment>
-                {footerShow && <RichText className="card-footer b_blocks_card_footer" key="editable" tagName={footerTag} placeholder="Enter Footer Text" value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerStyle} />}
+                {footerShow && <span><RichText className="card-footer b_blocks_card_footer" key="editable" tagName={footerTag} placeholder="Enter Footer Text" value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerStyle} /></span>}
             </Fragment>;
         }
 

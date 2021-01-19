@@ -1,8 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data;
 const { useEffect, Fragment } = wp.element;
-import { Style } from "react-style-tag";
-
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } = wp.components;
 
@@ -122,7 +120,7 @@ registerBlockType('b-blocks/posts', {
 
         // Posts and Categories Check
         if (!posts || !categories) {
-            return <h3 style={{ color: '#4527a4' }}><Spinner /> Loading...</h3>;
+            return <h3 style={{ color: '#4527a4', fontSize: '20px' }}><Spinner /> Loading...</h3>;
         }
 
         // Single Category Func
@@ -169,7 +167,7 @@ registerBlockType('b-blocks/posts', {
 
         // Components
         const noPosts = () => {
-            return <h3 style={{ color: '#4527a4', textAlign: 'center' }}>No posts found!! Please add some posts</h3>;
+            return <h3 style={{ color: '#4527a4', textAlign: 'center', fontSize: '20px' }}>No posts found!! Please add some posts</h3>;
         }
 
 

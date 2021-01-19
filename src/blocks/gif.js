@@ -1,7 +1,5 @@
-import { Style } from "react-style-tag";
 const { registerBlockType } = wp.blocks;
 const { useEffect } = wp.element;
-
 const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, RangeControl, TextControl, IconButton } = wp.components;
 

@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, ToggleControl, RangeControl, PanelRow } = wp.components;
 
@@ -47,7 +48,7 @@ registerBlockType('b-blocks/progress-bar', {
 
         // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
-        const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%`, backgroundImage: `linear-gradient(45deg, ${progressBarStripedColor} 25%, transparent 25%, transparent 50%, ${progressBarStripedColor} 50%, ${progressBarStripedColor} 75%, transparent 75%, transparent)` }
+        const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%`, backgroundImage: progressBarStriped ? `linear-gradient(45deg, ${progressBarStripedColor} 25%, transparent 25%, transparent 50%, ${progressBarStripedColor} 50%, ${progressBarStripedColor} 75%, transparent 75%, transparent)` : null }
 
         return ([
             <InspectorControls>
@@ -84,17 +85,19 @@ registerBlockType('b-blocks/progress-bar', {
                         <BColor value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
                     </PanelRow>
 
-                    {progressBarStriped && <span>
+                    {progressBarStriped && <Fragment>
                         {/* Animation */}
                         {otherTitle('Animation')}
                         <ToggleControl label={progressBarAnimation ? 'Disable Animation' : 'Enable Animation'} checked={progressBarAnimation} onChange={cng => setAttributes({ progressBarAnimation: cng })} />
-                    </span>}
+                    </Fragment>}
                 </PanelBody>
             </InspectorControls>,
 
 
-            <div className="b_blocks_progress_bar progress" style={progressStyle}>
-                <div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
+            <div className="b_blocks_progress_bar">
+                <div className="progress" style={progressStyle}>
+                    <div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
         ])
     },
@@ -104,11 +107,13 @@ registerBlockType('b-blocks/progress-bar', {
 
         // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px', textAlign: 'inherit' }
-        const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%` }
+        const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%`, backgroundImage: progressBarStriped ? `linear-gradient(45deg, ${progressBarStripedColor} 25%, transparent 25%, transparent 50%, ${progressBarStripedColor} 50%, ${progressBarStripedColor} 75%, transparent 75%, transparent)` : null }
 
         return (
-            <div className="b_blocks_progress_bar progress" style={progressStyle}>
-                <div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
+            <div className="b_blocks_progress_bar">
+                <div className="progress" style={progressStyle}>
+                    <div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
         )
     },

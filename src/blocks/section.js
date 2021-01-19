@@ -68,10 +68,12 @@ registerBlockType('b-blocks/section', {
             </InspectorControls>,
 
 
-            <div className="b_blocks_section b_blocks_inner_content" style={sectionStyle}>
-                <InnerBlocks template={[['b-blocks/section-heading']]} />
+            <div className="b_blocks_section b_blocks_inner_content">
+                <div style={sectionStyle}>
+                    <InnerBlocks template={[['b-blocks/section-heading']]} />
 
-                {isSelected && <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />}
+                    {isSelected && <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />}
+                </div>
             </div>
         ])
     },
@@ -82,8 +84,10 @@ registerBlockType('b-blocks/section', {
         const sectionStyle = { backgroundColor: BGColor, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, textAlign: 'inherit' }
 
         return (
-            <div className="b_blocks_section b_blocks_inner_content" style={sectionStyle}>
-                <InnerBlocks.Content />
+            <div className="b_blocks_section b_blocks_inner_content">
+                <div style={sectionStyle}>
+                    <InnerBlocks.Content />
+                </div>
             </div>
         )
     },
