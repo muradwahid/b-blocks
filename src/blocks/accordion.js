@@ -9,6 +9,7 @@ const { fontSizes, colors, aligns, textTransforms } = options;
 
 // Components
 import BtnGroup from '../GutenComp/BtnGroup';
+import BColor from '../GutenComp/BColor';
 
 // Functions
 import func from '../Const/functions';
@@ -101,7 +102,7 @@ registerBlockType('b-blocks/accordion', {
                                 }} inlineToolbar style={titleStyle} />
                             </a>
 
-                            <div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle} >
+                            <div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle}>
                                 <RichText tagName="p" placeholder="Enter the description" value={description} onChange={cng => {
                                     const newObj = Object.assign({}, acc, { description: cng });
                                     setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
@@ -180,7 +181,7 @@ registerBlockType('b-blocks/accordion', {
                     {otherTitle('Left Right Padding:')}
                     <RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
                 </PanelBody>
-            </InspectorControls >,
+            </InspectorControls>,
 
 
             <div className="b_blocks_accordion">
@@ -188,7 +189,7 @@ registerBlockType('b-blocks/accordion', {
                     {accordionItem(accordions)}
                 </div>
 
-                {!accordions.length || isSelected ? <div style={{ position: 'absolute', bottom: '-25px' }}><Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }} style={{ color: '#fff', fontSize: '18px', backgroundColor: '#4527a4', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Accordion</Button></div> : null}
+                {!accordions.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>Add New Accordion</Button></div> : null}
             </div>
         ])
     },
@@ -225,7 +226,7 @@ registerBlockType('b-blocks/accordion', {
                                 <RichText.Content tagName="h3" value={title} style={titleStyle} />
                             </a>
 
-                            <div id={`accCollapse-${cId}${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${cId}`} style={contentStyle} >
+                            <div id={`accCollapse-${cId}${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${cId}`} style={contentStyle}>
                                 <RichText.Content tagName="p" value={description} style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
                             </div>
                         </div>

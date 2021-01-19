@@ -1,10 +1,13 @@
 const { registerBlockType } = wp.blocks;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, ToggleControl, RangeControl } = wp.components;
+const { PanelBody, ToggleControl, RangeControl, PanelRow } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { colors } = options;
+
+// Components
+import BColor from '../GutenComp/BColor';
 
 // Functions
 import func from '../Const/functions';
@@ -34,16 +37,17 @@ registerBlockType('b-blocks/progress-bar', {
         progressBarBG: { type: 'string', default: '#8344c5' },
         progressBarWidth: { type: 'number', default: 75 },
         progressBarStriped: { type: 'boolean', default: true },
+        progressBarStripedColor: { type: 'string', default: '#ffffff26' },
         progressBarAnimation: { type: 'boolean', default: true }
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarAnimation }, setAttributes } = props;
+        const { attributes: { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarStripedColor, progressBarAnimation }, setAttributes } = props;
 
         // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
-        const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%` }
+        const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%`, backgroundImage: `linear-gradient(45deg, ${progressBarStripedColor} 25%, transparent 25%, transparent 50%, ${progressBarStripedColor} 50%, ${progressBarStripedColor} 75%, transparent 75%, transparent)` }
 
         return ([
             <InspectorControls>
@@ -74,6 +78,12 @@ registerBlockType('b-blocks/progress-bar', {
                     {otherTitle('Striped')}
                     <ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
+                    <div style={{ marginTop: '10px' }}></div>
+                    <PanelRow>
+                        <p className="panel_single-title" style={{ marginTop: '15px' }}>Striped Color:</p>
+                        <BColor value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
+                    </PanelRow>
+
                     {progressBarStriped && <span>
                         {/* Animation */}
                         {otherTitle('Animation')}
@@ -90,7 +100,7 @@ registerBlockType('b-blocks/progress-bar', {
     },
 
     save: props => {
-        const { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarAnimation } = props.attributes;
+        const { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarStripedColor, progressBarAnimation } = props.attributes;
 
         // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px', textAlign: 'inherit' }

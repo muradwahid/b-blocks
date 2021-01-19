@@ -220,7 +220,7 @@ registerBlockType('b-blocks/tabs', {
                                 </div> : <h3>Select a layout</h3>
                     }
 
-                    {!tabs.length || isSelected ? <div style={{ position: 'absolute', bottom: '-25px' }}><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }} style={{ color: '#fff', fontSize: '18px', backgroundColor: '#4527a4', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Tab</Button></div> : null}
+                    {!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>Add New Tab</Button></div> : null}
                 </div>
             </div>
         ]);

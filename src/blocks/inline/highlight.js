@@ -1,6 +1,6 @@
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, FormToggle, PanelRow } = wp.components;
-const { registerFormatType, unregisterFormatType, toggleFormat } = wp.richText;
+const { registerFormatType, toggleFormat } = wp.richText;
 
 
 const type = 'b-blocks/text-highlight';

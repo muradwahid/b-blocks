@@ -50,7 +50,7 @@ registerBlockType('b-blocks/mailto', {
         const { attributes: { receiverMail, mtBtnLabel, mtBtnAlign, mtBtnFontSize, mtBtnTransform, mtBtnFontWeight, mtBtnPTB, mtBtnPLR, mtBtnRadius, mtBtnColor, mtBtnBGColor }, setAttributes, isSelected } = props;
 
         // Styles
-        const mtBtnStyle = { display: 'inline-block', fontSize: `${mtBtnFontSize}px`, textTransform: mtBtnTransform, fontWeight: mtBtnFontWeight, padding: `${mtBtnPTB}px ${mtBtnPLR}px`, borderRadius: `${mtBtnRadius}px`, color: mtBtnColor, backgroundColor: mtBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease', textDecoration: 'none' };
+        const mtBtnStyle = { fontSize: `${mtBtnFontSize}px`, textTransform: mtBtnTransform, fontWeight: mtBtnFontWeight, padding: `${mtBtnPTB}px ${mtBtnPLR}px`, borderRadius: `${mtBtnRadius}px`, color: mtBtnColor, backgroundColor: mtBtnBGColor };
 
         return ([
             <InspectorControls>
@@ -95,7 +95,7 @@ registerBlockType('b-blocks/mailto', {
                     {otherTitle('Background Color:')}
                     <ColorPalette value={mtBtnBGColor} onChange={cng => setAttributes({ mtBtnBGColor: cng })} colors={colors} />
                 </PanelBody>
-            </InspectorControls >,
+            </InspectorControls>,
 
 
             <div className="b_blocks_mailto" style={{ textAlign: mtBtnAlign, position: 'relative' }}>
@@ -103,12 +103,12 @@ registerBlockType('b-blocks/mailto', {
                     <AlignmentToolbar value={mtBtnAlign} onChange={cng => setAttributes({ mtBtnAlign: cng })} />
                 </BlockControls>
 
-                <a className="mailtoui" href={`mailto:${receiverMail}`} style={mtBtnStyle} target="_blank">
+                <a className="mailtoui b_blocks_btn" href={`mailto:${receiverMail}`} style={mtBtnStyle} target="_blank">
                     <RichText className="b_blocks_mt_btn_label" key="editable" tagName="span" placeholder="Write Mail to Button Label" value={mtBtnLabel} onChange={cng => { setAttributes({ mtBtnLabel: cng }) }} inlineToolbar />
                 </a>
 
-                {isSelected && <div style={{ position: 'absolute', bottom: '-33px', left: `${mtBtnAlign === 'left' ? '0%' : mtBtnAlign === 'center' ? '50%' : mtBtnAlign === 'right' && '100%'}`, transform: `${mtBtnAlign === 'left' ? 'translateX(0)' : mtBtnAlign === 'center' ? 'translateX(-50%)' : mtBtnAlign === 'right' && 'translateX(-100%)'}`, zIndex: 30 }}>
-                    <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} placeholder="Receiver Email" />
+                {isSelected && <div className="b_blocks_btn_text_control" style={{ left: `${mtBtnAlign === 'left' ? '0%' : mtBtnAlign === 'center' ? '50%' : mtBtnAlign === 'right' && '100%'}`, transform: `${mtBtnAlign === 'left' ? 'translateX(0)' : mtBtnAlign === 'center' ? 'translateX(-50%)' : mtBtnAlign === 'right' && 'translateX(-100%)'}` }}>
+                    <TextControl id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} placeholder="Receiver Email" />
                 </div>}
             </div>
         ])
@@ -118,11 +118,11 @@ registerBlockType('b-blocks/mailto', {
         const { receiverMail, mtBtnLabel, mtBtnAlign, mtBtnFontSize, mtBtnTransform, mtBtnFontWeight, mtBtnPTB, mtBtnPLR, mtBtnRadius, mtBtnColor, mtBtnBGColor } = props.attributes;
 
         // Styles
-        const mtBtnStyle = { display: 'inline-block', fontSize: `${mtBtnFontSize}px`, textTransform: mtBtnTransform, fontWeight: mtBtnFontWeight, padding: `${mtBtnPTB}px ${mtBtnPLR}px`, borderRadius: `${mtBtnRadius}px`, color: mtBtnColor, backgroundColor: mtBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease', textDecoration: 'none' };
+        const mtBtnStyle = { fontSize: `${mtBtnFontSize}px`, textTransform: mtBtnTransform, fontWeight: mtBtnFontWeight, padding: `${mtBtnPTB}px ${mtBtnPLR}px`, borderRadius: `${mtBtnRadius}px`, color: mtBtnColor, backgroundColor: mtBtnBGColor };
 
         return (
             <div className="b_blocks_mailto" style={{ textAlign: mtBtnAlign }}>
-                <a className="mailtoui" href={`mailto:${receiverMail}`} style={mtBtnStyle}>
+                <a className="mailtoui b_blocks_btn" href={`mailto:${receiverMail}`} style={mtBtnStyle}>
                     <RichText.Content className="b_blocks_mt_btn_label" tagName="span" value={mtBtnLabel} />
                 </a>
             </div>

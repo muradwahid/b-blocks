@@ -44,7 +44,7 @@ registerBlockType('b-blocks/section', {
         return ([
             <InspectorControls>
                 {/* Section Settings */}
-                < PanelBody title="Section Settings" initialOpen={true} >
+                <PanelBody title="Section Settings" initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
@@ -64,11 +64,11 @@ registerBlockType('b-blocks/section', {
                     {/* Padding Left */}
                     {otherTitle('Padding Left:')}
                     <RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={150} step={1} />
-                </PanelBody >
-            </InspectorControls >,
+                </PanelBody>
+            </InspectorControls>,
 
 
-            <div className="b_blocks_section" style={sectionStyle}>
+            <div className="b_blocks_section b_blocks_inner_content" style={sectionStyle}>
                 <InnerBlocks template={[['b-blocks/section-heading']]} />
 
                 {isSelected && <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />}
@@ -82,7 +82,7 @@ registerBlockType('b-blocks/section', {
         const sectionStyle = { backgroundColor: BGColor, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, textAlign: 'inherit' }
 
         return (
-            <div className="b_blocks_section" style={sectionStyle}>
+            <div className="b_blocks_section b_blocks_inner_content" style={sectionStyle}>
                 <InnerBlocks.Content />
             </div>
         )

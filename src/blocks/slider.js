@@ -264,7 +264,7 @@ registerBlockType('b-blocks/slider', {
                     </a>
                 </div>
 
-                {!slides.length || isSelected ? <div style={{ position: 'absolute', bottom: '-25px', left: '50%', transform: 'translateX(-50%)' }}><Button icon="plus-alt" onClick={title => { setAttributes({ slides: [...slides, { index: slides.length }] }) }} style={{ color: '#fff', fontSize: '18px', backgroundColor: '#4527a4', padding: '20px', borderRadius: '5px', zIndex: 30 }}>Add New Slide</Button></div> : null}
+                {!slides.length || isSelected ? <div className="b_blocks_add_item" style={{ left: '50%', transform: 'translateX(-50%)' }}><Button icon="plus-alt" onClick={title => { setAttributes({ slides: [...slides, { index: slides.length }] }) }} >Add New Slide</Button></div> : null}
             </div>
         ])
     },

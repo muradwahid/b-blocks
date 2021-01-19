@@ -1,5 +1,5 @@
 const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
+const { Fragment, useEffect } = wp.element;
 const { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar, MediaUpload } = wp.blockEditor;
 const { PanelBody, FontSizePicker, IconButton, ToggleControl, RangeControl, RadioControl, PanelRow } = wp.components;
 const ALLOWED_BLOCKS = ['core/button'];
@@ -97,9 +97,16 @@ registerBlockType('b-blocks/card', {
 
         const footerStyle = { margin: 0, textAlign: footerAlign, fontSize: `${footerFontSize}px`, color: footerColor, backgroundColor: footerBGColor };
 
+        useEffect(() => {
+            const cardImg = document.querySelectorAll('.b_blocks_card .card img');
+            cardImg.length && cardImg.forEach(im => {
+                img && img.url ? im.style.height = `${(im.clientWidth / 16) * 9}px` : null;
+            });
+        }, [imgShow, img, imgPos, cardWidth, cardWidthType]);
+
         // Content
         const cardImg = () => {
-            return <div style={{ position: 'relative', minHeight: `${isSelected ? '40px' : 0}` }}>
+            return <div style={{ position: 'relative', minHeight: `${isSelected ? '40px' : 0}`, textAlign: 'center' }}>
                 {imgShow && isSelected && <div className="b_blocks_media_upload">
                     <MediaUpload allowedTypes={['image']} value={img} onSelect={cng => setAttributes({ img: cng })} render={({ open }) =>
                         img ? <div className="b_blocks_media_control">
@@ -110,8 +117,8 @@ registerBlockType('b-blocks/card', {
                             </div>} />
                 </div>}
 
-                {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} />}
-            </div >;
+                {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} style={{ objectFit: 'cover' }} />}
+            </div>;
         }
 
         const cardHeader = () => {
@@ -145,7 +152,7 @@ registerBlockType('b-blocks/card', {
         return ([
             <InspectorControls>
                 {/* Card Settings */}
-                < PanelBody title="Card Settings" initialOpen={true} >
+                <PanelBody title="Card Settings" initialOpen={true}>
                     {/* Layout */}
                     {firstTitle('Layout:')}
                     <BtnGroup options={cardLayouts} myValue={layout} setState={(cng, def) => setAttributes({ layout: cng, cardWidth: def })} icon={true} />
@@ -161,13 +168,13 @@ registerBlockType('b-blocks/card', {
                     </PanelRow>
 
                     <RangeControl value={cardWidth} onChange={cng => setAttributes({ cardWidth: cng })} min={0} max={("%" == cardWidthType) ? 100 : 1920} step={1} />
-                </PanelBody >
+                </PanelBody>
 
 
                 {/* Image Settings */}
-                < PanelBody title="Image Settings" initialOpen={false} >
+                <PanelBody title="Image Settings" initialOpen={false}>
                     {/* Show/Hide Image */}
-                    < ToggleControl label={imgShow ? 'Hide Image' : 'Show Image'} checked={imgShow} onChange={cng => setAttributes({ imgShow: cng })} />
+                    <ToggleControl label={imgShow ? 'Hide Image' : 'Show Image'} checked={imgShow} onChange={cng => setAttributes({ imgShow: cng })} />
 
                     {imgShow && <Fragment>
                         {/* Position */}
@@ -178,13 +185,13 @@ registerBlockType('b-blocks/card', {
                         ]}
                         />
                     </Fragment>}
-                </PanelBody >
+                </PanelBody>
 
 
                 {/* Header Settings */}
-                < PanelBody title="Header Settings" initialOpen={false} >
+                <PanelBody title="Header Settings" initialOpen={false}>
                     {/* Show/Hide Header */}
-                    < ToggleControl label={headerShow ? 'Hide Header' : 'Show Header'} checked={headerShow} onChange={cng => setAttributes({ headerShow: cng })} />
+                    <ToggleControl label={headerShow ? 'Hide Header' : 'Show Header'} checked={headerShow} onChange={cng => setAttributes({ headerShow: cng })} />
 
                     {headerShow && <Fragment>
                         {/* Header Tag */}
@@ -207,33 +214,33 @@ registerBlockType('b-blocks/card', {
                         {otherTitle('Background Color:')}
                         <ColorPalette value={headerBGColor} onChange={cng => setAttributes({ headerBGColor: cng })} colors={colors} />
                     </Fragment>}
-                </PanelBody >
+                </PanelBody>
 
 
                 {/* Body Settings */}
-                < PanelBody title="Body Settings" initialOpen={false} >
+                <PanelBody title="Body Settings" initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={bodyTextAlign} setState={cng => setAttributes({ bodyTextAlign: cng })} icon={true} />
 
                     {/* Background Color */}
                     {otherTitle('Background Color:')}
-                    < ColorPalette value={bodyBGColor} onChange={cng => setAttributes({ bodyBGColor: cng })} colors={colors} />
+                    <ColorPalette value={bodyBGColor} onChange={cng => setAttributes({ bodyBGColor: cng })} colors={colors} />
 
                     {/* Padding Top Bottom */}
                     {otherTitle('Padding Top Bottom:')}
-                    < RangeControl value={bodyPTB} onChange={cng => setAttributes({ bodyPTB: cng })} min={0} max={100} step={1} />
+                    <RangeControl value={bodyPTB} onChange={cng => setAttributes({ bodyPTB: cng })} min={0} max={100} step={1} />
 
                     {/* Padding Left Right */}
                     {otherTitle('Padding Left Right:')}
-                    < RangeControl value={bodyPLR} onChange={cng => setAttributes({ bodyPLR: cng })} min={0} max={150} step={1} />
-                </PanelBody >
+                    <RangeControl value={bodyPLR} onChange={cng => setAttributes({ bodyPLR: cng })} min={0} max={150} step={1} />
+                </PanelBody>
 
 
                 {/* Body Heading Settings */}
-                < PanelBody title="Body Heading Settings" initialOpen={false} >
+                <PanelBody title="Body Heading Settings" initialOpen={false}>
                     {/* Show/Hide Body Heading */}
-                    < ToggleControl label={bodyHeadShow ? 'Hide Body Heading' : 'Show Body Heading'} checked={bodyHeadShow} onChange={cng => setAttributes({ bodyHeadShow: cng })} />
+                    <ToggleControl label={bodyHeadShow ? 'Hide Body Heading' : 'Show Body Heading'} checked={bodyHeadShow} onChange={cng => setAttributes({ bodyHeadShow: cng })} />
 
                     {bodyHeadShow && <Fragment>
                         {/* Body Heading Tag */}
@@ -252,13 +259,13 @@ registerBlockType('b-blocks/card', {
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={bodyHeadMB} onChange={cng => setAttributes({ bodyHeadMB: cng })} min={0} max={100} step={1} />
                     </Fragment>}
-                </PanelBody >
+                </PanelBody>
 
 
                 {/* Body Description Settings */}
-                < PanelBody title="Body Description Settings" initialOpen={false} >
+                <PanelBody title="Body Description Settings" initialOpen={false}>
                     {/* Show/Hide Body Description */}
-                    < ToggleControl label={bodyDescShow ? 'Hide Body Description' : 'Show Body Description'} checked={bodyDescShow} onChange={cng => setAttributes({ bodyDescShow: cng })} />
+                    <ToggleControl label={bodyDescShow ? 'Hide Body Description' : 'Show Body Description'} checked={bodyDescShow} onChange={cng => setAttributes({ bodyDescShow: cng })} />
 
                     {bodyDescShow && <Fragment>
                         {/* Font Size */}
@@ -273,13 +280,13 @@ registerBlockType('b-blocks/card', {
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={bodyDescMB} onChange={cng => setAttributes({ bodyDescMB: cng })} min={0} max={100} step={1} />
                     </Fragment>}
-                </PanelBody >
+                </PanelBody>
 
 
                 {/* Footer Settings */}
-                < PanelBody title="Footer Settings" initialOpen={false} >
+                <PanelBody title="Footer Settings" initialOpen={false}>
                     {/* Show/Hide Footer */}
-                    < ToggleControl label={footerShow ? 'Hide Footer' : 'Show Footer'} checked={footerShow} onChange={cng => setAttributes({ footerShow: cng })} />
+                    <ToggleControl label={footerShow ? 'Hide Footer' : 'Show Footer'} checked={footerShow} onChange={cng => setAttributes({ footerShow: cng })} />
 
                     {footerShow && <Fragment>
                         {/* Footer Tag */}
@@ -302,8 +309,8 @@ registerBlockType('b-blocks/card', {
                         {otherTitle('Background Color:')}
                         <ColorPalette value={footerBGColor} onChange={cng => setAttributes({ footerBGColor: cng })} colors={colors} />
                     </Fragment>}
-                </PanelBody >
-            </InspectorControls >,
+                </PanelBody>
+            </InspectorControls>,
 
 
             <div className="b_blocks_card" style={{ textAlign: cardAlign }}>
@@ -362,8 +369,8 @@ registerBlockType('b-blocks/card', {
 
         // Content
         const cardImg = () => {
-            return <Fragment>
-                {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} />}
+            return <Fragment style={{ textAlign: 'center' }}>
+                {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} style={{ objectFit: 'cover' }} />}
             </Fragment>;
         }
 

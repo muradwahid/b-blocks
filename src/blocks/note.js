@@ -149,8 +149,8 @@ registerBlockType('b-blocks/note', {
             <div className="b_blocks_note" style={containerStyle}>
                 {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
-                < RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
-            </div >
+                <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
+            </div>
         ]);
     },
 

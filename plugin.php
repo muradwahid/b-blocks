@@ -2,11 +2,12 @@
 /**
  * Plugin Name: B Blocks
  * Description: B Blocks for creating awesome blocks.
- * Author: Wasek Bellah
- * Author URI: https://wasek-bellah.web.app/
- * Version: 1.0.0
- * License: GPL2+
+ * Version: 1.0
+ * Author: bPlugins LLC
+ * Author URI: http://bplugins.com
+ * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: b-blocks
  */
 
 // Block Initializer.
@@ -24,7 +25,7 @@ function b_blocks_assets() {
     wp_enqueue_script( 'bootstrap', B_BLOCKS_ASSETS_DIR . 'js/bootstrap.bundle.min.js', array( 'jquery' ), B_BLOCKS_PLUGIN_VERSION, true );
     wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
     // wp_enqueue_script( 'light-slider', B_BLOCKS_ASSETS_DIR . 'js/lightslider.min.js', array( 'jquery' ), B_BLOCKS_PLUGIN_VERSION, true );
-    // wp_enqueue_script( 'b-blocks-script', B_BLOCKS_ASSETS_DIR . 'js/script.js', array( 'jquery', 'wp-tinymce' ), B_BLOCKS_PLUGIN_VERSION, true );
+    wp_enqueue_script( 'b-blocks-script', B_BLOCKS_ASSETS_DIR . 'js/script.js', array( 'jquery', 'wp-tinymce' ), B_BLOCKS_PLUGIN_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'b_blocks_assets' );
 

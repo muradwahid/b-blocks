@@ -5,22 +5,52 @@ html{
     scroll-behavior: smooth;
 }
 
+// Inner Content
+.b_blocks_inner_content{
+    h1{
+        font-size: 32px!important;
+    }
+    h2{
+        font-size: 25px!important;
+    }
+    h3{
+        font-size: 20px!important;
+    }
+    h4{
+        font-size: 16px!important;
+    }
+    h5{
+        font-size: 14px!important;
+    }
+    h6{
+        font-size: 12px!important;
+    }
+    p, span, div, a, button, mark{
+        font-size: 15px!important;
+    }
+}
+
 // Button
 .b_blocks_btn{
-    color: #fff!important;
-    background-color: $primaryColor;
-    padding: 8px 25px;
+    display: inline-block;
     border: none;
-    border-radius: 50px;
     outline: 0;
     transition: all .3s ease;
-
-    &:hover{
-        background-color: $secondaryColor;
-    }
+    text-decoration: none;
 
     &:focus{
         outline: 0;
+    }
+}
+
+.b_blocks_btn_small{
+    color: #fff!important;
+    background-color: $primaryColor;
+    padding: 8px 25px;
+    border-radius: 50px;
+
+    &:hover{
+        background-color: $secondaryColor;
     }
 }
 
@@ -56,6 +86,17 @@ html{
             text-decoration: none;
             display: inline-block;
             transition: all .3s ease;
+        }
+    }
+}
+
+.b_blocks_posts{
+    .feature_img{
+        text-align: center;
+
+        img{
+            width: 100%;
+            object-fit: cover;
         }
     }
 }

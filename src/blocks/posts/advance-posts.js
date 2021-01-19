@@ -207,7 +207,7 @@ registerBlockType('b-blocks/advance-posts', {
         //     <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? "No Comments" : comment_info === 1 ? "1 Comment" : `${comment_info} Comments`}</a>
         // </span>;
 
-        const postExcerpt = content => 'true' == excerptShow && <div className="excerpt" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
+        const postExcerpt = content => 'true' == excerptShow && <div className="excerpt b_blocks_inner_content" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
 
         const postReadMore = link => 'true' == readMoreShow && <div className="read_more" style={readMoreWrapStyle}><a href={link} target={'true' == linkNewTab ? '_blank' : '_self'} style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
 
@@ -515,7 +515,7 @@ registerBlockType('b-blocks/advance-posts', {
                         </Fragment>
                     }}
                 </TabPanel>
-            </InspectorControls >,
+            </InspectorControls>,
 
 
             posts && 0 !== posts.length ? <div className="b_blocks_advance_posts">

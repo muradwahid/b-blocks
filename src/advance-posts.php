@@ -215,7 +215,7 @@ function bBlocksAPostMetaComment( $show, $post, $iconColor, $linkColor ) {
 // Excerpt
 function bBlocksAPostExcerpt( $show, $post, $align, $fontSize, $color, $mb, $length ) {
     if ( 'true' == $show ) {
-        return '<div class="excerpt" style="text-align:' . $align . '; font-size:' . $fontSize . 'px; color: ' . $color . '; margin: 0 0 ' . $mb . 'px 0"">' . implode( ' ', array_slice( explode( ' ', get_post_field( 'post_content', $post->ID ) ), 0, $length ) ) . '</div>';
+        return '<div class="excerpt b_blocks_inner_content" style="text-align:' . $align . '; font-size:' . $fontSize . 'px; color: ' . $color . '; margin: 0 0 ' . $mb . 'px 0"">' . implode( ' ', array_slice( explode( ' ', get_post_field( 'post_content', $post->ID ) ), 0, $length ) ) . '</div>';
     } else {
         return '';
     }

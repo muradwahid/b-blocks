@@ -149,7 +149,7 @@ registerBlockType('b-blocks/section-heading', {
                 <div style={separatorStyle}></div>
 
                 {toggleDesc && <span><RichText className="b_blocks_section_description" key="editable" tagName="p" placeholder="Write Section Description" value={desc} onChange={cng => { setAttributes({ desc: cng }) }} inlineToolbar style={descStyle} /></span>}
-            </div >
+            </div>
         ]);
     },
 

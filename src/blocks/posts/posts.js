@@ -1,6 +1,7 @@
 const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data;
 const { useEffect, Fragment } = wp.element;
+import { Style } from "react-style-tag";
 
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } = wp.components;
@@ -135,6 +136,14 @@ registerBlockType('b-blocks/posts', {
             return catName;
         }
 
+        // Posts Image Size
+        useEffect(() => {
+            const f_image = document.querySelectorAll('.b_blocks_grid_posts .b_blocks_article .feature_img img');
+            f_image.length && f_image.forEach(im => {
+                im ? im.style.height = `${(im.clientWidth / 16) * 9}px` : null;
+            });
+        }, [posts, layout, columns, columnGap]);
+
 
         // Styles
         const gridPostsStyle = { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gridGap: `${rowGap}px ${columnGap}px` }
@@ -195,7 +204,7 @@ registerBlockType('b-blocks/posts', {
         //     <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? "No Comments" : comment_info === 1 ? "1 Comment" : `${comment_info} Comments`}</a>
         // </span>;
 
-        const postExcerpt = content => excerptShow == 'true' && <div className="excerpt" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
+        const postExcerpt = content => excerptShow == 'true' && <div className="excerpt b_blocks_inner_content" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
 
         const postReadMore = link => readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
 
@@ -462,7 +471,7 @@ registerBlockType('b-blocks/posts', {
 
                 {'grid' == layout ? <div id={`bBlocksGridPosts-${clientId}`} className="b_blocks_grid_posts" style={gridPostsStyle}>
                     {posts.map(post => {
-                        const { id, date, featured_media, title, author, categories, uagb_comment_info, content, link, _links } = post;
+                        const { id, date, featured_media, title, author, categories, content, link } = post;
 
                         const d = new Date(date);
                         const convertDate = `${getMonth[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
@@ -495,7 +504,7 @@ registerBlockType('b-blocks/posts', {
 
                     'masonry' == layout && <div id={`bBlocksMasonryPosts-${clientId}`} className="b_blocks_masonry_posts" style={masonryPostsStyle}>
                         {posts.map(post => {
-                            const { id, date, featured_media, title, author, categories, uagb_comment_info, content, link, _links } = post;
+                            const { id, date, featured_media, title, author, categories, content, link } = post;
 
                             const d = new Date(date);
                             const convertDate = `${getMonth[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;

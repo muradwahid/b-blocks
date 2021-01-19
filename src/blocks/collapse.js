@@ -55,7 +55,7 @@ registerBlockType('b-blocks/collapse', {
         const { attributes: { cId, collBtnLabel, collBtnAlign, collBtnFontSize, collBtnTransform, collBtnFontWeight, collBtnPTB, collBtnPLR, collBtnRadius, collBtnColor, collBtnBGColor, collBtnHovColor, collBtnHovBGColor, contentPTB, contentPLR }, setAttributes, clientId } = props;
 
         // Styles
-        const collBtnStyle = { display: 'inline-block', fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px 0`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
+        const collBtnStyle = { fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px 0`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor };
 
         const contentStyle = { border: '1px solid #4527a4', borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
 
@@ -144,7 +144,7 @@ registerBlockType('b-blocks/collapse', {
                     {otherTitle('Left Right Padding:')}
                     <RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
                 </PanelBody>
-            </InspectorControls >,
+            </InspectorControls>,
 
 
             <div className="b_blocks_collapse">
@@ -153,7 +153,7 @@ registerBlockType('b-blocks/collapse', {
                 </BlockControls>
 
                 <div style={{ textAlign: collBtnAlign }}>
-                    <button type="button" data-toggle="collapse" data-target={`#bBlocksCollapse-${clientId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${clientId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>
+                    <button className="b_blocks_btn" type="button" data-toggle="collapse" data-target={`#bBlocksCollapse-${clientId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${clientId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>
                         <RichText className="b_blocks_collapse_btn_label" key="editable" tagName="span" placeholder="Enter Collapse Button Text" value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} inlineToolbar style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
                     </button>
                 </div>
@@ -161,7 +161,7 @@ registerBlockType('b-blocks/collapse', {
 
                 {/* Collapse */}
                 <div className="collapse" id={`bBlocksCollapse-${clientId}`}>
-                    <div className="collapse_content" style={contentStyle}>
+                    <div className="collapse_content b_blocks_inner_content" style={contentStyle}>
                         <InnerBlocks />
                     </div>
                 </div>
@@ -173,7 +173,7 @@ registerBlockType('b-blocks/collapse', {
         const { cId, collBtnLabel, collBtnAlign, collBtnFontSize, collBtnTransform, collBtnFontWeight, collBtnPTB, collBtnPLR, collBtnRadius, collBtnColor, collBtnBGColor, collBtnHovColor, collBtnHovBGColor, contentPTB, contentPLR } = props.attributes;
 
         // Styles
-        const collBtnStyle = { display: 'inline-block', fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor, border: 'none', outline: 0, transition: 'all .3s ease' };
+        const collBtnStyle = { fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor };
 
         const contentStyle = { border: '1px solid #4527a4', borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
 
@@ -191,13 +191,13 @@ registerBlockType('b-blocks/collapse', {
             <div className="b_blocks_collapse" style={{ textAlign: 'inherit' }}>
                 {/* Button Trigger Collapse */}
                 <div style={{ textAlign: collBtnAlign }}>
-                    <button type="button" className="b_blocks_collapse_btn_label" data-toggle="collapse" data-target={`#bBlocksCollapse-${cId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${cId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>{collBtnLabel}</button>
+                    <button type="button" className="b_blocks_collapse_btn_label b_blocks_btn" data-toggle="collapse" data-target={`#bBlocksCollapse-${cId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${cId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>{collBtnLabel}</button>
                 </div>
 
 
                 {/* Collapse */}
                 <div className="collapse" id={`bBlocksCollapse-${cId}`}>
-                    <div className="collapse_content" style={contentStyle}>
+                    <div className="collapse_content b_blocks_inner_content" style={contentStyle}>
                         <InnerBlocks.Content />
                     </div>
                 </div>

@@ -1,8 +1,6 @@
 const { registerFormatType, applyFormat, removeFormat, getActiveFormat } = wp.richText;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody } = wp.components;
-const { Fragment } = wp.element;
-const { RichTextToolbarButton } = wp.blockEditor;
 
 
 // Variables
