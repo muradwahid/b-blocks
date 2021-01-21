@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { Fragment, useEffect } = wp.element;
 const { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar, MediaUpload } = wp.blockEditor;
 const { PanelBody, FontSizePicker, IconButton, ToggleControl, RangeControl, RadioControl, PanelRow } = wp.components;
@@ -12,8 +13,8 @@ import options from '../Const/options';
 const { aligns, fontSizes, colors, tags, hTags, sizeTypes } = options;
 
 const cardLayouts = [
-    { label: 'Vertical', value: 'vertical', icon: icons.verticalLine, def: 450 },
-    { label: 'Horizontal', value: 'horizontal', icon: icons.horizontalLine, def: 900 }
+    { label: __('Vertical', 'b-blocks'), value: 'vertical', icon: icons.verticalLine, def: 450 },
+    { label: __('Horizontal', 'b-blocks'), value: 'horizontal', icon: icons.horizontalLine, def: 900 }
 ]
 
 // Components
@@ -25,11 +26,11 @@ const { firstTitle, otherTitle } = func;
 
 registerBlockType('b-blocks/card', {
     // Build In attributes
-    title: 'Card',
-    description: 'Card',
+    title: __('Card', 'b-blocks'),
+    description: __('Design a card', 'b-blocks'),
     icon: icons.card,
     category: 'bBlocks',
-    keywords: ['Card'],
+    keywords: [__('Card', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -110,10 +111,10 @@ registerBlockType('b-blocks/card', {
                 {imgShow && isSelected && <div className="b_blocks_media_upload">
                     <MediaUpload allowedTypes={['image']} value={img} onSelect={cng => setAttributes({ img: cng })} render={({ open }) =>
                         img ? <div className="b_blocks_media_control">
-                            <IconButton icon="controls-repeat" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>Replace Card Image</IconButton>
-                            <IconButton icon="exit" onClick={() => setAttributes({ img: null })} style={{ color: 'red', fontWeight: 'bold' }}>Remove Card Image</IconButton>
+                            <IconButton icon="controls-repeat" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>{__('Replace Card Image', 'b-blocks')}</IconButton>
+                            <IconButton icon="exit" onClick={() => setAttributes({ img: null })} style={{ color: 'red', fontWeight: 'bold' }}>{__('Remove Card Image', 'b-blocks')}</IconButton>
                         </div> : <div className="b_blocks_media_control">
-                                <IconButton icon="upload" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>Upload Card Image</IconButton>
+                                <IconButton icon="upload" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>{__('Upload Card Image', 'b-blocks')}</IconButton>
                             </div>} />
                 </div>}
 
@@ -123,18 +124,18 @@ registerBlockType('b-blocks/card', {
 
         const cardHeader = () => {
             return <Fragment>
-                {headerShow && <span><RichText className="card-header b_blocks_card_header" key="editable" tagName={headerTag} placeholder="Enter Header Text" value={headerText} onChange={cng => { setAttributes({ headerText: cng }) }} inlineToolbar style={headerStyle} /></span>}
+                {headerShow && <span><RichText className="card-header b_blocks_card_header" key="editable" tagName={headerTag} placeholder={__('Enter Header Text', 'b-blocks')} value={headerText} onChange={cng => { setAttributes({ headerText: cng }) }} inlineToolbar style={headerStyle} /></span>}
             </Fragment>;
         }
 
         const cardBody = () => {
             return <div className="card-body" style={bodyStyle}>
                 <Fragment>
-                    {bodyHeadShow && <span><RichText className="card-title b_blocks_card_body_head" key="editable" tagName={bodyHeadTag} placeholder="Enter Body Heading" value={bodyHeadText} onChange={cng => { setAttributes({ bodyHeadText: cng }) }} inlineToolbar style={bodyHeadStyle} /></span>}
+                    {bodyHeadShow && <span><RichText className="card-title b_blocks_card_body_head" key="editable" tagName={bodyHeadTag} placeholder={__('Enter Body Heading', 'b-blocks')} value={bodyHeadText} onChange={cng => { setAttributes({ bodyHeadText: cng }) }} inlineToolbar style={bodyHeadStyle} /></span>}
                 </Fragment>
 
                 <Fragment>
-                    {bodyDescShow && <span><RichText className="card-text b_blocks_card_body_desc" key="editable" tagName="p" placeholder="Enter Body Description" value={bodyDescText} onChange={cng => { setAttributes({ bodyDescText: cng }) }} inlineToolbar style={bodyDescStyle} /></span>}
+                    {bodyDescShow && <span><RichText className="card-text b_blocks_card_body_desc" key="editable" tagName="p" placeholder={__('Enter Body Description', 'b-blocks')} value={bodyDescText} onChange={cng => { setAttributes({ bodyDescText: cng }) }} inlineToolbar style={bodyDescStyle} /></span>}
                 </Fragment>
 
                 <Fragment>
@@ -145,14 +146,14 @@ registerBlockType('b-blocks/card', {
 
         const cardFooter = () => {
             return <Fragment>
-                {footerShow && <span><RichText className="card-footer b_blocks_card_footer" key="editable" tagName={footerTag} placeholder="Enter Footer Text" value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerStyle} /></span>}
+                {footerShow && <span><RichText className="card-footer b_blocks_card_footer" key="editable" tagName={footerTag} placeholder={__('Enter Footer Text', 'b-blocks')} value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerStyle} /></span>}
             </Fragment>;
         }
 
         return ([
             <InspectorControls>
                 {/* Card Settings */}
-                <PanelBody title="Card Settings" initialOpen={true}>
+                <PanelBody title={__('Card Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout */}
                     {firstTitle('Layout:')}
                     <BtnGroup options={cardLayouts} myValue={layout} setState={(cng, def) => setAttributes({ layout: cng, cardWidth: def })} icon={true} />
@@ -172,7 +173,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Image Settings */}
-                <PanelBody title="Image Settings" initialOpen={false}>
+                <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Image */}
                     <ToggleControl label={imgShow ? 'Hide Image' : 'Show Image'} checked={imgShow} onChange={cng => setAttributes({ imgShow: cng })} />
 
@@ -189,7 +190,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Header Settings */}
-                <PanelBody title="Header Settings" initialOpen={false}>
+                <PanelBody title={__('Header Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Header */}
                     <ToggleControl label={headerShow ? 'Hide Header' : 'Show Header'} checked={headerShow} onChange={cng => setAttributes({ headerShow: cng })} />
 
@@ -218,7 +219,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Body Settings */}
-                <PanelBody title="Body Settings" initialOpen={false}>
+                <PanelBody title={__('Body Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={bodyTextAlign} setState={cng => setAttributes({ bodyTextAlign: cng })} icon={true} />
@@ -238,7 +239,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Body Heading Settings */}
-                <PanelBody title="Body Heading Settings" initialOpen={false}>
+                <PanelBody title={__('Body Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Body Heading */}
                     <ToggleControl label={bodyHeadShow ? 'Hide Body Heading' : 'Show Body Heading'} checked={bodyHeadShow} onChange={cng => setAttributes({ bodyHeadShow: cng })} />
 
@@ -263,7 +264,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Body Description Settings */}
-                <PanelBody title="Body Description Settings" initialOpen={false}>
+                <PanelBody title={__('Body Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Body Description */}
                     <ToggleControl label={bodyDescShow ? 'Hide Body Description' : 'Show Body Description'} checked={bodyDescShow} onChange={cng => setAttributes({ bodyDescShow: cng })} />
 
@@ -284,7 +285,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Footer Settings */}
-                <PanelBody title="Footer Settings" initialOpen={false}>
+                <PanelBody title={__('Footer Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Footer */}
                     <ToggleControl label={footerShow ? 'Hide Footer' : 'Show Footer'} checked={footerShow} onChange={cng => setAttributes({ footerShow: cng })} />
 

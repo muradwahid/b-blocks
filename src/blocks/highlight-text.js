@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, FontSizePicker } = wp.components;
 
@@ -15,11 +16,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/highlight-text', {
     // Build In attributes
-    title: 'Highlight Text',
-    description: 'Text Highlight',
+    title: __('Highlight Text', 'b-blocks'),
+    description: __('Highlight text with custom color', 'b-blocks'),
     icon: icons.paint,
     category: 'bBlocks',
-    keywords: ['Highlight', 'Highlight Text', 'Color Text'],
+    keywords: [__('Highlight', 'b-blocks'), __('Highlight Text', 'b-blocks'), __('Color Text', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -45,7 +46,7 @@ registerBlockType('b-blocks/highlight-text', {
         return ([
             <InspectorControls>
                 {/* Highlight Text Settings */}
-                <PanelBody title="Highlight Text Settings" initialOpen={true}>
+                <PanelBody title={__('Highlight Text Settings', 'b-blocks')} initialOpen={true}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontS} onChange={cng => setAttributes({ fontS: 'undefined' === typeof cng ? 15 : cng })} />

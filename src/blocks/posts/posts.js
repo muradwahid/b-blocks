@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { withSelect } = wp.data;
 const { useEffect, Fragment } = wp.element;
 const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
@@ -12,8 +13,8 @@ import options from '../../Const/options';
 const { fontSizes, colors, aligns, fontWeights, textTransforms, postsOrdersBy, postsOrders, getMonth, shadows } = options;
 
 const layouts = [
-    { label: 'Grid', value: 'grid', icon: icons.grid },
-    { label: 'Masonry', value: 'masonry', icon: icons.masonry },
+    { label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
+    { label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
 ];
 
 // Components
@@ -25,10 +26,11 @@ const { firstTitle, otherTitle } = func;
 
 registerBlockType('b-blocks/posts', {
     // Build In attributes
-    title: 'Posts',
+    title: __('Posts', 'b-blocks'),
+    description: __('Display blog posts', 'b-blocks'),
     icon: icons.postEmbed,
     category: 'bBlocks',
-    keywords: ['Specific Category Posts'],
+    keywords: [__('Specific Category Posts', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -120,7 +122,7 @@ registerBlockType('b-blocks/posts', {
 
         // Posts and Categories Check
         if (!posts || !categories) {
-            return <h3 style={{ color: '#4527a4', fontSize: '20px' }}><Spinner /> Loading...</h3>;
+            return <h3 style={{ color: '#4527a4', fontSize: '20px' }}><Spinner /> {__('Loading...', 'b-blocks')}</h3>;
         }
 
         // Single Category Func
@@ -167,7 +169,7 @@ registerBlockType('b-blocks/posts', {
 
         // Components
         const noPosts = () => {
-            return <h3 style={{ color: '#4527a4', textAlign: 'center', fontSize: '20px' }}>No posts found!! Please add some posts</h3>;
+            return <h3 style={{ color: '#4527a4', textAlign: 'center', fontSize: '20px' }}>{__('No posts found!! Please add some posts', 'b-blocks')}</h3>;
         }
 
 
@@ -199,7 +201,7 @@ registerBlockType('b-blocks/posts', {
 
         // const metaComments = (link, comment_info) => metaCommentShow == 'true' && <span>
         //     <Dashicon icon="admin-comments" style={{ color: metaIconColor }} />&nbsp;
-        //     <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? "No Comments" : comment_info === 1 ? "1 Comment" : `${comment_info} Comments`}</a>
+        //     <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? __('No Comments', 'b-blocks') : comment_info === 1 ? __('1 Comment', 'b-blocks') : __(`${comment_info} Comments`, 'b-blocks')}</a>
         // </span>;
 
         const postExcerpt = content => excerptShow == 'true' && <div className="excerpt b_blocks_inner_content" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
@@ -209,7 +211,7 @@ registerBlockType('b-blocks/posts', {
         return [
             posts && 0 !== posts.length && <InspectorControls>
                 {/* Layouts Settings */}
-                <PanelBody title="Layouts Settings" initialOpen={true}>
+                <PanelBody title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout Type */}
                     {firstTitle('Layout Type:')}
                     <BtnGroup options={layouts} myValue={layout} setState={cng => setAttributes({ layout: cng })} icon={true} />
@@ -235,7 +237,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Posts Query */}
-                <PanelBody title="Posts Query" initialOpen={false}>
+                <PanelBody title={__('Posts Query', 'b-blocks')} initialOpen={false}>
                     {/* Select Categories */}
                     {categories && 0 !== categories.length ? <Fragment>
                         {firstTitle('Select Categories:')}
@@ -267,7 +269,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Elements Settings */}
-                <PanelBody title="Elements Settings" initialOpen={false}>
+                <PanelBody title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
                     {/*Feature Image */}
                     {firstTitle('Feature Image:')}
                     <ToggleControl label={featureImgShow == 'true' ? 'Hide Feature Image' : 'Show Feature Image'} checked={featureImgShow == 'true' ? true : false} onChange={cng => setAttributes({ featureImgShow: cng.toString() })} />
@@ -317,7 +319,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings" initialOpen={false}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -342,7 +344,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Feature Image Settings */}
                 {/* {'true' == featureImgShow && <Fragment>
-                    <PanelBody title="Feature Image Settings" initialOpen={false}>
+                    <PanelBody title={__('Feature Image Settings', 'b-blocks')} initialOpen={false}>
 
                     </PanelBody>
                 </Fragment>} */}
@@ -350,7 +352,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Title Settings */}
                 {titleShow == 'true' && <Fragment>
-                    <PanelBody title="Title Settings" initialOpen={false}>
+                    <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: 'undefined' === typeof cng ? 20 : cng })} />
@@ -368,7 +370,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Meta Data Settings */}
                 {metaShow == 'true' && <Fragment>
-                    <PanelBody title="Meta Data Settings" initialOpen={false}>
+                    <PanelBody title={__('Meta Data Settings', 'b-blocks')} initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={13} value={metaFontSize} onChange={cng => setAttributes({ metaFontSize: 'undefined' === typeof cng ? 13 : cng })} />
@@ -398,7 +400,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Excerpt Settings */}
                 {excerptShow == 'true' && <Fragment>
-                    <PanelBody title="Excerpt Settings" initialOpen={false}>
+                    <PanelBody title={__('Excerpt Settings', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
                         <BtnGroup options={aligns} myValue={excerptAlign} setState={cng => setAttributes({ excerptAlign: cng })} icon={true} />
@@ -420,7 +422,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Read More Link Settings */}
                 {readMoreShow == 'true' && <Fragment>
-                    <PanelBody title="Read More Settings" initialOpen={false}>
+                    <PanelBody title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
                         <BtnGroup options={aligns} myValue={readMoreAlign} setState={cng => setAttributes({ readMoreAlign: cng })} icon={true} />
@@ -439,7 +441,7 @@ registerBlockType('b-blocks/posts', {
 
                         {otherTitle('Colors:')}
                         <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
-                            tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
+                            tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                             {tab => {
                                 return <Fragment>
                                     {'normal' == tab.name && <Fragment>

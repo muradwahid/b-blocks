@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
@@ -19,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/section-heading', {
     // Build In attributes
-    title: 'Section Heading',
-    description: 'Awesome Section Heading',
+    title: __('Section Heading', 'b-blocks'),
+    description: __('Heading, separator, and a description', 'b-blocks'),
     icon: icons.h,
     category: 'bBlocks',
-    keywords: ['Section', 'Section Head', 'Heading'],
+    keywords: [__('Section', 'b-blocks'), __('Section Head', 'b-blocks'), __('Heading Description', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -68,7 +69,7 @@ registerBlockType('b-blocks/section-heading', {
         return ([
             <InspectorControls>
                 {/* Content Settings */}
-                <PanelBody title="Content Settings" initialOpen={true}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={true}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -76,7 +77,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title="Heading Settings" initialOpen={false}>
+                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Heading Tag */}
                     {firstTitle('Heading Tag:')}
                     <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -96,7 +97,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Separator Settings */}
-                <PanelBody title="Separator Settings" initialOpen={false}>
+                <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                     {/* Enable/Disable Separator */}
                     <ToggleControl label={toggleSep ? 'Disable Separator' : 'Enable Separator'} checked={toggleSep} onChange={cng => setAttributes({ toggleSep: cng })} />
 
@@ -125,7 +126,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Description Settings */}
-                <PanelBody title="Description Settings" initialOpen={false}>
+                <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Enable/Disable Description */}
                     <ToggleControl label={toggleDesc ? 'Disable Description' : 'Enable Description'} checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
 
@@ -151,11 +152,11 @@ registerBlockType('b-blocks/section-heading', {
                     <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>
 
-                <RichText className="b_blocks_section_head" key="editable" tagName={headTag} placeholder="Write Section Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} />
+                <RichText className="b_blocks_section_head" key="editable" tagName={headTag} placeholder={__('Write Section Heading', 'b-blocks')} value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} />
 
                 {toggleSep && <div style={separatorStyle}></div>}
 
-                {toggleDesc && <span><RichText className="b_blocks_section_description" key="editable" tagName="p" placeholder="Write Section Description" value={desc} onChange={cng => { setAttributes({ desc: cng }) }} inlineToolbar style={descStyle} /></span>}
+                {toggleDesc && <span><RichText className="b_blocks_section_description" key="editable" tagName="p" placeholder={__('Write Section Description', 'b-blocks')} value={desc} onChange={cng => { setAttributes({ desc: cng }) }} inlineToolbar style={descStyle} /></span>}
             </div>
         ]);
     },

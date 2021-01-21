@@ -187,13 +187,13 @@ function bBlocksPostMetaComment( $show, $post, $iconColor, $linkColor ) {
         $view_comment = '';
         switch ( $comment_count ) {
         case "0":
-            $view_comment = "No Comments";
+            $view_comment = esc_html__( 'No Comments', 'b-blocks' );
             break;
         case "1":
-            $view_comment = "1 Comment";
+            $view_comment = esc_html__( '1 Comment', 'b-blocks' );
             break;
         default:
-            $view_comment = "$comment_count Comments";
+            $view_comment = esc_html__( "$comment_count Comments", 'b-blocks' );
         }
 
         return '<span>

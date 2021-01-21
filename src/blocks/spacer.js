@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, RangeControl, ResizableBox } = wp.components;
 
@@ -11,11 +12,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/spacer', {
     // Build In attributes
-    title: 'Spacer',
-    description: 'Space in content',
+    title: __('Spacer', 'b-blocks'),
+    description: __('Empty space between blocks & sections', 'b-blocks'),
     icon: icons.rectangle,
     category: 'bBlocks',
-    keywords: ['Spacer', 'Empty Space', 'Empty'],
+    keywords: [__('Space', 'b-blocks'), __('Empty Space', 'b-blocks'), __('Empty', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -34,7 +35,7 @@ registerBlockType('b-blocks/spacer', {
         return ([
             <InspectorControls>
                 {/* Spacer Settings */}
-                <PanelBody title="Spacer Settings" initialOpen={true}>
+                <PanelBody title={__('Spacer Settings', 'b-blocks')} initialOpen={true}>
                     {/* Height/Size */}
                     {firstTitle('Height/Size:')}
                     <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={1000} step={1} />
@@ -44,15 +45,15 @@ registerBlockType('b-blocks/spacer', {
 
             <div className="b_blocks_spacer">
                 <div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
-                    SPACER ---- This content {isSelected && '& background color '}
+                    {__(`SPACER ---- This content ${isSelected ? '& background color' : ''}`, 'b-blocks')}
 
                     <ResizableBox size={{ height }} enable={{ bottom: true }} onResizeStop={(event, direction, elt, delta) => {
                         setAttributes({ height: parseInt(height + delta.height, 0) });
                         toggleSelection(true);
                     }} onResizeStart={() => {
                         toggleSelection(false);
-                    }} />
-                    will not show in front End
+                    }} style={{ position: 'absolute' }} />
+                    &nbsp;{__('will not show in front End', 'b-blocks')}
                 </div>
             </div>
         ])

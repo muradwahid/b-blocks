@@ -1,3 +1,4 @@
+const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, FormToggle, PanelRow } = wp.components;
 const { registerFormatType, toggleFormat } = wp.richText;
@@ -6,7 +7,7 @@ const { registerFormatType, toggleFormat } = wp.richText;
 const type = 'b-blocks/text-highlight';
 
 registerFormatType(type, {
-    title: 'Inline Highlight',
+    title: __('Inline Highlight', 'b-blocks'),
     tagName: 'mark',
     className: 'b_blocks_text_highlight',
 
@@ -26,9 +27,9 @@ registerFormatType(type, {
 
         return [
             <InspectorControls>
-                <PanelBody icon='admin-customizer' title="Inline Highlight" initialOpen={false}>
+                <PanelBody icon='admin-customizer' title={__('Inline Highlight', 'b-blocks')} initialOpen={false}>
                     <PanelRow>
-                        <label htmlFor="b_blocks_text_highlight_toggle">{isActive ? 'Remove Inline Highlight' : 'Inline Highlight'}</label>
+                        <label htmlFor="b_blocks_text_highlight_toggle">{isActive ? __('Remove Inline Highlight', 'b-blocks') : __('Inline Highlight', 'b-blocks')}</label>
 
                         <FormToggle id="b_blocks_text_highlight_toggle" checked={isActive} onChange={onToggle} />
                     </PanelRow>

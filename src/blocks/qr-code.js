@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, RangeControl, TextControl } = wp.components;
 
@@ -11,11 +12,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/qr-code', {
     // Build In attributes
-    title: 'QR Code',
-    description: 'Show QR Code in posts and pages',
+    title: __('QR Code', 'b-blocks'),
+    description: __('Show QR Code in posts and pages', 'b-blocks'),
     icon: icons.qrCode,
     category: 'bBlocks',
-    keywords: ['QR', 'QR Code', 'Code'],
+    keywords: [__('QR', 'b-blocks'), __('QR Code', 'b-blocks'), __('Code', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -38,7 +39,7 @@ registerBlockType('b-blocks/qr-code', {
         return ([
             <InspectorControls>
                 {/* QR Code Settings */}
-                <PanelBody title="QR Code Settings" initialOpen={true}>
+                <PanelBody title={__('QR Code Settings', 'b-blocks')} initialOpen={true}>
                     {/* Website url */}
                     {firstTitle('Website url:')}
                     <TextControl value={url} onChange={cng => setAttributes({ url: cng })} />
@@ -59,7 +60,7 @@ registerBlockType('b-blocks/qr-code', {
 
                     {isSelected && <div style={{ position: 'absolute', bottom: '-33px', left: `${qrAlign === 'left' ? '0%' : qrAlign === 'center' ? '50%' : qrAlign === 'right' && '100%'}`, transform: `${qrAlign === 'left' ? 'translateX(0)' : qrAlign === 'center' ? 'translateX(-50%)' : qrAlign === 'right' && 'translateX(-100%)'}`, zIndex: 30 }}>
 
-                        <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} value={url} onChange={cng => setAttributes({ url: cng })} placeholder="Website url" />
+                        <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} value={url} onChange={cng => setAttributes({ url: cng })} placeholder={__('Website url', 'b-blocks')} />
                     </div>}
                 </div>
             </div>

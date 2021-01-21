@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker, ToggleControl, RangeControl } = wp.components;
@@ -19,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/alert', {
     // Build In attributes
-    title: 'Alert',
-    description: 'Alert',
+    title: __('Display dismissible alert', 'b-blocks'),
+    description: __('Alert', 'b-blocks'),
     icon: icons.alert,
     category: 'bBlocks',
-    keywords: ['Alert', 'Alert Text', 'Alert Close'],
+    keywords: [__('Alert', 'b-blocks'), __('Alert Text', 'b-blocks'), __('Alert Close', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -61,7 +62,7 @@ registerBlockType('b-blocks/alert', {
         return ([
             <InspectorControls>
                 {/* Alert Settings */}
-                <PanelBody title="Alert Settings" initialOpen={true}>
+                <PanelBody title={__('Alert Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -82,7 +83,7 @@ registerBlockType('b-blocks/alert', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title="Heading Settings" initialOpen={false}>
+                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Heading */}
                     <ToggleControl label={headShow ? 'Hide Heading' : 'Show Heading'} checked={headShow} onChange={cng => setAttributes({ headShow: cng })} />
 
@@ -107,7 +108,7 @@ registerBlockType('b-blocks/alert', {
 
 
                 {/* Text Settings */}
-                <PanelBody title="Text Settings" initialOpen={false}>
+                <PanelBody title={__('Text Settings', 'b-blocks')} initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={textFontSize} onChange={cng => setAttributes({ textFontSize: 'undefined' === typeof cng ? 15 : cng })} />
@@ -121,9 +122,9 @@ registerBlockType('b-blocks/alert', {
 
             <div className="b_blocks_alert">
                 <div className="alert alert-dismissible fade show" role="alert" style={alertStyle}>
-                    {headShow && <span><RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder="Write Your Alert Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
+                    {headShow && <span><RichText className="b_blocks_alert_head" key="editable" tagName={headTag} placeholder={__('Write Your Alert Heading', 'b-blocks')} value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
-                    <RichText className="b_blocks_alert_text" key="editable" tagName="p" placeholder="Write Your Alert Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
+                    <RichText className="b_blocks_alert_text" key="editable" tagName="p" placeholder={__('Write Your Alert Text', 'b-blocks')} value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
 
                     {dismissShow && <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true" style={{ color: dismissColor }}>&times;</span>

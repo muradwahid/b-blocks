@@ -1,10 +1,12 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
 const { PanelBody, RangeControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
 const { colors } = options;
+const INNER_TEMPLATE = [['b-blocks/section-heading', {}]];
 
 // Functions
 import func from '../Const/functions';
@@ -15,11 +17,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/section', {
     // Build In attributes
-    title: 'Section',
-    description: 'Section',
+    title: __('Section', 'b-blocks'),
+    description: __('Implement a section', 'b-blocks'),
     icon: icons.section,
     category: 'bBlocks',
-    keywords: ['Section', 'Section Content', 'Inner Block'],
+    keywords: [__('Section', 'b-blocks'), __('Section Content', 'b-blocks'), __('Inner Block', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -44,7 +46,7 @@ registerBlockType('b-blocks/section', {
         return ([
             <InspectorControls>
                 {/* Section Settings */}
-                <PanelBody title="Section Settings" initialOpen={true}>
+                <PanelBody title={__('Section Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
@@ -70,7 +72,7 @@ registerBlockType('b-blocks/section', {
 
             <div className="b_blocks_section b_blocks_inner_content">
                 <div style={sectionStyle}>
-                    <InnerBlocks template={[['b-blocks/section-heading']]} />
+                    <InnerBlocks template={INNER_TEMPLATE} />
 
                     {isSelected && <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />}
                 </div>

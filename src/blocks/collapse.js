@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { useEffect, Fragment } = wp.element;
 const { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } = wp.components;
@@ -19,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/collapse', {
     // Build In attributes
-    title: 'Collapse',
-    description: 'Collapse',
+    title: __('Collapse', 'b-blocks'),
+    description: __('Show hide content by clicking a button', 'b-blocks'),
     icon: icons.collapse,
     category: 'bBlocks',
-    keywords: ['Collapse', 'Downfall', 'Closing'],
+    keywords: [__('Collapse', 'b-blocks'), __('Downfall', 'b-blocks'), __('Closing', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -75,7 +76,7 @@ registerBlockType('b-blocks/collapse', {
 
         return ([
             <InspectorControls>
-                <PanelBody title="Collapse Button Settings" initialOpen={true}>
+                <PanelBody title={__('Collapse Button Settings', 'b-blocks')} initialOpen={true}>
                     {/* Button Align */}
                     {firstTitle('Button Align:')}
                     <BtnGroup options={aligns} myValue={collBtnAlign} setState={cng => setAttributes({ collBtnAlign: cng })} icon={true} />
@@ -107,7 +108,7 @@ registerBlockType('b-blocks/collapse', {
                     {/* Colors */}
                     {otherTitle('Colors:')}
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
-                        tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
+                        tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                         {tab => {
                             return <Fragment>
                                 {'normal' == tab.name && <Fragment>
@@ -135,7 +136,7 @@ registerBlockType('b-blocks/collapse', {
                 </PanelBody>
 
 
-                <PanelBody title="Content Settings" initialOpen={false}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Top Bottom Padding */}
                     {firstTitle('Top Bottom Padding:')}
                     <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />
@@ -154,7 +155,7 @@ registerBlockType('b-blocks/collapse', {
 
                 <div style={{ textAlign: collBtnAlign }}>
                     <button className="b_blocks_btn" type="button" data-toggle="collapse" data-target={`#bBlocksCollapse-${clientId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${clientId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>
-                        <RichText className="b_blocks_collapse_btn_label" key="editable" tagName="span" placeholder="Enter Collapse Button Text" value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} inlineToolbar style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
+                        <RichText className="b_blocks_collapse_btn_label" key="editable" tagName="span" placeholder={__('Enter Collapse Button Text', 'b-blocks')} value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} inlineToolbar style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
                     </button>
                 </div>
 

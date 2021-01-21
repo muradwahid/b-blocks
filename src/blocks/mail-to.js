@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { InspectorControls, ColorPalette, RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, FontSizePicker, RangeControl, TextControl, SelectControl } = wp.components;
 
@@ -18,11 +19,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/mailto', {
     // Build In attributes
-    title: 'Mail To',
-    description: 'E-mail by on click',
+    title: __('Mail To', 'b-blocks'),
+    description: __('Mail with a single click', 'b-blocks'),
     icon: icons.mail,
     category: 'bBlocks',
-    keywords: ['Mail', 'mail to', 'E-mail'],
+    keywords: [__('Mail', 'b-blocks'), __('mail to', 'b-blocks'), __('E-mail', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -54,7 +55,7 @@ registerBlockType('b-blocks/mailto', {
 
         return ([
             <InspectorControls>
-                <PanelBody title="Mail to Button Settings" initialOpen={true}>
+                <PanelBody title={__('Mail to Button Settings', 'b-blocks')} initialOpen={true}>
                     {/* Label */}
                     {firstTitle('Label:')}
                     <TextControl value={mtBtnLabel} onChange={cng => setAttributes({ mtBtnLabel: cng })} />
@@ -104,11 +105,11 @@ registerBlockType('b-blocks/mailto', {
                 </BlockControls>
 
                 <a className="mailtoui b_blocks_btn" href={`mailto:${receiverMail}`} style={mtBtnStyle} target="_blank">
-                    <RichText className="b_blocks_mt_btn_label" key="editable" tagName="span" placeholder="Write Mail to Button Label" value={mtBtnLabel} onChange={cng => { setAttributes({ mtBtnLabel: cng }) }} inlineToolbar />
+                    <RichText className="b_blocks_mt_btn_label" key="editable" tagName="span" placeholder={__('Write Mail to Button Label', 'b-blocks')} value={mtBtnLabel} onChange={cng => { setAttributes({ mtBtnLabel: cng }) }} inlineToolbar />
                 </a>
 
                 {isSelected && <div className="b_blocks_btn_text_control" style={{ left: `${mtBtnAlign === 'left' ? '0%' : mtBtnAlign === 'center' ? '50%' : mtBtnAlign === 'right' && '100%'}`, transform: `${mtBtnAlign === 'left' ? 'translateX(0)' : mtBtnAlign === 'center' ? 'translateX(-50%)' : mtBtnAlign === 'right' && 'translateX(-100%)'}` }}>
-                    <TextControl id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} placeholder="Receiver Email" />
+                    <TextControl id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} placeholder={__('Receiver Email', 'b-blocks')} />
                 </div>}
             </div>
         ])

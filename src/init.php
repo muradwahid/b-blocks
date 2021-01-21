@@ -3,15 +3,14 @@
 function b_blocks_init() {
     // Custom Block Category
     function b_blocks_category( $categories ) {
-        return array_merge( $categories, [
+        return array_merge( [
             array(
                 'slug'  => 'bBlocks',
                 'title' => 'B Blocks',
-                'icon'  => 'wordpress-alt',
             ),
-        ] );
+        ], $categories );
     }
-    add_filter( 'block_categories', 'b_blocks_category', 9 );
+    add_filter( 'block_categories', 'b_blocks_category', 10, 2 );
 
     // Register block styles for both frontend + backend.
     wp_register_style( 'b_blocks-style-css', plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), is_admin() ? array( 'wp-editor' ) : null, null );
@@ -25,7 +24,7 @@ function b_blocks_init() {
     // WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
     wp_localize_script(
         'b_blocks-js',
-        'cgbGlobal', // Array containing dynamic data for a JS Global.
+        'bBlocksAdmin', // Array containing dynamic data for a JS Global.
         [
             'pluginDirPath' => plugin_dir_path( __DIR__ ),
             'pluginDirUrl'  => plugin_dir_url( __DIR__ ),

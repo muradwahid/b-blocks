@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { useEffect, Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } = wp.components;
@@ -9,7 +10,6 @@ const { fontSizes, colors, aligns, textTransforms } = options;
 
 // Components
 import BtnGroup from '../GutenComp/BtnGroup';
-import BColor from '../GutenComp/BColor';
 
 // Functions
 import func from '../Const/functions';
@@ -20,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/accordion', {
     // Build In attributes
-    title: 'Accordion',
-    description: 'Accordion',
+    title: __('Accordion', 'b-blocks'),
+    description: __('Place collapsible text contents', 'b-blocks'),
     icon: icons.accordion,
     category: 'bBlocks',
-    keywords: ['Accordion', 'Collapse', 'Closing'],
+    keywords: [__('Accordion', 'b-blocks'), __('Collapse', 'b-blocks'), __('Closing', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -96,14 +96,14 @@ registerBlockType('b-blocks/accordion', {
                                     setAttributes({ accordions: newAcc });
                                 }} style={accRemoveStyle} />
 
-                                <RichText tagName="h3" placeholder="Enter the Title" value={title} onChange={cng => {
+                                <RichText tagName="h3" placeholder={__('Enter the Title', 'b-blocks')} value={title} onChange={cng => {
                                     const newObj = Object.assign({}, acc, { title: cng });
                                     setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
                                 }} inlineToolbar style={titleStyle} />
                             </a>
 
                             <div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle}>
-                                <RichText tagName="p" placeholder="Enter the description" value={description} onChange={cng => {
+                                <RichText tagName="p" placeholder={__('Enter the description', 'b-blocks')} value={description} onChange={cng => {
                                     const newObj = Object.assign({}, acc, { description: cng });
                                     setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
                                 }} inlineToolbar style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
@@ -116,7 +116,7 @@ registerBlockType('b-blocks/accordion', {
 
         return ([
             <InspectorControls>
-                <PanelBody title="Heading Settings" initialOpen={true}>
+                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={true}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={headingAlign} setState={cng => setAttributes({ headingAlign: cng })} icon={true} />
@@ -139,7 +139,7 @@ registerBlockType('b-blocks/accordion', {
 
                     {otherTitle('Colors:')}
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
-                        tabs={[{ name: 'normal', title: 'Normal', className: 'normal-tab' }, { name: 'hover', title: 'Hover', className: 'hover-tab', }]}>
+                        tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                         {tab => {
                             return <Fragment>
                                 {'normal' == tab.name && <Fragment>
@@ -168,7 +168,7 @@ registerBlockType('b-blocks/accordion', {
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings" initialOpen={false}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -189,7 +189,7 @@ registerBlockType('b-blocks/accordion', {
                     {accordionItem(accordions)}
                 </div>
 
-                {!accordions.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>Add New Accordion</Button></div> : null}
+                {!accordions.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>{__('Add New Accordion', 'b-blocks')}</Button></div> : null}
             </div>
         ])
     },

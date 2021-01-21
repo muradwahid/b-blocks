@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
 const { PanelBody, RangeControl } = wp.components;
 
@@ -7,9 +8,9 @@ import options from '../Const/options';
 const { colors } = options;
 
 const userSelect = [
-    { label: 'Auto', value: 'auto', icon: 'AUTO' },
-    { label: 'All', value: 'all', icon: 'ALL' },
-    { label: 'None', value: 'none', icon: 'NONE' },
+    { label: __('Auto', 'b-blocks'), value: 'auto', icon: 'AUTO' },
+    { label: __('All', 'b-blocks'), value: 'all', icon: 'ALL' },
+    { label: __('None', 'b-blocks'), value: 'none', icon: 'NONE' },
 ];
 
 // Components
@@ -24,11 +25,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/selection', {
     // Build In attributes
-    title: 'Selection',
-    description: 'Selection',
+    title: __('Selection', 'b-blocks'),
+    description: __('Text selection enabled disabled', 'b-blocks'),
     icon: icons.selection,
     category: 'bBlocks',
-    keywords: ['Select', 'Text Selection', 'Block Selection'],
+    keywords: [__('Select', 'b-blocks'), __('Text Selection', 'b-blocks'), __('Block Selection', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -53,7 +54,7 @@ registerBlockType('b-blocks/selection', {
         return ([
             <InspectorControls>
                 {/* Selection Settings */}
-                <PanelBody title="Selection Settings" initialOpen={true}>
+                <PanelBody title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
                     {/* Selection */}
                     {firstTitle('Selection:')}
                     <BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />

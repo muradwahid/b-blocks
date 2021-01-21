@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, ToggleControl, RangeControl, PanelRow } = wp.components;
@@ -19,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/progress-bar', {
     // Build In attributes
-    title: 'Progress Bar',
-    description: 'Progress Bar',
+    title: __('Progress Bar', 'b-blocks'),
+    description: __('Present your skills, experiences', 'b-blocks'),
     icon: icons.progress,
     category: 'bBlocks',
-    keywords: ['Progress', 'Progress Bar', 'Progress Width'],
+    keywords: [__('Skills', 'b-blocks'), __('Experiences', 'b-blocks'), __('Progress Width', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -53,7 +54,7 @@ registerBlockType('b-blocks/progress-bar', {
         return ([
             <InspectorControls>
                 {/* Progress Settings */}
-                <PanelBody title="Progress Settings" initialOpen={true}>
+                <PanelBody title={__('Progress Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={progressBG} onChange={cng => setAttributes({ progressBG: cng })} colors={colors} />
@@ -65,7 +66,7 @@ registerBlockType('b-blocks/progress-bar', {
 
 
                 {/* Progress Bar Settings */}
-                <PanelBody title="Progress Bar Settings" initialOpen={false}>
+                <PanelBody title={__('Progress Bar Settings', 'b-blocks')} initialOpen={false}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={progressBarBG} onChange={cng => setAttributes({ progressBarBG: cng })} colors={colors} />

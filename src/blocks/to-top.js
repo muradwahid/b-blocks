@@ -1,6 +1,7 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+const { PanelBody, FontSizePicker } = wp.components;
 
 // Variables
 import options from '../Const/options';
@@ -18,11 +19,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/to-top', {
     // Build In attributes
-    title: 'Go To Top',
-    description: 'Back to top your page',
+    title: __('Go To Top', 'b-blocks'),
+    description: __('Back to top of your page', 'b-blocks'),
     icon: icons.toTop,
     category: 'bBlocks',
-    keywords: ['To Top', 'Back to Top', 'Return to Top'],
+    keywords: [__('To Top', 'b-blocks'), __('Back to Top', 'b-blocks'), __('Return to Top', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -47,7 +48,7 @@ registerBlockType('b-blocks/to-top', {
         return ([
             <InspectorControls>
                 {/* Go To Top Settings */}
-                <PanelBody title="Go To Top Settings" initialOpen={false}>
+                <PanelBody title={__('Go To Top Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />

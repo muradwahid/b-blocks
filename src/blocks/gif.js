@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { useEffect } = wp.element;
 const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { PanelBody, RangeControl, TextControl, IconButton } = wp.components;
@@ -19,11 +20,11 @@ const { firstTitle, otherTitle } = func;
 
 registerBlockType('b-blocks/gif', {
     // Build In attributes
-    title: 'Gif Image',
-    description: 'Embed gif image',
+    title: __('Gif Image', 'b-blocks'),
+    description: __('Embed gif image', 'b-blocks'),
     icon: icons.gif,
     category: 'bBlocks',
-    keywords: ['Gif', 'Image', 'Animated Image'],
+    keywords: [__('Gif', 'b-blocks'), __('Image', 'b-blocks'), __('Animated Image', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -95,7 +96,7 @@ registerBlockType('b-blocks/gif', {
 
         return [
             <InspectorControls>
-                <PanelBody title="Gif Image Settings" initialOpen={true}>
+                <PanelBody title={__('Gif Image Settings', 'b-blocks')} initialOpen={true}>
                     {firstTitle("Width:")}
                     <BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes="b_blocks_size_type" size="small" />
 
@@ -109,13 +110,13 @@ registerBlockType('b-blocks/gif', {
                     <AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
                 </BlockControls>
 
-                <figure className="b_blocks_gif_figure" style={{ width: `${width}${widthType}`, display: `${selectedData && 'inline-block'}` }}>
+                <figure className="b_blocks_gif_figure" style={{ width: `${width}${widthType}`, display: `${selectedData && 'inline-block'}`, position: 'relative' }}>
                     {selectedData && <img src={selectedData.images.original.url} alt={selectedData.title} style={{ width: `100%` }} />}
 
                     {null == selectedData || isSelected ? <div className="b_blocks_media_upload">
                         <div className="b_blocks_media_control b_blocks_gif_media_control">
-                            {selectedData ? <IconButton icon="controls-repeat" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>Replace Gif</IconButton> : <IconButton icon="upload" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>Select Gif</IconButton>}
-                            {selectedData && <IconButton value={null} onClick={() => setAttributes({ selectedData: null })} icon="exit" style={{ color: 'red', fontWeight: 'bold' }}>Remove Gif</IconButton>}
+                            {selectedData ? <IconButton icon="controls-repeat" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>{__('Replace Gif', 'b-blocks')}</IconButton> : <IconButton icon="upload" style={{ color: '#4527a4', fontWeight: 'bold' }} onClick={setPopup}>{__('Select Gif', 'b-blocks')}</IconButton>}
+                            {selectedData && <IconButton value={null} onClick={() => setAttributes({ selectedData: null })} icon="exit" style={{ color: 'red', fontWeight: 'bold' }}>{__('Remove Gif', 'b-blocks')}</IconButton>}
                         </div>
                     </div> : null}
                 </figure>
@@ -126,9 +127,9 @@ registerBlockType('b-blocks/gif', {
 
                         <div className="giphyModal-header">
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}>
-                                <label htmlFor={`gifSrcBox-${clientId}`} style={{ marginRight: '20px', fontWeight: 'bold' }}>Search Gif:</label>
+                                <label htmlFor={`gifSrcBox-${clientId}`} style={{ margin: '0 20px 0 0', fontWeight: 'bold' }}>Search Gif:</label>
 
-                                <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} value={search} id={`gifSrcBox-${clientId}`} onChange={cng => setAttributes({ search: cng })} placeholder="Search gif image here" />
+                                <TextControl style={{ width: '350px', padding: '8px 15px', borderRadius: '3px', color: '#000' }} value={search} id={`gifSrcBox-${clientId}`} onChange={cng => setAttributes({ search: cng })} placeholder={__('Search gif image here', 'b-blocks')} />
                             </div>
                         </div>
 
@@ -146,7 +147,7 @@ registerBlockType('b-blocks/gif', {
                         </div> {/* Modal Body */}
                     </div> {/* Modal Content */}
                 </div> {/* Modal */}
-            </div> // Giphy
+            </div > // Giphy
         ];
     },
 

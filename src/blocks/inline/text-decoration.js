@@ -1,3 +1,4 @@
+const { __ } = wp.i18n;
 const { registerFormatType, toggleFormat } = wp.richText;
 const { RichTextToolbarButton } = wp.blockEditor;
 
@@ -11,8 +12,8 @@ const overLineIcon = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="
 </svg>
 
 const allOptions = [
-    { name: 'underline', title: 'Underline', icon: underlineIcon },
-    { name: 'overline', title: 'Overline', icon: overLineIcon }
+    { name: 'underline', title: __('Underline', 'b-blocks'), icon: underlineIcon },
+    { name: 'overline', title: __('Overline', 'b-blocks'), icon: overLineIcon }
 ];
 
 allOptions.forEach(({ name, title, icon }) => {

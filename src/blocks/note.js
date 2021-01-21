@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
@@ -19,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/note', {
     // Build In attributes
-    title: 'Note',
-    description: 'Create Note by Block',
+    title: __('Note', 'b-blocks'),
+    description: __('Create Note', 'b-blocks'),
     icon: icons.note,
     category: 'bBlocks',
-    keywords: ['Note', 'Note Text', 'Store Text'],
+    keywords: [__('Note', 'b-blocks'), __('Note Text', 'b-blocks'), __('Store Text', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -68,7 +69,7 @@ registerBlockType('b-blocks/note', {
         return ([
             <InspectorControls>
                 {/* Note Settings */}
-                <PanelBody title="Note Settings" initialOpen={true}>
+                <PanelBody title={__('Note Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
@@ -88,7 +89,7 @@ registerBlockType('b-blocks/note', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title="Heading Settings" initialOpen={false}>
+                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Enable/Disable Heading */}
                     <ToggleControl label={toggleHead ? 'Disable Heading' : 'Enable Heading'} checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
@@ -114,7 +115,7 @@ registerBlockType('b-blocks/note', {
 
                 {toggleHead && <Fragment>
                     {/* Separator Settings */}
-                    <PanelBody title="Separator Settings" initialOpen={false}>
+                    <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                         {/* Thickness */}
                         {firstTitle('Thickness:')}
                         <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={50} step={.1} />
@@ -135,7 +136,7 @@ registerBlockType('b-blocks/note', {
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings" initialOpen={false}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
@@ -149,9 +150,9 @@ registerBlockType('b-blocks/note', {
 
             <div className="b_blocks_note">
                 <div style={containerStyle}>
-                    {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder="Write Note Heading" value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
+                    {toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder={__('Write Note Heading', 'b-blocks')} value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
-                    <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder="Write Note Content" value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
+                    <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder={__('Write Note Content', 'b-blocks')} value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
                 </div>
             </div>
         ]);

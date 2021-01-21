@@ -21,7 +21,7 @@ const BColor = props => {
                             />
                         </div>
                         {defaultColor && defaultColor != state && (
-                            <IconButton icon="image-rotate" label="Reset"
+                            <IconButton icon="image-rotate" label={__('Reset', 'b-blocks')}
                                 onClick={() => {
                                     onChange(defaultColor);
                                     setState(defaultColor);

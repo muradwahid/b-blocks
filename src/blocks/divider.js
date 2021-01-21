@@ -1,7 +1,7 @@
 const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+const { __ } = wp.i18n;
+const { InspectorControls, ColorPalette } = wp.blockEditor;
+const { PanelBody, SelectControl, RangeControl } = wp.components;
 
 // Variables
 import options from '../Const/options';
@@ -19,11 +19,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/divider', {
     // Build In attributes
-    title: 'Divider',
-    description: 'Divider of your Section',
+    title: __('Divider', 'b-blocks'),
+    description: __('Divider between sections and blocks', 'b-blocks'),
     icon: icons.minus,
     category: 'bBlocks',
-    keywords: ['Divide', 'Divider', 'Divider Line'],
+    keywords: [__('Divide', 'b-blocks'), __('Divider', 'b-blocks'), __('Divider Line', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -40,27 +40,20 @@ registerBlockType('b-blocks/divider', {
         divideColor: { type: 'string', default: '#8344c5' },
         divideMT: { type: 'number', default: 10 },
         divideMB: { type: 'number', default: 15 },
-
-        toggleToTop: { type: 'boolean', default: false },
-        toTopLabel: { type: 'string', default: 'Go to top', source: 'html', selector: '.b_blocks_to_top_link' },
-        toTopAlign: { type: 'string', default: 'right' },
-        toTopFontSize: { type: 'number', default: 15 },
-        toTopColor: { type: 'string', default: '#4527a4' },
     },
 
     // Build In Functions
     edit: props => {
-        const { attributes: { divideAlign, divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, toggleToTop, toTopAlign, toTopLabel, toTopFontSize, toTopColor }, setAttributes } = props;
+        const { attributes: { divideAlign, divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB }, setAttributes } = props;
 
         // Styles
-        const containerStyle = { padding: `${divideMT}px 0 ${divideMB}px 0` };
+        const containerStyle = { textAlign: divideAlign, padding: `${divideMT}px 0 ${divideMB}px 0` };
         const dividerStyle = { display: 'inline-block', width: `${divideWidth}${divideWidthType}`, borderBottom: `${divideThick}px ${divideStyle} ${divideColor}` };
-        const toTopStyle = { fontSize: `${toTopFontSize}px`, color: toTopColor, textDecoration: 'none' };
 
         return ([
             <InspectorControls>
                 {/* Divider Settings */}
-                <PanelBody title="Divider Settings" initialOpen={true}>
+                <PanelBody title={__('Divider Settings', 'b-blocks')} initialOpen={true}>
                     {/* Alignment */}
                     {firstTitle('Alignment:')}
                     <BtnGroup options={aligns} myValue={divideAlign} setState={cng => setAttributes({ divideAlign: cng })} icon={true} />
@@ -91,35 +84,11 @@ registerBlockType('b-blocks/divider', {
                     {otherTitle('Margin Bottom:')}
                     <RangeControl value={divideMB} onChange={cng => setAttributes({ divideMB: cng })} min={0} max={100} step={1} />
                 </PanelBody>
-
-
-                <PanelBody title="Go To Top Settings" initialOpen={false}>
-                    {/* Enable/Disable Go To Top */}
-                    <ToggleControl label={toggleToTop ? "Disable 'Go To Top' link" : "Enable 'Go To Top' link"} checked={toggleToTop} onChange={cng => setAttributes({ toggleToTop: cng })} />
-
-                    {toggleToTop && <Fragment>
-                        {/* Text Align */}
-                        {firstTitle('Text Align:')}
-                        <BtnGroup options={aligns} myValue={toTopAlign} setState={cng => setAttributes({ toTopAlign: cng })} icon={true} />
-
-                        {/* Font Size */}
-                        {otherTitle('Font Size:')}
-                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={toTopFontSize} onChange={cng => setAttributes({ toTopFontSize: 'undefined' === typeof cng ? 15 : cng })} />
-
-                        {/* Color */}
-                        {otherTitle('Color:')}
-                        <ColorPalette value={toTopColor} onChange={cng => setAttributes({ toTopColor: cng })} colors={colors} />
-                    </Fragment>}
-                </PanelBody>
             </InspectorControls>,
 
 
-            <div className="b_blocks_divider" style={containerStyle}>
-                {toggleToTop && <div style={{ textAlign: toTopAlign }}>
-                    <RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={toTopLabel} onChange={cng => { setAttributes({ toTopLabel: cng }) }} inlineToolbar style={toTopStyle} />
-                </div>}
-
-                <div style={{ textAlign: divideAlign }}>
+            <div className="b_blocks_divider">
+                <div style={containerStyle}>
                     <div style={dividerStyle}></div>
                 </div>
             </div>
@@ -127,20 +96,15 @@ registerBlockType('b-blocks/divider', {
     },
 
     save: props => {
-        const { divideAlign, divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB, toggleToTop, toTopAlign, toTopLabel, toTopFontSize, toTopColor } = props.attributes;
+        const { divideAlign, divideWidth, divideWidthType, divideThick, divideStyle, divideColor, divideMT, divideMB } = props.attributes;
 
         // Styles
-        const containerStyle = { padding: `${divideMT}px 0 ${divideMB}px 0`, textAlign: 'inherit' };
+        const containerStyle = { textAlign: divideAlign, padding: `${divideMT}px 0 ${divideMB}px 0` };
         const dividerStyle = { display: 'inline-block', width: `${divideWidth}${divideWidthType}`, borderBottom: `${divideThick}px ${divideStyle} ${divideColor}` };
-        const toTopStyle = { fontSize: `${toTopFontSize}px`, color: toTopColor, textDecoration: 'none' };
 
         return (
-            <div className="b_blocks_divider" style={containerStyle}>
-                {toggleToTop && <div style={{ textAlign: toTopAlign }}>
-                    <RichText.Content className="b_blocks_to_top_link" tagName="a" href="#" value={toTopLabel} style={toTopStyle} />
-                </div>}
-
-                <div style={{ textAlign: divideAlign }}>
+            <div className="b_blocks_divider">
+                <div style={containerStyle}>
                     <div style={dividerStyle}></div>
                 </div>
             </div>

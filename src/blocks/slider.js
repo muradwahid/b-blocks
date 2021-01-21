@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { useEffect } = wp.element;
 const { RichText, InspectorControls, ColorPalette, MediaUpload } = wp.blockEditor;
 const { PanelBody, Button, ToggleControl, RangeControl, IconButton, FontSizePicker } = wp.components;
@@ -19,11 +20,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/slider', {
     // Build In attributes
-    title: 'Slider',
-    description: 'Slider',
+    title: __('Slider', 'b-blocks'),
+    description: __('Design an image and content slider', 'b-blocks'),
     icon: icons.slider,
     category: 'bBlocks',
-    keywords: ['Slider', 'Carousel', 'Slide'],
+    keywords: [__('Slider', 'b-blocks'), __('Carousel', 'b-blocks'), __('Slide', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -113,15 +114,16 @@ registerBlockType('b-blocks/slider', {
                                     setAttributes({ slides: [...slides.filter(item => item.index != index), newObj] });
                                 }} render={({ open }) =>
                                     img ? <div className="b_blocks_media_control">
-                                        <IconButton icon="controls-repeat" onClick={open} style={mediaUpStyle}>Replace Slide Image</IconButton>
+                                        <IconButton icon="controls-repeat" onClick={open} style={mediaUpStyle}>{__('Replace Slide Image', 'b-blocks')}</IconButton>
                                     </div> : <div className="b_blocks_media_control">
-                                            <IconButton icon="upload" onClick={open} style={mediaUpStyle}>Upload Slide Image</IconButton>
+                                            <IconButton icon="upload" onClick={open} style={mediaUpStyle}>{__('Upload Slide Image', 'b-blocks')}</IconButton>
                                         </div>} />
                             </div>}
 
-                            {isSelected && <Button icon="no-alt" className="b_blocks_remove_slide_btn" title="Remove this slide" onClick={() => {
+                            {isSelected && <Button icon="no-alt" className="b_blocks_remove_slide_btn" title={__('Remove this slide', 'b-blocks')} onClick={() => {
                                 const newSlide = slides.filter(item => item.index != index).map(i => {
                                     if (i.index > index) i.index--;
+                                    if (i.index <= index) document.querySelectorAll(`#bBlocksSlider-${clientId} .carousel-item`)[0].classList.add('active');
                                     return i;
                                 });
                                 setAttributes({ slides: newSlide });
@@ -130,12 +132,12 @@ registerBlockType('b-blocks/slider', {
                             {img && <img src={img} className="b_blocks_slider_img w-100" alt="" />}
 
                             <div className="carousel-caption" style={captionStyle}>
-                                <RichText tagName={headTag} placeholder="Enter the title" value={title} onChange={cng => {
+                                <RichText tagName={headTag} placeholder={__('Enter the title', 'b-blocks')} value={title} onChange={cng => {
                                     const newObj = Object.assign({}, slide, { title: cng });
                                     setAttributes({ slides: [...slides.filter(item => item.index != index), newObj] });
                                 }} inlineToolbar style={{ color: headColor, fontSize: `${headFontSize}px`, margin: `0 0 ${headMB}px 0` }} />
 
-                                <RichText tagName="p" placeholder="Enter the description" value={description} onChange={cng => {
+                                <RichText tagName="p" placeholder={__('Enter the description', 'b-blocks')} value={description} onChange={cng => {
                                     const newObj = Object.assign({}, slide, { description: cng });
                                     setAttributes({ slides: [...slides.filter(item => item.index != index), newObj] });
                                 }} inlineToolbar style={{ color: descColor, fontSize: `${descFontSize}px`, margin: `0 0 ${descMB}px 0` }} />
@@ -149,7 +151,7 @@ registerBlockType('b-blocks/slider', {
         return ([
             <InspectorControls>
                 {/* Slider Settings */}
-                <PanelBody title="Slider Settings" initialOpen={true}>
+                <PanelBody title={__('Slider Settings', 'b-blocks')} initialOpen={true}>
                     {/* Width */}
                     {firstTitle('Width:')}
                     <BtnGroup options={sizeTypes} myValue={sliderWidthType} setState={(cng, def) => setAttributes({ sliderWidthType: cng, sliderWidth: def })} classes="b_blocks_size_type" size="small" />
@@ -179,7 +181,7 @@ registerBlockType('b-blocks/slider', {
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings" initialOpen={false}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -187,7 +189,7 @@ registerBlockType('b-blocks/slider', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title="Heading Settings" initialOpen={false}>
+                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Tag */}
                     {firstTitle('Tag:')}
                     <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -207,7 +209,7 @@ registerBlockType('b-blocks/slider', {
 
 
                 {/* Description Settings */}
-                <PanelBody title="Description Settings" initialOpen={false}>
+                <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Color */}
                     {firstTitle('Color:')}
                     <ColorPalette value={descColor} onChange={cng => setAttributes({ descColor: cng })} colors={colors} />
@@ -222,7 +224,7 @@ registerBlockType('b-blocks/slider', {
                 </PanelBody>
 
 
-                <PanelBody title="Indicator Settings" initialOpen={false}>
+                <PanelBody title={__('Indicator Settings', 'b-blocks')} initialOpen={false}>
                     {/* Color */}
                     {firstTitle('Color:')}
                     <ColorPalette value={indicatorColor} onChange={cng => setAttributes({ indicatorColor: cng })} colors={colors} />
@@ -256,15 +258,15 @@ registerBlockType('b-blocks/slider', {
 
                     <a className="carousel-control-prev" href={`#bBlocksSlider-${clientId}`} role="button" data-slide="prev" style={{ width: '75px', height: '100px', margin: 'auto 0' }}>
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Previous</span>
+                        <span className="sr-only">{__('Previous', 'b-blocks')}</span>
                     </a>
                     <a className="carousel-control-next" href={`#bBlocksSlider-${clientId}`} role="button" data-slide="next" style={{ width: '75px', height: '100px', margin: 'auto 0' }}>
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Next</span>
+                        <span className="sr-only">{__('Next', 'b-blocks')}</span>
                     </a>
                 </div>
 
-                {!slides.length || isSelected ? <div className="b_blocks_add_item" style={{ left: '50%', transform: 'translateX(-50%)' }}><Button icon="plus-alt" onClick={title => { setAttributes({ slides: [...slides, { index: slides.length }] }) }} >Add New Slide</Button></div> : null}
+                {!slides.length || isSelected ? <div className="b_blocks_add_item" style={{ left: '50%', transform: 'translateX(-50%)' }}><Button icon="plus-alt" onClick={title => { setAttributes({ slides: [...slides, { index: slides.length }] }) }} >{__('Add New Slide', 'b-blocks')}</Button></div> : null}
             </div>
         ])
     },
@@ -333,11 +335,11 @@ registerBlockType('b-blocks/slider', {
 
                     <a className="carousel-control-prev" href={`#bBlocksSlider-${cId}`} role="button" data-slide="prev" style={{ width: '75px' }}>
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Previous</span>
+                        <span className="sr-only">{__('Previous', 'b-blocks')}</span>
                     </a>
                     <a className="carousel-control-next" href={`#bBlocksSlider-${cId}`} role="button" data-slide="next" style={{ width: '75px' }}>
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Next</span>
+                        <span className="sr-only">{__('Next', 'b-blocks')}</span>
                     </a>
                 </div>
             </div>

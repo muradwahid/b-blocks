@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n;
 const { RichText, InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
 const { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectControl } = wp.components;
 
@@ -6,9 +7,9 @@ const { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectCon
 import options from '../Const/options';
 const { colors, fontSizes, aligns, textTransforms, sizeTypes } = options;
 const tabLayouts = [
-    { label: 'Tabs', value: 'tab' },
-    { label: 'Pills', value: 'pills' },
-    { label: 'Vertical Pills', value: 'vertical-pills' },
+    { label: __('Tabs', 'b-blocks'), value: 'tab' },
+    { label: __('Pills', 'b-blocks'), value: 'pills' },
+    { label: __('Vertical Pills', 'b-blocks'), value: 'vertical-pills' },
 ]
 
 // Components
@@ -23,11 +24,11 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/tabs', {
     // Build In attributes
-    title: 'Tabs',
-    description: 'Tabs',
+    title: __('Tabs', 'b-blocks'),
+    description: __('Display beautiful predesigned tabs', 'b-blocks'),
     icon: icons.tab,
     category: 'bBlocks',
-    keywords: ['Tabs', 'Link Tab', 'List Tab'],
+    keywords: [__('Tabs', 'b-blocks'), __('Link Tab', 'b-blocks'), __('List Tab', 'b-blocks')],
     supports: {
         align: ['center', 'wide', 'full']
     },
@@ -91,7 +92,7 @@ registerBlockType('b-blocks/tabs', {
                                 setAttributes({ tabs: newTabs });
                             }} style={tabRemoveStyle} />
 
-                            <RichText tagName="h4" placeholder="Enter the title" value={title} onChange={cng => {
+                            <RichText tagName="h4" placeholder={__('Enter title', 'b-blocks')} value={title} onChange={cng => {
                                 const newObject = Object.assign({}, tab, { title: cng });
                                 setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObject] });
                             }} inlineToolbar style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
@@ -113,7 +114,7 @@ registerBlockType('b-blocks/tabs', {
                     return (
                         <div className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
 
-                            <RichText tagName="span" placeholder="Enter Content" value={description} onChange={cng => {
+                            <RichText tagName="span" placeholder={__('Enter content', 'b-blocks')} value={description} onChange={cng => {
                                 const newObj = Object.assign({}, tab, { description: cng });
                                 setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObj] });
                             }} inlineToolbar />
@@ -126,7 +127,7 @@ registerBlockType('b-blocks/tabs', {
 
         return ([
             <InspectorControls>
-                <PanelBody title="Tabs Settings" initialOpen={true}>
+                <PanelBody title={__('Tabs Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout */}
                     {firstTitle('Layout:')}
                     <SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={tabLayouts} />
@@ -155,7 +156,7 @@ registerBlockType('b-blocks/tabs', {
 
 
                 {/* Title Settings */}
-                <PanelBody title="Title Settings" initialOpen={false}>
+                <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={titleAlign} setState={cng => setAttributes({ titleAlign: cng })} icon={true} />
@@ -171,7 +172,7 @@ registerBlockType('b-blocks/tabs', {
 
 
                 {/* Content Settings */}
-                <PanelBody title="Content Settings" initialOpen={false}>
+                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
@@ -217,10 +218,10 @@ registerBlockType('b-blocks/tabs', {
                                             {tabsDesc(tabs)}
                                         </div>
                                     </div>
-                                </div> : <h3 style={{ fontSize: '20px' }}>Select a layout</h3>
+                                </div> : <h3 style={{ fontSize: '20px' }}>{__('Select a layout', 'b-blocks')}</h3>
                     }
 
-                    {!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>Add New Tab</Button></div> : null}
+                    {!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>{__('Add New Tab', 'b-blocks')}</Button></div> : null}
                 </div>
             </div>
         ]);
@@ -306,7 +307,7 @@ registerBlockType('b-blocks/tabs', {
                                         {tabsDesc(tabs)}
                                     </div>
                                 </div>
-                            </div> : <h3 style={{ fontSize: '20px' }}>Select a layout</h3>
+                            </div> : <h3 style={{ fontSize: '20px' }}>{__('Select a layout', 'b-blocks')}</h3>
                 }
             </div>
         );

@@ -1,3 +1,4 @@
+const { __ } = wp.i18n;
 const { registerFormatType, applyFormat, removeFormat, getActiveFormat } = wp.richText;
 const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody } = wp.components;
@@ -9,8 +10,8 @@ const { colors } = options;
 
 
 const allOptions = [
-    // { name: 'color', title: 'Inline Color' },
-    { name: 'background-color', title: 'Inline Background Color' }
+    // { name: 'color', title: __('Inline Color', 'b-blocks') },
+    { name: 'background-color', title: __('Inline Background Color', 'b-blocks') }
 ];
 
 allOptions.forEach(({ name, title }) => {
