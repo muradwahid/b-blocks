@@ -20,8 +20,8 @@ import icons from '../Const/icons';
 
 registerBlockType('b-blocks/alert', {
     // Build In attributes
-    title: __('Display dismissible alert', 'b-blocks'),
-    description: __('Alert', 'b-blocks'),
+    title: __('Alert', 'b-blocks'),
+    description: __('Display dismissible alert', 'b-blocks'),
     icon: icons.alert,
     category: 'bBlocks',
     keywords: [__('Alert', 'b-blocks'), __('Alert Text', 'b-blocks'), __('Alert Close', 'b-blocks')],

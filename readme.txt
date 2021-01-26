@@ -4,6 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.6
+Requires PHP: 7.0
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,6 +16,9 @@ B Blocks is an innovative collection of blocks for the new WordPress Gutenberg b
 B Blocks is an innovative collection of blocks for the new WordPress Gutenberg block editor. It's used for creating interactive blocks in your web page or posts.
 
 B Blocks is powerful but lightweight. Work with any theme, just need WordPress Gutenberg editor.
+
+
+**[Demos](https://links.bplugins.com/b-blocks)**
 
 
 = Features =
@@ -94,11 +98,19 @@ Liked that plugin? Hate it? Want a new feature?  [Send me some feedback](mailto:
 
 = How do I install this plugin? =
 
-You can install as others regular wordpress plugin. No different way. Please see on installation tab.
+You can install as others regular WordPress plugin. No different way. Please see on installation tab.
 
 = Is B Blocks free? =
 
 Yes, B Blocks is free Gutenberg block plugin.
+
+= Can I change block settings? =
+
+Yes, you can change block settings from the Gutenberg block editor's right sidebar.
+
+= How many times can I reuse a block? =
+
+You can use unlimited times as you want.
 
 = Can I use B Blocks on client website? =
 
@@ -125,4 +137,8 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 == Changelog ==
 
 = 1.0 =
+* Initial Release
+
+
+== Upgrade Notice ==
 * Initial Release

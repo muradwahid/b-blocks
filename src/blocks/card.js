@@ -99,7 +99,7 @@ registerBlockType('b-blocks/card', {
         const footerStyle = { margin: 0, textAlign: footerAlign, fontSize: `${footerFontSize}px`, color: footerColor, backgroundColor: footerBGColor };
 
         useEffect(() => {
-            const cardImg = document.querySelectorAll('.b_blocks_card .card img');
+            const cardImg = document.querySelectorAll('.b_blocks_card .card .vertical_card img');
             cardImg.length && cardImg.forEach(im => {
                 img && img.url ? im.style.height = `${(im.clientWidth / 16) * 9}px` : null;
             });
@@ -320,7 +320,7 @@ registerBlockType('b-blocks/card', {
                         <AlignmentToolbar value={cardAlign} onChange={cng => setAttributes({ cardAlign: cng })} />
                     </BlockControls>
 
-                    {'vertical' == layout && <Fragment>
+                    {'vertical' == layout && <div className="vertical_card">
                         {'top' == imgPos && cardImg()}
 
                         {cardHeader()}
@@ -330,7 +330,7 @@ registerBlockType('b-blocks/card', {
                         {cardFooter()}
 
                         {'bottom' == imgPos && cardImg()}
-                    </Fragment>}
+                    </div>}
 
                     {'horizontal' == layout && <div class="row no-gutters" style={{ backgroundColor: bodyBGColor }}>
                         {'top' == imgPos && <div class="col-md-6">
@@ -406,7 +406,7 @@ registerBlockType('b-blocks/card', {
         return (
             <div className="b_blocks_card" style={{ textAlign: cardAlign }}>
                 <div className="card" style={cardStyle}>
-                    {'vertical' == layout && <Fragment>
+                    {'vertical' == layout && <div className="vertical_card">
                         {'top' == imgPos && cardImg()}
 
                         {cardHeader()}
@@ -416,7 +416,7 @@ registerBlockType('b-blocks/card', {
                         {cardFooter()}
 
                         {'bottom' == imgPos && cardImg()}
-                    </Fragment>}
+                    </div>}
 
                     {'horizontal' == layout && <div class="row no-gutters" style={{ backgroundColor: bodyBGColor }}>
                         {'top' == imgPos && <div class="col-md-6">

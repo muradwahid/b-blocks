@@ -37,6 +37,7 @@ registerBlockType('b-blocks/progress-bar', {
         progressHeight: { type: 'number', default: 15 },
 
         progressBarBG: { type: 'string', default: '#8344c5' },
+        isLabel: { type: 'boolean', default: true },
         progressBarWidth: { type: 'number', default: 75 },
         progressBarStriped: { type: 'boolean', default: true },
         progressBarStripedColor: { type: 'string', default: '#ffffff26' },
@@ -45,7 +46,7 @@ registerBlockType('b-blocks/progress-bar', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarStripedColor, progressBarAnimation }, setAttributes } = props;
+        const { attributes: { progressBG, progressHeight, progressBarBG, isLabel, progressBarWidth, progressBarStriped, progressBarStripedColor, progressBarAnimation }, setAttributes } = props;
 
         // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
@@ -71,13 +72,16 @@ registerBlockType('b-blocks/progress-bar', {
                     {firstTitle('Background Color:')}
                     <ColorPalette value={progressBarBG} onChange={cng => setAttributes({ progressBarBG: cng })} colors={colors} />
 
+                    {/* Label */}
+                    {otherTitle('Label:')}
+                    <ToggleControl label={isLabel ? 'Disable Label' : 'Enable Label'} checked={isLabel} onChange={cng => setAttributes({ isLabel: cng })} />
+
                     {/* Width */}
                     {otherTitle('Width:')}
                     <RangeControl value={progressBarWidth} onChange={cng => setAttributes({ progressBarWidth: cng })} min={0} max={100} step={1} />
 
-
                     {/* Striped */}
-                    {otherTitle('Striped')}
+                    {otherTitle('Striped:')}
                     <ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
                     <div style={{ marginTop: '10px' }}></div>
@@ -97,14 +101,14 @@ registerBlockType('b-blocks/progress-bar', {
 
             <div className="b_blocks_progress_bar">
                 <div className="progress" style={progressStyle}>
-                    <div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
+                    <div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100">{isLabel && `${progressBarWidth}%`}</div>
                 </div>
             </div>
         ])
     },
 
     save: props => {
-        const { progressBG, progressHeight, progressBarBG, progressBarWidth, progressBarStriped, progressBarStripedColor, progressBarAnimation } = props.attributes;
+        const { progressBG, progressHeight, progressBarBG, isLabel, progressBarWidth, progressBarStriped, progressBarStripedColor, progressBarAnimation } = props.attributes;
 
         // Styles
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px', textAlign: 'inherit' }
@@ -113,7 +117,7 @@ registerBlockType('b-blocks/progress-bar', {
         return (
             <div className="b_blocks_progress_bar">
                 <div className="progress" style={progressStyle}>
-                    <div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100"></div>
+                    <div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100">{isLabel && `${progressBarWidth}%`}</div>
                 </div>
             </div>
         )

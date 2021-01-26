@@ -128,7 +128,7 @@ registerBlockType('b-blocks/posts', {
         // Single Category Func
         const singleCat = id => {
             let catName;
-            categories.map(cat => {
+            categories && 0 !== categories.length && categories.map(cat => {
                 if (cat.id === id) {
                     catName = `<a href="${cat.link}" target="_blank">${cat.name}</a>`;
                 }
@@ -196,7 +196,7 @@ registerBlockType('b-blocks/posts', {
 
         const metaCategory = categories => metaCategoryShow == 'true' && <span>
             <Dashicon icon="category" style={{ color: metaIconColor }} />&nbsp;
-            <span style={{ color: metaLinkColor }}>{renderHTML(categories.map(id => `${singleCat(id)}`))}</span>
+            <span style={{ color: metaLinkColor }}>{renderHTML(categories && categories.map(id => `${singleCat(id)}`))}</span>
         </span>;
 
         // const metaComments = (link, comment_info) => metaCommentShow == 'true' && <span>
