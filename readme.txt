@@ -1,4 +1,4 @@
-=== B Blocks - for creating awesome blocks ===
+=== B Blocks - Gutenberg Blocks Collection and Page Builder ===
 Contributors: abuhayat
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder

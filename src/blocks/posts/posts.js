@@ -137,12 +137,12 @@ registerBlockType('b-blocks/posts', {
         }
 
         // Posts Image Size
-        useEffect(() => {
-            const f_image = document.querySelectorAll('.b_blocks_grid_posts .b_blocks_article .feature_img img');
-            f_image.length && f_image.forEach(im => {
-                im ? im.style.height = `${(im.clientWidth / 16) * 9}px` : null;
-            });
-        }, [posts, layout, columns, columnGap]);
+        // useEffect(() => {
+        //     const f_image = document.querySelectorAll('.b_blocks_grid_posts .b_blocks_article .feature_img img');
+        //     f_image.length && f_image.forEach(im => {
+        //         im ? im.style.height = `${(im.clientWidth / 16) * 9}px` : null;
+        //     });
+        // }, [posts, layout, columns, columnGap]);
 
 
         // Styles

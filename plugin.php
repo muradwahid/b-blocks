@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: B Blocks
- * Description: B Blocks for creating awesome blocks.
+ * Description: Gutenberg Blocks Collection and Page Builder.
  * Version: 1.0
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
