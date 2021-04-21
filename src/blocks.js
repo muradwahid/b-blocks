@@ -1,9 +1,9 @@
 // Import Blocks
-// import './blocks/posts/advance-posts.js';
 import './blocks/posts/posts.js';
 import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
+import './blocks/price-list';
 import './blocks/card.js';
 import './blocks/mail-to.js';
 import './blocks/modal.js';

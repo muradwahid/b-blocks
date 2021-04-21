@@ -20,3 +20,70 @@
 //         margin: 0 calc(-50vw + 55%)!important;
 //     }
 // }
+
+// Common CSS
+@for $i from 1 through 6 {
+    .columns-#{$i}{
+        grid-template-columns: repeat(#{$i}, 1fr);
+    }
+}
+@for $i from 1 through 100 {
+    .cGap-#{$i}{
+        column-gap: #{$i}px;
+    }
+}
+@for $i from 1 through 100 {
+    .rGap-#{$i}{
+        row-gap: #{$i}px;
+    }
+}
+
+@for $i from 1 through 55 {
+    .fontSize-#{$i}{
+        font-size: #{$i}px!important;
+    }
+}
+
+@for $i from 1 through 100 {
+    .mb-#{$i}{
+        margin-bottom: #{$i}px!important;
+    }
+}
+
+@for $i from 1 through 100 {
+    .ptb-#{$i}{
+        padding-top: #{$i}px;
+        padding-bottom: #{$i}px;
+    }
+}
+@for $i from 1 through 100 {
+    .plr-#{$i}{
+        padding-left: #{$i}px;
+        padding-right: #{$i}px;
+    }
+}
+
+@for $i from 1 through 50 {
+    $u: '%';
+    .radius-#{$i}-per{
+        border-radius: #{$i}#{$u};
+    }
+}
+@for $i from 1 through 50 {
+    .radius-#{$i}-px{
+        border-radius: #{$i}px;
+    }
+}
+
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+.text-justify{
+    text-align: justify;
+}

@@ -1,0 +1,25 @@
+.wp-block-b-blocks-price-lists{
+    display: grid;
+
+    .wp-block-b-blocks-price-list{
+        .itemImage{
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .itemTitle{
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .itemDescription{
+            font-style: italic;
+            margin: 0;
+        }
+
+        .itemPrice{
+            font-style: italic;
+        }
+    }
+}

@@ -1,13 +1,5 @@
 <?php
-function b_blocks_advance_posts_init() {
-    // Posts callback
-    register_block_type( 'b-blocks/advance-posts', [
-        'render_callback' => 'render_b_blocks_advance_posts',
-    ] );
-}
-
-add_action( 'init', 'b_blocks_advance_posts_init' );
-function render_b_blocks_advance_posts( $attributes ) {
+function render_b_blocks_posts( $attributes ) {
     extract( $attributes );
 
     $align ?? $align = 'full';
@@ -27,14 +19,12 @@ function render_b_blocks_advance_posts( $attributes ) {
     $contentAlign ?? $contentAlign = 'left';
     $contentBGColor ?? $contentBGColor = '#fff';
     $postTextPTB ?? $postTextPTB = 15;
-    $postTextPLR ?? $postTextPLR = 25;
+    $postTextPLR ?? $postTextPLR = 15;
     $shadow ?? $shadow = 'shadow';
 
     $featureImgShow ?? $featureImgShow = 'true';
-    $featureImgLink ?? $featureImgLink = 'false';
 
     $titleShow ?? $titleShow = 'true';
-    $titleLink ?? $titleLink = 'true';
     $titleFontSize ?? $titleFontSize = 20;
     $titleColor ?? $titleColor = '#4527a4';
     $titleMB ?? $titleMB = 15;
@@ -60,7 +50,6 @@ function render_b_blocks_advance_posts( $attributes ) {
 
     $readMoreShow ?? $readMoreShow = 'true';
     $readMoreLabel ?? $readMoreLabel = 'Read More';
-    $linkNewTab ?? $linkNewTab = 'false';
     $readMoreAlign ?? $readMoreAlign = 'left';
     $readMoreFontSize ?? $readMoreFontSize = 14;
     $readMoreTransform ?? $readMoreTransform = 'uppercase';
@@ -79,19 +68,19 @@ function render_b_blocks_advance_posts( $attributes ) {
     $alignClass = '' == $align ? '' : 'align' . $align;
 
     ob_start();
-    echo '<div class="b_blocks_advance_posts ' . $alignClass . '">';
+    echo '<div class="b_blocks_posts ' . $alignClass . '">';
 
     if ( 'grid' == $layout ) {
-        echo '<div id="bBlocksGridAdvancePosts-' . $cId . '" class="b_blocks_grid_posts" style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); grid-gap: ' . $rowGap . 'px ' . $columnGap . 'px;">';
+        echo '<div id="bBlocksGridPosts-' . $cId . '" class="b_blocks_grid_posts" style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); grid-gap: ' . $rowGap . 'px ' . $columnGap . 'px;">';
         foreach ( $posts as $post ) {
             $contentHeight = 'true' == $contentEqualHight ? "100%" : "auto";
 
             echo '<article class="b_blocks_article">
                 <div class="post_content ' . $shadow . ' rounded" style="text-align: ' . $contentAlign . '; height: ' . $contentHeight . '; background-color: ' . $contentBGColor . ';">
-                    ' . bBlocksAPostFeatureImg( $featureImgShow, $featureImgLink, $linkNewTab, $post ) . '
+                    ' . bBlocksPostFeatureImg( $featureImgShow, $post ) . '
 
                     <div class="post_text" style="padding: ' . $postTextPTB . 'px ' . $postTextPLR . 'px;">
-                        ' . bBlocksAPostTitle( $titleShow, $titleLink, $linkNewTab, $post, $contentAlign, $titleFontSize, $titleColor, $titleMB ) . bBlocksAPostMetaData( $metaShow, $post, $metaAuthorShow, $metaDateShow, $metaCategoryShow, $metaCommentShow, $contentAlign, $metaFontSize, $metaTransform, $metaTextColor, $metaLinkColor, $metaIconColor, $metaMB ) . bBlocksAPostExcerpt( $excerptShow, $post, $excerptAlign, $excerptFontSize, $excerptColor, $excerptMB, $excerptLength ) . bBlocksAPostReadMore( $readMoreShow, $readMoreLabel, $linkNewTab, $post, $readMoreAlign, $readMoreFontSize, $readMoreTransform, $readMoreFontWeight, $readMoreColor, $readMoreHovColor ) . '
+                        ' . bBlocksPostTitle( $titleShow, $post, $contentAlign, $titleFontSize, $titleColor, $titleMB ) . bBlocksPostMetaData( $metaShow, $post, $metaAuthorShow, $metaDateShow, $metaCategoryShow, $metaCommentShow, $contentAlign, $metaFontSize, $metaTransform, $metaTextColor, $metaLinkColor, $metaIconColor, $metaMB ) . bBlocksPostExcerpt( $excerptShow, $post, $excerptAlign, $excerptFontSize, $excerptColor, $excerptMB, $excerptLength ) . bBlocksPostReadMore( $readMoreShow, $post, $readMoreAlign, $readMoreFontSize, $readMoreTransform, $readMoreFontWeight, $readMoreColor, $readMoreHovColor, $readMoreLabel ) . '
                     </div>
                 </div>
             </article>';
@@ -99,14 +88,14 @@ function render_b_blocks_advance_posts( $attributes ) {
         echo '</div>';
 
     } else if ( 'masonry' == $layout ) {
-        echo '<div id="bBlocksMasonryAdvancePosts-' . $cId . '" class="b_blocks_masonry_posts" style="columns: ' . $columns . '; gap: ' . $columnGap . 'px;">';
+        echo '<div id="bBlocksMasonryPosts-' . $cId . '" class="b_blocks_masonry_posts" style="columns: ' . $columns . '; gap: ' . $columnGap . 'px;">';
         foreach ( $posts as $post ) {
             echo '<article class="b_blocks_article" style="break-inside: avoid; margin-bottom: ' . $rowGap . 'px;">
                 <div class="post_content ' . $shadow . ' rounded" style="text-align: ' . $contentAlign . '; background-color: ' . $contentBGColor . ';">
-                    ' . bBlocksAPostFeatureImg( $featureImgShow, $featureImgLink, $linkNewTab, $post ) . '
+                    ' . bBlocksPostFeatureImg( $featureImgShow, $post ) . '
 
                     <div class="post_text" style="padding: ' . $postTextPTB . 'px ' . $postTextPLR . 'px;">
-                        ' . bBlocksAPostTitle( $titleShow, $titleLink, $linkNewTab, $post, $contentAlign, $titleFontSize, $titleColor, $titleMB ) . bBlocksAPostMetaData( $metaShow, $post, $metaAuthorShow, $metaDateShow, $metaCategoryShow, $metaCommentShow, $contentAlign, $metaFontSize, $metaTransform, $metaTextColor, $metaLinkColor, $metaIconColor, $metaMB ) . bBlocksAPostExcerpt( $excerptShow, $post, $excerptAlign, $excerptFontSize, $excerptColor, $excerptMB, $excerptLength ) . bBlocksAPostReadMore( $readMoreShow, $readMoreLabel, $linkNewTab, $post, $readMoreAlign, $readMoreFontSize, $readMoreTransform, $readMoreFontWeight, $readMoreColor, $readMoreHovColor ) . '
+                        ' . bBlocksPostTitle( $titleShow, $post, $contentAlign, $titleFontSize, $titleColor, $titleMB ) . bBlocksPostMetaData( $metaShow, $post, $metaAuthorShow, $metaDateShow, $metaCategoryShow, $metaCommentShow, $contentAlign, $metaFontSize, $metaTransform, $metaTextColor, $metaLinkColor, $metaIconColor, $metaMB ) . bBlocksPostExcerpt( $excerptShow, $post, $excerptAlign, $excerptFontSize, $excerptColor, $excerptMB, $excerptLength ) . bBlocksPostReadMore( $readMoreShow, $post, $readMoreAlign, $readMoreFontSize, $readMoreTransform, $readMoreFontWeight, $readMoreColor, $readMoreHovColor, $readMoreLabel ) . '
                     </div>
                 </div>
             </article>';
@@ -122,43 +111,39 @@ function render_b_blocks_advance_posts( $attributes ) {
 
 // Components
 // Feature Image
-function bBlocksAPostFeatureImg( $show, $link, $linkNewTab, $post ) {
+function bBlocksPostFeatureImg( $show, $post ) {
     if ( 'true' == $show ) {
-        $tab = 'true' == $linkNewTab ? '_blank' : '_self';
-
-        $image = 'true' == $link ? '<a href="' . get_post_permalink( $post->ID ) . '" target="' . $tab . '">' . get_the_post_thumbnail( $post->ID ) . '</a>' : get_the_post_thumbnail( $post->ID );
-
-        return '<div class="feature_img">' . $image . '</div>';
+        return '<div class="feature_img">
+            <a href="' . get_post_permalink( $post->ID ) . '" target="_blank">' . get_the_post_thumbnail( $post->ID ) . '</a>
+        </div>';
     } else {
         return '';
     }
 }
 
 // Title
-function bBlocksAPostTitle( $show, $link, $linkNewTab, $post, $align, $fontSize, $color, $mb ) {
+function bBlocksPostTitle( $show, $post, $align, $fontSize, $color, $mb ) {
     if ( 'true' == $show ) {
-        $tab = 'true' == $linkNewTab ? '_blank' : '_self';
-
-        $title = 'true' == $link ? '<a href="' . get_post_permalink( $post->ID ) . '" target="' . $tab . '" style="color: ' . $color . ';">' . $post->post_title . '</a>' : $post->post_title;
-
-        return '<h3 class="title" style="text-align:' . $align . '; font-size:' . $fontSize . 'px; color: ' . $color . '; margin: 0 0 ' . $mb . 'px 0">' . $title . '</h3>';
+        return '<h3 class="title" style="text-align:' . $align . '; font-size:' . $fontSize . 'px; color: ' . $color . '; margin: 0 0 ' . $mb . 'px 0">
+            <a href="' . get_post_permalink( $post->ID ) . '" target="_blank" style="color: ' . $color . ';">' . $post->post_title . '</a>
+        </h3>';
     } else {
         return '';
     }
 }
 
 // Meta Data
-function bBlocksAPostMetaData( $show, $post, $authorShow, $dateShow, $categoryShow, $commentShow, $align, $fontSize, $transform, $textColor, $linkColor, $iconColor, $mb ) {
+function bBlocksPostMetaData( $show, $post, $authorShow, $dateShow, $categoryShow, $commentShow, $align, $fontSize, $transform, $textColor, $linkColor, $iconColor, $mb ) {
     if ( 'true' == $show ) {
         return '<p class="meta" style="text-align:' . $align . '; font-size:' . $fontSize . 'px; text-transform: ' . $transform . '; color: ' . $textColor . '; margin: 0 0 ' . $mb . 'px 0">
-            ' . bBlocksAPostMetaAuthor( $authorShow, $post, $iconColor, $linkColor ) . bBlocksAPostMetaDate( $dateShow, $post, $iconColor, $textColor ) . bBlocksAPostMetaCategory( $categoryShow, $post, $iconColor, $linkColor ) . bBlocksAPostMetaComment( $commentShow, $post, $iconColor, $linkColor ) . '
+            ' . bBlocksPostMetaAuthor( $authorShow, $post, $iconColor, $linkColor ) . bBlocksPostMetaDate( $dateShow, $post, $iconColor, $textColor ) . bBlocksPostMetaCategory( $categoryShow, $post, $iconColor, $linkColor ) . bBlocksPostMetaComment( $commentShow, $post, $iconColor, $linkColor ) . '
         </p>';
     } else {
         return '';
     }
 }
 
-function bBlocksAPostMetaAuthor( $show, $post, $iconColor, $linkColor ) {
+function bBlocksPostMetaAuthor( $show, $post, $iconColor, $linkColor ) {
     if ( 'true' == $show ) {
         return '<span>
             <span class="dashicons dashicons-admin-users" style="color: ' . $iconColor . ';"></span>&nbsp;
@@ -168,7 +153,7 @@ function bBlocksAPostMetaAuthor( $show, $post, $iconColor, $linkColor ) {
         return '';
     }
 }
-function bBlocksAPostMetaDate( $show, $post, $iconColor, $textColor ) {
+function bBlocksPostMetaDate( $show, $post, $iconColor, $textColor ) {
     if ( 'true' == $show ) {
         return '<span>
             <span class="dashicons dashicons-calendar" style="color: ' . $iconColor . ';"></span>&nbsp;
@@ -178,7 +163,7 @@ function bBlocksAPostMetaDate( $show, $post, $iconColor, $textColor ) {
         return '';
     }
 }
-function bBlocksAPostMetaCategory( $show, $post, $iconColor, $linkColor ) {
+function bBlocksPostMetaCategory( $show, $post, $iconColor, $linkColor ) {
     if ( 'true' == $show ) {
         return '<span>
             <span class="dashicons dashicons-category" style="color: ' . $iconColor . ';"></span>&nbsp;
@@ -188,7 +173,7 @@ function bBlocksAPostMetaCategory( $show, $post, $iconColor, $linkColor ) {
         return '';
     }
 }
-function bBlocksAPostMetaComment( $show, $post, $iconColor, $linkColor ) {
+function bBlocksPostMetaComment( $show, $post, $iconColor, $linkColor ) {
     if ( 'true' == $show ) {
         $comment_count = get_comments( array( 'post_id' => $post->ID, 'count' => true ) );
         $view_comment = '';
@@ -213,7 +198,7 @@ function bBlocksAPostMetaComment( $show, $post, $iconColor, $linkColor ) {
 }
 
 // Excerpt
-function bBlocksAPostExcerpt( $show, $post, $align, $fontSize, $color, $mb, $length ) {
+function bBlocksPostExcerpt( $show, $post, $align, $fontSize, $color, $mb, $length ) {
     if ( 'true' == $show ) {
         return '<div class="excerpt b_blocks_inner_content" style="text-align:' . $align . '; font-size:' . $fontSize . 'px; color: ' . $color . '; margin: 0 0 ' . $mb . 'px 0"">' . implode( ' ', array_slice( explode( ' ', get_post_field( 'post_content', $post->ID ) ), 0, $length ) ) . '</div>';
     } else {
@@ -222,12 +207,10 @@ function bBlocksAPostExcerpt( $show, $post, $align, $fontSize, $color, $mb, $len
 }
 
 // Read More
-function bBlocksAPostReadMore( $show, $label, $linkNewTab, $post, $align, $fontSize, $transform, $fontWeight, $color, $hovColor ) {
+function bBlocksPostReadMore( $show, $post, $align, $fontSize, $transform, $fontWeight, $color, $hovColor, $label ) {
     if ( 'true' == $show ) {
-        $tab = 'true' == $linkNewTab ? '_blank' : '_self';
-
         return '<div class="read_more" style="text-align: ' . $align . ';">
-            <a href="' . get_post_permalink( $post->ID ) . '" target="' . $tab . '"
+            <a href="' . get_post_permalink( $post->ID ) . '" target="_blank"
             style="display: inline-block; font-size:' . $fontSize . 'px; text-transform: ' . $transform . '; font-weight: ' . $fontWeight . '; color: ' . $color . '; transition: all .3s ease;"
 
             onMouseOver="this.style.color=\'' . $hovColor . '\';"
