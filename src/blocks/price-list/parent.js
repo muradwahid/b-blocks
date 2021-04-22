@@ -12,7 +12,7 @@ import Title from '../../GutenComp/Title';
 // Custom Attributes
 const attributes = {
     columns: { type: 'number', default: 3 },
-    columnGap: { type: 'number', default: 20 },
+    columnGap: { type: 'number', default: 40 },
     rowGap: { type: 'number', default: 30 },
 }
 

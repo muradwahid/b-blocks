@@ -2,6 +2,29 @@
     display: grid;
 
     .wp-block-b-blocks-price-list{
+        position: relative;
+
+        &.horizontal{
+            display: flex;
+            align-items: center;
+
+            .itemDetails{
+                padding: 0 20px 0 0;
+            }
+        }
+
+        &.vertical{
+            .itemDetails{
+                padding: 0 20px;
+            }
+
+            .itemBorder{
+                width: 40%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
         .itemImage{
             width: auto;
             max-width: 100%;
@@ -20,6 +43,13 @@
 
         .itemPrice{
             font-style: italic;
+        }
+
+        .itemBorder{
+            position: absolute;
+            border-bottom: 1px solid #bbb;
+            width: 85%;
+            bottom: 0;
         }
     }
 }

@@ -14,6 +14,8 @@ import icons from '../../Const/icons';
 
 // Custom Attributes
 const attributes = {
+    layout: { type: 'string', default: 'vertical' },
+
     contentAlign: { type: 'string', default: 'center' },
     contentBGColor: { type: 'string', default: '#ffffff88' },
     contentPTB: { type: 'number', default: 50 },
@@ -23,7 +25,7 @@ const attributes = {
     imgUrl: { type: 'string', source: 'attribute', selector: 'img.itemImage', attribute: 'src' },
     imgAtl: { type: 'string', source: 'attribute', selector: 'img.itemImage', attribute: 'alt', default: '' },
     imgMB: { type: 'number', default: 20 },
-    imgRadius: { type: 'number', default: 50 },
+    imgRadius: { type: 'number', default: 0 },
     imgRadiusType: { type: 'number', default: '%' },
 
     title: { type: 'string', source: 'html', selector: 'h4.itemTitle' },
@@ -31,6 +33,7 @@ const attributes = {
     titleColor: { type: 'string', default: '#333' },
     titleMB: { type: 'number', default: 10 },
 
+    isDesc: { type: 'boolean', default: true },
     desc: { type: 'string', source: 'html', selector: 'p.itemDescription' },
     descFontSize: { type: 'number', default: 15 },
     descColor: { type: 'string', default: '#333' },
@@ -39,6 +42,8 @@ const attributes = {
     price: { type: 'string', source: 'html', selector: 'span.itemPrice' },
     priceFontSize: { type: 'number', default: 24 },
     priceColor: { type: 'string', default: '#4527a4' },
+
+    isBorder: { type: 'boolean', default: true },
 }
 
 registerBlockType('b-blocks/price-list', {
@@ -63,17 +68,21 @@ registerBlockType('b-blocks/price-list', {
     edit: Edit,
 
     save: props => {
-        const { contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor } = props.attributes;
+        const { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor, isBorder } = props.attributes;
 
         return (
-            <div className={`text-${contentAlign} ptb-${contentPTB} plr-${contentPLR}`} style={{ backgroundColor: contentBGColor }}>
-                {imgUrl && <img className={`itemImage mb-${imgMB} radius-${imgRadius}-${'%' === imgRadiusType ? 'per' : imgRadiusType} ${imgId ? `wp-image-${imgId}` : null}`} src={imgUrl} alt={imgAlt} />}
+            <div className={`text-${contentAlign} ptb-${contentPTB} plr-${contentPLR} ${'horizontal' === layout ? 'horizontal' : 'vertical'}`} style={{ backgroundColor: contentBGColor }}>
+                {imgUrl && <img className={`itemImage ${'horizontal' === layout ? `mr-${imgMB}` : `mb-${imgMB}`} radius-${imgRadius}-${'%' === imgRadiusType ? 'per' : imgRadiusType} ${imgId ? `wp-image-${imgId}` : null}`} src={imgUrl} alt={imgAlt} />}
 
-                {title && <RichText.Content className={`itemTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} />}
+                <div className='itemDetails'>
+                    {title && <RichText.Content className={`itemTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} />}
 
-                {desc && <RichText.Content className={`itemDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} />}
+                    {isDesc && desc && <RichText.Content className={`itemDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} />}
 
-                {price && <RichText.Content className={`itemPrice fontSize-${priceFontSize}`} style={{ color: priceColor }} tagName='span' value={price} />}
+                    {price && <RichText.Content className={`itemPrice fontSize-${priceFontSize}`} style={{ color: priceColor }} tagName='span' value={price} />}
+                </div>
+
+                {isBorder && <div className="itemBorder"></div>}
             </div>
         );
     },

@@ -49,6 +49,11 @@
         margin-bottom: #{$i}px!important;
     }
 }
+@for $i from 1 through 100 {
+    .mr-#{$i}{
+        margin-right: #{$i}px!important;
+    }
+}
 
 @for $i from 1 through 100 {
     .ptb-#{$i}{

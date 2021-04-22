@@ -4,6 +4,7 @@ import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/price-list';
+import './blocks/feature-box';
 import './blocks/card.js';
 import './blocks/mail-to.js';
 import './blocks/modal.js';

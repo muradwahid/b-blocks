@@ -1,0 +1,25 @@
+.wp-block-b-blocks-feature-boxes{
+    display: grid;
+
+    .wp-block-b-blocks-feature-box{
+        .featureDetails{
+            padding: 0 20px;
+        }
+
+        .featureImage{
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .featureTitle{
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .featureDescription{
+            font-style: italic;
+            margin: 0;
+        }
+    }
+}

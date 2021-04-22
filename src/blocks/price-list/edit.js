@@ -2,8 +2,11 @@ const { __ } = wp.i18n;
 const { useEffect, Fragment } = wp.element;
 const { withSelect } = wp.data;
 const { RichText, MediaPlaceholder, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck, InspectorControls, ColorPalette } = wp.blockEditor;
-const { Spinner, withNotices, Toolbar, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, PanelRow } = wp.components;
+const { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, PanelRow, ButtonGroup, Tooltip, ToggleControl } = wp.components;
 const { isBlobURL } = wp.blob;
+
+// Icons
+import icons from '../../Const/icons';
 
 // Variables
 import Title from '../../GutenComp/Title';
@@ -13,7 +16,7 @@ import options from '../../Const/options';
 const { fontSizes, colors, aligns, sizeTypes } = options;
 
 const Edit = props => {
-    const { className, attributes: { contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor }, setAttributes, noticeOperations, noticeUI, image, imageSizes } = props;
+    const { className, attributes: { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor, isBorder }, setAttributes, noticeOperations, noticeUI, image, imageSizes } = props;
 
     // useEffect
     useEffect(() => {
@@ -41,6 +44,19 @@ const Edit = props => {
 
     return ([
         <InspectorControls>
+            <PanelBody title={__('Layouts Settings')}>
+                <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
+                <ButtonGroup className="b_blocks_button_groups">
+                    <Tooltip text={__('Vertical', 'b-blocks')} position="top">
+                        <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({ layout: 'vertical', contentAlign: 'center', contentPTB: 50 })}></Button>
+                    </Tooltip>
+
+                    <Tooltip text={__('Horizontal', 'b-blocks')} position="top">
+                        <Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({ layout: 'horizontal', contentAlign: 'left', contentPTB: 30 })}></Button>
+                    </Tooltip>
+                </ButtonGroup>
+            </PanelBody>
+
             <PanelBody title={__('Content Settings', 'b-blocks')}>
                 {/* Background Color */}
                 <PanelRow>
@@ -69,7 +85,7 @@ const Edit = props => {
                 </Fragment>}
 
                 {/* Margin Bottom */}
-                <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
+                <Title>{__('horizontal' === layout ? 'Margin Right:' : 'Margin Bottom:', 'b-blocks')}</Title>
                 <RangeControl value={imgMB} onChange={val => setAttributes({ imgMB: val })} min={0} max={100} step={1} />
 
                 {/* Radius */}
@@ -94,8 +110,10 @@ const Edit = props => {
             </PanelBody>
 
             <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+                <ToggleControl label={isDesc ? 'Hide Description' : 'Show Description'} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
+
                 {/* Font Size */}
-                <Title mt="0">{__('Font Size:', 'b-blocks')}</Title>
+                <Title>{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={descFontSize} onChange={val => setAttributes({ descFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                 {/* Color */}
@@ -116,37 +134,43 @@ const Edit = props => {
                 <Title>{__('Color:', 'b-blocks')}</Title>
                 <ColorPalette value={priceColor} onChange={val => setAttributes({ priceColor: val })} colors={colors} />
             </PanelBody>
+
+            <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
+                <ToggleControl label={isBorder ? 'Hide Border' : 'Show Border'} checked={isBorder} onChange={val => setAttributes({ isBorder: val })} />
+            </PanelBody>
         </InspectorControls>,
 
 
         <BlockControls>
-            {imgUrl && <Toolbar>
+            {imgUrl && <ToolbarGroup>
                 {imgId && <MediaUploadCheck>
                     <MediaUpload allowedTypes={['image']} value={imgId} onSelect={onSelectImage} render={({ open }) => {
                         return <Button className='components-icon-button components-toolbar__control' label={__('Edit Product Photo', 'b-blocks')} icon='edit' onClick={open} />
                     }} />
                 </MediaUploadCheck>}
-            </Toolbar>}
+            </ToolbarGroup>}
+
+            <AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
         </BlockControls>,
 
 
-        <div className={`${className} text-${contentAlign} ptb-${contentPTB} plr-${contentPLR}`} style={{ backgroundColor: contentBGColor }}>
-            <BlockControls>
-                <AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
-            </BlockControls>
-
+        <div className={`${className} text-${contentAlign} ptb-${contentPTB} plr-${contentPLR} ${'horizontal' === layout ? 'horizontal' : 'vertical'}`} style={{ backgroundColor: contentBGColor }}>
             {imgUrl ? <Fragment>
-                <img className={`itemImage mb-${imgMB} radius-${imgRadius}-${'%' === imgRadiusType ? 'per' : imgRadiusType}`} src={imgUrl} alt={imgAlt} />
+                <img className={`itemImage ${'horizontal' === layout ? `mr-${imgMB}` : `mb-${imgMB}`} radius-${imgRadius}-${'%' === imgRadiusType ? 'per' : imgRadiusType}`} src={imgUrl} alt={imgAlt} />
                 {isBlobURL(imgUrl) && <Spinner />}
             </Fragment> :
                 <MediaPlaceholder labels={{ title: __(' Product Image', 'b-blocks') }} icon='format-image' allowedTypes={['image']} accept='image/*' onSelect={onSelectImage} onSelectURL={val => setAttributes({ imgId: null, imgUrl: val, imgAlt: '' })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} />
             }
 
-            <RichText className={`itemTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Product Name', 'b-blocks')} />
+            <div className='itemDetails'>
+                <RichText className={`itemTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Product Name', 'b-blocks')} />
 
-            <RichText className={`itemDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of the product', 'b-blocks')} />
+                {isDesc && <RichText className={`itemDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of the product', 'b-blocks')} />}
 
-            <RichText className={`itemPrice fontSize-${priceFontSize}`} style={{ color: priceColor }} tagName='span' value={price} onChange={val => setAttributes({ price: val })} placeholder={__('$99.99', 'b-blocks')} />
+                <RichText className={`itemPrice fontSize-${priceFontSize}`} style={{ color: priceColor }} tagName='span' value={price} onChange={val => setAttributes({ price: val })} placeholder={__('$99.99', 'b-blocks')} />
+            </div>
+
+            {isBorder && <div className="itemBorder"></div>}
         </div>
     ]);
 };
