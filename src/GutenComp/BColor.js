@@ -1,9 +1,9 @@
-const { __ } = wp.i18n;
-const { useState } = wp.element;
-const { Dropdown, ColorPicker, IconButton } = wp.components;
+import { __ } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
+import { Dropdown, ColorPicker, IconButton } from '@wordpress/components';
 
 const BColor = props => {
-    const { value, defaultColor, onChange, className, disableAlpha } = props;
+    const { value, defaultColor, onChange, disableAlpha } = props;
     const [state, setState] = useState(value);
 
     return (

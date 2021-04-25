@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, FontSizePicker } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -41,9 +41,9 @@ registerBlockType('b-blocks/highlight-text', {
         const { attributes: { contentAlign, text, fontS, color, BGColor }, setAttributes } = props;
 
         // Styles
-        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor }
+        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color, backgroundColor: BGColor }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Highlight Text Settings */}
                 <PanelBody title={__('Highlight Text Settings', 'b-blocks')} initialOpen={true}>
@@ -59,7 +59,8 @@ registerBlockType('b-blocks/highlight-text', {
                     {otherTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
+
 
             <div className="b_blocks_highlight_text" style={{ textAlign: contentAlign }}>
                 <BlockControls>
@@ -68,14 +69,14 @@ registerBlockType('b-blocks/highlight-text', {
 
                 <RichText className="b_blocks_highlighter" key="editable" tagName="mark" placeholder="Write Your Highlight Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
             </div>
-        ])
+        </>
     },
 
     save: props => {
         const { contentAlign, text, fontS, color, BGColor } = props.attributes;
 
         // Styles
-        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color: color, backgroundColor: BGColor, textAlign: 'inherit' }
+        const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color, backgroundColor: BGColor, textAlign: 'inherit' }
 
         return (
             <div className="b_blocks_highlight_text" style={{ textAlign: contentAlign }}>

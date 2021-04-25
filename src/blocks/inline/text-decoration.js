@@ -1,6 +1,6 @@
-const { __ } = wp.i18n;
 const { registerFormatType, toggleFormat } = wp.richText;
-const { RichTextToolbarButton } = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { RichTextToolbarButton } from '@wordpress/block-editor';
 
 // Icon
 const underlineIcon = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -38,9 +38,7 @@ allOptions.forEach(({ name, title, icon }) => {
                 }))
             }
 
-            return [
-                <RichTextToolbarButton icon={icon} title={title} onClick={onToggle} isActive={isActive} className="b_blocks_toolbar" />
-            ];
+            return <RichTextToolbarButton icon={icon} title={title} onClick={onToggle} isActive={isActive} className="b_blocks_toolbar" />
         }
     });
 });

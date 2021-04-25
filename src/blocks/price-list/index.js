@@ -1,13 +1,13 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { RichText } = wp.blockEditor;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText } from '@wordpress/block-editor';
 
 import './parent';
 import Edit from './edit';
 
 // Import Sass
 import './editor.scss';
-import './style.scss';
+// import './style.scss';
 
 // Icon
 import icons from '../../Const/icons';
@@ -43,7 +43,8 @@ const attributes = {
     priceFontSize: { type: 'number', default: 24 },
     priceColor: { type: 'string', default: '#4527a4' },
 
-    isBorder: { type: 'boolean', default: true },
+    isSep: { type: 'boolean', default: true },
+    sepWidth: { type: 'number', default: 40 },
 }
 
 registerBlockType('b-blocks/price-list', {
@@ -68,7 +69,7 @@ registerBlockType('b-blocks/price-list', {
     edit: Edit,
 
     save: props => {
-        const { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor, isBorder } = props.attributes;
+        const { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor, isSep, sepWidth } = props.attributes;
 
         return (
             <div className={`text-${contentAlign} ptb-${contentPTB} plr-${contentPLR} ${'horizontal' === layout ? 'horizontal' : 'vertical'}`} style={{ backgroundColor: contentBGColor }}>
@@ -82,7 +83,7 @@ registerBlockType('b-blocks/price-list', {
                     {price && <RichText.Content className={`itemPrice fontSize-${priceFontSize}`} style={{ color: priceColor }} tagName='span' value={price} />}
                 </div>
 
-                {isBorder && <div className="itemBorder"></div>}
+                {isSep && <span className={`itemSeparator w-${sepWidth}-per`}></span>}
             </div>
         );
     },

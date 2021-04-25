@@ -1,8 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { Fragment } = wp.element;
-const { InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, ToggleControl, RangeControl, PanelRow } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl, RangeControl, PanelRow } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -52,7 +51,7 @@ registerBlockType('b-blocks/progress-bar', {
         const progressStyle = { backgroundColor: progressBG, height: `${progressHeight}px`, marginBottom: '15px' }
         const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%`, backgroundImage: progressBarStriped ? `linear-gradient(45deg, ${progressBarStripedColor} 25%, transparent 25%, transparent 50%, ${progressBarStripedColor} 50%, ${progressBarStripedColor} 75%, transparent 75%, transparent)` : null }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Progress Settings */}
                 <PanelBody title={__('Progress Settings', 'b-blocks')} initialOpen={true}>
@@ -90,13 +89,13 @@ registerBlockType('b-blocks/progress-bar', {
                         <BColor value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
                     </PanelRow>
 
-                    {progressBarStriped && <Fragment>
+                    {progressBarStriped && <>
                         {/* Animation */}
                         {otherTitle('Animation')}
                         <ToggleControl label={progressBarAnimation ? 'Disable Animation' : 'Enable Animation'} checked={progressBarAnimation} onChange={cng => setAttributes({ progressBarAnimation: cng })} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_progress_bar">
@@ -104,7 +103,7 @@ registerBlockType('b-blocks/progress-bar', {
                     <div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100">{isLabel && `${progressBarWidth}%`}</div>
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {

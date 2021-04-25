@@ -39,9 +39,13 @@ function b_blocks_wp_register_script( $block, $options = array() ) {
         'b-blocks/' . $block,
         array_merge(
             array(
-                'editor_script' => 'b_blocks-js',
-                'editor_style'  => 'b_blocks-editor-css',
-                'style'         => 'b_blocks-style-css',
+                'editor_script' => 'b_blocks_editor_script',
+                'editor_style'  => 'b_blocks_editor_style',
+                'script'        => 'b_blocks_script',
+                'style'         => 'b_blocks_style',
+                // 'editor_script' => 'b_blocks-js',
+                // 'editor_style'  => 'b_blocks-editor-css',
+                // 'style'         => 'b_blocks-style-css',
             ),
             $options
         )
@@ -59,13 +63,15 @@ function b_blocks_enqueue_block_assets() {
 add_action( 'enqueue_block_assets', 'b_blocks_enqueue_block_assets' );
 
 function b_blocks_register() {
-    // Register block styles for both frontend + backend.
-    wp_register_style( 'b_blocks-style-css', plugins_url( 'dist/blocks.style.build.css', __FILE__ ), is_admin() ? array( 'wp-editor' ) : null, null );
+    // Resister script in editor
+    wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blocks', 'wp-element', 'wp-data', 'wp-i18n', 'wp-editor', 'wp-components', 'wp-blob', 'wp-html-entities', 'wp-compose', 'wp-rich-text' ), null, false );
+    // Register style in editor
+    wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks' ), null );
 
-    // Register block editor script for backend.
-    wp_register_script( 'b_blocks-js', plugins_url( 'dist/blocks.build.js', __FILE__ ), array( 'wp-blocks', 'wp-element', 'wp-data', 'wp-i18n', 'wp-editor', 'wp-components', 'wp-blob', 'wp-html-entities', 'wp-compose', 'wp-block-editor', 'wp-api' ), null, true );
-    // Register block editor styles for backend.
-    wp_register_style( 'b_blocks-editor-css', plugins_url( 'dist/blocks.editor.build.css', __FILE__ ), array( 'wp-edit-blocks' ), null );
+    // Register script in frontend
+    wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery' ), null, true );
+    // Register style in frontend
+    wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor' ), null );
 
     // Register Blocks
     b_blocks_wp_register_script( 'posts', array(

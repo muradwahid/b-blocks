@@ -4,8 +4,8 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.6
-Requires PHP: 7.0
-Stable tag: 1.0
+Requires PHP: 5.4
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,10 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 - **Section:** Implement a section with a section heading and custom padding.
 
 - **Section Heading:** Section Heading with a heading, separator, and a description, show hide controls for separator and description.
+
+- **Price Lists:** Display Price lists section with image, title, description, price and a separator.
+
+- **Section Heading:** Display Feature boxes section with feature image, title, separator and description.
 
 - **Card:** Design a card that includes image, heading, description heading, description, and footer with custom typography.
 

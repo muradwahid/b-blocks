@@ -25,7 +25,7 @@ import './blocks/to-top.js';
 
 //  Import CSS.
 import './editor.scss';
-import './style.scss';
+// import './style.scss';
 
 
 //Update Block Category Icon

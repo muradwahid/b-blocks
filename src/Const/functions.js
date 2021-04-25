@@ -1,4 +1,4 @@
-const { __ } = wp.i18n;
+import { __ } from '@wordpress/i18n';
 
 const func = {
     firstTitle: title => <p className="panel_single-title">{__(title, 'b-blocks')}</p>,

@@ -1,8 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { Fragment } = wp.element;
-const { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -66,7 +65,7 @@ registerBlockType('b-blocks/section-heading', {
 
         const descStyle = { fontSize: `${descFontSize}px`, color: descColor, margin: `${sepMB}px 0 ${descMB}px 0` };
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Content Settings */}
                 <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={true}>
@@ -101,7 +100,7 @@ registerBlockType('b-blocks/section-heading', {
                     {/* Enable/Disable Separator */}
                     <ToggleControl label={toggleSep ? 'Disable Separator' : 'Enable Separator'} checked={toggleSep} onChange={cng => setAttributes({ toggleSep: cng })} />
 
-                    {toggleSep && <Fragment>
+                    {toggleSep && <>
                         {/* Width */}
                         {otherTitle('Width:')}
                         <RangeControl value={sepWidth} onChange={cng => setAttributes({ sepWidth: cng })} min={0} max={1920} step={1} />
@@ -121,7 +120,7 @@ registerBlockType('b-blocks/section-heading', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={sepMB} onChange={cng => setAttributes({ sepMB: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -130,7 +129,7 @@ registerBlockType('b-blocks/section-heading', {
                     {/* Enable/Disable Description */}
                     <ToggleControl label={toggleDesc ? 'Disable Description' : 'Enable Description'} checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
 
-                    {toggleDesc && <Fragment>
+                    {toggleDesc && <>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={descFontSize} onChange={cng => setAttributes({ descFontSize: 'undefined' === typeof cng ? 15 : cng })} />
@@ -142,9 +141,9 @@ registerBlockType('b-blocks/section-heading', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={descMB} onChange={cng => setAttributes({ descMB: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_section_heading" style={{ textAlign: contentAlign }}>
@@ -158,7 +157,7 @@ registerBlockType('b-blocks/section-heading', {
 
                 {toggleDesc && <span><RichText className="b_blocks_section_description" key="editable" tagName="p" placeholder={__('Write Section Description', 'b-blocks')} value={desc} onChange={cng => { setAttributes({ desc: cng }) }} inlineToolbar style={descStyle} /></span>}
             </div>
-        ]);
+        </>
     },
 
     save: props => {

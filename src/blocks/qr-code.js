@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, RangeControl, TextControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
 // Functions
 import func from '../Const/functions';
@@ -36,7 +36,7 @@ registerBlockType('b-blocks/qr-code', {
 
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&ecc=L&qzone=1&data=${url}`;
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* QR Code Settings */}
                 <PanelBody title={__('QR Code Settings', 'b-blocks')} initialOpen={true}>
@@ -48,7 +48,7 @@ registerBlockType('b-blocks/qr-code', {
                     {otherTitle('Dimension:')}
                     <RangeControl value={dimension} onChange={cng => setAttributes({ dimension: cng })} min={50} max={1000} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
             <div className="b_blocks_qr_code">
                 <BlockControls>
@@ -64,7 +64,7 @@ registerBlockType('b-blocks/qr-code', {
                     </div>}
                 </div>
             </div>
-        ]);
+        </>
     },
 
     save: props => {

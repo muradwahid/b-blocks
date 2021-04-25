@@ -1,7 +1,7 @@
-const { __ } = wp.i18n;
 const { registerFormatType, applyFormat, removeFormat, getActiveFormat } = wp.richText;
-const { InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody } = wp.components;
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody } from '@wordpress/components';
 
 
 // Variables

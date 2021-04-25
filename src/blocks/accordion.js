@@ -1,8 +1,8 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { useEffect, Fragment } = wp.element;
-const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -53,7 +53,7 @@ registerBlockType('b-blocks/accordion', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { cId, accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentAlign, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentAlign, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
@@ -85,7 +85,7 @@ registerBlockType('b-blocks/accordion', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <div className="b_blocks_acc_item">
+                        <div key={acc.index} className="b_blocks_acc_item">
                             <a data-toggle="collapse" href={`#accCollapse-${clientId}-${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
 
                                 <Button icon="no-alt" className="b_blocks_remove_acc_btn" onClick={() => {
@@ -114,7 +114,7 @@ registerBlockType('b-blocks/accordion', {
             );
         }
 
-        return ([
+        return <>
             <InspectorControls>
                 <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={true}>
                     {/* Text Align */}
@@ -141,8 +141,8 @@ registerBlockType('b-blocks/accordion', {
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                         {tab => {
-                            return <Fragment>
-                                {'normal' == tab.name && <Fragment>
+                            return <>
+                                {'normal' == tab.name && <>
                                     {/* Color */}
                                     {firstTitle('Color:')}
                                     <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
@@ -150,9 +150,9 @@ registerBlockType('b-blocks/accordion', {
                                     {/* Background Color */}
                                     {otherTitle('Background Color:')}
                                     <ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
-                                </Fragment>}
+                                </>}
 
-                                {'hover' == tab.name && <Fragment>
+                                {'hover' == tab.name && <>
                                     {/* Hover Color */}
                                     {firstTitle('Hover Color:')}
                                     <ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
@@ -160,8 +160,8 @@ registerBlockType('b-blocks/accordion', {
                                     {/* Hover Background Color */}
                                     {otherTitle('Hover Background Color:')}
                                     <ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
-                                </Fragment>}
-                            </Fragment>
+                                </>}
+                            </>
                         }}
                     </TabPanel>
                 </PanelBody>
@@ -181,7 +181,7 @@ registerBlockType('b-blocks/accordion', {
                     {otherTitle('Left Right Padding:')}
                     <RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_accordion">
@@ -189,9 +189,9 @@ registerBlockType('b-blocks/accordion', {
                     {accordionItem(accordions)}
                 </div>
 
-                {!accordions.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>{__('Add New Accordion', 'b-blocks')}</Button></div> : null}
+                {!accordions.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={() => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>{__('Add New Accordion', 'b-blocks')}</Button></div> : null}
             </div>
-        ])
+        </>
     },
 
     save: props => {
@@ -221,7 +221,7 @@ registerBlockType('b-blocks/accordion', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <div className="b_blocks_acc_item">
+                        <div key={acc.index} className="b_blocks_acc_item">
                             <a data-toggle="collapse" href={`#accCollapse-${cId}${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
                                 <RichText.Content tagName="h3" value={title} style={titleStyle} />
                             </a>

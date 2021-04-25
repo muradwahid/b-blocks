@@ -1,5 +1,3 @@
-const { __ } = wp.i18n;
-
 const Title = props => {
     const { mt, mb, children } = props;
 

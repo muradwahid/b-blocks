@@ -1,7 +1,7 @@
-const { registerBlockType, createBlock } = wp.blocks;
-const { __ } = wp.i18n;
-const { InnerBlocks, InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InnerBlocks, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Icon
 import icons from '../../Const/icons';
@@ -33,7 +33,7 @@ registerBlockType('b-blocks/price-lists', {
     edit: props => {
         const { className, attributes: { columns, columnGap, rowGap }, setAttributes } = props;
 
-        return ([
+        return <>
             <InspectorControls>
                 <PanelBody title={__('Layout Settings', 'b-blocks')}>
                     {/* Columns */}
@@ -48,13 +48,13 @@ registerBlockType('b-blocks/price-lists', {
                     <Title>{__('Row Gap', 'b-blocks')}</Title>
                     <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={100} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className={`${className} columns-${columns} cGap-${columnGap} rGap-${rowGap}`}>
                 <InnerBlocks allowedBlocks={['b-blocks/price-list']} template={[['b-blocks/price-list'], ['b-blocks/price-list'], ['b-blocks/price-list']]} />
             </div>
-        ]);
+        </>
     },
 
     save: props => {

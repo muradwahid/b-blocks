@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
-const { PanelBody, RangeControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-editor';
+import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -51,7 +51,7 @@ registerBlockType('b-blocks/selection', {
         // Styles
         const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Selection Settings */}
                 <PanelBody title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
@@ -71,7 +71,7 @@ registerBlockType('b-blocks/selection', {
                     {otherTitle('Padding Left Right:')}
                     <RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={150} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_selection">
@@ -79,7 +79,7 @@ registerBlockType('b-blocks/selection', {
                     <InnerBlocks />
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {

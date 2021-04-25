@@ -1,9 +1,9 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { withSelect } = wp.data;
-const { useEffect, Fragment } = wp.element;
-const { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
+import { InspectorControls, BlockControls, AlignmentToolbar, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, RangeControl, FontSizePicker, CheckboxControl, TextControl, Dashicon, ToggleControl, TabPanel, Spinner } from '@wordpress/components';
 
 // Icon
 import icons from '../../Const/icons';
@@ -113,8 +113,8 @@ registerBlockType('b-blocks/posts', {
             authors: select('core').getAuthors()
         };
 
-    })(({ select, posts, categories, media, authors, attributes, setAttributes, clientId }) => {
-        const { cId, selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, contentEqualHight, contentAlign, contentBGColor, postTextPTB, postTextPLR, shadow, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaCommentShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
+    })(({ posts, categories, media, authors, attributes, setAttributes, clientId }) => {
+        const { selectedCategories, postsPerPageAll, postsPerPage, postsOrderBy, postsOrder, layout, columns, columnGap, rowGap, contentEqualHight, contentAlign, contentBGColor, postTextPTB, postTextPLR, shadow, featureImgShow, titleShow, titleFontSize, titleColor, titleMB, metaShow, metaAuthorShow, metaDateShow, metaCategoryShow, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, excerptShow, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, readMoreShow, readMoreLabel, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreFontWeight, readMoreColor, readMoreHovColor } = attributes;
 
         // Render HTML and Excerpt count
         const renderHTML = rawHTML => <span dangerouslySetInnerHTML={{ __html: rawHTML }} />;
@@ -130,7 +130,7 @@ registerBlockType('b-blocks/posts', {
             let catName;
             categories && 0 !== categories.length && categories.map(cat => {
                 if (cat.id === id) {
-                    catName = `<a href="${cat.link}" target="_blank">${cat.name}</a>`;
+                    catName = `<a href="${cat.link}" target="_blank" rel="noreferrer" rel="noreferrer">${cat.name}</a>`;
                 }
             });
             return catName;
@@ -147,7 +147,7 @@ registerBlockType('b-blocks/posts', {
 
         // Styles
         const gridPostsStyle = { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gridGap: `${rowGap}px ${columnGap}px` }
-        const masonryPostsStyle = { columns: columns, gap: `${columnGap}px` }
+        const masonryPostsStyle = { columns, gap: `${columnGap}px` }
 
         const contentStyle = { textAlign: contentAlign, height: contentEqualHight == 'true' ? '100%' : 'auto', backgroundColor: contentBGColor }
 
@@ -179,14 +179,14 @@ registerBlockType('b-blocks/posts', {
         const readMoreHovLeave = e => e.target.style.color = readMoreColor;
 
         const featureImg = (link, f_media) => featureImgShow == 'true' && f_media > 0 && <div div className="feature_img">
-            {media(f_media) && <a href={link} target="_blank"><img src={media(f_media).source_url} alt={media(f_media).caption.rendered} /></a>}
+            {media(f_media) && <a href={link} target="_blank" rel="noreferrer"><img src={media(f_media).source_url} alt={media(f_media).caption.rendered} /></a>}
         </div>;
 
-        const postTitle = (link, title) => titleShow == 'true' && <h3 className="title" style={titleStyle}><a href={link} target="_blank" style={{ color: titleColor }}>{title.rendered}</a></h3>;
+        const postTitle = (link, title) => titleShow == 'true' && <h3 className="title" style={titleStyle}><a href={link} target="_blank" rel="noreferrer" style={{ color: titleColor }}>{title.rendered}</a></h3>;
 
         const metaAuthor = authorID => metaAuthorShow == 'true' && <span>
             <Dashicon icon="admin-users" style={{ color: metaIconColor }} />&nbsp;
-            {authorID && authors && authors.filter(a => a.id == authorID).map(auth => <a href={auth.link} target="_blank" style={{ color: metaLinkColor }}>{auth.name}</a>)}
+            {authorID && authors && authors.filter(a => a.id == authorID).map(auth => <a key={auth.id} href={auth.link} target="_blank" rel="noreferrer" style={{ color: metaLinkColor }}>{auth.name}</a>)}
         </span>;
 
         const metaDate = date => metaDateShow == 'true' && <span>
@@ -201,12 +201,12 @@ registerBlockType('b-blocks/posts', {
 
         // const metaComments = (link, comment_info) => metaCommentShow == 'true' && <span>
         //     <Dashicon icon="admin-comments" style={{ color: metaIconColor }} />&nbsp;
-        //     <a href={`${link}/#comments`} target="_blank" style={{ color: metaLinkColor }}>{comment_info === 0 ? __('No Comments', 'b-blocks') : comment_info === 1 ? __('1 Comment', 'b-blocks') : __(`${comment_info} Comments`, 'b-blocks')}</a>
+        //     <a href={`${link}/#comments`} target="_blank" rel="noreferrer" style={{ color: metaLinkColor }}>{comment_info === 0 ? __('No Comments', 'b-blocks') : comment_info === 1 ? __('1 Comment', 'b-blocks') : __(`${comment_info} Comments`, 'b-blocks')}</a>
         // </span>;
 
         const postExcerpt = content => excerptShow == 'true' && <div className="excerpt b_blocks_inner_content" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
 
-        const postReadMore = link => readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
+        const postReadMore = link => readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" rel="noreferrer" style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
 
         return [
             posts && 0 !== posts.length && <InspectorControls>
@@ -228,18 +228,18 @@ registerBlockType('b-blocks/posts', {
                     {otherTitle('Row Gap:')}
                     <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={150} step={1} />
 
-                    {'grid' == layout && <Fragment>
+                    {'grid' == layout && <>
                         {/* Content Height */}
                         {otherTitle('Content Height:')}
                         <ToggleControl label={contentEqualHight == 'true' ? 'Disable Equal Height' : 'Enable Equal Height'} checked={contentEqualHight == 'true' ? true : false} onChange={cng => setAttributes({ contentEqualHight: cng.toString() })} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
                 {/* Posts Query */}
                 <PanelBody title={__('Posts Query', 'b-blocks')} initialOpen={false}>
                     {/* Select Categories */}
-                    {categories && 0 !== categories.length ? <Fragment>
+                    {categories && 0 !== categories.length ? <>
                         {firstTitle('Select Categories:')}
                         {categories.map(cat => {
                             const isInc = selectedCategories.includes(cat.id);
@@ -248,15 +248,15 @@ registerBlockType('b-blocks/posts', {
                                 <CheckboxControl label={cat.name} key={cat.id} checked={isInc} onChange={cng => setAttributes({ selectedCategories: cng ? [...selectedCategories, cat.id] : selectedCategories.filter(id => id !== cat.id) })} />
                             );
                         })}
-                    </Fragment> : null}
+                    </> : null}
 
                     {/* Posts Per Page */}
                     {otherTitle('Post Per Page:')}
                     <ToggleControl label={postsPerPageAll == 'true' ? 'Show Some Posts' : 'Show All Posts'} checked={postsPerPageAll == 'true' ? true : false} onChange={cng => setAttributes({ postsPerPageAll: cng.toString() })} />
 
-                    {'false' == postsPerPageAll && <Fragment>
+                    {'false' == postsPerPageAll && <>
                         <RangeControl value={postsPerPage} onChange={cng => setAttributes({ postsPerPage: 0 === cng ? 12 : cng })} min={1} max={36} step={1} />
-                    </Fragment>}
+                    </>}
 
                     {/* Posts Order By */}
                     {otherTitle('Post Order By:')}
@@ -284,7 +284,7 @@ registerBlockType('b-blocks/posts', {
                     {otherTitle('Meta Data:')}
                     <ToggleControl label={metaShow == 'true' ? 'Hide Meta Data' : 'Show Meta Data'} checked={metaShow == 'true' ? true : false} onChange={cng => setAttributes({ metaShow: cng.toString() })} />
 
-                    {metaShow == 'true' && <Fragment>
+                    {metaShow == 'true' && <>
                         <ToggleControl label={metaAuthorShow == 'true' ? 'Hide Author' : 'Show Author'} checked={metaAuthorShow == 'true' ? true : false} onChange={cng => setAttributes({ metaAuthorShow: cng.toString() })} />
 
                         <ToggleControl label={metaDateShow == 'true' ? 'Hide Date' : 'Show Date'} checked={metaDateShow == 'true' ? true : false} onChange={cng => setAttributes({ metaDateShow: cng.toString() })} />
@@ -292,29 +292,29 @@ registerBlockType('b-blocks/posts', {
                         <ToggleControl label={metaCategoryShow == 'true' ? 'Hide Category' : 'Show Category'} checked={metaCategoryShow == 'true' ? true : false} onChange={cng => setAttributes({ metaCategoryShow: cng.toString() })} />
 
                         {/* <ToggleControl label={metaCommentShow == 'true' ? 'Hide Comment' : 'Show Comment'} checked={metaCommentShow == 'true' ? true : false} onChange={cng => setAttributes({ metaCommentShow: cng.toString() })} /> */}
-                    </Fragment>}
+                    </>}
 
 
                     {/* Excerpt */}
                     {otherTitle('Excerpt:')}
                     <ToggleControl label={excerptShow == 'true' ? 'Hide Excerpt' : 'Show Excerpt'} checked={excerptShow == 'true' ? true : false} onChange={cng => setAttributes({ excerptShow: cng.toString() })} />
 
-                    {excerptShow == 'true' && <Fragment>
+                    {excerptShow == 'true' && <>
                         {/* Excerpt Length */}
                         <small style={{ fontSize: '13px' }}>Excerpt Length:</small>
                         <RangeControl value={excerptLength} onChange={cng => setAttributes({ excerptLength: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
 
 
                     {/* Read More */}
                     {otherTitle('Read More:')}
                     <ToggleControl label={readMoreShow == 'true' ? 'Hide Read More' : 'Show Read More'} checked={readMoreShow == 'true' ? true : false} onChange={cng => setAttributes({ readMoreShow: cng.toString() })} />
 
-                    {readMoreShow == 'true' && <Fragment>
+                    {readMoreShow == 'true' && <>
                         {/* Read More Label */}
                         <small style={{ fontSize: '13px' }}>Read More Label:</small>
                         <TextControl value={readMoreLabel} onChange={cng => setAttributes({ readMoreLabel: '' === cng ? 'Read More' : cng })} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -343,15 +343,15 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Feature Image Settings */}
-                {/* {'true' == featureImgShow && <Fragment>
+                {/* {'true' == featureImgShow && <>
                     <PanelBody title={__('Feature Image Settings', 'b-blocks')} initialOpen={false}>
 
                     </PanelBody>
-                </Fragment>} */}
+                </>} */}
 
 
                 {/* Title Settings */}
-                {titleShow == 'true' && <Fragment>
+                {titleShow == 'true' && <>
                     <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
@@ -365,11 +365,11 @@ registerBlockType('b-blocks/posts', {
                         {otherTitle('Bottom Margin:')}
                         <RangeControl value={titleMB} onChange={cng => setAttributes({ titleMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </Fragment>}
+                </>}
 
 
                 {/* Meta Data Settings */}
-                {metaShow == 'true' && <Fragment>
+                {metaShow == 'true' && <>
                     <PanelBody title={__('Meta Data Settings', 'b-blocks')} initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
@@ -395,11 +395,11 @@ registerBlockType('b-blocks/posts', {
                         {otherTitle('Bottom Margin:')}
                         <RangeControl value={metaMB} onChange={cng => setAttributes({ metaMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </Fragment>}
+                </>}
 
 
                 {/* Excerpt Settings */}
-                {excerptShow == 'true' && <Fragment>
+                {excerptShow == 'true' && <>
                     <PanelBody title={__('Excerpt Settings', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
@@ -417,11 +417,11 @@ registerBlockType('b-blocks/posts', {
                         {otherTitle('Bottom Margin:')}
                         <RangeControl value={excerptMB} onChange={cng => setAttributes({ excerptMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </Fragment>}
+                </>}
 
 
                 {/* Read More Link Settings */}
-                {readMoreShow == 'true' && <Fragment>
+                {readMoreShow == 'true' && <>
                     <PanelBody title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
@@ -443,23 +443,23 @@ registerBlockType('b-blocks/posts', {
                         <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                             tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                             {tab => {
-                                return <Fragment>
-                                    {'normal' == tab.name && <Fragment>
+                                return <>
+                                    {'normal' == tab.name && <>
                                         {/* Color */}
                                         {firstTitle('Color:')}
                                         <ColorPalette value={readMoreColor} onChange={cng => setAttributes({ readMoreColor: cng })} colors={colors} />
-                                    </Fragment>}
+                                    </>}
 
-                                    {'hover' == tab.name && <Fragment>
+                                    {'hover' == tab.name && <>
                                         {/* Hover Color */}
                                         {firstTitle('Hover Color:')}
                                         <ColorPalette value={readMoreHovColor} onChange={cng => setAttributes({ readMoreHovColor: cng })} colors={colors} />
-                                    </Fragment>}
-                                </Fragment>
+                                    </>}
+                                </>
                             }}
                         </TabPanel>
                     </PanelBody>
-                </Fragment>}
+                </>}
             </InspectorControls>,
 
 

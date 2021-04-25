@@ -1,11 +1,11 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, aligns, borderStyles, colors, sizeTypes } = options;
+const { aligns, borderStyles, colors, sizeTypes } = options;
 
 // Components
 import BtnGroup from '../GutenComp/BtnGroup';
@@ -50,7 +50,7 @@ registerBlockType('b-blocks/divider', {
         const containerStyle = { textAlign: divideAlign, padding: `${divideMT}px 0 ${divideMB}px 0` };
         const dividerStyle = { display: 'inline-block', width: `${divideWidth}${divideWidthType}`, borderBottom: `${divideThick}px ${divideStyle} ${divideColor}` };
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Divider Settings */}
                 <PanelBody title={__('Divider Settings', 'b-blocks')} initialOpen={true}>
@@ -84,7 +84,7 @@ registerBlockType('b-blocks/divider', {
                     {otherTitle('Margin Bottom:')}
                     <RangeControl value={divideMB} onChange={cng => setAttributes({ divideMB: cng })} min={0} max={100} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_divider">
@@ -92,7 +92,7 @@ registerBlockType('b-blocks/divider', {
                     <div style={dividerStyle}></div>
                 </div>
             </div>
-        ]);
+        </>
     },
 
     save: props => {

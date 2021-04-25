@@ -1,8 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { Fragment } = wp.element;
-const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -66,7 +65,7 @@ registerBlockType('b-blocks/note', {
 
         const contentStyle = { fontSize: `${contentFontSize}px`, color: contentColor, margin: `0` }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Note Settings */}
                 <PanelBody title={__('Note Settings', 'b-blocks')} initialOpen={true}>
@@ -93,7 +92,7 @@ registerBlockType('b-blocks/note', {
                     {/* Enable/Disable Heading */}
                     <ToggleControl label={toggleHead ? 'Disable Heading' : 'Enable Heading'} checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
-                    {toggleHead && <Fragment>
+                    {toggleHead && <>
                         {/* Heading Tag */}
                         {otherTitle('Heading Tag:')}
                         <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -109,11 +108,11 @@ registerBlockType('b-blocks/note', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
-                {toggleHead && <Fragment>
+                {toggleHead && <>
                     {/* Separator Settings */}
                     <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                         {/* Thickness */}
@@ -132,7 +131,7 @@ registerBlockType('b-blocks/note', {
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
                     </PanelBody>
-                </Fragment>}
+                </>}
 
 
                 {/* Content Settings */}
@@ -145,7 +144,7 @@ registerBlockType('b-blocks/note', {
                     {otherTitle('Color:')}
                     <ColorPalette value={contentColor} onChange={cng => setAttributes({ contentColor: cng })} colors={colors} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_note">
@@ -155,7 +154,7 @@ registerBlockType('b-blocks/note', {
                     <RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder={__('Write Note Content', 'b-blocks')} value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
                 </div>
             </div>
-        ]);
+        </>
     },
 
     save: props => {

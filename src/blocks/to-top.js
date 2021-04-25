@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, FontSizePicker } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -43,9 +43,9 @@ registerBlockType('b-blocks/to-top', {
         const { attributes: { contentAlign, label, fontSize, color }, setAttributes } = props;
 
         // Styles
-        const toTopStyle = { fontSize: `${fontSize}px`, color: color, textDecoration: 'none' };
+        const toTopStyle = { fontSize: `${fontSize}px`, color, textDecoration: 'none' };
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Go To Top Settings */}
                 <PanelBody title={__('Go To Top Settings', 'b-blocks')} initialOpen={false}>
@@ -61,20 +61,20 @@ registerBlockType('b-blocks/to-top', {
                     {otherTitle('Color:')}
                     <ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_to_top" style={{ textAlign: contentAlign }}>
                 <RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={label} onChange={cng => { setAttributes({ label: cng }) }} inlineToolbar style={toTopStyle} />
             </div>
-        ]);
+        </>;
     },
 
     save: props => {
         const { contentAlign, label, fontSize, color } = props.attributes;
 
         // Styles
-        const toTopStyle = { fontSize: `${fontSize}px`, color: color, textDecoration: 'none' };
+        const toTopStyle = { fontSize: `${fontSize}px`, color, textDecoration: 'none' };
 
         return (
             <div className="b_blocks_to_top" style={{ textAlign: contentAlign }}>

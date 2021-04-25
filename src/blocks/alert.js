@@ -1,8 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { Fragment } = wp.element;
-const { RichText, InspectorControls, ColorPalette } = wp.blockEditor;
-const { PanelBody, FontSizePicker, ToggleControl, RangeControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker, ToggleControl, RangeControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -59,7 +58,7 @@ registerBlockType('b-blocks/alert', {
         const headStyle = { fontSize: `${headFontSize}px`, color: headColor, margin: `0 0 ${headMB}px 0` }
         const textStyle = { fontSize: `${textFontSize}px`, color: textColor, margin: 0 }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Alert Settings */}
                 <PanelBody title={__('Alert Settings', 'b-blocks')} initialOpen={true}>
@@ -74,11 +73,11 @@ registerBlockType('b-blocks/alert', {
                     {otherTitle('Show/Hide Dismiss Button:')}
                     <ToggleControl label={dismissShow ? 'Hide Dismiss Button' : 'Show Dismiss Button'} checked={dismissShow} onChange={cng => setAttributes({ dismissShow: cng })} />
 
-                    {dismissShow && <Fragment>
+                    {dismissShow && <>
                         {/* Dismiss Button Color */}
                         {otherTitle('Dismiss Button Color:')}
                         <ColorPalette value={dismissColor} onChange={cng => setAttributes({ dismissColor: cng })} colors={colors} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -87,7 +86,7 @@ registerBlockType('b-blocks/alert', {
                     {/* Show/Hide Heading */}
                     <ToggleControl label={headShow ? 'Hide Heading' : 'Show Heading'} checked={headShow} onChange={cng => setAttributes({ headShow: cng })} />
 
-                    {headShow && <Fragment>
+                    {headShow && <>
                         {/* Heading Tag */}
                         {firstTitle('Heading Tag:')}
                         <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -103,7 +102,7 @@ registerBlockType('b-blocks/alert', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -117,7 +116,7 @@ registerBlockType('b-blocks/alert', {
                     {otherTitle('Color:')}
                     <ColorPalette value={textColor} onChange={cng => setAttributes({ textColor: cng })} colors={colors} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_alert">
@@ -131,7 +130,7 @@ registerBlockType('b-blocks/alert', {
                     </button>}
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {

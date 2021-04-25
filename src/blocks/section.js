@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { InspectorControls, ColorPalette, InnerBlocks } = wp.blockEditor;
-const { PanelBody, RangeControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-editor';
+import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -43,7 +43,7 @@ registerBlockType('b-blocks/section', {
 
         const sectionStyle = { backgroundColor: `${isSelected ? '#dbd0ff' : BGColor}`, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, position: 'relative', zIndex: 0 }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Section Settings */}
                 <PanelBody title={__('Section Settings', 'b-blocks')} initialOpen={true}>
@@ -67,7 +67,7 @@ registerBlockType('b-blocks/section', {
                     {otherTitle('Padding Left:')}
                     <RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={150} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_section b_blocks_inner_content">
@@ -77,7 +77,7 @@ registerBlockType('b-blocks/section', {
                     {isSelected && <div style={{ backgroundColor: BGColor, display: 'block', position: 'absolute', top: `${PT}px`, left: `${PL}px`, right: `${PR}px`, bottom: `${PB}px`, zIndex: '-1' }} />}
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {

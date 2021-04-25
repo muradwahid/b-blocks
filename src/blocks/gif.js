@@ -1,8 +1,8 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { useEffect } = wp.element;
-const { InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, RangeControl, TextControl, IconButton } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, RangeControl, TextControl, IconButton } from '@wordpress/components';
 
 // Icon
 import icons from '../Const/icons';
@@ -16,7 +16,7 @@ import BtnGroup from '../GutenComp/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+const { firstTitle } = func;
 
 registerBlockType('b-blocks/gif', {
     // Build In attributes
@@ -55,7 +55,7 @@ registerBlockType('b-blocks/gif', {
             fetch(url).then(res => res.json()).then(data => {
                 setAttributes({ gifsData: data.data });
             }).catch(err => {
-                console.error(err);
+                alert(err.message);
             });
         }, [search]);
 
@@ -66,7 +66,7 @@ registerBlockType('b-blocks/gif', {
             fetch(url).then(res => res.json()).then(data => {
                 setAttributes({ gifsData: data.data });
             }).catch(err => {
-                console.error(err);
+                alert(err.message);
             });
         }, [search]);
 
@@ -94,7 +94,7 @@ registerBlockType('b-blocks/gif', {
             }
         });
 
-        return [
+        return <>
             <InspectorControls>
                 <PanelBody title={__('Gif Image Settings', 'b-blocks')} initialOpen={true}>
                     {firstTitle("Width:")}
@@ -102,7 +102,7 @@ registerBlockType('b-blocks/gif', {
 
                     <RangeControl value={width} onChange={cng => setAttributes({ width: cng })} min={0} max={("%" == widthType) ? 100 : 1920} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_gif" style={{ textAlign: contentAlign }}>
@@ -147,8 +147,8 @@ registerBlockType('b-blocks/gif', {
                         </div> {/* Modal Body */}
                     </div> {/* Modal Content */}
                 </div> {/* Modal */}
-            </div > // Giphy
-        ];
+            </div > {/* Giphy */}
+        </>
     },
 
     save: props => {

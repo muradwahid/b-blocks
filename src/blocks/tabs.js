@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { RichText, InspectorControls, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText, InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -61,19 +61,19 @@ registerBlockType('b-blocks/tabs', {
         const { attributes: { tabs = [], layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize }, setAttributes, isSelected } = props;
 
         // Styles
-        const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor }
+        const containerStyle = { padding: `${PTB}px ${PLR}px`, color, backgroundColor: BGColor }
 
-        const titleStyle = { position: 'relative', color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform, width: `${'vertical-pills' == layout ? '100%' : 'auto'}`, margin: `${'vertical-pills' == layout ? '0 0 5px 0' : 'pills' == layout ? '0 5px 0 0' : '0'}` };
+        const titleStyle = { position: 'relative', color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform, width: `${'vertical-pills' == layout ? '100%' : 'auto'}`, margin: `${'vertical-pills' == layout ? '0 0 5px 0' : 'pills' == layout ? '0 5px 0 0' : '0'}` };
 
         const tabRemoveStyle = { position: 'absolute', right: 0, top: 0, padding: 0, minWidth: '20px', height: '20px' };
 
-        const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
+        const contentStyle = { color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
 
         // Components
         const tabsTitle = value => {
             return (
                 value && value.sort((a, b) => a.index - b.index).map(tab => {
-                    const { index, title, description } = tab;
+                    const { index, title } = tab;
 
                     const active = index == 0 ? true : false;
                     const id = `${title && title.split(" ").join("")}-${index}`;
@@ -82,7 +82,7 @@ registerBlockType('b-blocks/tabs', {
                     // activeDOM && (activeDOM.style.cssText = `color: ${titleSecondaryColor}; background-color: ${titlePrimaryColor}`);
 
                     return (
-                        <a className={`pr-4 nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
+                        <a key={tab.index} className={`pr-4 nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
 
                             <Button icon="no-alt" className="b_blocks_remove_tab_btn" onClick={() => {
                                 const newTabs = tabs.filter(item => item.index != index).map(i => {
@@ -112,7 +112,7 @@ registerBlockType('b-blocks/tabs', {
                     const id = `${title && title.split(" ").join("")}-${index}`;
 
                     return (
-                        <div className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
+                        <div key={tab.index} className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
 
                             <RichText tagName="span" placeholder={__('Enter content', 'b-blocks')} value={description} onChange={cng => {
                                 const newObj = Object.assign({}, tab, { description: cng });
@@ -125,7 +125,7 @@ registerBlockType('b-blocks/tabs', {
             )
         }
 
-        return ([
+        return <>
             <InspectorControls>
                 <PanelBody title={__('Tabs Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout */}
@@ -177,7 +177,7 @@ registerBlockType('b-blocks/tabs', {
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_tabs" style={{ textAlign: `${contentAlign}` }}>
@@ -221,10 +221,10 @@ registerBlockType('b-blocks/tabs', {
                                 </div> : <h3 style={{ fontSize: '20px' }}>{__('Select a layout', 'b-blocks')}</h3>
                     }
 
-                    {!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={title => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>{__('Add New Tab', 'b-blocks')}</Button></div> : null}
+                    {!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={() => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>{__('Add New Tab', 'b-blocks')}</Button></div> : null}
                 </div>
             </div>
-        ]);
+        </>;
     },
 
     // save function
@@ -232,23 +232,23 @@ registerBlockType('b-blocks/tabs', {
         const { tabs, layout, contentAlign, width, widthType, PTB, PLR, color, BGColor, titleAlign, titleFontSize, titleTextTransform, contentFontSize } = props.attributes;
 
         // Styles
-        const containerStyle = { padding: `${PTB}px ${PLR}px`, color: color, backgroundColor: BGColor, width: `${width}${widthType}`, textAlign: 'initial' }
+        const containerStyle = { padding: `${PTB}px ${PLR}px`, color, backgroundColor: BGColor, width: `${width}${widthType}`, textAlign: 'initial' }
 
-        const titleStyle = { color: color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform };
+        const titleStyle = { color, textAlign: titleAlign, fontSize: `${titleFontSize}px`, textTransform: titleTextTransform };
 
-        const contentStyle = { color: color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
+        const contentStyle = { color, backgroundColor: BGColor, fontSize: `${contentFontSize}px`, textAlign: 'initial' };
 
         // Components
         const tabsTitle = value => {
             return (
                 value && value.sort((a, b) => a.index - b.index).map(tab => {
-                    const { index, title, description } = tab;
+                    const { index, title } = tab;
 
                     const active = index == 0 ? true : false;
                     const id = `${title && title.split(" ").join("")}-${index}`;
 
                     return (
-                        <a className={`nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
+                        <a key={tab.index} className={`nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
                             <RichText.Content tagName="h4" value={title} style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
                         </a>
                     )
@@ -265,7 +265,7 @@ registerBlockType('b-blocks/tabs', {
                     const id = `${title && title.split(" ").join("")}-${index}`;
 
                     return (
-                        <div className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
+                        <div key={tab.index} className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
                             <RichText.Content tagName="span" value={description} />
                         </div>
                     )

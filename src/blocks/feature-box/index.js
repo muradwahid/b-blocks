@@ -1,13 +1,13 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { RichText } = wp.blockEditor;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { RichText } from '@wordpress/block-editor';
 
 import './parent';
 import Edit from './edit';
 
 // Import Sass
 import './editor.scss';
-import './style.scss';
+// import './style.scss';
 
 // Icon
 import icons from '../../Const/icons';
@@ -29,11 +29,14 @@ const attributes = {
     titleColor: { type: 'string', default: '#333' },
     titleMB: { type: 'number', default: 10 },
 
-    sepWidth: { type: 'number', default: 1 },
-    sepThick: { type: 'number', default: 20 },
+    isSep: { type: 'boolean', default: true },
+    sepWidth: { type: 'number', default: 20 },
+    sepThick: { type: 'number', default: 1 },
     sepStyle: { type: 'string', default: 'solid' },
-    sepColor: { type: 'string', default: '#abb8c3' },
+    sepColor: { type: 'string', default: '#bbb' },
+    sepMB: { type: 'number', default: 10 },
 
+    isDesc: { type: 'boolean', default: true },
     desc: { type: 'string', source: 'html', selector: 'p.featureDescription' },
     descFontSize: { type: 'number', default: 15 },
     descColor: { type: 'string', default: '#333' },
@@ -62,7 +65,7 @@ registerBlockType('b-blocks/feature-box', {
     edit: Edit,
 
     save: props => {
-        const { contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, title, titleFontSize, titleColor, titleMB, desc, descFontSize, descColor, descMB } = props.attributes;
+        const { contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, title, titleFontSize, titleColor, titleMB, isSep, sepWidth, sepThick, sepStyle, sepColor, sepMB, isDesc, desc, descFontSize, descColor, descMB } = props.attributes;
 
         return (
             <div className={`text-${contentAlign} ptb-${contentPTB} plr-${contentPLR}`} style={{ backgroundColor: contentBGColor }}>
@@ -71,7 +74,9 @@ registerBlockType('b-blocks/feature-box', {
                 <div className='featureDetails'>
                     {title && <RichText.Content className={`featureTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} />}
 
-                    {desc && <RichText.Content className={`featureDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} />}
+                    {isSep && <span className={`featureSeparator w-${sepWidth}-per mb-${sepMB}`} style={{ borderTop: `${sepThick}px ${sepStyle} ${sepColor}` }}></span>}
+
+                    {isDesc && desc && <RichText.Content className={`featureDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} />}
                 </div>
             </div>
         );

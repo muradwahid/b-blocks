@@ -1,8 +1,8 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { useEffect } = wp.element;
-const { RichText, InspectorControls, ColorPalette, MediaUpload } = wp.blockEditor;
-const { PanelBody, Button, ToggleControl, RangeControl, IconButton, FontSizePicker } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { RichText, InspectorControls, ColorPalette, MediaUpload } from '@wordpress/block-editor';
+import { PanelBody, Button, ToggleControl, RangeControl, IconButton, FontSizePicker } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -64,7 +64,7 @@ registerBlockType('b-blocks/slider', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { cId, slides = [], sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, headTag, headColor, headFontSize, headMB, descColor, descFontSize, descMB, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType }, setAttributes, clientId, isSelected } = props;
+        const { attributes: { slides = [], sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, headTag, headColor, headFontSize, headMB, descColor, descFontSize, descMB, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType }, setAttributes, clientId, isSelected } = props;
 
         // Styles
         const sliderStyle = { width: `${sliderWidth}${sliderWidthType}` }
@@ -92,7 +92,7 @@ registerBlockType('b-blocks/slider', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <li data-target={`#bBlocksSlider-${clientId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
+                        <li key={slide.index} data-target={`#bBlocksSlider-${clientId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
                     );
                 })
             );
@@ -105,7 +105,7 @@ registerBlockType('b-blocks/slider', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <div className={`carousel-item ${active ? 'active' : ''}`} data-interval={slideInterval * 1000} style={slideItemStyle}>
+                        <div key={slide.index} className={`carousel-item ${active ? 'active' : ''}`} data-interval={slideInterval * 1000} style={slideItemStyle}>
                             <div style={overlayOpacityStyle}></div>
 
                             {isSelected && <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', marginTop: '30px', zIndex: 10 }}>
@@ -116,8 +116,8 @@ registerBlockType('b-blocks/slider', {
                                     img ? <div className="b_blocks_media_control">
                                         <IconButton icon="controls-repeat" onClick={open} style={mediaUpStyle}>{__('Replace Slide Image', 'b-blocks')}</IconButton>
                                     </div> : <div className="b_blocks_media_control">
-                                            <IconButton icon="upload" onClick={open} style={mediaUpStyle}>{__('Upload Slide Image', 'b-blocks')}</IconButton>
-                                        </div>} />
+                                        <IconButton icon="upload" onClick={open} style={mediaUpStyle}>{__('Upload Slide Image', 'b-blocks')}</IconButton>
+                                    </div>} />
                             </div>}
 
                             {isSelected && <Button icon="no-alt" className="b_blocks_remove_slide_btn" title={__('Remove this slide', 'b-blocks')} onClick={() => {
@@ -148,7 +148,7 @@ registerBlockType('b-blocks/slider', {
             );
         }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Slider Settings */}
                 <PanelBody title={__('Slider Settings', 'b-blocks')} initialOpen={true}>
@@ -239,11 +239,11 @@ registerBlockType('b-blocks/slider', {
 
                     {/* Border Radius */}
                     {otherTitle('Border Radius:')}
-                    <BtnGroup options={sizeTypes} myValue={indicatorRadiusType} setState={(cng, def) => setAttributes({ indicatorRadiusType: cng })} classes="b_blocks_size_type" size="small" />
+                    <BtnGroup options={sizeTypes} myValue={indicatorRadiusType} setState={cng => setAttributes({ indicatorRadiusType: cng })} classes="b_blocks_size_type" size="small" />
 
                     <RangeControl value={indicatorRadius} onChange={cng => setAttributes({ indicatorRadius: cng })} min={0} max={50} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_slider">
@@ -266,9 +266,9 @@ registerBlockType('b-blocks/slider', {
                     </a>
                 </div>
 
-                {!slides.length || isSelected ? <div className="b_blocks_add_item" style={{ left: '50%', transform: 'translateX(-50%)' }}><Button icon="plus-alt" onClick={title => { setAttributes({ slides: [...slides, { index: slides.length }] }) }} >{__('Add New Slide', 'b-blocks')}</Button></div> : null}
+                {!slides.length || isSelected ? <div className="b_blocks_add_item" style={{ left: '50%', transform: 'translateX(-50%)' }}><Button icon="plus-alt" onClick={() => { setAttributes({ slides: [...slides, { index: slides.length }] }) }} >{__('Add New Slide', 'b-blocks')}</Button></div> : null}
             </div>
-        ])
+        </>
     },
 
     save: props => {
@@ -293,7 +293,7 @@ registerBlockType('b-blocks/slider', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <li data-target={`#bBlocksSlider-${cId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
+                        <li key={slide.index} data-target={`#bBlocksSlider-${cId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
                     );
                 })
             );
@@ -306,7 +306,7 @@ registerBlockType('b-blocks/slider', {
                     const active = index == 0 ? true : false;
 
                     return (
-                        <div className={`carousel-item ${active ? 'active' : ''}`} data-interval={slideInterval * 1000} style={slideItemStyle}>
+                        <div key={slide.index} className={`carousel-item ${active ? 'active' : ''}`} data-interval={slideInterval * 1000} style={slideItemStyle}>
                             <div style={overlayOpacityStyle}></div>
 
                             {img && <img src={img} className="w-100" alt="" />}

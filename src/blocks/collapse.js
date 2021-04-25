@@ -1,8 +1,8 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { useEffect, Fragment } = wp.element;
-const { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -53,7 +53,7 @@ registerBlockType('b-blocks/collapse', {
 
     // Build In Functions
     edit: props => {
-        const { attributes: { cId, collBtnLabel, collBtnAlign, collBtnFontSize, collBtnTransform, collBtnFontWeight, collBtnPTB, collBtnPLR, collBtnRadius, collBtnColor, collBtnBGColor, collBtnHovColor, collBtnHovBGColor, contentPTB, contentPLR }, setAttributes, clientId } = props;
+        const { attributes: { collBtnLabel, collBtnAlign, collBtnFontSize, collBtnTransform, collBtnFontWeight, collBtnPTB, collBtnPLR, collBtnRadius, collBtnColor, collBtnBGColor, collBtnHovColor, collBtnHovBGColor, contentPTB, contentPLR }, setAttributes, clientId } = props;
 
         // Styles
         const collBtnStyle = { fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px 0`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor };
@@ -74,7 +74,7 @@ registerBlockType('b-blocks/collapse', {
             e.target.style.backgroundColor = collBtnBGColor;
         }
 
-        return ([
+        return <>
             <InspectorControls>
                 <PanelBody title={__('Collapse Button Settings', 'b-blocks')} initialOpen={true}>
                     {/* Button Align */}
@@ -110,8 +110,8 @@ registerBlockType('b-blocks/collapse', {
                     <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
                         tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                         {tab => {
-                            return <Fragment>
-                                {'normal' == tab.name && <Fragment>
+                            return <>
+                                {'normal' == tab.name && <>
                                     {/* Color */}
                                     {otherTitle('Color:')}
                                     <ColorPalette value={collBtnColor} onChange={cng => setAttributes({ collBtnColor: cng })} colors={colors} />
@@ -119,9 +119,9 @@ registerBlockType('b-blocks/collapse', {
                                     {/* Background Color */}
                                     {otherTitle('Background Color:')}
                                     <ColorPalette value={collBtnBGColor} onChange={cng => setAttributes({ collBtnBGColor: cng })} colors={colors} />
-                                </Fragment>}
+                                </>}
 
-                                {'hover' == tab.name && <Fragment>
+                                {'hover' == tab.name && <>
                                     {/* Hover Color */}
                                     {otherTitle('Hover Color:')}
                                     <ColorPalette value={collBtnHovColor} onChange={cng => setAttributes({ collBtnHovColor: cng })} colors={colors} />
@@ -129,8 +129,8 @@ registerBlockType('b-blocks/collapse', {
                                     {/* Hover Background Color */}
                                     {otherTitle('Hover Background Color:')}
                                     <ColorPalette value={collBtnHovBGColor} onChange={cng => setAttributes({ collBtnHovBGColor: cng })} colors={colors} />
-                                </Fragment>}
-                            </Fragment>
+                                </>}
+                            </>
                         }}
                     </TabPanel>
                 </PanelBody>
@@ -167,7 +167,7 @@ registerBlockType('b-blocks/collapse', {
                     </div>
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {

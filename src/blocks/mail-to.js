@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { InspectorControls, ColorPalette, RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
-const { PanelBody, FontSizePicker, RangeControl, TextControl, SelectControl } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette, RichText, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker, RangeControl, TextControl, SelectControl } from '@wordpress/components';
 
 // Variables
 import options from '../Const/options';
@@ -53,7 +53,7 @@ registerBlockType('b-blocks/mailto', {
         // Styles
         const mtBtnStyle = { fontSize: `${mtBtnFontSize}px`, textTransform: mtBtnTransform, fontWeight: mtBtnFontWeight, padding: `${mtBtnPTB}px ${mtBtnPLR}px`, borderRadius: `${mtBtnRadius}px`, color: mtBtnColor, backgroundColor: mtBtnBGColor };
 
-        return ([
+        return <>
             <InspectorControls>
                 <PanelBody title={__('Mail to Button Settings', 'b-blocks')} initialOpen={true}>
                     {/* Label */}
@@ -96,7 +96,7 @@ registerBlockType('b-blocks/mailto', {
                     {otherTitle('Background Color:')}
                     <ColorPalette value={mtBtnBGColor} onChange={cng => setAttributes({ mtBtnBGColor: cng })} colors={colors} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_mailto" style={{ textAlign: mtBtnAlign, position: 'relative' }}>
@@ -104,7 +104,7 @@ registerBlockType('b-blocks/mailto', {
                     <AlignmentToolbar value={mtBtnAlign} onChange={cng => setAttributes({ mtBtnAlign: cng })} />
                 </BlockControls>
 
-                <a className="mailtoui b_blocks_btn" href={`mailto:${receiverMail}`} style={mtBtnStyle} target="_blank">
+                <a className="mailtoui b_blocks_btn" href={`mailto:${receiverMail}`} style={mtBtnStyle} target="_blank" rel="noreferrer">
                     <RichText className="b_blocks_mt_btn_label" key="editable" tagName="span" placeholder={__('Write Mail to Button Label', 'b-blocks')} value={mtBtnLabel} onChange={cng => { setAttributes({ mtBtnLabel: cng }) }} inlineToolbar />
                 </a>
 
@@ -112,7 +112,7 @@ registerBlockType('b-blocks/mailto', {
                     <TextControl id="bBlocksMtReceiverMail" value={receiverMail} onChange={cng => setAttributes({ receiverMail: cng })} placeholder={__('Receiver Email', 'b-blocks')} />
                 </div>}
             </div>
-        ])
+        </>
     },
 
     save: props => {

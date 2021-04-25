@@ -1,8 +1,8 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { Fragment, useEffect } = wp.element;
-const { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar, MediaUpload } = wp.blockEditor;
-const { PanelBody, FontSizePicker, IconButton, ToggleControl, RangeControl, RadioControl, PanelRow } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar, MediaUpload } from '@wordpress/block-editor';
+import { PanelBody, FontSizePicker, IconButton, ToggleControl, RangeControl, RadioControl, PanelRow } from '@wordpress/components';
 const ALLOWED_BLOCKS = ['core/button'];
 
 // Icons
@@ -114,8 +114,8 @@ registerBlockType('b-blocks/card', {
                             <IconButton icon="controls-repeat" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>{__('Replace Card Image', 'b-blocks')}</IconButton>
                             <IconButton icon="exit" onClick={() => setAttributes({ img: null })} style={{ color: 'red', fontWeight: 'bold' }}>{__('Remove Card Image', 'b-blocks')}</IconButton>
                         </div> : <div className="b_blocks_media_control">
-                                <IconButton icon="upload" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>{__('Upload Card Image', 'b-blocks')}</IconButton>
-                            </div>} />
+                            <IconButton icon="upload" onClick={open} style={{ color: '#4527a4', fontWeight: 'bold' }}>{__('Upload Card Image', 'b-blocks')}</IconButton>
+                        </div>} />
                 </div>}
 
                 {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} style={{ objectFit: 'cover' }} />}
@@ -123,34 +123,34 @@ registerBlockType('b-blocks/card', {
         }
 
         const cardHeader = () => {
-            return <Fragment>
+            return <>
                 {headerShow && <span><RichText className="card-header b_blocks_card_header" key="editable" tagName={headerTag} placeholder={__('Enter Header Text', 'b-blocks')} value={headerText} onChange={cng => { setAttributes({ headerText: cng }) }} inlineToolbar style={headerStyle} /></span>}
-            </Fragment>;
+            </>;
         }
 
         const cardBody = () => {
             return <div className="card-body" style={bodyStyle}>
-                <Fragment>
+                <>
                     {bodyHeadShow && <span><RichText className="card-title b_blocks_card_body_head" key="editable" tagName={bodyHeadTag} placeholder={__('Enter Body Heading', 'b-blocks')} value={bodyHeadText} onChange={cng => { setAttributes({ bodyHeadText: cng }) }} inlineToolbar style={bodyHeadStyle} /></span>}
-                </Fragment>
+                </>
 
-                <Fragment>
+                <>
                     {bodyDescShow && <span><RichText className="card-text b_blocks_card_body_desc" key="editable" tagName="p" placeholder={__('Enter Body Description', 'b-blocks')} value={bodyDescText} onChange={cng => { setAttributes({ bodyDescText: cng }) }} inlineToolbar style={bodyDescStyle} /></span>}
-                </Fragment>
+                </>
 
-                <Fragment>
+                <>
                     <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
-                </Fragment>
+                </>
             </div>
         }
 
         const cardFooter = () => {
-            return <Fragment>
+            return <>
                 {footerShow && <span><RichText className="card-footer b_blocks_card_footer" key="editable" tagName={footerTag} placeholder={__('Enter Footer Text', 'b-blocks')} value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerStyle} /></span>}
-            </Fragment>;
+            </>;
         }
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Card Settings */}
                 <PanelBody title={__('Card Settings', 'b-blocks')} initialOpen={true}>
@@ -177,7 +177,7 @@ registerBlockType('b-blocks/card', {
                     {/* Show/Hide Image */}
                     <ToggleControl label={imgShow ? 'Hide Image' : 'Show Image'} checked={imgShow} onChange={cng => setAttributes({ imgShow: cng })} />
 
-                    {imgShow && <Fragment>
+                    {imgShow && <>
                         {/* Position */}
                         {firstTitle('Position:')}
                         <RadioControl selected={imgPos} onChange={cng => setAttributes({ imgPos: cng })} options={[
@@ -185,7 +185,7 @@ registerBlockType('b-blocks/card', {
                             { label: 'vertical' == layout ? 'Bottom' : 'Right', value: 'bottom' },
                         ]}
                         />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -194,7 +194,7 @@ registerBlockType('b-blocks/card', {
                     {/* Show/Hide Header */}
                     <ToggleControl label={headerShow ? 'Hide Header' : 'Show Header'} checked={headerShow} onChange={cng => setAttributes({ headerShow: cng })} />
 
-                    {headerShow && <Fragment>
+                    {headerShow && <>
                         {/* Header Tag */}
                         {firstTitle('Header Tag:')}
                         <BtnGroup options={hTags} myValue={headerTag} setState={(cng, def) => setAttributes({ headerTag: cng, headerFontSize: def })} />
@@ -214,7 +214,7 @@ registerBlockType('b-blocks/card', {
                         {/* Background Color */}
                         {otherTitle('Background Color:')}
                         <ColorPalette value={headerBGColor} onChange={cng => setAttributes({ headerBGColor: cng })} colors={colors} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -243,7 +243,7 @@ registerBlockType('b-blocks/card', {
                     {/* Show/Hide Body Heading */}
                     <ToggleControl label={bodyHeadShow ? 'Hide Body Heading' : 'Show Body Heading'} checked={bodyHeadShow} onChange={cng => setAttributes({ bodyHeadShow: cng })} />
 
-                    {bodyHeadShow && <Fragment>
+                    {bodyHeadShow && <>
                         {/* Body Heading Tag */}
                         {firstTitle('Body Heading Tag:')}
                         <BtnGroup options={hTags} myValue={bodyHeadTag} setState={(cng, def) => setAttributes({ bodyHeadTag: cng, bodyHeadFontSize: def })} />
@@ -259,7 +259,7 @@ registerBlockType('b-blocks/card', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={bodyHeadMB} onChange={cng => setAttributes({ bodyHeadMB: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -268,7 +268,7 @@ registerBlockType('b-blocks/card', {
                     {/* Show/Hide Body Description */}
                     <ToggleControl label={bodyDescShow ? 'Hide Body Description' : 'Show Body Description'} checked={bodyDescShow} onChange={cng => setAttributes({ bodyDescShow: cng })} />
 
-                    {bodyDescShow && <Fragment>
+                    {bodyDescShow && <>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={bodyDescFontSize} onChange={cng => setAttributes({ bodyDescFontSize: 'undefined' === typeof cng ? 15 : cng })} />
@@ -280,7 +280,7 @@ registerBlockType('b-blocks/card', {
                         {/* Margin Bottom */}
                         {otherTitle('Margin Bottom:')}
                         <RangeControl value={bodyDescMB} onChange={cng => setAttributes({ bodyDescMB: cng })} min={0} max={100} step={1} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
 
 
@@ -289,7 +289,7 @@ registerBlockType('b-blocks/card', {
                     {/* Show/Hide Footer */}
                     <ToggleControl label={footerShow ? 'Hide Footer' : 'Show Footer'} checked={footerShow} onChange={cng => setAttributes({ footerShow: cng })} />
 
-                    {footerShow && <Fragment>
+                    {footerShow && <>
                         {/* Footer Tag */}
                         {firstTitle('Footer Tag:')}
                         <BtnGroup options={tags} myValue={footerTag} setState={(cng, def) => setAttributes({ footerTag: cng, footerFontSize: def })} />
@@ -309,9 +309,9 @@ registerBlockType('b-blocks/card', {
                         {/* Background Color */}
                         {otherTitle('Background Color:')}
                         <ColorPalette value={footerBGColor} onChange={cng => setAttributes({ footerBGColor: cng })} colors={colors} />
-                    </Fragment>}
+                    </>}
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_card" style={{ textAlign: cardAlign }}>
@@ -332,12 +332,12 @@ registerBlockType('b-blocks/card', {
                         {'bottom' == imgPos && cardImg()}
                     </div>}
 
-                    {'horizontal' == layout && <div class="row no-gutters" style={{ backgroundColor: bodyBGColor }}>
-                        {'top' == imgPos && <div class="col-md-6">
+                    {'horizontal' == layout && <div className="row no-gutters" style={{ backgroundColor: bodyBGColor }}>
+                        {'top' == imgPos && <div className="col-md-6">
                             {cardImg()}
                         </div>}
 
-                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                        <div className="col-md-6 d-flex flex-column justify-content-between">
                             {cardHeader()}
 
                             {cardBody()}
@@ -345,13 +345,13 @@ registerBlockType('b-blocks/card', {
                             {cardFooter()}
                         </div>
 
-                        {'bottom' == imgPos && <div class="col-md-6">
+                        {'bottom' == imgPos && <div className="col-md-6">
                             {cardImg()}
                         </div>}
                     </div>}
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {
@@ -370,37 +370,37 @@ registerBlockType('b-blocks/card', {
 
         // Content
         const cardImg = () => {
-            return <Fragment style={{ textAlign: 'center' }}>
+            return <>
                 {imgShow && <img src={img && img.url} className="card-img" alt={img && img.title} style={{ objectFit: 'cover' }} />}
-            </Fragment>;
+            </>;
         }
 
         const cardHeader = () => {
-            return <Fragment>
+            return <>
                 {headerShow && <RichText.Content className="card-header b_blocks_card_header" tagName={headerTag} value={headerText} style={headerStyle} />}
-            </Fragment>;
+            </>;
         }
 
         const cardBody = () => {
             return <div className="card-body" style={bodyStyle}>
-                <Fragment>
+                <>
                     {bodyHeadShow && <RichText.Content className="card-title b_blocks_card_body_head" tagName={bodyHeadTag} value={bodyHeadText} style={bodyHeadStyle} />}
-                </Fragment>
+                </>
 
-                <Fragment>
+                <>
                     {bodyDescShow && <RichText.Content className="card-text b_blocks_card_body_desc" tagName="p" value={bodyDescText} style={bodyDescStyle} />}
-                </Fragment>
+                </>
 
-                <Fragment>
+                <>
                     <InnerBlocks.Content />
-                </Fragment>
+                </>
             </div>
         }
 
         const cardFooter = () => {
-            return <Fragment>
+            return <>
                 {footerShow && <RichText.Content className="card-footer b_blocks_card_footer" tagName={footerTag} value={footerText} style={footerStyle} />}
-            </Fragment>;
+            </>;
         }
 
         return (
@@ -418,12 +418,12 @@ registerBlockType('b-blocks/card', {
                         {'bottom' == imgPos && cardImg()}
                     </div>}
 
-                    {'horizontal' == layout && <div class="row no-gutters" style={{ backgroundColor: bodyBGColor }}>
-                        {'top' == imgPos && <div class="col-md-6">
+                    {'horizontal' == layout && <div className="row no-gutters" style={{ backgroundColor: bodyBGColor }}>
+                        {'top' == imgPos && <div className="col-md-6">
                             {cardImg()}
                         </div>}
 
-                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                        <div className="col-md-6 d-flex flex-column justify-content-between">
                             {cardHeader()}
 
                             {cardBody()}
@@ -431,7 +431,7 @@ registerBlockType('b-blocks/card', {
                             {cardFooter()}
                         </div>
 
-                        {'bottom' == imgPos && <div class="col-md-6">
+                        {'bottom' == imgPos && <div className="col-md-6">
                             {cardImg()}
                         </div>}
                     </div>}

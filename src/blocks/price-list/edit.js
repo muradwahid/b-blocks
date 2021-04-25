@@ -1,9 +1,9 @@
-const { __ } = wp.i18n;
-const { useEffect, Fragment } = wp.element;
-const { withSelect } = wp.data;
-const { RichText, MediaPlaceholder, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck, InspectorControls, ColorPalette } = wp.blockEditor;
-const { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, PanelRow, ButtonGroup, Tooltip, ToggleControl } = wp.components;
-const { isBlobURL } = wp.blob;
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { withSelect } from '@wordpress/data';
+import { RichText, MediaPlaceholder, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck, InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, PanelRow, ButtonGroup, Tooltip, ToggleControl } from '@wordpress/components';
+import { isBlobURL } from '@wordpress/blob';
 
 // Icons
 import icons from '../../Const/icons';
@@ -13,10 +13,10 @@ import Title from '../../GutenComp/Title';
 import BColor from '../../GutenComp/BColor';
 import BtnGroup from '../../GutenComp/BtnGroup';
 import options from '../../Const/options';
-const { fontSizes, colors, aligns, sizeTypes } = options;
+const { fontSizes, colors, sizeTypes } = options;
 
 const Edit = props => {
-    const { className, attributes: { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor, isBorder }, setAttributes, noticeOperations, noticeUI, image, imageSizes } = props;
+    const { className, attributes: { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgMB, imgRadius, imgRadiusType, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, price, priceFontSize, priceColor, isSep, sepWidth }, setAttributes, noticeOperations, noticeUI, image, imageSizes } = props;
 
     // useEffect
     useEffect(() => {
@@ -42,17 +42,17 @@ const Edit = props => {
         return options;
     }
 
-    return ([
+    return <>
         <InspectorControls>
             <PanelBody title={__('Layouts Settings')}>
                 <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
                 <ButtonGroup className="b_blocks_button_groups">
                     <Tooltip text={__('Vertical', 'b-blocks')} position="top">
-                        <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({ layout: 'vertical', contentAlign: 'center', contentPTB: 50 })}></Button>
+                        <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({ layout: 'vertical', contentAlign: 'center', contentPTB: 50, sepWidth: 40 })}></Button>
                     </Tooltip>
 
                     <Tooltip text={__('Horizontal', 'b-blocks')} position="top">
-                        <Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({ layout: 'horizontal', contentAlign: 'left', contentPTB: 30 })}></Button>
+                        <Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({ layout: 'horizontal', contentAlign: 'left', contentPTB: 30, sepWidth: 80 })}></Button>
                     </Tooltip>
                 </ButtonGroup>
             </PanelBody>
@@ -61,7 +61,7 @@ const Edit = props => {
                 {/* Background Color */}
                 <PanelRow>
                     <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={cng => setAttributes({ contentBGColor: cng })} defaultColor="#ffffff88" />
+                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff88" />
                 </PanelRow>
 
                 {/* Padding Top Bottom */}
@@ -74,15 +74,15 @@ const Edit = props => {
             </PanelBody>
 
             {(imgUrl || imgId) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-                {imgUrl && !isBlobURL(imgUrl) && <Fragment>
+                {imgUrl && !isBlobURL(imgUrl) && <>
                     <Title mt="0">{__('Alt Text (Alternative Text):', 'b-blocks')}</Title>
                     <TextControl label={__('', 'b-blocks')} value={imgAlt} onChange={val => setAttributes({ imgAlt: val })} />
-                </Fragment>}
+                </>}
 
-                {imgId && <Fragment>
+                {imgId && <>
                     <Title>{__('Select Size:', 'b-blocks')}</Title>
                     <SelectControl value={imgUrl} onChange={val => setAttributes({ imgUrl: val })} options={getImageSizes()} />
-                </Fragment>}
+                </>}
 
                 {/* Margin Bottom */}
                 <Title>{__('horizontal' === layout ? 'Margin Right:' : 'Margin Bottom:', 'b-blocks')}</Title>
@@ -90,9 +90,9 @@ const Edit = props => {
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={(cng, def) => setAttributes({ imgRadiusType: cng })} classes="b_blocks_size_type" size="small" />
+                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes="b_blocks_size_type" size="small" />
 
-                <RangeControl value={imgRadius} onChange={cng => setAttributes({ imgRadius: cng })} min={0} max={50} step={1} />
+                <RangeControl value={imgRadius} onChange={val => setAttributes({ imgRadius: val })} min={0} max={50} step={1} />
             </PanelBody>}
 
             <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
@@ -135,10 +135,14 @@ const Edit = props => {
                 <ColorPalette value={priceColor} onChange={val => setAttributes({ priceColor: val })} colors={colors} />
             </PanelBody>
 
-            <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isBorder ? 'Hide Border' : 'Show Border'} checked={isBorder} onChange={val => setAttributes({ isBorder: val })} />
+            <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+                <ToggleControl label={isSep ? 'Hide Separator' : 'Show Separator'} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
+
+                {/* Width */}
+                <Title>{__('Width:', 'b-blocks')}</Title>
+                <RangeControl value={sepWidth} onChange={val => setAttributes({ sepWidth: val })} min={0} max={100} step={1} />
             </PanelBody>
-        </InspectorControls>,
+        </InspectorControls>
 
 
         <BlockControls>
@@ -151,14 +155,14 @@ const Edit = props => {
             </ToolbarGroup>}
 
             <AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
-        </BlockControls>,
+        </BlockControls>
 
 
         <div className={`${className} text-${contentAlign} ptb-${contentPTB} plr-${contentPLR} ${'horizontal' === layout ? 'horizontal' : 'vertical'}`} style={{ backgroundColor: contentBGColor }}>
-            {imgUrl ? <Fragment>
+            {imgUrl ? <>
                 <img className={`itemImage ${'horizontal' === layout ? `mr-${imgMB}` : `mb-${imgMB}`} radius-${imgRadius}-${'%' === imgRadiusType ? 'per' : imgRadiusType}`} src={imgUrl} alt={imgAlt} />
                 {isBlobURL(imgUrl) && <Spinner />}
-            </Fragment> :
+            </> :
                 <MediaPlaceholder labels={{ title: __(' Product Image', 'b-blocks') }} icon='format-image' allowedTypes={['image']} accept='image/*' onSelect={onSelectImage} onSelectURL={val => setAttributes({ imgId: null, imgUrl: val, imgAlt: '' })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} />
             }
 
@@ -170,9 +174,9 @@ const Edit = props => {
                 <RichText className={`itemPrice fontSize-${priceFontSize}`} style={{ color: priceColor }} tagName='span' value={price} onChange={val => setAttributes({ price: val })} placeholder={__('$99.99', 'b-blocks')} />
             </div>
 
-            {isBorder && <div className="itemBorder"></div>}
+            {isSep && <span className={`itemSeparator w-${sepWidth}-per`}></span>}
         </div>
-    ]);
+    </>
 };
 export default withSelect((select, props) => {
     const { imgId } = props.attributes;

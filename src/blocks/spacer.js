@@ -1,7 +1,7 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl, ResizableBox } = wp.components;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
 // Functions
 import func from '../Const/functions';
@@ -32,7 +32,7 @@ registerBlockType('b-blocks/spacer', {
     edit: props => {
         const { attributes: { height }, setAttributes, isSelected, toggleSelection } = props;
 
-        return ([
+        return <>
             <InspectorControls>
                 {/* Spacer Settings */}
                 <PanelBody title={__('Spacer Settings', 'b-blocks')} initialOpen={true}>
@@ -40,7 +40,7 @@ registerBlockType('b-blocks/spacer', {
                     {firstTitle('Height/Size:')}
                     <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={1000} step={1} />
                 </PanelBody>
-            </InspectorControls>,
+            </InspectorControls>
 
 
             <div className="b_blocks_spacer">
@@ -56,7 +56,7 @@ registerBlockType('b-blocks/spacer', {
                     &nbsp;{__('will not show in front End', 'b-blocks')}
                 </div>
             </div>
-        ])
+        </>
     },
 
     save: props => {

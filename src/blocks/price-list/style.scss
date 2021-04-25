@@ -18,8 +18,7 @@
                 padding: 0 20px;
             }
 
-            .itemBorder{
-                width: 40%;
+            .itemSeparator{
                 left: 50%;
                 transform: translateX(-50%);
             }
@@ -45,11 +44,10 @@
             font-style: italic;
         }
 
-        .itemBorder{
+        .itemSeparator{
             position: absolute;
-            border-bottom: 1px solid #bbb;
-            width: 85%;
             bottom: 0;
+            border-bottom: 1px solid #bbb;
         }
     }
 }

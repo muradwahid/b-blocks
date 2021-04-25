@@ -1,6 +1,3 @@
-// Icon
-import icons from './icons';
-
 const options = {
     fontSizes: [
         { name: 'Small', slug: 'small', size: 13 },

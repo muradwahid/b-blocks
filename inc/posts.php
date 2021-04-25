@@ -2,60 +2,60 @@
 function render_b_blocks_posts( $attributes ) {
     extract( $attributes );
 
-    $align ?? $align = 'full';
+    $align = isset( $align ) ? $align : 'full';
 
-    $selectedCategories ?? $selectedCategories = [];
-    $postsPerPageAll ?? $postsPerPageAll = 'false';
-    $postsPerPage ?? $postsPerPage = 12;
-    $postsOrderBy ?? $postsOrderBy = 'date';
-    $postsOrder ?? $postsOrder = 'desc';
+    $selectedCategories = isset( $selectedCategories ) ? $selectedCategories : [];
+    $postsPerPageAll = isset( $postsPerPageAll ) ? $postsPerPageAll : 'false';
+    $postsPerPage = isset( $postsPerPage ) ? $postsPerPage : 12;
+    $postsOrderBy = isset( $postsOrderBy ) ? $postsOrderBy : 'date';
+    $postsOrder = isset( $postsOrder ) ? $postsOrder : 'desc';
 
-    $layout ?? $layout = 'grid';
-    $columns ?? $columns = 3;
-    $columnGap ?? $columnGap = 10;
-    $rowGap ?? $rowGap = 10;
-    $contentEqualHight ?? $contentEqualHight = 'true';
+    $layout = isset( $layout ) ? $layout : 'grid';
+    $columns = isset( $columns ) ? $columns : 3;
+    $columnGap = isset( $columnGap ) ? $columnGap : 10;
+    $rowGap = isset( $rowGap ) ? $rowGap : 10;
+    $contentEqualHight = isset( $contentEqualHight ) ? $contentEqualHight : 'true';
 
-    $contentAlign ?? $contentAlign = 'left';
-    $contentBGColor ?? $contentBGColor = '#fff';
-    $postTextPTB ?? $postTextPTB = 15;
-    $postTextPLR ?? $postTextPLR = 15;
-    $shadow ?? $shadow = 'shadow';
+    $contentAlign = isset( $contentAlign ) ? $contentAlign : 'left';
+    $contentBGColor = isset( $contentBGColor ) ? $contentBGColor : '#fff';
+    $postTextPTB = isset( $postTextPTB ) ? $postTextPTB : 15;
+    $postTextPLR = isset( $postTextPLR ) ? $postTextPLR : 15;
+    $shadow = isset( $shadow ) ? $shadow : 'shadow';
 
-    $featureImgShow ?? $featureImgShow = 'true';
+    $featureImgShow = isset( $featureImgShow ) ? $featureImgShow : 'true';
 
-    $titleShow ?? $titleShow = 'true';
-    $titleFontSize ?? $titleFontSize = 20;
-    $titleColor ?? $titleColor = '#4527a4';
-    $titleMB ?? $titleMB = 15;
+    $titleShow = isset( $titleShow ) ? $titleShow : 'true';
+    $titleFontSize = isset( $titleFontSize ) ? $titleFontSize : 20;
+    $titleColor = isset( $titleColor ) ? $titleColor : '#4527a4';
+    $titleMB = isset( $titleMB ) ? $titleMB : 15;
 
-    $metaShow ?? $metaShow = 'true';
-    $metaAuthorShow ?? $metaAuthorShow = 'true';
-    $metaDateShow ?? $metaDateShow = 'true';
-    $metaCategoryShow ?? $metaCategoryShow = 'true';
-    $metaCommentShow ?? $metaCommentShow = 'false';
-    $metaFontSize ?? $metaFontSize = 13;
-    $metaTransform ?? $metaTransform = 'uppercase';
-    $metaTextColor ?? $metaTextColor = '#333';
-    $metaLinkColor ?? $metaLinkColor = '#8344c5';
-    $metaIconColor ?? $metaIconColor = '#4527a4';
-    $metaMB ?? $metaMB = 15;
+    $metaShow = isset( $metaShow ) ? $metaShow : 'true';
+    $metaAuthorShow = isset( $metaAuthorShow ) ? $metaAuthorShow : 'true';
+    $metaDateShow = isset( $metaDateShow ) ? $metaDateShow : 'true';
+    $metaCategoryShow = isset( $metaCategoryShow ) ? $metaCategoryShow : 'true';
+    $metaCommentShow = isset( $metaCommentShow ) ? $metaCommentShow : 'false';
+    $metaFontSize = isset( $metaFontSize ) ? $metaFontSize : 13;
+    $metaTransform = isset( $metaTransform ) ? $metaTransform : 'uppercase';
+    $metaTextColor = isset( $metaTextColor ) ? $metaTextColor : '#333';
+    $metaLinkColor = isset( $metaLinkColor ) ? $metaLinkColor : '#8344c5';
+    $metaIconColor = isset( $metaIconColor ) ? $metaIconColor : '#4527a4';
+    $metaMB = isset( $metaMB ) ? $metaMB : 15;
 
-    $excerptShow ?? $excerptShow = 'true';
-    $excerptLength ?? $excerptLength = 45;
-    $excerptAlign ?? $excerptAlign = 'justify';
-    $excerptFontSize ?? $excerptFontSize = 15;
-    $excerptColor ?? $excerptColor = '#333';
-    $excerptMB ?? $excerptMB = 15;
+    $excerptShow = isset( $excerptShow ) ? $excerptShow : 'true';
+    $excerptLength = isset( $excerptLength ) ? $excerptLength : 45;
+    $excerptAlign = isset( $excerptAlign ) ? $excerptAlign : 'justify';
+    $excerptFontSize = isset( $excerptFontSize ) ? $excerptFontSize : 15;
+    $excerptColor = isset( $excerptColor ) ? $excerptColor : '#333';
+    $excerptMB = isset( $excerptMB ) ? $excerptMB : 15;
 
-    $readMoreShow ?? $readMoreShow = 'true';
-    $readMoreLabel ?? $readMoreLabel = 'Read More';
-    $readMoreAlign ?? $readMoreAlign = 'left';
-    $readMoreFontSize ?? $readMoreFontSize = 14;
-    $readMoreTransform ?? $readMoreTransform = 'uppercase';
-    $readMoreFontWeight ?? $readMoreFontWeight = '600';
-    $readMoreColor ?? $readMoreColor = '#4527a4';
-    $readMoreHovColor ?? $readMoreHovColor = '#8344c5';
+    $readMoreShow = isset( $readMoreShow ) ? $readMoreShow : 'true';
+    $readMoreLabel = isset( $readMoreLabel ) ? $readMoreLabel : 'Read More';
+    $readMoreAlign = isset( $readMoreAlign ) ? $readMoreAlign : 'left';
+    $readMoreFontSize = isset( $readMoreFontSize ) ? $readMoreFontSize : 14;
+    $readMoreTransform = isset( $readMoreTransform ) ? $readMoreTransform : 'uppercase';
+    $readMoreFontWeight = isset( $readMoreFontWeight ) ? $readMoreFontWeight : '600';
+    $readMoreColor = isset( $readMoreColor ) ? $readMoreColor : '#4527a4';
+    $readMoreHovColor = isset( $readMoreHovColor ) ? $readMoreHovColor : '#8344c5';
 
     // All Posts
     $posts = get_posts( [
