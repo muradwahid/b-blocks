@@ -24,7 +24,7 @@ registerBlockType('b-blocks/price-lists', {
     category: 'bBlocks',
     keywords: [__('price', 'b-blocks'), __('lists', 'b-blocks'), __('price lists section', 'b-blocks')],
     supports: {
-        align: ['center', 'wide', 'full'],
+        align: ['wide', 'full'],
         html: false
     },
 

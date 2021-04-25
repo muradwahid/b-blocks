@@ -61,7 +61,7 @@ const Edit = props => {
                 {/* Background Color */}
                 <PanelRow>
                     <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff88" />
+                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
                 </PanelRow>
 
                 {/* Padding Top Bottom */}

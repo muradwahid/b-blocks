@@ -15,7 +15,7 @@ import icons from '../../Const/icons';
 // Custom Attributes
 const attributes = {
     contentAlign: { type: 'string', default: 'center' },
-    contentBGColor: { type: 'string', default: '#ffffff88' },
+    contentBGColor: { type: 'string', default: '#ffffff00' },
     contentPTB: { type: 'number', default: 50 },
     contentPLR: { type: 'number', default: 20 },
 

@@ -1,9 +1,9 @@
 === B Blocks - Gutenberg Blocks Collection and Page Builder ===
-Contributors: abuhayat
+Contributors: abuhayat, charlescormier
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
-Tested up to: 5.6
+Tested up to: 5.7.1
 Requires PHP: 5.4
 Stable tag: 1.1
 License: GPLv2 or later
@@ -18,7 +18,7 @@ B Blocks is an innovative collection of blocks for the new WordPress Gutenberg b
 B Blocks is powerful but lightweight. Work with any theme, just need WordPress Gutenberg editor.
 
 
-**[Demos](https://links.bplugins.com/b-blocks)**
+**[Demos](https://bblockswp.com/)**
 
 
 = Features =
@@ -32,7 +32,7 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 
 - **Price Lists:** Display Price lists section with image, title, description, price and a separator.
 
-- **Section Heading:** Display Feature boxes section with feature image, title, separator and description.
+- **Feature Boxes:** Display Feature boxes section with feature image, title, separator and description.
 
 - **Card:** Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
@@ -77,10 +77,7 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 	
 
 = Feedback = 
-Liked that plugin? Hate it? Want a new feature?  [Send me some feedback](mailto:abuhayat.du@gmail.com "Send feedback")  
-
-= Known Issues =
-[Click Here to see or file a new Known Issue.](https://docs.google.com/spreadsheets/d/1A9_ckwy-dM6Oz-HlBlAdsT_OIlUsp0vezyPaSWB7hSc/edit?usp=sharing "Known issues")
+Liked that plugin? Hate it? Want a new feature?  [Send me some feedback](mailto:abuhayat.du@gmail.com "Send feedback")
 
 
 == Screenshots ==
@@ -88,14 +85,16 @@ Liked that plugin? Hate it? Want a new feature?  [Send me some feedback](mailto:
 1. All Blocks
 2. Posts- Grid Layout
 3. posts- Masonry Layout
-4. Slider
-5. Vertical Card- Top Image
-6. Vertical Card- Bottom Image
-7. Horizontal Card
-8. Tabs
-9. Accordion & Note
-10. Gif Image & QR Code
-11. Alert & Progress Bar
+4. Price Lists
+5. Feature Boxes
+6. Slider
+7. Vertical Card- Top Image
+8. Vertical Card- Bottom Image
+9. Horizontal Card
+10. Tabs
+11. Accordion & Note
+12. Gif Image & QR Code
+13. Alert & Progress Bar
 
 
 == Frequently Asked Questions ==
@@ -143,6 +142,13 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 = 1.0 =
 * Initial Release
 
+= 1.1 =
+* Add price lists and feature boxes blocks
+* Compatible with PHP 5.4
+
 
 == Upgrade Notice ==
 * Initial Release
+
+* Add price lists and feature boxes blocks
+* Compatible with PHP 5.4

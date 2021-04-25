@@ -24,7 +24,7 @@ registerBlockType('b-blocks/feature-boxes', {
     category: 'bBlocks',
     keywords: [__('feature', 'b-blocks'), __('feature boxes', 'b-blocks'), __('feature boxes section', 'b-blocks')],
     supports: {
-        align: ['center', 'wide', 'full'],
+        align: ['wide', 'full'],
         html: false
     },
 
