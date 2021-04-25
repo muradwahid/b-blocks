@@ -43,9 +43,6 @@ function b_blocks_wp_register_script( $block, $options = array() ) {
                 'editor_style'  => 'b_blocks_editor_style',
                 'script'        => 'b_blocks_script',
                 'style'         => 'b_blocks_style',
-                // 'editor_script' => 'b_blocks-js',
-                // 'editor_style'  => 'b_blocks-editor-css',
-                // 'style'         => 'b_blocks-style-css',
             ),
             $options
         )
@@ -58,7 +55,6 @@ function b_blocks_enqueue_block_assets() {
 
     wp_enqueue_script( 'bootstrap', B_BLOCKS_ASSETS_DIR . 'js/bootstrap.bundle.min.js', array( 'jquery' ), '4.6.0', true );
     wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
-    wp_enqueue_script( 'b-blocks-script', B_BLOCKS_ASSETS_DIR . 'js/script.js', array( 'jquery', 'wp-tinymce' ), B_BLOCKS_PLUGIN_VERSION, true );
 }
 add_action( 'enqueue_block_assets', 'b_blocks_enqueue_block_assets' );
 
