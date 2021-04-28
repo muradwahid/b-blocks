@@ -39,12 +39,5 @@ module.exports = {
         'no-process-exit': 'off',
         'object-shorthand': 'warn',
         'class-methods-use-this': 'off',
-
-        // 'no-async-promise-executor': 'off',
-        // 'no-misleading-character-class': 'off',
-        // 'no-dupe-else-if': 'off',
-        // 'no-import-assign': 'off',
-        // 'no-setter-return': 'off',
-        // 'no-useless-catch': 'off',
     }
 };

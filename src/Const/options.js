@@ -102,5 +102,20 @@ const options = {
         { label: 'Regular Shadow', value: 'shadow' },
         { label: 'Large Shadow', value: 'shadow-lg' }
     ],
+
+    bgType: [
+        { label: 'Color', value: 'color', icon: 'Color' },
+        { label: 'Image', value: 'image', icon: 'Image' },
+        { label: 'Gradient', value: 'gradient', icon: 'Gradient' },
+    ],
+
+    gradientType: [
+        { label: 'Linear', value: 'linear', icon: 'Linear' },
+        { label: 'Radial', value: 'radial', icon: 'Radial' },
+    ],
+    radialType: [
+        { label: 'Ellipse', value: 'ellipse', icon: 'Ellipse' },
+        { label: 'Circle', value: 'circle', icon: 'Circle' },
+    ],
 }
 export default options;

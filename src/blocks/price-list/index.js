@@ -7,7 +7,6 @@ import Edit from './edit';
 
 // Import Sass
 import './editor.scss';
-// import './style.scss';
 
 // Icon
 import icons from '../../Const/icons';

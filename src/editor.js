@@ -5,6 +5,7 @@ import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/price-list';
 import './blocks/feature-box';
+import './blocks/info-box';
 import './blocks/card.js';
 import './blocks/mail-to.js';
 import './blocks/modal.js';

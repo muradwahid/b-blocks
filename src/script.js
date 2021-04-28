@@ -4,6 +4,7 @@ import './style.scss';
 // Import Blocks
 import './blocks/price-list/script';
 import './blocks/feature-box/script';
+import './blocks/info-box/script';
 
 
 // ; (function ($) {
