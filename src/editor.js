@@ -3,6 +3,7 @@ import './blocks/posts/posts.js';
 import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
+import './blocks/image-gallery';
 import './blocks/price-list';
 import './blocks/feature-box';
 import './blocks/info-box';

@@ -1,19 +1,45 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl } from '@wordpress/components';
 
 // Icon
 import icons from '../../Const/icons';
 
 // Variables
 import Title from '../../GutenComp/Title';
+import BDevice from '../../GutenComp/BDevice';
+
+// Deprecated
+const v1 = {
+    attributes: {
+        columns: { type: 'number', default: 3 },
+        columnGap: { type: 'number', default: 40 },
+        rowGap: { type: 'number', default: 30 }
+    },
+
+    save: props => {
+        const { columns, columnGap, rowGap } = props.attributes;
+
+        return <div className={`columns-${columns} cGap-${columnGap} rGap-${rowGap}`}>
+            <InnerBlocks.Content />
+        </div>;
+    }
+}
+const deprecated = [v1];
 
 // Custom Attributes
 const attributes = {
-    columns: { type: 'number', default: 3 },
+    columns: {
+        type: 'object', default: {
+            desktop: 3,
+            tablet: 2,
+            mobile: 1
+        }
+    },
     columnGap: { type: 'number', default: 40 },
-    rowGap: { type: 'number', default: 30 },
+    rowGap: { type: 'number', default: 30 }
 }
 
 registerBlockType('b-blocks/price-lists', {
@@ -33,12 +59,18 @@ registerBlockType('b-blocks/price-lists', {
     edit: props => {
         const { className, attributes: { columns, columnGap, rowGap }, setAttributes } = props;
 
+        const [device, setDevice] = useState('desktop');
+
         return <>
             <InspectorControls>
                 <PanelBody title={__('Layout Settings', 'b-blocks')}>
                     {/* Columns */}
-                    <Title mt="0">{__('Columns:', 'b-blocks')}</Title>
-                    <RangeControl value={columns} onChange={val => setAttributes({ columns: val })} min={0} max={6} step={1} />
+                    <PanelRow>
+                        <Title mt='0'>Columns:</Title>
+                        <BDevice device={device} onChange={val => setDevice(val)} />
+                    </PanelRow>
+                    <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} />
+
 
                     {/* Column Gap */}
                     <Title>{__('Column Gap:', 'b-blocks')}</Title>
@@ -51,7 +83,7 @@ registerBlockType('b-blocks/price-lists', {
             </InspectorControls>
 
 
-            <div className={`${className} columns-${columns} cGap-${columnGap} rGap-${rowGap}`}>
+            <div className={`${className} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile} cGap-${columnGap} rGap-${rowGap}`}>
                 <InnerBlocks allowedBlocks={['b-blocks/price-list']} template={[['b-blocks/price-list'], ['b-blocks/price-list'], ['b-blocks/price-list']]} />
             </div>
         </>
@@ -60,8 +92,10 @@ registerBlockType('b-blocks/price-lists', {
     save: props => {
         const { columns, columnGap, rowGap } = props.attributes;
 
-        return <div className={`columns-${columns} cGap-${columnGap} rGap-${rowGap}`}>
+        return <div className={`columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile} cGap-${columnGap} rGap-${rowGap}`}>
             <InnerBlocks.Content />
         </div>;
-    }
+    },
+
+    deprecated
 });

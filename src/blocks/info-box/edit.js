@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
-import { AlignmentToolbar, BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck, RichText, Spinner } from '@wordpress/block-editor';
-import { Button, ButtonGroup, FontSizePicker, PanelBody, PanelRow, RangeControl, SelectControl, TextControl, ToggleControl, ToolbarGroup, Tooltip, withNotices } from '@wordpress/components';
+import { AlignmentToolbar, BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
+import { Button, ButtonGroup, FontSizePicker, PanelBody, PanelRow, RangeControl, SelectControl, TextControl, ToggleControl, ToolbarGroup, Tooltip, withNotices, Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
@@ -21,7 +21,7 @@ const inTab = [
 ];
 
 const Edit = props => {
-    const { className, attributes: { contentAlign, contentBGType, contentBGColor, contentBGImg, isContentBGOpacity, contentBGOpacityColor, contentBGGradType, contentBGGradRadialType, contentBGGradFColor, contentBGGradSColor, contentBGGradFColorPos, contentBGGradSColorPos, contentBGGradAngel, contentBGGradRadialXPos, contentBGGradRadialYPos, contentPTB, contentPLR, borderWidth, borderStyle, borderColor, borderRadius, shadowColor, shadowHorizontalOffset, shadowVerticalOffset, shadowBlur, shadowSpreed, isImg, imgPos, imgId, imgUrl, imgAlt, imgWidth, imgMB, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, isBtn, btn, btnLink, btnLinkTab, btnFontSize, btnTextColor, btnBGColor, btnPTB, btnPLR, btnRadius }, setAttributes, noticeOperations, noticeUI, image, imageSizes } = props;
+    const { className, attributes: { contentAlign, contentBGType, contentBGColor, contentBGImg, isContentBGOpacity, contentBGOpacityColor, contentBGGradType, contentBGGradRadialType, contentBGGradFColor, contentBGGradSColor, contentBGGradFColorPos, contentBGGradSColorPos, contentBGGradAngel, contentBGGradRadialXPos, contentBGGradRadialYPos, contentPTB, contentPLR, borderWidth, borderStyle, borderColor, borderRadius, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed, isImg, imgPos, imgId, imgUrl, imgAlt, imgWidth, imgMB, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, isBtn, btn, btnLink, btnLinkTab, btnFontSize, btnTextColor, btnBGColor, btnPTB, btnPLR, btnRadius }, setAttributes, noticeOperations, noticeUI, image, imageSizes } = props;
 
     // useEffect
     useEffect(() => {
@@ -47,28 +47,28 @@ const Edit = props => {
         return options;
     }
 
-    return (<>
+    return <>
         <InspectorControls>
             <PanelBody title={__('Content Settings', 'b-blocks')}>
                 {/* Background */}
                 <Title mt='0'>{__('Background Type:', 'b-blocks')}</Title>
-                <ButtonGroup className="b_blocks_button_groups">
-                    <Tooltip text={__('Color', 'b-blocks')} position="top">
+                <ButtonGroup className='b_blocks_button_groups'>
+                    <Tooltip text={__('Color', 'b-blocks')} position='top'>
                         <Button isMedium isPrimary={'color' === contentBGType} aria-pressed={'color' === contentBGType} onClick={() => setAttributes({ contentBGType: 'color', titleColor: '#333', descColor: '#333' })}>{__('Color', 'b-blocks')}</Button>
                     </Tooltip>
 
-                    <Tooltip text={__('Image', 'b-blocks')} position="top">
+                    <Tooltip text={__('Image', 'b-blocks')} position='top'>
                         <Button isMedium isPrimary={'image' === contentBGType} aria-pressed={'image' === contentBGType} onClick={() => setAttributes({ contentBGType: 'image', titleColor: '#eee', descColor: '#eee' })}>{__('Image', 'b-blocks')}</Button>
                     </Tooltip>
 
-                    <Tooltip text={__('Gradient', 'b-blocks')} position="top">
+                    <Tooltip text={__('Gradient', 'b-blocks')} position='top'>
                         <Button isMedium isPrimary={'gradient' === contentBGType} aria-pressed={'gradient' === contentBGType} onClick={() => setAttributes({ contentBGType: 'gradient', titleColor: '#eee', descColor: '#eee' })}>{__('Gradient', 'b-blocks')}</Button>
                     </Tooltip>
                 </ButtonGroup>
 
                 {'color' === contentBGType && <PanelRow className='mt-20p mb-5p'>
                     <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
+                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#ffffff00' />
                 </PanelRow>}
 
                 {'image' === contentBGType && <>
@@ -77,10 +77,10 @@ const Edit = props => {
                         <div className='mediaControl'>
                             <MediaUpload allowedTypes={['image']} value={contentBGImg} onSelect={val => setAttributes({ contentBGImg: val })} render={({ open }) =>
                                 contentBGImg ? <div className='btnControl'>
-                                    <Button icon="controls-repeat" onClick={open}>{__('Replace', 'b-blocks')}</Button>
-                                    <Button icon="exit" onClick={() => setAttributes({ contentBGImg: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
+                                    <Button icon='controls-repeat' onClick={open}>{__('Replace', 'b-blocks')}</Button>
+                                    <Button icon='exit' onClick={() => setAttributes({ contentBGImg: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
                                 </div> : <div className='btnControl'>
-                                    <Button icon="upload" onClick={open}>{__('Upload', 'b-blocks')}</Button>
+                                    <Button icon='upload' onClick={open}>{__('Upload', 'b-blocks')}</Button>
                                 </div>} />
                         </div>
 
@@ -91,7 +91,7 @@ const Edit = props => {
 
                     {isContentBGOpacity && <PanelRow className='mb-5p'>
                         <Title mt='5px'>{__('Background Opacity Color:', 'b-blocks')}</Title>
-                        <BColor value={contentBGOpacityColor} onChange={val => setAttributes({ contentBGOpacityColor: val })} defaultColor="#000000b3" />
+                        <BColor value={contentBGOpacityColor} onChange={val => setAttributes({ contentBGOpacityColor: val })} defaultColor='#000000b3' />
                     </PanelRow>}
                 </>}
 
@@ -108,12 +108,12 @@ const Edit = props => {
 
                     <PanelRow className='mt-20p mb-5p'>
                         <Title mt='5px'>{__('First Color:', 'b-blocks')}</Title>
-                        <BColor value={contentBGGradFColor} onChange={val => setAttributes({ contentBGGradFColor: val })} defaultColor="#4527a4" />
+                        <BColor value={contentBGGradFColor} onChange={val => setAttributes({ contentBGGradFColor: val })} defaultColor='#4527a4' />
                     </PanelRow>
 
                     <PanelRow className='mt-20p mb-5p'>
                         <Title mt='5px'>{__('First Color:', 'b-blocks')}</Title>
-                        <BColor value={contentBGGradSColor} onChange={val => setAttributes({ contentBGGradSColor: val })} defaultColor="#8344c5" />
+                        <BColor value={contentBGGradSColor} onChange={val => setAttributes({ contentBGGradSColor: val })} defaultColor='#8344c5' />
                     </PanelRow>
 
                     <Title>{__('First Color Position:', 'b-blocks')}</Title>
@@ -157,7 +157,7 @@ const Edit = props => {
                 {/* Color */}
                 <PanelRow className='mt-20p mb-5p'>
                     <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor="#00000000" />
+                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
                 </PanelRow>
 
                 {/* Radius */}
@@ -169,16 +169,16 @@ const Edit = props => {
                 {/* Color */}
                 <PanelRow>
                     <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor="#000" />
+                    <BColor value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
                 </PanelRow>
 
                 {/* Horizontal Offset */}
                 <Title>{__('Horizontal Offset:', 'b-blocks')}</Title>
-                <RangeControl value={shadowHorizontalOffset} onChange={val => setAttributes({ shadowHorizontalOffset: val })} min={0} max={100} step={1} />
+                <RangeControl value={shadowHOffset} onChange={val => setAttributes({ shadowHOffset: val })} min={0} max={100} step={1} />
 
                 {/* Vertical Offset */}
                 <Title>{__('Vertical Offset:', 'b-blocks')}</Title>
-                <RangeControl value={shadowVerticalOffset} onChange={val => setAttributes({ shadowVerticalOffset: val })} min={0} max={100} step={1} />
+                <RangeControl value={shadowVOffset} onChange={val => setAttributes({ shadowVOffset: val })} min={0} max={100} step={1} />
 
                 {/* Blur */}
                 <Title>{__('Blur:', 'b-blocks')}</Title>
@@ -189,11 +189,11 @@ const Edit = props => {
                 <RangeControl value={shadowSpreed} onChange={val => setAttributes({ shadowSpreed: val })} min={0} max={50} step={1} />
             </PanelBody>
 
-            {(imgUrl || imgId) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isImg ? 'Hide Image' : 'Show Image'} checked={isImg} onChange={val => setAttributes({ isImg: val })} />
 
                 <PanelRow className='mt-20p mb-5p'>
-                    <Title mt="5px">{__('Position:', 'b-blocks')}</Title>
+                    <Title mt='5px'>{__('Position:', 'b-blocks')}</Title>
                     <BtnGroup options={imgPositions} myValue={imgPos} setState={val => setAttributes({ imgPos: val })} />
                 </PanelRow>
 
@@ -214,17 +214,17 @@ const Edit = props => {
                 {/* Margin Bottom */}
                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
                 <RangeControl value={imgMB} onChange={val => setAttributes({ imgMB: val })} min={0} max={100} step={1} />
-            </PanelBody>}
+            </PanelBody>
 
             <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 {/* Font Size */}
-                <Title mt="0">{__('Font Size:', 'b-blocks')}</Title>
+                <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={18} value={titleFontSize} onChange={val => setAttributes({ titleFontSize: 'undefined' === typeof val ? 18 : val })} />
 
                 {/* Color */}
                 <PanelRow className='mt-20p mb-5p'>
                     <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor="#333" />
+                    <BColor value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#333' />
                 </PanelRow>
 
                 {/* Margin Bottom */}
@@ -242,7 +242,7 @@ const Edit = props => {
                 {/* Color */}
                 <PanelRow className='mt-20p mb-5p'>
                     <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor="#333" />
+                    <BColor value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#333' />
                 </PanelRow>
 
                 {/* Margin Bottom */}
@@ -260,7 +260,7 @@ const Edit = props => {
 
                     {/* Open in */}
                     <PanelRow className='mt-20p mb-5p'>
-                        <Title mt="5px">{__('Open in:', 'b-blocks')}</Title>
+                        <Title mt='5px'>{__('Open in:', 'b-blocks')}</Title>
                         <BtnGroup options={inTab} myValue={btnLinkTab} setState={val => setAttributes({ btnLinkTab: val })} />
                     </PanelRow>
 
@@ -271,13 +271,13 @@ const Edit = props => {
                     {/* Text Color */}
                     <PanelRow className='mt-20p mb-5p'>
                         <Title mt='5px'>{__('Text Color:', 'b-blocks')}</Title>
-                        <BColor value={btnTextColor} onChange={val => setAttributes({ btnTextColor: val })} defaultColor="#fff" />
+                        <BColor value={btnTextColor} onChange={val => setAttributes({ btnTextColor: val })} defaultColor='#fff' />
                     </PanelRow>
 
                     {/* Background Color */}
                     <PanelRow className='mt-20p mb-5p'>
                         <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                        <BColor value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor="#4527a4" />
+                        <BColor value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor='#4527a4' />
                     </PanelRow>
 
                     {/* Padding Top Bottom */}
@@ -317,7 +317,7 @@ const Edit = props => {
                     'gradient' === contentBGType && 'linear' === contentBGGradType ? `linear-gradient(${contentBGGradAngel}deg, ${contentBGGradFColor} ${contentBGGradFColorPos}%, ${contentBGGradSColor} ${contentBGGradSColorPos}%)` :
 
                         'gradient' === contentBGType && 'radial' === contentBGGradType ? `radial-gradient(${'circle' === contentBGGradRadialType ? 'circle at' : 'at'} ${contentBGGradRadialXPos}% ${contentBGGradRadialYPos}%, ${contentBGGradFColor} ${contentBGGradFColorPos}%, ${contentBGGradSColor} ${contentBGGradSColorPos}%)` : 'none',
-            border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHorizontalOffset}px ${shadowVerticalOffset}px ${shadowBlur}px ${shadowSpreed}px`
+            border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px ${shadowSpreed}px`
         }}>
             {'bottom' === imgPos && <>
                 <RichText className={`infoTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h3' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Info Title', 'b-blocks')} />
@@ -345,7 +345,7 @@ const Edit = props => {
                 <RichText className={`infoButton fontSize-${btnFontSize} ptb-${btnPTB} plr-${btnPLR} radius-${btnRadius}-px`} style={{ color: btnTextColor, backgroundColor: btnBGColor }} tagName='a' value={btn} href={btnLink} target={'new' === btnLinkTab ? '_blank' : ''} rel='noreferrer noopener' onChange={val => setAttributes({ btn: val })} placeholder={__('Click Me', 'b-blocks')} />
             </>}
         </div>
-    </>);
+    </>;
 };
 export default withSelect((select, props) => {
     const { imgId } = props.attributes;

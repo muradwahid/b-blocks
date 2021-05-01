@@ -41,8 +41,8 @@ const attributes = {
     borderRadius: { type: 'number', default: 0 },
 
     shadowColor: { type: 'string', default: '#000' },
-    shadowHorizontalOffset: { type: 'number', default: 0 },
-    shadowVerticalOffset: { type: 'number', default: 0 },
+    shadowHOffset: { type: 'number', default: 0 },
+    shadowVOffset: { type: 'number', default: 0 },
     shadowBlur: { type: 'number', default: 0 },
     shadowSpreed: { type: 'number', default: 0 },
 
@@ -97,7 +97,7 @@ registerBlockType('b-blocks/info-box', {
     edit: Edit,
 
     save: props => {
-        const { contentAlign, contentBGType, contentBGColor, contentBGImg, isContentBGOpacity, contentBGOpacityColor, contentBGGradType, contentBGGradRadialType, contentBGGradFColor, contentBGGradSColor, contentBGGradFColorPos, contentBGGradSColorPos, contentBGGradAngel, contentBGGradRadialXPos, contentBGGradRadialYPos, contentPTB, contentPLR, borderWidth, borderStyle, borderColor, borderRadius, shadowColor, shadowHorizontalOffset, shadowVerticalOffset, shadowBlur, shadowSpreed, isImg, imgPos, imgId, imgUrl, imgAlt, imgWidth, imgMB, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, isBtn, btn, btnLink, btnLinkTab, btnFontSize, btnTextColor, btnBGColor, btnPTB, btnPLR, btnRadius } = props.attributes;
+        const { contentAlign, contentBGType, contentBGColor, contentBGImg, isContentBGOpacity, contentBGOpacityColor, contentBGGradType, contentBGGradRadialType, contentBGGradFColor, contentBGGradSColor, contentBGGradFColorPos, contentBGGradSColorPos, contentBGGradAngel, contentBGGradRadialXPos, contentBGGradRadialYPos, contentPTB, contentPLR, borderWidth, borderStyle, borderColor, borderRadius, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed, isImg, imgPos, imgId, imgUrl, imgAlt, imgWidth, imgMB, title, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, descMB, isBtn, btn, btnLink, btnLinkTab, btnFontSize, btnTextColor, btnBGColor, btnPTB, btnPLR, btnRadius } = props.attributes;
 
         return (
             <div className={`text-${contentAlign} ptb-${contentPTB} plr-${contentPLR} radius-${borderRadius}-px`} style={{
@@ -108,7 +108,7 @@ registerBlockType('b-blocks/info-box', {
                         'gradient' === contentBGType && 'linear' === contentBGGradType ? `linear-gradient(${contentBGGradAngel}deg, ${contentBGGradFColor} ${contentBGGradFColorPos}%, ${contentBGGradSColor} ${contentBGGradSColorPos}%)` :
 
                             'gradient' === contentBGType && 'radial' === contentBGGradType ? `radial-gradient(${'circle' === contentBGGradRadialType ? 'circle at' : 'at'} ${contentBGGradRadialXPos}% ${contentBGGradRadialYPos}%, ${contentBGGradFColor} ${contentBGGradFColorPos}%, ${contentBGGradSColor} ${contentBGGradSColorPos}%)` : 'none',
-                border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHorizontalOffset}px ${shadowVerticalOffset}px ${shadowBlur}px ${shadowSpreed}px`
+                border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px ${shadowSpreed}px`
             }}>
                 {isImg && 'top' === imgPos && imgUrl && <img className={`infoImage mb-${imgMB} ${imgId ? `wp-image-${imgId}` : null}`} src={imgUrl} alt={imgAlt} style={{ width: `${imgWidth}px` }} />}
 

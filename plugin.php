@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.1
+ * Version: 1.2
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -58,6 +58,13 @@ function b_blocks_enqueue_block_assets() {
 }
 add_action( 'enqueue_block_assets', 'b_blocks_enqueue_block_assets' );
 
+function b_blocks_enqueue_assets() {
+    wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '3.5.6', 'all' );
+
+    wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', array( 'jquery' ), '3.5.6', true );
+}
+add_action( 'wp_enqueue_scripts', 'b_blocks_enqueue_assets' );
+
 function b_blocks_register() {
     // Resister script in editor
     wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blocks', 'wp-element', 'wp-data', 'wp-i18n', 'wp-editor', 'wp-components', 'wp-blob', 'wp-html-entities', 'wp-compose', 'wp-rich-text' ), null, false );
@@ -79,6 +86,7 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'slider' );
     b_blocks_wp_register_script( 'section' );
     b_blocks_wp_register_script( 'section-heading' );
+    b_blocks_wp_register_script( 'image-gallery' );
     b_blocks_wp_register_script( 'price-lists' );
     b_blocks_wp_register_script( 'price-list' );
     b_blocks_wp_register_script( 'feature-boxes' );

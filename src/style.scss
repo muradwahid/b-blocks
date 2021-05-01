@@ -30,9 +30,23 @@ html{
     scroll-behavior: smooth;
 }
 
-@for $i from 1 through 6 {
+@for $i from 1 through 12 {
     .columns-#{$i}{
         grid-template-columns: repeat(#{$i}, 1fr);
+    }
+}
+@media (max-width: 767px) {
+    @for $i from 1 through 12 {
+        .columns-tablet-#{$i}{
+            grid-template-columns: repeat(#{$i}, 1fr);
+        }
+    }
+}
+@media (max-width: 575px) { 
+    @for $i from 1 through 12 {
+        .columns-mobile-#{$i}{
+            grid-template-columns: repeat(#{$i}, 1fr);
+        }
     }
 }
 @for $i from 1 through 100 {
@@ -106,6 +120,26 @@ html{
 }
 .text-justify{
     text-align: justify;
+}
+
+.alignItems-flex-start{
+    align-items: flex-start;
+}
+.alignItems-center{
+    align-items: center;
+}
+.alignItems-flex-end{
+    align-items: flex-end;
+}
+
+.justifyContent-flex-start{
+    justify-content: flex-start;
+}
+.justifyContent-center{
+    justify-content: center;
+}
+.justifyContent-flex-end{
+    justify-content: flex-end;
 }
 
 // Inner Content

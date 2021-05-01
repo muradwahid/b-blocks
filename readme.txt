@@ -5,7 +5,7 @@ Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.7.1
 Requires PHP: 5.4
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,9 +30,13 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 
 - **Section Heading:** Section Heading with a heading, separator, and a description, show hide controls for separator and description.
 
+- **Image Gallery:** Display beautiful images as a gallery to present your photos in a stunning, attractive way.
+
 - **Price Lists:** Display Price lists section with image, title, description, price and a separator.
 
 - **Feature Boxes:** Display Feature boxes section with feature image, title, separator and description.
+
+- **Info Box:** Show information in your website for the users in a attractive way.
 
 - **Card:** Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
@@ -143,12 +147,19 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Initial Release
 
 = 1.1 =
-* Add price lists and feature boxes blocks
+* Add Price Lists and Feature Boxes blocks
 * Compatible with PHP 5.4
+
+= 1.2 =
+* Add Image Gallery and Info Box blocks
+* Responsive the Price Lists and Feature Boxes
 
 
 == Upgrade Notice ==
 * Initial Release
 
-* Add price lists and feature boxes blocks
+* Add Price Lists and Feature Boxes blocks
 * Compatible with PHP 5.4
+
+* Add Image Gallery and Info Box blocks
+* Responsive the Price Lists and Feature Boxes
