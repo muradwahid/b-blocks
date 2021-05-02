@@ -1,4 +1,4 @@
-const { registerFormatType, toggleFormat } = wp.richText;
+import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import { __ } from '@wordpress/i18n';
 import { RichTextToolbarButton } from '@wordpress/block-editor';
 

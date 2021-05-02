@@ -1,4 +1,4 @@
-const { registerFormatType, applyFormat, removeFormat, getActiveFormat } = wp.richText;
+import { registerFormatType, applyFormat, removeFormat, getActiveFormat } from '@wordpress/rich-text';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';

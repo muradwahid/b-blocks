@@ -6,6 +6,7 @@ import './blocks/image-gallery/script';
 import './blocks/price-list/script';
 import './blocks/feature-box/script';
 import './blocks/info-box/script';
+import './blocks/button-group/script';
 
 
 // ; (function ($) {

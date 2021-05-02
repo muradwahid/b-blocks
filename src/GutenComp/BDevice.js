@@ -1,6 +1,5 @@
-const { useState } = wp.element;
+import { useState } from '@wordpress/element';
 import { Desktop, Tablet, Mobile } from './Icon';
-// import styles from './styles.module.scss';
 
 /**
  *

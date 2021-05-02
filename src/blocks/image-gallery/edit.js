@@ -93,7 +93,7 @@ const Edit = props => {
                 <RangeControl value={shadowBlur} onChange={val => setAttributes({ shadowBlur: val })} min={0} max={50} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Caption Settings', 'b-blocks')}>
+            <PanelBody title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
                 {/* Font Size */}
                 <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={capFontSize} onChange={val => setAttributes({ capFontSize: 'undefined' === typeof val ? 15 : val })} />

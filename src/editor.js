@@ -7,6 +7,7 @@ import './blocks/image-gallery';
 import './blocks/price-list';
 import './blocks/feature-box';
 import './blocks/info-box';
+import './blocks/button-group';
 import './blocks/card.js';
 import './blocks/mail-to.js';
 import './blocks/modal.js';
@@ -27,7 +28,6 @@ import './blocks/to-top.js';
 
 //  Import CSS.
 import './editor.scss';
-// import './style.scss';
 
 
 //Update Block Category Icon

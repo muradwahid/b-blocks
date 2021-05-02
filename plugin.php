@@ -16,7 +16,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', '1.1' );
+define( 'B_BLOCKS_PLUGIN_VERSION', '1.2' );
 define( "B_BLOCKS_ASSETS_DIR", plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Register Block Category
@@ -92,6 +92,7 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'feature-boxes' );
     b_blocks_wp_register_script( 'feature-box' );
     b_blocks_wp_register_script( 'info-box' );
+    b_blocks_wp_register_script( 'button-group' );
     b_blocks_wp_register_script( 'card' );
     b_blocks_wp_register_script( 'mailto' );
     b_blocks_wp_register_script( 'modal' );
@@ -109,13 +110,13 @@ function b_blocks_register() {
 
     // WP Localized globals.
     wp_localize_script(
-        'b_blocks-js',
+        'b_blocks_editor_script',
         'bBlocksAdmin', // Array containing dynamic data for a JS Global.
-        [
+        array(
             'pluginDirPath' => plugin_dir_path( __DIR__ ),
             'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
             'siteUrl'       => get_site_url(),
-        ]
+        )
     );
 }
 add_action( 'init', 'b_blocks_register' );
