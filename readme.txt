@@ -5,7 +5,7 @@ Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.7.1
 Requires PHP: 5.4
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,9 +38,11 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 
 - **Info Box:** Show information in your website for the users in a attractive way.
 
+- **Button Group:** Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
+
 - **Card:** Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
-- **Mail To:** Mail to your mail address with a single click, mail on Gmail, Outlook, Yahoo also default app.
+- **Mail To:** Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
 
 - **Modal:** By clicking a button return a popup modal with the header, footer, description, and close button in the header and footer.
 
@@ -154,6 +156,9 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Add Image Gallery and Info Box blocks
 * Responsive the Price Lists and Feature Boxes
 
+= 1.3 =
+* Add Button Group block
+
 
 == Upgrade Notice ==
 * Initial Release
@@ -163,3 +168,5 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 
 * Add Image Gallery and Info Box blocks
 * Responsive the Price Lists and Feature Boxes
+
+* Add Button Group block

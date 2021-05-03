@@ -1,10 +1,40 @@
 .wp-block-b-blocks-button-group{
     .btnHolder{
         display: inline-block;
+
+        .firstBtn{
+            position: relative;
+            display: inline-block;
+
+            .btnSeparator{
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translate(50%, -50%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+
+                span{
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
 
-    .btn{
+    .btnG{
         display: inline-block;
-        padding: 8px 15px;
+        text-decoration: none;
+        outline: 0;
+        box-shadow: none;
+        transition: all .3s ease;
+
+        &:hover, &:focus, &:active{
+            text-decoration: none;
+            outline: 0;
+            box-shadow: none;
+        }
     }
 }
