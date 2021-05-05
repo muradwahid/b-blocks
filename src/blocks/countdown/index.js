@@ -83,7 +83,7 @@ registerBlockType('b-blocks/countdown', {
         // Styles
         const boxStyles = { width: `${itemWidth}px`, height: `${itemHeight}px`, backgroundColor: itemBGColor, border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px ${shadowSpreed}px` };
 
-        const boxClasses = `countdownItem ${itemInline && 'inline'} text-${itemTextAlign} ptb-${itemPTB} plr-${itemPLR} mx-${Math.floor(itemSpace / 2)} mmy-${Math.floor(itemSpace / 2)} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`;
+        const boxClasses = `countdownItem ${itemInline ? 'inline' : ''} text-${itemTextAlign} ptb-${itemPTB} plr-${itemPLR} mx-${Math.floor(itemSpace / 2)} mmy-${Math.floor(itemSpace / 2)} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`;
 
         const digitStyles = { color: digitColor };
         const digitClasses = `holder fontSize-${digitFontSize}`;

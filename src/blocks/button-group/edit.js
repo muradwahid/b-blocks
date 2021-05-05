@@ -162,7 +162,7 @@ const Edit = props => {
                             {/* Background Color */}
                             <PanelRow className='mt-20p mb-5p'>
                                 <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnTwoBGColor} onChange={val => setAttributes({ btnTwoBGColor: val })} defaultColor='#4527a4' />
+                                <BColor value={btnTwoBGColor} onChange={val => setAttributes({ btnTwoBGColor: val })} defaultColor='#8344c5' />
                             </PanelRow>
                         </>}
 
@@ -176,7 +176,7 @@ const Edit = props => {
                             {/* Hover Background Color */}
                             <PanelRow className='mt-20p mb-5p'>
                                 <Title mt='5px'>{__('Hover Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnTwoHovBGColor} onChange={val => setAttributes({ btnTwoHovBGColor: val })} defaultColor='#8344c5' />
+                                <BColor value={btnTwoHovBGColor} onChange={val => setAttributes({ btnTwoHovBGColor: val })} defaultColor='#4527a4' />
                             </PanelRow>
                         </>}
                     </>}

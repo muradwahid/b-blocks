@@ -3,7 +3,9 @@
         display: flex;
 
         .countdownItem{
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             .holder{
                 display: block;
@@ -19,9 +21,8 @@
             }
             
             &.inline{
-                display: flex;
+                flex-direction: row;
                 justify-content: center;
-                align-items: center;
 
                 .holder{
                     display: flex;
@@ -32,7 +33,6 @@
                 .label{
                     display: flex;
                     flex: 1 1 0%;
-                    justify-content: flex-start;
                 }
             }
         }
