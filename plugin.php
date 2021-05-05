@@ -93,6 +93,7 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'feature-box' );
     b_blocks_wp_register_script( 'info-box' );
     b_blocks_wp_register_script( 'button-group' );
+    b_blocks_wp_register_script( 'countdown' );
     b_blocks_wp_register_script( 'card' );
     b_blocks_wp_register_script( 'mailto' );
     b_blocks_wp_register_script( 'modal' );

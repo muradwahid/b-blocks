@@ -28,7 +28,7 @@ const attributes = {
     borderWidth: { type: 'number', default: 1 },
     borderStyle: { type: 'string', default: 'solid' },
     borderColor: { type: 'string', default: '#00000000' },
-    radius: { type: 'number', default: 0 },
+    borderRadius: { type: 'number', default: 0 },
     radiusType: { type: 'string', default: '%' },
 
     shadowColor: { type: 'string', default: '#000' },
@@ -64,14 +64,14 @@ registerBlockType('b-blocks/image-gallery', {
     edit: Edit,
 
     save: props => {
-        const { images, columns, imgPTB, imgPLR, borderWidth, borderStyle, borderColor, radius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, isCap, capFontSize, capColor, capAlign, capVAlign, capHAlign } = props.attributes;
+        const { images, columns, imgPTB, imgPLR, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, isCap, capFontSize, capColor, capAlign, capVAlign, capHAlign } = props.attributes;
 
         return (
             <div>
                 <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     {images.map(img => (
                         <a key={img.id} href={img.url} className='imgGalleryImgLink' data-fancybox='gallery'>
-                            <img src={img.url} alt='' className={`imgGalleryImg ptb-${imgPTB} plr-${imgPLR} radius-${radius}-${'%' === radiusType ? 'per' : radiusType}`} style={{ border: `${borderWidth}px ${borderStyle} ${borderColor}`, filter: `drop-shadow(${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px)` }} />
+                            <img src={img.url} alt='' className={`imgGalleryImg ptb-${imgPTB} plr-${imgPLR} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`} style={{ border: `${borderWidth}px ${borderStyle} ${borderColor}`, filter: `drop-shadow(${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px)` }} />
 
                             {isCap && <span className={`imgGalleryImgCaption  fontSize-${capFontSize} text-${capAlign} alignItems-${capVAlign} justifyContent-${capHAlign}`} style={{ color: capColor }}>{img.caption}</span>}
                         </a>

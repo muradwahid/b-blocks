@@ -157,7 +157,7 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Responsive the Price Lists and Feature Boxes
 
 = 1.3 =
-* Add Button Group block
+* Add Button Group and Countdown blocks
 
 
 == Upgrade Notice ==
@@ -169,4 +169,4 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Add Image Gallery and Info Box blocks
 * Responsive the Price Lists and Feature Boxes
 
-* Add Button Group block
+* Add Button Group and Countdown blocks

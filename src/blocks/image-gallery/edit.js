@@ -22,7 +22,7 @@ const hAligns = [
 ];
 
 const Edit = props => {
-    const { className, attributes: { images, columns, imgPTB, imgPLR, borderWidth, borderStyle, borderColor, radius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, isCap, capFontSize, capColor, capAlign, capVAlign, capHAlign }, setAttributes, isSelected, noticeOperations, noticeUI } = props;
+    const { className, attributes: { images, columns, imgPTB, imgPLR, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, isCap, capFontSize, capColor, capAlign, capVAlign, capHAlign }, setAttributes, isSelected, noticeOperations, noticeUI } = props;
 
     // Get only urls
     let urls = [];
@@ -70,7 +70,7 @@ const Edit = props => {
                 <Title>{__('Radius:', 'b-blocks')}</Title>
                 <BtnGroup options={sizeTypes} myValue={radiusType} setState={val => setAttributes({ radiusType: val })} classes='b_blocks_size_type' size='small' />
 
-                <RangeControl value={radius} onChange={val => setAttributes({ radius: val })} min={0} max={50} step={1} />
+                <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>
 
             <PanelBody title={__('Image Shadow Settings', 'b-blocks')} initialOpen={false}>
@@ -134,7 +134,7 @@ const Edit = props => {
                 <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     {images.map(img => (
                         <a key={img.id} className='imgGalleryImgLink'>
-                            <img src={img.url} alt='' className={`imgGalleryImg ptb-${imgPTB} plr-${imgPLR} radius-${radius}-${'%' === radiusType ? 'per' : radiusType}`} style={{ border: `${borderWidth}px ${borderStyle} ${borderColor}`, filter: `drop-shadow(${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px)` }} />
+                            <img src={img.url} alt='' className={`imgGalleryImg ptb-${imgPTB} plr-${imgPLR} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`} style={{ border: `${borderWidth}px ${borderStyle} ${borderColor}`, filter: `drop-shadow(${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px)` }} />
 
                             {isCap && <span className={`imgGalleryImgCaption  fontSize-${capFontSize} text-${capAlign} alignItems-${capVAlign} justifyContent-${capHAlign}`} style={{ color: capColor }}>{img.caption}</span>}
                         </a>
@@ -142,10 +142,10 @@ const Edit = props => {
                 </div>
             }
 
-            {isSelected && 0 < images.length && <MediaUpload allowedTypes={['image']} type='image' value={images[images.length - 1].id} onSelect={newImg => {
-                let updatedImages = [...images, newImg];
+            {isSelected && 0 < images.length && <MediaUpload allowedTypes={['image']} accept='image/*' multiple value={images[images.length - 1].id} onSelect={newImgs => {
+                let updatedImages = [...images, ...newImgs];
                 setAttributes({ images: updatedImages });
-            }} render={({ open }) => <Button className='imgGalleryUploadButton' label={__('Add Image', 'b-blocks')} icon='plus-alt' onClick={open}> Add a Image</Button>}
+            }} render={({ open }) => <Button className='imgGalleryUploadButton' label={__('Add Images', 'b-blocks')} icon='plus-alt' onClick={open}> Add Images</Button>}
             />}
         </div>
     </>;

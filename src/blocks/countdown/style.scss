@@ -1,0 +1,46 @@
+.wp-block-b-blocks-countdown{
+    .countdownItems{
+        display: flex;
+
+        .countdownItem{
+            display: block;
+
+            .holder{
+                display: block;
+                font-weight: 400;
+            }
+
+            .label{
+                text-transform: none;
+                font-style: normal;
+                text-decoration: initial;
+                line-height: 100%;
+                display: block;
+            }
+            
+            &.inline{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .holder{
+                    display: flex;
+                    flex: 1 1 0%;
+                    justify-content: center;
+                }
+    
+                .label{
+                    display: flex;
+                    flex: 1 1 0%;
+                    justify-content: flex-start;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        .countdownItems{
+            flex-direction: column;
+        }
+    }
+}
