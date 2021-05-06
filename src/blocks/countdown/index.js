@@ -61,7 +61,7 @@ const attributes = {
 registerBlockType('b-blocks/countdown', {
     // Build In attributes
     title: __('Countdown', 'b-blocks'),
-    description: __('Countdown Timer', 'b-blocks'),
+    description: __('Timer for an event', 'b-blocks'),
     icon: icons.countdown,
     category: 'bBlocks',
     keywords: [__('countdown timer', 'b-blocks'), __('timer', 'b-blocks'), __('set timer', 'b-blocks')],

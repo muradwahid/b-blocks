@@ -20,7 +20,7 @@ const attributes = {
     btnPTB: { type: 'number', default: 12 },
     btnPLR: { type: 'number', default: 30 },
 
-    btnOne: { type: 'string', source: 'html', selector: 'a.btnOne' },
+    btnOne: { type: 'string', source: 'html', selector: 'a.btnOne', default: 'First Button' },
     btnOneLink: { type: 'string', default: '#' },
     btnOneType: { type: 'string', default: 'fill' },
     btnOneColor: { type: 'string', default: '#fff' },
@@ -28,7 +28,7 @@ const attributes = {
     btnOneHovColor: { type: 'string', default: '#fff' },
     btnOneHovBGColor: { type: 'string', default: '#8344c5' },
 
-    btnTwo: { type: 'string', source: 'html', selector: 'a.btnTwo' },
+    btnTwo: { type: 'string', source: 'html', selector: 'a.btnTwo', default: 'Second Button' },
     btnTwoLink: { type: 'string', default: '#' },
     btnTwoType: { type: 'string', default: 'fill' },
     btnTwoColor: { type: 'string', default: '#fff' },

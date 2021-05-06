@@ -213,59 +213,61 @@ const Edit = props => {
             <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isSep ? 'Hide Separator' : 'Show Separator'} checked={isSep} onChange={val => setAttributes({ isSep: val, sepWidth: val && 0 })} />
 
-                <PanelRow>
-                    <Title mt='5px'>{__('Type:', 'b-blocks')}</Title>
-                    <BtnGroup options={sepTypes} myValue={sepType} setState={val => setAttributes({ sepType: val })} />
-                </PanelRow>
+                {isSep && <>
+                    <PanelRow>
+                        <Title mt='5px'>{__('Type:', 'b-blocks')}</Title>
+                        <BtnGroup options={sepTypes} myValue={sepType} setState={val => setAttributes({ sepType: val })} />
+                    </PanelRow>
 
-                {/* Separator Text */}
-                {'text' === sepType && <>
-                    <Title>{__('Separator Text:', 'b-blocks')}</Title>
-                    <TextControl value={sepText} onChange={val => setAttributes({ sepText: val })} />
-                </>}
+                    {/* Separator Text */}
+                    {'text' === sepType && <>
+                        <Title>{__('Separator Text:', 'b-blocks')}</Title>
+                        <TextControl value={sepText} onChange={val => setAttributes({ sepText: val })} />
+                    </>}
 
-                {/* Separator Image */}
-                {'image' === sepType && <>
-                    <Title>{__('Image:', 'b-blocks')}</Title>
-                    <div className='editImageHolder'>
-                        <div className='mediaControl'>
-                            <MediaUpload allowedTypes={['image']} value={sepImg} onSelect={val => setAttributes({ sepImg: val })} render={({ open }) => sepImg ? <div className='btnControl'>
-                                <Button icon='controls-repeat' onClick={open}>{__('Replace', 'b-blocks')}</Button>
-                                <Button icon='exit' onClick={() => setAttributes({ sepImg: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
-                            </div> : <div className='btnControl'>
-                                <Button icon='upload' onClick={open}>{__('Upload', 'b-blocks')}</Button>
-                            </div>} />
+                    {/* Separator Image */}
+                    {'image' === sepType && <>
+                        <Title>{__('Image:', 'b-blocks')}</Title>
+                        <div className='editImageHolder'>
+                            <div className='mediaControl'>
+                                <MediaUpload allowedTypes={['image']} value={sepImg} onSelect={val => setAttributes({ sepImg: val })} render={({ open }) => sepImg ? <div className='btnControl'>
+                                    <Button icon='controls-repeat' onClick={open}>{__('Replace', 'b-blocks')}</Button>
+                                    <Button icon='exit' onClick={() => setAttributes({ sepImg: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
+                                </div> : <div className='btnControl'>
+                                    <Button icon='upload' onClick={open}>{__('Upload', 'b-blocks')}</Button>
+                                </div>} />
+                            </div>
+
+                            <img src={sepImg && sepImg.url} alt={sepImg && sepImg.title} />
                         </div>
+                    </>}
 
-                        <img src={sepImg && sepImg.url} alt={sepImg && sepImg.title} />
-                    </div>
+                    {/* Width */}
+                    <Title>{__('Width:', 'b-blocks')}</Title>
+                    <RangeControl value={sepWidth} onChange={val => setAttributes({ sepWidth: val })} min={0} max={100} step={1} />
+
+                    {/* Size */}
+                    <Title>{__('Size:', 'b-blocks')}</Title>
+                    <RangeControl value={sepSize} onChange={val => setAttributes({ sepSize: val })} min={0} max={100} step={1} />
+
+                    {/* Font Size */}
+                    {'text' === sepType && <>
+                        <Title>{__('Font Size:', 'b-blocks')}</Title>
+                        <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={sepFontSize} onChange={val => setAttributes({ sepFontSize: 'undefined' === typeof val ? 15 : val })} />
+                    </>}
+
+                    {/* Color */}
+                    {'text' === sepType && <PanelRow className='mt-20p mb-5p'>
+                        <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
+                        <BColor value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#333' />
+                    </PanelRow>}
+
+                    {/* Background Color */}
+                    <PanelRow className='mt-20p mb-5p'>
+                        <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
+                        <BColor value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
+                    </PanelRow>
                 </>}
-
-                {/* Width */}
-                <Title>{__('Width:', 'b-blocks')}</Title>
-                <RangeControl value={sepWidth} onChange={val => setAttributes({ sepWidth: val })} min={0} max={100} step={1} />
-
-                {/* Size */}
-                <Title>{__('Size:', 'b-blocks')}</Title>
-                <RangeControl value={sepSize} onChange={val => setAttributes({ sepSize: val })} min={0} max={100} step={1} />
-
-                {/* Font Size */}
-                {'text' === sepType && <>
-                    <Title>{__('Font Size:', 'b-blocks')}</Title>
-                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={sepFontSize} onChange={val => setAttributes({ sepFontSize: 'undefined' === typeof val ? 15 : val })} />
-                </>}
-
-                {/* Color */}
-                {'text' === sepType && <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#333' />
-                </PanelRow>}
-
-                {/* Background Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
-                </PanelRow>
             </PanelBody>
         </InspectorControls>
 

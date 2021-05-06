@@ -40,6 +40,8 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 
 - **Button Group:** Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
 
+- **Countdown:** Displaying the timer for an event, that will happen in your business.
+
 - **Card:** Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
 - **Mail To:** Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
