@@ -87,6 +87,7 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'section' );
     b_blocks_wp_register_script( 'section-heading' );
     b_blocks_wp_register_script( 'image-gallery' );
+    b_blocks_wp_register_script( 'image-comparison' );
     b_blocks_wp_register_script( 'price-lists' );
     b_blocks_wp_register_script( 'price-list' );
     b_blocks_wp_register_script( 'feature-boxes' );

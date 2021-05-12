@@ -12,6 +12,7 @@ exports.bundle = () => (
         '!gulpfile.js',
         '!package.json',
         '!package-lock.json',
+        '!readme.md',
         '!webpack.config.js',
     ])
         .pipe(zip('b-blocks.zip'))

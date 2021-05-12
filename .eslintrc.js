@@ -10,7 +10,8 @@ module.exports = {
         'plugin:react/recommended'
     ],
     'globals': {
-        'wp': 'readonly'
+        'wp': 'readonly',
+        'jQuery': 'readonly'
     },
     'parserOptions': {
         'ecmaFeatures': {

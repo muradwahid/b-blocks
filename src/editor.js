@@ -4,6 +4,7 @@ import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/image-gallery';
+import './blocks/image-comparison';
 import './blocks/price-list';
 import './blocks/feature-box';
 import './blocks/info-box';
