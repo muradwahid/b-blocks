@@ -115,7 +115,9 @@ html{
     .w-#{$i}-per{
         width: #{$i}#{$u};
     }
+}
 
+@for $i from 1 through 1920 {
     .w-#{$i}-px{
         width: #{$i}px;
     }

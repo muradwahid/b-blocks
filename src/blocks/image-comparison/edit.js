@@ -11,15 +11,35 @@ import options from '../../Const/options';
 const { fontSizes, sizeTypes, borderStyles } = options;
 
 const Edit = props => {
-    const { className, attributes: { isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor, borderRadius, radiusType }, setAttributes } = props;
+    const { className, attributes: { cId, imgWidth, imgWidthType, isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor }, setAttributes, clientId } = props;
+
+
+    // Functions
+    useEffect(() => {
+        clientId && setAttributes({ cId: clientId });
+    }, [clientId]);
+
+
+    useEffect(() => {
+        const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${cId} .comparison-slider`);
+        const beforeImg = document.querySelector(`#bBlocksImageComparison-${cId} .comparison-slider .beforeImg`);
+
+        console.log(comparisonSlider, beforeImg);
+
+        if (beforeImg && comparisonSlider) {
+            beforeImg.style.width = comparisonSlider.clientWidth;
+            beforeImg.style.minWidth = comparisonSlider.clientWidth;
+        }
+    }, [cId]);
+
 
     (function ($) {
         $(document).ready(function () {
-            // If the comparison slider is present on the page lets initialise it, this is good you will include this in the main js to prevent the code from running when not needed
+            // If the comparison slider is present on the page lets initialize it, this is good you will include this in the main js to prevent the code from running when not needed
             if ($('.comparison-slider')[0]) {
                 let compSlider = $('.comparison-slider');
 
-                //let's loop through the sliders and initialise each of them
+                //let's loop through the sliders and initialize each of them
                 compSlider.each(function () {
                     let compSliderWidth = $(this).width() + 'px';
                     $(this).find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
@@ -36,7 +56,7 @@ const Edit = props => {
 
         // This is where all the magic happens
         function drags(dragElement, resizeElement, container) {
-            // This creates a variable that detects if the user is using touch input insted of the mouse.
+            // This creates a variable that detects if the user is using touch input instead of the mouse.
             let touched = false;
             window.addEventListener('touchstart', function () {
                 touched = true;
@@ -45,9 +65,9 @@ const Edit = props => {
                 touched = false;
             });
 
-            // clicp the image and move the slider on interaction with the mouse or the touch input
+            // click the image and move the slider on interaction with the mouse or the touch input
             dragElement.on('mousedown touchstart', function (e) {
-                //add classes to the emelents - good for css animations if you need it to
+                //add classes to the elements - good for css animations if you need it to
                 dragElement.addClass('draggable');
                 resizeElement.addClass('resizable');
                 //create vars
@@ -59,9 +79,9 @@ const Edit = props => {
                 let minLeft = containerOffset + 10;
                 let maxLeft = containerOffset + containerWidth - dragWidth - 10;
 
-                //add event listner on the divider emelent
+                //add event listener on the divider element
                 dragElement.parents().on('mousemove touchmove', function (e) {
-                    // if the user is not using touch input let do preventDefault to prevent the user from slecting the images as he moves the silder arround.
+                    // if the user is not using touch input let do preventDefault to prevent the user from selecting the images as he moves the slider around.
                     if (touched === false) {
                         e.preventDefault();
                     }
@@ -88,20 +108,18 @@ const Edit = props => {
                 }).on('mouseup touchend touchcancel', function () {
                     dragElement.removeClass('draggable');
                     resizeElement.removeClass('resizable');
-
                 });
             }).on('mouseup touchend touchcancel', function () {
-                // stop clicping the image and move the slider
+                // stop clicking the image and move the slider
                 dragElement.removeClass('draggable');
                 resizeElement.removeClass('resizable');
-
             });
         }
     })(jQuery);
 
 
     // Styles
-    const sliderWrapperStyles = { border: `${borderWidth}px ${borderStyle} ${borderColor}`, borderRadius: `${borderRadius}${radiusType}` };
+    const sliderWrapperStyles = { border: `${borderWidth}px ${borderStyle} ${borderColor}` };
 
     const labelStyles = { color: labelColor, backgroundColor: labelBGColor };
 
@@ -109,6 +127,13 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
+            <PanelBody title={__('Image Settings', 'b-blocks')}>
+                {/* Width */}
+                <Title>{__('Width:', 'b-blocks')}</Title>
+                <BtnGroup options={sizeTypes} myValue={imgWidthType} setState={(cng, def) => setAttributes({ imgWidthType: cng, imgWidth: def })} classes="b_blocks_size_type" size="small" />
+                <RangeControl value={imgWidth} onChange={cng => setAttributes({ imgWidth: cng })} min={0} max={("%" == imgWidthType) ? 100 : 1920} step={1} />
+            </PanelBody>
+
             <PanelBody title={__('Labels Settings', 'b-blocks')}>
                 <ToggleControl label={isLabel ? 'Hide Labels' : 'Show Labels'} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
@@ -183,16 +208,11 @@ const Edit = props => {
                     <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
                     <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
                 </PanelRow>
-
-                {/* Radius */}
-                <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={radiusType} setState={val => setAttributes({ radiusType: val })} classes='b_blocks_size_type' size='small' />
-                <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>
         </InspectorControls>
 
 
-        <div className={className}>
+        <div className={className} id={`bBlocksImageComparison-${cId}`}>
             <div className='comparison-slider-wrapper' style={sliderWrapperStyles}>
 
                 <div className='comparison-slider'>
@@ -203,7 +223,7 @@ const Edit = props => {
                     <div className='resize'>
                         {isLabel && <RichText className={`overlay beforeLabel fontSize-${labelFontSize} ptb-${labelPTB} plr-${labelPLR}`} tagName='div' value={beforeLabel} style={labelStyles} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} />}
 
-                        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/751678/marioPhoto-1.jpg' alt='marioPhoto 1' />
+                        <img className='beforeImg' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/751678/marioPhoto-1.jpg' alt='marioPhoto 1' />
                     </div>
 
                     <div className='divider'></div>

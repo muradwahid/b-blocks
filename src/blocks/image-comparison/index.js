@@ -12,6 +12,8 @@ import icons from '../../Const/icons';
 
 // Custom Attributes
 const attributes = {
+    cId: { type: 'string' },
+
     leftImgId: { type: 'number' },
     leftImgUrl: { type: 'string', source: 'attribute', selector: 'img.leftImg', attribute: 'src' },
     leftImgAtl: { type: 'string', source: 'attribute', selector: 'img.leftImg', attribute: 'alt', default: '' },
@@ -20,8 +22,8 @@ const attributes = {
     rightImgUrl: { type: 'string', source: 'attribute', selector: 'img.rightImg', attribute: 'src' },
     rightImgAtl: { type: 'string', source: 'attribute', selector: 'img.rightImg', attribute: 'alt', default: '' },
 
-    isImgFullWidth: { type: 'boolean', default: true },
-    imgWidth: { type: 'number', default: 400 },
+    imgWidth: { type: 'number', default: 650 },
+    imgWidthType: { type: 'string', default: 'px' },
 
     isLabel: { type: 'boolean', default: true },
     beforeLabel: { type: 'string', source: 'html', selector: '.beforeLabel' },
@@ -43,8 +45,6 @@ const attributes = {
     borderWidth: { type: 'number', default: 1 },
     borderStyle: { type: 'string', default: 'solid' },
     borderColor: { type: 'string', default: '#00000000' },
-    borderRadius: { type: 'number', default: 0 },
-    radiusType: { type: 'string', default: '%' },
 }
 
 registerBlockType('b-blocks/image-comparison', {
@@ -67,11 +67,11 @@ registerBlockType('b-blocks/image-comparison', {
     edit: Edit,
 
     save: props => {
-        const { isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor, borderRadius, radiusType } = props.attributes;
+        const { isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor } = props.attributes;
 
 
         // Styles
-        const sliderWrapperStyles = { border: `${borderWidth}px ${borderStyle} ${borderColor}`, borderRadius: `${borderRadius}${radiusType}` };
+        const sliderWrapperStyles = { border: `${borderWidth}px ${borderStyle} ${borderColor}` };
 
         const labelStyles = { color: labelColor, backgroundColor: labelBGColor };
 

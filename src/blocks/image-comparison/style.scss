@@ -29,9 +29,7 @@ $minTablet: 767px;
 			bottom: 20px;
 			right: 20px;
 			background-color: rgba(0, 0, 0, 0.4);
-			padding: 10px;
 			box-sizing: border-box;
-			color: #DDD;
 			text-align: right;
 			@include media('tabletUpwards') {
 				display: block;
