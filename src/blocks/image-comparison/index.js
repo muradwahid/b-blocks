@@ -13,17 +13,19 @@ import icons from '../../Const/icons';
 // Custom Attributes
 const attributes = {
     cId: { type: 'string' },
+    contentAlign: { type: 'string', default: 'center' },
 
-    leftImgId: { type: 'number' },
-    leftImgUrl: { type: 'string', source: 'attribute', selector: 'img.leftImg', attribute: 'src' },
-    leftImgAtl: { type: 'string', source: 'attribute', selector: 'img.leftImg', attribute: 'alt', default: '' },
+    beforeImgId: { type: 'number' },
+    beforeImgUrl: { type: 'string', source: 'attribute', selector: 'img.beforeImg', attribute: 'src' },
+    beforeImgAlt: { type: 'string', source: 'attribute', selector: 'img.beforeImg', attribute: 'alt', default: '' },
 
-    rightImgId: { type: 'number' },
-    rightImgUrl: { type: 'string', source: 'attribute', selector: 'img.rightImg', attribute: 'src' },
-    rightImgAtl: { type: 'string', source: 'attribute', selector: 'img.rightImg', attribute: 'alt', default: '' },
+    afterImgId: { type: 'number' },
+    afterImgUrl: { type: 'string', source: 'attribute', selector: 'img.afterImg', attribute: 'src' },
+    afterImgAlt: { type: 'string', source: 'attribute', selector: 'img.afterImg', attribute: 'alt', default: '' },
 
-    imgWidth: { type: 'number', default: 650 },
-    imgWidthType: { type: 'string', default: 'px' },
+    isSwap: { type: 'boolean', default: false },
+    imgWidth: { type: 'number', default: 80 },
+    imgWidthType: { type: 'string', default: '%' },
 
     isLabel: { type: 'boolean', default: true },
     beforeLabel: { type: 'string', source: 'html', selector: '.beforeLabel' },
@@ -67,7 +69,7 @@ registerBlockType('b-blocks/image-comparison', {
     edit: Edit,
 
     save: props => {
-        const { isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor } = props.attributes;
+        const { cId, contentAlign, beforeImgId, beforeImgUrl, beforeImgAlt, afterImgId, afterImgUrl, afterImgAlt, imgWidth, imgWidthType, isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor } = props.attributes;
 
 
         // Styles
@@ -78,25 +80,25 @@ registerBlockType('b-blocks/image-comparison', {
         const captionStyles = { color: capColor, backgroundColor: capBGColor };
 
         return (
-            <div>
-                <div className='comparison-slider-wrapper' style={sliderWrapperStyles}>
+            <div className={`text-${contentAlign}`} id={`bBlocksImageComparison-${cId}`}>
+                {beforeImgUrl && afterImgUrl ? <div className={`comparison-slider-wrapper ${'%' === imgWidthType ? `w-${imgWidth}-per` : `w-${imgWidth}-px`}`} style={sliderWrapperStyles}>
 
                     <div className='comparison-slider'>
                         {isLabel && afterLabel && <RichText.Content className={`overlay afterLabel fontSize-${labelFontSize} ptb-${labelPTB} plr-${labelPLR}`} tagName='div' value={afterLabel} style={labelStyles} />}
 
-                        <img className='rightImg' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/751678/marioPhoto-2.jpg' alt='marioPhoto 2' />
+                        <img className={`afterImg ${afterImgId ? `wp-image-${afterImgId}` : null}`} src={afterImgUrl} alt={afterImgAlt} />
 
                         <div className='resize'>
                             {isLabel && beforeLabel && <RichText.Content className={`overlay beforeLabel fontSize-${labelFontSize} ptb-${labelPTB} plr-${labelPLR}`} tagName='div' value={beforeLabel} style={labelStyles} />}
 
-                            <img className='leftImg' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/751678/marioPhoto-1.jpg' alt='marioPhoto 1' />
+                            <img className={`beforeImg ${beforeImgId ? `wp-image-${beforeImgId}` : null}`} src={beforeImgUrl} alt={beforeImgAlt} />
                         </div>
 
                         <div className='divider'></div>
                     </div>
 
                     {isCap && cap && <RichText.Content className={`caption fontSize-${capFontSize} ptb-${capPTB} plr-${capPLR}`} tagName='div' value={cap} style={captionStyles} />}
-                </div>
+                </div> : null}
             </div>
         );
     },

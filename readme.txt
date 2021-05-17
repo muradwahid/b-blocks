@@ -5,7 +5,7 @@ Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.7.1
 Requires PHP: 5.4
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -161,6 +161,9 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 = 1.3 =
 * Add Button Group and Countdown blocks
 
+= 1.4 =
+* Add Image Comparison blocks
+
 
 == Upgrade Notice ==
 * Initial Release
@@ -172,3 +175,5 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Responsive the Price Lists and Feature Boxes
 
 * Add Button Group and Countdown blocks
+
+* Add Image Comparison blocks
