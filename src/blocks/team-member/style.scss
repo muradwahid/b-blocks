@@ -1,0 +1,81 @@
+.wp-block-b-blocks-team-members{
+    display: grid;
+
+    .wp-block-b-blocks-team-member{
+        position: relative;
+
+        &.horizontal{
+            display: flex;
+            align-items: center;
+
+            .memberPhoto{
+                width: calc(38% - 20px);
+            }
+
+            .memberDetails{
+                padding: 0 20px 0 0;
+                width: 62%;
+            }
+        }
+
+        &.vertical{
+            .memberDetails{
+                padding: 0 20px;
+            }
+        }
+
+        .memberPhoto{
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .memberName{
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .memberDes{
+            margin: 0;
+        }
+
+        .teamSeparator{
+            display: inline-block;
+        }
+
+        .memberBio{
+            display: inline-block;
+        }
+
+        .memberSocial{
+            ul{
+                list-style-type: none;
+                line-height: 1;
+                margin: 0;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+
+                li{
+                    a{
+                        text-decoration: none;
+                        color: #4e4e4e;
+
+                        &:focus{
+                            box-shadow: none;
+                        }
+                    }
+
+                    button{
+                        display: contents;
+                    }
+                }
+            }
+
+            .dashicon{
+                width: auto;
+                height: auto;
+                border-radius: 50%;
+            }
+        }
+    }
+}

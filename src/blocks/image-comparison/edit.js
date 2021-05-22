@@ -269,7 +269,7 @@ const Edit = props => {
             <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
                 {/* Width */}
                 <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
-                <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={20} step={.1} />
+                <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
 
                 {/* Style */}
                 <Title>{__('Style:', 'b-blocks')}</Title>

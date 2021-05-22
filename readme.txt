@@ -162,7 +162,7 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Add Button Group and Countdown blocks
 
 = 1.4 =
-* Add Image Comparison blocks
+* Add Image Comparison and Team Members blocks
 
 
 == Upgrade Notice ==
@@ -176,4 +176,4 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 
 * Add Button Group and Countdown blocks
 
-* Add Image Comparison blocks
+* Add Image Comparison and Team Members blocks

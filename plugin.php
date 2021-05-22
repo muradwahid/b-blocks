@@ -69,12 +69,12 @@ function b_blocks_register() {
     // Resister script in editor
     wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blocks', 'wp-element', 'wp-data', 'wp-i18n', 'wp-editor', 'wp-components', 'wp-blob', 'wp-html-entities', 'wp-compose', 'wp-rich-text' ), null, false );
     // Register style in editor
-    wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks' ), null );
+    wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks', 'bootstrap' ), null );
 
     // Register script in frontend
-    wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery' ), null, true );
+    wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery', 'bootstrap', 'mailtoui' ), null, true );
     // Register style in frontend
-    wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor' ), null );
+    wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor', 'bootstrap' ), null );
 
     // Register Blocks
     b_blocks_wp_register_script( 'posts', array(
@@ -88,6 +88,8 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'section-heading' );
     b_blocks_wp_register_script( 'image-gallery' );
     b_blocks_wp_register_script( 'image-comparison' );
+    b_blocks_wp_register_script( 'team-members' );
+    b_blocks_wp_register_script( 'team-member' );
     b_blocks_wp_register_script( 'price-lists' );
     b_blocks_wp_register_script( 'price-list' );
     b_blocks_wp_register_script( 'feature-boxes' );
