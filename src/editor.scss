@@ -96,7 +96,7 @@ $secondaryColor: #8344c5;
             }
         }
         .active-tab{
-            border-bottom: 3px solid #4527a4;
+            border-bottom: 3px solid $primaryColor;
             font-weight: bold;
         }
     }
@@ -104,7 +104,7 @@ $secondaryColor: #8344c5;
 
 // Spinner
 .components-spinner{
-    background-color: #4527a4;
+    background-color: $primaryColor !important;
 }
 
 // Checkbox Control
@@ -169,6 +169,15 @@ $secondaryColor: #8344c5;
 
         &:hover{
             color: $primaryColor;
+        }
+
+        .dashicon{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &.has-icon{
+            padding: 6px 9px;
         }
     }
 

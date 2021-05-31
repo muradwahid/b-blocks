@@ -97,5 +97,16 @@ registerBlockType('b-blocks/price-lists', {
         </div>;
     },
 
-    deprecated
+    deprecated,
+
+    example: {
+        attributes: {
+            'preview': true,
+            columns: {
+                desktop: 1,
+                tablet: 1,
+                mobile: 1
+            },
+        },
+    }
 });

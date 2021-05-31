@@ -2,8 +2,10 @@
 import './style.scss';
 
 // Import Blocks
+import './blocks/posts/script';
 import './blocks/image-gallery/script';
 import './blocks/image-comparison/script';
+import './blocks/flip-box/script';
 import './blocks/team-member/script';
 import './blocks/price-list/script';
 import './blocks/feature-box/script';

@@ -9,13 +9,11 @@ Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-B Blocks is an innovative collection of blocks for the new WordPress Gutenberg block editor. It's used for creating interactive blocks in your web page or posts.
+b Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be use as a WordPress Page Building tools!
 
 == Description ==
 
-B Blocks is an innovative collection of blocks for the new WordPress Gutenberg block editor. It's used for creating interactive blocks in your web page or posts.
-
-B Blocks is powerful but lightweight. Work with any theme, just need WordPress Gutenberg editor.
+b Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.  
 
 
 **[Demos](https://bblockswp.com/)**
@@ -31,6 +29,12 @@ B Blocks is powerful but lightweight. Work with any theme, just need WordPress G
 - **Section Heading:** Section Heading with a heading, separator, and a description, show hide controls for separator and description.
 
 - **Image Gallery:** Display beautiful images as a gallery to present your photos in a stunning, attractive way.
+
+- **Image Comparison:** Compare between two images to see their difference.
+
+- **Flip Boxes:** Highlight your content inside your site in a great way.
+
+- **Team Members:** Present your employees/team members to your clients in beautiful way.
 
 - **Price Lists:** Display Price lists section with image, title, description, price and a separator.
 
@@ -93,16 +97,16 @@ Liked that plugin? Hate it? Want a new feature?  [Send me some feedback](mailto:
 1. All Blocks
 2. Posts- Grid Layout
 3. posts- Masonry Layout
-4. Price Lists
-5. Feature Boxes
-6. Slider
-7. Vertical Card- Top Image
-8. Vertical Card- Bottom Image
-9. Horizontal Card
-10. Tabs
-11. Accordion & Note
-12. Gif Image & QR Code
-13. Alert & Progress Bar
+4. Slider
+5. Image Gallery
+6. Image Comparison
+7. Flip Boxes
+8. Team Members
+9. Price Lists
+10. Feature Boxes
+11. Info Box
+12. Button Group
+13. Countdown
 
 
 == Frequently Asked Questions ==
@@ -162,7 +166,8 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Add Button Group and Countdown blocks
 
 = 1.4 =
-* Add Image Comparison and Team Members blocks
+* Add Image Comparison, Team Members and Flip Boxes blocks
+* Update Posts Block
 
 
 == Upgrade Notice ==
@@ -176,4 +181,5 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 
 * Add Button Group and Countdown blocks
 
-* Add Image Comparison and Team Members blocks
+* Add Image Comparison, Team Members and Flip Boxes blocks
+* Update Posts Block

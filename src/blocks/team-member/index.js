@@ -15,7 +15,7 @@ import icons from '../../Const/icons';
 // Custom Attributes
 const attributes = {
     layout: { type: 'string', default: 'vertical' },
-    teamStyle: { type: 'string', default: 'style1' },
+    teamStyle: { type: 'string', default: 'default' },
 
     contentAlign: { type: 'string', default: 'center' },
     contentBGColor: { type: 'string', default: '#ffffff00' },
@@ -152,5 +152,5 @@ registerBlockType('b-blocks/team-member', {
         attributes: {
             'preview': true
         },
-    },
+    }
 });

@@ -91,5 +91,5 @@ registerBlockType('b-blocks/price-list', {
         attributes: {
             'preview': true
         },
-    },
+    }
 });

@@ -80,7 +80,12 @@ registerBlockType('b-blocks/team-members', {
 
     example: {
         attributes: {
-            'preview': true
+            'preview': true,
+            columns: {
+                desktop: 1,
+                tablet: 1,
+                mobile: 1
+            },
         },
-    },
+    }
 });

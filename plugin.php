@@ -88,6 +88,8 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'section-heading' );
     b_blocks_wp_register_script( 'image-gallery' );
     b_blocks_wp_register_script( 'image-comparison' );
+    b_blocks_wp_register_script( 'flip-boxes' );
+    b_blocks_wp_register_script( 'flip-box' );
     b_blocks_wp_register_script( 'team-members' );
     b_blocks_wp_register_script( 'team-member' );
     b_blocks_wp_register_script( 'price-lists' );
@@ -128,8 +130,90 @@ add_action( 'init', 'b_blocks_register' );
 // After Setup Theme
 function b_blocks_after_setup_theme() {
     add_theme_support( 'align-wide' );
+
+    add_image_size( 'b_blocks_large', 1200, 800, true );
+    add_image_size( 'b_blocks_medium', 525, 350, true );
+    add_image_size( 'b_blocks_square', 300, 300, true );
+    add_image_size( 'b_blocks_thumbnail', 150, 100, true );
 }
 add_action( 'after_setup_theme', 'b_blocks_after_setup_theme' );
 
-// Block Initializer.
+// Posts Block.
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts.php';
+
+// Post API update
+function b_blocks_custom_rest() {
+    register_rest_field( 'post', 'wbImage', array(
+        'get_callback'    => function ( $obj ) {
+            $f_images = array();
+            if ( !isset( $obj['featured_media'] ) ) {
+                return $f_images;
+            } else {
+                $image = wp_get_attachment_image_src( $obj['featured_media'], 'full', false );
+                if ( is_array( $image ) ) {
+                    $f_images['full'] = $image;
+                    $f_images['large'] = wp_get_attachment_image_src( $obj['featured_media'], 'b_blocks_large', false );
+                    $f_images['medium'] = wp_get_attachment_image_src( $obj['featured_media'], 'b_blocks_medium', false );
+                    $f_images['square'] = wp_get_attachment_image_src( $obj['featured_media'], 'b_blocks_square', false );
+                    $f_images['thumbnail'] = wp_get_attachment_image_src( $obj['featured_media'], 'b_blocks_thumbnail', false );
+
+                    return $f_images;
+                }
+            }
+        },
+        'update_callback' => null,
+        'schema'          => array(
+            'description' => __( 'Different sizes featured images', 'b-blocks' ),
+            'type'        => 'array',
+        ),
+    ) );
+
+    register_rest_field( 'post', 'wbAuthor', array(
+        'get_callback'    => function ( $obj ) {
+            $author['name'] = get_the_author_meta( 'display_name', isset( $obj['author'] ) ? $obj['author'] : '' );
+            $author['link'] = get_author_posts_url( isset( $obj['author'] ) ? $obj['author'] : '' );
+            return $author;
+        },
+        'update_callback' => null,
+        'schema'          => array(
+            'description' => __( 'Author name and link', 'b-blocks' ),
+            'type'        => 'string',
+        ),
+    ) );
+
+    register_rest_field( 'post', 'wbDate', array(
+        'get_callback'    => function ( $obj ) {
+            return get_the_date( 'M j, Y', $obj['id'] );
+        },
+        'update_callback' => null,
+        'schema'          => array(
+            'description' => __( 'Author name and link', 'b-blocks' ),
+            'type'        => 'string',
+        ),
+    ) );
+
+    register_rest_field( 'post', 'wbCategories', array(
+        'get_callback'    => function ( $obj ) {
+            $catsLink['space'] = get_the_category_list( esc_html__( ' ' ), '', $obj['id'] );
+            $catsLink['coma'] = get_the_category_list( esc_html__( ', ' ), '', $obj['id'] );
+            return $catsLink;
+        },
+        'update_callback' => null,
+        'schema'          => array(
+            'description' => __( 'Category link lists', 'b-blocks' ),
+            'type'        => 'string',
+        ),
+    ) );
+
+    register_rest_field( 'post', 'wbComment', array(
+        'get_callback'    => function ( $obj ) {
+            return wp_count_comments( $obj['id'] )->total_comments;
+        },
+        'update_callback' => null,
+        'schema'          => array(
+            'description' => __( 'Comment', 'b-blocks' ),
+            'type'        => 'number',
+        ),
+    ) );
+}
+add_action( 'rest_api_init', 'b_blocks_custom_rest' );

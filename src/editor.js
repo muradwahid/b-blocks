@@ -1,10 +1,11 @@
 // Import Blocks
-import './blocks/posts/posts.js';
+import './blocks/posts';
 import './blocks/slider.js';
 import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/image-gallery';
 import './blocks/image-comparison';
+import './blocks/flip-box';
 import './blocks/team-member';
 import './blocks/price-list';
 import './blocks/feature-box';

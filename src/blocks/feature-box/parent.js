@@ -100,5 +100,16 @@ registerBlockType('b-blocks/feature-boxes', {
         </div>;
     },
 
-    deprecated
+    deprecated,
+
+    example: {
+        attributes: {
+            'preview': true,
+            columns: {
+                desktop: 1,
+                tablet: 1,
+                mobile: 1
+            },
+        },
+    }
 });

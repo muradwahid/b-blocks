@@ -85,5 +85,5 @@ registerBlockType('b-blocks/feature-box', {
         attributes: {
             'preview': true
         },
-    },
+    }
 });
