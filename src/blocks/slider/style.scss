@@ -1,0 +1,42 @@
+.wp-block-b-blocks-slider{    
+    overflow: hidden;
+
+    .slider{
+        height: 100%;
+        position: relative;
+
+        .swiper-wrapper{
+            .swiper-slide{
+                background-blend-mode: overlay;
+                display: block;
+                position: relative;
+
+                .sliderContent{
+                    width: -webkit-fill-available;
+                    max-width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    padding: 0 10%;
+
+                    .sliderTitle{
+                        color: #fff;
+                        margin: 0;
+                    }
+
+                    .sliderDescription{
+                        color: #fff;
+                        margin: 0;
+                    }
+
+                    .sliderBtn{
+                        display: inline-block;
+                        text-decoration: none;
+                        font-weight: 600;
+                        transition: all .3s ease;
+                    }
+                }
+            }
+        }
+    }
+}

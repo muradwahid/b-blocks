@@ -165,7 +165,7 @@ registerBlockType('b-blocks/card', {
                     {/* Width */}
                     <PanelRow>
                         {otherTitle('Width:')}
-                        <BtnGroup options={sizeTypes} myValue={cardWidthType} setState={(cng, def) => setAttributes({ cardWidthType: cng, cardWidth: def })} classes="b_blocks_size_type" size="small" />
+                        <BtnGroup options={sizeTypes} myValue={cardWidthType} setState={(cng, def) => setAttributes({ cardWidthType: cng, cardWidth: def })} classes="bBlocksSizeType" size="small" />
                     </PanelRow>
 
                     <RangeControl value={cardWidth} onChange={cng => setAttributes({ cardWidth: cng })} min={0} max={("%" == cardWidthType) ? 100 : 1920} step={1} />

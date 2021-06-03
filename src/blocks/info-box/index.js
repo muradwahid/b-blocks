@@ -50,7 +50,7 @@ const attributes = {
     imgPos: { type: 'string', default: 'top' },
     imgId: { type: 'number' },
     imgUrl: { type: 'string', source: 'attribute', selector: 'img.infoImage', attribute: 'src' },
-    imgAtl: { type: 'string', source: 'attribute', selector: 'img.infoImage', attribute: 'alt', default: '' },
+    imgAlt: { type: 'string', source: 'attribute', selector: 'img.infoImage', attribute: 'alt', default: '' },
     imgWidth: { type: 'number', default: 200 },
     imgMB: { type: 'number', default: 20 },
 

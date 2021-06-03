@@ -24,7 +24,7 @@ const attributes = {
 
     imgId: { type: 'number' },
     imgUrl: { type: 'string', source: 'attribute', selector: 'img.memberPhoto', attribute: 'src' },
-    imgAtl: { type: 'string', source: 'attribute', selector: 'img.memberPhoto', attribute: 'alt', default: '' },
+    imgAlt: { type: 'string', source: 'attribute', selector: 'img.memberPhoto', attribute: 'alt', default: '' },
     imgWidth: { type: 'number', default: 170 },
     imgMB: { type: 'number', default: 20 },
     imgBorderWidth: { type: 'number', default: 0 },

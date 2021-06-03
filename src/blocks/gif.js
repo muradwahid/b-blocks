@@ -98,7 +98,7 @@ registerBlockType('b-blocks/gif', {
             <InspectorControls>
                 <PanelBody title={__('Gif Image Settings', 'b-blocks')} initialOpen={true}>
                     {firstTitle("Width:")}
-                    <BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes="b_blocks_size_type" size="small" />
+                    <BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes="bBlocksSizeType" size="small" />
 
                     <RangeControl value={width} onChange={cng => setAttributes({ width: cng })} min={0} max={("%" == widthType) ? 100 : 1920} step={1} />
                 </PanelBody>

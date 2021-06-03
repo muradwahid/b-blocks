@@ -202,7 +202,7 @@ const Edit = props => {
 
                 {/* Width */}
                 <Title>{__('Width:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={imgWidthType} setState={(cng, def) => setAttributes({ imgWidthType: cng, imgWidth: def })} classes="b_blocks_size_type" size="small" />
+                <BtnGroup options={sizeTypes} myValue={imgWidthType} setState={(cng, def) => setAttributes({ imgWidthType: cng, imgWidth: def })} classes="bBlocksSizeType" size="small" />
                 <RangeControl value={imgWidth} onChange={cng => setAttributes({ imgWidth: cng })} min={0} max={("%" == imgWidthType) ? 100 : 1920} step={1} />
             </PanelBody>
 

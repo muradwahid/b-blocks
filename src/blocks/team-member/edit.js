@@ -152,7 +152,7 @@ const Edit = props => {
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes="b_blocks_size_type" size="small" />
+                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes="bBlocksSizeType" size="small" />
                 <RangeControl value={imgBorderRadius} onChange={val => setAttributes({ imgBorderRadius: val })} min={0} max={50} step={1} />
 
                 {/* Border Width */}
@@ -171,7 +171,7 @@ const Edit = props => {
 
                 {/* Border Radius */}
                 <Title>{__('Border Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes='b_blocks_size_type' size='small' />
+                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes='bBlocksSizeType' size='small' />
                 <RangeControl value={imgBorderRadius} onChange={val => setAttributes({ imgBorderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>}
 
@@ -319,7 +319,7 @@ const Edit = props => {
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={radiusType} setState={val => setAttributes({ radiusType: val })} classes='b_blocks_size_type' size='small' />
+                <BtnGroup options={sizeTypes} myValue={radiusType} setState={val => setAttributes({ radiusType: val })} classes='bBlocksSizeType' size='small' />
                 <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>
 

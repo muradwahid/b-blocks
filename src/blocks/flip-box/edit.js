@@ -185,7 +185,7 @@ const Edit = props => {
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes="b_blocks_size_type" size="small" />
+                <BtnGroup options={sizeTypes} myValue={imgRadiusType} setState={val => setAttributes({ imgRadiusType: val })} classes="bBlocksSizeType" size="small" />
                 <RangeControl value={imgRadius} onChange={val => setAttributes({ imgRadius: val })} min={0} max={50} step={1} />
 
                 {/* Margin Bottom */}

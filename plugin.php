@@ -51,6 +51,7 @@ function b_blocks_wp_register_script( $block, $options = array() ) {
 
 // Enqueue assets
 function b_blocks_enqueue_block_assets() {
+    wp_enqueue_style( 'swiper-slider', B_BLOCKS_ASSETS_DIR . 'css/swiper-bundle.min.css', '', '6.6.2', 'all' );
     wp_enqueue_style( 'bootstrap', B_BLOCKS_ASSETS_DIR . 'css/bootstrap.min.css', '', '4.6.0', 'all' );
 
     wp_enqueue_script( 'bootstrap', B_BLOCKS_ASSETS_DIR . 'js/bootstrap.bundle.min.js', array( 'jquery' ), '4.6.0', true );
@@ -99,6 +100,7 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'info-box' );
     b_blocks_wp_register_script( 'button-group' );
     b_blocks_wp_register_script( 'countdown' );
+    b_blocks_wp_register_script( 'cards' );
     b_blocks_wp_register_script( 'card' );
     b_blocks_wp_register_script( 'mailto' );
     b_blocks_wp_register_script( 'modal' );

@@ -60,7 +60,7 @@ registerBlockType('b-blocks/divider', {
 
                     {/* Width */}
                     {otherTitle('Width:')}
-                    <BtnGroup options={sizeTypes} myValue={divideWidthType} setState={(cng, def) => setAttributes({ divideWidthType: cng, divideWidth: def })} classes="b_blocks_size_type" size="small" />
+                    <BtnGroup options={sizeTypes} myValue={divideWidthType} setState={(cng, def) => setAttributes({ divideWidthType: cng, divideWidth: def })} classes="bBlocksSizeType" size="small" />
 
                     <RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={("%" == divideWidthType) ? 100 : 1920} step={1} />
 

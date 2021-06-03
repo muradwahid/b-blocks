@@ -1,6 +1,6 @@
 // Import Blocks
 import './blocks/posts';
-import './blocks/slider.js';
+import './blocks/slider';
 import './blocks/section.js';
 import './blocks/section-heading.js';
 import './blocks/image-gallery';
@@ -12,7 +12,7 @@ import './blocks/feature-box';
 import './blocks/info-box';
 import './blocks/button-group';
 import './blocks/countdown';
-import './blocks/card.js';
+import './blocks/card';
 import './blocks/mail-to.js';
 import './blocks/modal.js';
 import './blocks/tabs.js';

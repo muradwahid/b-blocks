@@ -1,0 +1,45 @@
+.addRemoveSlides{
+    .slideItem{
+        .slideTitle{
+            button{
+                color: red;
+                font-size: 15px;
+                font-weight: 700;
+                
+                .dashicon{
+                    margin-top: 0;
+                }
+            }
+        }
+
+        .editImageHolder{
+            margin-bottom: 16px;
+        }
+    }
+
+    .addSlide{
+        text-align: center;
+        background: #4527a4;
+
+        button{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+
+            &:focus{
+                box-shadow: none;
+            }
+            &:active{
+                color: #fff;
+            }
+        }
+    }
+
+    .dashicon{
+        margin-top: 2px;
+        margin-right: 8px;
+    }
+}

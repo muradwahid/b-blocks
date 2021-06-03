@@ -22,7 +22,7 @@ const attributes = {
 
     imgId: { type: 'number' },
     imgUrl: { type: 'string', source: 'attribute', selector: 'img.itemImage', attribute: 'src' },
-    imgAtl: { type: 'string', source: 'attribute', selector: 'img.itemImage', attribute: 'alt', default: '' },
+    imgAlt: { type: 'string', source: 'attribute', selector: 'img.itemImage', attribute: 'alt', default: '' },
     imgMB: { type: 'number', default: 20 },
     imgRadius: { type: 'number', default: 0 },
     imgRadiusType: { type: 'number', default: '%' },

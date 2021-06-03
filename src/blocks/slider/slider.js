@@ -5,18 +5,18 @@ import { RichText, InspectorControls, ColorPalette, MediaUpload } from '@wordpre
 import { PanelBody, Button, ToggleControl, RangeControl, IconButton, FontSizePicker } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../../Const/options';
 const { colors, hTags, aligns, sizeTypes, fontSizes } = options;
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../../GutenComp/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
+import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../../Const/icons';
 
 registerBlockType('b-blocks/slider', {
     // Build In attributes
@@ -154,7 +154,7 @@ registerBlockType('b-blocks/slider', {
                 <PanelBody title={__('Slider Settings', 'b-blocks')} initialOpen={true}>
                     {/* Width */}
                     {firstTitle('Width:')}
-                    <BtnGroup options={sizeTypes} myValue={sliderWidthType} setState={(cng, def) => setAttributes({ sliderWidthType: cng, sliderWidth: def })} classes="b_blocks_size_type" size="small" />
+                    <BtnGroup options={sizeTypes} myValue={sliderWidthType} setState={(cng, def) => setAttributes({ sliderWidthType: cng, sliderWidth: def })} classes="bBlocksSizeType" size="small" />
 
                     <RangeControl value={sliderWidth} onChange={cng => setAttributes({ sliderWidth: cng })} min={0} max={("%" == sliderWidthType) ? 100 : 1920} step={1} />
 
@@ -239,7 +239,7 @@ registerBlockType('b-blocks/slider', {
 
                     {/* Border Radius */}
                     {otherTitle('Border Radius:')}
-                    <BtnGroup options={sizeTypes} myValue={indicatorRadiusType} setState={cng => setAttributes({ indicatorRadiusType: cng })} classes="b_blocks_size_type" size="small" />
+                    <BtnGroup options={sizeTypes} myValue={indicatorRadiusType} setState={cng => setAttributes({ indicatorRadiusType: cng })} classes="bBlocksSizeType" size="small" />
 
                     <RangeControl value={indicatorRadius} onChange={cng => setAttributes({ indicatorRadius: cng })} min={0} max={50} step={1} />
                 </PanelBody>

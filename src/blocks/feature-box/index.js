@@ -20,7 +20,7 @@ const attributes = {
 
     imgId: { type: 'number' },
     imgUrl: { type: 'string', source: 'attribute', selector: 'img.featureImage', attribute: 'src' },
-    imgAtl: { type: 'string', source: 'attribute', selector: 'img.featureImage', attribute: 'alt', default: '' },
+    imgAlt: { type: 'string', source: 'attribute', selector: 'img.featureImage', attribute: 'alt', default: '' },
     imgMB: { type: 'number', default: 20 },
 
     title: { type: 'string', source: 'html', selector: 'h4.featureTitle' },

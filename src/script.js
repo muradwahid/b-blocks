@@ -3,6 +3,7 @@ import './style.scss';
 
 // Import Blocks
 import './blocks/posts/script';
+import './blocks/slider/script';
 import './blocks/image-gallery/script';
 import './blocks/image-comparison/script';
 import './blocks/flip-box/script';
@@ -12,6 +13,7 @@ import './blocks/feature-box/script';
 import './blocks/info-box/script';
 import './blocks/button-group/script';
 import './blocks/countdown/script';
+import './blocks/card/script';
 
 
 // (function ($) {
