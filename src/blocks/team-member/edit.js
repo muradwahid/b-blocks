@@ -108,7 +108,7 @@ const Edit = props => {
 
                 {/* Style */}
                 <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Style:', 'b-blocks')}</Title>
+                    <Title mt='0' mb='0'>{__('Style:', 'b-blocks')}</Title>
                     <SelectControl value={teamStyle} onChange={cng => setAttributes({ teamStyle: cng })} options={teamStyles} />
                 </PanelRow>
             </PanelBody>

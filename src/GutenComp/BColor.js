@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
-import { Dropdown, ColorPicker, IconButton } from '@wordpress/components';
+import { Dropdown, ColorPicker, Button } from '@wordpress/components';
 
 const BColor = props => {
     const { value, defaultColor, onChange, disableAlpha } = props;
@@ -11,6 +11,14 @@ const BColor = props => {
             renderToggle={({ isOpen, onToggle }) => {
                 return (
                     <div style={{ display: "flex", alignItems: 'center' }}>
+                        {defaultColor && defaultColor != state && (
+                            <Button className='resetBColorIcon' icon="image-rotate" label={__('Reset', 'b-blocks')}
+                                onClick={() => {
+                                    onChange(defaultColor);
+                                    setState(defaultColor);
+                                }}
+                            />
+                        )}
                         <div className="bColorButtonContainer">
                             <button
                                 className="bColorButton"
@@ -20,14 +28,6 @@ const BColor = props => {
                                 style={{ backgroundColor: value ? value : 'transparent' }}
                             />
                         </div>
-                        {defaultColor && defaultColor != state && (
-                            <IconButton icon="image-rotate" label={__('Reset', 'b-blocks')}
-                                onClick={() => {
-                                    onChange(defaultColor);
-                                    setState(defaultColor);
-                                }}
-                            />
-                        )}
                     </div>
                 );
             }}

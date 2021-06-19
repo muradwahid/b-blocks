@@ -105,14 +105,14 @@ const Edit = props => {
                                 {'false' == isPostsPerPageAll && <RangeControl value={postsPerPage} onChange={val => setAttributes({ postsPerPage: 0 === val ? 12 : val })} min={1} max={36} step={1} />}
 
                                 {/* Posts Order By */}
-                                <PanelRow className='mt-20p'>
-                                    <Title mt='0' mb='15px'>{__('Post Order By:', 'b-blocks')}</Title>
+                                <PanelRow className='mt-20p mb-5p'>
+                                    <Title mt='0' mb='0'>{__('Post Order By:', 'b-blocks')}</Title>
                                     <SelectControl value={postsOrderBy} onChange={val => setAttributes({ postsOrderBy: val })} options={postsOrdersBy} />
                                 </PanelRow>
 
                                 {/* Posts Order */}
-                                <PanelRow className='mt-20p'>
-                                    <Title mt='0' mb='15px'>{__('Post Order:', 'b-blocks')}</Title>
+                                <PanelRow className='mt-20p mb-5p'>
+                                    <Title mt='0' mb='0'>{__('Post Order:', 'b-blocks')}</Title>
                                     <SelectControl value={postsOrder} onChange={val => setAttributes({ postsOrder: val })} options={postsOrders} />
                                 </PanelRow>
                             </PanelBody>

@@ -141,8 +141,11 @@ html{
 }
 @for $i from 1 through 1000 {
     .h-#{$i}-px{
-        height: #{$i}px;
+        height: #{$i}px!important;
     }
+}
+.h-100-per{
+    height: 100% !important;
 }
 
 .text-left{

@@ -76,10 +76,18 @@ $secondaryColor: #8344c5;
     }
 }
 
-.panel_single-title{
+.panel_single-title, .components-unit-control-wrapper label{
     font-size: 14px;
     font-style: italic;
     font-weight: 500;
+}
+
+// Unit Control
+.components-unit-control-wrapper .components-unit-control__select{
+    font-size: 11px !important;
+    width: 25px !important;
+    color: #fff !important;
+    background-color: $primaryColor !important;
 }
 
 // Tab Panel
@@ -108,9 +116,6 @@ $secondaryColor: #8344c5;
 }
 
 // Checkbox Control
-.block-editor-block-inspector .components-base-control{
-    margin-bottom: 0;
-}
 .components-base-control__field{
     display: flex;
 
@@ -281,6 +286,13 @@ $secondaryColor: #8344c5;
 }
 
 // Range Control
+.components-range-control__root{
+    align-items: center!important;
+
+    .css-19yq0mf-BeforeIconWrapper{
+        margin: 0!important;
+    }
+}
 .components-range-control__wrapper{
     .components-range-control__track{
         background-color: $secondaryColor;
@@ -349,6 +361,96 @@ $secondaryColor: #8344c5;
 
         &:hover{
             cursor: pointer;
+        }
+    }
+}
+.resetBColorIcon span{
+    font-size: 17px;
+    display: flex!important;
+    align-items: flex-end;
+    margin-right: 0!important;
+}
+
+
+//Components
+// Typography components
+.bBlocksTypo{
+    .dashicon{
+        margin-right: 0!important;
+    }
+}
+.bBlocksTypoPopover{
+    .components-popover__content{
+        min-width: 280px;
+        margin-right: -35px!important;
+        margin-top: -8px;
+        border: none;
+        box-shadow: 0 3px 15px 0 #4527a480;
+        border-radius: 5px;
+    }
+
+    .dashicon{
+        margin-right: 0!important; 
+    }
+    
+    .bBlocksTypoFontTitle{
+        p:last-child{
+            width: 73px;
+        }
+    }
+    .bBlocksTypoFont{
+        margin-top: 0;
+
+        .bBlocksTypoFontSelect{
+            position: relative;
+            margin-right: 8px;
+            width: calc(280px - 105px);
+
+            input{
+                width: 100%;
+            }
+
+            .bBlocksTypoFontLists{
+                position: absolute;
+                height: 200px;
+                background: #fff;
+                width: 100%;
+                overflow-y: scroll;
+                z-index: 99;
+                margin: 0;
+                box-shadow: 0 4px 15px 0 #4527a480;
+                border-radius: 8px;
+
+                li{
+                    margin: 0;
+                    padding: 3px 10px;
+
+                    &:hover{
+                        background-color: #4527a40f;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .dashicon{
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        
+        >div.components-base-control{
+            >div.components-base-control__field{
+                margin-bottom: 0!important;
+                border-radius: 4px;
+
+                select{
+                    height: 32px;
+                    width: 73px;
+                }
+            }
         }
     }
 }
@@ -578,4 +680,9 @@ $secondaryColor: #8344c5;
     .components-base-control__field{
         margin: 0;
     }
+}
+
+// Select Control
+.components-base-control.css-wdf2ti-Wrapper{
+    margin-bottom: 0!important;
 }

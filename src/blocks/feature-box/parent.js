@@ -70,7 +70,7 @@ registerBlockType('b-blocks/feature-boxes', {
 
                     {/* Columns */}
                     <PanelRow>
-                        <Title mt='0'>Columns:</Title>
+                        <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
                         <BDevice device={device} onChange={val => setDevice(val)} />
                     </PanelRow>
                     <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} />

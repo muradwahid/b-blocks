@@ -6,10 +6,10 @@ import { PanelBody, FontSizePicker, IconButton, ToggleControl, RangeControl, Rad
 const ALLOWED_BLOCKS = ['core/button'];
 
 // Icons
-import icons from '../Const/icons';
+import icons from '../../Const/icons';
 
 // Variables
-import options from '../Const/options';
+import options from '../../Const/options';
 const { aligns, fontSizes, colors, tags, hTags, sizeTypes } = options;
 
 const cardLayouts = [
@@ -18,10 +18,10 @@ const cardLayouts = [
 ]
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../../GutenComp/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
+import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
 
 registerBlockType('b-blocks/card', {

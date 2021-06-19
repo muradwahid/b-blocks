@@ -67,19 +67,72 @@ const options = {
         { label: 'Bold', value: 'bold' },
         { label: 'Bolder', value: 'bolder' },
         { label: 'Normal', value: 'normal' },
-        { label: 'Inherit', value: 'inherit' },
+        { label: 'Inherit', value: 'inherit' }
+    ],
+
+    fontStyles: [
+        { label: 'Normal', value: 'normal' },
+        { label: 'Italic', value: 'italic' },
+        { label: 'Oblique', value: 'oblique' }
     ],
 
     textTransforms: [
-        { label: 'Capitalize', value: 'capitalize', icon: 'Tt' },
-        { label: 'Uppercase', value: 'uppercase', icon: 'TT' },
-        { label: 'Lowercase', value: 'lowercase', icon: 'tt' },
         { label: 'None', value: 'none', icon: 'NO' },
+        { label: 'Capitalize', value: 'capitalize', icon: 'Aa' },
+        { label: 'Uppercase', value: 'uppercase', icon: 'AA' },
+        { label: 'Lowercase', value: 'lowercase', icon: 'aa' }
+    ],
+
+    textDecorations: [
+        { label: 'Default', value: 'auto' },
+        { label: 'Underline', value: 'underline' },
+        { label: 'Overline', value: 'overline' },
+        { label: 'Line Through', value: 'line-through' },
+        { label: 'None', value: 'none' }
     ],
 
     sizeTypes: [
         { label: 'Pixel', value: 'px', icon: 'px', def: 650 },
         { label: 'Percentage', value: '%', icon: '%', def: 100 }
+    ],
+
+    allUnits: [
+        { value: '%', label: '%', default: 0 },
+        { value: 'px', label: 'px', default: 0 },
+        { value: 'em', label: 'em', default: 0 },
+        { value: 'rem', label: 'rem', default: 0 },
+    ],
+    pxPerEmUnits: [
+        { value: 'px', label: 'px', default: 0 },
+        { value: '%', label: '%', default: 0 },
+        { value: 'em', label: 'em', default: 0 },
+    ],
+    pxEmUnits: [
+        { value: 'px', label: 'px', default: 0 },
+        { value: 'em', label: 'em', default: 0 },
+    ],
+    pxEmRemUnits: [
+        { value: 'px', label: 'px', default: 0 },
+        { value: 'em', label: 'em', default: 0 },
+        { value: 'rem', label: 'rem', default: 0 },
+    ],
+
+    sides: [
+        { value: 'all', label: 'All Sides' },
+        { value: 'top', label: 'Top' },
+        { value: 'right', label: 'Right' },
+        { value: 'bottom', label: 'Bottom' },
+        { value: 'left', label: 'Left' },
+        { value: 'topRight', label: 'Top Right' },
+        { value: 'topBottom', label: 'Top Bottom' },
+        { value: 'topLeft', label: 'Top Left' },
+        { value: 'topRightBottom', label: 'Top Right Bottom' },
+        { value: 'topRightLeft', label: 'Top Right Left' },
+        { value: 'topBottomLeft', label: 'Top Bottom Left' },
+        { value: 'rightBottom', label: 'Right Bottom' },
+        { value: 'rightLeft', label: 'Right Left' },
+        { value: 'rightBottomLeft', label: 'Right Bottom Left' },
+        { value: 'bottomLeft', label: 'Bottom Left' }
     ],
 
     postsOrdersBy: [

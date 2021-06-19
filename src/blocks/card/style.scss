@@ -1,60 +1,108 @@
-.wp-block-b-blocks-cards{
+.wp-block-b-blocks-cards .bBlocksCards{
     display: grid;
 
     .wp-block-b-blocks-card{
-        display: inline-block;
+        max-width: 100%;
+    }
+}
+
+.wp-block-b-blocks-card{
+    height: 100%;
+    display: flex;
+    max-width: 50%;
+    
+    .bBlocksCard{
+        display: flex;
         position: relative;
-        width: 100%;
-        height: 100%;
         border-radius: 5px;
         color: rgba(0, 0, 0, 0.87);
         background: #fff;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 
+        &.vertical{
+            flex-direction: column;
+        }
         &.horizontal{
-            display: flex;
+            flex-direction: row;
             align-items: center;
+
+            .cardDetails{
+                width: 50%;
+            }
+
+            .cardImage{
+                height: calc(100% - 30px);
+                width: 50%;
+
+                img{
+                    min-height: 100%;
+                }
+            }
+        }
+
+        &.topImg.vertical{
+            margin-top: 30px;
+
+            .cardImage{
+                margin-top: -30px;
+                margin-bottom: 0;
+            }
+        }
+        &.topImg.horizontal{
             margin-left: 30px;
 
             .cardImage{
                 margin-left: -30px;
             }
-            .cardDetails{
-                padding: 0 20px 0 0;
-            }
         }
-
-        &.vertical{
-            margin-top: 30px;
+        &.bottomImg.vertical{
+            margin-bottom: 30px;
 
             .cardImage{
-                margin-top: -30px;
+                margin-top: auto;
+                margin-bottom: -30px;
             }
-            .cardDetails{
-                padding: 0 20px;
+        }
+        &.bottomImg.horizontal{
+            margin-right: 30px;
+
+            .cardImage{
+                margin-left: auto;
+                margin-right: -30px;
             }
         }
 
         .cardImage{
-            height: 60%;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-color: rgba(0,0,0, 0.3);
-            background-blend-mode: overlay;
             position: relative;
             overflow: hidden;
-            margin-left: 15px;
-            margin-right: 15px;
+            margin: 15px;
             box-shadow: 0 16px 38px -12px rgba(0, 0, 0, .56), 0 4px 25px 0px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
 
             img{
-                width: auto;
+                width: 100%;
+                object-fit: cover;
             }
+
+            .cardTitle{
+                position: absolute;
+                left: 20px;
+                bottom: 15px;
+                text-shadow: 0 2px 5px rgba(33, 33, 33, .5);
+                margin-bottom: 0!important;
+            }
+        }
+
+        .cardDetails *{
+            margin: 0 0 10px 0;
         }
         
         .cardTitle{
             font-weight: 600;
+            margin: 0;
+        }
+
+        [data-type="core/button"]{
+            display: inline-block;
             margin: 0;
         }
     }

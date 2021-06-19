@@ -11,27 +11,47 @@ import './editor.scss';
 // Icon
 import icons from '../../Const/icons';
 
+// Deprecated
+import deprecated from './deprecated';
+
 // Custom Attributes
 const attributes = {
+    cId: { type: 'string' },
+
     layout: { type: 'string', default: 'vertical' },
 
-    contentAlign: { type: 'string', default: 'center' },
+    contentAlign: { type: 'string', default: 'left' },
     contentBGColor: { type: 'string', default: '#ffffff00' },
     contentPTB: { type: 'number', default: 20 },
     contentPLR: { type: 'number', default: 10 },
 
     imgId: { type: 'number' },
-    // imgUrl: { type: 'string', source: 'attribute', selector: '.cardImage img', attribute: 'src' },
-    // imgAlt: { type: 'string', source: 'attribute', selector: '.cardImage img', attribute: 'alt', default: '' },
-    imgUrl: { type: 'string' },
-    imgAlt: { type: 'string' },
+    imgUrl: { type: 'string', source: 'attribute', selector: '.cardImage img', attribute: 'src' },
+    imgAlt: { type: 'string', source: 'attribute', selector: '.cardImage img', attribute: 'alt', default: '' },
+    imgHeight: { type: 'number', default: 250 },
     imgPos: { type: 'string', default: 'top' },
-    imgRadius: { type: 'number', default: 5 },
+    imgBorder: {
+        type: 'object', default: {
+            width: '0px',
+            style: 'solid',
+            color: '#00000000',
+            side: 'all',
+            radius: '5px'
+        }
+    },
 
-    title: { type: 'string', source: 'html', selector: 'h3.cardTitle' },
+    isCat: { type: 'boolean', default: true },
+    cat: { type: 'string', source: 'html', selector: 'h6.cardCategory', default: 'Category' },
+    catFontSize: { type: 'number', default: 15 },
+    catColor: { type: 'string', default: '#0dcaf0' },
+    catMB: { type: 'number', default: 10 },
+
+    isTitle: { type: 'boolean', default: true },
+    title: { type: 'string', source: 'html', selector: 'h3.cardTitle', default: 'Card Title' },
+    titlePos: { type: 'string', default: 'image' },
     titleFontSize: { type: 'number', default: 22 },
-    titleColor: { type: 'string', default: '#333' },
-    titleMB: { type: 'number', default: 10 }
+    titleColor: { type: 'string', default: '#ff7500' },
+    titleMB: { type: 'number', default: 10 },
 }
 
 registerBlockType('b-blocks/card', {
@@ -53,22 +73,57 @@ registerBlockType('b-blocks/card', {
     edit: Edit,
 
     save: props => {
-        const { layout, contentAlign, contentBGColor, contentPTB, contentPLR, imgId, imgUrl, imgAlt, imgPos, imgRadius, title, titleFontSize, titleColor, titleMB } = props.attributes;
+        const { cId, layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPTB = 20, contentPLR = 10, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { width: '0px', style: 'solid', color: '#00000000', radius: '5px' }, isCat = true, cat = 'Category', catFontSize = 15, catColor = '#0dcaf0', catMB = 10, isTitle = true, title = 'Card Title', titlePos = 'image', titleFontSize = 22, titleColor = '#ff7500', titleMB = 10 } = props.attributes;
 
-        return (
-            <div className={`bBlocksCard ${'horizontal' === layout ? 'horizontal' : 'vertical'}`} style={{ backgroundColor: contentBGColor }}>
-                {imgUrl && <figure className={`cardImage radius-${imgRadius}-px`} style={{ background: `url(${imgUrl}) center center / cover no-repeat rgba(0, 0, 0, .3)` }}>
-                    {/* <img className={`${imgId ? `wp-image-${imgId}` : null}`} src={imgUrl} alt={imgAlt} /> */}
-                </figure>}
+        const cardTitle = () => isTitle && title && <RichText.Content className='cardTitle' tagName='h3' value={title} />;
 
-                <div className={`cardDetails text-${contentAlign} ptb-${contentPTB} plr-${contentPLR}`}>
-                    {title && <RichText.Content className={`cardTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h3' value={title} />}
+        const cardImage = () => imgUrl && <figure className='cardImage'>
+            <img className={`${imgId ? `wp-image-${imgId}` : null}`} src={imgUrl} alt={imgAlt} />
+
+            {'image' === titlePos && cardTitle()}
+        </figure>
+
+        // Border
+        const borderSideCheck = (side) => {
+            const bSide = imgBorder?.side.toLowerCase();
+            return bSide.includes('all') || bSide.includes(side);
+        }
+        const border = `${imgBorder?.width} ${imgBorder?.style} ${imgBorder?.color}`;
+
+        return <div id={`bBlocksCard-${cId}`}>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                    #bBlocksCard-${cId} .bBlocksCard{ background-color: ${contentBGColor}; }
+                    #bBlocksCard-${cId} .bBlocksCard .cardImage{
+                        ${borderSideCheck('top') && `border-top: ${border}`};
+                        ${borderSideCheck('right') && `border-right: ${border}`};
+                        ${borderSideCheck('bottom') && `border-bottom: ${border}`};
+                        ${borderSideCheck('left') && `border-left: ${border}`};
+                        border-radius: ${imgBorder?.radius};
+                    }
+                    #bBlocksCard-${cId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
+                    #bBlocksCard-${cId} .bBlocksCard .cardDetails{ padding: ${contentPTB}px ${contentPLR}px; }
+                    #bBlocksCard-${cId} .bBlocksCard .cardDetails .cardCategory{ color: ${catColor}; font-size: ${catFontSize}px; margin-bottom: ${catMB}px; }
+                    #bBlocksCard-${cId} .bBlocksCard .cardTitle{ color: ${titleColor}; font-size: ${titleFontSize}px; margin-bottom: ${titleMB}px; }
+                `}} />
+
+            <div className={`bBlocksCard ${'horizontal' === layout ? 'horizontal' : 'vertical'} ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
+                {'top' === imgPos && cardImage()}
+
+                <div className={`cardDetails text-${contentAlign}`}>
+                    {isCat && cat && <RichText.Content className='cardCategory' tagName='h6' value={cat} />}
+
+                    {'content' === titlePos && cardTitle()}
 
                     <InnerBlocks.Content />
                 </div>
+
+                {'bottom' === imgPos && cardImage()}
             </div>
-        );
+        </div>;
     },
+
+    deprecated,
 
     example: {
         attributes: {
