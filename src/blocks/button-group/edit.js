@@ -79,7 +79,7 @@ const Edit = props => {
                 {/* Type */}
                 <PanelRow>
                     <Title mt='5px'>{__('Type:', 'b-blocks')}</Title>
-                    <ButtonGroup className='b_blocks_button_groups'>
+                    <ButtonGroup className='bBlocksBtnGroup'>
                         <Tooltip text={__('Fill', 'b-blocks')} position='top'>
                             <Button isMedium isPrimary={'fill' === btnOneType} aria-pressed={'fill' === btnOneType} onClick={() => setAttributes({ btnOneType: 'fill', btnOneColor: '#fff', btnOneBGColor: '#4527a4', borderWidth: 1, borderOneColor: '#00000000' })}>{__('Fill', 'b-blocks')}</Button>
                         </Tooltip>
@@ -100,30 +100,18 @@ const Edit = props => {
                     {tab => <>
                         {'normal' == tab.name && <>
                             {/* Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                <BColor value={btnOneColor} onChange={val => setAttributes({ btnOneColor: val })} defaultColor='#fff' />
-                            </PanelRow>
+                            <BColor label={__('Color:', 'b-blocks')} value={btnOneColor} onChange={val => setAttributes({ btnOneColor: val })} defaultColor='#fff' />
 
                             {/* Background Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnOneBGColor} onChange={val => setAttributes({ btnOneBGColor: val })} defaultColor='#4527a4' />
-                            </PanelRow>
+                            <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={btnOneBGColor} onChange={val => setAttributes({ btnOneBGColor: val })} defaultColor='#4527a4' />
                         </>}
 
                         {'hover' == tab.name && <>
                             {/* Hover Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Hover Color:', 'b-blocks')}</Title>
-                                <BColor value={btnOneHovColor} onChange={val => setAttributes({ btnOneHovColor: val })} defaultColor='#fff' />
-                            </PanelRow>
+                            <BColor label={__('Hover Color:', 'b-blocks')} value={btnOneHovColor} onChange={val => setAttributes({ btnOneHovColor: val })} defaultColor='#fff' />
 
                             {/* Hover Background Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Hover Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnOneHovBGColor} onChange={val => setAttributes({ btnOneHovBGColor: val })} defaultColor='#8344c5' />
-                            </PanelRow>
+                            <BColor className='mt-20p mb-5p' label={__('Hover Background Color:', 'b-blocks')} value={btnOneHovBGColor} onChange={val => setAttributes({ btnOneHovBGColor: val })} defaultColor='#8344c5' />
                         </>}
                     </>}
                 </TabPanel>
@@ -133,7 +121,7 @@ const Edit = props => {
                 {/* Type */}
                 <PanelRow>
                     <Title mt='5px'>{__('Type:', 'b-blocks')}</Title>
-                    <ButtonGroup className='b_blocks_button_groups'>
+                    <ButtonGroup className='bBlocksBtnGroup'>
                         <Tooltip text={__('Fill', 'b-blocks')} position='top'>
                             <Button isMedium isPrimary={'fill' === btnTwoType} aria-pressed={'fill' === btnTwoType} onClick={() => setAttributes({ btnTwoType: 'fill', btnTwoColor: '#fff', btnTwoBGColor: '#8344c5', borderWidth: 1, borderTwoColor: '#00000000' })}>{__('Fill', 'b-blocks')}</Button>
                         </Tooltip>
@@ -154,30 +142,18 @@ const Edit = props => {
                     {tab => <>
                         {'normal' == tab.name && <>
                             {/* Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                <BColor value={btnTwoColor} onChange={val => setAttributes({ btnTwoColor: val })} defaultColor='#fff' />
-                            </PanelRow>
+                            <BColor label={__('Color:', 'b-blocks')} value={btnTwoColor} onChange={val => setAttributes({ btnTwoColor: val })} defaultColor='#fff' />
 
                             {/* Background Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnTwoBGColor} onChange={val => setAttributes({ btnTwoBGColor: val })} defaultColor='#8344c5' />
-                            </PanelRow>
+                            <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={btnTwoBGColor} onChange={val => setAttributes({ btnTwoBGColor: val })} defaultColor='#8344c5' />
                         </>}
 
                         {'hover' == tab.name && <>
                             {/* Hover Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Hover Color:', 'b-blocks')}</Title>
-                                <BColor value={btnTwoHovColor} onChange={val => setAttributes({ btnTwoHovColor: val })} defaultColor='#fff' />
-                            </PanelRow>
+                            <BColor label={__('Hover Color:', 'b-blocks')} value={btnTwoHovColor} onChange={val => setAttributes({ btnTwoHovColor: val })} defaultColor='#fff' />
 
                             {/* Hover Background Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Hover Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnTwoHovBGColor} onChange={val => setAttributes({ btnTwoHovBGColor: val })} defaultColor='#4527a4' />
-                            </PanelRow>
+                            <BColor className='mt-20p mb-5p' label={__('Hover Background Color:', 'b-blocks')} value={btnTwoHovBGColor} onChange={val => setAttributes({ btnTwoHovBGColor: val })} defaultColor='#4527a4' />
                         </>}
                     </>}
                 </TabPanel>
@@ -193,16 +169,10 @@ const Edit = props => {
                 <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
 
                 {/* One Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('One Color:', 'b-blocks')}</Title>
-                    <BColor value={borderOneColor} onChange={val => setAttributes({ borderOneColor: val })} defaultColor='#00000000' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('One Color:', 'b-blocks')} value={borderOneColor} onChange={val => setAttributes({ borderOneColor: val })} defaultColor='#00000000' />
 
                 {/* Two Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Two Color:', 'b-blocks')}</Title>
-                    <BColor value={borderTwoColor} onChange={val => setAttributes({ borderTwoColor: val })} defaultColor='#00000000' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Two Color:', 'b-blocks')} value={borderTwoColor} onChange={val => setAttributes({ borderTwoColor: val })} defaultColor='#00000000' />
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
@@ -257,16 +227,10 @@ const Edit = props => {
                     </>}
 
                     {/* Color */}
-                    {'text' === sepType && <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                        <BColor value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#333' />
-                    </PanelRow>}
+                    <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#333' />
 
                     {/* Background Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                        <BColor value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
                 </>}
             </PanelBody>
         </InspectorControls>

@@ -61,10 +61,7 @@ const Edit = props => {
                 <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
@@ -75,10 +72,7 @@ const Edit = props => {
 
             <PanelBody title={__('Image Shadow Settings', 'b-blocks')} initialOpen={false}>
                 {/* Color */}
-                <PanelRow>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
-                </PanelRow>
+                <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
 
                 {/* Horizontal Offset */}
                 <Title>{__('Horizontal Offset:', 'b-blocks')}</Title>
@@ -99,10 +93,7 @@ const Edit = props => {
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={capFontSize} onChange={val => setAttributes({ capFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
                 {/* Text Align */}
                 <Title>{__('Text Align:', 'b-blocks')}</Title>

@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls, MediaUpload, MediaPlaceholder, RichText, MediaUploadCheck } from '@wordpress/block-editor';
-import { Button, FontSizePicker, PanelBody, PanelRow, RangeControl, SelectControl, ToggleControl, ToolbarGroup, withNotices, Spinner } from '@wordpress/components';
+import { Button, FontSizePicker, PanelBody, RangeControl, SelectControl, ToggleControl, ToolbarGroup, withNotices, Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
@@ -215,16 +215,10 @@ const Edit = props => {
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={labelFontSize} onChange={val => setAttributes({ labelFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                     {/* Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                        <BColor value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
 
                     {/* Background Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                        <BColor value={labelBGColor} onChange={val => setAttributes({ labelBGColor: val })} defaultColor='#00000080' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={labelBGColor} onChange={val => setAttributes({ labelBGColor: val })} defaultColor='#00000080' />
 
                     {/* Padding Top Bottom */}
                     <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
@@ -245,16 +239,10 @@ const Edit = props => {
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={14} value={capFontSize} onChange={val => setAttributes({ capFontSize: 'undefined' === typeof val ? 14 : val })} />
 
                     {/* Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                        <BColor value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
                     {/* Background Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                        <BColor value={capBGColor} onChange={val => setAttributes({ capBGColor: val })} defaultColor='#f4f4f4' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={capBGColor} onChange={val => setAttributes({ capBGColor: val })} defaultColor='#f4f4f4' />
 
                     {/* Padding Top Bottom */}
                     <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
@@ -276,10 +264,7 @@ const Edit = props => {
                 <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
             </PanelBody>
         </InspectorControls>
 

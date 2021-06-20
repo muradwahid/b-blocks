@@ -10,7 +10,7 @@ import Title from '../../GutenComp/Title';
 import BColor from '../../GutenComp/BColor';
 
 const Edit = props => {
-    const { className, attributes: { layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPTB = 20, contentPLR = 10, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { width: '0px', style: 'solid', color: '#00000000', radius: '5px' }, isCat = true, cat = 'Category', catFontSize = 15, catColor = '#0dcaf0', catMB = 10, isTitle = true, title = 'Card Title', titlePos = 'image', titleFontSize = 22, titleColor = '#ff7500', titleMB = 10 }, setAttributes, clientId, noticeOperations, noticeUI, image, imageSizes } = props;
+    const { className, attributes: { layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPTB = 20, contentPLR = 10, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { width: '0px', style: 'solid', color: '#00000000', radius: '5px' }, isCat = true, cat = 'Category', catTypo = { fontSize: 15 }, catColor = '#0dcaf0', catMB = 10, isTitle = true, title = 'Card Title', titlePos = 'image', titleTypo = { fontSize: 22 }, titleColor = '#ff7500', titleMB = 10 }, setAttributes, clientId, noticeOperations, noticeUI, image, imageSizes } = props;
 
     // useEffect
     useEffect(() => {
@@ -53,33 +53,17 @@ const Edit = props => {
     </> :
         <MediaPlaceholder labels={{ title: __(' Card Image', 'b-blocks') }} icon='format-image' allowedTypes={['image']} accept='image/*' onSelect={onSelectImage} onSelectURL={val => setAttributes({ imgId: null, imgUrl: val, imgAlt: '' })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} />;
 
-    // Border
-    const borderSideCheck = (side) => {
-        const bSide = imgBorder?.side.toLowerCase();
-        return bSide.includes('all') || bSide.includes(side);
-    }
-    const border = `${imgBorder?.width} ${imgBorder?.style} ${imgBorder?.color}`;
-
     return <>
         <InspectorControls>
             <PanelBody title={__('Colors Settings', 'b-blocks')}>
                 {/* Content Background Color */}
-                <PanelRow>
-                    <Title mt='5px'>{__('Content Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#ffffff00' />
-                </PanelRow>
+                <BColor label={__('Content Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#ffffff00' />
 
                 {/* Category Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Category Color:', 'b-blocks')}</Title>
-                    <BColor value={catColor} onChange={val => setAttributes({ catColor: val })} defaultColor='#0dcaf0' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Category Color:', 'b-blocks')} value={catColor} onChange={val => setAttributes({ catColor: val })} defaultColor='#0dcaf0' />
 
                 {/* Title Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Title Color:', 'b-blocks')}</Title>
-                    <BColor value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#ff7500' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#ff7500' />
             </PanelBody>
 
             {(imgUrl || imgId) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
@@ -112,16 +96,12 @@ const Edit = props => {
                 __html: `
                     #bBlocksCard-${clientId} .bBlocksCard{ background-color: ${contentBGColor}; }
                     #bBlocksCard-${clientId} .bBlocksCard .cardImage{
-                        ${borderSideCheck('top') && `border-top: ${border}`};
-                        ${borderSideCheck('right') && `border-right: ${border}`};
-                        ${borderSideCheck('bottom') && `border-bottom: ${border}`};
-                        ${borderSideCheck('left') && `border-left: ${border}`};
-                        border-radius: ${imgBorder?.radius};
+                        ${imgBorder?.styles}
                     }
                     #bBlocksCard-${clientId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
                     #bBlocksCard-${clientId} .bBlocksCard .cardDetails{ padding: ${contentPTB}px ${contentPLR}px; }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardDetails .cardCategory{ color: ${catColor}; font-size: ${catFontSize}px; margin-bottom: ${catMB}px; }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardTitle{ color: ${titleColor}; font-size: ${titleFontSize}px; margin-bottom: ${titleMB}px; }
+                    #bBlocksCard-${clientId} .bBlocksCard .cardDetails .cardCategory{ color: ${catColor}; ${catTypo?.styles} margin-bottom: ${catMB}px; }
+                    #bBlocksCard-${clientId} .bBlocksCard .cardTitle{ color: ${titleColor}; ${titleTypo?.styles} margin-bottom: ${titleMB}px; }
                 `}} />
 
             <div className={`bBlocksCard ${'horizontal' === layout ? 'horizontal' : 'vertical'} ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>

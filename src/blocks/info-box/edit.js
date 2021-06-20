@@ -52,7 +52,7 @@ const Edit = props => {
             <PanelBody title={__('Content Settings', 'b-blocks')}>
                 {/* Background */}
                 <Title mt='0'>{__('Background Type:', 'b-blocks')}</Title>
-                <ButtonGroup className='b_blocks_button_groups'>
+                <ButtonGroup className='bBlocksBtnGroup'>
                     <Tooltip text={__('Color', 'b-blocks')} position='top'>
                         <Button isMedium isPrimary={'color' === contentBGType} aria-pressed={'color' === contentBGType} onClick={() => setAttributes({ contentBGType: 'color', titleColor: '#333', descColor: '#333' })}>{__('Color', 'b-blocks')}</Button>
                     </Tooltip>
@@ -66,10 +66,7 @@ const Edit = props => {
                     </Tooltip>
                 </ButtonGroup>
 
-                {'color' === contentBGType && <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#ffffff00' />
-                </PanelRow>}
+                {'color' === contentBGType && <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#ffffff00' />}
 
                 {'image' === contentBGType && <>
                     <Title>{__('Background Image:', 'b-blocks')}</Title>
@@ -89,10 +86,7 @@ const Edit = props => {
 
                     <ToggleControl className='mt-20p' label={isContentBGOpacity ? 'Hide Background Opacity' : 'Show Background Opacity'} checked={isContentBGOpacity} onChange={val => setAttributes({ isContentBGOpacity: val })} />
 
-                    {isContentBGOpacity && <PanelRow className='mb-5p'>
-                        <Title mt='5px'>{__('Background Opacity Color:', 'b-blocks')}</Title>
-                        <BColor value={contentBGOpacityColor} onChange={val => setAttributes({ contentBGOpacityColor: val })} defaultColor='#000000b3' />
-                    </PanelRow>}
+                    {isContentBGOpacity && <BColor className='mb-5p' label={__('Background Opacity Color:', 'b-blocks')} value={contentBGOpacityColor} onChange={val => setAttributes({ contentBGOpacityColor: val })} defaultColor='#000000b3' />}
                 </>}
 
                 {'gradient' === contentBGType && <>
@@ -106,15 +100,9 @@ const Edit = props => {
                         <BtnGroup options={radialType} myValue={contentBGGradRadialType} setState={val => setAttributes({ contentBGGradRadialType: val })} />
                     </PanelRow>}
 
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('First Color:', 'b-blocks')}</Title>
-                        <BColor value={contentBGGradFColor} onChange={val => setAttributes({ contentBGGradFColor: val })} defaultColor='#4527a4' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('First Color:', 'b-blocks')} value={contentBGGradFColor} onChange={val => setAttributes({ contentBGGradFColor: val })} defaultColor='#4527a4' />
 
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('First Color:', 'b-blocks')}</Title>
-                        <BColor value={contentBGGradSColor} onChange={val => setAttributes({ contentBGGradSColor: val })} defaultColor='#8344c5' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Second Color:', 'b-blocks')} value={contentBGGradSColor} onChange={val => setAttributes({ contentBGGradSColor: val })} defaultColor='#8344c5' />
 
                     <Title>{__('First Color Position:', 'b-blocks')}</Title>
                     <RangeControl value={contentBGGradFColorPos} onChange={val => setAttributes({ contentBGGradFColorPos: val })} min={0} max={100} step={1} />
@@ -155,10 +143,7 @@ const Edit = props => {
                 <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
@@ -167,10 +152,7 @@ const Edit = props => {
 
             <PanelBody title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
                 {/* Color */}
-                <PanelRow>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
-                </PanelRow>
+                <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
 
                 {/* Horizontal Offset */}
                 <Title>{__('Horizontal Offset:', 'b-blocks')}</Title>
@@ -222,10 +204,7 @@ const Edit = props => {
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={18} value={titleFontSize} onChange={val => setAttributes({ titleFontSize: 'undefined' === typeof val ? 18 : val })} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#333' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#333' />
 
                 {/* Margin Bottom */}
                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -240,10 +219,7 @@ const Edit = props => {
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={descFontSize} onChange={val => setAttributes({ descFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#333' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#333' />
 
                 {/* Margin Bottom */}
                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -269,16 +245,10 @@ const Edit = props => {
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={btnFontSize} onChange={val => setAttributes({ btnFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                     {/* Text Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Text Color:', 'b-blocks')}</Title>
-                        <BColor value={btnTextColor} onChange={val => setAttributes({ btnTextColor: val })} defaultColor='#fff' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Text Color:', 'b-blocks')} value={btnTextColor} onChange={val => setAttributes({ btnTextColor: val })} defaultColor='#fff' />
 
                     {/* Background Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                        <BColor value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor='#4527a4' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor='#4527a4' />
 
                     {/* Padding Top Bottom */}
                     <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>

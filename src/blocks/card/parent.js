@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { select, dispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks, InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, ButtonGroup, Tooltip, Button, FontSizePicker, ToggleControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, ButtonGroup, Tooltip, Button, ToggleControl } from '@wordpress/components';
 
 // Icon
 import icons from '../../Const/icons';
@@ -14,8 +14,6 @@ import BDevice from '../../GutenComp/BDevice';
 import BtnGroup from '../../GutenComp/BtnGroup';
 import BorderControl from '../../GutenComp/BorderControl';
 import Typography from '../../GutenComp/Typography';
-import options from '../../Const/options';
-const { fontSizes } = options;
 
 // Custom Attributes
 const attributes = {
@@ -33,16 +31,14 @@ const attributes = {
 
     descTypo: {
         type: 'object', default: {
-            fontFamily: 'Default',
-            fontWeight: 'normal',
-            fontSize: 18,
-            fontStyle: 'normal',
-            textTransform: 'none',
-            textDecoration: 'none',
-            lineHeight: '150%',
-            letterSpace: '0px',
+            fontSize: 18
         }
-    }
+    },
+    titleTypo: {
+        type: 'object', default: {
+            fontFamily: 'Default', fontWeight: 400, fontSize: 22, fontStyle: 'normal', textTransform: 'none', textDecoration: 'auto', lineHeight: '150%', letterSpace: '0px'
+        }
+    },
 }
 
 registerBlockType('b-blocks/cards', {
@@ -80,11 +76,11 @@ registerBlockType('b-blocks/cards', {
         const [imgHeight, setImgHeight] = useState(childAttributes?.imgHeight);
         const [imgBorder, setImgBorder] = useState(childAttributes?.imgBorder);
         const [isCat, setIsCat] = useState(childAttributes?.isCat);
-        const [catFontSize, setCatFontSize] = useState(childAttributes?.catFontSize);
+        const [catTypo, setCatTypo] = useState(childAttributes?.catTypo);
         const [catMB, setCatMB] = useState(childAttributes?.catMB);
         const [isTitle, setIsTitle] = useState(childAttributes?.isTitle);
         const [titlePos, setTitlePos] = useState(childAttributes?.titlePos);
-        const [titleFontSize, setTitleFontSize] = useState(childAttributes?.titleFontSize);
+        const [titleTypo, setTitleTypo] = useState(childAttributes?.titleTypo);
         const [titleMB, setTitleMB] = useState(childAttributes?.titleMB);
 
         const setChildAttributes = args => innerBlocks.forEach(block => {
@@ -97,7 +93,7 @@ registerBlockType('b-blocks/cards', {
                     {/* Layout Type */}
                     <PanelRow>
                         <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
-                        <ButtonGroup className='b_blocks_button_groups'>
+                        <ButtonGroup className='bBlocksBtnGroup'>
                             <Tooltip text={__('Vertical', 'b-blocks')} position='top'>
                                 <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout || 'vertical' === childAttributes?.layout} aria-pressed={'vertical' === layout || 'vertical' === childAttributes?.layout} onClick={() => { setChildAttributes({ layout: 'vertical', contentAlign: 'center', imgHeight: 250 }); setLayout('vertical'); setContentAlign('center'); setImgHeight(250); }}></Button>
                             </Tooltip>
@@ -108,7 +104,7 @@ registerBlockType('b-blocks/cards', {
                         </ButtonGroup>
                     </PanelRow>
 
-                    <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 18, textDecoration: 'none', lineHeight: '200%' }} />
+                    <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 18 }} />
 
                     {/* Columns */}
                     <PanelRow className='mt-20p mb-5p'>
@@ -151,14 +147,12 @@ registerBlockType('b-blocks/cards', {
                     <RangeControl value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val) }} min={0} max={500} step={1} />
                 </PanelBody>
 
-                <BorderControl label={__('Image Border', 'b-blocks')} border={imgBorder || childAttributes?.imgBorder} onChange={val => { setChildAttributes({ imgBorder: val }); setImgBorder(val) }} />
+                <BorderControl label={__('Image Border', 'b-blocks')} border={imgBorder || childAttributes?.imgBorder} onChange={val => { setChildAttributes({ imgBorder: val }); setImgBorder(val); }} defaults={{ radius: '5px' }} />
 
                 <PanelBody title={__('Category Settings', 'b-blocks')} initialOpen={false}>
                     <ToggleControl label={isCat || childAttributes?.isCat ? 'Hide Category' : 'Show Category'} checked={isCat || childAttributes?.isCat} onChange={val => { setChildAttributes({ isCat: val }); setIsCat(val); }} />
 
-                    {/* Font Size */}
-                    <Title>{__('Font Size:', 'b-blocks')}</Title>
-                    <FontSizePicker className='bBlocksFontSize' fontSizes={fontSizes} fallbackFontSize={15} value={catFontSize || childAttributes?.catFontSize} onChange={val => { setChildAttributes({ catFontSize: 'undefined' === typeof val ? 15 : val }); setCatFontSize('undefined' === typeof val ? 15 : val) }} />
+                    <Typography className='mt-20p mb-5p' typography={catTypo} onChange={val => { setChildAttributes({ catTypo: val }); setCatTypo(val); }} defaults={{ fontSize: 15 }} />
 
                     {/* Margin Bottom */}
                     <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -170,16 +164,14 @@ registerBlockType('b-blocks/cards', {
 
                     {/* Position */}
                     <PanelRow>
-                        <Title mt='0'>{__('Position:', 'b-blocks')}</Title>
+                        <Title mt='0' mb='0'>{__('Position:', 'b-blocks')}</Title>
                         <BtnGroup myValue={titlePos || childAttributes?.titlePos} setState={val => { setChildAttributes({ titlePos: val }); setTitlePos(val); }} options={[
                             { label: 'Image', value: 'image', icon: 'IMAGE' },
                             { label: 'Content', value: 'content', icon: 'CONTENT' }
                         ]} />
                     </PanelRow>
 
-                    {/* Font Size */}
-                    <Title>{__('Font Size:', 'b-blocks')}</Title>
-                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={22} value={titleFontSize || childAttributes?.titleFontSize} onChange={val => { setChildAttributes({ titleFontSize: 'undefined' === typeof val ? 22 : val }); setTitleFontSize('undefined' === typeof val ? 22 : val); }} />
+                    <Typography className='mt-20p mb-5p' typography={titleTypo} onChange={val => { setChildAttributes({ titleTypo: val }); setTitleTypo(val); }} defaults={{ fontSize: 22 }} />
 
                     {/* Margin Bottom */}
                     <Title>{__('Margin Bottom:', 'b-blocks')}</Title>

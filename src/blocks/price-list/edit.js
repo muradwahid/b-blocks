@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
 import { RichText, MediaPlaceholder, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck, InspectorControls, ColorPalette } from '@wordpress/block-editor';
-import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, PanelRow, ButtonGroup, Tooltip, ToggleControl } from '@wordpress/components';
+import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, ButtonGroup, Tooltip, ToggleControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Icons
@@ -46,7 +46,7 @@ const Edit = props => {
         <InspectorControls>
             <PanelBody title={__('Layouts Settings')}>
                 <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
-                <ButtonGroup className="b_blocks_button_groups">
+                <ButtonGroup className="bBlocksBtnGroup">
                     <Tooltip text={__('Vertical', 'b-blocks')} position="top">
                         <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({ layout: 'vertical', contentAlign: 'center', contentPTB: 50, sepWidth: 40 })}></Button>
                     </Tooltip>
@@ -59,10 +59,7 @@ const Edit = props => {
 
             <PanelBody title={__('Content Settings', 'b-blocks')}>
                 {/* Background Color */}
-                <PanelRow>
-                    <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
-                </PanelRow>
+                <BColor label={__('Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
 
                 {/* Padding Top Bottom */}
                 <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>

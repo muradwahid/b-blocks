@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, DateTimePicker, RangeControl, SelectControl, PanelRow, ToggleControl, TextControl, FontSizePicker } from '@wordpress/components';
+import { PanelBody, DateTimePicker, RangeControl, SelectControl, ToggleControl, TextControl, FontSizePicker } from '@wordpress/components';
 
 import Box from './box';
 
@@ -122,10 +122,7 @@ const Edit = props => {
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={48} value={digitFontSize} onChange={val => setAttributes({ digitFontSize: 'undefined' === typeof val ? 48 : val })} />
 
                 {/* Digit Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Digit Color:', 'b-blocks')}</Title>
-                    <BColor value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Digit Color:', 'b-blocks')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
 
                 {isLabels && <>
                     {/* Label Font Size */}
@@ -133,10 +130,7 @@ const Edit = props => {
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={14} value={labelFontSize} onChange={val => setAttributes({ labelFontSize: 'undefined' === typeof val ? 14 : val })} />
 
                     {/* Label Color */}
-                    <PanelRow className='mt-20p mb-5p'>
-                        <Title mt='5px'>{__('Label Color:', 'b-blocks')}</Title>
-                        <BColor value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
                 </>}
             </PanelBody> : null}
 
@@ -172,10 +166,7 @@ const Edit = props => {
                 <RangeControl value={itemSpace} onChange={val => setAttributes({ itemSpace: val })} min={0} max={100} step={1} />
 
                 {/* Box Background Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Box Background Color:', 'b-blocks')}</Title>
-                    <BColor value={itemBGColor} onChange={val => setAttributes({ itemBGColor: val })} defaultColor='#4527a4' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Box Background Color:', 'b-blocks')} value={itemBGColor} onChange={val => setAttributes({ itemBGColor: val })} defaultColor='#4527a4' />
             </PanelBody>
 
             <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
@@ -188,10 +179,7 @@ const Edit = props => {
                 <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
 
                 {/* Color */}
-                <PanelRow className='mt-20p mb-5p'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
 
                 {/* Radius */}
                 <Title>{__('Radius:', 'b-blocks')}</Title>
@@ -201,10 +189,7 @@ const Edit = props => {
 
             <PanelBody title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
                 {/* Color */}
-                <PanelRow>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
-                </PanelRow>
+                <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
 
                 {/* Horizontal Offset */}
                 <Title>{__('Horizontal Offset:', 'b-blocks')}</Title>

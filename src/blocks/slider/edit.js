@@ -179,10 +179,7 @@ const Edit = props => {
                 <RangeControl value={sliderHeight} onChange={val => { setAttributes({ sliderHeight: val }) }} min={1} max={1000} step={1} />
 
                 {/* Background Overlay Color */}
-                <PanelRow className='mt-25'>
-                    <Title mt='5px'>{__('Background Overlay Color:', 'b-blocks')}</Title>
-                    <BColor value={BGOverlayColor} onChange={val => setAttributes({ BGOverlayColor: val })} defaultColor='#00000080' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Background Overlay Color:', 'b-blocks')} value={BGOverlayColor} onChange={val => setAttributes({ BGOverlayColor: val })} defaultColor='#00000080' />
             </PanelBody>
 
             <PanelBody title={__('Slider Settings', 'b-blocks')} initialOpen={false}>
@@ -218,10 +215,7 @@ const Edit = props => {
 
                     <ToggleControl label={isPageDynamic ? 'Disable Pagination Dynamic Bullets' : 'Enable Pagination Dynamic Bullets'} checked={isPageDynamic} onChange={val => setAttributes({ isPageDynamic: val })} />
 
-                    <PanelRow className='mt-0'>
-                        <Title mt='0' mb='0'>{__('Pagination Bullets Color:', 'advanced-post-block')}</Title>
-                        <BColor value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
-                    </PanelRow>
+                    <BColor className='mt-20p mb-5p' label={__('Pagination Bullets Color:', 'b-blocks')} value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
 
                     <Title mt='15px' mb='0'>{__('Width:', 'advanced-post-block')}</Title>
                     <RangeControl value={pageWidth} onChange={val => setAttributes({ pageWidth: val })} min={0} max={200} step={1} />
@@ -241,10 +235,7 @@ const Edit = props => {
                 <Title>{__('Preview Next Button:', 'advanced-post-block')}</Title>
                 <ToggleControl label={isPrevNext ? 'Hide Preview Next Button' : 'Show Preview Next Button'} checked={isPrevNext} onChange={val => setAttributes({ isPrevNext: val })} />
 
-                <PanelRow className='mt-0'>
-                    <Title mt='0' mb='0'>{__('Preview Next Button Color:', 'advanced-post-block')}</Title>
-                    <BColor value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />
             </PanelBody>
 
             <PanelBody title={__('TItle Settings', 'b-blocks')} initialOpen={false}>
@@ -255,10 +246,7 @@ const Edit = props => {
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headFontSize} onChange={val => setAttributes({ headFontSize: 'undefined' === typeof val ? 25 : val })} />
 
                 {/* Color */}
-                <PanelRow className='mt-25'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={headColor} onChange={val => setAttributes({ headColor: val })} defaultColor='#fff' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={headColor} onChange={val => setAttributes({ headColor: val })} defaultColor='#fff' />
 
                 {/* Margin Bottom */}
                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -273,10 +261,7 @@ const Edit = props => {
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={descFontSize} onChange={val => setAttributes({ descFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                 {/* Color */}
-                <PanelRow className='mt-25'>
-                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                    <BColor value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
-                </PanelRow>
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
 
                 {/* Margin Bottom */}
                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -296,30 +281,18 @@ const Edit = props => {
                     {tab => <>
                         {'normal' == tab.name && <>
                             {/* Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                <BColor value={btnColor} onChange={val => setAttributes({ btnColor: val })} defaultColor='#fff' />
-                            </PanelRow>
+                            <BColor label={__('Color:', 'b-blocks')} value={btnColor} onChange={val => setAttributes({ btnColor: val })} defaultColor='#fff' />
 
                             {/* Background Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor='#ff4500' />
-                            </PanelRow>
+                            <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor='#ff4500' />
                         </>}
 
                         {'hover' == tab.name && <>
                             {/* Hover Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Hover Color:', 'b-blocks')}</Title>
-                                <BColor value={btnHovColor} onChange={val => setAttributes({ btnHovColor: val })} defaultColor='#fff' />
-                            </PanelRow>
+                            <BColor label={__('Hover Color:', 'b-blocks')} value={btnHovColor} onChange={val => setAttributes({ btnHovColor: val })} defaultColor='#fff' />
 
                             {/* Hover Background Color */}
-                            <PanelRow className='mt-20p mb-5p'>
-                                <Title mt='5px'>{__('Hover Background Color:', 'b-blocks')}</Title>
-                                <BColor value={btnHovBGColor} onChange={val => setAttributes({ btnHovBGColor: val })} defaultColor='#ff7500' />
-                            </PanelRow>
+                            <BColor className='mt-20p mb-5p' label={__('Hover Background Color:', 'b-blocks')} value={btnHovBGColor} onChange={val => setAttributes({ btnHovBGColor: val })} defaultColor='#ff7500' />
                         </>}
                     </>}
                 </TabPanel>

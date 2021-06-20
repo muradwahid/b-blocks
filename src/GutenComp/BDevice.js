@@ -1,8 +1,8 @@
 import { useState } from '@wordpress/element';
-import { Desktop, Tablet, Mobile } from './Icon';
+import { Desktop, Tablet, Mobile } from './DeviceIcon';
 
+import './BDevice.scss';
 /**
- *
  * @props device: 'desktop' (String)
  * @props iconSize: 10 (Number)
  * @props onChange: (Function)

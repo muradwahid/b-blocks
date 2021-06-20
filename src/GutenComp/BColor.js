@@ -1,35 +1,39 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
-import { Dropdown, ColorPicker, Button } from '@wordpress/components';
+import { Dropdown, ColorPicker, Button, PanelRow } from '@wordpress/components';
+
+import './BColor.scss';
+
+import Title from './Title';
 
 const BColor = props => {
-    const { value, defaultColor, onChange, disableAlpha } = props;
+    const { className, label, value, defaultColor, onChange, disableAlpha } = props;
     const [state, setState] = useState(value);
 
-    return (
-        <Dropdown position="top center"
+    return <PanelRow className={className}>
+        <Title mt='5px'>{label}</Title>
+
+        <Dropdown className='bColor' position="top center"
             renderToggle={({ isOpen, onToggle }) => {
-                return (
-                    <div style={{ display: "flex", alignItems: 'center' }}>
-                        {defaultColor && defaultColor != state && (
-                            <Button className='resetBColorIcon' icon="image-rotate" label={__('Reset', 'b-blocks')}
-                                onClick={() => {
-                                    onChange(defaultColor);
-                                    setState(defaultColor);
-                                }}
-                            />
-                        )}
-                        <div className="bColorButtonContainer">
-                            <button
-                                className="bColorButton"
-                                isPrimary
-                                onClick={onToggle}
-                                aria-expanded={isOpen}
-                                style={{ backgroundColor: value ? value : 'transparent' }}
-                            />
-                        </div>
+                return <>
+                    <div className="bColorButtonContainer">
+                        <button
+                            className="bColorButton"
+                            isPrimary
+                            onClick={onToggle}
+                            aria-expanded={isOpen}
+                            style={{ backgroundColor: value ? value : 'transparent' }}
+                        />
                     </div>
-                );
+                    {defaultColor && defaultColor != state && (
+                        <Button className='bBlocksResetVal' icon="image-rotate" label={__('Reset', 'b-blocks')}
+                            onClick={() => {
+                                onChange(defaultColor);
+                                setState(defaultColor);
+                            }}
+                        />
+                    )}
+                </>;
             }}
             renderContent={() => (
                 <ColorPicker color={value || ""}
@@ -41,6 +45,6 @@ const BColor = props => {
                 />
             )}
         />
-    );
+    </PanelRow>;
 };
 export default BColor;

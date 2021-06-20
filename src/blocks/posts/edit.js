@@ -194,10 +194,7 @@ const Edit = props => {
                                 </PanelRow>
 
                                 {/* Background Color */}
-                                <PanelRow className='mt-25'>
-                                    <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#f4f2fc' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#f4f2fc' />
 
                                 {/* Padding Top Bottom */}
                                 <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
@@ -208,10 +205,7 @@ const Edit = props => {
                                 <RangeControl value={postTextPLR} onChange={val => setAttributes({ postTextPLR: val })} min={0} max={150} step={1} />
 
                                 {/* Border Color */}
-                                <PanelRow className='mt-25'>
-                                    <Title mt='5px'>{__('Border Color:', 'b-blocks')}</Title>
-                                    <BColor value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#4427a500' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Border Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#4427a500' />
                             </PanelBody>
 
                             {/* Title Settings */}
@@ -221,10 +215,7 @@ const Edit = props => {
                                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={titleFontSize} onChange={val => setAttributes({ titleFontSize: 'undefined' === typeof val ? 20 : val })} />
 
                                 {/* Color */}
-                                <PanelRow className='mt-20p mb-5p'>
-                                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                    <BColor value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 
                                 {/* Margin Bottom */}
                                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -244,22 +235,13 @@ const Edit = props => {
                                 </PanelRow>
 
                                 {/* Text Color */}
-                                <PanelRow className='mt-20p mb-5p'>
-                                    <Title mt='5px'>{__('Text Color:', 'b-blocks')}</Title>
-                                    <BColor value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Text Color:', 'b-blocks')} value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
 
                                 {/* Link Color */}
-                                <PanelRow className='mt-20p mb-5p'>
-                                    <Title mt='5px'>{__('Link Color:', 'b-blocks')}</Title>
-                                    <BColor value={metaLinkColor} onChange={val => setAttributes({ metaLinkColor: val })} defaultColor='#8344c5' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Link Color:', 'b-blocks')} value={metaLinkColor} onChange={val => setAttributes({ metaLinkColor: val })} defaultColor='#8344c5' />
 
                                 {/* Icon Color */}
-                                <PanelRow className='mt-20p mb-5p'>
-                                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                    <BColor value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
 
                                 {/* Margin Bottom */}
                                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -279,10 +261,7 @@ const Edit = props => {
                                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={excerptFontSize} onChange={val => setAttributes({ excerptFontSize: 'undefined' === typeof val ? 15 : val })} />
 
                                 {/* Color */}
-                                <PanelRow className='mt-20p mb-5p'>
-                                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                    <BColor value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
-                                </PanelRow>
+                                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
 
                                 {/* Margin Bottom */}
                                 <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
@@ -314,18 +293,12 @@ const Edit = props => {
                                         return <>
                                             {'normal' == tab.name && <>
                                                 {/* Color */}
-                                                <PanelRow className='mt-20p mb-5p'>
-                                                    <Title mt='5px'>{__('Color:', 'b-blocks')}</Title>
-                                                    <BColor value={readMoreColor} onChange={val => setAttributes({ readMoreColor: val })} defaultColor='#4527a4' />
-                                                </PanelRow>
+                                                <BColor label={__('Color:', 'b-blocks')} value={readMoreColor} onChange={val => setAttributes({ readMoreColor: val })} defaultColor='#4527a4' />
                                             </>}
 
                                             {'hover' == tab.name && <>
                                                 {/* Hover Color */}
-                                                <PanelRow className='mt-20p mb-5p'>
-                                                    <Title mt='5px'>{__('Hover Color:', 'b-blocks')}</Title>
-                                                    <BColor value={readMoreHovColor} onChange={val => setAttributes({ readMoreHovColor: val })} defaultColor='#8344c5' />
-                                                </PanelRow>
+                                                <BColor label={__('Hover Color:', 'b-blocks')} value={readMoreHovColor} onChange={val => setAttributes({ readMoreHovColor: val })} defaultColor='#8344c5' />
                                             </>}
                                         </>
                                     }}

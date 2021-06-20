@@ -13,7 +13,7 @@
 //     return <>
 //         {/* Background */}
 //         <Title>{__('Background Type:', 'b-blocks')}</Title>
-//         <ButtonGroup className='b_blocks_button_groups'>
+//         <ButtonGroup className='bBlocksBtnGroup'>
 //             <Tooltip text={__('Color', 'b-blocks')} position='top'>
 //                 <Button isMedium isPrimary={'color' === BGType} aria-pressed={'color' === BGType} onClick={() => setAttributes({ BGType: 'color' })}>{__('Color', 'b-blocks')}</Button>
 //             </Tooltip>
@@ -27,10 +27,7 @@
 //             </Tooltip>
 //         </ButtonGroup>
 
-//         {'color' === BGType && <PanelRow className='mt-20p mb-5p'>
-//             <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-//             <BColor value={BGColor} onChange={val => setAttributes({ BGColor: val })} defaultColor='#000000b3' />
-//         </PanelRow>}
+//         {'color' === BGType && <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={BGColor} onChange={val => setAttributes({ BGColor: val })} defaultColor='#000000b3' />}
 
 //         {'image' === BGType && <>
 //             <Title>{__('Background Image:', 'b-blocks')}</Title>
@@ -50,10 +47,7 @@
 
 //             <ToggleControl className='mt-20p' label={isBGOpacity ? 'Hide Background Opacity' : 'Show Background Opacity'} checked={isBGOpacity} onChange={val => setAttributes({ isBGOpacity: val })} />
 
-//             {isBGOpacity && <PanelRow className='mb-5p'>
-//                 <Title mt='5px'>{__('Background Opacity Color:', 'b-blocks')}</Title>
-//                 <BColor value={BGOpacityColor} onChange={val => setAttributes({ BGOpacityColor: val })} defaultColor='#000000b3' />
-//             </PanelRow>}
+//             {isBGOpacity && <BColor className='mb-5p' label={__('Background Opacity Color:', 'b-blocks')} value={BGOpacityColor} onChange={val => setAttributes({ BGOpacityColor: val })} defaultColor='#000000b3' />}
 //         </>}
 
 //         {'gradient' === BGType && <>
@@ -67,15 +61,9 @@
 //                 <BtnGroup options={radialType} myValue={BGGradRadialType} setState={val => setAttributes({ BGGradRadialType: val })} />
 //             </PanelRow>}
 
-//             <PanelRow className='mt-20p mb-5p'>
-//                 <Title mt='5px'>{__('First Color:', 'b-blocks')}</Title>
-//                 <BColor value={BGGradFColor} onChange={val => setAttributes({ BGGradFColor: val })} defaultColor='#4527a4' />
-//             </PanelRow>
+//                 <BColor className='mt-20p mb-5p' label={__('First Color:', 'b-blocks')} value={BGGradFColor} onChange={val => setAttributes({ BGGradFColor: val })} defaultColor='#4527a4' />
 
-//             <PanelRow className='mt-20p mb-5p'>
-//                 <Title mt='5px'>{__('First Color:', 'b-blocks')}</Title>
-//                 <BColor value={BGGradSColor} onChange={val => setAttributes({ BGGradSColor: val })} defaultColor='#8344c5' />
-//             </PanelRow>
+//                 <BColor className='mt-20p mb-5p' label={__('Second Color:', 'b-blocks')} value={BGGradSColor} onChange={val => setAttributes({ BGGradSColor: val })} defaultColor='#8344c5' />
 
 //             <Title>{__('First Color Position:', 'b-blocks')}</Title>
 //             <RangeControl value={BGGradFColorPos} onChange={val => setAttributes({ BGGradFColorPos: val })} min={0} max={100} step={1} />

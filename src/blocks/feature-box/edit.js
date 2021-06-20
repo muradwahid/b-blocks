@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
 import { RichText, MediaPlaceholder, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck, InspectorControls, ColorPalette } from '@wordpress/block-editor';
-import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, PanelRow, ToggleControl } from '@wordpress/components';
+import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, ToggleControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
@@ -42,10 +42,7 @@ const Edit = props => {
         <InspectorControls>
             <PanelBody title={__('Content Settings', 'b-blocks')}>
                 {/* Background Color */}
-                <PanelRow>
-                    <Title mt='5px'>{__('Background Color:', 'b-blocks')}</Title>
-                    <BColor value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
-                </PanelRow>
+                <BColor label={__('Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
 
                 {/* Padding Top Bottom */}
                 <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
