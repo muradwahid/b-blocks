@@ -19,7 +19,7 @@ const { fontStyles, textTransforms, textDecorations, allUnits, pxEmRemUnits } = 
 import fontLists from './Helper/fontLists';
 
 const Typography = props => {
-    const { className, label, typography, onChange, defaults } = props;
+    const { className, label = __('Typography:', 'b-blocks'), typography, onChange, defaults = {} } = props;
 
     const defaultVal = { fontFamily: 'Default', fontWeight: 400, fontSize: 15, fontStyle: 'normal', textTransform: 'none', textDecoration: 'auto', lineHeight: '150%', letterSpace: '0px' }
 
@@ -77,7 +77,7 @@ const Typography = props => {
     }, [typography?.fontFamily, typography?.fontWeight, typography?.fontSize, typography?.fontStyle, typography?.textTransform, typography?.textDecoration, typography?.lineHeight, typography?.letterSpace]);
 
     return <PanelRow className={`bBlocksTypo ${className}`}>
-        <Title mt='5px'>{label || __('Typography:', 'b-blocks')}</Title>
+        <Title mt='5px'>{label}</Title>
 
         <Dropdown className='bBlocksTypoContainer' contentClassName='bBlocksTypoPopover' position='bottom right'
             renderToggle={({ isOpen, onToggle }) => <Button icon='admin-customizer' onClick={onToggle} aria-expanded={isOpen} />}

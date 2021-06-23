@@ -14,6 +14,7 @@ import BDevice from '../../GutenComp/BDevice';
 import BtnGroup from '../../GutenComp/BtnGroup';
 import BorderControl from '../../GutenComp/BorderControl';
 import Typography from '../../GutenComp/Typography';
+import SpaceControl from '../../GutenComp/SpaceControl';
 
 // Custom Attributes
 const attributes = {
@@ -28,17 +29,6 @@ const attributes = {
     },
     columnGap: { type: 'number', default: 20 },
     rowGap: { type: 'number', default: 30 },
-
-    descTypo: {
-        type: 'object', default: {
-            fontSize: 18
-        }
-    },
-    titleTypo: {
-        type: 'object', default: {
-            fontFamily: 'Default', fontWeight: 400, fontSize: 22, fontStyle: 'normal', textTransform: 'none', textDecoration: 'auto', lineHeight: '150%', letterSpace: '0px'
-        }
-    },
 }
 
 registerBlockType('b-blocks/cards', {
@@ -56,7 +46,7 @@ registerBlockType('b-blocks/cards', {
     attributes,
 
     edit: props => {
-        const { className, attributes: { columns, columnGap, rowGap, descTypo }, setAttributes, clientId } = props;
+        const { className, attributes: { columns, columnGap, rowGap }, setAttributes, clientId } = props;
 
         // useEffect
         useEffect(() => {
@@ -77,11 +67,11 @@ registerBlockType('b-blocks/cards', {
         const [imgBorder, setImgBorder] = useState(childAttributes?.imgBorder);
         const [isCat, setIsCat] = useState(childAttributes?.isCat);
         const [catTypo, setCatTypo] = useState(childAttributes?.catTypo);
-        const [catMB, setCatMB] = useState(childAttributes?.catMB);
+        const [catMargin, setCatMargin] = useState(childAttributes?.catMargin);
         const [isTitle, setIsTitle] = useState(childAttributes?.isTitle);
         const [titlePos, setTitlePos] = useState(childAttributes?.titlePos);
         const [titleTypo, setTitleTypo] = useState(childAttributes?.titleTypo);
-        const [titleMB, setTitleMB] = useState(childAttributes?.titleMB);
+        const [titleMargin, setTitleMargin] = useState(childAttributes?.titleMargin);
 
         const setChildAttributes = args => innerBlocks.forEach(block => {
             dispatch('core/block-editor').updateBlockAttributes(block.clientId, args);
@@ -103,8 +93,6 @@ registerBlockType('b-blocks/cards', {
                             </Tooltip>
                         </ButtonGroup>
                     </PanelRow>
-
-                    <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 18 }} />
 
                     {/* Columns */}
                     <PanelRow className='mt-20p mb-5p'>
@@ -154,9 +142,8 @@ registerBlockType('b-blocks/cards', {
 
                     <Typography className='mt-20p mb-5p' typography={catTypo} onChange={val => { setChildAttributes({ catTypo: val }); setCatTypo(val); }} defaults={{ fontSize: 15 }} />
 
-                    {/* Margin Bottom */}
-                    <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
-                    <RangeControl value={catMB || childAttributes?.catMB} onChange={val => { setChildAttributes({ catMB: val }); setCatMB(val); }} min={0} max={100} step={1} />
+                    {/* Margin */}
+                    <SpaceControl label={__('Margin:', 'b-blocks')} space={catMargin || childAttributes?.catMargin} onChange={val => { setChildAttributes({ catMargin: val }); setCatMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
                 </PanelBody>
 
                 <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
@@ -173,9 +160,8 @@ registerBlockType('b-blocks/cards', {
 
                     <Typography className='mt-20p mb-5p' typography={titleTypo} onChange={val => { setChildAttributes({ titleTypo: val }); setTitleTypo(val); }} defaults={{ fontSize: 22 }} />
 
-                    {/* Margin Bottom */}
-                    <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
-                    <RangeControl value={titleMB || childAttributes?.titleMB} onChange={val => { setChildAttributes({ titleMB: val }); setTitleMB(val); }} min={0} max={100} step={1} />
+                    {/* Margin */}
+                    <SpaceControl label={__('Margin:', 'b-blocks')} space={titleMargin || childAttributes?.titleMargin} onChange={val => { setChildAttributes({ titleMargin: val }); setTitleMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
                 </PanelBody>
             </InspectorControls>
 
@@ -188,13 +174,8 @@ registerBlockType('b-blocks/cards', {
             <div id={`bBlocksCards-${clientId}`} className={`${className}`}>
                 <style dangerouslySetInnerHTML={{
                     __html: `
-                    @import url('${descTypo?.googleFontLink}');
                     #bBlocksCards-${clientId} .bBlocksCards .block-editor-inner-blocks .block-editor-block-list__layout{
                         grid-gap: ${rowGap}px ${columnGap}px;
-                    }
-
-                    #bBlocksCards-${clientId} .bBlocksCards p{
-                        ${descTypo?.styles}
                     }
                 `}} />
 

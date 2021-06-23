@@ -16,7 +16,7 @@ import options from '../Const/options';
 const { borderStyles, pxPerEmUnits, pxEmUnits, sides } = options;
 
 const BorderControl = props => {
-    const { label = __('Border Settings', 'b-blocks'), border, onChange, defaults } = props;
+    const { label = __('Border Settings', 'b-blocks'), border, onChange, defaults = {} } = props;
 
     const defaultVal = { width: '0px', style: 'solid', color: '#0000', side: 'all', radius: '0px' }
 
