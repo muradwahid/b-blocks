@@ -60,8 +60,7 @@ registerBlockType('b-blocks/cards', {
         const childAttributes = innerBlocks && innerBlocks[0]?.attributes;
         const [layout, setLayout] = useState(childAttributes?.layout);
         const [contentAlign, setContentAlign] = useState(childAttributes?.contentAlign);
-        const [contentPTB, setContentPTB] = useState(childAttributes?.contentPTB);
-        const [contentPLR, setContentPLR] = useState(childAttributes?.contentPLR);
+        const [contentPadding, setContentPadding] = useState(childAttributes?.contentPadding);
         const [imgPos, setImgPos] = useState(childAttributes?.imgPos);
         const [imgHeight, setImgHeight] = useState(childAttributes?.imgHeight);
         const [imgBorder, setImgBorder] = useState(childAttributes?.imgBorder);
@@ -111,13 +110,8 @@ registerBlockType('b-blocks/cards', {
                 </PanelBody>
 
                 <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
-                    {/* Padding Top Bottom */}
-                    <Title mt='0'>{__('Padding Top Bottom:', 'b-blocks')}</Title>
-                    <RangeControl value={contentPTB || childAttributes?.contentPTB} onChange={val => { setChildAttributes({ contentPTB: val }); setContentPTB(val); }} min={0} max={100} step={1} />
-
-                    {/* Padding Left Right */}
-                    <Title>{__('Padding Left Right:', 'b-blocks')}</Title>
-                    <RangeControl value={contentPLR || childAttributes?.contentPLR} onChange={val => { setChildAttributes({ contentPLR: val }); setContentPLR(val); }} min={0} max={100} step={1} />
+                    {/* Padding */}
+                    <SpaceControl label={__('Padding:', 'b-blocks')} space={contentPadding || childAttributes?.contentPadding} onChange={val => { setChildAttributes({ contentPadding: val }); setContentPadding(val); }} defaults={{ vertical: '20px', horizontal: '10px' }} />
                 </PanelBody>
 
                 <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
@@ -181,8 +175,6 @@ registerBlockType('b-blocks/cards', {
 
                 <div className={`bBlocksCards columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     <InnerBlocks allowedBlocks={['b-blocks/card']} template={[['b-blocks/card'], ['b-blocks/card'], ['b-blocks/card']]} />
-
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci, accusantium ex. Perferendis eos explicabo at voluptatem.</p>
                 </div>
             </div>
         </>

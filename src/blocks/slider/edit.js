@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, Dashicon, TextControl, TextareaControl, FontSizePicker, ToggleControl, TabPanel } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel } from '@wordpress/components';
 
 // Swiper JS
 import Swiper from 'swiper/bundle';
@@ -15,13 +15,13 @@ import Swiper from 'swiper/bundle';
 // Variables
 import BColor from '../../GutenComp/BColor';
 import BDevice from '../../GutenComp/BDevice';
-import BtnGroup from '../../GutenComp/BtnGroup';
 import Title from '../../GutenComp/Title';
-import options from '../../Const/options';
-const { fontSizes, sizeTypes } = options;
+import Typography from '../../GutenComp/Typography';
+import BorderControl from '../../GutenComp/BorderControl';
+import SpaceControl from '../../GutenComp/SpaceControl';
 
 const Edit = props => {
-    const { className, attributes: { align, cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageRadius = 50, pageRadiusType = '%', isPrevNext = true, prevNextColor = '#fff', contentAlign, isHead = true, headFontSize, headColor, headMB, isDesc = false, descFontSize, descColor, descMB, isBtn = true, btnFontSize = 16, btnColor = '#fff', btnBGColor = '#ff4500', btnHovColor = '#fff', btnHovBGColor = '#ff7500', btnPTB = 15, btnPLR = 25, btnRadius = 3 }, setAttributes, clientId } = props;
+    const { className, attributes: { align, cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor, titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColor = '#fff', btnBGColor = '#ff4500', btnHovColor = '#fff', btnHovBGColor = '#ff7500', btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } }, setAttributes, clientId } = props;
 
     const [device, setDevice] = useState('desktop');
 
@@ -223,11 +223,7 @@ const Edit = props => {
                     <Title mt='15px' mb='0'>{__('Height:', 'advanced-post-block')}</Title>
                     <RangeControl value={pageHeight} onChange={val => setAttributes({ pageHeight: val })} min={0} max={100} step={1} />
 
-                    <PanelRow className='mt-15'>
-                        <Title mt='0'>{__('Border Radius:', 'advanced-post-block')}</Title>
-                        <BtnGroup options={sizeTypes} myValue={pageRadiusType} setState={val => setAttributes({ pageRadiusType: val })} classes='b_blocks_size_type' size='small' />
-                    </PanelRow>
-                    <RangeControl value={pageRadius} onChange={val => setAttributes({ pageRadius: val })} min={0} max={50} step={1} />
+                    <BorderControl label={__('Pagination Border', 'b-blocks')} border={pageBorder} onChange={val => setAttributes({ pageBorder: val })} defaults={{ radius: '50%' }} />
                 </>}
 
 
@@ -238,42 +234,37 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />
             </PanelBody>
 
-            <PanelBody title={__('TItle Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isHead ? 'Hide Title' : 'Show Title'} checked={isHead} onChange={val => setAttributes({ isHead: val })} />
+            <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+                <ToggleControl label={isTitle ? 'Hide Title' : 'Show Title'} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
-                {/* Font Size */}
-                <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
-                <FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headFontSize} onChange={val => setAttributes({ headFontSize: 'undefined' === typeof val ? 25 : val })} />
+                {/* Typography */}
+                <Typography className='mt-20p mb-5p' typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
                 {/* Color */}
-                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={headColor} onChange={val => setAttributes({ headColor: val })} defaultColor='#fff' />
+                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#fff' />
 
-                {/* Margin Bottom */}
-                <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
-                <RangeControl value={headMB} onChange={val => setAttributes({ headMB: val })} min={0} max={100} step={1} />
+                {/* Margin */}
+                <SpaceControl label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
             </PanelBody>
 
             <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isDesc ? 'Hide Description' : 'Show Description'} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-                {/* Font Size */}
-                <Title>{__('Font Size:', 'b-blocks')}</Title>
-                <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={descFontSize} onChange={val => setAttributes({ descFontSize: 'undefined' === typeof val ? 15 : val })} />
+                {/* Typography */}
+                <Typography className='mt-20p mb-5p' typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
 
                 {/* Color */}
                 <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
 
-                {/* Margin Bottom */}
-                <Title>{__('Margin Bottom:', 'b-blocks')}</Title>
-                <RangeControl value={descMB} onChange={val => setAttributes({ descMB: val })} min={0} max={100} step={1} />
+                {/* Margin */}
+                <SpaceControl label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
             </PanelBody>
 
             <PanelBody title={__('Button Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isBtn ? 'Hide Button' : 'Show Button'} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
-                {/* Font Size */}
-                <Title>{__('Font Size:', 'b-blocks')}</Title>
-                <FontSizePicker fontSizes={fontSizes} fallbackFontSize={16} value={btnFontSize} onChange={val => setAttributes({ btnFontSize: 'undefined' === typeof val ? 16 : val })} />
+                {/* Typography */}
+                <Typography className='mt-20p mb-5p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
                 {/* Colors */}
                 <Title>{__('Colors:', 'b-blocks')}</Title>
@@ -297,18 +288,11 @@ const Edit = props => {
                     </>}
                 </TabPanel>
 
-                {/* Padding Top Bottom */}
-                <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
-                <RangeControl value={btnPTB} onChange={val => setAttributes({ btnPTB: val })} min={0} max={100} step={1} />
-
-                {/* Padding Left Right */}
-                <Title>{__('Padding Left Right:', 'b-blocks')}</Title>
-                <RangeControl value={btnPLR} onChange={val => setAttributes({ btnPLR: val })} min={0} max={100} step={1} />
-
-                {/* Border Radius */}
-                <Title>{__('Border Radius:', 'b-blocks')}</Title>
-                <RangeControl value={btnRadius} onChange={val => setAttributes({ btnRadius: val })} min={0} max={50} step={1} />
+                {/* Padding */}
+                <SpaceControl label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
             </PanelBody>
+
+            <BorderControl label={__('Button Border', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
         </InspectorControls>
 
 
@@ -322,17 +306,60 @@ const Edit = props => {
 
 
         <div className={`${className} bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`}>
+
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @import url(${titleTypo?.googleFontLink});
+                @import url(${descTypo?.googleFontLink});
+                @import url(${btnTypo?.googleFontLink});
+
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderTitle{
+                    color: ${titleColor};
+                    ${titleTypo?.styles || 'font-size: 25px;'}
+                    margin: ${titleMargin?.styles || '0 0 15px 0'};
+                }
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderDescription{
+                    color: ${descColor};
+                    ${descTypo?.styles || 'font-size: 15px;'}
+                    margin: ${descMargin?.styles || '0 0 15px 0'};
+                }
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn{
+                    color: ${btnColor};
+                    background-color: ${btnBGColor};
+                    ${btnTypo?.styles || 'font-size: 16px;'}
+                    padding: ${btnPadding?.styles || '12px 35px'};
+                    ${btnBorder?.styles || 'border-radius: 3px;'}
+                }
+
+                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{
+                    background: ${pageColor};
+                    width: ${pageWidth}px;
+                    height: ${pageHeight}px;
+                    ${pageBorder?.styles || 'border-radius: 50%;'}
+                }
+                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet:focus{outline: 0;}
+                
+                #bBlocksSlider-${cId} .slider .swiper-button-prev, .swiper-button-next{color: ${prevNextColor};}
+            `}} />
+
             <div className='slider'>
                 <div className='swiper-wrapper'>
                     {slides.map((item, index) => {
                         const { img, title, description, btnText = 'Click Me', btnLink = '#' } = item;
 
-                        return <div key={index} className={`swiper-slide`} style={{ background: `url(${img}) center center / cover no-repeat ${BGOverlayColor}` }}>
-                            <div className={`sliderContent text-${contentAlign}`}>
-                                {isHead && title && <h2 className={`sliderTitle fontSize-${headFontSize} mb-${headMB}`} style={{ color: headColor }}>{title}</h2>}
-                                {isDesc && description && <p className={`sliderDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }}>{description}</p>}
+                        return <div key={index} className={`bBlocksSlide bBlocksSlide-${index + 1} swiper-slide`}>
+                            <style dangerouslySetInnerHTML={{
+                                __html: `
+                                #bBlocksSlider-${cId} .slider .bBlocksSlide-${index + 1}{
+                                    background: url(${img}) center center / cover no-repeat ${BGOverlayColor};
+                                }
+                            `}} />
 
-                                {isBtn && btnText && <a href={btnLink} className={`sliderBtn fontSize-${btnFontSize} ptb-${btnPTB} plr-${btnPLR} radius-${btnRadius}-px`} style={{ color: btnColor, backgroundColor: btnBGColor }} onMouseEnter={btnHov} onMouseLeave={btnHovLeave} target='_blank' rel='noreferrer noopener'>{btnText}</a>}
+                            <div className={`sliderContent text-${contentAlign}`}>
+                                {isTitle && title && <h2 className='sliderTitle'>{title}</h2>}
+                                {isDesc && description && <p className='sliderDescription'>{description}</p>}
+
+                                {isBtn && btnText && <a href={btnLink} className='sliderBtn' onMouseEnter={btnHov} onMouseLeave={btnHovLeave} target='_blank' rel='noreferrer noopener'>{btnText}</a>}
                             </div>
                         </div>
                     })}
@@ -345,23 +372,6 @@ const Edit = props => {
                     <div className='swiper-button-next'></div>
                 </>}
             </div>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `                    
-                    #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{
-                        background: ${pageColor};
-                        width: ${pageWidth}px;
-                        height: ${pageHeight}px;
-                        border-radius: ${pageRadius}${pageRadiusType};
-                    }
-                    #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet:focus{
-                        outline: 0;
-                    }
-                    
-                    #bBlocksSlider-${cId} .slider .swiper-button-prev, .swiper-button-next{
-                        color: ${prevNextColor};
-                    }
-                `}} />
         </div>
     </>
 };

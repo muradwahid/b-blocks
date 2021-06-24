@@ -24,6 +24,12 @@ const attributes = {
     contentBGColor: { type: 'string', default: '#ffffff00' },
     contentPTB: { type: 'number', default: 20 },
     contentPLR: { type: 'number', default: 10 },
+    contentPadding: {
+        type: 'object', default: {
+            vertical: '20px',
+            horizontal: '10px'
+        }
+    },
 
     imgId: { type: 'number' },
     imgUrl: { type: 'string', source: 'attribute', selector: '.cardImage img', attribute: 'src' },
@@ -85,7 +91,7 @@ registerBlockType('b-blocks/card', {
     edit: Edit,
 
     save: props => {
-        const { cId, layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPTB = 20, contentPLR = 10, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { width: '0px', style: 'solid', color: '#00000000', radius: '5px' }, isCat = true, cat = 'Category', catTypo = { fontSize: 15 }, catColor = '#0dcaf0', catMargin = { bottom: '10px' }, isTitle = true, title = 'Card Title', titlePos = 'image', titleTypo = { fontSize: 22 }, titleColor = '#ff7500', titleMargin = { bottom: '10px' } } = props.attributes;
+        const { cId, layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPadding = { vertical: '20px', horizontal: '10px' }, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { radius: '5px' }, isCat = true, cat = 'Category', catTypo = { fontSize: 15 }, catColor = '#0dcaf0', catMargin = { bottom: '10px' }, isTitle = true, title = 'Card Title', titlePos = 'image', titleTypo = { fontSize: 22 }, titleColor = '#ff7500', titleMargin = { bottom: '10px' } } = props.attributes;
 
         const cardTitle = () => isTitle && title && <RichText.Content className='cardTitle' tagName='h3' value={title} />;
 
@@ -98,15 +104,26 @@ registerBlockType('b-blocks/card', {
         return <div id={`bBlocksCard-${cId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
-                    #bBlocksCard-${cId} .bBlocksCard{ background-color: ${contentBGColor}; }
-                    #bBlocksCard-${cId} .bBlocksCard .cardImage{
-                        ${imgBorder?.styles}
-                    }
-                    #bBlocksCard-${cId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
-                    #bBlocksCard-${cId} .bBlocksCard .cardDetails{ padding: ${contentPTB}px ${contentPLR}px; }
-                    #bBlocksCard-${cId} .bBlocksCard .cardDetails .cardCategory{ color: ${catColor}; ${catTypo?.styles} margin: ${catMargin?.styles}; }
-                    #bBlocksCard-${cId} .bBlocksCard .cardTitle{ color: ${titleColor}; ${titleTypo?.styles} margin: ${titleMargin?.styles}; }
-                `}} />
+                @import url(${catTypo?.googleFontLink});
+                @import url(${titleTypo?.googleFontLink});
+
+                #bBlocksCard-${cId} .bBlocksCard{ background-color: ${contentBGColor}; }
+                
+                #bBlocksCard-${cId} .bBlocksCard .cardImage{${imgBorder?.styles || 'border-radius: 5px;'}}
+                #bBlocksCard-${cId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
+
+                #bBlocksCard-${cId} .bBlocksCard .cardDetails{ padding: ${contentPadding?.styles || '20px 10px'}; }
+                #bBlocksCard-${cId} .bBlocksCard .cardDetails .cardCategory{
+                    color: ${catColor};
+                    ${catTypo?.styles || 'font-size: 15px;'}
+                    margin: ${catMargin?.styles || 'margin: 0 0 10px 0'};
+                }
+                #bBlocksCard-${cId} .bBlocksCard .cardTitle{
+                    color: ${titleColor};
+                    ${titleTypo?.styles || 'font-size: 22px;'}
+                    margin: ${titleMargin?.styles || 'margin: 0 0 10px 0'};
+                }
+            `}} />
 
             <div className={`bBlocksCard ${'horizontal' === layout ? 'horizontal' : 'vertical'} ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
                 {'top' === imgPos && cardImage()}

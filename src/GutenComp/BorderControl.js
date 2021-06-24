@@ -23,19 +23,22 @@ const BorderControl = props => {
     const setDefault = property => onChange({ ...border, [property]: defaults[property] || defaultVal[property] });
 
     // Add styles and google font to border
+    const widthCondition = border?.width === '0px' || !border?.width;
     const borderSideCheck = (side) => {
         const bSide = border?.side?.toLowerCase();
         return bSide?.includes('all') || bSide?.includes(side);
     }
     const borderCSS = `${border?.width} ${border?.style} ${border?.color}`;
     useEffect(() => {
-        const allStyles = `${border?.width === '0px' ? '' : borderSideCheck('top') ? `border-top: ${borderCSS};` : ''}
-        ${border?.width === '0px' ? '' : borderSideCheck('right') ? `border-right: ${borderCSS};` : ''}
-        ${border?.width === '0px' ? '' : borderSideCheck('bottom') ? `border-bottom: ${borderCSS};` : ''}
-        ${border?.width === '0px' ? '' : borderSideCheck('left') ? `border-left: ${borderCSS};` : ''}
-        ${border?.radius === '0px' ? '' : `border-radius: ${border?.radius};`}`
+        const allStyles = `${widthCondition ? '' : borderSideCheck('top') ? `border-top: ${borderCSS};` : ''}
+        ${widthCondition ? '' : borderSideCheck('right') ? `border-right: ${borderCSS};` : ''}
+        ${widthCondition ? '' : borderSideCheck('bottom') ? `border-bottom: ${borderCSS};` : ''}
+        ${widthCondition ? '' : borderSideCheck('left') ? `border-left: ${borderCSS};` : ''}
+        ${border?.radius === '0px' || border?.radius === '0%' || !border?.radius ? '' : `border-radius: ${border?.radius};`}`
 
-        onChange({ ...border, ['styles']: allStyles.replace(/\s+/g, ' ').trim() });
+        const initialObj = { 'width': border?.width || defaultVal.width, 'style': border?.style || defaultVal.style, 'color': border?.color || defaultVal.color, 'side': border?.side || defaultVal.side, 'radius': border?.radius || defaultVal.radius }
+
+        onChange({ ...border, ...initialObj, ['styles']: allStyles.replace(/\s+/g, ' ').trim() });
     }, [border?.width, border?.style, border?.color, border?.side, border?.radius]);
 
     return (
@@ -43,14 +46,14 @@ const BorderControl = props => {
             {/* Width */}
             <PanelRow>
                 <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={border?.width || '0px'} onChange={val => onChange({ ...border, ['width']: val })} units={pxEmUnits} />
-                {border?.width && border?.width !== (defaults?.width || defaultVal?.width) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('width')} />}
+                {border?.width && border?.width !== (defaults?.width || defaultVal.width) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('width')} />}
             </PanelRow>
 
             {/* Style */}
             <PanelRow className='mt-20p mb-5p'>
                 <Title mt='0' mb='0'>{__('Style:', 'b-blocks')}</Title>
                 <SelectControl value={border?.style || 'solid'} onChange={val => onChange({ ...border, ['style']: val })} options={borderStyles} />
-                {border?.style && border?.style !== (defaults?.style || defaultVal?.style) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('style')} />}
+                {border?.style && border?.style !== (defaults?.style || defaultVal.style) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('style')} />}
             </PanelRow>
 
             {/* Color */}
@@ -60,13 +63,13 @@ const BorderControl = props => {
             <PanelRow className='mt-20p mb-5p'>
                 <Title mt='0' mb='0'>{__('Sides:', 'b-blocks')}</Title>
                 <SelectControl value={border?.side || 'all'} onChange={val => onChange({ ...border, ['side']: val })} options={sides} />
-                {border?.side && border?.side !== (defaults?.side || defaultVal?.side) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('side')} />}
+                {border?.side && border?.side !== (defaults?.side || defaultVal.side) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('side')} />}
             </PanelRow>
 
             {/* Radius */}
             <PanelRow className='mt-20p mb-5p'>
                 <UnitControl label={__('Radius:', 'b-blocks')} labelPosition='left' value={border?.radius || '0px'} onChange={val => onChange({ ...border, ['radius']: val })} units={pxPerEmUnits} />
-                {border?.radius && border?.radius !== (defaults?.radius || defaultVal?.radius) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('radius')} />}
+                {border?.radius && border?.radius !== (defaults?.radius || defaultVal.radius) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('radius')} />}
             </PanelRow>
         </PanelBody>
     );

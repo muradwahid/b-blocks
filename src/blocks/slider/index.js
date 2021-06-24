@@ -1,6 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
-import { RichText } from '@wordpress/block-editor';
 
 import Edit from './edit';
 
@@ -11,119 +10,7 @@ import './editor.scss';
 import icons from '../../Const/icons';
 
 // Deprecated
-const v1 = {
-    supports: {
-        align: ['center', 'wide', 'full']
-    },
-
-    attributes: {
-        align: { type: 'string', default: 'center' },
-        cId: { type: 'string' },
-
-        slides: { type: 'array' },
-
-        sliderWidth: { type: 'number', default: 100 },
-        sliderWidthType: { type: 'string', default: '%' },
-        sliderHeight: { type: 'number', default: 350 },
-        BGOverlayColor: { type: 'string', default: '#4527a4' },
-        BGOverlayOpacity: { type: 'number', default: .4 },
-        slideInterval: { type: 'number', default: 3 },
-        slideFade: { type: 'boolean', default: false },
-
-        contentAlign: { type: 'string', default: 'center' },
-
-        headTag: { type: 'string', default: 'h2' },
-        headColor: { type: 'string', default: '#fff' },
-        headFontSize: { type: 'number', default: 25 },
-        headMB: { type: 'number', default: 15 },
-
-        descColor: { type: 'string', default: '#fff' },
-        descFontSize: { type: 'number', default: 15 },
-        descMB: { type: 'number', default: 15 },
-
-        indicatorColor: { type: 'string', default: '#fff' },
-        indicatorWidth: { type: 'number', default: 15 },
-        indicatorHeight: { type: 'number', default: 15 },
-        indicatorRadius: { type: 'number', default: 50 },
-        indicatorRadiusType: { type: 'string', default: '%' }
-    },
-
-    save: props => {
-        const { cId, slides, sliderWidth, sliderWidthType, sliderHeight, BGOverlayColor, BGOverlayOpacity, slideInterval, slideFade, contentAlign, headTag, headColor, headFontSize, headMB, descColor, descFontSize, descMB, indicatorColor, indicatorWidth, indicatorHeight, indicatorRadius, indicatorRadiusType } = props.attributes;
-
-        // Styles
-        const sliderStyle = { width: `${sliderWidth}${sliderWidthType}` }
-
-        const slideItemStyle = { position: 'relative', minHeight: `${sliderHeight < 250 ? sliderHeight : 250}px`, height: `${sliderHeight}px` }
-
-        const overlayOpacityStyle = { position: 'absolute', width: '100%', height: '100%', left: 0, right: 0, backgroundColor: BGOverlayColor, opacity: BGOverlayOpacity };
-
-        const captionStyle = { textAlign: contentAlign, bottom: '60px' }
-
-        const sliderIndicatorsStyle = { backgroundColor: indicatorColor, width: `${indicatorWidth}px`, height: `${indicatorHeight}px`, borderRadius: `${indicatorRadius}${indicatorRadiusType}` }
-
-        // Components
-        const slideIndicators = value => {
-            return (
-                value && value.sort((a, b) => a.index - b.index).map(slide => {
-                    const { index } = slide;
-                    const active = index == 0 ? true : false;
-
-                    return (
-                        <li key={slide.index} data-target={`#bBlocksSlider-${cId}`} data-slide-to={index} className={active ? 'active' : ''} style={sliderIndicatorsStyle}></li>
-                    );
-                })
-            );
-        }
-
-        const slideItem = value => {
-            return (
-                value && value.sort((a, b) => a.index - b.index).map(slide => {
-                    const { index, img, title, description } = slide;
-                    const active = index == 0 ? true : false;
-
-                    return (
-                        <div key={slide.index} className={`carousel-item ${active ? 'active' : ''}`} data-interval={slideInterval * 1000} style={slideItemStyle}>
-                            <div style={overlayOpacityStyle}></div>
-
-                            {img && <img src={img} className="w-100" alt="" />}
-
-                            <div className="carousel-caption d-none d-md-block" style={captionStyle}>
-                                <RichText.Content tagName={headTag} value={title} style={{ color: headColor, fontSize: `${headFontSize}px`, margin: `0 0 ${headMB}px 0` }} />
-                                <RichText.Content tagName="p" value={description} style={{ color: descColor, fontSize: `${descFontSize}px`, margin: `0 0 ${descMB}px 0` }} />
-                            </div>
-                        </div>
-                    );
-                })
-            );
-        }
-
-
-        return (
-            <div className="b_blocks_slider" style={{ textAlign: 'inherit' }}>
-                <div id={`bBlocksSlider-${cId}`} className={`carousel slide ${slideFade ? 'carousel-fade' : ''}`} data-ride="carousel" style={sliderStyle}>
-                    <ol className="carousel-indicators" style={{ margin: '0 0 25px 0', padding: 0, listStyleType: 'none' }}>
-                        {slideIndicators(slides)}
-                    </ol>
-
-                    <div className="carousel-inner">
-                        {slideItem(slides)}
-                    </div>
-
-                    <a className="carousel-control-prev" href={`#bBlocksSlider-${cId}`} role="button" data-slide="prev" style={{ width: '75px' }}>
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="sr-only">{__('Previous', 'b-blocks')}</span>
-                    </a>
-                    <a className="carousel-control-next" href={`#bBlocksSlider-${cId}`} role="button" data-slide="next" style={{ width: '75px' }}>
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="sr-only">{__('Next', 'b-blocks')}</span>
-                    </a>
-                </div>
-            </div>
-        )
-    }
-}
-const deprecated = [v1];
+import deprecated from './deprecated';
 
 // Custom Attributes
 const attributes = {
@@ -148,32 +35,63 @@ const attributes = {
     pageColor: { type: 'string', default: '#fff' },
     pageWidth: { type: 'number', default: 15 },
     pageHeight: { type: 'number', default: 15 },
-    pageRadius: { type: 'number', default: 50 },
-    pageRadiusType: { type: 'string', default: '%' },
+    pageBorder: {
+        type: 'object', default: {
+            radius: '50%'
+        }
+    },
     isPrevNext: { type: 'boolean', default: true },
     prevNextColor: { type: 'string', default: '#fff' },
 
     contentAlign: { type: 'string', default: 'center' },
 
-    isHead: { type: 'boolean', default: true },
-    headFontSize: { type: 'number', default: 25 },
-    headColor: { type: 'string', default: '#fff' },
-    headMB: { type: 'number', default: 15 },
+    isTitle: { type: 'boolean', default: true },
+    titleTypo: {
+        type: 'object', default: {
+            fontSize: 25
+        }
+    },
+    titleColor: { type: 'string', default: '#fff' },
+    titleMargin: {
+        type: 'object', default: {
+            bottom: '15px'
+        }
+    },
 
     isDesc: { type: 'boolean', default: true },
-    descFontSize: { type: 'number', default: 15 },
+    descTypo: {
+        type: 'object', default: {
+            fontSize: 15
+        }
+    },
     descColor: { type: 'string', default: '#fff' },
-    descMB: { type: 'number', default: 15 },
+    descMargin: {
+        type: 'object', default: {
+            bottom: '15px'
+        }
+    },
 
     isBtn: { type: 'boolean', default: true },
-    btnFontSize: { type: 'number', default: 16 },
+    btnTypo: {
+        type: 'object', default: {
+            fontSize: 16
+        }
+    },
     btnColor: { type: 'string', default: '#fff' },
     btnBGColor: { type: 'string', default: '#ff4500' },
     btnHovColor: { type: 'string', default: '#fff' },
     btnHovBGColor: { type: 'string', default: '#ff7500' },
-    btnPTB: { type: 'number', default: 15 },
-    btnPLR: { type: 'number', default: 25 },
-    btnRadius: { type: 'number', default: 3 },
+    btnPadding: {
+        type: 'object', default: {
+            vertical: '12px',
+            horizontal: '35px'
+        }
+    },
+    btnBorder: {
+        type: 'object', default: {
+            radius: '3px'
+        }
+    }
 }
 
 registerBlockType('b-blocks/slider', {
@@ -193,21 +111,63 @@ registerBlockType('b-blocks/slider', {
     edit: Edit,
 
     save: props => {
-        const { cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageRadius = 50, pageRadiusType = '%', isPrevNext = true, prevNextColor = '#fff', contentAlign, isHead = true, headFontSize, headColor, headMB, isDesc = false, descFontSize, descColor, descMB, isBtn = true, btnFontSize = 16, btnColor = '#fff', btnBGColor = '#ff4500', btnHovColor = '#fff', btnHovBGColor = '#ff7500', btnPTB = 15, btnPLR = 25, btnRadius = 3 } = props.attributes;
+        const { cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor = '#fff', titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColor = '#fff', btnBGColor = '#ff4500', btnHovColor = '#fff', btnHovBGColor = '#ff7500', btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } } = props.attributes;
 
         return <div className={`bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`} data-swiper={`{"columns": ${JSON.stringify(columns)}, "columnGap": ${columnGap}, "isLoop": ${isLoop}, "isAutoplay": ${isAutoplay}, "speed": ${speed}, "isFade": ${isFade}, "isTouchMove": ${isTouchMove}, "isPageClickable": ${isPageClickable}, "isPageDynamic": ${isPageDynamic}}`} data-colors={`{"btnColor": "${btnColor}", "btnBGColor": "${btnBGColor}", "btnHovColor": "${btnHovColor}", "btnHovBGColor": "${btnHovBGColor}"}`}>
+
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @import url(${titleTypo?.googleFontLink});
+                @import url(${descTypo?.googleFontLink});
+                @import url(${btnTypo?.googleFontLink});
+
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderTitle{
+                    color: ${titleColor};
+                    ${titleTypo?.styles || 'font-size: 25px;'}
+                    margin: ${titleMargin?.styles || '0 0 15px 0'};
+                }
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderDescription{
+                    color: ${descColor};
+                    ${descTypo?.styles || 'font-size: 15px;'}
+                    margin: ${descMargin?.styles || '0 0 15px 0'};
+                }
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn{
+                    color: ${btnColor};
+                    background-color: ${btnBGColor};
+                    ${btnTypo?.styles || 'font-size: 16px;'};
+                    padding: ${btnPadding?.styles || '12px 35px'};
+                    ${btnBorder?.styles || 'border-radius: 3px;'}
+                }
+
+                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{
+                    background: ${pageColor};
+                    width: ${pageWidth}px;
+                    height: ${pageHeight}px;
+                    ${pageBorder?.styles || 'border-radius: 50%;'}
+                }
+                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet:focus{outline: 0;}
+
+                #bBlocksSlider-${cId} .slider .swiper-button-prev, .swiper-button-next{color: ${prevNextColor};}
+            `}} />
 
             <div className='slider'>
                 <div className='swiper-wrapper'>
                     {slides.map((item, index) => {
                         const { img, title, description, btnText = 'Click Me', btnLink = '#' } = item;
 
-                        return <div key={index} className={`swiper-slide`} style={{ background: `url(${img}) center center / cover no-repeat ${BGOverlayColor}` }}>
-                            <div className={`sliderContent text-${contentAlign}`}>
-                                {isHead && title && <h2 className={`sliderTitle fontSize-${headFontSize} mb-${headMB}`} style={{ color: headColor }}>{title}</h2>}
-                                {isDesc && description && <p className={`sliderDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }}>{description}</p>}
+                        return <div key={index} className={`bBlocksSlide bBlocksSlide-${index + 1} swiper-slide`}>
+                            <style dangerouslySetInnerHTML={{
+                                __html: `
+                                #bBlocksSlider-${cId} .slider .bBlocksSlide-${index + 1}{
+                                    background: url(${img}) center center / cover no-repeat ${BGOverlayColor};
+                                }
+                            `}} />
 
-                                {isBtn && btnText && <a href={btnLink} className={`sliderBtn fontSize-${btnFontSize} ptb-${btnPTB} plr-${btnPLR} radius-${btnRadius}-px`} style={{ color: btnColor, backgroundColor: btnBGColor }} target='_blank' rel='noreferrer noopener'>{btnText}</a>}
+                            <div className={`sliderContent text-${contentAlign}`}>
+                                {isTitle && title && <h2 className='sliderTitle'>{title}</h2>}
+                                {isDesc && description && <p className='sliderDescription'>{description}</p>}
+
+                                {isBtn && btnText && <a href={btnLink} className='sliderBtn' target='_blank' rel='noreferrer noopener'>{btnText}</a>}
                             </div>
                         </div>
                     })}
@@ -222,23 +182,6 @@ registerBlockType('b-blocks/slider', {
                     <div className='swiper-button-next'></div>
                 </>}
             </div>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `                    
-                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{
-                    background: ${pageColor};
-                    width: ${pageWidth}px;
-                    height: ${pageHeight}px;
-                    border-radius: ${pageRadius}${pageRadiusType};
-                }
-                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet:focus{
-                    outline: 0;
-                }
-                
-                #bBlocksSlider-${cId} .slider .swiper-button-prev, .swiper-button-next{
-                    color: ${prevNextColor};
-                }
-            `}} />
         </div>;
     },
 

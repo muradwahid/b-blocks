@@ -10,7 +10,7 @@ import Title from '../../GutenComp/Title';
 import BColor from '../../GutenComp/BColor';
 
 const Edit = props => {
-    const { className, attributes: { layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPTB = 20, contentPLR = 10, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { width: '0px', style: 'solid', color: '#00000000', radius: '5px' }, isCat = true, cat = 'Category', catTypo = { fontSize: 15 }, catColor = '#0dcaf0', catMargin = { bottom: '10px' }, isTitle = true, title = 'Card Title', titlePos = 'image', titleTypo = { fontSize: 22 }, titleColor = '#ff7500', titleMargin = { bottom: '10px' } }, setAttributes, clientId, noticeOperations, noticeUI, image, imageSizes } = props;
+    const { className, attributes: { layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPadding = { vertical: '20px', horizontal: '10px' }, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { radius: '5px' }, isCat = true, cat = 'Category', catTypo = { fontSize: 15 }, catColor = '#0dcaf0', catMargin = { bottom: '10px' }, isTitle = true, title = 'Card Title', titlePos = 'image', titleTypo = { fontSize: 22 }, titleColor = '#ff7500', titleMargin = { bottom: '10px' } }, setAttributes, clientId, noticeOperations, noticeUI, image, imageSizes } = props;
 
     // useEffect
     useEffect(() => {
@@ -94,15 +94,26 @@ const Edit = props => {
         <div id={`bBlocksCard-${clientId}`} className={className}>
             <style dangerouslySetInnerHTML={{
                 __html: `
-                    #bBlocksCard-${clientId} .bBlocksCard{ background-color: ${contentBGColor}; }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardImage{
-                        ${imgBorder?.styles}
-                    }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardDetails{ padding: ${contentPTB}px ${contentPLR}px; }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardDetails .cardCategory{ color: ${catColor}; ${catTypo?.styles} margin: ${catMargin?.styles}; }
-                    #bBlocksCard-${clientId} .bBlocksCard .cardTitle{ color: ${titleColor}; ${titleTypo?.styles} margin: ${titleMargin?.styles}; }
-                `}} />
+                @import url(${catTypo?.googleFontLink});
+                @import url(${titleTypo?.googleFontLink});
+
+                #bBlocksCard-${clientId} .bBlocksCard{ background-color: ${contentBGColor}; }
+
+                #bBlocksCard-${clientId} .bBlocksCard .cardImage{${imgBorder?.styles || 'border-radius: 5px;'}}
+                #bBlocksCard-${clientId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
+
+                #bBlocksCard-${clientId} .bBlocksCard .cardDetails{ padding: ${contentPadding?.styles || '20px 10px'}; }
+                #bBlocksCard-${clientId} .bBlocksCard .cardDetails .cardCategory{
+                    color: ${catColor};
+                    ${catTypo?.styles || 'font-size: 15px;'}
+                    margin: ${catMargin?.styles || 'margin: 0 0 10px 0'};
+                }
+                #bBlocksCard-${clientId} .bBlocksCard .cardTitle{
+                    color: ${titleColor};
+                    ${titleTypo?.styles || 'font-size: 22px;'}
+                    margin: ${titleMargin?.styles || 'margin: 0 0 10px 0'};
+                }
+            `}} />
 
             <div className={`bBlocksCard ${'horizontal' === layout ? 'horizontal' : 'vertical'} ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
                 {'top' === imgPos && cardImage()}
