@@ -138,7 +138,7 @@ export default withSelect((select, props) => {
     // const { getBlockRootClientId, getBlock, } = select('core/block-editor');
     // const rootClientId = getBlockRootClientId(props.clientId);
     // const rootBlock = getBlock(rootClientId);
-    // const { attributes: { layout, contentPTB, contentPLR, imgHeight, imgPos, imgBorder, catFontSize, catMB, titlePos, titleFontSize, titleMB } } = rootBlock;
+    // const { attributes: {} } = rootBlock;
 
     return {
         image: imgId ? select('core').getMedia(imgId) : null,

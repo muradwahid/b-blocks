@@ -218,6 +218,31 @@ $secondaryColor: #8344c5;
     }
 }
 
+// Gradient Control
+.components-circular-option-picker{
+    .components-circular-option-picker__swatches{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 0;
+
+        .components-circular-option-picker__option-wrapper{
+            margin: 0 !important;
+        }
+    }
+
+    .components-custom-gradient-picker{
+        .components-custom-gradient-picker__gradient-bar{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .components-custom-gradient-picker__ui-line{
+            margin-bottom: 0;
+        }
+    }
+}
+
 // Size Type
 .bBlocksSizeType{
     margin: 0;

@@ -35,63 +35,28 @@ const attributes = {
     pageColor: { type: 'string', default: '#fff' },
     pageWidth: { type: 'number', default: 15 },
     pageHeight: { type: 'number', default: 15 },
-    pageBorder: {
-        type: 'object', default: {
-            radius: '50%'
-        }
-    },
+    pageBorder: { type: 'object', default: { radius: '50%' } },
     isPrevNext: { type: 'boolean', default: true },
     prevNextColor: { type: 'string', default: '#fff' },
 
     contentAlign: { type: 'string', default: 'center' },
 
     isTitle: { type: 'boolean', default: true },
-    titleTypo: {
-        type: 'object', default: {
-            fontSize: 25
-        }
-    },
+    titleTypo: { type: 'object', default: { fontSize: 25 } },
     titleColor: { type: 'string', default: '#fff' },
-    titleMargin: {
-        type: 'object', default: {
-            bottom: '15px'
-        }
-    },
+    titleMargin: { type: 'object', default: { bottom: '15px' } },
 
     isDesc: { type: 'boolean', default: true },
-    descTypo: {
-        type: 'object', default: {
-            fontSize: 15
-        }
-    },
+    descTypo: { type: 'object', default: { fontSize: 15 } },
     descColor: { type: 'string', default: '#fff' },
-    descMargin: {
-        type: 'object', default: {
-            bottom: '15px'
-        }
-    },
+    descMargin: { type: 'object', default: { bottom: '15px' } },
 
     isBtn: { type: 'boolean', default: true },
-    btnTypo: {
-        type: 'object', default: {
-            fontSize: 16
-        }
-    },
-    btnColor: { type: 'string', default: '#fff' },
-    btnBGColor: { type: 'string', default: '#ff4500' },
-    btnHovColor: { type: 'string', default: '#fff' },
-    btnHovBGColor: { type: 'string', default: '#ff7500' },
-    btnPadding: {
-        type: 'object', default: {
-            vertical: '12px',
-            horizontal: '35px'
-        }
-    },
-    btnBorder: {
-        type: 'object', default: {
-            radius: '3px'
-        }
-    }
+    btnTypo: { type: 'object', default: { fontSize: 16 } },
+    btnColors: { type: 'object', default: { color: '#fff', bg: '#ff4500' } },
+    btnHovColors: { type: 'object', default: { color: '#fff', bg: '#ff7500' } },
+    btnPadding: { type: 'object', default: { vertical: '12px', horizontal: '35px' } },
+    btnBorder: { type: 'object', default: { radius: '3px' } }
 }
 
 registerBlockType('b-blocks/slider', {
@@ -111,9 +76,9 @@ registerBlockType('b-blocks/slider', {
     edit: Edit,
 
     save: props => {
-        const { cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor = '#fff', titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColor = '#fff', btnBGColor = '#ff4500', btnHovColor = '#fff', btnHovBGColor = '#ff7500', btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } } = props.attributes;
+        const { cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor = '#fff', titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColors = { color: '#fff', bg: '#ff4500' }, btnHovColors = { color: '#fff', bg: '#ff7500' }, btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } } = props.attributes;
 
-        return <div className={`bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`} data-swiper={`{"columns": ${JSON.stringify(columns)}, "columnGap": ${columnGap}, "isLoop": ${isLoop}, "isAutoplay": ${isAutoplay}, "speed": ${speed}, "isFade": ${isFade}, "isTouchMove": ${isTouchMove}, "isPageClickable": ${isPageClickable}, "isPageDynamic": ${isPageDynamic}}`} data-colors={`{"btnColor": "${btnColor}", "btnBGColor": "${btnBGColor}", "btnHovColor": "${btnHovColor}", "btnHovBGColor": "${btnHovBGColor}"}`}>
+        return <div className={`bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`} data-swiper={`{"columns": ${JSON.stringify(columns)}, "columnGap": ${columnGap}, "isLoop": ${isLoop}, "isAutoplay": ${isAutoplay}, "speed": ${speed}, "isFade": ${isFade}, "isTouchMove": ${isTouchMove}, "isPageClickable": ${isPageClickable}, "isPageDynamic": ${isPageDynamic}}`}>
 
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -132,11 +97,13 @@ registerBlockType('b-blocks/slider', {
                     margin: ${descMargin?.styles || '0 0 15px 0'};
                 }
                 #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn{
-                    color: ${btnColor};
-                    background-color: ${btnBGColor};
+                    ${btnColors?.styles || 'color: #fff; background: #ff4500;'}
                     ${btnTypo?.styles || 'font-size: 16px;'};
                     padding: ${btnPadding?.styles || '12px 35px'};
                     ${btnBorder?.styles || 'border-radius: 3px;'}
+                }
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn:hover{
+                    ${btnHovColors?.styles || 'color: #fff; background: #ff7500;'}
                 }
 
                 #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{

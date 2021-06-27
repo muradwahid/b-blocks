@@ -22,8 +22,6 @@ const attributes = {
 
     contentAlign: { type: 'string', default: 'left' },
     contentBGColor: { type: 'string', default: '#ffffff00' },
-    contentPTB: { type: 'number', default: 20 },
-    contentPLR: { type: 'number', default: 10 },
     contentPadding: {
         type: 'object', default: {
             vertical: '20px',

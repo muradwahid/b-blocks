@@ -15,6 +15,7 @@ import BtnGroup from '../../GutenComp/BtnGroup';
 import BorderControl from '../../GutenComp/BorderControl';
 import Typography from '../../GutenComp/Typography';
 import SpaceControl from '../../GutenComp/SpaceControl';
+import ColorsControl from '../../GutenComp/ColorsControl';
 
 // Custom Attributes
 const attributes = {
@@ -29,6 +30,10 @@ const attributes = {
     },
     columnGap: { type: 'number', default: 20 },
     rowGap: { type: 'number', default: 30 },
+
+    colors: {
+        type: 'object', default: {}
+    }
 }
 
 registerBlockType('b-blocks/cards', {
@@ -46,7 +51,7 @@ registerBlockType('b-blocks/cards', {
     attributes,
 
     edit: props => {
-        const { className, attributes: { columns, columnGap, rowGap }, setAttributes, clientId } = props;
+        const { className, attributes: { columns, columnGap, rowGap, colors }, setAttributes, clientId } = props;
 
         // useEffect
         useEffect(() => {
@@ -107,6 +112,9 @@ registerBlockType('b-blocks/cards', {
                     {/* Row Gap */}
                     <Title>{__('Row Gap', 'b-blocks')}</Title>
                     <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={100} step={1} beforeIcon='arrow-down-alt' />
+
+                    {/* Colors */}
+                    <ColorsControl colors={colors} onChange={val => setAttributes({ colors: val })} />
                 </PanelBody>
 
                 <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
@@ -170,6 +178,7 @@ registerBlockType('b-blocks/cards', {
                     __html: `
                     #bBlocksCards-${clientId} .bBlocksCards .block-editor-inner-blocks .block-editor-block-list__layout{
                         grid-gap: ${rowGap}px ${columnGap}px;
+                        ${colors?.styles}
                     }
                 `}} />
 

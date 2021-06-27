@@ -36,7 +36,7 @@ const BorderControl = props => {
         ${widthCondition ? '' : borderSideCheck('left') ? `border-left: ${borderCSS};` : ''}
         ${border?.radius === '0px' || border?.radius === '0%' || !border?.radius ? '' : `border-radius: ${border?.radius};`}`
 
-        const initialObj = { 'width': border?.width || defaultVal.width, 'style': border?.style || defaultVal.style, 'color': border?.color || defaultVal.color, 'side': border?.side || defaultVal.side, 'radius': border?.radius || defaultVal.radius }
+        const initialObj = { width: border?.width || defaultVal.width, style: border?.style || defaultVal.style, color: border?.color || defaultVal.color, side: border?.side || defaultVal.side, radius: border?.radius || defaultVal.radius }
 
         onChange({ ...border, ...initialObj, ['styles']: allStyles.replace(/\s+/g, ' ').trim() });
     }, [border?.width, border?.style, border?.color, border?.side, border?.radius]);

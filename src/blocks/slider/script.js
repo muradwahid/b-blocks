@@ -52,17 +52,4 @@ Object.values(allSlider).map(slider => {
             prevEl: '.swiper-button-prev',
         }
     });
-
-    // Button Colors
-    const { btnColor, btnBGColor, btnHovColor, btnHovBGColor } = JSON.parse(currentSlider.dataset.colors);
-
-    const btn = document.querySelector(`#${sliderId} .sliderBtn`);
-    btn.addEventListener('mouseenter', e => {
-        e.target.style.color = btnHovColor;
-        e.target.style.backgroundColor = btnHovBGColor;
-    });
-    btn.addEventListener('mouseleave', e => {
-        e.target.style.color = btnColor;
-        e.target.style.backgroundColor = btnBGColor;
-    });
 });

@@ -6,12 +6,6 @@ import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, Dashicon, Text
 // Swiper JS
 import Swiper from 'swiper/bundle';
 
-// Import Swiper styles
-// import 'swiper/swiper.scss';
-// import 'swiper/components/navigation/navigation.scss';
-// import 'swiper/components/pagination/pagination.scss';
-// import 'swiper/components/scrollbar/scrollbar.scss';
-
 // Variables
 import BColor from '../../GutenComp/BColor';
 import BDevice from '../../GutenComp/BDevice';
@@ -19,9 +13,10 @@ import Title from '../../GutenComp/Title';
 import Typography from '../../GutenComp/Typography';
 import BorderControl from '../../GutenComp/BorderControl';
 import SpaceControl from '../../GutenComp/SpaceControl';
+import ColorsControl from '../../GutenComp/ColorsControl';
 
 const Edit = props => {
-    const { className, attributes: { align, cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor, titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColor = '#fff', btnBGColor = '#ff4500', btnHovColor = '#fff', btnHovBGColor = '#ff7500', btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } }, setAttributes, clientId } = props;
+    const { className, attributes: { align, cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor, titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColors = { color: '#fff', bg: '#ff4500' }, btnHovColors = { color: '#fff', bg: '#ff7500' }, btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } }, setAttributes, clientId } = props;
 
     const [device, setDevice] = useState('desktop');
 
@@ -32,16 +27,6 @@ const Edit = props => {
 
     const currentBlock = document.querySelector(`#block-${cId} .wp-block`);
     const isEditorSidebarOpened = wp.data.select('core/edit-post').isEditorSidebarOpened();
-
-    // Button 
-    const btnHov = e => {
-        e.target.style.color = btnHovColor;
-        e.target.style.backgroundColor = btnHovBGColor;
-    }
-    const btnHovLeave = e => {
-        e.target.style.color = btnColor;
-        e.target.style.backgroundColor = btnBGColor;
-    }
 
     // Swiper Scripts
     useEffect(() => {
@@ -266,30 +251,24 @@ const Edit = props => {
                 {/* Typography */}
                 <Typography className='mt-20p mb-5p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
+                {/* Padding */}
+                <SpaceControl label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+
                 {/* Colors */}
                 <Title>{__('Colors:', 'b-blocks')}</Title>
                 <TabPanel className='b_blocks_tab_panel' activeClass='active-tab' tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                     {tab => <>
                         {'normal' == tab.name && <>
-                            {/* Color */}
-                            <BColor label={__('Color:', 'b-blocks')} value={btnColor} onChange={val => setAttributes({ btnColor: val })} defaultColor='#fff' />
-
-                            {/* Background Color */}
-                            <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={btnBGColor} onChange={val => setAttributes({ btnBGColor: val })} defaultColor='#ff4500' />
+                            {/* Colors */}
+                            <ColorsControl colors={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#ff4500' }} />
                         </>}
 
                         {'hover' == tab.name && <>
-                            {/* Hover Color */}
-                            <BColor label={__('Hover Color:', 'b-blocks')} value={btnHovColor} onChange={val => setAttributes({ btnHovColor: val })} defaultColor='#fff' />
-
-                            {/* Hover Background Color */}
-                            <BColor className='mt-20p mb-5p' label={__('Hover Background Color:', 'b-blocks')} value={btnHovBGColor} onChange={val => setAttributes({ btnHovBGColor: val })} defaultColor='#ff7500' />
+                            {/* Hover Colors */}
+                            <ColorsControl colors={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: '#ff7500' }} />
                         </>}
                     </>}
                 </TabPanel>
-
-                {/* Padding */}
-                <SpaceControl label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
             </PanelBody>
 
             <BorderControl label={__('Button Border', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
@@ -324,11 +303,13 @@ const Edit = props => {
                     margin: ${descMargin?.styles || '0 0 15px 0'};
                 }
                 #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn{
-                    color: ${btnColor};
-                    background-color: ${btnBGColor};
+                    ${btnColors?.styles || 'color: #fff; background: #ff4500;'}
                     ${btnTypo?.styles || 'font-size: 16px;'}
                     padding: ${btnPadding?.styles || '12px 35px'};
                     ${btnBorder?.styles || 'border-radius: 3px;'}
+                }
+                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn:hover{
+                    ${btnHovColors?.styles || 'color: #fff; background: #ff7500;'}
                 }
 
                 #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{
@@ -359,7 +340,7 @@ const Edit = props => {
                                 {isTitle && title && <h2 className='sliderTitle'>{title}</h2>}
                                 {isDesc && description && <p className='sliderDescription'>{description}</p>}
 
-                                {isBtn && btnText && <a href={btnLink} className='sliderBtn' onMouseEnter={btnHov} onMouseLeave={btnHovLeave} target='_blank' rel='noreferrer noopener'>{btnText}</a>}
+                                {isBtn && btnText && <a href={btnLink} className='sliderBtn' target='_blank' rel='noreferrer noopener'>{btnText}</a>}
                             </div>
                         </div>
                     })}
