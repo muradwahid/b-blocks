@@ -11,6 +11,7 @@ import './blocks/team-member/script';
 import './blocks/price-list/script';
 import './blocks/feature-box/script';
 import './blocks/info-box/script';
+import './blocks/lottie-player/script';
 import './blocks/button-group/script';
 import './blocks/countdown/script';
 import './blocks/card/script';
@@ -27,9 +28,3 @@ import './blocks/card/script';
 //         });
 //     });
 // })(jQuery);
-
-// Card Image Size
-const cardImg = document.querySelectorAll('.b_blocks_card .card .vertical_card img');
-cardImg.length && cardImg.forEach(im => {
-    im.currentSrc ? im.style.height = `${(im.clientWidth / 16) * 9}px` : null;
-});

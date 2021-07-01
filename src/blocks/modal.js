@@ -156,7 +156,7 @@ registerBlockType('b-blocks/modal', {
                     <RangeControl value={modalBtnRadius} onChange={cng => setAttributes({ modalBtnRadius: cng })} min={0} max={50} step={1} />
 
                     {otherTitle('Colors:')}
-                    <TabPanel className="b_blocks_tab_panel" activeClass="active-tab"
+                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab"
                         tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                         {tab => {
                             return <>

@@ -96,7 +96,7 @@ const Edit = props => {
 
                 {/* Colors */}
                 <Title>{__('Colors:', 'b-blocks')}</Title>
-                <TabPanel className='b_blocks_tab_panel' activeClass='active-tab' tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
+                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                     {tab => <>
                         {'normal' == tab.name && <>
                             {/* Color */}
@@ -138,7 +138,7 @@ const Edit = props => {
 
                 {/* Colors */}
                 <Title>{__('Colors:', 'b-blocks')}</Title>
-                <TabPanel className='b_blocks_tab_panel' activeClass='active-tab' tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
+                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                     {tab => <>
                         {'normal' == tab.name && <>
                             {/* Color */}

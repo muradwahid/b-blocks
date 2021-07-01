@@ -50,7 +50,7 @@ const Edit = props => {
 
     return <>
         {posts && 0 !== posts.length && <InspectorControls>
-            <TabPanel className='b_blocks_tab_panel' activeClass='active-tab' tabs={[{ name: 'layout', title: __('Layout', 'b-blocks'), className: 'layout-tab' }, { name: 'style', title: __('Style', 'b-blocks'), className: 'style-tab' }]}>
+            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'layout', title: __('Layout', 'b-blocks'), className: 'layoutTab' }, { name: 'style', title: __('Style', 'b-blocks'), className: 'styleTab' }]}>
                 {tab => {
                     return <>
                         {'layout' == tab.name && <>
@@ -287,7 +287,7 @@ const Edit = props => {
                                 </PanelRow>
 
                                 <Title>{__('Colors:', 'b-blocks')}</Title>
-                                <TabPanel className='b_blocks_tab_panel' activeClass='active-tab'
+                                <TabPanel className='bBlocksTabPanel' activeClass='activeTab'
                                     tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
                                     {tab => {
                                         return <>

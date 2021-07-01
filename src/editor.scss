@@ -92,7 +92,7 @@ $secondaryColor: #8344c5;
 }
 
 // Tab Panel
-.b_blocks_tab_panel{
+.bBlocksTabPanel{
     .components-tab-panel__tabs{
         display: flex;
         justify-content: space-between;
@@ -104,7 +104,7 @@ $secondaryColor: #8344c5;
                 border-top: none;
             }
         }
-        .active-tab{
+        .activeTab{
             border-bottom: 3px solid $primaryColor;
             font-weight: bold;
         }

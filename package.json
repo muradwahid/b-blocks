@@ -11,6 +11,7 @@
   "author": "Wasek Bellah",
   "license": "ISC",
   "dependencies": {
+    "@lottiefiles/lottie-player": "^1.0.6",
     "@wordpress/compose": "^3.25.0",
     "@wordpress/html-entities": "^2.11.0",
     "jquery": "^3.6.0",

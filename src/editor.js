@@ -10,6 +10,7 @@ import './blocks/team-member';
 import './blocks/price-list';
 import './blocks/feature-box';
 import './blocks/info-box';
+import './blocks/lottie-player';
 import './blocks/button-group';
 import './blocks/countdown';
 import './blocks/card';
