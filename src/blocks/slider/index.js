@@ -78,7 +78,7 @@ registerBlockType('b-blocks/slider', {
     save: props => {
         const { cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor = '#fff', titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColors = { color: '#fff', bg: '#ff4500' }, btnHovColors = { color: '#fff', bg: '#ff7500' }, btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } } = props.attributes;
 
-        return <div className={`bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`} data-swiper={`{"columns": ${JSON.stringify(columns)}, "columnGap": ${columnGap}, "isLoop": ${isLoop}, "isAutoplay": ${isAutoplay}, "speed": ${speed}, "isFade": ${isFade}, "isTouchMove": ${isTouchMove}, "isPageClickable": ${isPageClickable}, "isPageDynamic": ${isPageDynamic}}`}>
+        return <div className={`bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`} data-swiper={JSON.stringify({ columns, columnGap, isLoop, isAutoplay, speed, isFade, isTouchMove, isPageClickable, isPageDynamic })}>
 
             <style dangerouslySetInnerHTML={{
                 __html: `

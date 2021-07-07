@@ -1,22 +1,9 @@
-.bBlocksTypo{
+.bBlocksDropdown{
     .dashicon{
         margin-right: 0!important;
     }
 }
-.bBlocksTypoPopover{
-    .components-popover__content{
-        min-width: 280px;
-        margin-right: -35px!important;
-        margin-top: -8px;
-        border: none;
-        box-shadow: 0 3px 15px 0 #4527a480;
-        border-radius: 5px;
-    }
-
-    .dashicon{
-        margin-right: 0!important; 
-    }
-    
+.bBlocksDropdownPopover{
     .bBlocksTypoFontTitle{
         p:last-child{
             width: 73px;

@@ -9,72 +9,45 @@ import './BDevice.scss';
  * @props style: {} (Object)
  * @return Selected device
  */
-const BDevice = ({
-    onChange,
-    device = 'desktop',
-    iconSize = 14,
-    style,
-    className = 'iconButton',
-}) => {
+const BDevice = ({ onChange, device = 'desktop', iconSize = 14, style, className = 'iconButton' }) => {
     const [show, setShow] = useState(false);
+
     window.addEventListener('click', function () {
         setShow(false);
     });
     return (
         <div className={'bDevice'} style={style}>
             {!show && (
-                <button
-                    className={className}
-                    onClick={(event) => {
-                        setShow(true);
-                        event.stopPropagation();
-                    }}
-                    title={device[0].toUpperCase() + device.slice(1)}
-                >
-                    {device == 'desktop' ? (
-                        <Desktop size={iconSize} />
-                    ) : device == 'tablet' ? (
-                        <Tablet size={iconSize} />
-                    ) : (
-                        <Mobile size={iconSize} />
-                    )}
+                <button className={className} title={device[0].toUpperCase() + device.slice(1)} onClick={(event) => {
+                    setShow(true);
+                    event.stopPropagation();
+                }}>
+                    {device == 'desktop' ? <Desktop size={iconSize} /> : device == 'tablet' ? <Tablet size={iconSize} /> : <Mobile size={iconSize} />}
                 </button>
             )}
             {show && (
                 <div className={'bDevicePopup'}>
                     {/* {device != 'desktop' && ( */}
-                    <button
-                        className={className}
-                        title='Desktop'
-                        onClick={() => {
-                            onChange('desktop');
-                            setShow(false);
-                        }}
-                    >
+                    <button className={className} title='Desktop' onClick={() => {
+                        onChange('desktop');
+                        setShow(false);
+                    }}>
                         <Desktop size={iconSize} />
                     </button>
                     {/* // )} */}
                     {/* {device != 'tablet' && ( */}
-                    <button
-                        className={className}
-                        title='Tablet'
-                        onClick={() => {
-                            onChange('tablet');
-                            setShow(false);
-                        }}
-                    >
+                    <button className={className} title='Tablet' onClick={() => {
+                        onChange('tablet');
+                        setShow(false);
+                    }}>
                         <Tablet size={iconSize} />
                     </button>
                     {/* )} */}
                     {/* {device != 'mobile' && ( */}
-                    <button
-                        className={className}
-                        title='Mobile'
-                        onClick={() => {
-                            onChange('mobile');
-                            setShow(false);
-                        }}
-                    >
+                    <button className={className} title='Mobile' onClick={() => {
+                        onChange('mobile');
+                        setShow(false);
+                    }}>
                         <Mobile size={iconSize} />
                     </button>
                     {/* )} */}

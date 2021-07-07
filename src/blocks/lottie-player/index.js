@@ -60,7 +60,7 @@ registerBlockType('b-blocks/lottie-player', {
     save: props => {
         const { cId, contentAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, direction, intermission, width, bgColor, controlsHeight, controlsBGColor, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor } = props.attributes;
 
-        return <div id={`bBlocksLottiePlayer-${cId}`} className={`text-${contentAlign}`} data-controls={`{"isControls": ${JSON.stringify(isControls)}, "isAutoplay": ${isAutoplay}, "isLoop": ${isLoop}, "isHover": ${isHover}}`}>
+        return <div id={`bBlocksLottiePlayer-${cId}`} className={`text-${contentAlign}`} data-controls={JSON.stringify({ isControls, isAutoplay, isLoop, isHover })}>
             <style dangerouslySetInnerHTML={{
                 __html: `
                 #bBlocksLottiePlayer-${cId} lottie-player{

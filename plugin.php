@@ -60,6 +60,7 @@ function b_blocks_enqueue_block_assets() {
 add_action( 'enqueue_block_assets', 'b_blocks_enqueue_block_assets' );
 
 function b_blocks_enqueue_assets() {
+    wp_enqueue_style( 'dashicon' );
     wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '3.5.6', 'all' );
 
     wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', array( 'jquery' ), '3.5.6', true );

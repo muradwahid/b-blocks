@@ -114,12 +114,12 @@ registerBlockType('b-blocks/card', {
                 #bBlocksCard-${cId} .bBlocksCard .cardDetails .cardCategory{
                     color: ${catColor};
                     ${catTypo?.styles || 'font-size: 15px;'}
-                    margin: ${catMargin?.styles || 'margin: 0 0 10px 0'};
+                    margin: ${catMargin?.styles || '0 0 10px 0'};
                 }
                 #bBlocksCard-${cId} .bBlocksCard .cardTitle{
                     color: ${titleColor};
                     ${titleTypo?.styles || 'font-size: 22px;'}
-                    margin: ${titleMargin?.styles || 'margin: 0 0 10px 0'};
+                    margin: ${titleMargin?.styles || '0 0 10px 0'};
                 }
             `}} />
 

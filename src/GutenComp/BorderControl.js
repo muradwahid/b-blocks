@@ -1,13 +1,14 @@
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl, Button } from '@wordpress/components';
+import { Dropdown, PanelRow, SelectControl, __experimentalUnitControl as UnitControl, Button } from '@wordpress/components';
 
 /**
+ * @props className (optional): 'mt-20p mb-5p' (String)
  * @props label: 'Border Settings' (String)
  * @props border: { width, style, color, side, radius } (Object)
  * @props onChange: (Function)
  * @props defaults (optional): { width, style, color, side, radius } (Object)
- * @return Border Properties
+ * @return Border Properties (Object)
  */
 
 import Title from './Title';
@@ -16,62 +17,73 @@ import options from '../Const/options';
 const { borderStyles, pxPerEmUnits, pxEmUnits, sides } = options;
 
 const BorderControl = props => {
-    const { label = __('Border Settings', 'b-blocks'), border, onChange, defaults = {} } = props;
+    const { className, label = __('Border Settings', 'b-blocks'), border, onChange, defaults = {} } = props;
 
     const defaultVal = { width: '0px', style: 'solid', color: '#0000', side: 'all', radius: '0px' }
 
-    const setDefault = property => onChange({ ...border, [property]: defaults[property] || defaultVal[property] });
+    const getDefault = property => defaults?.[property] || defaultVal[property];
+    const setDefault = property => onChange({ ...border, [property]: getDefault(property) });
+
+    const getValue = property => border?.[property] || getDefault(property);
+    const setValue = (property, val) => onChange({ ...border, [property]: val });
+    const resetValue = property => <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault(property)} />
 
     // Add styles and google font to border
-    const widthCondition = border?.width === '0px' || !border?.width;
-    const borderSideCheck = (side) => {
+    const borderSideCheck = side => {
         const bSide = border?.side?.toLowerCase();
         return bSide?.includes('all') || bSide?.includes(side);
     }
-    const borderCSS = `${border?.width} ${border?.style} ${border?.color}`;
     useEffect(() => {
+        const widthCondition = border?.width === '0px' || !border?.width;
+        const borderCSS = `${border?.width} ${border?.style} ${border?.color}`;
+
         const allStyles = `${widthCondition ? '' : borderSideCheck('top') ? `border-top: ${borderCSS};` : ''}
         ${widthCondition ? '' : borderSideCheck('right') ? `border-right: ${borderCSS};` : ''}
         ${widthCondition ? '' : borderSideCheck('bottom') ? `border-bottom: ${borderCSS};` : ''}
         ${widthCondition ? '' : borderSideCheck('left') ? `border-left: ${borderCSS};` : ''}
         ${border?.radius === '0px' || border?.radius === '0%' || !border?.radius ? '' : `border-radius: ${border?.radius};`}`
 
-        const initialObj = { width: border?.width || defaultVal.width, style: border?.style || defaultVal.style, color: border?.color || defaultVal.color, side: border?.side || defaultVal.side, radius: border?.radius || defaultVal.radius }
+        const initialObj = { width: getValue('width'), style: getValue('style'), color: getValue('color'), side: getValue('side'), radius: getValue('radius') }
 
         onChange({ ...border, ...initialObj, ['styles']: allStyles.replace(/\s+/g, ' ').trim() });
     }, [border?.width, border?.style, border?.color, border?.side, border?.radius]);
 
-    return (
-        <PanelBody title={label} initialOpen={false}>
-            {/* Width */}
-            <PanelRow>
-                <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={border?.width || '0px'} onChange={val => onChange({ ...border, ['width']: val })} units={pxEmUnits} />
-                {border?.width && border?.width !== (defaults?.width || defaultVal.width) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('width')} />}
-            </PanelRow>
+    return <PanelRow className={`bBlocksDropdown ${className}`}>
+        <Title mt='5px'>{label}</Title>
 
-            {/* Style */}
-            <PanelRow className='mt-20p mb-5p'>
-                <Title mt='0' mb='0'>{__('Style:', 'b-blocks')}</Title>
-                <SelectControl value={border?.style || 'solid'} onChange={val => onChange({ ...border, ['style']: val })} options={borderStyles} />
-                {border?.style && border?.style !== (defaults?.style || defaultVal.style) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('style')} />}
-            </PanelRow>
+        <Dropdown className='bBlocksDropdownContainer' contentClassName='bBlocksDropdownPopover' position='bottom right'
+            renderToggle={({ isOpen, onToggle }) => <Button icon='edit' onClick={onToggle} aria-expanded={isOpen} />}
+            renderContent={() => <>
+                {/* Width */}
+                <PanelRow>
+                    <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={getValue('width')} onChange={val => setValue('width', val)} units={pxEmUnits} />
+                    {border?.width && border?.width !== getDefault('width') && resetValue('width')}
+                </PanelRow>
 
-            {/* Color */}
-            <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={border?.color || '#0000'} onChange={val => onChange({ ...border, ['color']: val })} defaultColor={defaults?.color || '#0000'} />
+                {/* Style */}
+                <PanelRow>
+                    <Title mt='0' mb='0'>{__('Style:', 'b-blocks')}</Title>
+                    <SelectControl value={getValue('style')} onChange={val => setValue('style', val)} options={borderStyles} />
+                    {border?.style && border?.style !== getDefault('style') && resetValue('style')}
+                </PanelRow>
 
-            {/* Side */}
-            <PanelRow className='mt-20p mb-5p'>
-                <Title mt='0' mb='0'>{__('Sides:', 'b-blocks')}</Title>
-                <SelectControl value={border?.side || 'all'} onChange={val => onChange({ ...border, ['side']: val })} options={sides} />
-                {border?.side && border?.side !== (defaults?.side || defaultVal.side) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('side')} />}
-            </PanelRow>
+                {/* Color */}
+                <BColor label={__('Color:', 'b-blocks')} value={getValue('color')} onChange={val => setValue('color', val)} defaultColor={getDefault('color')} />
 
-            {/* Radius */}
-            <PanelRow className='mt-20p mb-5p'>
-                <UnitControl label={__('Radius:', 'b-blocks')} labelPosition='left' value={border?.radius || '0px'} onChange={val => onChange({ ...border, ['radius']: val })} units={pxPerEmUnits} />
-                {border?.radius && border?.radius !== (defaults?.radius || defaultVal.radius) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('radius')} />}
-            </PanelRow>
-        </PanelBody>
-    );
+                {/* Side */}
+                <PanelRow>
+                    <Title mt='0' mb='0'>{__('Sides:', 'b-blocks')}</Title>
+                    <SelectControl value={getValue('side')} onChange={val => setValue('side', val)} options={sides} />
+                    {border?.side && border?.side !== getDefault('side') && resetValue('side')}
+                </PanelRow>
+
+                {/* Radius */}
+                <PanelRow>
+                    <UnitControl label={__('Radius:', 'b-blocks')} labelPosition='left' value={getValue('radius')} onChange={val => setValue('radius', val)} units={pxPerEmUnits} />
+                    {border?.radius && border?.radius !== getDefault('radius') && resetValue('radius')}
+                </PanelRow>
+            </>}
+        />
+    </PanelRow>;
 };
 export default BorderControl;

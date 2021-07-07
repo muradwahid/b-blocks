@@ -208,7 +208,7 @@ const Edit = props => {
                     <Title mt='15px' mb='0'>{__('Height:', 'advanced-post-block')}</Title>
                     <RangeControl value={pageHeight} onChange={val => setAttributes({ pageHeight: val })} min={0} max={100} step={1} />
 
-                    <BorderControl label={__('Pagination Border', 'b-blocks')} border={pageBorder} onChange={val => setAttributes({ pageBorder: val })} defaults={{ radius: '50%' }} />
+                    <BorderControl label={__('Pagination Border:', 'b-blocks')} border={pageBorder} onChange={val => setAttributes({ pageBorder: val })} defaults={{ radius: '50%' }} />
                 </>}
 
 
@@ -269,9 +269,10 @@ const Edit = props => {
                         </>}
                     </>}
                 </TabPanel>
+
+                <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
             </PanelBody>
 
-            <BorderControl label={__('Button Border', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
         </InspectorControls>
 
 

@@ -16,6 +16,7 @@ import BorderControl from '../../GutenComp/BorderControl';
 import Typography from '../../GutenComp/Typography';
 import SpaceControl from '../../GutenComp/SpaceControl';
 import ColorsControl from '../../GutenComp/ColorsControl';
+import ShadowControl from '../../GutenComp/ShadowControl';
 
 // Custom Attributes
 const attributes = {
@@ -33,7 +34,7 @@ const attributes = {
 
     colors: {
         type: 'object', default: {}
-    }
+    },
 }
 
 registerBlockType('b-blocks/cards', {
@@ -135,9 +136,10 @@ registerBlockType('b-blocks/cards', {
                     {/* Height */}
                     <Title>{__('Height:', 'b-blocks')}</Title>
                     <RangeControl value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val) }} min={0} max={500} step={1} />
-                </PanelBody>
 
-                <BorderControl label={__('Image Border', 'b-blocks')} border={imgBorder || childAttributes?.imgBorder} onChange={val => { setChildAttributes({ imgBorder: val }); setImgBorder(val); }} defaults={{ radius: '5px' }} />
+                    {/* Border */}
+                    <BorderControl label={__('Border', 'b-blocks')} border={imgBorder || childAttributes?.imgBorder} onChange={val => { setChildAttributes({ imgBorder: val }); setImgBorder(val); }} defaults={{ radius: '5px' }} />
+                </PanelBody>
 
                 <PanelBody title={__('Category Settings', 'b-blocks')} initialOpen={false}>
                     <ToggleControl label={isCat || childAttributes?.isCat ? 'Hide Category' : 'Show Category'} checked={isCat || childAttributes?.isCat} onChange={val => { setChildAttributes({ isCat: val }); setIsCat(val); }} />

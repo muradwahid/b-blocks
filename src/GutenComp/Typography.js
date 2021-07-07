@@ -76,10 +76,10 @@ const Typography = props => {
         onChange({ ...typography, ['styles']: allStyles.replace(/\s+/g, ' ').trim(), ['googleFontLink']: link });
     }, [typography?.fontFamily, typography?.fontWeight, typography?.fontSize, typography?.fontStyle, typography?.textTransform, typography?.textDecoration, typography?.lineHeight, typography?.letterSpace]);
 
-    return <PanelRow className={`bBlocksTypo ${className}`}>
+    return <PanelRow className={`bBlocksDropdown ${className}`}>
         <Title mt='5px'>{label}</Title>
 
-        <Dropdown className='bBlocksTypoContainer' contentClassName='bBlocksTypoPopover' position='bottom right'
+        <Dropdown className='bBlocksDropdownContainer' contentClassName='bBlocksDropdownPopover' position='bottom right'
             renderToggle={({ isOpen, onToggle }) => <Button icon='admin-customizer' onClick={onToggle} aria-expanded={isOpen} />}
             renderContent={() => <>
                 {/* Font Family & Weight */}
