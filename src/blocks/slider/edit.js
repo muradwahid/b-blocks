@@ -16,7 +16,7 @@ import SpaceControl from '../../GutenComp/SpaceControl';
 import ColorsControl from '../../GutenComp/ColorsControl';
 
 const Edit = props => {
-    const { className, attributes: { align, cId, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor, titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColors = { color: '#fff', bg: '#ff4500' }, btnHovColors = { color: '#fff', bg: '#ff7500' }, btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } }, setAttributes, clientId } = props;
+    const { className, attributes: { align, slides = [], columns = { desktop: 1, tablet: 1, mobile: 1 }, columnGap = 15, sliderHeight, BGOverlayColor, isLoop = true, isAutoplay = true, speed = 1, isFade = false, isTouchMove = false, isPage = true, isPageClickable = true, isPageDynamic = true, pageColor = '#fff', pageWidth = 15, pageHeight = 15, pageBorder = { radius: '50%' }, isPrevNext = true, prevNextColor = '#fff', contentAlign, isTitle = true, titleTypo = { fontSize: 25 }, titleColor, titleMargin = { bottom: '10px' }, isDesc = false, descTypo = { fontSize: 25 }, descColor, descMargin = { bottom: '10px' }, isBtn = true, btnTypo = { fontSize: 16 }, btnColors = { color: '#fff', bg: '#ff4500' }, btnHovColors = { color: '#fff', bg: '#ff7500' }, btnPadding = { vertical: '20px', horizontal: '10px' }, btnBorder = { radius: '3px' } }, setAttributes, clientId } = props;
 
     const [device, setDevice] = useState('desktop');
 
@@ -25,12 +25,12 @@ const Edit = props => {
         clientId && setAttributes({ cId: clientId });
     }, [clientId]);
 
-    const currentBlock = document.querySelector(`#block-${cId} .wp-block`);
+    const currentBlock = document.querySelector(`#block-${clientId} .wp-block`);
     const isEditorSidebarOpened = wp.data.select('core/edit-post').isEditorSidebarOpened();
 
     // Swiper Scripts
     useEffect(() => {
-        const currentSlider = document.querySelector(`#bBlocksSlider-${cId} .slider`);
+        const currentSlider = document.querySelector(`#bBlocksSlider-${clientId} .slider`);
 
         const condition = currentSlider && currentBlock;
 
@@ -43,7 +43,7 @@ const Edit = props => {
 
         condition ? currentSlider.style.width = `${currentBlock.clientWidth}px` : '';
 
-        new Swiper(`#bBlocksSlider-${cId} .slider`, {
+        new Swiper(`#bBlocksSlider-${clientId} .slider`, {
             // Optional parameters
             direction: 'horizontal',
             slidesPerView: columns?.mobile,
@@ -229,7 +229,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#fff' />
 
                 {/* Margin */}
-                <SpaceControl label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+                <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
             </PanelBody>
 
             <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
@@ -242,7 +242,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
 
                 {/* Margin */}
-                <SpaceControl label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+                <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
             </PanelBody>
 
             <PanelBody title={__('Button Settings', 'b-blocks')} initialOpen={false}>
@@ -252,7 +252,7 @@ const Edit = props => {
                 <Typography className='mt-20p mb-5p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
                 {/* Padding */}
-                <SpaceControl label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+                <SpaceControl className='mt-20p mb-5p' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
 
                 {/* Colors */}
                 <Title>{__('Colors:', 'b-blocks')}</Title>
@@ -285,7 +285,7 @@ const Edit = props => {
         </BlockControls>
 
 
-        <div className={`${className} bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${cId}`}>
+        <div className={`${className} bBlocksSlider h-${sliderHeight}-px`} id={`bBlocksSlider-${clientId}`}>
 
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -293,35 +293,34 @@ const Edit = props => {
                 @import url(${descTypo?.googleFontLink});
                 @import url(${btnTypo?.googleFontLink});
 
-                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderTitle{
+                #bBlocksSlider-${clientId} .slider .bBlocksSlide .sliderTitle{
                     color: ${titleColor};
                     ${titleTypo?.styles || 'font-size: 25px;'}
                     margin: ${titleMargin?.styles || '0 0 15px 0'};
                 }
-                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderDescription{
+                #bBlocksSlider-${clientId} .slider .bBlocksSlide .sliderDescription{
                     color: ${descColor};
                     ${descTypo?.styles || 'font-size: 15px;'}
                     margin: ${descMargin?.styles || '0 0 15px 0'};
                 }
-                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn{
+                #bBlocksSlider-${clientId} .slider .bBlocksSlide .sliderBtn{
                     ${btnColors?.styles || 'color: #fff; background: #ff4500;'}
                     ${btnTypo?.styles || 'font-size: 16px;'}
                     padding: ${btnPadding?.styles || '12px 35px'};
                     ${btnBorder?.styles || 'border-radius: 3px;'}
                 }
-                #bBlocksSlider-${cId} .slider .bBlocksSlide .sliderBtn:hover{
+                #bBlocksSlider-${clientId} .slider .bBlocksSlide .sliderBtn:hover{
                     ${btnHovColors?.styles || 'color: #fff; background: #ff7500;'}
                 }
 
-                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet{
+                #bBlocksSlider-${clientId} .slider .swiper-pagination .swiper-pagination-bullet{
                     background: ${pageColor};
                     width: ${pageWidth}px;
                     height: ${pageHeight}px;
                     ${pageBorder?.styles || 'border-radius: 50%;'}
                 }
-                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet:focus{outline: 0;}
                 
-                #bBlocksSlider-${cId} .slider .swiper-button-prev, .swiper-button-next{color: ${prevNextColor};}
+                #bBlocksSlider-${clientId} .slider .swiper-button-prev, .swiper-button-next{color: ${prevNextColor};}
             `}} />
 
             <div className='slider'>
@@ -332,7 +331,7 @@ const Edit = props => {
                         return <div key={index} className={`bBlocksSlide bBlocksSlide-${index + 1} swiper-slide`}>
                             <style dangerouslySetInnerHTML={{
                                 __html: `
-                                #bBlocksSlider-${cId} .slider .bBlocksSlide-${index + 1}{
+                                #bBlocksSlider-${clientId} .slider .bBlocksSlide-${index + 1}{
                                     background: url(${img}) center center / cover no-repeat ${BGOverlayColor};
                                 }
                             `}} />

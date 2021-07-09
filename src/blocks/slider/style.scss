@@ -38,5 +38,11 @@
                 }
             }
         }
+
+        .swiper-pagination{
+            .swiper-pagination-bullet:focus{
+                outline: 0;
+            }
+        }
     }
 }

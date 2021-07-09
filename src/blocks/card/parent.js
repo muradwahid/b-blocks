@@ -16,7 +16,6 @@ import BorderControl from '../../GutenComp/BorderControl';
 import Typography from '../../GutenComp/Typography';
 import SpaceControl from '../../GutenComp/SpaceControl';
 import ColorsControl from '../../GutenComp/ColorsControl';
-import ShadowControl from '../../GutenComp/ShadowControl';
 
 // Custom Attributes
 const attributes = {
@@ -147,7 +146,7 @@ registerBlockType('b-blocks/cards', {
                     <Typography className='mt-20p mb-5p' typography={catTypo} onChange={val => { setChildAttributes({ catTypo: val }); setCatTypo(val); }} defaults={{ fontSize: 15 }} />
 
                     {/* Margin */}
-                    <SpaceControl label={__('Margin:', 'b-blocks')} space={catMargin || childAttributes?.catMargin} onChange={val => { setChildAttributes({ catMargin: val }); setCatMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
+                    <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={catMargin || childAttributes?.catMargin} onChange={val => { setChildAttributes({ catMargin: val }); setCatMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
                 </PanelBody>
 
                 <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
@@ -165,7 +164,7 @@ registerBlockType('b-blocks/cards', {
                     <Typography className='mt-20p mb-5p' typography={titleTypo} onChange={val => { setChildAttributes({ titleTypo: val }); setTitleTypo(val); }} defaults={{ fontSize: 22 }} />
 
                     {/* Margin */}
-                    <SpaceControl label={__('Margin:', 'b-blocks')} space={titleMargin || childAttributes?.titleMargin} onChange={val => { setChildAttributes({ titleMargin: val }); setTitleMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
+                    <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={titleMargin || childAttributes?.titleMargin} onChange={val => { setChildAttributes({ titleMargin: val }); setTitleMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
                 </PanelBody>
             </InspectorControls>
 

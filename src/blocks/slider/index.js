@@ -112,7 +112,6 @@ registerBlockType('b-blocks/slider', {
                     height: ${pageHeight}px;
                     ${pageBorder?.styles || 'border-radius: 50%;'}
                 }
-                #bBlocksSlider-${cId} .slider .swiper-pagination .swiper-pagination-bullet:focus{outline: 0;}
 
                 #bBlocksSlider-${cId} .slider .swiper-button-prev, .swiper-button-next{color: ${prevNextColor};}
             `}} />

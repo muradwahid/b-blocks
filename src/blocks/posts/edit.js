@@ -26,7 +26,7 @@ import Default from './Layout/Default';
 const Edit = props => {
     const { className, attributes, setAttributes, clientId, posts, categories } = props;
 
-    const { cId, layout, columns, columnGap, rowGap, isContentEqualHight, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBGColor, postTextPTB, postTextPLR, borderColor, isFImg, isFImgLink, isTitle, isTitleLink, titleFontSize, titleColor, titleMB, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, isExcerpt, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreColor, readMoreHovColor } = attributes;
+    const { layout, columns, columnGap, rowGap, isContentEqualHight, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBGColor, postTextPTB, postTextPLR, borderColor, isFImg, isFImgLink, isTitle, isTitleLink, titleFontSize, titleColor, titleMB, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaFontSize, metaTransform, metaTextColor, metaLinkColor, metaIconColor, metaMB, isExcerpt, excerptLength, excerptAlign, excerptFontSize, excerptColor, excerptMB, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreFontSize, readMoreTransform, readMoreColor, readMoreHovColor } = attributes;
 
     // Posts and Categories Check
     if (!posts || !categories) {
@@ -318,11 +318,11 @@ const Edit = props => {
 
         {posts && 0 !== posts.length ? <div className={`${className}  bBlocksPosts`}>
 
-            {'grid' == layout ? <div className={gridClasses} id={`bBlocksGridPosts-${cId}`}>
+            {'grid' == layout ? <div className={gridClasses} id={`bBlocksGridPosts-${clientId}`}>
                 {posts.map(post => <Default key={post.id} atts={attributes} post={post} />)} {/* Single Posts */}
             </div> /* Grid Layout */ :
 
-                'masonry' == layout && <div className={masonryClasses} id={`bBlocksMasonryPosts-${cId}`}>
+                'masonry' == layout && <div className={masonryClasses} id={`bBlocksMasonryPosts-${clientId}`}>
                     {posts.map(post => <Default key={post.id} atts={attributes} post={post} />)} {/* Single Posts */}
                 </div> /* Masonry Layout */
             }

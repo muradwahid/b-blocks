@@ -1,28 +1,27 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
-import { BlockControls, FontSizePicker, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, withNotices, Button, ToolbarGroup, SelectControl, PanelRow } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
+import { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { PanelBody, RangeControl, withNotices, Button, ToolbarGroup, PanelRow, ToggleControl } from '@wordpress/components';
 
 // Variables
 import Title from '../../GutenComp/Title';
 import BColor from '../../GutenComp/BColor';
-import options from '../../Const/options';
 import BtnGroup from '../../GutenComp/BtnGroup';
 import BDevice from '../../GutenComp/BDevice';
-const { fontSizes, aligns, borderStyles, sizeTypes } = options;
-const vAligns = [
-    { label: 'Top', value: 'flex-start', icon: 'Top' },
-    { label: 'Center', value: 'center', icon: 'Center' },
-    { label: 'Bottom', value: 'flex-end', icon: 'Bottom' }
-];
-const hAligns = [
-    { label: 'Left', value: 'flex-start', icon: 'Left' },
-    { label: 'Center', value: 'center', icon: 'Center' },
-    { label: 'Right', value: 'flex-end', icon: 'Right' }
-];
+import Typography from '../../GutenComp/Typography';
+import SpaceControl from '../../GutenComp/SpaceControl';
+import BorderControl from '../../GutenComp/BorderControl';
+import ShadowControl from '../../GutenComp/ShadowControl';
+import options from '../../Const/options';
+const { aligns } = options;
 
 const Edit = props => {
-    const { className, attributes: { images, columns, imgPTB, imgPLR, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, isCap, capFontSize, capColor, capAlign, capVAlign, capHAlign }, setAttributes, isSelected, noticeOperations, noticeUI } = props;
+    const { className, attributes: { images, columns, imgPadding = {}, imgBorder = {}, imgShadow = {}, isCap, capAlign, capColor, capTitleTypo = { fontSize: 18 }, capDescTypo = { fontSize: 15 } }, setAttributes, clientId, isSelected, noticeOperations, noticeUI } = props;
+
+    // useEffect
+    useEffect(() => {
+        clientId && setAttributes({ cId: clientId });
+    }, [clientId]);
 
     // Get only urls
     let urls = [];
@@ -42,70 +41,33 @@ const Edit = props => {
             </PanelBody>
 
             <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-                {/* Padding Top Bottom */}
-                <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
-                <RangeControl value={imgPTB} onChange={val => setAttributes({ imgPTB: val })} min={0} max={100} step={1} />
+                {/* Padding */}
+                <SpaceControl label={__('Padding:', 'b-blocks')} space={imgPadding} onChange={val => setAttributes({ imgPadding: val })} defaults={{ side: 2 }} />
 
-                {/* Padding Left Right */}
-                <Title>{__('Padding Left Right:', 'b-blocks')}</Title>
-                <RangeControl value={imgPLR} onChange={val => setAttributes({ imgPLR: val })} min={0} max={100} step={1} />
-            </PanelBody>
+                {/* Border */}
+                <BorderControl label={__('Border:', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />
 
-            <PanelBody title={__('Image Border Settings', 'b-blocks')} initialOpen={false}>
-                {/* Width */}
-                <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
-                <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
-
-                {/* Style */}
-                <Title>{__('Style:', 'b-blocks')}</Title>
-                <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
-
-                {/* Color */}
-                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
-
-                {/* Radius */}
-                <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={radiusType} setState={val => setAttributes({ radiusType: val })} classes='bBlocksSizeType' size='small' />
-
-                <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
-            </PanelBody>
-
-            <PanelBody title={__('Image Shadow Settings', 'b-blocks')} initialOpen={false}>
-                {/* Color */}
-                <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
-
-                {/* Horizontal Offset */}
-                <Title>{__('Horizontal Offset:', 'b-blocks')}</Title>
-                <RangeControl value={shadowHOffset} onChange={val => setAttributes({ shadowHOffset: val })} min={0} max={100} step={1} />
-
-                {/* Vertical Offset */}
-                <Title>{__('Vertical Offset:', 'b-blocks')}</Title>
-                <RangeControl value={shadowVOffset} onChange={val => setAttributes({ shadowVOffset: val })} min={0} max={100} step={1} />
-
-                {/* Blur */}
-                <Title>{__('Blur:', 'b-blocks')}</Title>
-                <RangeControl value={shadowBlur} onChange={val => setAttributes({ shadowBlur: val })} min={0} max={50} step={1} />
+                {/* Shadow */}
+                <ShadowControl label={__('Shadow:', 'b-blocks')} border={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
             </PanelBody>
 
             <PanelBody title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
-                {/* Font Size */}
-                <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
-                <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={capFontSize} onChange={val => setAttributes({ capFontSize: 'undefined' === typeof val ? 15 : val })} />
+                <ToggleControl label={isCap ? 'Hide Caption' : 'Show Caption'} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
+
+                {/* Text Align */}
+                <PanelRow className='mt-20p mb-5p'>
+                    <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
+                    <BtnGroup icon={true} options={aligns} myValue={capAlign} setState={val => setAttributes({ capAlign: val })} />
+                </PanelRow>
 
                 {/* Color */}
                 <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
-                {/* Text Align */}
-                <Title>{__('Text Align:', 'b-blocks')}</Title>
-                <BtnGroup icon={true} options={aligns} myValue={capAlign} setState={val => setAttributes({ capAlign: val })} />
+                {/* Title Typography */}
+                <Typography className='mt-20p mb-5p' label={__('Title Typography:', 'b-blocks')} typography={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: 18 }} />
 
-                {/* Vertical Align */}
-                <Title>{__('Vertical Align:', 'b-blocks')}</Title>
-                <BtnGroup options={vAligns} myValue={capVAlign} setState={val => setAttributes({ capVAlign: val })} />
-
-                {/* Horizontal Align */}
-                <Title>{__('Horizontal Align:', 'b-blocks')}</Title>
-                <BtnGroup options={hAligns} myValue={capHAlign} setState={val => setAttributes({ capHAlign: val })} />
+                {/* Description Typography */}
+                <Typography className='mt-20p mb-5p' label={__('Description Typography:', 'b-blocks')} typography={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: 18 }} />
             </PanelBody>
         </InspectorControls>
 
@@ -118,16 +80,45 @@ const Edit = props => {
         </BlockControls>}
 
 
-        <div className={className}>
+        <div id={`bBlocksImageGallery-${clientId}`} className={className}>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @import url(${capTitleTypo?.googleFontLink});
+                @import url(${capDescTypo?.googleFontLink});
+
+                #bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImg{
+                    padding: ${imgPadding?.styles || '0 0'};
+                    ${imgBorder?.styles}
+                    filter: drop-shadow(${imgShadow?.styles})
+                }
+                #bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption{
+                    color: ${capColor};
+                    margin: ${imgPadding?.styles || '0 0'};
+                    width: calc((100% - 10px) - (${imgPadding?.horizontal || '0px'} * 2));
+                    height: calc((100% - 10px) - (${imgPadding?.vertical || '0px'} * 2));
+                }
+                #bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption h4{
+                    ${capTitleTypo?.styles || 'font-size: 18px;'}
+                }
+                #bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption p{
+                    ${capDescTypo?.styles || 'font-size: 15px;'}
+                }
+            `}} />
+
             {0 === images.length ?
                 <MediaPlaceholder labels={{ title: __(' Gallery Images', 'b-blocks'), instructions: __('Drag media files, upload or select files from your library.', 'b-blocks') }} icon='format-gallery' allowedTypes={['image']} accept='image/*' multiple onSelect={val => setAttributes({ images: val })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} /> :
 
                 <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     {images.map(img => (
                         <a key={img.id} className='imgGalleryImgLink'>
-                            <img src={img.url} alt='' className={`imgGalleryImg ptb-${imgPTB} plr-${imgPLR} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`} style={{ border: `${borderWidth}px ${borderStyle} ${borderColor}`, filter: `drop-shadow(${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px)` }} />
+                            <img src={img.url} alt='' className='imgGalleryImg' />
 
-                            {isCap && <span className={`imgGalleryImgCaption  fontSize-${capFontSize} text-${capAlign} alignItems-${capVAlign} justifyContent-${capHAlign}`} style={{ color: capColor }}>{img.caption}</span>}
+                            {(isCap && img.caption) && <div className={`imgGalleryImgCaption text-${capAlign}`}>
+                                <div className='captionContent'>
+                                    <h4>{img.caption}</h4>
+                                    <p>{img.description}</p>
+                                </div>
+                            </div>}
                         </a>
                     ))}
                 </div>

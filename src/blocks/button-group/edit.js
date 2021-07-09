@@ -15,7 +15,7 @@ const sepTypes = [
 ];
 
 const Edit = props => {
-    const { className, attributes: { cId, btnAlign, btnFontSize, btnWidth, btnPTB, btnPLR, btnOne, btnOneLink, btnOneType, btnOneColor, btnOneBGColor, btnOneHovColor, btnOneHovBGColor, btnTwo, btnTwoLink, btnTwoType, btnTwoColor, btnTwoBGColor, btnTwoHovColor, btnTwoHovBGColor, isSep, sepType, sepText, sepImg, sepWidth, sepSize, sepFontSize, sepColor, sepBGColor, borderWidth, borderStyle, borderOneColor, borderTwoColor, borderRadius, radiusType }, setAttributes, clientId } = props;
+    const { className, attributes: { btnAlign, btnFontSize, btnWidth, btnPTB, btnPLR, btnOne, btnOneLink, btnOneType, btnOneColor, btnOneBGColor, btnOneHovColor, btnOneHovBGColor, btnTwo, btnTwoLink, btnTwoType, btnTwoColor, btnTwoBGColor, btnTwoHovColor, btnTwoHovBGColor, isSep, sepType, sepText, sepImg, sepWidth, sepSize, sepFontSize, sepColor, sepBGColor, borderWidth, borderStyle, borderOneColor, borderTwoColor, borderRadius, radiusType }, setAttributes, clientId } = props;
 
     // Functions
     useEffect(() => {
@@ -241,7 +241,7 @@ const Edit = props => {
         </BlockControls>
 
 
-        <div className={`${className} text-${btnAlign}`} id={`bBlocksBtnGroup-${cId}`}>
+        <div className={`${className} text-${btnAlign}`} id={`bBlocksBtnGroup-${clientId}`}>
             <div className='btnHolder'>
                 <div className='firstBtn' style={{ marginRight: `${sepWidth / 2}px`, paddingRight: `${sepWidth / 2}px` }}>
                     <RichText className={`btnG btnOne fontSize-${btnFontSize} ptb-${btnPTB} plr-${btnPLR} btn-${btnOneType}`} tagName='a' href={btnOneLink} value={btnOne} style={btnOneStyles} onMouseEnter={btnOneHov} onMouseLeave={btnOneHovLeave} onChange={val => setAttributes({ btnOne: val })} placeholder={__('First Button', 'b-blocks')} />

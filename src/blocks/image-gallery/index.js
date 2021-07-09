@@ -10,38 +10,41 @@ import './editor.scss';
 // Icon
 import icons from '../../Const/icons';
 
+// Deprecated
+import deprecated from './deprecated';
+
 // Custom Attributes
 const attributes = {
+    cId: { type: 'string' },
+
     images: { type: 'array', default: [] },
     columns: {
-        type: 'object',
-        default: {
+        type: 'object', default: {
             desktop: 3,
             tablet: 2,
             mobile: 1
         }
     },
 
-    imgPTB: { type: 'number', default: 0 },
-    imgPLR: { type: 'number', default: 0 },
+    imgPadding: { type: 'object', default: {} },
 
-    borderWidth: { type: 'number', default: 1 },
-    borderStyle: { type: 'string', default: 'solid' },
-    borderColor: { type: 'string', default: '#00000000' },
-    borderRadius: { type: 'number', default: 0 },
-    radiusType: { type: 'string', default: '%' },
+    imgBorder: { type: 'object', default: {} },
 
-    shadowColor: { type: 'string', default: '#000' },
-    shadowHOffset: { type: 'number', default: 0 },
-    shadowVOffset: { type: 'number', default: 0 },
-    shadowBlur: { type: 'number', default: 0 },
+    imgShadow: { type: 'object', default: {} },
 
     isCap: { type: 'boolean', default: true },
-    capFontSize: { type: 'number', default: 15 },
+    capTitleTypo: {
+        type: 'object', default: {
+            fontSize: 15
+        }
+    },
+    capDescTypo: {
+        type: 'object', default: {
+            fontSize: 15
+        }
+    },
     capColor: { type: 'string', default: '#333' },
-    capAlign: { type: 'string', default: 'center' },
-    capVAlign: { type: 'string', default: 'flex-end' },
-    capHAlign: { type: 'string', default: 'center' },
+    capAlign: { type: 'string', default: 'left' },
 }
 
 registerBlockType('b-blocks/image-gallery', {
@@ -64,22 +67,51 @@ registerBlockType('b-blocks/image-gallery', {
     edit: Edit,
 
     save: props => {
-        const { images, columns, imgPTB, imgPLR, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, isCap, capFontSize, capColor, capAlign, capVAlign, capHAlign } = props.attributes;
+        const { cId, images, columns, imgPadding = {}, imgBorder = {}, imgShadow = {}, isCap, capAlign, capColor, capTitleTypo = { fontSize: 18 }, capDescTypo = { fontSize: 15 } } = props.attributes;
 
         return (
-            <div>
+            <div id={`bBlocksImageGallery-${cId}`}>
+                <style dangerouslySetInnerHTML={{
+                    __html: `
+                    @import url(${capTitleTypo?.googleFontLink});
+                    @import url(${capDescTypo?.googleFontLink});
+                    
+                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImg{
+                        padding: ${imgPadding?.styles || '0 0'};
+                        ${imgBorder?.styles}
+                        filter: drop-shadow(${imgShadow?.styles})
+                    }
+                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption{
+                        color: ${capColor};
+                        margin: ${imgPadding?.styles || '0 0'};
+                    }
+                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption h4{
+                        ${capTitleTypo?.styles || 'font-size: 18px;'}
+                    }
+                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption p{
+                        ${capDescTypo?.styles || 'font-size: 15px;'}
+                    }
+                `}} />
+
                 <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     {images.map(img => (
                         <a key={img.id} href={img.url} className='imgGalleryImgLink' data-fancybox='gallery'>
-                            <img src={img.url} alt='' className={`imgGalleryImg ptb-${imgPTB} plr-${imgPLR} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`} style={{ border: `${borderWidth}px ${borderStyle} ${borderColor}`, filter: `drop-shadow(${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px)` }} />
+                            <img src={img.url} alt='' className='imgGalleryImg' />
 
-                            {isCap && <span className={`imgGalleryImgCaption  fontSize-${capFontSize} text-${capAlign} alignItems-${capVAlign} justifyContent-${capHAlign}`} style={{ color: capColor }}>{img.caption}</span>}
+                            {(isCap && img.caption) && <div className={`imgGalleryImgCaption text-${capAlign}`}>
+                                <div className='captionContent'>
+                                    <h4>{img.caption}</h4>
+                                    <p>{img.description}</p>
+                                </div>
+                            </div>}
                         </a>
                     ))}
                 </div>
             </div>
         );
     },
+
+    deprecated,
 
     example: {
         attributes: {

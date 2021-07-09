@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { PanelRow, __experimentalUnitControl as UnitControl, ButtonGroup, Button, Tooltip } from '@wordpress/components';
 
 /**
+ * @props className (optional): 'mt-20p mb-5p' (String)
  * @props label (optional): 'Space' (String)
  * @props space (required): {side, vertical, horizontal, top, right, bottom, left} (Object)
  * @props onChange (required): (Function)
@@ -16,19 +17,26 @@ import icons from '../Const/icons';
 const { pxEmUnits } = options;
 
 const SpaceControl = props => {
-    const { label = __('Space:', 'b-blocks'), space, onChange, defaults = {} } = props;
+    const { className, label = __('Space:', 'b-blocks'), space, onChange, defaults = {} } = props;
 
     const defaultVal = { side: 2, vertical: '0px', horizontal: '0px', top: '0px', right: '0px', bottom: '0px', left: '0px' }
 
-    useEffect(() => {
-        const allStyles = 2 === space?.side ? `${space?.vertical || 0} ${space?.horizontal || 0}` : `${space?.top || 0} ${space?.right || 0} ${space?.bottom || 0} ${space?.left || 0}`;
+    const getDefault = property => defaults?.[property] || defaultVal[property];
 
-        onChange({ ...space, ['styles']: allStyles.replace(/\s+/g, ' ').trim(), ['side']: space?.side || defaults?.side || 2 });
+    const getValue = property => space?.[property] || getDefault(property);
+    const setValue = (property, val) => onChange({ ...space, [property]: val });
+
+    const getIntVal = property => parseInt(getValue(property)?.replace(/([a-z])+/g, ''));
+
+    useEffect(() => {
+        const allStyles = 2 === space?.side ? `${getValue('vertical')} ${getValue('horizontal')}` : `${getValue('top')} ${getValue('right')} ${getValue('bottom')} ${getValue('left')}`;
+
+        const initialObj = { side: getValue('side'), vertical: getValue('vertical'), horizontal: getValue('horizontal'), top: getValue('top'), right: getValue('right'), bottom: getValue('bottom'), left: getValue('left') }
+
+        onChange({ ...space, ...initialObj, ['styles']: allStyles.replace(/\s+/g, ' ').trim() });
     }, [space?.side, space?.vertical, space?.horizontal, space?.top, space?.right, space?.bottom, space?.left]);
 
-    const defVal = prop => defaults[prop] || defaultVal[prop];
-
-    // Check if space property and value are equals to defaults || defaultVal
+    // Check if space property and value are equals to defaults or defaultVal
     const isObject = object => object != null && typeof object === 'object';
     const triCompare = (main, defaults, defaultVal) => {
         const mainAllKeys = Object.keys(main || {});
@@ -72,19 +80,19 @@ const SpaceControl = props => {
         return true;
     }
 
-    return <div className='bBlocksSpaceControl'>
-        <PanelRow className='mt-20p mb-5p'>
+    return <div className={`bBlocksSpaceControl ${className}`}>
+        <PanelRow>
             <Title mt='0' mb='0'>{label}</Title>
 
             <ButtonGroup className={`bBlocksBtnGroup`}>
                 <Tooltip text={__('Vertical, Horizontal', 'b-blocks')} position='top'>
-                    <Button isMedium={true} isPrimary={2 === space?.side} aria-pressed={2 === space?.side} onClick={() => onChange({ ...space, ['side']: 2, ['vertical']: space?.top || '0px', ['horizontal']: space?.right || '0px' })}>
+                    <Button isMedium={true} isPrimary={2 === getValue('side')} aria-pressed={2 === getValue('side')} onClick={() => onChange({ ...space, ['side']: 2, ['vertical']: `${(getIntVal('top') + getIntVal('bottom')) / 2}px`, ['horizontal']: `${(getIntVal('left') + getIntVal('right')) / 2}px` })}>
                         <span className='scrollIcon'>{icons.scroll}</span>
                         <span className='sideScrollIcon'>{icons.scroll}</span>
                     </Button>
                 </Tooltip>
                 <Tooltip text={__('Top, Right, Bottom, Left', 'b-blocks')} position='top'>
-                    <Button isMedium={true} isPrimary={4 === space?.side || false} aria-pressed={4 === space?.side || false} onClick={() => onChange({ ...space, ['side']: 4, ['top']: space?.vertical || '0px', ['right']: space?.horizontal || '0px', ['bottom']: space?.vertical || '0px', ['left']: space?.horizontal || '0px' })}>
+                    <Button isMedium={true} isPrimary={4 === getValue('side')} aria-pressed={4 === getValue('side')} onClick={() => onChange({ ...space, ['side']: 4, ['top']: getValue('vertical'), ['right']: getValue('horizontal'), ['bottom']: getValue('vertical'), ['left']: getValue('horizontal') })}>
                         <span className='dashicon dashicons dashicons-arrow-up-alt'></span>
                         <span className='dashicon dashicons dashicons-arrow-right-alt'></span>
                         <span className='dashicon dashicons dashicons-arrow-down-alt'></span>
@@ -94,25 +102,25 @@ const SpaceControl = props => {
             </ButtonGroup>
 
             {!triCompare(space, defaults, defaultVal) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => {
-                const obj = { side: defVal('side'), vertical: defVal('vertical'), horizontal: defVal('horizontal'), top: defVal('top'), right: defVal('right'), bottom: defVal('bottom'), left: defVal('left') }
+                const obj = { side: getDefault('side'), vertical: getDefault('vertical'), horizontal: getDefault('horizontal'), top: getDefault('top'), right: getDefault('right'), bottom: getDefault('bottom'), left: getDefault('left') }
                 onChange({ ...space, ...obj });
             }} />}
         </PanelRow>
 
-        {2 === space?.side && <PanelRow className='twoColumn'>
-            <UnitControl label={__('Top Bottom:', 'b-blocks')} labelPosition='top' value={space?.vertical || '0px'} onChange={val => onChange({ ...space, ['vertical']: val })} units={pxEmUnits} />
+        {2 === getValue('side') && <PanelRow className='twoColumn'>
+            <UnitControl label={__('Top Bottom:', 'b-blocks')} labelPosition='top' value={getValue('vertical')} onChange={val => setValue('vertical', val)} units={pxEmUnits} />
 
-            <UnitControl label={__('Left Right:', 'b-blocks')} labelPosition='top' value={space?.horizontal || '0px'} onChange={val => onChange({ ...space, ['horizontal']: val })} units={pxEmUnits} />
+            <UnitControl label={__('Left Right:', 'b-blocks')} labelPosition='top' value={getValue('horizontal')} onChange={val => setValue('horizontal', val)} units={pxEmUnits} />
         </PanelRow>}
 
-        {4 === space?.side && <PanelRow className='fourColumn'>
-            <UnitControl label={__('Top:', 'b-blocks')} labelPosition='top' value={space?.top || '0px'} onChange={val => onChange({ ...space, ['top']: val })} units={pxEmUnits} />
+        {4 === getValue('side') && <PanelRow className='fourColumn'>
+            <UnitControl label={__('Top:', 'b-blocks')} labelPosition='top' value={getValue('top')} onChange={val => setValue('top', val)} units={pxEmUnits} />
 
-            <UnitControl label={__('Right:', 'b-blocks')} labelPosition='top' value={space?.right || '0px'} onChange={val => onChange({ ...space, ['right']: val })} units={pxEmUnits} />
+            <UnitControl label={__('Right:', 'b-blocks')} labelPosition='top' value={getValue('right')} onChange={val => setValue('right', val)} units={pxEmUnits} />
 
-            <UnitControl label={__('Bottom:', 'b-blocks')} labelPosition='top' value={space?.bottom || '0px'} onChange={val => onChange({ ...space, ['bottom']: val })} units={pxEmUnits} />
+            <UnitControl label={__('Bottom:', 'b-blocks')} labelPosition='top' value={getValue('bottom')} onChange={val => setValue('bottom', val)} units={pxEmUnits} />
 
-            <UnitControl label={__('Left:', 'b-blocks')} labelPosition='top' value={space?.left || '0px'} onChange={val => onChange({ ...space, ['left']: val })} units={pxEmUnits} />
+            <UnitControl label={__('Left:', 'b-blocks')} labelPosition='top' value={getValue('left')} onChange={val => setValue('left', val)} units={pxEmUnits} />
         </PanelRow>}
     </div>;
 };

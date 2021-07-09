@@ -13,7 +13,7 @@ import options from '../../Const/options';
 const { fontSizes, sizeTypes, borderStyles } = options;
 
 const Edit = props => {
-    const { className, attributes: { cId, contentAlign, beforeImgId, beforeImgUrl, beforeImgAlt, afterImgId, afterImgUrl, afterImgAlt, isSwap, imgWidth, imgWidthType, isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor }, setAttributes, clientId, noticeOperations, noticeUI } = props;
+    const { className, attributes: { contentAlign, beforeImgId, beforeImgUrl, beforeImgAlt, afterImgId, afterImgUrl, afterImgAlt, isSwap, imgWidth, imgWidthType, isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor }, setAttributes, clientId, noticeOperations, noticeUI } = props;
 
 
     // useEffect
@@ -22,8 +22,8 @@ const Edit = props => {
     }, [clientId]);
 
     // useEffect(() => {
-    //     const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${cId} .comparison-slider`);
-    //     const beforeImg = document.querySelector(`#bBlocksImageComparison-${cId} .comparison-slider .beforeImg`);
+    //     const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider`);
+    //     const beforeImg = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider .beforeImg`);
 
     //     if (beforeImg && comparisonSlider) {
     //         beforeImg.style.width = comparisonSlider.clientWidth;
@@ -290,7 +290,7 @@ const Edit = props => {
         </BlockControls>
 
 
-        <div className={`${className} text-${contentAlign}`} id={`bBlocksImageComparison-${cId}`}>
+        <div className={`${className} text-${contentAlign}`} id={`bBlocksImageComparison-${clientId}`}>
             <div className={`comparison-slider-wrapper ${'%' === imgWidthType ? `w-${imgWidth}-per` : `w-${imgWidth}-px`}`} style={sliderWrapperStyles}>
 
                 {beforeImgUrl && afterImgUrl ? <div className='comparison-slider'>

@@ -170,7 +170,8 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Update Posts Block
 
 = 1.5 =
-* Update Slider and Card Blocks
+* Add Lottie Player Block
+* Update Slider, Card, Image Gallery blocks
 
 
 == Upgrade Notice ==
@@ -187,4 +188,5 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Add Image Comparison, Team Members and Flip Boxes blocks
 * Update Posts Block
 
-* Update Slider and Card Blocks
+* Add Lottie Player Block
+* Update Slider, Card, Image Gallery blocks

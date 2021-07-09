@@ -11,7 +11,7 @@ import options from '../../Const/options';
 const { fontSizes, gradientType, radialType, borderStyles, sizeTypes } = options;
 
 const Edit = props => {
-    const { className, attributes: { cId, boxHeight, contentAlign, contentBGType, contentBGColor, contentBGImg, isContentBGOpacity, contentBGOpacityColor, contentBGGradType, contentBGGradRadialType, contentBGGradFColor, contentBGGradSColor, contentBGGradFColorPos, contentBGGradSColorPos, contentBGGradAngel, contentBGGradRadialXPos, contentBGGradRadialYPos, contentPTB, contentPLR, borderWidth, borderStyle, borderColor, borderRadius, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed, isImg, fImg, bImg, imgWidth, imgRadius, imgRadiusType, imgMB, fTitle, bTitle, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, isBtn, btn, btnLink, btnFontSize, btnColor, btnBGColor, btnHovColor, btnHovBGColor, btnPTB, btnPLR, btnRadius }, setAttributes, clientId } = props;
+    const { className, attributes: { boxHeight, contentAlign, contentBGType, contentBGColor, contentBGImg, isContentBGOpacity, contentBGOpacityColor, contentBGGradType, contentBGGradRadialType, contentBGGradFColor, contentBGGradSColor, contentBGGradFColorPos, contentBGGradSColorPos, contentBGGradAngel, contentBGGradRadialXPos, contentBGGradRadialYPos, contentPTB, contentPLR, borderWidth, borderStyle, borderColor, borderRadius, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed, isImg, fImg, bImg, imgWidth, imgRadius, imgRadiusType, imgMB, fTitle, bTitle, titleFontSize, titleColor, titleMB, isDesc, desc, descFontSize, descColor, isBtn, btn, btnLink, btnFontSize, btnColor, btnBGColor, btnHovColor, btnHovBGColor, btnPTB, btnPLR, btnRadius }, setAttributes, clientId } = props;
 
 
     // Functions
@@ -312,7 +312,7 @@ const Edit = props => {
         </BlockControls>
 
 
-        <div className={`${className} flipBox`} id={`bBlocksFlipBox-${cId}`} style={{ height: `${boxHeight}px` }}>
+        <div className={`${className} flipBox`} id={`bBlocksFlipBox-${clientId}`} style={{ height: `${boxHeight}px` }}>
             <div className={`front ${contentClasses}`} style={contentStyles}>
                 <div className='frontContent'>
                     {isImg && fImg && <img className={`w-${imgWidth}-px mb-${imgMB} radius-${imgRadius}-${'%' === imgRadiusType ? 'per' : imgRadiusType}`} src={fImg.url} alt={fImg.alt} />}

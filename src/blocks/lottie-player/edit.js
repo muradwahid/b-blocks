@@ -16,7 +16,7 @@ const modes = [
 ]
 
 const Edit = props => {
-    const { className, attributes: { cId, contentAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, direction, intermission, width, bgColor, controlsHeight, controlsBGColor, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes, clientId } = props;
+    const { className, attributes: { contentAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, direction, intermission, width, bgColor, controlsHeight, controlsBGColor, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes, clientId } = props;
 
     // useEffect
     useEffect(() => {
@@ -24,7 +24,7 @@ const Edit = props => {
     }, [clientId]);
 
     // Set or Remove attributes
-    const lottieWrapper = document.querySelector(`#bBlocksLottiePlayer-${cId}`);
+    const lottieWrapper = document.querySelector(`#bBlocksLottiePlayer-${clientId}`);
     const toggleAttr = (selector, condition, attribute, value) => {
         condition && selector?.setAttribute(attribute, value);
         !condition && selector?.removeAttribute(attribute, value);
@@ -131,7 +131,7 @@ const Edit = props => {
         <>
             <style dangerouslySetInnerHTML={{
                 __html: `
-                #bBlocksLottiePlayer-${cId} lottie-player{
+                #bBlocksLottiePlayer-${clientId} lottie-player{
                     width: ${width};
                     --lottie-player-toolbar-height: ${controlsHeight};
                     --lottie-player-toolbar-background-color: ${controlsBGColor};
@@ -143,7 +143,7 @@ const Edit = props => {
                 }
             `}} />
 
-            <div id={`bBlocksLottiePlayer-${cId}`} className={`${className} text-${contentAlign}`}>
+            <div id={`bBlocksLottiePlayer-${clientId}`} className={`${className} text-${contentAlign}`}>
                 <lottie-player
                     src={file}
                     controls

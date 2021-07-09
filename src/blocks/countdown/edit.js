@@ -21,7 +21,7 @@ const flexPos = [
 ]
 
 const Edit = props => {
-    const { className, attributes: { cId, destDate, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, digitFontSize, digitColor, isLabels, labelFontSize, labelColor, itemInline, itemPos, itemTextAlign, itemWidth, itemHeight, itemPTB, itemPLR, itemSpace, itemBGColor, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed }, setAttributes, clientId } = props;
+    const { className, attributes: { destDate, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, digitFontSize, digitColor, isLabels, labelFontSize, labelColor, itemInline, itemPos, itemTextAlign, itemWidth, itemHeight, itemPTB, itemPLR, itemSpace, itemBGColor, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed }, setAttributes, clientId } = props;
 
     // Functions
     useEffect(() => {
@@ -47,16 +47,16 @@ const Edit = props => {
         const seconds = Math.floor(diff % 60);
 
 
-        const countdownDays = document.querySelector(`#bBlocksCountdown-${cId} .countdownDays .holder`);
+        const countdownDays = document.querySelector(`#bBlocksCountdown-${clientId} .countdownDays .holder`);
         countdownDays ? countdownDays.innerHTML = days : null;
 
-        const countdownHours = document.querySelector(`#bBlocksCountdown-${cId} .countdownHours .holder`);
+        const countdownHours = document.querySelector(`#bBlocksCountdown-${clientId} .countdownHours .holder`);
         countdownHours ? countdownHours.innerHTML = hours : null;
 
-        const countdownMinutes = document.querySelector(`#bBlocksCountdown-${cId} .countdownMinutes .holder`);
+        const countdownMinutes = document.querySelector(`#bBlocksCountdown-${clientId} .countdownMinutes .holder`);
         countdownMinutes ? countdownMinutes.innerHTML = minutes : null;
 
-        const countdownSeconds = document.querySelector(`#bBlocksCountdown-${cId} .countdownSeconds .holder`);
+        const countdownSeconds = document.querySelector(`#bBlocksCountdown-${clientId} .countdownSeconds .holder`);
         countdownSeconds ? countdownSeconds.innerHTML = seconds : null;
     }, [dest, seconds]);
 
@@ -210,7 +210,7 @@ const Edit = props => {
         </InspectorControls>
 
 
-        <div className={className} id={`bBlocksCountdown-${cId}`}>
+        <div className={className} id={`bBlocksCountdown-${clientId}`}>
             <div className='countdownItems' style={{ justifyContent: itemPos, alignItems: itemPos }}>
                 <Box is={isDays} boxClasses={`countdownDays ${boxClasses}`} boxStyles={boxStyles} digitClasses={digitClasses} digitStyles={digitStyles} isLabels={isLabels} label={daysLabel} labelClasses={labelClasses} labelStyles={labelStyles} />
 
