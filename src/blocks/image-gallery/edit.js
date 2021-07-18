@@ -42,7 +42,7 @@ const Edit = props => {
 
             <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                 {/* Padding */}
-                <SpaceControl label={__('Padding:', 'b-blocks')} space={imgPadding} onChange={val => setAttributes({ imgPadding: val })} defaults={{ side: 2 }} />
+                <SpaceControl label={__('Padding:', 'b-blocks')} space={imgPadding} onChange={val => setAttributes({ imgPadding: val })} />
 
                 {/* Border */}
                 <BorderControl label={__('Border:', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />

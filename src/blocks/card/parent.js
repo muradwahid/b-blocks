@@ -174,7 +174,7 @@ registerBlockType('b-blocks/cards', {
             </BlockControls>
 
 
-            <div id={`bBlocksCards-${clientId}`} className={`${className}`}>
+            <div id={`bBlocksCards-${clientId}`} className={className}>
                 <style dangerouslySetInnerHTML={{
                     __html: `
                     #bBlocksCards-${clientId} .bBlocksCards .block-editor-inner-blocks .block-editor-block-list__layout{

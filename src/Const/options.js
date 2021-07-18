@@ -156,12 +156,6 @@ const options = {
         { label: 'Large Shadow', value: 'shadow-lg' }
     ],
 
-    bgType: [
-        { label: 'Color', value: 'color', icon: 'Color' },
-        { label: 'Image', value: 'image', icon: 'Image' },
-        { label: 'Gradient', value: 'gradient', icon: 'Gradient' },
-    ],
-
     gradientType: [
         { label: 'Linear', value: 'linear', icon: 'Linear' },
         { label: 'Radial', value: 'radial', icon: 'Radial' },

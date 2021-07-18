@@ -36,20 +36,6 @@ const Edit = props => {
     const onSelectBeforeImg = ({ id, url, alt }) => setAttributes({ beforeImgId: id, beforeImgUrl: url, beforeImgAlt: alt });
     const onSelectAfterImg = ({ id, url, alt }) => setAttributes({ afterImgId: id, afterImgUrl: url, afterImgAlt: alt });
 
-    // const getImageSizes = () => {
-    //     if (!image) return [];
-    //     let options = [];
-    //     const sizes = image.media_details.sizes;
-
-    //     for (const key in sizes) {
-    //         const imageSize = imageSizes.find(s => s.slug === key);
-    //         if (imageSize) {
-    //             options.push({ label: imageSize.name, value: sizes[key].source_url });
-    //         }
-    //     }
-    //     return options;
-    // }
-
 
     // Image Slider Scripts
     (function ($) {

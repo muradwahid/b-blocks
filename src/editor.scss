@@ -573,6 +573,8 @@ $secondaryColor: #8344c5;
     }
 }
 .bBlocksDropdownPopover {
+    z-index: 9999;
+
     .components-popover__content{
         min-width: 280px;
         margin-right: -35px!important;

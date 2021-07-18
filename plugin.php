@@ -90,8 +90,14 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'section-heading' );
     b_blocks_wp_register_script( 'image-gallery' );
     b_blocks_wp_register_script( 'image-comparison' );
-    b_blocks_wp_register_script( 'flip-boxes' );
-    b_blocks_wp_register_script( 'flip-box' );
+    b_blocks_wp_register_script( 'flip-boxes',array(
+        'render_callback' => 'render_b_blocks_flip_boxes',
+        'attributes'      => flip_boxes_attributes()
+    ) );
+    b_blocks_wp_register_script( 'flip-box', array(
+        'render_callback' => 'render_b_blocks_flip_box',
+        'attributes'      => flip_box_attributes()
+    ) );
     b_blocks_wp_register_script( 'team-members' );
     b_blocks_wp_register_script( 'team-member' );
     b_blocks_wp_register_script( 'price-lists' );
@@ -141,8 +147,39 @@ function b_blocks_after_setup_theme() {
 }
 add_action( 'after_setup_theme', 'b_blocks_after_setup_theme' );
 
+// Generate Styles
+class StyleGenerator {
+    public static $styles = [];
+
+    public static function addStyle($selector, $styles){
+        if(array_key_exists($selector, self::$styles)){
+           self::$styles[$selector] = wp_parse_args(self::$styles[$selector], $styles);
+        }else {
+            self::$styles[$selector] = $styles;
+        }
+    }
+
+    public static function renderStyle(){
+        $output = '';
+        foreach(self::$styles as $selector => $style){
+            $new = '';
+            foreach($style as $property => $value){
+                if($value == ''){
+                    $new .= $property;
+                }else {
+                    $new .= " $property: $value;";
+                }
+            }
+            $output .= "$selector { $new }";
+        }
+
+        return $output;
+    }
+}
+
 // Posts Block.
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/flip-box.php';
 
 // Post API update
 function b_blocks_custom_rest() {

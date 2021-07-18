@@ -1,91 +1,121 @@
-// import { __ } from '@wordpress/i18n';
-// import { MediaUpload } from '@wordpress/block-editor';
-// import { Button, ButtonGroup, PanelRow, RangeControl, ToggleControl, Tooltip } from '@wordpress/components';
+/**
+ * @props className (optional): 'mt-20p mb-5p' (String)
+ * @props label (optional): 'Background' (String)
+ * @props background (required): { type, color, gradient, image, position, attachment, repeat, size, overlayColor } (Object)
+ * @props onChange (required): (Function)
+ * @props defaults (optional): { type, color, gradient, image, position, attachment, repeat, size, overlayColor } (Object)
+ */
 
-// // Variables
-// import Title from './Title';
-// import BColor from './BColor';
-// import BtnGroup from './BtnGroup';
+import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+import { Button, PanelRow, Dropdown, __experimentalGradientPicker as Gradient, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, SelectControl } from '@wordpress/components';
 
-// const Background = props => {
-//     const { BGType, BGColor, BGImg, isBGOpacity, BGOpacityColor, BGGradType, BGGradRadialType, BGGradFColor, BGGradSColor, BGGradFColorPos, BGGradSColorPos, BGGradAngel, BGGradRadialXPos, BGGradRadialYPos } = props;
+// Variables
+import Title from './Title';
+import BColor from './BColor';
+import BtnGroup from './BtnGroup';
+import { ImageHolderControl, } from './ImageControl';
+import options from '../Const/options';
+const { gradients } = options;
+const bgTypes = [
+    { label: 'Solid', value: 'solid', icon: 'Solid' },
+    { label: 'Gradient', value: 'gradient', icon: 'Gradient' },
+    { label: 'Image', value: 'image', icon: 'Image' },
+];
+const attachments = [
+    { label: 'Initial', value: 'initial' },
+    { label: 'Scroll', value: 'scroll' },
+    { label: 'Fixed', value: 'fixed' },
+    { label: 'Local', value: 'local' },
+];
+const repeats = [
+    { label: 'No Repeat', value: 'no-repeat' },
+    { label: 'Repeat', value: 'repeat' },
+    { label: 'Repeat X', value: 'repeat-x' },
+    { label: 'Repeat Y', value: 'repeat-y' },
+];
+const sizes = [
+    { label: 'Cover', value: 'cover' },
+    { label: 'Auto', value: 'auto' },
+    { label: 'Contain', value: 'contain' },
+];
 
-//     return <>
-//         {/* Background */}
-//         <Title>{__('Background Type:', 'b-blocks')}</Title>
-//         <ButtonGroup className='bBlocksBtnGroup'>
-//             <Tooltip text={__('Color', 'b-blocks')} position='top'>
-//                 <Button isMedium isPrimary={'color' === BGType} aria-pressed={'color' === BGType} onClick={() => setAttributes({ BGType: 'color' })}>{__('Color', 'b-blocks')}</Button>
-//             </Tooltip>
+const Background = props => {
+    const { className, label = __('Background', 'b-blocks'), background = {}, defaults = {}, onChange } = props;
 
-//             <Tooltip text={__('Image', 'b-blocks')} position='top'>
-//                 <Button isMedium isPrimary={'image' === BGType} aria-pressed={'image' === BGType} onClick={() => setAttributes({ BGType: 'image' })}>{__('Image', 'b-blocks')}</Button>
-//             </Tooltip>
+    const defaultVal = { type: 'solid', color: '#000000b3', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)', image: {}, position: 'center center', attachment: 'initial', repeat: 'no-repeat', size: 'cover', overlayColor: '#000000b3' }
 
-//             <Tooltip text={__('Gradient', 'b-blocks')} position='top'>
-//                 <Button isMedium isPrimary={'gradient' === BGType} aria-pressed={'gradient' === BGType} onClick={() => setAttributes({ BGType: 'gradient' })}>{__('Gradient', 'b-blocks')}</Button>
-//             </Tooltip>
-//         </ButtonGroup>
+    const getDefault = property => defaults?.[property] || defaultVal[property];
+    const setDefault = property => onChange({ ...background, [property]: getDefault(property) });
 
-//         {'color' === BGType && <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={BGColor} onChange={val => setAttributes({ BGColor: val })} defaultColor='#000000b3' />}
+    const getValue = property => background?.[property] || getDefault(property);
+    const setValue = (property, val) => onChange({ ...background, [property]: val });
+    const resetValue = property => <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault(property)} />
 
-//         {'image' === BGType && <>
-//             <Title>{__('Background Image:', 'b-blocks')}</Title>
-//             <div className='editImageHolder'>
-//                 <div className='mediaControl'>
-//                     <MediaUpload allowedTypes={['image']} value={BGImg} onSelect={val => setAttributes({ BGImg: val })} render={({ open }) =>
-//                         BGImg ? <div className='btnControl'>
-//                             <Button icon='controls-repeat' onClick={open}>{__('Replace', 'b-blocks')}</Button>
-//                             <Button icon='exit' onClick={() => setAttributes({ BGImg: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
-//                         </div> : <div className='btnControl'>
-//                             <Button icon='upload' onClick={open}>{__('Upload', 'b-blocks')}</Button>
-//                         </div>} />
-//                 </div>
 
-//                 <img src={BGImg && BGImg.url} alt={BGImg && BGImg.title} />
-//             </div>
+    useEffect(() => {
+        const allStyles = 'gradient' === getValue('type') ? `background-image: ${getValue('gradient')}` :
+            'image' === getValue('type') ?
+                `background-image: url(${getValue('image')?.url});
+                background-position: ${getValue('position')};
+                background-size: ${getValue('size')};
+                background-repeat: ${getValue('repeat')};
+                background-color: ${getValue('overlayColor')};
+                background-blend-mode: overlay;` :
+                `background-color: ${getValue('color')};`;
 
-//             <ToggleControl className='mt-20p' label={isBGOpacity ? 'Hide Background Opacity' : 'Show Background Opacity'} checked={isBGOpacity} onChange={val => setAttributes({ isBGOpacity: val })} />
+        const initObj = { type: getValue('type'), color: getValue('color'), gradient: getValue('gradient'), image: getValue('image'), position: getValue('position'), attachment: getValue('attachment'), repeat: getValue('repeat'), size: getValue('size'), overlayColor: getValue('overlayColor') }
 
-//             {isBGOpacity && <BColor className='mb-5p' label={__('Background Opacity Color:', 'b-blocks')} value={BGOpacityColor} onChange={val => setAttributes({ BGOpacityColor: val })} defaultColor='#000000b3' />}
-//         </>}
+        onChange({ ...background, ...initObj, styles: allStyles.replace(/\s+/g, ' ').trim() });
+    }, [getValue('type'), getValue('color'), getValue('gradient'), getValue('image'), getValue('position'), getValue('attachment'), getValue('repeat'), getValue('size'), getValue('overlayColor')]);
 
-//         {'gradient' === BGType && <>
-//             <PanelRow className='mt-20p mb-5p'>
-//                 <Title mt='5px'>{__('Gradient Type:', 'b-blocks')}</Title>
-//                 <BtnGroup options={gradientType} myValue={BGGradType} setState={val => setAttributes({ BGGradType: val })} />
-//             </PanelRow>
+    return <PanelRow className={`bBlocksDropdown ${className}`}>
+        <Title mt='5px'>{label}</Title>
 
-//             {'radial' === BGGradType && <PanelRow className='mt-20p mb-5p'>
-//                 <Title mt='5px'>{__('Radial Type:', 'b-blocks')}</Title>
-//                 <BtnGroup options={radialType} myValue={BGGradRadialType} setState={val => setAttributes({ BGGradRadialType: val })} />
-//             </PanelRow>}
+        <Dropdown className='bBlocksDropdownContainer' contentClassName='bBlocksDropdownPopover' position='bottom right'
+            renderToggle={({ isOpen, onToggle }) => <Button icon='edit' onClick={onToggle} aria-expanded={isOpen} />}
+            renderContent={() => <>
+                {/* Type */}
+                <PanelRow>
+                    <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
+                    <BtnGroup options={bgTypes} myValue={getValue('type')} setState={val => setValue('type', val)} />
+                </PanelRow>
 
-//                 <BColor className='mt-20p mb-5p' label={__('First Color:', 'b-blocks')} value={BGGradFColor} onChange={val => setAttributes({ BGGradFColor: val })} defaultColor='#4527a4' />
+                {'solid' === getValue('type') && <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={getValue('color')} onChange={val => setValue('color', val)} defaultColor={getDefault('color')} />}
 
-//                 <BColor className='mt-20p mb-5p' label={__('Second Color:', 'b-blocks')} value={BGGradSColor} onChange={val => setAttributes({ BGGradSColor: val })} defaultColor='#8344c5' />
+                {'gradient' === getValue('type') && <Gradient className='mt-20p' value={getValue('gradient')} onChange={val => setValue('gradient', val)} gradients={gradients} />}
 
-//             <Title>{__('First Color Position:', 'b-blocks')}</Title>
-//             <RangeControl value={BGGradFColorPos} onChange={val => setAttributes({ BGGradFColorPos: val })} min={0} max={100} step={1} />
+                {'image' === getValue('type') && <>
+                    <ImageHolderControl label={__('Image:', 'b-blocks')} img={getValue('image')} onChange={val => setValue('image', val)} />
 
-//             <Title>{__('Second Color Position:', 'b-blocks')}</Title>
-//             <RangeControl value={BGGradSColorPos} onChange={val => setAttributes({ BGGradSColorPos: val })} min={0} max={100} step={1} />
+                    <PanelRow>
+                        <Title mt='0' mb='0'>{__('Position', 'b-blocks')}</Title>
+                        <AlignmentMatrixControl value={getValue('position')} onChange={val => setValue('position', val)} />
+                        {background?.position && background?.position !== getDefault('position') && resetValue('position')}
+                    </PanelRow>
 
-//             {'linear' === BGGradType && <>
-//                 <Title>{__('Angel:', 'b-blocks')}</Title>
-//                 <RangeControl value={BGGradAngel} onChange={val => setAttributes({ BGGradAngel: val })} min={0} max={360} step={1} />
-//             </>}
+                    <PanelRow>
+                        <Title mt='0' mb='0'>{__('Attachment:', 'b-blocks')}</Title>
+                        <SelectControl value={getValue('attachment')} onChange={val => setValue('attachment', val)} options={attachments} />
+                        {background?.attachments && background?.attachments !== getDefault('attachments') && resetValue('attachments')}
+                    </PanelRow>
 
-//             {'radial' === BGGradType && <>
-//                 <Title>{__('Center X Position:', 'b-blocks')}</Title>
-//                 <RangeControl value={BGGradRadialXPos} onChange={val => setAttributes({ BGGradRadialXPos: val })} min={0} max={100} step={1} />
+                    <PanelRow>
+                        <Title mt='0' mb='0'>{__('Repeat:', 'b-blocks')}</Title>
+                        <SelectControl value={getValue('repeat')} onChange={val => setValue('repeat', val)} options={repeats} />
+                        {background?.repeat && background?.repeat !== getDefault('repeat') && resetValue('repeat')}
+                    </PanelRow>
 
-//                 <Title>{__('Center Y Position:', 'b-blocks')}</Title>
-//                 <RangeControl value={BGGradRadialYPos} onChange={val => setAttributes({ BGGradRadialYPos: val })} min={0} max={100} step={1} />
-//             </>}
-//         </>}
-//     </>;
-// };
-// export default Background;
+                    <PanelRow>
+                        <Title mt='0' mb='0'>{__('Size:', 'b-blocks')}</Title>
+                        <SelectControl value={getValue('size')} onChange={val => setValue('size', val)} options={sizes} />
+                        {background?.size && background?.size !== getDefault('size') && resetValue('size')}
+                    </PanelRow>
 
-// <Background />
+                    <BColor className='mt-20p' label={__('Overlay Color:', 'b-blocks')} value={getValue('overlayColor')} onChange={val => setValue('overlayColor', val)} defaultColor={getDefault('overlayColor')} />
+                </>}
+            </>}
+        />
+    </PanelRow>;
+};
+export default Background;
