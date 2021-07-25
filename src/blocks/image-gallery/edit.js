@@ -16,7 +16,7 @@ import options from '../../Const/options';
 const { aligns } = options;
 
 const Edit = props => {
-    const { className, attributes: { images, columns, imgPadding = {}, imgBorder = {}, imgShadow = {}, isCap, capAlign, capColor, capTitleTypo = { fontSize: 18 }, capDescTypo = { fontSize: 15 } }, setAttributes, clientId, isSelected, noticeOperations, noticeUI } = props;
+    const { className, attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeOperations, noticeUI } = props;
 
     // useEffect
     useEffect(() => {

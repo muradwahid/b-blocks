@@ -66,50 +66,7 @@ registerBlockType('b-blocks/image-gallery', {
     // Build In Functions
     edit: Edit,
 
-    save: props => {
-        const { cId, images, columns, imgPadding = {}, imgBorder = {}, imgShadow = {}, isCap, capAlign, capColor, capTitleTypo = { fontSize: 18 }, capDescTypo = { fontSize: 15 } } = props.attributes;
-
-        return (
-            <div id={`bBlocksImageGallery-${cId}`}>
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                    @import url(${capTitleTypo?.googleFontLink});
-                    @import url(${capDescTypo?.googleFontLink});
-                    
-                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImg{
-                        padding: ${imgPadding?.styles || '0 0'};
-                        ${imgBorder?.styles}
-                        filter: drop-shadow(${imgShadow?.styles})
-                    }
-                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption{
-                        color: ${capColor};
-                        margin: ${imgPadding?.styles || '0 0'};
-                    }
-                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption h4{
-                        ${capTitleTypo?.styles || 'font-size: 18px;'}
-                    }
-                    #bBlocksImageGallery-${cId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption p{
-                        ${capDescTypo?.styles || 'font-size: 15px;'}
-                    }
-                `}} />
-
-                <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
-                    {images.map(img => (
-                        <a key={img.id} href={img.url} className='imgGalleryImgLink' data-fancybox='gallery'>
-                            <img src={img.url} alt='' className='imgGalleryImg' />
-
-                            {(isCap && img.caption) && <div className={`imgGalleryImgCaption text-${capAlign}`}>
-                                <div className='captionContent'>
-                                    <h4>{img.caption}</h4>
-                                    <p>{img.description}</p>
-                                </div>
-                            </div>}
-                        </a>
-                    ))}
-                </div>
-            </div>
-        );
-    },
+    save: () => null,
 
     deprecated,
 

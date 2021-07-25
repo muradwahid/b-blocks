@@ -100,7 +100,7 @@ function flip_box_attributes(){
 }
 
 // Render Flip Box
-function render_b_blocks_flip_box( $attributes, $content ) {
+function render_b_blocks_flip_box( $attributes ) {
     extract( $attributes );
 
     FlipBox::$attributes = $attributes; // Store attributes in FlipBox class

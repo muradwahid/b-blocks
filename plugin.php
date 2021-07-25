@@ -88,7 +88,10 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'slider' );
     b_blocks_wp_register_script( 'section' );
     b_blocks_wp_register_script( 'section-heading' );
-    b_blocks_wp_register_script( 'image-gallery' );
+    b_blocks_wp_register_script( 'image-gallery',array(
+        'render_callback' => 'render_b_blocks_image_gallery',
+        'attributes'      => image_gallery_attributes()
+    ) );
     b_blocks_wp_register_script( 'image-comparison' );
     b_blocks_wp_register_script( 'flip-boxes',array(
         'render_callback' => 'render_b_blocks_flip_boxes',
@@ -179,6 +182,7 @@ class StyleGenerator {
 
 // Posts Block.
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-box.php';
 
 // Post API update
