@@ -110,8 +110,14 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'info-box' );
     b_blocks_wp_register_script( 'button-group' );
     b_blocks_wp_register_script( 'countdown' );
-    b_blocks_wp_register_script( 'cards' );
-    b_blocks_wp_register_script( 'card' );
+    b_blocks_wp_register_script( 'cards', array(
+        'render_callback' => 'render_b_blocks_cards',
+        'attributes'      => cards_attributes()
+    ) );
+    b_blocks_wp_register_script( 'card', array(
+        'render_callback' => 'render_b_blocks_card',
+        'attributes'      => card_attributes()
+    ) );
     b_blocks_wp_register_script( 'mailto' );
     b_blocks_wp_register_script( 'modal' );
     b_blocks_wp_register_script( 'tabs' );
@@ -184,6 +190,7 @@ class StyleGenerator {
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-box.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/card.php';
 
 // Post API update
 function b_blocks_custom_rest() {

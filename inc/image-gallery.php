@@ -48,12 +48,12 @@ function render_b_blocks_image_gallery( $attributes ) {
         $capDescTypo['styles'] ?? 'font-size: 15px;' => '',
     ));
 
-    $capTitleFont = $capTitleTypo['googleFontLink'] ?? '';
-    $capDescFont = $capDescTypo['googleFontLink'] ?? '';
+    $capTitleFontLink = $capTitleTypo['googleFontLink'] ?? '';
+    $capDescFontLink = $capDescTypo['googleFontLink'] ?? '';
 
     ob_start(); // Echo the content
     echo "<div class='wp-block-b-blocks-image-gallery' id='bBlocksImageGallery-$cId'>
-        <style>@import url($capTitleFont); @import url($capDescFont);". $imageGalleryStyle::renderStyle() ."</style>
+        <style>@import url($capTitleFontLink); @import url($capDescFontLink);". $imageGalleryStyle::renderStyle() ."</style>
 
         <div class='imgGalleryWrapper columns-".$columns['desktop']." columns-tablet-".$columns['tablet']." columns-mobile-".$columns['mobile']."'>";
 

@@ -1,16 +1,20 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
-import { RichText, MediaPlaceholder, BlockControls, MediaUpload, MediaUploadCheck, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
-import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, PanelRow } from '@wordpress/components';
+import { RichText, BlockControls, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
+import { Spinner, PanelBody, SelectControl, TextControl, PanelRow } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
 import Title from '../../GutenComp/Title';
 import BColor from '../../GutenComp/BColor';
+import BorderControl from '../../GutenComp/BorderControl';
+import { ImagePlaceholder, ImageEditControl } from '../../GutenComp/ImageControl';
+import func from '../../Const/functions';
+const { getImageSizes } = func;
 
 const Edit = props => {
-    const { className, attributes: { layout = 'vertical', contentAlign = 'left', contentBGColor = '#ffffff00', contentPadding = { vertical: '20px', horizontal: '10px' }, imgId, imgUrl, imgAlt, imgHeight = 250, imgPos, imgBorder = { radius: '5px' }, isCat = true, cat = 'Category', catTypo = { fontSize: 15 }, catColor = '#0dcaf0', catMargin = { bottom: '10px' }, isTitle = true, title = 'Card Title', titlePos = 'image', titleTypo = { fontSize: 22 }, titleColor = '#ff7500', titleMargin = { bottom: '10px' } }, setAttributes, clientId, noticeOperations, noticeUI, image, imageSizes } = props;
+    const { className, attributes: { layout, textAlign, bgColor, img, imgPos, imgBorder, isCat, cat, catColor, isTitle, title, titlePos, titleColor }, setAttributes, clientId, image, imageSizes } = props;
 
     // useEffect
     useEffect(() => {
@@ -18,46 +22,28 @@ const Edit = props => {
     }, [clientId]);
 
     useEffect(() => {
-        if (imgUrl && isBlobURL(imgUrl) && !imgId) {
-            setAttributes({ imgUrl: '', imgAlt: '' });
+        if (img?.url && isBlobURL(img?.url) && !img?.id) {
+            setAttributes({ ...img, url: '', alt: '' });
         }
     }, []);
-
-    // Functions
-    const onSelectImage = ({ id, url, alt }) => setAttributes({ imgId: id, imgUrl: url, imgAlt: alt });
-
-    const getImageSizes = () => {
-        if (!image) return [];
-        let options = [];
-        const sizes = image.media_details.sizes;
-
-        for (const key in sizes) {
-            const imageSize = imageSizes.find(s => s.slug === key);
-            if (imageSize) {
-                options.push({ label: imageSize.name, value: sizes[key].source_url });
-            }
-        }
-        return options;
-    }
 
     // Components
     const cardTitle = () => isTitle && <RichText className='cardTitle' tagName='h3' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Card Title', 'b-blocks')} />
 
-    const cardImage = () => imgUrl ? <>
+    const cardImage = () => img?.url ? <>
         <figure className='cardImage'>
-            <img src={imgUrl} alt={imgAlt} />
+            <img src={img?.url} alt={img?.alt} />
 
             {'image' === titlePos && cardTitle()}
         </figure>
-        {isBlobURL(imgUrl) && <Spinner />}
-    </> :
-        <MediaPlaceholder labels={{ title: __(' Card Image', 'b-blocks') }} icon='format-image' allowedTypes={['image']} accept='image/*' onSelect={onSelectImage} onSelectURL={val => setAttributes({ imgId: null, imgUrl: val, imgAlt: '' })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} />;
+        {isBlobURL(img?.url) && <Spinner />}
+    </> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} img={img} onChange={val => setAttributes({ img: val })} />;
 
     return <>
         <InspectorControls>
             <PanelBody title={__('Colors Settings', 'b-blocks')}>
                 {/* Content Background Color */}
-                <BColor label={__('Content Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor='#ffffff00' />
+                <BColor label={__('Content Background Color:', 'b-blocks')} value={bgColor} onChange={val => setAttributes({ bgColor: val })} defaultColor='#ffffff00' />
 
                 {/* Category Color */}
                 <BColor className='mt-20p mb-5p' label={__('Category Color:', 'b-blocks')} value={catColor} onChange={val => setAttributes({ catColor: val })} defaultColor='#0dcaf0' />
@@ -66,59 +52,43 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#ff7500' />
             </PanelBody>
 
-            {(imgUrl || imgId) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-                {imgUrl && !isBlobURL(imgUrl) && <>
-                    <Title mt='0'>{__('Alt Text (Alternative Text):', 'b-blocks')}</Title>
-                    <TextControl label={__('', 'b-blocks')} value={imgAlt} onChange={val => setAttributes({ imgAlt: val })} />
+            {(img?.url || img?.id) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+                {/* Border */}
+                <BorderControl label={__('Border', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} defaults={{ radius: '5px' }} />
+
+                {img?.url && !isBlobURL(img?.url) && <>
+                    <Title>{__('Alt Text (Alternative Text):', 'b-blocks')}</Title>
+                    <TextControl label={__('', 'b-blocks')} value={img?.alt} onChange={val => setAttributes({ img: { ...img, alt: val } })} />
                 </>}
 
-                {imgId && <PanelRow className='mt-20p mb-5p'>
+                {img?.id && <PanelRow className='mt-20p mb-5p'>
                     <Title mt='0' mb='0'>{__('Select Size:', 'b-blocks')}</Title>
-                    <SelectControl value={imgUrl} onChange={val => setAttributes({ imgUrl: val })} options={getImageSizes()} />
+                    <SelectControl value={img?.url} onChange={val => setAttributes({ img: { ...img, ['url']: val } })} options={getImageSizes(image, imageSizes)} />
                 </PanelRow>}
             </PanelBody>}
         </InspectorControls>
 
 
         <BlockControls>
-            {imgUrl && <ToolbarGroup>
-                {imgId && <MediaUploadCheck>
-                    <MediaUpload allowedTypes={['image']} value={imgId} onSelect={onSelectImage} render={({ open }) => {
-                        return <Button className='components-icon-button components-toolbar__control' label={__('Edit Card Photo', 'b-blocks')} icon='edit' onClick={open} />
-                    }} />
-                </MediaUploadCheck>}
-            </ToolbarGroup>}
+            <ImageEditControl label={__('Edit Front Image:', 'b-blocks')} img={img} onChange={val => setAttributes({ img: val })} />
         </BlockControls>
 
 
-        <div id={`bBlocksCard-${clientId}`} className={className}>
+        <div className={className} id={`bBlocksCard-${clientId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
-                @import url(${catTypo?.googleFontLink});
-                @import url(${titleTypo?.googleFontLink});
-
-                #bBlocksCard-${clientId} .bBlocksCard{ background-color: ${contentBGColor}; }
+                #bBlocksCard-${clientId} .bBlocksCard{ background-color: ${bgColor}; }
 
                 #bBlocksCard-${clientId} .bBlocksCard .cardImage{${imgBorder?.styles || 'border-radius: 5px;'}}
-                #bBlocksCard-${clientId} .bBlocksCard .cardImage img{ height: ${imgHeight}px; }
 
-                #bBlocksCard-${clientId} .bBlocksCard .cardDetails{ padding: ${contentPadding?.styles || '20px 10px'}; }
-                #bBlocksCard-${clientId} .bBlocksCard .cardDetails .cardCategory{
-                    color: ${catColor};
-                    ${catTypo?.styles || 'font-size: 15px;'}
-                    margin: ${catMargin?.styles || '0 0 10px 0'};
-                }
-                #bBlocksCard-${clientId} .bBlocksCard .cardTitle{
-                    color: ${titleColor};
-                    ${titleTypo?.styles || 'font-size: 22px;'}
-                    margin: ${titleMargin?.styles || '0 0 10px 0'};
-                }
+                #bBlocksCard-${clientId} .bBlocksCard .cardDetails .cardCategory{ color: ${catColor}; }
+                #bBlocksCard-${clientId} .bBlocksCard .cardTitle{ color: ${titleColor}; }
             `}} />
 
             <div className={`bBlocksCard ${'horizontal' === layout ? 'horizontal' : 'vertical'} ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
                 {'top' === imgPos && cardImage()}
 
-                <div className={`cardDetails text-${contentAlign}`}>
+                <div className={`cardDetails text-${textAlign}`}>
                     {isCat && <RichText className='cardCategory' tagName='h6' value={cat} onChange={val => setAttributes({ cat: val })} placeholder={__('Card Category', 'b-blocks')} />}
 
                     {'content' === titlePos && cardTitle()}
@@ -133,16 +103,15 @@ const Edit = props => {
     </>
 };
 export default withSelect((select, props) => {
-    const { imgId } = props.attributes;
+    const { img } = props.attributes;
 
-    // const { getBlockRootClientId, getBlock, } = select('core/block-editor');
+    // const { getBlockRootClientId, getBlock } = select('core/block-editor');
     // const rootClientId = getBlockRootClientId(props.clientId);
     // const rootBlock = getBlock(rootClientId);
     // const { attributes: {} } = rootBlock;
 
     return {
-        image: imgId ? select('core').getMedia(imgId) : null,
-        imageSizes: select('core/block-editor').getSettings().imageSizes,
-        // parentAttr: rootBlock.attributes || {}
+        image: img?.id ? select('core').getMedia(img?.id) : null,
+        imageSizes: select('core/block-editor').getSettings().imageSizes
     }
-})(withNotices(Edit));
+})(Edit);

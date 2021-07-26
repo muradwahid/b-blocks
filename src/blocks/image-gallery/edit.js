@@ -48,7 +48,7 @@ const Edit = props => {
                 <BorderControl label={__('Border:', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />
 
                 {/* Shadow */}
-                <ShadowControl label={__('Shadow:', 'b-blocks')} border={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
+                <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
             </PanelBody>
 
             <PanelBody title={__('Caption Settings', 'b-blocks')} initialOpen={false}>

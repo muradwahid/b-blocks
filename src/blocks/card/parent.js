@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { select, dispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks, InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, ButtonGroup, Tooltip, Button, ToggleControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, ButtonGroup, Tooltip, Button, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Icon
 import icons from '../../Const/icons';
@@ -12,10 +12,10 @@ import icons from '../../Const/icons';
 import Title from '../../GutenComp/Title';
 import BDevice from '../../GutenComp/BDevice';
 import BtnGroup from '../../GutenComp/BtnGroup';
-import BorderControl from '../../GutenComp/BorderControl';
 import Typography from '../../GutenComp/Typography';
 import SpaceControl from '../../GutenComp/SpaceControl';
-import ColorsControl from '../../GutenComp/ColorsControl';
+import options from '../../Const/options';
+const { pxEmUnits } = options;
 
 // Custom Attributes
 const attributes = {
@@ -30,10 +30,6 @@ const attributes = {
     },
     columnGap: { type: 'number', default: 20 },
     rowGap: { type: 'number', default: 30 },
-
-    colors: {
-        type: 'object', default: {}
-    },
 }
 
 registerBlockType('b-blocks/cards', {
@@ -51,7 +47,7 @@ registerBlockType('b-blocks/cards', {
     attributes,
 
     edit: props => {
-        const { className, attributes: { columns, columnGap, rowGap, colors }, setAttributes, clientId } = props;
+        const { className, attributes: { columns, columnGap, rowGap }, setAttributes, clientId } = props;
 
         // useEffect
         useEffect(() => {
@@ -64,11 +60,10 @@ registerBlockType('b-blocks/cards', {
         const innerBlocks = select('core/block-editor').getBlocksByClientId(clientId)[0]?.innerBlocks;
         const childAttributes = innerBlocks && innerBlocks[0]?.attributes;
         const [layout, setLayout] = useState(childAttributes?.layout);
-        const [contentAlign, setContentAlign] = useState(childAttributes?.contentAlign);
-        const [contentPadding, setContentPadding] = useState(childAttributes?.contentPadding);
+        const [textAlign, setTextAlign] = useState(childAttributes?.textAlign);
+        const [padding, setContentPadding] = useState(childAttributes?.padding);
         const [imgPos, setImgPos] = useState(childAttributes?.imgPos);
         const [imgHeight, setImgHeight] = useState(childAttributes?.imgHeight);
-        const [imgBorder, setImgBorder] = useState(childAttributes?.imgBorder);
         const [isCat, setIsCat] = useState(childAttributes?.isCat);
         const [catTypo, setCatTypo] = useState(childAttributes?.catTypo);
         const [catMargin, setCatMargin] = useState(childAttributes?.catMargin);
@@ -89,11 +84,11 @@ registerBlockType('b-blocks/cards', {
                         <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
                         <ButtonGroup className='bBlocksBtnGroup'>
                             <Tooltip text={__('Vertical', 'b-blocks')} position='top'>
-                                <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout || 'vertical' === childAttributes?.layout} aria-pressed={'vertical' === layout || 'vertical' === childAttributes?.layout} onClick={() => { setChildAttributes({ layout: 'vertical', contentAlign: 'center', imgHeight: 250 }); setLayout('vertical'); setContentAlign('center'); setImgHeight(250); }}></Button>
+                                <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout || 'vertical' === childAttributes?.layout} aria-pressed={'vertical' === layout || 'vertical' === childAttributes?.layout} onClick={() => { setChildAttributes({ layout: 'vertical', textAlign: 'center', imgHeight: '250px' }); setLayout('vertical'); setTextAlign('center'); setImgHeight('250px'); }}></Button>
                             </Tooltip>
 
                             <Tooltip text={__('Horizontal', 'b-blocks')} position='top'>
-                                <Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout || 'horizontal' === childAttributes?.layout} aria-pressed={'horizontal' === layout || 'horizontal' === childAttributes?.layout} onClick={() => { setChildAttributes({ layout: 'horizontal', contentAlign: 'left', imgHeight: 200 }); setLayout('horizontal'); setContentAlign('left'); setImgHeight(200); }}></Button>
+                                <Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout || 'horizontal' === childAttributes?.layout} aria-pressed={'horizontal' === layout || 'horizontal' === childAttributes?.layout} onClick={() => { setChildAttributes({ layout: 'horizontal', textAlign: 'left', imgHeight: '200px' }); setLayout('horizontal'); setTextAlign('left'); setImgHeight('200px'); }}></Button>
                             </Tooltip>
                         </ButtonGroup>
                     </PanelRow>
@@ -112,32 +107,25 @@ registerBlockType('b-blocks/cards', {
                     {/* Row Gap */}
                     <Title>{__('Row Gap', 'b-blocks')}</Title>
                     <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={100} step={1} beforeIcon='arrow-down-alt' />
-
-                    {/* Colors */}
-                    <ColorsControl colors={colors} onChange={val => setAttributes({ colors: val })} />
                 </PanelBody>
 
                 <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Padding */}
-                    <SpaceControl label={__('Padding:', 'b-blocks')} space={contentPadding || childAttributes?.contentPadding} onChange={val => { setChildAttributes({ contentPadding: val }); setContentPadding(val); }} defaults={{ vertical: '20px', horizontal: '10px' }} />
+                    <SpaceControl label={__('Padding:', 'b-blocks')} space={padding || childAttributes?.padding} onChange={val => { setChildAttributes({ padding: val }); setContentPadding(val); }} defaults={{ vertical: '20px', horizontal: '10px' }} />
                 </PanelBody>
 
                 <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                     {/* Position */}
                     <PanelRow>
                         <Title mt='0'>{__('Position:', 'b-blocks')}</Title>
-                        <BtnGroup myValue={imgPos || childAttributes?.imgPos} setState={val => { setChildAttributes({ imgPos: val }); setImgPos(val) }} options={[
+                        <BtnGroup myValue={imgPos || childAttributes?.imgPos} setState={val => { setChildAttributes({ imgPos: val }); setImgPos(val); }} options={[
                             { label: 'vertical' == layout ? 'Top' : 'Left', value: 'top', icon: 'vertical' == layout ? 'TOP' : 'LEFT' },
                             { label: 'vertical' == layout ? 'Bottom' : 'Right', value: 'bottom', icon: 'vertical' == layout ? 'BOTTOM' : 'RIGHT' }
                         ]} />
                     </PanelRow>
 
                     {/* Height */}
-                    <Title>{__('Height:', 'b-blocks')}</Title>
-                    <RangeControl value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val) }} min={0} max={500} step={1} />
-
-                    {/* Border */}
-                    <BorderControl label={__('Border', 'b-blocks')} border={imgBorder || childAttributes?.imgBorder} onChange={val => { setChildAttributes({ imgBorder: val }); setImgBorder(val); }} defaults={{ radius: '5px' }} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val); }} units={pxEmUnits} />
                 </PanelBody>
 
                 <PanelBody title={__('Category Settings', 'b-blocks')} initialOpen={false}>
@@ -170,16 +158,29 @@ registerBlockType('b-blocks/cards', {
 
 
             <BlockControls>
-                <AlignmentToolbar value={contentAlign || childAttributes?.contentAlign} onChange={val => { setChildAttributes({ contentAlign: val }); setContentAlign(val); }} />
+                <AlignmentToolbar value={textAlign || childAttributes?.textAlign} onChange={val => { setChildAttributes({ textAlign: val }); setTextAlign(val); }} />
             </BlockControls>
 
 
-            <div id={`bBlocksCards-${clientId}`} className={className}>
+            <div className={className} id={`bBlocksCards-${clientId}`}>
                 <style dangerouslySetInnerHTML={{
                     __html: `
+                    @import url(${catTypo?.googleFontLink || childAttributes?.catTypo?.googleFontLink});
+                    @import url(${titleTypo?.googleFontLink || childAttributes?.titleTypo?.googleFontLink});
+
                     #bBlocksCards-${clientId} .bBlocksCards .block-editor-inner-blocks .block-editor-block-list__layout{
                         grid-gap: ${rowGap}px ${columnGap}px;
-                        ${colors?.styles}
+                    }
+
+                    #bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardImage img{ height: ${imgHeight || childAttributes?.imgHeight}; }
+                    #bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardDetails{ padding: ${padding?.styles || childAttributes?.padding?.styles || '20px 10px'}; }
+                    #bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardDetails .cardCategory{
+                        ${catTypo?.styles || childAttributes?.catTypo?.styles || 'font-size: 15px;'}
+                        margin: ${catMargin?.styles || childAttributes?.catMargin?.styles || '0 0 10px 0'};
+                    }
+                    #bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardTitle{
+                        ${titleTypo?.styles || childAttributes?.titleTypo?.styles || 'font-size: 22px;'}
+                        margin: ${titleMargin?.styles || childAttributes?.titleMargin?.styles || '0 0 10px 0'};
                     }
                 `}} />
 
@@ -190,22 +191,7 @@ registerBlockType('b-blocks/cards', {
         </>
     },
 
-    save: props => {
-        const { cId, columns, columnGap, rowGap } = props.attributes;
-
-        return <div id={`bBlocksCards-${cId}`}>
-            <style dangerouslySetInnerHTML={{
-                __html: `                    
-                    #bBlocksCards-${cId} .bBlocksCards{
-                        grid-gap: ${rowGap}px ${columnGap}px;
-                    }
-                `}} />
-
-            <div className={`bBlocksCards columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
-                <InnerBlocks.Content />
-            </div>
-        </div>;
-    },
+    save: () => <InnerBlocks.Content />,
 
     example: {
         attributes: {
