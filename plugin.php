@@ -80,26 +80,26 @@ function b_blocks_register() {
 
     // Register Blocks
     b_blocks_wp_register_script( 'posts', array(
-        'render_callback' => 'render_b_blocks_posts',
-        // 'attributes'      => array(
-        //     'postsPerPage'   => array( 'type' => 'number', 'default' => 5 ),
-        // ),
+        'render_callback' => 'render_b_blocks_posts'
     ) );
-    b_blocks_wp_register_script( 'slider' );
+    b_blocks_wp_register_script( 'slider', array(
+        'attributes'      => b_blocks_slider_attributes(),
+        'render_callback' => 'render_b_blocks_slider'
+    ) );
     b_blocks_wp_register_script( 'section' );
     b_blocks_wp_register_script( 'section-heading' );
-    b_blocks_wp_register_script( 'image-gallery',array(
-        'render_callback' => 'render_b_blocks_image_gallery',
-        'attributes'      => image_gallery_attributes()
+    b_blocks_wp_register_script( 'image-gallery', array(
+        'attributes'      => b_blocks_image_gallery_attributes(),
+        'render_callback' => 'render_b_blocks_image_gallery'
     ) );
     b_blocks_wp_register_script( 'image-comparison' );
-    b_blocks_wp_register_script( 'flip-boxes',array(
-        'render_callback' => 'render_b_blocks_flip_boxes',
-        'attributes'      => flip_boxes_attributes()
+    b_blocks_wp_register_script( 'flip-boxes', array(
+        'attributes'      => flip_boxes_attributes(),
+        'render_callback' => 'render_b_blocks_flip_boxes'
     ) );
     b_blocks_wp_register_script( 'flip-box', array(
-        'render_callback' => 'render_b_blocks_flip_box',
-        'attributes'      => flip_box_attributes()
+        'attributes'      => flip_box_attributes(),
+        'render_callback' => 'render_b_blocks_flip_box'
     ) );
     b_blocks_wp_register_script( 'team-members' );
     b_blocks_wp_register_script( 'team-member' );
@@ -111,12 +111,12 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'button-group' );
     b_blocks_wp_register_script( 'countdown' );
     b_blocks_wp_register_script( 'cards', array(
-        'render_callback' => 'render_b_blocks_cards',
-        'attributes'      => cards_attributes()
+        'attributes'      => b_blocks_cards_attributes(),
+        'render_callback' => 'render_b_blocks_cards'
     ) );
     b_blocks_wp_register_script( 'card', array(
-        'render_callback' => 'render_b_blocks_card',
-        'attributes'      => card_attributes()
+        'attributes'      => b_blocks_card_attributes(),
+        'render_callback' => 'render_b_blocks_card'
     ) );
     b_blocks_wp_register_script( 'mailto' );
     b_blocks_wp_register_script( 'modal' );
@@ -188,6 +188,7 @@ class StyleGenerator {
 
 // Posts Block.
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/slider.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-box.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/card.php';

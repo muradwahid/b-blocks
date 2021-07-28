@@ -83,7 +83,7 @@ const Edit = props => {
                 <TextControl value={btnLink} onChange={val => setAttributes({ btnLink: val })} />
 
                 {/* Border */}
-                <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} />
+                <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
 
                 {/* Colors */}
                 <Title>{__('Colors:', 'b-blocks')}</Title>
@@ -136,7 +136,7 @@ const Edit = props => {
 
                 #bBlocksFlipBox-${clientId} .flipBtn{
                     ${btnColors?.styles || 'color: #fff; background: #ff4500;'}
-                    ${btnBorder?.styles};
+                    ${btnBorder?.styles || 'border-radius: 3px;'}
                 }
                 #bBlocksFlipBox-${clientId} .flipBtn:hover{
                     ${btnHovColors?.styles || 'color: #fff; background: #ff7500;'}

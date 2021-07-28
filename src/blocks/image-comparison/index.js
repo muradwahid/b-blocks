@@ -60,8 +60,6 @@ registerBlockType('b-blocks/image-comparison', {
         align: ['wide', 'full']
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

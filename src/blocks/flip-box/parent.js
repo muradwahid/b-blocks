@@ -64,7 +64,7 @@ registerBlockType('b-blocks/flip-boxes', {
                         <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
                         <BDevice device={device} onChange={val => setDevice(val)} />
                     </PanelRow>
-                    <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} />
+                    <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
                     <UnitControl className='mt-20p mb-5p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={pxEmUnits} />
 

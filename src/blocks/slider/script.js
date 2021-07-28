@@ -11,7 +11,7 @@ Object.values(allSlider).map(slider => {
     const currentSlider = document.getElementById(`${sliderId}`);
     const { columns, columnGap, isLoop, isAutoplay, speed, isFade, isTouchMove, isPageClickable, isPageDynamic } = JSON.parse(currentSlider.dataset.swiper);
 
-    new Swiper(`#${sliderId} .slider`, {
+    new Swiper(`#${sliderId} .bBlocksSlider`, {
         // Optional parameters
         direction: 'horizontal',
         slidesPerView: columns?.mobile,

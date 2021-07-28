@@ -71,7 +71,7 @@ const Typography = props => {
         // Google font link
         const linkQuery = 400 === typography?.fontVariant ? '' : '400i' === typography?.fontVariant ? ':ital@1' : typography?.fontVariant?.includes('00i') ? `: ital, wght@1, ${typography?.fontVariant?.replace('00i', '00')} ` : `: wght@${typography?.fontVariant} `;
 
-        const link = 'Default' === typography?.fontFamily || undefined === typography?.fontFamily ? 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap' : `https://fonts.googleapis.com/css2?family=${typography?.fontFamily?.split(' ').join('+')}${linkQuery}&display=swap`;
+        const link = 'Default' === typography?.fontFamily || undefined === typography?.fontFamily ? 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap' : `https://fonts.googleapis.com/css2?family=${typography?.fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
 
         onChange({ ...typography, ['styles']: allStyles.replace(/\s+/g, ' ').trim(), ['googleFontLink']: link });
     }, [typography?.fontFamily, typography?.fontWeight, typography?.fontSize, typography?.fontStyle, typography?.textTransform, typography?.textDecoration, typography?.lineHeight, typography?.letterSpace]);

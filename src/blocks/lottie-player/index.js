@@ -49,8 +49,6 @@ registerBlockType('b-blocks/lottie-player', {
         align: ['wide', 'full']
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

@@ -17,21 +17,6 @@ import SpaceControl from '../../GutenComp/SpaceControl';
 import options from '../../Const/options';
 const { pxEmUnits } = options;
 
-// Custom Attributes
-const attributes = {
-    cId: { type: 'string' },
-
-    columns: {
-        type: 'object', default: {
-            desktop: 3,
-            tablet: 2,
-            mobile: 1
-        }
-    },
-    columnGap: { type: 'number', default: 20 },
-    rowGap: { type: 'number', default: 30 },
-}
-
 registerBlockType('b-blocks/cards', {
     // Build In attributes
     title: __('Cards', 'b-blocks'),
@@ -43,8 +28,6 @@ registerBlockType('b-blocks/cards', {
         align: ['wide', 'full'],
         html: false
     },
-
-    attributes,
 
     edit: props => {
         const { className, attributes: { columns, columnGap, rowGap }, setAttributes, clientId } = props;
@@ -100,13 +83,9 @@ registerBlockType('b-blocks/cards', {
                     </PanelRow>
                     <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-                    {/* Column Gap */}
-                    <Title>{__('Column Gap:', 'b-blocks')}</Title>
-                    <RangeControl value={columnGap} onChange={cng => setAttributes({ columnGap: cng })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
+                    <UnitControl className='mt-20p mb-5p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={pxEmUnits} />
 
-                    {/* Row Gap */}
-                    <Title>{__('Row Gap', 'b-blocks')}</Title>
-                    <RangeControl value={rowGap} onChange={cng => setAttributes({ rowGap: cng })} min={0} max={100} step={1} beforeIcon='arrow-down-alt' />
+                    <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={pxEmUnits} />
                 </PanelBody>
 
                 <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
@@ -169,7 +148,7 @@ registerBlockType('b-blocks/cards', {
                     @import url(${titleTypo?.googleFontLink || childAttributes?.titleTypo?.googleFontLink});
 
                     #bBlocksCards-${clientId} .bBlocksCards .block-editor-inner-blocks .block-editor-block-list__layout{
-                        grid-gap: ${rowGap}px ${columnGap}px;
+                        grid-gap: ${rowGap} ${columnGap};
                     }
 
                     #bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardImage img{ height: ${imgHeight || childAttributes?.imgHeight}; }

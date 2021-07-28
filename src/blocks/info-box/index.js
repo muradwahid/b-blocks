@@ -88,8 +88,6 @@ registerBlockType('b-blocks/info-box', {
         align: ['wide', 'full']
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

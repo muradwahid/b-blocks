@@ -24,8 +24,6 @@ registerBlockType('b-blocks/card', {
     keywords: [__('card', 'b-blocks'), __('design card', 'b-blocks'), __('section card', 'b-blocks')],
     supports: { reusable: false, html: false },
 
-    styles: [],
-
     // Build In Functions
     edit: Edit,
 

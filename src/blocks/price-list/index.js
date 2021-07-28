@@ -59,8 +59,6 @@ registerBlockType('b-blocks/price-list', {
         html: false
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

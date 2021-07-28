@@ -65,8 +65,6 @@ registerBlockType('b-blocks/button-group', {
         align: ['wide', 'full']
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

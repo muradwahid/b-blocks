@@ -13,40 +13,6 @@ import icons from '../../Const/icons';
 // Deprecated
 import deprecated from './deprecated';
 
-// Custom Attributes
-const attributes = {
-    cId: { type: 'string' },
-
-    images: { type: 'array', default: [] },
-    columns: {
-        type: 'object', default: {
-            desktop: 3,
-            tablet: 2,
-            mobile: 1
-        }
-    },
-
-    imgPadding: { type: 'object', default: {} },
-
-    imgBorder: { type: 'object', default: {} },
-
-    imgShadow: { type: 'object', default: {} },
-
-    isCap: { type: 'boolean', default: true },
-    capTitleTypo: {
-        type: 'object', default: {
-            fontSize: 15
-        }
-    },
-    capDescTypo: {
-        type: 'object', default: {
-            fontSize: 15
-        }
-    },
-    capColor: { type: 'string', default: '#333' },
-    capAlign: { type: 'string', default: 'left' },
-}
-
 registerBlockType('b-blocks/image-gallery', {
     // Build In attributes
     title: __('Image Gallery', 'b-blocks'),
@@ -57,11 +23,6 @@ registerBlockType('b-blocks/image-gallery', {
     supports: {
         align: ['wide', 'full']
     },
-
-    styles: [],
-
-    // Custom Attributes
-    attributes,
 
     // Build In Functions
     edit: Edit,

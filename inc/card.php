@@ -5,9 +5,9 @@ class Card{
 }
 
 // Cards Attributes
-function cards_attributes(){
+function b_blocks_cards_attributes(){
     return array(
-        'cId' => array( 'type' => 'string'),
+        'cId' => array( 'type' => 'string' ),
 
         'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1, ) ),
 
@@ -42,12 +42,12 @@ function render_b_blocks_cards($attributes, $content){
         'margin' => $titleMargin['styles'] ?? '0 0 10px 0'
     ));
 
-    $catTypoFontLink = $catTypo['googleFontLink'] ?? '';
-    $titleTypoFontLink = $titleTypo['googleFontLink'] ?? '';
+    $catFontLink = $catTypo['googleFontLink'] ?? '';
+    $titleFontLink = $titleTypo['googleFontLink'] ?? '';
 
     ob_start(); // Echo the content
     echo "<div class='wp-block-b-blocks-cards' id='bBlocksCards-$cId'>
-        <style>@import url($catTypoFontLink); @import url($titleTypoFontLink);". $cardsStyle::renderStyle() ."</style>
+        <style>@import url($catFontLink); @import url($titleFontLink);". $cardsStyle::renderStyle() ."</style>
 
         <div class='bBlocksCards columns-".$columns['desktop']." columns-tablet-".$columns['tablet']." columns-mobile-".$columns['mobile']."'>". $content ."</div>
     </div>";
@@ -58,7 +58,7 @@ function render_b_blocks_cards($attributes, $content){
 
 
 // Card Attributes
-function card_attributes(){
+function b_blocks_card_attributes(){
     return array(
         'cId' => array( 'type' => 'string'),
 

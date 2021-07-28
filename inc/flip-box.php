@@ -23,9 +23,15 @@ function render_b_blocks_flip_boxes($attributes, $content){
 
     // Generate Styles
     $flipBoxesStyle = new StyleGenerator();
-    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBoxes", array('grid-gap' => "$rowGap $columnGap"));
-    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox", array('height' => $boxHeight));
-    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .box", array('padding' => $padding['styles'] ?? '30px 25px'));
+    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBoxes", array(
+        'grid-gap' => "$rowGap $columnGap"
+    ));
+    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox", array(
+        'height' => $boxHeight
+    ));
+    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .box", array(
+        'padding' => $padding['styles'] ?? '30px 25px'
+    ));
     $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox img", array(
         'width' => $imgWidth,
         'margin' => $imgMargin['styles'] ?? '0 0 20px 0'
@@ -34,19 +40,21 @@ function render_b_blocks_flip_boxes($attributes, $content){
         $titleTypo['styles'] ?? 'font-size: 25px;' => '',
         'margin' => $titleMargin['styles'] ?? '0 0 20px 0'
     ));
-    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipDescription", array($descTypo['styles'] ?? 'font-size: 16px;' => ''));
+    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipDescription", array(
+        $descTypo['styles'] ?? 'font-size: 16px;' => ''
+    ));
     $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipBtn", array(
         $btnTypo['styles'] ?? 'font-size: 16px;' => '',
         'padding' => $btnPadding['styles'] ?? '15px 25px'
     ));
 
-    $titleTypoFontLink = $titleTypo['googleFontLink'] ?? '';
-    $descTypoFontLink = $descTypo['googleFontLink'] ?? '';
-    $btnTypoFontLink = $btnTypo['googleFontLink'] ?? '';
+    $titleFontLink = $titleTypo['googleFontLink'] ?? '';
+    $descFontLink = $descTypo['googleFontLink'] ?? '';
+    $btnFontLink = $btnTypo['googleFontLink'] ?? '';
 
     ob_start(); // Echo the content
     echo "<div class='wp-block-b-blocks-flip-boxes' id='bBlocksFlipBoxes-$cId'>
-        <style>@import url($titleTypoFontLink); @import url($descTypoFontLink); @import url($btnTypoFontLink);". $flipBoxesStyle::renderStyle() ."</style>
+        <style>@import url($titleFontLink); @import url($descFontLink); @import url($btnFontLink);". $flipBoxesStyle::renderStyle() ."</style>
 
         <div class='bBlocksFlipBoxes columns-".$columns['desktop']." columns-tablet-".$columns['tablet']." columns-mobile-".$columns['mobile']."'>". $content ."</div>
     </div>";
@@ -129,7 +137,7 @@ function render_b_blocks_flip_box( $attributes ) {
     ));
     $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId .flipBtn", array(
         $btnColors['styles'] ?? 'color: #fff; background: #ff4500;' => '',
-        $btnBorder['styles'] ?? '' => ''
+        $btnBorder['styles'] ?? 'border-radius: 3px;' => ''
     ));
     $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId .flipBtn:hover", array(
         $btnHovColors['styles'] ?? 'color: #fff; background: #ff7500;' => ''

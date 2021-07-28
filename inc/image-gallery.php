@@ -1,6 +1,6 @@
 <?php
 // Image Gallery Attributes
-function image_gallery_attributes(){
+function b_blocks_image_gallery_attributes(){
     return array(
         'cId' => array( 'type' => 'string'),
 

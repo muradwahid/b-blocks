@@ -26,8 +26,6 @@ registerBlockType('b-blocks/flip-box', {
         html: false
     },
 
-    styles: [],
-
     // Build In Functions
     edit: Edit,
 

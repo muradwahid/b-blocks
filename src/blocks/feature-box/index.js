@@ -55,8 +55,6 @@ registerBlockType('b-blocks/feature-box', {
         html: false
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

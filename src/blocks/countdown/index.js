@@ -69,8 +69,6 @@ registerBlockType('b-blocks/countdown', {
         align: ['center', 'wide', 'full']
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 

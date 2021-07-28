@@ -101,8 +101,6 @@ registerBlockType('b-blocks/team-member', {
         html: false
     },
 
-    styles: [],
-
     // Custom Attributes
     attributes,
 
