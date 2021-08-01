@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, Button, ToolbarItem, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Swiper JS
 import Swiper from 'swiper/bundle';
@@ -15,7 +15,7 @@ import BorderControl from '../../GutenComp/BorderControl';
 import SpaceControl from '../../GutenComp/SpaceControl';
 import ColorsControl from '../../GutenComp/ColorsControl';
 import options from '../../Const/options';
-const { pxEmUnits } = options;
+const { pxUnit, emUnit, vwUnit } = options;
 
 const Edit = props => {
     const { className, attributes: { align, slides = [], columns, columnGap, sliderHeight, bgOverlay, isLoop, isAutoplay, speed, isFade, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, textAlign, isTitle, titleTypo, titleColor, titleMargin, isDesc, descTypo, descColor, descMargin, isBtn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes, clientId } = props;
@@ -162,7 +162,7 @@ const Edit = props => {
                 <RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
 
                 {/* Height */}
-                <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={pxEmUnits} />
+                <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={pxUnit, emUnit, vwUnit} />
 
                 {/* Background Overlay Color */}
                 <BColor className='mt-20p mb-5p' label={__('Background Overlay Color:', 'b-blocks')} value={bgOverlay} onChange={val => setAttributes({ bgOverlay: val })} defaultColor='#00000080' />
@@ -203,9 +203,9 @@ const Edit = props => {
 
                     <BColor className='mt-20p mb-5p' label={__('Pagination Bullets Color:', 'b-blocks')} value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
 
-                    <UnitControl className='mt-20p mb-5p' label={__('Width:', 'b-blocks')} labelPosition='left' value={pageWidth} onChange={val => setAttributes({ pageWidth: val })} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Width:', 'b-blocks')} labelPosition='left' value={pageWidth} onChange={val => setAttributes({ pageWidth: val })} units={pxUnit, emUnit} />
 
-                    <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={pageHeight} onChange={val => setAttributes({ pageHeight: val })} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={pageHeight} onChange={val => setAttributes({ pageHeight: val })} units={pxUnit, emUnit} />
 
                     <BorderControl label={__('Pagination Border:', 'b-blocks')} border={pageBorder} onChange={val => setAttributes({ pageBorder: val })} defaults={{ radius: '50%' }} />
                 </>}
@@ -276,9 +276,9 @@ const Edit = props => {
 
 
         <BlockControls>
-            <ToolbarGroup>
+            <ToolbarItem>
                 <Button className='components-icon-button components-toolbar__control' label={__('Add New Slide', 'b-blocks')} onClick={() => setAttributes({ slides: [...slides, { img: '', title: 'Slide Title', description: 'Description of slide', btnText: 'Click Me', btnLink: '#' }] })} ><Dashicon icon='plus' size={23} className={`fontSize-23`} /></Button>
-            </ToolbarGroup>
+            </ToolbarItem>
 
             <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />
         </BlockControls>

@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
 import { RichText, MediaPlaceholder, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck, InspectorControls, ColorPalette } from '@wordpress/block-editor';
-import { Spinner, withNotices, ToolbarGroup, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, ButtonGroup, Tooltip, ToggleControl } from '@wordpress/components';
+import { Spinner, withNotices, ToolbarItem, Button, PanelBody, SelectControl, TextControl, FontSizePicker, RangeControl, ButtonGroup, Tooltip, ToggleControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Icons
@@ -143,13 +143,13 @@ const Edit = props => {
 
 
         <BlockControls>
-            {imgUrl && <ToolbarGroup>
+            {imgUrl && <ToolbarItem>
                 {imgId && <MediaUploadCheck>
                     <MediaUpload allowedTypes={['image']} value={imgId} onSelect={onSelectImage} render={({ open }) => {
                         return <Button className='components-icon-button components-toolbar__control' label={__('Edit Product Photo', 'b-blocks')} icon='edit' onClick={open} />
                     }} />
                 </MediaUploadCheck>}
-            </ToolbarGroup>}
+            </ToolbarItem>}
 
             <AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
         </BlockControls>

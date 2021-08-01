@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, withNotices, Button, ToolbarGroup, PanelRow, ToggleControl } from '@wordpress/components';
+import { PanelBody, RangeControl, withNotices, Button, ToolbarItem, PanelRow, ToggleControl } from '@wordpress/components';
 
 // Variables
 import Title from '../../GutenComp/Title';
@@ -72,11 +72,11 @@ const Edit = props => {
         </InspectorControls>
 
         {0 < images.length && <BlockControls>
-            <ToolbarGroup>
+            <ToolbarItem>
                 <MediaUploadCheck>
                     <MediaUpload allowedTypes={['image']} value={images.map(img => img.id)} onSelect={val => setAttributes({ images: val })} multiple gallery render={({ open }) => <Button className='components-icon-button components-toolbar__control' label={__('Edit Gallery', 'b-blocks')} icon='edit' onClick={open} />} />
                 </MediaUploadCheck>
-            </ToolbarGroup>
+            </ToolbarItem>
         </BlockControls>}
 
 

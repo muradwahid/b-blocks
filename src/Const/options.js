@@ -96,26 +96,12 @@ const options = {
         { label: 'Percentage', value: '%', icon: '%', def: 100 }
     ],
 
-    allUnits: [
-        { value: '%', label: '%', default: 0 },
-        { value: 'px', label: 'px', default: 0 },
-        { value: 'em', label: 'em', default: 0 },
-        { value: 'rem', label: 'rem', default: 0 },
-    ],
-    pxPerEmUnits: [
-        { value: 'px', label: 'px', default: 0 },
-        { value: '%', label: '%', default: 0 },
-        { value: 'em', label: 'em', default: 0 },
-    ],
-    pxEmUnits: [
-        { value: 'px', label: 'px', default: 0 },
-        { value: 'em', label: 'em', default: 0 },
-    ],
-    pxEmRemUnits: [
-        { value: 'px', label: 'px', default: 0 },
-        { value: 'em', label: 'em', default: 0 },
-        { value: 'rem', label: 'rem', default: 0 },
-    ],
+    pxUnit: { value: 'px', label: 'px', default: 0 },
+    perUnit: { value: '%', label: '%', default: 0 },
+    emUnit: { value: 'em', label: 'em', default: 0 },
+    remUnit: { value: 'rem', label: 'rem', default: 0 },
+    vwUnit: { value: 'vw', label: 'vw', default: 0 },
+    vhUnit: { value: 'vh', label: 'vh', default: 0 },
 
     sides: [
         { value: 'all', label: 'All Sides' },

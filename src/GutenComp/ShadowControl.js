@@ -15,7 +15,7 @@ import Title from './Title';
 import BColor from './BColor';
 import BtnGroup from './BtnGroup';
 import options from '../Const/options';
-const { pxEmUnits } = options;
+const { pxUnit, emUnit, remUnit } = options;
 const shadowTypes = [
     { label: 'Box', value: 'box', icon: 'Box' },
     { label: 'Text', value: 'text', icon: 'Text' }
@@ -60,25 +60,25 @@ const BorderControl = props => {
 
                 {/* Horizontal Offset */}
                 <PanelRow>
-                    <UnitControl label={__('Horizontal Offset:', 'b-blocks')} labelPosition='left' value={getValue('hOffset')} onChange={val => setValue('hOffset', val)} units={pxEmUnits} />
+                    <UnitControl label={__('Horizontal Offset:', 'b-blocks')} labelPosition='left' value={getValue('hOffset')} onChange={val => setValue('hOffset', val)} units={[pxUnit, emUnit, remUnit]} />
                     {shadow?.hOffset && shadow?.hOffset !== getDefault('hOffset') && resetValue('hOffset')}
                 </PanelRow>
 
                 {/* Vertical Offset */}
                 <PanelRow>
-                    <UnitControl label={__('Vertical Offset:', 'b-blocks')} labelPosition='left' value={getValue('vOffset')} onChange={val => setValue('vOffset', val)} units={pxEmUnits} />
+                    <UnitControl label={__('Vertical Offset:', 'b-blocks')} labelPosition='left' value={getValue('vOffset')} onChange={val => setValue('vOffset', val)} units={[pxUnit, emUnit, remUnit]} />
                     {shadow?.vOffset && shadow?.vOffset !== getDefault('vOffset') && resetValue('vOffset')}
                 </PanelRow>
 
                 {/* Blur */}
                 <PanelRow>
-                    <UnitControl label={__('Blur:', 'b-blocks')} labelPosition='left' value={getValue('blur')} onChange={val => setValue('blur', val)} units={pxEmUnits} />
+                    <UnitControl label={__('Blur:', 'b-blocks')} labelPosition='left' value={getValue('blur')} onChange={val => setValue('blur', val)} units={[pxUnit, emUnit, remUnit]} />
                     {shadow?.blur && shadow?.blur !== getDefault('blur') && resetValue('blur')}
                 </PanelRow>
 
                 {/* Spreed */}
                 {'box' === shadow?.type && <PanelRow>
-                    <UnitControl label={__('Spreed:', 'b-blocks')} labelPosition='left' value={getValue('spreed')} onChange={val => setValue('spreed', val)} units={pxEmUnits} />
+                    <UnitControl label={__('Spreed:', 'b-blocks')} labelPosition='left' value={getValue('spreed')} onChange={val => setValue('spreed', val)} units={[pxUnit, emUnit, remUnit]} />
                     {shadow?.spreed && shadow?.spreed !== getDefault('spreed') && resetValue('spreed')}
                 </PanelRow>}
 

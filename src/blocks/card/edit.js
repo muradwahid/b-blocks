@@ -58,7 +58,7 @@ const Edit = props => {
 
                 {img?.url && !isBlobURL(img?.url) && <>
                     <Title>{__('Alt Text (Alternative Text):', 'b-blocks')}</Title>
-                    <TextControl label={__('', 'b-blocks')} value={img?.alt} onChange={val => setAttributes({ img: { ...img, alt: val } })} />
+                    <TextControl value={img?.alt} onChange={val => setAttributes({ img: { ...img, alt: val } })} />
                 </>}
 
                 {img?.id && <PanelRow className='mt-20p mb-5p'>

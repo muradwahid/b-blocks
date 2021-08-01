@@ -14,7 +14,7 @@ import './SpaceControl.scss';
 import Title from './Title';
 import options from '../Const/options';
 import icons from '../Const/icons';
-const { pxEmUnits } = options;
+const { pxUnit, perUnit, emUnit, remUnit } = options;
 
 const SpaceControl = props => {
     const { className, label = __('Space:', 'b-blocks'), space, onChange, defaults = {} } = props;
@@ -108,19 +108,19 @@ const SpaceControl = props => {
         </PanelRow>
 
         {2 === getValue('side') && <PanelRow className='twoColumn'>
-            <UnitControl label={__('Top Bottom:', 'b-blocks')} labelPosition='top' value={getValue('vertical')} onChange={val => setValue('vertical', val)} units={pxEmUnits} />
+            <UnitControl label={__('Top Bottom:', 'b-blocks')} labelPosition='top' value={getValue('vertical')} onChange={val => setValue('vertical', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
 
-            <UnitControl label={__('Left Right:', 'b-blocks')} labelPosition='top' value={getValue('horizontal')} onChange={val => setValue('horizontal', val)} units={pxEmUnits} />
+            <UnitControl label={__('Left Right:', 'b-blocks')} labelPosition='top' value={getValue('horizontal')} onChange={val => setValue('horizontal', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
         </PanelRow>}
 
         {4 === getValue('side') && <PanelRow className='fourColumn'>
-            <UnitControl label={__('Top:', 'b-blocks')} labelPosition='top' value={getValue('top')} onChange={val => setValue('top', val)} units={pxEmUnits} />
+            <UnitControl label={__('Top:', 'b-blocks')} labelPosition='top' value={getValue('top')} onChange={val => setValue('top', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
 
-            <UnitControl label={__('Right:', 'b-blocks')} labelPosition='top' value={getValue('right')} onChange={val => setValue('right', val)} units={pxEmUnits} />
+            <UnitControl label={__('Right:', 'b-blocks')} labelPosition='top' value={getValue('right')} onChange={val => setValue('right', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
 
-            <UnitControl label={__('Bottom:', 'b-blocks')} labelPosition='top' value={getValue('bottom')} onChange={val => setValue('bottom', val)} units={pxEmUnits} />
+            <UnitControl label={__('Bottom:', 'b-blocks')} labelPosition='top' value={getValue('bottom')} onChange={val => setValue('bottom', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
 
-            <UnitControl label={__('Left:', 'b-blocks')} labelPosition='top' value={getValue('left')} onChange={val => setValue('left', val)} units={pxEmUnits} />
+            <UnitControl label={__('Left:', 'b-blocks')} labelPosition='top' value={getValue('left')} onChange={val => setValue('left', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
         </PanelRow>}
     </div>;
 };

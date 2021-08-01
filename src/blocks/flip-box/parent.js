@@ -14,7 +14,7 @@ import BDevice from '../../GutenComp/BDevice';
 import Typography from '../../GutenComp/Typography';
 import SpaceControl from '../../GutenComp/SpaceControl';
 import options from '../../Const/options';
-const { pxEmUnits } = options;
+const { pxUnit, perUnit, emUnit } = options;
 
 registerBlockType('b-blocks/flip-boxes', {
     // Build In attributes
@@ -66,14 +66,14 @@ registerBlockType('b-blocks/flip-boxes', {
                     </PanelRow>
                     <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-                    <UnitControl className='mt-20p mb-5p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
-                    <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
                 </PanelBody>
 
                 <PanelBody title={__('Box Settings', 'b-blocks')} initialOpen={false}>
                     {/* Height */}
-                    <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight || childAttributes?.boxHeight} onChange={val => { setChildAttributes({ boxHeight: val }); setBoxHeight(val) }} units={pxEmUnits} />
+                    <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight || childAttributes?.boxHeight} onChange={val => { setChildAttributes({ boxHeight: val }); setBoxHeight(val) }} units={[pxUnit, emUnit]} />
 
                     {/* Padding */}
                     <SpaceControl className='mt-20p mb-5p' label={__('Padding:', 'b-blocks')} space={padding || childAttributes?.padding} onChange={val => { setChildAttributes({ padding: val }); setPadding(val) }} defaults={{ vertical: '30px', horizontal: '25px' }} />
@@ -81,7 +81,7 @@ registerBlockType('b-blocks/flip-boxes', {
 
                 <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                     {/* Width */}
-                    <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={imgWidth || childAttributes?.imgWidth} onChange={val => { setChildAttributes({ imgWidth: val }); setImgWidth(val) }} units={pxEmUnits} />
+                    <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={imgWidth || childAttributes?.imgWidth} onChange={val => { setChildAttributes({ imgWidth: val }); setImgWidth(val) }} units={pxUnit, perUnit, emUnit} />
 
                     {/* Margin */}
                     <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={imgMargin || childAttributes?.imgMargin} onChange={val => { setChildAttributes({ imgMargin: val }); setImgMargin(val) }} defaults={{ side: 4, bottom: '20px' }} />

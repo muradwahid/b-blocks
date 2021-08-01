@@ -1,20 +1,21 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
-import { withSelect } from '@wordpress/data';
-import { AlignmentToolbar, BlockControls, InspectorControls, MediaUpload, MediaPlaceholder, RichText, MediaUploadCheck } from '@wordpress/block-editor';
-import { Button, FontSizePicker, PanelBody, RangeControl, SelectControl, ToggleControl, ToolbarGroup, withNotices, Spinner } from '@wordpress/components';
+import { AlignmentToolbar, BlockControls, InspectorControls, RichText } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl, Spinner, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
 import Title from '../../GutenComp/Title';
-import BtnGroup from '../../GutenComp/BtnGroup';
-import BColor from '../../GutenComp/BColor';
+import Typography from '../../GutenComp/Typography';
+import BorderControl from '../../GutenComp/BorderControl';
+import SpaceControl from '../../GutenComp/SpaceControl';
+import ColorsControl from '../../GutenComp/ColorsControl';
+import { ImageHolderControl, ImageEditControl, ImagePlaceholder, ChangeImageData } from '../../GutenComp/ImageControl';
 import options from '../../Const/options';
-const { fontSizes, sizeTypes, borderStyles } = options;
+const { pxUnit, perUnit, emUnit, vwUnit } = options;
 
 const Edit = props => {
-    const { className, attributes: { contentAlign, beforeImgId, beforeImgUrl, beforeImgAlt, afterImgId, afterImgUrl, afterImgAlt, isSwap, imgWidth, imgWidthType, isLabel, beforeLabel, afterLabel, labelFontSize, labelColor, labelBGColor, labelPTB, labelPLR, isCap, cap, capFontSize, capColor, capBGColor, capPTB, capPLR, borderWidth, borderStyle, borderColor }, setAttributes, clientId, noticeOperations, noticeUI } = props;
-
+    const { className, attributes: { textAlign, width, border, beforeImg, afterImg, isSwap, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
 
     // useEffect
     useEffect(() => {
@@ -29,13 +30,14 @@ const Edit = props => {
     //         beforeImg.style.width = comparisonSlider.clientWidth;
     //         beforeImg.style.minWidth = comparisonSlider.clientWidth;
     //     }
-    // }, [imgWidth, imgWidthType]);
-
+    // }, [width]);
 
     // Functions
-    const onSelectBeforeImg = ({ id, url, alt }) => setAttributes({ beforeImgId: id, beforeImgUrl: url, beforeImgAlt: alt });
-    const onSelectAfterImg = ({ id, url, alt }) => setAttributes({ afterImgId: id, afterImgUrl: url, afterImgAlt: alt });
-
+    const swapImages = () => {
+        const beforeImgHold = { ...beforeImg }
+        const afterImgHold = { ...afterImg }
+        setAttributes({ beforeImg: { ...afterImgHold }, afterImg: { ...beforeImgHold } });
+    }
 
     // Image Slider Scripts
     (function ($) {
@@ -122,97 +124,38 @@ const Edit = props => {
         }
     })(jQuery);
 
-
-    // Styles
-    const sliderWrapperStyles = { border: `${borderWidth}px ${borderStyle} ${borderColor}` };
-
-    const labelStyles = { color: labelColor, backgroundColor: labelBGColor };
-
-    const captionStyles = { color: capColor, backgroundColor: capBGColor };
-
     return <>
         <InspectorControls>
-            <PanelBody title={__('Image Settings', 'b-blocks')}>
+            <PanelBody title={__('Comparison Settings', 'b-blocks')}>
+                {/* Width */}
+                <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, vwUnit]} />
+
+                {/* Border */}
+                <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
+
                 {/* Before Image */}
-                <Title mt='0'>{__('Before Image:', 'b-blocks')}</Title>
-                <div className='editImageHolder'>
-                    <div className='mediaControl'>
-                        <MediaUpload allowedTypes={['image']} value={beforeImgId} onSelect={onSelectBeforeImg} render={({ open }) => beforeImgId ? <div className='btnControl'>
-                            <Button icon='controls-repeat' onClick={open}>{__('Replace', 'b-blocks')}</Button>
-                            <Button icon='exit' onClick={() => setAttributes({ beforeImgId: null, beforeImgUrl: null, beforeImgAlt: '' })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
-                        </div> : <div className='btnControl'>
-                            <Button icon='upload' onClick={open}>{__('Upload', 'b-blocks')}</Button>
-                        </div>} />
-                    </div>
-
-                    <img src={beforeImgUrl} alt={beforeImgAlt} />
-                </div>
-
-                {/* {beforeImgUrl && !isBlobURL(beforeImgUrl) && <>
-                    <Title>{__('Before Image Alt Text:', 'b-blocks')}</Title>
-                    <TextControl value={beforeImgAlt} onChange={val => setAttributes({ beforeImgAlt: val })} />
-                </>}
-
-                {beforeImgId && getImageSizes().length !== 0 && <>
-                    <Title>{__('Select Before Image Size:', 'b-blocks')}</Title>
-                    <SelectControl value={beforeImgUrl} onChange={val => setAttributes({ beforeImgUrl: val })} options={getImageSizes()} />
-                </>} */}
+                <ImageHolderControl className='mt-20p' label={__('Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+                <ChangeImageData className='mt-20p' img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
 
                 {/* After Image */}
-                <Title>{__('After Image:', 'b-blocks')}</Title>
-                <div className='editImageHolder'>
-                    <div className='mediaControl'>
-                        <MediaUpload allowedTypes={['image']} value={afterImgId} onSelect={onSelectAfterImg} render={({ open }) => afterImgId ? <div className='btnControl'>
-                            <Button icon='controls-repeat' onClick={open}>{__('Replace', 'b-blocks')}</Button>
-                            <Button icon='exit' onClick={() => setAttributes({ afterImgId: null, afterImgUrl: null, afterImgAlt: '' })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
-                        </div> : <div className='btnControl'>
-                            <Button icon='upload' onClick={open}>{__('Upload', 'b-blocks')}</Button>
-                        </div>} />
-                    </div>
-
-                    <img src={afterImgUrl} alt={afterImgAlt} />
-                </div>
-
-                {/* {afterImgUrl && !isBlobURL(afterImgUrl) && <>
-                    <Title>{__('After Image Alt Text:', 'b-blocks')}</Title>
-                    <TextControl value={afterImgAlt} onChange={val => setAttributes({ afterImgAlt: val })} />
-                </>}
-
-                {afterImgId && getImageSizes().length !== 0 && <>
-                    <Title>{__('Select After Image Size:', 'b-blocks')}</Title>
-                    <SelectControl value={afterImgUrl} onChange={val => setAttributes({ afterImgUrl: val })} options={getImageSizes()} />
-                </>} */}
+                <ImageHolderControl className='mt-20p' label={__('After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+                <ChangeImageData className='mt-20p' img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
                 <Title mt='25px'></Title>
-                <ToggleControl label={__('Swap Image', 'b-blocks')} checked={isSwap} onChange={val => setAttributes({ isSwap: val, beforeImgId: afterImgId, beforeImgUrl: afterImgUrl, beforeImgAlt: afterImgAlt, afterImgId: beforeImgId, afterImgUrl: beforeImgUrl, afterImgAlt: beforeImgAlt })} />
-
-                {/* Width */}
-                <Title>{__('Width:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={imgWidthType} setState={(cng, def) => setAttributes({ imgWidthType: cng, imgWidth: def })} classes="bBlocksSizeType" size="small" />
-                <RangeControl value={imgWidth} onChange={cng => setAttributes({ imgWidth: cng })} min={0} max={("%" == imgWidthType) ? 100 : 1920} step={1} />
+                <ToggleControl label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
             </PanelBody>
 
             <PanelBody title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isLabel ? 'Hide Labels' : 'Show Labels'} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
                 {isLabel && <>
-                    {/* Font Size */}
-                    <Title>{__('Font Size:', 'b-blocks')}</Title>
-                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={labelFontSize} onChange={val => setAttributes({ labelFontSize: 'undefined' === typeof val ? 15 : val })} />
+                    {/* Typography */}
+                    <Typography typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 15 }} />
 
-                    {/* Color */}
-                    <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
+                    <ColorsControl colors={labelColors} onChange={val => setAttributes({ labelColors: val })} defaults={{ color: '#fff', bg: '#00000080' }} />
 
-                    {/* Background Color */}
-                    <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={labelBGColor} onChange={val => setAttributes({ labelBGColor: val })} defaultColor='#00000080' />
-
-                    {/* Padding Top Bottom */}
-                    <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
-                    <RangeControl value={labelPTB} onChange={val => setAttributes({ labelPTB: val })} min={0} max={100} step={1} />
-
-                    {/* Padding Left Right */}
-                    <Title>{__('Padding Left Right:', 'b-blocks')}</Title>
-                    <RangeControl value={labelPLR} onChange={val => setAttributes({ labelPLR: val })} min={0} max={100} step={1} />
+                    {/* Padding */}
+                    <SpaceControl className='mt-20p' label={__('Padding:', 'b-blocks')} space={labelPadding} onChange={val => setAttributes({ labelPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
                 </>}
             </PanelBody>
 
@@ -220,74 +163,59 @@ const Edit = props => {
                 <ToggleControl label={isCap ? 'Hide Caption' : 'Show Caption'} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
                 {isCap && <>
-                    {/* Font Size */}
-                    <Title>{__('Font Size:', 'b-blocks')}</Title>
-                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={14} value={capFontSize} onChange={val => setAttributes({ capFontSize: 'undefined' === typeof val ? 14 : val })} />
+                    {/* Typography */}
+                    <Typography typography={capTypo} onChange={val => setAttributes({ capTypo: val })} defaults={{ fontSize: 14 }} />
 
-                    {/* Color */}
-                    <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
+                    <ColorsControl colors={capColors} onChange={val => setAttributes({ capColors: val })} defaults={{ color: '#333', bg: '#f4f4f4' }} />
 
-                    {/* Background Color */}
-                    <BColor className='mt-20p mb-5p' label={__('Background Color:', 'b-blocks')} value={capBGColor} onChange={val => setAttributes({ capBGColor: val })} defaultColor='#f4f4f4' />
-
-                    {/* Padding Top Bottom */}
-                    <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
-                    <RangeControl value={capPTB} onChange={val => setAttributes({ capPTB: val })} min={0} max={100} step={1} />
-
-                    {/* Padding Left Right */}
-                    <Title>{__('Padding Left Right:', 'b-blocks')}</Title>
-                    <RangeControl value={capPLR} onChange={val => setAttributes({ capPLR: val })} min={0} max={100} step={1} />
+                    {/* Padding */}
+                    <SpaceControl className='mt-20p' label={__('Padding:', 'b-blocks')} space={capPadding} onChange={val => setAttributes({ capPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
                 </>}
-            </PanelBody>
-
-            <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
-                {/* Width */}
-                <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
-                <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
-
-                {/* Style */}
-                <Title>{__('Style:', 'b-blocks')}</Title>
-                <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
-
-                {/* Color */}
-                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
             </PanelBody>
         </InspectorControls>
 
 
         <BlockControls>
-            {beforeImgUrl && <ToolbarGroup>
-                {beforeImgId && <MediaUploadCheck>
-                    <MediaUpload allowedTypes={['image']} value={beforeImgId} onSelect={onSelectBeforeImg} render={({ open }) => {
-                        return <Button className='components-icon-button components-toolbar__control' label={__('Edit Before Image', 'b-blocks')} icon='edit' onClick={open} />
-                    }} />
-                </MediaUploadCheck>}
-            </ToolbarGroup>}
+            <ImageEditControl label={__('Edit Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+            <ImageEditControl label={__('Edit After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
-            {afterImgUrl && <ToolbarGroup>
-                {afterImgId && <MediaUploadCheck>
-                    <MediaUpload allowedTypes={['image']} value={afterImgId} onSelect={onSelectAfterImg} render={({ open }) => {
-                        return <Button className='components-icon-button components-toolbar__control' label={__('Edit After Image', 'b-blocks')} icon='edit' onClick={open} />
-                    }} />
-                </MediaUploadCheck>}
-            </ToolbarGroup>}
-
-            <AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
+            <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />
         </BlockControls>
 
 
-        <div className={`${className} text-${contentAlign}`} id={`bBlocksImageComparison-${clientId}`}>
-            <div className={`comparison-slider-wrapper ${'%' === imgWidthType ? `w-${imgWidth}-per` : `w-${imgWidth}-px`}`} style={sliderWrapperStyles}>
+        <div className={`${className} text-${textAlign}`} id={`bBlocksImageComparison-${clientId}`}>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @import url(${labelTypo?.googleFontLink});
+                @import url(${capTypo?.googleFontLink});
 
-                {beforeImgUrl && afterImgUrl ? <div className='comparison-slider'>
-                    {isLabel && <RichText className={`overlay afterLabel fontSize-${labelFontSize} ptb-${labelPTB} plr-${labelPLR}`} tagName='div' value={afterLabel} style={labelStyles} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'b-blocks')} />}
+                #bBlocksImageComparison-${clientId} .bBlocksImageComparison{
+                    width: ${width};
+                    ${border?.styles};
+                }
 
-                    <img className='afterImg' src={afterImgUrl} alt={afterImgAlt} />
+                #bBlocksImageComparison-${clientId} .bBlocksImageComparison .overlay{
+                    ${labelTypo?.styles || 'font-size: 15px;'}
+                    ${labelColors?.styles || 'color: #fff; background: #00000080;'}
+                    padding: ${labelPadding?.styles || '10px 15px'};
+                }
+                #bBlocksImageComparison-${clientId} .bBlocksImageComparison .caption{
+                    ${capTypo?.styles || 'font-size: 14px;'}
+                    ${capColors?.styles || 'color: #333; background: #f4f4f4;'}
+                    padding: ${capPadding?.styles || '10px 15px'};
+                }
+            `}} />
+
+            <div className='bBlocksImageComparison'>
+                {beforeImg?.url && afterImg?.url ? <div className='comparison-slider'>
+                    {isLabel && <RichText className={`overlay afterLabel`} tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'b-blocks')} />}
+
+                    <img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
 
                     <div className='resize'>
-                        {isLabel && <RichText className={`overlay beforeLabel fontSize-${labelFontSize} ptb-${labelPTB} plr-${labelPLR}`} tagName='div' value={beforeLabel} style={labelStyles} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} />}
+                        {isLabel && <RichText className={`overlay beforeLabel`} tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} />}
 
-                        <img className='beforeImg' src={beforeImgUrl} alt={beforeImgAlt} />
+                        <img className='beforeImg' src={beforeImg?.url} alt={beforeImg?.alt} />
                     </div>
 
                     <div className='divider'></div>
@@ -295,34 +223,27 @@ const Edit = props => {
 
                     <div className='imgPlaceholder'>
                         <div className='beforeImg'>
-                            {beforeImgUrl ? <>
-                                <img src={beforeImgUrl} alt={beforeImgAlt} />
-                                {isBlobURL(beforeImgUrl) && <Spinner />}
+                            {beforeImg?.url ? <>
+                                <img src={beforeImg?.url} alt={beforeImg?.alt} />
+                                {isBlobURL(beforeImg?.url) && <Spinner />}
                             </> :
-                                <MediaPlaceholder labels={{ title: __(' Before Image', 'b-blocks') }} icon='format-image' allowedTypes={['image']} accept='image/*' onSelect={onSelectBeforeImg} onSelectURL={val => setAttributes({ beforeImgId: null, beforeImgUrl: val, beforeImgAlt: '' })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} />
+                                <ImagePlaceholder label={__(' Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
                             }
                         </div>
 
                         <div className='afterImg'>
-                            {afterImgUrl ? <>
-                                <img src={afterImgUrl} alt={afterImgAlt} />
-                                {isBlobURL(afterImgUrl) && <Spinner />}
+                            {afterImg?.url ? <>
+                                <img src={afterImg?.url} alt={afterImg?.alt} />
+                                {isBlobURL(afterImg?.url) && <Spinner />}
                             </> :
-                                <MediaPlaceholder labels={{ title: __(' After Image', 'b-blocks') }} icon='format-image' allowedTypes={['image']} accept='image/*' onSelect={onSelectAfterImg} onSelectURL={val => setAttributes({ afterImgId: null, afterImgUrl: val, afterImgAlt: '' })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} />
+                                <ImagePlaceholder label={__(' After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
                             }
                         </div>
                     </div>}
 
-                {isCap && <RichText className={`caption fontSize-${capFontSize} ptb-${capPTB} plr-${capPLR}`} tagName='div' value={cap} style={captionStyles} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'b-blocks')} />}
+                {isCap && <RichText className='caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'b-blocks')} />}
             </div>
         </div>
     </>;
 };
-export default withSelect((select, props) => {
-    const { imgId } = props.attributes;
-
-    return {
-        image: imgId ? select('core').getMedia(imgId) : null,
-        imageSizes: select('core/block-editor').getSettings().imageSizes
-    }
-})(withNotices(Edit));
+export default Edit;

@@ -14,7 +14,7 @@ import { Dropdown, PanelRow, SelectControl, __experimentalUnitControl as UnitCon
 import Title from './Title';
 import BColor from './BColor';
 import options from '../Const/options';
-const { borderStyles, pxPerEmUnits, pxEmUnits, sides } = options;
+const { borderStyles, pxUnit, perUnit, emUnit, remUnit, sides } = options;
 
 const BorderControl = props => {
     const { className, label = __('Border Settings', 'b-blocks'), border, onChange, defaults = {} } = props;
@@ -56,7 +56,7 @@ const BorderControl = props => {
             renderContent={() => <>
                 {/* Width */}
                 <PanelRow>
-                    <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={getValue('width')} onChange={val => setValue('width', val)} units={pxEmUnits} />
+                    <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={getValue('width')} onChange={val => setValue('width', val)} units={[pxUnit, emUnit]} />
                     {border?.width && border?.width !== getDefault('width') && resetValue('width')}
                 </PanelRow>
 
@@ -79,7 +79,7 @@ const BorderControl = props => {
 
                 {/* Radius */}
                 <PanelRow>
-                    <UnitControl label={__('Radius:', 'b-blocks')} labelPosition='left' value={getValue('radius')} onChange={val => setValue('radius', val)} units={pxPerEmUnits} />
+                    <UnitControl label={__('Radius:', 'b-blocks')} labelPosition='left' value={getValue('radius')} onChange={val => setValue('radius', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
                     {border?.radius && border?.radius !== getDefault('radius') && resetValue('radius')}
                 </PanelRow>
             </>}

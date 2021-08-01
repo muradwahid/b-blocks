@@ -8,7 +8,7 @@ import Title from '../../GutenComp/Title';
 import BColor from '../../GutenComp/BColor';
 import BtnGroup from '../../GutenComp/BtnGroup';
 import options from '../../Const/options';
-const { pxEmUnits, allUnits } = options;
+const { pxUnit, perUnit, emUnit, remUnit, vwUnit } = options;
 
 const modes = [
     { label: __('Normal', 'b-blocks'), value: 'normal', icon: __('Normal', 'b-blocks') },
@@ -90,7 +90,7 @@ const Edit = props => {
                 {'style' == tab.name && <>
                     <PanelBody title={__('Player Styles', 'b-blocks')}>
                         {/* Width */}
-                        <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={allUnits} />
+                        <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, remUnit, vwUnit]} />
 
                         {/* Background Color */}
                         <BColor label={__('Background Color:', 'b-blocks')} value={bgColor} onChange={val => setAttributes({ bgColor: val })} defaultColor='#0000' />
@@ -98,7 +98,7 @@ const Edit = props => {
 
                     <PanelBody title={__('Controls Styles', 'b-blocks')}>
                         {/* Height */}
-                        <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={pxEmUnits} />
+                        <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={pxUnit, perUnit, emUnit} />
 
                         {/* Background Color */}
                         <BColor label={__('Background Color:', 'b-blocks')} value={controlsBGColor} onChange={val => setAttributes({ controlsBGColor: val })} defaultColor='#0000' />

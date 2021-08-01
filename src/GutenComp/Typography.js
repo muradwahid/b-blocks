@@ -14,7 +14,7 @@ import './Typography.scss';
 import Title from './Title';
 import BtnGroup from './BtnGroup';
 import options from '../Const/options';
-const { fontStyles, textTransforms, textDecorations, allUnits, pxEmRemUnits } = options;
+const { fontStyles, textTransforms, textDecorations, pxUnit, perUnit, emUnit, remUnit } = options;
 
 import fontLists from './Helper/fontLists';
 
@@ -131,13 +131,13 @@ const Typography = props => {
 
                 {/* Line Height */}
                 <PanelRow className='mt-20p mb-5p'>
-                    <UnitControl label={__('Line Height:', 'b-blocks')} labelPosition='left' value={typography?.lineHeight || defaults?.lineHeight || defaultVal.lineHeight} onChange={val => onChange({ ...typography, ['lineHeight']: val })} units={allUnits} />
+                    <UnitControl label={__('Line Height:', 'b-blocks')} labelPosition='left' value={typography?.lineHeight || defaults?.lineHeight || defaultVal.lineHeight} onChange={val => onChange({ ...typography, ['lineHeight']: val })} units={[pxUnit, perUnit, emUnit, remUnit]} />
                     {typography?.lineHeight && typography?.lineHeight !== (defaults?.lineHeight || defaultVal.lineHeight) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('lineHeight')} />}
                 </PanelRow>
 
                 {/* Letter Spacing */}
                 <PanelRow className='mt-20p mb-5p'>
-                    <UnitControl label={__('Letter Spacing:', 'b-blocks')} labelPosition='left' value={typography?.letterSpace || defaults?.letterSpace || defaultVal.letterSpace} onChange={val => onChange({ ...typography, ['letterSpace']: val })} units={pxEmRemUnits} />
+                    <UnitControl label={__('Letter Spacing:', 'b-blocks')} labelPosition='left' value={typography?.letterSpace || defaults?.letterSpace || defaultVal.letterSpace} onChange={val => onChange({ ...typography, ['letterSpace']: val })} units={[pxUnit, emUnit, remUnit]} />
                     {typography?.letterSpace && typography?.letterSpace !== (defaults?.letterSpace || defaultVal.letterSpace) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('letterSpace')} />}
                 </PanelRow>
             </>}

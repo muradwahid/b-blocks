@@ -15,7 +15,7 @@ import BtnGroup from '../../GutenComp/BtnGroup';
 import Typography from '../../GutenComp/Typography';
 import SpaceControl from '../../GutenComp/SpaceControl';
 import options from '../../Const/options';
-const { pxEmUnits } = options;
+const { pxUnit, perUnit, emUnit } = options;
 
 registerBlockType('b-blocks/cards', {
     // Build In attributes
@@ -83,9 +83,9 @@ registerBlockType('b-blocks/cards', {
                     </PanelRow>
                     <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-                    <UnitControl className='mt-20p mb-5p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
-                    <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
                 </PanelBody>
 
                 <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
@@ -104,7 +104,7 @@ registerBlockType('b-blocks/cards', {
                     </PanelRow>
 
                     {/* Height */}
-                    <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val); }} units={pxEmUnits} />
+                    <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val); }} units={[pxUnit, perUnit, emUnit]} />
                 </PanelBody>
 
                 <PanelBody title={__('Category Settings', 'b-blocks')} initialOpen={false}>

@@ -1,8 +1,7 @@
 .wp-block-b-blocks-image-comparison{
-	.comparison-slider-wrapper {
+	.comparison-slider-wrapper, .bBlocksImageComparison {
 		position: relative;
 		display: inline-block;
-		margin: 20px 0;
 		background-color: white;
 
 		.comparison-slider {
@@ -103,7 +102,6 @@
 		.caption {
 			position: relative;
 			width: 100%;
-			font-style: italic;
 		}
 	}
 }
