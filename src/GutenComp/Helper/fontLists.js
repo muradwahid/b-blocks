@@ -7322,1177 +7322,657 @@ export default [
     },
     {
         family: 'Purple Purse',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Quando',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Quantico',
-        variants: [
-            400,
-            '400i',
-            700,
-            '700i'
-        ],
+        variants: [400, '400i', 700, '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Quattrocento',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'serif'
     },
     {
         family: 'Quattrocento Sans',
-        variants: [
-            400,
-            '400i',
-            700,
-            '700i'
-        ],
+        variants: [400, '400i', 700, '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Questrial',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Quicksand',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700
-        ],
+        variants: [300, 400, 500, 600, 700],
         category: 'sans-serif'
     },
     {
         family: 'Quintessential',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Qwigley',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Racing Sans One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Radley',
-        variants: [
-            400,
-            '400i'
-        ],
+        variants: [400, '400i'],
         category: 'serif'
     },
     {
         family: 'Rajdhani',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700
-        ],
+        variants: [300, 400, 500, 600, 700],
         category: 'sans-serif'
     },
     {
         family: 'Rakkas',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Raleway',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900,
-            '100i',
-            '200i',
-            '300i',
-            '400i',
-            '500i',
-            '600i',
-            '700i',
-            '800i',
-            '900i'
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900, '100i', '200i', '300i', '400i', '500i', '600i', '700i', '800i', '900i'],
         category: 'sans-serif'
     },
     {
         family: 'Raleway Dots',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Ramabhadra',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Ramaraja',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Rambla',
-        variants: [
-            400,
-            '400i',
-            700,
-            '700i'
-        ],
+        variants: [400, '400i', 700, '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Rammetto One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Ranchers',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Rancho',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Ranga',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'display'
     },
     {
         family: 'Rasa',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700
-        ],
+        variants: [300, 400, 500, 600, 700],
         category: 'serif'
     },
     {
         family: 'Rationale',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Ravi Prakash',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Recursive',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [300, 400, 500, 600, 700, 800, 900],
         category: 'sans-serif'
     },
     {
         family: 'Red Hat Display',
-        variants: [
-            400,
-            '400i',
-            500,
-            '500i',
-            700,
-            '700i',
-            900,
-            '900i'
-        ],
+        variants: [400, '400i', 500, '500i', 700, '700i', 900, '900i'],
         category: 'sans-serif'
     },
     {
         family: 'Red Hat Text',
-        variants: [
-            400,
-            '400i',
-            500,
-            '500i',
-            700,
-            '700i'
-        ],
+        variants: [400, '400i', 500, '500i', 700, '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Red Rose',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700
-        ],
+        variants: [300, 400, 500, 600, 700],
         category: 'display'
     },
     {
         family: 'Redressed',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Reem Kufi',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Reenie Beanie',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Reggae One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Revalia',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Rhodium Libre',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Ribeye',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Ribeye Marrow',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Righteous',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Risque',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Roboto',
-        variants: [
-            100,
-            '100i',
-            300,
-            '300i',
-            400,
-            '400i',
-            500,
-            '500i',
-            700,
-            '700i',
-            900,
-            '900i'
-        ],
+        variants: [100, '100i', 300, '300i', 400, '400i', 500, '500i', 700, '700i', 900, '900i'],
         category: 'sans-serif'
     },
     {
         family: 'Roboto Condensed',
-        variants: [
-            300,
-            '300i',
-            400,
-            '400i',
-            700,
-            '700i'
-        ],
+        variants: [300, '300i', 400, '400i', 700, '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Roboto Mono',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            '100i',
-            '200i',
-            '300i',
-            '400i',
-            '500i',
-            '600i',
-            '700i'
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, '100i', '200i', '300i', '400i', '500i', '600i', '700i'],
         category: 'monospace'
     },
     {
         family: 'Roboto Slab',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         category: 'serif'
     },
     {
         family: 'Rochester',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Rock Salt',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'RocknRoll One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Rokkitt',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         category: 'serif'
     },
     {
         family: 'Romanesco',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Ropa Sans',
-        variants: [
-            400,
-            '400i'
-        ],
+        variants: [400, '400i'],
         category: 'sans-serif'
     },
     {
         family: 'Rosario',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700,
-            '300i',
-            '400i',
-            '500i',
-            '600i',
-            '700i'
-        ],
+        variants: [300, 400, 500, 600, 700, '300i', '400i', '500i', '600i', '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Rosarivo',
-        variants: [
-            400,
-            '400i'
-        ],
+        variants: [400, '400i'],
         category: 'serif'
     },
     {
         family: 'Rouge Script',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Rowdies',
-        variants: [
-            300,
-            400,
-            700
-        ],
+        variants: [300, 400, 700],
         category: 'display'
     },
     {
         family: 'Rozha One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Rubik',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900,
-            '300i',
-            '400i',
-            '500i',
-            '600i',
-            '700i',
-            '800i',
-            '900i'
-        ],
+        variants: [300, 400, 500, 600, 700, 800, 900, '300i', '400i', '500i', '600i', '700i', '800i', '900i'],
         category: 'sans-serif'
     },
     {
         family: 'Rubik Mono One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Ruda',
-        variants: [
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [400, 500, 600, 700, 800, 900],
         category: 'sans-serif'
     },
     {
         family: 'Rufina',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'serif'
     },
     {
         family: 'Ruge Boogie',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Ruluko',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Rum Raisin',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Ruslan Display',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Russo One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Ruthie',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Rye',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sacramento',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Sahitya',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'serif'
     },
     {
         family: 'Sail',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Saira',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900,
-            '100i',
-            '200i',
-            '300i',
-            '400i',
-            '500i',
-            '600i',
-            '700i',
-            '800i',
-            '900i'
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900, '100i', '200i', '300i', '400i', '500i', '600i', '700i', '800i', '900i'],
         category: 'sans-serif'
     },
     {
         family: 'Saira Condensed',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         category: 'sans-serif'
     },
     {
         family: 'Saira Extra Condensed',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         category: 'sans-serif'
     },
     {
         family: 'Saira Semi Condensed',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         category: 'sans-serif'
     },
     {
         family: 'Saira Stencil One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Salsa',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sanchez',
-        variants: [
-            400,
-            '400i'
-        ],
+        variants: [400, '400i'],
         category: 'serif'
     },
     {
         family: 'Sancreek',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sansita',
-        variants: [
-            400,
-            '400i',
-            700,
-            '700i',
-            800,
-            '800i',
-            900,
-            '900i'
-        ],
+        variants: [400, '400i', 700, '700i', 800, '800i', 900, '900i'],
         category: 'sans-serif'
     },
     {
         family: 'Sansita Swashed',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [300, 400, 500, 600, 700, 800, 900],
         category: 'display'
     },
     {
         family: 'Sarabun',
-        variants: [
-            100,
-            '100i',
-            200,
-            '200i',
-            300,
-            '300i',
-            400,
-            '400i',
-            500,
-            '500i',
-            600,
-            '600i',
-            700,
-            '700i',
-            800,
-            '800i'
-        ],
+        variants: [100, '100i', 200, '200i', 300, '300i', 400, '400i', 500, '500i', 600, '600i', 700, '700i', 800, '800i'],
         category: 'sans-serif'
     },
     {
         family: 'Sarala',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'sans-serif'
     },
     {
         family: 'Sarina',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sarpanch',
-        variants: [
-            400,
-            500,
-            600,
-            700,
-            800,
-            900
-        ],
+        variants: [400, 500, 600, 700, 800, 900],
         category: 'sans-serif'
     },
     {
         family: 'Satisfy',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Sawarabi Gothic',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Sawarabi Mincho',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Scada',
-        variants: [
-            400,
-            '400i',
-            700,
-            '700i'
-        ],
+        variants: [400, '400i', 700, '700i'],
         category: 'sans-serif'
     },
     {
         family: 'Scheherazade',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'serif'
     },
     {
         family: 'Schoolbell',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Scope One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Seaweed Script',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Secular One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Sedgwick Ave',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Sedgwick Ave Display',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Sen',
-        variants: [
-            400,
-            700,
-            800
-        ],
+        variants: [400, 700, 800],
         category: 'sans-serif'
     },
     {
         family: 'Sevillana',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Seymour One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Shadows Into Light',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Shadows Into Light Two',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Shanti',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Share',
-        variants: [
-            400,
-            '400i',
-            700,
-            '700i'
-        ],
+        variants: [400, '400i', 700, '700i'],
         category: 'display'
     },
     {
         family: 'Share Tech',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Share Tech Mono',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'monospace'
     },
     {
         family: 'Shippori Mincho',
-        variants: [
-            400,
-            500,
-            600,
-            700,
-            800
-        ],
+        variants: [400, 500, 600, 700, 800],
         category: 'serif'
     },
     {
         family: 'Shippori Mincho B1',
-        variants: [
-            400,
-            500,
-            600,
-            700,
-            800
-        ],
+        variants: [400, 500, 600, 700, 800],
         category: 'serif'
     },
     {
         family: 'Shojumaru',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Short Stack',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Shrikhand',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Siemreap',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sigmar One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Signika',
-        variants: [
-            300,
-            400,
-            500,
-            600,
-            700
-        ],
+        variants: [300, 400, 500, 600, 700],
         category: 'sans-serif'
     },
     {
         family: 'Signika Negative',
-        variants: [
-            300,
-            400,
-            600,
-            700
-        ],
+        variants: [300, 400, 600, 700],
         category: 'sans-serif'
     },
     {
         family: 'Simonetta',
-        variants: [
-            400,
-            '400i',
-            900,
-            '900i'
-        ],
+        variants: [400, '400i', 900, '900i'],
         category: 'display'
     },
     {
         family: 'Single Day',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sintony',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'sans-serif'
     },
     {
         family: 'Sirin Stencil',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Six Caps',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Skranji',
-        variants: [
-            400,
-            700
-        ],
+        variants: [400, 700],
         category: 'display'
     },
     {
         family: 'Slabo 13px',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Slabo 27px',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Slackey',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Smokum',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Smythe',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sniglet',
-        variants: [
-            400,
-            800
-        ],
+        variants: [400, 800],
         category: 'display'
     },
     {
         family: 'Snippet',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'sans-serif'
     },
     {
         family: 'Snowburst One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sofadi One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sofia',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'handwriting'
     },
     {
         family: 'Solway',
-        variants: [
-            300,
-            400,
-            500,
-            700,
-            800
-        ],
+        variants: [300, 400, 500, 700, 800],
         category: 'serif'
     },
     {
         family: 'Song Myung',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'serif'
     },
     {
         family: 'Sonsie One',
-        variants: [
-            400
-        ],
+        variants: [400],
         category: 'display'
     },
     {
         family: 'Sora',
-        variants: [
-            100,
-            200,
-            300,
-            400,
-            500,
-            600,
-            700,
-            800
-        ],
+        variants: [100, 200, 300, 400, 500, 600, 700, 800],
         category: 'sans-serif'
     },
     {

@@ -23,7 +23,12 @@ const Typography = props => {
 
     const defaultVal = { fontFamily: 'Default', fontWeight: 400, fontSize: 15, fontStyle: 'normal', textTransform: 'none', textDecoration: 'auto', lineHeight: '150%', letterSpace: '0px' }
 
-    const setDefault = property => onChange({ ...typography, [property]: defaults[property] || defaultVal[property] });
+    const getDefault = property => defaults?.[property] || defaultVal[property];
+    const setDefault = property => onChange({ ...typography, [property]: getDefault(property) });
+
+    const getValue = property => typography?.[property] || getDefault(property);
+    const setValue = (property, val) => onChange({ ...typography, [property]: val });
+    const resetValue = property => typography?.[property] && typography?.[property] !== getDefault(property) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault(property)} />
 
     // Font Family Scripts
     // const newFontLists = [{ family: 'Default', variants: ['regular'], category: 'default' }]
@@ -39,15 +44,11 @@ const Typography = props => {
     // Font family searching
     const [query, setQuery] = useState('');
     const [isSearching, setIsSearching] = useState(false);
-    const searchFonts = fontLists.filter(({ family }) => {
-        const fontName = family.toLowerCase();
-        const newQuery = query.toLowerCase();
-        return !fontName.search(newQuery);
-    });
+    const searchFonts = fontLists.filter(({ family }) => family.toLowerCase().includes(query.toLowerCase()));
 
     // Get Font weights
     const fontWeights = () => {
-        const currentFontWeights = fontLists.filter(font => font.family === typography?.fontFamily)[0]?.variants;
+        const currentFontWeights = fontLists.filter(font => font.family === getValue('fontFamily'))[0]?.variants;
         let weights = []
         currentFontWeights?.map(weight => weights?.push({ label: weight, value: weight }));
         return 0 === weights.length ? [400] : weights;
@@ -59,25 +60,25 @@ const Typography = props => {
     }
 
     useEffect(() => {
-        const allStyles = `${undefined == typography?.fontFamily ? '' : typography?.fontFamily === defaultVal.fontFamily ? '' : `font-family: ${typography?.fontFamily}, ${typography?.fontCategory};`}
-        ${generateCss(typography?.fontWeight, 'font-weight', defaultVal.fontWeight)}
-        ${undefined == typography?.fontSize ? '' : typography?.fontSize === defaultVal.fontSize ? '' : `font-size: ${typography?.fontSize}px;`}
-        ${generateCss(typography?.fontStyle, 'font-style', defaultVal.fontStyle)}
-        ${generateCss(typography?.textTransform, 'text-transform', defaultVal.textTransform)}
-        ${generateCss(typography?.textDecoration, 'text-decoration', defaultVal.textDecoration)}
-        ${generateCss(typography?.lineHeight, 'line-height', defaultVal.lineHeight)}
-        ${generateCss(typography?.letterSpace, 'letter-spacing', defaultVal.letterSpace)}`;
+        const allStyles = `${undefined == getValue('fontFamily') ? '' : getValue('fontFamily') === defaultVal.fontFamily ? '' : `font-family: ${getValue('fontFamily')}, ${getValue('fontCategory')};`}
+        ${generateCss(getValue('fontWeight'), 'font-weight', defaultVal.fontWeight)}
+        ${undefined == getValue('fontSize') ? '' : getValue('fontSize') === defaultVal.fontSize ? '' : `font-size: ${getValue('fontSize')}px;`}
+        ${generateCss(getValue('fontStyle'), 'font-style', defaultVal.fontStyle)}
+        ${generateCss(getValue('textTransform'), 'text-transform', defaultVal.textTransform)}
+        ${generateCss(getValue('textDecoration'), 'text-decoration', defaultVal.textDecoration)}
+        ${generateCss(getValue('lineHeight'), 'line-height', defaultVal.lineHeight)}
+        ${generateCss(getValue('letterSpace'), 'letter-spacing', defaultVal.letterSpace)}`;
 
         // Google font link
-        const linkQuery = 400 === typography?.fontVariant ? '' : '400i' === typography?.fontVariant ? ':ital@1' : typography?.fontVariant?.includes('00i') ? `: ital, wght@1, ${typography?.fontVariant?.replace('00i', '00')} ` : `: wght@${typography?.fontVariant} `;
+        const linkQuery = 400 === getValue('fontVariant') ? '' : '400i' === getValue('fontVariant') ? ':ital@1' : getValue('fontVariant')?.includes('00i') ? `: ital, wght@1, ${getValue('fontVariant')?.replace('00i', '00')} ` : `: wght@${getValue('fontVariant')} `;
 
-        const link = 'Default' === typography?.fontFamily || undefined === typography?.fontFamily ? 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap' : `https://fonts.googleapis.com/css2?family=${typography?.fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+        const link = 'Default' === getValue('fontFamily') || undefined === getValue('fontFamily') ? 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap' : `https://fonts.googleapis.com/css2?family=${getValue('fontFamily')?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
 
         onChange({ ...typography, ['styles']: allStyles.replace(/\s+/g, ' ').trim(), ['googleFontLink']: link });
     }, [typography?.fontFamily, typography?.fontWeight, typography?.fontSize, typography?.fontStyle, typography?.textTransform, typography?.textDecoration, typography?.lineHeight, typography?.letterSpace]);
 
     return <PanelRow className={`bBlocksDropdown ${className}`}>
-        <Title mt='5px'>{label}</Title>
+        <Title mt='0' mb='0'>{label}</Title>
 
         <Dropdown className='bBlocksDropdownContainer' contentClassName='bBlocksDropdownPopover' position='bottom right'
             renderToggle={({ isOpen, onToggle }) => <Button icon='admin-customizer' onClick={onToggle} aria-expanded={isOpen} />}
@@ -89,7 +90,7 @@ const Typography = props => {
                 </PanelRow>
                 <PanelRow className='bBlocksTypoFont'>
                     <div className='bBlocksTypoFontSelect'>
-                        <input type='search' onClick={() => setIsSearching(!isSearching)} placeholder={typography?.fontFamily || defaults?.fontFamily || defaultVal.fontFamily} onChange={e => setQuery(e.target.value)} />
+                        <input type='search' value={query} onClick={() => setIsSearching(!isSearching)} placeholder={getValue('fontFamily') || 'Search Font'} onChange={e => setQuery(e.target.value)} />
 
                         <span className={`dashicon dashicons dashicons-${isSearching ? 'arrow-up' : 'arrow-down'} `} onClick={() => setIsSearching(!isSearching)}></span>
 
@@ -102,43 +103,43 @@ const Typography = props => {
                         </ul>}
                     </div>
 
-                    <SelectControl value={typography?.fontVariant} onChange={val => { onChange({ ...typography, ['fontWeight']: parseInt(val?.replace('00i', '00')), ['fontVariant']: val }) }} options={fontWeights()} />
+                    <SelectControl value={getValue('fontVariant')} onChange={val => { onChange({ ...typography, ['fontWeight']: parseInt(val?.replace('00i', '00')), ['fontVariant']: val }) }} options={fontWeights()} />
                 </PanelRow>
 
                 {/* Font Size */}
                 <Title>{__('Font Size:', 'b-blocks')}</Title>
-                <RangeControl value={typography?.fontSize || defaults?.fontSize || defaultVal.fontSize} onChange={val => onChange({ ...typography, ['fontSize']: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={defaults?.fontSize || defaultVal.fontSize} initialPosition={defaults?.fontSize || defaultVal.fontSize} />
+                <RangeControl value={getValue('fontSize')} onChange={val => setValue('fontSize', val)} min={0} max={80} step={1} allowReset={true} resetFallbackValue={defaults?.fontSize || defaultVal.fontSize} initialPosition={defaults?.fontSize || defaultVal.fontSize} />
 
                 {/* Font Style */}
                 <PanelRow className='mt-20p mb-5p'>
                     <Title mt='0' mb='0'>{__('Font Style:', 'b-blocks')}</Title>
-                    <SelectControl value={typography?.fontStyle || defaults?.fontStyle || defaultVal.fontStyle} onChange={val => onChange({ ...typography, ['fontStyle']: val })} options={fontStyles} />
-                    {typography?.fontStyle && typography?.fontStyle !== (defaults?.fontStyle || defaultVal.fontStyle) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('fontStyle')} />}
+                    <SelectControl value={getValue('fontStyle')} onChange={val => setValue('fontStyle', val)} options={fontStyles} />
+                    {resetValue('fontStyle')}
                 </PanelRow>
 
                 {/* Text Transform */}
                 <PanelRow className='mt-20p mb-5p'>
                     <Title mt='5px'>{__('Text Transform:', 'b-blocks')}</Title>
-                    <BtnGroup options={textTransforms} myValue={typography?.textTransform || defaults?.textTransform || defaultVal.textTransform} setState={val => onChange({ ...typography, ['textTransform']: val })} />
+                    <BtnGroup options={textTransforms} myValue={getValue('textTransform')} setState={val => setValue('textTransform', val)} />
                 </PanelRow>
 
                 {/* Text Decoration */}
                 <PanelRow className='mt-20p mb-5p'>
                     <Title mt='0' mb='0'>{__('Text Decoration:', 'b-blocks')}</Title>
-                    <SelectControl value={typography?.textDecoration || defaults?.textDecoration || defaultVal.textDecoration} onChange={val => onChange({ ...typography, ['textDecoration']: val })} options={textDecorations} />
-                    {typography?.textDecoration && typography?.textDecoration !== (defaults?.textDecoration || defaultVal.textDecoration) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('textDecoration')} />}
+                    <SelectControl value={getValue('textDecoration')} onChange={val => setValue('textDecoration', val)} options={textDecorations} />
+                    {resetValue('textDecoration')}
                 </PanelRow>
 
                 {/* Line Height */}
                 <PanelRow className='mt-20p mb-5p'>
-                    <UnitControl label={__('Line Height:', 'b-blocks')} labelPosition='left' value={typography?.lineHeight || defaults?.lineHeight || defaultVal.lineHeight} onChange={val => onChange({ ...typography, ['lineHeight']: val })} units={[pxUnit, perUnit, emUnit, remUnit]} />
-                    {typography?.lineHeight && typography?.lineHeight !== (defaults?.lineHeight || defaultVal.lineHeight) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('lineHeight')} />}
+                    <UnitControl label={__('Line Height:', 'b-blocks')} labelPosition='left' value={getValue('lineHeight')} onChange={val => setValue('lineHeight', val)} units={[pxUnit, perUnit, emUnit, remUnit]} />
+                    {resetValue('lineHeight')}
                 </PanelRow>
 
                 {/* Letter Spacing */}
                 <PanelRow className='mt-20p mb-5p'>
-                    <UnitControl label={__('Letter Spacing:', 'b-blocks')} labelPosition='left' value={typography?.letterSpace || defaults?.letterSpace || defaultVal.letterSpace} onChange={val => onChange({ ...typography, ['letterSpace']: val })} units={[pxUnit, emUnit, remUnit]} />
-                    {typography?.letterSpace && typography?.letterSpace !== (defaults?.letterSpace || defaultVal.letterSpace) && <Button icon='image-rotate' className='bBlocksResetVal' onClick={() => setDefault('letterSpace')} />}
+                    <UnitControl label={__('Letter Spacing:', 'b-blocks')} labelPosition='left' value={getValue('letterSpace')} onChange={val => setValue('letterSpace', val)} units={[pxUnit, emUnit, remUnit]} />
+                    {resetValue('letterSpace')}
                 </PanelRow>
             </>}
         />
