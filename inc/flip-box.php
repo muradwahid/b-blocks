@@ -32,9 +32,8 @@ function render_b_blocks_flip_boxes($attributes, $content){
     $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .box", array(
         'padding' => $padding['styles'] ?? '30px 25px'
     ));
-    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox img", array(
-        'width' => $imgWidth,
-        'margin' => $imgMargin['styles'] ?? '0 0 20px 0'
+    $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipIcon", array(
+        'margin' => $iconMargin['styles'] ?? '0 0 20px 0'
     ));
     $flipBoxesStyle::addStyle("#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipTitle", array(
         $titleTypo['styles'] ?? 'font-size: 25px;' => '',
@@ -78,12 +77,10 @@ function flip_box_attributes(){
         'border' => array( 'type' => 'object', 'default' => array() ),
         'shadow' => array( 'type' => 'object', 'default' => array() ),
 
-        'isImg' => array( 'type' => 'boolean', 'default' => true ),
-        'fImg' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
-        'bImg' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
-        'imgWidth' => array( 'type' => 'string', 'default' => '200px' ),
-        'imgBorder' => array( 'type' => 'object', 'default' => array('radius' => '0%') ),
-        'imgMargin' => array( 'type' => 'object', 'default' => array('bottom' => '20px') ),
+        'isIcon' => array( 'type' => 'boolean', 'default' => true ),
+        'fIcon' => array( 'type' => 'object', 'default' => array('class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff') ),
+        'bIcon' => array( 'type' => 'object', 'default' => array('class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff') ),
+        'iconMargin' => array( 'type' => 'object', 'default' => array('bottom' => '20px') ),
 
         'fTitle' => array( 'type' => 'string', 'selector' => 'h3.flipFrontTitle', 'default' => 'Front Title' ),
         'bTitle' => array( 'type' => 'string', 'selector' => 'h3.flipBackTitle', 'default' => 'Back Title' ),
@@ -125,9 +122,11 @@ function render_b_blocks_flip_box( $attributes ) {
     $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId .box.back", array(
         $backBG['styles'] ?? 'background-color: #000000b3;' => '',
     ));
-    $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId img", array(
-        $imgBorder['styles'] ?? '' => '',
-        'box-shadow' => $shadow['styles'] ?? ''
+    $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId .flipIcon.frontIcon", array(
+        $fIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
+    ));
+    $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId .flipIcon.backIcon", array(
+        $bIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
     ));
     $flipBoxStyle::addStyle("#bBlocksFlipBox-$cId .flipTitle", array(
         'color' => $titleColor
@@ -144,8 +143,8 @@ function render_b_blocks_flip_box( $attributes ) {
     ));
 
     // Components
-    $frontImg =  $isImg && $fImg ? "<img src='".$fImg['url']."' alt='".$fImg['alt']."' />" : '';
-    $backImg =  $isImg && $bImg ? "<img src='".$bImg['url']."' alt='".$bImg['alt']."' />" : '';
+    $frontIcon =  $isIcon && $fIcon['class'] ? "<i class='flipIcon frontIcon ".$fIcon['class']."'></i>" : '';
+    $backIcon =  $isIcon && $bIcon['class'] ? "<i class='flipIcon backIcon ".$bIcon['class']."'></i>" : '';
     $frontTitle =  $fTitle ? "<h3 class='flipTitle flipFrontTitle'>$fTitle</h3>" : '';
     $backTitle =  $bTitle ? "<h3 class='flipTitle flipBackTitle'>$bTitle</h3>" : '';
     $description =  $isDesc && $desc ? "<p class='flipDescription'>$desc</p>" : '';
@@ -156,11 +155,11 @@ function render_b_blocks_flip_box( $attributes ) {
         <style>". $flipBoxStyle::renderStyle() ."</style>
 
         <div class='box front text-$contentAlign'>
-            <div class='frontContent'>". $frontImg . $frontTitle . $description ."</div>
+            <div class='frontContent'>". $frontIcon . $frontTitle . $description ."</div>
         </div>
 
         <div class='box back text-$contentAlign'>
-            <div class='backContent'>". $backImg . $backTitle . $button ."</div>
+            <div class='backContent'>". $backIcon . $backTitle . $button ."</div>
         </div>
     </div>";
 

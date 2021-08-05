@@ -19,7 +19,7 @@ import iconLists from './Helper/iconLists';
 const IconControl = props => {
     const { className, icon, onChange, defaults = {} } = props;
 
-    const defaultVal = { class: '', name: '', fontSize: 16, color: '#fe6601' }
+    const defaultVal = { class: '', name: '', fontSize: 16, color: '#4527a4' }
 
     const getDefault = property => defaults?.[property] || defaultVal[property];
 

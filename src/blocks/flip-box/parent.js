@@ -44,8 +44,7 @@ registerBlockType('b-blocks/flip-boxes', {
         const [boxHeight, setBoxHeight] = useState(childAttributes?.boxHeight);
         const [contentAlign, setContentAlign] = useState(childAttributes?.contentAlign);
         const [padding, setPadding] = useState(childAttributes?.padding);
-        const [imgWidth, setImgWidth] = useState(childAttributes?.imgWidth);
-        const [imgMargin, setImgMargin] = useState(childAttributes?.imgMargin);
+        const [iconMargin, setIconMargin] = useState(childAttributes?.iconMargin);
         const [titleTypo, setTitleTypo] = useState(childAttributes?.titleTypo);
         const [titleMargin, setTitleMargin] = useState(childAttributes?.titleMargin);
         const [descTypo, setDescTypo] = useState(childAttributes?.descTypo);
@@ -79,12 +78,9 @@ registerBlockType('b-blocks/flip-boxes', {
                     <SpaceControl className='mt-20p mb-5p' label={__('Padding:', 'b-blocks')} space={padding || childAttributes?.padding} onChange={val => { setChildAttributes({ padding: val }); setPadding(val) }} defaults={{ vertical: '30px', horizontal: '25px' }} />
                 </PanelBody>
 
-                <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-                    {/* Width */}
-                    <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={imgWidth || childAttributes?.imgWidth} onChange={val => { setChildAttributes({ imgWidth: val }); setImgWidth(val) }} units={pxUnit, perUnit, emUnit} />
-
+                <PanelBody title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
                     {/* Margin */}
-                    <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={imgMargin || childAttributes?.imgMargin} onChange={val => { setChildAttributes({ imgMargin: val }); setImgMargin(val) }} defaults={{ side: 4, bottom: '20px' }} />
+                    <SpaceControl label={__('Margin:', 'b-blocks')} space={iconMargin || childAttributes?.iconMargin} onChange={val => { setChildAttributes({ iconMargin: val }); setIconMargin(val) }} defaults={{ side: 4, bottom: '20px' }} />
                 </PanelBody>
 
                 <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
@@ -132,9 +128,8 @@ registerBlockType('b-blocks/flip-boxes', {
                     #bBlocksFlipBoxes-${clientId} .bBlocksFlipBox .box{
                         padding: ${padding?.styles || childAttributes?.padding?.styles || '30px 25px'};
                     }
-                    #bBlocksFlipBoxes-${clientId} .bBlocksFlipBox img{
-                        width: ${imgWidth || childAttributes?.imgWidth};
-                        margin: ${imgMargin?.styles || childAttributes?.imgMargin?.styles || '0 0 20px 0'};
+                    #bBlocksFlipBoxes-${clientId} .bBlocksFlipBox .flipIcon{
+                        margin: ${iconMargin?.styles || childAttributes?.iconMargin?.styles || '0 0 20px 0'};
                     }
                     #bBlocksFlipBoxes-${clientId} .bBlocksFlipBox .flipTitle{
                         ${titleTypo?.styles || childAttributes?.titleTypo?.styles || 'font-size: 25px;'}

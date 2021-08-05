@@ -56,6 +56,7 @@ function b_blocks_enqueue_block_assets() {
 
     wp_enqueue_script( 'bootstrap', B_BLOCKS_ASSETS_DIR . 'js/bootstrap.bundle.min.js', array( 'jquery' ), '4.6.0', true );
     wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
+    wp_enqueue_script( 'font-awesome-kit', 'https://kit.fontawesome.com/bf44dc31ae.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
 }
 add_action( 'enqueue_block_assets', 'b_blocks_enqueue_block_assets' );
 

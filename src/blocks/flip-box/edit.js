@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, ToggleControl, TabPanel } from '@wordpress/components';
 
 // Variables
@@ -9,11 +9,11 @@ import BColor from '../../GutenComp/BColor';
 import ShadowControl from '../../GutenComp/ShadowControl';
 import BorderControl from '../../GutenComp/BorderControl';
 import ColorsControl from '../../GutenComp/ColorsControl';
+import IconControl from '../../GutenComp/IconControl';
 import Background from '../../GutenComp/Background';
-import { ImageHolderControl, ImageEditControl } from '../../GutenComp/ImageControl';
 
 const Edit = props => {
-    const { className, attributes: { contentAlign, frontBG, backBG, border, shadow, isImg, fImg, bImg, imgBorder, fTitle, bTitle, titleColor, isDesc, desc, descColor, isBtn, btn, btnLink, btnColors, btnHovColors, btnBorder }, setAttributes, clientId } = props;
+    const { className, attributes: { contentAlign, frontBG, backBG, border, shadow, isIcon, fIcon, bIcon, fTitle, bTitle, titleColor, isDesc, desc, descColor, isBtn, btn, btnLink, btnColors, btnHovColors, btnBorder }, setAttributes, clientId } = props;
 
     // Functions
     useEffect(() => {
@@ -36,15 +36,16 @@ const Edit = props => {
                 <ShadowControl label={__('Shadow:', 'b-blocks')} border={shadow} onChange={val => setAttributes({ shadow: val })} />
             </PanelBody>
 
-            <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isImg ? 'Hide Image' : 'Show Image'} checked={isImg} onChange={val => setAttributes({ isImg: val })} />
+            <PanelBody title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
+                <ToggleControl label={isIcon ? 'Hide Icon' : 'Show Icon'} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-                <ImageHolderControl className='mt-20p mb-5p' label={__('Front Image:', 'b-blocks')} img={fImg} onChange={val => setAttributes({ fImg: val })} />
+                {isIcon && <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'front', title: __('Front Icon', 'b-blocks'), className: 'front-tab' }, { name: 'back', title: __('Back Icon', 'b-blocks'), className: 'back-tab', }]}>
+                    {tab => <>
+                        {'front' == tab.name && <IconControl icon={fIcon} onChange={val => setAttributes({ fIcon: val })} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />}
 
-                <ImageHolderControl className='mt-20p mb-5p' label={__('Back Image:', 'b-blocks')} img={bImg} onChange={val => setAttributes({ bImg: val })} />
-
-                {/* Border */}
-                <BorderControl label={__('Border:', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />
+                        {'back' == tab.name && <IconControl icon={bIcon} onChange={val => setAttributes({ bIcon: val })} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />}
+                    </>}
+                </TabPanel>}
             </PanelBody>
 
             <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
@@ -104,15 +105,9 @@ const Edit = props => {
         </InspectorControls>
 
 
-        <BlockControls>
-            <ImageEditControl label={__('Edit Front Image:', 'b-blocks')} img={fImg} onChange={val => setAttributes({ fImg: val })} />
-            <ImageEditControl label={__('Edit Back Image:', 'b-blocks')} img={bImg} onChange={val => setAttributes({ bImg: val })} />
-        </BlockControls>
-
-
         <div className={`${className} bBlocksFlipBox`} id={`bBlocksFlipBox-${clientId}`}>
             <style dangerouslySetInnerHTML={{
-                __html: `                
+                __html: `
                 #bBlocksFlipBox-${clientId} .box{
                     ${border?.styles};
                     box-shadow: ${shadow?.styles};
@@ -124,8 +119,11 @@ const Edit = props => {
                     ${backBG?.styles || `background-color: #000000b3;`}
                 }
 
-                #bBlocksFlipBox-${clientId} img{
-                    ${imgBorder?.styles};
+                #bBlocksFlipBox-${clientId} .flipIcon.frontIcon{
+                    ${fIcon?.styles || 'font-size: 70px; color: #fff;'}
+                }
+                #bBlocksFlipBox-${clientId} .flipIcon.backIcon{
+                    ${bIcon?.styles || 'font-size: 70px; color: #fff;'}
                 }
                 #bBlocksFlipBox-${clientId} .flipTitle{
                     color: ${titleColor};
@@ -145,7 +143,7 @@ const Edit = props => {
 
             <div className={`box front text-${contentAlign}`}>
                 <div className='frontContent'>
-                    {isImg && fImg && <img src={fImg.url} alt={fImg.alt} />}
+                    {isIcon && fIcon?.class && <i className={`flipIcon frontIcon ${fIcon?.class}`}></i>}
 
                     {fTitle && <h3 className='flipTitle flipFrontTitle'>{fTitle}</h3>}
 
@@ -155,7 +153,7 @@ const Edit = props => {
 
             <div className={`box back text-${contentAlign}`}>
                 <div className='backContent'>
-                    {isImg && bImg && <img src={bImg.url} alt={bImg.alt} />}
+                    {isIcon && bIcon?.class && <i className={`flipIcon frontIcon ${bIcon?.class}`}></i>}
 
                     {bTitle && <h3 className='flipTitle flipBackTitle'>{bTitle}</h3>}
 

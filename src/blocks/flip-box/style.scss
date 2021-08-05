@@ -60,19 +60,23 @@
         }
 
         /* Style Text */
-        *{
-            font-family: 'Open Sans';
+        .flipIcon{
+            font-style: normal;
+            display: inline-block;
         }
         .flipTitle{
+            font-family: 'Open Sans';
             font-weight: 700;
             margin: 0;
         }
         .flipDescription{
+            font-family: 'Open Sans';
             font-weight: 500;
             margin: 0;
         }
     
         .flipBtn{
+            font-family: 'Open Sans';
             display: inline-block;
             text-decoration: none;
             font-weight: 600;

@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { Button, Dropdown, PanelRow, SelectControl, __experimentalUnitControl as UnitControl, RangeControl } from '@wordpress/components';
 
 /**
- * @props className (optional): 'mt-20p mb-5p' (String)
+ * @props className (optional): 'mt-20p' (String)
  * @props label (optional): 'Typography' (String)
  * @props typography (required): {fontFamily, fontWeight, fontSize, fontStyle, textTransform, textDecoration, lineHeight, letterSpace} (Object)
  * @props onChange (required): (Function)
