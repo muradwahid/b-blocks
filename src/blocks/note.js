@@ -68,7 +68,7 @@ registerBlockType('b-blocks/note', {
         return <>
             <InspectorControls>
                 {/* Note Settings */}
-                <PanelBody title={__('Note Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Note Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
@@ -88,7 +88,7 @@ registerBlockType('b-blocks/note', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Enable/Disable Heading */}
                     <ToggleControl label={toggleHead ? 'Disable Heading' : 'Enable Heading'} checked={toggleHead} onChange={cng => setAttributes({ toggleHead: cng })} />
 
@@ -114,7 +114,7 @@ registerBlockType('b-blocks/note', {
 
                 {toggleHead && <>
                     {/* Separator Settings */}
-                    <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                         {/* Thickness */}
                         {firstTitle('Thickness:')}
                         <RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={50} step={.1} />
@@ -135,7 +135,7 @@ registerBlockType('b-blocks/note', {
 
 
                 {/* Content Settings */}
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />

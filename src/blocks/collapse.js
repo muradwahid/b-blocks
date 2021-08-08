@@ -76,7 +76,7 @@ registerBlockType('b-blocks/collapse', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Collapse Button Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Collapse Button Settings', 'b-blocks')} initialOpen={true}>
                     {/* Button Align */}
                     {firstTitle('Button Align:')}
                     <BtnGroup options={aligns} myValue={collBtnAlign} setState={cng => setAttributes({ collBtnAlign: cng })} icon={true} />
@@ -136,7 +136,7 @@ registerBlockType('b-blocks/collapse', {
                 </PanelBody>
 
 
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Top Bottom Padding */}
                     {firstTitle('Top Bottom Padding:')}
                     <RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />

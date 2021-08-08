@@ -151,7 +151,7 @@ registerBlockType('b-blocks/slider', {
         return <>
             <InspectorControls>
                 {/* Slider Settings */}
-                <PanelBody title={__('Slider Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Slider Settings', 'b-blocks')} initialOpen={true}>
                     {/* Width */}
                     {firstTitle('Width:')}
                     <BtnGroup options={sizeTypes} myValue={sliderWidthType} setState={(cng, def) => setAttributes({ sliderWidthType: cng, sliderWidth: def })} classes="bBlocksSizeType" size="small" />
@@ -181,7 +181,7 @@ registerBlockType('b-blocks/slider', {
 
 
                 {/* Content Settings */}
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -189,7 +189,7 @@ registerBlockType('b-blocks/slider', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Tag */}
                     {firstTitle('Tag:')}
                     <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -209,7 +209,7 @@ registerBlockType('b-blocks/slider', {
 
 
                 {/* Description Settings */}
-                <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Color */}
                     {firstTitle('Color:')}
                     <ColorPalette value={descColor} onChange={cng => setAttributes({ descColor: cng })} colors={colors} />
@@ -224,7 +224,7 @@ registerBlockType('b-blocks/slider', {
                 </PanelBody>
 
 
-                <PanelBody title={__('Indicator Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Indicator Settings', 'b-blocks')} initialOpen={false}>
                     {/* Color */}
                     {firstTitle('Color:')}
                     <ColorPalette value={indicatorColor} onChange={cng => setAttributes({ indicatorColor: cng })} colors={colors} />

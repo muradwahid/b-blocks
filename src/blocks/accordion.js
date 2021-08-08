@@ -116,7 +116,7 @@ registerBlockType('b-blocks/accordion', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={true}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={headingAlign} setState={cng => setAttributes({ headingAlign: cng })} icon={true} />
@@ -168,7 +168,7 @@ registerBlockType('b-blocks/accordion', {
 
 
                 {/* Content Settings */}
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />

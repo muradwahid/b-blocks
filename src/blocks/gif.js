@@ -96,7 +96,7 @@ registerBlockType('b-blocks/gif', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Gif Image Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Gif Image Settings', 'b-blocks')} initialOpen={true}>
                     {firstTitle("Width:")}
                     <BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes="bBlocksSizeType" size="small" />
 

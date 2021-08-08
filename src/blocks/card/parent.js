@@ -61,7 +61,7 @@ registerBlockType('b-blocks/cards', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Layout Settings', 'b-blocks')}>
+                <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')}>
                     {/* Layout Type */}
                     <PanelRow>
                         <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
@@ -88,12 +88,12 @@ registerBlockType('b-blocks/cards', {
                     <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
                 </PanelBody>
 
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Padding */}
                     <SpaceControl label={__('Padding:', 'b-blocks')} space={padding || childAttributes?.padding} onChange={val => { setChildAttributes({ padding: val }); setContentPadding(val); }} defaults={{ vertical: '20px', horizontal: '10px' }} />
                 </PanelBody>
 
-                <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                     {/* Position */}
                     <PanelRow>
                         <Title mt='0'>{__('Position:', 'b-blocks')}</Title>
@@ -107,7 +107,7 @@ registerBlockType('b-blocks/cards', {
                     <UnitControl className='mt-20p mb-5p' label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight || childAttributes?.imgHeight} onChange={val => { setChildAttributes({ imgHeight: val }); setImgHeight(val); }} units={[pxUnit, perUnit, emUnit]} />
                 </PanelBody>
 
-                <PanelBody title={__('Category Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Category Settings', 'b-blocks')} initialOpen={false}>
                     <ToggleControl label={isCat || childAttributes?.isCat ? 'Hide Category' : 'Show Category'} checked={isCat || childAttributes?.isCat} onChange={val => { setChildAttributes({ isCat: val }); setIsCat(val); }} />
 
                     <Typography className='mt-20p mb-5p' typography={catTypo} onChange={val => { setChildAttributes({ catTypo: val }); setCatTypo(val); }} defaults={{ fontSize: 15 }} />
@@ -116,7 +116,7 @@ registerBlockType('b-blocks/cards', {
                     <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={catMargin || childAttributes?.catMargin} onChange={val => { setChildAttributes({ catMargin: val }); setCatMargin(val); }} defaults={{ side: 4, bottom: '10px' }} />
                 </PanelBody>
 
-                <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                     <ToggleControl label={isTitle || childAttributes?.isTitle ? 'Hide Title' : 'Show Title'} checked={isTitle || childAttributes?.isTitle} onChange={val => { setChildAttributes({ isTitle: val }); setIsTitle(val); }} />
 
                     {/* Position */}

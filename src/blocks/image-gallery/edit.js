@@ -31,7 +31,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Layouts Settings')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings')}>
                 {/* Columns */}
                 <PanelRow>
                     <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
@@ -40,7 +40,7 @@ const Edit = props => {
                 <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={9} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                 {/* Padding */}
                 <SpaceControl label={__('Padding:', 'b-blocks')} space={imgPadding} onChange={val => setAttributes({ imgPadding: val })} />
 
@@ -51,7 +51,7 @@ const Edit = props => {
                 <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
             </PanelBody>
 
-            <PanelBody title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isCap ? 'Hide Caption' : 'Show Caption'} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
                 {/* Text Align */}

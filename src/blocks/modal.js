@@ -103,7 +103,7 @@ registerBlockType('b-blocks/modal', {
         return <>
             <InspectorControls>
                 {/* Modal Settings */}
-                <PanelBody title={__('Modal Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Modal Settings', 'b-blocks')} initialOpen={true}>
                     {/* Fade Effect */}
                     {firstTitle('Fade Effect:')}
                     <ToggleControl label={modalFade ? 'Disable Fade Effect' : 'Enable Fade Effect'} checked={modalFade} onChange={cng => setAttributes({ modalFade: cng })} />
@@ -126,7 +126,7 @@ registerBlockType('b-blocks/modal', {
                 </PanelBody>
 
 
-                <PanelBody title={__('Modal Button Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Modal Button Settings', 'b-blocks')} initialOpen={false}>
                     {/* Button Align */}
                     {firstTitle('Button Align:')}
                     <BtnGroup options={aligns} myValue={modalBtnAlign} setState={cng => setAttributes({ modalBtnAlign: cng })} icon={true} />
@@ -185,7 +185,7 @@ registerBlockType('b-blocks/modal', {
                 </PanelBody>
 
 
-                <PanelBody title={__('Header Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Header Settings', 'b-blocks')} initialOpen={false}>
                     <ToggleControl label={modalHead ? 'Hide Header' : 'Show Header'} checked={modalHead} onChange={cng => setAttributes({ modalHead: cng })} />
 
                     {modalHead && <>
@@ -213,7 +213,7 @@ registerBlockType('b-blocks/modal', {
                     </>}
                 </PanelBody>
 
-                <PanelBody title={__('Footer Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Footer Settings', 'b-blocks')} initialOpen={false}>
                     <ToggleControl label={modalFoot ? 'Hide Footer' : 'Show Footer'} checked={modalFoot} onChange={cng => setAttributes({ modalFoot: cng })} />
 
                     {modalFoot && <>

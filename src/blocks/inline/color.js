@@ -39,7 +39,7 @@ allOptions.forEach(({ name, title }) => {
 
             return (
                 <InspectorControls>
-                    <PanelBody icon='admin-customizer' title={title} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' icon='admin-customizer' title={title} initialOpen={false}>
                         <ColorPalette value={activeColor} onChange={color => {
                             if (color) {
                                 onChange(applyFormat(value, {

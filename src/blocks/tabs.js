@@ -127,7 +127,7 @@ registerBlockType('b-blocks/tabs', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Tabs Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Tabs Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout */}
                     {firstTitle('Layout:')}
                     <SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={tabLayouts} />
@@ -156,7 +156,7 @@ registerBlockType('b-blocks/tabs', {
 
 
                 {/* Title Settings */}
-                <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={titleAlign} setState={cng => setAttributes({ titleAlign: cng })} icon={true} />
@@ -172,7 +172,7 @@ registerBlockType('b-blocks/tabs', {
 
 
                 {/* Content Settings */}
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />

@@ -61,7 +61,7 @@ registerBlockType('b-blocks/alert', {
         return <>
             <InspectorControls>
                 {/* Alert Settings */}
-                <PanelBody title={__('Alert Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Alert Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -82,7 +82,7 @@ registerBlockType('b-blocks/alert', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Heading */}
                     <ToggleControl label={headShow ? 'Hide Heading' : 'Show Heading'} checked={headShow} onChange={cng => setAttributes({ headShow: cng })} />
 
@@ -107,7 +107,7 @@ registerBlockType('b-blocks/alert', {
 
 
                 {/* Text Settings */}
-                <PanelBody title={__('Text Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Text Settings', 'b-blocks')} initialOpen={false}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={textFontSize} onChange={cng => setAttributes({ textFontSize: 'undefined' === typeof cng ? 15 : cng })} />

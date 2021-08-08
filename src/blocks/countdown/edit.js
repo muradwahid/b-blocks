@@ -74,12 +74,12 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Timer Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Timer Settings', 'b-blocks')}>
                 <Title mt='0'>{__('Destination Date:', 'b-blocks')}</Title>
                 <DateTimePicker currentDate={destDate} onChange={val => setAttributes({ destDate: val })} is12Hour={true} />
             </PanelBody>
 
-            <PanelBody title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
                 {/* Labels */}
                 <ToggleControl label={isLabels ? 'Hide Labels' : 'Show Labels'} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
 
@@ -116,7 +116,7 @@ const Edit = props => {
                 </>}
             </PanelBody>
 
-            {isDays || isHours || isMinutes || isSeconds ? <PanelBody title={__('Elements Styles', 'b-blocks')} initialOpen={false}>
+            {isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bBlocksPanelBody' title={__('Elements Styles', 'b-blocks')} initialOpen={false}>
                 {/* Digit Font Size */}
                 <Title mt='0'>{__('Digit Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={48} value={digitFontSize} onChange={val => setAttributes({ digitFontSize: 'undefined' === typeof val ? 48 : val })} />
@@ -134,7 +134,7 @@ const Edit = props => {
                 </>}
             </PanelBody> : null}
 
-            <PanelBody title={__('Box Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Box Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label='Box Inline' checked={itemInline} onChange={val => setAttributes({ itemInline: val })} />
 
                 {/* Position */}
@@ -169,7 +169,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Box Background Color:', 'b-blocks')} value={itemBGColor} onChange={val => setAttributes({ itemBGColor: val })} defaultColor='#4527a4' />
             </PanelBody>
 
-            <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Border Settings', 'b-blocks')} initialOpen={false}>
                 {/* Width */}
                 <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
                 <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
@@ -187,7 +187,7 @@ const Edit = props => {
                 <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
                 {/* Color */}
                 <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
 

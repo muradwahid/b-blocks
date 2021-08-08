@@ -1,6 +1,6 @@
 .wp-block-b-blocks-button-group{
-    .btnHolder{
-        display: inline-block;
+    .bBlocksButtonGroup{
+        display: inline-flex;
 
         .firstBtn{
             position: relative;
@@ -19,6 +19,10 @@
 
                 span{
                     text-transform: uppercase;
+                }
+
+                i{
+                    font-style: normal;
                 }
             }
         }

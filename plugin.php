@@ -112,7 +112,10 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'feature-boxes' );
     b_blocks_wp_register_script( 'feature-box' );
     b_blocks_wp_register_script( 'info-box' );
-    b_blocks_wp_register_script( 'button-group' );
+    b_blocks_wp_register_script( 'button-group', array(
+        'attributes'      => button_group_attributes(),
+        'render_callback' => 'render_b_blocks_button_group'
+    ) );
     b_blocks_wp_register_script( 'countdown' );
     b_blocks_wp_register_script( 'cards', array(
         'attributes'      => b_blocks_cards_attributes(),
@@ -196,6 +199,7 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/slider.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-comparison.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-box.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/button-group.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/card.php';
 
 // Post API update

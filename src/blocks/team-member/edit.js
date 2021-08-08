@@ -94,7 +94,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Layouts Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings', 'b-blocks')}>
                 <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
                 <ButtonGroup className="bBlocksBtnGroup">
                     <Tooltip text={__('Vertical', 'b-blocks')} position="top">
@@ -113,7 +113,7 @@ const Edit = props => {
                 </PanelRow>
             </PanelBody>
 
-            <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                 {/* Background Color */}
                 <BColor label={__('Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
 
@@ -126,7 +126,7 @@ const Edit = props => {
                 <RangeControl value={contentPLR} onChange={val => setAttributes({ contentPLR: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            {(imgUrl || imgId) && <PanelBody title={__('Photo Settings', 'b-blocks')} initialOpen={false}>
+            {(imgUrl || imgId) && <PanelBody className='bBlocksPanelBody' title={__('Photo Settings', 'b-blocks')} initialOpen={false}>
                 {imgUrl && !isBlobURL(imgUrl) && <>
                     <Title mt="0">{__('Alt Text (Alternative Text):', 'b-blocks')}</Title>
                     <TextControl label={__('', 'b-blocks')} value={imgAlt} onChange={val => setAttributes({ imgAlt: val })} />
@@ -169,7 +169,7 @@ const Edit = props => {
                 <RangeControl value={imgBorderRadius} onChange={val => setAttributes({ imgBorderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>}
 
-            <PanelBody title={__('Name Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Name Settings', 'b-blocks')} initialOpen={false}>
                 {/* Font Size */}
                 <Title mt="0">{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={18} value={nameFontSize} onChange={val => setAttributes({ nameFontSize: 'undefined' === typeof val ? 18 : val })} />
@@ -188,7 +188,7 @@ const Edit = props => {
                 <RangeControl value={nameMB} onChange={val => setAttributes({ nameMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Designation Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Designation Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isDes ? 'Hide Designation' : 'Show Designation'} checked={isDes} onChange={val => setAttributes({ isDes: val })} />
 
                 {isDes && <>
@@ -211,7 +211,7 @@ const Edit = props => {
                 <RangeControl value={desMB} onChange={val => setAttributes({ desMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isSep ? 'Hide Separator' : 'Show Separator'} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
                 {isSep && <>
@@ -236,7 +236,7 @@ const Edit = props => {
                 </>}
             </PanelBody>
 
-            <PanelBody title={__('Biography Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Biography Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isBio ? 'Hide Biography' : 'Show Biography'} checked={isBio} onChange={val => setAttributes({ isBio: val })} />
 
                 {isBio && <>
@@ -253,7 +253,7 @@ const Edit = props => {
                 </>}
             </PanelBody>
 
-            <PanelBody title={__('Social Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Social Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isSocial ? 'Hide Social' : 'Show Social'} checked={isSocial} onChange={val => setAttributes({ isSocial: val })} />
 
                 {isSocial && <>
@@ -277,7 +277,7 @@ const Edit = props => {
                 </>}
             </PanelBody>
 
-            <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Border Settings', 'b-blocks')} initialOpen={false}>
                 {/* Width */}
                 <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
                 <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
@@ -295,7 +295,7 @@ const Edit = props => {
                 <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
                 {/* Color */}
                 <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
 

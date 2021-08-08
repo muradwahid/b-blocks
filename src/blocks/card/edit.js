@@ -41,7 +41,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Colors Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Colors Settings', 'b-blocks')}>
                 {/* Content Background Color */}
                 <BColor label={__('Content Background Color:', 'b-blocks')} value={bgColor} onChange={val => setAttributes({ bgColor: val })} defaultColor='#ffffff00' />
 
@@ -52,7 +52,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#ff7500' />
             </PanelBody>
 
-            {(img?.url || img?.id) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+            {(img?.url || img?.id) && <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                 {/* Border */}
                 <BorderControl label={__('Border', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} defaults={{ radius: '5px' }} />
 

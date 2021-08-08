@@ -4,7 +4,7 @@ import { MediaUpload, MediaUploadCheck, MediaPlaceholder } from '@wordpress/bloc
 import { Button, ToolbarItem, withNotices, TextControl, SelectControl, PanelRow } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
-import './ImageControl.sass';
+import './ImageControl.scss';
 
 import Title from './Title';
 import func from '../Const/functions';

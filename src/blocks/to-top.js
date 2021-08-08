@@ -48,7 +48,7 @@ registerBlockType('b-blocks/to-top', {
         return <>
             <InspectorControls>
                 {/* Go To Top Settings */}
-                <PanelBody title={__('Go To Top Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Go To Top Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />

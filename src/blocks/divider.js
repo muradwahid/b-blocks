@@ -53,7 +53,7 @@ registerBlockType('b-blocks/divider', {
         return <>
             <InspectorControls>
                 {/* Divider Settings */}
-                <PanelBody title={__('Divider Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Divider Settings', 'b-blocks')} initialOpen={true}>
                     {/* Alignment */}
                     {firstTitle('Alignment:')}
                     <BtnGroup options={aligns} myValue={divideAlign} setState={cng => setAttributes({ divideAlign: cng })} icon={true} />

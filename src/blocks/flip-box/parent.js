@@ -57,7 +57,7 @@ registerBlockType('b-blocks/flip-boxes', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Layout', 'b-blocks')}>
+                <PanelBody className='bBlocksPanelBody' title={__('Layout', 'b-blocks')}>
                     {/* Columns */}
                     <PanelRow>
                         <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
@@ -70,7 +70,7 @@ registerBlockType('b-blocks/flip-boxes', {
                     <UnitControl className='mt-20p mb-5p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
                 </PanelBody>
 
-                <PanelBody title={__('Box Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Box Settings', 'b-blocks')} initialOpen={false}>
                     {/* Height */}
                     <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight || childAttributes?.boxHeight} onChange={val => { setChildAttributes({ boxHeight: val }); setBoxHeight(val) }} units={[pxUnit, emUnit]} />
 
@@ -78,12 +78,12 @@ registerBlockType('b-blocks/flip-boxes', {
                     <SpaceControl className='mt-20p mb-5p' label={__('Padding:', 'b-blocks')} space={padding || childAttributes?.padding} onChange={val => { setChildAttributes({ padding: val }); setPadding(val) }} defaults={{ vertical: '30px', horizontal: '25px' }} />
                 </PanelBody>
 
-                <PanelBody title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
                     {/* Margin */}
                     <SpaceControl label={__('Margin:', 'b-blocks')} space={iconMargin || childAttributes?.iconMargin} onChange={val => { setChildAttributes({ iconMargin: val }); setIconMargin(val) }} defaults={{ side: 4, bottom: '20px' }} />
                 </PanelBody>
 
-                <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                     {/* Typography */}
                     <Typography typography={titleTypo || childAttributes?.titleTypo} onChange={val => { setChildAttributes({ titleTypo: val }); setTitleTypo(val) }} defaults={{ fontSize: 25 }} />
 
@@ -91,12 +91,12 @@ registerBlockType('b-blocks/flip-boxes', {
                     <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={titleMargin || childAttributes?.titleMargin} onChange={val => { setChildAttributes({ titleMargin: val }); setTitleMargin(val) }} defaults={{ side: 4, bottom: '20px' }} />
                 </PanelBody>
 
-                <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Typography */}
                     <Typography typography={descTypo || childAttributes?.descTypo} onChange={val => { setChildAttributes({ descTypo: val }); setDescTypo(val) }} defaults={{ fontSize: 16 }} />
                 </PanelBody>
 
-                <PanelBody title={__('Button Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
                     {/* Typography */}
                     <Typography typography={btnTypo || childAttributes?.btnTypo} onChange={val => { setChildAttributes({ btnTypo: val }); setBtnTypo(val) }} defaults={{ fontSize: 20 }} />
 

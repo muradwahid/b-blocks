@@ -63,7 +63,7 @@ registerBlockType('b-blocks/feature-boxes', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Layout Settings', 'b-blocks')}>
+                <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')}>
                     {/* Columns */}
                     {/* <Title mt="0">{__('Columns:', 'b-blocks')}</Title>
                     <RangeControl value={columns} onChange={val => setAttributes({ columns: val })} min={0} max={6} step={1} /> */}

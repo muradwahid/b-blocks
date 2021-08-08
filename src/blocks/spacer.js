@@ -35,7 +35,7 @@ registerBlockType('b-blocks/spacer', {
         return <>
             <InspectorControls>
                 {/* Spacer Settings */}
-                <PanelBody title={__('Spacer Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Spacer Settings', 'b-blocks')} initialOpen={true}>
                     {/* Height/Size */}
                     {firstTitle('Height/Size:')}
                     <RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={1000} step={1} />

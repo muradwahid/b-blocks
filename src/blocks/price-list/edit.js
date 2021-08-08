@@ -44,7 +44,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Layouts Settings')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings')}>
                 <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
                 <ButtonGroup className="bBlocksBtnGroup">
                     <Tooltip text={__('Vertical', 'b-blocks')} position="top">
@@ -57,7 +57,7 @@ const Edit = props => {
                 </ButtonGroup>
             </PanelBody>
 
-            <PanelBody title={__('Content Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')}>
                 {/* Background Color */}
                 <BColor label={__('Background Color:', 'b-blocks')} value={contentBGColor} onChange={val => setAttributes({ contentBGColor: val })} defaultColor="#ffffff00" />
 
@@ -70,7 +70,7 @@ const Edit = props => {
                 <RangeControl value={contentPLR} onChange={val => setAttributes({ contentPLR: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            {(imgUrl || imgId) && <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+            {(imgUrl || imgId) && <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                 {imgUrl && !isBlobURL(imgUrl) && <>
                     <Title mt="0">{__('Alt Text (Alternative Text):', 'b-blocks')}</Title>
                     <TextControl label={__('', 'b-blocks')} value={imgAlt} onChange={val => setAttributes({ imgAlt: val })} />
@@ -92,7 +92,7 @@ const Edit = props => {
                 <RangeControl value={imgRadius} onChange={val => setAttributes({ imgRadius: val })} min={0} max={50} step={1} />
             </PanelBody>}
 
-            <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 {/* Font Size */}
                 <Title mt="0">{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={18} value={titleFontSize} onChange={val => setAttributes({ titleFontSize: 'undefined' === typeof val ? 18 : val })} />
@@ -106,7 +106,7 @@ const Edit = props => {
                 <RangeControl value={titleMB} onChange={val => setAttributes({ titleMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isDesc ? 'Hide Description' : 'Show Description'} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
                 {/* Font Size */}
@@ -122,7 +122,7 @@ const Edit = props => {
                 <RangeControl value={descMB} onChange={val => setAttributes({ descMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Price Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Price Settings', 'b-blocks')} initialOpen={false}>
                 {/* Font Size */}
                 <Title mt="0">{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={24} value={priceFontSize} onChange={val => setAttributes({ priceFontSize: 'undefined' === typeof val ? 24 : val })} />
@@ -132,7 +132,7 @@ const Edit = props => {
                 <ColorPalette value={priceColor} onChange={val => setAttributes({ priceColor: val })} colors={colors} />
             </PanelBody>
 
-            <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isSep ? 'Hide Separator' : 'Show Separator'} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
                 {/* Width */}

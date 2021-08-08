@@ -1,3 +1,6 @@
+$primaryColor: #4527a4;
+$secondaryColor: #8344c5;
+
 .addRemoveSlides{
     .slideItem{
         .slideTitle{
@@ -19,7 +22,7 @@
 
     .addSlide{
         text-align: center;
-        background: #4527a4;
+        background: $primaryColor;
 
         button{
             width: 100%;
@@ -41,5 +44,26 @@
     .dashicon{
         margin-top: 2px;
         margin-right: 8px;
+    }
+}
+
+
+// CSS for deprecated
+.b_blocks_remove_slide_btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    color: $primaryColor!important;
+    border-radius: 0 0 0 50%;
+    z-index: 15;
+
+    &:hover{
+        color: $secondaryColor!important;
+    }
+
+    svg{
+        width: 26px;
+        height: 26px;
     }
 }

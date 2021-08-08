@@ -153,7 +153,7 @@ registerBlockType('b-blocks/card', {
         return <>
             <InspectorControls>
                 {/* Card Settings */}
-                <PanelBody title={__('Card Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Card Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout */}
                     {firstTitle('Layout:')}
                     <BtnGroup options={cardLayouts} myValue={layout} setState={(cng, def) => setAttributes({ layout: cng, cardWidth: def })} icon={true} />
@@ -173,7 +173,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Image Settings */}
-                <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Image */}
                     <ToggleControl label={imgShow ? 'Hide Image' : 'Show Image'} checked={imgShow} onChange={cng => setAttributes({ imgShow: cng })} />
 
@@ -190,7 +190,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Header Settings */}
-                <PanelBody title={__('Header Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Header Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Header */}
                     <ToggleControl label={headerShow ? 'Hide Header' : 'Show Header'} checked={headerShow} onChange={cng => setAttributes({ headerShow: cng })} />
 
@@ -219,7 +219,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Body Settings */}
-                <PanelBody title={__('Body Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Body Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={bodyTextAlign} setState={cng => setAttributes({ bodyTextAlign: cng })} icon={true} />
@@ -239,7 +239,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Body Heading Settings */}
-                <PanelBody title={__('Body Heading Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Body Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Body Heading */}
                     <ToggleControl label={bodyHeadShow ? 'Hide Body Heading' : 'Show Body Heading'} checked={bodyHeadShow} onChange={cng => setAttributes({ bodyHeadShow: cng })} />
 
@@ -264,7 +264,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Body Description Settings */}
-                <PanelBody title={__('Body Description Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Body Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Body Description */}
                     <ToggleControl label={bodyDescShow ? 'Hide Body Description' : 'Show Body Description'} checked={bodyDescShow} onChange={cng => setAttributes({ bodyDescShow: cng })} />
 
@@ -285,7 +285,7 @@ registerBlockType('b-blocks/card', {
 
 
                 {/* Footer Settings */}
-                <PanelBody title={__('Footer Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Footer Settings', 'b-blocks')} initialOpen={false}>
                     {/* Show/Hide Footer */}
                     <ToggleControl label={footerShow ? 'Hide Footer' : 'Show Footer'} checked={footerShow} onChange={cng => setAttributes({ footerShow: cng })} />
 

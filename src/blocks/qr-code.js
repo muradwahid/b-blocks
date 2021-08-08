@@ -39,7 +39,7 @@ registerBlockType('b-blocks/qr-code', {
         return <>
             <InspectorControls>
                 {/* QR Code Settings */}
-                <PanelBody title={__('QR Code Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('QR Code Settings', 'b-blocks')} initialOpen={true}>
                     {/* Website url */}
                     {firstTitle('Website url:')}
                     <TextControl value={url} onChange={cng => setAttributes({ url: cng })} />

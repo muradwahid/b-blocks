@@ -94,7 +94,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Add or Remove Slides', 'b-blocks')} className='addRemoveSlides'>
+            <PanelBody className='bBlocksPanelBody addRemoveSlides' title={__('Add or Remove Slides', 'b-blocks')}>
                 {slides.map((item, index) => {
                     const { img, title, description, btnText, btnLink } = item;
 
@@ -149,7 +149,7 @@ const Edit = props => {
                 </div>
             </PanelBody>
 
-            <PanelBody title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
                 {/* Columns */}
                 <PanelRow>
                     <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
@@ -168,7 +168,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Background Overlay Color:', 'b-blocks')} value={bgOverlay} onChange={val => setAttributes({ bgOverlay: val })} defaultColor='#00000080' />
             </PanelBody>
 
-            <PanelBody title={__('Slider Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Slider Settings', 'b-blocks')} initialOpen={false}>
                 {/* Loop */}
                 <Title mt='0'>{__('Loop:', 'b-blocks')}</Title>
                 <ToggleControl label={isLoop ? 'Disable Loop' : 'Enable Loop'} checked={isLoop} onChange={val => setAttributes({ isLoop: val })} />
@@ -218,7 +218,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />
             </PanelBody>
 
-            <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isTitle ? 'Hide Title' : 'Show Title'} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
                 {/* Typography */}
@@ -231,7 +231,7 @@ const Edit = props => {
                 <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
             </PanelBody>
 
-            <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isDesc ? 'Hide Description' : 'Show Description'} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
                 {/* Typography */}
@@ -244,7 +244,7 @@ const Edit = props => {
                 <SpaceControl className='mt-20p mb-5p' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
             </PanelBody>
 
-            <PanelBody title={__('Button Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isBtn ? 'Hide Button' : 'Show Button'} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
                 {/* Typography */}

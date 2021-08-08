@@ -46,7 +46,7 @@ registerBlockType('b-blocks/highlight-text', {
         return <>
             <InspectorControls>
                 {/* Highlight Text Settings */}
-                <PanelBody title={__('Highlight Text Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Highlight Text Settings', 'b-blocks')} initialOpen={true}>
                     {/* Font Size */}
                     {firstTitle('Font Size:')}
                     <FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontS} onChange={cng => setAttributes({ fontS: 'undefined' === typeof cng ? 15 : cng })} />

@@ -55,7 +55,7 @@ registerBlockType('b-blocks/mailto', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Mail to Button Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Mail to Button Settings', 'b-blocks')} initialOpen={true}>
                     {/* Label */}
                     {firstTitle('Label:')}
                     <TextControl value={mtBtnLabel} onChange={cng => setAttributes({ mtBtnLabel: cng })} />

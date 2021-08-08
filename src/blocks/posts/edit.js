@@ -55,7 +55,7 @@ const Edit = props => {
                     return <>
                         {'layout' == tab.name && <>
                             {/* Layouts Settings */}
-                            <PanelBody title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
+                            <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
                                 {/* Layout Type */}
                                 <PanelRow>
                                     <Title mt='5px'>{__('Layout Type:', 'b-blocks')}</Title>
@@ -85,7 +85,7 @@ const Edit = props => {
                             </PanelBody>
 
                             {/* Posts Query */}
-                            <PanelBody title={__('Posts Query', 'b-blocks')} initialOpen={false}>
+                            <PanelBody className='bBlocksPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
                                 {/* Select Categories */}
                                 {categories && 0 !== categories.length ? <>
                                     <Title mt='0'>{__('Select Categories:', 'b-blocks')}</Title>
@@ -118,7 +118,7 @@ const Edit = props => {
                             </PanelBody>
 
                             {/* Elements Settings */}
-                            <PanelBody title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
+                            <PanelBody className='bBlocksPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
                                 {/*Feature Image */}
                                 <Title mt='0'>{__('Feature Image:', 'b-blocks')}</Title>
                                 <ToggleControl label={'true' == isFImg ? 'Hide Feature Image' : 'Show Feature Image'} checked={'true' == isFImg ? true : false} onChange={val => setAttributes({ isFImg: val.toString() })} />
@@ -186,7 +186,7 @@ const Edit = props => {
 
                         {'style' == tab.name && <>
                             {/* Content Settings */}
-                            <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={true}>
+                            <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
                                 {/* Text Align */}
                                 <PanelRow>
                                     <Title mt='5px'>{__('Text Align:', 'b-blocks')}</Title>
@@ -209,7 +209,7 @@ const Edit = props => {
                             </PanelBody>
 
                             {/* Title Settings */}
-                            {'true' == isTitle && <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+                            {'true' == isTitle && <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                                 {/* Font Size */}
                                 <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
                                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={titleFontSize} onChange={val => setAttributes({ titleFontSize: 'undefined' === typeof val ? 20 : val })} />
@@ -223,7 +223,7 @@ const Edit = props => {
                             </PanelBody>}
 
                             {/* Meta Data Settings */}
-                            {'true' == isMeta && <PanelBody title={__('Meta Data Settings', 'b-blocks')} initialOpen={false}>
+                            {'true' == isMeta && <PanelBody className='bBlocksPanelBody' title={__('Meta Data Settings', 'b-blocks')} initialOpen={false}>
                                 {/* Font Size */}
                                 <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
                                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={13} value={metaFontSize} onChange={val => setAttributes({ metaFontSize: 'undefined' === typeof val ? 13 : val })} />
@@ -249,7 +249,7 @@ const Edit = props => {
                             </PanelBody>}
 
                             {/* Excerpt Settings */}
-                            {'true' == isExcerpt && <PanelBody title={__('Excerpt Settings', 'b-blocks')} initialOpen={false}>
+                            {'true' == isExcerpt && <PanelBody className='bBlocksPanelBody' title={__('Excerpt Settings', 'b-blocks')} initialOpen={false}>
                                 {/* Text Align */}
                                 <PanelRow>
                                     <Title mt='5px'>{__('Text Align:', 'b-blocks')}</Title>
@@ -269,7 +269,7 @@ const Edit = props => {
                             </PanelBody>}
 
                             {/* Read More Settings */}
-                            {'true' == isReadMore && <PanelBody title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
+                            {'true' == isReadMore && <PanelBody className='bBlocksPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
                                 {/* Text Align */}
                                 <PanelRow>
                                     <Title mt='5px'>{__('Text Align:', 'b-blocks')}</Title>

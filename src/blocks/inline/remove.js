@@ -12,7 +12,7 @@ registerFormatType(type, {
     edit({ value, onChange }) { // There is another props call isActive
         return (
             <InspectorControls>
-                <PanelBody title={__('Remove All Inline Formats', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Remove All Inline Formats', 'b-blocks')} initialOpen={false}>
                     <Button isSecondary={true} onClick={() => onChange({ ...value, formats: Array(value.formats.length) })}>{__('Remove All Inline Formats', 'b-blocks')}</Button>
                 </PanelBody>
             </InspectorControls>

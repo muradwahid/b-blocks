@@ -54,7 +54,7 @@ registerBlockType('b-blocks/selection', {
         return <>
             <InspectorControls>
                 {/* Selection Settings */}
-                <PanelBody title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
                     {/* Selection */}
                     {firstTitle('Selection:')}
                     <BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />

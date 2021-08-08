@@ -22,7 +22,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Box Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Box Settings', 'b-blocks')}>
                 {/* Front Background */}
                 <Background label={__('Front Background', 'b-blocks')} background={frontBG} onChange={val => setAttributes({ frontBG: val })} />
 
@@ -36,7 +36,7 @@ const Edit = props => {
                 <ShadowControl label={__('Shadow:', 'b-blocks')} border={shadow} onChange={val => setAttributes({ shadow: val })} />
             </PanelBody>
 
-            <PanelBody title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isIcon ? 'Hide Icon' : 'Show Icon'} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
                 {isIcon && <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'front', title: __('Front Icon', 'b-blocks'), className: 'front-tab' }, { name: 'back', title: __('Back Icon', 'b-blocks'), className: 'back-tab', }]}>
@@ -48,7 +48,7 @@ const Edit = props => {
                 </TabPanel>}
             </PanelBody>
 
-            <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 {/* Back Title */}
                 <Title mt='0'>{__('Front Title:', 'b-blocks')}</Title>
                 <TextControl value={fTitle} onChange={val => setAttributes({ fTitle: val })} />
@@ -61,7 +61,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#fff' />
             </PanelBody>
 
-            <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isDesc ? 'Hide Description' : 'Show Description'} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
                 {/* Text */}
@@ -72,7 +72,7 @@ const Edit = props => {
                 <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
             </PanelBody>
 
-            <PanelBody title={__('Button Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isBtn ? 'Hide Button' : 'Show Button'} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
                 {/* Text */}

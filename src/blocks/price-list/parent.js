@@ -63,7 +63,7 @@ registerBlockType('b-blocks/price-lists', {
 
         return <>
             <InspectorControls>
-                <PanelBody title={__('Layout Settings', 'b-blocks')}>
+                <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')}>
                     {/* Columns */}
                     <PanelRow>
                         <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>

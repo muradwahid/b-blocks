@@ -54,7 +54,7 @@ registerBlockType('b-blocks/progress-bar', {
         return <>
             <InspectorControls>
                 {/* Progress Settings */}
-                <PanelBody title={__('Progress Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Progress Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={progressBG} onChange={cng => setAttributes({ progressBG: cng })} colors={colors} />
@@ -66,7 +66,7 @@ registerBlockType('b-blocks/progress-bar', {
 
 
                 {/* Progress Bar Settings */}
-                <PanelBody title={__('Progress Bar Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Progress Bar Settings', 'b-blocks')} initialOpen={false}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={progressBarBG} onChange={cng => setAttributes({ progressBarBG: cng })} colors={colors} />

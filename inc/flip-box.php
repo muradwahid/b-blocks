@@ -100,7 +100,7 @@ function flip_box_attributes(){
         'btnColors' => array( 'type' => 'object', 'default' => array('color' => '#fff', 'bg' => '#ff4500') ),
         'btnHovColors' => array( 'type' => 'object', 'default' => array('color' => '#fff', 'bg' => '#ff7500') ),
         'btnPadding' => array( 'type' => 'object', 'default' => array('vertical' => '15px', 'horizontal' => '25px') ),
-        'btnBorder' => array( 'type' => 'object', 'default' => array('radius' => '3px'))
+        'btnBorder' => array( 'type' => 'object', 'default' => array('radius' => '3px') )
     );
 }
 

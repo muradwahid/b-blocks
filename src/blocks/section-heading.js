@@ -68,7 +68,7 @@ registerBlockType('b-blocks/section-heading', {
         return <>
             <InspectorControls>
                 {/* Content Settings */}
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -76,7 +76,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Heading Settings */}
-                <PanelBody title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={false}>
                     {/* Heading Tag */}
                     {firstTitle('Heading Tag:')}
                     <BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
@@ -96,7 +96,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Separator Settings */}
-                <PanelBody title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                     {/* Enable/Disable Separator */}
                     <ToggleControl label={toggleSep ? 'Disable Separator' : 'Enable Separator'} checked={toggleSep} onChange={cng => setAttributes({ toggleSep: cng })} />
 
@@ -125,7 +125,7 @@ registerBlockType('b-blocks/section-heading', {
 
 
                 {/* Description Settings */}
-                <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                     {/* Enable/Disable Description */}
                     <ToggleControl label={toggleDesc ? 'Disable Description' : 'Enable Description'} checked={toggleDesc} onChange={cng => setAttributes({ toggleDesc: cng })} />
 

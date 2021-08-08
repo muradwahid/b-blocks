@@ -46,7 +46,7 @@ registerBlockType('b-blocks/section', {
         return <>
             <InspectorControls>
                 {/* Section Settings */}
-                <PanelBody title={__('Section Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Section Settings', 'b-blocks')} initialOpen={true}>
                     {/* Background Color */}
                     {firstTitle('Background Color:')}
                     <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />

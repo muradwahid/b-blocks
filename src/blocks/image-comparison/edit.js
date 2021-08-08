@@ -126,7 +126,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Comparison Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Comparison Settings', 'b-blocks')}>
                 {/* Width */}
                 <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, vwUnit]} />
 
@@ -145,7 +145,7 @@ const Edit = props => {
                 <ToggleControl label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
             </PanelBody>
 
-            <PanelBody title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isLabel ? 'Hide Labels' : 'Show Labels'} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
                 {isLabel && <>
@@ -159,7 +159,7 @@ const Edit = props => {
                 </>}
             </PanelBody>
 
-            <PanelBody title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isCap ? 'Hide Caption' : 'Show Caption'} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
                 {isCap && <>

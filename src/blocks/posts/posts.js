@@ -211,7 +211,7 @@ registerBlockType('b-blocks/posts', {
         return [
             posts && 0 !== posts.length && <InspectorControls>
                 {/* Layouts Settings */}
-                <PanelBody title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
+                <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
                     {/* Layout Type */}
                     {firstTitle('Layout Type:')}
                     <BtnGroup options={layouts} myValue={layout} setState={cng => setAttributes({ layout: cng })} icon={true} />
@@ -237,7 +237,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Posts Query */}
-                <PanelBody title={__('Posts Query', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
                     {/* Select Categories */}
                     {categories && 0 !== categories.length ? <>
                         {firstTitle('Select Categories:')}
@@ -269,7 +269,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Elements Settings */}
-                <PanelBody title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
                     {/*Feature Image */}
                     {firstTitle('Feature Image:')}
                     <ToggleControl label={featureImgShow == 'true' ? 'Hide Feature Image' : 'Show Feature Image'} checked={featureImgShow == 'true' ? true : false} onChange={cng => setAttributes({ featureImgShow: cng.toString() })} />
@@ -319,7 +319,7 @@ registerBlockType('b-blocks/posts', {
 
 
                 {/* Content Settings */}
-                <PanelBody title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+                <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                     {/* Text Align */}
                     {firstTitle('Text Align:')}
                     <BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
@@ -344,7 +344,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Feature Image Settings */}
                 {/* {'true' == featureImgShow && <>
-                    <PanelBody title={__('Feature Image Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Feature Image Settings', 'b-blocks')} initialOpen={false}>
 
                     </PanelBody>
                 </>} */}
@@ -352,7 +352,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Title Settings */}
                 {titleShow == 'true' && <>
-                    <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: 'undefined' === typeof cng ? 20 : cng })} />
@@ -370,7 +370,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Meta Data Settings */}
                 {metaShow == 'true' && <>
-                    <PanelBody title={__('Meta Data Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Meta Data Settings', 'b-blocks')} initialOpen={false}>
                         {/* Font Size */}
                         {firstTitle('Font Size:')}
                         <FontSizePicker fontSizes={fontSizes} fallbackFontSize={13} value={metaFontSize} onChange={cng => setAttributes({ metaFontSize: 'undefined' === typeof cng ? 13 : cng })} />
@@ -400,7 +400,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Excerpt Settings */}
                 {excerptShow == 'true' && <>
-                    <PanelBody title={__('Excerpt Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Excerpt Settings', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
                         <BtnGroup options={aligns} myValue={excerptAlign} setState={cng => setAttributes({ excerptAlign: cng })} icon={true} />
@@ -422,7 +422,7 @@ registerBlockType('b-blocks/posts', {
 
                 {/* Read More Link Settings */}
                 {readMoreShow == 'true' && <>
-                    <PanelBody title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         {firstTitle('Text Align:')}
                         <BtnGroup options={aligns} myValue={readMoreAlign} setState={cng => setAttributes({ readMoreAlign: cng })} icon={true} />

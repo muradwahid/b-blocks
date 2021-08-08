@@ -53,7 +53,7 @@ const Edit = props => {
         <InspectorControls>
             <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'settings', title: __('Settings', 'b-blocks'), className: 'settings-tab' }, { name: 'style', title: __('Style', 'b-blocks'), className: 'styleTab' }]}>{tab => <>
                 {'settings' == tab.name && <>
-                    <PanelBody title={__('Player Settings', 'b-blocks')}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Player Settings', 'b-blocks')}>
                         {/* Lottie Json file url */}
                         <Title mt='0'>{__('Lottie Json file url:', 'b-blocks')}</Title>
                         <TextControl value={file} onChange={val => setAttributes({ file: val })} />
@@ -88,7 +88,7 @@ const Edit = props => {
                 </>}
 
                 {'style' == tab.name && <>
-                    <PanelBody title={__('Player Styles', 'b-blocks')}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Player Styles', 'b-blocks')}>
                         {/* Width */}
                         <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, remUnit, vwUnit]} />
 
@@ -96,7 +96,7 @@ const Edit = props => {
                         <BColor label={__('Background Color:', 'b-blocks')} value={bgColor} onChange={val => setAttributes({ bgColor: val })} defaultColor='#0000' />
                     </PanelBody>
 
-                    <PanelBody title={__('Controls Styles', 'b-blocks')}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Controls Styles', 'b-blocks')}>
                         {/* Height */}
                         <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={pxUnit, perUnit, emUnit} />
 

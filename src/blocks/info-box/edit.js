@@ -49,7 +49,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody title={__('Content Settings', 'b-blocks')}>
+            <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')}>
                 {/* Background */}
                 <Title mt='0'>{__('Background Type:', 'b-blocks')}</Title>
                 <ButtonGroup className='bBlocksBtnGroup'>
@@ -133,7 +133,7 @@ const Edit = props => {
                 <RangeControl value={contentPLR} onChange={val => setAttributes({ contentPLR: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Border Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Border Settings', 'b-blocks')} initialOpen={false}>
                 {/* Width */}
                 <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
                 <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
@@ -150,7 +150,7 @@ const Edit = props => {
                 <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
                 {/* Color */}
                 <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
 
@@ -171,7 +171,7 @@ const Edit = props => {
                 <RangeControl value={shadowSpreed} onChange={val => setAttributes({ shadowSpreed: val })} min={0} max={50} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Image Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isImg ? 'Hide Image' : 'Show Image'} checked={isImg} onChange={val => setAttributes({ isImg: val })} />
 
                 <PanelRow className='mt-20p mb-5p'>
@@ -198,7 +198,7 @@ const Edit = props => {
                 <RangeControl value={imgMB} onChange={val => setAttributes({ imgMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 {/* Font Size */}
                 <Title mt='0'>{__('Font Size:', 'b-blocks')}</Title>
                 <FontSizePicker fontSizes={fontSizes} fallbackFontSize={18} value={titleFontSize} onChange={val => setAttributes({ titleFontSize: 'undefined' === typeof val ? 18 : val })} />
@@ -211,7 +211,7 @@ const Edit = props => {
                 <RangeControl value={titleMB} onChange={val => setAttributes({ titleMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isDesc ? 'Hide Description' : 'Show Description'} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
                 {/* Font Size */}
@@ -226,7 +226,7 @@ const Edit = props => {
                 <RangeControl value={descMB} onChange={val => setAttributes({ descMB: val })} min={0} max={100} step={1} />
             </PanelBody>
 
-            <PanelBody title={__('Button Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={isBtn ? 'Hide Button' : 'Show Button'} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
                 {isBtn && <>
