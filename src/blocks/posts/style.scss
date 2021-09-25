@@ -95,3 +95,149 @@ $secondaryColor: #8344c5;
         }
     }
 }
+
+// Inner Content
+.bBlocksInnerPostContent{
+    h1{
+        font-size: 18px!important;
+    }
+    h2{
+        font-size: 17px!important;
+    }
+    h3{
+        font-size: 16px!important;
+    }
+    h4{
+        font-size: 15px!important;
+    }
+    h5{
+        font-size: 14px!important;
+    }
+    h6{
+        font-size: 14px!important;
+    }
+    p, span, div, a, button, mark{
+        font-size: 15px!important;
+    }
+
+    img{
+        display: none;
+    }
+
+    *{
+        font-family: inherit !important;
+    }
+}
+
+
+.wp-block-b-blocks-posts.bBlocksPosts{
+    overflow: hidden;
+
+    .bBlocksGridPosts{
+        display: grid;
+    }
+
+    .bBlocksMasonryPosts{
+        article{
+            break-inside: avoid;
+        }
+    }
+}
+
+.bBlocksPost{
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    .bBlocksPostMeta{
+        > span{
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+
+            a{
+                color: inherit;
+            }
+        }
+
+        .dashicons-admin-comments{
+            transform: translate(0, 2.5px);
+        }
+    }
+
+    .bBlocksPostExcerpt{
+        p{
+            margin: 0;
+            font-size: inherit;
+        }
+    }
+
+    .bBlocksPostReadMore a{
+        display: inline-block;
+        transition: all .3s ease;
+    }
+
+    a{
+        color: inherit;
+        text-decoration: none;
+        display: inline-block;
+        transition: all .3s ease;
+    }
+
+    .bBlocksPostFImg {
+        position: relative;
+        text-align: center;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        margin: 0;
+        height: 10px;
+        padding-bottom: 60%;
+
+        >a{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        .bBlocksPostFImgCats{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+
+            a{
+                color: #fff!important;
+                background-color: $primaryColor!important;
+                padding: 0 10px;
+                margin-right: 5px;
+                text-decoration: none!important;
+
+                &:hover{
+                    background-color: $secondaryColor!important;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+
+    &.bBlocksPostSideImage{
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        height: inherit;
+    
+        &.leftImage{
+            grid-template-columns: 1fr 1.3fr;
+        }
+        &.rightImage{
+            grid-template-columns: 1.3fr 1fr;
+        }
+    
+        .bBlocksPostFImg {
+            padding-bottom: 0;
+            height: 100%!important;
+        }
+    }
+}

@@ -6,8 +6,9 @@ const allCountdown = document.querySelectorAll('.wp-block-b-blocks-countdown');
 Object.values(allCountdown).map(countdown => {
     const countdownId = countdown.id;
 
-    const countdownData = document.getElementById(`${countdownId}`);
-    const { destDate } = JSON.parse(countdownData.dataset.date);
+    const countdownEl = document.getElementById(countdownId);
+
+    const { destDate } = JSON.parse(countdownEl.dataset.date);
 
     const dest = new Date(destDate).getTime(); // Convert Destination Date in time (milliseconds)
 
@@ -21,16 +22,16 @@ Object.values(allCountdown).map(countdown => {
         const seconds = Math.floor(diff % 60);
 
 
-        const countdownDays = document.querySelector(`#${countdownId} .countdownDays .holder`);
-        countdownDays ? countdownDays.innerHTML = days : null;
+        const countdownDays = document.querySelector(`#${countdownId} .countdownDays .digit`);
+        countdownDays ? countdownDays.innerHTML = ('0' + days).slice(-2) : null;
 
-        const countdownHours = document.querySelector(`#${countdownId} .countdownHours .holder`);
-        countdownHours ? countdownHours.innerHTML = hours : null;
+        const countdownHours = document.querySelector(`#${countdownId} .countdownHours .digit`);
+        countdownHours ? countdownHours.innerHTML = ('0' + hours).slice(-2) : null;
 
-        const countdownMinutes = document.querySelector(`#${countdownId} .countdownMinutes .holder`);
-        countdownMinutes ? countdownMinutes.innerHTML = minutes : null;
+        const countdownMinutes = document.querySelector(`#${countdownId} .countdownMinutes .digit`);
+        countdownMinutes ? countdownMinutes.innerHTML = ('0' + minutes).slice(-2) : null;
 
-        const countdownSeconds = document.querySelector(`#${countdownId} .countdownSeconds .holder`);
-        countdownSeconds ? countdownSeconds.innerHTML = seconds : null;
+        const countdownSeconds = document.querySelector(`#${countdownId} .countdownSeconds .digit`);
+        countdownSeconds ? countdownSeconds.innerHTML = ('0' + seconds).slice(-2) : null;
     }, 1000);
 });

@@ -6,7 +6,7 @@ import { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPane
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, hTags, colors, aligns, fontWeights, textTransforms } = options;
+const { normalHoverTabs, fontSizes, hTags, colors, aligns, fontWeights, textTransforms } = options;
 const modalSizes = [
     { label: __('Small', 'b-blocks'), value: 'modal-sm', icon: 'SM' },
     { label: __('Default', 'b-blocks'), value: '', icon: 'DF' },
@@ -15,7 +15,7 @@ const modalSizes = [
 ];
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../Components/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -156,32 +156,27 @@ registerBlockType('b-blocks/modal', {
                     <RangeControl value={modalBtnRadius} onChange={cng => setAttributes({ modalBtnRadius: cng })} min={0} max={50} step={1} />
 
                     {otherTitle('Colors:')}
-                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab"
-                        tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
-                        {tab => {
-                            return <>
-                                {'normal' == tab.name && <>
-                                    {/* Color */}
-                                    {otherTitle('Color:')}
-                                    <ColorPalette value={modalBtnColor} onChange={cng => setAttributes({ modalBtnColor: cng })} colors={colors} />
+                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+                        {'normal' == tab.name && <>
+                            {/* Color */}
+                            {otherTitle('Color:')}
+                            <ColorPalette value={modalBtnColor} onChange={cng => setAttributes({ modalBtnColor: cng })} colors={colors} />
 
-                                    {/* Background Color */}
-                                    {otherTitle('Background Color:')}
-                                    <ColorPalette value={modalBtnBGColor} onChange={cng => setAttributes({ modalBtnBGColor: cng })} colors={colors} />
-                                </>}
+                            {/* Background Color */}
+                            {otherTitle('Background Color:')}
+                            <ColorPalette value={modalBtnBGColor} onChange={cng => setAttributes({ modalBtnBGColor: cng })} colors={colors} />
+                        </>}
 
-                                {'hover' == tab.name && <>
-                                    {/* Hover Color */}
-                                    {otherTitle('Hover Color:')}
-                                    <ColorPalette value={modalBtnHovColor} onChange={cng => setAttributes({ modalBtnHovColor: cng })} colors={colors} />
+                        {'hover' == tab.name && <>
+                            {/* Hover Color */}
+                            {otherTitle('Hover Color:')}
+                            <ColorPalette value={modalBtnHovColor} onChange={cng => setAttributes({ modalBtnHovColor: cng })} colors={colors} />
 
-                                    {/* Hover Background Color */}
-                                    {otherTitle('Hover Background Color:')}
-                                    <ColorPalette value={modalBtnHovBGColor} onChange={cng => setAttributes({ modalBtnHovBGColor: cng })} colors={colors} />
-                                </>}
-                            </>
-                        }}
-                    </TabPanel>
+                            {/* Hover Background Color */}
+                            {otherTitle('Hover Background Color:')}
+                            <ColorPalette value={modalBtnHovBGColor} onChange={cng => setAttributes({ modalBtnHovBGColor: cng })} colors={colors} />
+                        </>}
+                    </>}</TabPanel>
                 </PanelBody>
 
 

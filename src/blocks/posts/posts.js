@@ -10,7 +10,7 @@ import icons from '../../Const/icons';
 
 // Variables
 import options from '../../Const/options';
-const { fontSizes, colors, aligns, fontWeights, textTransforms, postsOrdersBy, postsOrders, getMonth, shadows } = options;
+const { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms, postsOrdersBy, postsOrders, getMonth, shadows } = options;
 
 const layouts = [
     { label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
@@ -18,7 +18,7 @@ const layouts = [
 ];
 
 // Components
-import BtnGroup from '../../GutenComp/BtnGroup';
+import BtnGroup from '../../Components/BtnGroup';
 
 // Functions
 import func from '../../Const/functions';
@@ -204,7 +204,7 @@ registerBlockType('b-blocks/posts', {
         //     <a href={`${link}/#comments`} target="_blank" rel="noreferrer" style={{ color: metaLinkColor }}>{comment_info === 0 ? __('No Comments', 'b-blocks') : comment_info === 1 ? __('1 Comment', 'b-blocks') : __(`${comment_info} Comments`, 'b-blocks')}</a>
         // </span>;
 
-        const postExcerpt = content => excerptShow == 'true' && <div className="excerpt b_blocks_inner_content" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
+        const postExcerpt = content => excerptShow == 'true' && <div className="excerpt bBlocksInnerContent" style={excerptStyle}>{renderHTML(truncate(content.rendered, excerptLength))}</div>;
 
         const postReadMore = link => readMoreShow == 'true' && <div className="read_more" style={readMoreWrapStyle}><a href={link} target="_blank" rel="noreferrer" style={readMoreStyle} onMouseEnter={readMoreHov} onMouseLeave={readMoreHovLeave}>{readMoreLabel}</a></div>;
 
@@ -440,24 +440,19 @@ registerBlockType('b-blocks/posts', {
                         <SelectControl value={readMoreFontWeight} onChange={cng => setAttributes({ readMoreFontWeight: cng })} options={fontWeights} />
 
                         {otherTitle('Colors:')}
-                        <TabPanel className="bBlocksTabPanel" activeClass="activeTab"
-                            tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
-                            {tab => {
-                                return <>
-                                    {'normal' == tab.name && <>
-                                        {/* Color */}
-                                        {firstTitle('Color:')}
-                                        <ColorPalette value={readMoreColor} onChange={cng => setAttributes({ readMoreColor: cng })} colors={colors} />
-                                    </>}
+                        <TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+                            {'normal' == tab.name && <>
+                                {/* Color */}
+                                {firstTitle('Color:')}
+                                <ColorPalette value={readMoreColor} onChange={cng => setAttributes({ readMoreColor: cng })} colors={colors} />
+                            </>}
 
-                                    {'hover' == tab.name && <>
-                                        {/* Hover Color */}
-                                        {firstTitle('Hover Color:')}
-                                        <ColorPalette value={readMoreHovColor} onChange={cng => setAttributes({ readMoreHovColor: cng })} colors={colors} />
-                                    </>}
-                                </>
-                            }}
-                        </TabPanel>
+                            {'hover' == tab.name && <>
+                                {/* Hover Color */}
+                                {firstTitle('Hover Color:')}
+                                <ColorPalette value={readMoreHovColor} onChange={cng => setAttributes({ readMoreHovColor: cng })} colors={colors} />
+                            </>}
+                        </>}</TabPanel>
                     </PanelBody>
                 </>}
             </InspectorControls>,

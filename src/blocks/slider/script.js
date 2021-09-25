@@ -1,15 +1,17 @@
-// Swiper JS
-import Swiper from 'swiper/bundle';
+// Swiper
+import 'swiper/css/bundle';
 
 // Import Sass
 import './style.scss';
 
 const allSlider = document.querySelectorAll('.wp-block-b-blocks-slider');
+
 Object.values(allSlider).map(slider => {
     const sliderId = slider.id;
 
-    const currentSlider = document.getElementById(`${sliderId}`);
-    const { columns, columnGap, isLoop, isAutoplay, speed, isFade, isTouchMove, isPageClickable, isPageDynamic } = JSON.parse(currentSlider.dataset.swiper);
+    const sliderEl = document.getElementById(sliderId);
+
+    const { columns, columnGap, isLoop, isTouchMove, isAutoplay, speed, effect, isPageClickable, isPageDynamic } = JSON.parse(sliderEl.dataset.swiper);
 
     new Swiper(`#${sliderId} .bBlocksSlider`, {
         // Optional parameters
@@ -17,25 +19,28 @@ Object.values(allSlider).map(slider => {
         slidesPerView: columns?.mobile,
         breakpoints: {
             // when window width is >= 576px
-            576: {
-                slidesPerView: columns?.tablet,
-                effect: columns?.tablet == 1 && isFade ? 'fade' : '',
-            },
+            576: { slidesPerView: columns?.tablet },
             // when window width is >= 768px
-            768: {
-                slidesPerView: columns?.desktop,
-                effect: columns?.desktop == 1 && isFade ? 'fade' : '',
-            },
+            768: { slidesPerView: columns?.desktop },
         },
         spaceBetween: columnGap,
         loop: isLoop,
-        autoplay: isAutoplay,
-        speed: speed * 1000,
-        effect: columns?.mobile == 1 && isFade ? 'fade' : '',
-        fadeEffect: {
-            crossFade: true
-        },
         allowTouchMove: isTouchMove,
+        grabCursor: isTouchMove,
+        autoplay: isAutoplay ? { delay: speed * 1000 } : false,
+        speed: speed * 1000,
+        effect,
+        fadeEffect: { crossFade: true },
+        creativeEffect: {
+            prev: {
+                shadow: true,
+                translate: ["-120%", 0, -500],
+            },
+            next: {
+                shadow: true,
+                translate: ["120%", 0, -500],
+            }
+        },
         allowSlideNext: true,
         allowSlidePrev: true,
         autoHeight: false,

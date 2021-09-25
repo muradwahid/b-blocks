@@ -8,7 +8,7 @@ import options from '../Const/options';
 const { colors } = options;
 
 // Components
-import BColor from '../GutenComp/BColor';
+import BColor from '../Components/BColor';
 
 // Functions
 import func from '../Const/functions';
@@ -83,7 +83,7 @@ registerBlockType('b-blocks/progress-bar', {
                     {otherTitle('Striped:')}
                     <ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
-                    <BColor className='mt-20p mb-5p' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
+                    <BColor className='mt-20p' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
 
                     {progressBarStriped && <>
                         {/* Animation */}

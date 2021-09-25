@@ -1,3 +1,4 @@
 # Ignore everything
 node_modules
 dist
+pending.txt

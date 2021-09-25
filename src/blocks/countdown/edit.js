@@ -1,29 +1,36 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, DateTimePicker, RangeControl, SelectControl, ToggleControl, TextControl, FontSizePicker } from '@wordpress/components';
-
-import Box from './box';
+import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, TextControl, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl } from '@wordpress/components';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BColor from '../../GutenComp/BColor';
-import BtnGroup from '../../GutenComp/BtnGroup';
+import Title from '../../Components/Title';
+import BColor from '../../Components/BColor';
+import Background from '../../Components/Background';
+import SpaceControl from '../../Components/SpaceControl';
+import BorderControl from '../../Components/BorderControl';
+import ShadowControl from '../../Components/ShadowControl';
+import Typography from '../../Components/Typography';
 import options from '../../Const/options';
-const { aligns, fontSizes, borderStyles, sizeTypes } = options;
-const flexPos = [
-    { label: 'Start', value: 'flex-start' },
-    { label: 'End', value: 'flex-end' },
-    { label: 'Center', value: 'center' },
-    { label: 'Space Around', value: 'space-around' },
-    { label: 'Space Between', value: 'space-between' },
-    { label: 'Space Evenly', value: 'space-evenly' },
-]
+const { generalStyleTabs, flexPos, pxUnit, perUnit, emUnit, remUnit } = options;
+const layouts = [
+    { label: 'Default', value: 'default' },
+    { label: 'Layout 1', value: 'layout1' },
+    { label: 'Layout 2', value: 'layout2' },
+    { label: 'Layout 3', value: 'layout3' },
+];
+const sepTypes = [
+    { label: 'Dotted', value: ':' },
+    { label: 'Dashed', value: '-' },
+    { label: 'Solid', value: '|' },
+];
 
 const Edit = props => {
-    const { className, attributes: { destDate, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, digitFontSize, digitColor, isLabels, labelFontSize, labelColor, itemInline, itemPos, itemTextAlign, itemWidth, itemHeight, itemPTB, itemPLR, itemSpace, itemBGColor, borderWidth, borderStyle, borderColor, borderRadius, radiusType, shadowColor, shadowHOffset, shadowVOffset, shadowBlur, shadowSpreed }, setAttributes, clientId } = props;
+    const { className, attributes: { destDate, layout, boxIsInline, boxPosition, isLabels, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor }, setAttributes, clientId } = props;
 
     // Functions
+    const parseEmtStr = (val, def) => undefined === val ? def : val;
+
     useEffect(() => {
         clientId && setAttributes({ cId: clientId });
     }, [clientId]);
@@ -47,180 +54,277 @@ const Edit = props => {
         const seconds = Math.floor(diff % 60);
 
 
-        const countdownDays = document.querySelector(`#bBlocksCountdown-${clientId} .countdownDays .holder`);
-        countdownDays ? countdownDays.innerHTML = days : null;
+        const countdownDays = document.querySelector(`#bBlocksCountdown-${clientId} .countdownDays .digit`);
+        countdownDays ? countdownDays.innerHTML = ('0' + days).slice(-2) : null;
 
-        const countdownHours = document.querySelector(`#bBlocksCountdown-${clientId} .countdownHours .holder`);
-        countdownHours ? countdownHours.innerHTML = hours : null;
+        const countdownHours = document.querySelector(`#bBlocksCountdown-${clientId} .countdownHours .digit`);
+        countdownHours ? countdownHours.innerHTML = ('0' + hours).slice(-2) : null;
 
-        const countdownMinutes = document.querySelector(`#bBlocksCountdown-${clientId} .countdownMinutes .holder`);
-        countdownMinutes ? countdownMinutes.innerHTML = minutes : null;
+        const countdownMinutes = document.querySelector(`#bBlocksCountdown-${clientId} .countdownMinutes .digit`);
+        countdownMinutes ? countdownMinutes.innerHTML = ('0' + minutes).slice(-2) : null;
 
-        const countdownSeconds = document.querySelector(`#bBlocksCountdown-${clientId} .countdownSeconds .holder`);
-        countdownSeconds ? countdownSeconds.innerHTML = seconds : null;
+        const countdownSeconds = document.querySelector(`#bBlocksCountdown-${clientId} .countdownSeconds .digit`);
+        countdownSeconds ? countdownSeconds.innerHTML = ('0' + seconds).slice(-2) : null;
     }, [dest, seconds]);
 
 
-    // Styles
-    const boxStyles = { width: `${itemWidth}px`, height: `${itemHeight}px`, backgroundColor: itemBGColor, border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px ${shadowSpreed}px` };
-
-    const boxClasses = `countdownItem ${itemInline ? 'inline' : ''} text-${itemTextAlign} ptb-${itemPTB} plr-${itemPLR} mx-${Math.floor(itemSpace / 2)} mmy-${Math.floor(itemSpace / 2)} radius-${borderRadius}-${'%' === radiusType ? 'per' : radiusType}`;
-
-    const digitStyles = { color: digitColor };
-    const digitClasses = `holder fontSize-${digitFontSize}`;
-
-    const labelStyles = { color: labelColor };
-    const labelClasses = `label fontSize-${labelFontSize}`;
+    // Classes
+    const boxClass = `${boxIsInline ? 'inline' : ''}`;
+    const sepClass = `${isSep ? 'separator' : ''}`;
 
     return <>
         <InspectorControls>
-            <PanelBody className='bBlocksPanelBody' title={__('Timer Settings', 'b-blocks')}>
-                <Title mt='0'>{__('Destination Date:', 'b-blocks')}</Title>
-                <DateTimePicker currentDate={destDate} onChange={val => setAttributes({ destDate: val })} is12Hour={true} />
-            </PanelBody>
+            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+                {'general' == tab.name && <>
+                    <PanelBody className='bBlocksPanelBody' title={__('Countdown Settings', 'countdown-time')}>
+                        <Title mt='0'>{__('Destination Date:', 'countdown-time')}</Title>
+                        <DateTimePicker currentDate={destDate} onChange={val => setAttributes({ destDate: val })} is12Hour={true} />
+                    </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
-                {/* Labels */}
-                <ToggleControl label={isLabels ? 'Hide Labels' : 'Show Labels'} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
 
-                {/* Days */}
-                <ToggleControl className='mt-20p' label={isDays ? 'Hide Days' : 'Show Days'} checked={isDays} onChange={val => setAttributes({ isDays: val })} />
+                    <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'countdown-time')} initialOpen={false}>
+                        <PanelRow>
+                            <Title mt='0' mb='0'>{__('Layout:', 'countdown-time')}</Title>
+                            <SelectControl value={layout} onChange={val => {
+                                setAttributes({ layout: val });
+                                'default' === val && setAttributes({
+                                    boxIsInline: false,
+                                    background: { type: 'solid', color: '#0000', styles: '' },
+                                    shadow: { hOffset: '0px', vOffset: '0px', color: '#0000', styles: 'none' },
+                                    boxBG: { type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)', styles: 'background-image: linear-gradient(135deg, #4527a4, #8344c5);' },
+                                    boxSpace: '30px',
+                                    boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%', styles: 'border-radius: 5%;' },
+                                    digitColor: '#fff',
+                                    labelColor: '#fff',
+                                    isSep: false,
+                                    sepColor: '#4527a4'
+                                });
+                                'layout1' === val && setAttributes({
+                                    boxIsInline: false,
+                                    background: { type: 'gradient', gradient: 'linear-gradient(180deg, #4527a4, #8344c5)', styles: 'background-image: linear-gradient(180deg, #4527a4, #8344c5);' },
+                                    shadow: { hOffset: '5px', vOffset: '5px', color: '#4527a4', styles: '5px 5px 0px 0px #4527a4' },
+                                    boxBG: { type: 'solid', color: '#0000', styles: 'background-color: #0000;' },
+                                    boxSpace: '0px',
+                                    boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%', styles: 'border-radius: 5%;' },
+                                    digitColor: '#fff',
+                                    labelColor: '#fff',
+                                    isSep: true,
+                                    sepColor: '#fff'
+                                });
+                                'layout2' === val && setAttributes({
+                                    boxIsInline: false,
+                                    background: { type: 'solid', color: '#0000', styles: '' },
+                                    shadow: { hOffset: '0px', vOffset: '0px', color: '#0000', styles: 'none' },
+                                    boxBG: { type: 'solid', color: '#0000', styles: 'background-color: #0000;' },
+                                    boxSpace: '30px',
+                                    boxBorder: { width: '2px', type: 'solid', color: '#4527a4', radius: '5%', styles: 'border-top: 2px solid #4527a4; border-right: 2px solid #4527a4; border-bottom: 2px solid #4527a4; border-left: 2px solid #4527a4; border-radius: 5%;' },
+                                    digitColor: '#4527a4',
+                                    labelColor: '#4527a4',
+                                    isSep: true,
+                                    sepColor: '#4527a4'
+                                });
+                                'layout3' === val && setAttributes({
+                                    boxIsInline: true,
+                                    background: { type: 'solid', color: '#0000', styles: '' },
+                                    shadow: { hOffset: '0px', vOffset: '8px', blur: '15px', color: '#4527a4', styles: '0px 8px 15px 0px #4527a4' },
+                                    boxBG: { type: 'solid', color: '#0000', styles: 'background-color: #0000;' },
+                                    boxSpace: '30px',
+                                    boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%', styles: 'border-radius: 5%;' },
+                                    digitColor: '#4527a4',
+                                    labelColor: '#4527a4',
+                                    isSep: true,
+                                    sepColor: '#4527a4'
+                                });
+                            }} options={layouts} />
+                        </PanelRow>
 
-                {isLabels && isDays && <>
-                    <Title mt='0'>{__('Days Label:', 'b-blocks')}</Title>
-                    <TextControl value={daysLabel} onChange={val => setAttributes({ daysLabel: val })} />
+                        {/* Box */}
+                        <ToggleControl className='mt-20p' label='Box Inline?' checked={boxIsInline} onChange={val => setAttributes({ boxIsInline: val })} />
+
+                        {/* Labels */}
+                        <ToggleControl className='mt-20p' label={__('Show Labels', 'countdown-time')} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
+
+                        {/* Days */}
+                        <ToggleControl className='mt-20p' label={__('Show Days', 'countdown-time')} checked={isDays} onChange={val => setAttributes({ isDays: val })} />
+
+                        {isLabels && isDays && <PanelRow>
+                            <Title mt='0' mb='0'>{__('Days Label:', 'countdown-time')}</Title>
+                            <TextControl value={daysLabel} onChange={val => setAttributes({ daysLabel: val })} />
+                        </PanelRow>}
+
+                        {/* Hours */}
+                        <ToggleControl className='mt-20p' label={__('Show Hours', 'countdown-time')} checked={isHours} onChange={val => setAttributes({ isHours: val })} />
+
+                        {isLabels && isHours && <PanelRow>
+                            <Title mt='0' mb='0'>{__('Hours Label:', 'countdown-time')}</Title>
+                            <TextControl value={hoursLabel} onChange={val => setAttributes({ hoursLabel: val })} />
+                        </PanelRow>}
+
+                        {/* Minutes */}
+                        <ToggleControl className='mt-20p' label={__('Show Minutes', 'countdown-time')} checked={isMinutes} onChange={val => setAttributes({ isMinutes: val })} />
+
+                        {isLabels && isMinutes && <PanelRow>
+                            <Title mt='0' mb='0'>{__('Minutes Label:', 'countdown-time')}</Title>
+                            <TextControl value={minutesLabel} onChange={val => setAttributes({ minutesLabel: val })} />
+                        </PanelRow>}
+
+                        {/* Seconds */}
+                        <ToggleControl className='mt-20p' label={__('Show Seconds', 'countdown-time')} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
+
+                        {isLabels && isSeconds && <PanelRow>
+                            <Title mt='0' mb='0'>{__('Seconds Label:', 'countdown-time')}</Title>
+                            <TextControl value={secondsLabel} onChange={val => setAttributes({ secondsLabel: val })} />
+                        </PanelRow>}
+                    </PanelBody>
                 </>}
 
-                {/* Hours */}
-                <ToggleControl className='mt-20p' label={isHours ? 'Hide Hours' : 'Show Hours'} checked={isHours} onChange={val => setAttributes({ isHours: val })} />
+                {'style' == tab.name && <>
+                    <PanelBody className='bBlocksPanelBody' title={__('Countdown Style', 'countdown-time')}>
+                        <UnitControl label={__('Width:', 'countdown-time')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+                        <small>{__('Keep width 0, to auto width.', 'countdown-time')}</small>
 
-                {isLabels && isHours && <>
-                    <Title mt='0'>{__('Hours Label:', 'b-blocks')}</Title>
-                    <TextControl value={hoursLabel} onChange={val => setAttributes({ hoursLabel: val })} />
+                        <Background className='mt-20p' label={__('Background:', 'countdown-time')} background={background} onChange={val => setAttributes({ background: val })} />
+
+                        <SpaceControl className='mt-20p' label={__('Padding:', 'countdown-time')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ side: 2, vertical: '10px', horizontal: '15px' }} />
+
+                        <ShadowControl label={__('Shadow:', 'countdown-time')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+                    </PanelBody>
+
+                    <PanelBody className='bBlocksPanelBody' title={__('Boxes Style', 'countdown-time')} initialOpen={false}>
+                        {'0px' === width || '0%' === width || '0em' === width ? '' : <PanelRow>
+                            <Title mt='0' mb='0'>{__('Box Position:', 'countdown-time')}</Title>
+                            <SelectControl value={boxPosition} onChange={val => setAttributes({ boxPosition: val })} options={flexPos} />
+                        </PanelRow>}
+
+                        {/* Background */}
+                        <Background className='mt-20p' label={__('Background:', 'countdown-time')} background={boxBG} onChange={val => setAttributes({ boxBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} />
+
+                        {/* Width */}
+                        <UnitControl className='mt-20p' label={__('Width:', 'countdown-time')} labelPosition='left' value={boxWidth} onChange={val => setAttributes({ boxWidth: val })} units={[pxUnit, emUnit, remUnit]} />
+
+                        {/* Height */}
+                        <UnitControl className='mt-20p' label={__('Height:', 'countdown-time')} labelPosition='left' value={boxHeight} onChange={val => setAttributes({ boxHeight: val })} units={[pxUnit, emUnit, remUnit]} />
+
+                        {/* Space Between Boxes */}
+                        <UnitControl className='mt-20p' label={__('Space Between Boxes:', 'countdown-time')} labelPosition='left' value={boxSpace} onChange={val => setAttributes({ boxSpace: val })} units={[pxUnit, emUnit, remUnit]} />
+
+                        <BorderControl label={__('Border', 'countdown-time')} border={boxBorder} onChange={val => setAttributes({ boxBorder: val })} defaults={{ radius: '5%' }} />
+
+                        <ShadowControl label={__('Shadow:', 'countdown-time')} shadow={boxShadow} onChange={val => setAttributes({ boxShadow: val })} />
+                    </PanelBody>
+
+
+                    {isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bBlocksPanelBody' title={__('Content Style', 'countdown-time')} initialOpen={false}>
+                        {/* Digit Typography */}
+                        <Typography label={__('Digit Typography:', 'countdown-time')} typography={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: 48 }} />
+
+                        {/* Digit Color */}
+                        <BColor className='mt-20p' label={__('Digit Color:', 'countdown-time')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
+
+                        {isLabels && <>
+                            {/* Label Typography */}
+                            <Typography className='mt-20p' label={__('Label Typography:', 'countdown-time')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 18 }} />
+
+                            {/* Label Color */}
+                            <BColor className='mt-20p' label={__('Label Color:', 'countdown-time')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
+                        </>}
+                    </PanelBody> : null}
+
+
+                    <PanelBody className='bBlocksPanelBody' title={__('Separator', 'countdown-time')} initialOpen={false}>
+                        <ToggleControl label={__('Show Separator', 'countdown-time')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
+
+                        {isSep && <>
+                            <PanelRow className='mt-20p'>
+                                <Title mt='0' mb='0'>{__('Type:', 'countdown-time')}</Title>
+                                <SelectControl value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
+                            </PanelRow>
+
+                            <Title>{__('Size:', 'countdown-time')}</Title>
+                            <RangeControl value={sepSize} onChange={val => setAttributes({ sepSize: val })} min={0} max={160} step={1} allowReset={true} resetFallbackValue={48} initialPosition={48} />
+
+                            <BColor className='mt-20p' label={__('Color:', 'countdown-time')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#4527a4' />
+                        </>}
+                    </PanelBody>
                 </>}
-
-                {/* Minutes */}
-                <ToggleControl className='mt-20p' label={isMinutes ? 'Hide Minutes' : 'Show Minutes'} checked={isMinutes} onChange={val => setAttributes({ isMinutes: val })} />
-
-                {isLabels && isMinutes && <>
-                    <Title mt='0'>{__('Minutes Label:', 'b-blocks')}</Title>
-                    <TextControl value={minutesLabel} onChange={val => setAttributes({ minutesLabel: val })} />
-                </>}
-
-                {/* Seconds */}
-                <ToggleControl className='mt-20p' label={isSeconds ? 'Hide Seconds' : 'Show Seconds'} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
-
-                {isLabels && isSeconds && <>
-                    <Title mt='0'>{__('Seconds Label:', 'b-blocks')}</Title>
-                    <TextControl value={secondsLabel} onChange={val => setAttributes({ secondsLabel: val })} />
-                </>}
-            </PanelBody>
-
-            {isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bBlocksPanelBody' title={__('Elements Styles', 'b-blocks')} initialOpen={false}>
-                {/* Digit Font Size */}
-                <Title mt='0'>{__('Digit Font Size:', 'b-blocks')}</Title>
-                <FontSizePicker fontSizes={fontSizes} fallbackFontSize={48} value={digitFontSize} onChange={val => setAttributes({ digitFontSize: 'undefined' === typeof val ? 48 : val })} />
-
-                {/* Digit Color */}
-                <BColor className='mt-20p mb-5p' label={__('Digit Color:', 'b-blocks')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
-
-                {isLabels && <>
-                    {/* Label Font Size */}
-                    <Title>{__('Label Font Size:', 'b-blocks')}</Title>
-                    <FontSizePicker fontSizes={fontSizes} fallbackFontSize={14} value={labelFontSize} onChange={val => setAttributes({ labelFontSize: 'undefined' === typeof val ? 14 : val })} />
-
-                    {/* Label Color */}
-                    <BColor className='mt-20p mb-5p' label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
-                </>}
-            </PanelBody> : null}
-
-            <PanelBody className='bBlocksPanelBody' title={__('Box Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label='Box Inline' checked={itemInline} onChange={val => setAttributes({ itemInline: val })} />
-
-                {/* Position */}
-                <Title>{__('Position:', 'b-blocks')}</Title>
-                <SelectControl value={itemPos} onChange={cng => setAttributes({ itemPos: cng })} options={flexPos} />
-
-                {/* Text Align */}
-                <Title>{__('Text Align:', 'b-blocks')}</Title>
-                <BtnGroup options={aligns} myValue={itemTextAlign} setState={cng => setAttributes({ itemTextAlign: cng })} icon={true} />
-
-                {/* Width */}
-                <Title>{__('Width:', 'b-blocks')}</Title>
-                <RangeControl value={itemWidth} onChange={val => setAttributes({ itemWidth: val })} min={0} max={500} step={1} />
-
-                {/* Height */}
-                <Title>{__('Height:', 'b-blocks')}</Title>
-                <RangeControl value={itemHeight} onChange={val => setAttributes({ itemHeight: val })} min={0} max={500} step={1} />
-
-                {/* Padding Top Bottom */}
-                <Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
-                <RangeControl value={itemPTB} onChange={val => setAttributes({ itemPTB: val })} min={0} max={100} step={1} />
-
-                {/* Padding Left Right */}
-                <Title>{__('Padding Left Right:', 'b-blocks')}</Title>
-                <RangeControl value={itemPLR} onChange={val => setAttributes({ itemPLR: val })} min={0} max={100} step={1} />
-
-                {/* Space Between Boxes */}
-                <Title>{__('Space Between Boxes:', 'b-blocks')}</Title>
-                <RangeControl value={itemSpace} onChange={val => setAttributes({ itemSpace: val })} min={0} max={100} step={1} />
-
-                {/* Box Background Color */}
-                <BColor className='mt-20p mb-5p' label={__('Box Background Color:', 'b-blocks')} value={itemBGColor} onChange={val => setAttributes({ itemBGColor: val })} defaultColor='#4527a4' />
-            </PanelBody>
-
-            <PanelBody className='bBlocksPanelBody' title={__('Border Settings', 'b-blocks')} initialOpen={false}>
-                {/* Width */}
-                <Title mt='0'>{__('Width:', 'b-blocks')}</Title>
-                <RangeControl value={borderWidth} onChange={val => setAttributes({ borderWidth: val })} min={0} max={30} step={1} />
-
-                {/* Style */}
-                <Title>{__('Style:', 'b-blocks')}</Title>
-                <SelectControl value={borderStyle} onChange={val => setAttributes({ borderStyle: val })} options={borderStyles} />
-
-                {/* Color */}
-                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={borderColor} onChange={val => setAttributes({ borderColor: val })} defaultColor='#00000000' />
-
-                {/* Radius */}
-                <Title>{__('Radius:', 'b-blocks')}</Title>
-                <BtnGroup options={sizeTypes} myValue={radiusType} setState={val => setAttributes({ radiusType: val })} classes='bBlocksSizeType' size='small' />
-                <RangeControl value={borderRadius} onChange={val => setAttributes({ borderRadius: val })} min={0} max={50} step={1} />
-            </PanelBody>
-
-            <PanelBody className='bBlocksPanelBody' title={__('Shadow Settings', 'b-blocks')} initialOpen={false}>
-                {/* Color */}
-                <BColor label={__('Color:', 'b-blocks')} value={shadowColor} onChange={val => setAttributes({ shadowColor: val })} defaultColor='#000' />
-
-                {/* Horizontal Offset */}
-                <Title>{__('Horizontal Offset:', 'b-blocks')}</Title>
-                <RangeControl value={shadowHOffset} onChange={val => setAttributes({ shadowHOffset: val })} min={0} max={100} step={1} />
-
-                {/* Vertical Offset */}
-                <Title>{__('Vertical Offset:', 'b-blocks')}</Title>
-                <RangeControl value={shadowVOffset} onChange={val => setAttributes({ shadowVOffset: val })} min={0} max={100} step={1} />
-
-                {/* Blur */}
-                <Title>{__('Blur:', 'b-blocks')}</Title>
-                <RangeControl value={shadowBlur} onChange={val => setAttributes({ shadowBlur: val })} min={0} max={50} step={1} />
-
-                {/* Spreed */}
-                <Title>{__('Spreed:', 'b-blocks')}</Title>
-                <RangeControl value={shadowSpreed} onChange={val => setAttributes({ shadowSpreed: val })} min={0} max={50} step={1} />
-            </PanelBody>
+            </>}</TabPanel>
         </InspectorControls>
+
+        <BlockControls>
+            <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} alignmentControls={[
+                { title: __('Align left', 'countdown-time'), align: 'flex-start', icon: 'editor-alignleft' },
+                { title: __('Align center', 'countdown-time'), align: 'center', icon: 'editor-aligncenter' },
+                { title: __('Align right', 'countdown-time'), align: 'flex-end', icon: 'editor-alignright' }
+            ]} />
+        </BlockControls>
 
 
         <div className={className} id={`bBlocksCountdown-${clientId}`}>
-            <div className='countdownItems' style={{ justifyContent: itemPos, alignItems: itemPos }}>
-                <Box is={isDays} boxClasses={`countdownDays ${boxClasses}`} boxStyles={boxStyles} digitClasses={digitClasses} digitStyles={digitStyles} isLabels={isLabels} label={daysLabel} labelClasses={labelClasses} labelStyles={labelStyles} />
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @import url(${digitTypo?.googleFontLink || ''});
+                @import url(${labelTypo?.googleFontLink || ''});
 
-                <Box is={isHours} boxClasses={`countdownHours ${boxClasses}`} boxStyles={boxStyles} digitClasses={digitClasses} digitStyles={digitStyles} isLabels={isLabels} label={hoursLabel} labelClasses={labelClasses} labelStyles={labelStyles} />
+                #bBlocksCountdown-${clientId}{
+                    align-items: ${alignment};
+                    justify-content: ${alignment};
+                }
+                #bBlocksCountdown-${clientId} .countdownItems{
+                    width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
+                    ${background?.styles || ''}
+                    padding: ${padding?.styles || '10px 15px'};
+                    box-shadow: ${shadow?.styles || 'none'};
+                    justify-content: ${boxPosition};
+                }
+                #bBlocksCountdown-${clientId} .countdownItems .countdownItem{
+                    ${boxBG?.styles || `background-image: linear-gradient(135deg, #4527a4, #8344c5);`}
+                    width: ${boxWidth};
+                    height: ${boxHeight};
+                    margin-left: calc(${boxSpace} / 2);
+                    margin-right: calc(${boxSpace} / 2);
+                    ${parseEmtStr(boxBorder?.styles, 'border-radius: 5%;')}
+                    box-shadow: ${boxShadow?.styles || 'none'};
+                }
+                #bBlocksCountdown-${clientId} .countdownItems .countdownItem.separator::before{
+                    content: '${sepType}';
+                    font-size: ${sepSize}px;
+                    color: ${sepColor};
+                    left: calc(-${boxSpace} / 2);
+                }
+                #bBlocksCountdown-${clientId} .countdownItems .countdownItem .digit{
+                    color: ${digitColor};
+                    ${parseEmtStr(digitTypo?.styles, 'font-size: 48px;')}
+                }
+                #bBlocksCountdown-${clientId} .countdownItems .countdownItem .label{
+                    color: ${labelColor};
+                    ${parseEmtStr(labelTypo?.styles, 'font-size: 18px;')}
+                }
+            `}} />
 
-                <Box is={isMinutes} boxClasses={`countdownMinutes ${boxClasses}`} boxStyles={boxStyles} digitClasses={digitClasses} digitStyles={digitStyles} isLabels={isLabels} label={minutesLabel} labelClasses={labelClasses} labelStyles={labelStyles} />
+            <div className='countdownItems'>
+                <Box is={isDays} boxClass={`countdownDays ${boxClass}`} isLabels={isLabels} label={daysLabel} />
 
-                <Box is={isSeconds} boxClasses={`countdownSeconds ${boxClasses}`} boxStyles={boxStyles} digitClasses={digitClasses} digitStyles={digitStyles} isLabels={isLabels} label={secondsLabel} labelClasses={labelClasses} labelStyles={labelStyles} />
+                <Box is={isHours} boxClass={`countdownHours ${boxClass} ${sepClass}`} isLabels={isLabels} label={hoursLabel} />
+
+                <Box is={isMinutes} boxClass={`countdownMinutes ${boxClass} ${sepClass}`} isLabels={isLabels} label={minutesLabel} />
+
+                <Box is={isSeconds} boxClass={`countdownSeconds ${boxClass} ${sepClass}`} isLabels={isLabels} label={secondsLabel} />
             </div>
         </div>
     </>;
 };
 export default Edit;
+
+// Box Component
+const Box = props => {
+    const { is, boxClass, isLabels, label } = props
+
+    return is && <div className={`countdownItem ${boxClass}`}>
+        <span className='digit'>00</span>
+        {isLabels && <span className='label'>{label}</span>}
+    </div>;
+};
+
+// Fixing need
+// use useRef
+// separator position

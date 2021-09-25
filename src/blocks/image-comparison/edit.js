@@ -1,21 +1,25 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls, RichText } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, Spinner, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, Spinner, __experimentalUnitControl as UnitControl, TabPanel } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import Typography from '../../GutenComp/Typography';
-import BorderControl from '../../GutenComp/BorderControl';
-import SpaceControl from '../../GutenComp/SpaceControl';
-import ColorsControl from '../../GutenComp/ColorsControl';
-import { ImageHolderControl, ImageEditControl, ImagePlaceholder, ChangeImageData } from '../../GutenComp/ImageControl';
+import Title from '../../Components/Title';
+import Typography from '../../Components/Typography';
+import BorderControl from '../../Components/BorderControl';
+import SpaceControl from '../../Components/SpaceControl';
+import ColorsControl from '../../Components/ColorsControl';
+import { ImageHolderControl, ImageEditControl, ImagePlaceholder, ChangeImageData } from '../../Components/ImageControl';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit, vwUnit } = options;
+const beforeAfterImgTab = [
+    { name: 'before-img', title: __('Before Img', 'b-blocks') },
+    { name: 'after-img', title: __('After Img', 'b-blocks') }
+];
 
 const Edit = props => {
-    const { className, attributes: { textAlign, width, border, beforeImg, afterImg, isSwap, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
+    const { className, attributes: { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
 
     // useEffect
     useEffect(() => {
@@ -133,20 +137,25 @@ const Edit = props => {
                 {/* Border */}
                 <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
 
-                {/* Before Image */}
-                <ImageHolderControl className='mt-20p' label={__('Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-                <ChangeImageData className='mt-20p' img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+                <Title>{__('Images:', 'b-blocks')}</Title>
+                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={beforeAfterImgTab}>{tab => <>
+                    {'before-img' == tab.name && <>
+                        <ImageHolderControl label={__('', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+                        <ChangeImageData className='mt-20p' img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+                    </>}
 
-                {/* After Image */}
-                <ImageHolderControl className='mt-20p' label={__('After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
-                <ChangeImageData className='mt-20p' img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+                    {'after-img' == tab.name && <>
+                        <ImageHolderControl label={__('', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+                        <ChangeImageData className='mt-20p' img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+                    </>}
+                </>}</TabPanel>
 
                 <Title mt='25px'></Title>
                 <ToggleControl label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
             </PanelBody>
 
             <PanelBody className='bBlocksPanelBody' title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isLabel ? 'Hide Labels' : 'Show Labels'} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
+                <ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
                 {isLabel && <>
                     {/* Typography */}
@@ -160,7 +169,7 @@ const Edit = props => {
             </PanelBody>
 
             <PanelBody className='bBlocksPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isCap ? 'Hide Caption' : 'Show Caption'} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
+                <ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
                 {isCap && <>
                     {/* Typography */}
@@ -179,16 +188,23 @@ const Edit = props => {
             <ImageEditControl label={__('Edit Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
             <ImageEditControl label={__('Edit After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
-            <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />
+            <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
+                { title: __('Image Comparison in left', 'countdown-time'), align: 'left', icon: 'align-left' },
+                { title: __('Image Comparison in center', 'countdown-time'), align: 'center', icon: 'align-center' },
+                { title: __('Image Comparison in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+            ]} />
         </BlockControls>
 
 
-        <div className={`${className} text-${textAlign}`} id={`bBlocksImageComparison-${clientId}`}>
+        <div className={className} id={`bBlocksImageComparison-${clientId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
                 @import url(${labelTypo?.googleFontLink});
                 @import url(${capTypo?.googleFontLink});
 
+                #bBlocksImageComparison-${clientId}{
+                    text-align: ${alignment};
+                }
                 #bBlocksImageComparison-${clientId} .bBlocksImageComparison{
                     width: ${width};
                     ${border?.styles};

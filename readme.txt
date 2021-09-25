@@ -1,13 +1,13 @@
-=== B Blocks - Gutenberg Blocks Collection and Page Builder ===
+=== b Blocks - Page Builder Addons for Gutenberg ===
 Contributors: abuhayat, charlescormier
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
-Tested up to: 5.7.1
-Requires PHP: 5.4
+Tested up to: 5.8.1
 Stable tag: 1.4
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 7.1
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 b Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be use as a WordPress Page Building tools!
 
@@ -16,97 +16,116 @@ b Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the G
 b Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.  
 
 
-**[Demos](https://bblockswp.com/)**
+**[Demos](https://links.bplugins.com/b-blocks)**
 
 
 = Features =
-- **Posts:** Display posts in grid and masonry layouts. Define post number, categories, control margin, determine post excerpts, and do many more.
+- **Posts**: Display posts in grid and masonry layouts. Define post number, categories, control margin, determine post excerpts, and do many more.
 
-- **Slider:** Design an image and content slider with change style slider indicators.
+- **Slider**: Design an image and content slider with change style slider indicators.
 
-- **Section:** Implement a section with a section heading and custom padding.
+- **Section**: Implement a section with a section heading and custom padding.
 
-- **Section Heading:** Section Heading with a heading, separator, and a description, show hide controls for separator and description.
+- **Section Heading**: Section Heading with a heading, separator, and a description, show hide controls for separator and description.
 
-- **Image Gallery:** Display beautiful images as a gallery to present your photos in a stunning, attractive way.
+- **Image Gallery**: Display beautiful images as a gallery to present your photos in a stunning, attractive way.
 
-- **Image Comparison:** Compare between two images to see their difference.
+- **Image Comparison**: Compare between two images to see their difference.
 
-- **Flip Boxes:** Highlight your content inside your site in a great way.
+- **Flip Boxes**: Highlight your content inside your site in a great way.
 
-- **Team Members:** Present your employees/team members to your clients in beautiful way.
+- **Team Members**: Present your employees/team members to your clients in beautiful way.
 
-- **Price Lists:** Display Price lists section with image, title, description, price and a separator.
+- **Price Lists**: Display Price lists section with image, title, description, price and a separator.
 
-- **Feature Boxes:** Display Feature boxes section with feature image, title, separator and description.
+- **Feature Boxes**: Display Feature boxes section with feature image, title, separator and description.
 
-- **Info Box:** Show information in your website for the users in a attractive way.
+- **Info Box**: Show information in your website for the users in a attractive way.
 
-- **Button Group:** Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
+- **Button Group**: Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
 
-- **Countdown:** Displaying the timer for an event, that will happen in your business.
+- **Countdown**: Displaying the timer for an event, that will happen in your business.
 
-- **Card:** Design a card that includes image, heading, description heading, description, and footer with custom typography.
+- **Card**: Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
-- **Mail To:** Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
+- **Mail To**: Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
 
-- **Modal:** By clicking a button return a popup modal with the header, footer, description, and close button in the header and footer.
+- **Modal**: By clicking a button return a popup modal with the header, footer, description, and close button in the header and footer.
 
-- **Tabs:** Display beautiful predesigned tabs. Design tabs with layouts.
+- **Tabs**: Display beautiful predesigned tabs. Design tabs with layouts.
 
-- **Accordion:**  Place collapsible text contents on your site with Accordion. Setup items to reveal the hidden content tastefully.
+- **Accordion**:  Place collapsible text contents on your site with Accordion. Setup items to reveal the hidden content tastefully.
 
-- **Collapse:** Show hide content by clicking a button. Setup items to reveal the hidden content tastefully.
+- **Collapse**: Show hide content by clicking a button. Setup items to reveal the hidden content tastefully.
 
-- **Note:** Display a note with title, separator, and description also custom typography.
+- **Note**: Display a note with title, separator, and description also custom typography.
 
-- **Gif Image:** Embed gif image to your posts and pages.
+- **Gif Image**: Embed gif image to your posts and pages.
 
-- **QR Code:** Just input a URL then it will automatically show QR code.
+- **QR Code**: Just input a URL then it will automatically show QR code.
 
-- **Highlight Text:** Highlight text with custom color.
+- **Highlight Text**: Highlight text with custom color.
 
-- **Alert:** Display alert with or without title also dismiss button.
+- **Alert**: Display alert with or without title also dismiss button.
 
-- **Progress Bar:** Present your skills, experiences, or the progress of an ongoing project using Progress Bar.
+- **Progress Bar**: Present your skills, experiences, or the progress of an ongoing project using Progress Bar.
 
-- **Spacer:** Space between sections or blocks.
+- **Spacer**: Space between sections or blocks.
 
-- **Selection:** Text selection enabled disabled or auto in this block.
+- **Selection**: Text selection enabled disabled or auto in this block.
 
-- **Divider:** Divider between sections and blocks with custom color and style.
+- **Divider**: Divider between sections and blocks with custom color and style.
 
-- **Go To Top:** Go To Top link with custom text.
+- **Go To Top**: Go To Top link with custom text.
 
 
-= How to use  =
-- After installing you can see a block category called "B Blocks" in Gutenberg editor (by clicking + icon).
-- Add one or more blocks from there.
+= How to use =
+- First install the b Blocks plugin
+- Add the one or more blocks from block category called "B Block" in Gutenberg editor.
 - You can change block settings from the right side settings sidebar.
 - Enjoy!
 
 * For installation help click on Installation Tab
-	
-
-= Feedback = 
-Liked that plugin? Hate it? Want a new feature?  [Send me some feedback](mailto:abuhayat.du@gmail.com "Send feedback")
 
 
-== Screenshots ==
+= Feedback =
+- Liked that plugin? Hate it? Want a new feature? [Send me some feedback](mailto:support@bplugins.com 'Send feedback')
 
-1. All Blocks
-2. Posts- Grid Layout
-3. posts- Masonry Layout
-4. Slider
-5. Image Gallery
-6. Image Comparison
-7. Flip Boxes
-8. Team Members
-9. Price Lists
-10. Feature Boxes
-11. Info Box
-12. Button Group
-13. Countdown
+
+= ⭐ Check out our other WordPress Plugins- =
+
+🔥 **[Html5 Audio Player](https://audioplayerwp.com/)** – Best audio player plugin for WordPress.
+
+🔥 **[Html5 Video Player](https://wpvideoplayer.com/)** – Best video player plugin for WordPress.
+
+🔥 **[PDF Poster](http://pdfposter.com/)** – A fully-featured PDF Viewer Plugin for WordPress.
+
+🔥 **[StreamCast](https://wordpress.org/plugins/streamcast)** – A fully-featured Radio Player Plugin for WordPress.
+
+🔥 **[3D Viewer](https://3d-viewer.bplugins.com/)** – Display interactive 3D models on the webs.
+
+
+== Installation ==
+
+= Automatic installation =
+1. Go to Plugin menu and click on **Add New** Button
+2. Search for **b blocks**
+3. Install and activate the b Blocks plugin from there
+
+= Download & Upload: =
+1. Download the **b Block** plugin (*.zip file*)
+2. In your admin area, go to the Plugins menu and click on **Add New**
+3. Click on **Upload Plugin** and choose the **`b-blocks.zip`** file and click on **Install Now**
+4. Activate the plugin and Enjoy!
+
+= Manually: =
+1. Download and upload the **b Blocks** plugin to the **`/wp-content/plugins/`** directory
+2. Activate the plugin through the Plugins menu in WordPress
+
+= Use Block: =
+1. Go to the WordPress Block/Gutenberg Editor
+2. Add one or more blocks from block category called **B Block** in Gutenberg editor
+3. Enjoy!
 
 
 == Frequently Asked Questions ==
@@ -127,26 +146,26 @@ Yes, you can change block settings from the Gutenberg block editor's right sideb
 
 You can use unlimited times as you want.
 
-= Can I use B Blocks on client website? =
-
-Yes! You can use B Blocks on yours as well as your client's websites.
-
 = Where can I get support? =
 
 You can post your questions on the [support forum here](https://wordpress.org/support/plugin/b-blocks/)
 
 
-== Installation ==
+== Screenshots ==
 
-= Automatic installation =
-
-The automatic installation is the easiest way to install any plugin in WordPress. You can install B Blocks by logging in to your WordPress dashboard, navigating to the “Plugins” menu, and click on the “Add New” button.
-
-This will open up a page showing all the available plugins in WordPress. In the search field, type B Blocks. The search result will show you our B Blocks plugin, to install just click on the “Install Now” button.
-
-= Manual installation =
-
-To install B Blocks manually, you need to download the plugin and upload `plugin-directory` to the `/wp-content/plugins/` directory. After that, activate the plugin through the 'Plugins' menu in WordPress.
+1. All Blocks
+2. Posts- Grid Layout
+3. posts- Masonry Layout
+4. Slider
+5. Image Gallery
+6. Image Comparison
+7. Flip Boxes
+8. Team Members
+9. Price Lists
+10. Feature Boxes
+11. Info Box
+12. Button Group
+13. Countdown
 
 
 == Changelog ==
@@ -171,7 +190,7 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 
 = 1.5 =
 * Add Lottie Player Block
-* Update Slider, Card, Image Gallery, Flip Boxes, Image Comparison blocks
+* Update Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group blocks
 
 
 == Upgrade Notice ==
@@ -189,4 +208,4 @@ To install B Blocks manually, you need to download the plugin and upload `plugin
 * Update Posts Block
 
 * Add Lottie Player Block
-* Update Slider, Card, Image Gallery, Flip Boxes, Image Comparison blocks
+* Update Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group blocks

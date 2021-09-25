@@ -6,10 +6,10 @@ import { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } from '@word
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, colors, aligns, textTransforms } = options;
+const { normalHoverTabs, fontSizes, colors, aligns, textTransforms } = options;
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../Components/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -138,32 +138,27 @@ registerBlockType('b-blocks/accordion', {
                     <RangeControl value={headingPLR} onChange={cng => setAttributes({ headingPLR: cng })} min={0} max={150} step={1} />
 
                     {otherTitle('Colors:')}
-                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab"
-                        tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
-                        {tab => {
-                            return <>
-                                {'normal' == tab.name && <>
-                                    {/* Color */}
-                                    {firstTitle('Color:')}
-                                    <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
+                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+                        {'normal' == tab.name && <>
+                            {/* Color */}
+                            {firstTitle('Color:')}
+                            <ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
 
-                                    {/* Background Color */}
-                                    {otherTitle('Background Color:')}
-                                    <ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
-                                </>}
+                            {/* Background Color */}
+                            {otherTitle('Background Color:')}
+                            <ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
+                        </>}
 
-                                {'hover' == tab.name && <>
-                                    {/* Hover Color */}
-                                    {firstTitle('Hover Color:')}
-                                    <ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
+                        {'hover' == tab.name && <>
+                            {/* Hover Color */}
+                            {firstTitle('Hover Color:')}
+                            <ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
 
-                                    {/* Hover Background Color */}
-                                    {otherTitle('Hover Background Color:')}
-                                    <ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
-                                </>}
-                            </>
-                        }}
-                    </TabPanel>
+                            {/* Hover Background Color */}
+                            {otherTitle('Hover Background Color:')}
+                            <ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
+                        </>}
+                    </>}</TabPanel>
                 </PanelBody>
 
 

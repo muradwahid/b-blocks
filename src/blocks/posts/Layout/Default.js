@@ -1,3 +1,5 @@
+import { Fragment } from '@wordpress/element';
+
 // Components
 import FeatureImage from '../Single/FeatureImage';
 import PostTitle from '../Single/PostTitle';
@@ -6,21 +8,22 @@ import PostReadMore from '../Single/PostReadMore';
 import PostMeta from '../Single/PostMeta';
 
 const Default = ({ atts, post }) => {
-    const { layout, rowGap, contentAlign, contentBGColor, postTextPTB, postTextPLR, borderColor } = atts;
+    const { subLayout } = atts;
+    const { id } = post;
 
-    return (
-        <article className={`bBlocksPostArticle text-${contentAlign} ${'masonry' == layout ? `mb-${rowGap}` : ''}`} style={{ backgroundColor: contentBGColor, border: `1px solid ${borderColor}` }}>
-            <FeatureImage atts={atts} post={post} />
+    return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostDefault`}>
+        <FeatureImage atts={atts} post={post} />
 
-            <div className={`bBlocksPostText ptb-${postTextPTB} plr-${postTextPLR}`}>
-                <PostTitle atts={atts} post={post} />
+        <div className='bBlocksPostText'>
+            <PostTitle atts={atts} post={post} />
 
-                <PostMeta atts={atts} post={post} />
+            <PostMeta atts={atts} post={post} />
 
+            {'title-meta' !== subLayout && <Fragment>
                 <PostExcerpt atts={atts} post={post} />
                 <PostReadMore atts={atts} post={post} />
-            </div>
-        </article>
-    );
+            </Fragment>}
+        </div>
+    </article>;
 };
 export default Default;

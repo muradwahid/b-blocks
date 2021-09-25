@@ -4,14 +4,14 @@ import { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaU
 import { PanelBody, RangeControl, withNotices, Button, ToolbarItem, PanelRow, ToggleControl } from '@wordpress/components';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BColor from '../../GutenComp/BColor';
-import BtnGroup from '../../GutenComp/BtnGroup';
-import BDevice from '../../GutenComp/BDevice';
-import Typography from '../../GutenComp/Typography';
-import SpaceControl from '../../GutenComp/SpaceControl';
-import BorderControl from '../../GutenComp/BorderControl';
-import ShadowControl from '../../GutenComp/ShadowControl';
+import Title from '../../Components/Title';
+import BColor from '../../Components/BColor';
+import BtnGroup from '../../Components/BtnGroup';
+import BDevice from '../../Components/BDevice';
+import Typography from '../../Components/Typography';
+import SpaceControl from '../../Components/SpaceControl';
+import BorderControl from '../../Components/BorderControl';
+import ShadowControl from '../../Components/ShadowControl';
 import options from '../../Const/options';
 const { aligns } = options;
 
@@ -52,22 +52,22 @@ const Edit = props => {
             </PanelBody>
 
             <PanelBody className='bBlocksPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isCap ? 'Hide Caption' : 'Show Caption'} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
+                <ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
                 {/* Text Align */}
-                <PanelRow className='mt-20p mb-5p'>
+                <PanelRow className='mt-20p'>
                     <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
                     <BtnGroup icon={true} options={aligns} myValue={capAlign} setState={val => setAttributes({ capAlign: val })} />
                 </PanelRow>
 
                 {/* Color */}
-                <BColor className='mt-20p mb-5p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
+                <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
                 {/* Title Typography */}
-                <Typography className='mt-20p mb-5p' label={__('Title Typography:', 'b-blocks')} typography={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: 18 }} />
+                <Typography className='mt-20p' label={__('Title Typography:', 'b-blocks')} typography={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: 18 }} />
 
                 {/* Description Typography */}
-                <Typography className='mt-20p mb-5p' label={__('Description Typography:', 'b-blocks')} typography={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: 18 }} />
+                <Typography className='mt-20p' label={__('Description Typography:', 'b-blocks')} typography={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: 18 }} />
             </PanelBody>
         </InspectorControls>
 
@@ -96,6 +96,7 @@ const Edit = props => {
                     margin: ${imgPadding?.styles || '0 0'};
                     width: calc((100% - 10px) - (${imgPadding?.horizontal || '0px'} * 2));
                     height: calc((100% - 10px) - (${imgPadding?.vertical || '0px'} * 2));
+                    border-radius: ${imgBorder?.radius || '0px'};
                 }
                 #bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption h4{
                     ${capTitleTypo?.styles || 'font-size: 18px;'}

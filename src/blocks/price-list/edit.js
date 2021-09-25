@@ -9,9 +9,9 @@ import { isBlobURL } from '@wordpress/blob';
 import icons from '../../Const/icons';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BColor from '../../GutenComp/BColor';
-import BtnGroup from '../../GutenComp/BtnGroup';
+import Title from '../../Components/Title';
+import BColor from '../../Components/BColor';
+import BtnGroup from '../../Components/BtnGroup';
 import options from '../../Const/options';
 const { fontSizes, colors, sizeTypes } = options;
 

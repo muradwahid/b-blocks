@@ -1,9 +1,4 @@
 <?php
-// Store some data of block
-class Card{
-    static $attributes = array();
-}
-
 // Cards Attributes
 function b_blocks_cards_attributes(){
     return array(
@@ -12,17 +7,27 @@ function b_blocks_cards_attributes(){
         'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1, ) ),
 
         'columnGap' => array( 'type' => 'string', 'default' => '20px' ),
-        'rowGap' => array( 'type' => 'string', 'default' => '30px' )
+        'rowGap' => array( 'type' => 'string', 'default' => '30px' ),
+
+        'layout' => array( 'type' => 'string', 'default' => 'vertical' ),
+
+        'textAlign' => array( 'type' => 'string', 'default' => 'left' ),
+        'padding' => array( 'type' => 'object', 'default' => array('vertical' => '20px', 'horizontal' => '10px') ),
+        
+        'imgHeight' => array( 'type' => 'string', 'default' => '250px' ),
+        'catTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 15) ),
+        'catMargin' => array( 'type' => 'object', 'default' => array('bottom' => '10px') ),
+        'titleTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 22) ),
+        'titleMargin' => array( 'type' => 'object', 'default' => array('bottom' => '10px') )
     );
 }
 
 // Render Cards
 function render_b_blocks_cards($attributes, $content){
     extract( $attributes );
-    extract( Card::$attributes );
 
     // Generate Styles
-    $cardsStyle = new StyleGenerator();
+    $cardsStyle = new BBlocksStyleGenerator();
     $cardsStyle::addStyle("#bBlocksCards-$cId .bBlocksCards", array(
         'grid-gap' => "$rowGap $columnGap"
     ));
@@ -31,6 +36,7 @@ function render_b_blocks_cards($attributes, $content){
         'height' => $imgHeight
     ));
     $cardsStyle::addStyle("#bBlocksCards-$cId .bBlocksCards .bBlocksCard .cardDetails", array(
+        'text-align' => $textAlign,
         'padding' => $padding['styles'] ?? '20px 10px'
     ));
     $cardsStyle::addStyle("#bBlocksCards-$cId .bBlocksCards .bBlocksCard .cardDetails .cardCategory", array(
@@ -45,15 +51,16 @@ function render_b_blocks_cards($attributes, $content){
     $catFontLink = $catTypo['googleFontLink'] ?? '';
     $titleFontLink = $titleTypo['googleFontLink'] ?? '';
 
-    ob_start(); // Echo the content
-    echo "<div class='wp-block-b-blocks-cards' id='bBlocksCards-$cId'>
+    $alignClass = isset($align) ? 'align' . $align : '';
+    $layoutClass = 'horizontal' === $layout ? 'horizontal' : 'vertical';
+
+    return "<div class='wp-block-b-blocks-cards ". esc_attr($alignClass) ."' id='bBlocksCards-$cId'>
         <style>@import url($catFontLink); @import url($titleFontLink);". $cardsStyle::renderStyle() ."</style>
 
-        <div class='bBlocksCards columns-".$columns['desktop']." columns-tablet-".$columns['tablet']." columns-mobile-".$columns['mobile']."'>". $content ."</div>
+        <div class='bBlocksCards $layoutClass columns-".$columns['desktop']." columns-tablet-".$columns['tablet']." columns-mobile-".$columns['mobile']."'> $content </div>
     </div>";
 
-    $cardsStyle::$styles = array(); // Empty before blocks styles in after blocks
-    return ob_get_clean();
+    $cardsStyle::$styles = array(); // Empty styles
 }
 
 
@@ -62,29 +69,20 @@ function b_blocks_card_attributes(){
     return array(
         'cId' => array( 'type' => 'string'),
 
-        'layout' => array( 'type' => 'string', 'default' => 'vertical' ),
-
-        'textAlign' => array( 'type' => 'string', 'default' => 'left' ),
         'bgColor' => array( 'type' => 'string', 'default' => '#fff0' ),
-        'padding' => array( 'type' => 'object', 'default' => array('vertical' => '20px', 'horizontal' => '10px') ),
 
         'img' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
-        'imgHeight' => array( 'type' => 'string', 'default' => '250px' ),
         'imgPos' => array( 'type' => 'string', 'default' => 'top' ),
         'imgBorder' => array( 'type' => 'object', 'default' => array('radius' => '5px') ),
 
         'isCat' => array( 'type' => 'boolean', 'default' => true ),
         'cat' => array( 'type' => 'string', 'selector' => 'h6.cardCategory', 'default' => 'Category' ),
-        'catTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 15) ),
         'catColor' => array( 'type' => 'string', 'default' => '#0dcaf0' ),
-        'catMargin' => array( 'type' => 'object', 'default' => array('bottom' => '10px') ),
 
         'isTitle' => array( 'type' => 'boolean', 'default' => true ),
         'title' => array( 'type' => 'string', 'selector' => 'h3.cardTitle', 'default' => 'Card Title' ),
         'titlePos' => array( 'type' => 'string', 'default' => 'image' ),
-        'titleTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 22) ),
         'titleColor' => array( 'type' => 'string', 'default' => '#ff7500' ),
-        'titleMargin' => array( 'type' => 'object', 'default' => array('bottom' => '10px') )
     );
 }
 
@@ -92,10 +90,8 @@ function b_blocks_card_attributes(){
 function render_b_blocks_card( $attributes, $content ) {
     extract( $attributes );
 
-    Card::$attributes = $attributes; // Store attributes in Card class
-
     // Generate Styles
-    $cardStyle = new StyleGenerator();
+    $cardStyle = new BBlocksStyleGenerator();
     $cardStyle::addStyle("#bBlocksCard-$cId .bBlocksCard", array(
         'background-color' => $bgColor
     ));
@@ -110,7 +106,6 @@ function render_b_blocks_card( $attributes, $content ) {
     ));
 
     // Classes
-    $layoutClass = 'horizontal' === $layout ? 'horizontal' : 'vertical';
     $imgPosClass = 'bottom' === $imgPos ? 'bottomImg' : 'topImg';
     $imgClass = $img['id'] ? 'wp-image-'.$img['id'] : '';
 
@@ -120,22 +115,21 @@ function render_b_blocks_card( $attributes, $content ) {
     $cardTitleInContent = 'content' === $titlePos ? $cardTitle : '';
 
     $cardImage = $img['url'] ? "<figure class='cardImage'>
-            <img class='$imgClass' src='".$img['url']."' alt='".$img['alt']."' /> $cardTitleInImage
-        </figure>" : '';
+        <img class='$imgClass' src='".$img['url']."' alt='".$img['alt']."' /> $cardTitleInImage
+    </figure>" : '';
 
     $cardImageInTop =  'top' === $imgPos ? $cardImage : '';
     $cardImageInBottom =  'bottom' === $imgPos ? $cardImage : '';
 
     $cardCategory =  $isCat && $cat ? "<h6 class='cardCategory'>$cat</h6>" : '';
 
-    ob_start(); // Echo the content
-    echo "<div class='wp-block-b-blocks-card' id='bBlocksCard-$cId'>
+    return "<div class='wp-block-b-blocks-card' id='bBlocksCard-$cId'>
         <style>". $cardStyle::renderStyle() ."</style>
 
-        <div class='bBlocksCard $layoutClass $imgPosClass'>
+        <div class='bBlocksCard $imgPosClass'>
             $cardImageInTop
 
-            <div class='cardDetails text-$textAlign'>
+            <div class='cardDetails'>
                 $cardCategory
                 $cardTitleInContent
                 $content
@@ -145,6 +139,5 @@ function render_b_blocks_card( $attributes, $content ) {
         </div>
     </div>";
 
-    $cardStyle::$styles = array(); // Empty before blocks styles in after blocks
-    return ob_get_clean();
+    $cardStyle::$styles = array(); // Empty styles
 }

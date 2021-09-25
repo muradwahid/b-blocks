@@ -1,28 +1,23 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-import './parent';
 import Edit from './edit';
 
 // Import Sass
 import './editor.scss';
 
-// Icon
+// Icons
 import icons from '../../Const/icons';
 
-// Deprecated
-import deprecated from './deprecated';
-
-registerBlockType('b-blocks/flip-box', {
+registerBlockType('b-blocks/flip-boxes', {
     // Build In attributes
-    title: __('Flip Box', 'b-blocks'),
-    description: __('Flip box', 'b-blocks'),
-    parent: ['b-blocks/flip-boxes'],
+    title: __('Flip Boxes', 'b-blocks'),
+    description: __('Display Flip boxes section', 'b-blocks'),
     icon: icons.flipBox,
     category: 'bBlocks',
-    keywords: [__('flip', 'b-blocks'), __('box', 'b-blocks'), __('rotate box', 'b-blocks')],
+    keywords: [__('flip', 'b-blocks'), __('flip boxes', 'b-blocks'), __('flip boxes section', 'b-blocks')],
     supports: {
-        reusable: false,
+        align: ['wide', 'full'],
         html: false
     },
 
@@ -31,11 +26,14 @@ registerBlockType('b-blocks/flip-box', {
 
     save: () => null,
 
-    deprecated,
-
     example: {
         attributes: {
-            'preview': true
+            'preview': true,
+            columns: {
+                desktop: 1,
+                tablet: 1,
+                mobile: 1
+            },
         },
     }
 });

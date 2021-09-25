@@ -4,16 +4,16 @@ import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/b
 import { PanelBody, RangeControl, ToggleControl, TabPanel, PanelRow, __experimentalUnitControl as UnitControl, TextControl } from '@wordpress/components';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BColor from '../../GutenComp/BColor';
-import BtnGroup from '../../GutenComp/BtnGroup';
+import Title from '../../Components/Title';
+import BColor from '../../Components/BColor';
+import BtnGroup from '../../Components/BtnGroup';
 import options from '../../Const/options';
-const { pxUnit, perUnit, emUnit, remUnit, vwUnit } = options;
+const { generalStyleTabs, pxUnit, perUnit, emUnit, remUnit, vwUnit } = options;
 
 const modes = [
     { label: __('Normal', 'b-blocks'), value: 'normal', icon: __('Normal', 'b-blocks') },
     { label: __('Bounce', 'b-blocks'), value: 'bounce', icon: __('Bounce', 'b-blocks') }
-]
+];
 
 const Edit = props => {
     const { className, attributes: { contentAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, direction, intermission, width, bgColor, controlsHeight, controlsBGColor, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes, clientId } = props;
@@ -51,8 +51,8 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'settings', title: __('Settings', 'b-blocks'), className: 'settings-tab' }, { name: 'style', title: __('Style', 'b-blocks'), className: 'styleTab' }]}>{tab => <>
-                {'settings' == tab.name && <>
+            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+                {'general' == tab.name && <>
                     <PanelBody className='bBlocksPanelBody' title={__('Player Settings', 'b-blocks')}>
                         {/* Lottie Json file url */}
                         <Title mt='0'>{__('Lottie Json file url:', 'b-blocks')}</Title>
@@ -71,7 +71,7 @@ const Edit = props => {
                         <ToggleControl label={isHover ? 'Disable Hover' : 'Enable Hover'} checked={isHover} onChange={val => setAttributes({ isHover: val })} />
 
                         {/* Mode */}
-                        <PanelRow className='mt-20p mb-5p'>
+                        <PanelRow className='mt-20p'>
                             <Title mt='0' mb='0'>{__('Mode:', 'b-blocks')}</Title>
                             <BtnGroup options={modes} myValue={mode} setState={val => setAttributes({ mode: val })} />
                         </PanelRow>
@@ -119,8 +119,7 @@ const Edit = props => {
                         <BColor label={__('Thumb Color:', 'b-blocks')} value={controlsThumbColor} onChange={val => setAttributes({ controlsThumbColor: val })} defaultColor='#4527a4' />
                     </PanelBody>
                 </>}
-            </> // Return of Layout TabPanel
-            }</TabPanel>
+            </>}</TabPanel>
         </InspectorControls>
 
 

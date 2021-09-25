@@ -8,7 +8,7 @@ import options from '../Const/options';
 const { aligns, borderStyles, colors, sizeTypes } = options;
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../Components/BtnGroup';
 
 // Functions
 import func from '../Const/functions';

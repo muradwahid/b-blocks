@@ -1,13 +1,30 @@
 .wp-block-b-blocks-countdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     .countdownItems{
         display: flex;
+        align-items: center;
 
         .countdownItem{
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
 
-            .holder{
+            &.separator{
+                position: relative;
+
+                &::before{
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(-50%, -65%);
+                    line-height: 100%;
+                }
+            }
+
+            .digit{
                 display: block;
                 font-weight: 400;
             }
@@ -24,7 +41,13 @@
                 flex-direction: row;
                 justify-content: center;
 
-                .holder{
+                &.separator{
+                    &::before{
+                        transform: translate(-50%, -60%);
+                    }
+                }
+
+                .digit{
                     display: flex;
                     flex: 1 1 0%;
                     justify-content: center;

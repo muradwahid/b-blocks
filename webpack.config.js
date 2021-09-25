@@ -73,7 +73,7 @@ module.exports = (env, argv) => {
                 {
                     test: /\.(s[ac]|c)ss$/,
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
                             loader: 'postcss-loader',
@@ -100,16 +100,16 @@ module.exports = (env, argv) => {
         }, // Module
 
         externals: {
-            '@wordpress/blocks': ['wp', 'blocks'],
-            '@wordpress/element': ['wp', 'element'],
-            '@wordpress/data': ['wp', 'data'],
-            '@wordpress/i18n': ['wp', 'i18n'],
-            '@wordpress/block-editor': ['wp', 'blockEditor'],
-            '@wordpress/components': ['wp', 'components'],
             '@wordpress/blob': ['wp', 'blob'],
-            '@wordpress/html-entities': ['wp', 'htmlEntities'],
+            '@wordpress/block-editor': ['wp', 'blockEditor'],
+            '@wordpress/blocks': ['wp', 'blocks'],
+            '@wordpress/components': ['wp', 'components'],
             '@wordpress/compose': ['wp', 'compose'],
-            '@wordpress/rich-text': ['wp', 'richText'],
+            '@wordpress/data': ['wp', 'data'],
+            '@wordpress/element': ['wp', 'element'],
+            '@wordpress/html-entities': ['wp', 'htmlEntities'],
+            '@wordpress/i18n': ['wp', 'i18n'],
+            '@wordpress/rich-text': ['wp', 'richText']
         } // Externals
     };
     return config;

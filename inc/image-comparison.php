@@ -1,90 +1,97 @@
 <?php
-// Image Comparison Attributes
-function b_blocks_image_comparison_attributes(){
-    return array(
-        'cId' => array( 'type' => 'string' ),
-        'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
+class BBlocksImageComparison{
+    public function __construct(){
+        add_action('init', [$this, 'register']);
+    }
 
-        'width' => array( 'type' => 'string', 'default' => '80%' ),
-        'border' => array( 'type' => 'object', 'default' => array()),
+    function register(){
+        BBlocksRegisterScript::register('image-comparison', array(
+            'attributes'      => $this->attributes(),
+            'render_callback' => [$this, 'render']
+        ));
+    }
 
-        'beforeImg' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
-        'afterImg' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
-        
-        'isSwap' => array( 'type' => 'boolean', 'default' => false ),
-        
-        'isLabel' => array( 'type' => 'boolean', 'default' => true ),
-        'beforeLabel' => array( 'type' => 'string', 'selector' => '.beforeLabel' ),
-        'afterLabel' => array( 'type' => 'string', 'selector' => '.afterLabel' ),
-        'labelTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 15) ),
-        'labelColors' => array( 'type' => 'object', 'default' => array('color' => '#fff', 'bg' => '#00000080') ),
-        'labelPadding' => array( 'type' => 'object', 'default' => array('vertical' => '10px', 'horizontal' => '15px')),
+    function attributes(){
+        return array(
+            'cId' => array( 'type' => 'string' ),
+            'alignment' => array( 'type' => 'string', 'default' => 'center' ),
+    
+            'width' => array( 'type' => 'string', 'default' => '80%' ),
+            'border' => array( 'type' => 'object', 'default' => array()),
+    
+            'beforeImg' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
+            'afterImg' => array( 'type' => 'object', 'default' => array('id' => NULL, 'url' => '', 'alt' => '', 'title' => '') ),
+            
+            'isSwap' => array( 'type' => 'boolean', 'default' => false ),
+            
+            'isLabel' => array( 'type' => 'boolean', 'default' => true ),
+            'beforeLabel' => array( 'type' => 'string', 'selector' => '.beforeLabel', 'default' => '' ),
+            'afterLabel' => array( 'type' => 'string', 'selector' => '.afterLabel', 'default' => '' ),
+            'labelTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 15) ),
+            'labelColors' => array( 'type' => 'object', 'default' => array('color' => '#fff', 'bg' => '#00000080') ),
+            'labelPadding' => array( 'type' => 'object', 'default' => array('vertical' => '10px', 'horizontal' => '15px')),
+    
+            'isCap' => array( 'type' => 'boolean', 'default' => true ),
+            'cap' => array( 'type' => 'string', 'selector' => '.caption', 'default' => '' ),
+            'capAlign' => array( 'type' => 'string', 'default' => 'center' ),
+            'capTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 14) ),
+            'capColors' => array( 'type' => 'object', 'default' => array('color' => '#333', 'bg' => '#f4f4f4') ),
+            'capPadding' => array( 'type' => 'object', 'default' => array('vertical' => '10px', 'horizontal' => '15px'))
+        );
+    }
 
-        'isCap' => array( 'type' => 'boolean', 'default' => true ),
-        'cap' => array( 'type' => 'string', 'selector' => '.caption' ),
-        'capAlign' => array( 'type' => 'string', 'default' => 'center' ),
-        'capTypo' => array( 'type' => 'object', 'default' => array('fontSize' => 14) ),
-        'capColors' => array( 'type' => 'object', 'default' => array('color' => '#333', 'bg' => '#f4f4f4') ),
-        'capPadding' => array( 'type' => 'object', 'default' => array('vertical' => '10px', 'horizontal' => '15px'))
-    );
-}
+    function render($attributes){
+        extract( $attributes );
 
-// Render Image Comparison
-function render_b_blocks_image_comparison( $attributes ) {
-    extract( $attributes );
+        // Generate Styles
+        $imageComparisonStyle = new BBlocksStyleGenerator();
+        $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId", array(
+            'text-align' => $alignment
+        ));
+        $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId .bBlocksImageComparison", array(
+            'width' => $width,
+            $border['styles'] ?? '' => ''
+        ));
+        $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId .bBlocksImageComparison .overlay", array(
+            $labelTypo['styles'] ?? 'font-size: 15px;' => '',
+            $labelColors['styles'] ?? 'color: #fff; background: #00000080;' => '',
+            'padding' => $labelPadding['styles'] ?? '10px 15px'
+        ));
+        $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId .bBlocksImageComparison .caption", array(
+            $capTypo['styles'] ?? 'font-size: 14px;' => '',
+            $capColors['styles'] ?? 'color: #333; background: #f4f4f4;' => '',
+            'padding' => $capPadding['styles'] ?? '10px 15px'
+        ));
+    
+        ob_start(); ?>
+        <div class='wp-block-b-blocks-image-comparison <?php echo isset($align) ? 'align' . esc_attr($align) : ''; ?>' id='bBlocksImageComparison-<?php echo esc_attr($cId); ?>'>
+            <style>
+                @import url(<?php echo esc_url($labelTypo['googleFontLink'] ?? ''); ?>);
+                @import url(<?php echo esc_url($capTypo['googleFontLink'] ?? ''); ?>);
+                <?php echo wp_kses($imageComparisonStyle::renderStyle(), array()); ?>
+            </style>
+    
+            <div class='bBlocksImageComparison'>
+                <div class='comparison-slider'>
+                    <?php echo $isLabel && $afterLabel ? "<div class='overlay afterLabel'>". esc_html($afterLabel) ."</div>" : ''; ?>
 
-    // Generate Styles
-    $imageComparisonStyle = new StyleGenerator();
-    $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId .bBlocksImageComparison", array(
-        'width' => $width,
-        $border['styles'] ?? '' => ''
-    ));
-    $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId .bBlocksImageComparison .overlay", array(
-        $labelTypo['styles'] ?? 'font-size: 15px;' => '',
-        $labelColors['styles'] ?? 'color: #fff; background: #00000080;' => '',
-        'padding' => $labelPadding['styles'] ?? '10px 15px'
-    ));
-    $imageComparisonStyle::addStyle("#bBlocksImageComparison-$cId .bBlocksImageComparison .caption", array(
-        $capTypo['styles'] ?? 'font-size: 14px;' => '',
-        $capColors['styles'] ?? 'color: #333; background: #f4f4f4;' => '',
-        'padding' => $capPadding['styles'] ?? '10px 15px'
-    ));
+                    <?php echo $afterImg['url'] ? "<img class='afterImg' src='". esc_url($afterImg['url']) ."' alt='". esc_attr($afterImg['alt']) ."' />" : ''; ?>
+     
+                    <div class='resize'>
+                        <?php echo $isLabel && $afterLabel ? "<div class='overlay beforeLabel'>". esc_html($beforeLabel) ."</div>" : ''; ?>
 
-    $labelFontLink = $labelTypo['googleFontLink'] ?? '';
-    $capFontLink = $capTypo['googleFontLink'] ?? '';
-
-    // Components
-    $beforeLabelContent = $isLabel ? "<div class='overlay beforeLabel'>$beforeLabel</div>" : '';
-    $afterLabelContent = $isLabel ? "<div class='overlay afterLabel'>$afterLabel</div>" : '';
-
-    $caption = $isCap ? "<div class='caption'>$cap</div>" : '';
-
-    $beforeImgUrl = $beforeImg['url'] ?? '';
-    $beforeImgAlt = $beforeImg['alt'] ?? '';
-    $beforeImage = "<img class='beforeImg' src='$beforeImgUrl' alt='$beforeImgAlt' />";
-    $afterImgUrl = $afterImg['url'] ?? '';
-    $afterImgAlt = $afterImg['alt'] ?? '';
-    $afterImage = "<img class='afterImg' src='$afterImgUrl' alt='$afterImgAlt' />";
-
-    ob_start(); // Echo the content
-    echo "<div class='wp-block-b-blocks-image-comparison text-$textAlign' id='bBlocksImageComparison-$cId'>
-        <style>@import url($labelFontLink); @import url($capFontLink);". $imageComparisonStyle::renderStyle() ."</style>
-
-        <div class='bBlocksImageComparison'>
-            <div class='comparison-slider'>
-                $afterLabelContent $afterImage
- 
-                <div class='resize'>
-                    $beforeLabelContent $beforeImage
+                        <?php echo $beforeImg['url'] ? "<img class='beforeImg' src='". esc_url($beforeImg['url']) ."' alt='". esc_attr($beforeImg['alt']) ."' />" : ''; ?>
+                    </div>
+    
+                    <div class='divider'></div>
                 </div>
-
-                <div class='divider'></div>
+    
+                <?php echo $isCap && $cap ? "<div class='caption'>". esc_html($cap) ."</div>" : ''; ?>
             </div>
-
-            $caption
         </div>
-    </div>";
-
-    $imageComparisonStyle::$styles = array(); // Empty before blocks styles in after blocks
-    return ob_get_clean();
+    
+        <?php $imageComparisonStyle::$styles = array(); // Empty styles
+        return ob_get_clean();
+    }
 }
+new BBlocksImageComparison();

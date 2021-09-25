@@ -1,14 +1,5 @@
-[data-type='b-blocks/posts']{
-    .loading{
-        color: #4527a4;
-        display: flex;
-        align-items: center;
-
-        .components-spinner{
-            margin-top: 0;
-        }
-    }
-    .noPosts{
-        color: #4527a4;
-    }
+.bBlocksNoPosts{
+    color: red;
+    font-size: 20px;
+    text-align: center;
 }

@@ -1,28 +1,30 @@
 .wp-block-b-blocks-cards .bBlocksCards{
     display: grid;
 
-    .wp-block-b-blocks-card{
-        max-width: 100%;
-    }
-}
-
-.wp-block-b-blocks-card{
-    height: 100%;
-    display: flex;
-    max-width: 50%;
-    
-    .bBlocksCard{
-        display: flex;
-        position: relative;
-        border-radius: 5px;
-        color: rgba(0, 0, 0, 0.87);
-        background: #fff;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-
-        &.vertical{
+    &.vertical{
+        .bBlocksCard{
             flex-direction: column;
+
+            &.topImg{
+                margin-top: 30px;
+        
+                .cardImage{
+                    margin-top: -30px;
+                    margin-bottom: 0;
+                }
+            }
+            &.bottomImg{
+                margin-bottom: 30px;
+        
+                .cardImage{
+                    margin-top: auto;
+                    margin-bottom: -30px;
+                }
+            }
         }
-        &.horizontal{
+    }
+    &.horizontal{
+        .bBlocksCard{
             flex-direction: row;
             align-items: center;
 
@@ -38,39 +40,33 @@
                     min-height: 100%;
                 }
             }
-        }
-
-        &.topImg.vertical{
-            margin-top: 30px;
-
-            .cardImage{
-                margin-top: -30px;
-                margin-bottom: 0;
+            
+            &.topImg{
+                margin-left: 30px;
+        
+                .cardImage{
+                    margin-left: -30px;
+                }
+            }
+            &.bottomImg{
+                margin-right: 30px;
+        
+                .cardImage{
+                    margin-left: auto;
+                    margin-right: -30px;
+                }
             }
         }
-        &.topImg.horizontal{
-            margin-left: 30px;
+    }
 
-            .cardImage{
-                margin-left: -30px;
-            }
-        }
-        &.bottomImg.vertical{
-            margin-bottom: 30px;
-
-            .cardImage{
-                margin-top: auto;
-                margin-bottom: -30px;
-            }
-        }
-        &.bottomImg.horizontal{
-            margin-right: 30px;
-
-            .cardImage{
-                margin-left: auto;
-                margin-right: -30px;
-            }
-        }
+    .bBlocksCard{
+        height: 100%;
+        display: flex;
+        position: relative;
+        border-radius: 5px;
+        color: rgba(0, 0, 0, 0.87);
+        background: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 
         .cardImage{
             position: relative;
@@ -101,8 +97,7 @@
             margin: 0;
         }
 
-        [data-type="core/button"]{
-            display: inline-block;
+        .cardDescription{
             margin: 0;
         }
     }

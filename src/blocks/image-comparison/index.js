@@ -23,9 +23,6 @@ registerBlockType('b-blocks/image-comparison', {
         align: ['wide', 'full']
     },
 
-    // Custom Attributes
-    // attributes,
-
     // Build In Functions
     edit: Edit,
 

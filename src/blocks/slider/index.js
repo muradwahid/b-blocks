@@ -6,7 +6,7 @@ import Edit from './edit';
 // Import Sass
 import './editor.scss';
 
-// Icon
+// Icons
 import icons from '../../Const/icons';
 
 // Deprecated
@@ -18,7 +18,7 @@ registerBlockType('b-blocks/slider', {
     description: __('Display image and content slider', 'b-blocks'),
     icon: icons.slider,
     category: 'bBlocks',
-    keywords: [__('carousel', 'b-blocks'), __('image slider', 'b-blocks'), __('image carousel', 'b-blocks')],
+    keywords: [__('content slider', 'b-blocks'), __('image slider', 'b-blocks'), __('image carousel', 'b-blocks')],
     supports: {
         align: ['wide', 'full'],
         html: false

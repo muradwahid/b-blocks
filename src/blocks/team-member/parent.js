@@ -8,8 +8,8 @@ import { PanelBody, PanelRow, RangeControl } from '@wordpress/components';
 import icons from '../../Const/icons';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BDevice from '../../GutenComp/BDevice';
+import Title from '../../Components/Title';
+import BDevice from '../../Components/BDevice';
 
 // Custom Attributes
 const attributes = {

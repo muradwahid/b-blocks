@@ -1,26 +1,30 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls, RichText } from '@wordpress/block-editor';
-import { Button, ButtonGroup, PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, Tooltip, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BColor from '../../GutenComp/BColor';
-import BtnGroup from '../../GutenComp/BtnGroup';
-import Typography from '../../GutenComp/Typography';
-import SpaceControl from '../../GutenComp/SpaceControl';
-import BorderControl from '../../GutenComp/BorderControl';
-import ColorsControl from '../../GutenComp/ColorsControl';
-import IconControl from '../../GutenComp/IconControl';
+import Title from '../../Components/Title';
+import BColor from '../../Components/BColor';
+import BtnGroup from '../../Components/BtnGroup';
+import Typography from '../../Components/Typography';
+import SpaceControl from '../../Components/SpaceControl';
+import BorderControl from '../../Components/BorderControl';
+import ColorsControl from '../../Components/ColorsControl';
+import IconControl from '../../Components/IconControl';
 import options from '../../Const/options';
-const { pxUnit, perUnit, emUnit } = options;
+const { normalHoverTabs, pxUnit, perUnit, emUnit } = options;
 const sepTypes = [
     { label: 'Icon', value: 'icon', icon: 'Icon' },
     { label: 'Text', value: 'text', icon: 'Text' }
 ];
+const btnGroupTabs = [
+    { name: 'btn-one', title: __('Button One', 'b-blocks') },
+    { name: 'btn-two', title: __('Button Two', 'b-blocks') }
+];
 
 const Edit = props => {
-    const { className, attributes: { btnAlign, btnTypo, btnWidth, btnPadding, btnOne, btnOneType, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwo, btnTwoType, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepWidth, sepSize, sepBGColor }, setAttributes, clientId } = props;
+    const { className, attributes: { btnAlign, btnType, btnTypo, btnWidth, btnPadding, btnOne, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwo, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepWidth, sepSize, sepBGColor }, setAttributes, clientId } = props;
 
     // Functions
     useEffect(() => {
@@ -30,13 +34,28 @@ const Edit = props => {
     return <>
         <InspectorControls>
             <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')}>
-                {/* Button One Link */}
-                <Title mt='0'>{__('Button One Link:', 'b-blocks')}</Title>
-                <TextControl value={btnOneLink} onChange={val => setAttributes({ btnOneLink: val })} />
-
-                {/* Button Two Link */}
-                <Title>{__('Button Two Link:', 'b-blocks')}</Title>
-                <TextControl value={btnTwoLink} onChange={val => setAttributes({ btnTwoLink: val })} />
+                {/* Button Type */}
+                <PanelRow>
+                    <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
+                    <BtnGroup myValue={btnType} setState={val => {
+                        setAttributes({ btnType: val });
+                        'fill' === val && setAttributes({
+                            btnOneColors: { ...btnOneColors, color: '#fff', bg: '#4527a4', styles: 'color: #fff; background: #4527a4;' },
+                            btnOneBorder: { ...btnOneBorder, width: '0px', color: '#0000', styles: '' },
+                            btnTwoColors: { ...btnTwoColors, color: '#fff', bg: '#8344c5', styles: 'color: #fff; background: #8344c5;' },
+                            btnTwoBorder: { ...btnTwoBorder, width: '0px', color: '#0000', styles: '' }
+                        });
+                        'outline' === val && setAttributes({
+                            btnOneColors: { ...btnOneColors, color: '#4527a4', bg: '#0000', styles: 'color: #4527a4; background: #0000;' },
+                            btnOneBorder: { ...btnOneBorder, width: '3px', color: '#4527a4', styles: 'border: 3px solid #4527a4;' },
+                            btnTwoColors: { ...btnTwoColors, color: '#8344c5', bg: '#0000', styles: 'color: #8344c5; background: #0000;' },
+                            btnTwoBorder: { ...btnTwoBorder, width: '3px', color: '#8344c5', styles: 'border: 3px solid #8344c5;' }
+                        });
+                    }} options={[
+                        { label: __('Fill', 'b-blocks'), value: 'fill', icon: 'FILL' },
+                        { label: __('Outline', 'b-blocks'), value: 'outline', icon: 'OUTLINE' }
+                    ]} />
+                </PanelRow>
 
                 {/* Typography */}
                 <Typography className='mt-20p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
@@ -46,74 +65,46 @@ const Edit = props => {
 
                 {/* Padding */}
                 <SpaceControl className='mt-20p' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
-            </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Button One Settings', 'b-blocks')} initialOpen={false}>
-                {/* Type */}
-                <PanelRow>
-                    <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
-                    <ButtonGroup className='bBlocksBtnGroup'>
-                        <Tooltip text={__('Fill', 'b-blocks')} position='top'>
-                            <Button isMedium isPrimary={'fill' === btnOneType} aria-pressed={'fill' === btnOneType} onClick={() => setAttributes({ btnOneType: 'fill', btnOneColors: { ...btnOneColors, color: '#fff', bg: '#4527a4' }, btnOneBorder: { ...btnOneBorder, width: '0px', color: '#0000' } })}>{__('Fill', 'b-blocks')}</Button>
-                        </Tooltip>
+                <Title>{__('Buttons:', 'b-blocks')}</Title>
+                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
+                    {'btn-one' == tab.name && <>
+                        <PanelRow>
+                            <Title mt='0' mb='0'>{__('Link:', 'b-blocks')}</Title>
+                            <TextControl value={btnOneLink} onChange={val => setAttributes({ btnOneLink: val })} />
+                        </PanelRow>
 
-                        <Tooltip text={__('Outline', 'b-blocks')} position='top'>
-                            <Button isMedium isPrimary={'outline' === btnOneType} aria-pressed={'outline' === btnOneType} onClick={() => setAttributes({ btnOneType: 'outline', btnOneColors: { ...btnOneColors, color: '#4527a4', bg: '#0000' }, btnOneBorder: { ...btnOneBorder, width: '3px', color: '#4527a4' } })}>{__('Outline', 'b-blocks')}</Button>
-                        </Tooltip>
+                        <BorderControl label={__('Border', 'b-blocks')} border={btnOneBorder} onChange={val => setAttributes({ btnOneBorder: val })} defaults={{ radius: '50px' }} />
 
-                        <Tooltip text={__('Text', 'b-blocks')} position='top'>
-                            <Button isMedium isPrimary={'text' === btnOneType} aria-pressed={'text' === btnOneType} onClick={() => setAttributes({ btnOneType: 'text', btnOneColors: { ...btnOneColors, color: '#4527a4', bg: '#0000' }, btnOneBorder: { ...btnOneBorder, width: '0px', color: '#0000' } })}>{__('Text', 'b-blocks')}</Button>
-                        </Tooltip>
-                    </ButtonGroup>
-                </PanelRow>
+                        <Title mt='10px'>{__('Colors:', 'b-blocks')}</Title>
+                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
+                            {'normal' == tab.name && <ColorsControl colors={btnOneColors} onChange={val => setAttributes({ btnOneColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
 
-                {/* Border */}
-                <BorderControl label={__('Border', 'b-blocks')} border={btnOneBorder} onChange={val => setAttributes({ btnOneBorder: val })} defaults={{ radius: '50px' }} />
-
-                {/* Colors */}
-                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'normal', title: __('Normal Color', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover Color', 'b-blocks'), className: 'hover-tab', }]}>
-                    {tab => <>
-                        {'normal' == tab.name && <ColorsControl colors={btnOneColors} onChange={val => setAttributes({ btnOneColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
-
-                        {'hover' == tab.name && <ColorsControl colors={btnOneHovColors} onChange={val => setAttributes({ btnOneHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
+                            {'hover' == tab.name && <ColorsControl colors={btnOneHovColors} onChange={val => setAttributes({ btnOneHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
+                        </>}</TabPanel>
                     </>}
-                </TabPanel>
-            </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Button Two Settings', 'b-blocks')} initialOpen={false}>
-                {/* Type */}
-                <PanelRow>
-                    <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
-                    <ButtonGroup className='bBlocksBtnGroup'>
-                        <Tooltip text={__('Fill', 'b-blocks')} position='top'>
-                            <Button isMedium isPrimary={'fill' === btnTwoType} aria-pressed={'fill' === btnTwoType} onClick={() => setAttributes({ btnTwoType: 'fill', btnTwoColors: { ...btnTwoColors, color: '#fff', bg: '#8344c5' }, btnTwoBorder: { ...btnTwoBorder, width: '0px', color: '#0000' } })}>{__('Fill', 'b-blocks')}</Button>
-                        </Tooltip>
+                    {'btn-two' == tab.name && <>
+                        <PanelRow>
+                            <Title mt='0' mb='0'>{__('Link:', 'b-blocks')}</Title>
+                            <TextControl value={btnTwoLink} onChange={val => setAttributes({ btnTwoLink: val })} />
+                        </PanelRow>
 
-                        <Tooltip text={__('Outline', 'b-blocks')} position='top'>
-                            <Button isMedium isPrimary={'outline' === btnTwoType} aria-pressed={'outline' === btnTwoType} onClick={() => setAttributes({ btnTwoType: 'outline', btnTwoColors: { ...btnTwoColors, color: '#8344c5', bg: '#0000' }, btnTwoBorder: { ...btnTwoBorder, width: '3px', color: '#8344c5' } })}>{__('Outline', 'b-blocks')}</Button>
-                        </Tooltip>
+                        <BorderControl label={__('Border', 'b-blocks')} border={btnTwoBorder} onChange={val => setAttributes({ btnTwoBorder: val })} defaults={{ radius: '50px' }} />
 
-                        <Tooltip text={__('Text', 'b-blocks')} position='top'>
-                            <Button isMedium isPrimary={'text' === btnTwoType} aria-pressed={'text' === btnTwoType} onClick={() => setAttributes({ btnTwoType: 'text', btnTwoColors: { ...btnTwoColors, color: '#8344c5', bg: '#0000' }, btnTwoBorder: { ...btnTwoBorder, width: '0px', color: '#0000' } })}>{__('Text', 'b-blocks')}</Button>
-                        </Tooltip>
-                    </ButtonGroup>
-                </PanelRow>
+                        <Title mt='10px'>{__('Colors:', 'b-blocks')}</Title>
+                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
+                            {'normal' == tab.name && <ColorsControl colors={btnTwoColors} onChange={val => setAttributes({ btnTwoColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
 
-                {/* Border */}
-                <BorderControl label={__('Border', 'b-blocks')} border={btnTwoBorder} onChange={val => setAttributes({ btnTwoBorder: val })} defaults={{ radius: '50px' }} />
-
-                {/* Colors */}
-                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={[{ name: 'normal', title: __('Normal Color', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover Color', 'b-blocks'), className: 'hover-tab', }]}>
-                    {tab => <>
-                        {'normal' == tab.name && <ColorsControl colors={btnTwoColors} onChange={val => setAttributes({ btnTwoColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
-
-                        {'hover' == tab.name && <ColorsControl colors={btnTwoHovColors} onChange={val => setAttributes({ btnTwoHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
+                            {'hover' == tab.name && <ColorsControl colors={btnTwoHovColors} onChange={val => setAttributes({ btnTwoHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
+                        </>}</TabPanel>
                     </>}
+                </>}
                 </TabPanel>
             </PanelBody>
 
             <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={isSep ? 'Hide Separator' : 'Show Separator'} checked={isSep} onChange={val => setAttributes({ isSep: val, sepWidth: val && 0 })} />
+                <ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val, sepWidth: val && 0 })} />
 
                 {isSep && <>
                     <PanelRow className='mt-20p'>
@@ -150,19 +141,26 @@ const Edit = props => {
 
 
         <BlockControls>
-            <AlignmentToolbar value={btnAlign} onChange={val => setAttributes({ btnAlign: val })} />
+            <AlignmentToolbar value={btnAlign} onChange={val => setAttributes({ btnAlign: val })} describedBy={__('Button Group Align')} alignmentControls={[
+                { title: __('Button Group in left', 'countdown-time'), align: 'left', icon: 'align-left' },
+                { title: __('Button Group in center', 'countdown-time'), align: 'center', icon: 'align-center' },
+                { title: __('Button Group in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+            ]} />
         </BlockControls>
 
 
-        <div className={`${className} text-${btnAlign}`} id={`bBlocksButtonGroup-${clientId}`}>
+        <div className={className} id={`bBlocksButtonGroup-${clientId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
                 @import url(${btnTypo?.googleFontLink});
                 @import url(${sepTextTypo?.googleFontLink});
 
+                #bBlocksButtonGroup-${clientId}{
+                    text-align: ${btnAlign};
+                }
                 #bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnG{
                     ${btnTypo?.styles || 'font-size: 16px;'}
-                    width: ${'0px' !== btnWidth ? btnWidth : 'auto'};
+                    width: ${'0px' !== btnWidth && '0%' !== btnWidth && '0em' !== btnWidth ? btnWidth : 'auto'};
                     padding: ${btnPadding?.styles || '12px 30px'};
                 }
                 #bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .firstBtn{
@@ -204,14 +202,14 @@ const Edit = props => {
 
             <div className='bBlocksButtonGroup'>
                 <div className='firstBtn'>
-                    <RichText className={`btnG btnOne btn-${btnOneType}`} tagName='a' href={btnOneLink} value={btnOne} onChange={val => setAttributes({ btnOne: val })} placeholder={__('First Button', 'b-blocks')} />
+                    <RichText className={`btnG btnOne btn-${btnType}`} tagName='a' href={btnOneLink} value={btnOne} onChange={val => setAttributes({ btnOne: val })} placeholder={__('First Button', 'b-blocks')} />
 
                     {isSep && <div className='btnSeparator'>
                         {'text' === sepType ? <span>{sepText}</span> : 'icon' === sepType && sepIcon?.class ? <i className={sepIcon?.class}></i> : ''}
                     </div>}
                 </div>
 
-                <RichText className={`btnG btnTwo btn-${btnTwoType}`} tagName='a' href={btnTwoLink} value={btnTwo} onChange={val => setAttributes({ btnTwo: val })} placeholder={__('Second Button', 'b-blocks')} />
+                <RichText className={`btnG btnTwo btn-${btnType}`} tagName='a' href={btnTwoLink} value={btnTwo} onChange={val => setAttributes({ btnTwo: val })} placeholder={__('Second Button', 'b-blocks')} />
             </div>
         </div>
     </>;

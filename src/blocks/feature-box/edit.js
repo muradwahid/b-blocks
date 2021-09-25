@@ -6,8 +6,8 @@ import { Spinner, withNotices, ToolbarItem, Button, PanelBody, SelectControl, Te
 import { isBlobURL } from '@wordpress/blob';
 
 // Variables
-import Title from '../../GutenComp/Title';
-import BColor from '../../GutenComp/BColor';
+import Title from '../../Components/Title';
+import BColor from '../../Components/BColor';
 import options from '../../Const/options';
 const { fontSizes, colors, borderStyles } = options;
 

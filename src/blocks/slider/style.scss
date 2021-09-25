@@ -1,9 +1,10 @@
-.wp-block-b-blocks-slider{    
+.wp-block-b-blocks-slider{
     overflow: hidden;
 
     .bBlocksSlider{
-        height: 100%;
+        display: inline-block;
         position: relative;
+        overflow: hidden;
 
         .swiper-wrapper{
             .swiper-slide{
@@ -12,12 +13,52 @@
                 position: relative;
 
                 .sliderContent{
-                    width: -webkit-fill-available;
-                    max-width: 100%;
                     position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    padding: 0 10%;
+                    width: 100%;
+                    max-width: 100%;
+                    text-align: center;
+                    padding: 45px 70px 50px 70px;
+                    box-sizing: border-box;
+
+                    &.top-left{
+                        text-align: left;
+                        top: 0;
+                    }
+                    &.top-center{
+                        text-align: center;
+                        top: 0;
+                    }
+                    &.top-right{
+                        text-align: right;
+                        top: 0;
+                    }
+                    &.center-left{
+                        text-align: left;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    &.center-center{
+                        text-align: center;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    &.center-right{
+                        text-align: right;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    &.bottom-left{
+                        text-align: left;
+                        bottom: 0;
+                    }
+                    &.bottom-center{
+                        text-align: center;
+                        bottom: 0;
+                    }
+                    &.bottom-right{
+                        text-align: right;
+                        bottom: 0;
+                    }
 
                     .sliderTitle{
                         color: #fff;
@@ -33,7 +74,7 @@
                         display: inline-block;
                         text-decoration: none;
                         font-weight: 600;
-                        transition: all .3s ease;
+                        transition: all .5s ease;
                     }
                 }
             }

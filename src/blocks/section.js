@@ -70,7 +70,7 @@ registerBlockType('b-blocks/section', {
             </InspectorControls>
 
 
-            <div className="b_blocks_section b_blocks_inner_content">
+            <div className="b_blocks_section bBlocksInnerContent">
                 <div style={sectionStyle}>
                     <InnerBlocks template={INNER_TEMPLATE} />
 
@@ -86,7 +86,7 @@ registerBlockType('b-blocks/section', {
         const sectionStyle = { backgroundColor: BGColor, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, textAlign: 'inherit' }
 
         return (
-            <div className="b_blocks_section b_blocks_inner_content">
+            <div className="b_blocks_section bBlocksInnerContent">
                 <div style={sectionStyle}>
                     <InnerBlocks.Content />
                 </div>

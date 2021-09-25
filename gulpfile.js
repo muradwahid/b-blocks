@@ -11,6 +11,7 @@ exports.bundle = () => (
         '!.eslintrc.js',
         '!.gitignore',
         '!gulpfile.js',
+        '!pending.txt',
         '!package.json',
         '!package-lock.json',
         '!readme.md',

@@ -2,39 +2,39 @@ $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
 
 // Block Align
-.wp-block[data-align="full"] {
+.wp-block[data-align='full'] {
     display: contents;
 }
-
-.block-editor-block-list__block[data-align="wide"]{
+ 
+.block-editor-block-list__block[data-align='wide']{
     max-width: 100%!important;
     width: 100%!important;
 }
 
-.wp-block[data-align="wide"]{
+.wp-block[data-align='wide']{
     max-width: 100%!important;
     width: 94%!important;
 }
 
 @media screen and (max-width: 992px){
-    .wp-block[data-align="wide"] {
+    .wp-block[data-align='wide'] {
         width: 96%!important;
     }
 }
 
 @media screen and (max-width: 768px){
-    .wp-block[data-align="wide"] {
+    .wp-block[data-align='wide'] {
         width: 98%!important;
     }
 }
 
 @media screen and (max-width: 576px){
-    .wp-block[data-align="wide"] {
+    .wp-block[data-align='wide'] {
         width: 100%!important;
     }
 }
 
-.block-editor-block-list__block[data-align="center"] {
+.block-editor-block-list__block[data-align='center'] {
     max-width: 100%!important;
     width: 100%!important;
 }
@@ -43,53 +43,6 @@ $secondaryColor: #8344c5;
 .mt-20p{
     margin-top: 20px !important;
 }
-.mb-5p{
-    margin-bottom: 5px !important;
-}
-
-@for $i from 1 through 6 {
-    &.columns-#{$i}{
-        >.block-editor-inner-blocks >.block-editor-block-list__layout{
-            grid-template-columns: repeat(#{$i}, 1fr);
-        }
-    }
-}
-@for $i from 1 through 100 {
-    &.cGap-#{$i}{
-        >.block-editor-inner-blocks >.block-editor-block-list__layout{
-            column-gap: #{$i}px;
-        }
-    }
-}
-@for $i from 1 through 100 {
-    &.rGap-#{$i}{
-        >.block-editor-inner-blocks >.block-editor-block-list__layout{
-            row-gap: #{$i}px;
-        }
-    }
-}
-
-// Buttons
-// Inserter
-.block-editor-inserter, .block-list-appender, .block-editor-block-list__insertion-point-inserter{
-    button{
-        background-color: transparent !important;
-
-        svg{
-            fill: $primaryColor;
-            width: 20px !important;
-            height: 20px;
-            background-color: transparent !important;
-            border: 2px solid $primaryColor;
-            border-radius: 50% !important;
-        }
-    }
-}
-
-.components-button.has-icon .dashicon{
-    margin-right: 0;
-}
-
 
 // Tab Panel
 .bBlocksTabPanel{
@@ -98,26 +51,51 @@ $secondaryColor: #8344c5;
         justify-content: space-between;
 
         button{
+            font-size: 16px;
+            color: $primaryColor;
             width: 50%;
 
             &:focus{
-                border-top: none;
+                color: $primaryColor;
+                box-shadow: none;
             }
         }
         .activeTab{
             border-bottom: 3px solid $primaryColor;
             font-weight: bold;
+            background-color: rgba($primaryColor, .15);
         }
     }
 }
 
-// Spinner
-.components-spinner{
-    background-color: $primaryColor !important;
+.components-button.has-icon .dashicon{
+    margin-right: 0;
+}
+
+// Toolbar
+.bBlocksToolbar{
+    .dashicon{
+        font-size: 23px;
+    }
+}
+
+// Loading
+.bBlocksLoading{
+    color: $primaryColor !important;
+    font-size: 21px !important;
+    font-weight: bold !important;
+    display: flex;
+    align-items: center;
+
+    .components-spinner{
+        margin-top: 0;
+        color: $primaryColor;
+        background-color: $primaryColor;
+    }
 }
 
 // Panel Body
-.bBlocksPanelBody{
+.bBlocksPanelBody, .bBlocksDropdownPopover .components-popover__content{
     // Panel Title
     .components-panel__body-title{
         button{
@@ -181,7 +159,7 @@ $secondaryColor: #8344c5;
             background-color: #fff;
         }
     }
-    
+
     // Range Control
     .components-range-control__root{
         align-items: center!important;
@@ -208,6 +186,9 @@ $secondaryColor: #8344c5;
                 border: 2px solid $primaryColor;
                 box-shadow: none;
             }
+            .css-ckoo7b-Thumb{
+                border: 1px solid $primaryColor;
+            }
         }
     
         .components-range-control__tooltip{
@@ -218,6 +199,7 @@ $secondaryColor: #8344c5;
     // Radio Control
     .components-radio-control__option{
         margin-right: 15px;
+        margin-bottom: 0;
     
         .components-radio-control__input[type=radio]{
             border: 1px solid $primaryColor;
@@ -262,89 +244,105 @@ $secondaryColor: #8344c5;
         }
     }
 
+    // Input Control
+    .components-input-control{
+        height: auto;
+    }
 
-    // Custom Components
-    // Label
-    .bBlocksLabel, .components-unit-control-wrapper label{
+    // Labels
+    .components-unit-control-wrapper label, .components-input-control__label{
         font-size: 14px;
         font-style: italic;
         font-weight: 500;
         margin-right: auto;
     }
 
-    // Reset Value
-    .bBlocksResetVal{
-        min-width: 20px!important;
-        height: 20px;
-        padding: 0 5px!important;
-    
+    // Add or remove Items
+    &.addRemoveItems{
+        .editItem{
+            .removeItem{
+                color: red;
+                font-size: 15px;
+                font-weight: 700;
+                
+                .dashicon{
+                    margin-top: 0;
+                    font-size: 23px;
+                }
+            }
+        }
+
+        .addItem{
+            text-align: center;
+            background: $primaryColor;
+
+            button{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                color: #fff;
+                font-size: 15px;
+                font-weight: 700;
+
+                &:focus{
+                    box-shadow: none;
+                }
+                &:active{
+                    color: #fff;
+                }
+            }
+        }
+
         .dashicon{
-            width: 17px;
-            height: 17px;
-            font-size: 17px;
+            margin-top: 2px;
+            margin-right: 8px;
+            font-size: 23px;
         }
     }
 
-    // Button Group
-    .bBlocksBtnGroup{
-        .components-button, .is-primary{
-            border: 1px solid $secondaryColor;
-            box-shadow: none;
-            padding: 6px 10.5px;
-    
-            &:hover{
-                color: $primaryColor;
-            }
-    
-            .dashicon{
-                margin-left: 0;
-                margin-right: 0;
-            }
-    
-            &.has-icon{
-                padding: 6px 9px;
-            }
+    // Spinner
+    .components-spinner{
+        background-color: $primaryColor !important;
+    }
+}
+
+// Common CSS
+@for $i from 1 through 6 {
+    &.columns-#{$i}{
+        >.block-editor-inner-blocks >.block-editor-block-list__layout{
+            grid-template-columns: repeat(#{$i}, 1fr);
         }
-    
-        .is-primary{
-            color: #fff;
-            background-color: $primaryColor;
-    
-            &:hover{
-                background-color: $secondaryColor !important;
-            }
-            &:focus{
-                outline: 2px solid $secondaryColor !important;
-            }
+    }
+}
+@for $i from 1 through 100 {
+    &.cGap-#{$i}{
+        >.block-editor-inner-blocks >.block-editor-block-list__layout{
+            column-gap: #{$i}px;
         }
-    
+    }
+}
+@for $i from 1 through 100 {
+    &.rGap-#{$i}{
+        >.block-editor-inner-blocks >.block-editor-block-list__layout{
+            row-gap: #{$i}px;
+        }
+    }
+}
+
+// Buttons
+// Inserter
+.block-editor-inserter, .block-list-appender, .block-editor-block-list__insertion-point-inserter{
+    button{
+        background-color: transparent !important;
+
         svg{
-            margin-right: 0!important;
+            fill: $primaryColor;
+            width: 20px !important;
+            height: 20px;
+            background-color: transparent !important;
+            border: 2px solid $primaryColor;
+            border-radius: 50% !important;
         }
-    }
-}
-
-// Custom Components
-// Dropdown
-.bBlocksDropdown{
-    .dashicon{
-        margin-right: 0!important;
-    }
-}
-.bBlocksDropdownPopover {
-    z-index: 9999;
-
-    .components-popover__content{
-        min-width: 280px;
-        margin-right: -35px!important;
-        margin-top: -8px;
-        border: none;
-        box-shadow: 0 3px 15px 0 #4527a480;
-        border-radius: 5px;
-    }
-
-    .dashicon{
-        margin-right: 0!important; 
     }
 }
 

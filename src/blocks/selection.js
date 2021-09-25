@@ -14,7 +14,7 @@ const userSelect = [
 ];
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../Components/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -75,7 +75,7 @@ registerBlockType('b-blocks/selection', {
 
 
             <div className="b_blocks_selection">
-                <div className="b_blocks_inner_content" style={selectionStyle}>
+                <div className="bBlocksInnerContent" style={selectionStyle}>
                     <InnerBlocks />
                 </div>
             </div>
@@ -90,7 +90,7 @@ registerBlockType('b-blocks/selection', {
 
         return (
             <div className="b_blocks_selection">
-                <div className="b_blocks_inner_content" style={selectionStyle}>
+                <div className="bBlocksInnerContent" style={selectionStyle}>
                     <InnerBlocks.Content />
                 </div>
             </div>

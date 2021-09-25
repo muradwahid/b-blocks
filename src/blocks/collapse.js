@@ -6,10 +6,10 @@ import { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } from
 
 // Variables
 import options from '../Const/options';
-const { fontSizes, colors, aligns, fontWeights, textTransforms } = options;
+const { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms } = options;
 
 // Components
-import BtnGroup from '../GutenComp/BtnGroup';
+import BtnGroup from '../Components/BtnGroup';
 
 // Functions
 import func from '../Const/functions';
@@ -107,32 +107,27 @@ registerBlockType('b-blocks/collapse', {
 
                     {/* Colors */}
                     {otherTitle('Colors:')}
-                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab"
-                        tabs={[{ name: 'normal', title: __('Normal', 'b-blocks'), className: 'normal-tab' }, { name: 'hover', title: __('Hover', 'b-blocks'), className: 'hover-tab', }]}>
-                        {tab => {
-                            return <>
-                                {'normal' == tab.name && <>
-                                    {/* Color */}
-                                    {otherTitle('Color:')}
-                                    <ColorPalette value={collBtnColor} onChange={cng => setAttributes({ collBtnColor: cng })} colors={colors} />
+                    <TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+                        {'normal' == tab.name && <>
+                            {/* Color */}
+                            {otherTitle('Color:')}
+                            <ColorPalette value={collBtnColor} onChange={cng => setAttributes({ collBtnColor: cng })} colors={colors} />
 
-                                    {/* Background Color */}
-                                    {otherTitle('Background Color:')}
-                                    <ColorPalette value={collBtnBGColor} onChange={cng => setAttributes({ collBtnBGColor: cng })} colors={colors} />
-                                </>}
+                            {/* Background Color */}
+                            {otherTitle('Background Color:')}
+                            <ColorPalette value={collBtnBGColor} onChange={cng => setAttributes({ collBtnBGColor: cng })} colors={colors} />
+                        </>}
 
-                                {'hover' == tab.name && <>
-                                    {/* Hover Color */}
-                                    {otherTitle('Hover Color:')}
-                                    <ColorPalette value={collBtnHovColor} onChange={cng => setAttributes({ collBtnHovColor: cng })} colors={colors} />
+                        {'hover' == tab.name && <>
+                            {/* Hover Color */}
+                            {otherTitle('Hover Color:')}
+                            <ColorPalette value={collBtnHovColor} onChange={cng => setAttributes({ collBtnHovColor: cng })} colors={colors} />
 
-                                    {/* Hover Background Color */}
-                                    {otherTitle('Hover Background Color:')}
-                                    <ColorPalette value={collBtnHovBGColor} onChange={cng => setAttributes({ collBtnHovBGColor: cng })} colors={colors} />
-                                </>}
-                            </>
-                        }}
-                    </TabPanel>
+                            {/* Hover Background Color */}
+                            {otherTitle('Hover Background Color:')}
+                            <ColorPalette value={collBtnHovBGColor} onChange={cng => setAttributes({ collBtnHovBGColor: cng })} colors={colors} />
+                        </>}
+                    </>}</TabPanel>
                 </PanelBody>
 
 
@@ -162,7 +157,7 @@ registerBlockType('b-blocks/collapse', {
 
                 {/* Collapse */}
                 <div className="collapse" id={`bBlocksCollapse-${clientId}`}>
-                    <div className="collapse_content b_blocks_inner_content" style={contentStyle}>
+                    <div className="collapse_content bBlocksInnerContent" style={contentStyle}>
                         <InnerBlocks />
                     </div>
                 </div>
@@ -198,7 +193,7 @@ registerBlockType('b-blocks/collapse', {
 
                 {/* Collapse */}
                 <div className="collapse" id={`bBlocksCollapse-${cId}`}>
-                    <div className="collapse_content b_blocks_inner_content" style={contentStyle}>
+                    <div className="collapse_content bBlocksInnerContent" style={contentStyle}>
                         <InnerBlocks.Content />
                     </div>
                 </div>
