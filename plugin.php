@@ -82,12 +82,12 @@ function b_blocks_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'b_blocks_enqueue_assets' );
 
 function b_blocks_register() {
-    wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'swiperJS' ), null, false ); // Backend Script
+    wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'swiperJS' ), B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
    
-    wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks', 'bootstrap' ), null ); // Backend Style
+    wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks', 'bootstrap' ), B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 
-    wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery', 'bootstrap', 'mailtoui', 'swiperJS' ), null, true ); // Frontend Script
-    wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor', 'bootstrap' ), null ); // Frontend Style
+    wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery', 'bootstrap', 'mailtoui', 'swiperJS' ), B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+    wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor', 'bootstrap' ), B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
     // Register Blocks
     // b_blocks_wp_register_script( 'posts', array(
@@ -120,8 +120,8 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'team-member' );
     b_blocks_wp_register_script( 'price-lists' );
     b_blocks_wp_register_script( 'price-list' );
-    b_blocks_wp_register_script( 'feature-boxes' );
-    b_blocks_wp_register_script( 'feature-box' );
+    // b_blocks_wp_register_script( 'feature-boxes' );
+    // b_blocks_wp_register_script( 'feature-box' );
     b_blocks_wp_register_script( 'info-box' );
     // b_blocks_wp_register_script( 'button-group', array(
     //     'attributes'      => button_group_attributes(),
@@ -149,17 +149,6 @@ function b_blocks_register() {
     b_blocks_wp_register_script( 'selection' );
     b_blocks_wp_register_script( 'divider' );
     b_blocks_wp_register_script( 'to-top' );
-
-    // WP Localized globals.
-    wp_localize_script(
-        'b_blocks_editor_script',
-        'bBlocksAdmin', // Array containing dynamic data for a JS Global.
-        array(
-            'pluginDirPath' => plugin_dir_path( __DIR__ ),
-            'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-            'siteUrl'       => get_site_url(),
-        )
-    );
 }
 add_action( 'init', 'b_blocks_register' );
 
@@ -205,8 +194,7 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/slider.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-comparison.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-boxes.php';
-// require_once plugin_dir_path( __FILE__ ) . 'inc/flip-box.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/feature-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/button-group.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/countdown.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/cards.php';
-// require_once plugin_dir_path( __FILE__ ) . 'inc/card.php';

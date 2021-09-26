@@ -157,7 +157,7 @@ registerBlockType('b-blocks/posts', {
         const metaStyle = { textAlign: contentAlign, fontSize: `${metaFontSize}px`, textTransform: metaTransform, color: metaTextColor, margin: `0 0 ${metaMB}px 0` }
         const excerptStyle = { textAlign: excerptAlign, fontSize: `${excerptFontSize}px`, color: excerptColor, margin: `0 0 ${excerptMB}px 0` }
 
-        const readMoreWrapStyle = { textAlign: readMoreAlign, }
+        const readMoreWrapStyle = { textAlign: readMoreAlign }
         const readMoreStyle = { display: 'inline-block', fontSize: `${readMoreFontSize}px`, textTransform: readMoreTransform, fontWeight: readMoreFontWeight, color: readMoreColor, transition: 'all .3s ease' }
 
 

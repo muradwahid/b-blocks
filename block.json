@@ -1,0 +1,27 @@
+{
+    "apiVersion": "2",
+    "name": "b-blocks/b-blocks",
+    "title": "B Blocks",
+    "description": "Block collections for gutenberg.",
+    "category": "bBlocks",
+    "keywords": [
+        "block",
+        "gutenberg",
+        "page builder"
+    ],
+    "textdomain": "b-blocks",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    },
+    "editorScript": "file:./dist/editor.js",
+    "style": "file:./dist/style.css"
+}

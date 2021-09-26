@@ -190,7 +190,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.5 =
 * Add Lottie Player Block
-* Update Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group blocks
+* Update Posts, Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group, Countdown blocks
 
 
 == Upgrade Notice ==
@@ -208,4 +208,4 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Update Posts Block
 
 * Add Lottie Player Block
-* Update Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group blocks
+* Update Posts, Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group, Countdown blocks

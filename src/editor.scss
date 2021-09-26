@@ -69,7 +69,7 @@ $secondaryColor: #8344c5;
 }
 
 .components-button.has-icon .dashicon{
-    margin-right: 0;
+    margin: 0;
 }
 
 // Toolbar
@@ -266,7 +266,7 @@ $secondaryColor: #8344c5;
                 font-weight: 700;
                 
                 .dashicon{
-                    margin-top: 0;
+                    margin-right: 8px;
                     font-size: 23px;
                 }
             }
@@ -291,12 +291,6 @@ $secondaryColor: #8344c5;
                     color: #fff;
                 }
             }
-        }
-
-        .dashicon{
-            margin-top: 2px;
-            margin-right: 8px;
-            font-size: 23px;
         }
     }
 

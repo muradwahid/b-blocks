@@ -8,4 +8,10 @@
         background: #e3e3e3;
         color: #666666;
     }
+
+    .bBlocksImageGalleryUpload{
+        .components-form-file-upload{
+            display: none;
+        }
+    }
 }

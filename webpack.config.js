@@ -73,7 +73,7 @@ module.exports = (env, argv) => {
                 {
                     test: /\.(s[ac]|c)ss$/,
                     use: [
-                        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
                             loader: 'postcss-loader',

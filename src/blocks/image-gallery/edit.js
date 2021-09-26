@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, withNotices, Button, ToolbarItem, PanelRow, ToggleControl } from '@wordpress/components';
+import { PanelBody, RangeControl, withNotices, Button, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl } from '@wordpress/components';
 
 // Variables
 import Title from '../../Components/Title';
@@ -72,11 +72,11 @@ const Edit = props => {
         </InspectorControls>
 
         {0 < images.length && <BlockControls>
-            <ToolbarItem>
+            <ToolbarGroup className='bBlocksToolbar'>
                 <MediaUploadCheck>
-                    <MediaUpload allowedTypes={['image']} value={images.map(img => img.id)} onSelect={val => setAttributes({ images: val })} multiple gallery render={({ open }) => <Button className='components-icon-button components-toolbar__control' label={__('Edit Gallery', 'b-blocks')} icon='edit' onClick={open} />} />
+                    <MediaUpload allowedTypes={['image']} value={images.map(img => img.id)} onSelect={val => setAttributes({ images: val })} multiple gallery render={({ open }) => <ToolbarButton label={__('Edit Gallery', 'b-blocks')} icon='edit' onClick={open} />} />
                 </MediaUploadCheck>
-            </ToolbarItem>
+            </ToolbarGroup>
         </BlockControls>}
 
 
@@ -92,6 +92,7 @@ const Edit = props => {
                     filter: drop-shadow(${imgShadow?.styles})
                 }
                 #bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption{
+                    text-align: ${capAlign};
                     color: ${capColor};
                     margin: ${imgPadding?.styles || '0 0'};
                     width: calc((100% - 10px) - (${imgPadding?.horizontal || '0px'} * 2));
@@ -107,14 +108,14 @@ const Edit = props => {
             `}} />
 
             {0 === images.length ?
-                <MediaPlaceholder labels={{ title: __(' Gallery Images', 'b-blocks'), instructions: __('Drag media files, upload or select files from your library.', 'b-blocks') }} icon='format-gallery' allowedTypes={['image']} accept='image/*' multiple onSelect={val => setAttributes({ images: val })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} /> :
+                <MediaPlaceholder className='bBlocksImageGalleryUpload' labels={{ title: __(' Gallery Images', 'b-blocks'), instructions: __('Select image files from your library.', 'b-blocks') }} icon='format-gallery' allowedTypes={['image']} accept='image/*' multiple onSelect={val => setAttributes({ images: val })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} /> :
 
                 <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     {images.map(img => (
                         <a key={img.id} className='imgGalleryImgLink'>
                             <img src={img.url} alt='' className='imgGalleryImg' />
 
-                            {(isCap && img.caption) && <div className={`imgGalleryImgCaption text-${capAlign}`}>
+                            {(isCap && img.caption) && <div className={`imgGalleryImgCaption`}>
                                 <div className='captionContent'>
                                     <h4>{img.caption}</h4>
                                     <p>{img.description}</p>

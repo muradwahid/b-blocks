@@ -1,9 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
 
+// Import Files
 import Edit from './edit';
-
-// Import Sass
 import './editor.scss';
 
 // Icon
@@ -11,34 +9,19 @@ import icons from '../../Const/icons';
 
 // Deprecated
 import deprecated from './deprecated';
+const icon = icons.article;
 
-registerBlockType('b-blocks/posts', {
-    // Build In attributes
-    title: __('Posts', 'b-blocks'),
-    description: __('Display blog posts', 'b-blocks'),
-    icon: icons.article,
-    category: 'bBlocks',
-    keywords: [__('Show Posts', 'b-blocks'), __('Blog Posts', 'b-blocks'), __('Category Posts', 'b-blocks')],
-    supports: {
-        align: ['wide', 'full'],
-        html: false
-    },
+// Metadata
+import metadata from './block.json';
+const { name, example, title, description, category, keywords, supports } = metadata;
+
+registerBlockType(name, {
+    title, description, icon, category, keywords, supports, example,
 
     // Build In Functions
     edit: Edit,
 
     save: () => null,
 
-    deprecated,
-
-    example: {
-        attributes: {
-            'preview': true,
-            columns: {
-                desktop: 1,
-                tablet: 1,
-                mobile: 1
-            },
-        },
-    }
+    deprecated
 });

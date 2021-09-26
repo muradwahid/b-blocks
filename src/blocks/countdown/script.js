@@ -23,7 +23,7 @@ Object.values(allCountdown).map(countdown => {
 
 
         const countdownDays = document.querySelector(`#${countdownId} .countdownDays .digit`);
-        countdownDays ? countdownDays.innerHTML = ('0' + days).slice(-2) : null;
+        countdownDays ? countdownDays.innerHTML = (1 === days.toString().length ? ('0' + days).slice(-2) : days) : null;
 
         const countdownHours = document.querySelector(`#${countdownId} .countdownHours .digit`);
         countdownHours ? countdownHours.innerHTML = ('0' + hours).slice(-2) : null;

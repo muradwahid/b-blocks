@@ -1,9 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
 
+// Import Files
 import Edit from './edit';
-
-// Import Sass
 import './editor.scss';
 
 // Icon
@@ -11,28 +9,19 @@ import icons from '../../Const/icons';
 
 // Deprecated
 import deprecated from './deprecated';
+const icon = icons.imageCompare;
 
-registerBlockType('b-blocks/image-comparison', {
-    // Build In attributes
-    title: __('Image Comparison', 'b-blocks'),
-    description: __('Compare between two images', 'b-blocks'),
-    icon: icons.imageCompare,
-    category: 'bBlocks',
-    keywords: [__('image slider', 'b-blocks'), __('image compare', 'b-blocks'), __('image filter', 'b-blocks')],
-    supports: {
-        align: ['wide', 'full']
-    },
+// Metadata
+import metadata from './block.json';
+const { name, title, description, category, keywords, supports, example } = metadata;
+
+registerBlockType(name, {
+    title, description, icon, category, keywords, supports, example,
 
     // Build In Functions
     edit: Edit,
 
     save: () => null,
 
-    deprecated,
-
-    example: {
-        attributes: {
-            'preview': true
-        },
-    },
+    deprecated
 });

@@ -9,7 +9,7 @@ import './blocks/image-comparison/script';
 import './blocks/flip-boxes/script';
 import './blocks/team-member/script';
 import './blocks/price-list/script';
-import './blocks/feature-box/script';
+import './blocks/feature-boxes/script';
 import './blocks/info-box/script';
 import './blocks/lottie-player/script';
 import './blocks/button-group/script';

@@ -1,15 +1,15 @@
 <?php
 class BBlocksPosts{
     public function __construct(){
-        add_action('init', [$this, 'register']);
-        add_action('rest_api_init', [$this, 'custom_rest']);
+        add_action( 'init', [$this, 'register'] );
+        add_action( 'rest_api_init', [$this, 'custom_rest'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register('posts', array(
+        BBlocksRegisterScript::register( 'posts', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
-        ));
+        ) );
     }
 
     function attributes(){
@@ -76,84 +76,84 @@ class BBlocksPosts{
         );
     }
 
-    function render($attributes){
+    function render( $attributes ){
         extract( $attributes );
 
         // $taxonomies = get_object_taxonomies( $postType, 'array' );
-        // foreach($taxonomies as $tax){
-        //     if($tax->hierarchical){
-        //         $terms = get_terms($tax->name, array(
+        // foreach( $taxonomies as $tax ){
+        //     if( $tax->hierarchical ){
+        //         $terms = get_terms( $tax->name, array(
         //             'orderby'       => 'term_id', 
         //             'order'         => 'ASC',
         //             'hide_empty'    => true, 
-        //         ));
+        //         ) );
         //     }
         // }
 
         // Generate Styles
         $postsStyles = new BBlocksStyleGenerator();
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost", array(
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost", array(
             'margin-bottom' => 'masonry' === $layout ? $rowGap.'px' : '0px',
             $border['styles'] ?? 'border-radius: 5px;' => ''
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPostDefault, #bBlocksPosts-$cId .bBlocksPostSideImage", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostDefault, #bBlocksPosts-$cId .bBlocksPostSideImage", array(
             'text-align' => $contentAlign,
             $contentBG['styles'] ?? 'background-color: #f4f2fc;' => ''
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostText", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostText", array(
             'padding' => $contentPadding['styles'] ?? '20px 25px'
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPostOverlay .bBlocksPostText", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostOverlay .bBlocksPostText", array(
             $contentBG['styles'] ?? 'background-color: #f4f2fc;' => '',
-            'align-items' => 'left' === $contentAlign ? 'flex-start' : ('right' === $contentAlign ? 'flex-end' : ('center' === $contentAlign ? 'center' : 'stretch'))
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle", array(
+            'align-items' => 'left' === $contentAlign ? 'flex-start' : ( 'right' === $contentAlign ? 'flex-end' : ( 'center' === $contentAlign ? 'center' : 'stretch' ) )
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle", array(
             'text-align' => $contentAlign,
             $titleTypo['styles'] ?? 'font-size: 25px;' => '',
             'color' => $titleColor,
             'margin' => $titleMargin['styles'] ?? '0 0 15px 0'
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle a", array( 'color' => $titleColor ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle a", array( 'color' => $titleColor ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta", array(
             'text-align' => $contentAlign,
             $metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => '',
             'color' => $metaTextColor,
             'margin' => $metaMargin['styles'] ?? '0 0 15px 0'
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta a", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta a", array(
             'color' => $metaLinkColor
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta .dashicons", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta .dashicons", array(
             'color' => $metaIconColor
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats", array(
             $metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => ''
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostExcerpt", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostExcerpt", array(
             'text-align' => $excerptAlign,
             $excerptTypo['styles'] ?? 'font-size: 15px;' => '',
             'color' => $excerptColor,
             'margin' => $excerptMargin['styles'] ?? '0 0 10px 0'
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore", array(
             'text-align' => $readMoreAlign
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a", array(
             $readMoreTypo['styles'] ?? 'font-size: 14px; text-transform: uppercase; font-weight: 600;' => '',
             $readMoreColors['styles'] ?? 'color: #fff; background: #8344c5;' => '',
             'padding' => $readMorePadding['styles'] ?? '12px 35px',
             $readMoreBorder['styles'] ?? 'border-radius: 3px;' => ''
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a:hover", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a:hover", array(
             $readMoreHovColors['styles'] ?? 'color: #fff; background: #4527a4;' => ''
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksGridPosts", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksGridPosts", array(
             'grid-gap' => $rowGap .'px '. $columnGap .'px',
             'align-items' => false === $isContentEqualHight ? 'start' : 'initial'
-        ));
-        $postsStyles::addStyle("#bBlocksPosts-$cId .bBlocksMasonryPosts", array(
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksMasonryPosts", array(
             'gap' => $columnGap . 'px'
-        ));
+        ) );
     
         // All Posts
         $posts = get_posts( [
@@ -165,13 +165,13 @@ class BBlocksPosts{
         ] );
 
         ob_start(); ?>
-        <div class='wp-block-b-blocks-posts bBlocksPosts <?php echo isset($align) ? 'align' . esc_attr($align) : ''; ?>' id='bBlocksPosts-<?php echo esc_attr($cId); ?>'>
+        <div class='wp-block-b-blocks-posts bBlocksPosts <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
             <style>
-                @import url(<?php echo esc_url($titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'); ?>);
-                @import url(<?php echo esc_url($metaTypo['googleFontLink'] ?? ''); ?>);
-                @import url(<?php echo esc_url($excerptTypo['googleFontLink'] ?? ''); ?>);
-                @import url(<?php echo esc_url($readMoreTypo['googleFontLink'] ?? ''); ?>);
-                <?php echo wp_kses($postsStyles::renderStyle(), []); ?>
+                @import url(<?php echo esc_url( $titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ); ?>);
+                @import url(<?php echo esc_url( $metaTypo['googleFontLink'] ?? '' ); ?>);
+                @import url(<?php echo esc_url( $excerptTypo['googleFontLink'] ?? '' ); ?>);
+                @import url(<?php echo esc_url( $readMoreTypo['googleFontLink'] ?? '' ); ?>);
+                <?php echo wp_kses( $postsStyles::renderStyle(), [] ); ?>
 
                 <?php foreach ( $posts as $post ) {
                     $imgUrl = get_the_post_thumbnail_url( $post->ID );
@@ -180,17 +180,17 @@ class BBlocksPosts{
                     $sideImgCSS = "#bBlocksPosts-$cId .bBlocksPostSideImage.bBlocksPost-$post->ID{ display: $displayCSS; }";
                     $fImgCSS = $isFImg && $imgUrl ? "#bBlocksPosts-$cId .bBlocksPostOverlay.bBlocksPost-$post->ID, #bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImg-$post->ID{ background-image: url( $imgUrl ); }" : '';
 
-                    echo esc_html($sideImgCSS . $fImgCSS);
+                    echo esc_html( $sideImgCSS . $fImgCSS );
                 } ?>
             </style>
 
 
-            <?php if('grid' === $layout){ ?>
-                <div class='bBlocksGridPosts columns-<?php echo esc_attr($columns['desktop']); ?> columns-tablet-<?php echo esc_attr($columns['tablet']); ?> columns-mobile-<?php echo esc_attr($columns['mobile']); ?>'>
+            <?php if( 'grid' === $layout ){ ?>
+                <div class='bBlocksGridPosts columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                     <?php echo $this->foreachPosts( $attributes, $posts ); ?>
                 </div>
-            <?php }else if('masonry' === $layout){ ?>
-                <div class='bBlocksMasonryPosts cols-<?php echo esc_attr($columns['desktop']); ?> cols-tablet-<?php echo esc_attr($columns['tablet']); ?> cols-mobile-<?php echo esc_attr($columns['mobile']); ?>'>
+            <?php }else if( 'masonry' === $layout ){ ?>
+                <div class='bBlocksMasonryPosts cols-<?php echo esc_attr( $columns['desktop'] ); ?> cols-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> cols-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                     <?php $this->foreachPosts( $attributes, $posts ); ?>
                 </div>
             <?php }else{ echo ''; } ?>
@@ -200,7 +200,7 @@ class BBlocksPosts{
     } // Render
 
     // ForEach Posts
-    function foreachPosts($attributes, $posts){
+    function foreachPosts( $attributes, $posts ){
         extract( $attributes );
         $subLayout = $subLayout ?? 'default';
 
@@ -211,7 +211,7 @@ class BBlocksPosts{
                 echo $this->sideImgLayout( $attributes, $post );
             } else if ( 'overlay-content' === $subLayout || 'overlay-content-hover' === $subLayout || 'overlay-box' === $subLayout ) {
                 echo $this->overlayLayout( $attributes, $post );
-            } else { ?><p><?php _e('Please, select a sub layout', 'b-blocks'); ?></p><?php }
+            } else { ?><p><?php _e( 'Please, select a sub layout', 'b-blocks' ); ?></p><?php }
         }
     }
 
@@ -224,7 +224,7 @@ class BBlocksPosts{
         $titleMetaFilter = 'title-meta' !== $subLayout ? $this->postExcerpt( $attributes, $post ) . $this->postReadMore( $attributes, $post ) : '';
 
         ob_start(); ?>
-        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr($post->ID); ?> bBlocksPostDefault'>
+        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostDefault'>
             <?php echo $this->postFeatureImg( $attributes, $post ); ?>
 
             <div class='bBlocksPostText'>
@@ -240,7 +240,7 @@ class BBlocksPosts{
         $subLayout = $subLayout ?? 'default';
 
         ob_start(); ?>
-        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr($post->ID); ?> bBlocksPostSideImage <?php echo 'left-image' === $subLayout ? 'leftImage' : ('right-image' === $subLayout ? 'rightImage' : ''); ?>'>
+        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostSideImage <?php echo 'left-image' === $subLayout ? 'leftImage' : ( 'right-image' === $subLayout ? 'rightImage' : '' ); ?>'>
             <?php echo 'left-image' === $subLayout ? $this->postFeatureImg( $attributes, $post ) : ''; ?>
 
             <div class='bBlocksPostText'>
@@ -258,7 +258,7 @@ class BBlocksPosts{
         $imgUrl = get_the_post_thumbnail_url( $post->ID );
 
         ob_start(); ?>
-        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr($post->ID); ?> bBlocksPostOverlay <?php echo 'overlay-content-hover' === $subLayout && $imgUrl ? 'bBlocksPostOverlayHover' : ''; ?> <?php echo 'overlay-box' === $subLayout ? 'bBlocksPostOverlayBox' : ''; ?>'>
+        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostOverlay <?php echo 'overlay-content-hover' === $subLayout && $imgUrl ? 'bBlocksPostOverlayHover' : ''; ?> <?php echo 'overlay-box' === $subLayout ? 'bBlocksPostOverlayBox' : ''; ?>'>
             <div class='bBlocksPostText'>
                 <?php echo $this->postTitle( $attributes, $post ) . $this->postMetaData( $attributes, $post ); ?>
 
@@ -275,12 +275,12 @@ class BBlocksPosts{
         $imgUrl = get_the_post_thumbnail_url( $post->ID );
         $tab = $isLinkNewTab ? '_blank' : '_self';
 
-        if($isFImg && $imgUrl){
+        if( $isFImg && $imgUrl ){
             ob_start(); ?>
-            <figure class='bBlocksPostFImg bBlocksPostFImg-<?php echo esc_attr($post->ID); ?>'>
-                <?php echo $isFImgLink ? "<a href=". esc_url(get_post_permalink( $post->ID )) ." target='$tab' rel='noreferrer'></a>" : ''; ?>
+            <figure class='bBlocksPostFImg bBlocksPostFImg-<?php echo esc_attr( $post->ID ); ?>'>
+                <?php echo $isFImgLink ? "<a href=". esc_url( get_post_permalink( $post->ID ) ) ." target='$tab' rel='noreferrer'></a>" : ''; ?>
 
-                <?php echo $isMeta && $isMetaCategory && 'image' === $metaCategoryIn ? "<div class='bBlocksPostFImgCats'>". get_the_category_list(' ', '', $post->ID ) ."</div>" : ''; ?>
+                <?php echo $isMeta && $isMetaCategory && 'image' === $metaCategoryIn ? "<div class='bBlocksPostFImgCats'>". get_the_category_list( ' ', '', $post->ID ) ."</div>" : ''; ?>
             </figure>
         <?php return ob_get_clean();
         }else{
@@ -296,7 +296,7 @@ class BBlocksPosts{
         if ( $isTitle ) {
             ob_start(); ?>
             <h2 class='bBlocksPostTitle'>
-                <?php echo $isTitleLink ? "<a href=". esc_url(get_post_permalink( $post->ID )) ." target='$tab' rel='noreferrer'>$post->post_title</a>" : $post->post_title; ?>
+                <?php echo $isTitleLink ? "<a href=". esc_url( get_post_permalink( $post->ID ) ) ." target='$tab' rel='noreferrer'>$post->post_title</a>" : $post->post_title; ?>
             </h2>
             <?php return ob_get_clean();
         } else {
@@ -367,7 +367,7 @@ class BBlocksPosts{
             ob_start(); ?>
             <span>
                 <span class='dashicons dashicons-admin-comments'></span>&nbsp;
-                <a href='<?php echo esc_url(get_post_permalink( $post->ID )); ?>/#comments' target='_blank' rel='noreferrer'><?php echo wp_count_comments( $post->ID )->total_comments; ?></a>
+                <a href='<?php echo esc_url( get_post_permalink( $post->ID ) ); ?>/#comments' target='_blank' rel='noreferrer'><?php echo wp_count_comments( $post->ID )->total_comments; ?></a>
             </span>
             <?php return ob_get_clean();
         } else {
@@ -395,7 +395,7 @@ class BBlocksPosts{
         if ( $isReadMore ) {
             ob_start(); ?>
             <div class='bBlocksPostReadMore'>
-                <a href='<?php echo esc_url(get_post_permalink( $post->ID )); ?>' target='<?php echo esc_attr($tab); ?>' rel='noreferrer'><?php echo esc_html($readMoreLabel); ?></a>
+                <a href='<?php echo esc_url( get_post_permalink( $post->ID ) ); ?>' target='<?php echo esc_attr( $tab ); ?>' rel='noreferrer'><?php echo esc_html( $readMoreLabel ); ?></a>
             </div>
             <?php return ob_get_clean();
         } else {

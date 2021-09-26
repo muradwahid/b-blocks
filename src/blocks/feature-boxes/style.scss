@@ -1,0 +1,31 @@
+.wp-block-b-blocks-feature-boxes .bBlocksFeatureBoxes{
+    display: grid;
+
+    .bBlocksFeature{
+        .featureDetails{
+            padding: 0 20px;
+        }
+
+        .featureIcon{
+            width: auto;
+            max-width: 100%;
+            height: auto;
+
+            i{
+                font-style: inherit;
+            }
+        }
+        
+        .featureTitle{
+            margin: 0;
+        }
+
+        .featureSeparator{
+            display: inline-block;
+        }
+
+        .featureDescription{
+            margin: 0;
+        }
+    }
+}

@@ -1,39 +1,22 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
 
+// Import Files
 import Edit from './edit';
-
-// Import Sass
 import './editor.scss';
 
 // Icons
 import icons from '../../Const/icons';
+const icon = icons.flipBox;
 
-registerBlockType('b-blocks/flip-boxes', {
-    // Build In attributes
-    title: __('Flip Boxes', 'b-blocks'),
-    description: __('Display Flip boxes section', 'b-blocks'),
-    icon: icons.flipBox,
-    category: 'bBlocks',
-    keywords: [__('flip', 'b-blocks'), __('flip boxes', 'b-blocks'), __('flip boxes section', 'b-blocks')],
-    supports: {
-        align: ['wide', 'full'],
-        html: false
-    },
+// Metadata
+import metadata from './block.json';
+const { name, title, description, category, keywords, supports, example } = metadata;
+
+registerBlockType(name, {
+    title, description, icon, category, keywords, supports, example,
 
     // Build In Functions
     edit: Edit,
 
-    save: () => null,
-
-    example: {
-        attributes: {
-            'preview': true,
-            columns: {
-                desktop: 1,
-                tablet: 1,
-                mobile: 1
-            },
-        },
-    }
+    save: () => null
 });
