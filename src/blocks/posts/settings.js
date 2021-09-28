@@ -17,7 +17,7 @@ import ColorsControl from '../../Components/ColorsControl';
 import Typography from '../../Components/Typography';
 import BtnGroup from '../../Components/BtnGroup';
 import options from '../../Const/options';
-const { normalHoverTabs, generalStyleTabs, aligns, postsOrdersBy, postsOrders } = options;
+const { generalStyleTabs, aligns, postsOrdersBy, postsOrders } = options;
 const layouts = [
     { label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
     { label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry }
@@ -277,12 +277,9 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                         {/* Border */}
                         <BorderControl label={__('Border:', 'b-blocks')} border={readMoreBorder} onChange={val => setAttributes({ readMoreBorder: val })} defaults={{ radius: '3px' }} />
 
-                        <Title>{__('Colors:', 'b-blocks')}</Title>
-                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
-                            {'normal' === tab.name && <ColorsControl colors={readMoreColors} onChange={val => setAttributes({ readMoreColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
+                        <ColorsControl colors={readMoreColors} onChange={val => setAttributes({ readMoreColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
 
-                            {'hover' === tab.name && <ColorsControl colors={readMoreHovColors} onChange={val => setAttributes({ readMoreHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
-                        </>}</TabPanel>
+                        <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={readMoreHovColors} onChange={val => setAttributes({ readMoreHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
                     </PanelBody>}
                 </>}
             </>}</TabPanel>

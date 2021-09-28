@@ -69,14 +69,14 @@ const Edit = props => {
 
                     const cardImage = () => img?.url ? <>
                         <figure className='cardImage'>
-                            <img src={img?.url} alt={img?.alt} />
+                            <img className={img?.id ? `wp-image-${img?.id}` : null} src={img?.url} alt={img?.alt} />
 
                             {'image' === titlePos && cardTitle()}
                         </figure>
                         {isBlobURL(img?.url) && <Spinner />}
                     </> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} img={img} onChange={val => updateCard(index, 'img', val)} />;
 
-                    return <div key={index} className={`${index === activeIndex ? 'nowEditing' : ''}`} id={`bBlocksCard-${index}`}>
+                    return <div key={index} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksCard-${index}`}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
                             #bBlocksCards-${clientId} #bBlocksCard-${index}{ background-color: ${bgColor}; }

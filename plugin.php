@@ -116,8 +116,8 @@ function b_blocks_register() {
     //     'attributes'      => flip_box_attributes(),
     //     'render_callback' => 'render_b_blocks_flip_box'
     // ) );
-    b_blocks_wp_register_script( 'team-members' );
-    b_blocks_wp_register_script( 'team-member' );
+    // b_blocks_wp_register_script( 'team-members' );
+    // b_blocks_wp_register_script( 'team-member' );
     b_blocks_wp_register_script( 'price-lists' );
     b_blocks_wp_register_script( 'price-list' );
     // b_blocks_wp_register_script( 'feature-boxes' );
@@ -194,6 +194,7 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/slider.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-comparison.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-boxes.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/team-members.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/feature-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/button-group.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/countdown.php';

@@ -60,7 +60,7 @@ const Edit = props => {
                 {features.map((item, index) => {
                     const { background, isUpIcon, icon, upIcon, iconWidth, title, titleColor, separator, desc, descColor } = item;
 
-                    return <div key={index} className={`bBlocksFeature ${index === activeIndex ? 'nowEditing' : ''}`} id={`bBlocksFeature-${index}`}>
+                    return <div key={index} className={`bBlocksFeature ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFeature-${index}`}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
                             #bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index}{

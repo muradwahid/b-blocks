@@ -94,6 +94,10 @@ $secondaryColor: #8344c5;
     }
 }
 
+.bBlocksNowEditing{
+    outline: 2px solid $primaryColor;
+}
+
 // Panel Body
 .bBlocksPanelBody, .bBlocksDropdownPopover .components-popover__content{
     // Panel Title

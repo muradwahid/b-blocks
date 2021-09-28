@@ -7,6 +7,7 @@ import './blocks/slider/script';
 import './blocks/image-gallery/script';
 import './blocks/image-comparison/script';
 import './blocks/flip-boxes/script';
+import './blocks/team-members/script';
 import './blocks/team-member/script';
 import './blocks/price-list/script';
 import './blocks/feature-boxes/script';

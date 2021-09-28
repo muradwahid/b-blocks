@@ -13,7 +13,7 @@ import BorderControl from '../../Components/BorderControl';
 import ColorsControl from '../../Components/ColorsControl';
 import IconControl from '../../Components/IconControl';
 import options from '../../Const/options';
-const { normalHoverTabs, pxUnit, perUnit, emUnit } = options;
+const { pxUnit, perUnit, emUnit } = options;
 const sepTypes = [
     { label: 'Icon', value: 'icon', icon: 'Icon' },
     { label: 'Text', value: 'text', icon: 'Text' }
@@ -76,12 +76,9 @@ const Edit = props => {
 
                         <BorderControl label={__('Border', 'b-blocks')} border={btnOneBorder} onChange={val => setAttributes({ btnOneBorder: val })} defaults={{ radius: '50px' }} />
 
-                        <Title mt='10px'>{__('Colors:', 'b-blocks')}</Title>
-                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
-                            {'normal' == tab.name && <ColorsControl colors={btnOneColors} onChange={val => setAttributes({ btnOneColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
+                        <ColorsControl colors={btnOneColors} onChange={val => setAttributes({ btnOneColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-                            {'hover' == tab.name && <ColorsControl colors={btnOneHovColors} onChange={val => setAttributes({ btnOneHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
-                        </>}</TabPanel>
+                        <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnOneHovColors} onChange={val => setAttributes({ btnOneHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
                     </>}
 
                     {'btn-two' == tab.name && <>
@@ -92,12 +89,9 @@ const Edit = props => {
 
                         <BorderControl label={__('Border', 'b-blocks')} border={btnTwoBorder} onChange={val => setAttributes({ btnTwoBorder: val })} defaults={{ radius: '50px' }} />
 
-                        <Title mt='10px'>{__('Colors:', 'b-blocks')}</Title>
-                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
-                            {'normal' == tab.name && <ColorsControl colors={btnTwoColors} onChange={val => setAttributes({ btnTwoColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
+                        <ColorsControl colors={btnTwoColors} onChange={val => setAttributes({ btnTwoColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
 
-                            {'hover' == tab.name && <ColorsControl colors={btnTwoHovColors} onChange={val => setAttributes({ btnTwoHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
-                        </>}</TabPanel>
+                        <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnTwoHovColors} onChange={val => setAttributes({ btnTwoHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
                     </>}
                 </>}
                 </TabPanel>

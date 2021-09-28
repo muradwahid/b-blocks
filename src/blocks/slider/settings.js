@@ -15,7 +15,7 @@ import SpaceControl from '../../Components/SpaceControl';
 import ColorsControl from '../../Components/ColorsControl';
 import Typography from '../../Components/Typography';
 import options from '../../Const/options';
-const { normalHoverTabs, generalStyleTabs, effects, pxUnit, perUnit, emUnit, vhUnit } = options;
+const { generalStyleTabs, effects, pxUnit, perUnit, emUnit, vhUnit } = options;
 
 const Settings = ({ settings }) => {
     const { attributes: { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isAutoplay, speed, effect, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, sliderAlign, isTitle, titleTypo, titleColor, titleMargin, isDesc, descTypo, descColor, descMargin, isBtn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes } = settings;
@@ -201,12 +201,9 @@ const Settings = ({ settings }) => {
                         <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
 
                         {/* Colors */}
-                        <Title>{__('Colors:', 'b-blocks')}</Title>
-                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
-                            {'normal' === tab.name && <ColorsControl colors={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
+                        <ColorsControl colors={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-                            {'hover' === tab.name && <ColorsControl colors={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />}
-                        </>}</TabPanel>
+                        <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
                     </PanelBody>
                 </>}
             </>}</TabPanel>

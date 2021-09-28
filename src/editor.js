@@ -6,7 +6,7 @@ import './blocks/section-heading.js';
 import './blocks/image-gallery';
 import './blocks/image-comparison';
 import './blocks/flip-boxes';
-import './blocks/team-member';
+import './blocks/team-members';
 import './blocks/price-list';
 import './blocks/feature-boxes';
 import './blocks/info-box';

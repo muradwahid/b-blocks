@@ -63,7 +63,6 @@ const Settings = ({ settings }) => {
                     return <PanelBody key={index} className='bBlocksPanelBody editItem' title={__(`Card No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
                         <BColor label={__('Background Color:', 'b-blocks')} value={bgColor} onChange={val => updateCard(index, 'bgColor', val)} defaultColor='#fff0' />
 
-
                         <ImageHolderControl className='mt-20p' label={__('Image:', 'b-blocks')} img={img} onChange={val => updateCard(index, 'img', val)} />
                         <ChangeImageData className='mt-20p' img={img} onChange={val => updateCard(index, 'img', val)} />
 

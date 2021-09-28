@@ -18,7 +18,7 @@ import BDevice from '../../Components/BDevice';
 import Typography from '../../Components/Typography';
 import SpaceControl from '../../Components/SpaceControl';
 import options from '../../Const/options';
-const { normalHoverTabs, pxUnit, perUnit, emUnit } = options;
+const { pxUnit, perUnit, emUnit } = options;
 const frontBackTab = [
     { name: 'front', title: __('Front', 'b-blocks') },
     { name: 'back', title: __('Back', 'b-blocks') }
@@ -127,12 +127,9 @@ const Settings = ({ settings }) => {
 
                             <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => updateFlipBox(index, 'btnBorder', val)} defaults={{ radius: '3px' }} />
 
-                            <Title>{__('Colors:', 'b-blocks')}</Title>
-                            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
-                                {'normal' == tab.name && <ColorsControl colors={btnColors} onChange={val => updateFlipBox(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />}
+                            <ColorsControl colors={btnColors} onChange={val => updateFlipBox(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />
 
-                                {'hover' == tab.name && <ColorsControl colors={btnHovColors} onChange={val => updateFlipBox(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />}
-                            </>}</TabPanel>
+                            <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => updateFlipBox(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />
                         </PanelBody>
 
                         <Button className='mt-20p removeItem' label={__('Remove this box', 'b-blocks')} onClick={e => {
