@@ -30,7 +30,7 @@ class BBlocksFlipBoxes{
                     'backTitle' => 'Back Title 1',
                     'titleColor' => '#fff',
 
-                    'desc' => 'Flip box description 1',
+                    'desc' => 'This content area describes flip box 1 descriptions/details.',
                     'descColor' => '#fff',
 
                     'btn' => 'Button 1',
@@ -52,7 +52,7 @@ class BBlocksFlipBoxes{
                     'backTitle' => 'Back Title 2',
                     'titleColor' => '#fff',
 
-                    'desc' => 'Flip box description 2',
+                    'desc' => 'This content area describes flip box 2 descriptions/details.',
                     'descColor' => '#fff',
 
                     'btn' => 'Button 2',
@@ -74,7 +74,7 @@ class BBlocksFlipBoxes{
                     'backTitle' => 'Back Title 3',
                     'titleColor' => '#fff',
 
-                    'desc' => 'Flip box description 3',
+                    'desc' => 'This content area describes flip box 3 descriptions/details.',
                     'descColor' => '#fff',
 
                     'btn' => 'Button 3',

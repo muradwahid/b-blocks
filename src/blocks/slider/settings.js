@@ -29,7 +29,7 @@ const Settings = ({ settings }) => {
                 background: { color: '#00000080' },
                 position: 'center center',
                 title: `Slide Title ${slides.length + 1}`,
-                description: `Description of slide ${slides.length + 1}`,
+                description: `This content area describes slider ${slides.length + 1} descriptions/details.`,
                 btnText: `Button ${slides.length + 1}`,
                 btnLink: '#'
             }]
@@ -62,20 +62,20 @@ const Settings = ({ settings }) => {
 
                                 <PanelRow>
                                     <Title mt='0' mb='0'>{__('Title:', 'b-blocks')}</Title>
-                                    <TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide Title', 'b-blocks')} />
+                                    <TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
                                 </PanelRow>
 
                                 <Title mt='0'>{__('Description:', 'b-blocks')}</Title>
-                                <TextareaControl value={description} onChange={val => updateSlide(index, 'description', val)} placeholder={__('Description of the slider', 'b-blocks')} />
+                                <TextareaControl value={description} onChange={val => updateSlide(index, 'description', val)} placeholder={__('Description of the slide', 'b-blocks')} />
 
                                 <PanelRow>
                                     <Title mt='0' mb='0'>{__('Button Text:', 'b-blocks')}</Title>
-                                    <TextControl value={btnText} onChange={val => updateSlide(index, 'btnText', val)} placeholder={__('Button Text', 'b-blocks')} />
+                                    <TextControl value={btnText} onChange={val => updateSlide(index, 'btnText', val)} placeholder={__('Click Me', 'b-blocks')} />
                                 </PanelRow>
 
                                 <PanelRow>
                                     <Title mt='0' mb='0'>{__('Button Link:', 'b-blocks')}</Title>
-                                    <TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button Link', 'b-blocks')} />
+                                    <TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
                                 </PanelRow>
 
                                 <Button className='mt-20p removeItem' label={__('Remove this slide', 'b-blocks')} onClick={e => {

@@ -7,7 +7,7 @@ import './blocks/image-gallery';
 import './blocks/image-comparison';
 import './blocks/flip-boxes';
 import './blocks/team-members';
-import './blocks/price-list';
+import './blocks/price-lists';
 import './blocks/feature-boxes';
 import './blocks/info-box';
 import './blocks/lottie-player';

@@ -25,7 +25,7 @@ class BBlocksCards{
                     'catColor' => '#0dcaf0',
                     'title' => 'Card Title 1',
                     'titleColor' => '#ff7500',
-                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipis cingelit. Etiam lacinia elit et placerat finibus.',
+                    'desc' => 'This content area describes card 1 descriptions or details.',
                     'descColor' => '#333'
                 ),
                 array(
@@ -36,7 +36,7 @@ class BBlocksCards{
                     'catColor' => '#0dcaf0',
                     'title' => 'Card Title 2',
                     'titleColor' => '#ff7500',
-                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipis cingelit. Etiam lacinia elit et placerat finibus.',
+                    'desc' => 'This content area describes card 2 descriptions or details.',
                     'descColor' => '#333'
                 ),
                 array(
@@ -47,7 +47,7 @@ class BBlocksCards{
                     'catColor' => '#0dcaf0',
                     'title' => 'Card Title 3',
                     'titleColor' => '#ff7500',
-                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipis cingelit. Etiam lacinia elit et placerat finibus.',
+                    'desc' => 'This content area describes card 3 descriptions or details.',
                     'descColor' => '#333'
                 )
             ) ),
@@ -145,7 +145,7 @@ class BBlocksCards{
                     $cardTitleInContent = 'content' === $titlePos ? $cardTitle : '';
 
                     $cardImage = $img['url'] ? "<figure class='cardImage'>
-                        <img class='$imgClass' src='". $img['url'] ."' alt='".$img['alt']."' /> $cardTitleInImage
+                        <img class='$imgClass' src='". $img['url'] ."' alt='". $img['alt'] ."' /> $cardTitleInImage
                     </figure>" : '';
 
                     $cardImageInTop =  'top' === $imgPos ? $cardImage : '';

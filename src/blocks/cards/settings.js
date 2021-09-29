@@ -40,7 +40,7 @@ const Settings = ({ settings }) => {
                 title: `Card Title ${cards.length + 1}`,
                 titleColor: '#ff7500',
 
-                desc: 'Lorem ipsum dolor sit amet, consectetur adipis cingelit. Etiam lacinia elit et placerat finibus.',
+                desc: `This content area describes card ${cards.length + 1} descriptions/details.`,
                 descColor: '#333'
             }]
         });

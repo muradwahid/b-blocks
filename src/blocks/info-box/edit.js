@@ -290,9 +290,9 @@ const Edit = props => {
             border: `${borderWidth}px ${borderStyle} ${borderColor}`, boxShadow: `${shadowColor} ${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px ${shadowSpreed}px`
         }}>
             {'bottom' === imgPos && <>
-                <RichText className={`infoTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h3' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Info Title', 'b-blocks')} />
+                <RichText className={`infoTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h3' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Info title', 'b-blocks')} />
 
-                {isDesc && <RichText className={`infoDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of info', 'b-blocks')} />}
+                {isDesc && <RichText className={`infoDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of the info', 'b-blocks')} />}
             </>}
 
             {isImg && <>
@@ -305,9 +305,9 @@ const Edit = props => {
             </>}
 
             {'top' === imgPos && <>
-                <RichText className={`infoTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h3' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Info Title', 'b-blocks')} />
+                <RichText className={`infoTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h3' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Info title', 'b-blocks')} />
 
-                {isDesc && <RichText className={`infoDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of info', 'b-blocks')} />}
+                {isDesc && <RichText className={`infoDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of the info', 'b-blocks')} />}
             </>}
 
             {isBtn && <>

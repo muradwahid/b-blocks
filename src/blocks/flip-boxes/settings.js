@@ -52,7 +52,7 @@ const Settings = ({ settings }) => {
                 },
 
                 description: {
-                    text: `Flip box description ${boxes.length + 1}`,
+                    text: `This content area describes flip box ${boxes.length + 1} descriptions/details.`,
                     color: '#fff'
                 },
 

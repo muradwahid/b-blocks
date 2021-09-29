@@ -65,7 +65,7 @@ const Edit = props => {
                     const { bgColor, img, imgBorder, cat, catColor, title, titleColor, desc, descColor } = item;
 
                     // Components
-                    const cardTitle = () => isTitle && <RichText className='cardTitle' tagName='h3' value={title} onChange={val => updateCard(index, 'title', val)} placeholder={__('Card Title', 'b-blocks')} inlineToolbar />
+                    const cardTitle = () => isTitle && <RichText className='cardTitle' tagName='h3' value={title} onChange={val => updateCard(index, 'title', val)} placeholder={__('Card title', 'b-blocks')} inlineToolbar />
 
                     const cardImage = () => img?.url ? <>
                         <figure className='cardImage'>
@@ -90,12 +90,11 @@ const Edit = props => {
                             {'top' === imgPos && cardImage()}
 
                             <div className='cardDetails'>
-                                {isCat && <RichText className='cardCategory' tagName='h6' value={cat} onChange={val => updateCard(index, 'cat', val)} placeholder={__('Card Category', 'b-blocks')} inlineToolbar />}
+                                {isCat && <RichText className='cardCategory' tagName='h6' value={cat} onChange={val => updateCard(index, 'cat', val)} placeholder={__('Card category', 'b-blocks')} inlineToolbar />}
 
                                 {'content' === titlePos && cardTitle()}
 
-
-                                {isDesc && <RichText className='cardDescription' tagName='p' value={desc} onChange={val => updateCard(index, 'desc', val)} placeholder={__('Card Category', 'b-blocks')} inlineToolbar />}
+                                {isDesc && <RichText className='cardDescription' tagName='p' value={desc} onChange={val => updateCard(index, 'desc', val)} placeholder={__('Description of the card', 'b-blocks')} inlineToolbar />}
                             </div>
 
                             {'bottom' === imgPos && cardImage()}

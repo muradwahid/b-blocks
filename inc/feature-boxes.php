@@ -26,7 +26,7 @@ class BBlocksFeatureBoxes{
                     'title' => 'Feature 1',
                     'titleColor' => '#333',
                     'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
-                    'desc' => 'This content area describes feature 1 descriptions/details.',
+                    'desc' => 'This content area describes feature 1 descriptions or details.',
                     'descColor' => '#333'
                 ),
                 array(
@@ -38,7 +38,7 @@ class BBlocksFeatureBoxes{
                     'title' => 'Feature 2',
                     'titleColor' => '#333',
                     'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
-                    'desc' => 'This content area describes feature 2 descriptions/details.',
+                    'desc' => 'This content area describes feature 2 descriptions or details.',
                     'descColor' => '#333'
                 ),
                 array(
@@ -50,7 +50,7 @@ class BBlocksFeatureBoxes{
                     'title' => 'Feature 3',
                     'titleColor' => '#333',
                     'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
-                    'desc' => 'This content area describes feature 3 descriptions/details.',
+                    'desc' => 'This content area describes feature 3 descriptions or details.',
                     'descColor' => '#333'
                 )
             ) ),

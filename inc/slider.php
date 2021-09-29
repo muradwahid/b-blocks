@@ -21,14 +21,14 @@ class BBlocksSlider{
                     'background' => array( 'color' => '#00000080' ),
                     'position' => 'center center',
                     'title' => 'Slide Title 1',
-                    'description' => 'Description of slide 1',
+                    'description' => 'This content area describes slider 1 descriptions/details.',
                     'btnText' => 'Button 1', 'btnLink' => '#'
                 ),
                 array(
                     'background' => array( 'color' => '#00000080' ),
                     'position' => 'center center',
                     'title' => 'Slide Title 2',
-                    'description' => 'Description of slide 2',
+                    'description' => 'This content area describes slider 2 descriptions/details.',
                     'btnText' => 'Button 2', 'btnLink' => '#'
                 )
             ) ),
@@ -132,7 +132,7 @@ class BBlocksSlider{
                         $slideBtnLink = $slide['btnLink'] ?? ''; ?>
 
                         <div class='slide slide-<?php echo esc_attr( $index ) ?> swiper-slide'>
-                            <style><?php echo "#bBlocksSlider-".esc_attr( $cId )." .bBlocksSlider .slide-$index{".wp_kses( $slideBGStyle, array() )."}" ?></style>
+                            <style><?php echo "#bBlocksSlider-". esc_attr( $cId ) ." .bBlocksSlider .slide-$index{". wp_kses( $slideBGStyle, array() ) ."}" ?></style>
 
                             <div class='sliderContent <?php echo esc_attr( str_replace( ' ', '-', $slidePosition ) ); ?>'>
                                 <?php echo $isTitle && $slideTitle ? "<h2 class='sliderTitle'>". esc_html( $slideTitle ) ."</h2>" : ''; ?>

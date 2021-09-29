@@ -27,7 +27,7 @@
                     },
                     "position": "center center",
                     "title": "Slide Title 1",
-                    "description": "Description of slide 1",
+                    "description": "This content area describes slider 1 descriptions/details.",
                     "btnText": "Button 1",
                     "btnLink": "#"
                 },
@@ -37,7 +37,7 @@
                     },
                     "position": "center center",
                     "title": "Slide Title 2",
-                    "description": "Description of slide 2",
+                    "description": "This content area describes slider 2 descriptions/details.",
                     "btnText": "Button 2",
                     "btnLink": "#"
                 }

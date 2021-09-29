@@ -164,7 +164,7 @@ const Edit = props => {
             }
 
             <div className='itemDetails'>
-                <RichText className={`itemTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Product Name', 'b-blocks')} />
+                <RichText className={`itemTitle fontSize-${titleFontSize} mb-${titleMB}`} style={{ color: titleColor }} tagName='h4' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Product name', 'b-blocks')} />
 
                 {isDesc && <RichText className={`itemDescription fontSize-${descFontSize} mb-${descMB}`} style={{ color: descColor }} tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Description of the product', 'b-blocks')} />}
 

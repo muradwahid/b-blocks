@@ -38,16 +38,16 @@
                     "photoBorder": {
                         "radius": "50%"
                     },
-                    "name": "",
+                    "name": "Martin",
                     "nameColor": "#333",
-                    "title": "",
+                    "title": "Founder",
                     "titleColor": "#333",
                     "separator": {
                         "width": "20%",
                         "height": "3px",
                         "color": "#777"
                     },
-                    "bio": "",
+                    "bio": "I am a self-motivated and self-taught professional who likes to solve problems.",
                     "bioColor": "#333",
                     "social": [
                         {
@@ -100,16 +100,16 @@
                     "photoBorder": {
                         "radius": "50%"
                     },
-                    "name": "",
+                    "name": "Mary",
                     "nameColor": "#333",
-                    "title": "",
+                    "title": "Co-Founder",
                     "titleColor": "#333",
                     "separator": {
                         "width": "20%",
                         "height": "3px",
                         "color": "#777"
                     },
-                    "bio": "",
+                    "bio": "I am a self-motivated and self-taught professional who likes to solve problems.",
                     "bioColor": "#333",
                     "social": [
                         {
@@ -162,16 +162,16 @@
                     "photoBorder": {
                         "radius": "50%"
                     },
-                    "name": "",
+                    "name": "John Doe",
                     "nameColor": "#333",
-                    "title": "",
+                    "title": "CEO",
                     "titleColor": "#333",
                     "separator": {
                         "width": "20%",
                         "height": "3px",
                         "color": "#777"
                     },
-                    "bio": "",
+                    "bio": "I am a self-motivated and self-taught professional who likes to solve problems.",
                     "bioColor": "#333",
                     "social": [
                         {
