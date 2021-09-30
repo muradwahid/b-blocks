@@ -65,9 +65,7 @@ registerBlockType('b-blocks/accordion', {
         const contentStyle = { textAlign: contentAlign, border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
         // Functions
-        useEffect(() => {
-            clientId && setAttributes({ cId: clientId });
-        }, [clientId]);
+        useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
         const headingHov = e => {
             e.target.style.color = headingHovColor;

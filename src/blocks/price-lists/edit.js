@@ -15,9 +15,7 @@ const Edit = props => {
     const { className, attributes: { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep }, setAttributes, clientId } = props;
 
     // useEffect
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const updateProduct = (index, type, val) => {
@@ -66,7 +64,7 @@ const Edit = props => {
                 {products?.map((item, index) => {
                     const { background, img, imgBorder, name, nameColor, desc, descColor, price, priceColor, separator } = item;
 
-                    return <div key={index} className={`bBlocksPrice ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksPrice-${index}`}>
+                    return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksPrice ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksPrice-${index}`}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
                             #bBlocksPriceLists-${clientId} #bBlocksPrice-${index}{

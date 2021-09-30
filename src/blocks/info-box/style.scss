@@ -1,23 +1,21 @@
 .wp-block-b-blocks-info-box{
-    background-blend-mode: overlay;
-
-    .infoImage{
-        width: auto;
-        max-width: 100%;
-        height: auto;
-    }
-    
-    .infoTitle{
-        font-weight: 600;
-        margin: 0;
-    }
-
-    .infoDescription{
-        margin: 0;
-    }
-
-    .infoButton{
+    .bBlocksInfoBox{
         display: inline-block;
-        text-decoration: none;
+
+        .infoBoxIcon{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+
+            i{
+                font-style: inherit;
+            }
+        }
+
+        .infoBoxButton{
+            display: inline-block;
+            text-decoration: none;
+        }
     }
 }

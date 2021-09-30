@@ -6,9 +6,6 @@ import './editor.scss';
 
 // Icon
 import icons from '../../Const/icons';
-
-// Deprecated
-import deprecated from './deprecated';
 const icon = icons.article;
 
 // Metadata
@@ -21,7 +18,5 @@ registerBlockType(name, {
     // Build In Functions
     edit: Edit,
 
-    save: () => null,
-
-    deprecated
+    save: () => null
 });

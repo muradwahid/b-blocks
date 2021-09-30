@@ -10,9 +10,7 @@ const Edit = props => {
     const { className, attributes: { align, slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isAutoplay, speed, effect, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, sliderAlign, isTitle, titleTypo, titleColor, titleMargin, isDesc, descTypo, descColor, descMargin, isBtn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes, clientId } = props;
 
     // Functions
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const currentBlock = document.querySelector(`#block-${clientId} .wp-block`);

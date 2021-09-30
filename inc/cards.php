@@ -18,7 +18,7 @@ class BBlocksCards{
 
             'cards' => array( 'type' => 'array', 'default' => array(
                 array(
-                    'bgColor' => '#fff0',
+                    'background' => array( 'color' => '#0000' ),
                     'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
                     'imgBorder' => array( 'radius' => '5px' ),
                     'cat' => 'Category 1',
@@ -29,7 +29,7 @@ class BBlocksCards{
                     'descColor' => '#333'
                 ),
                 array(
-                    'bgColor' => '#fff0',
+                    'background' => array( 'color' => '#0000' ),
                     'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
                     'imgBorder' => array( 'radius' => '5px' ),
                     'cat' => 'Category 2',
@@ -40,7 +40,7 @@ class BBlocksCards{
                     'descColor' => '#333'
                 ),
                 array(
-                    'bgColor' => '#fff0',
+                    'background' => array( 'color' => '#0000' ),
                     'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
                     'imgBorder' => array( 'radius' => '5px' ),
                     'cat' => 'Category 3',
@@ -120,8 +120,8 @@ class BBlocksCards{
                     extract( $card );
 
                     $cardStyle = new BBlocksStyleGenerator();
-                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index", array(
-                        'background-color' => $bgColor
+                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .bBlocksCard", array(
+                        $background['styles'] ?? 'background-color: #0000;' => ''
                     ) );
                     $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .cardImage", array(
                         $imgBorder['styles'] ?? 'border-radius: 5px;' => ''

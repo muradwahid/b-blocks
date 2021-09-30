@@ -87,9 +87,7 @@ registerBlockType('b-blocks/modal', {
         const modalBtnStyle = { fontSize: `${modalBtnFontSize}px`, textTransform: modalBtnTransform, fontWeight: modalBtnFontWeight, padding: `${modalBtnPTB}px ${modalBtnPLR}px`, borderRadius: `${modalBtnRadius}px`, color: modalBtnColor, backgroundColor: modalBtnBGColor };
 
         // Functions
-        useEffect(() => {
-            clientId && setAttributes({ cId: clientId });
-        }, [clientId]);
+        useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
         const modalBtnHov = e => {
             e.target.style.color = modalBtnHovColor;

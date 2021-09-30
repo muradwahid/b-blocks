@@ -10,9 +10,7 @@ const Edit = props => {
     const { className, attributes: { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo }, setAttributes, clientId } = props;
 
     // useEffect
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const updateFeature = (index, type, val) => {
@@ -60,7 +58,7 @@ const Edit = props => {
                 {features.map((item, index) => {
                     const { background, isUpIcon, icon, upIcon, iconWidth, title, titleColor, separator, desc, descColor } = item;
 
-                    return <div key={index} className={`bBlocksFeature ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFeature-${index}`}>
+                    return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksFeature ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFeature-${index}`}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
                             #bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index}{

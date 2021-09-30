@@ -31,9 +31,7 @@ const Edit = props => {
     // Functions
     const parseEmtStr = (val, def) => undefined === val ? def : val;
 
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
     const [seconds, setSeconds] = useState(0);
     useEffect(() => {

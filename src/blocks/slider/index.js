@@ -12,16 +12,11 @@ const icon = icons.slider;
 import metadata from './block.json';
 const { name, example, title, description, category, keywords, supports } = metadata;
 
-// Deprecated
-import deprecated from './deprecated';
-
 registerBlockType(name, {
     title, description, icon, category, keywords, supports, example,
 
     // Build In Functions
     edit: Edit,
 
-    save: () => null,
-
-    deprecated
+    save: () => null
 });

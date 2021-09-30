@@ -80,9 +80,7 @@ registerBlockType('b-blocks/slider', {
         const sliderIndicatorsStyle = { backgroundColor: indicatorColor, width: `${indicatorWidth}px`, height: `${indicatorHeight}px`, borderRadius: `${indicatorRadius}${indicatorRadiusType}` }
 
         // Functions
-        useEffect(() => {
-            clientId && setAttributes({ cId: clientId });
-        }, [clientId]);
+        useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
         // Components
         const slideIndicators = value => {

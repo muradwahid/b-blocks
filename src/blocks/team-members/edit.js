@@ -17,9 +17,7 @@ const Edit = props => {
     const { className, attributes: { members = [], columns, columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialIconMargin }, setAttributes, clientId, isSelected } = props;
 
     // useEffect
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [selectedSocial, setSelectedSocial] = useState(null);

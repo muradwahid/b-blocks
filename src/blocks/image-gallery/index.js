@@ -8,9 +8,6 @@ import './editor.scss';
 import icons from '../../Const/icons';
 const icon = icons.gallery;
 
-// Deprecated
-import deprecated from './deprecated';
-
 // Metadata
 import metadata from './block.json';
 const { name, title, description, category, keywords, supports, example } = metadata;
@@ -21,7 +18,5 @@ registerBlockType(name, {
     // Build In Functions
     edit: Edit,
 
-    save: () => null,
-
-    deprecated
+    save: () => null
 });

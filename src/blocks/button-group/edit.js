@@ -27,9 +27,7 @@ const Edit = props => {
     const { className, attributes: { btnAlign, btnType, btnTypo, btnWidth, btnPadding, btnOne, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwo, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepWidth, sepSize, sepBGColor }, setAttributes, clientId } = props;
 
     // Functions
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
     return <>
         <InspectorControls>

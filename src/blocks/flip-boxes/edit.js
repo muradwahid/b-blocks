@@ -8,9 +8,7 @@ const Edit = props => {
     const { className, attributes: { boxes, columns, columnGap, rowGap, boxHeight, textAlign, boxPadding, isIcon, iconMargin, titleTypo, titleMargin, isDesc, descTypo, isBtn, btnTypo, btnPadding }, setAttributes, clientId } = props;
 
     // useEffect
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     return <>
@@ -47,7 +45,7 @@ const Edit = props => {
                 {boxes.map((item, index) => {
                     const { frontBG, backBG, border, shadow, frontIcon, backIcon, frontTitle, backTitle, titleColor, desc, descColor, btn, btnLink, btnBorder, btnColors, btnHovColors } = item;
 
-                    return <div key={index} className={`bBlocksFlipBox ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFlipBox-${index}`}>
+                    return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksFlipBox ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFlipBox-${index}`}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
                             #bBlocksFlipBoxes-${clientId} #bBlocksFlipBox-${index} .box{

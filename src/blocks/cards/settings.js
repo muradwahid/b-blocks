@@ -9,6 +9,7 @@ import { IndexContext } from './edit';
 import Title from '../../Components/Title';
 import BColor from '../../Components/BColor';
 import BtnGroup from '../../Components/BtnGroup';
+import Background from '../../Components/Background';
 import BorderControl from '../../Components/BorderControl';
 import { ImageHolderControl, ChangeImageData } from '../../Components/ImageControl';
 import BDevice from '../../Components/BDevice';
@@ -29,7 +30,7 @@ const Settings = ({ settings }) => {
     const addCard = () => {
         setAttributes({
             cards: [...cards, {
-                bgColor: '#fff0',
+                background: { color: '#0000' },
 
                 img: { id: null, url: '', alt: '', title: '' },
                 imgBorder: { radius: '5px' },
@@ -58,10 +59,10 @@ const Settings = ({ settings }) => {
         <InspectorControls>
             <PanelBody className='bBlocksPanelBody addRemoveItems' title={__('Add or Remove Cards', 'b-blocks')}>
                 {cards.map((item, index) => {
-                    const { bgColor, img, imgBorder, catColor, titleColor, descColor } = item;
+                    const { background, img, imgBorder, catColor, titleColor, descColor } = item;
 
                     return <PanelBody key={index} className='bBlocksPanelBody editItem' title={__(`Card No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-                        <BColor label={__('Background Color:', 'b-blocks')} value={bgColor} onChange={val => updateCard(index, 'bgColor', val)} defaultColor='#fff0' />
+                        <Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateCard(index, 'background', val)} />
 
                         <ImageHolderControl className='mt-20p' label={__('Image:', 'b-blocks')} img={img} onChange={val => updateCard(index, 'img', val)} />
                         <ChangeImageData className='mt-20p' img={img} onChange={val => updateCard(index, 'img', val)} />

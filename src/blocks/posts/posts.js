@@ -162,9 +162,7 @@ registerBlockType('b-blocks/posts', {
 
 
         // Functions
-        useEffect(() => {
-            clientId && setAttributes({ cId: clientId });
-        }, [clientId]);
+        useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
 
         // Components

@@ -1,7 +1,11 @@
-.wp-block-b-blocks-lottie-player lottie-player{
-    display: inline-block;
+.wp-block-b-blocks-lottie-player {
+    .bBlocksLottiePlayer{
+        lottie-player{
+            display: inline-block;
 
-    #lottie-controls.toolbar{
-        margin: 0;
-    }
+            #lottie-controls.toolbar{
+                margin: 0;
+            }
+        }
+    } 
 }

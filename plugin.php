@@ -90,65 +90,21 @@ function b_blocks_register() {
     wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor', 'bootstrap' ), B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
     // Register Blocks
-    // b_blocks_wp_register_script( 'posts', array(
-    //     'render_callback' => 'render_b_blocks_posts'
-    // ) );
-    // b_blocks_wp_register_script( 'slider', array(
-    //     'attributes'      => b_blocks_slider_attributes(),
-    //     'render_callback' => 'render_b_blocks_slider'
-    // ) );
-    b_blocks_wp_register_script( 'section' );
+    // b_blocks_wp_register_script( 'section' );
     b_blocks_wp_register_script( 'section-heading' );
-    // b_blocks_wp_register_script( 'image-gallery', array(
-    //     'attributes'      => b_blocks_image_gallery_attributes(),
-    //     'render_callback' => 'render_b_blocks_image_gallery'
-    // ) );
-    // b_blocks_wp_register_script( 'image-comparison', array(
-    //     'attributes'      => b_blocks_image_comparison_attributes(),
-    //     'render_callback' => 'render_b_blocks_image_comparison'
-    // ) );
-    // $flipBoxes = new FlipBoxes();
-    // b_blocks_wp_register_script( 'flip-boxes', array(
-    //     'attributes'      => FlipBoxes::attributes(),
-    //     'render_callback' => [FlipBoxes, 'render']
-    // ) );
-    // b_blocks_wp_register_script( 'flip-box', array(
-    //     'attributes'      => flip_box_attributes(),
-    //     'render_callback' => 'render_b_blocks_flip_box'
-    // ) );
-    // b_blocks_wp_register_script( 'team-members' );
-    // b_blocks_wp_register_script( 'team-member' );
-    // b_blocks_wp_register_script( 'price-lists' );
-    // b_blocks_wp_register_script( 'price-list' );
-    // b_blocks_wp_register_script( 'feature-boxes' );
-    // b_blocks_wp_register_script( 'feature-box' );
-    b_blocks_wp_register_script( 'info-box' );
-    // b_blocks_wp_register_script( 'button-group', array(
-    //     'attributes'      => button_group_attributes(),
-    //     'render_callback' => 'render_b_blocks_button_group'
-    // ) );
-    // b_blocks_wp_register_script( 'countdown' );
-    // b_blocks_wp_register_script( 'cards', array(
-    //     'attributes'      => b_blocks_cards_attributes(),
-    //     'render_callback' => 'render_b_blocks_cards'
-    // ) );
-    // b_blocks_wp_register_script( 'card', array(
-    //     'attributes'      => b_blocks_card_attributes(),
-    //     'render_callback' => 'render_b_blocks_card'
-    // ) );
     b_blocks_wp_register_script( 'mailto' );
-    b_blocks_wp_register_script( 'modal' );
-    b_blocks_wp_register_script( 'tabs' );
-    b_blocks_wp_register_script( 'accordion' );
-    b_blocks_wp_register_script( 'note' );
+    // b_blocks_wp_register_script( 'modal' );
+    // b_blocks_wp_register_script( 'tabs' );
+    // b_blocks_wp_register_script( 'accordion' );
+    // b_blocks_wp_register_script( 'note' );
     b_blocks_wp_register_script( 'gif' );
     b_blocks_wp_register_script( 'qr-code' );
-    b_blocks_wp_register_script( 'highlight-text' );
-    b_blocks_wp_register_script( 'progress-bar' );
+    // b_blocks_wp_register_script( 'highlight-text' );
+    // b_blocks_wp_register_script( 'progress-bar' );
     // b_blocks_wp_register_script( 'spacer' );
-    b_blocks_wp_register_script( 'selection' );
-    b_blocks_wp_register_script( 'divider' );
-    b_blocks_wp_register_script( 'to-top' );
+    // b_blocks_wp_register_script( 'selection' );
+    // b_blocks_wp_register_script( 'divider' );
+    // b_blocks_wp_register_script( 'to-top' );
 }
 add_action( 'init', 'b_blocks_register' );
 
@@ -197,6 +153,8 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/flip-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/team-members.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/price-lists.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/feature-boxes.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/info-box.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/lottie-player.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/button-group.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/countdown.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/cards.php';

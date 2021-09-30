@@ -22,7 +22,9 @@
             "type": "array",
             "default": [
                 {
-                    "bgColor": "#fff0",
+                    "background": {
+                        "color": "#0000"
+                    },
                     "img": {
                         "id": null,
                         "url": "",
@@ -40,7 +42,9 @@
                     "descColor": "#333"
                 },
                 {
-                    "bgColor": "#fff0",
+                    "background": {
+                        "color": "#0000"
+                    },
                     "img": {
                         "id": null,
                         "url": "",
@@ -58,7 +62,9 @@
                     "descColor": "#333"
                 },
                 {
-                    "bgColor": "#fff0",
+                    "background": {
+                        "color": "#0000"
+                    },
                     "img": {
                         "id": null,
                         "url": "",

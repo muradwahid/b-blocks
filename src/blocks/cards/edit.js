@@ -15,9 +15,7 @@ const Edit = props => {
     const { className, attributes: { cards = [], columns, columnGap, rowGap, layout, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo }, setAttributes, clientId } = props;
 
     // useEffect
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const updateCard = (index, type, val) => {
@@ -62,7 +60,7 @@ const Edit = props => {
 
             <div className={`bBlocksCards ${layout || 'vertical'} columns-${columns?.desktop} columns-tablet-${columns?.tablet} columns-mobile-${columns?.mobile}`}>
                 {cards?.map((item, index) => {
-                    const { bgColor, img, imgBorder, cat, catColor, title, titleColor, desc, descColor } = item;
+                    const { background, img, imgBorder, cat, catColor, title, titleColor, desc, descColor } = item;
 
                     // Components
                     const cardTitle = () => isTitle && <RichText className='cardTitle' tagName='h3' value={title} onChange={val => updateCard(index, 'title', val)} placeholder={__('Card title', 'b-blocks')} inlineToolbar />
@@ -76,14 +74,24 @@ const Edit = props => {
                         {isBlobURL(img?.url) && <Spinner />}
                     </> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} img={img} onChange={val => updateCard(index, 'img', val)} />;
 
-                    return <div key={index} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksCard-${index}`}>
+                    return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksCard-${index}`}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
-                            #bBlocksCards-${clientId} #bBlocksCard-${index}{ background-color: ${bgColor}; }
-                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardImage{${imgBorder?.styles || 'border-radius: 5px;'}}
-                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardDetails .cardCategory{ color: ${catColor}; }
-                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardTitle{ color: ${titleColor}; }
-                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardDescription{ color: ${descColor}; }
+                            #bBlocksCards-${clientId} #bBlocksCard-${index} .bBlocksCard{
+                                ${background?.styles || `background-color: #0000;`}
+                            }
+                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardImage{
+                                ${imgBorder?.styles || 'border-radius: 5px;'}
+                            }
+                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardDetails .cardCategory{
+                                color: ${catColor};
+                            }
+                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardTitle{
+                                color: ${titleColor};
+                            }
+                            #bBlocksCards-${clientId} #bBlocksCard-${index} .cardDescription{
+                                color: ${descColor};
+                            }
                         `}} />
 
                         <div className={`bBlocksCard ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>

@@ -22,9 +22,7 @@ const Edit = props => {
     const { className, attributes: { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
 
     // useEffect
-    useEffect(() => {
-        clientId && setAttributes({ cId: clientId });
-    }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
     // useEffect(() => {
     //     const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider`);
@@ -150,7 +148,7 @@ const Edit = props => {
                     </>}
                 </>}</TabPanel>
 
-                <Title mt='25px'></Title>
+                <Title mt='20px'></Title>
                 <ToggleControl label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
             </PanelBody>
 
