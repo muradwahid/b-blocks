@@ -368,66 +368,6 @@ body{
     }
 }
 
-// Mail to UI
-.mailtoui-modal {
-    a{
-        text-decoration: none!important;
-    }
-
-    .mailtoui-modal-head{
-        .mailtoui-modal-title {
-            color: $primaryColor;
-        }
-
-        .mailtoui-modal-close{
-            color: $secondaryColor;
-        
-            &:focus,
-            &:hover {
-                color: $primaryColor;
-            }
-        }
-    }
-
-    .mailtoui-modal-body {
-        background-color: #f1f1f1;
-
-        .mailtoui-button:focus .mailtoui-button-content {
-            color: #fff;
-            background-color: $primaryColor;
-        }
-        
-        .mailtoui-button-content,
-        .mailtoui-button-copy {
-            color: #fff;
-            background-color: $secondaryColor;
-        
-            &:hover,
-            &:focus{
-                color: #fff;
-                background-color: $primaryColor;
-            }
-
-            .mailtoui-button-icon,
-            .mailtoui-button-text{
-                top: 0;
-            }
-        }
-        
-        .mailtoui-email-address {
-            color: $primaryColor;
-            background-color: #fff;
-            font-weight: bold;
-        }
-        .mailtoui-button-copy-clicked,
-        .mailtoui-button-copy-clicked:hover,
-        .mailtoui-button-copy-clicked:focus {
-            background-color: #1F9D55;
-            color: #fff;
-        }
-    }
-}
-
 // Card
 .b_blocks_card{
     .alignleft{

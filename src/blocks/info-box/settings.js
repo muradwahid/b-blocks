@@ -35,7 +35,7 @@ const Settings = ({ settings }) => {
             <PanelBody className='bBlocksPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-                <IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#4527a4' }} />
+                <IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-info-circle', fontSize: 70, color: '#4527a4' }} />
 
                 <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
             </PanelBody>

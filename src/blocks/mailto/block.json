@@ -1,0 +1,38 @@
+{
+    "apiVersion": 2,
+    "name": "b-blocks/mailto",
+    "title": "Mail To",
+    "description": "Mail with a single click.",
+    "category": "bBlocks",
+    "keywords": [
+        "Send mail",
+        "Mail us",
+        "Email sending"
+    ],
+    "textdomain": "b-blocks",
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": ""
+        },
+        "cId": {
+            "type": "string"
+        },
+        "mailtoAlign": {
+            "type": "string",
+            "default": "center"
+        }
+    },
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    }
+}

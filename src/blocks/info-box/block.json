@@ -64,7 +64,7 @@
         "icon": {
             "type": "object",
             "default": {
-                "class": "fa fa-wordpress",
+                "class": "fa fa-info-circle",
                 "fontSize": 70,
                 "color": "#4527a4"
             }

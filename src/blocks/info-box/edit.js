@@ -13,7 +13,7 @@ const Edit = props => {
     return <>
         <Settings settings={props} />
 
-        <div className={`${className}`} id={`bBlocksInfoBox-${clientId}`}>
+        <div className={className} id={`bBlocksInfoBox-${clientId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
                 @import url(${titleTypo?.googleFontLink});

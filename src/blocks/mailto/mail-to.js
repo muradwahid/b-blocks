@@ -4,18 +4,18 @@ import { InspectorControls, ColorPalette, RichText, BlockControls, AlignmentTool
 import { PanelBody, FontSizePicker, RangeControl, TextControl, SelectControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../../Const/options';
 const { fontSizes, colors, aligns, fontWeights, textTransforms } = options;
 
 // Components
-import BtnGroup from '../Components/BtnGroup';
+import BtnGroup from '../../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
+import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
 
 // Icons
-import icons from '../Const/icons';
+import icons from '../../Const/icons';
 
 registerBlockType('b-blocks/mailto', {
     // Build In attributes

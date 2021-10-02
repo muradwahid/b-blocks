@@ -170,27 +170,27 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
-= 1.0 =
-* Initial Release
-
-= 1.1 =
-* Add Price Lists and Feature Boxes blocks
-* Compatible with PHP 5.4
-
-= 1.2 =
-* Add Image Gallery and Info Box blocks
-* Responsive the Price Lists and Feature Boxes
-
-= 1.3 =
-* Add Button Group and Countdown blocks
+= 1.5 =
+* Add Lottie Player Block
+* Update Posts, Slider, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Lottie Player, Button Group, Countdown, Cards, Mail To blocks
 
 = 1.4 =
 * Add Image Comparison, Team Members and Flip Boxes blocks
 * Update Posts Block
 
-= 1.5 =
-* Add Lottie Player Block
-* Update Posts, Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group, Feature Boxes, Info Box, Lottie Player, Team Members, Countdown blocks
+= 1.3 =
+* Add Button Group and Countdown blocks
+
+= 1.2 =
+* Add Image Gallery and Info Box blocks
+* Responsive the Price Lists and Feature Boxes
+
+= 1.1 =
+* Add Price Lists and Feature Boxes blocks
+* Compatible with PHP 5.4
+
+= 1.0 =
+* Initial Release
 
 
 == Upgrade Notice ==
@@ -208,4 +208,4 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Update Posts Block
 
 * Add Lottie Player Block
-* Update Posts, Slider, Cards, Image Gallery, Flip Boxes, Image Comparison, Button Group, Feature Boxes, Info Box, Lottie Player, Team Members, Countdown blocks
+* Update Posts, Slider, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Lottie Player, Button Group, Countdown, Cards, Mail To blocks

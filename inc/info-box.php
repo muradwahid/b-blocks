@@ -26,7 +26,7 @@ class BBlocksInfoBox{
             'shadow' => array( 'type' => 'object', 'default' => array( 'blur' => '15px' ) ),
 
             'isIcon' => array( 'type' => 'boolean', 'default' => true ),
-            'icon' => array( 'type' => 'object', 'default' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#4527a4' ) ),
+            'icon' => array( 'type' => 'object', 'default' => array( 'class' => 'fa fa-info-circle', 'fontSize' => 70, 'color' => '#4527a4' ) ),
             'iconMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
 
             'title' => array( 'type' => 'string', 'selector' => 'h3.infoBoxTitle', 'default' => 'Info Box Title' ),

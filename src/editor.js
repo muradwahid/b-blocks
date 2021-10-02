@@ -14,7 +14,7 @@ import './blocks/lottie-player';
 import './blocks/button-group';
 import './blocks/countdown';
 import './blocks/cards';
-import './blocks/mail-to.js';
+import './blocks/mailto';
 // import './blocks/modal.js';
 // import './blocks/tabs.js';
 // import './blocks/accordion.js';

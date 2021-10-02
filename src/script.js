@@ -15,6 +15,7 @@ import './blocks/lottie-player/script';
 import './blocks/button-group/script';
 import './blocks/countdown/script';
 import './blocks/cards/script';
+import './blocks/mailto/script';
 
 
 // (function ($) {
