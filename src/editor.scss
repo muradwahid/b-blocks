@@ -304,29 +304,6 @@ $secondaryColor: #8344c5;
     }
 }
 
-// Common CSS
-@for $i from 1 through 6 {
-    &.columns-#{$i}{
-        >.block-editor-inner-blocks >.block-editor-block-list__layout{
-            grid-template-columns: repeat(#{$i}, 1fr);
-        }
-    }
-}
-@for $i from 1 through 100 {
-    &.cGap-#{$i}{
-        >.block-editor-inner-blocks >.block-editor-block-list__layout{
-            column-gap: #{$i}px;
-        }
-    }
-}
-@for $i from 1 through 100 {
-    &.rGap-#{$i}{
-        >.block-editor-inner-blocks >.block-editor-block-list__layout{
-            row-gap: #{$i}px;
-        }
-    }
-}
-
 // Buttons
 // Inserter
 .block-editor-inserter, .block-list-appender, .block-editor-block-list__insertion-point-inserter{

@@ -117,6 +117,7 @@ class BBlocksCountdown{
                 .$this->box( $isMinutes, "countdownMinutes $boxClass $sepClass", $isLabels, $minutesLabel )
                 .$this->box( $isSeconds, "countdownSeconds $boxClass $sepClass", $isLabels, $secondsLabel ) ?>
             </div>
+        </div>
 
         <?php $countdownStyle::$styles = array(); // Empty styles
         return ob_get_clean();

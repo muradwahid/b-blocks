@@ -141,7 +141,6 @@ class BBlocks{
         // b_blocks_wp_register_script( 'accordion' );
         // b_blocks_wp_register_script( 'note' );
         b_blocks_wp_register_script( 'gif' );
-        b_blocks_wp_register_script( 'qr-code' );
         // b_blocks_wp_register_script( 'highlight-text' );
         // b_blocks_wp_register_script( 'progress-bar' );
         // b_blocks_wp_register_script( 'spacer' );
@@ -177,3 +176,4 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/button-group.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/countdown.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/cards.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/mailto.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/qr-code.php';

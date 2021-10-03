@@ -38,180 +38,6 @@ body{
     font-family: dashicons !important;
 }
 
-@for $i from 1 through 12 {
-    .columns-#{$i}{
-        grid-template-columns: repeat(#{$i}, 1fr);
-    }
-    .cols-#{$i}{
-        columns: #{$i};
-    }
-}
-@media (max-width: 768px) {
-    @for $i from 1 through 12 {
-        .columns-tablet-#{$i}{
-            grid-template-columns: repeat(#{$i}, 1fr);
-        }
-        .cols-tablet-#{$i}{
-            columns: #{$i};
-        }
-    }
-}
-@media (max-width: 576px) { 
-    @for $i from 1 through 12 {
-        .columns-mobile-#{$i}{
-            grid-template-columns: repeat(#{$i}, 1fr);
-        }
-        .cols-mobile-#{$i}{
-            columns: #{$i};
-        }
-    }
-}
-@for $i from 1 through 100 {
-    .cGap-#{$i}{
-        column-gap: #{$i}px;
-    }
-
-    .rGap-#{$i}{
-        row-gap: #{$i}px;
-    }
-
-    .gap-#{$i}{
-        gap: #{$i}px;
-    }
-}
-
-@for $i from 1 through 60 {
-    .fontSize-#{$i}{
-        font-size: #{$i}px!important;
-    }
-}
-
-@for $i from 1 through 100 {
-    .mb-#{$i}{
-        margin-bottom: #{$i}px!important;
-    }
-
-    .mr-#{$i}{
-        margin-right: #{$i}px!important;
-    }
-
-    .mx-#{$i}{
-        margin-left: #{$i}px!important;
-        margin-right: #{$i}px!important;
-    }
-
-    @media (max-width: 575px) {
-        .mmy-#{$i}{
-            margin-top: #{$i}px!important;
-            margin-bottom: #{$i}px!important;
-        }
-    }
-}
-
-@for $i from 1 through 100 {
-    .p-#{$i}{
-        padding: #{$i}px!important;
-    }
-
-    .ptb-#{$i}{
-        padding-top: #{$i}px;
-        padding-bottom: #{$i}px;
-    }
-
-    .plr-#{$i}{
-        padding-left: #{$i}px;
-        padding-right: #{$i}px;
-    }
-}
-
-@for $i from 1 through 50 {
-    $u: '%';
-    .radius-#{$i}-per{
-        border-radius: #{$i}#{$u};
-    }
-
-    .radius-#{$i}-px{
-        border-radius: #{$i}px;
-    }
-}
-
-@for $i from 1 through 100 {
-    $u: '%';
-    .w-#{$i}-per{
-        width: #{$i}#{$u};
-    }
-}
-
-@for $i from 1 through 1920 {
-    .w-#{$i}-px{
-        width: #{$i}px;
-    }
-}
-@for $i from 1 through 1000 {
-    .h-#{$i}-px{
-        height: #{$i}px!important;
-    }
-}
-.h-100-per{
-    height: 100% !important;
-}
-
-.text-left{
-    text-align: left;
-}
-.text-center{
-    text-align: center;
-}
-.text-right{
-    text-align: right;
-}
-.text-justify{
-    text-align: justify;
-}
-
-.ttr-capitalize{
-    text-transform: capitalize;
-}
-.ttr-uppercase{
-    text-transform: uppercase;
-}
-.ttr-lowercase{
-    text-transform: lowercase;
-}
-.ttr-none{
-    text-transform: none;
-}
-
-.alignItems-initial{
-    align-items: initial;
-}
-.alignItems-start{
-    align-items: start;
-}
-.alignItems-flex-start{
-    align-items: flex-start;
-}
-.alignItems-center{
-    align-items: center;
-}
-.alignItems-flex-end{
-    align-items: flex-end;
-}
-
-.justifyContent-flex-start{
-    justify-content: flex-start;
-}
-.justifyContent-center{
-    justify-content: center;
-}
-.justifyContent-flex-end{
-    justify-content: flex-end;
-}
-
-.alignSelf-flex-end{
-    align-self: flex-end;
-}
-
 // Inner Content
 .bBlocksInnerContent{
     h1{
@@ -241,6 +67,41 @@ body{
     }
 }
 
+@for $i from 1 through 12 {
+    .columns-#{$i}{
+        grid-template-columns: repeat(#{$i}, 1fr);
+    }
+    .cols-#{$i}{
+        columns: #{$i};
+    }
+}
+@media (max-width: 768px) {
+    @for $i from 1 through 12 {
+        .columns-tablet-#{$i}{
+            grid-template-columns: repeat(#{$i}, 1fr);
+        }
+        .cols-tablet-#{$i}{
+            columns: #{$i};
+        }
+    }
+}
+@media (max-width: 576px) { 
+    @for $i from 1 through 12 {
+        .columns-mobile-#{$i}{
+            grid-template-columns: repeat(#{$i}, 1fr);
+        }
+        .cols-mobile-#{$i}{
+            columns: #{$i};
+        }
+    }
+}
+
+@for $i from 1 through 100 {
+    .mb-#{$i}{
+        margin-bottom: #{$i}px!important;
+    }
+}
+
 // Button
 .b_blocks_btn{
     display: inline-block;
@@ -264,54 +125,6 @@ body{
         background-color: $secondaryColor;
     }
 }
-
-// Posts
-// .b_blocks_posts{
-//     *{
-//         margin: 0;
-//         padding: 0;
-//     }
-
-//     .b_blocks_article{
-//         .meta{
-//             > span{
-//                 display: inline-flex;
-//                 align-items: center;
-//                 margin-right: 10px;
-
-//                 a{
-//                     color: inherit;
-//                 }
-//             }
-//         }
-
-//         .excerpt{
-//             p{
-//                 margin: 0;
-//                 font-size: inherit;
-//             }
-//         }
-
-//         a{
-//             color: inherit;
-//             text-decoration: none;
-//             display: inline-block;
-//             transition: all .3s ease;
-//             font-weight: 600;
-//         }
-//     }
-// }
-
-// .b_blocks_posts{
-//     .feature_img{
-//         text-align: center;
-
-//         img{
-//             width: 100%;
-//             object-fit: cover;
-//         }
-//     }
-// }
 
 
 // Tabs
@@ -366,27 +179,4 @@ body{
             }
         }
     }
-}
-
-// Card
-.b_blocks_card{
-    .alignleft{
-        display: block;
-        text-align: left;
-        float: none;
-    }
-    .alignright{
-        display: block;
-        text-align: right;
-        float: none;
-    }
-
-    a{
-        text-decoration: none!important;
-    }
-}
-
-
-.dashicons{
-    font-family: dashicons !important;
 }

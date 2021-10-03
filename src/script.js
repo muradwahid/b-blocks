@@ -16,6 +16,7 @@ import './blocks/button-group/script';
 import './blocks/countdown/script';
 import './blocks/cards/script';
 import './blocks/mailto/script';
+import './blocks/qr-code/script';
 
 
 // (function ($) {

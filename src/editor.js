@@ -21,7 +21,7 @@ import './blocks/mailto';
 // import './blocks/collapse.js';
 // import './blocks/note.js';
 import './blocks/gif.js';
-import './blocks/qr-code.js';
+import './blocks/qr-code';
 // import './blocks/highlight-text.js';
 // import './blocks/alert.js';
 // import './blocks/progress-bar.js';

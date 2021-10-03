@@ -4,11 +4,11 @@ import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/b
 import { PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
 // Functions
-import func from '../Const/functions';
+import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../../Const/icons';
 
 registerBlockType('b-blocks/qr-code', {
     // Build In attributes
