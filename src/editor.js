@@ -2,7 +2,7 @@
 import './blocks/posts';
 import './blocks/slider';
 // import './blocks/section.js';
-import './blocks/section-heading.js';
+import './blocks/section-heading';
 import './blocks/image-gallery';
 import './blocks/image-comparison';
 import './blocks/flip-boxes';
@@ -20,7 +20,7 @@ import './blocks/mailto';
 // import './blocks/accordion.js';
 // import './blocks/collapse.js';
 // import './blocks/note.js';
-import './blocks/gif.js';
+import './blocks/gif';
 import './blocks/qr-code';
 // import './blocks/highlight-text.js';
 // import './blocks/alert.js';

@@ -84,9 +84,9 @@ const Settings = ({ settings }) => {
 
         <BlockControls>
             <AlignmentToolbar value={infoBoxAlign} onChange={val => setAttributes({ infoBoxAlign: val })} describedBy={__('Info Box Alignment')} alignmentControls={[
-                { title: __('Info Box in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('Info Box in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('Info Box in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('Info Box in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('Info Box in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('Info Box in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
 
             <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

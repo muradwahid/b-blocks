@@ -1,12 +1,11 @@
 <?php
-class BBlocksPosts{
+class BBlocksPosts extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
-        add_action( 'rest_api_init', [$this, 'custom_rest'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'posts', array(
+        $this::registerScripts( 'posts', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -171,7 +170,7 @@ class BBlocksPosts{
                 @import url(<?php echo esc_url( $metaTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $excerptTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $readMoreTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $postsStyles::renderStyle(), [] ); ?>
+                <?php echo wp_kses( $postsStyles::renderStyle(), array() ); ?>
 
                 <?php foreach ( $posts as $post ) {
                     $imgUrl = get_the_post_thumbnail_url( $post->ID );
@@ -422,54 +421,5 @@ class BBlocksPosts{
         }
         return $options;
     } // Post Types
-
-    function custom_rest() {
-        $post_type = $this->post_types();
-        foreach ( $post_type as $key => $value ) {
-            register_rest_field( $value['value'], 'wbAuthor', array(
-                'get_callback'    => function ( $obj ) {
-                    $author['name'] = get_the_author_meta( 'display_name', isset( $obj['author'] ) ? $obj['author'] : '' );
-                    $author['link'] = get_author_posts_url( isset( $obj['author'] ) ? $obj['author'] : '' );
-                    return $author;
-                },
-                'schema'          => array(
-                    'description' => __( 'Author name and link', 'b-blocks' ),
-                    'type'        => 'string',
-                )
-            ) );
-    
-            register_rest_field( $value['value'], 'wbDate', array(
-                'get_callback'    => function ( $obj ) {
-                    return get_the_date( 'M j, Y', $obj['id'] );
-                },
-                'schema'          => array(
-                    'description' => __( 'Author name and link', 'b-blocks' ),
-                    'type'        => 'string',
-                )
-            ) );
-    
-            register_rest_field( $value['value'], 'wbCategories', array(
-                'get_callback'    => function ( $obj ) {
-                    $catsLink['space'] = get_the_category_list( esc_html__( ' ' ), '', $obj['id'] );
-                    $catsLink['coma'] = get_the_category_list( esc_html__( ', ' ), '', $obj['id'] );
-                    return $catsLink;
-                },
-                'schema'          => array(
-                    'description' => __( 'Category link lists', 'b-blocks' ),
-                    'type'        => 'string',
-                )
-            ) );
-    
-            register_rest_field( $value['value'], 'wbComment', array(
-                'get_callback'    => function ( $obj ) {
-                    return wp_count_comments( $obj['id'] )->total_comments;
-                },
-                'schema'          => array(
-                    'description' => __( 'Comment', 'b-blocks' ),
-                    'type'        => 'number',
-                )
-            ) );
-        }
-    } // Custom rest
 }
 new BBlocksPosts();

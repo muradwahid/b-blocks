@@ -83,9 +83,9 @@ const Settings = ({ settings }) => {
 
         <BlockControls>
             <AlignmentToolbar value={mailtoAlign} onChange={val => setAttributes({ mailtoAlign: val })} describedBy={__('Mail Button Alignment')} alignmentControls={[
-                { title: __('Mail Button in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('Mail Button in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('Mail Button in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('Mail Button in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('Mail Button in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('Mail Button in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
         </BlockControls>
     </>;

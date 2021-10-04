@@ -1,11 +1,11 @@
 <?php
-class BBlocksSlider{
+class BBlocksSlider extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'slider', array(
+        $this::registerScripts( 'slider', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -131,8 +131,8 @@ class BBlocksSlider{
                         $slideBtnText = $slide['btnText'] ?? '';
                         $slideBtnLink = $slide['btnLink'] ?? ''; ?>
 
-                        <div class='slide slide-<?php echo esc_attr( $index ) ?> swiper-slide'>
-                            <style><?php echo "#bBlocksSlider-". esc_attr( $cId ) ." .bBlocksSlider .slide-$index{". wp_kses( $slideBGStyle, array() ) ."}" ?></style>
+                        <div class='slide slide-<?php echo esc_attr( $index ); ?> swiper-slide'>
+                            <style><?php echo "#bBlocksSlider-". esc_attr( $cId ) ." .bBlocksSlider .slide-$index{". wp_kses( $slideBGStyle, array() ) ."}"; ?></style>
 
                             <div class='sliderContent <?php echo esc_attr( str_replace( ' ', '-', $slidePosition ) ); ?>'>
                                 <?php echo $isTitle && $slideTitle ? "<h2 class='sliderTitle'>". esc_html( $slideTitle ) ."</h2>" : ''; ?>

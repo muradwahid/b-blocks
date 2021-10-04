@@ -134,9 +134,9 @@ const Edit = props => {
 
         <BlockControls>
             <AlignmentToolbar value={btnAlign} onChange={val => setAttributes({ btnAlign: val })} describedBy={__('Button Group Align')} alignmentControls={[
-                { title: __('Button Group in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('Button Group in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('Button Group in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('Button Group in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('Button Group in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('Button Group in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
         </BlockControls>
 

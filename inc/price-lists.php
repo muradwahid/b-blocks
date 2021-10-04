@@ -1,11 +1,11 @@
 <?php
-class BBlocksPriceLists{
+class BBlocksPriceLists extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'price-lists', array(
+        $this::registerScripts( 'price-lists', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

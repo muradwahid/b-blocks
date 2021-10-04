@@ -1,0 +1,101 @@
+{
+    "apiVersion": 2,
+    "name": "b-blocks/section-heading",
+    "title": "Section Heading",
+    "description": "Display heading before section.",
+    "category": "bBlocks",
+    "keywords": [
+        "headline",
+        "section headline",
+        "heading description"
+    ],
+    "textdomain": "b-blocks",
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": ""
+        },
+        "cId": {
+            "type": "string"
+        },
+        "textAlign": {
+            "type": "string",
+            "default": "left"
+        },
+        "title": {
+            "type": "string",
+            "default": "Section Heading"
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "fontSize": 25,
+                "fontWeight": 600
+            }
+        },
+        "titleColor": {
+            "type": "string",
+            "default": "#4527a4"
+        },
+        "titleMargin": {
+            "type": "object",
+            "default": {
+                "bottom": "10px"
+            }
+        },
+        "isSep": {
+            "type": "boolean",
+            "default": true
+        },
+        "separator": {
+            "type": "object",
+            "default": {
+                "width": "150px",
+                "height": "3px",
+                "color": "#8344c5"
+            }
+        },
+        "sepMargin": {
+            "type": "object",
+            "default": {
+                "bottom": "5px"
+            }
+        },
+        "isDesc": {
+            "type": "boolean",
+            "default": true
+        },
+        "desc": {
+            "type": "string",
+            "default": "This content area describes section heading descriptions or details."
+        },
+        "descTypo": {
+            "type": "object",
+            "default": {
+                "fontSize": 15
+            }
+        },
+        "descColor": {
+            "type": "string",
+            "default": "#333"
+        },
+        "descMargin": {
+            "type": "object",
+            "default": {
+                "bottom": "15px"
+            }
+        }
+    },
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    }
+}

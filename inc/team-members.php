@@ -1,11 +1,11 @@
 <?php
-class BBlocksTeamMembers{
+class BBlocksTeamMembers extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'team-members', array(
+        $this::registerScripts( 'team-members', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

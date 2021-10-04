@@ -1,11 +1,11 @@
 <?php
-class BBlocksQRCode{
+class BBlocksQRCode extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'qr-code', array(
+        $this::registerScripts( 'qr-code', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -39,7 +39,7 @@ class BBlocksQRCode{
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-qr-code <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksQRCode-<?php echo esc_attr( $cId ); ?>'>
-            <style><?php echo wp_kses( $qrCodeStyle::renderStyle(), [] ) ?></style>
+            <style><?php echo wp_kses( $qrCodeStyle::renderStyle(), array() ); ?></style>
 
             <div class='bBlocksQRCode'>
                 <img src='<?php echo esc_url( $qrUrl ); ?>' alt='<?php echo esc_url( $url ); ?>' />

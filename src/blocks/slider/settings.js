@@ -215,9 +215,9 @@ const Settings = ({ settings }) => {
             </ToolbarGroup>
 
             <AlignmentToolbar value={sliderAlign} onChange={val => setAttributes({ sliderAlign: val })} describedBy={__('Slider Alignment')} alignmentControls={[
-                { title: __('Slider in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('Slider in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('Slider in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('Slider in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('Slider in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('Slider in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
         </BlockControls>
     </>;

@@ -1,11 +1,11 @@
 <?php
-class BBlocksImageGallery{
+class BBlocksImageGallery extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'image-gallery', array(
+        $this::registerScripts( 'image-gallery', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

@@ -1,11 +1,11 @@
 <?php
-class BBlocksInfoBox{
+class BBlocksInfoBox extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'info-box', array(
+        $this::registerScripts( 'info-box', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -102,7 +102,7 @@ class BBlocksInfoBox{
                 @import url(<?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $infoBoxStyle::renderStyle(), [] ) ?>
+                <?php echo wp_kses( $infoBoxStyle::renderStyle(), array() ); ?>
             </style>
 
             <div class='bBlocksInfoBox'>

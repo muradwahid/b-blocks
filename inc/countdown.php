@@ -1,11 +1,11 @@
 <?php
-class BBlocksCountdown{
+class BBlocksCountdown extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'countdown', array(
+        $this::registerScripts( 'countdown', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -104,18 +104,18 @@ class BBlocksCountdown{
         $sepClass = $isSep ? 'separator' : '';  
 
         ob_start(); ?>
-        <div class='wp-block-b-blocks-countdown <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>' data-date="<?php echo esc_attr( json_encode( array( 'destDate' => $destDate ) ) ) ?>">
+        <div class='wp-block-b-blocks-countdown <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>' data-date="<?php echo esc_attr( json_encode( array( 'destDate' => $destDate ) ) ); ?>">
             <style>
                 @import url(<?php echo esc_url( $digitTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $labelTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $countdownStyle::renderStyle(), [] ) ?>
+                <?php echo wp_kses( $countdownStyle::renderStyle(), array() ); ?>
             </style>
 
             <div class='countdownItems'>
                 <?php $this->box( $isDays, "countdownDays $boxClass", $isLabels, $daysLabel )
                 .$this->box( $isHours, "countdownHours $boxClass $sepClass", $isLabels, $hoursLabel )
                 .$this->box( $isMinutes, "countdownMinutes $boxClass $sepClass", $isLabels, $minutesLabel )
-                .$this->box( $isSeconds, "countdownSeconds $boxClass $sepClass", $isLabels, $secondsLabel ) ?>
+                .$this->box( $isSeconds, "countdownSeconds $boxClass $sepClass", $isLabels, $secondsLabel ); ?>
             </div>
         </div>
 
@@ -124,7 +124,7 @@ class BBlocksCountdown{
     }
 
     function box( $is, $boxClass, $isLabels, $label ){
-        if( $is ){ ?><div class='countdownItem <?php echo esc_attr( $boxClass ) ?>'>
+        if( $is ){ ?><div class='countdownItem <?php echo esc_attr( $boxClass ); ?>'>
             <span class='digit'>00</span> 
             <?php echo $isLabels ? "<span class='label'>". esc_html( $label ) ."</span>" : ''; ?>
         </div><?php }

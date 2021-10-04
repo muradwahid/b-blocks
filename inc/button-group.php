@@ -1,11 +1,11 @@
 <?php
-class BBlocksButtonGroup{
+class BBlocksButtonGroup extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'button-group', array(
+        $this::registerScripts( 'button-group', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

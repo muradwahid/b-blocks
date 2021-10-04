@@ -1,11 +1,11 @@
 <?php
-class BBlocksFeatureBoxes{
+class BBlocksFeatureBoxes extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'feature-boxes', array(
+        $this::registerScripts( 'feature-boxes', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

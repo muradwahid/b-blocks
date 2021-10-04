@@ -4,18 +4,18 @@ import { RichText, InspectorControls, BlockControls, AlignmentToolbar, ColorPale
 import { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../../Const/options';
 const { hTags, fontSizes, aligns, borderStyles, colors } = options;
 
 // Components
-import BtnGroup from '../Components/BtnGroup';
+import BtnGroup from '../../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
+import func from '../../Const/functions';
 const { firstTitle, otherTitle } = func;
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../../Const/icons';
 
 registerBlockType('b-blocks/section-heading', {
     // Build In attributes

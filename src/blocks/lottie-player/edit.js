@@ -1,5 +1,8 @@
 import { useEffect } from '@wordpress/element';
 
+// Lottie files assets
+import '@lottiefiles/lottie-player';
+
 import Settings from './settings';
 
 const Edit = props => {

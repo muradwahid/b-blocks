@@ -1,11 +1,11 @@
 <?php
-class BBlocksMailto{
+class BBlocksMailto extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'mailto', array(
+        $this::registerScripts( 'mailto', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -57,7 +57,7 @@ class BBlocksMailto{
         <div class='wp-block-b-blocks-mailto <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksMailto-<?php echo esc_attr( $cId ); ?>'>
             <style>
                 @import url(<?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $mailtoStyle::renderStyle(), [] ) ?>
+                <?php echo wp_kses( $mailtoStyle::renderStyle(), array() ); ?>
             </style>
 
             <div class='bBlocksMailto'>

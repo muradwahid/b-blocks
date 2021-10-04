@@ -5,17 +5,17 @@ import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/b
 import { PanelBody, RangeControl, TextControl, IconButton } from '@wordpress/components';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../../Const/icons';
 
 // Variables
-import options from '../Const/options';
+import options from '../../Const/options';
 const { sizeTypes } = options;
 
 // Components
-import BtnGroup from '../Components/BtnGroup';
+import BtnGroup from '../../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
+import func from '../../Const/functions';
 const { firstTitle } = func;
 
 registerBlockType('b-blocks/gif', {

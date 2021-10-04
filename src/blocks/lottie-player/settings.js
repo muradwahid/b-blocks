@@ -78,9 +78,9 @@ const Settings = ({ settings }) => {
 
         <BlockControls>
             <AlignmentToolbar value={playerAlign} onChange={val => setAttributes({ playerAlign: val })} describedBy={__('Player Alignment')} alignmentControls={[
-                { title: __('Player in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('Player in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('Player in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('Player in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('Player in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('Player in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
         </BlockControls>
     </>;

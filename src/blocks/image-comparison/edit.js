@@ -187,9 +187,9 @@ const Edit = props => {
             <ImageEditControl label={__('Edit After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
             <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
-                { title: __('Image Comparison in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('Image Comparison in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('Image Comparison in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('Image Comparison in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('Image Comparison in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('Image Comparison in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
         </BlockControls>
 

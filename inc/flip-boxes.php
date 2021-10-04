@@ -1,11 +1,11 @@
 <?php
-class BBlocksFlipBoxes{
+class BBlocksFlipBoxes extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'flip-boxes', array(
+        $this::registerScripts( 'flip-boxes', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

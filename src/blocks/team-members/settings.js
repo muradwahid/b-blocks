@@ -79,7 +79,7 @@ const Settings = ({ settings }) => {
 
                         <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => updateMember(index, 'border', val)} defaults={{ radius: '3px' }} />
 
-                        <ShadowControl label={__('Shadow:', 'countdown-time')} shadow={shadow} onChange={val => updateMember(index, 'shadow', val)} />
+                        <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => updateMember(index, 'shadow', val)} />
 
                         <ImageHolderControl className='mt-20p' label={__('Photo:', 'b-blocks')} img={photo} onChange={val => updateMember(index, 'photo', val)} />
                         <ChangeImageData className='mt-20p' img={photo} onChange={val => updateMember(index, 'photo', val)} />

@@ -4,6 +4,7 @@ import './style.scss';
 // Import Blocks
 import './blocks/posts/script';
 import './blocks/slider/script';
+import './blocks/section-heading/script';
 import './blocks/image-gallery/script';
 import './blocks/image-comparison/script';
 import './blocks/flip-boxes/script';
@@ -16,6 +17,7 @@ import './blocks/button-group/script';
 import './blocks/countdown/script';
 import './blocks/cards/script';
 import './blocks/mailto/script';
+import './blocks/gif/script';
 import './blocks/qr-code/script';
 
 

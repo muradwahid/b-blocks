@@ -1,11 +1,11 @@
 <?php
-class BBlocksLottiePlayer{
+class BBlocksLottiePlayer extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'lottie-player', array(
+        $this::registerScripts( 'lottie-player', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
@@ -64,7 +64,7 @@ class BBlocksLottiePlayer{
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-lottie-player <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksLottiePlayer-<?php echo esc_attr( $cId ); ?>' data-controls='<?php echo esc_attr( $jsonData ); ?>'>
-            <style><?php echo wp_kses( $lottiePlayerStyle::renderStyle(), [] ) ?></style>
+            <style><?php echo wp_kses( $lottiePlayerStyle::renderStyle(), array() ); ?></style>
 
             <div class='bBlocksLottiePlayer'>
                 <lottie-player

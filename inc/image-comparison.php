@@ -1,11 +1,11 @@
 <?php
-class BBlocksImageComparison{
+class BBlocksImageComparison extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
     }
 
     function register(){
-        BBlocksRegisterScript::register( 'image-comparison', array(
+        $this::registerScripts( 'image-comparison', array(
             'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );

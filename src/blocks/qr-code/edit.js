@@ -33,9 +33,9 @@ const Edit = props => {
 
         <BlockControls>
             <AlignmentToolbar value={qrAlign} onChange={val => setAttributes({ qrAlign: val })} describedBy={__('QR Code Alignment')} alignmentControls={[
-                { title: __('QR Code in left', 'countdown-time'), align: 'left', icon: 'align-left' },
-                { title: __('QR Code in center', 'countdown-time'), align: 'center', icon: 'align-center' },
-                { title: __('QR Code in right', 'countdown-time'), align: 'right', icon: 'align-right' }
+                { title: __('QR Code in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                { title: __('QR Code in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                { title: __('QR Code in right', 'b-blocks'), align: 'right', icon: 'align-right' }
             ]} />
         </BlockControls>
 
