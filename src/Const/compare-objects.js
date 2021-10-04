@@ -44,11 +44,9 @@ const isObject = object => object != null && typeof object === 'object';
 
 const triCompare = (main, defaults, defaultVal) => {
     const mainKeys = Object.keys(main);
-    console.log(mainKeys);
 
     const equalSpecific = (main, defaults) => {
         const mainKeys = Object.keys(main);
-        console.log(mainKeys);
 
         for (const key of mainKeys) {
             const mainSingle = main[key];
@@ -82,4 +80,4 @@ const triCompare = (main, defaults, defaultVal) => {
     return true;
 }
 
-console.log(triCompare(defaultVal, emptyObj, defaultVal2));
+// console.log(triCompare(defaultVal, emptyObj, defaultVal2));

@@ -172,7 +172,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.5 =
 * Add Lottie Player Block
-* Update Posts, Slider, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Lottie Player, Button Group, Countdown, Cards, Mail To blocks
+* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
 
 = 1.4 =
 * Add Image Comparison, Team Members and Flip Boxes blocks
@@ -208,4 +208,4 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Update Posts Block
 
 * Add Lottie Player Block
-* Update Posts, Slider, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Lottie Player, Button Group, Countdown, Cards, Mail To blocks
+* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
