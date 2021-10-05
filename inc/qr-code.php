@@ -35,7 +35,9 @@ class BBlocksQRCode extends BBlocks{
             'text-align' => $qrAlign
         ) );
 
-        $qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=". $dimension ."x". $dimension ."&color=". str_replace('#', '', $color) ."&bgcolor=". str_replace('#', '', $bgColor) ."&ecc=L&qzone=1&data=". $url;
+        $siteUrl = $url ? $url : 'http://bplugins.com';
+
+        $qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=". $dimension ."x". $dimension ."&color=". str_replace('#', '', $color) ."&bgcolor=". str_replace('#', '', $bgColor) ."&ecc=L&qzone=1&data=". $siteUrl;
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-qr-code <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksQRCode-<?php echo esc_attr( $cId ); ?>'>

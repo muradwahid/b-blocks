@@ -27,10 +27,10 @@ const Edit = props => {
     // Components
     const noPosts = () => <h3 className='bBlocksNoPosts'>{__('No posts found!! Please add some posts', 'b-blocks')}</h3>;
 
-    return posts && 0 !== posts.length ? <>
+    return <>
         <Settings settings={props} getPostTypes={getPostTypes} categories={categories} />
 
-        <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
+        {posts && 0 !== posts.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
                 @import url(${titleTypo?.googleFontLink || 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'}); @import url(${metaTypo?.googleFontLink}); @import url(${excerptTypo?.googleFontLink}); @import url(${readMoreTypo?.googleFontLink});
@@ -105,7 +105,8 @@ const Edit = props => {
                 'masonry' === layout && <div className={`bBlocksMasonryPosts cols-${columns.desktop} cols-tablet-${columns.tablet} cols-mobile-${columns.mobile}`}>
                     <MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
                 </div> /* Masonry Layout */}
-        </div> </> : noPosts();
+        </div> : noPosts()}
+    </>
 }
 export default withSelect((select, props) => {
     const { postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder } = props.attributes;

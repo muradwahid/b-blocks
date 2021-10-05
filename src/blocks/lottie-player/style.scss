@@ -1,7 +1,8 @@
 .wp-block-b-blocks-lottie-player {
     .bBlocksLottiePlayer{
         lottie-player{
-            display: inline-block;
+            display: inline-flex;
+            max-width: 100%;
 
             #lottie-controls.toolbar{
                 margin: 0;

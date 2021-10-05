@@ -1,6 +1,6 @@
 {
     "apiVersion": "2",
-    "name": "b-blocks/*",
+    "name": "b-blocks/blocks",
     "title": "B Blocks",
     "description": "Block collections for gutenberg.",
     "category": "bBlocks",

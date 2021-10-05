@@ -109,6 +109,10 @@ class BBlocksCountdown extends BBlocks{
                 @import url(<?php echo esc_url( $digitTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $labelTypo['googleFontLink'] ?? '' ); ?>);
                 <?php echo wp_kses( $countdownStyle::renderStyle(), array() ); ?>
+                @media (max-width: 575px) { #bBlocksCountdown-<?php echo esc_html( $cId ); ?> .countdownItems .countdownItem{
+                    margin-top: calc(<?php echo esc_html( $boxSpace ); ?> / 2);
+                    margin-bottom: calc(<?php echo esc_html( $boxSpace ); ?> / 2);
+                } }
             </style>
 
             <div class='countdownItems'>

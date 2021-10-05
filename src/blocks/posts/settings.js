@@ -34,7 +34,7 @@ const categoriesPosition = [
 ];
 
 const Settings = ({ settings, getPostTypes, categories }) => {
-    const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes } = settings;
+    const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
 
     const [device, setDevice] = useState('desktop');
 
@@ -43,7 +43,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
             <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
                 {'general' === tab.name && <>
                     {/* Layouts Settings */}
-                    <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
+                    {posts && 0 !== posts.length && <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
                         {/* Layout Type */}
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Layout Type:', 'b-blocks')}</Title>
@@ -81,11 +81,11 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
                         {/* Content Height */}
                         {'grid' === layout && <><Title mt='10px'></Title><ToggleControl label={__('Enable Content Equal Height', 'b-blocks')} checked={isContentEqualHight} onChange={val => setAttributes({ isContentEqualHight: val })} /></>}
-                    </PanelBody>
+                    </PanelBody>}
 
 
                     {/* Posts Query */}
-                    <PanelBody className='bBlocksPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bBlocksPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={posts && 0 !== posts.length ? false : true}>
                         {/* Post Type */}
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Post Type:', 'b-blocks')}</Title>
@@ -123,7 +123,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
                     {/* Elements Settings */}
-                    <PanelBody className='bBlocksPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
+                    {posts && 0 !== posts.length && <PanelBody className='bBlocksPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
                         {/*Feature Image */}
                         <Title mt='0'>{__('Feature Image:', 'b-blocks')}</Title>
                         <ToggleControl label={__('Show Feature Image', 'b-blocks')} checked={isFImg} onChange={val => setAttributes({ isFImg: val })} />
@@ -182,12 +182,12 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                             {/* New Tab */}
                             <ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
                         </>}
-                    </PanelBody>
+                    </PanelBody>}
                 </>}
 
                 {'style' === tab.name && <>
                     {/* Content Style */}
-                    <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
+                    {posts && 0 !== posts.length && <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
                         {/* Text Align */}
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
@@ -202,7 +202,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
                         {/* Border */}
                         <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
-                    </PanelBody>
+                    </PanelBody>}
 
 
                     {/* Feature Image Styles */}
@@ -210,7 +210,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
                     {/* Title Styles */}
-                    {isTitle && <PanelBody className='bBlocksPanelBody' title={__('Title Styles', 'b-blocks')} initialOpen={false}>
+                    {posts && 0 !== posts.length && isTitle && <PanelBody className='bBlocksPanelBody' title={__('Title Styles', 'b-blocks')} initialOpen={false}>
                         {/* Typography */}
                         <Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
@@ -223,7 +223,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
                     {/* Meta Data Styles */}
-                    {isMeta && <PanelBody className='bBlocksPanelBody' title={__('Meta Data Styles', 'b-blocks')} initialOpen={false}>
+                    {posts && 0 !== posts.length && isMeta && <PanelBody className='bBlocksPanelBody' title={__('Meta Data Styles', 'b-blocks')} initialOpen={false}>
                         {/* Typography */}
                         <Typography typography={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: 13, textTransform: 'uppercase' }} />
 
@@ -242,7 +242,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
                     {/* Excerpt Styles */}
-                    {isExcerpt && <PanelBody className='bBlocksPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
+                    {posts && 0 !== posts.length && isExcerpt && <PanelBody className='bBlocksPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
                         {/* Text Align */}
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
@@ -261,7 +261,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
                     {/* Read More Settings */}
-                    {isReadMore && <PanelBody className='bBlocksPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
+                    {posts && 0 !== posts.length && isReadMore && <PanelBody className='bBlocksPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
                         {/* Button Align */}
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Button Align:', 'b-blocks')}</Title>

@@ -13,7 +13,7 @@ const Edit = props => {
     // useEffect
     useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&color=${color.replace('#', '')}&bgcolor=${bgColor.replace('#', '')}&ecc=L&qzone=1&data=${url}`;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&color=${color.replace('#', '')}&bgcolor=${bgColor.replace('#', '')}&ecc=L&qzone=1&data=${url || 'http://bplugins.com'}`;
 
     return <>
         <InspectorControls>

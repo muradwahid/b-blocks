@@ -283,6 +283,11 @@ const Edit = props => {
                     ${parseEmtStr(boxBorder?.styles, 'border-radius: 5%;')}
                     box-shadow: ${boxShadow?.styles || 'none'};
                 }
+                @media (max-width: 575px){ #bBlocksCountdown-${clientId} .countdownItems .countdownItem{
+                    margin-top: calc(${boxSpace} / 2);
+                    margin-bottom: calc(${boxSpace} / 2);
+                } }
+
                 #bBlocksCountdown-${clientId} .countdownItems .countdownItem.separator::before{
                     content: '${sepType}';
                     font-size: ${sepSize}px;
