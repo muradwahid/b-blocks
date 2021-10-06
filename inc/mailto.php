@@ -14,7 +14,7 @@ class BBlocksMailto extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'mailtoAlign' => array( 'type' => 'string', 'default' => 'center' ),
 
@@ -64,7 +64,7 @@ class BBlocksMailto extends BBlocks{
                 <a href='<?php echo 'mailto:' .sanitize_email( $receiverMail ); ?>' class='mailtoui mailtoButton'>
                     <?php echo 'left' === $iconPosition && $icon['class'] ? "<i class='". esc_html( $icon['class'] ) ."'></i>" : ''; ?>
 
-                    <span><?php echo esc_html( $btn ); ?></span>
+                    <span><?php echo wp_kses_post( $btn ); ?></span>
 
                     <?php echo 'right' === $iconPosition && $icon['class'] ? "<i class='". esc_html( $icon['class'] ) ."'></i>" : ''; ?>
                 </a>

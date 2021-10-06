@@ -152,32 +152,32 @@ const Settings = ({ settings }) => {
                         'default' === val && setAttributes({
                             padding: { ...padding, vertical: '50px', horizontal: '20px', styles: `50px 20px` },
                             photoWidth: '170px',
-                            nameTypo: { ...nameTypo, textTransform: 'none', styles: `${nameTypo?.styles} text-transform: none;` },
-                            titleTypo: { ...titleTypo, fontSize: 16, textTransform: 'none', styles: `${titleTypo?.styles} font-size: 16px; text-transform: none;` },
+                            nameTypo: { ...nameTypo, textTransform: 'none', styles: `${nameTypo?.styles}; text-transform: none;` },
+                            titleTypo: { ...titleTypo, fontSize: 16, textTransform: 'none', styles: `${titleTypo?.styles}; font-size: 16px; text-transform: none;` },
                             isSep: true,
                             isBio: true
                         });
                         'style1' === val && setAttributes({
                             padding: { ...padding, vertical: '50px', horizontal: '20px', styles: `50px 20px` },
                             photoWidth: '190px',
-                            nameTypo: { ...nameTypo, textTransform: 'none', styles: `${nameTypo?.styles} text-transform: none;` },
-                            titleTypo: { ...titleTypo, fontSize: 14, textTransform: 'uppercase', styles: `${titleTypo?.styles} font-size: 14px; text-transform: uppercase;` },
+                            nameTypo: { ...nameTypo, textTransform: 'none', styles: `${nameTypo?.styles}; text-transform: none;` },
+                            titleTypo: { ...titleTypo, fontSize: 14, textTransform: 'uppercase', styles: `${titleTypo?.styles}; font-size: 14px; text-transform: uppercase;` },
                             isSep: true,
                             isBio: true
                         });
                         'style2' === val && setAttributes({
                             padding: { ...padding, vertical: '50px', horizontal: '20px', styles: `50px 20px` },
                             photoWidth: '190px',
-                            nameTypo: { ...nameTypo, textTransform: 'none', styles: `${nameTypo?.styles} text-transform: none;` },
-                            titleTypo: { ...titleTypo, fontSize: 14, textTransform: 'uppercase', styles: `${titleTypo?.styles} font-size: 14px; text-transform: uppercase;` },
+                            nameTypo: { ...nameTypo, textTransform: 'none', styles: `${nameTypo?.styles}; text-transform: none;` },
+                            titleTypo: { ...titleTypo, fontSize: 14, textTransform: 'uppercase', styles: `${titleTypo?.styles}; font-size: 14px; text-transform: uppercase;` },
                             isSep: true,
                             isBio: false
                         });
                         'style3' === val && setAttributes({
                             padding: { ...padding, vertical: '15px', horizontal: '15px', styles: `15px 15px` },
-                            photoWidth: '500px',
-                            nameTypo: { ...nameTypo, textTransform: 'uppercase', styles: `${nameTypo?.styles} text-transform: uppercase;` },
-                            titleTypo: { ...titleTypo, fontSize: 15, textTransform: 'none', styles: `${titleTypo?.styles} font-size: 15px; text-transform: none;` },
+                            photoWidth: '100%',
+                            nameTypo: { ...nameTypo, textTransform: 'uppercase', styles: `${nameTypo?.styles}; text-transform: uppercase;` },
+                            titleTypo: { ...titleTypo, fontSize: 15, textTransform: 'none', styles: `${titleTypo?.styles}; font-size: 15px; text-transform: none;` },
                             isSep: false,
                             isBio: false
                         });
@@ -185,48 +185,48 @@ const Settings = ({ settings }) => {
                         members.map((item, index) => {
                             const { background, border, shadow, photoBorder, separator, socialIconColors } = item;
                             'default' === val && (
-                                updateMember(index, 'background', { ...background, color: '#0000', styles: `${background?.styles} background-color: #0000;` }),
-                                updateMember(index, 'border', { ...border, radius: '3px', styles: `${border?.styles} border-radius: 3px;` }),
+                                updateMember(index, 'background', { ...background, color: '#0000', styles: `${background?.styles}; background-color: #0000;` }),
+                                updateMember(index, 'border', { ...border, radius: '3px', styles: `${border?.styles}; border-radius: 3px;` }),
                                 updateMember(index, 'shadow', { ...shadow, blur: '0px', color: '#7090b0', styles: `0px 0px 0px 0px #7090b0` }),
-                                updateMember(index, 'photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '50%', styles: `${photoBorder?.styles} border: 0px solid #0000; border-radius: 50%;` }),
+                                updateMember(index, 'photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '50%', styles: `${photoBorder?.styles}; border: 0px solid #0000; border-radius: 50%;` }),
                                 updateMember(index, 'nameColor', '#333'),
                                 updateMember(index, 'titleColor', '#333'),
-                                updateMember(index, 'separator', { ...separator, color: '#777', styles: `${separator?.styles} border-top: 3px solid #777` }),
+                                updateMember(index, 'separator', { ...separator, color: '#777', styles: `${separator?.styles}; border-top: 3px solid #777` }),
                                 updateMember(index, 'bioColor', '#333'),
-                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#fff', bg: '#4527a4', styles: `${socialIconColors?.styles} color: #fff; background: #4527a4;` })
+                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#fff', bg: '#4527a4', styles: `${socialIconColors?.styles}; color: #fff; background: #4527a4;` })
                             );
                             'style1' === val && (
-                                updateMember(index, 'background', { ...background, color: '#0000', styles: `${background?.styles} background-color: #0000;` }),
-                                updateMember(index, 'border', { ...border, radius: '3px', styles: `${border?.styles} border-radius: 3px;` }),
+                                updateMember(index, 'background', { ...background, color: '#0000', styles: `${background?.styles}; background-color: #0000;` }),
+                                updateMember(index, 'border', { ...border, radius: '3px', styles: `${border?.styles}; border-radius: 3px;` }),
                                 updateMember(index, 'shadow', { ...shadow, blur: '20px', color: '#e8edfb', styles: `0px 0px 20px 0px #e8edfb` }),
-                                updateMember(index, 'photoBorder', { ...photoBorder, width: '10px', color: '#e8edfb', radius: '50%', styles: `${photoBorder?.styles} border: 10px solid #e8edfb; border-radius: 50%;` }),
+                                updateMember(index, 'photoBorder', { ...photoBorder, width: '10px', color: '#e8edfb', radius: '50%', styles: `${photoBorder?.styles}; border: 10px solid #e8edfb; border-radius: 50%;` }),
                                 updateMember(index, 'nameColor', '#333'),
                                 updateMember(index, 'titleColor', '#7a7a7a'),
-                                updateMember(index, 'separator', { ...separator, color: '#4527a4', styles: `${separator?.styles} border-top: 3px solid #4527a4` }),
+                                updateMember(index, 'separator', { ...separator, color: '#4527a4', styles: `${separator?.styles}; border-top: 3px solid #4527a4` }),
                                 updateMember(index, 'bioColor', '#7a7a7a'),
-                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#fff', bg: '#4527a4', styles: `${socialIconColors?.styles} color: #fff; background: #4527a4;` })
+                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#fff', bg: '#4527a4', styles: `${socialIconColors?.styles}; color: #fff; background: #4527a4;` })
                             );
                             'style2' === val && (
-                                updateMember(index, 'background', { ...background, color: '#0000', styles: `${background?.styles} background-color: #0000;` }),
-                                updateMember(index, 'border', { ...border, radius: '3px', styles: `${border?.styles} border-radius: 3px;` }),
+                                updateMember(index, 'background', { ...background, color: '#0000', styles: `${background?.styles}; background-color: #0000;` }),
+                                updateMember(index, 'border', { ...border, radius: '3px', styles: `${border?.styles}; border-radius: 3px;` }),
                                 updateMember(index, 'shadow', { ...shadow, blur: '0px', color: '#7090b0', styles: `0px 0px 0px 0px #7090b0` }),
-                                updateMember(index, 'photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '50%', styles: `${photoBorder?.styles} border: 0px solid #0000; border-radius: 50%;` }),
+                                updateMember(index, 'photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '50%', styles: `${photoBorder?.styles}; border: 0px solid #0000; border-radius: 50%;` }),
                                 updateMember(index, 'nameColor', '#333'),
                                 updateMember(index, 'titleColor', '#7a7a7a'),
-                                updateMember(index, 'separator', { ...separator, color: '#999', styles: `${separator?.styles} border-top: 3px solid #999` }),
+                                updateMember(index, 'separator', { ...separator, color: '#999', styles: `${separator?.styles}; border-top: 3px solid #999` }),
                                 updateMember(index, 'bioColor', '#7a7a7a'),
-                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#4527a4', bg: '#0000', styles: `${socialIconColors?.styles} color: #4527a4; background: #0000;` })
+                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#4527a4', bg: '#0000', styles: `${socialIconColors?.styles}; color: #4527a4; background: #0000;` })
                             );
                             'style3' === val && (
-                                updateMember(index, 'background', { ...background, color: '#4527a4', styles: `${background?.styles} background-color: #4527a4;` }),
-                                updateMember(index, 'border', { ...border, radius: '0px', styles: `${border?.styles} border-radius: 0px;` }),
+                                updateMember(index, 'background', { ...background, color: '#4527a4', styles: `${background?.styles}; background-color: #4527a4;` }),
+                                updateMember(index, 'border', { ...border, radius: '0px', styles: `${border?.styles}; border-radius: 0px;` }),
                                 updateMember(index, 'shadow', { ...shadow, blur: '0px', color: '#7090b0', styles: `0px 0px 0px 0px #7090b0` }),
-                                updateMember(index, 'photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '0px', styles: `${photoBorder?.styles} border: 0px solid #0000; border-radius: 0px;` }),
+                                updateMember(index, 'photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '0px', styles: `${photoBorder?.styles}; border: 0px solid #0000; border-radius: 0px;` }),
                                 updateMember(index, 'nameColor', '#fff'),
                                 updateMember(index, 'titleColor', '#fff'),
-                                updateMember(index, 'separator', { ...separator, color: '#777', styles: `${separator?.styles} border-top: 3px solid #777` }),
+                                updateMember(index, 'separator', { ...separator, color: '#777', styles: `${separator?.styles}; border-top: 3px solid #777` }),
                                 updateMember(index, 'bioColor', '#fff'),
-                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#4527a4', bg: '#fff', styles: `${socialIconColors?.styles} color: #4527a4; background: #fff;` })
+                                updateMember(index, 'socialIconColors', { ...socialIconColors, color: '#4527a4', bg: '#fff', styles: `${socialIconColors?.styles}; color: #4527a4; background: #fff;` })
                             );
                         });
                     }} options={memberStyles} />

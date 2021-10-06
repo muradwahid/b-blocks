@@ -14,7 +14,7 @@ class BBlocksTeamMembers extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'members' => array( 'type' => 'array', 'default' => array(
                 array(
@@ -198,13 +198,13 @@ class BBlocksTeamMembers extends BBlocks{
                         <?php echo $photo['url'] ? "<img class='memberPhoto ". esc_attr( $photoClass ) ."' src='". esc_url( $photo['url'] ) ."' alt='". esc_attr( $photo['alt'] ) ."' />" : ''; ?>
 
                         <div class='memberDetails'>
-                            <?php echo $name ? "<h4 class='memberName'>". esc_html( $name ) ."</h4>" : ''; ?>
+                            <?php echo $name ? "<h4 class='memberName'>". wp_kses_post( $name ) ."</h4>" : ''; ?>
 
-                            <?php echo $isTitle && $title ? "<p class='memberTitle'>". esc_html( $title ) ."</p>" : ''; ?>
+                            <?php echo $isTitle && $title ? "<p class='memberTitle'>". wp_kses_post( $title ) ."</p>" : ''; ?>
 
                             <?php echo $isSep ? "<span class='memberSeparator'></span>" : ''; ?>
                             
-                            <?php echo $isBio && $bio ? "<p class='memberBio'>". esc_html( $bio ) ."</p>" : ''; ?>
+                            <?php echo $isBio && $bio ? "<p class='memberBio'>". wp_kses_post( $bio ) ."</p>" : ''; ?>
 
                             <ul class='memberSocial'>
                             <?php foreach ( $social as $socialIndex => $socialItem ) {

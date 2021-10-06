@@ -14,7 +14,7 @@ class BBlocksImageGallery extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
     
             'images' => array( 'type' => 'array', 'default' => array() ),
     

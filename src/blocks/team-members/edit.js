@@ -131,13 +131,13 @@ const Edit = props => {
                         </> : <ImagePlaceholder label={__(' Member Photo:', 'b-blocks')} img={photo} onChange={val => updateMember(index, 'photo', val)} />}
 
                         <div className='memberDetails'>
-                            <RichText className='memberName' tagName='h4' value={name} onChange={val => updateMember(index, 'name', val)} placeholder={__('Member name', 'b-blocks')} />
+                            <RichText className='memberName' tagName='h4' value={name} onChange={val => updateMember(index, 'name', val)} placeholder={__('Member name', 'b-blocks')} inlineToolbar />
 
-                            {isTitle && <RichText className='memberTitle' tagName='p' value={title} onChange={val => updateMember(index, 'title', val)} placeholder={__('Member designation/title', 'b-blocks')} />}
+                            {isTitle && <RichText className='memberTitle' tagName='p' value={title} onChange={val => updateMember(index, 'title', val)} placeholder={__('Member designation/title', 'b-blocks')} inlineToolbar />}
 
                             {isSep && <span className='memberSeparator'></span>}
 
-                            {isBio && <RichText className='memberBio' tagName='p' value={bio} onChange={val => updateMember(index, 'bio', val)} placeholder={__('Biography of the member', 'b-blocks')} />}
+                            {isBio && <RichText className='memberBio' tagName='p' value={bio} onChange={val => updateMember(index, 'bio', val)} placeholder={__('Biography of the member', 'b-blocks')} inlineToolbar />}
 
                             {isSocial && <ul className='memberSocial'>
                                 {social?.map((socialItem, socialIndex) => {

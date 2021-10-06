@@ -13,6 +13,7 @@ const Edit = props => {
     return <>
         <Settings settings={props} />
 
+
         <div className={className} id={`bBlocksInfoBox-${clientId}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -65,7 +66,7 @@ const Edit = props => {
 
                 {isDesc && <RichText className='infoBoxDescription' tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Info box description', 'b-blocks')} inlineToolbar />}
 
-                {isBtn && <RichText className='infoBoxButton' tagName='a' value={btn} href={btnLink} target={isLinkNewTab ? '_blank' : ''} rel='noreferrer noopener' onChange={val => setAttributes({ btn: val })} placeholder={__('Click Me', 'b-blocks')} />}
+                {isBtn && <RichText className='infoBoxButton' tagName='a' value={btn} href={btnLink} target={isLinkNewTab ? '_blank' : ''} rel='noreferrer noopener' onChange={val => setAttributes({ btn: val })} placeholder={__('Click Me', 'b-blocks')} inlineToolbar />}
             </div>
         </div>
     </>;

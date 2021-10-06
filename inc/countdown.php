@@ -14,7 +14,7 @@ class BBlocksCountdown extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
             'destDate' => array( 'type' => 'string', 'default' => '' ),
 
             'layout' => array( 'type' => 'string', 'default' => 'default' ),
@@ -35,7 +35,7 @@ class BBlocksCountdown extends BBlocks{
             'secondsLabel' => array( 'type' => 'string', 'default' => 'Seconds' ),
 
             'width' => array( 'type' => 'string', 'default' => '0px' ),
-            'background' => array( 'type' => 'object', 'default' => array() ),
+            'background' => array( 'type' => 'object', 'default' => array( 'color' => '#0000' ) ),
             'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '10px', 'horizontal' => '15px' ) ),
             'shadow' => array( 'type' => 'object', 'default' => array() ),
             'alignment' => array( 'type' => 'string', 'default' => 'center' ),
@@ -71,7 +71,7 @@ class BBlocksCountdown extends BBlocks{
         ) );
         $countdownStyle::addStyle( "#bBlocksCountdown-$cId .countdownItems", array(
             'width' => '0px' === $width || '0%' === $width || '0em' === $width ? 'auto' : $width,
-            $background['styles'] ?? '' => '',
+            $background['styles'] ?? 'background-color: #0000;' => '',
             'padding' => $padding['styles'] ?? '10px 15px',
             'box-shadow' => $shadow['styles'] ?? 'none',
             'justify-content' => $boxPosition
@@ -130,7 +130,7 @@ class BBlocksCountdown extends BBlocks{
     function box( $is, $boxClass, $isLabels, $label ){
         if( $is ){ ?><div class='countdownItem <?php echo esc_attr( $boxClass ); ?>'>
             <span class='digit'>00</span> 
-            <?php echo $isLabels ? "<span class='label'>". esc_html( $label ) ."</span>" : ''; ?>
+            <?php echo $isLabels ? "<span class='label'>". wp_kses_post( $label ) ."</span>" : ''; ?>
         </div><?php }
     } // Box
 }

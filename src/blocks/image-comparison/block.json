@@ -16,7 +16,8 @@
             "default": ""
         },
         "cId": {
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "alignment": {
             "type": "string",

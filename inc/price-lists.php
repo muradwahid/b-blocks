@@ -14,7 +14,7 @@ class BBlocksPriceLists extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'products' => array( 'type' => 'array', 'default' => array(
                 array(
@@ -150,11 +150,11 @@ class BBlocksPriceLists extends BBlocks{
                         <?php echo $img['url'] ? "<img class='productImage ". esc_attr($imgClass) ."' src='". esc_url($img['url']) ."' alt='". esc_attr($img['alt']) ."' />" : ''; ?>
 
                         <div class='productDetails'>
-                            <h4 class='productName'><?php echo esc_html( $name ); ?></h4>
+                            <h4 class='productName'><?php echo wp_kses_post( $name ); ?></h4>
 
-                            <?php echo $isDesc ? "<p class='productDescription'>". esc_html( $desc ) ."</p>" : ''; ?>
+                            <?php echo $isDesc ? "<p class='productDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
                             
-                            <span class='productPrice'><?php echo esc_html( $price ); ?></span>
+                            <span class='productPrice'><?php echo wp_kses_post( $price ); ?></span>
                         </div>
 
                         <?php echo $isSep ? "<span class='productSeparator'></span>" : ''; ?>

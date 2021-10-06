@@ -16,7 +16,12 @@
             "default": ""
         },
         "cId": {
-            "type": "string"
+            "type": "string",
+            "default": ""
+        },
+        "width": {
+            "type": "string",
+            "default": "0px"
         },
         "btnAlign": {
             "type": "string",
@@ -31,10 +36,6 @@
             "default": {
                 "fontSize": 16
             }
-        },
-        "btnWidth": {
-            "type": "string",
-            "default": "0px"
         },
         "btnPadding": {
             "type": "object",
@@ -130,14 +131,6 @@
                 "fontSize": 20,
                 "color": "#333"
             }
-        },
-        "sepWidth": {
-            "type": "string",
-            "default": "0px"
-        },
-        "sepSize": {
-            "type": "string",
-            "default": "30px"
         },
         "sepBGColor": {
             "type": "string",

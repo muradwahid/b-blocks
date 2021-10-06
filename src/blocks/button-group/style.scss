@@ -1,12 +1,35 @@
 .wp-block-b-blocks-button-group{
     .bBlocksButtonGroup{
         display: inline-flex;
+        align-items: stretch;
         max-width: 100%;
+
+        .bBlocksBtn{
+            max-width: 100%;
+
+            a{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                text-decoration: none;
+                outline: 0;
+                box-shadow: none;
+                transition: all .3s ease;
+
+                &:hover, &:focus, &:active{
+                    text-decoration: none;
+                    outline: 0;
+                    box-shadow: none;
+                }
+            }
+        }
 
         .firstBtn{
             position: relative;
             display: inline-block;
-            max-width: 50%;
 
             .btnSeparator{
                 position: absolute;
@@ -18,6 +41,7 @@
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
+                padding: 5px;
 
                 span{
                     text-transform: uppercase;
@@ -28,24 +52,5 @@
                 }
             }
         }
-    }
-
-    .btnG{
-        display: inline-block;
-        max-width: 100%;
-        text-decoration: none;
-        outline: 0;
-        box-shadow: none;
-        transition: all .3s ease;
-
-        &:hover, &:focus, &:active{
-            text-decoration: none;
-            outline: 0;
-            box-shadow: none;
-        }
-    }
-
-    .btnTwo{
-        max-width: 50%;
     }
 }

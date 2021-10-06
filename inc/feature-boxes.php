@@ -14,7 +14,7 @@ class BBlocksFeatureBoxes extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'features' => array( 'type' => 'array', 'default' => array(
                 array(
@@ -150,11 +150,11 @@ class BBlocksFeatureBoxes extends BBlocks{
                         </div>
 
                         <div class='featureDetails'>
-                            <?php echo $isTitle && $title ? "<h4 class='featureTitle'>". esc_html( $title ) ."</h4>" : ''; ?>
+                            <?php echo $isTitle && $title ? "<h4 class='featureTitle'>". wp_kses_post( $title ) ."</h4>" : ''; ?>
 
                             <?php echo $isSep ? "<span class='featureSeparator'></span>" : ''; ?>
                             
-                            <?php echo $isDesc && $desc ? "<p class='featureDescription'>". esc_html( $desc ) ."</p>" : ''; ?>
+                            <?php echo $isDesc && $desc ? "<p class='featureDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
                         </div>
                     </div>
                 <?php $featureStyle::$styles = array(); } ?>

@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.8.1
-Stable tag: 1.4
+Stable tag: 1.5.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -41,6 +41,8 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 - **Feature Boxes**: Display Feature boxes section with feature image, title, separator and description.
 
 - **Info Box**: Show information in your website for the users in a attractive way.
+
+- **Lottie Player**: Display animated lottie lottie files/images.
 
 - **Button Group**: Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
 
@@ -170,6 +172,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.5.1 =
+* Fix content & css issues
+
 = 1.5 =
 * Add Lottie Player Block
 * Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
@@ -194,18 +199,28 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
-* Initial Release
 
-* Add Price Lists and Feature Boxes blocks
-* Compatible with PHP 5.4
+= 1.5.1 =
+* Fix content & css issues
 
-* Add Image Gallery and Info Box blocks
-* Responsive the Price Lists and Feature Boxes
+= 1.5 =
+* Add Lottie Player Block
+* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
 
-* Add Button Group and Countdown blocks
-
+= 1.4 =
 * Add Image Comparison, Team Members and Flip Boxes blocks
 * Update Posts Block
 
-* Add Lottie Player Block
-* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
+= 1.3 =
+* Add Button Group and Countdown blocks
+
+= 1.2 =
+* Add Image Gallery and Info Box blocks
+* Responsive the Price Lists and Feature Boxes
+
+= 1.1 =
+* Add Price Lists and Feature Boxes blocks
+* Compatible with PHP 5.4
+
+= 1.0 =
+* Initial Release

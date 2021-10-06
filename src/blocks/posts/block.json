@@ -16,7 +16,8 @@
             "default": "wide"
         },
         "cId": {
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "layout": {
             "type": "string",

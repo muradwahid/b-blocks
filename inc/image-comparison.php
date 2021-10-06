@@ -14,7 +14,7 @@ class BBlocksImageComparison extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
             'alignment' => array( 'type' => 'string', 'default' => 'center' ),
     
             'width' => array( 'type' => 'string', 'default' => '80%' ),
@@ -74,12 +74,12 @@ class BBlocksImageComparison extends BBlocks{
     
             <div class='bBlocksImageComparison'>
                 <div class='comparison-slider'>
-                    <?php echo $isLabel && $afterLabel ? "<div class='overlay afterLabel'>". esc_html( $afterLabel ) ."</div>" : ''; ?>
+                    <?php echo $isLabel && $afterLabel ? "<div class='overlay afterLabel'>". wp_kses_post( $afterLabel ) ."</div>" : ''; ?>
 
                     <?php echo $afterImg['url'] ? "<img class='afterImg' src='". esc_url( $afterImg['url'] ) ."' alt='". esc_attr( $afterImg['alt'] ) ."' />" : ''; ?>
      
                     <div class='resize'>
-                        <?php echo $isLabel && $afterLabel ? "<div class='overlay beforeLabel'>". esc_html( $beforeLabel ) ."</div>" : ''; ?>
+                        <?php echo $isLabel && $afterLabel ? "<div class='overlay beforeLabel'>". wp_kses_post( $beforeLabel ) ."</div>" : ''; ?>
 
                         <?php echo $beforeImg['url'] ? "<img class='beforeImg' src='". esc_url( $beforeImg['url'] ) ."' alt='". esc_attr( $beforeImg['alt'] ) ."' />" : ''; ?>
                     </div>
@@ -87,7 +87,7 @@ class BBlocksImageComparison extends BBlocks{
                     <div class='divider'></div>
                 </div>
     
-                <?php echo $isCap && $cap ? "<div class='caption'>". esc_html( $cap ) ."</div>" : ''; ?>
+                <?php echo $isCap && $cap ? "<div class='caption'>". wp_kses_post( $cap ) ."</div>" : ''; ?>
             </div>
         </div>
     

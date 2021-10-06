@@ -15,7 +15,7 @@ class BBlocksPosts extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => 'wide' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'layout' => array( 'type' => 'string', 'default' => 'grid' ),
             'subLayout' => array( 'type' => 'string', 'default' => 'default' ),

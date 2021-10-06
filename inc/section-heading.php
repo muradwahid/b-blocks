@@ -14,7 +14,7 @@ class BBlocksSectionHeading extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'textAlign' => array( 'type' => 'string', 'default' => 'left' ),
 
@@ -68,9 +68,9 @@ class BBlocksSectionHeading extends BBlocks{
             </style>
 
             <div class='bBlocksSectionHeading'>
-                <h2 class='sectionHeadingTitle'><?php echo esc_html( $title ); ?></h2>
+                <h2 class='sectionHeadingTitle'><?php echo wp_kses_post( $title ); ?></h2>
                 <?php echo $isSep ? "<span class='sectionHeadingSeparator'></span>" : ''; ?>
-                <?php echo $isDesc ? "<p class='sectionHeadingDescription'>". esc_html( $desc ) ."</p>" : ''; ?>
+                <?php echo $isDesc ? "<p class='sectionHeadingDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
             </div>
         </div>
         <?php $sectionHeadingStyle::$styles = array(); // Empty styles

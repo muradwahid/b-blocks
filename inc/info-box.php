@@ -14,7 +14,7 @@ class BBlocksInfoBox extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'infoBoxAlign' => array( 'type' => 'string', 'default' => 'center' ),
             'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
@@ -107,9 +107,9 @@ class BBlocksInfoBox extends BBlocks{
 
             <div class='bBlocksInfoBox'>
                 <?php echo $isIcon && $icon['class'] ? "<div class='infoBoxIcon'><i class='". esc_html( $icon['class'] ) ."'></i></div>" : ''; ?>
-                <?php echo $title ? "<h3 class='infoBoxTitle'>". esc_html( $title ) ."</h3>" : ''; ?>
-                <?php echo $isDesc && $desc ? "<p class='infoBoxDescription'>". esc_html( $desc ) ."</p>" : ''; ?>
-                <?php echo $isBtn && $btn ? "<a href='". esc_url( $btnLink ) ."' class='infoBoxButton' target='". esc_attr( $btnTab ) ."' rel='noreferrer noopener'>". esc_html( $btn ) ."</a>" : ''; ?>
+                <?php echo $title ? "<h3 class='infoBoxTitle'>". wp_kses_post( $title ) ."</h3>" : ''; ?>
+                <?php echo $isDesc && $desc ? "<p class='infoBoxDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
+                <?php echo $isBtn && $btn ? "<a href='". esc_url( $btnLink ) ."' class='infoBoxButton' target='". esc_attr( $btnTab ) ."' rel='noreferrer noopener'>". wp_kses_post( $btn ) ."</a>" : ''; ?>
             </div>
         </div>
         <?php $infoBoxStyle::$styles = array(); // Empty styles

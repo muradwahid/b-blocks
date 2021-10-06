@@ -14,7 +14,7 @@ class BBlocksSlider extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
     
             'slides' => array( 'type' => 'array', 'default' => array(
                 array(
@@ -135,9 +135,11 @@ class BBlocksSlider extends BBlocks{
                             <style><?php echo "#bBlocksSlider-". esc_attr( $cId ) ." .bBlocksSlider .slide-$index{". wp_kses( $slideBGStyle, array() ) ."}"; ?></style>
 
                             <div class='sliderContent <?php echo esc_attr( str_replace( ' ', '-', $slidePosition ) ); ?>'>
-                                <?php echo $isTitle && $slideTitle ? "<h2 class='sliderTitle'>". esc_html( $slideTitle ) ."</h2>" : ''; ?>
-                                <?php echo $isDesc && $slideDesc ? "<p class='sliderDescription'>". esc_html( $slideDesc ) ."</p>" : ''; ?>
-                                <?php echo $isBtn && $slideBtnText ? "<a href='$slideBtnLink' class='sliderBtn' target='_blank' rel='noreferrer'>". esc_html( $slideBtnText ) ."</a>" : ''; ?>
+                                <?php echo $isTitle && $slideTitle ? "<h2 class='sliderTitle'>". wp_kses_post( $slideTitle ) ."</h2>" : ''; ?>
+                                
+                                <?php echo $isDesc && $slideDesc ? "<p class='sliderDescription'>". wp_kses_post( $slideDesc ) ."</p>" : ''; ?>
+                                
+                                <?php echo $isBtn && $slideBtnText ? "<a href='$slideBtnLink' class='sliderBtn' target='_blank' rel='noreferrer'>". wp_kses_post( $slideBtnText ) ."</a>" : ''; ?>
                             </div>
                         </div>
                     <?php } ?>

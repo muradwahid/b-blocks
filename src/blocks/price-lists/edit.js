@@ -93,11 +93,11 @@ const Edit = props => {
                         </> : <ImagePlaceholder label={__(' Product Image:', 'b-blocks')} img={img} onChange={val => updateProduct(index, 'img', val)} />}
 
                         <div className='productDetails'>
-                            <RichText className='productName' tagName='h4' value={name} onChange={val => updateProduct(index, 'name', val)} placeholder={__('Product name', 'b-blocks')} />
+                            <RichText className='productName' tagName='h4' value={name} onChange={val => updateProduct(index, 'name', val)} placeholder={__('Product name', 'b-blocks')} inlineToolbar />
 
-                            {isDesc && <RichText className='productDescription' tagName='p' value={desc} onChange={val => updateProduct(index, 'desc', val)} placeholder={__('Description of the product', 'b-blocks')} />}
+                            {isDesc && <RichText className='productDescription' tagName='p' value={desc} onChange={val => updateProduct(index, 'desc', val)} placeholder={__('Description of the product', 'b-blocks')} inlineToolbar />}
 
-                            <RichText className='productPrice' tagName='span' value={price} onChange={val => updateProduct(index, 'price', val)} placeholder={__('$99.99', 'b-blocks')} />
+                            <RichText className='productPrice' tagName='span' value={price} onChange={val => updateProduct(index, 'price', val)} placeholder={__('$99.99', 'b-blocks')} inlineToolbar />
                         </div>
 
                         {isSep && <span className='productSeparator'></span>}

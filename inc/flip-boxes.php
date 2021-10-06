@@ -14,7 +14,7 @@ class BBlocksFlipBoxes extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'boxes' => array( 'type' => 'array', 'default' => array(
                 array(
@@ -187,9 +187,9 @@ class BBlocksFlipBoxes extends BBlocks{
                             <div class='frontContent'>
                                 <?php echo $isIcon && $frontIcon['class'] ? "<i class='flipIcon frontIcon ". esc_html( $frontIcon['class'] ) ."'></i>" : ''; ?>
 
-                                <?php echo $frontTitle ? "<h3 class='flipTitle flipFrontTitle'>". esc_html( $frontTitle ) ."</h3>" : ''; ?>
+                                <?php echo $frontTitle ? "<h3 class='flipTitle flipFrontTitle'>". wp_kses_post( $frontTitle ) ."</h3>" : ''; ?>
 
-                                <?php echo $isDesc && $desc ? "<p class='flipDescription'>". esc_html( $desc ) ."</p>" : ''; ?>
+                                <?php echo $isDesc && $desc ? "<p class='flipDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
                             </div>
                         </div>
 
@@ -197,9 +197,9 @@ class BBlocksFlipBoxes extends BBlocks{
                             <div class='backContent'>
                                 <?php echo $isIcon && $backIcon['class'] ? "<i class='flipIcon backIcon ". esc_html( $backIcon['class'] ) ."'></i>" : ''; ?>
 
-                                <?php echo $backTitle ? "<h3 class='flipTitle flipBackTitle'>". esc_html( $backTitle ) ."</h3>" : ''; ?>
+                                <?php echo $backTitle ? "<h3 class='flipTitle flipBackTitle'>". wp_kses_post( $backTitle ) ."</h3>" : ''; ?>
 
-                                <?php echo $isBtn && $btn ? "<a href='". esc_attr( $btnLink ) ."' class='flipBtn' target='_blank' rel='noreferrer noopener'>". esc_html( $btn ) ."</a>" : ''; ?>
+                                <?php echo $isBtn && $btn ? "<a href='". esc_attr( $btnLink ) ."' class='flipBtn' target='_blank' rel='noreferrer noopener'>". wp_kses_post( $btn ) ."</a>" : ''; ?>
                             </div>
                         </div>
                     </div>

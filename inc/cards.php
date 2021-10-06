@@ -14,7 +14,7 @@ class BBlocksCards extends BBlocks{
     function attributes(){
         return array(
             'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string' ),
+            'cId' => array( 'type' => 'string', 'default' => '' ),
 
             'cards' => array( 'type' => 'array', 'default' => array(
                 array(
@@ -163,13 +163,13 @@ class BBlocksCards extends BBlocks{
                             ) ); ?>
 
                             <div class='cardDetails'>
-                                <?php echo $isCat && $cat ? "<h6 class='cardCategory'>". esc_html( $cat ) ."</h6>" : ''; ?>
+                                <?php echo $isCat && $cat ? "<h6 class='cardCategory'>". wp_kses_post( $cat ) ."</h6>" : ''; ?>
 
                                 <?php echo wp_kses( $cardTitleInContent, array(
                                     'h3' => array( 'class' => array() )
                                 ) ); ?>
 
-                                <?php echo $isDesc && $desc ? "<p class='cardDescription'>". esc_html( $desc ) ."</p>" : ''; ?>
+                                <?php echo $isDesc && $desc ? "<p class='cardDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
                             </div>
 
                             <?php echo wp_kses( $cardImageInBottom, array(
