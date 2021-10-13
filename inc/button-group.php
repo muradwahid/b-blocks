@@ -6,47 +6,36 @@ class BBlocksButtonGroup extends BBlocks{
 
     function register(){
         $this::registerScripts( 'button-group', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-    
-            'width' => array( 'type' => 'string', 'default' => '0px' ),
-
-            'btnAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'btnType' => array( 'type' => 'string', 'default' => 'fill' ),
-            'btnTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 16 ) ),
-            'btnPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '12px', 'horizontal' => '30px' ) ),
-    
-            'btnOne' => array( 'type' => 'string', 'selector' => 'a.btnOne', 'default' => 'First Button' ),
-            'btnOneLink' => array( 'type' => 'string', 'default' => '#' ),
-            'btnOneBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '50px' ) ),
-            'btnOneColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
-            'btnOneHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
-            
-            'btnTwo' => array( 'type' => 'string', 'selector' => 'a.btnTwo', 'default' => 'Second Button' ),
-            'btnTwoLink' => array( 'type' => 'string', 'default' => '#' ),
-            'btnTwoBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '50px' ) ),
-            'btnTwoColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
-            'btnTwoHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
-    
-            'isSep' => array( 'type' => 'boolean', 'default' => true ),
-            'sepType' => array( 'type' => 'string', 'default' => 'icon' ),
-            'sepText' => array( 'type' => 'string', 'default' => 'or' ),
-            'sepTextTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'sepTextColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'sepIcon' => array( 'type' => 'object', 'default' => array( 'class' => 'fa fa fa-arrows-alt-h', 'fontSize' => 20, 'color' => '#333' ) ),
-            'sepBGColor' => array( 'type' => 'string', 'default' => '#fff' )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $width = $width ?? '0px';
+        $btnAlign = $btnAlign ?? 'center';
+        $btnType = $btnType ?? 'fill';
+        $btnTypo = $btnTypo ?? array( 'fontSize' => 16 );
+        $btnPadding = $btnPadding ?? array( 'vertical' => '12px', 'horizontal' => '30px' );
+        $btnOne = $btnOne ?? 'First Button';
+        $btnOneLink = $btnOneLink ?? '#';
+        $btnOneBorder = $btnOneBorder ?? array( 'radius' => '50px' );
+        $btnOneColors = $btnOneColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $btnOneHovColors = $btnOneHovColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $btnTwo = $btnTwo ?? 'Second Button';
+        $btnTwoLink = $btnTwoLink ?? '#';
+        $btnTwoBorder = $btnTwoBorder ?? array( 'radius' => '50px' );
+        $btnTwoColors = $btnTwoColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $btnTwoHovColors = $btnTwoHovColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $isSep = $isSep ?? true;
+        $sepType = $sepType ?? 'icon';
+        $sepText = $sepText ?? 'or';
+        $sepTextTypo = $sepTextTypo ?? array( 'fontSize' => 15 );
+        $sepTextColor = $sepTextColor ?? '#333';
+        $sepIcon = $sepIcon ?? array( 'class' => 'fa fa fa-arrows-alt-h', 'fontSize' => 20, 'color' => '#333' );
+        $sepBGColor = $sepBGColor ?? '#fff';
 
         // Generate Styles
         $btnBorderRadiusCSS = $btnBorder['radius'] ?? '50px';

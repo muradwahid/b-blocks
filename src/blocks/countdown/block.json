@@ -101,7 +101,7 @@
             "default": {
                 "type": "gradient",
                 "color": "#4527a4",
-                "gradient": "linear-gradient(135deg, #4527a4, #8344c5}"
+                "gradient": "linear-gradient(135deg, #4527a4, #8344c5)"
             }
         },
         "boxWidth": {

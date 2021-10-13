@@ -1,0 +1,57 @@
+import { registerBlockType, createBlock } from '@wordpress/blocks';
+
+// Import Files
+import Edit from './edit';
+import './editor.scss';
+
+// Icon
+import icons from '../../Const/icons';
+const icon = icons.alert;
+
+// Metadata
+import metadata from './block.json';
+const { name, title, description, category, keywords, supports, attributes, example } = metadata;
+
+registerBlockType(name, {
+    title, description, icon, category, keywords, supports, attributes, example,
+
+    transforms: {
+        from: [
+            {
+                type: 'block', blocks: ['core/paragraph'], transform: ({ content, align }) => {
+                    return createBlock('b-blocks/alert', { message: content, textAlign: align });
+                }
+            },
+            {
+                type: 'block', blocks: ['core/heading'], transform: ({ content, textAlign }) => {
+                    return createBlock('b-blocks/alert', { message: content, textAlign });
+                }
+            },
+            { type: 'prefix', prefix: 'alert', transform: () => createBlock('b-blocks/alert') }
+        ],
+
+        to: [
+            {
+                type: 'block', blocks: ['core/paragraph'], isMatch: ({ message }) => {
+                    if (message) return true;
+                    return false;
+                }, transform: ({ message, textAlign }) => {
+                    return createBlock('core/paragraph', { content: message, align: textAlign });
+                }
+            },
+            {
+                type: 'block', blocks: ['core/heading'], isMatch: ({ message }) => {
+                    if (message) return true;
+                    return false;
+                }, transform: ({ message, textAlign }) => {
+                    return createBlock('core/heading', { content: message, textAlign });
+                }
+            }
+        ]
+    },
+
+    // Build In Functions
+    edit: Edit,
+
+    save: () => null
+});

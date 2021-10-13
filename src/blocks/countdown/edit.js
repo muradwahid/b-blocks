@@ -1,4 +1,6 @@
+import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
+import { RichText } from '@wordpress/block-editor';
 
 import Settings from './settings';
 
@@ -45,7 +47,6 @@ const Edit = props => {
 
     // Classes
     const boxClass = `${boxIsInline ? 'inline' : ''}`;
-    const sepClass = `${isSep ? 'separator' : ''}`;
 
     return <>
         <Settings settings={props} />
@@ -82,11 +83,10 @@ const Edit = props => {
                     margin-bottom: calc(${boxSpace} / 2);
                 } }
 
-                #bBlocksCountdown-${clientId} .countdownItems .countdownItem.separator::before{
+                #bBlocksCountdown-${clientId} .countdownItems .separator::before{
                     content: '${sepType}';
                     font-size: ${sepSize}px;
                     color: ${sepColor};
-                    left: calc(-${boxSpace} / 2);
                 }
                 #bBlocksCountdown-${clientId} .countdownItems .countdownItem .digit{
                     color: ${digitColor};
@@ -99,13 +99,16 @@ const Edit = props => {
             `}} />
 
             <div className='countdownItems'>
-                <Box is={isDays} boxClass={`countdownDays ${boxClass}`} isLabels={isLabels} label={daysLabel} />
+                <Box is={isDays} boxClass={`countdownDays ${boxClass}`} isLabels={isLabels} label={daysLabel} onChange={val => setAttributes({ daysLabel: val })} />
+                {isSep && isDays && (isHours || isMinutes || isSeconds) && <span className='separator'></span>}
 
-                <Box is={isHours} boxClass={`countdownHours ${boxClass} ${sepClass}`} isLabels={isLabels} label={hoursLabel} />
+                <Box is={isHours} boxClass={`countdownHours ${boxClass}`} isLabels={isLabels} label={hoursLabel} onChange={val => setAttributes({ hoursLabel: val })} />
+                {isSep && isHours && (isMinutes || isSeconds) && <span className='separator'></span>}
 
-                <Box is={isMinutes} boxClass={`countdownMinutes ${boxClass} ${sepClass}`} isLabels={isLabels} label={minutesLabel} />
+                <Box is={isMinutes} boxClass={`countdownMinutes ${boxClass}`} isLabels={isLabels} label={minutesLabel} onChange={val => setAttributes({ minutesLabel: val })} />
+                {isSep && isMinutes && isSeconds && <span className='separator'></span>}
 
-                <Box is={isSeconds} boxClass={`countdownSeconds ${boxClass} ${sepClass}`} isLabels={isLabels} label={secondsLabel} />
+                <Box is={isSeconds} boxClass={`countdownSeconds ${boxClass}`} isLabels={isLabels} label={secondsLabel} onChange={val => setAttributes({ secondsLabel: val })} />
             </div>
         </div>
     </>;
@@ -114,14 +117,13 @@ export default Edit;
 
 // Box Component
 const Box = props => {
-    const { is, boxClass, isLabels, label } = props
+    const { is, boxClass, isLabels, label, onChange } = props
 
     return is && <div className={`countdownItem ${boxClass}`}>
         <span className='digit'>00</span>
-        {isLabels && <span className='label'>{label}</span>}
+        {isLabels && <RichText className='label' tagName='span' value={label} onChange={val => onChange(val)} placeholder={__('Label', 'b-blocks')} />}
     </div>;
 };
 
 // Fixing need
 // use useRef
-// separator position

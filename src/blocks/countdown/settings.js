@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl } from '@wordpress/components';
 
 // Variables
 import Title from '../../Components/Title';
@@ -25,7 +25,7 @@ const sepTypes = [
 ];
 
 const Settings = ({ settings }) => {
-    const { attributes: { destDate, layout, boxIsInline, boxPosition, isLabels, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor }, setAttributes } = settings;
+    const { attributes: { destDate, layout, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor }, setAttributes } = settings;
 
     return <>
         <InspectorControls>
@@ -97,39 +97,19 @@ const Settings = ({ settings }) => {
                         <ToggleControl className='mt-20p' label='Box Inline?' checked={boxIsInline} onChange={val => setAttributes({ boxIsInline: val })} />
 
                         {/* Labels */}
-                        <ToggleControl className='mt-20p' label={__('Show Labels', 'b-blocks')} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
+                        <ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
 
                         {/* Days */}
-                        <ToggleControl className='mt-20p' label={__('Show Days', 'b-blocks')} checked={isDays} onChange={val => setAttributes({ isDays: val })} />
-
-                        {isLabels && isDays && <PanelRow>
-                            <Title mt='0' mb='0'>{__('Days Label:', 'b-blocks')}</Title>
-                            <TextControl value={daysLabel} onChange={val => setAttributes({ daysLabel: val })} />
-                        </PanelRow>}
+                        <ToggleControl label={__('Show Days', 'b-blocks')} checked={isDays} onChange={val => setAttributes({ isDays: val })} />
 
                         {/* Hours */}
-                        <ToggleControl className='mt-20p' label={__('Show Hours', 'b-blocks')} checked={isHours} onChange={val => setAttributes({ isHours: val })} />
-
-                        {isLabels && isHours && <PanelRow>
-                            <Title mt='0' mb='0'>{__('Hours Label:', 'b-blocks')}</Title>
-                            <TextControl value={hoursLabel} onChange={val => setAttributes({ hoursLabel: val })} />
-                        </PanelRow>}
+                        <ToggleControl label={__('Show Hours', 'b-blocks')} checked={isHours} onChange={val => setAttributes({ isHours: val })} />
 
                         {/* Minutes */}
-                        <ToggleControl className='mt-20p' label={__('Show Minutes', 'b-blocks')} checked={isMinutes} onChange={val => setAttributes({ isMinutes: val })} />
-
-                        {isLabels && isMinutes && <PanelRow>
-                            <Title mt='0' mb='0'>{__('Minutes Label:', 'b-blocks')}</Title>
-                            <TextControl value={minutesLabel} onChange={val => setAttributes({ minutesLabel: val })} />
-                        </PanelRow>}
+                        <ToggleControl label={__('Show Minutes', 'b-blocks')} checked={isMinutes} onChange={val => setAttributes({ isMinutes: val })} />
 
                         {/* Seconds */}
-                        <ToggleControl className='mt-20p' label={__('Show Seconds', 'b-blocks')} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
-
-                        {isLabels && isSeconds && <PanelRow>
-                            <Title mt='0' mb='0'>{__('Seconds Label:', 'b-blocks')}</Title>
-                            <TextControl value={secondsLabel} onChange={val => setAttributes({ secondsLabel: val })} />
-                        </PanelRow>}
+                        <ToggleControl label={__('Show Seconds', 'b-blocks')} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
                     </PanelBody>
                 </>}
 

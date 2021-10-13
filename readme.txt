@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.8.1
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -68,7 +68,7 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 - **Highlight Text**: Highlight text with custom color.
 
-- **Alert**: Display alert with or without title also dismiss button.
+- **Alert**: Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
 
 - **Progress Bar**: Present your skills, experiences, or the progress of an ongoing project using Progress Bar.
 
@@ -172,6 +172,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.5.2 =
+* Add Alert Block
+* Update Button Group and Countdown
+
 = 1.5.1 =
 * Fix content & css issues
 
@@ -199,6 +203,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.5.2 =
+* Add Alert Block
+* Update Button Group and Countdown
 
 = 1.5.1 =
 * Fix content & css issues

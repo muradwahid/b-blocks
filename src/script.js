@@ -19,6 +19,7 @@ import './blocks/cards/script';
 import './blocks/mailto/script';
 import './blocks/gif/script';
 import './blocks/qr-code/script';
+import './blocks/alert/script';
 
 
 // (function ($) {

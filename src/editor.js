@@ -23,7 +23,7 @@ import './blocks/mailto';
 import './blocks/gif';
 import './blocks/qr-code';
 // import './blocks/highlight-text.js';
-// import './blocks/alert.js';
+import './blocks/alert';
 // import './blocks/progress-bar.js';
 // import './blocks/spacer';
 import './blocks/inline.js';

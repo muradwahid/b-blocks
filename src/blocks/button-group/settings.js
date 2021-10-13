@@ -53,6 +53,7 @@ const Settings = ({ settings }) => {
                         { label: __('Outline', 'b-blocks'), value: 'outline', icon: 'OUTLINE' }
                     ]} />
                 </PanelRow>
+                <small>{__('Some settings may change when type will be changed.', 'b-blocks')}</small>
 
                 {/* Typography */}
                 <Typography className='mt-20p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />

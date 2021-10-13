@@ -6,62 +6,45 @@ class BBlocksCountdown extends BBlocks{
 
     function register(){
         $this::registerScripts( 'countdown', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-            'destDate' => array( 'type' => 'string', 'default' => '' ),
-
-            'layout' => array( 'type' => 'string', 'default' => 'default' ),
-            'boxIsInline' => array( 'type' => 'boolean', 'default' => false ),
-            'boxPosition' => array( 'type' => 'string', 'default' => 'center' ),
-            'isLabels' => array( 'type' => 'boolean', 'default' => true ),
-
-            'isDays' => array( 'type' => 'boolean', 'default' => true ),
-            'daysLabel' => array( 'type' => 'string', 'default' => 'Days' ),
-
-            'isHours' => array( 'type' => 'boolean', 'default' => true ),
-            'hoursLabel' => array( 'type' => 'string', 'default' => 'Hours' ),
-
-            'isMinutes' => array( 'type' => 'boolean', 'default' => true ),
-            'minutesLabel' => array( 'type' => 'string', 'default' => 'Minutes' ),
-
-            'isSeconds' => array( 'type' => 'boolean', 'default' => true ),
-            'secondsLabel' => array( 'type' => 'string', 'default' => 'Seconds' ),
-
-            'width' => array( 'type' => 'string', 'default' => '0px' ),
-            'background' => array( 'type' => 'object', 'default' => array( 'color' => '#0000' ) ),
-            'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '10px', 'horizontal' => '15px' ) ),
-            'shadow' => array( 'type' => 'object', 'default' => array() ),
-            'alignment' => array( 'type' => 'string', 'default' => 'center' ),
-
-            'boxBG' => array( 'type' => 'object', 'default' => array( 'type' => 'gradient', 'color' => '#4527a4', 'gradient' => 'linear-gradient(135deg, #4527a4, #8344c5)' ) ),
-            'boxWidth' => array( 'type' => 'string', 'default' => '170px' ),
-            'boxHeight' => array( 'type' => 'string', 'default' => '120px' ),
-            'boxSpace' => array( 'type' => 'string', 'default' => '30px' ),
-            'boxBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '5%' ) ),
-            'boxShadow' => array( 'type' => 'object', 'default' => array() ),
-
-            'digitTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 48 ) ),
-            'digitColor' => array( 'type' => 'string', 'default' => '#fff' ),
-
-            'labelTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 18 ) ),
-            'labelColor' => array( 'type' => 'string', 'default' => '#fff' ),
-
-            'isSep' => array( 'type' => 'boolean', 'default' => false ),
-            'sepType' => array( 'type' => 'string', 'default' => ':' ),
-            'sepSize' => array( 'type' => 'number', 'default' => 52 ),
-            'sepColor' => array( 'type' => 'string', 'default' => '#4527a4' )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $layout = $layout ?? 'default';
+        $boxIsInline = $boxIsInline ?? false;
+        $boxPosition = $boxPosition ?? 'center';
+        $isLabels = $isLabels ?? true;
+        $isDays = $isDays ?? true;
+        $daysLabel = $daysLabel ?? 'Days';
+        $isHours = $isHours ?? true;
+        $hoursLabel = $hoursLabel ?? 'Hours';
+        $isMinutes = $isMinutes ?? true;
+        $minutesLabel = $minutesLabel ?? 'Minutes';
+        $isSeconds = $isSeconds ?? true;
+        $secondsLabel = $secondsLabel ?? 'Seconds';
+        $width = $width ?? '0px';
+        $background = $background ?? array( 'color' => '#0000' );
+        $padding = $padding ?? array( 'vertical' => '10px', 'horizontal' => '15px' );
+        $shadow = $shadow ?? array();
+        $alignment = $alignment ?? 'center';
+        $boxBG = $boxBG ?? array( 'type' => 'gradient', 'color' => '#4527a4', 'gradient' => 'linear-gradient(135deg, #4527a4, #8344c5)' );
+        $boxWidth = $boxWidth ?? '170px';
+        $boxHeight = $boxHeight ?? '120px';
+        $boxSpace = $boxSpace ?? '30px';
+        $boxBorder = $boxBorder ?? array( 'radius' => '5%' );
+        $boxShadow = $boxShadow ?? array();
+        $digitTypo = $digitTypo ?? array( 'fontSize' => 48 );
+        $digitColor = $digitColor ?? '#fff';
+        $labelTypo = $labelTypo ?? array( 'fontSize' => 18 );
+        $labelColor = $labelColor ?? '#fff';
+        $isSep = $isSep ?? false;
+        $sepType = $sepType ?? ':';
+        $sepSize = $sepSize ?? 52;
+        $sepColor = $sepColor ?? '#4527a4';
 
         // Generate Styles
         $countdownStyle = new BBlocksStyleGenerator();
@@ -85,11 +68,10 @@ class BBlocksCountdown extends BBlocks{
             $boxBorder['styles'] ?? 'border-radius: 5%;' => '',
             'box-shadow' => $boxShadow['styles'] ?? '0 0 0 0 #0000'
         ) );
-        $countdownStyle::addStyle( "#bBlocksCountdown-$cId .countdownItems .countdownItem.separator::before", array(
+        $countdownStyle::addStyle( "#bBlocksCountdown-$cId .countdownItems .separator::before", array(
             'content' => "'$sepType'",
             'font-size' => $sepSize . 'px',
-            'color' => $sepColor,
-            'left' => "calc(-$boxSpace / 2)"
+            'color' => $sepColor
         ) );
         $countdownStyle::addStyle( "#bBlocksCountdown-$cId .countdownItems .countdownItem .digit", array(
             'color' => $digitColor,
@@ -101,10 +83,9 @@ class BBlocksCountdown extends BBlocks{
         ) );
 
         $boxClass = $boxIsInline ? 'inline' : '';
-        $sepClass = $isSep ? 'separator' : '';  
 
         ob_start(); ?>
-        <div class='wp-block-b-blocks-countdown <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>' data-date="<?php echo esc_attr( json_encode( array( 'destDate' => $destDate ) ) ); ?>">
+        <div class='wp-block-b-blocks-countdown <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>' data-date="<?php echo esc_attr( json_encode( array( 'destDate' => $destDate ?? '' ) ) ); ?>">
             <style>
                 @import url(<?php echo esc_url( $digitTypo['googleFontLink'] ?? '' ); ?>);
                 @import url(<?php echo esc_url( $labelTypo['googleFontLink'] ?? '' ); ?>);
@@ -116,10 +97,13 @@ class BBlocksCountdown extends BBlocks{
             </style>
 
             <div class='countdownItems'>
-                <?php $this->box( $isDays, "countdownDays $boxClass", $isLabels, $daysLabel )
-                .$this->box( $isHours, "countdownHours $boxClass $sepClass", $isLabels, $hoursLabel )
-                .$this->box( $isMinutes, "countdownMinutes $boxClass $sepClass", $isLabels, $minutesLabel )
-                .$this->box( $isSeconds, "countdownSeconds $boxClass $sepClass", $isLabels, $secondsLabel ); ?>
+                <?php $this->box( $isDays, "countdownDays $boxClass", $isLabels, $daysLabel ); ?>
+                <?php echo $isSep && $isDays && ( $isHours || $isMinutes || $isSeconds ) ? "<span class='separator'></span>" : ''; ?>
+                <?php $this->box( $isHours, "countdownHours $boxClass", $isLabels, $hoursLabel ); ?>
+                <?php echo $isSep && $isHours && ( $isMinutes || $isSeconds ) ? "<span class='separator'></span>" : ''; ?>
+                <?php $this->box( $isMinutes, "countdownMinutes $boxClass", $isLabels, $minutesLabel ); ?>
+                <?php echo $isSep && $isMinutes && $isSeconds ? "<span class='separator'></span>" : ''; ?>
+                <?php $this->box( $isSeconds, "countdownSeconds $boxClass", $isLabels, $secondsLabel ); ?>
             </div>
         </div>
 
