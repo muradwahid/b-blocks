@@ -29,7 +29,7 @@
                     "isUpIcon": false,
                     "icon": {
                         "class": "fa fa-wordpress",
-                        "fontSize": 70
+                        "fontSize": 120
                     },
                     "upIcon": {
                         "id": null,
@@ -37,7 +37,7 @@
                         "alt": "",
                         "title": ""
                     },
-                    "iconWidth": "70px",
+                    "iconWidth": "120px",
                     "title": "Feature 1",
                     "titleColor": "#333",
                     "separator": {
@@ -56,7 +56,7 @@
                     "isUpIcon": false,
                     "icon": {
                         "class": "fa fa-wordpress",
-                        "fontSize": 70
+                        "fontSize": 120
                     },
                     "upIcon": {
                         "id": null,
@@ -64,7 +64,7 @@
                         "alt": "",
                         "title": ""
                     },
-                    "iconWidth": "70px",
+                    "iconWidth": "120px",
                     "title": "Feature 2",
                     "titleColor": "#333",
                     "separator": {
@@ -83,7 +83,7 @@
                     "isUpIcon": false,
                     "icon": {
                         "class": "fa fa-wordpress",
-                        "fontSize": 70
+                        "fontSize": 120
                     },
                     "upIcon": {
                         "id": null,
@@ -91,7 +91,7 @@
                         "alt": "",
                         "title": ""
                     },
-                    "iconWidth": "70px",
+                    "iconWidth": "120px",
                     "title": "Feature 3",
                     "titleColor": "#333",
                     "separator": {

@@ -6,80 +6,66 @@ class BBlocksFeatureBoxes extends BBlocks{
 
     function register(){
         $this::registerScripts( 'feature-boxes', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'features' => array( 'type' => 'array', 'default' => array(
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'isUpIcon' => false,
-                    'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
-                    'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'iconWidth' => '120px',
-                    'title' => 'Feature 1',
-                    'titleColor' => '#333',
-                    'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
-                    'desc' => 'This content area describes feature 1 descriptions or details.',
-                    'descColor' => '#333'
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'isUpIcon' => false,
-                    'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
-                    'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'iconWidth' => '120px',
-                    'title' => 'Feature 2',
-                    'titleColor' => '#333',
-                    'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
-                    'desc' => 'This content area describes feature 2 descriptions or details.',
-                    'descColor' => '#333'
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'isUpIcon' => false,
-                    'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
-                    'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'iconWidth' => '120px',
-                    'title' => 'Feature 3',
-                    'titleColor' => '#333',
-                    'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
-                    'desc' => 'This content area describes feature 3 descriptions or details.',
-                    'descColor' => '#333'
-                )
-            ) ),
-
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ) ),
-
-            'columnGap' => array( 'type' => 'string', 'default' => '30px' ),
-            'rowGap' => array( 'type' => 'string', 'default' => '30px' ),
-
-            'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '50px', 'horizontal' => '20px' ) ),
-
-            'isIcon' => array( 'type' => 'boolean', 'default' => true ),
-            'iconMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
-
-            'isTitle' => array( 'type' => 'boolean', 'default' => true ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 20, 'fontWeight' => 600 ) ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-            
-            'isSep' => array( 'type' => 'boolean', 'default' => true ),
-            'sepMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $features = $features ?? array(
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'isUpIcon' => false,
+                'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
+                'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'iconWidth' => '120px',
+                'title' => 'Feature 1',
+                'titleColor' => '#333',
+                'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
+                'desc' => 'This content area describes feature 1 descriptions or details.',
+                'descColor' => '#333'
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'isUpIcon' => false,
+                'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
+                'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'iconWidth' => '120px',
+                'title' => 'Feature 2',
+                'titleColor' => '#333',
+                'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
+                'desc' => 'This content area describes feature 2 descriptions or details.',
+                'descColor' => '#333'
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'isUpIcon' => false,
+                'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
+                'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'iconWidth' => '120px',
+                'title' => 'Feature 3',
+                'titleColor' => '#333',
+                'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
+                'desc' => 'This content area describes feature 3 descriptions or details.',
+                'descColor' => '#333'
+            )
+        );
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+        $columnGap = $columnGap ?? '30px';
+        $rowGap = $rowGap ?? '30px';
+        $textAlign = $textAlign ?? 'center';
+        $padding = $padding ?? array( 'vertical' => '50px', 'horizontal' => '20px' );
+        $isIcon = $isIcon ?? true;
+        $iconMargin = $iconMargin ?? array( 'bottom' => '20px' );
+        $isTitle = $isTitle ?? true;
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 20, 'fontWeight' => 600 );
+        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $isSep = $isSep ?? true;
+        $sepMargin = $sepMargin ?? array( 'bottom' => '10px' );
+        $isDesc = $isDesc ?? true;
+        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
 
         // Generate Styles
         $featureBoxesStyle = new BBlocksStyleGenerator();

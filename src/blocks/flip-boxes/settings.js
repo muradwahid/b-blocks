@@ -79,58 +79,71 @@ const Settings = ({ settings }) => {
         <InspectorControls>
             <PanelBody className='bBlocksPanelBody addRemoveItems' title={__('Add or Remove Boxes', 'b-blocks')}>
                 {boxes.map((item, index) => {
-                    const { frontBG, backBG, border, shadow, frontIcon, backIcon, frontTitle, backTitle, titleColor, desc, descColor, btn, btnLink, btnBorder, btnColors, btnHovColors } = item;
+                    const { frontBG, backBG, border, shadow, frontIcon, backIcon, frontTitle, backTitle, frontTitleColor, backTitleColor, desc, descColor, btn, btnLink, btnBorder, btnColors, btnHovColors } = item;
 
                     return <PanelBody key={index} className='bBlocksPanelBody editItem' title={__(`Flip Box No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-
                         <PanelBody className='bBlocksPanelBody' title={__('Box Settings', 'b-blocks')}>
-                            <Background label={__('Front Background:', 'b-blocks')} background={frontBG} onChange={val => updateFlipBox(index, 'frontBG', val)} />
-
-                            <Background label={__('Back Background:', 'b-blocks')} background={backBG} onChange={val => updateFlipBox(index, 'backBG', val)} />
-
                             <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => updateFlipBox(index, 'border', val)} />
 
                             <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => updateFlipBox(index, 'shadow', val)} />
                         </PanelBody>
 
-                        <PanelBody className='bBlocksPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
-                            {isIcon && <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={frontBackTab}>{tab => <>
-                                {'front' == tab.name && <IconControl icon={frontIcon} onChange={val => updateFlipBox(index, 'frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />}
+                        <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={frontBackTab}>{tab => <>
+                            {'front' == tab.name && <>
+                                <PanelBody className='bBlocksPanelBody' title={__('Front Box', 'b-blocks')}>
+                                    <Background label={__('Background:', 'b-blocks')} background={frontBG} onChange={val => updateFlipBox(index, 'frontBG', val)} />
+                                </PanelBody>
 
-                                {'back' == tab.name && <IconControl icon={backIcon} onChange={val => updateFlipBox(index, 'backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />}
-                            </>}</TabPanel>}
-                        </PanelBody>
+                                {isIcon && <PanelBody className='bBlocksPanelBody' title={__('Front Icon', 'b-blocks')} initialOpen={false}>
+                                    <IconControl icon={frontIcon} onChange={val => updateFlipBox(index, 'frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />
+                                </PanelBody>}
 
-                        <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
-                            <Title mt='0'>{__('Front Title:', 'b-blocks')}</Title>
-                            <TextControl value={frontTitle} onChange={val => updateFlipBox(index, 'frontTitle', val)} />
+                                <PanelBody className='bBlocksPanelBody' title={__('Front Title', 'b-blocks')} initialOpen={false}>
+                                    <Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+                                    <TextControl value={frontTitle} onChange={val => updateFlipBox(index, 'frontTitle', val)} />
 
-                            <Title>{__('Back Title:', 'b-blocks')}</Title>
-                            <TextControl value={backTitle} onChange={val => updateFlipBox(index, 'backTitle', val)} />
+                                    <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={frontTitleColor} onChange={val => updateFlipBox(index, 'frontTitleColor', val)} defaultColor='#fff' />
+                                </PanelBody>
 
-                            <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => updateFlipBox(index, 'titleColor', val)} defaultColor='#fff' />
-                        </PanelBody>
+                                <PanelBody className='bBlocksPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
+                                    <Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+                                    <TextareaControl value={desc} onChange={val => updateFlipBox(index, 'desc', val)} />
 
-                        <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
-                            <Title mt='0'>{__('Text:', 'b-blocks')}</Title>
-                            <TextareaControl value={desc} onChange={val => updateFlipBox(index, 'desc', val)} />
+                                    <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox(index, 'descColor', val)} defaultColor='#fff' />
+                                </PanelBody>
+                            </>}
 
-                            <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox(index, 'descColor', val)} defaultColor='#fff' />
-                        </PanelBody>
+                            {'back' == tab.name && <>
+                                <PanelBody className='bBlocksPanelBody' title={__('Back Box', 'b-blocks')}>
+                                    <Background label={__('Background:', 'b-blocks')} background={backBG} onChange={val => updateFlipBox(index, 'backBG', val)} />
+                                </PanelBody>
 
-                        <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
-                            <Title mt='0'>{__('Text:', 'b-blocks')}</Title>
-                            <TextControl value={btn} onChange={val => updateFlipBox(index, 'btn', val)} />
+                                {isIcon && <PanelBody className='bBlocksPanelBody' title={__('Back Icon', 'b-blocks')} initialOpen={false}>
+                                    <IconControl icon={backIcon} onChange={val => updateFlipBox(index, 'backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />
+                                </PanelBody>}
 
-                            <Title>{__('Link:', 'b-blocks')}</Title>
-                            <TextControl value={btnLink} onChange={val => updateFlipBox(index, 'btnLink', val)} />
+                                <PanelBody className='bBlocksPanelBody' title={__('Back Title', 'b-blocks')} initialOpen={false}>
+                                    <Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+                                    <TextControl value={backTitle} onChange={val => updateFlipBox(index, 'backTitle', val)} />
 
-                            <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => updateFlipBox(index, 'btnBorder', val)} defaults={{ radius: '3px' }} />
+                                    <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={backTitleColor} onChange={val => updateFlipBox(index, 'backTitleColor', val)} defaultColor='#fff' />
+                                </PanelBody>
 
-                            <ColorsControl colors={btnColors} onChange={val => updateFlipBox(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />
+                                <PanelBody className='bBlocksPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
+                                    <Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+                                    <TextControl value={btn} onChange={val => updateFlipBox(index, 'btn', val)} />
 
-                            <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => updateFlipBox(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />
-                        </PanelBody>
+                                    <Title>{__('Link:', 'b-blocks')}</Title>
+                                    <TextControl value={btnLink} onChange={val => updateFlipBox(index, 'btnLink', val)} />
+
+                                    <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => updateFlipBox(index, 'btnBorder', val)} defaults={{ radius: '3px' }} />
+
+                                    <ColorsControl colors={btnColors} onChange={val => updateFlipBox(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />
+
+                                    <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => updateFlipBox(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />
+                                </PanelBody>
+                            </>}
+                        </>}</TabPanel>
 
                         <Button className='mt-20p removeItem' label={__('Remove this box', 'b-blocks')} onClick={e => {
                             e.preventDefault();

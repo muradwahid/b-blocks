@@ -43,7 +43,7 @@ const Edit = props => {
 
             <div className={`bBlocksFlipBoxes columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                 {boxes.map((item, index) => {
-                    const { frontBG, backBG, border, shadow, frontIcon, backIcon, frontTitle, backTitle, titleColor, desc, descColor, btn, btnLink, btnBorder, btnColors, btnHovColors } = item;
+                    const { frontBG, backBG, border, shadow, frontIcon, backIcon, frontTitle, backTitle, frontTitleColor, backTitleColor, desc, descColor, btn, btnLink, btnBorder, btnColors, btnHovColors } = item;
 
                     return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksFlipBox ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFlipBox-${index}`}>
                         <style dangerouslySetInnerHTML={{
@@ -64,8 +64,11 @@ const Edit = props => {
                             #bBlocksFlipBoxes-${clientId} #bBlocksFlipBox-${index} .flipIcon.backIcon{
                                 ${backIcon?.styles || 'font-size: 70px; color: #fff;'}
                             }
-                            #bBlocksFlipBoxes-${clientId} #bBlocksFlipBox-${index} .flipTitle{
-                                color: ${titleColor};
+                            #bBlocksFlipBoxes-${clientId} #bBlocksFlipBox-${index} .flipTitle.flipFrontTitle{
+                                color: ${frontTitleColor};
+                            }
+                            #bBlocksFlipBoxes-${clientId} #bBlocksFlipBox-${index} .flipTitle.flipBackTitle{
+                                color: ${backTitleColor};
                             }
                             #bBlocksFlipBoxes-${clientId} #bBlocksFlipBox-${index} .flipDescription{
                                 color: ${descColor};

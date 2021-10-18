@@ -6,108 +6,88 @@ class BBlocksFlipBoxes extends BBlocks{
 
     function register(){
         $this::registerScripts( 'flip-boxes', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'boxes' => array( 'type' => 'array', 'default' => array(
-                array(
-                    'frontBG' => array(),
-                    'backBG' => array(),
-                    'border' => array(),
-                    'shadow' => array(),
-
-                    'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
-                    'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
-
-                    'frontTitle' => 'Front Title 1',
-                    'backTitle' => 'Back Title 1',
-                    'titleColor' => '#fff',
-
-                    'desc' => 'This content area describes flip box 1 descriptions/details.',
-                    'descColor' => '#fff',
-
-                    'btn' => 'Button 1',
-                    'btnLink' => '#',
-                    'btnBorder' => array( 'radius' => '3px' ),
-                    'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
-                    'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
-                ),
-                array(
-                    'frontBG' => array(),
-                    'backBG' => array(),
-                    'border' => array(),
-                    'shadow' => array(),
-
-                    'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
-                    'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
-
-                    'frontTitle' => 'Front Title 2',
-                    'backTitle' => 'Back Title 2',
-                    'titleColor' => '#fff',
-
-                    'desc' => 'This content area describes flip box 2 descriptions/details.',
-                    'descColor' => '#fff',
-
-                    'btn' => 'Button 2',
-                    'btnLink' => '#',
-                    'btnBorder' => array( 'radius' => '3px' ),
-                    'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
-                    'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
-                ),
-                array(
-                    'frontBG' => array(),
-                    'backBG' => array(),
-                    'border' => array(),
-                    'shadow' => array(),
-
-                    'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
-                    'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
-
-                    'frontTitle' => 'Front Title 3',
-                    'backTitle' => 'Back Title 3',
-                    'titleColor' => '#fff',
-
-                    'desc' => 'This content area describes flip box 3 descriptions/details.',
-                    'descColor' => '#fff',
-
-                    'btn' => 'Button 3',
-                    'btnLink' => '#',
-                    'btnBorder' => array( 'radius' => '3px' ),
-                    'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
-                    'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
-                ),
-            ) ),
-
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ) ),
-
-            'columnGap' => array( 'type' => 'string', 'default' => '40px' ),
-            'rowGap' => array( 'type' => 'string', 'default' => '30px' ),
-
-            'boxHeight' => array( 'type' => 'string', 'default' => '400px' ),
-            'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'boxPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '30px', 'horizontal' => '25px' ) ),
-
-            'isIcon' => array( 'type' => 'boolean', 'default' => true ),
-            'iconMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 25 ) ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 16 ) ),
-            'isBtn' => array( 'type' => 'boolean', 'default' => true ),
-            'btnTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 16 ) ),
-            'btnPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '15px', 'horizontal' => '25px' ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $boxes = $boxes ?? array(
+            array(
+                'frontBG' => array(),
+                'backBG' => array(),
+                'border' => array(),
+                'shadow' => array(),
+                'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
+                'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
+                'frontTitle' => 'Front Title 1',
+                'frontTitleColor' => '#fff',
+                'backTitle' => 'Back Title 1',
+                'backTitleColor' => '#fff',
+                'desc' => 'This content area describes flip box 1 descriptions/details.',
+                'descColor' => '#fff',
+                'btn' => 'Button 1',
+                'btnLink' => '#',
+                'btnBorder' => array( 'radius' => '3px' ),
+                'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
+                'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
+            ),
+            array(
+                'frontBG' => array(),
+                'backBG' => array(),
+                'border' => array(),
+                'shadow' => array(),
+                'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
+                'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
+                'frontTitle' => 'Front Title 2',
+                'frontTitleColor' => '#fff',
+                'backTitle' => 'Back Title 2',
+                'backTitleColor' => '#fff',
+                'desc' => 'This content area describes flip box 2 descriptions/details.',
+                'descColor' => '#fff',
+                'btn' => 'Button 2',
+                'btnLink' => '#',
+                'btnBorder' => array( 'radius' => '3px' ),
+                'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
+                'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
+            ),
+            array(
+                'frontBG' => array(),
+                'backBG' => array(),
+                'border' => array(),
+                'shadow' => array(),
+                'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
+                'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
+                'frontTitle' => 'Front Title 3',
+                'frontTitleColor' => '#fff',
+                'backTitle' => 'Back Title 3',
+                'backTitleColor' => '#fff',
+                'desc' => 'This content area describes flip box 3 descriptions/details.',
+                'descColor' => '#fff',
+                'btn' => 'Button 3',
+                'btnLink' => '#',
+                'btnBorder' => array( 'radius' => '3px' ),
+                'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
+                'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
+            )
+        );
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+        $columnGap = $columnGap ?? '40px';
+        $rowGap = $rowGap ?? '30px';
+        $boxHeight = $boxHeight ?? '400px';
+        $textAlign = $textAlign ?? 'center';
+        $boxPadding = $boxPadding ?? array( 'vertical' => '30px', 'horizontal' => '25px' );
+        $isIcon = $isIcon ?? true;
+        $iconMargin = $iconMargin ?? array( 'bottom' => '20px' );
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 25 );
+        $titleMargin = $titleMargin ?? array( 'bottom' => '20px' );
+        $isDesc = $isDesc ?? true;
+        $descTypo = $descTypo ?? array( 'fontSize' => 16 );
+        $isBtn = $isBtn ?? true;
+        $btnTypo = $btnTypo ?? array( 'fontSize' => 16 );
+        $btnPadding = $btnPadding ?? array( 'vertical' => '15px', 'horizontal' => '25px' );
 
         // Generate Styles
         $flipBoxesStyle = new BBlocksStyleGenerator();
@@ -166,8 +146,11 @@ class BBlocksFlipBoxes extends BBlocks{
                     $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.backIcon", array(
                         $backIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
                     ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle", array(
-                        'color' => $titleColor
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipFrontTitle", array(
+                        'color' => $frontTitleColor
+                    ) );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipBackTitle", array(
+                        'color' => $backTitleColor
                     ) );
                     $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipDescription", array(
                         'color' => $descColor

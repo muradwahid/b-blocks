@@ -1,0 +1,76 @@
+$primaryColor: #4527a4;
+$secondaryColor: #8344c5;
+
+.bBlocksPanelBody{
+    .bBlocksChartDatasetEdit{
+        .chartDataValue{
+            width: 60px;
+        }
+
+        .components-panel__row{
+            margin-top: 0;
+        }
+
+        .chartBGColor{
+            margin: 0 5px;
+        }
+    }
+
+    &.addRemoveDatasets{
+        .removeDataset{
+            padding: 0 5px;
+            color: red;
+        }
+
+        .valueAction{
+            .removeValue, .duplicateValue{
+                color: #fff;
+                font-size: 14px;
+                font-weight: 700;
+                padding: 5px 10px;
+                
+                .dashicon, svg{
+                    margin-right: 5px;
+                }
+            }
+
+            .removeValue{
+                background-color: red;
+            }
+
+            .duplicateValue{
+                background-color: $primaryColor;
+            }
+        }
+
+        .addDataset, .addValue{
+            text-align: center;
+            background: $primaryColor;
+
+            button{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 15px;
+                font-weight: 700;
+
+                &:focus{
+                    box-shadow: none;
+                }
+                &:active{
+                    color: #fff;
+                }
+
+                .dashicon{
+                    margin: 4px 5px 0 0;
+                }
+            }
+        }
+
+        .addDataset{
+            margin: 10px 0 15px 0;
+        }
+    }
+}

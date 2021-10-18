@@ -13,6 +13,7 @@ import './blocks/price-lists/script';
 import './blocks/feature-boxes/script';
 import './blocks/info-box/script';
 import './blocks/lottie-player/script';
+import './blocks/chart/script';
 import './blocks/button-group/script';
 import './blocks/countdown/script';
 import './blocks/cards/script';

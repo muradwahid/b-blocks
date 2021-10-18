@@ -6,81 +6,66 @@ class BBlocksCards extends BBlocks{
 
     function register(){
         $this::registerScripts( 'cards', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'cards' => array( 'type' => 'array', 'default' => array(
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'imgBorder' => array( 'radius' => '5px' ),
-                    'cat' => 'Category 1',
-                    'catColor' => '#0dcaf0',
-                    'title' => 'Card Title 1',
-                    'titleColor' => '#ff7500',
-                    'desc' => 'This content area describes card 1 descriptions or details.',
-                    'descColor' => '#333'
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'imgBorder' => array( 'radius' => '5px' ),
-                    'cat' => 'Category 2',
-                    'catColor' => '#0dcaf0',
-                    'title' => 'Card Title 2',
-                    'titleColor' => '#ff7500',
-                    'desc' => 'This content area describes card 2 descriptions or details.',
-                    'descColor' => '#333'
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'imgBorder' => array( 'radius' => '5px' ),
-                    'cat' => 'Category 3',
-                    'catColor' => '#0dcaf0',
-                    'title' => 'Card Title 3',
-                    'titleColor' => '#ff7500',
-                    'desc' => 'This content area describes card 3 descriptions or details.',
-                    'descColor' => '#333'
-                )
-            ) ),
-
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ) ),
-
-            'columnGap' => array( 'type' => 'string', 'default' => '20px' ),
-            'rowGap' => array( 'type' => 'string', 'default' => '30px' ),
-
-            'layout' => array( 'type' => 'string', 'default' => 'vertical' ),
-
-            'textAlign' => array( 'type' => 'string', 'default' => 'left' ),
-            'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '20px', 'horizontal' => '10px' ) ),
-            
-            'imgPos' => array( 'type' => 'string', 'default' => 'top' ),
-            'imgHeight' => array( 'type' => 'string', 'default' => '250px' ),
-
-            'isCat' => array( 'type' => 'boolean', 'default' => true ),
-            'catTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'catMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isTitle' => array( 'type' => 'boolean', 'default' => true ),
-            'titlePos' => array( 'type' => 'string', 'default' => 'image' ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 22 ) ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $cards = $cards ?? array(
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'imgBorder' => array( 'radius' => '5px' ),
+                'cat' => 'Category 1',
+                'catColor' => '#0dcaf0',
+                'title' => 'Card Title 1',
+                'titleColor' => '#ff7500',
+                'desc' => 'This content area describes card 1 descriptions or details.',
+                'descColor' => '#333'
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'imgBorder' => array( 'radius' => '5px' ),
+                'cat' => 'Category 2',
+                'catColor' => '#0dcaf0',
+                'title' => 'Card Title 2',
+                'titleColor' => '#ff7500',
+                'desc' => 'This content area describes card 2 descriptions or details.',
+                'descColor' => '#333'
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'imgBorder' => array( 'radius' => '5px' ),
+                'cat' => 'Category 3',
+                'catColor' => '#0dcaf0',
+                'title' => 'Card Title 3',
+                'titleColor' => '#ff7500',
+                'desc' => 'This content area describes card 3 descriptions or details.',
+                'descColor' => '#333'
+            )
+        );
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+        $columnGap = $columnGap ?? '20px';
+        $rowGap = $rowGap ?? '30px';
+        $layout = $layout ?? 'vertical';
+        $textAlign = $textAlign ?? 'left';
+        $padding = $padding ?? array( 'vertical' => '20px', 'horizontal' => '10px' );
+        $imgPos = $imgPos ?? 'top';
+        $imgHeight = $imgHeight ?? '250px';
+        $isCat = $isCat ?? true;
+        $catTypo = $catTypo ?? array( 'fontSize' => 15 );
+        $catMargin = $catMargin ?? array( 'bottom' => '10px' );
+        $isTitle = $isTitle ?? true;
+        $titlePos = $titlePos ?? 'image';
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 22 );
+        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $isDesc = $isDesc ?? true;
+        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
 
         // Generate Styles
         $cardsStyle = new BBlocksStyleGenerator();

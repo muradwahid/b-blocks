@@ -11,6 +11,7 @@ import './blocks/price-lists';
 import './blocks/feature-boxes';
 import './blocks/info-box';
 import './blocks/lottie-player';
+import './blocks/chart';
 import './blocks/button-group';
 import './blocks/countdown';
 import './blocks/cards';

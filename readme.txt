@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.8.1
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -43,6 +43,8 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 - **Info Box**: Show information in your website for the users in a attractive way.
 
 - **Lottie Player**: Display animated lottie lottie files/images.
+
+- **Chart**: Represent your data by symbols, such as bars, lines, or pie charts.
 
 - **Button Group**: Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
 
@@ -172,6 +174,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.5.3 =
+* Add Chart Block
+* Update Cards, Feature Boxes, Flip Boxes blocks
+
 = 1.5.2 =
 * Add Alert Block
 * Update Button Group and Countdown
@@ -203,6 +209,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.5.3 =
+* Add Chart Block
+* Update Cards, Feature Boxes, Flip Boxes blocks
 
 = 1.5.2 =
 * Add Alert Block

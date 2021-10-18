@@ -12,7 +12,8 @@ module.exports = {
     'globals': {
         'wp': 'readonly',
         'jQuery': 'readonly',
-        'Swiper': 'readonly'
+        'Swiper': 'readonly',
+        'Chart': 'readonly'
     },
     'parserOptions': {
         'ecmaFeatures': {

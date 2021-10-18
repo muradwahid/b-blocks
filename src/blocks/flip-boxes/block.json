@@ -38,8 +38,9 @@
                         "color": "#fff"
                     },
                     "frontTitle": "Front Title 1",
+                    "frontTitleColor": "#fff",
                     "backTitle": "Back Title 1",
-                    "titleColor": "#fff",
+                    "backTitleColor": "#fff",
                     "desc": "This content area describes flip box 1 descriptions/details.",
                     "descColor": "#fff",
                     "btn": "Button 1",
@@ -72,8 +73,9 @@
                         "color": "#fff"
                     },
                     "frontTitle": "Front Title 2",
+                    "frontTitleColor": "#fff",
                     "backTitle": "Back Title 2",
-                    "titleColor": "#fff",
+                    "backTitleColor": "#fff",
                     "desc": "This content area describes flip box 2 descriptions/details.",
                     "descColor": "#fff",
                     "btn": "Button 2",
@@ -106,8 +108,9 @@
                         "color": "#fff"
                     },
                     "frontTitle": "Front Title 3",
+                    "frontTitleColor": "#fff",
                     "backTitle": "Back Title 3",
-                    "titleColor": "#fff",
+                    "backTitleColor": "#fff",
                     "desc": "This content area describes flip box 3 descriptions/details.",
                     "descColor": "#fff",
                     "btn": "Button 3",
