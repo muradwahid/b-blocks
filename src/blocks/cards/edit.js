@@ -7,7 +7,7 @@ import { isBlobURL } from '@wordpress/blob';
 import Settings from './settings';
 
 // Variables
-import { ImagePlaceholder } from '../../Components/ImageControl';
+import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
 export const IndexContext = createContext();
 

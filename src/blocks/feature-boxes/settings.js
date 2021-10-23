@@ -6,15 +6,15 @@ import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitCon
 import { IndexContext } from './edit';
 
 // Variables
-import Title from '../../Components/Title';
-import BColor from '../../Components/BColor';
-import Background from '../../Components/Background';
-import { ImageHolderControl } from '../../Components/ImageControl';
-import BDevice from '../../Components/BDevice';
-import IconControl from '../../Components/IconControl';
-import Typography from '../../Components/Typography';
-import SeparatorControl from '../../Components/SeparatorControl';
-import SpaceControl from '../../Components/SpaceControl';
+import Title from '../../../../Components/Title';
+import BColor from '../../../../Components/BColor';
+import Background from '../../../../Components/Background';
+import { ImageHolderControl } from '../../../../Components/ImageControl';
+import BDevice from '../../../../Components/BDevice';
+import IconControl from '../../../../Components/IconControl';
+import Typography from '../../../../Components/Typography';
+import SeparatorControl from '../../../../Components/SeparatorControl';
+import SpaceControl from '../../../../Components/SpaceControl';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 
@@ -51,20 +51,20 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <PanelBody className='bBlocksPanelBody addRemoveItems' title={__('Add or Remove Features', 'b-blocks')}>
+            <PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Features', 'b-blocks')}>
                 {features.map((item, index) => {
                     const { background, isUpIcon, icon, upIcon, iconWidth, titleColor, separator, descColor } = item;
 
-                    return <PanelBody key={index} className='bBlocksPanelBody editItem' title={__(`Feature No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
+                    return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Feature No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
                         <Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateFeature(index, 'background', val)} />
 
                         {isIcon && <>
                             <ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateFeature(index, 'isUpIcon', val)} />
 
                             {isUpIcon ? <>
-                                <ImageHolderControl className='mt-20p' label={__('Icon:', 'b-blocks')} img={upIcon} onChange={val => updateFeature(index, 'upIcon', val)} />
+                                <ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} img={upIcon} onChange={val => updateFeature(index, 'upIcon', val)} />
 
-                                <UnitControl className='mt-20p' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature(index, 'iconWidth', val)} units={[pxUnit, perUnit, emUnit]} />
+                                <UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature(index, 'iconWidth', val)} units={[pxUnit, perUnit, emUnit]} />
 
                             </> : <IconControl icon={icon} onChange={val => updateFeature(index, 'icon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 120 }} />} </>}
 
@@ -74,7 +74,7 @@ const Settings = ({ settings }) => {
 
                         <BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature(index, 'descColor', val)} defaultColor='#333' />
 
-                        <Button className='mt-20p removeItem' label={__('Remove this feature', 'b-blocks')} onClick={e => {
+                        <Button className='mt20 removeItem' label={__('Remove this feature', 'b-blocks')} onClick={e => {
                             e.preventDefault();
                             setAttributes({ features: [...features.slice(0, index), ...features.slice(index + 1)] });
                         }} ><Dashicon icon='no' size={23} />{__('Remove this feature', 'b-blocks')}</Button>
@@ -86,55 +86,55 @@ const Settings = ({ settings }) => {
                 </div>
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
                 {/* Columns */}
-                <PanelRow className='mt-20p'>
+                <PanelRow>
                     <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
                     <BDevice device={device} onChange={val => setDevice(val)} />
                 </PanelRow>
                 <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-                <UnitControl className='mt-20p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+                <UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
-                <UnitControl className='mt-20p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+                <UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
                 <SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-                {isIcon && <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
+                {isIcon && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
                 {isTitle && <>
-                    <Typography className='mt-20p' typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 20, fontWeight: 600 }} />
+                    <Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 20, fontWeight: 600 }} />
 
-                    <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+                    <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
                 </>}
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
-                {isSep && <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '10px' }} />}
+                {isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '10px' }} />}
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-                {isDesc && <Typography className='mt-20p' typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />}
+                {isDesc && <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />}
             </PanelBody>
         </InspectorControls>
 
 
         <BlockControls>
-            <ToolbarGroup className='bBlocksToolbar'>
+            <ToolbarGroup className='bPlToolbar'>
                 <ToolbarButton label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' size={23} /></ToolbarButton>
             </ToolbarGroup>
 
@@ -142,5 +142,4 @@ const Settings = ({ settings }) => {
         </BlockControls>
     </>;
 };
-
 export default Settings;

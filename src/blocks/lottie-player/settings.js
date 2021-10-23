@@ -3,9 +3,9 @@ import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/b
 import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl, TextControl, TabPanel } from '@wordpress/components';
 
 // Variables
-import Title from '../../Components/Title';
-import BColor from '../../Components/BColor';
-import BtnGroup from '../../Components/BtnGroup';
+import Title from '../../../../Components/Title';
+import BColor from '../../../../Components/BColor';
+import BtnGroup from '../../../../Components/BtnGroup';
 import options from '../../Const/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
@@ -19,13 +19,13 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+            <TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
                 {'general' == tab.name && <>
-                    <PanelBody className='bBlocksPanelBody' title={__('Player Settings', 'b-blocks')}>
+                    <PanelBody className='bPlPanelBody' title={__('Player Settings', 'b-blocks')}>
                         <Title mt='0'>{__('Lottie Json file url:', 'b-blocks')}</Title>
                         <TextControl value={file} onChange={val => setAttributes({ file: val })} />
 
-                        <ToggleControl className='mt-20p' label={__('Show Controls', 'b-blocks')} checked={isControls} onChange={val => setAttributes({ isControls: val })} />
+                        <ToggleControl className='mt20' label={__('Show Controls', 'b-blocks')} checked={isControls} onChange={val => setAttributes({ isControls: val })} />
 
                         <ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={isAutoplay} onChange={val => setAttributes({ isAutoplay: val })} />
 
@@ -33,7 +33,7 @@ const Settings = ({ settings }) => {
 
                         <ToggleControl label={__('Enable Hover', 'b-blocks')} checked={isHover} onChange={val => setAttributes({ isHover: val })} />
 
-                        <PanelRow className='mt-20p'>
+                        <PanelRow className='mt20'>
                             <Title mt='0' mb='0'>{__('Mode:', 'b-blocks')}</Title>
                             <BtnGroup options={modes} myValue={mode} setState={val => setAttributes({ mode: val })} />
                         </PanelRow>
@@ -50,13 +50,13 @@ const Settings = ({ settings }) => {
                 </>}
 
                 {'style' == tab.name && <>
-                    <PanelBody className='bBlocksPanelBody' title={__('Player Styles', 'b-blocks')}>
+                    <PanelBody className='bPlPanelBody' title={__('Player Styles', 'b-blocks')}>
                         <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
                         <BColor label={__('Background Color:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaultColor='#0000' />
                     </PanelBody>
 
-                    <PanelBody className='bBlocksPanelBody' title={__('Controls Styles', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bPlPanelBody' title={__('Controls Styles', 'b-blocks')} initialOpen={false}>
                         <UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={[pxUnit, perUnit, emUnit]} />
 
                         <BColor label={__('Background Color:', 'b-blocks')} value={controlsBG} onChange={val => setAttributes({ controlsBG: val })} defaultColor='#0000' />
@@ -85,5 +85,4 @@ const Settings = ({ settings }) => {
         </BlockControls>
     </>;
 };
-
 export default Settings;

@@ -8,10 +8,10 @@ import PostReadMore from '../Single/PostReadMore';
 import PostMeta from '../Single/PostMeta';
 
 const Default = ({ atts, post }) => {
-    const { subLayout } = atts;
+    const { layout, subLayout } = atts;
     const { id } = post;
 
-    return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostDefault`}>
+    return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostDefault ${'slider' === layout ? 'swiper-slide' : ''}`}>
         <FeatureImage atts={atts} post={post} />
 
         <div className='bBlocksPostText'>

@@ -54,25 +54,19 @@
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-facebook",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-facebook"
                             }
                         },
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-twitter",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-twitter"
                             }
                         },
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-linkedin",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-linkedin"
                             }
                         }
                     ],
@@ -116,25 +110,19 @@
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-facebook",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-facebook"
                             }
                         },
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-twitter",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-twitter"
                             }
                         },
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-linkedin",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-linkedin"
                             }
                         }
                     ],
@@ -178,25 +166,19 @@
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-facebook",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-facebook"
                             }
                         },
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-twitter",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-twitter"
                             }
                         },
                         {
                             "link": "#",
                             "icon": {
-                                "class": "fa fa-linkedin",
-                                "fontSize": 22,
-                                "color": "#fff"
+                                "class": "fa fa-linkedin"
                             }
                         }
                     ],

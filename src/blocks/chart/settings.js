@@ -3,9 +3,9 @@ import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/b
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, TextControl, __experimentalNumberControl as NumberControl, Button, Dashicon, Tooltip, RangeControl } from '@wordpress/components';
 
 // Variables
-import Title from '../../Components/Title';
-import Background from '../../Components/Background';
-import BColor from '../../Components/BColor';
+import Title from '../../../../Components/Title';
+import Background from '../../../../Components/Background';
+import BColor from '../../../../Components/BColor';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const types = [
@@ -148,7 +148,7 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <PanelBody className='bBlocksPanelBody addRemoveDatasets' title={__('Add or Remove Datasets', 'b-blocks')}>
+            <PanelBody className='bPlPanelBody addRemoveChartDatasets' title={__('Add or Remove Datasets', 'b-blocks')}>
                 {data.labels.map((label, labelIndex) => <PanelRow key={labelIndex}>
                     <Title mt='0' mb='0'>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Title>
                     <TextControl value={label} onChange={val => updateData('labels', labelIndex, val)} />
@@ -165,7 +165,7 @@ const Settings = ({ settings }) => {
                     <Button label={__('Add New Dataset', 'b-blocks')} onClick={addDataset} ><Dashicon icon='plus' size={20} />{__('Add New Dataset', 'b-blocks')}</Button>
                 </div>
 
-                {data.datasets.map((dataset, datasetIndex) => <PanelBody key={datasetIndex} className='bBlocksPanelBody editItem' title={__(`Dataset Value ${datasetIndex + 1}:`, 'b-blocks')} initialOpen={0 !== datasetIndex ? false : true}>
+                {data.datasets.map((dataset, datasetIndex) => <PanelBody key={datasetIndex} className='bPlPanelBody editItem' title={__(`Dataset Value ${datasetIndex + 1}:`, 'b-blocks')} initialOpen={0 !== datasetIndex ? false : true}>
                     <PanelRow>
                         <Title mt='0' mb='0'>{__('Label:', 'b-blocks')}</Title>
                         <TextControl value={dataset.label} onChange={val => updateData('datasets', datasetIndex, val, 'label')} />
@@ -185,16 +185,16 @@ const Settings = ({ settings }) => {
                         </Tooltip>
                     </PanelRow>)}
 
-                    <NumberControl className='mt-20p' label={__('Border Width:')} labelPosition='left' value={dataset.borderWidth} onChange={val => {
+                    <NumberControl className='mt20' label={__('Border Width:')} labelPosition='left' value={dataset.borderWidth} onChange={val => {
                         updateData('datasets', datasetIndex, val, 'borderWidth');
                         updateData('datasets', datasetIndex, val, 'hoverBorderWidth');
                     }} />
 
-                    <NumberControl className='mt-20p' label={__('Point Size:')} labelPosition='left' value={dataset.pointRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointRadius')} />
+                    <NumberControl className='mt20' label={__('Point Size:')} labelPosition='left' value={dataset.pointRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointRadius')} />
 
-                    <NumberControl className='mt-20p' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointHoverRadius')} />
+                    <NumberControl className='mt20' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointHoverRadius')} />
 
-                    <PanelRow className='mt-20p'>
+                    <PanelRow>
                         <Title mt='0' mb='0'>{__('Point Style:', 'b-blocks')}</Title>
                         <SelectControl value={dataset.pointStyle} onChange={val => updateData('datasets', datasetIndex, val, 'pointStyle')} options={pointStyles} />
                     </PanelRow>
@@ -218,27 +218,27 @@ const Settings = ({ settings }) => {
             </PanelBody>
 
 
-            <PanelBody className='bBlocksPanelBody' title={__('Chart Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Chart Settings', 'b-blocks')} initialOpen={false}>
                 <PanelRow>
                     <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
                     <SelectControl value={type} onChange={val => setAttributes({ type: val })} options={types} />
                 </PanelRow>
                 <small>{__(`Use single dataset value for 'Pie', 'Doughnut', and 'Polar Area'`, 'b-blocks')}</small>
 
-                <UnitControl className='mt-20p' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+                <UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
-                <Background className='mt-20p' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+                <Background className='mt20' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
                 <BColor label={__('Text Color:', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#666' />
 
                 <BColor label={__('Grid Line Color:', 'b-blocks')} value={gridLineColor} onChange={val => setAttributes({ gridLineColor: val })} defaultColor='#0000001a' />
 
-                <ToggleControl className='mt-20p' label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
+                <ToggleControl className='mt20' label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
                 <ToggleControl label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
             </PanelBody>
 
-            {(isTitle || isSubtitle) && <PanelBody className='bBlocksPanelBody' title={__('Title & Subtitle', 'b-blocks')} initialOpen={false}>
+            {(isTitle || isSubtitle) && <PanelBody className='bPlPanelBody' title={__('Title & Subtitle', 'b-blocks')} initialOpen={false}>
                 {isTitle && <>
                     <PanelRow>
                         <Title mt='0' mb='0'>{__('Title:', 'b-blocks')}</Title>
@@ -252,7 +252,7 @@ const Settings = ({ settings }) => {
                 </>}
 
                 {isSubtitle && <>
-                    <PanelRow className='mt-20p'>
+                    <PanelRow className='mt20'>
                         <Title mt='0' mb='0'>{__('Subtitle:', 'b-blocks')}</Title>
                         <TextControl value={subtitle} onChange={val => setAttributes({ subtitle: val })} />
                     </PanelRow>
@@ -274,5 +274,4 @@ const Settings = ({ settings }) => {
         </BlockControls>
     </>;
 };
-
 export default Settings;

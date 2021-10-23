@@ -6,82 +6,66 @@ class BBlocksPriceLists extends BBlocks{
 
     function register(){
         $this::registerScripts( 'price-lists', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'products' => array( 'type' => 'array', 'default' => array(
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'imgBorder' => array(),
-                    'name' => 'Product 1 Name',
-                    'nameColor' => '#333',
-                    'desc' => 'This content area describes product 1 descriptions or details.',
-                    'descColor' => '#333',
-                    'price' => '$99.99',
-                    'priceColor' => '#4527a4',
-                    'separator' => array( 'width' => '40%', 'height' => '1px', 'color' => '#bbb' )
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'imgBorder' => array(),
-                    'name' => 'Product 2 Name',
-                    'nameColor' => '#333',
-                    'desc' => 'This content area describes product 2 descriptions or details.',
-                    'descColor' => '#333',
-                    'price' => '$99.99',
-                    'priceColor' => '#4527a4',
-                    'separator' => array( 'width' => '40%', 'height' => '1px', 'color' => '#bbb' )
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'imgBorder' => array(),
-                    'name' => 'Product 3 Name',
-                    'nameColor' => '#333',
-                    'desc' => 'This content area describes product 3 descriptions or details.',
-                    'descColor' => '#333',
-                    'price' => '$99.99',
-                    'priceColor' => '#4527a4',
-                    'separator' => array( 'width' => '40%', 'height' => '1px', 'color' => '#bbb' )
-                )
-            ) ),
-
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ) ),
-
-            'columnGap' => array( 'type' => 'string', 'default' => '40px' ),
-            'rowGap' => array( 'type' => 'string', 'default' => '30px' ),
-
-            'layout' => array( 'type' => 'string', 'default' => 'vertical' ),
-
-            'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '50px', 'horizontal' => '20px' ) ),
-
-            'imgMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
-
-            'nameTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 18, 'fontWeight' => 600 ) ),
-            'nameMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15, 'fontStyle' => 'italic' ) ),
-            'descMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
-            
-            'priceTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 24, 'fontStyle' => 'italic' ) ),
-
-            'isSep' => array( 'type' => 'boolean', 'default' => true )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $products = $products ?? array(
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'imgBorder' => array(),
+                'name' => 'Product 1 Name',
+                'nameColor' => '#333',
+                'desc' => 'This content area describes product 1 descriptions or details.',
+                'descColor' => '#333',
+                'price' => '$99.99',
+                'priceColor' => '#4527a4',
+                'separator' => array( 'width' => '40%', 'height' => '1px', 'color' => '#bbb' )
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'imgBorder' => array(),
+                'name' => 'Product 2 Name',
+                'nameColor' => '#333',
+                'desc' => 'This content area describes product 2 descriptions or details.',
+                'descColor' => '#333',
+                'price' => '$99.99',
+                'priceColor' => '#4527a4',
+                'separator' => array( 'width' => '40%', 'height' => '1px', 'color' => '#bbb' )
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'img' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'imgBorder' => array(),
+                'name' => 'Product 3 Name',
+                'nameColor' => '#333',
+                'desc' => 'This content area describes product 3 descriptions or details.',
+                'descColor' => '#333',
+                'price' => '$99.99',
+                'priceColor' => '#4527a4',
+                'separator' => array( 'width' => '40%', 'height' => '1px', 'color' => '#bbb' )
+            )
+        );
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+        $columnGap = $columnGap ?? '40px';
+        $rowGap = $rowGap ?? '30px';
+        $layout = $layout ?? 'vertical';
+        $textAlign = $textAlign ?? 'center';
+        $padding = $padding ?? array( 'vertical' => '50px', 'horizontal' => '20px' );
+        $imgMargin = $imgMargin ?? array( 'bottom' => '20px' );
+        $nameTypo = $nameTypo ?? array( 'fontSize' => 18, 'fontWeight' => 600 );
+        $nameMargin = $nameMargin ?? array( 'bottom' => '10px' );
+        $isDesc = $isDesc ?? true;
+        $descTypo = $descTypo ?? array( 'fontSize' => 15, 'fontStyle' => 'italic' );
+        $descMargin = $descMargin ?? array( 'bottom' => '15px' );
+        $priceTypo = $priceTypo ?? array( 'fontSize' => 24, 'fontStyle' => 'italic' );
+        $isSep = $isSep ?? true;
 
         // Generate Styles
         $priceListsStyle = new BBlocksStyleGenerator();

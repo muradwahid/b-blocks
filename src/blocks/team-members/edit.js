@@ -9,9 +9,9 @@ import Settings from './settings';
 export const IndexContext = createContext();
 
 // Variables
-import Title from '../../Components/Title';
-import IconControl from '../../Components/IconControl';
-import { ImagePlaceholder } from '../../Components/ImageControl';
+import Title from '../../../../Components/Title';
+import IconControl from '../../../../Components/IconControl';
+import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
 const Edit = props => {
     const { className, attributes: { members = [], columns, columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialIconMargin }, setAttributes, clientId, isSelected } = props;
@@ -79,7 +79,7 @@ const Edit = props => {
                     ${bioTypo?.styles || 'font-size: 15px;'}
                     margin: ${bioMargin?.styles || '0 0 15px 0'};
                 }
-                #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .icon{
+                #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .icon, #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .memberSocialAdd{
                     margin: ${socialIconMargin?.styles || '10px 10px'};
                 }
             `}} />

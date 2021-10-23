@@ -1,20 +1,23 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useRef } from '@wordpress/element';
 import { Spinner } from '@wordpress/components';
+
+const $ = jQuery;
 
 import Settings from './settings';
 
 // Components
 import Default from './Layout/Default';
 import SideImage from './Layout/SideImage';
+import Overlay from './Layout/Overlay';
 import func from '../../Const/functions';
 const { mediaUrl } = func;
 
 const Edit = props => {
-    const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories } = props;
+    const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories, isEditorSidebarOpened } = props;
 
-    const { layout, columns, columnGap, rowGap, isContentEqualHight, contentAlign, contentBG, contentPadding, border, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+    const { align, layout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
     // Posts and Categories Check
     if (!posts || !categories) {
@@ -23,9 +26,97 @@ const Edit = props => {
 
     // Update clientId
     useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    const sliderRef = useRef(null);
+    const sliderWrapperRef = useRef(null);
 
     // Components
     const noPosts = () => <h3 className='bBlocksNoPosts'>{__('No posts found!! Please add some posts', 'b-blocks')}</h3>;
+
+    const currentBlock = document.querySelector(`#block-${clientId} .wp-block`);
+    useEffect(() => {
+        if ('slider' === layout) {
+            const currentSlider = document.querySelector(`#bBlocksPosts-${clientId} .bBlocksSliderWrapper .bBlocksSliderPosts`);
+
+            const currentAll = currentSlider && currentBlock;
+
+            currentAll ? currentBlock.style.display = 'block' : 'initial';
+            align === 'full' && currentAll ? currentBlock.style.maxWidth = 'none' : '';
+            align === 'wide' && currentAll ? currentBlock.style.maxWidth = 'none' : '';
+            align === 'center' && currentAll ? currentBlock.style.maxWidth = '' : '';
+
+            currentAll && isEditorSidebarOpened ? currentBlock.style.display = 'grid' : '';
+
+            currentAll ? currentSlider.style.width = `${currentBlock.clientWidth}px` : '';
+
+            // Re init slider
+            sliderWrapperRef.current.innerHTML = '';
+            sliderWrapperRef.current.innerHTML = sliderRef.current.outerHTML;
+
+            new Swiper(`#bBlocksPosts-${clientId} .bBlocksSliderWrapper .bBlocksSliderPosts`, {
+                // Optional parameters
+                direction: 'horizontal',
+                slidesPerView: columns?.mobile,
+                breakpoints: {
+                    // when window width is >= 576px
+                    576: { slidesPerView: columns?.tablet },
+                    // when window width is >= 768px
+                    768: { slidesPerView: columns?.desktop },
+                },
+                spaceBetween: columnGap,
+                loop: sliderIsLoop,
+                allowTouchMove: sliderIsTouchMove,
+                grabCursor: sliderIsTouchMove,
+                autoplay: sliderIsAutoplay ? { delay: sliderSpeed * 1000 } : false,
+                speed: sliderSpeed * 1000,
+                effect: sliderEffect,
+                fadeEffect: { crossFade: true },
+                creativeEffect: {
+                    prev: {
+                        shadow: true,
+                        translate: ['-120%', 0, -500],
+                    },
+                    next: {
+                        shadow: true,
+                        translate: ['120%', 0, -500],
+                    }
+                },
+                allowSlideNext: true,
+                allowSlidePrev: true,
+                notificationClass: null,
+
+                // Controllers
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: sliderIsPageClickable,
+                    dynamicBullets: sliderIsPageDynamic
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+            });
+        }
+
+        let seen = {};
+        $(`#bBlocksPosts-${clientId} .swiper-notification`).each(function () {
+            let txt = $(this).attr('class');
+            if (seen[txt])
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
+
+        // Slider Height
+        const slideHeightArray = [];
+        const swiperSlide = document.querySelectorAll(`#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-slide`);
+        const swiperSlideText = document.querySelectorAll(`#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-slide .bBlocksPostText`);
+        swiperSlideText.length && swiperSlideText.forEach(slideText => {
+            slideHeightArray.push(slideText?.clientHeight);
+        });
+        swiperSlide.length && swiperSlide.forEach(slide => {
+            slide.style.height = `${Math.max(...slideHeightArray)}px`;
+        });
+    }, [attributes, posts]);
 
     return <>
         <Settings settings={props} getPostTypes={getPostTypes} categories={categories} />
@@ -45,6 +136,10 @@ const Edit = props => {
                 }
 
                 #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostText{ padding: ${contentPadding?.styles || '20px 25px'}; }
+                #bBlocksPosts-${clientId} .bBlocksPostOverlay .bBlocksPostText{
+                    ${contentBG?.styles || 'background-color: #f4f2fc;'}
+                    align-items: ${'left' === contentAlign ? 'flex-start' : 'right' === contentAlign ? 'flex-end' : 'center' === contentAlign ? 'center' : ''}
+                }
 
                 #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostTitle{
                     text-align: ${contentAlign};
@@ -85,6 +180,14 @@ const Edit = props => {
                     align-items: ${false === isContentEqualHight ? 'start' : 'initial'};
                 }
                 #bBlocksPosts-${clientId} .bBlocksMasonryPosts{ gap: ${columnGap}px; }
+                #bBlocksPosts-${clientId} .bBlocksSliderPosts, #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-slide{ min-height: ${sliderHeight}; }
+                #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet{
+                    background: ${sliderPageColor};
+                    width: ${sliderPageWidth};
+                    height: ${sliderPageHeight};
+                    ${sliderPageBorder?.styles || 'border-radius: 50%;'}
+                }
+                #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-next{ color: ${sliderPrevNextColor}; }
             `}} />
             <style>
                 {posts.map(post => {
@@ -92,7 +195,7 @@ const Edit = props => {
                     const fImgUrl = mediaUrl(featured_media);
 
                     const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${fImgUrl ? 'grid' : 'flex'}; }`;
-                    const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
+                    const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
 
                     return sideImgCSS + fImgCSS;
                 })}
@@ -102,9 +205,25 @@ const Edit = props => {
                 <MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
             </div> /* Grid Layout */ :
 
-                'masonry' === layout && <div className={`bBlocksMasonryPosts cols-${columns.desktop} cols-tablet-${columns.tablet} cols-mobile-${columns.mobile}`}>
+                'masonry' === layout ? <div className={`bBlocksMasonryPosts cols-${columns.desktop} cols-tablet-${columns.tablet} cols-mobile-${columns.mobile}`}>
                     <MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
-                </div> /* Masonry Layout */}
+                </div> /* Masonry Layout */ :
+
+                    'slider' === layout && <>
+                        <div className='bBlocksSliderWrapper' ref={sliderWrapperRef}></div>
+                        <div className='bBlocksSliderPosts' ref={sliderRef}>
+                            <div className='swiper-wrapper'>
+                                <MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
+                            </div>
+
+                            {sliderIsPage && <div className='swiper-pagination'></div>}
+
+                            {sliderIsPrevNext && <>
+                                <div className='swiper-button-prev'></div><div className='swiper-button-next'></div>
+                            </>}
+                        </div>
+                    </>/* Slider Layout */
+            }
         </div> : noPosts()}
     </>
 }
@@ -119,13 +238,14 @@ export default withSelect((select, props) => {
     }
 
     return {
-        getPostTypes: select('core').getPostTypes()?.filter(p => 'page' !== p.slug && 'attachment' !== p.slug && 'wp_block' !== p.slug && 'wp_template' !== p.slug)?.map(p => {
+        getPostTypes: select('core').getPostTypes({ per_page: -1 })?.filter(p => 'page' !== p.slug && 'attachment' !== p.slug && 'wp_block' !== p.slug && 'wp_template' !== p.slug)?.map(p => {
             return { label: p.name, value: p.slug }
         }),
         posts: select('core').getEntityRecords('postType', postType, query),
-        categories: select('core').getEntityRecords('taxonomy', 'category', { post_type: postType }),
+        categories: select('core').getEntityRecords('taxonomy', 'category', { post_type: postType, per_page: -1 }),
         media: id => select('core').getMedia(id),
-        authors: select('core').getAuthors()
+        authors: select('core').getAuthors(),
+        isEditorSidebarOpened: select('core/edit-post').isEditorSidebarOpened()
     };
 })(Edit);
 
@@ -136,6 +256,7 @@ const MapPosts = ({ attributes, posts }) => {
     return posts.map(post => (
         'default' === subLayout || 'title-meta' === subLayout ? <Default atts={attributes} post={post} /> :
             'left-image' === subLayout || 'right-image' === subLayout ? <SideImage atts={attributes} post={post} /> :
-                <p>{__('Please, select a sub layout', 'b-blocks')}</p>
+                'overlay-content' === subLayout || 'overlay-content-hover' === subLayout || 'overlay-box' === subLayout ? <Overlay atts={attributes} post={post} /> :
+                    <p>{__('Please, select a sub layout', 'b-blocks')}</p>
     ));
 }

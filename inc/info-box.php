@@ -6,54 +6,41 @@ class BBlocksInfoBox extends BBlocks{
 
     function register(){
         $this::registerScripts( 'info-box', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'infoBoxAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
-
-            'width' => array( 'type' => 'string', 'default' => '80%' ),
-            'background' => array( 'type' => 'object', 'default' => array( 'color' => '#f1f7ff' ) ),
-            'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '50px', 'horizontal' => '50px' ) ),
-            'border' => array( 'type' => 'object', 'default' => array( 'width' => '10px', 'color' => '#fff', 'radius' => '5px' ) ),
-            'shadow' => array( 'type' => 'object', 'default' => array( 'blur' => '15px' ) ),
-
-            'isIcon' => array( 'type' => 'boolean', 'default' => true ),
-            'icon' => array( 'type' => 'object', 'default' => array( 'class' => 'fa fa-info-circle', 'fontSize' => 70, 'color' => '#4527a4' ) ),
-            'iconMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
-
-            'title' => array( 'type' => 'string', 'selector' => 'h3.infoBoxTitle', 'default' => 'Info Box Title' ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 25, 'fontWeight' => 600 ) ),
-            'titleColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'desc' => array( 'type' => 'string', 'selector' => 'p.infoBoxDescription', 'default' => 'This content area describes info box descriptions or details.' ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'descColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'descMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
-
-            'isBtn' => array( 'type' => 'boolean', 'default' => false ),
-            'btn' => array( 'type' => 'string', 'selector' => 'a.infoBoxButton', 'default' => 'Click Me' ),
-            'btnLink' => array( 'type' => 'string', 'default' => '#' ),
-            'isLinkNewTab' => array( 'type' => 'boolean', 'default' => true ),
-            'btnTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'btnColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
-            'btnHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
-            'btnPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '8px', 'horizontal' => '15px' ) ),
-            'btnBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '5px' ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $infoBoxAlign = $infoBoxAlign ?? 'center';
+        $textAlign = $textAlign ?? 'center';
+        $width = $width ?? '80%';
+        $background = $background ?? array( 'color' => '#f1f7ff' );
+        $padding = $padding ?? array( 'vertical' => '50px', 'horizontal' => '50px' );
+        $border = $border ?? array( 'width' => '10px', 'color' => '#fff', 'radius' => '5px' );
+        $shadow = $shadow ?? array( 'blur' => '15px' );
+        $isIcon = $isIcon ?? true;
+        $icon = $icon ?? array( 'class' => 'fa fa-info-circle', 'fontSize' => 70, 'color' => '#4527a4' );
+        $title = $title ?? 'Info Box Title';
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 25, 'fontWeight' => 600 );
+        $titleColor = $titleColor ?? '#333';
+        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $isDesc = $isDesc ?? true;
+        $desc = $desc ?? 'This content area describes info box descriptions or details.';
+        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
+        $descColor = $descColor ?? '#333';
+        $descMargin = $descMargin ?? array( 'bottom' => '15px' );
+        $isBtn = $isBtn ?? false;
+        $btn = $btn ?? 'Click Me';
+        $btnLink = $btnLink ?? '#';
+        $isLinkNewTab = $isLinkNewTab ?? true;
+        $btnTypo = $btnTypo ?? array( 'fontSize' => 15 );
+        $btnColors = $btnColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $btnHovColors = $btnHovColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $btnPadding = $btnPadding ?? array( 'vertical' => '8px', 'horizontal' => '15px' );
+        $btnBorder = $btnBorder ?? array( 'radius' => '5px' );
 
         // Generate Styles
         $infoBoxStyle = new BBlocksStyleGenerator();

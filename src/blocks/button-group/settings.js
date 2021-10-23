@@ -3,14 +3,14 @@ import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/b
 import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Variables
-import Title from '../../Components/Title';
-import BColor from '../../Components/BColor';
-import BtnGroup from '../../Components/BtnGroup';
-import Typography from '../../Components/Typography';
-import SpaceControl from '../../Components/SpaceControl';
-import BorderControl from '../../Components/BorderControl';
-import ColorsControl from '../../Components/ColorsControl';
-import IconControl from '../../Components/IconControl';
+import Title from '../../../../Components/Title';
+import BColor from '../../../../Components/BColor';
+import BtnGroup from '../../../../Components/BtnGroup';
+import Typography from '../../../../Components/Typography';
+import SpaceControl from '../../../../Components/SpaceControl';
+import BorderControl from '../../../../Components/BorderControl';
+import ColorsControl from '../../../../Components/ColorsControl';
+import IconControl from '../../../../Components/IconControl';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const sepTypes = [
@@ -27,12 +27,12 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <PanelBody className='bBlocksPanelBody' title={__('Button Settings', 'b-blocks')}>
+            <PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')}>
                 {/* Width */}
                 <UnitControl label={__('Container Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
                 {/* Button Type */}
-                <PanelRow className='mt-20p'>
+                <PanelRow>
                     <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
                     <BtnGroup myValue={btnType} setState={val => {
                         setAttributes({ btnType: val });
@@ -56,13 +56,13 @@ const Settings = ({ settings }) => {
                 <small>{__('Some settings may change when type will be changed.', 'b-blocks')}</small>
 
                 {/* Typography */}
-                <Typography className='mt-20p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
+                <Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
                 {/* Padding */}
-                <SpaceControl className='mt-20p' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
+                <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
 
                 <Title>{__('Buttons:', 'b-blocks')}</Title>
-                <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
+                <TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
                     {'btn-one' == tab.name && <>
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Link:', 'b-blocks')}</Title>
@@ -92,11 +92,11 @@ const Settings = ({ settings }) => {
                 </TabPanel>
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
                 {isSep && <>
-                    <PanelRow className='mt-20p'>
+                    <PanelRow>
                         <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
                         <BtnGroup options={sepTypes} myValue={sepType} setState={val => setAttributes({ sepType: val })} />
                     </PanelRow>
@@ -107,17 +107,17 @@ const Settings = ({ settings }) => {
                         <TextControl value={sepText} onChange={val => setAttributes({ sepText: val })} />
 
                         {/* Text Typography */}
-                        <Typography className='mt-20p' label={__('Text Typography', 'b-blocks')} typography={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: 15 }} />
+                        <Typography label={__('Text Typography', 'b-blocks')} typography={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: 15 }} />
 
                         {/* Text Color */}
-                        <BColor className='mt-20p' label={__('Text Color:', 'b-blocks')} value={sepTextColor} onChange={val => setAttributes({ sepTextColor: val })} defaultColor='#333' />
+                        <BColor label={__('Text Color:', 'b-blocks')} value={sepTextColor} onChange={val => setAttributes({ sepTextColor: val })} defaultColor='#333' />
                     </>}
 
                     {/* Icon */}
                     {'icon' === sepType && <IconControl icon={sepIcon} onChange={val => setAttributes({ sepIcon: val })} defaults={{ class: 'fa fa fa-arrows-alt-h', fontSize: 20, color: '#333' }} />}
 
                     {/* Background Color */}
-                    <BColor className='mt-20p' label={__('Background Color:', 'b-blocks')} value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
+                    <BColor label={__('Background Color:', 'b-blocks')} value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
                 </>}
             </PanelBody>
         </InspectorControls>
@@ -132,5 +132,4 @@ const Settings = ({ settings }) => {
         </BlockControls>
     </>;
 };
-
 export default Settings;

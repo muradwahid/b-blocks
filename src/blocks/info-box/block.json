@@ -130,7 +130,7 @@
         "btn": {
             "type": "string",
             "selector": "a.infoBoxButton",
-            "default": "Click Me."
+            "default": "Click Me"
         },
         "btnLink": {
             "type": "string",

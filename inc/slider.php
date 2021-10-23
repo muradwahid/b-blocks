@@ -6,75 +6,126 @@ class BBlocksSlider extends BBlocks{
 
     function register(){
         $this::registerScripts( 'slider', array(
-            'attributes'      => $this->attributes(),
+            // 'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
+    // function attributes(){
+    //     return array(
+    //         'align' => array( 'type' => 'string', 'default' => '' ),
+    //         'cId' => array( 'type' => 'string', 'default' => '' ),
     
-            'slides' => array( 'type' => 'array', 'default' => array(
-                array(
-                    'background' => array( 'color' => '#00000080' ),
-                    'position' => 'center center',
-                    'title' => 'Slide Title 1',
-                    'description' => 'This content area describes slider 1 descriptions/details.',
-                    'btnText' => 'Button 1', 'btnLink' => '#'
-                ),
-                array(
-                    'background' => array( 'color' => '#00000080' ),
-                    'position' => 'center center',
-                    'title' => 'Slide Title 2',
-                    'description' => 'This content area describes slider 2 descriptions/details.',
-                    'btnText' => 'Button 2', 'btnLink' => '#'
-                )
-            ) ),
+    //         'slides' => array( 'type' => 'array', 'default' => array(
+    //             array(
+    //                 'background' => array( 'color' => '#00000080' ),
+    //                 'position' => 'center center',
+    //                 'title' => 'Slide Title 1',
+    //                 'description' => 'This content area describes slider 1 descriptions/details.',
+    //                 'btnText' => 'Button 1', 'btnLink' => '#'
+    //             ),
+    //             array(
+    //                 'background' => array( 'color' => '#00000080' ),
+    //                 'position' => 'center center',
+    //                 'title' => 'Slide Title 2',
+    //                 'description' => 'This content area describes slider 2 descriptions/details.',
+    //                 'btnText' => 'Button 2', 'btnLink' => '#'
+    //             )
+    //         ) ),
     
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 1, 'tablet' => 1, 'mobile' => 1 ) ),
-            'columnGap' => array( 'type' => 'string', 'default' => 15 ),
-            'sliderWidth' => array( 'type' => 'string', 'default' => '100%' ),
-            'sliderHeight' => array( 'type' => 'string', 'default' => '400px' ),
-            'sliderAlign' => array( 'type' => 'string', 'default' => 'center' ),
+    //         'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 1, 'tablet' => 1, 'mobile' => 1 ) ),
+    //         'columnGap' => array( 'type' => 'string', 'default' => 15 ),
+    //         'sliderWidth' => array( 'type' => 'string', 'default' => '100%' ),
+    //         'sliderHeight' => array( 'type' => 'string', 'default' => '400px' ),
+    //         'sliderAlign' => array( 'type' => 'string', 'default' => 'center' ),
     
-            'isLoop' => array( 'type' => 'boolean', 'default' => true ),
-            'isTouchMove' => array( 'type' => 'boolean', 'default' => false ),
-            'isAutoplay' => array( 'type' => 'boolean', 'default' => true ),
-            'speed' => array( 'type' => 'number', 'default' => 1.5 ),
-            'effect' => array( 'type' => 'string', 'default' => 'slide' ),
-            'isPage' => array( 'type' => 'boolean', 'default' => true ),
-            'isPageClickable' => array( 'type' => 'boolean', 'default' => true ),
-            'isPageDynamic' => array( 'type' => 'boolean', 'default' => true ),
-            'pageColor' => array( 'type' => 'string', 'default' => '#fff' ),
-            'pageWidth' => array( 'type' => 'string', 'default' => '15px' ),
-            'pageHeight' => array( 'type' => 'string', 'default' => '15px' ),
-            'pageBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '50%' ) ),
-            'isPrevNext' => array( 'type' => 'boolean', 'default' => true ),
-            'prevNextColor' => array( 'type' => 'string', 'default' => '#fff' ),
+    //         'isLoop' => array( 'type' => 'boolean', 'default' => true ),
+    //         'isTouchMove' => array( 'type' => 'boolean', 'default' => false ),
+    //         'isAutoplay' => array( 'type' => 'boolean', 'default' => true ),
+    //         'speed' => array( 'type' => 'number', 'default' => 1.5 ),
+    //         'effect' => array( 'type' => 'string', 'default' => 'slide' ),
+    //         'isPage' => array( 'type' => 'boolean', 'default' => true ),
+    //         'isPageClickable' => array( 'type' => 'boolean', 'default' => true ),
+    //         'isPageDynamic' => array( 'type' => 'boolean', 'default' => true ),
+    //         'pageColor' => array( 'type' => 'string', 'default' => '#fff' ),
+    //         'pageWidth' => array( 'type' => 'string', 'default' => '15px' ),
+    //         'pageHeight' => array( 'type' => 'string', 'default' => '15px' ),
+    //         'pageBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '50%' ) ),
+    //         'isPrevNext' => array( 'type' => 'boolean', 'default' => true ),
+    //         'prevNextColor' => array( 'type' => 'string', 'default' => '#fff' ),
     
-            'isTitle' => array( 'type' => 'boolean', 'default' => true ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 25 ) ),
-            'titleColor' => array( 'type' => 'string', 'default' => '#fff' ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
+    //         'isTitle' => array( 'type' => 'boolean', 'default' => true ),
+    //         'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 25 ) ),
+    //         'titleColor' => array( 'type' => 'string', 'default' => '#fff' ),
+    //         'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
     
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'descColor' => array( 'type' => 'string', 'default' => '#fff' ),
-            'descMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
+    //         'isDesc' => array( 'type' => 'boolean', 'default' => true ),
+    //         'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
+    //         'descColor' => array( 'type' => 'string', 'default' => '#fff' ),
+    //         'descMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
     
-            'isBtn' => array( 'type' => 'boolean', 'default' => true ),
-            'btnTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 16 ) ),
-            'btnColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
-            'btnHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
-            'btnPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '12px', 'horizontal' => '35px' ) ),
-            'btnBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '3px' ) )
-        );
-    }
+    //         'isBtn' => array( 'type' => 'boolean', 'default' => true ),
+    //         'btnTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 16 ) ),
+    //         'btnColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
+    //         'btnHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
+    //         'btnPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '12px', 'horizontal' => '35px' ) ),
+    //         'btnBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '3px' ) )
+    //     );
+    // }
 
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $slides = $slides ?? array(
+            array(
+                'background' => array( 'color' => '#00000080' ),
+                'position' => 'center center',
+                'title' => 'Slide Title 1',
+                'description' => 'This content area describes slider 1 descriptions/details.',
+                'btnText' => 'Button 1', 'btnLink' => '#'
+            ),
+            array(
+                'background' => array( 'color' => '#00000080' ),
+                'position' => 'center center',
+                'title' => 'Slide Title 2',
+                'description' => 'This content area describes slider 2 descriptions/details.',
+                'btnText' => 'Button 2', 'btnLink' => '#'
+            )
+        );
+        $columns = $columns ?? array( 'desktop' => 1, 'tablet' => 1, 'mobile' => 1 );
+        $columnGap = $columnGap ?? 15;
+        $sliderWidth = $sliderWidth ?? '100%';
+        $sliderHeight = $sliderHeight ?? '400px';
+        $sliderAlign = $sliderAlign ?? 'center';
+        $isLoop = $isLoop ?? true;
+        $isTouchMove = $isTouchMove ?? false;
+        $isAutoplay = $isAutoplay ?? true;
+        $speed = $speed ?? 1.5;
+        $effect = $effect ?? 'slide';
+        $isPage = $isPage ?? true;
+        $isPageClickable = $isPageClickable ?? true;
+        $isPageDynamic = $isPageDynamic ?? true;
+        $pageColor = $pageColor ?? '#fff';
+        $pageWidth = $pageWidth ?? '15px';
+        $pageHeight = $pageHeight ?? '15px';
+        $pageBorder = $pageBorder ?? array( 'radius' => '50%' );
+        $isPrevNext = $isPrevNext ?? true;
+        $prevNextColor = $prevNextColor ?? '#fff';
+        $isTitle = $isTitle ?? true;
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 25 );
+        $titleColor = $titleColor ?? '#fff';
+        $titleMargin = $titleMargin ?? array( 'bottom' => '15px' );
+        $isDesc = $isDesc ?? true;
+        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
+        $descColor = $descColor ?? '#fff';
+        $descMargin = $descMargin ?? array( 'bottom' => '15px' );
+        $isBtn = $isBtn ?? true;
+        $btnTypo = $btnTypo ?? array( 'fontSize' => 16 );
+        $btnColors = $btnColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $btnHovColors = $btnHovColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $btnPadding = $btnPadding ?? array( 'vertical' => '12px', 'horizontal' => '35px' );
+        $btnBorder = $btnBorder ?? array( 'radius' => '3px' );
 
         // Generate Styles
         $sliderStyle = new BBlocksStyleGenerator();

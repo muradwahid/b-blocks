@@ -6,43 +6,33 @@ class BBlocksLottiePlayer extends BBlocks{
 
     function register(){
         $this::registerScripts( 'lottie-player', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'playerAlign' => array( 'type' => 'string', 'default' => 'center' ),
-
-            'file' => array( 'type' => 'string', 'default' => 'https://assets4.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json' ),
-            'isControls' => array( 'type' => 'boolean', 'default' => true ),
-            'isAutoplay' => array( 'type' => 'boolean', 'default' => true ),
-            'isLoop' => array( 'type' => 'boolean', 'default' => true ),
-            'isHover' => array( 'type' => 'boolean', 'default' => false ),
-            'mode' => array( 'type' => 'string', 'default' => 'normal' ),
-            'count' => array( 'type' => 'number', 'default' => 0 ),
-            'speed' => array( 'type' => 'number', 'default' => 1 ),
-            'intermission' => array( 'type' => 'number', 'default' => 0 ),
-
-            'width' => array( 'type' => 'string', 'default' => '450px' ),
-            'background' => array( 'type' => 'string', 'default' => '#0000' ),
-
-            'controlsHeight' => array( 'type' => 'string', 'default' => '35px' ),
-            'controlsBG' => array( 'type' => 'string', 'default' => '#0000' ),
-            'controlsIconColor' => array( 'type' => 'string', 'default' => '#4527a4' ),
-            'controlsIconHoverColor' => array( 'type' => 'string', 'default' => '#8344c5' ),
-            'controlsIconActiveColor' => array( 'type' => 'string', 'default' => '#8344c5' ),
-            'controlsTrackColor' => array( 'type' => 'string', 'default' => '#8344c5' ),
-            'controlsThumbColor' => array( 'type' => 'string', 'default' => '#4527a4' )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $playerAlign = $playerAlign ?? 'center';
+        $file = $file ?? 'https://assets4.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json';
+        $isControls = $isControls ?? true;
+        $isAutoplay = $isAutoplay ?? true;
+        $isLoop = $isLoop ?? true;
+        $isHover = $isHover ?? false;
+        $mode = $mode ?? 'normal';
+        $count = $count ?? 0;
+        $speed = $speed ?? 1;
+        $intermission = $intermission ?? 0;
+        $width = $width ?? '450px';
+        $background = $background ?? '#0000';
+        $controlsHeight = $controlsHeight ?? '35px';
+        $controlsBG = $controlsBG ?? '#0000';
+        $controlsIconColor = $controlsIconColor ?? '#4527a4';
+        $controlsIconHoverColor = $controlsIconHoverColor ?? '#8344c5';
+        $controlsIconActiveColor = $controlsIconActiveColor ?? '#8344c5';
+        $controlsTrackColor = $controlsTrackColor ?? '#8344c5';
+        $controlsThumbColor = $controlsThumbColor ?? '#4527a4';
 
         // Generate Styles
         $lottiePlayerStyle = new BBlocksStyleGenerator();

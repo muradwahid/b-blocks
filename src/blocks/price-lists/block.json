@@ -103,7 +103,7 @@
         },
         "columnGap": {
             "type": "string",
-            "default": "400px"
+            "default": "40px"
         },
         "rowGap": {
             "type": "string",
@@ -151,7 +151,7 @@
             "type": "object",
             "default": {
                 "fontSize": 15,
-                "fontStyle": "normal"
+                "fontStyle": "italic"
             }
         },
         "descMargin": {
@@ -164,7 +164,7 @@
             "type": "object",
             "default": {
                 "fontSize": 24,
-                "fontStyle": "normal"
+                "fontStyle": "italic"
             }
         },
         "isSep": {

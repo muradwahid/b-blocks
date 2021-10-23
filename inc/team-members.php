@@ -6,114 +6,97 @@ class BBlocksTeamMembers extends BBlocks{
 
     function register(){
         $this::registerScripts( 'team-members', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'members' => array( 'type' => 'array', 'default' => array(
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'border' => array( 'radius' => '3px' ),
-                    'shadow' => array(),
-                    'photo' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'photoBorder' => array( 'radius' => '50%' ),
-                    'name' => 'Martin',
-                    'nameColor' => '#333',
-                    'title' => 'Founder',
-                    'titleColor' => '#333',
-                    'separator' => array( 'width' => '20%', 'height' => '3px', 'color' => '#777' ),
-                    'bio' => 'I am a self-motivated and self-taught professional who likes to solve problems.',
-                    'bioColor' => '#333',
-                    'social' => array(
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-facebook' ) ),
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-twitter' ) ),
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-linkedin' ) )
-                    ),
-                    'socialIconColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) )
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'border' => array( 'radius' => '3px' ),
-                    'shadow' => array(),
-                    'photo' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'photoBorder' => array( 'radius' => '50%' ),
-                    'name' => 'Mary',
-                    'nameColor' => '#333',
-                    'title' => 'Co-Founder',
-                    'titleColor' => '#333',
-                    'separator' => array( 'width' => '20%', 'height' => '3px', 'color' => '#777' ),
-                    'bio' => 'I am a self-motivated and self-taught professional who likes to solve problems.',
-                    'bioColor' => '#333',
-                    'social' => array(
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-facebook' ) ),
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-twitter' ) ),
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-linkedin' ) )
-                    ),
-                    'socialIconColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) )
-                ),
-                array(
-                    'background' => array( 'color' => '#0000' ),
-                    'border' => array( 'radius' => '3px' ),
-                    'shadow' => array(),
-                    'photo' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
-                    'photoBorder' => array( 'radius' => '50%' ),
-                    'name' => 'John Doe',
-                    'nameColor' => '#333',
-                    'title' => 'CEO',
-                    'titleColor' => '#333',
-                    'separator' => array( 'width' => '20%', 'height' => '3px', 'color' => '#777' ),
-                    'bio' => 'I am a self-motivated and self-taught professional who likes to solve problems.',
-                    'bioColor' => '#333',
-                    'social' => array(
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-facebook' ) ),
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-twitter' ) ),
-                        array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-linkedin' ) )
-                    ),
-                    'socialIconColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) )
-                )
-            ) ),
-
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ) ),
-
-            'columnGap' => array( 'type' => 'string', 'default' => '30px' ),
-            'rowGap' => array( 'type' => 'string', 'default' => '30px' ),
-
-            'layout' => array( 'type' => 'string', 'default' => 'vertical' ),
-            'style' => array( 'type' => 'string', 'default' => 'default' ),
-
-            'textAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'padding' => array( 'type' => 'object', 'default' => array( 'vertical' => '50px', 'horizontal' => '20px' ) ),
-
-            'photoWidth' => array( 'type' => 'string', 'default' => '170px' ),
-            'photoMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '20px' ) ),
-
-            'nameTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 20, 'fontWeight' => 600 ) ),
-            'nameMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isTitle' => array( 'type' => 'boolean', 'default' => true ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 16 ) ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-            
-            'isSep' => array( 'type' => 'boolean', 'default' => true ),
-            'sepMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
-
-            'isBio' => array( 'type' => 'boolean', 'default' => true ),
-            'bioTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'bioMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
-
-            'isSocial' => array( 'type' => 'boolean', 'default' => true ),
-            'socialIconMargin' => array( 'type' => 'object', 'default' => array( 'side' => 2, 'vertical' => '10px', 'horizontal' => '10px' ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $members = $members ?? array(
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'border' => array( 'radius' => '3px' ),
+                'shadow' => array(),
+                'photo' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'photoBorder' => array( 'radius' => '50%' ),
+                'name' => 'Martin',
+                'nameColor' => '#333',
+                'title' => 'Founder',
+                'titleColor' => '#333',
+                'separator' => array( 'width' => '20%', 'height' => '3px', 'color' => '#777' ),
+                'bio' => 'I am a self-motivated and self-taught professional who likes to solve problems.',
+                'bioColor' => '#333',
+                'social' => array(
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-facebook' ) ),
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-twitter' ) ),
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-linkedin' ) )
+                ),
+                'socialIconColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) )
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'border' => array( 'radius' => '3px' ),
+                'shadow' => array(),
+                'photo' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'photoBorder' => array( 'radius' => '50%' ),
+                'name' => 'Mary',
+                'nameColor' => '#333',
+                'title' => 'Co-Founder',
+                'titleColor' => '#333',
+                'separator' => array( 'width' => '20%', 'height' => '3px', 'color' => '#777' ),
+                'bio' => 'I am a self-motivated and self-taught professional who likes to solve problems.',
+                'bioColor' => '#333',
+                'social' => array(
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-facebook' ) ),
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-twitter' ) ),
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-linkedin' ) )
+                ),
+                'socialIconColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) )
+            ),
+            array(
+                'background' => array( 'color' => '#0000' ),
+                'border' => array( 'radius' => '3px' ),
+                'shadow' => array(),
+                'photo' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'photoBorder' => array( 'radius' => '50%' ),
+                'name' => 'John Doe',
+                'nameColor' => '#333',
+                'title' => 'CEO',
+                'titleColor' => '#333',
+                'separator' => array( 'width' => '20%', 'height' => '3px', 'color' => '#777' ),
+                'bio' => 'I am a self-motivated and self-taught professional who likes to solve problems.',
+                'bioColor' => '#333',
+                'social' => array(
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-facebook' ) ),
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-twitter' ) ),
+                    array( 'link' => '#', 'icon' => array( 'class' => 'fa fa-linkedin' ) )
+                ),
+                'socialIconColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) )
+            )
+        );
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+        $columnGap = $columnGap ?? '30px';
+        $rowGap = $rowGap ?? '30px';
+        $layout = $layout ?? 'vertical';
+        $style = $style ?? 'default';
+        $textAlign = $textAlign ?? 'center';
+        $padding = $padding ?? array( 'vertical' => '50px', 'horizontal' => '20px' );
+        $photoWidth = $photoWidth ?? '170px';
+        $photoMargin = $photoMargin ?? array( 'bottom' => '20px' );
+        $nameTypo = $nameTypo ?? array( 'fontSize' => 20, 'fontWeight' => 600 );
+        $nameMargin = $nameMargin ?? array( 'bottom' => '10px' );
+        $isTitle = $isTitle ?? true;
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 16 );
+        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $isSep = $isSep ?? true;
+        $sepMargin = $sepMargin ?? array( 'bottom' => '15px' );
+        $isBio = $isBio ?? true;
+        $bioTypo = $bioTypo ?? array( 'fontSize' => 15 );
+        $bioMargin = $bioMargin ?? array( 'bottom' => '15px' );
+        $isSocial = $isSocial ?? true;
+        $socialIconMargin = $socialIconMargin ?? array( 'side' => 2, 'vertical' => '10px', 'horizontal' => '10px' );
 
         // Generate Styles
         $teamMembersStyle = new BBlocksStyleGenerator();

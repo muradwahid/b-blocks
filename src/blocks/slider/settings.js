@@ -6,14 +6,14 @@ import { __experimentalAlignmentMatrixControl as AlignmentMatrixControl, PanelBo
 import { IndexContext } from './edit';
 
 // Variables
-import BDevice from '../../Components/BDevice';
-import Background from '../../Components/Background';
-import Title from '../../Components/Title';
-import BColor from '../../Components/BColor';
-import BorderControl from '../../Components/BorderControl';
-import SpaceControl from '../../Components/SpaceControl';
-import ColorsControl from '../../Components/ColorsControl';
-import Typography from '../../Components/Typography';
+import BDevice from '../../../../Components/BDevice';
+import Background from '../../../../Components/Background';
+import Title from '../../../../Components/Title';
+import BColor from '../../../../Components/BColor';
+import BorderControl from '../../../../Components/BorderControl';
+import SpaceControl from '../../../../Components/SpaceControl';
+import ColorsControl from '../../../../Components/ColorsControl';
+import Typography from '../../../../Components/Typography';
 import options from '../../Const/options';
 const { generalStyleTabs, effects, pxUnit, perUnit, emUnit, vhUnit } = options;
 
@@ -46,13 +46,13 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+            <TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
                 {'general' === tab.name && <>
-                    <PanelBody className='bBlocksPanelBody addRemoveItems' title={__('Add or Remove Slides', 'b-blocks')}>
+                    <PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Slides', 'b-blocks')}>
                         {slides.map((item, index) => {
                             const { background, position, title, description, btnText, btnLink } = item;
 
-                            return <PanelBody key={index} className='bBlocksPanelBody editItem' title={__(`Slide No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
+                            return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Slide No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
                                 <Background label={__('Background', 'b-blocks')} background={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
 
                                 <PanelRow>
@@ -78,7 +78,7 @@ const Settings = ({ settings }) => {
                                     <TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
                                 </PanelRow>
 
-                                <Button className='mt-20p removeItem' label={__('Remove this slide', 'b-blocks')} onClick={e => {
+                                <Button className='mt20 removeItem' label={__('Remove this slide', 'b-blocks')} onClick={e => {
                                     e.preventDefault();
                                     setAttributes({ slides: [...slides.slice(0, index), ...slides.slice(index + 1)] });
                                 }} ><Dashicon icon='no' size={23} />{__('Remove this slide', 'b-blocks')}</Button>
@@ -90,7 +90,7 @@ const Settings = ({ settings }) => {
                         </div>
                     </PanelBody>
 
-                    <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
                         {/* Columns */}
                         <PanelRow>
                             <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
@@ -103,13 +103,13 @@ const Settings = ({ settings }) => {
                         <RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={250} step={1} beforeIcon='arrow-right-alt' />
 
                         {/* Width */}
-                        <UnitControl className='mt-20p' label={__('Width:', 'b-blocks')} labelPosition='left' value={sliderWidth} onChange={val => setAttributes({ sliderWidth: val })} units={[pxUnit, perUnit, emUnit]} />
+                        <UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={sliderWidth} onChange={val => setAttributes({ sliderWidth: val })} units={[pxUnit, perUnit, emUnit]} />
 
                         {/* Height */}
-                        <UnitControl className='mt-20p' label={__('Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit, emUnit, vhUnit]} />
+                        <UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit, emUnit, vhUnit]} />
                     </PanelBody>
 
-                    <PanelBody className='bBlocksPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bPlPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
                         {/* Loop */}
                         <ToggleControl label={__('Enable Loop', 'b-blocks')} checked={isLoop} onChange={val => setAttributes({ isLoop: val })} />
 
@@ -125,7 +125,7 @@ const Settings = ({ settings }) => {
                         <small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
 
                         {/* Effect */}
-                        <PanelRow className='mt-20p'>
+                        <PanelRow className='mt20'>
                             <Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
                             <SelectControl value={effect} onChange={cng => setAttributes({ effect: cng })} options={effects} />
                         </PanelRow>
@@ -148,54 +148,54 @@ const Settings = ({ settings }) => {
                 </>}
 
                 {'style' === tab.name && <>
-                    {isPage || isPrevNext ? <PanelBody className='bBlocksPanelBody' title={__('Options Style', 'b-blocks')}>
+                    {isPage || isPrevNext ? <PanelBody className='bPlPanelBody' title={__('Options Style', 'b-blocks')}>
                         {isPage && <>
                             <BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
 
-                            <UnitControl className='mt-20p' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={pageWidth} onChange={val => setAttributes({ pageWidth: val })} units={[pxUnit, emUnit]} />
+                            <UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={pageWidth} onChange={val => setAttributes({ pageWidth: val })} units={[pxUnit, emUnit]} />
 
-                            <UnitControl className='mt-20p' label={__('Pagination Height:', 'b-blocks')} labelPosition='left' value={pageHeight} onChange={val => setAttributes({ pageHeight: val })} units={[pxUnit, emUnit]} />
+                            <UnitControl className='mt20' label={__('Pagination Height:', 'b-blocks')} labelPosition='left' value={pageHeight} onChange={val => setAttributes({ pageHeight: val })} units={[pxUnit, emUnit]} />
 
                             <BorderControl label={__('Pagination Border:', 'b-blocks')} border={pageBorder} onChange={val => setAttributes({ pageBorder: val })} defaults={{ radius: '50%' }} />
                         </>}
 
-                        {isPrevNext && <BColor className='mt-20p' label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />}
+                        {isPrevNext && <BColor label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />}
                     </PanelBody> : ''}
 
-                    <PanelBody className='bBlocksPanelBody' title={__('Slide Title', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bPlPanelBody' title={__('Slide Title', 'b-blocks')} initialOpen={false}>
                         <ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
                         {/* Typography */}
-                        <Typography className='mt-20p' typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
+                        <Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
                         {/* Color */}
-                        <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#fff' />
+                        <BColor label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#fff' />
 
                         {/* Margin */}
-                        <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+                        <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
                     </PanelBody>
 
-                    <PanelBody className='bBlocksPanelBody' title={__('Slide Description', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bPlPanelBody' title={__('Slide Description', 'b-blocks')} initialOpen={false}>
                         <ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
                         {/* Typography */}
-                        <Typography className='mt-20p' typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
+                        <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
 
                         {/* Color */}
-                        <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
+                        <BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#fff' />
 
                         {/* Margin */}
-                        <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+                        <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
                     </PanelBody>
 
-                    <PanelBody className='bBlocksPanelBody' title={__('Slide Button', 'b-blocks')} initialOpen={false}>
+                    <PanelBody className='bPlPanelBody' title={__('Slide Button', 'b-blocks')} initialOpen={false}>
                         <ToggleControl label={__('Show Button', 'b-blocks')} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
                         {/* Typography */}
-                        <Typography className='mt-20p' typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
+                        <Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
                         {/* Padding */}
-                        <SpaceControl className='mt-20p' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+                        <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
 
                         {/* Border */}
                         <BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
@@ -210,7 +210,7 @@ const Settings = ({ settings }) => {
         </InspectorControls>
 
         <BlockControls>
-            <ToolbarGroup className='bBlocksToolbar'>
+            <ToolbarGroup className='bPlToolbar'>
                 <ToolbarButton label={__('Add New Slide', 'b-blocks')} onClick={addSlide} ><Dashicon icon='plus' size={23} /></ToolbarButton>
             </ToolbarGroup>
 
@@ -222,5 +222,4 @@ const Settings = ({ settings }) => {
         </BlockControls>
     </>;
 };
-
 export default Settings;

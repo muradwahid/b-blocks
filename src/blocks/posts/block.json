@@ -47,13 +47,17 @@
             "type": "boolean",
             "default": true
         },
+        "sliderHeight": {
+            "type": "string",
+            "default": "350px"
+        },
         "postType": {
             "type": "string",
             "default": "post"
         },
         "selectedCategories": {
             "type": "array",
-            "default": {}
+            "default": []
         },
         "isPostsPerPageAll": {
             "type": "boolean",
@@ -93,6 +97,64 @@
             "default": {
                 "radius": "5px"
             }
+        },
+        "sliderIsLoop": {
+            "type": "boolean",
+            "default": true
+        },
+        "sliderIsTouchMove": {
+            "type": "boolean",
+            "default": false
+        },
+        "sliderIsAutoplay": {
+            "type": "boolean",
+            "default": true
+        },
+        "sliderSpeed": {
+            "type": "number",
+            "default": 1.5
+        },
+        "sliderEffect": {
+            "type": "string",
+            "default": "slide"
+        },
+        "sliderIsPage": {
+            "type": "boolean",
+            "default": true
+        },
+        "sliderIsPageClickable": {
+            "type": "boolean",
+            "default": true
+        },
+        "sliderIsPageDynamic": {
+            "type": "boolean",
+            "default": true
+        },
+        "sliderPageColor": {
+            "type": "string",
+            "default": "#4527a4"
+        },
+        "sliderPageWidth": {
+            "type": "string",
+            "default": "15px"
+        },
+        "sliderPageHeight": {
+            "type": "string",
+            "default": "15px"
+        },
+        "sliderPageBorder": {
+            "type": "object",
+            "default": {
+                "radius": "50%"
+            }
+        },
+        "sliderIsPrevNext": {
+            "type": "boolean",
+            "default": true
+        },
+        "sliderPrevNextColor": {
+            "type": "string",
+            "default": "#4527a4"
         },
         "isFImg": {
             "type": "boolean",

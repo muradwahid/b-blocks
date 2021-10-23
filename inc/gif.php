@@ -6,24 +6,29 @@ class BBlocksGIF extends BBlocks{
 
     function register(){
         $this::registerScripts( 'gif', array(
-            'attributes'      => $this->attributes(),
+            // 'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
+    // function attributes(){
+    //     return array(
+    //         'align' => array( 'type' => 'string', 'default' => '' ),
+    //         'cId' => array( 'type' => 'string', 'default' => '' ),
 
-            'gif' => array( 'type' => 'object', 'default' => NULL ),
-            'gifAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'gifWidth' => array( 'type' => 'string', 'default' => '0px' )
-        );
-    }
+    //         'gif' => array( 'type' => 'object', 'default' => NULL ),
+    //         'gifAlign' => array( 'type' => 'string', 'default' => 'center' ),
+    //         'gifWidth' => array( 'type' => 'string', 'default' => '0px' )
+    //     );
+    // }
 
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $gif = $gif ?? NULL;
+        $gifAlign = $gifAlign ?? 'center';
+        $gifWidth = $gifWidth ?? '0px';
 
         // Generate Styles
         $gifStyle = new BBlocksStyleGenerator();
@@ -40,7 +45,7 @@ class BBlocksGIF extends BBlocks{
 
             <div class='bBlocksGif'>
                 <figure>
-                    <?php echo isset( $gif ) && $gif ? "<img src='". esc_url( $gif['images']['original']['url'] ?? '' ) ."' alt='". esc_attr( $gif['title'] ?? '' ) ."' />" : ''; ?>
+                    <?php echo !empty( $gif ) ? "<img src='". esc_url( $gif['images']['original']['url'] ?? '' ) ."' alt='". esc_attr( $gif['title'] ?? '' ) ."' />" : ''; ?>
                 </figure>
             </div>
         </div>

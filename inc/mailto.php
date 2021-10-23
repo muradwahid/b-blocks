@@ -6,35 +6,25 @@ class BBlocksMailto extends BBlocks{
 
     function register(){
         $this::registerScripts( 'mailto', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'mailtoAlign' => array( 'type' => 'string', 'default' => 'center' ),
-
-            'receiverMail' => array( 'type' => 'string', 'default' => '' ),
-            'style' => array( 'type' => 'string', 'default' => 'default' ),
-
-            'btn' => array( 'type' => 'string', 'selector' => 'a.mailtoButton span', 'default' => 'Send E-mail' ),
-            'btnTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 22, 'fontWeight' => 600 ) ),
-            'btnColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
-            'btnHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
-            'btnPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '18px', 'horizontal' => '45px' ) ),
-            'btnBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '50px' ) ),
-
-            'icon' => array( 'type' => 'object', 'default' => array( 'class' => 'fa fa-paper-plane' ) ),
-            'iconPosition' => array( 'type' => 'string', 'default' => 'left' )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $mailtoAlign = $mailtoAlign ?? 'center';
+        $receiverMail = $receiverMail ?? '';
+        $style = $style ?? 'default';
+        $btn = $btn ?? 'Send E-mail';
+        $btnTypo = $btnTypo ?? array( 'fontSize' => 22, 'fontWeight' => 600 );
+        $btnColors = $btnColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $btnHovColors = $btnHovColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $btnPadding = $btnPadding ?? array( 'vertical' => '18px', 'horizontal' => '45px' );
+        $btnBorder = $btnBorder ?? array( 'radius' => '50px' );
+        $icon = $icon ?? array( 'class' => 'fa fa-paper-plane' );
+        $iconPosition = $iconPosition ?? 'left';
 
         // Generate Styles
         $mailtoStyle = new BBlocksStyleGenerator();

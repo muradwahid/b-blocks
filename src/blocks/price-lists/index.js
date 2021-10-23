@@ -10,10 +10,10 @@ const icon = icons.priceList;
 
 // Metadata
 import metadata from './block.json';
-const { name, title, description, category, keywords, supports, example } = metadata;
+const { name, title, description, category, keywords, supports, attributes, example } = metadata;
 
 registerBlockType(name, {
-    title, description, icon, category, keywords, supports, example,
+    title, description, icon, category, keywords, supports, attributes, example,
 
     // Build In Functions
     edit: Edit,

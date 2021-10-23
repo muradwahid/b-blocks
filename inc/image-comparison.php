@@ -6,43 +6,32 @@ class BBlocksImageComparison extends BBlocks{
 
     function register(){
         $this::registerScripts( 'image-comparison', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-            'alignment' => array( 'type' => 'string', 'default' => 'center' ),
-    
-            'width' => array( 'type' => 'string', 'default' => '80%' ),
-            'border' => array( 'type' => 'object', 'default' => array() ),
-    
-            'beforeImg' => array( 'type' => 'object', 'default' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ) ),
-            'afterImg' => array( 'type' => 'object', 'default' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ) ),
-            
-            'isSwap' => array( 'type' => 'boolean', 'default' => false ),
-            
-            'isLabel' => array( 'type' => 'boolean', 'default' => true ),
-            'beforeLabel' => array( 'type' => 'string', 'selector' => '.beforeLabel', 'default' => '' ),
-            'afterLabel' => array( 'type' => 'string', 'selector' => '.afterLabel', 'default' => '' ),
-            'labelTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'labelColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#00000080' ) ),
-            'labelPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '10px', 'horizontal' => '15px' ) ),
-    
-            'isCap' => array( 'type' => 'boolean', 'default' => true ),
-            'cap' => array( 'type' => 'string', 'selector' => '.caption', 'default' => '' ),
-            'capAlign' => array( 'type' => 'string', 'default' => 'center' ),
-            'capTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 14 ) ),
-            'capColors' => array( 'type' => 'object', 'default' => array( 'color' => '#333', 'bg' => '#f4f4f4' ) ),
-            'capPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '10px', 'horizontal' => '15px' ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $alignment = $alignment ?? 'center';
+        $width = $width ?? '80%';
+        $border = $border ?? array();
+        $beforeImg = $beforeImg ?? array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' );
+        $afterImg = $afterImg ?? array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' );
+        $isSwap = $isSwap ?? false;
+        $isLabel = $isLabel ?? true;
+        $beforeLabel = $beforeLabel ?? '';
+        $afterLabel = $afterLabel ?? '';
+        $labelTypo = $labelTypo ?? array( 'fontSize' => 15 );
+        $labelColors = $labelColors ?? array( 'color' => '#fff', 'bg' => '#00000080' );
+        $labelPadding = $labelPadding ?? array( 'vertical' => '10px', 'horizontal' => '15px' );
+        $isCap = $isCap ?? true;
+        $cap = $cap ?? '';
+        $capAlign = $capAlign ?? 'center';
+        $capTypo = $capTypo ?? array( 'fontSize' => 14 );
+        $capColors = $capColors ?? array( 'color' => '#333', 'bg' => '#f4f4f4' );
+        $capPadding = $capPadding ?? array( 'vertical' => '10px', 'horizontal' => '15px' );
 
         // Generate Styles
         $imageComparisonStyle = new BBlocksStyleGenerator();

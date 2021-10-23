@@ -6,34 +6,25 @@ class BBlocksImageGallery extends BBlocks{
 
     function register(){
         $this::registerScripts( 'image-gallery', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-    
-            'images' => array( 'type' => 'array', 'default' => array() ),
-    
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ) ),
-    
-            'imgPadding' => array( 'type' => 'object', 'default' => array() ),
-            'imgBorder' => array( 'type' => 'object', 'default' => array() ),
-            'imgShadow' => array( 'type' => 'object', 'default' => array() ),
-    
-            'isCap' => array( 'type' => 'boolean', 'default' => true ),
-            'capAlign' => array( 'type' => 'string', 'default' => 'left' ),
-            'capColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'capTitleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 18 ) ),
-            'capDescTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $images = $images ?? array();
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+        $imgPadding = $imgPadding ?? array();
+        $imgBorder = $imgBorder ?? array();
+        $imgShadow = $imgShadow ?? array();
+        $isPreview = $isPreview ?? true;
+        $isCap = $isCap ?? true;
+        $capAlign = $capAlign ?? 'left';
+        $capColor = $capColor ?? '#333';
+        $capTitleTypo = $capTitleTypo ?? array( 'fontSize' => 18 );
+        $capDescTypo = $capDescTypo ?? array( 'fontSize' => 15 );
 
         // Generate Styles
         $imgShadow = $imgShadow['styles'] ?? '';
@@ -71,28 +62,46 @@ class BBlocksImageGallery extends BBlocks{
 
             <div class='imgGalleryWrapper columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $images as $image ) {
-                    // Components
-                    $imgDesc = isset( $image['description'] ) && $image['description'] ? "<p>". $image['description'] ."</p>" : '';
-                    $imgCaption = $isCap && isset( $image['caption'] ) && $image['caption'] ? "<div class=imgGalleryImgCaption>
-                        <div class='captionContent'>
-                            <h4>". $image['caption'] ."</h4>
-                            $imgDesc
-                        </div>
-                    </div>" : ''; ?>
+                    $imgUrl = $image['url'];
+                    $imgUrlLarge = !empty( $image['sizes']['large']['url'] ) ? $image['sizes']['large']['url'] : $imgUrl;
+                    $imgAlt = $image['alt'] ? $image['alt'] : $image['title'];
+                    $imgCap = $image['caption'];
+                    $imgDesc = $image['description']; ?>
                     
-                    <a class='imgGalleryImgLink'>
-                        <img src='<?php echo esc_url( $image['url'] ); ?>' alt='' class='imgGalleryImg' />
+                    <a class='imgGalleryImgLink' 
+                        <?php if($isCap){}else{ ?>
+                            href='#'
+                            data-fancybox='imgGalleryPreviewBtn'
+                            data-src='<?php echo esc_url( $imgUrl ); ?>'
+                            data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 992w'
+                            data-sizes='(max-width: 576px) 576px, 992px'
+                            data-caption='<?php echo wp_kses_post( $imgCap ); ?>'
+                        <?php } ?>>
 
-                        <?php echo wp_kses( $imgCaption, array(
-                            'div' => array(
-                                'class' => array()
-                            ),
-                            'h4' => array(),
-                            'p' => array()
-                        ) ); ?>
-                    </a>
-                <?php } ?>
-            </div>
+                        <img src='<?php echo esc_url( $imgUrl ); ?>' alt='<?php echo esc_html( $imgAlt ); ?>' class='imgGalleryImg' />
+
+                        <?php if( $isCap && ( !empty( $imgAlt ) || $isPreview ) ){ ?>
+                            <div class='imgGalleryImgCaption'>
+                                <div class='captionContent'>
+                                    <?php echo !empty( $imgAlt ) ? "<h4>". wp_kses_post( $imgCap ) ."</h4>" : '' ; ?>
+                                    <?php echo !empty( $imgDesc ) ? "<p>". wp_kses_post( $imgDesc ) ."</p>" : '' ; ?>
+
+                                    <?php if( $isPreview ){ ?>
+                                        <button class='imgGalleryPreviewBtn'
+                                            data-fancybox='imgGalleryPreviewBtn'
+                                            data-src='<?php echo esc_url( $imgUrl ); ?>'
+                                            data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 992w'
+                                            data-sizes='(max-width: 576px) 576px, 992px'
+                                            data-caption='<?php echo wp_kses_post( $imgCap ); ?>'>
+                                            <i class='fa fa-eye'></i><?php echo __( 'Preview', 'b-blocks' ); ?>
+                                        </button>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php } ?> <!-- Image Gallery Caption -->
+                    </a> <!-- Image Gallery Link -->
+                <?php } ?> <!-- Image Gallery Loop -->
+            </div> <!-- Image Gallery Wrapper -->
         </div>
 
         <?php $imageGalleryStyle::$styles = array(); // Empty styles

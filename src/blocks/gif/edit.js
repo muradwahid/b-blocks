@@ -58,7 +58,7 @@ const Edit = props => {
 
     return <>
         <InspectorControls>
-            <PanelBody className='bBlocksPanelBody' title={__('Gif Settings', 'b-blocks')}>
+            <PanelBody className='bPlPanelBody' title={__('Gif Settings', 'b-blocks')}>
                 <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={gifWidth} onChange={val => setAttributes({ gifWidth: val })} units={[pxUnit, perUnit, emUnit]} />
                 <small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>
             </PanelBody>

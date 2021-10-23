@@ -1,81 +1,37 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
-import { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, withNotices, Button, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl } from '@wordpress/components';
+import { useEffect, createContext } from '@wordpress/element';
+import { MediaUpload } from '@wordpress/block-editor';
+import { withNotices, Button, Placeholder } from '@wordpress/components';
 
-// Variables
-import Title from '../../Components/Title';
-import BColor from '../../Components/BColor';
-import BtnGroup from '../../Components/BtnGroup';
-import BDevice from '../../Components/BDevice';
-import Typography from '../../Components/Typography';
-import SpaceControl from '../../Components/SpaceControl';
-import BorderControl from '../../Components/BorderControl';
-import ShadowControl from '../../Components/ShadowControl';
-import options from '../../Const/options';
-const { aligns } = options;
+import Settings from './settings';
+
+export const FilterImagesContext = createContext();
 
 const Edit = props => {
-    const { className, attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeOperations, noticeUI } = props;
+    const { className, attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeUI } = props;
 
     // useEffect
     useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
     // Get only urls
     let urls = [];
-    images.map((image) => urls.push(image.url));
+    images.map(image => urls.push(image.url));
 
-    const [device, setDevice] = useState('desktop');
+    // Filter Image properties
+    const filterImages = value => {
+        const newValue = [];
+        for (let i = 0; i < value.length; i++) {
+            const val = value[i];
+
+            newValue.push({ id: val.id, url: val.url, alt: val.alt, name: val.name, title: val.title, sizes: val.sizes, caption: val.caption, description: val.description, link: val.link })
+        }
+        return newValue;
+    }
 
     return <>
-        <InspectorControls>
-            <PanelBody className='bBlocksPanelBody' title={__('Layouts Settings')}>
-                {/* Columns */}
-                <PanelRow>
-                    <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
-                    <BDevice device={device} onChange={val => setDevice(val)} />
-                </PanelRow>
-                <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={9} step={1} />
-            </PanelBody>
-
-            <PanelBody className='bBlocksPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-                {/* Padding */}
-                <SpaceControl label={__('Padding:', 'b-blocks')} space={imgPadding} onChange={val => setAttributes({ imgPadding: val })} />
-
-                {/* Border */}
-                <BorderControl label={__('Border:', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />
-
-                {/* Shadow */}
-                <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
-            </PanelBody>
-
-            <PanelBody className='bBlocksPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
-
-                {/* Text Align */}
-                <PanelRow className='mt-20p'>
-                    <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
-                    <BtnGroup icon={true} options={aligns} myValue={capAlign} setState={val => setAttributes({ capAlign: val })} />
-                </PanelRow>
-
-                {/* Color */}
-                <BColor className='mt-20p' label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
-
-                {/* Title Typography */}
-                <Typography className='mt-20p' label={__('Title Typography:', 'b-blocks')} typography={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: 18 }} />
-
-                {/* Description Typography */}
-                <Typography className='mt-20p' label={__('Description Typography:', 'b-blocks')} typography={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: 18 }} />
-            </PanelBody>
-        </InspectorControls>
-
-        {0 < images.length && <BlockControls>
-            <ToolbarGroup className='bBlocksToolbar'>
-                <MediaUploadCheck>
-                    <MediaUpload allowedTypes={['image']} value={images.map(img => img.id)} onSelect={val => setAttributes({ images: val })} multiple gallery render={({ open }) => <ToolbarButton label={__('Edit Gallery', 'b-blocks')} icon='edit' onClick={open} />} />
-                </MediaUploadCheck>
-            </ToolbarGroup>
-        </BlockControls>}
+        <FilterImagesContext.Provider value={filterImages}>
+            <Settings settings={props} />
+        </FilterImagesContext.Provider>
 
 
         <div id={`bBlocksImageGallery-${clientId}`} className={className}>
@@ -105,13 +61,28 @@ const Edit = props => {
                 }
             `}} />
 
-            {0 === images.length ?
-                <MediaPlaceholder className='bBlocksImageGalleryUpload' labels={{ title: __(' Gallery Images', 'b-blocks'), instructions: __('Select image files from your library.', 'b-blocks') }} icon='format-gallery' allowedTypes={['image']} accept='image/*' multiple onSelect={val => setAttributes({ images: val })} onError={val => noticeOperations.createErrorNotice(val)} notices={noticeUI} /> :
+            {0 === images.length ? <>
+                <Placeholder
+                    className='bBlocksImageGalleryUpload'
+                    label={__(' Gallery Images', 'b-blocks')}
+                    instructions={__('Select image files from your library.', 'b-blocks')}
+                    icon='format-gallery'
+                    notices={noticeUI}>
+                    <MediaUpload
+                        allowedTypes={['image']}
+                        accept='image/*'
+                        multiple
+                        value={Array.isArray(images) ? images.map(({ id }) => id) : images.id}
+                        onSelect={val => setAttributes({ images: filterImages(val) })}
+                        render={({ open }) => <Button className='components-button is-tertiary' label={__('Media Library', 'b-blocks')} onClick={open}>{__('Media Library', 'b-blocks')}</Button>}
+                    />
+                </Placeholder>
+            </> :
 
                 <div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
                     {images.map(img => (
                         <a key={img.id} className='imgGalleryImgLink'>
-                            <img src={img.url} alt='' className='imgGalleryImg' />
+                            <img src={img.url} alt={img.alt || img.title} className='imgGalleryImg' />
 
                             {(isCap && img.caption) && <div className={`imgGalleryImgCaption`}>
                                 <div className='captionContent'>
@@ -126,7 +97,7 @@ const Edit = props => {
 
             {isSelected && 0 < images.length && <MediaUpload allowedTypes={['image']} accept='image/*' multiple value={images[images.length - 1].id} onSelect={newImgs => {
                 let updatedImages = [...images, ...newImgs];
-                setAttributes({ images: updatedImages });
+                setAttributes({ images: filterImages(updatedImages) });
             }} render={({ open }) => <Button className='imgGalleryUploadButton' label={__('Add Images', 'b-blocks')} icon='plus-alt' onClick={open}> Add Images</Button>}
             />}
         </div>

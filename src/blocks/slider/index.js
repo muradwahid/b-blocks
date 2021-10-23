@@ -10,10 +10,10 @@ const icon = icons.slider;
 
 // Metadata
 import metadata from './block.json';
-const { name, example, title, description, category, keywords, supports } = metadata;
+const { name, example, title, description, category, keywords, attributes, supports } = metadata;
 
 registerBlockType(name, {
-    title, description, icon, category, keywords, supports, example,
+    title, description, icon, category, keywords, supports, attributes, example,
 
     // Build In Functions
     edit: Edit,

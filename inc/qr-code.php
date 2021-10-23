@@ -6,28 +6,19 @@ class BBlocksQRCode extends BBlocks{
 
     function register(){
         $this::registerScripts( 'qr-code', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'qrAlign' => array( 'type' => 'string', 'default' => 'center' ),
-
-            'url' => array( 'type' => 'string', 'default' => '' ),
-            'dimension' => array( 'type' => 'number', 'default' => 180 ),
-
-            'color' => array( 'type' => 'string', 'default' => '#000' ),
-            'bgColor' => array( 'type' => 'string', 'default' => '#fff' )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $qrAlign = $qrAlign ?? 'center';
+        $url = $url ?? '';
+        $dimension = $dimension ?? 180;
+        $color = $color ?? '#000';
+        $bgColor = $bgColor ?? '#fff';
 
         // Generate Styles
         $qrCodeStyle = new BBlocksStyleGenerator();

@@ -3,3 +3,10 @@
     font-size: 20px;
     text-align: center;
 }
+
+// Posts
+.wp-block-b-blocks-posts.bBlocksPosts{
+    >.bBlocksSliderPosts{
+        display: none;
+    }
+}

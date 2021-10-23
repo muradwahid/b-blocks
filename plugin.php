@@ -2,7 +2,7 @@
 /**
  * Plugin Name: b Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.5.3
+ * Version: 1.5.4
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.5.3' );
+define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.5.4' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // B Blocks
@@ -40,11 +40,11 @@ class BBlocks{
 
     // Register
     function register(){
-        wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'fontAwesomeKit', 'swiperJS', 'chartJS' ), B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
+        wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'fontAwesomeKit', 'swiperJS', 'chartJS' ), B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
    
         wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks' ), B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 
-        wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery', 'fontAwesomeKit', 'mailtoui', 'swiperJS', 'chartJS' ), B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+        wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery', 'fontAwesomeKit', 'swiperJS', 'chartJS', 'fancybox', 'mailtoui' ), B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 
         wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor' ), B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
@@ -87,18 +87,18 @@ class BBlocks{
 
     // Enqueue block assets
     function enqueueBockAssets(){
-        wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper-bundle.min.js', array(), '7.0.3', true );
         wp_enqueue_script( 'fontAwesomeKit', B_BLOCKS_ASSETS_DIR . 'js/font-awesome-kit.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
+        wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper-bundle.min.js', array(), '7.0.3', true );
         wp_enqueue_script( 'chartJS', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', array(), '3.5.1', true );
     }
 
     // WP enqueue scripts
     function wpEnqueueScripts() {
         wp_enqueue_style( 'dashicon' );
-        wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '3.5.6', 'all' );
+        wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '4.0', 'all' );
 
+        wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', array(), '4.0', true );
         wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
-        wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', array( 'jquery' ), '3.5.6', true );
     }
 
     // After setup theme

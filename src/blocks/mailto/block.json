@@ -22,6 +22,63 @@
         "mailtoAlign": {
             "type": "string",
             "default": "center"
+        },
+        "receiverMail": {
+            "type": "string",
+            "default": ""
+        },
+        "style": {
+            "type": "string",
+            "default": "default"
+        },
+        "btn": {
+            "type": "string",
+            "selector": "a.mailtoButton span",
+            "default": "Send E-mail"
+        },
+        "btnTypo": {
+            "type": "object",
+            "default": {
+                "fontSize": 22,
+                "fontWeight": 600
+            }
+        },
+        "btnColors": {
+            "type": "object",
+            "default": {
+                "color": "#fff",
+                "bg": "#4527a4"
+            }
+        },
+        "btnHovColors": {
+            "type": "object",
+            "default": {
+                "color": "#fff",
+                "bg": "#8344c5"
+            }
+        },
+        "btnPadding": {
+            "type": "object",
+            "default": {
+                "vertical": "18px",
+                "horizontal": "45px"
+            }
+        },
+        "btnBorder": {
+            "type": "object",
+            "default": {
+                "radius": "50px"
+            }
+        },
+        "icon": {
+            "type": "object",
+            "default": {
+                "class": "fa fa-paper-plane"
+            }
+        },
+        "iconPosition": {
+            "type": "string",
+            "default": "left"
         }
     },
     "supports": {

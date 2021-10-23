@@ -3,82 +3,71 @@ class BBlocksPosts extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
         add_action( 'rest_api_init', [$this, 'customRestAPI'] );
+        add_filter( 'excerpt_length', [$this, 'excerptLength'], 999 );
+        add_filter( 'excerpt_more', [$this, 'excerptMore'] );
     }
 
     function register(){
         $this::registerScripts( 'posts', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => 'wide' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'layout' => array( 'type' => 'string', 'default' => 'grid' ),
-            'subLayout' => array( 'type' => 'string', 'default' => 'default' ),
-            'columns' => array( 'type' => 'object', 'default' => array( 'desktop' => 3, 'tablet' => 2, 'mobile' => 1 ) ),
-            'columnGap' => array( 'type' => 'number', 'default' => 15 ),
-            'rowGap' => array( 'type' => 'number', 'default' => 15 ),
-            'isContentEqualHight' => array( 'type' => 'boolean', 'default' => true ),
-
-            'postType' => array( 'type' => 'string', 'default' => 'post' ),
-            'selectedCategories' => array( 'type' => 'array', 'default' => array() ),
-            'isPostsPerPageAll' => array( 'type' => 'boolean', 'default' => false ),
-            'postsPerPage' => array( 'type' => 'number', 'default' => 12 ),
-            'postsOrderBy' => array( 'type' => 'string', 'default' => 'date' ),
-            'postsOrder' => array( 'type' => 'string', 'default' => 'desc' ),
-
-            'contentAlign' => array( 'type' => 'string', 'default' => 'left' ),
-            'contentBG' => array( 'type' => 'object', 'default' => array( 'color' => '#f4f2fc' ) ),
-            'contentPadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '20px', 'horizontal' => '25px' ) ),
-            'border' => array( 'type' => 'object', 'default' => array( 'radius' => '5px' ) ),
-
-            'isFImg' => array( 'type' => 'boolean', 'default' => true ),
-            'isFImgLink' => array( 'type' => 'boolean', 'default' => false ),
-
-            'isTitle' => array( 'type' => 'boolean', 'default' => true ),
-            'isTitleLink' => array( 'type' => 'boolean', 'default' => true ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontFamily' => 'Roboto', 'fontSize' => 25, 'googleFontLink' => 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ) ),
-            'titleColor' => array( 'type' => 'string', 'default' => '#4527a4' ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
-
-            'isMeta' => array( 'type' => 'boolean', 'default' => true ),
-            'isMetaAuthor' => array( 'type' => 'boolean', 'default' => true ),
-            'isMetaDate' => array( 'type' => 'boolean', 'default' => true ),
-            'isMetaCategory' => array( 'type' => 'boolean', 'default' => true ),
-            'metaCategoryIn' => array( 'type' => 'string', 'default' => 'content' ),
-            'isMetaComment' => array( 'type' => 'boolean', 'default' => false ),
-            'metaTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 13, 'textTransform' => 'uppercase' ) ),
-            'metaTextColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'metaLinkColor' => array( 'type' => 'string', 'default' => '#8344c5' ),
-            'metaIconColor' => array( 'type' => 'string', 'default' => '#4527a4' ),
-            'metaMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) ),
-
-            'isExcerpt' => array( 'type' => 'boolean', 'default' => true ),
-            'excerptLength' => array( 'type' => 'number', 'default' => 25 ),
-            'excerptAlign' => array( 'type' => 'string', 'default' => 'justify' ),
-            'excerptTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'excerptColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'excerptMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-
-            'isReadMore' => array( 'type' => 'boolean', 'default' => true ),
-            'readMoreLabel' => array( 'type' => 'string', 'default' => 'Read More' ),
-            'isLinkNewTab' => array( 'type' => 'boolean', 'default' => false ),
-            'readMoreAlign' => array( 'type' => 'string', 'default' => 'left' ),
-            'readMoreTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 14, 'textTransform' => 'uppercase', 'fontWeight' => 600 ) ),
-            'readMoreColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#8344c5' ) ),
-            'readMoreHovColors' => array( 'type' => 'object', 'default' => array( 'color' => '#fff', 'bg' => '#4527a4' ) ),
-            'readMorePadding' => array( 'type' => 'object', 'default' => array( 'vertical' => '12px', 'horizontal' => '35px' ) ),
-            'readMoreBorder' => array( 'type' => 'object', 'default' => array( 'radius' => '3px' ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
-
+        $align = $align ?? 'wide';
+        $cId = $cId ?? '';
+        $layout = $layout ?? 'grid';
+        $subLayout = $subLayout ?? 'default';
+        $columns = $columns ?? array( 'desktop' => 3, 'tablet' => 2, 'mobile' => 1 );
+        $columnGap = $columnGap ?? 15;
+        $rowGap = $rowGap ?? 15;
+        $isContentEqualHight = $isContentEqualHight ?? true;
+        $sliderHeight = $sliderHeight ?? '350px';
+        $postType = $postType ?? 'post';
+        $selectedCategories = $selectedCategories ?? array();
+        $isPostsPerPageAll = $isPostsPerPageAll ?? false;
+        $postsPerPage = $postsPerPage ?? 12;
+        $postsOrderBy = $postsOrderBy ?? 'date';
+        $postsOrder = $postsOrder ?? 'desc';
+        $contentAlign = $contentAlign ?? 'left';
+        $contentBG = $contentBG ?? array( 'color' => '#f4f2fc' );
+        $contentPadding = $contentPadding ?? array( 'vertical' => '20px', 'horizontal' => '25px' );
+        $border = $border ?? array( 'radius' => '5px' );
+        $sliderIsLoop = $sliderIsLoop ?? true;
+        $sliderIsTouchMove = $sliderIsTouchMove ?? false;
+        $sliderIsAutoplay = $sliderIsAutoplay ?? true;
+        $sliderSpeed = $sliderSpeed ?? 1.5;
+        $sliderEffect = $sliderEffect ?? 'slide';
+        $sliderIsPage = $sliderIsPage ?? true;
+        $sliderIsPageClickable = $sliderIsPageClickable ?? true;
+        $sliderIsPageDynamic = $sliderIsPageDynamic ?? true;
+        $sliderPageColor = $sliderPageColor ?? '#4527a4';
+        $sliderPageWidth = $sliderPageWidth ?? '15px';
+        $sliderPageHeight = $sliderPageHeight ?? '15px';
+        $sliderPageBorder = $sliderPageBorder ?? array( 'radius' => '50%' );
+        $sliderIsPrevNext = $sliderIsPrevNext ?? true;
+        $sliderPrevNextColor = $sliderPrevNextColor ?? '#4527a4';
+        $isFImg = $isFImg ?? true;
+        $titleTypo = $titleTypo ?? array( 'fontFamily' => 'Roboto', 'fontSize' => 25, 'googleFontLink' => 'https =>//fonts.googleapis.com/css2?family=Roboto&display=swap' );
+        $titleColor = $titleColor ?? '#4527a4';
+        $titleMargin = $titleMargin ?? array( 'bottom' => '15px' );
+        $metaTypo = $metaTypo ?? array( 'fontSize' => 13, 'textTransform' => 'uppercase' );
+        $metaTextColor = $metaTextColor ?? '#333';
+        $metaLinkColor = $metaLinkColor ?? '#8344c5';
+        $metaIconColor = $metaIconColor ?? '#4527a4';
+        $metaMargin = $metaMargin ?? array( 'bottom' => '15px' );
+        $excerptAlign = $excerptAlign ?? 'justify';
+        $excerptTypo = $excerptTypo ?? array( 'fontSize' => 15 );
+        $excerptColor = $excerptColor ?? '#333';
+        $excerptMargin = $excerptMargin ?? array( 'bottom' => '10px' );
+        $readMoreAlign = $readMoreAlign ?? 'left';
+        $readMoreTypo = $readMoreTypo ?? array( 'fontSize' => 14, 'textTransform' => 'uppercase', 'fontWeight' => 600 );
+        $readMoreColors = $readMoreColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $readMoreHovColors = $readMoreHovColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $readMorePadding = $readMorePadding ?? array( 'vertical' => '12px', 'horizontal' => '35px' );
+        $readMoreBorder = $readMoreBorder ?? array( 'radius' => '3px' );
+        
         // $taxonomies = get_object_taxonomies( $postType, 'array' );
         // foreach( $taxonomies as $tax ){
         //     if( $tax->hierarchical ){
@@ -154,7 +143,19 @@ class BBlocksPosts extends BBlocks{
         $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksMasonryPosts", array(
             'gap' => $columnGap . 'px'
         ) );
-    
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-slide", array(
+            'min-height' => $sliderHeight
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet", array(
+            'background' => $sliderPageColor,
+            'width' => $sliderPageWidth,
+            'height' => $sliderPageHeight,
+            $sliderPageBorder['styles'] ?? 'border-radius: 50%;' => ''
+        ) );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-next", array(
+            'color' => $sliderPrevNextColor
+        ) );
+
         // All Posts
         $posts = get_posts( [
             'post_type'      => $postType,
@@ -163,6 +164,8 @@ class BBlocksPosts extends BBlocks{
             'orderby'        => $postsOrderBy,
             'order'          => $postsOrder
         ] );
+
+        $jsonData = json_encode( array( 'layout' => $layout, 'columns' => $columns, 'columnGap' => $columnGap, 'sliderIsLoop' => $sliderIsLoop ?? true, 'sliderIsTouchMove' => $sliderIsTouchMove ?? false, 'sliderIsAutoplay' => $sliderIsAutoplay ?? true, 'sliderSpeed' => $sliderSpeed ?? 1.5, 'sliderEffect' => $sliderEffect ?? 'slide', 'sliderIsPageClickable' => $sliderIsPageClickable ?? true, 'sliderIsPageDynamic' => $sliderIsPageDynamic ?? true ) );
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-posts bBlocksPosts <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
@@ -176,7 +179,7 @@ class BBlocksPosts extends BBlocks{
                 <?php foreach ( $posts as $post ) {
                     $imgUrl = get_the_post_thumbnail_url( $post->ID );
                     $displayCSS = $imgUrl ? 'grid' : 'flex';
-        
+
                     $sideImgCSS = "#bBlocksPosts-$cId .bBlocksPostSideImage.bBlocksPost-$post->ID{ display: $displayCSS; }";
                     $fImgCSS = $isFImg && $imgUrl ? "#bBlocksPosts-$cId .bBlocksPostOverlay.bBlocksPost-$post->ID, #bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImg-$post->ID{ background-image: url( $imgUrl ); }" : '';
 
@@ -192,6 +195,15 @@ class BBlocksPosts extends BBlocks{
             <?php }else if( 'masonry' === $layout ){ ?>
                 <div class='bBlocksMasonryPosts cols-<?php echo esc_attr( $columns['desktop'] ); ?> cols-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> cols-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                     <?php $this->foreachPosts( $attributes, $posts ); ?>
+                </div>
+            <?php }else if ( 'slider' === $layout ){ ?>
+                <div class='bBlocksSliderPosts' data-slider='<?php echo esc_attr( $jsonData ); ?>'>
+                    <div class='swiper-wrapper'>
+                        <?php $this->foreachPosts( $attributes, $posts ); ?>
+                    </div>
+
+                    <?php echo $sliderIsPage ? "<div class='swiper-pagination'></div>" : ''; ?>
+                    <?php echo $sliderIsPrevNext ? "<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>" : ''; ?>
                 </div>
             <?php }else{ echo ''; } ?>
         </div>
@@ -224,7 +236,7 @@ class BBlocksPosts extends BBlocks{
         $titleMetaFilter = 'title-meta' !== $subLayout ? $this->postExcerpt( $attributes, $post ) . $this->postReadMore( $attributes, $post ) : '';
 
         ob_start(); ?>
-        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostDefault'>
+        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostDefault <?php echo 'slider' === $layout ? 'swiper-slide' : ''; ?>'>
             <?php echo $this->postFeatureImg( $attributes, $post ); ?>
 
             <div class='bBlocksPostText'>
@@ -240,7 +252,7 @@ class BBlocksPosts extends BBlocks{
         $subLayout = $subLayout ?? 'default';
 
         ob_start(); ?>
-        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostSideImage <?php echo 'left-image' === $subLayout ? 'leftImage' : ( 'right-image' === $subLayout ? 'rightImage' : '' ); ?>'>
+        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostSideImage <?php echo 'left-image' === $subLayout ? 'leftImage' : ( 'right-image' === $subLayout ? 'rightImage' : '' ); ?> <?php echo 'slider' === $layout ? 'swiper-slide' : ''; ?>'>
             <?php echo 'left-image' === $subLayout ? $this->postFeatureImg( $attributes, $post ) : ''; ?>
 
             <div class='bBlocksPostText'>
@@ -254,11 +266,13 @@ class BBlocksPosts extends BBlocks{
 
     function overlayLayout( $attributes, $post ) {
         extract( $attributes );
+        $layout = $layout ?? 'grid';
+        $subLayout = $subLayout ?? 'default';
 
         $imgUrl = get_the_post_thumbnail_url( $post->ID );
 
         ob_start(); ?>
-        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostOverlay <?php echo 'overlay-content-hover' === $subLayout && $imgUrl ? 'bBlocksPostOverlayHover' : ''; ?> <?php echo 'overlay-box' === $subLayout ? 'bBlocksPostOverlayBox' : ''; ?>'>
+        <article class='bBlocksPost bBlocksPost-<?php echo esc_attr( $post->ID ); ?> bBlocksPostOverlay <?php echo 'overlay-content-hover' === $subLayout && $imgUrl ? 'bBlocksPostOverlayHover' : ''; ?> <?php echo 'overlay-box' === $subLayout ? 'bBlocksPostOverlayBox' : ''; ?> <?php echo 'slider' === $layout ? 'swiper-slide' : ''; ?>'>
             <div class='bBlocksPostText'>
                 <?php echo $this->postTitle( $attributes, $post ) . $this->postMetaData( $attributes, $post ); ?>
 
@@ -271,6 +285,12 @@ class BBlocksPosts extends BBlocks{
     // Single Components
     function postFeatureImg( $attributes, $post ) {
         extract( $attributes );
+        $isFImg = $isFImg ?? true;
+        $isFImgLink = $isFImgLink ?? false;
+        $isMeta = $isMeta ?? true;
+        $isMetaCategory = $isMetaCategory ?? true;
+        $metaCategoryIn = $metaCategoryIn ?? 'content';
+        $isLinkNewTab = $isLinkNewTab ?? false;
 
         $imgUrl = get_the_post_thumbnail_url( $post->ID );
         $tab = $isLinkNewTab ? '_blank' : '_self';
@@ -290,6 +310,9 @@ class BBlocksPosts extends BBlocks{
 
     function postTitle( $attributes, $post ) {
         extract( $attributes );
+        $isTitle = $isTitle ?? true;
+        $isTitleLink = $isTitleLink ?? true;
+        $isLinkNewTab = $isLinkNewTab ?? false;
 
         $tab = $isLinkNewTab ? '_blank' : '_self';
 
@@ -306,6 +329,7 @@ class BBlocksPosts extends BBlocks{
 
     function postMetaData( $attributes, $post ) {
         extract( $attributes );
+        $isMeta = $isMeta ?? true;
 
         if ( $isMeta ) {
             ob_start(); ?>
@@ -320,6 +344,7 @@ class BBlocksPosts extends BBlocks{
 
     function metaAuthor( $attributes, $post ) {
         extract( $attributes );
+        $isMetaAuthor = $isMetaAuthor ?? true;
 
         if ( $isMetaAuthor ) {
             ob_start(); ?>
@@ -334,6 +359,7 @@ class BBlocksPosts extends BBlocks{
     } // Meta Author
     function metaDate( $attributes, $post ) {
         extract( $attributes );
+        $isMetaDate = $isMetaDate ?? true;
 
         if ( $isMetaDate ) {
             ob_start(); ?>
@@ -348,6 +374,8 @@ class BBlocksPosts extends BBlocks{
     } // Meta Date
     function metaCategories( $attributes, $post ) {
         extract( $attributes );
+        $isMetaCategory = $isMetaCategory ?? true;
+        $metaCategoryIn = $metaCategoryIn ?? 'content';
 
         if ( $isMetaCategory && 'content' === $metaCategoryIn ) {
             ob_start(); ?>
@@ -362,6 +390,7 @@ class BBlocksPosts extends BBlocks{
     } // Meta Categories
     function metaComment( $attributes, $post ) {
         extract( $attributes );
+        $isMetaComment = $isMetaComment ?? false;
 
         if ( $isMetaComment ) {
             ob_start(); ?>
@@ -377,10 +406,12 @@ class BBlocksPosts extends BBlocks{
 
     function postExcerpt( $attributes, $post ) {
         extract( $attributes );
+        $isExcerpt = $isExcerpt ?? true;
+        $excerptLength = $excerptLength ?? 25;
 
         if ( $isExcerpt ) {
             ob_start(); ?>
-            <div class='bBlocksPostExcerpt bBlocksInnerPostContent'><?php echo implode( ' ', array_slice( explode( ' ', get_post_field( 'post_content', $post->ID ) ), 0, $excerptLength ) ); ?></div>
+            <div class='bBlocksPostExcerpt bBlocksInnerPostContent'><?php echo implode( ' ', array_slice( explode( ' ', get_the_excerpt( $post->ID ) ), 0, $excerptLength ) ); ?></div>
             <?php return ob_get_clean();
         } else {
             return '';
@@ -389,6 +420,9 @@ class BBlocksPosts extends BBlocks{
 
     function postReadMore( $attributes, $post ) {
         extract( $attributes );
+        $isReadMore = $isReadMore ?? true;
+        $readMoreLabel = $readMoreLabel ?? 'Read More';
+        $isLinkNewTab = $isLinkNewTab ?? false;
 
         $tab = $isLinkNewTab ? '_blank' : '_self';
 
@@ -409,13 +443,13 @@ class BBlocksPosts extends BBlocks{
             'public'       => true,
             'show_in_rest' => true,
         ), 'objects' );
-    
+
         $options = array();
         foreach ( $post_types as $post_type ) {
             if ( 'product' === $post_type->name ) { continue; }
             if ( 'attachment' === $post_type->name ) { continue; }
             if ( 'page' === $post_type->name ) { continue; }
-    
+
             $options[] = array(
                 'value' => $post_type->name,
                 'label' => $post_type->label
@@ -438,7 +472,7 @@ class BBlocksPosts extends BBlocks{
                     'type'        => 'string',
                 )
             ) );
-    
+
             register_rest_field( $value['value'], 'wbDate', array(
                 'get_callback'    => function ( $obj ) {
                     return get_the_date( 'M j, Y', $obj['id'] );
@@ -448,7 +482,7 @@ class BBlocksPosts extends BBlocks{
                     'type'        => 'string',
                 )
             ) );
-    
+
             register_rest_field( $value['value'], 'wbCategories', array(
                 'get_callback'    => function ( $obj ) {
                     $catsLink['space'] = get_the_category_list( esc_html__( ' ' ), '', $obj['id'] );
@@ -460,7 +494,7 @@ class BBlocksPosts extends BBlocks{
                     'type'        => 'string',
                 )
             ) );
-    
+
             register_rest_field( $value['value'], 'wbComment', array(
                 'get_callback'    => function ( $obj ) {
                     return wp_count_comments( $obj['id'] )->total_comments;
@@ -472,5 +506,13 @@ class BBlocksPosts extends BBlocks{
             ) );
         }
     } // Custom Rest API
+
+    function excerptLength( $length ) {
+        return 100;
+    } // Excerpt Length
+    
+    function excerptMore( $more ) {
+        return "<p class='read-more'><a href=". esc_url( get_permalink( get_the_ID() ) ) .">". __( 'Read More &raquo;', 'b-blocks' ) ."</a></p>";
+    } // Excerpt More
 }
 new BBlocksPosts();

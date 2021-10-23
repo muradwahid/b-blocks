@@ -6,37 +6,27 @@ class BBlocksSectionHeading extends BBlocks{
 
     function register(){
         $this::registerScripts( 'section-heading', array(
-            'attributes'      => $this->attributes(),
             'render_callback' => [$this, 'render']
         ) );
     }
 
-    function attributes(){
-        return array(
-            'align' => array( 'type' => 'string', 'default' => '' ),
-            'cId' => array( 'type' => 'string', 'default' => '' ),
-
-            'textAlign' => array( 'type' => 'string', 'default' => 'left' ),
-
-            'title' => array( 'type' => 'string', 'default' => 'Section Heading' ),
-            'titleTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 25, 'fontWeight' => 600 ) ),
-            'titleColor' => array( 'type' => 'string', 'default' => '#4527a4' ),
-            'titleMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '10px' ) ),
-            
-            'isSep' => array( 'type' => 'boolean', 'default' => true ),
-            'separator' => array( 'type' => 'object', 'default' => array( 'width' => '150px', 'height' => '3px', 'color' => '#8344c5' ) ),
-            'sepMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '5px' ) ),
-            
-            'isDesc' => array( 'type' => 'boolean', 'default' => true ),
-            'desc' => array( 'type' => 'string', 'default' => 'This content area describes section heading descriptions or details.' ),
-            'descTypo' => array( 'type' => 'object', 'default' => array( 'fontSize' => 15 ) ),
-            'descColor' => array( 'type' => 'string', 'default' => '#333' ),
-            'descMargin' => array( 'type' => 'object', 'default' => array( 'bottom' => '15px' ) )
-        );
-    }
-
     function render( $attributes ){
         extract( $attributes );
+        $align = $align ?? '';
+        $cId = $cId ?? '';
+        $textAlign = $textAlign ?? 'left';
+        $title = $title ?? 'Section Heading';
+        $titleTypo = $titleTypo ?? array( 'fontSize' => 25, 'fontWeight' => 600 );
+        $titleColor = $titleColor ?? '#4527a4';
+        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $isSep = $isSep ?? true;
+        $separator = $separator ?? array( 'width' => '150px', 'height' => '3px', 'color' => '#8344c5' );
+        $sepMargin = $sepMargin ?? array( 'bottom' => '5px' );
+        $isDesc = $isDesc ?? true;
+        $desc = $desc ?? 'This content area describes section heading descriptions or details.';
+        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
+        $descColor = $descColor ?? '#333';
+        $descMargin = $descMargin ?? array( 'bottom' => '15px' );
 
         // Generate Styles
         $sectionHeadingStyle = new BBlocksStyleGenerator();

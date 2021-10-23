@@ -83,7 +83,7 @@ registerBlockType('b-blocks/progress-bar', {
                     {otherTitle('Striped:')}
                     <ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
-                    <BColor className='mt-20p' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
+                    <BColor className='mt20' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
 
                     {progressBarStriped && <>
                         {/* Animation */}

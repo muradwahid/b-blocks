@@ -21,7 +21,7 @@
         },
         "images": {
             "type": "array",
-            "default": {}
+            "default": []
         },
         "columns": {
             "type": "object",
@@ -42,6 +42,10 @@
         "imgShadow": {
             "type": "object",
             "default": {}
+        },
+        "isPreview": {
+            "type": "boolean",
+            "default": true
         },
         "isCap": {
             "type": "boolean",

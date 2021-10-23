@@ -6,17 +6,17 @@ import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitCon
 import { IndexContext } from './edit';
 
 // Variables
-import Title from '../../Components/Title';
-import BColor from '../../Components/BColor';
-import Background from '../../Components/Background';
-import ColorsControl from '../../Components/ColorsControl';
-import { ImageHolderControl, ChangeImageData } from '../../Components/ImageControl';
-import BDevice from '../../Components/BDevice';
-import BorderControl from '../../Components/BorderControl';
-import ShadowControl from '../../Components/ShadowControl';
-import Typography from '../../Components/Typography';
-import SeparatorControl from '../../Components/SeparatorControl';
-import SpaceControl from '../../Components/SpaceControl';
+import Title from '../../../../Components/Title';
+import BColor from '../../../../Components/BColor';
+import Background from '../../../../Components/Background';
+import ColorsControl from '../../../../Components/ColorsControl';
+import { ImageHolderControl, ChangeImageData } from '../../../../Components/ImageControl';
+import BDevice from '../../../../Components/BDevice';
+import BorderControl from '../../../../Components/BorderControl';
+import ShadowControl from '../../../../Components/ShadowControl';
+import Typography from '../../../../Components/Typography';
+import SeparatorControl from '../../../../Components/SeparatorControl';
+import SpaceControl from '../../../../Components/SpaceControl';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const memberStyles = [
@@ -70,19 +70,19 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <PanelBody className='bBlocksPanelBody addRemoveItems' title={__('Add or Remove Members', 'b-blocks')}>
+            <PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Members', 'b-blocks')}>
                 {members.map((item, index) => {
                     const { background, border, shadow, photo, photoBorder, nameColor, titleColor, separator, bioColor, socialIconColors } = item;
 
-                    return <PanelBody key={index} className='bBlocksPanelBody editItem' title={__(`Member No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
+                    return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Member No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
                         <Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateMember(index, 'background', val)} />
 
                         <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => updateMember(index, 'border', val)} defaults={{ radius: '3px' }} />
 
                         <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => updateMember(index, 'shadow', val)} />
 
-                        <ImageHolderControl className='mt-20p' label={__('Photo:', 'b-blocks')} img={photo} onChange={val => updateMember(index, 'photo', val)} />
-                        <ChangeImageData className='mt-20p' img={photo} onChange={val => updateMember(index, 'photo', val)} />
+                        <ImageHolderControl className='mt20' label={__('Photo:', 'b-blocks')} img={photo} onChange={val => updateMember(index, 'photo', val)} />
+                        <ChangeImageData className='mt20' img={photo} onChange={val => updateMember(index, 'photo', val)} />
 
                         <BorderControl label={__('Photo Border:', 'b-blocks')} border={photoBorder} onChange={val => updateMember(index, 'photoBorder', val)} defaults={{ radius: '50%' }} />
 
@@ -96,7 +96,7 @@ const Settings = ({ settings }) => {
 
                         <ColorsControl label={__('Social Icon Colors:', 'b-blocks')} colors={socialIconColors} onChange={val => updateMember(index, 'socialIconColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-                        <Button className='mt-20p removeItem' label={__('Remove this member', 'b-blocks')} onClick={e => {
+                        <Button className='mt20 removeItem' label={__('Remove this member', 'b-blocks')} onClick={e => {
                             e.preventDefault();
                             setAttributes({ members: [...members.slice(0, index), ...members.slice(index + 1)] });
                         }} ><Dashicon icon='no' size={23} />{__('Remove this member', 'b-blocks')}</Button>
@@ -108,22 +108,22 @@ const Settings = ({ settings }) => {
                 </div>
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
                 {/* Columns */}
-                <PanelRow className='mt-20p'>
+                <PanelRow>
                     <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
                     <BDevice device={device} onChange={val => setDevice(val)} />
                 </PanelRow>
                 <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-                <UnitControl className='mt-20p' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+                <UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
-                <UnitControl className='mt-20p' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+                <UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
                 {/* Layout */}
-                <PanelRow className='mt-20p'>
+                <PanelRow className='mt20'>
                     <Title mt='0' mb='0'>{__('Layout:', 'b-blocks')}</Title>
-                    <ButtonGroup className='bBlocksBtnGroup'>
+                    <ButtonGroup className='bPlBtnGroup'>
                         <Tooltip text={__('Vertical', 'b-blocks')} position='top'>
                             <Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
                                 layout: 'vertical',
@@ -145,7 +145,7 @@ const Settings = ({ settings }) => {
                 </PanelRow>
 
                 {/* Style */}
-                <PanelRow className='mt-20p'>
+                <PanelRow>
                     <Title mt='0' mb='0'>{__('Style:', 'b-blocks')}</Title>
                     <SelectControl value={style} onChange={val => {
                         setAttributes({ style: val });
@@ -233,58 +233,58 @@ const Settings = ({ settings }) => {
                 </PanelRow>
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Member Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Member Settings', 'b-blocks')} initialOpen={false}>
                 <SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Member Photo', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Member Photo', 'b-blocks')} initialOpen={false}>
                 <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={photoWidth} onChange={val => setAttributes({ photoWidth: val })} units={[pxUnit, perUnit, emUnit]} />
 
-                <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={photoMargin} onChange={val => setAttributes({ photoMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
+                <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={photoMargin} onChange={val => setAttributes({ photoMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Member Name', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Member Name', 'b-blocks')} initialOpen={false}>
                 <Typography typography={nameTypo} onChange={val => setAttributes({ nameTypo: val })} defaults={{ fontSize: 20, fontWeight: 600 }} />
 
-                <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={nameMargin} onChange={val => setAttributes({ nameMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+                <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={nameMargin} onChange={val => setAttributes({ nameMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
                 {isTitle && <>
-                    <Typography className='mt-20p' typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 16 }} />
+                    <Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 16 }} />
 
-                    <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+                    <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
                 </>}
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
-                {isSep && <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '15px' }} />}
+                {isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '15px' }} />}
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Member Bio', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Member Bio', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Bio', 'b-blocks')} checked={isBio} onChange={val => setAttributes({ isBio: val })} />
 
                 {isBio && <>
-                    <Typography className='mt-20p' typography={bioTypo} onChange={val => setAttributes({ bioTypo: val })} defaults={{ fontSize: 15 }} />
+                    <Typography typography={bioTypo} onChange={val => setAttributes({ bioTypo: val })} defaults={{ fontSize: 15 }} />
 
-                    <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={bioMargin} onChange={val => setAttributes({ bioMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+                    <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={bioMargin} onChange={val => setAttributes({ bioMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
                 </>}
             </PanelBody>
 
-            <PanelBody className='bBlocksPanelBody' title={__('Member Social', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Member Social', 'b-blocks')} initialOpen={false}>
                 <ToggleControl label={__('Show Social', 'b-blocks')} checked={isSocial} onChange={val => setAttributes({ isSocial: val })} />
 
-                {isSocial && <SpaceControl className='mt-20p' label={__('Margin:', 'b-blocks')} space={socialIconMargin} onChange={val => setAttributes({ socialIconMargin: val })} defaults={{ side: 4, bottom: '15px' }} />}
+                {isSocial && <SpaceControl className='mt20' label={__('Icon Margin:', 'b-blocks')} space={socialIconMargin} onChange={val => setAttributes({ socialIconMargin: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />}
             </PanelBody>
         </InspectorControls>
 
 
         <BlockControls>
-            <ToolbarGroup className='bBlocksToolbar'>
+            <ToolbarGroup className='bPlToolbar'>
                 <ToolbarButton label={__('Add New Member', 'b-blocks')} onClick={addMember}><Dashicon icon='plus' size={23} /></ToolbarButton>
             </ToolbarGroup>
 
@@ -292,5 +292,4 @@ const Settings = ({ settings }) => {
         </BlockControls>
     </>;
 };
-
 export default Settings;

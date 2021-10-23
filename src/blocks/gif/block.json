@@ -21,7 +21,7 @@
         },
         "gif": {
             "type": "object",
-            "default": {}
+            "default": null
         },
         "gifAlign": {
             "type": "string",

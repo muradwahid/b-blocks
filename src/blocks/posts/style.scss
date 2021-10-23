@@ -25,7 +25,7 @@ $secondaryColor: #8344c5;
         font-size: 15px!important;
     }
 
-    img{
+    .read-more, .wp-block-cover, .wp-block-image, img{
         display: none;
     }
 
@@ -40,12 +40,45 @@ $secondaryColor: #8344c5;
 
     .bBlocksGridPosts{
         display: grid;
+
+        .swiper-notification{
+            display: none;
+        }
     }
 
     .bBlocksMasonryPosts{
         article{
             break-inside: avoid;
         }
+
+        .swiper-notification{
+            display: none;
+        }
+    }
+}
+
+.bBlocksSliderPosts{
+    position: relative;
+    overflow: hidden;
+    height: auto;
+
+    .swiper-wrapper{
+        height: auto;
+        align-items: center;
+    }
+
+    .swiper-pagination{
+        .swiper-pagination-bullet:focus{
+            outline: 0;
+        }
+    }
+
+    .bBlocksPostOverlay:not(.bBlocksPostOverlayBox) .bBlocksPostText{
+        width: -webkit-fill-available!important;
+    }
+
+    article{
+        box-sizing: border-box;
     }
 }
 
@@ -143,6 +176,57 @@ $secondaryColor: #8344c5;
         .bBlocksPostFImg {
             padding-bottom: 0;
             height: 100%!important;
+        }
+    }
+
+    &.bBlocksPostOverlay{
+        position: relative;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: 0;
+    
+        .bBlocksPostText{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        &.bBlocksPostOverlayHover{
+            >div{
+                opacity: 0;
+                transition: all .3s ease-out!important;
+                *{
+                    transition: all 0s ease!important;
+                    transition: color .3s ease!important;
+                }
+            }
+
+            &:hover{
+                >div{
+                    opacity: 1;
+                }
+            }
+        }
+
+        &.bBlocksPostOverlayBox{
+            padding: 10% 7.5%;
+
+            &.swiper-slide{
+                .bBlocksPostText{
+                    padding-left: 0!important;
+                    padding-right: 0!important;
+                    width: 85%!important;
+                    min-height: auto;
+                    height: auto!important;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
         }
     }
 }

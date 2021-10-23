@@ -6,10 +6,10 @@ import PostReadMore from '../Single/PostReadMore';
 import PostMeta from '../Single/PostMeta';
 
 const SideImage = ({ atts, post }) => {
-    const { subLayout } = atts;
+    const { layout, subLayout } = atts;
     const { id } = post;
 
-    return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostSideImage ${'left-image' === subLayout ? 'leftImage' : 'right-image' === subLayout ? 'rightImage' : ''}`}>
+    return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostSideImage ${'left-image' === subLayout ? 'leftImage' : 'right-image' === subLayout ? 'rightImage' : ''} ${'slider' === layout ? 'swiper-slide' : ''}`}>
         {'left-image' === subLayout && <FeatureImage atts={atts} post={post} />}
 
         <div className='bBlocksPostText'>
