@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef, useState, createContext } from '@wordpress/element';
 import { Spinner } from '@wordpress/components';
 
 const $ = jQuery;
@@ -13,6 +13,8 @@ import SideImage from './Layout/SideImage';
 import Overlay from './Layout/Overlay';
 import func from '../../Const/functions';
 const { mediaUrl } = func;
+
+export const ExcerptLengthCtx = createContext();
 
 const Edit = props => {
     const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories, isEditorSidebarOpened } = props;
@@ -118,8 +120,22 @@ const Edit = props => {
         });
     }, [attributes, posts]);
 
+    // Set excerpt length
+    const [maxExcerptLength, setMaxExcerptLength] = useState(50);
+    useEffect(() => {
+        const allMaxExcerptLength = [];
+        posts.map(post => {
+            allMaxExcerptLength.push(post.excerpt.rendered.replace(/(<p class='?"?read-more'?"?(.*?)<\/p>)/g, '').trim().split(' ').length);
+
+            setMaxExcerptLength(Math.max(...allMaxExcerptLength));
+        });
+    }, [posts]);
+
     return <>
-        <Settings settings={props} getPostTypes={getPostTypes} categories={categories} />
+        <ExcerptLengthCtx.Provider value={maxExcerptLength}>
+            <Settings settings={props} getPostTypes={getPostTypes} categories={categories} />
+        </ExcerptLengthCtx.Provider>
+
 
         {posts && 0 !== posts.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
             <style dangerouslySetInnerHTML={{

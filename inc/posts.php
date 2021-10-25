@@ -3,7 +3,6 @@ class BBlocksPosts extends BBlocks{
     public function __construct(){
         add_action( 'init', [$this, 'register'] );
         add_action( 'rest_api_init', [$this, 'customRestAPI'] );
-        add_filter( 'excerpt_length', [$this, 'excerptLength'], 999 );
         add_filter( 'excerpt_more', [$this, 'excerptMore'] );
     }
 
@@ -227,7 +226,7 @@ class BBlocksPosts extends BBlocks{
         }
     }
 
-    // layout Components
+    // Layout Components
     function defaultLayout( $attributes, $post ) {
         extract( $attributes );
         $layout = $layout ?? 'grid';
@@ -506,10 +505,6 @@ class BBlocksPosts extends BBlocks{
             ) );
         }
     } // Custom Rest API
-
-    function excerptLength( $length ) {
-        return 100;
-    } // Excerpt Length
     
     function excerptMore( $more ) {
         return "<p class='read-more'><a href=". esc_url( get_permalink( get_the_ID() ) ) .">". __( 'Read More &raquo;', 'b-blocks' ) ."</a></p>";

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useContext } from '@wordpress/element';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl, CheckboxControl, TextControl, ToggleControl, TabPanel, RadioControl, PanelRow, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
@@ -42,10 +42,13 @@ const effects = [
     { label: __('Creative', 'b-blocks'), value: 'creative' }
 ];
 
+import { ExcerptLengthCtx } from './edit';
+
 const Settings = ({ settings, getPostTypes, categories }) => {
     const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
 
     const [device, setDevice] = useState('desktop');
+    const maxExcerptLength = useContext(ExcerptLengthCtx);
 
     useEffect(() => {
         if ('slider' === layout && ('default' === subLayout || 'title-meta' === subLayout))
@@ -193,7 +196,8 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
                         {isExcerpt && <>
                             <Title mt='0' mb='0'>{__('Excerpt Length:', 'b-blocks')}</Title>
-                            <RangeControl value={excerptLength} onChange={val => setAttributes({ excerptLength: val })} min={0} max={100} step={1} />
+                            <RangeControl value={excerptLength} onChange={val => setAttributes({ excerptLength: val })} min={0} max={maxExcerptLength} step={1} />
+                            <small>{__('Excerpt max value will be your site default excerpt length', 'b-blocks')}</small>
                         </>}
 
 
