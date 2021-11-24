@@ -8,11 +8,10 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { width, alignment, textAlign, message, icon, isDismiss, typography, colors, padding, border, shadow }, setAttributes, clientId } = props;
 
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksAlert-${clientId}`}>
             <style dangerouslySetInnerHTML={{

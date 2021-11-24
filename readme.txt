@@ -3,8 +3,8 @@ Contributors: abuhayat, charlescormier
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
-Tested up to: 5.8.1
-Stable tag: 1.5.4
+Tested up to: 5.8.2
+Stable tag: 1.5.5
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,6 +49,8 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 - **Button Group**: Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
 
 - **Countdown**: Displaying the timer for an event, that will happen in your business.
+
+- **Counters**: Display Number as animated counter(start to end).
 
 - **Card**: Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
@@ -157,22 +159,39 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Screenshots ==
 
-1. All Blocks
-2. Posts- Grid Layout
-3. posts- Masonry Layout
-4. Slider
-5. Image Gallery
-6. Image Comparison
-7. Flip Boxes
-8. Team Members
-9. Price Lists
-10. Feature Boxes
-11. Info Box
-12. Button Group
-13. Countdown
+1. Posts- Grid- Default layout
+2. Posts- Grid- Title Meta layout, Customize
+3. Posts- Slider- Overlay layout
+4. Posts- Slider- Overlay Box layout
+5. Posts- Masonry- Overlay layout
+6. Posts- Masonry- Overlay Box layout
+7. Slider- Default, Image Background
+8. Slider- Image Slider
+9. Image Gallery
+10. Image Comparison
+11. Flip Boxes
+12. Team Members
+13. Team Members- Horizontal layout
+14. Price Lists
+15. Price Lists- Horizontal layout
+16. Feature Boxes
+17. Info Box
+18. Lottie Player
+19. Countdown- Default, Layout 1
+20. Countdown- Layout 2, 3
+21. Counters- Default, Theme 2
+22. Counters- Theme 3
+23. Cards- Default
+24. Cards- Horizontal layout
+25. Mail To
+26. Alert
 
 
 == Changelog ==
+
+= 1.5.5 =
+* Performance Upgrade
+* Add Counters Block
 
 = 1.5.4 =
 * Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Team Members, Price Lists, Info Box, Lottie Player, Mail-To, Gif, QR Code blocks
@@ -212,6 +231,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.5.5 =
+* Performance Upgrade
+* Add Counters Block
 
 = 1.5.4 =
 * Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Team Members, Price Lists, Info Box, Lottie Player, Mail-To, Gif, QR Code blocks

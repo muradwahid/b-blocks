@@ -68,4 +68,6 @@ Object.values(allBBlocksPosts).map(posts => {
     swiperSlide.length && swiperSlide.forEach(slide => {
         slide.style.height = `${Math.max(...slideHeightArray)}px`;
     });
+
+    sliderEl.removeAttribute('data-slider');
 });

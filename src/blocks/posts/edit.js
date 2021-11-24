@@ -26,8 +26,8 @@ const Edit = props => {
         return <h3 className='bBlocksLoading'><Spinner /> {__('Loading...', 'b-blocks')}</h3>;
     }
 
-    // Update clientId
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const sliderRef = useRef(null);
     const sliderWrapperRef = useRef(null);
 
@@ -135,7 +135,6 @@ const Edit = props => {
         <ExcerptLengthCtx.Provider value={maxExcerptLength}>
             <Settings settings={props} getPostTypes={getPostTypes} categories={categories} />
         </ExcerptLengthCtx.Provider>
-
 
         {posts && 0 !== posts.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
             <style dangerouslySetInnerHTML={{

@@ -14,8 +14,8 @@ export const IndexContext = createContext();
 const Edit = props => {
     const { className, attributes: { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const [activeIndex, setActiveIndex] = useState(0);
 
     const updateProduct = (index, type, val) => {

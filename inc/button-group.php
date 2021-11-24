@@ -5,9 +5,9 @@ class BBlocksButtonGroup extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'button-group', array(
+        $this::registerScripts( 'button-group', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
@@ -17,74 +17,74 @@ class BBlocksButtonGroup extends BBlocks{
         $width = $width ?? '0px';
         $btnAlign = $btnAlign ?? 'center';
         $btnType = $btnType ?? 'fill';
-        $btnTypo = $btnTypo ?? array( 'fontSize' => 16 );
-        $btnPadding = $btnPadding ?? array( 'vertical' => '12px', 'horizontal' => '30px' );
+        $btnTypo = $btnTypo ?? [ 'fontSize' => 16 ];
+        $btnPadding = $btnPadding ?? [ 'vertical' => '12px', 'horizontal' => '30px' ];
         $btnOne = $btnOne ?? 'First Button';
         $btnOneLink = $btnOneLink ?? '#';
-        $btnOneBorder = $btnOneBorder ?? array( 'radius' => '50px' );
-        $btnOneColors = $btnOneColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
-        $btnOneHovColors = $btnOneHovColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
+        $btnOneBorder = $btnOneBorder ?? [ 'radius' => '50px' ];
+        $btnOneColors = $btnOneColors ?? [ 'color' => '#fff', 'bg' => '#4527a4' ];
+        $btnOneHovColors = $btnOneHovColors ?? [ 'color' => '#fff', 'bg' => '#8344c5' ];
         $btnTwo = $btnTwo ?? 'Second Button';
         $btnTwoLink = $btnTwoLink ?? '#';
-        $btnTwoBorder = $btnTwoBorder ?? array( 'radius' => '50px' );
-        $btnTwoColors = $btnTwoColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
-        $btnTwoHovColors = $btnTwoHovColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
+        $btnTwoBorder = $btnTwoBorder ?? [ 'radius' => '50px' ];
+        $btnTwoColors = $btnTwoColors ?? [ 'color' => '#fff', 'bg' => '#8344c5' ];
+        $btnTwoHovColors = $btnTwoHovColors ?? [ 'color' => '#fff', 'bg' => '#4527a4' ];
         $isSep = $isSep ?? true;
         $sepType = $sepType ?? 'icon';
         $sepText = $sepText ?? 'or';
-        $sepTextTypo = $sepTextTypo ?? array( 'fontSize' => 15 );
+        $sepTextTypo = $sepTextTypo ?? [ 'fontSize' => 15 ];
         $sepTextColor = $sepTextColor ?? '#333';
-        $sepIcon = $sepIcon ?? array( 'class' => 'fa fa fa-arrows-alt-h', 'fontSize' => 20, 'color' => '#333' );
+        $sepIcon = $sepIcon ?? [ 'class' => 'fa fa fa-arrows-alt-h', 'fontSize' => 20, 'color' => '#333' ];
         $sepBGColor = $sepBGColor ?? '#fff';
 
         // Generate Styles
         $btnBorderRadiusCSS = $btnBorder['radius'] ?? '50px';
 
         $buttonGroupStyle = new BBlocksStyleGenerator();
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId", array(
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId", [
             'text-align' => $btnAlign,
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup", [
             'width' => '0px' !== $width && '0%' !== $width && '0em' !== $width ? $width : 'auto'
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .bBlocksBtn", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .bBlocksBtn", [
             'min-width' => '0px' !== $width && '0%' !== $width && '0em' !== $width ? '50%' : 'auto'
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .bBlocksBtn a", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .bBlocksBtn a", [
             $btnTypo['styles'] ?? 'font-size: 16px;' => '',
             'padding' => $btnPadding['styles'] ?? '12px 30px',
-        ) );
+        ] );
 
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnOne", array(
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnOne", [
             $btnOneBorder['styles'] ?? 'border-radius: 50px;' => '',
             $btnOneColors['styles'] ?? 'color: #fff; background: #4527a4;' => '',
             'border-radius' => "$btnBorderRadiusCSS 0 0 $btnBorderRadiusCSS"
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnOne:hover", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnOne:hover", [
             $btnOneHovColors['styles'] ?? 'color: #fff; background: #8344c5;' => ''
-        ) );
+        ] );
 
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnTwo", array(
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnTwo", [
             $btnTwoBorder['styles'] ?? 'border-radius: 50px;' => '',
             $btnTwoColors['styles'] ?? 'color: #fff; background: #8344c5;' => '',
             'border-radius' => "0 $btnBorderRadiusCSS $btnBorderRadiusCSS 0"
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnTwo:hover", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnTwo:hover", [
             $btnTwoHovColors['styles'] ?? 'color: #fff; background: #4527a4;' => ''
-        ) );
+        ] );
 
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnSeparator", array(
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnSeparator", [
             'width' => 'text' === $sepType ? $sepTextTypo['fontSize'] * 1.75 .'px' : $sepIcon['fontSize'] * 1.65 .'px',
             'height' => 'text' === $sepType ? $sepTextTypo['fontSize'] * 1.75 .'px' : $sepIcon['fontSize'] * 1.65 .'px',
             'background-color' => $sepBGColor
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnSeparator span", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnSeparator span", [
             $sepTextTypo['styles'] ?? 'font-size: 15px;' => '',
             'color' => $sepTextColor
-        ) );
-        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnSeparator i", array(
+        ] );
+        $buttonGroupStyle::addStyle( "#bBlocksButtonGroup-$cId .bBlocksButtonGroup .btnSeparator i", [
             $sepIcon['styles'] ?? 'font-size: 20px; color: #333;' => ''
-        ) );
+        ] );
 
         // Components
         $sepIconEl = 'icon' === $sepType && $sepIcon['class'] ? "<i class='". $sepIcon['class'] ."'></i>" : '';
@@ -94,20 +94,20 @@ class BBlocksButtonGroup extends BBlocks{
         ob_start(); ?>
         <div class='wp-block-b-blocks-button-group <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksButtonGroup-<?php echo esc_attr( $cId ); ?>'>
             <style>
-                @import url(<?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $sepTextTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $buttonGroupStyle::renderStyle(), array() ); ?>
+                @import url( <?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $sepTextTypo['googleFontLink'] ?? '' ); ?> );
+                <?php echo wp_kses( $buttonGroupStyle::renderStyle(), [] ); ?>
             </style>
 
             <div class='bBlocksButtonGroup'>
                 <div class='bBlocksBtn firstBtn'>
                     <?php echo $btnOne ? "<a class='btnOne btn-". esc_attr( $btnType ) ."' href='". esc_url( $btnOneLink ) ."'>". wp_kses_post( $btnOne ) ."</a>" : ''; ?>
 
-                    <?php echo wp_kses( $sepContainerEl, array(
-                        'div' => array( 'class' => array() ),
-                        'i' => array( 'class' => array() ),
-                        'span' => array()
-                    ) ); ?>
+                    <?php echo wp_kses( $sepContainerEl, [
+                        'div' => [ 'class' => [] ],
+                        'i' => [ 'class' => [] ],
+                        'span' => []
+                    ] ); ?>
                 </div>
 
                 <div class='bBlocksBtn secondBtn'>
@@ -116,7 +116,7 @@ class BBlocksButtonGroup extends BBlocks{
             </div>
         </div>
 
-        <?php $buttonGroupStyle::$styles = array(); // Empty styles
+        <?php $buttonGroupStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

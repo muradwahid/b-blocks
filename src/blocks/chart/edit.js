@@ -5,7 +5,8 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { data, type, background, textColor, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor }, setAttributes, clientId } = props;
 
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const chartCtxWrap = useRef(null);
 
     useEffect(() => {
@@ -81,7 +82,6 @@ const Edit = props => {
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksChart-${clientId}`}>
             <style dangerouslySetInnerHTML={{

@@ -14,6 +14,7 @@ import './blocks/lottie-player';
 import './blocks/chart';
 import './blocks/button-group';
 import './blocks/countdown';
+import './blocks/counters';
 import './blocks/cards';
 import './blocks/mailto';
 // import './blocks/modal.js';

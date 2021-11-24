@@ -16,16 +16,16 @@ import { ImagePlaceholder } from '../../../../Components/ImageControl';
 const Edit = props => {
     const { className, attributes: { members = [], columns, columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialIconMargin }, setAttributes, clientId, isSelected } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
-    const [activeIndex, setActiveIndex] = useState(0);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
+    const [activeIndex, setActiveIndex] = useState(0);
     const [selectedSocial, setSelectedSocial] = useState(null);
+
     useEffect(() => {
         if (!isSelected) {
             setSelectedSocial(null);
         }
-    }, [isSelected]);
+    }, [isSelected]); // Selected Social
 
     const updateMember = (index, type, val, otherIndex = false, otherType = false) => {
         const newMember = [...members];
@@ -44,7 +44,6 @@ const Edit = props => {
         <IndexContext.Provider value={setActiveIndex}>
             <Settings settings={props} />
         </IndexContext.Provider>
-
 
         <div className={className} id={`bBlocksTeamMembers-${clientId}`}>
             <style dangerouslySetInnerHTML={{

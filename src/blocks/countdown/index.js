@@ -1,4 +1,4 @@
-import { registerBlockType } from '@wordpress/blocks';
+import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 // Import Files
 import Edit from './edit';
@@ -14,6 +14,23 @@ const { name, title, description, category, keywords, supports, attributes, exam
 
 registerBlockType(name, {
     title, description, icon, category, keywords, supports, attributes, example,
+
+    transforms: {
+        from: [
+            { type: 'block', blocks: ['ctb/countdown-time'], transform: attributes => createBlock('b-blocks/countdown', attributes) },
+            { type: 'prefix', prefix: 'count', transform: () => createBlock('b-blocks/countdown') }
+        ],
+
+        to: [
+            {
+                type: 'block', blocks: ['ctb/countdown-time'], isMatch: attributes => {
+                    if (attributes) return true;
+                    return false;
+                },
+                transform: attributes => createBlock('ctb/countdown-time', attributes)
+            }
+        ]
+    },
 
     // Build In Functions
     edit: Edit,

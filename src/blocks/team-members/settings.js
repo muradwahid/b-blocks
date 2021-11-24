@@ -96,15 +96,22 @@ const Settings = ({ settings }) => {
 
                         <ColorsControl label={__('Social Icon Colors:', 'b-blocks')} colors={socialIconColors} onChange={val => updateMember(index, 'socialIconColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-                        <Button className='mt20 removeItem' label={__('Remove this member', 'b-blocks')} onClick={e => {
-                            e.preventDefault();
-                            setAttributes({ members: [...members.slice(0, index), ...members.slice(index + 1)] });
-                        }} ><Dashicon icon='no' size={23} />{__('Remove this member', 'b-blocks')}</Button>
+                        <PanelRow className='itemAction mt20'>
+                            <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ members: [...members.slice(0, index), ...members.slice(index + 1)] });
+                            }}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+
+                            <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ members: [...members, members[index]] });
+                            }}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+                        </PanelRow>
                     </PanelBody>
                 })}
 
                 <div className='addItem'>
-                    <Button label={__('Add New Member', 'b-blocks')} onClick={addMember} ><Dashicon icon='plus' size={23} />{__('Add New Member', 'b-blocks')}</Button>
+                    <Button label={__('Add New Member', 'b-blocks')} onClick={addMember}><Dashicon icon='plus' size={23} />{__('Add New Member', 'b-blocks')}</Button>
                 </div>
             </PanelBody>
 

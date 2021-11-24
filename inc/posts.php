@@ -7,9 +7,9 @@ class BBlocksPosts extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'posts', array(
+        $this::registerScripts( 'posts', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
@@ -18,21 +18,21 @@ class BBlocksPosts extends BBlocks{
         $cId = $cId ?? '';
         $layout = $layout ?? 'grid';
         $subLayout = $subLayout ?? 'default';
-        $columns = $columns ?? array( 'desktop' => 3, 'tablet' => 2, 'mobile' => 1 );
+        $columns = $columns ?? [ 'desktop' => 3, 'tablet' => 2, 'mobile' => 1 ];
         $columnGap = $columnGap ?? 15;
         $rowGap = $rowGap ?? 15;
         $isContentEqualHight = $isContentEqualHight ?? true;
         $sliderHeight = $sliderHeight ?? '350px';
         $postType = $postType ?? 'post';
-        $selectedCategories = $selectedCategories ?? array();
+        $selectedCategories = $selectedCategories ?? [];
         $isPostsPerPageAll = $isPostsPerPageAll ?? false;
         $postsPerPage = $postsPerPage ?? 12;
         $postsOrderBy = $postsOrderBy ?? 'date';
         $postsOrder = $postsOrder ?? 'desc';
         $contentAlign = $contentAlign ?? 'left';
-        $contentBG = $contentBG ?? array( 'color' => '#f4f2fc' );
-        $contentPadding = $contentPadding ?? array( 'vertical' => '20px', 'horizontal' => '25px' );
-        $border = $border ?? array( 'radius' => '5px' );
+        $contentBG = $contentBG ?? [ 'color' => '#f4f2fc' ];
+        $contentPadding = $contentPadding ?? [ 'vertical' => '20px', 'horizontal' => '25px' ];
+        $border = $border ?? [ 'radius' => '5px' ];
         $sliderIsLoop = $sliderIsLoop ?? true;
         $sliderIsTouchMove = $sliderIsTouchMove ?? false;
         $sliderIsAutoplay = $sliderIsAutoplay ?? true;
@@ -44,33 +44,33 @@ class BBlocksPosts extends BBlocks{
         $sliderPageColor = $sliderPageColor ?? '#4527a4';
         $sliderPageWidth = $sliderPageWidth ?? '15px';
         $sliderPageHeight = $sliderPageHeight ?? '15px';
-        $sliderPageBorder = $sliderPageBorder ?? array( 'radius' => '50%' );
+        $sliderPageBorder = $sliderPageBorder ?? [ 'radius' => '50%' ];
         $sliderIsPrevNext = $sliderIsPrevNext ?? true;
         $sliderPrevNextColor = $sliderPrevNextColor ?? '#4527a4';
         $isFImg = $isFImg ?? true;
-        $titleTypo = $titleTypo ?? array( 'fontFamily' => 'Roboto', 'fontSize' => 25, 'googleFontLink' => 'https =>//fonts.googleapis.com/css2?family=Roboto&display=swap' );
+        $titleTypo = $titleTypo ?? [ 'fontFamily' => 'Roboto', 'fontSize' => 25, 'googleFontLink' => 'https =>//fonts.googleapis.com/css2?family=Roboto&display=swap' ];
         $titleColor = $titleColor ?? '#4527a4';
-        $titleMargin = $titleMargin ?? array( 'bottom' => '15px' );
-        $metaTypo = $metaTypo ?? array( 'fontSize' => 13, 'textTransform' => 'uppercase' );
+        $titleMargin = $titleMargin ?? [ 'bottom' => '15px' ];
+        $metaTypo = $metaTypo ?? [ 'fontSize' => 13, 'textTransform' => 'uppercase' ];
         $metaTextColor = $metaTextColor ?? '#333';
         $metaLinkColor = $metaLinkColor ?? '#8344c5';
         $metaIconColor = $metaIconColor ?? '#4527a4';
-        $metaMargin = $metaMargin ?? array( 'bottom' => '15px' );
+        $metaMargin = $metaMargin ?? [ 'bottom' => '15px' ];
         $excerptAlign = $excerptAlign ?? 'justify';
-        $excerptTypo = $excerptTypo ?? array( 'fontSize' => 15 );
+        $excerptTypo = $excerptTypo ?? [ 'fontSize' => 15 ];
         $excerptColor = $excerptColor ?? '#333';
-        $excerptMargin = $excerptMargin ?? array( 'bottom' => '10px' );
+        $excerptMargin = $excerptMargin ?? [ 'bottom' => '10px' ];
         $readMoreAlign = $readMoreAlign ?? 'left';
-        $readMoreTypo = $readMoreTypo ?? array( 'fontSize' => 14, 'textTransform' => 'uppercase', 'fontWeight' => 600 );
-        $readMoreColors = $readMoreColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
-        $readMoreHovColors = $readMoreHovColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
-        $readMorePadding = $readMorePadding ?? array( 'vertical' => '12px', 'horizontal' => '35px' );
-        $readMoreBorder = $readMoreBorder ?? array( 'radius' => '3px' );
+        $readMoreTypo = $readMoreTypo ?? [ 'fontSize' => 14, 'textTransform' => 'uppercase', 'fontWeight' => 600 ];
+        $readMoreColors = $readMoreColors ?? [ 'color' => '#fff', 'bg' => '#8344c5' ];
+        $readMoreHovColors = $readMoreHovColors ?? [ 'color' => '#fff', 'bg' => '#4527a4' ];
+        $readMorePadding = $readMorePadding ?? [ 'vertical' => '12px', 'horizontal' => '35px' ];
+        $readMoreBorder = $readMoreBorder ?? [ 'radius' => '3px' ];
         
         // $taxonomies = get_object_taxonomies( $postType, 'array' );
         // foreach( $taxonomies as $tax ){
         //     if( $tax->hierarchical ){
-        //         $terms = get_terms( $tax->name, array(
+        //         $terms = get_terms( $tax->name, [
         //             'orderby'       => 'term_id', 
         //             'order'         => 'ASC',
         //             'hide_empty'    => true, 
@@ -80,80 +80,80 @@ class BBlocksPosts extends BBlocks{
 
         // Generate Styles
         $postsStyles = new BBlocksStyleGenerator();
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost", array(
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost", [
             'margin-bottom' => 'masonry' === $layout ? $rowGap.'px' : '0px',
             $border['styles'] ?? 'border-radius: 5px;' => ''
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostDefault, #bBlocksPosts-$cId .bBlocksPostSideImage", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostDefault, #bBlocksPosts-$cId .bBlocksPostSideImage", [
             'text-align' => $contentAlign,
             $contentBG['styles'] ?? 'background-color: #f4f2fc;' => ''
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostText", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostText", [
             'padding' => $contentPadding['styles'] ?? '20px 25px'
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostOverlay .bBlocksPostText", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostOverlay .bBlocksPostText", [
             $contentBG['styles'] ?? 'background-color: #f4f2fc;' => '',
             'align-items' => 'left' === $contentAlign ? 'flex-start' : ( 'right' === $contentAlign ? 'flex-end' : ( 'center' === $contentAlign ? 'center' : 'stretch' ) )
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle", [
             'text-align' => $contentAlign,
             $titleTypo['styles'] ?? 'font-size: 25px;' => '',
             'color' => $titleColor,
             'margin' => $titleMargin['styles'] ?? '0 0 15px 0'
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle a", array( 'color' => $titleColor ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle a", [ 'color' => $titleColor ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta", [
             'text-align' => $contentAlign,
             $metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => '',
             'color' => $metaTextColor,
             'margin' => $metaMargin['styles'] ?? '0 0 15px 0'
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta a", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta a", [
             'color' => $metaLinkColor
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta .dashicons", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta .dashicons", [
             'color' => $metaIconColor
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats", [
             $metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => ''
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostExcerpt", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostExcerpt", [
             'text-align' => $excerptAlign,
             $excerptTypo['styles'] ?? 'font-size: 15px;' => '',
             'color' => $excerptColor,
             'margin' => $excerptMargin['styles'] ?? '0 0 10px 0'
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore", [
             'text-align' => $readMoreAlign
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a", [
             $readMoreTypo['styles'] ?? 'font-size: 14px; text-transform: uppercase; font-weight: 600;' => '',
             $readMoreColors['styles'] ?? 'color: #fff; background: #8344c5;' => '',
             'padding' => $readMorePadding['styles'] ?? '12px 35px',
             $readMoreBorder['styles'] ?? 'border-radius: 3px;' => ''
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a:hover", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a:hover", [
             $readMoreHovColors['styles'] ?? 'color: #fff; background: #4527a4;' => ''
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksGridPosts", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksGridPosts", [
             'grid-gap' => $rowGap .'px '. $columnGap .'px',
             'align-items' => false === $isContentEqualHight ? 'start' : 'initial'
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksMasonryPosts", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksMasonryPosts", [
             'gap' => $columnGap . 'px'
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-slide", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-slide", [
             'min-height' => $sliderHeight
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet", [
             'background' => $sliderPageColor,
             'width' => $sliderPageWidth,
             'height' => $sliderPageHeight,
             $sliderPageBorder['styles'] ?? 'border-radius: 50%;' => ''
-        ) );
-        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-next", array(
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-next", [
             'color' => $sliderPrevNextColor
-        ) );
+        ] );
 
         // All Posts
         $posts = get_posts( [
@@ -164,16 +164,16 @@ class BBlocksPosts extends BBlocks{
             'order'          => $postsOrder
         ] );
 
-        $jsonData = json_encode( array( 'layout' => $layout, 'columns' => $columns, 'columnGap' => $columnGap, 'sliderIsLoop' => $sliderIsLoop ?? true, 'sliderIsTouchMove' => $sliderIsTouchMove ?? false, 'sliderIsAutoplay' => $sliderIsAutoplay ?? true, 'sliderSpeed' => $sliderSpeed ?? 1.5, 'sliderEffect' => $sliderEffect ?? 'slide', 'sliderIsPageClickable' => $sliderIsPageClickable ?? true, 'sliderIsPageDynamic' => $sliderIsPageDynamic ?? true ) );
+        $jsonData = wp_json_encode( [ 'layout' => $layout, 'columns' => $columns, 'columnGap' => $columnGap, 'sliderIsLoop' => $sliderIsLoop ?? true, 'sliderIsTouchMove' => $sliderIsTouchMove ?? false, 'sliderIsAutoplay' => $sliderIsAutoplay ?? true, 'sliderSpeed' => $sliderSpeed ?? 1.5, 'sliderEffect' => $sliderEffect ?? 'slide', 'sliderIsPageClickable' => $sliderIsPageClickable ?? true, 'sliderIsPageDynamic' => $sliderIsPageDynamic ?? true ] );
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-posts bBlocksPosts <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
             <style>
-                @import url(<?php echo esc_url( $titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ); ?>);
-                @import url(<?php echo esc_url( $metaTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $excerptTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $readMoreTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $postsStyles::renderStyle(), array() ); ?>
+                @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ); ?> );
+                @import url( <?php echo esc_url( $metaTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $excerptTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $readMoreTypo['googleFontLink'] ?? '' ); ?> );
+                <?php echo wp_kses( $postsStyles::renderStyle(), [] ); ?>
 
                 <?php foreach ( $posts as $post ) {
                     $imgUrl = get_the_post_thumbnail_url( $post->ID );
@@ -206,7 +206,7 @@ class BBlocksPosts extends BBlocks{
                 </div>
             <?php }else{ echo ''; } ?>
         </div>
-        <?php $postsStyles::$styles = array(); // Empty styles
+        <?php $postsStyles::$styles = []; // Empty styles
         return ob_get_clean();
     } // Render
 
@@ -438,21 +438,21 @@ class BBlocksPosts extends BBlocks{
 
     // Post Types
     function post_types() {
-        $post_types = get_post_types( array(
+        $post_types = get_post_types( [
             'public'       => true,
             'show_in_rest' => true,
-        ), 'objects' );
+        ], 'objects' );
 
-        $options = array();
+        $options = [];
         foreach ( $post_types as $post_type ) {
             if ( 'product' === $post_type->name ) { continue; }
             if ( 'attachment' === $post_type->name ) { continue; }
             if ( 'page' === $post_type->name ) { continue; }
 
-            $options[] = array(
+            $options[] = [
                 'value' => $post_type->name,
                 'label' => $post_type->label
-            );
+            ];
         }
         return $options;
     } // Post Types
@@ -460,49 +460,49 @@ class BBlocksPosts extends BBlocks{
     function customRestAPI() {
         $post_type = $this->post_types();
         foreach ( $post_type as $key => $value ) {
-            register_rest_field( $value['value'], 'wbAuthor', array(
+            register_rest_field( $value['value'], 'wbAuthor', [
                 'get_callback'    => function ( $obj ) {
                     $author['name'] = get_the_author_meta( 'display_name', isset( $obj['author'] ) ? $obj['author'] : '' );
                     $author['link'] = get_author_posts_url( isset( $obj['author'] ) ? $obj['author'] : '' );
                     return $author;
                 },
-                'schema'          => array(
+                'schema'          => [
                     'description' => __( 'Author name and link', 'b-blocks' ),
                     'type'        => 'string',
-                )
-            ) );
+                ]
+            ] );
 
-            register_rest_field( $value['value'], 'wbDate', array(
+            register_rest_field( $value['value'], 'wbDate', [
                 'get_callback'    => function ( $obj ) {
                     return get_the_date( 'M j, Y', $obj['id'] );
                 },
-                'schema'          => array(
+                'schema'          => [
                     'description' => __( 'Author name and link', 'b-blocks' ),
                     'type'        => 'string',
-                )
-            ) );
+                ]
+            ] );
 
-            register_rest_field( $value['value'], 'wbCategories', array(
+            register_rest_field( $value['value'], 'wbCategories', [
                 'get_callback'    => function ( $obj ) {
                     $catsLink['space'] = get_the_category_list( esc_html__( ' ' ), '', $obj['id'] );
                     $catsLink['coma'] = get_the_category_list( esc_html__( ', ' ), '', $obj['id'] );
                     return $catsLink;
                 },
-                'schema'          => array(
+                'schema'          => [
                     'description' => __( 'Category link lists', 'b-blocks' ),
                     'type'        => 'string',
-                )
-            ) );
+                ]
+            ] );
 
-            register_rest_field( $value['value'], 'wbComment', array(
+            register_rest_field( $value['value'], 'wbComment', [
                 'get_callback'    => function ( $obj ) {
                     return wp_count_comments( $obj['id'] )->total_comments;
                 },
-                'schema'          => array(
+                'schema'          => [
                     'description' => __( 'Comment', 'b-blocks' ),
                     'type'        => 'number',
-                )
-            ) );
+                ]
+            ] );
         }
     } // Custom Rest API
     

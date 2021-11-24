@@ -70,7 +70,7 @@ const Settings = ({ settings }) => {
 
                 <ColorsControl colors={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#333', bg: '#fff' }} />
 
-                <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ side: 2, vertical: '15px', horizontal: '30px' }} />
+                <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '15px', horizontal: '30px' }} />
 
                 <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} defaults={{ width: '2px', color: '#333', radius: '8px' }} />
 

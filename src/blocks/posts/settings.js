@@ -17,7 +17,7 @@ import ColorsControl from '../../../../Components/ColorsControl';
 import Typography from '../../../../Components/Typography';
 import BtnGroup from '../../../../Components/BtnGroup';
 import options from '../../Const/options';
-const { generalStyleTabs, aligns, postsOrdersBy, postsOrders, pxUnit, emUnit, vhUnit } = options;
+const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders, pxUnit, emUnit, vhUnit } = options;
 const layouts = [
     { label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
     { label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
@@ -35,11 +35,6 @@ const subLayouts = [
 const categoriesPosition = [
     { label: __('Content', 'b-blocks'), value: 'content' },
     { label: __('Image', 'b-blocks'), value: 'image' }
-];
-const effects = [
-    { label: __('Slide', 'b-blocks'), value: 'slide' },
-    { label: __('Fade', 'b-blocks'), value: 'fade' },
-    { label: __('Creative', 'b-blocks'), value: 'creative' }
 ];
 
 import { ExcerptLengthCtx } from './edit';
@@ -228,7 +223,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
                         <PanelRow className='mt20'>
                             <Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
-                            <SelectControl value={sliderEffect} onChange={cng => setAttributes({ sliderEffect: cng })} options={effects} />
+                            <SelectControl value={sliderEffect} onChange={cng => setAttributes({ sliderEffect: cng })} options={sliderEffects} />
                         </PanelRow>
                         <small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
 

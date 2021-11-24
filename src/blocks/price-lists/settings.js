@@ -74,15 +74,22 @@ const Settings = ({ settings }) => {
 
                         <SeparatorControl separator={separator} onChange={val => updateProduct(index, 'separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
 
-                        <Button className='mt20 removeItem' label={__('Remove this product', 'b-blocks')} onClick={e => {
-                            e.preventDefault();
-                            setAttributes({ products: [...products.slice(0, index), ...products.slice(index + 1)] });
-                        }} ><Dashicon icon='no' size={23} />{__('Remove this product', 'b-blocks')}</Button>
+                        <PanelRow className='itemAction mt20'>
+                            <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ products: [...products.slice(0, index), ...products.slice(index + 1)] });
+                            }}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+
+                            <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ products: [...products, products[index]] });
+                            }}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+                        </PanelRow>
                     </PanelBody>
                 })}
 
                 <div className='addItem'>
-                    <Button label={__('Add New Product', 'b-blocks')} onClick={addProduct} ><Dashicon icon='plus' size={23} />{__('Add New Product', 'b-blocks')}</Button>
+                    <Button label={__('Add New Product', 'b-blocks')} onClick={addProduct}><Dashicon icon='plus' size={23} />{__('Add New Product', 'b-blocks')}</Button>
                 </div>
             </PanelBody>
 
@@ -163,7 +170,7 @@ const Settings = ({ settings }) => {
 
         <BlockControls>
             <ToolbarGroup className='bPlToolbar'>
-                <ToolbarButton label={__('Add New Product', 'b-blocks')} onClick={addProduct} ><Dashicon icon='plus' size={23} /></ToolbarButton>
+                <ToolbarButton label={__('Add New Product', 'b-blocks')} onClick={addProduct}><Dashicon icon='plus' size={23} /></ToolbarButton>
             </ToolbarGroup>
 
             <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

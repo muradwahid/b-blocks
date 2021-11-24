@@ -12,8 +12,7 @@ import { ImagePlaceholder } from '../../../../Components/ImageControl';
 const Edit = props => {
     const { className, attributes: { alignment, width, border, beforeImg, afterImg, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     // useEffect(() => {
     //     const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider`);
@@ -112,7 +111,6 @@ const Edit = props => {
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksImageComparison-${clientId}`}>
             <style dangerouslySetInnerHTML={{

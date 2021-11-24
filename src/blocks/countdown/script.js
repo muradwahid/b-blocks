@@ -34,4 +34,6 @@ Object.values(allCountdown).map(countdown => {
         const countdownSeconds = document.querySelector(`#${countdownId} .countdownSeconds .digit`);
         countdownSeconds ? countdownSeconds.innerHTML = ('0' + seconds).slice(-2) : null;
     }, 1000);
+
+    countdownEl.removeAttribute('data-date');
 });

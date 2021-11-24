@@ -153,7 +153,7 @@ const options = {
         { label: 'Circle', value: 'circle', icon: 'Circle' },
     ],
 
-    effects: [
+    sliderEffects: [
         { label: 'Slide', value: 'slide' },
         { label: 'Fade', value: 'fade' },
         { label: 'Creative', value: 'creative' }

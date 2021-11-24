@@ -5,9 +5,9 @@ class BBlocksInfoBox extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'info-box', array(
+        $this::registerScripts( 'info-box', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
@@ -17,79 +17,79 @@ class BBlocksInfoBox extends BBlocks{
         $infoBoxAlign = $infoBoxAlign ?? 'center';
         $textAlign = $textAlign ?? 'center';
         $width = $width ?? '80%';
-        $background = $background ?? array( 'color' => '#f1f7ff' );
-        $padding = $padding ?? array( 'vertical' => '50px', 'horizontal' => '50px' );
-        $border = $border ?? array( 'width' => '10px', 'color' => '#fff', 'radius' => '5px' );
-        $shadow = $shadow ?? array( 'blur' => '15px' );
+        $background = $background ?? [ 'color' => '#f1f7ff' ];
+        $padding = $padding ?? [ 'vertical' => '50px', 'horizontal' => '50px' ];
+        $border = $border ?? [ 'width' => '10px', 'color' => '#fff', 'radius' => '5px' ];
+        $shadow = $shadow ?? [ 'blur' => '15px' ];
         $isIcon = $isIcon ?? true;
-        $icon = $icon ?? array( 'class' => 'fa fa-info-circle', 'fontSize' => 70, 'color' => '#4527a4' );
+        $icon = $icon ?? [ 'class' => 'fa fa-info-circle', 'fontSize' => 70, 'color' => '#4527a4' ];
         $title = $title ?? 'Info Box Title';
-        $titleTypo = $titleTypo ?? array( 'fontSize' => 25, 'fontWeight' => 600 );
+        $titleTypo = $titleTypo ?? [ 'fontSize' => 25, 'fontWeight' => 600 ];
         $titleColor = $titleColor ?? '#333';
-        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $titleMargin = $titleMargin ?? [ 'bottom' => '10px' ];
         $isDesc = $isDesc ?? true;
         $desc = $desc ?? 'This content area describes info box descriptions or details.';
-        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
+        $descTypo = $descTypo ?? [ 'fontSize' => 15 ];
         $descColor = $descColor ?? '#333';
-        $descMargin = $descMargin ?? array( 'bottom' => '15px' );
+        $descMargin = $descMargin ?? [ 'bottom' => '15px' ];
         $isBtn = $isBtn ?? false;
         $btn = $btn ?? 'Click Me';
         $btnLink = $btnLink ?? '#';
         $isLinkNewTab = $isLinkNewTab ?? true;
-        $btnTypo = $btnTypo ?? array( 'fontSize' => 15 );
-        $btnColors = $btnColors ?? array( 'color' => '#fff', 'bg' => '#4527a4' );
-        $btnHovColors = $btnHovColors ?? array( 'color' => '#fff', 'bg' => '#8344c5' );
-        $btnPadding = $btnPadding ?? array( 'vertical' => '8px', 'horizontal' => '15px' );
-        $btnBorder = $btnBorder ?? array( 'radius' => '5px' );
+        $btnTypo = $btnTypo ?? [ 'fontSize' => 15 ];
+        $btnColors = $btnColors ?? [ 'color' => '#fff', 'bg' => '#4527a4' ];
+        $btnHovColors = $btnHovColors ?? [ 'color' => '#fff', 'bg' => '#8344c5' ];
+        $btnPadding = $btnPadding ?? [ 'vertical' => '8px', 'horizontal' => '15px' ];
+        $btnBorder = $btnBorder ?? [ 'radius' => '5px' ];
 
         // Generate Styles
         $infoBoxStyle = new BBlocksStyleGenerator();
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId", array(
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId", [
             'text-align' => $infoBoxAlign
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox", [
             'text-align' => $textAlign,
             'width' => '0px' === $width || '0%' === $width || '0em' === $width ? '100%' : $width,
             $background['styles'] ?? 'background-color: #f1f7ff;' => '',
             'padding' => $padding['styles'] ?? '50px 50px',
             $border['styles'] ?? 'border: 10px solid #fff; border-radius: 5px;' => '',
             'box-shadow' => $shadow['styles'] ?? 'none'
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxIcon", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxIcon", [
             'margin' => $iconMargin['styles'] ?? '0px 0px 20px 0px'
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxIcon i", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxIcon i", [
             $icon['styles'] ?? 'font-size: 70px; color: #4527a4;' => ''
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxTitle", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxTitle", [
             $titleTypo['styles'] ?? 'font-size: 25px; font-weight: 600;' => '',
             'color' => $titleColor,
             'margin' => $titleMargin['styles'] ?? '0px 0px 10px 0px'
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxDescription", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxDescription", [
             $descTypo['styles'] ?? 'font-size: 15px;' => '',
             'color' => $descColor,
             'margin' => $descMargin['styles'] ?? '0px 0px 15px 0px'
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxButton", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxButton", [
             $btnTypo['styles'] ?? 'font-size: 15px;' => '',
             $btnColors['styles'] ?? 'color: #fff; background: #4527a4;' => '',
             'padding' => $btnPadding['styles'] ?? '8px 15px',
             $btnBorder['styles'] ?? 'border-radius: 5px;' => '',
-        ) );
-        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxButton:hover", array(
+        ] );
+        $infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxButton:hover", [
             $btnHovColors['styles'] ?? 'color: #fff; background: #8344c5;' => ''
-        ) );
+        ] );
 
         $btnTab = $isLinkNewTab ? '_blank' : '';
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-info-box <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksInfoBox-<?php echo esc_attr( $cId ); ?>'>
             <style>
-                @import url(<?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $infoBoxStyle::renderStyle(), array() ); ?>
+                @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?> );
+                <?php echo wp_kses( $infoBoxStyle::renderStyle(), [] ); ?>
             </style>
 
             <div class='bBlocksInfoBox'>
@@ -99,7 +99,7 @@ class BBlocksInfoBox extends BBlocks{
                 <?php echo $isBtn && $btn ? "<a href='". esc_url( $btnLink ) ."' class='infoBoxButton' target='". esc_attr( $btnTab ) ."' rel='noreferrer noopener'>". wp_kses_post( $btn ) ."</a>" : ''; ?>
             </div>
         </div>
-        <?php $infoBoxStyle::$styles = array(); // Empty styles
+        <?php $infoBoxStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

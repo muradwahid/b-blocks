@@ -12,7 +12,35 @@ Object.values(allChart).map(chart => {
     const chartCtx = document.querySelector(`#${chart.id} .bBlocksChart canvas`);
     new Chart(chartCtx, {
         type,
-        data,
+        data: data || {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [
+                {
+                    label: 'T-Shirts Sell 2021',
+                    data: [3, 9, 10, 16, 14, 16],
+                    backgroundColor: ['#ff638433', '#36a28733', '#ffce5633', '#4bc0c033', '#9966ff33', '#ff9f4033'],
+                    borderColor: ['#ff6384', '#36a287', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40'],
+                    tension: 0.3,
+                    borderWidth: 2,
+                    hoverBorderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 4,
+                    pointStyle: 'triangle'
+                },
+                {
+                    label: 'Shoes Sell 2021',
+                    data: [5, 7, 12, 14, 13, 17],
+                    backgroundColor: ['#ff638433', '#36a28733', '#ffce5633', '#4bc0c033', '#9966ff33', '#ff9f4033'],
+                    borderColor: ['#ff6384', '#36a287', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40'],
+                    tension: 0.3,
+                    borderWidth: 2,
+                    hoverBorderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 4,
+                    pointStyle: 'circle'
+                }
+            ]
+        },
         options: {
             plugins: {
                 legend: {

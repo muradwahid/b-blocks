@@ -5,22 +5,10 @@ class BBlocksGIF extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'gif', array(
-            // 'attributes'      => $this->attributes(),
+        $this::registerScripts( 'gif', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
-
-    // function attributes(){
-    //     return array(
-    //         'align' => array( 'type' => 'string', 'default' => '' ),
-    //         'cId' => array( 'type' => 'string', 'default' => '' ),
-
-    //         'gif' => array( 'type' => 'object', 'default' => NULL ),
-    //         'gifAlign' => array( 'type' => 'string', 'default' => 'center' ),
-    //         'gifWidth' => array( 'type' => 'string', 'default' => '0px' )
-    //     );
-    // }
 
     function render( $attributes ){
         extract( $attributes );
@@ -32,16 +20,16 @@ class BBlocksGIF extends BBlocks{
 
         // Generate Styles
         $gifStyle = new BBlocksStyleGenerator();
-        $gifStyle::addStyle( "#bBlocksGif-$cId .bBlocksGif", array(
+        $gifStyle::addStyle( "#bBlocksGif-$cId .bBlocksGif", [
             'text-align' => $gifAlign
-        ) );
-        $gifStyle::addStyle( "#bBlocksGif-$cId .bBlocksGif figure", array(
+        ] );
+        $gifStyle::addStyle( "#bBlocksGif-$cId .bBlocksGif figure", [
             'width' => '0px' === $gifWidth || '0%' === $gifWidth || '0em' === $gifWidth ? 'auto' : $gifWidth
-        ) );
+        ] );
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-gif <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksGif-<?php echo esc_attr( $cId ); ?>'>
-            <style><?php echo wp_kses( $gifStyle::renderStyle(), array() ); ?></style>
+            <style><?php echo wp_kses( $gifStyle::renderStyle(), [] ); ?></style>
 
             <div class='bBlocksGif'>
                 <figure>
@@ -49,7 +37,7 @@ class BBlocksGIF extends BBlocks{
                 </figure>
             </div>
         </div>
-        <?php $gifStyle::$styles = array(); // Empty styles
+        <?php $gifStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

@@ -16,6 +16,7 @@ import './blocks/lottie-player/script';
 import './blocks/chart/script';
 import './blocks/button-group/script';
 import './blocks/countdown/script';
+import './blocks/counters/script';
 import './blocks/cards/script';
 import './blocks/mailto/script';
 import './blocks/gif/script';

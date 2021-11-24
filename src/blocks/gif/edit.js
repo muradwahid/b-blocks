@@ -10,8 +10,8 @@ const { pxUnit, perUnit, emUnit } = options;
 const Edit = props => {
     const { className, attributes: { gif, gifAlign, gifWidth }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const [search, setSearch] = useState('');
     const [gifData, setGifData] = useState([]);
 

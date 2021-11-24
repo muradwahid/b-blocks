@@ -148,7 +148,7 @@ const Settings = ({ settings }) => {
 
     return <>
         <InspectorControls>
-            <PanelBody className='bPlPanelBody addRemoveChartDatasets' title={__('Add or Remove Datasets', 'b-blocks')}>
+            <PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Datasets', 'b-blocks')}>
                 {data.labels.map((label, labelIndex) => <PanelRow key={labelIndex}>
                     <Title mt='0' mb='0'>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Title>
                     <TextControl value={label} onChange={val => updateData('labels', labelIndex, val)} />
@@ -157,12 +157,12 @@ const Settings = ({ settings }) => {
                         <Button className='removeDataset' onClick={e => {
                             e.preventDefault();
                             removeDataset(labelIndex);
-                        }} ><Dashicon icon='no' size={20} /></Button>
+                        }}><Dashicon icon='no' size={20} /></Button>
                     </Tooltip>
                 </PanelRow>)}
 
-                <div className='addDataset'>
-                    <Button label={__('Add New Dataset', 'b-blocks')} onClick={addDataset} ><Dashicon icon='plus' size={20} />{__('Add New Dataset', 'b-blocks')}</Button>
+                <div className='addItem'>
+                    <Button label={__('Add New Dataset', 'b-blocks')} onClick={addDataset}><Dashicon icon='plus' size={20} />{__('Add New Dataset', 'b-blocks')}</Button>
                 </div>
 
                 {data.datasets.map((dataset, datasetIndex) => <PanelBody key={datasetIndex} className='bPlPanelBody editItem' title={__(`Dataset Value ${datasetIndex + 1}:`, 'b-blocks')} initialOpen={0 !== datasetIndex ? false : true}>
@@ -190,30 +190,30 @@ const Settings = ({ settings }) => {
                         updateData('datasets', datasetIndex, val, 'hoverBorderWidth');
                     }} />
 
-                    <NumberControl className='mt20' label={__('Point Size:')} labelPosition='left' value={dataset.pointRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointRadius')} />
+                    <NumberControl className='mt15' label={__('Point Size:')} labelPosition='left' value={dataset.pointRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointRadius')} />
 
-                    <NumberControl className='mt20' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointHoverRadius')} />
+                    <NumberControl className='mt15' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointHoverRadius')} />
 
-                    <PanelRow>
+                    <PanelRow className='mt10'>
                         <Title mt='0' mb='0'>{__('Point Style:', 'b-blocks')}</Title>
                         <SelectControl value={dataset.pointStyle} onChange={val => updateData('datasets', datasetIndex, val, 'pointStyle')} options={pointStyles} />
                     </PanelRow>
 
-                    <PanelRow className='valueAction'>
-                        <Button className='removeValue' label={__('Remove', 'b-blocks')} onClick={e => {
+                    <PanelRow className='itemAction'>
+                        <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
                             e.preventDefault();
                             removeDatasetValue(datasetIndex);
-                        }} ><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+                        }}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
 
-                        <Button className='duplicateValue' label={__('Duplicate', 'b-blocks')} onClick={e => {
+                        <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
                             e.preventDefault();
                             duplicateDatasetValue(datasetIndex);
-                        }} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+                        }}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
                     </PanelRow>
                 </PanelBody>)}
 
-                <div className='addValue'>
-                    <Button label={__('Add Dataset Value', 'b-blocks')} onClick={addDatasetValue} ><Dashicon icon='plus' size={20} />{__('Add Dataset Value', 'b-blocks')}</Button>
+                <div className='addItem'>
+                    <Button label={__('Add Dataset Value', 'b-blocks')} onClick={addDatasetValue}><Dashicon icon='plus' size={20} />{__('Add Dataset Value', 'b-blocks')}</Button>
                 </div>
             </PanelBody>
 

@@ -5,97 +5,97 @@ class BBlocksFeatureBoxes extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'feature-boxes', array(
+        $this::registerScripts( 'feature-boxes', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
         extract( $attributes );
         $align = $align ?? '';
         $cId = $cId ?? '';
-        $features = $features ?? array(
-            array(
-                'background' => array( 'color' => '#0000' ),
+        $features = $features ?? [
+            [
+                'background' => [ 'color' => '#0000' ],
                 'isUpIcon' => false,
-                'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
-                'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'icon' => [ 'class' => 'fa fa-wordpress', 'fontSize' => 120 ],
+                'upIcon' => [ 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ],
                 'iconWidth' => '120px',
                 'title' => 'Feature 1',
                 'titleColor' => '#333',
-                'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
+                'separator' => [ 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ],
                 'desc' => 'This content area describes feature 1 descriptions or details.',
                 'descColor' => '#333'
-            ),
-            array(
-                'background' => array( 'color' => '#0000' ),
+            ],
+            [
+                'background' => [ 'color' => '#0000' ],
                 'isUpIcon' => false,
-                'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
-                'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'icon' => [ 'class' => 'fa fa-wordpress', 'fontSize' => 120 ],
+                'upIcon' => [ 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ],
                 'iconWidth' => '120px',
                 'title' => 'Feature 2',
                 'titleColor' => '#333',
-                'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
+                'separator' => [ 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ],
                 'desc' => 'This content area describes feature 2 descriptions or details.',
                 'descColor' => '#333'
-            ),
-            array(
-                'background' => array( 'color' => '#0000' ),
+            ],
+            [
+                'background' => [ 'color' => '#0000' ],
                 'isUpIcon' => false,
-                'icon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 120 ),
-                'upIcon' => array( 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ),
+                'icon' => [ 'class' => 'fa fa-wordpress', 'fontSize' => 120 ],
+                'upIcon' => [ 'id' => NULL, 'url' => '', 'alt' => '', 'title' => '' ],
                 'iconWidth' => '120px',
                 'title' => 'Feature 3',
                 'titleColor' => '#333',
-                'separator' => array( 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ),
+                'separator' => [ 'width' => '20%', 'height' => '2px', 'style' => 'solid', 'color' => '#bbb' ],
                 'desc' => 'This content area describes feature 3 descriptions or details.',
                 'descColor' => '#333'
-            )
-        );
-        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+            ]
+        ];
+        $columns = $columns ?? [ 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ];
         $columnGap = $columnGap ?? '30px';
         $rowGap = $rowGap ?? '30px';
         $textAlign = $textAlign ?? 'center';
-        $padding = $padding ?? array( 'vertical' => '50px', 'horizontal' => '20px' );
+        $padding = $padding ?? [ 'vertical' => '50px', 'horizontal' => '20px' ];
         $isIcon = $isIcon ?? true;
-        $iconMargin = $iconMargin ?? array( 'bottom' => '20px' );
+        $iconMargin = $iconMargin ?? [ 'bottom' => '20px' ];
         $isTitle = $isTitle ?? true;
-        $titleTypo = $titleTypo ?? array( 'fontSize' => 20, 'fontWeight' => 600 );
-        $titleMargin = $titleMargin ?? array( 'bottom' => '10px' );
+        $titleTypo = $titleTypo ?? [ 'fontSize' => 20, 'fontWeight' => 600 ];
+        $titleMargin = $titleMargin ?? [ 'bottom' => '10px' ];
         $isSep = $isSep ?? true;
-        $sepMargin = $sepMargin ?? array( 'bottom' => '10px' );
+        $sepMargin = $sepMargin ?? [ 'bottom' => '10px' ];
         $isDesc = $isDesc ?? true;
-        $descTypo = $descTypo ?? array( 'fontSize' => 15 );
+        $descTypo = $descTypo ?? [ 'fontSize' => 15 ];
 
         // Generate Styles
         $featureBoxesStyle = new BBlocksStyleGenerator();
-        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes", array(
+        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes", [
             'grid-gap' => "$rowGap $columnGap"
-        ) );
-        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature", array(
+        ] );
+        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature", [
             'text-align' => $textAlign,
             'padding' => $padding['styles'] ?? '50px 20px'
-        ) );
-        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureIcon", array(
+        ] );
+        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureIcon", [
             'margin' => $iconMargin['styles'] ?? '0 0 10px 0'
-        ) );
-        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureTitle", array(
+        ] );
+        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureTitle", [
             $titleTypo['styles'] ?? 'font-size: 20px; font-weight: 600;' => '',
             'margin' => $titleMargin['styles'] ?? '0 0 10px 0'
-        ) );
-        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureSeparator", array(
+        ] );
+        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureSeparator", [
             'margin' => $sepMargin['styles'] ?? '0 0 10px 0'
-        ) );
-        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureDescription", array(
+        ] );
+        $featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureDescription", [
             $descTypo['styles'] ?? 'font-size: 15px;' => ''
-        ) );
+        ] );
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-feature-boxes <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
             <style>
-                @import url(<?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $featureBoxesStyle::renderStyle(), array() ); ?>
+                @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
+                <?php echo wp_kses( $featureBoxesStyle::renderStyle(), [] ); ?>
             </style>
 
             <div class='bBlocksFeatureBoxes columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
@@ -103,31 +103,31 @@ class BBlocksFeatureBoxes extends BBlocks{
                     extract( $feature );
 
                     $featureStyle = new BBlocksStyleGenerator();
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index", array(
+                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index", [
                         $background['styles'] ?? 'background-color: #0000;' => ''
-                    ) );
-                    $featureStyle::addStyle("#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon i", array(
+                    ] );
+                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon i", [
                         $icon['styles'] ?? 'font-size: 120px;' => ''
-                    ) );
-                    $featureStyle::addStyle("#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon img", array(
+                    ] );
+                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon img", [
                         'width' => $iconWidth
-                    ) );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureTitle", array(
+                    ] );
+                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureTitle", [
                         'color' => $titleColor
-                    ) );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureSeparator", array(
+                    ] );
+                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureSeparator", [
                         $separator['styles'] ?? 'width: 20%; border-top: 1px solid #bbb;' => ''
-                    ) );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureDescription", array(
+                    ] );
+                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureDescription", [
                         'color' => $descColor
-                    ) );
+                    ] );
 
                     // Classes
                     $iconClass = isset( $upIcon['id'] ) ? 'wp-image-'.$upIcon['id'] : '';
                     ?>
 
                     <div class='bBlocksFeature' id='bBlocksFeature-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $featureStyle::renderStyle(), array() ); ?></style>
+                        <style><?php echo wp_kses( $featureStyle::renderStyle(), [] ); ?></style>
 
                         <div class='featureIcon'>
                             <?php echo $isUpIcon ?
@@ -143,11 +143,11 @@ class BBlocksFeatureBoxes extends BBlocks{
                             <?php echo $isDesc && $desc ? "<p class='featureDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
                         </div>
                     </div>
-                <?php $featureStyle::$styles = array(); } ?>
+                <?php $featureStyle::$styles = []; } ?>
             </div>
         </div>
 
-        <?php $featureBoxesStyle::$styles = array(); // Empty styles
+        <?php $featureBoxesStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

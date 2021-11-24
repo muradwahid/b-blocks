@@ -9,8 +9,8 @@ export const IndexContext = createContext();
 const Edit = props => {
     const { className, attributes: { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const [activeIndex, setActiveIndex] = useState(0);
 
     const updateFeature = (index, type, val) => {
@@ -24,7 +24,6 @@ const Edit = props => {
         <IndexContext.Provider value={setActiveIndex}>
             <Settings settings={props} />
         </IndexContext.Provider>
-
 
         <div className={className} id={`bBlocksFeatureBoxes-${clientId}`}>
             <style dangerouslySetInnerHTML={{

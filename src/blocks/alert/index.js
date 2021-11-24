@@ -17,6 +17,7 @@ registerBlockType(name, {
 
     transforms: {
         from: [
+            { type: 'block', blocks: ['abb/alert-box'], transform: attributes => createBlock('b-blocks/alert', attributes) },
             {
                 type: 'block', blocks: ['core/paragraph'], transform: ({ content, align }) => {
                     return createBlock('b-blocks/alert', { message: content, textAlign: align });
@@ -31,6 +32,13 @@ registerBlockType(name, {
         ],
 
         to: [
+            {
+                type: 'block', blocks: ['abb/alert-box'], isMatch: attributes => {
+                    if (attributes) return true;
+                    return false;
+                },
+                transform: attributes => createBlock('abb/alert-box', attributes)
+            },
             {
                 type: 'block', blocks: ['core/paragraph'], isMatch: ({ message }) => {
                     if (message) return true;

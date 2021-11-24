@@ -5,9 +5,9 @@ class BBlocksQRCode extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'qr-code', array(
+        $this::registerScripts( 'qr-code', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
@@ -22,23 +22,23 @@ class BBlocksQRCode extends BBlocks{
 
         // Generate Styles
         $qrCodeStyle = new BBlocksStyleGenerator();
-        $qrCodeStyle::addStyle( "#bBlocksQRCode-$cId .bBlocksQRCode", array(
+        $qrCodeStyle::addStyle( "#bBlocksQRCode-$cId .bBlocksQRCode", [
             'text-align' => $qrAlign
-        ) );
+        ] );
 
         $siteUrl = $url ? $url : 'http://bplugins.com';
 
-        $qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=". $dimension ."x". $dimension ."&color=". str_replace('#', '', $color) ."&bgcolor=". str_replace('#', '', $bgColor) ."&ecc=L&qzone=1&data=". $siteUrl;
+        $qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=". $dimension ."x". $dimension ."&color=". str_replace( '#', '', $color ) ."&bgcolor=". str_replace( '#', '', $bgColor ) ."&ecc=L&qzone=1&data=". $siteUrl;
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-qr-code <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksQRCode-<?php echo esc_attr( $cId ); ?>'>
-            <style><?php echo wp_kses( $qrCodeStyle::renderStyle(), array() ); ?></style>
+            <style><?php echo wp_kses( $qrCodeStyle::renderStyle(), [] ); ?></style>
 
             <div class='bBlocksQRCode'>
                 <img src='<?php echo esc_url( $qrUrl ); ?>' alt='<?php echo esc_url( $url ); ?>' />
             </div>
         </div>
-        <?php $qrCodeStyle::$styles = array(); // Empty styles
+        <?php $qrCodeStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

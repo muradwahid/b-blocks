@@ -1,8 +1,8 @@
-// Swiper
-import 'swiper/css/bundle';
-
 // Import Sass
 import './style.scss';
+
+// Swiper
+import 'swiper/css/bundle';
 
 const allSlider = document.querySelectorAll('.wp-block-b-blocks-slider');
 
@@ -11,7 +11,7 @@ Object.values(allSlider).map(slider => {
 
     const sliderEl = document.getElementById(sliderId);
 
-    const { columns, columnGap, isLoop, isTouchMove, isAutoplay, speed, effect, isPageClickable, isPageDynamic } = JSON.parse(sliderEl.dataset.swiper);
+    const { columns, columnGap, isLoop, isTouchMove, isAutoplay, speed, effect, isPageClickable, isPageDynamic } = JSON.parse(sliderEl.dataset.slider);
 
     new Swiper(`#${sliderId} .bBlocksSlider`, {
         // Optional parameters
@@ -57,4 +57,6 @@ Object.values(allSlider).map(slider => {
             prevEl: '.swiper-button-prev',
         }
     });
+
+    sliderEl.removeAttribute('data-slider');
 });

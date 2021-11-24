@@ -24,6 +24,9 @@ const frontBackTab = [
     { name: 'back', title: __('Back', 'b-blocks') }
 ];
 
+// Icons
+import icons from '../../Const/icons';
+
 const Settings = ({ settings }) => {
     const { attributes: { boxes = [], columns, columnGap, rowGap, boxHeight, textAlign, boxPadding, isIcon, iconMargin, titleTypo, titleMargin, isDesc, descTypo, isBtn, btnTypo, btnPadding }, setAttributes } = settings;
 
@@ -145,15 +148,22 @@ const Settings = ({ settings }) => {
                             </>}
                         </>}</TabPanel>
 
-                        <Button className='mt20 removeItem' label={__('Remove this box', 'b-blocks')} onClick={e => {
-                            e.preventDefault();
-                            setAttributes({ boxes: [...boxes.slice(0, index), ...boxes.slice(index + 1)] });
-                        }} ><Dashicon icon='no' size={23} />{__('Remove this box', 'b-blocks')}</Button>
+                        <PanelRow className='itemAction mt20'>
+                            <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ boxes: [...boxes.slice(0, index), ...boxes.slice(index + 1)] });
+                            }}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+
+                            <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ boxes: [...boxes, boxes[index]] });
+                            }}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+                        </PanelRow>
                     </PanelBody>
                 })}
 
                 <div className='addItem'>
-                    <Button label={__('Add New Flip Box', 'b-blocks')} onClick={addFlipBox} ><Dashicon icon='plus' size={23} />{__('Add New Flip Box', 'b-blocks')}</Button>
+                    <Button label={__('Add New Flip Box', 'b-blocks')} onClick={addFlipBox}><Dashicon icon='plus' size={23} />{__('Add New Flip Box', 'b-blocks')}</Button>
                 </div>
             </PanelBody>
 
@@ -214,7 +224,7 @@ const Settings = ({ settings }) => {
 
         <BlockControls>
             <ToolbarGroup className='bPlToolbar'>
-                <ToolbarButton label={__('Add New Box', 'b-blocks')} onClick={addFlipBox} ><Dashicon icon='plus' size={23} /></ToolbarButton>
+                <ToolbarButton label={__('Add New Box', 'b-blocks')} onClick={addFlipBox}><Dashicon icon='plus' size={23} /></ToolbarButton>
             </ToolbarGroup>
 
             <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

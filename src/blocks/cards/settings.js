@@ -75,15 +75,22 @@ const Settings = ({ settings }) => {
 
                         <BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateCard(index, 'descColor', val)} defaultColor='#333' />
 
-                        <Button className='mt20 removeItem' label={__('Remove this card', 'b-blocks')} onClick={e => {
-                            e.preventDefault();
-                            setAttributes({ cards: [...cards.slice(0, index), ...cards.slice(index + 1)] });
-                        }} ><Dashicon icon='no' size={23} />{__('Remove this card', 'b-blocks')}</Button>
+                        <PanelRow className='itemAction mt20'>
+                            <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ cards: [...cards.slice(0, index), ...cards.slice(index + 1)] });
+                            }} ><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+
+                            <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ cards: [...cards, cards[index]] });
+                            }} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+                        </PanelRow>
                     </PanelBody>
                 })}
 
                 <div className='addItem'>
-                    <Button label={__('Add New Card', 'b-blocks')} onClick={addCard} ><Dashicon icon='plus' size={23} />{__('Add New Card', 'b-blocks')}</Button>
+                    <Button label={__('Add New Card', 'b-blocks')} onClick={addCard}><Dashicon icon='plus' size={23} />{__('Add New Card', 'b-blocks')}</Button>
                 </div>
             </PanelBody>
 
@@ -170,7 +177,7 @@ const Settings = ({ settings }) => {
 
         <BlockControls>
             <ToolbarGroup className='bPlToolbar'>
-                <ToolbarButton label={__('Add New Card', 'b-blocks')} onClick={addCard} ><Dashicon icon='plus' size={23} /></ToolbarButton>
+                <ToolbarButton label={__('Add New Card', 'b-blocks')} onClick={addCard}><Dashicon icon='plus' size={23} /></ToolbarButton>
             </ToolbarGroup>
 
             <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

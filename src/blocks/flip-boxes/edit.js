@@ -7,8 +7,8 @@ export const IndexContext = createContext();
 const Edit = props => {
     const { className, attributes: { boxes, columns, columnGap, rowGap, boxHeight, textAlign, boxPadding, isIcon, iconMargin, titleTypo, titleMargin, isDesc, descTypo, isBtn, btnTypo, btnPadding }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const [activeIndex, setActiveIndex] = useState(0);
 
     return <>

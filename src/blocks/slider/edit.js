@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from '@wordpress/element';
+import { useEffect, useState, createContext, useRef } from '@wordpress/element';
 
 import Settings from './settings';
 
@@ -9,38 +9,18 @@ export const IndexContext = createContext();
 const Edit = props => {
     const { className, attributes: { align, slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isAutoplay, speed, effect, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, sliderAlign, isTitle, titleTypo, titleColor, titleMargin, isDesc, descTypo, descColor, descMargin, isBtn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes, clientId } = props;
 
-    // Functions
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const [activeIndex, setActiveIndex] = useState(0);
+    const sliderRef = useRef(null);
+    const sliderWrapperRef = useRef(null);
 
     const currentBlock = document.querySelector(`#block-${clientId} .wp-block`);
     const isEditorSidebarOpened = wp.data.select('core/edit-post').isEditorSidebarOpened();
 
     // Swiper Scripts
-    // Slider EL
-    const sliderEl = `<div class='bBlocksSlider'>
-        <div class='swiper-wrapper'>
-            ${slides.map((item, index) => {
-        const { background, position, title, description, btnText } = item;
-
-        return `<div key=${index} class='slide slide-${index} swiper-slide'>
-            <style>#bBlocksSlider-${clientId} .bBlocksSlider .slide-${index}{ ${background?.styles || 'background-color: #00000080;'} }</style>
-
-            <div class='sliderContent ${position?.split(' ')?.join('-')}'>
-                ${isTitle && title ? `<h2 class='sliderTitle'>${title}</h2>` : ''}
-                ${isDesc && description ? `<p class='sliderDescription'>${description}</p>` : ''}
-                ${isBtn && btnText ? `<a class='sliderBtn'>${btnText}</a>` : ''}
-            </div>
-        </div>`;
-    }).join('')}
-    </div>
-
-        ${isPage && `<div class='swiper-pagination'></div>`}
-        ${isPrevNext && `<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>`}
-    </div>`;
-
     useEffect(() => {
-        const currentSlider = document.querySelector(`#bBlocksSlider-${clientId} .bBlocksSlider`);
+        const currentSlider = document.querySelector(`#bBlocksSlider-${clientId} .bBlocksSliderWrapper .bBlocksSlider`);
 
         const currentAll = currentSlider && currentBlock;
 
@@ -54,11 +34,10 @@ const Edit = props => {
         currentAll ? currentSlider.style.width = `${currentBlock.clientWidth}px` : '';
 
         // Re init slider
-        const sliderWrapper = document.querySelector(`#bBlocksSlider-${clientId} .sliderWrapper`);
-        sliderWrapper.innerHTML = '';
-        sliderWrapper.innerHTML = sliderEl;
+        sliderWrapperRef.current.innerHTML = '';
+        sliderWrapperRef.current.innerHTML = sliderRef.current.outerHTML;
 
-        new Swiper(`#bBlocksSlider-${clientId} .bBlocksSlider`, {
+        new Swiper(`#bBlocksSlider-${clientId} .bBlocksSliderWrapper .bBlocksSlider`, {
             // Optional parameters
             direction: 'horizontal',
             initialSlide: activeIndex,
@@ -115,6 +94,19 @@ const Edit = props => {
         });
     }, [align, slides, columns, columnGap, isEditorSidebarOpened, currentBlock, isLoop, isTouchMove, isAutoplay, speed, effect, isPage, isPageClickable, isPageDynamic, isPrevNext, isTitle, isDesc, isBtn]);
 
+    // Attributes change
+    const updateSlide = (index, type, val) => {
+        const newSlides = [...slides];
+        newSlides[index][type] = val;
+        setAttributes({ slides: newSlides, [type]: null });
+    }
+    for (let i = 0; i < slides.length; i++) {
+        titleColor && updateSlide(i, 'titleColor', titleColor);
+        descColor && updateSlide(i, 'descColor', descColor);
+        btnColors && updateSlide(i, 'btnColors', btnColors);
+        btnHovColors && updateSlide(i, 'btnHovColors', btnHovColors);
+    }
+
     return <>
         <IndexContext.Provider value={setActiveIndex}>
             <Settings settings={props} />
@@ -127,7 +119,7 @@ const Edit = props => {
                 @import url(${descTypo?.googleFontLink});
                 @import url(${btnTypo?.googleFontLink});
 
-                #bBlocksSlider-${clientId} .sliderWrapper{
+                #bBlocksSlider-${clientId} .bBlocksSliderWrapper{
                     text-align: ${sliderAlign};
                 }
                 #bBlocksSlider-${clientId} .bBlocksSlider{
@@ -137,23 +129,17 @@ const Edit = props => {
                 #bBlocksSlider-${clientId} .bBlocksSlider .slide{ height: ${sliderHeight}; }
                 
                 #bBlocksSlider-${clientId} .bBlocksSlider .slide .sliderTitle{
-                    color: ${titleColor};
                     ${titleTypo?.styles || 'font-size: 25px;'}
                     margin: ${titleMargin?.styles || '0 0 15px 0'};
                 }
                 #bBlocksSlider-${clientId} .bBlocksSlider .slide .sliderDescription{
-                    color: ${descColor};
                     ${descTypo?.styles || 'font-size: 15px;'}
                     margin: ${descMargin?.styles || '0 0 15px 0'};
                 }
                 #bBlocksSlider-${clientId} .bBlocksSlider .slide .sliderBtn{
-                    ${btnColors?.styles || 'color: #fff; background: #4527a4;'}
                     ${btnTypo?.styles || 'font-size: 16px;'}
                     padding: ${btnPadding?.styles || '12px 35px'};
                     ${btnBorder?.styles || 'border-radius: 3px;'}
-                }
-                #bBlocksSlider-${clientId} .bBlocksSlider .slide .sliderBtn:hover{
-                    ${btnHovColors?.styles || 'color: #fff; background: #8344c5;'}
                 }
 
                 #bBlocksSlider-${clientId} .bBlocksSlider .swiper-pagination .swiper-pagination-bullet{
@@ -165,8 +151,46 @@ const Edit = props => {
                 
                 #bBlocksSlider-${clientId} .bBlocksSlider .swiper-button-prev, #bBlocksSlider-${clientId} .bBlocksSlider .swiper-button-next{ color: ${prevNextColor}; }
             `}} />
+            <style>
+                {slides.map((item, index) => {
+                    return `#bBlocksSlider-${clientId} .bBlocksSlider .slide-${index}{
+                        ${item.background?.styles || 'background-color: #00000080;'}
+                    }
+                    #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderTitle{
+                        color: ${item.titleColor};
+                    }
+                    #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderDescription{
+                        color: ${item.descColor};
+                    }
+                    #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderBtn{
+                        ${item.btnColors?.styles || 'color: #fff; background: #4527a4;'}
+                    }
+                    #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderBtn:hover{
+                        ${item.btnHovColors?.styles || 'color: #fff; background: #8344c5;'}
+                    }`;
+                })}
+            </style>
 
-            <div className='sliderWrapper'></div>
+            <div className='bBlocksSliderWrapper' ref={sliderWrapperRef}></div>
+            <div className='bBlocksSlider' ref={sliderRef}>
+                <div className='swiper-wrapper'>
+                    {slides.map((item, index) => {
+                        const { position, title, description, btnText } = item;
+
+                        return <div key={index} className={`slide slide-${index} swiper-slide`}>
+                            <div className={`sliderContent ${position?.split(' ')?.join('-')}`}>
+                                {isTitle && title && <h2 className='sliderTitle'>{title}</h2>}
+                                {isDesc && description && <p className='sliderDescription'>{description}</p>}
+                                {isBtn && btnText && <a className='sliderBtn'>{btnText}</a>}
+                            </div>
+                        </div>;
+                    })}
+                </div>
+
+                {isPage && <div className='swiper-pagination'></div>}
+
+                {isPrevNext && <><div className='swiper-button-prev'></div><div className='swiper-button-next'></div></>}
+            </div>
         </div>
     </>;
 };

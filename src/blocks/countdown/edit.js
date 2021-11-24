@@ -1,16 +1,15 @@
-import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
-import { RichText } from '@wordpress/block-editor';
+import { useEffect, useState, useRef } from '@wordpress/element';
 
 import Settings from './settings';
+import Box from './box';
 
 const Edit = props => {
     const { className, attributes: { destDate, boxIsInline, boxPosition, isLabels, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor }, setAttributes, clientId } = props;
 
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     // Functions
     const parseEmtStr = (val, def) => undefined === val ? def : val;
-
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
     const [seconds, setSeconds] = useState(0);
     useEffect(() => {
@@ -21,6 +20,10 @@ const Edit = props => {
     }, []);
 
     const dest = new Date(destDate).getTime(); // Convert Destination Date in time (milliseconds)
+    const daysRef = useRef(null);
+    const hoursRef = useRef(null);
+    const minutesRef = useRef(null);
+    const secondsRef = useRef(null);
     useEffect(() => {
         const now = new Date().getTime(); // Convert Current Date in time (milliseconds)
         const diff = dest > now ? (dest - now) / 1000 : 0; // Different time in seconds
@@ -30,19 +33,11 @@ const Edit = props => {
         const minutes = Math.floor((diff % (60 * 60)) / 60);
         const seconds = Math.floor(diff % 60);
 
-
-        const countdownDays = document.querySelector(`#bBlocksCountdown-${clientId} .countdownDays .digit`);
-        countdownDays ? countdownDays.innerHTML = (1 === days.toString().length ? ('0' + days).slice(-2) : days) : null;
-
-        const countdownHours = document.querySelector(`#bBlocksCountdown-${clientId} .countdownHours .digit`);
-        countdownHours ? countdownHours.innerHTML = ('0' + hours).slice(-2) : null;
-
-        const countdownMinutes = document.querySelector(`#bBlocksCountdown-${clientId} .countdownMinutes .digit`);
-        countdownMinutes ? countdownMinutes.innerHTML = ('0' + minutes).slice(-2) : null;
-
-        const countdownSeconds = document.querySelector(`#bBlocksCountdown-${clientId} .countdownSeconds .digit`);
-        countdownSeconds ? countdownSeconds.innerHTML = ('0' + seconds).slice(-2) : null;
-    }, [dest, seconds]);
+        daysRef.current.innerHTML = (1 === days.toString().length ? ('0' + days).slice(-2) : days);
+        hoursRef.current.innerHTML = ('0' + hours).slice(-2);
+        minutesRef.current.innerHTML = ('0' + minutes).slice(-2);
+        secondsRef.current.innerHTML = ('0' + seconds).slice(-2);
+    }, [dest, seconds, daysRef.current, hoursRef.current, minutesRef.current, secondsRef.current]);
 
 
     // Classes
@@ -50,7 +45,6 @@ const Edit = props => {
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksCountdown-${clientId}`}>
             <style dangerouslySetInnerHTML={{
@@ -99,31 +93,18 @@ const Edit = props => {
             `}} />
 
             <div className='countdownItems'>
-                <Box is={isDays} boxClass={`countdownDays ${boxClass}`} isLabels={isLabels} label={daysLabel} onChange={val => setAttributes({ daysLabel: val })} />
+                <Box ref={daysRef} is={isDays} boxClass={`countdownDays ${boxClass}`} isLabels={isLabels} label={daysLabel} onChange={val => setAttributes({ daysLabel: val })} />
                 {isSep && isDays && (isHours || isMinutes || isSeconds) && <span className='separator'></span>}
 
-                <Box is={isHours} boxClass={`countdownHours ${boxClass}`} isLabels={isLabels} label={hoursLabel} onChange={val => setAttributes({ hoursLabel: val })} />
+                <Box ref={hoursRef} is={isHours} boxClass={`countdownHours ${boxClass}`} isLabels={isLabels} label={hoursLabel} onChange={val => setAttributes({ hoursLabel: val })} />
                 {isSep && isHours && (isMinutes || isSeconds) && <span className='separator'></span>}
 
-                <Box is={isMinutes} boxClass={`countdownMinutes ${boxClass}`} isLabels={isLabels} label={minutesLabel} onChange={val => setAttributes({ minutesLabel: val })} />
+                <Box ref={minutesRef} is={isMinutes} boxClass={`countdownMinutes ${boxClass}`} isLabels={isLabels} label={minutesLabel} onChange={val => setAttributes({ minutesLabel: val })} />
                 {isSep && isMinutes && isSeconds && <span className='separator'></span>}
 
-                <Box is={isSeconds} boxClass={`countdownSeconds ${boxClass}`} isLabels={isLabels} label={secondsLabel} onChange={val => setAttributes({ secondsLabel: val })} />
+                <Box ref={secondsRef} is={isSeconds} boxClass={`countdownSeconds ${boxClass}`} isLabels={isLabels} label={secondsLabel} onChange={val => setAttributes({ secondsLabel: val })} />
             </div>
         </div>
     </>;
 };
 export default Edit;
-
-// Box Component
-const Box = props => {
-    const { is, boxClass, isLabels, label, onChange } = props
-
-    return is && <div className={`countdownItem ${boxClass}`}>
-        <span className='digit'>00</span>
-        {isLabels && <RichText className='label' tagName='span' value={label} onChange={val => onChange(val)} placeholder={__('Label', 'b-blocks')} />}
-    </div>;
-};
-
-// Fixing need
-// use useRef

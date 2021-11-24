@@ -5,23 +5,23 @@ class BBlocksFlipBoxes extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'flip-boxes', array(
+        $this::registerScripts( 'flip-boxes', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
         extract( $attributes );
         $align = $align ?? '';
         $cId = $cId ?? '';
-        $boxes = $boxes ?? array(
-            array(
-                'frontBG' => array(),
-                'backBG' => array(),
-                'border' => array(),
-                'shadow' => array(),
-                'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
-                'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
+        $boxes = $boxes ?? [
+            [
+                'frontBG' => [],
+                'backBG' => [],
+                'border' => [],
+                'shadow' => [],
+                'frontIcon' => [ 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ],
+                'backIcon' => [ 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ],
                 'frontTitle' => 'Front Title 1',
                 'frontTitleColor' => '#fff',
                 'backTitle' => 'Back Title 1',
@@ -30,17 +30,17 @@ class BBlocksFlipBoxes extends BBlocks{
                 'descColor' => '#fff',
                 'btn' => 'Button 1',
                 'btnLink' => '#',
-                'btnBorder' => array( 'radius' => '3px' ),
-                'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
-                'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
-            ),
-            array(
-                'frontBG' => array(),
-                'backBG' => array(),
-                'border' => array(),
-                'shadow' => array(),
-                'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
-                'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
+                'btnBorder' => [ 'radius' => '3px' ],
+                'btnColors' => [ 'color' => '#fff', 'bg' => '#ff4500' ],
+                'btnHovColors' => [ 'color' => '#fff', 'bg' => '#ff7500' ]
+            ],
+            [
+                'frontBG' => [],
+                'backBG' => [],
+                'border' => [],
+                'shadow' => [],
+                'frontIcon' => [ 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ],
+                'backIcon' => [ 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ],
                 'frontTitle' => 'Front Title 2',
                 'frontTitleColor' => '#fff',
                 'backTitle' => 'Back Title 2',
@@ -49,17 +49,17 @@ class BBlocksFlipBoxes extends BBlocks{
                 'descColor' => '#fff',
                 'btn' => 'Button 2',
                 'btnLink' => '#',
-                'btnBorder' => array( 'radius' => '3px' ),
-                'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
-                'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
-            ),
-            array(
-                'frontBG' => array(),
-                'backBG' => array(),
-                'border' => array(),
-                'shadow' => array(),
-                'frontIcon' => array( 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ),
-                'backIcon' => array( 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ),
+                'btnBorder' => [ 'radius' => '3px' ],
+                'btnColors' => [ 'color' => '#fff', 'bg' => '#ff4500' ],
+                'btnHovColors' => [ 'color' => '#fff', 'bg' => '#ff7500' ]
+            ],
+            [
+                'frontBG' => [],
+                'backBG' => [],
+                'border' => [],
+                'shadow' => [],
+                'frontIcon' => [ 'class' => 'fa fa-sync-alt', 'fontSize' => 70, 'color' => '#fff' ],
+                'backIcon' => [ 'class' => 'fa fa-wordpress', 'fontSize' => 70, 'color' => '#fff' ],
                 'frontTitle' => 'Front Title 3',
                 'frontTitleColor' => '#fff',
                 'backTitle' => 'Back Title 3',
@@ -68,61 +68,61 @@ class BBlocksFlipBoxes extends BBlocks{
                 'descColor' => '#fff',
                 'btn' => 'Button 3',
                 'btnLink' => '#',
-                'btnBorder' => array( 'radius' => '3px' ),
-                'btnColors' => array( 'color' => '#fff', 'bg' => '#ff4500' ),
-                'btnHovColors' => array( 'color' => '#fff', 'bg' => '#ff7500' )
-            )
-        );
-        $columns = $columns ?? array( 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 );
+                'btnBorder' => [ 'radius' => '3px' ],
+                'btnColors' => [ 'color' => '#fff', 'bg' => '#ff4500' ],
+                'btnHovColors' => [ 'color' => '#fff', 'bg' => '#ff7500' ]
+            ]
+        ];
+        $columns = $columns ?? [ 'desktop' => 3, 'tablet'  => 2, 'mobile'  => 1 ];
         $columnGap = $columnGap ?? '40px';
         $rowGap = $rowGap ?? '30px';
         $boxHeight = $boxHeight ?? '400px';
         $textAlign = $textAlign ?? 'center';
-        $boxPadding = $boxPadding ?? array( 'vertical' => '30px', 'horizontal' => '25px' );
+        $boxPadding = $boxPadding ?? [ 'vertical' => '30px', 'horizontal' => '25px' ];
         $isIcon = $isIcon ?? true;
-        $iconMargin = $iconMargin ?? array( 'bottom' => '20px' );
-        $titleTypo = $titleTypo ?? array( 'fontSize' => 25 );
-        $titleMargin = $titleMargin ?? array( 'bottom' => '20px' );
+        $iconMargin = $iconMargin ?? [ 'bottom' => '20px' ];
+        $titleTypo = $titleTypo ?? [ 'fontSize' => 25 ];
+        $titleMargin = $titleMargin ?? [ 'bottom' => '20px' ];
         $isDesc = $isDesc ?? true;
-        $descTypo = $descTypo ?? array( 'fontSize' => 16 );
+        $descTypo = $descTypo ?? [ 'fontSize' => 16 ];
         $isBtn = $isBtn ?? true;
-        $btnTypo = $btnTypo ?? array( 'fontSize' => 16 );
-        $btnPadding = $btnPadding ?? array( 'vertical' => '15px', 'horizontal' => '25px' );
+        $btnTypo = $btnTypo ?? [ 'fontSize' => 16 ];
+        $btnPadding = $btnPadding ?? [ 'vertical' => '15px', 'horizontal' => '25px' ];
 
         // Generate Styles
         $flipBoxesStyle = new BBlocksStyleGenerator();
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBoxes", array(
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBoxes", [
             'grid-gap' => "$rowGap $columnGap"
-        ) );
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox", array(
+        ] );
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox", [
             'height' => $boxHeight
-        ) );
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .box", array(
+        ] );
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .box", [
             'text-align' => $textAlign,
             'padding' => $boxPadding['styles'] ?? '30px 25px'
-        ) );
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipIcon", array(
+        ] );
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipIcon", [
             'margin' => $iconMargin['styles'] ?? '0 0 20px 0'
-        ) );
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipTitle", array(
+        ] );
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipTitle", [
             $titleTypo['styles'] ?? 'font-size: 25px;' => '',
             'margin' => $titleMargin['styles'] ?? '0 0 20px 0'
-        ) );
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipDescription", array(
+        ] );
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipDescription", [
             $descTypo['styles'] ?? 'font-size: 16px;' => ''
-        ) );
-        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipBtn", array(
+        ] );
+        $flipBoxesStyle::addStyle( "#bBlocksFlipBoxes-$cId .bBlocksFlipBox .flipBtn", [
             $btnTypo['styles'] ?? 'font-size: 16px;' => '',
             'padding' => $btnPadding['styles'] ?? '15px 25px'
-        ) );
+        ] );
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-flip-boxes <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksFlipBoxes-<?php echo esc_attr( $cId ); ?>'>
             <style>
-                @import url(<?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?>);
-                @import url(<?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?>);
-                <?php echo wp_kses( $flipBoxesStyle::renderStyle(), array() ); ?>
+                @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?> );
+                <?php echo wp_kses( $flipBoxesStyle::renderStyle(), [] ); ?>
             </style>
 
             <div class='bBlocksFlipBoxes columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
@@ -130,41 +130,41 @@ class BBlocksFlipBoxes extends BBlocks{
                     extract( $box );
 
                     $flipBoxStyle = new BBlocksStyleGenerator();
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box", array(
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box", [
                         $border['styles'] ?? '' => '',
                         'box-shadow' => $shadow['styles'] ?? 'none'
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.front", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.front", [
                         $frontBG['styles'] ?? 'background-color: #000000b3;' => ''
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.back", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.back", [
                         $backBG['styles'] ?? 'background-color: #000000b3;' => ''
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.frontIcon", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.frontIcon", [
                         $frontIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.backIcon", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.backIcon", [
                         $backIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipFrontTitle", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipFrontTitle", [
                         'color' => $frontTitleColor
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipBackTitle", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipBackTitle", [
                         'color' => $backTitleColor
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipDescription", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipDescription", [
                         'color' => $descColor
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn", [
                         $btnColors['styles'] ?? 'color: #fff; background: #ff4500;' => '',
                         $btnBorder['styles'] ?? 'border-radius: 3px;' => ''
-                    ) );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn:hover", array(
+                    ] );
+                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn:hover", [
                         $btnHovColors['styles'] ?? 'color: #fff; background: #ff7500;' => ''
-                    ) ); ?>
+                    ] ); ?>
 
                     <div class='bBlocksFlipBox' id='bBlocksFlipBox-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $flipBoxStyle::renderStyle(), array() ); ?></style>
+                        <style><?php echo wp_kses( $flipBoxStyle::renderStyle(), [] ); ?></style>
 
                         <div class='box front'>
                             <div class='frontContent'>
@@ -186,11 +186,11 @@ class BBlocksFlipBoxes extends BBlocks{
                             </div>
                         </div>
                     </div>
-                <?php $flipBoxStyle::$styles = array(); } ?>
+                <?php $flipBoxStyle::$styles = []; } ?>
             </div>
         </div>
 
-        <?php $flipBoxesStyle::$styles = array(); // Empty styles
+        <?php $flipBoxesStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

@@ -7,12 +7,10 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { infoBoxAlign, textAlign, width, background, padding, border, shadow, isIcon, icon, iconMargin, title, titleTypo, titleColor, titleMargin, isDesc, desc, descTypo, descColor, descMargin, isBtn, btn, btnLink, isLinkNewTab, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes, clientId } = props;
 
-    // Functions
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksInfoBox-${clientId}`}>
             <style dangerouslySetInnerHTML={{

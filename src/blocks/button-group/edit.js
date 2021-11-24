@@ -7,12 +7,10 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { width, btnAlign, btnType, btnTypo, btnPadding, btnOne, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwo, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepBGColor }, setAttributes, clientId } = props;
 
-    // Functions
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksButtonGroup-${clientId}`}>
             <style dangerouslySetInnerHTML={{

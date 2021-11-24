@@ -8,8 +8,7 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     // Set or Remove attributes
     const lottieWrapper = document.querySelector(`#bBlocksLottiePlayer-${clientId} .bBlocksLottiePlayer`);
@@ -39,7 +38,6 @@ const Edit = props => {
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksLottiePlayer-${clientId}`}>
             <style dangerouslySetInnerHTML={{

@@ -7,12 +7,10 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { textAlign, title, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, desc, descTypo, descColor, descMargin }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     return <>
         <Settings settings={props} />
-
 
         <div className={className} id={`bBlocksSectionHeading-${clientId}`}>
             <style dangerouslySetInnerHTML={{

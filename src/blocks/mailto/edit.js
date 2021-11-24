@@ -7,8 +7,7 @@ import Settings from './settings';
 const Edit = props => {
     const { className, attributes: { mailtoAlign, btn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder, icon, iconPosition }, setAttributes, clientId } = props;
 
-    // Functions
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     return <>
         <Settings settings={props} />

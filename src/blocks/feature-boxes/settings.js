@@ -18,6 +18,9 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 
+// Icons
+import icons from '../../Const/icons';
+
 const Settings = ({ settings }) => {
     const { attributes: { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo }, setAttributes } = settings;
 
@@ -74,15 +77,22 @@ const Settings = ({ settings }) => {
 
                         <BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature(index, 'descColor', val)} defaultColor='#333' />
 
-                        <Button className='mt20 removeItem' label={__('Remove this feature', 'b-blocks')} onClick={e => {
-                            e.preventDefault();
-                            setAttributes({ features: [...features.slice(0, index), ...features.slice(index + 1)] });
-                        }} ><Dashicon icon='no' size={23} />{__('Remove this feature', 'b-blocks')}</Button>
+                        <PanelRow className='itemAction mt20'>
+                            <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ features: [...features.slice(0, index), ...features.slice(index + 1)] });
+                            }}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+
+                            <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+                                e.preventDefault();
+                                setAttributes({ features: [...features, features[index]] });
+                            }}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+                        </PanelRow>
                     </PanelBody>
                 })}
 
                 <div className='addItem'>
-                    <Button label={__('Add New Feature', 'b-blocks')} onClick={addFeature} ><Dashicon icon='plus' size={23} />{__('Add New Feature', 'b-blocks')}</Button>
+                    <Button label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' size={23} />{__('Add New Feature', 'b-blocks')}</Button>
                 </div>
             </PanelBody>
 

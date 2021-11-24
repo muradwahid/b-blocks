@@ -3,11 +3,11 @@ import './style.scss';
 
 (function ($) {
     $(document).ready(function () {
-        // If the comparison slider is present on the page lets initialise it, this is good you will include this in the main js to prevent the code from running when not needed
+        // If the comparison slider is present on the page lets initialize it, this is good you will include this in the main js to prevent the code from running when not needed
         if ($('.comparison-slider')[0]) {
             let compSlider = $('.comparison-slider');
 
-            //let's loop through the sliders and initialise each of them
+            //let's loop through the sliders and initialize each of them
             compSlider.each(function () {
                 let compSliderWidth = $(this).width() + 'px';
                 $(this).find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
@@ -34,7 +34,7 @@ import './style.scss';
             touched = false;
         });
 
-        // clicp the image and move the slider on interaction with the mouse or the touch input
+        // click the image and move the slider on interaction with the mouse or the touch input
         dragElement.on('mousedown touchstart', function (e) {
             //add classes to the emelents - good for css animations if you need it to
             dragElement.addClass('draggable');
@@ -48,9 +48,9 @@ import './style.scss';
             let minLeft = containerOffset + 10;
             let maxLeft = containerOffset + containerWidth - dragWidth - 10;
 
-            //add event listner on the divider emelent
+            //add event listener on the divider element
             dragElement.parents().on('mousemove touchmove', function (e) {
-                // if the user is not using touch input let do preventDefault to prevent the user from slecting the images as he moves the silder arround.
+                // if the user is not using touch input let do preventDefault to prevent the user from selecting the images as he moves the slider around.
                 if (touched === false) {
                     e.preventDefault();
                 }
@@ -80,7 +80,7 @@ import './style.scss';
 
             });
         }).on('mouseup touchend touchcancel', function () {
-            // stop clicping the image and move the slider
+            // stop clicking the image and move the slider
             dragElement.removeClass('draggable');
             resizeElement.removeClass('resizable');
 

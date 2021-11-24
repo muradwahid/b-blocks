@@ -14,8 +14,8 @@ export const IndexContext = createContext();
 const Edit = props => {
     const { className, attributes: { cards = [], columns, columnGap, rowGap, layout, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo }, setAttributes, clientId } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+
     const [activeIndex, setActiveIndex] = useState(0);
 
     const updateCard = (index, type, val) => {

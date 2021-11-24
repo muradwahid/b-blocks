@@ -10,8 +10,7 @@ export const FilterImagesContext = createContext();
 const Edit = props => {
     const { className, attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeUI } = props;
 
-    // useEffect
-    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+    useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
     // Get only urls
     let urls = [];
@@ -32,7 +31,6 @@ const Edit = props => {
         <FilterImagesContext.Provider value={filterImages}>
             <Settings settings={props} />
         </FilterImagesContext.Provider>
-
 
         <div id={`bBlocksImageGallery-${clientId}`} className={className}>
             <style dangerouslySetInnerHTML={{

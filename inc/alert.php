@@ -5,9 +5,9 @@ class BBlocksAlert extends BBlocks{
     }
 
     function register(){
-        $this::registerScripts( 'alert', array(
+        $this::registerScripts( 'alert', [
             'render_callback' => [$this, 'render']
-        ) );
+        ] );
     }
 
     function render( $attributes ){
@@ -19,20 +19,20 @@ class BBlocksAlert extends BBlocks{
         $alignment = $alignment ?? 'center';
         $textAlign = $textAlign ?? 'center';
         $message = $message ?? 'You have an alert message!';
-        $icon = $icon ?? array( 'class' => 'fa fa-exclamation-circle' );
+        $icon = $icon ?? [ 'class' => 'fa fa-exclamation-circle' ];
         $isDismiss = $isDismiss ?? true;
-        $typography = $typography ?? array( 'fontSize' => 25 );
-        $colors = $colors ?? array( 'color' => '#333', 'bg' => '#fff' );
-        $padding = $padding ?? array( 'vertical' => '15px', 'horizontal' => '30px' );
-        $border = $border ?? array( 'width' => '2px', 'color' => '#333', 'radius' => '8px' );
-        $shadow = $shadow ?? array();
+        $typography = $typography ?? [ 'fontSize' => 25 ];
+        $colors = $colors ?? [ 'color' => '#333', 'bg' => '#fff' ];
+        $padding = $padding ?? [ 'vertical' => '15px', 'horizontal' => '30px' ];
+        $border = $border ?? [ 'width' => '2px', 'color' => '#333', 'radius' => '8px' ];
+        $shadow = $shadow ?? [];
 
         // Generate Styles
         $alertStyle = new BBlocksStyleGenerator(); // Generate Styles
-        $alertStyle::addStyle("#bBlocksAlert-$cId .bBlocksAlert", array(
+        $alertStyle::addStyle( "#bBlocksAlert-$cId .bBlocksAlert", [
             'text-align' => $alignment
-        ));
-        $alertStyle::addStyle("#bBlocksAlert-$cId .bBlocksAlert .alert", array(
+        ] );
+        $alertStyle::addStyle( "#bBlocksAlert-$cId .bBlocksAlert .alert", [
             'text-align' => $textAlign,
             'width' => '0px' === $width || '0%' === $width || '0em' === $width ? 'auto' : $width,
             $typography['styles'] ?? 'font-size: 25px;' => '',
@@ -40,18 +40,18 @@ class BBlocksAlert extends BBlocks{
             'padding' => $padding['styles'] ?? '15px 30px',
             $border['styles'] ?? 'border: 2px solid #333; border-radius: 8px;' => '',
             'box-shadow' => $shadow['styles'] ?? 'none'
-        ));
-        $alertStyle::addStyle("#bBlocksAlert-$cId .bBlocksAlert .alert .alertIcon", array(
+        ] );
+        $alertStyle::addStyle( "#bBlocksAlert-$cId .bBlocksAlert .alert .alertIcon", [
             'font-size' => $typography['fontSize'] ?? '25px',
             'color' => $colors['color'] ?? '#333'
-        ));
-        $alertStyle::addStyle("#bBlocksAlert-$cId .bBlocksAlert .alert .alertClose", array(
+        ] );
+        $alertStyle::addStyle( "#bBlocksAlert-$cId .bBlocksAlert .alert .alertClose", [
             'color' => $colors['color'] ?? '#333'
-        ));
+        ] );
 
         ob_start(); ?>
-        <div class='wp-block-b-blocks-alert <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksAlert-<?php echo esc_attr($cId) ?>'>
-            <style>@import url(<?php echo esc_url($typography['googleFontLink'] ?? ''); ?>); <?php echo wp_kses($alertStyle::renderStyle(), []) ?></style>
+        <div class='wp-block-b-blocks-alert <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksAlert-<?php echo esc_attr( $cId ) ?>'>
+            <style>@import url( <?php echo esc_url( $typography['googleFontLink'] ?? '' ); ?> ); <?php echo wp_kses( $alertStyle::renderStyle(), [] ) ?></style>
 
             <div class='bBlocksAlert'>
                 <div class='alert'>
@@ -64,7 +64,7 @@ class BBlocksAlert extends BBlocks{
             </div>
         </div>
 
-        <?php $alertStyle::$styles = array(); // Empty styles
+        <?php $alertStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }
 }

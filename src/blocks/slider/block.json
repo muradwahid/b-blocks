@@ -28,9 +28,19 @@
                     },
                     "position": "center center",
                     "title": "Slide Title 1",
+                    "titleColor": "#fff",
                     "description": "This content area describes slider 1 descriptions/details.",
+                    "descColor": "#fff",
                     "btnText": "Button 1",
-                    "btnLink": "#"
+                    "btnLink": "#",
+                    "btnColors": {
+                        "color": "#fff",
+                        "bg": "#4527a4"
+                    },
+                    "btnHovColors": {
+                        "color": "#fff",
+                        "bg": "#8344c5"
+                    }
                 },
                 {
                     "background": {
@@ -38,9 +48,19 @@
                     },
                     "position": "center center",
                     "title": "Slide Title 2",
+                    "titleColor": "#fff",
                     "description": "This content area describes slider 2 descriptions/details.",
+                    "descColor": "#fff",
                     "btnText": "Button 2",
-                    "btnLink": "#"
+                    "btnLink": "#",
+                    "btnColors": {
+                        "color": "#fff",
+                        "bg": "#4527a4"
+                    },
+                    "btnHovColors": {
+                        "color": "#fff",
+                        "bg": "#8344c5"
+                    }
                 }
             ]
         },
@@ -136,10 +156,6 @@
                 "fontSize": 25
             }
         },
-        "titleColor": {
-            "type": "string",
-            "default": "#fff"
-        },
         "titleMargin": {
             "type": "object",
             "default": {
@@ -156,10 +172,6 @@
                 "fontSize": 15
             }
         },
-        "descColor": {
-            "type": "string",
-            "default": "#fff"
-        },
         "descMargin": {
             "type": "object",
             "default": {
@@ -174,20 +186,6 @@
             "type": "object",
             "default": {
                 "fontSize": 16
-            }
-        },
-        "btnColors": {
-            "type": "object",
-            "default": {
-                "color": "#fff",
-                "bg": "#4527a4"
-            }
-        },
-        "btnHovColors": {
-            "type": "object",
-            "default": {
-                "color": "#fff",
-                "bg": "#8344c5"
             }
         },
         "btnPadding": {

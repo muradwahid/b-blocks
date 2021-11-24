@@ -2,7 +2,7 @@
 /**
  * Plugin Name: b Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.5.4
+ * Version: 1.5.5
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.5.4' );
+define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.5.5' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // B Blocks
@@ -32,7 +32,7 @@ class BBlocks{
     }
 
     public static function instance(){
-        if(self::$_instance === null){
+        if( self::$_instance === null ){
             self::$_instance = new self();
         }
         return self::$_instance;
@@ -40,13 +40,13 @@ class BBlocks{
 
     // Register
     function register(){
-        wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), array( 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'fontAwesomeKit', 'swiperJS', 'chartJS' ), B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
+        wp_register_script( 'b_blocks_editor_script', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'fontAwesomeKit', 'swiperJS', 'chartJS' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
    
-        wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), array( 'wp-edit-blocks' ), B_BLOCKS_PLUGIN_VERSION ); // Backend Style
+        wp_register_style( 'b_blocks_editor_style', plugins_url( 'dist/editor.css', __FILE__ ), [ 'wp-edit-blocks' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 
-        wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), array( 'jquery', 'fontAwesomeKit', 'swiperJS', 'chartJS', 'fancybox', 'mailtoui' ), B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+        wp_register_script( 'b_blocks_script', plugins_url( 'dist/script.js', __FILE__ ), [ 'jquery', 'fontAwesomeKit', 'swiperJS', 'chartJS', 'fancybox', 'mailtoui' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 
-        wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), array( 'wp-editor' ), B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
+        wp_register_style( 'b_blocks_style', plugins_url( 'dist/style.css', __FILE__ ), [ 'wp-editor' ], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
         wp_set_script_translations( 'b_blocks_editor_script', 'b-blocks', plugin_dir_path( __FILE__ ) . 'languages' ); // Translate
         
@@ -65,31 +65,29 @@ class BBlocks{
     }
 
     // Register Scripts
-    static function registerScripts( $block, $options = array() ){
-        register_block_type( 'b-blocks/' . $block, array_merge(
-            array(
-                'editor_script' => 'b_blocks_editor_script',
-                'editor_style'  => 'b_blocks_editor_style',
-                'script'        => 'b_blocks_script',
-                'style'         => 'b_blocks_style',
-            ),
-            $options
-        ) );
+    static function registerScripts( $block, $options = [] ){
+        register_block_type( 'b-blocks/' . $block, array_merge( [
+            'editor_script' => 'b_blocks_editor_script',
+            'editor_style'  => 'b_blocks_editor_style',
+            'script'        => 'b_blocks_script',
+            'style'         => 'b_blocks_style',
+        ],
+        $options ) );
     }
 
     // Register categories
-    function registerCategories($categories){
-        return array_merge( array( array(
+    function registerCategories( $categories ){
+        return array_merge( [ [
             'slug'  => 'bBlocks',
             'title' => __( 'B Blocks', 'b-blocks' ),
-        )), $categories );
+        ] ], $categories );
     }
 
     // Enqueue block assets
     function enqueueBockAssets(){
-        wp_enqueue_script( 'fontAwesomeKit', B_BLOCKS_ASSETS_DIR . 'js/font-awesome-kit.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
-        wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper-bundle.min.js', array(), '7.0.3', true );
-        wp_enqueue_script( 'chartJS', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', array(), '3.5.1', true );
+        wp_enqueue_script( 'fontAwesomeKit', B_BLOCKS_ASSETS_DIR . 'js/font-awesome-kit.js', [], B_BLOCKS_PLUGIN_VERSION, true );
+        wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper-bundle.min.js', [], '7.0.3', true );
+        wp_enqueue_script( 'chartJS', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', [], '3.5.1', true );
     }
 
     // WP enqueue scripts
@@ -97,8 +95,8 @@ class BBlocks{
         wp_enqueue_style( 'dashicon' );
         wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '4.0', 'all' );
 
-        wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', array(), '4.0', true );
-        wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', array(), B_BLOCKS_PLUGIN_VERSION, true );
+        wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', [], '4.0', true );
+        wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', [], B_BLOCKS_PLUGIN_VERSION, true );
     }
 
     // After setup theme
@@ -115,18 +113,18 @@ BBlocks::instance();
 
 // Generate Styles
 class BBlocksStyleGenerator {
-    public static $styles = array();
-    public static function addStyle($selector, $styles){
-        if(array_key_exists($selector, self::$styles)){
-           self::$styles[$selector] = wp_parse_args(self::$styles[$selector], $styles);
+    public static $styles = [];
+    public static function addStyle( $selector, $styles ){
+        if( array_key_exists( $selector, self::$styles ) ){
+           self::$styles[$selector] = wp_parse_args( self::$styles[$selector], $styles );
         }else { self::$styles[$selector] = $styles; }
     }
     public static function renderStyle(){
         $output = '';
-        foreach(self::$styles as $selector => $style){
+        foreach( self::$styles as $selector => $style ){
             $new = '';
-            foreach($style as $property => $value){
-                if($value == ''){
+            foreach( $style as $property => $value ){
+                if( $value == '' ){
                     $new .= $property;
                 }else {
                     $new .= " $property: $value;";
@@ -153,6 +151,7 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/lottie-player.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/chart.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/button-group.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/countdown.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/counters.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/cards.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/mailto.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/gif.php';

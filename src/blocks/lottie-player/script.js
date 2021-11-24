@@ -20,4 +20,6 @@ Object.values(allPlayers).map(player => {
     toggleAttr(isAutoplay, 'autoplay', '');
     toggleAttr(isLoop, 'loop', '');
     toggleAttr(isHover, 'hover', '');
+
+    currentPlayerWrapper.removeAttribute('data-controls');
 });

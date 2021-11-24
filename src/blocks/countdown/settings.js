@@ -13,15 +13,15 @@ import Typography from '../../../../Components/Typography';
 import options from '../../Const/options';
 const { generalStyleTabs, flexPos, pxUnit, perUnit, emUnit, remUnit } = options;
 const layouts = [
-    { label: 'Default', value: 'default' },
-    { label: 'Layout 1', value: 'layout1' },
-    { label: 'Layout 2', value: 'layout2' },
-    { label: 'Layout 3', value: 'layout3' },
+    { label: __('Default', 'b-blocks'), value: 'default' },
+    { label: __('Layout 1', 'b-blocks'), value: 'layout1' },
+    { label: __('Layout 2', 'b-blocks'), value: 'layout2' },
+    { label: __('Layout 3', 'b-blocks'), value: 'layout3' },
 ];
 const sepTypes = [
-    { label: 'Dotted', value: ':' },
-    { label: 'Dashed', value: '-' },
-    { label: 'Solid', value: '|' },
+    { label: __('Dotted', 'b-blocks'), value: ':' },
+    { label: __('Dashed', 'b-blocks'), value: '-' },
+    { label: __('Solid', 'b-blocks'), value: '|' },
 ];
 
 const Settings = ({ settings }) => {
@@ -94,7 +94,7 @@ const Settings = ({ settings }) => {
                         </PanelRow>
 
                         {/* Box */}
-                        <ToggleControl className='mt20' label='Box Inline?' checked={boxIsInline} onChange={val => setAttributes({ boxIsInline: val })} />
+                        <ToggleControl className='mt20' label={__('Box Inline?', 'b-blocks')} checked={boxIsInline} onChange={val => setAttributes({ boxIsInline: val })} />
 
                         {/* Labels */}
                         <ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
@@ -120,7 +120,7 @@ const Settings = ({ settings }) => {
 
                         <Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-                        <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ side: 2, vertical: '10px', horizontal: '15px' }} />
+                        <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
 
                         <ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
                     </PanelBody>
@@ -158,7 +158,7 @@ const Settings = ({ settings }) => {
 
                         {isLabels && <>
                             {/* Label Typography */}
-                            <Typography label={__('Label Typography:', 'b-blocks')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 18 }} />
+                            <Typography className='mt20' label={__('Label Typography:', 'b-blocks')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 18 }} />
 
                             {/* Label Color */}
                             <BColor label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
