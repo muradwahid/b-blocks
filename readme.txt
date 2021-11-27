@@ -19,12 +19,21 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 **[Demos](https://links.bplugins.com/b-blocks)**
 
 
+
 = Features =
+- **Customize**: Customize every block as your design requirement. All blocks elements has their own settings, such as typography, colors, spacing etc.
+
+- **Layouts**: Some of the blocks has layouts/theme. Its provide the custom pre-designed structure of the block.
+
+- **Icons Library**: Include custom icon library. Implements in which blocks needs.
+
+_ **Google Fonts**: Include the google fonts in typography settings
+
+
+= Block Lists =
 - **Posts**: Display posts in grid and masonry layouts. Define post number, categories, control margin, determine post excerpts, and do many more.
 
 - **Slider**: Design an image and content slider with change style slider indicators.
-
-- **Section**: Implement a section with a section heading and custom padding.
 
 - **Section Heading**: Section Heading with a heading, separator, and a description, show hide controls for separator and description.
 
@@ -56,33 +65,11 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 - **Mail To**: Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
 
-- **Modal**: By clicking a button return a popup modal with the header, footer, description, and close button in the header and footer.
-
-- **Tabs**: Display beautiful predesigned tabs. Design tabs with layouts.
-
-- **Accordion**:  Place collapsible text contents on your site with Accordion. Setup items to reveal the hidden content tastefully.
-
-- **Collapse**: Show hide content by clicking a button. Setup items to reveal the hidden content tastefully.
-
-- **Note**: Display a note with title, separator, and description also custom typography.
-
 - **Gif Image**: Embed gif image to your posts and pages.
 
 - **QR Code**: Just input a URL then it will automatically show QR code.
 
-- **Highlight Text**: Highlight text with custom color.
-
 - **Alert**: Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
-
-- **Progress Bar**: Present your skills, experiences, or the progress of an ongoing project using Progress Bar.
-
-- **Spacer**: Space between sections or blocks.
-
-- **Selection**: Text selection enabled disabled or auto in this block.
-
-- **Divider**: Divider between sections and blocks with custom color and style.
-
-- **Go To Top**: Go To Top link with custom text.
 
 
 = How to use =

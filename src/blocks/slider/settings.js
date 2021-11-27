@@ -15,7 +15,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import Typography from '../../../../Components/Typography';
 import options from '../../Const/options';
-const { generalStyleTabs, effects, pxUnit, perUnit, emUnit, vhUnit } = options;
+const { generalStyleTabs, sliderEffects, pxUnit, perUnit, emUnit, vhUnit } = options;
 
 // Icons
 import icons from '../../Const/icons';
@@ -144,7 +144,7 @@ const Settings = ({ settings }) => {
 
                         <PanelRow className='mt20'>
                             <Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
-                            <SelectControl value={effect} onChange={cng => setAttributes({ effect: cng })} options={effects} />
+                            <SelectControl value={effect} onChange={cng => setAttributes({ effect: cng })} options={sliderEffects} />
                         </PanelRow>
                         <small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
 
