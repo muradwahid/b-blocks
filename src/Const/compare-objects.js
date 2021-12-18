@@ -79,5 +79,3 @@ const triCompare = (main, defaults, defaultVal) => {
 
     return true;
 }
-
-// console.log(triCompare(defaultVal, emptyObj, defaultVal2));

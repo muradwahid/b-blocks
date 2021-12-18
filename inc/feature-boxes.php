@@ -95,40 +95,30 @@ class BBlocksFeatureBoxes extends BBlocks{
             <style>
                 @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
-                <?php echo wp_kses( $featureBoxesStyle::renderStyle(), [] ); ?>
+                <?php echo wp_kses( $featureBoxesStyle::renderStyle(), [] );
+                foreach ( $features as $index => $feature ) {
+                    extract( $feature );
+                    $backgroundStyle = $background['styles'] ?? 'background-color: #0000;';
+                    $iconStyle = $icon['styles'] ?? 'font-size: 120px;';
+                    $separatorStyle = $separator['styles'] ?? 'width: 20%; border-top: 1px solid #bbb;';
+
+                    $featureStyles = "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index{ $backgroundStyle }
+                    #bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon i{ $iconStyle }
+                    #bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon img{ width: $iconWidth; }
+                    #bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureTitle{ color: $titleColor; }
+                    #bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureSeparator{ $separatorStyle }
+                    #bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureDescription{ color: $descColor; }";
+                    echo esc_html( $featureStyles );
+                } ?>
             </style>
 
             <div class='bBlocksFeatureBoxes columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $features as $index => $feature ) {
                     extract( $feature );
-
-                    $featureStyle = new BBlocksStyleGenerator();
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index", [
-                        $background['styles'] ?? 'background-color: #0000;' => ''
-                    ] );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon i", [
-                        $icon['styles'] ?? 'font-size: 120px;' => ''
-                    ] );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon img", [
-                        'width' => $iconWidth
-                    ] );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureTitle", [
-                        'color' => $titleColor
-                    ] );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureSeparator", [
-                        $separator['styles'] ?? 'width: 20%; border-top: 1px solid #bbb;' => ''
-                    ] );
-                    $featureStyle::addStyle( "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureDescription", [
-                        'color' => $descColor
-                    ] );
-
                     // Classes
-                    $iconClass = isset( $upIcon['id'] ) ? 'wp-image-'.$upIcon['id'] : '';
-                    ?>
+                    $iconClass = isset( $upIcon['id'] ) ? 'wp-image-'.$upIcon['id'] : ''; ?>
 
                     <div class='bBlocksFeature' id='bBlocksFeature-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $featureStyle::renderStyle(), [] ); ?></style>
-
                         <div class='featureIcon'>
                             <?php echo $isUpIcon ?
                             ( $upIcon['url'] ? "<img class='". esc_attr( $iconClass ) ."' src='". esc_url( $upIcon['url'] ) ."' alt='". esc_attr( $upIcon['alt'] ) ."' />" : '' ) :
@@ -139,11 +129,11 @@ class BBlocksFeatureBoxes extends BBlocks{
                             <?php echo $isTitle && $title ? "<h4 class='featureTitle'>". wp_kses_post( $title ) ."</h4>" : ''; ?>
 
                             <?php echo $isSep ? "<span class='featureSeparator'></span>" : ''; ?>
-                            
+
                             <?php echo $isDesc && $desc ? "<p class='featureDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
                         </div>
                     </div>
-                <?php $featureStyle::$styles = []; } ?>
+                <?php } ?>
             </div>
         </div>
 

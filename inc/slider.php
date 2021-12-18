@@ -101,31 +101,33 @@ class BBlocksSlider extends BBlocks{
                 @import url( <?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?> );
                 <?php echo wp_kses( $sliderStyle::renderStyle(), [] );
                 foreach ( $slides as $index => $slide ) {
-                    $slideBGStyle = $slide['background']['styles'] ?? 'background-color: #00000080;';
-                    $slideBtnStyle = $slide['btnColors']['styles'] ?? 'color: #fff; background: #4527a4;';
-                    $slideBtnHovStyle = $slide['btnHovColors']['styles'] ?? 'color: #fff; background: #8344c5;';
+                    extract( $slide );
+                    $backgroundStyle = $background['styles'] ?? 'background-color: #00000080;';
+                    $btnStyle = $btnColors['styles'] ?? 'color: #fff; background: #4527a4;';
+                    $btnHovStyle = $btnHovColors['styles'] ?? 'color: #fff; background: #8344c5;';
 
-                    $slideStyles = "#bBlocksSlider-$cId .bBlocksSlider .slide-$index{ $slideBGStyle }
-                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderTitle{ color: ". $slide['titleColor'] ." }
-                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderDescription{ color: ". $slide['descColor'] ." }
-                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderBtn{ ". $slideBtnStyle ." }
-                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderBtn:hover{ ". $slideBtnHovStyle ." }";
+                    $slideStyles = "#bBlocksSlider-$cId .bBlocksSlider .slide-$index{ $backgroundStyle }
+                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderTitle{ color: $titleColor }
+                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderDescription{ color: $descColor }
+                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderBtn{ $btnStyle }
+                    #bBlocksSlider-$cId .bBlocksSlider .slide-$index .sliderBtn:hover{ $btnHovStyle }";
                     echo esc_html( $slideStyles );
                 } ?>
             </style>
             <div class='bBlocksSlider'>
                 <div class='swiper-wrapper'>
                     <?php foreach ( $slides as $index => $slide ) {
-                        $slideBtnLink = $slide['btnLink'] ?? ''; ?>
+                        extract( $slide );
+                        $btnLinkURL = $btnLink ?? ''; ?>
 
                         <div class='slide slide-<?php echo esc_attr( $index ); ?> swiper-slide'>
-                            <div class='sliderContent <?php echo esc_attr( str_replace( ' ', '-', $slide['position'] ?? 'center center' ) ); ?>'>
+                            <div class='sliderContent <?php echo esc_attr( str_replace( ' ', '-', $position ?? 'center center' ) ); ?>'>
                                 
-                                <?php echo $isTitle && !empty( $slide['title'] ) ? "<h2 class='sliderTitle'>". wp_kses_post( $slide['title'] ) ."</h2>" : ''; ?>
+                                <?php echo $isTitle && !empty( $title ) ? "<h2 class='sliderTitle'>". wp_kses_post( $title ) ."</h2>" : ''; ?>
 
-                                <?php echo $isDesc && !empty( $slide['description'] ) ? "<p class='sliderDescription'>". wp_kses_post( $slide['description'] ) ."</p>" : ''; ?>
+                                <?php echo $isDesc && !empty( $description ) ? "<p class='sliderDescription'>". wp_kses_post( $description ) ."</p>" : ''; ?>
 
-                                <?php echo $isBtn && !empty( $slide['btnText'] ) ? "<a href='$slideBtnLink' class='sliderBtn' target='_blank' rel='noreferrer'>". wp_kses_post( $slide['btnText'] ) ."</a>" : ''; ?>
+                                <?php echo $isBtn && !empty( $btnText ) ? "<a href='$btnLinkURL' class='sliderBtn' target='_blank' rel='noreferrer'>". wp_kses_post( $btnText ) ."</a>" : ''; ?>
                             </div>
                         </div>
                     <?php } ?>

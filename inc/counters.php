@@ -79,20 +79,22 @@ class BBlocksCounters extends BBlocks{
 
         ob_start(); ?>
         <div class='wp-block-b-blocks-counters <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCounters-<?php echo esc_attr( $cId ) ?>' data-duration='<?php echo wp_json_encode( $duration ?? 2000 ); ?>'>
-            <style>@import url( <?php echo esc_url( $numberTypo['googleFontLink'] ?? '' ); ?> ); @import url( <?php echo esc_url( $labelTypo['googleFontLink'] ?? '' ); ?> ); <?php echo wp_kses( $countersStyle::renderStyle(), [] ); ?>
-        
+            <style>
+                @import url( <?php echo esc_url( $numberTypo['googleFontLink'] ?? '' ); ?> );
+                @import url( <?php echo esc_url( $labelTypo['googleFontLink'] ?? '' ); ?> );
+                <?php echo wp_kses( $countersStyle::renderStyle(), [] ); ?>
                 <?php foreach ( $counters as $index => $counter ){
                     extract( $counter );
-                    $bgStyle = $background['styles'] ?? 'background-color: #4527a4;';
+                    $backgroundStyle = $background['styles'] ?? 'background-color: #4527a4;';
                     $iconStyle = $icon['styles'] ?? 'color: #fff;';
-                    $counterStyle = "#bBlocksCounters-$cId #bBlocksCounter-$index .bBlocksCounter{ $bgStyle } #bBlocksCounters-$cId #bBlocksCounter-$index .counterIcon i, #bBlocksCounters-$cId #bBlocksCounter-$index .counterIconLabel i{ $iconStyle } #bBlocksCounters-$cId #bBlocksCounter-$index .counterNumber{color: ". $number['color'] .";} #bBlocksCounters-$cId #bBlocksCounter-$index .counterLabel{color: ". $label['color'] .";}";
-                    echo wp_kses( $counterStyle, [] );
+                    $counterStyles = "#bBlocksCounters-$cId #bBlocksCounter-$index .bBlocksCounter{ $backgroundStyle } #bBlocksCounters-$cId #bBlocksCounter-$index .counterIcon i, #bBlocksCounters-$cId #bBlocksCounter-$index .counterIconLabel i{ $iconStyle } #bBlocksCounters-$cId #bBlocksCounter-$index .counterNumber{color: ". $number['color'] .";} #bBlocksCounters-$cId #bBlocksCounter-$index .counterLabel{color: ". $label['color'] .";}";
+                    echo wp_kses( $counterStyles, [] );
                 } ?>
             </style>
 
             <div class='bBlocksCounters columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $counters as $index => $counter ) {
-                    extract( $counter );                    
+                    extract( $counter );
                     // Components
                     $iconEl = !empty( $icon['class'] ) ? "<i class='". $icon['class'] ."'></i>" : '';
                     $labelEl = $isLabel ? "<p class='counterLabel'>". $label['text'] ."</p>" : ''; ?>

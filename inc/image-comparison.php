@@ -52,7 +52,7 @@ class BBlocksImageComparison extends BBlocks{
             $capColors['styles'] ?? 'color: #333; background: #f4f4f4;' => '',
             'padding' => $capPadding['styles'] ?? '10px 15px'
         ] );
-    
+
         ob_start(); ?>
         <div class='wp-block-b-blocks-image-comparison <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksImageComparison-<?php echo esc_attr( $cId ); ?>'>
             <style>
@@ -60,26 +60,26 @@ class BBlocksImageComparison extends BBlocks{
                 @import url( <?php echo esc_url( $capTypo['googleFontLink'] ?? '' ); ?> );
                 <?php echo wp_kses( $imageComparisonStyle::renderStyle(), [] ); ?>
             </style>
-    
+
             <div class='bBlocksImageComparison'>
                 <div class='comparison-slider'>
                     <?php echo $isLabel && $afterLabel ? "<div class='overlay afterLabel'>". wp_kses_post( $afterLabel ) ."</div>" : ''; ?>
 
                     <?php echo $afterImg['url'] ? "<img class='afterImg' src='". esc_url( $afterImg['url'] ) ."' alt='". esc_attr( $afterImg['alt'] ) ."' />" : ''; ?>
-     
+
                     <div class='resize'>
                         <?php echo $isLabel && $afterLabel ? "<div class='overlay beforeLabel'>". wp_kses_post( $beforeLabel ) ."</div>" : ''; ?>
 
                         <?php echo $beforeImg['url'] ? "<img class='beforeImg' src='". esc_url( $beforeImg['url'] ) ."' alt='". esc_attr( $beforeImg['alt'] ) ."' />" : ''; ?>
                     </div>
-    
+
                     <div class='divider'></div>
                 </div>
-    
+
                 <?php echo $isCap && $cap ? "<div class='caption'>". wp_kses_post( $cap ) ."</div>" : ''; ?>
             </div>
         </div>
-    
+
         <?php $imageComparisonStyle::$styles = []; // Empty styles
         return ob_get_clean();
     }

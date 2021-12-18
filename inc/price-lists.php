@@ -97,53 +97,43 @@ class BBlocksPriceLists extends BBlocks{
                 @import url( <?php echo esc_url( $nameTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $priceTypo['googleFontLink'] ?? '' ); ?> );
-                <?php echo wp_kses( $priceListsStyle::renderStyle(), [] ); ?>
+                <?php echo wp_kses( $priceListsStyle::renderStyle(), [] );
+                foreach ( $products as $index => $product ) {
+                    extract( $product );
+                    $backgroundStyle = $background['styles'] ?? 'background-color: #0000;';
+                    $imgBorderStyle = $imgBorder['styles'] ?? '';
+                    $separatorStyle = $separator['styles'] ?? 'width: 40%; border-top: 1px solid #bbb;';
+
+                    $flipBoxStyles = "#bBlocksPriceLists-$cId #bBlocksPrice-$index{ $backgroundStyle  }
+                    #bBlocksPriceLists-$cId #bBlocksPrice-$index .productImage{ $imgBorderStyle }
+                    #bBlocksPriceLists-$cId #bBlocksPrice-$index .productName{ color: $nameColor; }
+                    #bBlocksPriceLists-$cId #bBlocksPrice-$index .productDescription{ color: $descColor; }
+                    #bBlocksPriceLists-$cId #bBlocksPrice-$index .productPrice{ color: $priceColor; }
+                    #bBlocksPriceLists-$cId #bBlocksPrice-$index .productSeparator{ $separatorStyle }";
+                    echo esc_html( $flipBoxStyles );
+                } ?>
             </style>
 
             <div class='bBlocksPriceLists <?php echo esc_attr( $layout ?? 'vertical' ); ?> columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $products as $index => $product ) {
                     extract( $product );
-
-                    $productStyle = new BBlocksStyleGenerator();
-                    $productStyle::addStyle( "#bBlocksPriceLists-$cId #bBlocksPrice-$index", [
-                        $background['styles'] ?? 'background-color: #0000;' => ''
-                    ] );
-                    $productStyle::addStyle( "#bBlocksPriceLists-$cId #bBlocksPrice-$index .productImage", [
-                        $imgBorder['styles'] ?? '' => ''
-                    ] );
-                    $productStyle::addStyle( "#bBlocksPriceLists-$cId #bBlocksPrice-$index .productName", [
-                        'color' => $nameColor
-                    ] );
-                    $productStyle::addStyle( "#bBlocksPriceLists-$cId #bBlocksPrice-$index .productDescription", [
-                        'color' => $descColor
-                    ] );
-                    $productStyle::addStyle( "#bBlocksPriceLists-$cId #bBlocksPrice-$index .productPrice", [
-                        'color' => $priceColor
-                    ] );
-                    $productStyle::addStyle( "#bBlocksPriceLists-$cId #bBlocksPrice-$index .productSeparator", [
-                        $separator['styles'] ?? 'width: 40%; border-top: 1px solid #bbb;' => ''
-                    ] );
-
                     // Classes
-                    $imgClass = isset( $img['id'] ) ? 'wp-image-'.$img['id'] : '';
-                    ?>
+                    $imgClass = isset( $img['id'] ) ? 'wp-image-'.$img['id'] : ''; ?>
 
                     <div class='bBlocksPrice' id='bBlocksPrice-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $productStyle::renderStyle(), [] ); ?></style>
-
                         <?php echo $img['url'] ? "<img class='productImage ". esc_attr( $imgClass ) ."' src='". esc_url( $img['url'] ) ."' alt='". esc_attr( $img['alt'] ) ."' />" : ''; ?>
 
                         <div class='productDetails'>
                             <h4 class='productName'><?php echo wp_kses_post( $name ); ?></h4>
 
                             <?php echo $isDesc ? "<p class='productDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
-                            
+
                             <span class='productPrice'><?php echo wp_kses_post( $price ); ?></span>
                         </div>
 
                         <?php echo $isSep ? "<span class='productSeparator'></span>" : ''; ?>
                     </div>
-                <?php $productStyle::$styles = []; } ?>
+                <?php } ?>
             </div>
         </div>
 

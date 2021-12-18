@@ -83,7 +83,7 @@ const Settings = ({ settings }) => {
 
                             <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
                                 e.preventDefault();
-                                setAttributes({ cards: [...cards, cards[index]] });
+                                setAttributes({ cards: [...cards, { ...cards[index] }] });
                             }} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
                         </PanelRow>
                     </PanelBody>
@@ -130,7 +130,7 @@ const Settings = ({ settings }) => {
                 {/* Position */}
                 <PanelRow>
                     <Title mt='0'>{__('Position:', 'b-blocks')}</Title>
-                    <BtnGroup myValue={imgPos} setState={val => setAttributes({ imgPos: val })} options={[
+                    <BtnGroup value={imgPos} onChange={val => setAttributes({ imgPos: val })} options={[
                         { label: 'vertical' == layout ? 'Top' : 'Left', value: 'top', icon: 'vertical' == layout ? 'TOP' : 'LEFT' },
                         { label: 'vertical' == layout ? 'Bottom' : 'Right', value: 'bottom', icon: 'vertical' == layout ? 'BOTTOM' : 'RIGHT' }
                     ]} />
@@ -155,7 +155,7 @@ const Settings = ({ settings }) => {
                 {/* Position */}
                 <PanelRow>
                     <Title mt='0' mb='0'>{__('Position:', 'b-blocks')}</Title>
-                    <BtnGroup myValue={titlePos} setState={val => setAttributes({ titlePos: val })} options={[
+                    <BtnGroup value={titlePos} onChange={val => setAttributes({ titlePos: val })} options={[
                         { label: 'Image', value: 'image', icon: 'IMAGE' },
                         { label: 'Content', value: 'content', icon: 'CONTENT' }
                     ]} />

@@ -141,7 +141,7 @@ const Settings = ({ settings }) => {
         setAttributes({
             data: {
                 labels: [...data.labels],
-                datasets: [...data.datasets, data.datasets[index]]
+                datasets: [...data.datasets, { ...data.datasets[index] }]
             }
         });
     }

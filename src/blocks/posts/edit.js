@@ -19,7 +19,7 @@ export const ExcerptLengthCtx = createContext();
 const Edit = props => {
     const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories, isEditorSidebarOpened } = props;
 
-    const { align, layout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+    const { align, layout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
     // Posts and Categories Check
     if (!posts || !categories) {
@@ -175,6 +175,7 @@ const Edit = props => {
                 #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta a{ color: ${metaLinkColor}; }
                 #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta .dashicons{ color: ${metaIconColor}; }
                 #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImgCats{ ${metaTypo?.styles || 'font-size: 13px; text-transform: uppercase;'} }
+                #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImgCats a{ ${metaColorsOnImage?.styles || 'color: #fff; background: #4527a4;'} }
                 #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostExcerpt{
                     text-align: ${excerptAlign};
                     ${excerptTypo?.styles || 'font-size: 15px;'}

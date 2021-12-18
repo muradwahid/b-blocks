@@ -135,7 +135,7 @@ const options = {
         { label: 'Descending', value: 'desc' }
     ],
 
-    getMonth: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    getMonth: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 
     shadows: [
         { label: 'None', value: 'shadow-none' },

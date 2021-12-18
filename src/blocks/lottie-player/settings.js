@@ -35,7 +35,7 @@ const Settings = ({ settings }) => {
 
                         <PanelRow className='mt20'>
                             <Title mt='0' mb='0'>{__('Mode:', 'b-blocks')}</Title>
-                            <BtnGroup options={modes} myValue={mode} setState={val => setAttributes({ mode: val })} />
+                            <BtnGroup value={mode} onChange={val => setAttributes({ mode: val })} options={modes} />
                         </PanelRow>
 
                         <Title>{__('Count (Set 0 to infinite):', 'b-blocks')}</Title>
@@ -44,7 +44,7 @@ const Settings = ({ settings }) => {
                         <Title>{__('Speed:', 'b-blocks')}</Title>
                         <RangeControl value={speed} onChange={val => setAttributes({ speed: val })} min={0.01} max={20} step={.01} />
 
-                        <Title>{__('Intermission (s):', 'b-blocks')}</Title>
+                        <Title>{__('Interval (s):', 'b-blocks')}</Title>
                         <RangeControl value={intermission} onChange={val => setAttributes({ intermission: val })} min={0} max={20} step={.01} />
                     </PanelBody>
                 </>}

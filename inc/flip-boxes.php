@@ -122,50 +122,38 @@ class BBlocksFlipBoxes extends BBlocks{
                 @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?> );
-                <?php echo wp_kses( $flipBoxesStyle::renderStyle(), [] ); ?>
+                <?php echo wp_kses( $flipBoxesStyle::renderStyle(), [] );
+                foreach ( $boxes as $index => $box ) {
+                    extract( $box );
+                    $borderStyle = $border['styles'] ?? '';
+                    $shadowStyle = $shadow['styles'] ?? 'none';
+                    $frontBGStyle = $frontBG['styles'] ?? 'background-color: #000000b3;';
+                    $backBGStyle = $backBG['styles'] ?? 'background-color: #000000b3;';
+                    $frontIconStyle = $frontIcon['styles'] ?? 'font-size: 70px; color: #fff;';
+                    $backIconStyle = $backIcon['styles'] ?? 'font-size: 70px; color: #fff;';
+                    $btnColorsStyle = $btnColors['styles'] ?? 'color: #fff; background: #ff4500;';
+                    $btnBorderStyle = $btnBorder['styles'] ?? 'border-radius: 3px;';
+                    $btnHovColorsStyle = $btnHovColors['styles'] ?? 'color: #fff; background: #ff7500;';
+
+                    $flipBoxStyles = "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box{ $borderStyle box-shadow: $shadowStyle;  }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.front{ $frontBGStyle }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.back{ $backBGStyle }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.frontIcon{ $frontIconStyle }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.backIcon{ $backIconStyle }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipFrontTitle{ color: $frontTitleColor; }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipBackTitle{ color: $backTitleColor; }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipDescription{ color: $descColor; }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn{ $btnColorsStyle $btnBorderStyle }
+                    #bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn:hover{ $btnHovColorsStyle }";
+                    echo esc_html( $flipBoxStyles );
+                } ?>
             </style>
 
             <div class='bBlocksFlipBoxes columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $boxes as $index => $box ) {
-                    extract( $box );
-
-                    $flipBoxStyle = new BBlocksStyleGenerator();
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box", [
-                        $border['styles'] ?? '' => '',
-                        'box-shadow' => $shadow['styles'] ?? 'none'
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.front", [
-                        $frontBG['styles'] ?? 'background-color: #000000b3;' => ''
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .box.back", [
-                        $backBG['styles'] ?? 'background-color: #000000b3;' => ''
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.frontIcon", [
-                        $frontIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipIcon.backIcon", [
-                        $backIcon['styles'] ?? 'font-size: 70px; color: #fff;' => ''
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipFrontTitle", [
-                        'color' => $frontTitleColor
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipTitle.flipBackTitle", [
-                        'color' => $backTitleColor
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipDescription", [
-                        'color' => $descColor
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn", [
-                        $btnColors['styles'] ?? 'color: #fff; background: #ff4500;' => '',
-                        $btnBorder['styles'] ?? 'border-radius: 3px;' => ''
-                    ] );
-                    $flipBoxStyle::addStyle( "#bBlocksFlipBoxes-$cId #bBlocksFlipBox-$index .flipBtn:hover", [
-                        $btnHovColors['styles'] ?? 'color: #fff; background: #ff7500;' => ''
-                    ] ); ?>
+                    extract( $box ); ?>
 
                     <div class='bBlocksFlipBox' id='bBlocksFlipBox-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $flipBoxStyle::renderStyle(), [] ); ?></style>
-
                         <div class='box front'>
                             <div class='frontContent'>
                                 <?php echo $isIcon && $frontIcon['class'] ? "<i class='flipIcon frontIcon ". esc_html( $frontIcon['class'] ) ."'></i>" : ''; ?>
@@ -186,7 +174,7 @@ class BBlocksFlipBoxes extends BBlocks{
                             </div>
                         </div>
                     </div>
-                <?php $flipBoxStyle::$styles = []; } ?>
+                <?php } ?>
             </div>
         </div>
 

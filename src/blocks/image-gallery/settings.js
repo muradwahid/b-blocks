@@ -55,7 +55,7 @@ const Settings = ({ settings }) => {
                 {/* Text Align */}
                 <PanelRow className='mt20'>
                     <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
-                    <BtnGroup icon={true} options={aligns} myValue={capAlign} setState={val => setAttributes({ capAlign: val })} />
+                    <BtnGroup value={capAlign} onChange={val => setAttributes({ capAlign: val })} options={aligns} isIcon={true} />
                 </PanelRow>
 
                 {/* Color */}

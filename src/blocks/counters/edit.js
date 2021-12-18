@@ -16,7 +16,6 @@ const Edit = props => {
     useEffect(() => {
         const counter = document.querySelectorAll(`.bBlocksCounters .counterNumber .number`);
 
-
         counter?.forEach(count => {
             const startNumber = parseInt(count.dataset.countStart);
             const endNumber = parseInt(count.dataset.countEnd);
@@ -112,7 +111,7 @@ const Edit = props => {
                     const iconEl = icon?.class && <i className={icon?.class}></i>;
                     const labelEl = isLabel && <RichText className='counterLabel' tagName='p' value={label.text} onChange={val => updateCounter(index, 'label', val, 'text')} placeholder={__('Label', 'counters-block')} inlineToolbar />
 
-                    return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'nowEditing' : ''}`} id={`bBlocksCounter-${index}`}>
+                    return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksCounter-${index}`}>
                         <div className='bBlocksCounter'>
                             {isIcon && 'top' === iconPosition && <div className='counterIcon'>{iconEl}</div>}
 

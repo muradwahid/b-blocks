@@ -58,7 +58,7 @@ class BBlocksAlert extends BBlocks{
                     <?php echo $icon['class'] ? "<i class='". esc_attr( $icon['class'] ) ."'></i>" : ''; ?>
 
                     <span class='alertMessage'><?php echo wp_kses_post( $message );?></span>
-                        
+
                     <?php echo $isDismiss ? "<i class='alertClose fa fa-times-circle'></i>" : ''; ?>
                 </div>
             </div>

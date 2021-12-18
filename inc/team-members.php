@@ -136,48 +136,36 @@ class BBlocksTeamMembers extends BBlocks{
                 @import url( <?php echo esc_url( $nameTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $bioTypo['googleFontLink'] ?? '' ); ?> );
-                <?php echo wp_kses( $teamMembersStyle::renderStyle(), [] ); ?>
+                <?php echo wp_kses( $teamMembersStyle::renderStyle(), [] );
+                foreach ( $members as $index => $member ) {
+                    extract( $member );
+                    $backgroundStyle = $background['styles'] ?? 'background-color: #0000;';
+                    $borderStyle = $border['styles'] ?? 'border-radius: 3px;';
+                    $shadowStyle = $shadow['styles'] ?? 'none';
+                    $photoBorderStyle = $photoBorder['styles'] ?? 'border-radius: 50%;';
+                    $separatorStyle = $separator['styles'] ?? 'width: 20%; border-top: 3px solid #777;';
+                    $textAlignStyle = 'center' === $textAlign ? 'center' : ( 'right' === $textAlign ? 'flex-end' : 'flex-start' );
+                    $socialIconColorsStyle = $socialIconColors['styles'] ?? 'color: #fff; background: #4527a4;';
+
+                    $memberStyles = "#bBlocksTeamMembers-$cId #bBlocksMember-$index{ $backgroundStyle $borderStyle box-shadow: $shadowStyle; }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberPhoto{ $photoBorderStyle }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberName{ color: $nameColor; }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberTitle{ color: $titleColor; }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberSeparator{ $separatorStyle }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberBio{ color: $bioColor; }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberSocial{ justify-content: $textAlignStyle; }
+                    #bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberSocial .icon a{ $socialIconColorsStyle }";
+                    echo esc_html( $memberStyles );
+                } ?>
             </style>
 
             <div class='bBlocksTeamMembers <?php echo esc_attr( $layout ?? 'vertical' ); ?> columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $members as $index => $member ) {
                     extract( $member );
-
-                    $memberStyle = new BBlocksStyleGenerator();
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index", [
-                        $background['styles'] ?? 'background-color: #0000;' => '',
-                        $border['styles'] ?? 'border-radius: 3px;' => '',
-                        'box-shadow' => $shadow['styles'] ?? 'none'
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberPhoto", [
-                        $photoBorder['styles'] ?? 'border-radius: 50%;' => ''
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberName", [
-                        'color' => $nameColor
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberTitle", [
-                        'color' => $titleColor
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberSeparator", [
-                        $separator['styles'] ?? 'width: 20%; border-top: 3px solid #777;' => ''
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberBio", [
-                        'color' => $bioColor
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberSocial", [
-                        'justify-content' => 'center' === $textAlign ? 'center' : ( 'right' === $textAlign ? 'flex-end' : 'flex-start' )
-                    ] );
-                    $memberStyle::addStyle( "#bBlocksTeamMembers-$cId #bBlocksMember-$index .memberDetails .memberSocial .icon a", [
-                        $socialIconColors['styles'] ?? 'color: #fff; background: #4527a4;' => '',
-                    ] );
-
                     // Classes
-                    $photoClass = isset( $photo['id'] ) ? 'wp-image-'.$photo['id'] : '';
-                    ?>
+                    $photoClass = isset( $photo['id'] ) ? 'wp-image-'.$photo['id'] : ''; ?>
 
                     <div class='bBlocksMember' id='bBlocksMember-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $memberStyle::renderStyle(), [] ); ?></style>
-
                         <?php echo $photo['url'] ? "<img class='memberPhoto ". esc_attr( $photoClass ) ."' src='". esc_url( $photo['url'] ) ."' alt='". esc_attr( $photo['alt'] ) ."' />" : ''; ?>
 
                         <div class='memberDetails'>
@@ -186,7 +174,7 @@ class BBlocksTeamMembers extends BBlocks{
                             <?php echo $isTitle && $title ? "<p class='memberTitle'>". wp_kses_post( $title ) ."</p>" : ''; ?>
 
                             <?php echo $isSep ? "<span class='memberSeparator'></span>" : ''; ?>
-                            
+
                             <?php echo $isBio && $bio ? "<p class='memberBio'>". wp_kses_post( $bio ) ."</p>" : ''; ?>
 
                             <ul class='memberSocial'>
@@ -202,7 +190,7 @@ class BBlocksTeamMembers extends BBlocks{
                             </ul>
                         </div>
                     </div>
-                <?php $memberStyle::$styles = []; } ?>
+                <?php } ?>
             </div>
         </div>
 

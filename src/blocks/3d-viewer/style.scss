@@ -1,0 +1,11 @@
+$primaryColor: #4527a4;
+
+// 3D Viewer
+.wp-block-b-blocks-td-viewer{
+    .bBlocks3DViewer{
+        model-viewer{
+            display: inline-block;
+            --poster-color: transparent;
+        }
+    }
+}

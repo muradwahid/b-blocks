@@ -40,7 +40,7 @@ const categoriesPosition = [
 import { ExcerptLengthCtx } from './edit';
 
 const Settings = ({ settings, getPostTypes, categories }) => {
-    const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
+    const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
 
     const [device, setDevice] = useState('desktop');
     const maxExcerptLength = useContext(ExcerptLengthCtx);
@@ -58,7 +58,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                     {posts && 0 !== posts.length && <PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Layout Type:', 'b-blocks')}</Title>
-                            <BtnGroup options={layouts} myValue={layout} setState={val => setAttributes({ layout: val })} icon={true} />
+                            <BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
                         </PanelRow>
 
                         <PanelRow className='mt10'>
@@ -246,7 +246,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                     {posts && 0 !== posts.length && <PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
-                            <BtnGroup options={aligns} myValue={contentAlign} setState={val => setAttributes({ contentAlign: val })} icon={true} />
+                            <BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
                         </PanelRow>
 
                         <Background label={__('Background', 'b-blocks')} background={contentBG} onChange={val => setAttributes({ contentBG: val })} defaults={{ color: '#f4f2fc' }} />
@@ -293,6 +293,8 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
                         <BColor label={__('Icon Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
 
+                        <ColorsControl label={__('Category Colors On Image:', 'b-blocks')} colors={metaColorsOnImage} onChange={val => setAttributes({ metaColorsOnImage: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+
                         <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={metaMargin} onChange={val => setAttributes({ metaMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
                     </PanelBody>}
 
@@ -301,7 +303,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                     {posts && 0 !== posts.length && isExcerpt && <PanelBody className='bPlPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
-                            <BtnGroup options={aligns} myValue={excerptAlign} setState={val => setAttributes({ excerptAlign: val })} icon={true} />
+                            <BtnGroup value={excerptAlign} onChange={val => setAttributes({ excerptAlign: val })} options={aligns} isIcon={true} />
                         </PanelRow>
 
                         <Typography typography={excerptTypo} onChange={val => setAttributes({ excerptTypo: val })} defaults={{ fontSize: 15 }} />
@@ -316,7 +318,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                     {posts && 0 !== posts.length && isReadMore && <PanelBody className='bPlPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
                         <PanelRow>
                             <Title mt='0' mb='0'>{__('Button Align:', 'b-blocks')}</Title>
-                            <BtnGroup options={aligns.filter(a => a.value !== 'justify')} myValue={readMoreAlign} setState={val => setAttributes({ readMoreAlign: val })} icon={true} />
+                            <BtnGroup value={readMoreAlign} onChange={val => setAttributes({ readMoreAlign: val })} options={aligns.filter(a => a.value !== 'justify')} isIcon={true} />
                         </PanelRow>
 
                         <Typography typography={readMoreTypo} onChange={val => setAttributes({ readMoreTypo: val })} defaults={{ fontSize: 14, textTransform: 'uppercase', fontWeight: 600 }} />

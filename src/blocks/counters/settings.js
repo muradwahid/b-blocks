@@ -75,7 +75,6 @@ const Settings = props => {
         setAttributes({ counters: newCounters });
     }
 
-
     return <>
         <InspectorControls>
             <TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
@@ -122,7 +121,7 @@ const Settings = props => {
 
                                     <Button className='duplicateItem' label={__('Duplicate', 'counters-block')} onClick={e => {
                                         e.preventDefault();
-                                        setAttributes({ counters: [...counters, counters[index]] });
+                                        setAttributes({ counters: [...counters, { ...counters[index] }] });
                                     }}>{icons.gearSettings}{__('Duplicate', 'counters-block')}</Button>
                                 </PanelRow>
                             </PanelBody>

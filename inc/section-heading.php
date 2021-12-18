@@ -48,7 +48,6 @@ class BBlocksSectionHeading extends BBlocks{
             'margin' => $descMargin['styles'] ?? '0 0 15px 0'
         ] );
 
-
         ob_start(); ?>
         <div class='wp-block-b-blocks-section-heading <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksSectionHeading-<?php echo esc_attr( $cId ); ?>'>
             <style>

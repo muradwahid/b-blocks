@@ -72,7 +72,7 @@ const Settings = ({ settings }) => {
 
                 <PanelRow className='mt20'>
                     <Title mt='0'>{__('Position:', 'b-blocks')}</Title>
-                    <BtnGroup myValue={iconPosition} setState={val => setAttributes({ iconPosition: val })} options={[
+                    <BtnGroup value={iconPosition} onChange={val => setAttributes({ iconPosition: val })} options={[
                         { label: 'Left', value: 'left', icon: 'LEFT' },
                         { label: 'Right', value: 'right', icon: 'RIGHT' }
                     ]} />

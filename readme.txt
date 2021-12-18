@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.8.2
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,11 +13,10 @@ b Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the G
 
 == Description ==
 
-b Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.  
+b Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.
 
 
 **[Demos](https://links.bplugins.com/b-blocks)**
-
 
 
 = Features =
@@ -27,7 +26,7 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 - **Icons Library**: Include custom icon library. Implements in which blocks needs.
 
-_ **Google Fonts**: Include the google fonts in typography settings
+- **Google Fonts**: Include the google fonts in typography settings
 
 
 = Block Lists =
@@ -37,6 +36,8 @@ _ **Google Fonts**: Include the google fonts in typography settings
 
 - **Section Heading**: Section Heading with a heading, separator, and a description, show hide controls for separator and description.
 
+- **3D Viewer**: Display interactive 3D models on the web.
+
 - **Image Gallery**: Display beautiful images as a gallery to present your photos in a stunning, attractive way.
 
 - **Image Comparison**: Compare between two images to see their difference.
@@ -44,6 +45,8 @@ _ **Google Fonts**: Include the google fonts in typography settings
 - **Flip Boxes**: Highlight your content inside your site in a great way.
 
 - **Team Members**: Present your employees/team members to your clients in beautiful way.
+
+- **Card**: Design a card that includes image, heading, description heading, description, and footer with custom typography.
 
 - **Price Lists**: Display Price lists section with image, title, description, price and a separator.
 
@@ -61,13 +64,15 @@ _ **Google Fonts**: Include the google fonts in typography settings
 
 - **Counters**: Display Number as animated counter(start to end).
 
-- **Card**: Design a card that includes image, heading, description heading, description, and footer with custom typography.
-
 - **Mail To**: Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
 
 - **Gif Image**: Embed gif image to your posts and pages.
 
 - **QR Code**: Just input a URL then it will automatically show QR code.
+
+- **Social Share**: Share your website/website-page link to social networks and mobile messengers.
+
+- **Animated Text**: Apply animation on any text.
 
 - **Alert**: Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
 
@@ -176,6 +181,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.5.6 =
+* Add 3D Viewer, Animated Text, Social Share blocks
+
 = 1.5.5 =
 * Performance Upgrade
 * Add Counters Block
@@ -218,6 +226,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.5.6 =
+* Add 3D Viewer, Animated Text, Social Share blocks
 
 = 1.5.5 =
 * Performance Upgrade

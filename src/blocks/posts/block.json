@@ -233,6 +233,13 @@
             "type": "string",
             "default": "#4527a4"
         },
+        "metaImgColors": {
+            "type": "object",
+            "default": {
+                "color": "#fff",
+                "bg": "#8344c5"
+            }
+        },
         "metaMargin": {
             "type": "object",
             "default": {

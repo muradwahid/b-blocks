@@ -97,30 +97,24 @@ class BBlocksCards extends BBlocks{
                 @import url( <?php echo esc_url( $catTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
                 @import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
-                <?php echo wp_kses( $cardsStyle::renderStyle(), [] ); ?>
+                <?php echo wp_kses( $cardsStyle::renderStyle(), [] );
+                foreach ( $cards as $index => $card ) {
+                    extract( $card );
+                    $backgroundStyle = $background['styles'] ?? 'background-color: #0000;';
+                    $imgBorderStyle = $imgBorder['styles'] ?? 'border-radius: 5px;';
+
+                    $cardStyles = "#bBlocksCards-$cId #bBlocksCard-$index .bBlocksCard{ $backgroundStyle }
+                    #bBlocksCards-$cId #bBlocksCard-$index .cardImage{ $imgBorderStyle }
+                    #bBlocksCards-$cId #bBlocksCard-$index .cardDetails .cardCategory{ color: $catColor; }
+                    #bBlocksCards-$cId #bBlocksCard-$index .cardTitle{ color: $titleColor; }
+                    #bBlocksCards-$cId #bBlocksCard-$index .cardDescription{ color: $descColor; }";
+                    echo esc_html( $cardStyles );
+                } ?>
             </style>
 
             <div class='bBlocksCards <?php echo esc_attr( $layout ?? 'vertical' ); ?> columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
                 <?php foreach ( $cards as $index => $card ) {
                     extract( $card );
-
-                    $cardStyle = new BBlocksStyleGenerator();
-                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .bBlocksCard", [
-                        $background['styles'] ?? 'background-color: #0000;' => ''
-                    ] );
-                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .cardImage", [
-                        $imgBorder['styles'] ?? 'border-radius: 5px;' => ''
-                    ] );
-                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .cardDetails .cardCategory", [
-                        'color' => $catColor
-                    ] );
-                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .cardTitle", [
-                        'color' => $titleColor
-                    ] );
-                    $cardStyle::addStyle( "#bBlocksCards-$cId #bBlocksCard-$index .cardDescription", [
-                        'color' => $descColor
-                    ] );
-
                     // Classes
                     $imgClass = isset( $img['id'] ) ? 'wp-image-'.$img['id'] : '';
 
@@ -134,12 +128,9 @@ class BBlocksCards extends BBlocks{
                     </figure>" : '';
 
                     $cardImageInTop =  'top' === $imgPos ? $cardImage : '';
-                    $cardImageInBottom =  'bottom' === $imgPos ? $cardImage : '';
-                    ?>
+                    $cardImageInBottom =  'bottom' === $imgPos ? $cardImage : ''; ?>
 
                     <div id='bBlocksCard-<?php echo esc_attr( $index ); ?>'>
-                        <style><?php echo wp_kses( $cardStyle::renderStyle(), [] ); ?></style>
-
                         <div class='bBlocksCard <?php echo 'bottom' === $imgPos ? 'bottomImg' : 'topImg'; ?>'>
                             <?php echo wp_kses( $cardImageInTop, [
                                 'figure' => [ 'class' => [] ],
@@ -164,7 +155,7 @@ class BBlocksCards extends BBlocks{
                             ] ); ?>
                         </div>
                     </div>
-                <?php $cardStyle::$styles = []; } ?>
+                <?php } ?>
             </div>
         </div>
 

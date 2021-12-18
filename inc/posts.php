@@ -55,6 +55,7 @@ class BBlocksPosts extends BBlocks{
         $metaTextColor = $metaTextColor ?? '#333';
         $metaLinkColor = $metaLinkColor ?? '#8344c5';
         $metaIconColor = $metaIconColor ?? '#4527a4';
+        $metaColorsOnImage = $metaColorsOnImage ?? [ 'color' => '#fff', 'bg' => '#4527a4' ];
         $metaMargin = $metaMargin ?? [ 'bottom' => '15px' ];
         $excerptAlign = $excerptAlign ?? 'justify';
         $excerptTypo = $excerptTypo ?? [ 'fontSize' => 15 ];
@@ -66,7 +67,7 @@ class BBlocksPosts extends BBlocks{
         $readMoreHovColors = $readMoreHovColors ?? [ 'color' => '#fff', 'bg' => '#4527a4' ];
         $readMorePadding = $readMorePadding ?? [ 'vertical' => '12px', 'horizontal' => '35px' ];
         $readMoreBorder = $readMoreBorder ?? [ 'radius' => '3px' ];
-        
+
         // $taxonomies = get_object_taxonomies( $postType, 'array' );
         // foreach( $taxonomies as $tax ){
         //     if( $tax->hierarchical ){
@@ -116,6 +117,9 @@ class BBlocksPosts extends BBlocks{
         ] );
         $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats", [
             $metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => ''
+        ] );
+        $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats a", [
+            $metaColorsOnImage['styles'] ?? 'color: #fff; background: #4527a4;' => '',
         ] );
         $postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostExcerpt", [
             'text-align' => $excerptAlign,
@@ -505,7 +509,7 @@ class BBlocksPosts extends BBlocks{
             ] );
         }
     } // Custom Rest API
-    
+
     function excerptMore( $more ) {
         return "<p class='read-more'><a href=". esc_url( get_permalink( get_the_ID() ) ) .">". __( 'Read More &raquo;', 'b-blocks' ) ."</a></p>";
     } // Excerpt More

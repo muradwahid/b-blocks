@@ -34,7 +34,7 @@ const Settings = ({ settings }) => {
                 {/* Button Type */}
                 <PanelRow>
                     <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
-                    <BtnGroup myValue={btnType} setState={val => {
+                    <BtnGroup value={btnType} onChange={val => {
                         setAttributes({ btnType: val });
                         'fill' === val && setAttributes({
                             btnOneColors: { ...btnOneColors, color: '#fff', bg: '#4527a4', styles: 'color: #fff; background: #4527a4;' },
@@ -98,7 +98,7 @@ const Settings = ({ settings }) => {
                 {isSep && <>
                     <PanelRow>
                         <Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
-                        <BtnGroup options={sepTypes} myValue={sepType} setState={val => setAttributes({ sepType: val })} />
+                        <BtnGroup value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
                     </PanelRow>
 
                     {/* Separator Text */}

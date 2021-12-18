@@ -101,7 +101,7 @@ const Settings = ({ settings }) => {
 
                                     <Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
                                         e.preventDefault();
-                                        setAttributes({ slides: [...slides, slides[index]] });
+                                        setAttributes({ slides: [...slides, { ...slides[index] }] });
                                     }}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
                                 </PanelRow>
                             </PanelBody>
