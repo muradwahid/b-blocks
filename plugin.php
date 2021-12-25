@@ -2,7 +2,7 @@
 /**
  * Plugin Name: b Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.5.6
+ * Version: 1.5.7
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.5.6' );
+define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.5.7' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -143,6 +143,7 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/image-comparison.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/flip-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/team-members.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/cards.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/pricing-table/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/price-lists.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/feature-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/info-box.php';

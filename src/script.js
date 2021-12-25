@@ -11,6 +11,7 @@ import './blocks/image-comparison/script';
 import './blocks/flip-boxes/script';
 import './blocks/team-members/script';
 import './blocks/cards/script';
+import './blocks/pricing-table/script';
 import './blocks/price-lists/script';
 import './blocks/feature-boxes/script';
 import './blocks/info-box/script';

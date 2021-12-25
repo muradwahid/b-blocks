@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.8.2
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -47,6 +47,8 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 - **Team Members**: Present your employees/team members to your clients in beautiful way.
 
 - **Card**: Design a card that includes image, heading, description heading, description, and footer with custom typography.
+
+- **Pricing Table**: Create and display product professional looking pricing table in WordPress’s block editor. This is a block plugin and it will only work with Gutenberg editor.
 
 - **Price Lists**: Display Price lists section with image, title, description, price and a separator.
 
@@ -159,27 +161,33 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 6. Posts- Masonry- Overlay Box layout
 7. Slider- Default, Image Background
 8. Slider- Image Slider
-9. Image Gallery
-10. Image Comparison
-11. Flip Boxes
-12. Team Members
-13. Team Members- Horizontal layout
-14. Price Lists
-15. Price Lists- Horizontal layout
-16. Feature Boxes
-17. Info Box
-18. Lottie Player
-19. Countdown- Default, Layout 1
-20. Countdown- Layout 2, 3
-21. Counters- Default, Theme 2
-22. Counters- Theme 3
-23. Cards- Default
-24. Cards- Horizontal layout
-25. Mail To
-26. Alert
+9. 3D Viewer
+10. Image Gallery
+11. Image Comparison
+12. Flip Boxes
+13. Team Members
+14. Team Members- Horizontal layout
+15. Cards- Default
+16. Cards- Horizontal layout
+17. Pricing Table
+18. Pricing Table- Ultimate Style
+19. Price Lists
+20. Price Lists- Horizontal layout
+21. Feature Boxes
+22. Info Box
+23. Lottie Player
+24. Countdown- Default, Layout 1
+25. Countdown- Layout 2, 3
+26. Counters- Default, Theme 2
+27. Counters- Theme 3
+28. Mail To
+29. Alert
 
 
 == Changelog ==
+
+= 1.5.7 =
+* Add Pricing Table block
 
 = 1.5.6 =
 * Add 3D Viewer, Animated Text, Social Share blocks
@@ -226,6 +234,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.5.7 =
+* Add Pricing Table block
 
 = 1.5.6 =
 * Add 3D Viewer, Animated Text, Social Share blocks

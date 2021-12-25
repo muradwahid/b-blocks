@@ -7,7 +7,6 @@ exports.bundle = () => (
         '!bundled/**',
         '!node_modules/**',
         '!src/**',
-        '!inc/oposts.php',
         '!.eslintrc.js',
         '!.gitignore',
         '!gulpfile.js',

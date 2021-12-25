@@ -9,6 +9,7 @@ import './blocks/image-comparison';
 import './blocks/flip-boxes';
 import './blocks/team-members';
 import './blocks/cards';
+import './blocks/pricing-table';
 import './blocks/price-lists';
 import './blocks/feature-boxes';
 import './blocks/info-box';
