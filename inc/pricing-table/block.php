@@ -10,17 +10,13 @@ class BBlocksPricingTable extends BBlocks{
         ] ); // Register Block
     }
 
-    function render( $attributes, $content, $block ){
+    function render( $attributes ){
         extract( $attributes );
         $className = $className ?? 'is-style-basic';
 
         $isBasic = false !== strpos($className, 'basic');
         $isStandard = false !== strpos($className, 'standard');
         $isUltimate = false !== strpos($className, 'ultimate');
-
-        echo '<pre>';
-        print_r( $block );
-        echo '</pre>';
 
         // Generate Styles
         $pricingTableStyle = new BBlocksStyleGenerator();
