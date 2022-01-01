@@ -21,7 +21,8 @@ const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders, pxU
 const layouts = [
     { label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
     { label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
-    { label: __('Slider', 'b-blocks'), value: 'slider', icon: icons.sliderNoColor }
+    { label: __('Slider', 'b-blocks'), value: 'slider', icon: icons.sliderNoColor },
+    { label: __('Ticker', 'b-blocks'), value: 'ticker', icon: icons.ticker }
 ];
 const subLayouts = [
     { label: __('Default', 'b-blocks'), value: 'default' },
@@ -46,7 +47,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
     const maxExcerptLength = useContext(ExcerptLengthCtx);
 
     useEffect(() => {
-        if ('slider' === layout && ('default' === subLayout || 'title-meta' === subLayout))
+        if (('slider' === layout || 'ticker' === layout) && ('default' === subLayout || 'title-meta' === subLayout))
             setAttributes({ subLayout: 'left-image', columns: { ...columns, desktop: 2 } })
     }, [layout]);
 
@@ -56,10 +57,8 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                 {'general' === tab.name && <>
                     {/* Layouts Settings */}
                     {posts && 0 !== posts.length && <PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Layout Type:', 'b-blocks')}</Title>
-                            <BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
-                        </PanelRow>
+                        <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
+                        <BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
 
                         <PanelRow className='mt10'>
                             <Title mt='0' mb='0'>{__('Sub Layout:', 'b-blocks')}</Title>
@@ -94,21 +93,27 @@ const Settings = ({ settings, getPostTypes, categories }) => {
                                 }) : setAttributes({
                                     contentAlign: 'left'
                                 });
-                            }} options={layout === 'slider' ? subLayouts.filter(l => l.value !== 'default' && l.value !== 'title-meta') : subLayouts} />
+                            }} options={'slider' === layout || 'ticker' === layout ? subLayouts.filter(l => l.value !== 'default' && l.value !== 'title-meta') : subLayouts} />
                         </PanelRow>
                         <small>{__('Some settings may change when layout and sub-layout will be changed.', 'b-blocks')}</small>
 
-                        <PanelRow className='mt20'>
-                            <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
-                            <BDevice device={device} onChange={val => setDevice(val)} />
-                        </PanelRow>
-                        <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
+                        {'ticker' !== layout && <>
+                            <PanelRow className='mt20'>
+                                <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+                                <BDevice device={device} onChange={val => setDevice(val)} />
+                            </PanelRow>
+                            <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
+                        </>}
 
-                        <Title>{__('Column Gap:', 'b-blocks')}</Title>
-                        <RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
+                        {'ticker' !== layout && <>
+                            <Title>{__('Column Gap:', 'b-blocks')}</Title>
+                            <RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
+                        </>}
 
-                        <Title>{__('Row Gap:', 'b-blocks')}</Title>
-                        <RangeControl value={rowGap} onChange={val => setAttributes({ rowGap: val })} min={0} max={150} step={1} beforeIcon='arrow-down-alt' />
+                        {'slider' !== layout && <>
+                            <Title>{__('Row Gap:', 'b-blocks')}</Title>
+                            <RangeControl value={rowGap} onChange={val => setAttributes({ rowGap: val })} min={0} max={150} step={1} beforeIcon='arrow-down-alt' />
+                        </>}
 
                         {'grid' === layout && <ToggleControl className='mt20' label={__('Enable Content Equal Height', 'b-blocks')} checked={isContentEqualHight} onChange={val => setAttributes({ isContentEqualHight: val })} />}
 

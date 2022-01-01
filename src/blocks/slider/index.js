@@ -9,11 +9,10 @@ import icons from '../../Const/icons';
 const icon = icons.slider;
 
 // Metadata
-import metadata from './block.json';
-const { name, example, title, description, category, keywords, attributes, supports } = metadata;
+import metadata from '../../../inc/slider/block.json';
 
-registerBlockType(name, {
-    title, description, icon, category, keywords, supports, attributes, example,
+registerBlockType(metadata, {
+    icon,
 
     transforms: {
         from: [

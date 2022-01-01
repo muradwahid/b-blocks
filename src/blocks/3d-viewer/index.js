@@ -9,11 +9,10 @@ import icons from '../../Const/icons';
 const icon = icons.tDViewer;
 
 // Metadata
-import metadata from './block.json';
-const { name, title, description, category, keywords, supports, attributes, example } = metadata;
+import metadata from '../../../inc/3d-viewer/block.json';
 
-registerBlockType(name, {
-    title, description, icon, category, keywords, supports, attributes, example,
+registerBlockType(metadata, {
+    icon,
 
     transforms: {
         from: [

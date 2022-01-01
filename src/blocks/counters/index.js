@@ -10,11 +10,10 @@ import icons from '../../Const/icons';
 const icon = icons.counters;
 
 // Metadata
-import metadata from './block.json';
-const { name, title, description, category, keywords, supports, attributes, example } = metadata;
+import metadata from '../../../inc/counters/block.json';
 
-registerBlockType(name, {
-    title, description, icon, category, keywords, supports, attributes, example,
+registerBlockType(metadata, {
+    icon,
 
     // Build In Functions
     edit: Edit,

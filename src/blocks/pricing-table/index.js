@@ -10,10 +10,9 @@ const icon = icons.pricingTable;
 
 // Metadata
 import metadata from '../../../inc/pricing-table/block.json';
-const { name, title, description, category, keywords, attributes, supports, styles, example } = metadata;
 
-registerBlockType(name, {
-    title, description, icon, category, keywords, attributes, supports, styles, example,
+registerBlockType(metadata, {
+    icon,
 
     // Build in Functions
     edit: Edit,

@@ -6,7 +6,7 @@
 
 // Posts
 .wp-block-b-blocks-posts.bBlocksPosts{
-    >.bBlocksSliderPosts{
+    >.bBlocksSliderPosts, >.bBlocksTickerPosts{
         display: none;
     }
 }

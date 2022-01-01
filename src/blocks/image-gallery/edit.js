@@ -72,7 +72,7 @@ const Edit = props => {
                         multiple
                         value={Array.isArray(images) ? images.map(({ id }) => id) : images.id}
                         onSelect={val => setAttributes({ images: filterImages(val) })}
-                        render={({ open }) => <Button className='components-button is-tertiary' label={__('Media Library', 'b-blocks')} onClick={open}>{__('Media Library', 'b-blocks')}</Button>}
+                        render={({ open }) => <Button className='components-button is-primary' label={__('Media Library', 'b-blocks')} onClick={open}>{__('Media Library', 'b-blocks')}</Button>}
                     />
                 </Placeholder>
             </> :

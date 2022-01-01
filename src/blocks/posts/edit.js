@@ -30,6 +30,8 @@ const Edit = props => {
 
     const sliderRef = useRef(null);
     const sliderWrapperRef = useRef(null);
+    const tickerRef = useRef(null);
+    const tickerWrapperRef = useRef(null);
 
     // Components
     const noPosts = () => <h3 className='bBlocksNoPosts'>{__('No posts found!! Please add some posts', 'b-blocks')}</h3>;
@@ -118,6 +120,24 @@ const Edit = props => {
         swiperSlide.length && swiperSlide.forEach(slide => {
             slide.style.height = `${Math.max(...slideHeightArray)}px`;
         });
+
+        // Ticker Posts
+        if ('ticker' === layout) {
+            // Re init ticker
+            tickerWrapperRef.current.innerHTML = '';
+            tickerWrapperRef.current.innerHTML = tickerRef.current.outerHTML;
+
+            $(`#bBlocksPosts-${clientId} .bBlocksTickerWrapper .bBlocksTickerPosts`).easyTicker({
+                direction: 'up',
+                easing: 'swing',
+                speed: 'slow',
+                interval: 2000,
+                height: 'auto',
+                visible: 3,
+                gap: rowGap,
+                mousePause: true
+            });
+        }
     }, [attributes, posts]);
 
     // Set excerpt length
@@ -225,7 +245,7 @@ const Edit = props => {
                     <MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
                 </div> /* Masonry Layout */ :
 
-                    'slider' === layout && <>
+                    'slider' === layout ? <>
                         <div className='bBlocksSliderWrapper' ref={sliderWrapperRef}></div>
                         <div className='bBlocksSliderPosts' ref={sliderRef}>
                             <div className='swiper-wrapper'>
@@ -238,7 +258,15 @@ const Edit = props => {
                                 <div className='swiper-button-prev'></div><div className='swiper-button-next'></div>
                             </>}
                         </div>
-                    </>/* Slider Layout */
+                    </>/* Slider Layout */ :
+                        'ticker' === layout && <>
+                            <div className='bBlocksTickerWrapper' ref={tickerWrapperRef}></div>
+                            <div className='bBlocksTickerPosts' ref={tickerRef}>
+                                <div>
+                                    <MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
+                                </div>
+                            </div>
+                        </>/* Ticker Layout */
             }
         </div> : noPosts()}
     </>

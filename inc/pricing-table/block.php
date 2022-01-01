@@ -1,10 +1,10 @@
 <?php
 class BBlocksPricingTable extends BBlocks{
     public function __construct(){
-        add_action( 'init', [$this, 'register'] );
+        add_action( 'init', [$this, 'onInit'] );
     }
     
-    function register(){
+    function onInit(){
         register_block_type( __DIR__, [
             'render_callback' => [$this, 'render']
         ] ); // Register Block
