@@ -39,7 +39,7 @@ const Edit = props => {
             `}} />
             <style>
                 {socials?.map((item, index) => `#bBlocksSocialShare-${clientId} ul.bBlocksSocialShare li.icon-${index} i{
-                    ${item?.icon?.styles || 'color: #4527a4;'}
+                    ${item?.icon?.styles || `color: ${item?.icon?.color || '#4527a4'};`}
                 }`)}
             </style>
 

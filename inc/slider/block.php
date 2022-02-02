@@ -55,6 +55,8 @@ class BBlocksSlider extends BBlocks{
                 foreach ( $slides as $index => $slide ) {
                     extract( $slide );
                     $backgroundStyle = $background['styles'] ?? 'background-color: #00000080;';
+                    $titleColor = $titleColor ?? '#fff';
+                    $descColor = $descColor ?? '#fff';
                     $btnStyle = $btnColors['styles'] ?? 'color: #fff; background: #4527a4;';
                     $btnHovStyle = $btnHovColors['styles'] ?? 'color: #fff; background: #8344c5;';
 

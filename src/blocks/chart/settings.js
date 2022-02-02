@@ -33,7 +33,7 @@ const pointStyles = [
 import icons from '../../Const/icons';
 
 const Settings = ({ settings }) => {
-    const { attributes: { data, type, background, textColor, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor }, setAttributes } = settings;
+    const { attributes: { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload }, setAttributes } = settings;
 
     const getRandomColor = () => {
         const letters = '0123456789abcdef';
@@ -231,14 +231,19 @@ const Settings = ({ settings }) => {
 
                 <BColor label={__('Text Color:', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#666' />
 
-                <BColor label={__('Grid Line Color:', 'b-blocks')} value={gridLineColor} onChange={val => setAttributes({ gridLineColor: val })} defaultColor='#0000001a' />
+                <ToggleControl className='mt20' label={__('Show X Scale', 'b-blocks')} checked={isXScale} onChange={val => setAttributes({ isXScale: val })} />
 
-                <ToggleControl className='mt20' label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
+                {isXScale && <ToggleControl label={__('Show X Grid Line', 'b-blocks')} checked={isXGridLine} onChange={val => setAttributes({ isXGridLine: val })} />}
 
-                <ToggleControl label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
+                <ToggleControl className='mt20' label={__('Show Y Scale', 'b-blocks')} checked={isYScale} onChange={val => setAttributes({ isYScale: val })} />
+
+                {isYScale && <ToggleControl label={__('Show Y Grid Line', 'b-blocks')} checked={isYGridLine} onChange={val => setAttributes({ isYGridLine: val })} />}
+
+                {(isXGridLine || isYGridLine) && <BColor label={__('Grid Line Color:', 'b-blocks')} value={gridLineColor} onChange={val => setAttributes({ gridLineColor: val })} defaultColor='#0000001a' />}
             </PanelBody>
 
-            {(isTitle || isSubtitle) && <PanelBody className='bPlPanelBody' title={__('Title & Subtitle', 'b-blocks')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Title & Subtitle', 'b-blocks')} initialOpen={false}>
+                <ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
                 {isTitle && <>
                     <PanelRow>
                         <Title mt='0' mb='0'>{__('Title:', 'b-blocks')}</Title>
@@ -251,6 +256,7 @@ const Settings = ({ settings }) => {
                     <BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
                 </>}
 
+                <ToggleControl className='mt20' label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
                 {isSubtitle && <>
                     <PanelRow className='mt20'>
                         <Title mt='0' mb='0'>{__('Subtitle:', 'b-blocks')}</Title>
@@ -262,7 +268,11 @@ const Settings = ({ settings }) => {
 
                     <BColor label={__('Subtitle Color:', 'b-blocks')} value={subtitleColor} onChange={val => setAttributes({ subtitleColor: val })} defaultColor='#8344c5' />
                 </>}
-            </PanelBody>}
+            </PanelBody>
+
+            <PanelBody className='bPlPanelBody' title={__('Download Settings', 'chart-block')} initialOpen={false}>
+                <ToggleControl label={__('Download Button', 'chart-block')} checked={isDownload} onChange={val => setAttributes({ isDownload: val })} />
+            </PanelBody>
         </InspectorControls>
 
         <BlockControls>

@@ -7,10 +7,10 @@ const allChart = document.querySelectorAll('.wp-block-b-blocks-chart');
 Object.values(allChart).map(chart => {
     const chartEl = document.getElementById(chart.id);
 
-    const { data, type, textColor, gridLineColor, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor } = JSON.parse(chartEl.dataset.chart);
+    const { data, type, textColor, gridLineColor, isTitle, title, titleFontSize, titleColor, isXScale, isXGridLine, isYScale, isYGridLine, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload } = JSON.parse(chartEl.dataset.chart);
 
     const chartCtx = document.querySelector(`#${chart.id} .bBlocksChart canvas`);
-    new Chart(chartCtx, {
+    const bChart = new Chart(chartCtx, {
         type,
         data,
         options: {
@@ -54,24 +54,35 @@ Object.values(allChart).map(chart => {
             },
             scales: {
                 x: {
+                    display: isXScale,
                     ticks: {
                         color: textColor
                     },
                     grid: {
+                        display: isXGridLine,
                         color: gridLineColor
                     }
                 },
                 y: {
+                    display: isYScale,
                     beginAtZero: true,
                     ticks: {
                         color: textColor
                     },
                     grid: {
+                        display: isYGridLine,
                         color: gridLineColor
                     }
                 }
             }
         }
+    });
+
+    isDownload && document.querySelector(`#${chart.id} .downloadArea .downloadChart`).addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = bChart.toBase64Image();
+        a.download = 'b-chart.png';
+        a.click();
     });
 
     chartEl.removeAttribute('data-chart');

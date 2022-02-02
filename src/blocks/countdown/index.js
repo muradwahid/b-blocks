@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icon
 import icons from '../../Const/icons';
-const icon = icons.countdown;
 
 // Metadata
 import metadata from '../../../inc/countdown/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.countdown,
 
     transforms: {
         from: [

@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icon
 import icons from '../../Const/icons';
-const icon = icons.mail;
 
 // Metadata
 import metadata from '../../../inc/mailto/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.mail,
 
     // Build In Functions
     edit: Edit,

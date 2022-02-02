@@ -66,6 +66,21 @@
                         "alt": "",
                         "title": ""
                     }
+                },
+                {
+                    "networkType": "mobileMessenger",
+                    "network": "whatsapp",
+                    "isUpIcon": false,
+                    "icon": {
+                        "class": "fab fa-whatsapp",
+                        "color": "#25d366"
+                    },
+                    "upIcon": {
+                        "id": null,
+                        "url": "",
+                        "alt": "",
+                        "title": ""
+                    }
                 }
             ]
         },

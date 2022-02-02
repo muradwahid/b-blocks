@@ -1,19 +1,19 @@
-=== b Blocks - The ultimate block collection ===
+=== B Blocks - The ultimate block collection ===
 Contributors: abuhayat, charlescormier
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
-Tested up to: 5.8.2
-Stable tag: 1.5.8
+Tested up to: 5.9
+Stable tag: 1.5.9
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-b Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be use as a WordPress Page Building tools!
+B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be use as a WordPress Page Building tools!
 
 == Description ==
 
-b Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.
+B Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.
 
 
 **[Demos](https://links.bplugins.com/b-blocks)**
@@ -80,8 +80,8 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 
 = How to use =
-- First install the b Blocks plugin
-- Add the one or more blocks from block category called "B Block" in Gutenberg editor.
+- First install the B Blocks plugin
+- Add the one or more blocks from block category called "B Blocks" in Gutenberg editor.
 - You can change block settings from the right side settings sidebar.
 - Enjoy!
 
@@ -109,22 +109,22 @@ b Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 = Automatic installation =
 1. Go to Plugin menu and click on **Add New** Button
-2. Search for **b blocks**
-3. Install and activate the b Blocks plugin from there
+2. Search for **B Blocks**
+3. Install and activate the B Blocks plugin from there
 
 = Download & Upload: =
-1. Download the **b Block** plugin (*.zip file*)
+1. Download the **b Blocks** plugin (*.zip file*)
 2. In your admin area, go to the Plugins menu and click on **Add New**
 3. Click on **Upload Plugin** and choose the **`b-blocks.zip`** file and click on **Install Now**
 4. Activate the plugin and Enjoy!
 
 = Manually: =
-1. Download and upload the **b Blocks** plugin to the **`/wp-content/plugins/`** directory
+1. Download and upload the **B Blocks** plugin to the **`/wp-content/plugins/`** directory
 2. Activate the plugin through the Plugins menu in WordPress
 
 = Use Block: =
 1. Go to the WordPress Block/Gutenberg Editor
-2. Add one or more blocks from block category called **B Block** in Gutenberg editor
+2. Add one or more blocks from block category called **B Blocks** in Gutenberg editor
 3. Enjoy!
 
 
@@ -186,6 +186,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.5.9 =
+* Gradient Picker fixing
+* Update Chart, Posts, Slider blocks
+
 = 1.5.8 =
 * Update Posts block
 
@@ -237,6 +241,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.5.9 =
+* Gradient Picker fixing
+* Update Chart, Posts, Slider blocks
 
 = 1.5.8 =
 * Update Posts block

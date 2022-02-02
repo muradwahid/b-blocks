@@ -157,10 +157,10 @@ const Edit = props => {
                         ${item.background?.styles || 'background-color: #00000080;'}
                     }
                     #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderTitle{
-                        color: ${item.titleColor};
+                        color: ${item.titleColor || '#fff'};
                     }
                     #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderDescription{
-                        color: ${item.descColor};
+                        color: ${item.descColor || '#fff'};
                     }
                     #bBlocksSlider-${clientId} .bBlocksSlider .slide-${index} .sliderBtn{
                         ${item.btnColors?.styles || 'color: #fff; background: #4527a4;'}

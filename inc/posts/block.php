@@ -288,7 +288,7 @@ class BBlocksPosts extends BBlocks{
             ob_start(); ?>
             <span>
                 <span class='dashicons dashicons-admin-users'></span>&nbsp;
-                <span><?php echo get_the_author_posts_link( $post->ID ); ?></span>
+                <span><a href='<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>' rel="author"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a></span>
             </span>
             <?php return ob_get_clean();
         } else {

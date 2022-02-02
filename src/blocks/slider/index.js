@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icons
 import icons from '../../Const/icons';
-const icon = icons.slider;
 
 // Metadata
 import metadata from '../../../inc/slider/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.slider,
 
     transforms: {
         from: [

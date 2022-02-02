@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icons
 import icons from '../../Const/icons';
-const icon = icons.animation;
 
 // Metadata
 import metadata from '../../../inc/animated-text/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.animation,
 
     transforms: {
         from: [

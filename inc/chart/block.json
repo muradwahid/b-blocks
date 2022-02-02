@@ -118,6 +118,22 @@
             "type": "string",
             "default": "#666"
         },
+        "isXScale": {
+            "type": "boolean",
+            "default": true
+        },
+        "isXGridLine": {
+            "type": "boolean",
+            "default": true
+        },
+        "isYScale": {
+            "type": "boolean",
+            "default": true
+        },
+        "isYGridLine": {
+            "type": "boolean",
+            "default": true
+        },
         "gridLineColor": {
             "type": "string",
             "default": "#0000001a"
@@ -157,6 +173,10 @@
         "subtitleColor": {
             "type": "string",
             "default": "#8344c5"
+        },
+        "isDownload": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

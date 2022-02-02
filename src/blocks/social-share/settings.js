@@ -154,7 +154,7 @@ const Settings = ({ attributes, setAttributes }) => {
                         <ToggleControl className='mt20' label={__('Upload Icon?', 'social-sharing')} checked={isUpIcon} onChange={val => updateSocial(index, 'isUpIcon', val)} />
 
                         {isUpIcon ? <ImageHolderControl className='mt20' label={__('Icon:', 'social-sharing')} img={upIcon} onChange={val => updateSocial(index, 'upIcon', val)} /> :
-                            <IconControl label={__('Icon:', 'social-sharing')} icon={icon} onChange={val => updateSocial(index, 'icon', val)} defaults={{ class: 'fa fa-facebook', color: '#4527a4' }} disableSize={true} />}
+                            <IconControl label={__('Icon:', 'social-sharing')} icon={icon} onChange={val => updateSocial(index, 'icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} disableSize={true} />}
 
                         <PanelRow className='itemAction mt20'>
                             <Button className='removeItem' label={__('Remove', 'social-sharing')} onClick={e => {

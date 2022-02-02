@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icon
 import icons from '../../Const/icons';
-const icon = icons.qrCode;
 
 // Metadata
 import metadata from '../../../inc/qr-code/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.qrCode,
 
     // Build In Functions
     edit: Edit,

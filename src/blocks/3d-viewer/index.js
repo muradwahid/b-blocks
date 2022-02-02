@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icons
 import icons from '../../Const/icons';
-const icon = icons.tDViewer;
 
 // Metadata
 import metadata from '../../../inc/3d-viewer/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.tDViewer,
 
     transforms: {
         from: [

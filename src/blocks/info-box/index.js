@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icon
 import icons from '../../Const/icons';
-const icon = icons.infoBox;
 
 // Metadata
 import metadata from '../../../inc/info-box/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.infoBox,
 
     // Build In Functions
     edit: Edit,

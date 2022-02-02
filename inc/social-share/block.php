@@ -38,7 +38,8 @@ class BBlocksSocialShare extends BBlocks{
             <style><?php
                 echo wp_kses( $socialShareStyle::renderStyle(), [] );
                 foreach ( $socials as $index => $social ) {
-                    $iconStyle = $social['icon']['styles'] ?? 'color: #4527a4;';
+                    $defIconColor = $social['icon']['color'] ?? '#4527a4';
+                    $iconStyle = $social['icon']['styles'] ?? "color: $defIconColor;";
                     $socialStyles = "#bBlocksSocialShare-$cId ul.bBlocksSocialShare li.icon-$index i{ $iconStyle }";
                     echo wp_kses( $socialStyles, [] );
                 }

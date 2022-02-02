@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icons
 import icons from '../../Const/icons';
-const icon = icons.flipBox;
 
 // Metadata
 import metadata from '../../../inc/flip-boxes/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.flipBox,
 
     // Build In Functions
     edit: Edit,

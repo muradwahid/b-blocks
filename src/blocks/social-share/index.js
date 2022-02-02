@@ -6,13 +6,12 @@ import './editor.scss';
 
 // Icons
 import icons from '../../Const/icons';
-const icon = icons.socialShare;
 
 // Metadata
 import metadata from '../../../inc/social-share/block.json';
 
 registerBlockType(metadata, {
-    icon,
+    icon: icons.socialShare,
 
     transforms: {
         from: [
