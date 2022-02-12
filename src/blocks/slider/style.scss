@@ -1,90 +1,53 @@
 .wp-block-b-blocks-slider{
-    overflow: hidden;
+	overflow: hidden;
 
-    .bBlocksSlider{
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-        max-width: 100%;
+	.bBlocksSlider{
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+		max-width: 100%;
 
-        .swiper-wrapper{
-            .swiper-slide{
-                background-blend-mode: overlay;
-                display: block;
-                position: relative;
+		.swiper-wrapper{
+			.swiper-slide{
+				background-blend-mode: overlay;
+				display: block;
+				position: relative;
 
-                .sliderContent{
-                    position: absolute;
-                    width: 100%;
-                    max-width: 100%;
-                    text-align: center;
-                    padding: 45px 70px 50px 70px;
-                    box-sizing: border-box;
+				.sliderContent{
+					position: absolute;
+					width: 100%;
+					max-width: 100%;
+					height: 100%;
+					text-align: center;
+					box-sizing: border-box;
 
-                    &.top-left{
-                        text-align: left;
-                        top: 0;
-                    }
-                    &.top-center{
-                        text-align: center;
-                        top: 0;
-                    }
-                    &.top-right{
-                        text-align: right;
-                        top: 0;
-                    }
-                    &.center-left{
-                        text-align: left;
-                        top: 50%;
-                        transform: translateY(-50%);
-                    }
-                    &.center-center{
-                        text-align: center;
-                        top: 50%;
-                        transform: translateY(-50%);
-                    }
-                    &.center-right{
-                        text-align: right;
-                        top: 50%;
-                        transform: translateY(-50%);
-                    }
-                    &.bottom-left{
-                        text-align: left;
-                        bottom: 0;
-                    }
-                    &.bottom-center{
-                        text-align: center;
-                        bottom: 0;
-                    }
-                    &.bottom-right{
-                        text-align: right;
-                        bottom: 0;
-                    }
+					.sliderTitle{
+						color: #fff;
+						margin: 0;
+						position: absolute !important;
+					}
 
-                    .sliderTitle{
-                        color: #fff;
-                        margin: 0;
-                    }
+					.sliderDescription{
+						color: #fff;
+						margin: 0;
+						position: absolute !important;
+					}
 
-                    .sliderDescription{
-                        color: #fff;
-                        margin: 0;
-                    }
+					.sliderBtn{
+						display: inline-block;
+						text-decoration: none;
+						font-weight: 600;
+						transition: background-color .5s ease;
+						position: absolute !important;
+					}
+				}
+			}
+		}
 
-                    .sliderBtn{
-                        display: inline-block;
-                        text-decoration: none;
-                        font-weight: 600;
-                        transition: all .5s ease;
-                    }
-                }
-            }
-        }
-
-        .swiper-pagination{
-            .swiper-pagination-bullet:focus{
-                outline: 0;
-            }
-        }
-    }
+		.swiper-pagination{
+			.swiper-pagination-bullet:focus{
+				outline: 0;
+			}
+		}
+	}
 }

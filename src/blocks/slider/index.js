@@ -11,27 +11,27 @@ import icons from '../../Const/icons';
 import metadata from '../../../inc/slider/block.json';
 
 registerBlockType(metadata, {
-    icon: icons.slider,
+	icon: icons.slider,
 
-    transforms: {
-        from: [
-            { type: 'block', blocks: ['csb/content-slider-block'], transform: attributes => createBlock('b-blocks/slider', attributes) },
-            { type: 'prefix', prefix: 'slider', transform: () => createBlock('b-blocks/slider') }
-        ],
+	transforms: {
+		from: [
+			{ type: 'block', blocks: ['csb/content-slider-block'], transform: attributes => createBlock('b-blocks/slider', attributes) },
+			{ type: 'prefix', prefix: 'slider', transform: () => createBlock('b-blocks/slider') }
+		],
 
-        to: [
-            {
-                type: 'block', blocks: ['csb/content-slider-block'], isMatch: attributes => {
-                    if (attributes) return true;
-                    return false;
-                },
-                transform: attributes => createBlock('csb/content-slider-block', attributes)
-            }
-        ]
-    },
+		to: [
+			{
+				type: 'block', blocks: ['csb/content-slider-block'], isMatch: attributes => {
+					if (attributes) return true;
+					return false;
+				},
+				transform: attributes => createBlock('csb/content-slider-block', attributes)
+			}
+		]
+	},
 
-    // Build In Functions
-    edit: Edit,
+	// Build In Functions
+	edit: Edit,
 
-    save: () => null
+	save: () => null
 });

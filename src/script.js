@@ -29,13 +29,13 @@ import './blocks/alert/script';
 
 
 // (function ($) {
-//     $(document).ready(function () {
-//         const scrollbarWidth = window.innerWidth - document.body.clientWidth;
+// 	$(document).ready(function () {
+// 		const scrollbarWidth = window.innerWidth - document.body.clientWidth;
 
-//         $('.alignfull').css({
-//             'width': `calc(100vw - ${scrollbarWidth}px)`,
-//             'max-width': `calc(100vw - ${scrollbarWidth}px)`,
-//             'margin': `0 calc(-50vw + 50% + ${scrollbarWidth / 2}px)`
-//         });
-//     });
+// 		$('.alignfull').css({
+// 			'width': `calc(100vw - ${scrollbarWidth}px)`,
+// 			'max-width': `calc(100vw - ${scrollbarWidth}px)`,
+// 			'margin': `0 calc(-50vw + 50% + ${scrollbarWidth / 2}px)`
+// 		});
+// 	});
 // })(jQuery);

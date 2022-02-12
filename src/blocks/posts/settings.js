@@ -19,331 +19,333 @@ import BtnGroup from '../../../../Components/BtnGroup';
 import options from '../../Const/options';
 const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders, pxUnit, emUnit, vhUnit } = options;
 const layouts = [
-    { label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
-    { label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
-    { label: __('Slider', 'b-blocks'), value: 'slider', icon: icons.sliderNoColor },
-    { label: __('Ticker', 'b-blocks'), value: 'ticker', icon: icons.ticker }
+	{ label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
+	{ label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
+	{ label: __('Slider', 'b-blocks'), value: 'slider', icon: icons.sliderNoColor },
+	{ label: __('Ticker', 'b-blocks'), value: 'ticker', icon: icons.ticker }
 ];
 const subLayouts = [
-    { label: __('Default', 'b-blocks'), value: 'default' },
-    { label: __('Title Meta', 'b-blocks'), value: 'title-meta' },
-    { label: __('Left Image', 'b-blocks'), value: 'left-image' },
-    { label: __('Right Image', 'b-blocks'), value: 'right-image' },
-    { label: __('Overlay Content', 'b-blocks'), value: 'overlay-content' },
-    { label: __('Overlay Content Hover', 'b-blocks'), value: 'overlay-content-hover' },
-    { label: __('Overlay Box', 'b-blocks'), value: 'overlay-box' },
+	{ label: __('Default', 'b-blocks'), value: 'default' },
+	{ label: __('Title Meta', 'b-blocks'), value: 'title-meta' },
+	{ label: __('Left Image', 'b-blocks'), value: 'left-image' },
+	{ label: __('Right Image', 'b-blocks'), value: 'right-image' },
+	{ label: __('Overlay Content', 'b-blocks'), value: 'overlay-content' },
+	{ label: __('Overlay Content Hover', 'b-blocks'), value: 'overlay-content-hover' },
+	{ label: __('Overlay Box', 'b-blocks'), value: 'overlay-box' },
 ];
 const categoriesPosition = [
-    { label: __('Content', 'b-blocks'), value: 'content' },
-    { label: __('Image', 'b-blocks'), value: 'image' }
+	{ label: __('Content', 'b-blocks'), value: 'content' },
+	{ label: __('Image', 'b-blocks'), value: 'image' }
 ];
 
 import { ExcerptLengthCtx } from './edit';
 
 const Settings = ({ settings, getPostTypes, categories }) => {
-    const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
-
-    const [device, setDevice] = useState('desktop');
-    const maxExcerptLength = useContext(ExcerptLengthCtx);
-
-    useEffect(() => {
-        if (('slider' === layout || 'ticker' === layout) && ('default' === subLayout || 'title-meta' === subLayout))
-            setAttributes({ subLayout: 'left-image', columns: { ...columns, desktop: 2 } })
-    }, [layout]);
-
-    return <>
-        <InspectorControls>
-            <TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
-                {'general' === tab.name && <>
-                    {/* Layouts Settings */}
-                    {posts && 0 !== posts.length && <PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
-                        <Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
-                        <BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
-
-                        <PanelRow className='mt10'>
-                            <Title mt='0' mb='0'>{__('Sub Layout:', 'b-blocks')}</Title>
-                            <SelectControl value={subLayout} onChange={val => {
-                                setAttributes({ subLayout: val });
-                                'default' === val || 'title-meta' === val || 'left-image' === val || 'right-image' === val ? setAttributes({
-                                    contentBG: { color: '#f4f2fc', styles: `background-color: #f4f2fc;` },
-                                    titleColor: '#4527a4',
-                                    metaCategoryIn: 'image',
-                                    metaTextColor: '#333',
-                                    metaLinkColor: '#8344c5',
-                                    metaIconColor: '#4527a4',
-                                    excerptColor: '#333',
-                                }) : 'overlay-content' === val || 'overlay-content-hover' === val || 'overlay-box' === val ? setAttributes({
-                                    contentBG: { color: '#000000b3', styles: `background-color: #000000b3;` },
-                                    titleColor: '#ccc0f0',
-                                    metaCategoryIn: 'content',
-                                    metaTextColor: '#fff',
-                                    metaLinkColor: '#e0d0f0',
-                                    metaIconColor: '#ccc0f0',
-                                    excerptColor: '#fff',
-                                }) : '';
-
-                                'left-image' === val || 'right-image' === val ? setAttributes({
-                                    columns: { ...columns, desktop: 2 }
-                                }) : setAttributes({
-                                    columns: { ...columns, desktop: 3 }
-                                });
-
-                                'overlay-box' === val ? setAttributes({
-                                    contentAlign: 'center'
-                                }) : setAttributes({
-                                    contentAlign: 'left'
-                                });
-                            }} options={'slider' === layout || 'ticker' === layout ? subLayouts.filter(l => l.value !== 'default' && l.value !== 'title-meta') : subLayouts} />
-                        </PanelRow>
-                        <small>{__('Some settings may change when layout and sub-layout will be changed.', 'b-blocks')}</small>
-
-                        {'ticker' !== layout && <>
-                            <PanelRow className='mt20'>
-                                <Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
-                                <BDevice device={device} onChange={val => setDevice(val)} />
-                            </PanelRow>
-                            <RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
-                        </>}
-
-                        {'ticker' !== layout && <>
-                            <Title>{__('Column Gap:', 'b-blocks')}</Title>
-                            <RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
-                        </>}
-
-                        {'slider' !== layout && <>
-                            <Title>{__('Row Gap:', 'b-blocks')}</Title>
-                            <RangeControl value={rowGap} onChange={val => setAttributes({ rowGap: val })} min={0} max={150} step={1} beforeIcon='arrow-down-alt' />
-                        </>}
-
-                        {'grid' === layout && <ToggleControl className='mt20' label={__('Enable Content Equal Height', 'b-blocks')} checked={isContentEqualHight} onChange={val => setAttributes({ isContentEqualHight: val })} />}
-
-                        {'slider' === layout && <UnitControl className='mt20' label={__('Slider Min Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit, emUnit, vhUnit]} />}
-                    </PanelBody>}
-
-
-                    {/* Posts Query */}
-                    <PanelBody className='bPlPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={posts && 0 !== posts.length ? false : true}>
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Post Type:', 'b-blocks')}</Title>
-                            <SelectControl value={postType} onChange={val => setAttributes({ postType: val })} options={getPostTypes} />
-                        </PanelRow>
-
-                        {'post' === postType && categories && 0 !== categories.length ? <>
-                            <Title>{__('Select Categories:', 'b-blocks')}</Title>
-                            {categories.map(cat => {
-                                const isInc = selectedCategories.includes(cat.id);
-
-                                return <CheckboxControl label={cat.name} key={cat.id} checked={isInc} onChange={val => setAttributes({ selectedCategories: val ? [...selectedCategories, cat.id] : selectedCategories.filter(id => id !== cat.id) })} />;
-                            })}
-                        </> : null}
-
-                        <Title>{__('Post Per Page:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show All Posts', 'b-blocks')} checked={isPostsPerPageAll} onChange={val => setAttributes({ isPostsPerPageAll: val })} />
-
-                        {false === isPostsPerPageAll && <RangeControl value={postsPerPage} onChange={val => setAttributes({ postsPerPage: val })} min={1} max={36} step={1} />}
-
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Post Order By:', 'b-blocks')}</Title>
-                            <SelectControl value={postsOrderBy} onChange={val => setAttributes({ postsOrderBy: val })} options={postsOrdersBy} />
-                        </PanelRow>
+	const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
+
+	const [device, setDevice] = useState('desktop');
+	const maxExcerptLength = useContext(ExcerptLengthCtx);
+
+	useEffect(() => {
+		if (('slider' === layout || 'ticker' === layout) && ('default' === subLayout || 'title-meta' === subLayout))
+			setAttributes({ subLayout: 'left-image', columns: { ...columns, desktop: 2 } })
+	}, [layout]);
+
+	const isPosts = posts?.length;
+
+	return <>
+		<InspectorControls>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+				{'general' === tab.name && <>
+					{/* Layouts Settings */}
+					<PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
+						<Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
+						<BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
+
+						<PanelRow className='mt10'>
+							<Title mt='0' mb='0'>{__('Sub Layout:', 'b-blocks')}</Title>
+							<SelectControl value={subLayout} onChange={val => {
+								setAttributes({ subLayout: val });
+								'default' === val || 'title-meta' === val || 'left-image' === val || 'right-image' === val ? setAttributes({
+									contentBG: { color: '#f4f2fc', styles: `background-color: #f4f2fc;` },
+									titleColor: '#4527a4',
+									metaCategoryIn: 'image',
+									metaTextColor: '#333',
+									metaLinkColor: '#8344c5',
+									metaIconColor: '#4527a4',
+									excerptColor: '#333',
+								}) : 'overlay-content' === val || 'overlay-content-hover' === val || 'overlay-box' === val ? setAttributes({
+									contentBG: { color: '#000000b3', styles: `background-color: #000000b3;` },
+									titleColor: '#ccc0f0',
+									metaCategoryIn: 'content',
+									metaTextColor: '#fff',
+									metaLinkColor: '#e0d0f0',
+									metaIconColor: '#ccc0f0',
+									excerptColor: '#fff',
+								}) : '';
+
+								'left-image' === val || 'right-image' === val ? setAttributes({
+									columns: { ...columns, desktop: 2 }
+								}) : setAttributes({
+									columns: { ...columns, desktop: 3 }
+								});
+
+								'overlay-box' === val ? setAttributes({
+									contentAlign: 'center'
+								}) : setAttributes({
+									contentAlign: 'left'
+								});
+							}} options={'slider' === layout || 'ticker' === layout ? subLayouts.filter(l => l.value !== 'default' && l.value !== 'title-meta') : subLayouts} />
+						</PanelRow>
+						<small>{__('Some settings may change when layout and sub-layout will be changed.', 'b-blocks')}</small>
+
+						{'ticker' !== layout && <>
+							<PanelRow className='mt20'>
+								<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+								<BDevice device={device} onChange={val => setDevice(val)} />
+							</PanelRow>
+							<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
+						</>}
+
+						{'ticker' !== layout && <>
+							<Title>{__('Column Gap:', 'b-blocks')}</Title>
+							<RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
+						</>}
+
+						{'slider' !== layout && <>
+							<Title>{__('Row Gap:', 'b-blocks')}</Title>
+							<RangeControl value={rowGap} onChange={val => setAttributes({ rowGap: val })} min={0} max={150} step={1} beforeIcon='arrow-down-alt' />
+						</>}
+
+						{'grid' === layout && <ToggleControl className='mt20' label={__('Enable Content Equal Height', 'b-blocks')} checked={isContentEqualHight} onChange={val => setAttributes({ isContentEqualHight: val })} />}
+
+						{'slider' === layout && <UnitControl className='mt20' label={__('Slider Min Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit, emUnit, vhUnit]} />}
+					</PanelBody>
+
+
+					{/* Posts Query */}
+					<PanelBody className='bPlPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
+						<PanelRow>
+							<Title mt='0' mb='0'>{__('Post Type:', 'b-blocks')}</Title>
+							<SelectControl value={postType} onChange={val => setAttributes({ postType: val })} options={getPostTypes} />
+						</PanelRow>
+
+						{'post' === postType && categories?.length ? <>
+							<Title>{__('Select Categories:', 'b-blocks')}</Title>
+							{categories.map(cat => {
+								const isInc = selectedCategories.includes(cat.id);
+
+								return <CheckboxControl label={cat.name} key={cat.id} checked={isInc} onChange={val => setAttributes({ selectedCategories: val ? [...selectedCategories, cat.id] : selectedCategories.filter(id => id !== cat.id) })} />;
+							})}
+						</> : null}
+
+						<Title>{__('Post Per Page:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show All Posts', 'b-blocks')} checked={isPostsPerPageAll} onChange={val => setAttributes({ isPostsPerPageAll: val })} />
+
+						{false === isPostsPerPageAll && <RangeControl value={postsPerPage} onChange={val => setAttributes({ postsPerPage: val })} min={1} max={36} step={1} />}
 
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Post Order:', 'b-blocks')}</Title>
-                            <SelectControl value={postsOrder} onChange={val => setAttributes({ postsOrder: val })} options={postsOrders} />
-                        </PanelRow>
-                    </PanelBody>
+						<PanelRow>
+							<Title mt='0' mb='0'>{__('Post Order By:', 'b-blocks')}</Title>
+							<SelectControl value={postsOrderBy} onChange={val => setAttributes({ postsOrderBy: val })} options={postsOrdersBy} />
+						</PanelRow>
 
+						<PanelRow>
+							<Title mt='0' mb='0'>{__('Post Order:', 'b-blocks')}</Title>
+							<SelectControl value={postsOrder} onChange={val => setAttributes({ postsOrder: val })} options={postsOrders} />
+						</PanelRow>
+					</PanelBody>
 
-                    {/* Elements Settings */}
-                    {posts && 0 !== posts.length && <PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
-                        {/*Feature Image */}
-                        <Title mt='0'>{__('Feature Image:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Feature Image', 'b-blocks')} checked={isFImg} onChange={val => setAttributes({ isFImg: val })} />
 
-                        {isFImg && <ToggleControl label={__('Enable Feature Image Link', 'b-blocks')} checked={isFImgLink} onChange={val => setAttributes({ isFImgLink: val })} />}
+					{/* Elements Settings */}
+					<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
+						{/*Feature Image */}
+						<Title mt='0'>{__('Feature Image:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Feature Image', 'b-blocks')} checked={isFImg} onChange={val => setAttributes({ isFImg: val })} />
 
+						{isFImg && <ToggleControl label={__('Enable Feature Image Link', 'b-blocks')} checked={isFImgLink} onChange={val => setAttributes({ isFImgLink: val })} />}
 
-                        {/* Title */}
-                        <Title>{__('Title:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
-                        {isTitle && <ToggleControl label={__('Enable Title Link', 'b-blocks')} checked={isTitleLink} onChange={val => setAttributes({ isTitleLink: val })} />}
+						{/* Title */}
+						<Title>{__('Title:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
+						{isTitle && <ToggleControl label={__('Enable Title Link', 'b-blocks')} checked={isTitleLink} onChange={val => setAttributes({ isTitleLink: val })} />}
 
-                        {/* Meta Data */}
-                        <Title>{__('Meta Data:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Meta Data', 'b-blocks')} checked={isMeta} onChange={val => setAttributes({ isMeta: val })} />
 
-                        {isMeta && <>
-                            <ToggleControl label={__('Show Author', 'b-blocks')} checked={isMetaAuthor} onChange={val => setAttributes({ isMetaAuthor: val })} />
+						{/* Meta Data */}
+						<Title>{__('Meta Data:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Meta Data', 'b-blocks')} checked={isMeta} onChange={val => setAttributes({ isMeta: val })} />
 
-                            <ToggleControl label={__('Show Date', 'b-blocks')} checked={isMetaDate} onChange={val => setAttributes({ isMetaDate: val })} />
+						{isMeta && <>
+							<ToggleControl label={__('Show Author', 'b-blocks')} checked={isMetaAuthor} onChange={val => setAttributes({ isMetaAuthor: val })} />
 
-                            <ToggleControl label={__('Show Category', 'b-blocks')} checked={isMetaCategory} onChange={val => setAttributes({ isMetaCategory: val })} />
+							<ToggleControl label={__('Show Date', 'b-blocks')} checked={isMetaDate} onChange={val => setAttributes({ isMetaDate: val })} />
 
-                            {isMetaCategory && <PanelRow>
-                                <Title mt='0' mb='0'>{__('Category In:', 'b-blocks')}</Title>
-                                <RadioControl selected={metaCategoryIn} onChange={val => setAttributes({ metaCategoryIn: val })} options={categoriesPosition} />
-                            </PanelRow>}
+							<ToggleControl label={__('Show Category', 'b-blocks')} checked={isMetaCategory} onChange={val => setAttributes({ isMetaCategory: val })} />
 
-                            <ToggleControl className='mt10' label={__('Show Comment', 'b-blocks')} checked={isMetaComment} onChange={val => setAttributes({ isMetaComment: val })} />
-                        </>}
+							{isMetaCategory && <PanelRow>
+								<Title mt='0' mb='0'>{__('Category In:', 'b-blocks')}</Title>
+								<RadioControl selected={metaCategoryIn} onChange={val => setAttributes({ metaCategoryIn: val })} options={categoriesPosition} />
+							</PanelRow>}
 
+							<ToggleControl className='mt10' label={__('Show Comment', 'b-blocks')} checked={isMetaComment} onChange={val => setAttributes({ isMetaComment: val })} />
+						</>}
 
-                        {/* Excerpt */}
-                        <Title>{__('Excerpt:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Excerpt', 'b-blocks')} checked={isExcerpt} onChange={val => setAttributes({ isExcerpt: val })} />
 
-                        {isExcerpt && <>
-                            <Title mt='0' mb='0'>{__('Excerpt Length:', 'b-blocks')}</Title>
-                            <RangeControl value={excerptLength} onChange={val => setAttributes({ excerptLength: val })} min={0} max={maxExcerptLength} step={1} />
-                            <small>{__('Excerpt max value will be your site default excerpt length', 'b-blocks')}</small>
-                        </>}
+						{/* Excerpt */}
+						<Title>{__('Excerpt:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Excerpt', 'b-blocks')} checked={isExcerpt} onChange={val => setAttributes({ isExcerpt: val })} />
 
+						{isExcerpt && <>
+							<Title mt='0' mb='0'>{__('Excerpt Length:', 'b-blocks')}</Title>
+							<RangeControl value={excerptLength} onChange={val => setAttributes({ excerptLength: val })} min={0} max={maxExcerptLength} step={1} />
+							<small>{__('Excerpt max value will be your site default excerpt length', 'b-blocks')}</small>
+						</>}
 
-                        {/* Read More */}
-                        <Title>{__('Read More:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Read More', 'b-blocks')} checked={isReadMore} onChange={val => setAttributes({ isReadMore: val })} />
 
-                        {isReadMore && <>
-                            <Title mt='0' mb='0'>{__('Read More Label:', 'b-blocks')}</Title>
-                            <TextControl value={readMoreLabel} onChange={val => setAttributes({ readMoreLabel: '' === val ? 'Read More' : val })} />
+						{/* Read More */}
+						<Title>{__('Read More:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Read More', 'b-blocks')} checked={isReadMore} onChange={val => setAttributes({ isReadMore: val })} />
 
-                            <ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
-                        </>}
-                    </PanelBody>}
+						{isReadMore && <>
+							<Title mt='0' mb='0'>{__('Read More Label:', 'b-blocks')}</Title>
+							<TextControl value={readMoreLabel} onChange={val => setAttributes({ readMoreLabel: '' === val ? 'Read More' : val })} />
 
+							<ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
+						</>}
+					</PanelBody>
 
-                    {/* Slider Settings */}
-                    {posts && 0 !== posts.length && 'slider' === layout && <PanelBody className='bPlPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
-                        <ToggleControl label={__('Enable Loop', 'b-blocks')} checked={sliderIsLoop} onChange={val => setAttributes({ sliderIsLoop: val })} />
 
-                        <ToggleControl label={__('Enable Touch Move', 'b-blocks')} checked={sliderIsTouchMove} onChange={val => setAttributes({ sliderIsTouchMove: val })} />
+					{/* Slider Settings */}
+					{'slider' === layout && <PanelBody className='bPlPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
+						<ToggleControl label={__('Enable Loop', 'b-blocks')} checked={sliderIsLoop} onChange={val => setAttributes({ sliderIsLoop: val })} />
 
-                        <ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={sliderIsAutoplay} onChange={val => setAttributes({ sliderIsAutoplay: val })} />
+						<ToggleControl label={__('Enable Touch Move', 'b-blocks')} checked={sliderIsTouchMove} onChange={val => setAttributes({ sliderIsTouchMove: val })} />
 
-                        <Title>{__('Speed & Delay (s):', 'b-blocks')}</Title>
-                        <RangeControl value={sliderSpeed} onChange={val => setAttributes({ sliderSpeed: val })} min={0} max={10} step={.05} />
-                        <small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
+						<ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={sliderIsAutoplay} onChange={val => setAttributes({ sliderIsAutoplay: val })} />
 
-                        <PanelRow className='mt20'>
-                            <Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
-                            <SelectControl value={sliderEffect} onChange={cng => setAttributes({ sliderEffect: cng })} options={sliderEffects} />
-                        </PanelRow>
-                        <small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
+						<Title>{__('Speed & Delay (s):', 'b-blocks')}</Title>
+						<RangeControl value={sliderSpeed} onChange={val => setAttributes({ sliderSpeed: val })} min={0} max={10} step={.05} />
+						<small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
 
-                        <Title>{__('Pagination:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Pagination', 'b-blocks')} checked={sliderIsPage} onChange={val => setAttributes({ sliderIsPage: val })} />
+						<PanelRow className='mt20'>
+							<Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
+							<SelectControl value={sliderEffect} onChange={cng => setAttributes({ sliderEffect: cng })} options={sliderEffects} />
+						</PanelRow>
+						<small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
 
-                        {sliderIsPage && <>
-                            <ToggleControl label={__('Enable Pagination Clickable', 'b-blocks')} checked={sliderIsPageClickable} onChange={val => setAttributes({ sliderIsPageClickable: val })} />
+						<Title>{__('Pagination:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Pagination', 'b-blocks')} checked={sliderIsPage} onChange={val => setAttributes({ sliderIsPage: val })} />
 
-                            <ToggleControl label={__('Enable Pagination Dynamic Bullets', 'b-blocks')} checked={sliderIsPageDynamic} onChange={val => setAttributes({ sliderIsPageDynamic: val })} />
-                        </>}
+						{sliderIsPage && <>
+							<ToggleControl label={__('Enable Pagination Clickable', 'b-blocks')} checked={sliderIsPageClickable} onChange={val => setAttributes({ sliderIsPageClickable: val })} />
 
-                        <Title>{__('Preview Next Button:', 'b-blocks')}</Title>
-                        <ToggleControl label={__('Show Preview Next Button', 'b-blocks')} checked={sliderIsPrevNext} onChange={val => setAttributes({ sliderIsPrevNext: val })} />
-                    </PanelBody>}
-                </>}
+							<ToggleControl label={__('Enable Pagination Dynamic Bullets', 'b-blocks')} checked={sliderIsPageDynamic} onChange={val => setAttributes({ sliderIsPageDynamic: val })} />
+						</>}
 
-                {'style' === tab.name && <>
-                    {/* Content Style */}
-                    {posts && 0 !== posts.length && <PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
-                            <BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
-                        </PanelRow>
+						<Title>{__('Preview Next Button:', 'b-blocks')}</Title>
+						<ToggleControl label={__('Show Preview Next Button', 'b-blocks')} checked={sliderIsPrevNext} onChange={val => setAttributes({ sliderIsPrevNext: val })} />
+					</PanelBody>}
+				</>}
 
-                        <Background label={__('Background', 'b-blocks')} background={contentBG} onChange={val => setAttributes({ contentBG: val })} defaults={{ color: '#f4f2fc' }} />
+				{'style' === tab.name && <>
+					{/* Content Style */}
+					{isPosts && <PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
+						<PanelRow>
+							<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
+							<BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
+						</PanelRow>
 
-                        <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={contentPadding} onChange={val => setAttributes({ contentPadding: val })} defaults={{ vertical: '20px', horizontal: '25px' }} />
+						<Background label={__('Background', 'b-blocks')} background={contentBG} onChange={val => setAttributes({ contentBG: val })} defaults={{ color: '#f4f2fc' }} />
 
-                        <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
-                    </PanelBody>}
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={contentPadding} onChange={val => setAttributes({ contentPadding: val })} defaults={{ vertical: '20px', horizontal: '25px' }} />
 
+						<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
+					</PanelBody>}
 
-                    {/* Slider Styles */}
-                    {posts && 0 !== posts.length && 'slider' === layout && <PanelBody className='bPlPanelBody' title={__('Slider Options Style', 'b-blocks')} initialOpen={false}>
-                        {sliderIsPage && <>
-                            <BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={sliderPageColor} onChange={val => setAttributes({ sliderPageColor: val })} defaultColor='#4527a4' />
 
-                            <UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={sliderPageWidth} onChange={val => setAttributes({ sliderPageWidth: val })} units={[pxUnit, emUnit]} />
+					{/* Slider Styles */}
+					{isPosts && 'slider' === layout && <PanelBody className='bPlPanelBody' title={__('Slider Options Style', 'b-blocks')} initialOpen={false}>
+						{sliderIsPage && <>
+							<BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={sliderPageColor} onChange={val => setAttributes({ sliderPageColor: val })} defaultColor='#4527a4' />
 
-                            <UnitControl className='mt20' label={__('Pagination Height:', 'b-blocks')} labelPosition='left' value={sliderPageHeight} onChange={val => setAttributes({ sliderPageHeight: val })} units={[pxUnit, emUnit]} />
+							<UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={sliderPageWidth} onChange={val => setAttributes({ sliderPageWidth: val })} units={[pxUnit, emUnit]} />
 
-                            <BorderControl label={__('Pagination Border:', 'b-blocks')} border={sliderPageBorder} onChange={val => setAttributes({ sliderPageBorder: val })} defaults={{ radius: '50%' }} />
-                        </>}
+							<UnitControl className='mt20' label={__('Pagination Height:', 'b-blocks')} labelPosition='left' value={sliderPageHeight} onChange={val => setAttributes({ sliderPageHeight: val })} units={[pxUnit, emUnit]} />
 
-                        {sliderIsPrevNext && <BColor label={__('Preview Next Button Color:', 'b-blocks')} value={sliderPrevNextColor} onChange={val => setAttributes({ sliderPrevNextColor: val })} defaultColor='#4527a4' />}
-                    </PanelBody>}
+							<BorderControl label={__('Pagination Border:', 'b-blocks')} border={sliderPageBorder} onChange={val => setAttributes({ sliderPageBorder: val })} defaults={{ radius: '50%' }} />
+						</>}
 
+						{sliderIsPrevNext && <BColor label={__('Preview Next Button Color:', 'b-blocks')} value={sliderPrevNextColor} onChange={val => setAttributes({ sliderPrevNextColor: val })} defaultColor='#4527a4' />}
+					</PanelBody>}
 
-                    {/* Title Styles */}
-                    {posts && 0 !== posts.length && isTitle && <PanelBody className='bPlPanelBody' title={__('Title Styles', 'b-blocks')} initialOpen={false}>
-                        <Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
-                        <BColor label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
+					{/* Title Styles */}
+					{isPosts && isTitle && <PanelBody className='bPlPanelBody' title={__('Title Styles', 'b-blocks')} initialOpen={false}>
+						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
-                        <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
-                    </PanelBody>}
+						<BColor label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+					</PanelBody>}
 
-                    {/* Meta Data Styles */}
-                    {posts && 0 !== posts.length && isMeta && <PanelBody className='bPlPanelBody' title={__('Meta Data Styles', 'b-blocks')} initialOpen={false}>
-                        <Typography typography={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: 13, textTransform: 'uppercase' }} />
 
-                        <BColor label={__('Text Color:', 'b-blocks')} value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
+					{/* Meta Data Styles */}
+					{isPosts && isMeta && <PanelBody className='bPlPanelBody' title={__('Meta Data Styles', 'b-blocks')} initialOpen={false}>
+						<Typography typography={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: 13, textTransform: 'uppercase' }} />
 
-                        <BColor label={__('Link Color:', 'b-blocks')} value={metaLinkColor} onChange={val => setAttributes({ metaLinkColor: val })} defaultColor='#8344c5' />
+						<BColor label={__('Text Color:', 'b-blocks')} value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
 
-                        <BColor label={__('Icon Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
+						<BColor label={__('Link Color:', 'b-blocks')} value={metaLinkColor} onChange={val => setAttributes({ metaLinkColor: val })} defaultColor='#8344c5' />
 
-                        <ColorsControl label={__('Category Colors On Image:', 'b-blocks')} colors={metaColorsOnImage} onChange={val => setAttributes({ metaColorsOnImage: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<BColor label={__('Icon Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
 
-                        <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={metaMargin} onChange={val => setAttributes({ metaMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
-                    </PanelBody>}
+						<ColorsControl label={__('Category Colors On Image:', 'b-blocks')} colors={metaColorsOnImage} onChange={val => setAttributes({ metaColorsOnImage: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={metaMargin} onChange={val => setAttributes({ metaMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+					</PanelBody>}
 
-                    {/* Excerpt Styles */}
-                    {posts && 0 !== posts.length && isExcerpt && <PanelBody className='bPlPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
-                            <BtnGroup value={excerptAlign} onChange={val => setAttributes({ excerptAlign: val })} options={aligns} isIcon={true} />
-                        </PanelRow>
 
-                        <Typography typography={excerptTypo} onChange={val => setAttributes({ excerptTypo: val })} defaults={{ fontSize: 15 }} />
+					{/* Excerpt Styles */}
+					{isPosts && isExcerpt && <PanelBody className='bPlPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
+						<PanelRow>
+							<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
+							<BtnGroup value={excerptAlign} onChange={val => setAttributes({ excerptAlign: val })} options={aligns} isIcon={true} />
+						</PanelRow>
 
-                        <BColor label={__('Color:', 'b-blocks')} value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
+						<Typography typography={excerptTypo} onChange={val => setAttributes({ excerptTypo: val })} defaults={{ fontSize: 15 }} />
 
-                        <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={excerptMargin} onChange={val => setAttributes({ excerptMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
-                    </PanelBody>}
+						<BColor label={__('Color:', 'b-blocks')} value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
 
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={excerptMargin} onChange={val => setAttributes({ excerptMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+					</PanelBody>}
 
-                    {/* Read More Settings */}
-                    {posts && 0 !== posts.length && isReadMore && <PanelBody className='bPlPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
-                        <PanelRow>
-                            <Title mt='0' mb='0'>{__('Button Align:', 'b-blocks')}</Title>
-                            <BtnGroup value={readMoreAlign} onChange={val => setAttributes({ readMoreAlign: val })} options={aligns.filter(a => a.value !== 'justify')} isIcon={true} />
-                        </PanelRow>
 
-                        <Typography typography={readMoreTypo} onChange={val => setAttributes({ readMoreTypo: val })} defaults={{ fontSize: 14, textTransform: 'uppercase', fontWeight: 600 }} />
+					{/* Read More Settings */}
+					{isPosts && isReadMore && <PanelBody className='bPlPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
+						<PanelRow>
+							<Title mt='0' mb='0'>{__('Button Align:', 'b-blocks')}</Title>
+							<BtnGroup value={readMoreAlign} onChange={val => setAttributes({ readMoreAlign: val })} options={aligns.filter(a => a.value !== 'justify')} isIcon={true} />
+						</PanelRow>
 
-                        <ColorsControl colors={readMoreColors} onChange={val => setAttributes({ readMoreColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+						<Typography typography={readMoreTypo} onChange={val => setAttributes({ readMoreTypo: val })} defaults={{ fontSize: 14, textTransform: 'uppercase', fontWeight: 600 }} />
 
-                        <ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={readMoreHovColors} onChange={val => setAttributes({ readMoreHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<ColorsControl colors={readMoreColors} onChange={val => setAttributes({ readMoreColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
 
-                        <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={readMorePadding} onChange={val => setAttributes({ readMorePadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+						<ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={readMoreHovColors} onChange={val => setAttributes({ readMoreHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-                        <BorderControl label={__('Border:', 'b-blocks')} border={readMoreBorder} onChange={val => setAttributes({ readMoreBorder: val })} defaults={{ radius: '3px' }} />
-                    </PanelBody>}
-                </>}
-            </>}</TabPanel>
-        </InspectorControls>
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={readMorePadding} onChange={val => setAttributes({ readMorePadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
 
+						<BorderControl label={__('Border:', 'b-blocks')} border={readMoreBorder} onChange={val => setAttributes({ readMoreBorder: val })} defaults={{ radius: '3px' }} />
+					</PanelBody>}
+				</>}
+			</>}</TabPanel>
+		</InspectorControls>
 
-        <BlockControls>
-            <AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
-        </BlockControls>
-    </>;
+
+		<BlockControls>
+			<AlignmentToolbar value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} />
+		</BlockControls>
+	</>;
 };
 export default Settings;

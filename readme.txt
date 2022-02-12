@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 5.9
-Stable tag: 1.5.9
+Stable tag: 1.6.0
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -17,6 +17,15 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 
 **[Demos](https://links.bplugins.com/b-blocks)**
+
+
+=== How to use? ===
+- Install the B Blocks plugin
+- Add the one or more blocks from block category called "B Blocks" in Gutenberg editor.
+- You can change block settings from the right side settings sidebar.
+- Enjoy!
+
+* For installation help click on the Installation Tab
 
 
 = Features =
@@ -77,15 +86,6 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 - **Animated Text**: Apply animation on any text.
 
 - **Alert**: Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
-
-
-= How to use =
-- First install the B Blocks plugin
-- Add the one or more blocks from block category called "B Blocks" in Gutenberg editor.
-- You can change block settings from the right side settings sidebar.
-- Enjoy!
-
-* For installation help click on Installation Tab
 
 
 = Feedback =
@@ -186,6 +186,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.6.0 =
+* Update Posts and Slider blocks
+
 = 1.5.9 =
 * Gradient Picker fixing
 * Update Chart, Posts, Slider blocks
@@ -241,6 +244,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.6.0 =
+* Update Posts and Slider blocks
 
 = 1.5.9 =
 * Gradient Picker fixing

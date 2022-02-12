@@ -3,141 +3,141 @@ $secondaryColor: #8344c5;
 
 // Loading
 .bBlocksLoading{
-    color: $primaryColor !important;
-    font-size: 21px !important;
-    font-weight: bold !important;
-    display: flex;
-    align-items: center;
+	color: $primaryColor !important;
+	font-size: 21px !important;
+	font-weight: bold !important;
+	display: flex;
+	align-items: center;
 
-    .components-spinner{
-        margin-top: 0;
-        color: $primaryColor;
-        background-color: $primaryColor;
-    }
+	.components-spinner{
+		margin-top: 0;
+		color: $primaryColor;
+		background-color: $primaryColor;
+	}
 }
 
 .bBlocksNowEditing{
-    outline: 2px solid $primaryColor;
+	outline: 2px solid $primaryColor;
 }
 
 // Panel Body
 .bPlPanelBody, .bPlDropdownPopover .components-popover__content{
-    // Add or remove Items
-    &.addRemoveItems{
-        // .editItem{
-        //     .removeItem{
-        //         color: red;
-        //         font-size: 15px;
-        //         font-weight: 700;
-                
-        //         .dashicon{
-        //             margin-right: 8px;
-        //             font-size: 23px;
-        //         }
-        //     }
-        // }
+	// Add or remove Items
+	&.addRemoveItems{
+		// .editItem{
+		// 	.removeItem{
+		// 		color: red;
+		// 		font-size: 15px;
+		// 		font-weight: 700;
+				
+		// 		.dashicon{
+		// 			margin-right: 8px;
+		// 			font-size: 23px;
+		// 		}
+		// 	}
+		// }
 
-        .addItem{
-            text-align: center;
-            background: $primaryColor;
+		.addItem{
+			text-align: center;
+			background: $primaryColor;
 
-            button{
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                color: #fff;
-                font-size: 15px;
-                font-weight: 700;
+			button{
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				color: #fff;
+				font-size: 15px;
+				font-weight: 700;
 
-                &:focus{
-                    box-shadow: none;
-                }
-                &:active{
-                    color: #fff;
-                }
+				&:focus{
+					box-shadow: none;
+				}
+				&:active{
+					color: #fff;
+				}
 
-                .dashicon{
-                    margin-top: 5px;
-                    margin-right: 5px;
-                }
-            }
-        }
+				.dashicon{
+					margin-top: 5px;
+					margin-right: 5px;
+				}
+			}
+		}
 
-        .itemAction{
-            .removeItem, .duplicateItem{
-                color: #fff;
-                font-size: 14px;
-                font-weight: 700;
-                padding: 5px 10px;
+		.itemAction{
+			.removeItem, .duplicateItem{
+				color: #fff;
+				font-size: 14px;
+				font-weight: 700;
+				padding: 5px 10px;
 
-                .dashicon, svg{
-                    margin-right: 5px;
-                }
-            }
+				.dashicon, svg{
+					margin-right: 5px;
+				}
+			}
 
-            .removeItem{
-                background-color: red;
-            }
-            .duplicateItem{
-                background-color: $primaryColor;
-            }
-        }
-    }
+			.removeItem{
+				background-color: red;
+			}
+			.duplicateItem{
+				background-color: $primaryColor;
+			}
+		}
+	}
 
-    &.help{
-        .helpItem{
-            text-align: center;
-            background: $primaryColor;
-            padding: 12px 0;
-    
-            &:not(:first-child){
-                margin-top: 15px;
-            }
-    
-            a{
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                color: #fff;
-                font-size: 15px;
-                font-weight: 700;
-                text-decoration: none;
-    
-                &:focus{
-                    box-shadow: none;
-                }
-                &:active{
-                    color: #fff;
-                }
-    
-                .dashicon{
-                    margin-right: 5px;
-                }
-            }
-        }
-    }
+	&.help{
+		.helpItem{
+			text-align: center;
+			background: $primaryColor;
+			padding: 12px 0;
+	
+			&:not(:first-child){
+				margin-top: 15px;
+			}
+	
+			a{
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				color: #fff;
+				font-size: 15px;
+				font-weight: 700;
+				text-decoration: none;
+	
+				&:focus{
+					box-shadow: none;
+				}
+				&:active{
+					color: #fff;
+				}
+	
+				.dashicon{
+					margin-right: 5px;
+				}
+			}
+		}
+	}
 
-    // Spinner
-    .components-spinner{
-        background-color: $primaryColor !important;
-    }
+	// Spinner
+	.components-spinner{
+		background-color: $primaryColor !important;
+	}
 }
 
 // Buttons
 // Inserter
 .block-editor-inserter, .block-list-appender, .block-editor-block-list__insertion-point-inserter{
-    button{
-        background-color: transparent !important;
+	button{
+		background-color: transparent !important;
 
-        svg{
-            fill: $primaryColor;
-            width: 20px !important;
-            height: 20px;
-            background-color: transparent !important;
-            border: 2px solid $primaryColor;
-            border-radius: 50% !important;
-        }
-    }
+		svg{
+			fill: $primaryColor;
+			width: 20px !important;
+			height: 20px;
+			background-color: transparent !important;
+			border: 2px solid $primaryColor;
+			border-radius: 50% !important;
+		}
+	}
 }
 
 
@@ -145,98 +145,98 @@ $secondaryColor: #8344c5;
 // Older Components
 // Size Type
 .bBlocksSizeType{
-    margin: 0;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px;
+	margin: 0;
+	text-align: right;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 5px;
 }
 .bBlocksSizeType button{
-    box-shadow: none!important;
-    outline: 0;
+	box-shadow: none!important;
+	outline: 0;
 }
 
 // Font Size Picker
 .components-font-size-picker__controls{
-    display: grid;
-    grid-template-columns: 1.7fr 1fr 1fr;
-    margin-bottom: 0;
+	display: grid;
+	grid-template-columns: 1.7fr 1fr 1fr;
+	margin-bottom: 0;
 
-    .components-font-size-picker__number-container{
-        margin-right: 8px;
-        
-        .components-font-size-picker__number{
-            margin: 0;
-        }
-    }
+	.components-font-size-picker__number-container{
+		margin-right: 8px;
+		
+		.components-font-size-picker__number{
+			margin: 0;
+		}
+	}
 }
 
 
 // Older Codes
 // Modal
 .modal-backdrop{
-    z-index: -1!important;
+	z-index: -1!important;
 }
 
 .b_blocks_close_modal_btn{
-    color: $primaryColor!important;
+	color: $primaryColor!important;
 
-    svg{
-        width: 26px;
-        height: 26px;
-    }
+	svg{
+		width: 26px;
+		height: 26px;
+	}
 }
 
 .b_blocks_btn_text_control{
-    position: absolute;
-    bottom: -33px;
-    z-index: 100;
+	position: absolute;
+	bottom: -33px;
+	z-index: 100;
 
-    input{
-        width: 350px!important;
-        padding: 8px 15px!important;
-        border-radius: 3px!important;
-        color: #000!important;
-    }
+	input{
+		width: 350px!important;
+		padding: 8px 15px!important;
+		border-radius: 3px!important;
+		color: #000!important;
+	}
 }
 
 // Media Button
 .b_blocks_media_upload{
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    width: fit-content;
-    z-index: 100;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 5px;
+	width: fit-content;
+	z-index: 100;
 }
 .b_blocks_media_control{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(256, 256, 256, .8);
-    padding: 0 10px;
-    border-radius: 3px;
-    width: max-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(256, 256, 256, .8);
+	padding: 0 10px;
+	border-radius: 3px;
+	width: max-content;
 
-    button{
-        color: $primaryColor;
-        font-weight: bold;
-    }
+	button{
+		color: $primaryColor;
+		font-weight: bold;
+	}
 }
 
 // Add Item
 .b_blocks_add_item{
-    position: absolute;
-    bottom: -25px;
-    z-index: 100;
+	position: absolute;
+	bottom: -25px;
+	z-index: 100;
 
-    button{
-        font-size: 18px!important;
-        color: #fff!important;
-        background-color: $primaryColor!important;
-        padding: 20px!important;
-        border-radius: 5px;
-    }
+	button{
+		font-size: 18px!important;
+		color: #fff!important;
+		background-color: $primaryColor!important;
+		padding: 20px!important;
+		border-radius: 5px;
+	}
 }

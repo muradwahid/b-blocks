@@ -1,12 +1,12 @@
 .bBlocksNoPosts{
-    color: red;
-    font-size: 20px;
-    text-align: center;
+	color: red;
+	font-size: 20px;
+	text-align: center;
 }
 
 // Posts
 .wp-block-b-blocks-posts.bBlocksPosts{
-    >.bBlocksSliderPosts, >.bBlocksTickerPosts{
-        display: none;
-    }
+	>.bBlocksSliderPosts, >.bBlocksTickerPosts{
+		display: none;
+	}
 }
