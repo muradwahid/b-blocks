@@ -11,10 +11,10 @@ import icons from '../../Const/icons';
 import metadata from '../../../inc/image-gallery/block.json';
 
 registerBlockType(metadata, {
-    icon: icons.gallery,
+	icon: icons.gallery,
 
-    // Build In Functions
-    edit: Edit,
+	// Build In Functions
+	edit: Edit,
 
-    save: () => null
+	save: () => null
 });

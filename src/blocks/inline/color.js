@@ -10,50 +10,50 @@ const { colors } = options;
 
 
 const allOptions = [
-    // { name: 'color', title: __('Inline Color', 'b-blocks') },
-    { name: 'background-color', title: __('Inline Background Color', 'b-blocks') }
+	// { name: 'color', title: __('Inline Color', 'b-blocks') },
+	{ name: 'background-color', title: __('Inline Background Color', 'b-blocks') }
 ];
 
 allOptions.forEach(({ name, title }) => {
-    const type = `b-blocks/${name}`;
+	const type = `b-blocks/${name}`;
 
-    registerFormatType(type, {
-        title,
-        tagName: 'span',
-        className: `b_blocks_${name}`,
+	registerFormatType(type, {
+		title,
+		tagName: 'span',
+		className: `b_blocks_${name}`,
 
-        attributes: {
-            style: 'style'
-        },
+		attributes: {
+			style: 'style'
+		},
 
-        edit({ isActive, value, onChange }) {
-            let activeColor;
+		edit({ isActive, value, onChange }) {
+			let activeColor;
 
-            if (isActive) {
-                const activeFormat = getActiveFormat(value, type)
-                const style = activeFormat.attributes.style
+			if (isActive) {
+				const activeFormat = getActiveFormat(value, type)
+				const style = activeFormat.attributes.style
 
-                activeColor = style.replace(new RegExp(`^${name}:\\s*`), '');
-            }
+				activeColor = style.replace(new RegExp(`^${name}:\\s*`), '');
+			}
 
 
-            return (
-                <InspectorControls>
-                    <PanelBody className='bBlocksPanelBody' icon='admin-customizer' title={title} initialOpen={false}>
-                        <ColorPalette value={activeColor} onChange={color => {
-                            if (color) {
-                                onChange(applyFormat(value, {
-                                    type,
-                                    attributes: { style: `${name}:${color}` }
-                                }))
-                                return
-                            }
+			return (
+				<InspectorControls>
+					<PanelBody className='bBlocksPanelBody' icon='admin-customizer' title={title} initialOpen={false}>
+						<ColorPalette value={activeColor} onChange={color => {
+							if (color) {
+								onChange(applyFormat(value, {
+									type,
+									attributes: { style: `${name}:${color}` }
+								}))
+								return
+							}
 
-                            onChange(removeFormat(value, type));
-                        }} colors={colors} />
-                    </PanelBody>
-                </InspectorControls>
-            );
-        }
-    });
+							onChange(removeFormat(value, type));
+						}} colors={colors} />
+					</PanelBody>
+				</InspectorControls>
+			);
+		}
+	});
 });

@@ -155,7 +155,10 @@ const Edit = props => {
 		{!posts ? <Loading /> : posts?.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				@import url(${titleTypo?.googleFontLink || 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'}); @import url(${metaTypo?.googleFontLink}); @import url(${excerptTypo?.googleFontLink}); @import url(${readMoreTypo?.googleFontLink});
+				@import url(${titleTypo?.googleFontLink || 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'});
+				${metaTypo?.googleFontLink ? `@import url(${metaTypo?.googleFontLink})` : ''}
+				${excerptTypo?.googleFontLink ? `@import url(${excerptTypo?.googleFontLink})` : ''}
+				${readMoreTypo?.googleFontLink ? `@import url(${readMoreTypo?.googleFontLink})` : ''}
 
 				#bBlocksPosts-${clientId} .bBlocksPost{
 					margin-bottom: ${'masonry' === layout ? `${rowGap}px` : '0px'};

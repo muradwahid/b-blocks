@@ -21,7 +21,7 @@ const { generalStyleTabs, sliderEffects, pxUnit, perUnit, emUnit, vhUnit } = opt
 import icons from '../../Const/icons';
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isAutoplay, speed, effect, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, btnTypo, btnPadding, btnBorder } = attributes;
+	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isAutoplay, speed, effect, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, linkTarget, btnTypo, btnPadding, btnBorder } = attributes;
 
 	const setActiveIndex = useContext(IndexContext);
 	const [device, setDevice] = useState('desktop');
@@ -178,7 +178,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<PanelBody className='bPlPanelBody' title={__('Slide Title', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
-						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
+						{isTitle && <Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />}
 					</PanelBody>
 
 
@@ -186,7 +186,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<PanelBody className='bPlPanelBody' title={__('Slide Description', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-						<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
+						{isDesc && <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />}
 					</PanelBody>
 
 
@@ -194,11 +194,15 @@ const Settings = ({ attributes, setAttributes }) => {
 					<PanelBody className='bPlPanelBody' title={__('Slide Button', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Button', 'b-blocks')} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
-						<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
+						{isBtn && <>
+							<ToggleControl label={__('Open link in new tab', 'content-slider-block')} checked={'_blank' === linkTarget ? true : false} onChange={val => setAttributes({ linkTarget: val ? '_blank' : '' })} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+							<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
-						<BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
+							<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+
+							<BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '3px' }} />
+						</>}
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

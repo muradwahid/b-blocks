@@ -101,7 +101,7 @@
 			}
 		},
 		"columnGap": {
-			"type": "string",
+			"type": "number",
 			"default": 15
 		},
 		"sliderWidth": {
@@ -197,6 +197,10 @@
 		"isBtn": {
 			"type": "boolean",
 			"default": true
+		},
+		"linkTarget": {
+			"type": "string",
+			"default": "_blank"
 		},
 		"btnTypo": {
 			"type": "object",

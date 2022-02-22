@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.6.0
+ * Version: 1.6.1
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.0' );
+define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.1' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -112,7 +112,7 @@ class BBlocks{
 
 	// Enqueue Block Editor Assets
 	function enqueueBlockEditorAssets(){
-        wp_enqueue_script( 'jqueryUI', B_BLOCKS_ASSETS_DIR . 'js/jquery-ui.min.js', [], '1.13.0', true );
+		wp_enqueue_script( 'jqueryUI', B_BLOCKS_ASSETS_DIR . 'js/jquery-ui.min.js', [], '1.13.0', true );
 	}
 
 	// WP enqueue scripts

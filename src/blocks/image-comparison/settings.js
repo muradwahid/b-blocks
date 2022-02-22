@@ -12,86 +12,86 @@ import { ImageHolderControl, ImageEditControl, ChangeImageData } from '../../../
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit, vwUnit } = options;
 const beforeAfterImgTab = [
-    { name: 'before-img', title: __('Before Img', 'b-blocks') },
-    { name: 'after-img', title: __('After Img', 'b-blocks') }
+	{ name: 'before-img', title: __('Before Img', 'b-blocks') },
+	{ name: 'after-img', title: __('After Img', 'b-blocks') }
 ];
 
 const Settings = ({ settings }) => {
-    const { attributes: { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, labelTypo, labelColors, labelPadding, isCap, capTypo, capColors, capPadding }, setAttributes } = settings;
+	const { attributes: { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, labelTypo, labelColors, labelPadding, isCap, capTypo, capColors, capPadding }, setAttributes } = settings;
 
-    // Functions
-    const swapImages = () => {
-        const beforeImgHold = { ...beforeImg }
-        const afterImgHold = { ...afterImg }
-        setAttributes({ beforeImg: { ...afterImgHold }, afterImg: { ...beforeImgHold } });
-    }
+	// Functions
+	const swapImages = () => {
+		const beforeImgHold = { ...beforeImg }
+		const afterImgHold = { ...afterImg }
+		setAttributes({ beforeImg: { ...afterImgHold }, afterImg: { ...beforeImgHold } });
+	}
 
-    return <>
-        <InspectorControls>
-            <Title mt='0' mb='0'></Title> {/* Just use the component */}
+	return <>
+		<InspectorControls>
+			<Title mt='0' mb='0'></Title> {/* Just use the component */}
 
-            <PanelBody className='bPlPanelBody' title={__('Comparison Settings', 'b-blocks')}>
-                {/* Width */}
-                <UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, vwUnit]} />
+			<PanelBody className='bPlPanelBody' title={__('Comparison Settings', 'b-blocks')}>
+				{/* Width */}
+				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, vwUnit]} />
 
-                {/* Border */}
-                <BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
+				{/* Border */}
+				<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
 
-                <TabPanel className='bPlTabPanel mt20' activeClass='activeTab' tabs={beforeAfterImgTab}>{tab => <>
-                    {'before-img' == tab.name && <>
-                        <ImageHolderControl label={__('', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-                        <ChangeImageData className='mt20' img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-                    </>}
+				<TabPanel className='bPlTabPanel mt20' activeClass='activeTab' tabs={beforeAfterImgTab}>{tab => <>
+					{'before-img' == tab.name && <>
+						<ImageHolderControl label={__('', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+						<ChangeImageData className='mt20' img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+					</>}
 
-                    {'after-img' == tab.name && <>
-                        <ImageHolderControl label={__('', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
-                        <ChangeImageData className='mt20' img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
-                    </>}
-                </>}</TabPanel>
+					{'after-img' == tab.name && <>
+						<ImageHolderControl label={__('', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+						<ChangeImageData className='mt20' img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+					</>}
+				</>}</TabPanel>
 
-                <ToggleControl className='mt20' label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
-            </PanelBody>
+				<ToggleControl className='mt20' label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
+			</PanelBody>
 
-            <PanelBody className='bPlPanelBody' title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
+			<PanelBody className='bPlPanelBody' title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
+				<ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
-                {isLabel && <>
-                    {/* Typography */}
-                    <Typography typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 15 }} />
+				{isLabel && <>
+					{/* Typography */}
+					<Typography typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 15 }} />
 
-                    <ColorsControl colors={labelColors} onChange={val => setAttributes({ labelColors: val })} defaults={{ color: '#fff', bg: '#00000080' }} />
+					<ColorsControl colors={labelColors} onChange={val => setAttributes({ labelColors: val })} defaults={{ color: '#fff', bg: '#00000080' }} />
 
-                    {/* Padding */}
-                    <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={labelPadding} onChange={val => setAttributes({ labelPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
-                </>}
-            </PanelBody>
+					{/* Padding */}
+					<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={labelPadding} onChange={val => setAttributes({ labelPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
+				</>}
+			</PanelBody>
 
-            <PanelBody className='bPlPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
-                <ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
+			<PanelBody className='bPlPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
+				<ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
-                {isCap && <>
-                    {/* Typography */}
-                    <Typography typography={capTypo} onChange={val => setAttributes({ capTypo: val })} defaults={{ fontSize: 14 }} />
+				{isCap && <>
+					{/* Typography */}
+					<Typography typography={capTypo} onChange={val => setAttributes({ capTypo: val })} defaults={{ fontSize: 14 }} />
 
-                    <ColorsControl colors={capColors} onChange={val => setAttributes({ capColors: val })} defaults={{ color: '#333', bg: '#f4f4f4' }} />
+					<ColorsControl colors={capColors} onChange={val => setAttributes({ capColors: val })} defaults={{ color: '#333', bg: '#f4f4f4' }} />
 
-                    {/* Padding */}
-                    <SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={capPadding} onChange={val => setAttributes({ capPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
-                </>}
-            </PanelBody>
-        </InspectorControls>
+					{/* Padding */}
+					<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={capPadding} onChange={val => setAttributes({ capPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
+				</>}
+			</PanelBody>
+		</InspectorControls>
 
 
-        <BlockControls>
-            <ImageEditControl label={__('Edit Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-            <ImageEditControl label={__('Edit After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+		<BlockControls>
+			<ImageEditControl label={__('Edit Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+			<ImageEditControl label={__('Edit After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
-            <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
-                { title: __('Image Comparison in left', 'b-blocks'), align: 'left', icon: 'align-left' },
-                { title: __('Image Comparison in center', 'b-blocks'), align: 'center', icon: 'align-center' },
-                { title: __('Image Comparison in right', 'b-blocks'), align: 'right', icon: 'align-right' }
-            ]} />
-        </BlockControls>
-    </>;
+			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
+				{ title: __('Image Comparison in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+				{ title: __('Image Comparison in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+				{ title: __('Image Comparison in right', 'b-blocks'), align: 'right', icon: 'align-right' }
+			]} />
+		</BlockControls>
+	</>;
 };
 export default Settings;

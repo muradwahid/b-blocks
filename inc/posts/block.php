@@ -124,9 +124,9 @@ class BBlocksPosts extends BBlocks{
 		<div class='wp-block-b-blocks-posts bBlocksPosts <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				@import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ); ?> );
-				@import url( <?php echo esc_url( $metaTypo['googleFontLink'] ?? '' ); ?> );
-				@import url( <?php echo esc_url( $excerptTypo['googleFontLink'] ?? '' ); ?> );
-				@import url( <?php echo esc_url( $readMoreTypo['googleFontLink'] ?? '' ); ?> );
+				<?php echo !empty( $metaTypo['googleFontLink'] ) ? "@import url(". esc_url( $metaTypo['googleFontLink'] ) .");" : ''; ?>
+				<?php echo !empty( $excerptTypo['googleFontLink'] ) ? "@import url(". esc_url( $excerptTypo['googleFontLink'] ) .");" : ''; ?>
+				<?php echo !empty( $readMoreTypo['googleFontLink'] ) ? "@import url(". esc_url( $readMoreTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo wp_kses( $postsStyles::renderStyle(), [] ); ?>
 
 				<?php foreach ( $posts as $post ) {

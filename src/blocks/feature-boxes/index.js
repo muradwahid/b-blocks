@@ -11,10 +11,10 @@ import icons from '../../Const/icons';
 import metadata from '../../../inc/feature-boxes/block.json';
 
 registerBlockType(metadata, {
-    icon: icons.featureBox,
+	icon: icons.featureBox,
 
-    // Build In Functions
-    edit: Edit,
+	// Build In Functions
+	edit: Edit,
 
-    save: () => null
+	save: () => null
 });

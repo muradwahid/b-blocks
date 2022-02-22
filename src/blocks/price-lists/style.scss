@@ -1,54 +1,54 @@
 .wp-block-b-blocks-price-lists .bBlocksPriceLists{
-    display: grid;
+	display: grid;
 
-    &.horizontal{
-        .bBlocksPrice{
-            display: flex;
-            align-items: center;
+	&.horizontal{
+		.bBlocksPrice{
+			display: flex;
+			align-items: center;
 
-            .productImage{
-                width: 40%;
-            }
+			.productImage{
+				width: 40%;
+			}
 
-            .productDetails{
-                padding: 0 20px 0 0;
-            }
-        }
-    }
+			.productDetails{
+				padding: 0 20px 0 0;
+			}
+		}
+	}
 
-    &.vertical{
-        .bBlocksPrice{
-            .productDetails{
-                padding: 0 20px;
-            }
+	&.vertical{
+		.bBlocksPrice{
+			.productDetails{
+				padding: 0 20px;
+			}
 
-            .productSeparator{
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-    }
+			.productSeparator{
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+	}
 
-    .bBlocksPrice{
-        position: relative;
+	.bBlocksPrice{
+		position: relative;
 
-        .productImage{
-            width: auto;
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .productName{
-            margin: 0;
-        }
+		.productImage{
+			width: auto;
+			max-width: 100%;
+			height: auto;
+		}
+		
+		.productName{
+			margin: 0;
+		}
 
-        .productDescription{
-            margin: 0;
-        }
+		.productDescription{
+			margin: 0;
+		}
 
-        .productSeparator{
-            position: absolute;
-            bottom: 0;
-        }
-    }
+		.productSeparator{
+			position: absolute;
+			bottom: 0;
+		}
+	}
 }

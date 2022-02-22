@@ -11,10 +11,10 @@ import icons from '../../Const/icons';
 import metadata from '../../../inc/flip-boxes/block.json';
 
 registerBlockType(metadata, {
-    icon: icons.flipBox,
+	icon: icons.flipBox,
 
-    // Build In Functions
-    edit: Edit,
+	// Build In Functions
+	edit: Edit,
 
-    save: () => null
+	save: () => null
 });

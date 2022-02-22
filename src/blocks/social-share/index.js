@@ -11,27 +11,27 @@ import icons from '../../Const/icons';
 import metadata from '../../../inc/social-share/block.json';
 
 registerBlockType(metadata, {
-    icon: icons.socialShare,
+	icon: icons.socialShare,
 
-    transforms: {
-        from: [
-            { type: 'block', blocks: ['bssb/social-share'], transform: attributes => createBlock('b-blocks/social-share', attributes) },
-            { type: 'prefix', prefix: 'share', transform: () => createBlock('b-blocks/social-share') }
-        ],
+	transforms: {
+		from: [
+			{ type: 'block', blocks: ['bssb/social-share'], transform: attributes => createBlock('b-blocks/social-share', attributes) },
+			{ type: 'prefix', prefix: 'share', transform: () => createBlock('b-blocks/social-share') }
+		],
 
-        to: [
-            {
-                type: 'block', blocks: ['bssb/social-share'], isMatch: attributes => {
-                    if (attributes) return true;
-                    return false;
-                },
-                transform: attributes => createBlock('bssb/social-share', attributes)
-            }
-        ]
-    },
+		to: [
+			{
+				type: 'block', blocks: ['bssb/social-share'], isMatch: attributes => {
+					if (attributes) return true;
+					return false;
+				},
+				transform: attributes => createBlock('bssb/social-share', attributes)
+			}
+		]
+	},
 
-    // Build in Functions
-    edit: Edit,
+	// Build in Functions
+	edit: Edit,
 
-    save: () => null
+	save: () => null
 });

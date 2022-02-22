@@ -139,9 +139,9 @@ const Edit = props => {
 		<div className={className} id={`bBlocksSlider-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				@import url(${titleTypo?.googleFontLink});
-				@import url(${descTypo?.googleFontLink});
-				@import url(${btnTypo?.googleFontLink});
+				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink})` : ''}
+				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink})` : ''}
+				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink})` : ''}
 
 				#bBlocksSlider-${clientId} .bBlocksSliderWrapper{
 					text-align: ${sliderAlign};

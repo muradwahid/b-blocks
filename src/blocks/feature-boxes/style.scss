@@ -1,35 +1,35 @@
 .wp-block-b-blocks-feature-boxes .bBlocksFeatureBoxes{
-    display: grid;
+	display: grid;
 
-    .bBlocksFeature{
-        .featureDetails{
-            padding: 0 20px;
-        }
+	.bBlocksFeature{
+		.featureDetails{
+			padding: 0 20px;
+		}
 
-        .featureIcon{
-            width: auto;
-            max-width: 100%;
-            height: auto;
+		.featureIcon{
+			width: auto;
+			max-width: 100%;
+			height: auto;
 
-            i{
-                font-style: inherit;
-            }
+			i{
+				font-style: inherit;
+			}
 
-            img{
-                max-width: 100%;
-            }
-        }
-        
-        .featureTitle{
-            margin: 0;
-        }
+			img{
+				max-width: 100%;
+			}
+		}
+		
+		.featureTitle{
+			margin: 0;
+		}
 
-        .featureSeparator{
-            display: inline-block;
-        }
+		.featureSeparator{
+			display: inline-block;
+		}
 
-        .featureDescription{
-            margin: 0;
-        }
-    }
+		.featureDescription{
+			margin: 0;
+		}
+	}
 }

@@ -13,6 +13,8 @@ class BBlocksSlider extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+        $linkTarget = $linkTarget ?? ''; // added in v 3.0.2
+
 		// Generate Styles
 		$sliderStyle = new BBlocksStyleGenerator();
 		$sliderStyle::addStyle( "#bBlocksSlider-$cId", [ 'text-align' => $sliderAlign ] );
@@ -46,9 +48,9 @@ class BBlocksSlider extends BBlocks{
 		ob_start(); ?>
 		<div class='wp-block-b-blocks-slider <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksSlider-<?php echo esc_attr( $cId ); ?>' data-slider='<?php echo esc_attr( $jsonData ); ?>'>
 			<style>
-				@import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? '' ); ?> );
-				@import url( <?php echo esc_url( $descTypo['googleFontLink'] ?? '' ); ?> );
-				@import url( <?php echo esc_url( $btnTypo['googleFontLink'] ?? '' ); ?> );
+				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
+				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
+				<?php echo !empty( $btnTypo['googleFontLink'] ) ? "@import url(". esc_url( $btnTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo wp_kses( $sliderStyle::renderStyle(), [] );
 				foreach ( $slides as $index => $slide ) {
 					extract( $slide );
@@ -81,7 +83,7 @@ class BBlocksSlider extends BBlocks{
 
 								<?php echo $isDesc && !empty( $description ) ? "<p class='sliderDescription'>". wp_kses_post( $description ) ."</p>" : ''; ?>
 
-								<?php echo $isBtn && !empty( $btnText ) ? "<a href='$btnLinkURL' class='sliderBtn' target='_blank' rel='noreferrer'>". wp_kses_post( $btnText ) ."</a>" : ''; ?>
+								<?php echo $isBtn && !empty( $btnText ) ? "<a href='$btnLinkURL' class='sliderBtn' target='$linkTarget' rel='noreferrer'>". wp_kses_post( $btnText ) ."</a>" : ''; ?>
 							</div>
 						</div>
 					<?php } ?>

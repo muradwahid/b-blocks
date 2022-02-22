@@ -11,10 +11,10 @@ import icons from '../../Const/icons';
 import metadata from '../../../inc/mailto/block.json';
 
 registerBlockType(metadata, {
-    icon: icons.mail,
+	icon: icons.mail,
 
-    // Build In Functions
-    edit: Edit,
+	// Build In Functions
+	edit: Edit,
 
-    save: () => null
+	save: () => null
 });

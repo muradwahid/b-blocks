@@ -3,36 +3,36 @@ $secondaryColor: #8344c5;
 
 // Chart
 .wp-block-b-blocks-chart{
-    .bBlocksChart{
-        display: inline-block;
+	.bBlocksChart{
+		display: inline-block;
 
-        canvas{
-            padding: 10px 15px;
-        }
-    }
+		canvas{
+			padding: 10px 15px;
+		}
+	}
 
-    .downloadArea{
-        position: relative;
-        display: inline-block;
-        padding: 10px 15px;
+	.downloadArea{
+		position: relative;
+		display: inline-block;
+		padding: 10px 15px;
 
-        .downloadChart{
-            display: inline-block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 100%;
-            color: #fff;
-            background-color: $primaryColor;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
+		.downloadChart{
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 100%;
+			color: #fff;
+			background-color: $primaryColor;
+			padding: 8px 15px;
+			border-radius: 5px;
+			cursor: pointer;
 
-            &:hover{
-                background-color: $secondaryColor;
-            }
-        }
-    }
+			&:hover{
+				background-color: $secondaryColor;
+			}
+		}
+	}
 }

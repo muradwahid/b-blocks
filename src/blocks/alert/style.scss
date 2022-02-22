@@ -1,33 +1,33 @@
 // Alert
 .wp-block-b-blocks-alert{
-    transition: opacity .3s ease-in-out, transform 8s ease-in-out;
-    transform: translateY(0);
-    opacity: 1;
+	transition: opacity .3s ease-in-out, transform 8s ease-in-out;
+	transform: translateY(0);
+	opacity: 1;
 
-    .bBlocksAlert{
-        .alert{
-            position: relative;
-            display: inline-block;
-            max-width: 100%;
+	.bBlocksAlert{
+		.alert{
+			position: relative;
+			display: inline-block;
+			max-width: 100%;
 
-            .alertIcon{
-               margin-right: 10px;
-               font-style: inherit;
-            }
+			.alertIcon{
+			   margin-right: 10px;
+			   font-style: inherit;
+			}
 
-            .alertClose{
-                font-style: inherit;
-                font-size: 18px;
-                position: absolute;
-                top: 3px;
-                right: 4px;
-                cursor: pointer;
-            }
-        }
-    }
+			.alertClose{
+				font-style: inherit;
+				font-size: 18px;
+				position: absolute;
+				top: 3px;
+				right: 4px;
+				cursor: pointer;
+			}
+		}
+	}
 
-    &.transformHidden{
-        transform: translateY(-9999px);
-        opacity: 0;
-    }
+	&.transformHidden{
+		transform: translateY(-9999px);
+		opacity: 0;
+	}
 }

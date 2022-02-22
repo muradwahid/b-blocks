@@ -5,15 +5,15 @@ import './style.scss';
 const allAlert = document.querySelectorAll('.wp-block-b-blocks-alert');
 
 Object.values(allAlert).map(alert => {
-    const alertEl = document.getElementById(alert.id);
+	const alertEl = document.getElementById(alert.id);
 
-    const alertCloseEl = document.querySelector(`#${alert.id} .bBlocksAlert .alert .alertClose`);
+	const alertCloseEl = document.querySelector(`#${alert.id} .bBlocksAlert .alert .alertClose`);
 
-    alertCloseEl && alertCloseEl.addEventListener('click', () => {
-        alertEl.classList.add('transformHidden');
+	alertCloseEl && alertCloseEl.addEventListener('click', () => {
+		alertEl.classList.add('transformHidden');
 
-        setTimeout(() => {
-            alertEl.style.display = 'none';
-        }, 400);
-    });
+		setTimeout(() => {
+			alertEl.style.display = 'none';
+		}, 400);
+	});
 });

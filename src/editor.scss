@@ -19,109 +19,15 @@ $secondaryColor: #8344c5;
 .bBlocksNowEditing{
 	outline: 2px solid $primaryColor;
 }
+.addItemFirst{
+	text-align: center;
+	margin: 0;
+}
 
 // Panel Body
-.bPlPanelBody, .bPlDropdownPopover .components-popover__content{
-	// Add or remove Items
-	&.addRemoveItems{
-		// .editItem{
-		// 	.removeItem{
-		// 		color: red;
-		// 		font-size: 15px;
-		// 		font-weight: 700;
-				
-		// 		.dashicon{
-		// 			margin-right: 8px;
-		// 			font-size: 23px;
-		// 		}
-		// 	}
-		// }
-
-		.addItem{
-			text-align: center;
-			background: $primaryColor;
-
-			button{
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				color: #fff;
-				font-size: 15px;
-				font-weight: 700;
-
-				&:focus{
-					box-shadow: none;
-				}
-				&:active{
-					color: #fff;
-				}
-
-				.dashicon{
-					margin-top: 5px;
-					margin-right: 5px;
-				}
-			}
-		}
-
-		.itemAction{
-			.removeItem, .duplicateItem{
-				color: #fff;
-				font-size: 14px;
-				font-weight: 700;
-				padding: 5px 10px;
-
-				.dashicon, svg{
-					margin-right: 5px;
-				}
-			}
-
-			.removeItem{
-				background-color: red;
-			}
-			.duplicateItem{
-				background-color: $primaryColor;
-			}
-		}
-	}
-
-	&.help{
-		.helpItem{
-			text-align: center;
-			background: $primaryColor;
-			padding: 12px 0;
+// .bPlPanelBody, .bPlDropdownPopover .components-popover__content{
 	
-			&:not(:first-child){
-				margin-top: 15px;
-			}
-	
-			a{
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				color: #fff;
-				font-size: 15px;
-				font-weight: 700;
-				text-decoration: none;
-	
-				&:focus{
-					box-shadow: none;
-				}
-				&:active{
-					color: #fff;
-				}
-	
-				.dashicon{
-					margin-right: 5px;
-				}
-			}
-		}
-	}
-
-	// Spinner
-	.components-spinner{
-		background-color: $primaryColor !important;
-	}
-}
+// }
 
 // Buttons
 // Inserter

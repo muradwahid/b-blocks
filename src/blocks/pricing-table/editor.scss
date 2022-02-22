@@ -2,38 +2,38 @@ $primaryColor: #4527a4;
 
 // Pricing Table
 .wp-block-b-blocks-pricing-table{
-    .bBlocksPriceTable{
-        .priceFeatures{
-            .components-checkbox-control .components-base-control__field{
-                margin-bottom: 0;
-            }
+	.bBlocksPriceTable{
+		.priceFeatures{
+			.components-checkbox-control .components-base-control__field{
+				margin-bottom: 0;
+			}
 
-            .removePriceFeature{
-                color: red;
-                margin-right: 5px;
-                cursor: pointer;
-            }
+			.removePriceFeature{
+				color: red;
+				margin-right: 5px;
+				cursor: pointer;
+			}
 
-            .addPriceFeature{
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                background-color: $primaryColor;
-                padding: 5px 8px;
+			.addPriceFeature{
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				background-color: $primaryColor;
+				padding: 5px 8px;
 
-                &:focus{
-                    box-shadow: none;
-                }
-                &:active{
-                    color: #fff;
-                }
+				&:focus{
+					box-shadow: none;
+				}
+				&:active{
+					color: #fff;
+				}
 
-                .dashicon{
-                    margin-top: 5px;
-                    margin-right: 5px;
-                }
-            }
-        }
-    }
+				.dashicon{
+					margin-top: 5px;
+					margin-right: 5px;
+				}
+			}
+		}
+	}
 }

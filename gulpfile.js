@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const zip = require('gulp-zip');
 
-const folder = () => (
+exports.bundle = () => (
 	gulp.src([
 		'**/*',
 		'!bundled/**',
@@ -16,16 +16,6 @@ const folder = () => (
 		'!readme.md',
 		'!webpack.config.js',
 	])
-		.pipe(gulp.dest('bundled/b-blocks'))
-);
-
-const folderZip = () => (
-	gulp.src([
-		'bundled/**',
-		'!bundled/*.zip'
-	])
 		.pipe(zip('b-blocks.zip'))
 		.pipe(gulp.dest('bundled'))
 );
-
-exports.bundle = gulp.series(folder, folderZip);

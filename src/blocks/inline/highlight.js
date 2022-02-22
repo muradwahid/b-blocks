@@ -7,32 +7,32 @@ import { PanelBody, FormToggle, PanelRow } from '@wordpress/components';
 const type = 'b-blocks/text-highlight';
 
 registerFormatType(type, {
-    title: __('Inline Highlight', 'b-blocks'),
-    tagName: 'mark',
-    className: 'b_blocks_text_highlight',
+	title: __('Inline Highlight', 'b-blocks'),
+	tagName: 'mark',
+	className: 'b_blocks_text_highlight',
 
-    attributes: {
-        style: 'style',
-    },
+	attributes: {
+		style: 'style',
+	},
 
-    edit: ({ isActive, value, onChange }) => {
-        const onToggle = () => {
-            onChange(toggleFormat(value, {
-                type,
-                attributes: {
-                    style: 'color: #333; background-color: #beff14; padding: .2em; border-radius: 5px;',
-                },
-            }))
-        }
+	edit: ({ isActive, value, onChange }) => {
+		const onToggle = () => {
+			onChange(toggleFormat(value, {
+				type,
+				attributes: {
+					style: 'color: #333; background-color: #beff14; padding: .2em; border-radius: 5px;',
+				},
+			}))
+		}
 
-        return <InspectorControls>
-            <PanelBody className='bBlocksPanelBody' icon='admin-customizer' title={__('Inline Highlight', 'b-blocks')} initialOpen={false}>
-                <PanelRow>
-                    <label htmlFor="b_blocks_text_highlight_toggle">{isActive ? __('Remove Inline Highlight', 'b-blocks') : __('Inline Highlight', 'b-blocks')}</label>
+		return <InspectorControls>
+			<PanelBody className='bBlocksPanelBody' icon='admin-customizer' title={__('Inline Highlight', 'b-blocks')} initialOpen={false}>
+				<PanelRow>
+					<label htmlFor="b_blocks_text_highlight_toggle">{isActive ? __('Remove Inline Highlight', 'b-blocks') : __('Inline Highlight', 'b-blocks')}</label>
 
-                    <FormToggle id="b_blocks_text_highlight_toggle" checked={isActive} onChange={onToggle} />
-                </PanelRow>
-            </PanelBody>
-        </InspectorControls>
-    }
+					<FormToggle id="b_blocks_text_highlight_toggle" checked={isActive} onChange={onToggle} />
+				</PanelRow>
+			</PanelBody>
+		</InspectorControls>
+	}
 });

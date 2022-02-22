@@ -8,9 +8,9 @@ import options from '../Const/options';
 const { colors } = options;
 
 const userSelect = [
-    { label: __('Auto', 'b-blocks'), value: 'auto', icon: 'AUTO' },
-    { label: __('All', 'b-blocks'), value: 'all', icon: 'ALL' },
-    { label: __('None', 'b-blocks'), value: 'none', icon: 'NONE' },
+	{ label: __('Auto', 'b-blocks'), value: 'auto', icon: 'AUTO' },
+	{ label: __('All', 'b-blocks'), value: 'all', icon: 'ALL' },
+	{ label: __('None', 'b-blocks'), value: 'none', icon: 'NONE' },
 ];
 
 // Components
@@ -24,82 +24,82 @@ const { firstTitle, otherTitle } = func;
 import icons from '../Const/icons';
 
 registerBlockType('b-blocks/selection', {
-    // Build In attributes
-    title: __('Selection', 'b-blocks'),
-    description: __('Text selection enabled disabled', 'b-blocks'),
-    icon: icons.selection,
-    category: 'bBlocks',
-    keywords: [__('Select', 'b-blocks'), __('Text Selection', 'b-blocks'), __('Block Selection', 'b-blocks')],
-    supports: {
-        align: ['center', 'wide', 'full']
-    },
+	// Build In attributes
+	title: __('Selection', 'b-blocks'),
+	description: __('Text selection enabled disabled', 'b-blocks'),
+	icon: icons.selection,
+	category: 'bBlocks',
+	keywords: [__('Select', 'b-blocks'), __('Text Selection', 'b-blocks'), __('Block Selection', 'b-blocks')],
+	supports: {
+		align: ['center', 'wide', 'full']
+	},
 
-    // Custom Attributes
-    attributes: {
-        align: { type: 'string', default: 'center' },
+	// Custom Attributes
+	attributes: {
+		align: { type: 'string', default: 'center' },
 
-        selection: { type: 'string', default: 'auto' },
-        BGColor: { type: 'string', default: '#f1f1f1' },
-        selectionPTB: { type: 'number', default: 10 },
-        selectionPLR: { type: 'number', default: 15 },
-    },
+		selection: { type: 'string', default: 'auto' },
+		BGColor: { type: 'string', default: '#f1f1f1' },
+		selectionPTB: { type: 'number', default: 10 },
+		selectionPLR: { type: 'number', default: 15 },
+	},
 
-    // Build In Functions
-    edit: props => {
-        const { attributes: { selection, BGColor, selectionPTB, selectionPLR }, setAttributes } = props;
+	// Build In Functions
+	edit: props => {
+		const { attributes: { selection, BGColor, selectionPTB, selectionPLR }, setAttributes } = props;
 
-        // Styles
-        const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
+		// Styles
+		const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
 
-        return <>
-            <InspectorControls>
-                {/* Selection Settings */}
-                <PanelBody className='bBlocksPanelBody' title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
-                    {/* Selection */}
-                    {firstTitle('Selection:')}
-                    <BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />
+		return <>
+			<InspectorControls>
+				{/* Selection Settings */}
+				<PanelBody className='bBlocksPanelBody' title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
+					{/* Selection */}
+					{firstTitle('Selection:')}
+					<BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />
 
-                    {/* Background Color */}
-                    {otherTitle('Background Color:')}
-                    <ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
+					{/* Background Color */}
+					{otherTitle('Background Color:')}
+					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
-                    {/* Padding Top Bottom */}
-                    {otherTitle('Padding Top Bottom:')}
-                    <RangeControl value={selectionPTB} onChange={cng => setAttributes({ selectionPTB: cng })} min={0} max={100} step={1} />
+					{/* Padding Top Bottom */}
+					{otherTitle('Padding Top Bottom:')}
+					<RangeControl value={selectionPTB} onChange={cng => setAttributes({ selectionPTB: cng })} min={0} max={100} step={1} />
 
-                    {/* Padding Left Right */}
-                    {otherTitle('Padding Left Right:')}
-                    <RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={150} step={1} />
-                </PanelBody>
-            </InspectorControls>
+					{/* Padding Left Right */}
+					{otherTitle('Padding Left Right:')}
+					<RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={150} step={1} />
+				</PanelBody>
+			</InspectorControls>
 
 
-            <div className="b_blocks_selection">
-                <div className="bBlocksInnerContent" style={selectionStyle}>
-                    <InnerBlocks />
-                </div>
-            </div>
-        </>
-    },
+			<div className="b_blocks_selection">
+				<div className="bBlocksInnerContent" style={selectionStyle}>
+					<InnerBlocks />
+				</div>
+			</div>
+		</>
+	},
 
-    save: props => {
-        const { selection, BGColor, selectionPTB, selectionPLR } = props.attributes;
+	save: props => {
+		const { selection, BGColor, selectionPTB, selectionPLR } = props.attributes;
 
-        // Styles
-        const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px`, textAlign: 'inherit' };
+		// Styles
+		const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px`, textAlign: 'inherit' };
 
-        return (
-            <div className="b_blocks_selection">
-                <div className="bBlocksInnerContent" style={selectionStyle}>
-                    <InnerBlocks.Content />
-                </div>
-            </div>
-        )
-    },
+		return (
+			<div className="b_blocks_selection">
+				<div className="bBlocksInnerContent" style={selectionStyle}>
+					<InnerBlocks.Content />
+				</div>
+			</div>
+		)
+	},
 
-    example: {
-        attributes: {
-            'preview': true,
-        },
-    },
+	example: {
+		attributes: {
+			'preview': true,
+		},
+	},
 });
