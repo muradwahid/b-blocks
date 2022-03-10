@@ -8,19 +8,19 @@ import PostMeta from '../Single/PostMeta';
 import func from '../../../Const/functions';
 const { mediaUrl } = func;
 
-const Overlay = ({ atts, post }) => {
-	const { layout, subLayout } = atts;
+const Overlay = ({ post, attributes }) => {
 	const { id, featured_media } = post;
+	const { layout, subLayout } = attributes;
 
 	return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostOverlay ${'overlay-content-hover' === subLayout && mediaUrl(featured_media) ? 'bBlocksPostOverlayHover' : ''} ${'overlay-box' === subLayout ? 'bBlocksPostOverlayBox' : ''} ${'slider' === layout ? 'swiper-slide' : ''}`}>
 		<div className='bBlocksPostText'>
-			<PostTitle atts={atts} post={post} />
+			<PostTitle atts={attributes} post={post} />
 
-			<PostMeta atts={atts} post={post} />
+			<PostMeta atts={attributes} post={post} />
 
 			{'overlay-box' !== subLayout && <>
-				<PostExcerpt atts={atts} post={post} />
-				<PostReadMore atts={atts} post={post} />
+				<PostExcerpt atts={attributes} post={post} />
+				<PostReadMore atts={attributes} post={post} />
 			</>}
 		</div>
 	</article>;

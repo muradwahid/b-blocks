@@ -19,14 +19,14 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import options from '../../Const/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 const themes = [
-	{ label: __('Default', 'counters-block'), value: 'default' },
-	{ label: __('Theme 1', 'counters-block'), value: 'theme1' },
-	{ label: __('Theme 2', 'counters-block'), value: 'theme2' },
-	{ label: __('Theme 3', 'counters-block'), value: 'theme3' }
+	{ label: __('Default', 'b-blocks'), value: 'default' },
+	{ label: __('Theme 1', 'b-blocks'), value: 'theme1' },
+	{ label: __('Theme 2', 'b-blocks'), value: 'theme2' },
+	{ label: __('Theme 3', 'b-blocks'), value: 'theme3' }
 ];
 const iconPositions = [
-	{ label: __('Top', 'counters-block'), value: 'top' },
-	{ label: __('Label', 'counters-block'), value: 'label' }
+	{ label: __('Top', 'b-blocks'), value: 'top' },
+	{ label: __('Label', 'b-blocks'), value: 'label' }
 ];
 
 import icons from '../../Const/icons';
@@ -79,63 +79,63 @@ const Settings = props => {
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'counters-block')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 						<div className='helpItem'>
-							<a href='https://bblockswp.com/docs/counters-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'counters-block')}</a>
+							<a href='https://bblockswp.com/docs/counters-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove counters', 'counters-block')}>
+					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove counters', 'b-blocks')}>
 						{counters.map((item, index) => {
 							const { background, icon, number, label } = item;
 
-							return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Counter No ${index + 1}:`, 'counters-block')} initialOpen={0 !== index ? false : true}>
-								<Background label={__('Background:', 'counters-block')} background={background} onChange={val => updateCounter(index, 'background', val)} defaults={{ color: '#0000' }} />
+							return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Counter No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
+								<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateCounter(index, 'background', val)} defaults={{ color: '#0000' }} />
 
-								<IconControl label={__('Icon:', 'counters-block')} icon={icon} onChange={val => updateCounter(index, 'icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} disableSize={true} />
+								<IconControl label={__('Icon:', 'b-blocks')} icon={icon} onChange={val => updateCounter(index, 'icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} disableSize={true} />
 
-								<NumberControl label={__('Start Number:', 'counters-block')} labelPosition='left' className='mt20' value={number.start} onChange={val => updateCounter(index, 'number', val, 'start')} />
+								<NumberControl label={__('Start Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.start} onChange={val => updateCounter(index, 'number', val, 'start')} />
 
-								<NumberControl label={__('End Number:', 'counters-block')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter(index, 'number', val, 'end')} />
+								<NumberControl label={__('End Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter(index, 'number', val, 'end')} />
 
 								<PanelRow>
-									<Title mt='0' mb='0'>{__('Prefix:', 'counters-block')}</Title>
+									<Title mt='0' mb='0'>{__('Prefix:', 'b-blocks')}</Title>
 									<TextControl value={number.prefix} onChange={val => updateCounter(index, 'number', val, 'prefix')} />
 								</PanelRow>
 
 								<PanelRow>
-									<Title mt='0' mb='0'>{__('Suffix:', 'counters-block')}</Title>
+									<Title mt='0' mb='0'>{__('Suffix:', 'b-blocks')}</Title>
 									<TextControl value={number.suffix} onChange={val => updateCounter(index, 'number', val, 'suffix')} />
 								</PanelRow>
 
-								<BColor label={__('Number Color:', 'counters-block')} value={number.color} onChange={val => updateCounter(index, 'number', val, 'color')} defaultColor='#fff' />
+								<BColor label={__('Number Color:', 'b-blocks')} value={number.color} onChange={val => updateCounter(index, 'number', val, 'color')} defaultColor='#fff' />
 
-								<BColor label={__('Label Color:', 'counters-block')} value={label.color} onChange={val => updateCounter(index, 'label', val, 'color')} defaultColor='#fff' />
+								<BColor label={__('Label Color:', 'b-blocks')} value={label.color} onChange={val => updateCounter(index, 'label', val, 'color')} defaultColor='#fff' />
 
 								<PanelRow className='itemAction mt20'>
-									<Button className='removeItem' label={__('Remove', 'counters-block')} onClick={e => {
+									<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
 										e.preventDefault();
 										setAttributes({ counters: [...counters.slice(0, index), ...counters.slice(index + 1)] });
-									}}><Dashicon icon='no' size={18} />{__('Remove', 'counters-block')}</Button>
+									}}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
 
-									<Button className='duplicateItem' label={__('Duplicate', 'counters-block')} onClick={e => {
+									<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 										e.preventDefault();
 										setAttributes({ counters: [...counters, { ...counters[index] }] });
-									}}>{icons.gearSettings}{__('Duplicate', 'counters-block')}</Button>
+									}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
 								</PanelRow>
 							</PanelBody>
 						})}
 
 						<div className='addItem'>
-							<Button label={__('Add New Counter', 'counters-block')} onClick={addCounter}><Dashicon icon='plus' size={23} />{__('Add New Counter', 'counters-block')}</Button>
+							<Button label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' size={23} />{__('Add New Counter', 'b-blocks')}</Button>
 						</div>
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'counters-block')} initialOpen={false}>
+					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Theme:', 'counters-block')}</Title>
+							<Title mt='0' mb='0'>{__('Theme:', 'b-blocks')}</Title>
 							<SelectControl value={theme} onChange={val => {
 								setAttributes({ theme: val });
 								'default' === val && (
@@ -207,31 +207,31 @@ const Settings = props => {
 
 						{/* Columns */}
 						<PanelRow className='mt20'>
-							<Title mt='0'>{__('Columns:', 'counters-block')}</Title>
+							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-						<UnitControl className='mt20' label={__('Column Gap:', 'counters-block')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
-						<UnitControl className='mt20' label={__('Row Gap:', 'counters-block')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody' title={__('Counters Settings', 'counters-block')} initialOpen={false}>
-						<NumberControl label={__('Duration:', 'counters-block')} labelPosition='left' value={duration} onChange={val => setAttributes({ duration: val })} />
-						<small>{__('Duration in milliseconds:', 'counters-block')}</small>
+					<PanelBody className='bPlPanelBody' title={__('Counters Settings', 'b-blocks')} initialOpen={false}>
+						<NumberControl label={__('Duration:', 'b-blocks')} labelPosition='left' value={duration} onChange={val => setAttributes({ duration: val })} />
+						<small>{__('Duration in milliseconds:', 'b-blocks')}</small>
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody' title={__('Counter Elements', 'counters-block')} initialOpen={false}>
-						<ToggleControl label={__('Show Icon', 'counters-block')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
+					<PanelBody className='bPlPanelBody' title={__('Counter Elements', 'b-blocks')} initialOpen={false}>
+						<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-						<Title>{__('Icon Size:', 'counters-block')}</Title>
+						<Title>{__('Icon Size:', 'b-blocks')}</Title>
 						<RangeControl value={iconSize} onChange={val => setAttributes({ iconSize: val })} min={0} max={400} step={1} allowReset={true} resetFallbackValue={50} initialPosition={50} />
 
 						<PanelRow className='mt10'>
-							<Title mt='0' mb='0'>{__('Icon Position:', 'counters-block')}</Title>
+							<Title mt='0' mb='0'>{__('Icon Position:', 'b-blocks')}</Title>
 							<SelectControl value={iconPosition} onChange={val => {
 								setAttributes({ iconPosition: val });
 								'top' === val && setAttributes({ iconSize: 50 });
@@ -239,32 +239,32 @@ const Settings = props => {
 							}} options={iconPositions} />
 						</PanelRow>
 
-						<Typography className='mt20' label={__('Number Typography:', 'counters-block')} typography={numberTypo} onChange={val => setAttributes({ numberTypo: val })} defaults={{ fontSize: 48 }} />
+						<Typography className='mt20' label={__('Number Typography:', 'b-blocks')} typography={numberTypo} onChange={val => setAttributes({ numberTypo: val })} defaults={{ fontSize: 48 }} />
 
-						<ToggleControl className='mt20' label={__('Show Label', 'counters-block')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
+						<ToggleControl className='mt20' label={__('Show Label', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
-						{isLabel && <Typography label={__('Label Typography:', 'counters-block')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 22 }} />}
+						{isLabel && <Typography label={__('Label Typography:', 'b-blocks')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 22 }} />}
 					</PanelBody>
 				</>}
 
 				{'style' === tab.name && <>
-					<PanelBody className='bPlPanelBody' title={__('Counters Style', 'counters-block')}>
-						<Background label={__('Background:', 'counters-block')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+					<PanelBody className='bPlPanelBody' title={__('Counters Style', 'b-blocks')}>
+						<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'counters-block')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '20px', horizontal: '0px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '20px', horizontal: '0px' }} />
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody' title={__('Single Counter Style', 'counters-block')} initialOpen={false}>
-						<UnitControl label={__('Width:', 'counters-block')} labelPosition='left' value={counterWidth} onChange={val => setAttributes({ counterWidth: val })} units={[pxUnit, perUnit, emUnit]} />
+					<PanelBody className='bPlPanelBody' title={__('Single Counter Style', 'b-blocks')} initialOpen={false}>
+						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={counterWidth} onChange={val => setAttributes({ counterWidth: val })} units={[pxUnit, perUnit, emUnit]} />
 
-						<UnitControl className='mt20' label={__('Height:', 'counters-block')} labelPosition='left' value={counterHeight} onChange={val => setAttributes({ counterHeight: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={counterHeight} onChange={val => setAttributes({ counterHeight: val })} units={[pxUnit, perUnit, emUnit]} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'counters-block')} space={counterPadding} onChange={val => setAttributes({ counterPadding: val })} defaults={{ vertical: '20px', horizontal: '20px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={counterPadding} onChange={val => setAttributes({ counterPadding: val })} defaults={{ vertical: '20px', horizontal: '20px' }} />
 
-						<BorderControl label={__('Border:', 'counters-block')} border={counterBorder} onChange={val => setAttributes({ counterBorder: val })} defaults={{ radius: '50%' }} />
+						<BorderControl label={__('Border:', 'b-blocks')} border={counterBorder} onChange={val => setAttributes({ counterBorder: val })} defaults={{ radius: '50%' }} />
 
-						<ShadowControl label={__('Shadow:', 'counters-block')} shadow={counterShadow} onChange={val => setAttributes({ counterShadow: val })} />
+						<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={counterShadow} onChange={val => setAttributes({ counterShadow: val })} />
 					</PanelBody>
 				</>}
 			</>}</TabPanel>
@@ -273,7 +273,7 @@ const Settings = props => {
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Counter', 'counters-block')} onClick={addCounter}><Dashicon icon='plus' size={23} /></ToolbarButton>
+				<ToolbarButton label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' size={23} /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

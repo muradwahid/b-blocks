@@ -3,23 +3,19 @@ import { withSelect } from '@wordpress/data';
 import { useEffect, useRef, useState, createContext } from '@wordpress/element';
 import { Spinner } from '@wordpress/components';
 
-const $ = jQuery;
-
-import Settings from './settings';
-
 // Components
-import Default from './Layout/Default';
-import SideImage from './Layout/SideImage';
-import Overlay from './Layout/Overlay';
-import func from '../../Const/functions';
-const { mediaUrl } = func;
+import Settings from './settings';
+import Styles from './Styles';
+import MapPosts from './Layout/MapPosts';
+
+const $ = jQuery;
 
 export const ExcerptLengthCtx = createContext();
 
 const Edit = props => {
 	const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories, isEditorSidebarOpened } = props;
 
-	const { align, layout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+	const { align, layout, columns, columnGap, rowGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderIsPrevNext } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
 
@@ -141,7 +137,7 @@ const Edit = props => {
 	useEffect(() => {
 		const allMaxExcerptLength = [];
 		posts?.length && posts.map(post => {
-			allMaxExcerptLength.push(post.excerpt.rendered.replace(/(<p class='?"?read-more'?"?(.*?)<\/p>)/g, '').trim().split(' ').length);
+			allMaxExcerptLength.push(post?.excerpt?.rendered.replace(/(<p class='?"?read-more'?"?(.*?)<\/p>)/g, '').trim().split(' ').length);
 
 			setMaxExcerptLength(Math.max(...allMaxExcerptLength));
 		});
@@ -153,102 +149,21 @@ const Edit = props => {
 		</ExcerptLengthCtx.Provider>
 
 		{!posts ? <Loading /> : posts?.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				@import url(${titleTypo?.googleFontLink || 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'});
-				${metaTypo?.googleFontLink ? `@import url(${metaTypo?.googleFontLink})` : ''}
-				${excerptTypo?.googleFontLink ? `@import url(${excerptTypo?.googleFontLink})` : ''}
-				${readMoreTypo?.googleFontLink ? `@import url(${readMoreTypo?.googleFontLink})` : ''}
-
-				#bBlocksPosts-${clientId} .bBlocksPost{
-					margin-bottom: ${'masonry' === layout ? `${rowGap}px` : '0px'};
-					${border?.styles || 'border: 1px solid #4527a400; border-radius: 5px;'}
-				}
-				#bBlocksPosts-${clientId} .bBlocksPostDefault, #bBlocksPosts-${clientId} .bBlocksPostSideImage{
-					text-align: ${contentAlign};
-					${contentBG?.styles || 'background-color: #f4f2fc;'}
-				}
-
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostText{ padding: ${contentPadding?.styles || '20px 25px'}; }
-				#bBlocksPosts-${clientId} .bBlocksPostOverlay .bBlocksPostText{
-					${contentBG?.styles || 'background-color: #f4f2fc;'}
-					align-items: ${'left' === contentAlign ? 'flex-start' : 'right' === contentAlign ? 'flex-end' : 'center' === contentAlign ? 'center' : ''}
-				}
-
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostTitle{
-					text-align: ${contentAlign};
-					${!isTitleLink ? titleTypo?.styles || 'font-family: Roboto, sans-serif; font-size: 25px;' : ''}
-					color: ${titleColor};
-					margin: ${titleMargin?.styles || '0 0 15px 0'};
-				}
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostTitle a{
-					${titleTypo?.styles || 'font-family: Roboto, sans-serif; font-size: 25px;'}
-					color: ${titleColor};
-				}
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta{
-					text-align: ${contentAlign};
-					${metaTypo?.styles || 'font-size: 13px; text-transform: uppercase;'}
-					color: ${metaTextColor};
-					margin: ${metaMargin?.styles || '0 0 15px 0'};
-				}
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta a{ color: ${metaLinkColor}; }
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta .dashicons{ color: ${metaIconColor}; }
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImgCats{ ${metaTypo?.styles || 'font-size: 13px; text-transform: uppercase;'} }
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImgCats a{ ${metaColorsOnImage?.styles || 'color: #fff; background: #4527a4;'} }
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostExcerpt{
-					text-align: ${excerptAlign};
-					${excerptTypo?.styles || 'font-size: 15px;'}
-					color: ${excerptColor};
-					margin: ${excerptMargin?.styles || '0 0 10px 0'};
-				}
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostReadMore{ text-align: ${readMoreAlign}; }
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostReadMore a{
-					${readMoreTypo?.styles || 'font-size: 14px; text-transform: uppercase; font-weight: 600;'}
-					${readMoreColors?.styles || 'color: #fff; background: #8344c5;'}
-					padding: ${readMorePadding?.styles || '12px 35px'};
-					${readMoreBorder?.styles || 'border-radius: 3px;'}
-				}
-				#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostReadMore a:hover{ ${readMoreHovColors?.styles || 'color: #fff; background: #4527a4;'} }
-
-				#bBlocksPosts-${clientId} .bBlocksGridPosts{
-					grid-gap: ${rowGap}px ${columnGap}px;
-					align-items: ${false === isContentEqualHight ? 'start' : 'initial'};
-				}
-				#bBlocksPosts-${clientId} .bBlocksMasonryPosts{ gap: ${columnGap}px; }
-				#bBlocksPosts-${clientId} .bBlocksSliderPosts, #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-slide{ min-height: ${sliderHeight}; }
-				#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet{
-					background: ${sliderPageColor};
-					width: ${sliderPageWidth};
-					height: ${sliderPageHeight};
-					${sliderPageBorder?.styles || 'border-radius: 50%;'}
-				}
-				#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-next{ color: ${sliderPrevNextColor}; }
-			`}} />
-			<style>
-				{posts.map(post => {
-					const { id, featured_media } = post;
-					const fImgUrl = mediaUrl(featured_media);
-
-					const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${fImgUrl ? 'grid' : 'flex'}; }`;
-					const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
-
-					return sideImgCSS + fImgCSS;
-				})}
-			</style>
+			<Styles posts={posts} attributes={attributes} clientId={clientId} />
 
 			{'grid' === layout ? <div className={`bBlocksGridPosts columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
-				<MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
+				<MapPosts posts={posts} attributes={attributes} clientId={clientId} />
 			</div> /* Grid Layout */ :
 
 				'masonry' === layout ? <div className={`bBlocksMasonryPosts cols-${columns.desktop} cols-tablet-${columns.tablet} cols-mobile-${columns.mobile}`}>
-					<MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
+					<MapPosts posts={posts} attributes={attributes} clientId={clientId} />
 				</div> /* Masonry Layout */ :
 
 					'slider' === layout ? <>
 						<div className='bBlocksSliderWrapper' ref={sliderWrapperRef}></div>
 						<div className='bBlocksSliderPosts' ref={sliderRef}>
 							<div className='swiper-wrapper'>
-								<MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
+								<MapPosts posts={posts} attributes={attributes} clientId={clientId} />
 							</div>
 
 							{sliderIsPage && <div className='swiper-pagination'></div>}
@@ -262,7 +177,7 @@ const Edit = props => {
 							<div className='bBlocksTickerWrapper' ref={tickerWrapperRef}></div>
 							<div className='bBlocksTickerPosts' ref={tickerRef}>
 								<div>
-									<MapPosts attributes={{ clientId, ...attributes }} posts={posts} />
+									<MapPosts posts={posts} attributes={attributes} clientId={clientId} />
 								</div>
 							</div>
 						</>/* Ticker Layout */
@@ -283,9 +198,7 @@ export default withSelect((select, props) => {
 	}
 
 	return {
-		getPostTypes: select('core').getPostTypes({ per_page: -1 })?.filter(p => 'page' !== p.slug && 'attachment' !== p.slug && 'wp_block' !== p.slug && 'wp_template' !== p.slug && 'wp_navigation' !== p.slug && 'wp_template_part' !== p.slug && 'nav_menu_item' !== p.slug)?.map(p => {
-			return { label: p.name, value: p.slug }
-		}),
+		getPostTypes: select('core').getPostTypes({ per_page: -1 })?.filter(p => 'page' !== p.slug && 'attachment' !== p.slug && 'wp_block' !== p.slug && 'wp_template' !== p.slug && 'wp_navigation' !== p.slug && 'wp_template_part' !== p.slug && 'nav_menu_item' !== p.slug)?.map(p => ({ label: p.name, value: p.slug })),
 		posts: select('core').getEntityRecords('postType', postType, query),
 		categories: select('core').getEntityRecords('taxonomy', 'category', { per_page: -1 }),
 		media: id => select('core').getMedia(id),
@@ -293,15 +206,3 @@ export default withSelect((select, props) => {
 		isEditorSidebarOpened: select('core/edit-post').isEditorSidebarOpened()
 	};
 })(Edit);
-
-
-const MapPosts = ({ attributes, posts }) => {
-	const { subLayout } = attributes;
-
-	return posts.map(post => (
-		'default' === subLayout || 'title-meta' === subLayout ? <Default atts={attributes} post={post} /> :
-			'left-image' === subLayout || 'right-image' === subLayout ? <SideImage atts={attributes} post={post} /> :
-				'overlay-content' === subLayout || 'overlay-content-hover' === subLayout || 'overlay-box' === subLayout ? <Overlay atts={attributes} post={post} /> :
-					<p>{__('Please, select a sub layout', 'b-blocks')}</p>
-	));
-}

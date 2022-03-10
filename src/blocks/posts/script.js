@@ -1,19 +1,16 @@
-// Import Sass
+// import Sass
 import './style.scss';
 
-// Swiper CSS
-import 'swiper/css/bundle';
+import 'swiper/css/bundle'; // Swiper CSS
 
 const $ = jQuery;
 
-// Posts
+// Advanced Posts
 document.addEventListener('DOMContentLoaded', () => {
 	const allBBlocksPosts = document.querySelectorAll('.wp-block-b-blocks-posts');
-	Object.values(allBBlocksPosts).map(posts => {
-		const postsId = posts.id;
-
+	allBBlocksPosts.forEach(posts => {
 		// Slider
-		const sliderEl = document.querySelector(`#${postsId} .bBlocksSliderPosts`);
+		const sliderEl = document.querySelector(`#${posts.id} .bBlocksSliderPosts`);
 		if (sliderEl) {
 			const { layout, columns, columnGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPageClickable, sliderIsPageDynamic } = JSON.parse(sliderEl.dataset.slider);
 
@@ -64,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		const slideHeightArray = [];
-		const swiperSlide = document.querySelectorAll(`#${postsId} .bBlocksSliderPosts .swiper-slide`);
-		const swiperSlideText = document.querySelectorAll(`#${postsId} .bBlocksSliderPosts .swiper-slide .bBlocksPostText`);
+		const swiperSlide = document.querySelectorAll(`#${posts.id} .bBlocksSliderPosts .swiper-slide`);
+		const swiperSlideText = document.querySelectorAll(`#${posts.id} .bBlocksSliderPosts .swiper-slide .bBlocksPostText`);
 		swiperSlideText?.length && swiperSlideText.forEach(slideText => {
 			slideHeightArray.push(slideText?.clientHeight);
 		});
@@ -77,11 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		sliderEl?.removeAttribute('data-slider');
 
 		// Ticker
-		const tickerEl = document.querySelector(`#${postsId} .bBlocksTickerPosts`);
+		const tickerEl = document.querySelector(`#${posts.id} .bBlocksTickerPosts`);
 		if (tickerEl) {
 			const { rowGap } = JSON.parse(tickerEl.dataset.ticker);
 
-			sliderEl?.removeAttribute('data-slider');
 			$(tickerEl).easyTicker({
 				direction: 'up',
 				easing: 'swing',
