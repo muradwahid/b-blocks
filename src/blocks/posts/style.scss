@@ -80,6 +80,23 @@ $secondaryColor: #8344c5;
 	article{
 		box-sizing: border-box;
 	}
+
+	@media (max-width: 576px) {
+		.swiper-button-prev, .swiper-rtl .swiper-button-next{
+			left: 0;
+
+			&::after{
+				font-size: 30px;
+			}
+		}
+		.swiper-button-next, .swiper-rtl .swiper-button-prev{
+			right: 0;
+
+			&::after{
+				font-size: 30px;
+			}
+		}
+	}
 }
 
 .bBlocksPost{
@@ -173,7 +190,24 @@ $secondaryColor: #8344c5;
 	
 		.bBlocksPostFImg {
 			padding-bottom: 0;
-			height: 100%!important;
+			height: 100% !important;
+		}
+
+		@media (max-width: 576px) {
+			grid-template-columns: 1fr !important;
+			height: auto !important;
+			align-self: stretch !important;
+
+			&.rightImage{
+				.bBlocksPostFImg{
+					margin-top: auto;
+				}
+			}
+
+			.bBlocksPostFImg{
+				width: 100%;
+				height: 200px !important;
+			}
 		}
 	}
 

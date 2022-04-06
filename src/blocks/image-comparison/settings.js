@@ -2,13 +2,14 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import Typography from '../../../../Components/Typography';
 import BorderControl from '../../../../Components/BorderControl';
 import SpaceControl from '../../../../Components/SpaceControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import { ImageHolderControl, ImageEditControl, ChangeImageData } from '../../../../Components/ImageControl';
+
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit, vwUnit } = options;
 const beforeAfterImgTab = [

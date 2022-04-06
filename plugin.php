@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.6.2
+ * Version: 1.6.3
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.2' );
+define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.3' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -70,7 +70,7 @@ class BBlocks{
 
 		wp_register_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [ 'wp-edit-blocks' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 
-		wp_register_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+		wp_register_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 
 		wp_register_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'wp-editor' ], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
@@ -95,11 +95,12 @@ class BBlocks{
 	// Enqueue block assets
 	function enqueueBockAssets(){
 		wp_enqueue_style( 'fontAwesome', B_BLOCKS_ASSETS_DIR . 'css/fontAwesome.min.css', [], '5.15.4' ); // Font Awesome
-		wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper-bundle.min.js', [], '7.0.3', true ); // Posts, Slider
+		wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper.min.js', [], '8.0.7', true ); // Posts, Slider
 		wp_enqueue_script( 'chartJS', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', [], '3.5.1', true ); // Chart
 		wp_enqueue_script( 'easyTicker', B_BLOCKS_ASSETS_DIR . 'js/easy-ticker.min.js', [], '3.2.1', true ); // Posts
 
 		wp_enqueue_style( 'animate', B_BLOCKS_ASSETS_DIR . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
+		wp_enqueue_style( 'swiperCSS', B_BLOCKS_ASSETS_DIR . 'css/swiper.min.css', [], '8.0.7' ); // Posts, Slider
 		wp_enqueue_script( 'textillate', B_BLOCKS_ASSETS_DIR . 'js/jquery.textillate.min.js', [ 'jquery' ], B_BLOCKS_PLUGIN_VERSION, true ); // Animated Text
 		
 		echo wp_get_script_tag( [

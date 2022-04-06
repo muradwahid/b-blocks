@@ -3,9 +3,7 @@ import { useState, useContext } from '@wordpress/element';
 import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl } from '@wordpress/components';
 
-import { FilterImagesContext } from './edit';
-
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import BtnGroup from '../../../../Components/BtnGroup';
@@ -14,6 +12,8 @@ import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
+
+import { FilterImagesContext } from './edit';
 import options from '../../Const/options';
 const { aligns } = options;
 

@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelRow, PanelBody, TextControl, SelectControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import ColorsControl from '../../../../Components/ColorsControl';
 import IconControl from '../../../../Components/IconControl';
@@ -10,6 +10,7 @@ import BorderControl from '../../../../Components/BorderControl';
 import Typography from '../../../../Components/Typography';
 import BtnGroup from '../../../../Components/BtnGroup';
 import SpaceControl from '../../../../Components/SpaceControl';
+
 const mailtoStyles = [
 	{ label: 'Default', value: 'default' },
 	{ label: 'Style 1', value: 'style1' },
@@ -68,7 +69,7 @@ const Settings = ({ settings }) => {
 			</PanelBody>
 
 			<PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
-				<IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-paper-plane' }} onlyIcon={true} />
+				<IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-paper-plane' }} isSize={false} isColor={false} />
 
 				<PanelRow className='mt20'>
 					<Title mt='0'>{__('Position:', 'b-blocks')}</Title>

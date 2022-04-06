@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import IconControl from '../../../../Components/IconControl';
 import ColorsControl from '../../../../Components/ColorsControl';
@@ -10,6 +10,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
+
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const types = [
@@ -62,7 +63,7 @@ const Settings = ({ settings }) => {
 				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 				<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>
 
-				<IconControl label={__('Alert Icon:', 'b-blocks')} icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-exclamation-circle' }} onlyIcon={true} />
+				<IconControl label={__('Alert Icon:', 'b-blocks')} icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-exclamation-circle' }} isSize={false} isColor={false} />
 
 				<ToggleControl className='mt20' label={__('Alert Dismissible?', 'b-blocks')} checked={isDismiss} onChange={val => setAttributes({ isDismiss: val })} />
 

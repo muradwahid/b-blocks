@@ -3,16 +3,16 @@ import { useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import BDevice from '../../../../Components/BDevice';
 import ShadowControl from '../../../../Components/ShadowControl';
 import SpaceControl from '../../../../Components/SpaceControl';
-import options from '../../Const/options';
-const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
 import icons from '../../Const/icons';
+import options from '../../Const/options';
+const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ attributes, setAttributes, updatePriceTable, setActiveIndex }) => {
 	const { pricingTables, columns, columnGap, rowGap, textAlign, padding, shadow } = attributes;

@@ -1,14 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-// Import Files
-import Edit from './edit';
-import './editor.scss';
-
-// Icons
-import icons from '../../Const/icons';
-
-// Metadata
 import metadata from '../../../inc/flip-boxes/block.json';
+import Edit from './Edit';
+import './editor.scss';
+import icons from '../../Const/icons';
 
 registerBlockType(metadata, {
 	icon: icons.flipBox,

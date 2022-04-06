@@ -4,17 +4,17 @@ import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
-import Settings from './settings';
-
-// Variables
+// Settings Components
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
+
+import Settings from './settings';
 
 export const IndexContext = createContext();
 
 const Edit = props => {
 	const { className, attributes: { cards = [], columns, columnGap, rowGap, layout, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const [activeIndex, setActiveIndex] = useState(0);
 

@@ -3,7 +3,7 @@ import { useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, SelectControl } from '@wordpress/components';
 
-// Components
+// Settings Components
 import Title from '../../../../Components/Title';
 import BtnGroup from '../../../../Components/BtnGroup';
 import BColor from '../../../../Components/BColor';
@@ -16,11 +16,10 @@ import MultiShadowControl from '../../../../Components/MultiShadowControl';
 import Typography from '../../../../Components/Typography';
 import SeparatorControl from '../../../../Components/SeparatorControl';
 import SpaceControl from '../../../../Components/SpaceControl';
+
+import icons from '../../Const/icons';
 import options from '../../Const/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
-
-// Icons
-import icons from '../../Const/icons';
 
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },

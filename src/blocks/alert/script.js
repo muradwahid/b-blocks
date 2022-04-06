@@ -1,4 +1,3 @@
-// import Sass
 import './style.scss';
 
 // Alert

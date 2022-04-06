@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import ColorControl from '../../../../Components/ColorControl';
 

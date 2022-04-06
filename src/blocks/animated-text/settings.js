@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TabPanel, TextareaControl, ToggleControl, SelectControl } from '@wordpress/components';
 
-// Components
+// Settings Components
 import Title from '../../../../Components/Title';
 import BtnGroup from '../../../../Components/BtnGroup';
 import Background from '../../../../Components/Background';
@@ -10,6 +10,7 @@ import Typography from '../../../../Components/Typography';
 import BColor from '../../../../Components/BColor';
 import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
+
 import options from '../../Const/options';
 const { generalStyleTabs } = options;
 const animateInOpt = [

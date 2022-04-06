@@ -196,6 +196,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"isLinkNewTab": {
+			"type": "boolean",
+			"default": true
+		},
 		"btnTypo": {
 			"type": "object",
 			"default": {

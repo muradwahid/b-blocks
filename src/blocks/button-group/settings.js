@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import BtnGroup from '../../../../Components/BtnGroup';
@@ -11,6 +11,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import IconControl from '../../../../Components/IconControl';
+
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const sepTypes = [

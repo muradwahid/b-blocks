@@ -3,8 +3,8 @@ Contributors: abuhayat, charlescormier
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
-Tested up to: 5.9
-Stable tag: 1.6.2
+Tested up to: 5.9.2
+Stable tag: 1.6.3
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.6.3 =
+* Update Slider and Flip Boxes blocks
+
 = 1.6.2 =
 * Update Posts blocks
 
@@ -250,6 +253,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.6.3 =
+* Update Slider and Flip Boxes blocks
 
 = 1.6.2 =
 * Update Posts blocks

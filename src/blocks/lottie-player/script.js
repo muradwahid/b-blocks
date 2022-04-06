@@ -1,8 +1,6 @@
-// Import Sass
-import './style.scss';
+import '@lottiefiles/lottie-player'; // Lottie player assets
 
-// Lottie files assets
-import '@lottiefiles/lottie-player';
+import './style.scss';
 
 const allPlayers = document.querySelectorAll('.wp-block-b-blocks-lottie-player');
 Object.values(allPlayers).map(player => {

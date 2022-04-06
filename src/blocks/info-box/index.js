@@ -1,14 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-// Import Files
+import metadata from '../../../inc/info-box/block.json';
 import Edit from './edit';
 import './editor.scss';
-
-// Icon
 import icons from '../../Const/icons';
-
-// Metadata
-import metadata from '../../../inc/info-box/block.json';
 
 registerBlockType(metadata, {
 	icon: icons.infoBox,

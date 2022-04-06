@@ -1,7 +1,6 @@
-// import Sass
-import './style.scss';
-
 const $ = jQuery;
+
+import './style.scss';
 
 // All Block Directory
 const allAnimatedText = document.querySelectorAll('.wp-block-b-blocks-animated-text');

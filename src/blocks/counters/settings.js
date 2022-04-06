@@ -3,10 +3,7 @@ import { useState, useContext } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
-import { IndexContext } from './edit';
-import spaceOffice from '../../img/open-space-office.jpg';
-
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import Background from '../../../../Components/Background';
@@ -16,7 +13,11 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
+
+import { IndexContext } from './edit';
+import icons from '../../Const/icons';
 import options from '../../Const/options';
+import spaceOffice from '../../img/open-space-office.jpg';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
@@ -28,8 +29,6 @@ const iconPositions = [
 	{ label: __('Top', 'b-blocks'), value: 'top' },
 	{ label: __('Label', 'b-blocks'), value: 'label' }
 ];
-
-import icons from '../../Const/icons';
 
 const Settings = props => {
 	const { attributes: { counters = [], theme, columns, columnGap, rowGap, duration, background, padding, counterWidth, counterHeight, textAlign, isIcon, iconSize, iconPosition, numberTypo, isLabel, labelTypo, counterPadding, counterBorder, counterShadow }, setAttributes } = props;
@@ -93,7 +92,7 @@ const Settings = props => {
 							return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Counter No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
 								<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateCounter(index, 'background', val)} defaults={{ color: '#0000' }} />
 
-								<IconControl label={__('Icon:', 'b-blocks')} icon={icon} onChange={val => updateCounter(index, 'icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} disableSize={true} />
+								<IconControl label={__('Icon:', 'b-blocks')} icon={icon} onChange={val => updateCounter(index, 'icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} isSize={false} />
 
 								<NumberControl label={__('Start Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.start} onChange={val => updateCounter(index, 'number', val, 'start')} />
 

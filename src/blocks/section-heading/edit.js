@@ -7,7 +7,7 @@ import Settings from './settings';
 const Edit = props => {
 	const { className, attributes: { textAlign, title, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, desc, descTypo, descColor, descMargin }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	return <>
 		<Settings settings={props} />

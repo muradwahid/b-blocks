@@ -1,11 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useContext } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalUnitControl as UnitControl, SelectControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, __experimentalUnitControl as UnitControl, SelectControl } from '@wordpress/components';
 
-import { IndexContext } from './edit';
-
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import BDevice from '../../../../Components/BDevice';
 import Background from '../../../../Components/Background';
@@ -14,16 +12,19 @@ import BorderControl from '../../../../Components/BorderControl';
 import SpaceControl from '../../../../Components/SpaceControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import Typography from '../../../../Components/Typography';
-import options from '../../Const/options';
-const { generalStyleTabs, sliderEffects, pxUnit, perUnit, emUnit, vhUnit } = options;
 
-// Icons
 import icons from '../../Const/icons';
+import options from '../../Const/options';
+const { sliderEffects, pxUnit, perUnit, emUnit, vhUnit } = options;
+const generalStyleTabs = [
+	{ name: 'general', title: __('General', 'b-blocks') },
+	{ name: 'options', title: __('Options', 'b-blocks') },
+	{ name: 'style', title: __('Style', 'b-blocks') }
+]
 
-const Settings = ({ attributes, setAttributes }) => {
+const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isAutoplay, speed, effect, isTouchMove, isPage, isPageClickable, isPageDynamic, pageColor, pageWidth, pageHeight, pageBorder, isPrevNext, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, linkTarget, btnTypo, btnPadding, btnBorder } = attributes;
 
-	const setActiveIndex = useContext(IndexContext);
 	const [device, setDevice] = useState('desktop');
 
 	const addSlide = () => {
@@ -55,6 +56,19 @@ const Settings = ({ attributes, setAttributes }) => {
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+						<div className='helpItem'>
+							<a href='https://bblockswp.com/docs/slider-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+						</div>
+
+						<div className='helpItem rateUs'>
+							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+							</a>
+						</div>
+					</PanelBody>
+
 					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Slides', 'b-blocks')}>
 						{slides.map((item, index) => {
 							const { background, title, titleColor, description, descColor, btnText, btnLink, btnColors, btnHovColors } = item;
@@ -63,6 +77,12 @@ const Settings = ({ attributes, setAttributes }) => {
 								<Background label={__('Background', 'b-blocks')} background={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
 
 								<PanelRow>
+									<Title mt='0' mb='0'>{__('Content Position', 'b-blocks')}</Title>
+									<AlignmentMatrixControl onChange={val => updateSlide(index, 'position', val)} />
+								</PanelRow>
+								<small>{__('You can also change the content position by dragging element.', 'b-blocks')}</small>
+
+								<PanelRow className='mt20'>
 									<Title mt='0' mb='0'>{__('Title:', 'b-blocks')}</Title>
 									<TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
 								</PanelRow>
@@ -123,27 +143,36 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit, emUnit, vhUnit]} />
 					</PanelBody>
+				</>}
 
 
-					{/* Slider Options */}
-					<PanelBody className='bPlPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
+				{'options' === tab.name && <>
+					<PanelBody className='bPlPanelBody' title={__('Basic Options', 'b-blocks')}>
 						<ToggleControl label={__('Enable Loop', 'b-blocks')} checked={isLoop} onChange={val => setAttributes({ isLoop: val })} />
 
 						<ToggleControl label={__('Enable Touch Move', 'b-blocks')} checked={isTouchMove} onChange={val => setAttributes({ isTouchMove: val })} />
 
-						<ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={isAutoplay} onChange={val => setAttributes({ isAutoplay: val })} />
-
 						<Title>{__('Speed & Delay (s):', 'b-blocks')}</Title>
 						<RangeControl value={speed} onChange={val => setAttributes({ speed: val })} min={0} max={10} step={.05} />
 						<small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
+					</PanelBody>
 
-						<PanelRow className='mt20'>
+
+					<PanelBody className='bPlPanelBody' title={__('Autoplay', 'b-blocks')} initialOpen={false}>
+						<ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={isAutoplay} onChange={val => setAttributes({ isAutoplay: val })} />
+					</PanelBody>
+
+
+					<PanelBody className='bPlPanelBody' title={__('Effects', 'b-blocks')} initialOpen={false}>
+						<PanelRow>
 							<Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
 							<SelectControl value={effect} onChange={val => setAttributes({ effect: val })} options={sliderEffects} />
 						</PanelRow>
 						<small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
+					</PanelBody>
 
-						<Title>{__('Pagination:', 'b-blocks')}</Title>
+
+					<PanelBody className='bPlPanelBody' title={__('Pagination', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Pagination', 'b-blocks')} checked={isPage} onChange={val => setAttributes({ isPage: val })} />
 
 						{isPage && <>
@@ -151,11 +180,14 @@ const Settings = ({ attributes, setAttributes }) => {
 
 							<ToggleControl label={__('Enable Pagination Dynamic Bullets', 'b-blocks')} checked={isPageDynamic} onChange={val => setAttributes({ isPageDynamic: val })} />
 						</>}
+					</PanelBody>
 
-						<Title>{__('Preview Next Button:', 'b-blocks')}</Title>
+
+					<PanelBody className='bPlPanelBody' title={__('Navigation', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Preview Next Button', 'b-blocks')} checked={isPrevNext} onChange={val => setAttributes({ isPrevNext: val })} />
 					</PanelBody>
 				</>}
+
 
 				{'style' === tab.name && <>
 					{/* Option Style */}
@@ -195,7 +227,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<ToggleControl label={__('Show Button', 'b-blocks')} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
 						{isBtn && <>
-							<ToggleControl label={__('Open link in new tab', 'content-slider-block')} checked={'_blank' === linkTarget ? true : false} onChange={val => setAttributes({ linkTarget: val ? '_blank' : '' })} />
+							<ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={'_blank' === linkTarget ? true : false} onChange={val => setAttributes({ linkTarget: val ? '_blank' : '' })} />
 
 							<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 

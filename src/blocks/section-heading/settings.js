@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import SeparatorControl from '../../../../Components/SeparatorControl';
 import Typography from '../../../../Components/Typography';
 import BColor from '../../../../Components/BColor';

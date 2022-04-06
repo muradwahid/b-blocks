@@ -3,9 +3,7 @@ import { useState, useContext } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
 
-import { IndexContext } from './edit';
-
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import Background from '../../../../Components/Background';
@@ -15,11 +13,11 @@ import { ImageHolderControl, ChangeImageData } from '../../../../Components/Imag
 import BDevice from '../../../../Components/BDevice';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
+
+import { IndexContext } from './edit';
+import icons from '../../Const/icons';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
-
-// Icons
-import icons from '../../Const/icons';
 
 const Settings = ({ settings }) => {
 	const { attributes: { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep }, setAttributes } = settings;

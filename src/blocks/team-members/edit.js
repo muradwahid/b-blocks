@@ -4,7 +4,7 @@ import { RichText } from '@wordpress/block-editor';
 import { Spinner, Button, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
-// Components
+// Settings Components
 import Title from '../../../../Components/Title';
 import IconControl from '../../../../Components/IconControl';
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
@@ -14,7 +14,7 @@ import Settings from './settings';
 const Edit = props => {
 	const { className, attributes: { members = [], columns, columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin }, setAttributes, clientId, isSelected } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [selectedSocial, setSelectedSocial] = useState(null);
@@ -158,7 +158,7 @@ const Edit = props => {
 								<Title mt='0'>{__('Link:', 'b-blocks')}</Title>
 								<InputControl value={social[selectedSocial]?.link} onChange={val => updateMember(index, 'social', val, selectedSocial, 'link')} />
 
-								<IconControl icon={social[selectedSocial]?.icon} onChange={val => updateMember(index, 'social', val, selectedSocial, 'icon')} defaults={{ class: 'fa fa-facebook', fontSize: 22 }} onlyIcon={true} />
+								<IconControl icon={social[selectedSocial]?.icon} onChange={val => updateMember(index, 'social', val, selectedSocial, 'icon')} defaults={{ class: 'fa fa-facebook', fontSize: 22 }} isSize={false} isColor={false} />
 
 								<a className='memberSocialRemove' onClick={e => {
 									e.preventDefault();

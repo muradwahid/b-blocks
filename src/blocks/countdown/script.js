@@ -1,6 +1,6 @@
-// Import Sass
 import './style.scss';
 
+// Countdown
 const allCountdown = document.querySelectorAll('.wp-block-b-blocks-countdown');
 
 Object.values(allCountdown).map(countdown => {

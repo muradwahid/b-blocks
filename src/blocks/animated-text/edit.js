@@ -1,5 +1,4 @@
 import { useEffect, useRef } from '@wordpress/element';
-
 const $ = jQuery;
 
 import Settings from './settings';
@@ -7,7 +6,7 @@ import Settings from './settings';
 const Edit = props => {
 	const { className, attributes: { loop, animateIn, inEffect, inSequence, outEffect, outSequence, textAlign, background, content, typography, color, padding, border }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const animateTextRef = useRef(null);
 

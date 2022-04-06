@@ -7,7 +7,7 @@ export const IndexContext = createContext();
 const Edit = props => {
 	const { className, attributes: { socials, alignment, background, size, padding, margin, border, shadow }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const [activeIndex, setActiveIndex] = useState(0);
 

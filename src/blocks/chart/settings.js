@@ -2,10 +2,12 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, TextControl, __experimentalNumberControl as NumberControl, Button, Dashicon, Tooltip, RangeControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import Background from '../../../../Components/Background';
 import BColor from '../../../../Components/BColor';
+
+import icons from '../../Const/icons';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const types = [
@@ -28,9 +30,6 @@ const pointStyles = [
 	{ label: __('Star', 'b-blocks'), value: 'star' },
 	{ label: __('Triangle', 'b-blocks'), value: 'triangle' },
 ];
-
-// Icons
-import icons from '../../Const/icons';
 
 const Settings = ({ settings }) => {
 	const { attributes: { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload }, setAttributes } = settings;

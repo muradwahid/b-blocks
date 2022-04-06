@@ -4,15 +4,15 @@ import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
-import Settings from './settings';
-
-// Variables
+// Settings Components
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
+
+import Settings from './settings';
 
 const Edit = props => {
 	const { className, attributes: { alignment, width, border, beforeImg, afterImg, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	// useEffect(() => {
 	//     const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider`);

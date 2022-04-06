@@ -2,9 +2,10 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TextControl, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, Button, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 
-// Components
+// Settings Components
 import Title from '../../../../Components/Title';
 import BtnGroup from '../../../../Components/BtnGroup';
+
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const sourceTypes = [

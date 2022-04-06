@@ -3,13 +3,16 @@ import { useContext } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, SelectControl, ToggleControl, Button, Dashicon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
 import Title from '../../../../Components/Title';
 import IconControl from '../../../../Components/IconControl';
 import Background from '../../../../Components/Background';
 import { ImageHolderControl } from '../../../../Components/ImageControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
+
+import { IndexContext } from './edit';
+import icons from '../../Const/icons';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const themes = [
@@ -61,10 +64,6 @@ const mobileNetworks = [
 	{ label: __('WeChat', 'social-sharing'), value: 'wechat' },
 	{ label: __('LINE', 'social-sharing'), value: 'line' }
 ];
-
-import icons from '../../Const/icons';
-
-import { IndexContext } from './edit';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { socials, alignment, theme, background, size, padding, margin, border, shadow } = attributes;
@@ -154,7 +153,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<ToggleControl className='mt20' label={__('Upload Icon?', 'social-sharing')} checked={isUpIcon} onChange={val => updateSocial(index, 'isUpIcon', val)} />
 
 						{isUpIcon ? <ImageHolderControl className='mt20' label={__('Icon:', 'social-sharing')} img={upIcon} onChange={val => updateSocial(index, 'upIcon', val)} /> :
-							<IconControl label={__('Icon:', 'social-sharing')} icon={icon} onChange={val => updateSocial(index, 'icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} disableSize={true} />}
+							<IconControl label={__('Icon:', 'social-sharing')} icon={icon} onChange={val => updateSocial(index, 'icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} isSize={false} />}
 
 						<PanelRow className='itemAction mt20'>
 							<Button className='removeItem' label={__('Remove', 'social-sharing')} onClick={e => {

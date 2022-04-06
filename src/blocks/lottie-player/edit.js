@@ -1,14 +1,12 @@
 import { useEffect } from '@wordpress/element';
-
-// Lottie files assets
-import '@lottiefiles/lottie-player';
+import '@lottiefiles/lottie-player'; // Lottie player assets
 
 import Settings from './settings';
 
 const Edit = props => {
 	const { className, attributes: { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	// Set or Remove attributes
 	const lottieWrapper = document.querySelector(`#bBlocksLottiePlayer-${clientId} .bBlocksLottiePlayer`);

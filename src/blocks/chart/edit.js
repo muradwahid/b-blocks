@@ -5,7 +5,7 @@ import Settings from './settings';
 const Edit = props => {
 	const { className, attributes: { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const chartCtxWrap = useRef(null);
 	const downloadChart = useRef(null);

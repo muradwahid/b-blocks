@@ -3,14 +3,13 @@ import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl } from '@wordpress/components';
 
-// Variables
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 
 const Edit = props => {
 	const { className, attributes: { gif, gifAlign, gifWidth }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const [search, setSearch] = useState('');
 	const [gifData, setGifData] = useState([]);

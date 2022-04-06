@@ -1,14 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-// Import Files
+import metadata from '../../../inc/section-heading/block.json';
 import Edit from './edit';
 import './editor.scss';
-
-// Icon
 import icons from '../../Const/icons';
-
-// Metadata
-import metadata from '../../../inc/section-heading/block.json';
 
 registerBlockType(metadata, {
 	icon: icons.h,

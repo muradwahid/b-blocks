@@ -5,7 +5,7 @@ import Settings from './settings';
 const Edit = props => {
 	const { className, attributes: { qrAlign, url, dimension, color, bgColor }, setAttributes, clientId } = props;
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]); // Set & Update clientId to cId
+	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&color=${color.replace('#', '')}&bgcolor=${bgColor.replace('#', '')}&ecc=L&qzone=1&data=${url || 'http://bplugins.com'}`;
 

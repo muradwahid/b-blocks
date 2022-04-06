@@ -1,4 +1,3 @@
-// import Sass
 import './style.scss';
 
 // 3D Viewer
