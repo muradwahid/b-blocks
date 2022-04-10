@@ -1,5 +1,7 @@
-.wp-block-b-blocks-image-comparison{
-	.comparison-slider-wrapper, .bBlocksImageComparison {
+.wp-block-b-blocks-image-comparison {
+
+	.comparison-slider-wrapper,
+	.bBlocksImageComparison {
 		position: relative;
 		display: inline-block;
 		background-color: white;
@@ -10,7 +12,8 @@
 			width: 100%;
 			margin: 0;
 			box-sizing: border-box;
-			> img {
+
+			>img {
 				width: 100%;
 				height: auto;
 				display: block;
@@ -26,7 +29,7 @@
 				box-sizing: border-box;
 				text-align: right;
 
-				@media screen and ( min-width : 767px ) {
+				@media screen and (min-width : 767px) {
 					display: block;
 				}
 			}
@@ -38,9 +41,11 @@
 				height: 100%;
 				width: 50%;
 				overflow: hidden;
-				> img {
+
+				>img {
 					display: block;
 				}
+
 				.overlay {
 					right: auto;
 					left: 20px;
@@ -58,6 +63,7 @@
 				bottom: 0;
 				margin-left: -1px;
 				cursor: ew-resize;
+
 				&:before {
 					content: '';
 					position: absolute;
@@ -70,6 +76,7 @@
 					transform: rotate(45deg);
 					transition: all 0.1s ease-in-out;
 				}
+
 				&:after {
 					content: '';
 					position: absolute;
@@ -82,13 +89,15 @@
 					transform: rotate(45deg);
 					transition: all 0.1s ease-in-out;
 				}
-				&.draggable{
+
+				&.draggable {
 					&:before {
 						width: 30px;
 						height: 30px;
 						left: -14px;
 						margin-top: -15px;
 					}
+
 					&:after {
 						width: 20px;
 						height: 20px;

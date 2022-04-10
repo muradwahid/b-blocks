@@ -3,140 +3,46 @@ import { useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
+const $ = jQuery;
 
 // Settings Components
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
-import Settings from './settings';
+import Settings from './Settings';
+import Style from './Style';
+import { drags } from './functions';
 
 const Edit = props => {
-	const { className, attributes: { alignment, width, border, beforeImg, afterImg, isLabel, beforeLabel, afterLabel, labelTypo, labelColors, labelPadding, isCap, cap, capTypo, capColors, capPadding }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId } = props;
+	const { beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
-	// useEffect(() => {
-	//     const comparisonSlider = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider`);
-	//     const beforeImg = document.querySelector(`#bBlocksImageComparison-${clientId} .comparison-slider .beforeImg`);
-
-	//     if (beforeImg && comparisonSlider) {
-	//         beforeImg.style.width = comparisonSlider.clientWidth;
-	//         beforeImg.style.minWidth = comparisonSlider.clientWidth;
-	//     }
-	// }, [width]);
-
 	// Image Slider Scripts
-	(function ($) {
-		$(document).ready(function () {
-			// If the comparison slider is present on the page lets initialize it, this is good you will include this in the main js to prevent the code from running when not needed
-			if ($('.comparison-slider')[0]) {
-				let compSlider = $('.comparison-slider');
+	useEffect(() => {
+		if ($('.comparison-slider')[0]) {
+			let compSlider = $('.comparison-slider');
 
-				//let's loop through the sliders and initialize each of them
-				compSlider.each(function () {
-					let compSliderWidth = $(this).width() + 'px';
-					$(this).find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
-					drags($(this).find('.divider'), $(this).find('.resize'), $(this));
-				});
-
-				//if the user resizes the windows lets update our variables and resize our images
-				$(window).on('resize', function () {
-					let compSliderWidth = compSlider.width() + 'px';
-					compSlider.find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
-				});
-			}
-		});
-
-		// This is where all the magic happens
-		function drags(dragElement, resizeElement, container) {
-			// This creates a variable that detects if the user is using touch input instead of the mouse.
-			let touched = false;
-			window.addEventListener('touchstart', function () {
-				touched = true;
-			});
-			window.addEventListener('touchend', function () {
-				touched = false;
+			//let's loop through the sliders and initialize each of them
+			compSlider.each(function () {
+				let compSliderWidth = $(this).width() + 'px';
+				$(this).find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
+				drags($(this).find('.divider'), $(this).find('.resize'), $(this));
 			});
 
-			// click the image and move the slider on interaction with the mouse or the touch input
-			dragElement.on('mousedown touchstart', function (e) {
-				//add classes to the elements - good for css animations if you need it to
-				dragElement.addClass('draggable');
-				resizeElement.addClass('resizable');
-				//create vars
-				let startX = e.pageX ? e.pageX : e.originalEvent.touches[0].pageX;
-				let dragWidth = dragElement.outerWidth();
-				let posX = dragElement.offset().left + dragWidth - startX;
-				let containerOffset = container.offset().left;
-				let containerWidth = container.outerWidth();
-				let minLeft = containerOffset + 10;
-				let maxLeft = containerOffset + containerWidth - dragWidth - 10;
-
-				//add event listener on the divider element
-				dragElement.parents().on('mousemove touchmove', function (e) {
-					// if the user is not using touch input let do preventDefault to prevent the user from selecting the images as he moves the slider around.
-					if (touched === false) {
-						e.preventDefault();
-					}
-
-					let moveX = e.pageX ? e.pageX : e.originalEvent.touches[0].pageX;
-					let leftValue = moveX + posX - dragWidth;
-
-					// stop the divider from going over the limits of the container
-					if (leftValue < minLeft) {
-						leftValue = minLeft;
-					} else if (leftValue > maxLeft) {
-						leftValue = maxLeft;
-					}
-
-					let widthValue = (leftValue + dragWidth / 2 - containerOffset) * 100 / containerWidth + '%';
-
-					$('.draggable').css('left', widthValue).on('mouseup touchend touchcancel', function () {
-						$(this).removeClass('draggable');
-						resizeElement.removeClass('resizable');
-					});
-
-					$('.resizable').css('width', widthValue);
-
-				}).on('mouseup touchend touchcancel', function () {
-					dragElement.removeClass('draggable');
-					resizeElement.removeClass('resizable');
-				});
-			}).on('mouseup touchend touchcancel', function () {
-				// stop clicking the image and move the slider
-				dragElement.removeClass('draggable');
-				resizeElement.removeClass('resizable');
+			//if the user resizes the windows lets update our variables and resize our images
+			$(window).on('resize', function () {
+				let compSliderWidth = compSlider.width() + 'px';
+				compSlider.find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
 			});
 		}
-	})(jQuery);
+	}, [$]);
 
 	return <>
-		<Settings settings={props} />
+		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div className={className} id={`bBlocksImageComparison-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				${labelTypo?.googleFontLink ? `@import url(${labelTypo?.googleFontLink})` : ''}
-				${capTypo?.googleFontLink ? `@import url(${capTypo?.googleFontLink})` : ''}
-
-				#bBlocksImageComparison-${clientId}{
-					text-align: ${alignment};
-				}
-				#bBlocksImageComparison-${clientId} .bBlocksImageComparison{
-					width: ${width};
-					${border?.styles};
-				}
-
-				#bBlocksImageComparison-${clientId} .bBlocksImageComparison .overlay{
-					${labelTypo?.styles || 'font-size: 15px;'}
-					${labelColors?.styles || 'color: #fff; background: #00000080;'}
-					padding: ${labelPadding?.styles || '10px 15px'};
-				}
-				#bBlocksImageComparison-${clientId} .bBlocksImageComparison .caption{
-					${capTypo?.styles || 'font-size: 14px;'}
-					${capColors?.styles || 'color: #333; background: #f4f4f4;'}
-					padding: ${capPadding?.styles || '10px 15px'};
-				}
-			`}} />
+			<Style attributes={props.attributes} clientId={clientId} />
 
 			<div className='bBlocksImageComparison'>
 				{beforeImg?.url && afterImg?.url ? <div className='comparison-slider'>

@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel } from '@wordpress/components';
+import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -17,8 +17,8 @@ const beforeAfterImgTab = [
 	{ name: 'after-img', title: __('After Img', 'b-blocks') }
 ];
 
-const Settings = ({ settings }) => {
-	const { attributes: { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, labelTypo, labelColors, labelPadding, isCap, capTypo, capColors, capPadding }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, labelTypo, labelColors, labelPadding, isCap, capTypo, capColors, capPadding } = attributes;
 
 	// Functions
 	const swapImages = () => {
@@ -30,6 +30,18 @@ const Settings = ({ settings }) => {
 	return <>
 		<InspectorControls>
 			<Title mt='0' mb='0'></Title> {/* Just use the component */}
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				{/* <div className='helpItem'>
+					<a href='https://bblockswp.com/docs/image-compare/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div> */}
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
 
 			<PanelBody className='bPlPanelBody' title={__('Comparison Settings', 'b-blocks')}>
 				{/* Width */}
