@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.6.4
+ * Version: 1.6.5
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.4' );
+define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.5' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -66,11 +66,11 @@ class BBlocks{
 
 	// On Init
 	function onInit(){
-		wp_register_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'swiperJS', 'chartJS', 'easyTicker', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
+		wp_register_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'swiperJS', 'plyrJS', 'chartJS', 'easyTicker', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
 
 		wp_register_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [ 'wp-edit-blocks' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 
-		wp_register_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+		wp_register_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-block-editor', 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 
 		wp_register_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'wp-editor' ], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
@@ -96,11 +96,13 @@ class BBlocks{
 	function enqueueBockAssets(){
 		wp_enqueue_style( 'fontAwesome', B_BLOCKS_ASSETS_DIR . 'css/fontAwesome.min.css', [], '5.15.4' ); // Font Awesome
 		wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper.min.js', [], '8.0.7', true ); // Posts, Slider
+		wp_enqueue_script( 'plyrJS', B_BLOCKS_ASSETS_DIR . 'js/plyr.js', [], '3.7.2', true ); // Video
 		wp_enqueue_script( 'chartJS', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', [], '3.5.1', true ); // Chart
 		wp_enqueue_script( 'easyTicker', B_BLOCKS_ASSETS_DIR . 'js/easy-ticker.min.js', [], '3.2.1', true ); // Posts
-
-		wp_enqueue_style( 'animate', B_BLOCKS_ASSETS_DIR . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
+		
 		wp_enqueue_style( 'swiperCSS', B_BLOCKS_ASSETS_DIR . 'css/swiper.min.css', [], '8.0.7' ); // Posts, Slider
+		wp_enqueue_style( 'plyrCSS', B_BLOCKS_ASSETS_DIR . 'css/plyr.css', [], '3.7.2' ); // Video
+		wp_enqueue_style( 'animate', B_BLOCKS_ASSETS_DIR . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
 		wp_enqueue_script( 'textillate', B_BLOCKS_ASSETS_DIR . 'js/jquery.textillate.min.js', [ 'jquery' ], B_BLOCKS_PLUGIN_VERSION, true ); // Animated Text
 		
 		echo wp_get_script_tag( [
@@ -141,6 +143,9 @@ BBlocks::instance();
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/slider/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/section-heading/block.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/video/block.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/services/block.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/services/child/child.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/3d-viewer/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/image-comparison/block.php';

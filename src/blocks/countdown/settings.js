@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -25,18 +25,30 @@ const sepTypes = [
 	{ label: __('Solid', 'b-blocks'), value: '|' },
 ];
 
-const Settings = ({ settings }) => {
-	const { attributes: { destDate, layout, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { destDate, layout, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor } = attributes;
 
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' == tab.name && <>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+						<div className='helpItem'>
+							<a href='https://bblockswp.com/docs/countdown-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+						</div>
+
+						<div className='helpItem rateUs'>
+							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+							</a>
+						</div>
+					</PanelBody>
+
 					<PanelBody className='bPlPanelBody' title={__('Countdown Settings', 'b-blocks')}>
 						<Title mt='0'>{__('Destination Date:', 'b-blocks')}</Title>
 						<DateTimePicker currentDate={destDate} onChange={val => setAttributes({ destDate: val })} is12Hour={true} />
 					</PanelBody>
-
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
@@ -149,7 +161,6 @@ const Settings = ({ settings }) => {
 						<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={boxShadow} onChange={val => setAttributes({ boxShadow: val })} />
 					</PanelBody>
 
-
 					{isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bPlPanelBody' title={__('Content Style', 'b-blocks')} initialOpen={false}>
 						{/* Digit Typography */}
 						<Typography label={__('Digit Typography:', 'b-blocks')} typography={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: 48 }} />
@@ -165,7 +176,6 @@ const Settings = ({ settings }) => {
 							<BColor label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
 						</>}
 					</PanelBody> : null}
-
 
 					<PanelBody className='bPlPanelBody' title={__('Separator', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />

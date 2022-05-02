@@ -1,8 +1,8 @@
 $primaryColor: #4527a4;
 
 // Social Sharing
-.wp-block-b-blocks-social-share{
-	ul.bBlocksSocialShare{
+.wp-block-b-blocks-social-share {
+	ul.bBlocksSocialShare {
 		list-style-type: none;
 		line-height: 1;
 		margin: 0;
@@ -10,26 +10,27 @@ $primaryColor: #4527a4;
 		display: inline-flex;
 		align-items: center;
 
-		li{
+		li {
 			color: #4e4e4e;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			border-radius: 50%;
 			cursor: pointer;
-			
-			&:first-child{
+
+			&:first-child {
 				margin-left: 0 !important;
 			}
-			&:last-child{
+
+			&:last-child {
 				margin-right: 0 !important;
 			}
 
-			i{
+			i {
 				font-style: inherit;
 			}
 
-			img{
+			img {
 				max-width: unset;
 			}
 		}

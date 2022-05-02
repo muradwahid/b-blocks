@@ -5,6 +5,8 @@ import './style.scss';
 import './blocks/posts/script';
 import './blocks/slider/script';
 import './blocks/section-heading/script';
+import './blocks/video/script';
+import './blocks/services/script';
 import './blocks/3d-viewer/script';
 import './blocks/image-gallery/script';
 import './blocks/image-comparison/script';

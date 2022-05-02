@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl, TextControl, TabPanel } from '@wordpress/components';
+import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl, TextControl, TabPanel, Dashicon } from '@wordpress/components';
 
 // Variables
 import Title from '../../../../Components/Title';
@@ -14,13 +14,26 @@ const modes = [
 	{ label: __('Bounce', 'b-blocks'), value: 'bounce', icon: __('Bounce', 'b-blocks') }
 ];
 
-const Settings = ({ settings }) => {
-	const { attributes: { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, link, width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor } = attributes;
 
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' == tab.name && <>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+						<div className='helpItem'>
+							<a href='https://bblockswp.com/docs/lottie-player-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+						</div>
+
+						<div className='helpItem rateUs'>
+							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+							</a>
+						</div>
+					</PanelBody>
+
 					<PanelBody className='bPlPanelBody' title={__('Player Settings', 'b-blocks')}>
 						<Title mt='0'>{__('Lottie Json file url:', 'b-blocks')}</Title>
 						<TextControl value={file} onChange={val => setAttributes({ file: val })} />
@@ -46,6 +59,10 @@ const Settings = ({ settings }) => {
 
 						<Title>{__('Interval (s):', 'b-blocks')}</Title>
 						<RangeControl value={intermission} onChange={val => setAttributes({ intermission: val })} min={0} max={20} step={.01} />
+
+						<Title mt='0'>{__('Link the player:', 'lottie-player')}</Title>
+						<TextControl value={link} onChange={val => setAttributes({ link: val })} />
+						<small>{__('If you want to link the player, enter the link here. Otherwise, leave as blank.')}</small>
 					</PanelBody>
 				</>}
 

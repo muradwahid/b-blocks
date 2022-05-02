@@ -108,6 +108,10 @@
 			"type": "string",
 			"default": "80%"
 		},
+		"height": {
+			"type": "string",
+			"default": "450px"
+		},
 		"background": {
 			"type": "object",
 			"default": {

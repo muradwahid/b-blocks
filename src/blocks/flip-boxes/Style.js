@@ -4,9 +4,9 @@ const Style = ({ attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink})` : ''}
-			${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink})` : ''}
-			${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink})` : ''}
+			${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
+			${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
+			${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
 
 			#bBlocksFlipBoxes-${clientId} .bBlocksFlipBoxes{ grid-gap: ${rowGap} ${columnGap}; }
 			#bBlocksFlipBoxes-${clientId} .bBlocksFlipBox{ height: ${boxHeight}; }

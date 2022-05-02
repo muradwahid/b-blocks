@@ -1,7 +1,7 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 import metadata from '../../../inc/pricing-table/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
 import icons from '../../Const/icons';
 

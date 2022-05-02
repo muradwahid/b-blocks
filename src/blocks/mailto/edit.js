@@ -15,7 +15,7 @@ const Edit = props => {
 		<div className={className} id={`bBlocksMailto-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink})` : ''}
+				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
 
 				#bBlocksMailto-${clientId} .bBlocksMailto{
 					text-align: ${mailtoAlign};

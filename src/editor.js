@@ -3,6 +3,8 @@ import './blocks/posts';
 import './blocks/slider';
 // import './blocks/section.js';
 import './blocks/section-heading';
+import './blocks/video';
+import './blocks/services';
 import './blocks/3d-viewer';
 import './blocks/image-gallery';
 import './blocks/image-comparison';

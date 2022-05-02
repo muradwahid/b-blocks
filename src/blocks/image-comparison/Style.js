@@ -3,8 +3,8 @@ const Style = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${labelTypo?.googleFontLink ? `@import url(${labelTypo?.googleFontLink})` : ''}
-		${capTypo?.googleFontLink ? `@import url(${capTypo?.googleFontLink})` : ''}
+		${labelTypo?.googleFontLink ? `@import url(${labelTypo?.googleFontLink});` : ''}
+		${capTypo?.googleFontLink ? `@import url(${capTypo?.googleFontLink});` : ''}
 
 		#bBlocksImageComparison-${clientId}{
 			text-align: ${alignment};

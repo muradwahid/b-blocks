@@ -1,5 +1,4 @@
 import { __ } from '@wordpress/i18n';
-import { useContext } from '@wordpress/element';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, SelectControl, ToggleControl, Button, Dashicon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
@@ -11,64 +10,61 @@ import { ImageHolderControl } from '../../../../Components/ImageControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 
-import { IndexContext } from './edit';
 import icons from '../../Const/icons';
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
 const themes = [
-	{ label: __('Default', 'social-sharing'), value: 'default' },
-	{ label: __('Theme 1', 'social-sharing'), value: 'theme1' },
-	{ label: __('Theme 2', 'social-sharing'), value: 'theme2' }
+	{ label: __('Default', 'b-blocks'), value: 'default' },
+	{ label: __('Theme 1', 'b-blocks'), value: 'theme1' },
+	{ label: __('Theme 2', 'b-blocks'), value: 'theme2' }
 ];
 const networkTypes = [
-	{ label: __('Social Networks', 'social-sharing'), value: 'socialNetworks' },
-	{ label: __('Mobile Messenger', 'social-sharing'), value: 'mobileMessenger' }
+	{ label: __('Social Networks', 'b-blocks'), value: 'socialNetworks' },
+	{ label: __('Mobile Messenger', 'b-blocks'), value: 'mobileMessenger' }
 ];
 const socialNetworks = [
-	{ label: __('Facebook', 'social-sharing'), value: 'facebook' },
-	{ label: __('Twitter', 'social-sharing'), value: 'twitter' },
-	{ label: __('LinkedIn', 'social-sharing'), value: 'linkedin' },
-	{ label: __('Pinterest', 'social-sharing'), value: 'pinterest' },
-	{ label: __('Blogger', 'social-sharing'), value: 'blogger' },
-	{ label: __('WordPress', 'social-sharing'), value: 'wordpress' },
-	{ label: __('Tumblr', 'social-sharing'), value: 'tumblr' },
-	{ label: __('Reddit', 'social-sharing'), value: 'reddit' },
-	{ label: __('Digg', 'social-sharing'), value: 'digg' },
-	{ label: __('LiveJournal', 'social-sharing'), value: 'livejournal' },
-	{ label: __('Evernote', 'social-sharing'), value: 'evernote' },
-	{ label: __('Flipboard', 'social-sharing'), value: 'flipboard' },
-	{ label: __('Mix', 'social-sharing'), value: 'mix' },
-	{ label: __('Pocket', 'social-sharing'), value: 'pocket' },
-	{ label: __('Buffer', 'social-sharing'), value: 'buffer' },
-	{ label: __('Instapaper', 'social-sharing'), value: 'instapaper' },
+	{ label: __('Facebook', 'b-blocks'), value: 'facebook' },
+	{ label: __('Twitter', 'b-blocks'), value: 'twitter' },
+	{ label: __('LinkedIn', 'b-blocks'), value: 'linkedin' },
+	{ label: __('Pinterest', 'b-blocks'), value: 'pinterest' },
+	{ label: __('Blogger', 'b-blocks'), value: 'blogger' },
+	{ label: __('WordPress', 'b-blocks'), value: 'wordpress' },
+	{ label: __('Tumblr', 'b-blocks'), value: 'tumblr' },
+	{ label: __('Reddit', 'b-blocks'), value: 'reddit' },
+	{ label: __('Digg', 'b-blocks'), value: 'digg' },
+	{ label: __('LiveJournal', 'b-blocks'), value: 'livejournal' },
+	{ label: __('Evernote', 'b-blocks'), value: 'evernote' },
+	{ label: __('Flipboard', 'b-blocks'), value: 'flipboard' },
+	{ label: __('Mix', 'b-blocks'), value: 'mix' },
+	{ label: __('Pocket', 'b-blocks'), value: 'pocket' },
+	{ label: __('Buffer', 'b-blocks'), value: 'buffer' },
+	{ label: __('Instapaper', 'b-blocks'), value: 'instapaper' },
 
-	{ label: __('Meneame', 'social-sharing'), value: 'meneame' },
+	{ label: __('Meneame', 'b-blocks'), value: 'meneame' },
 
-	{ label: __('Baidu', 'social-sharing'), value: 'baidu' },
-	{ label: __('Weibo', 'social-sharing'), value: 'weibo' },
-	{ label: __('Xing', 'social-sharing'), value: 'xing' },
-	{ label: __('RenRen', 'social-sharing'), value: 'renren' },
+	{ label: __('Baidu', 'b-blocks'), value: 'baidu' },
+	{ label: __('Weibo', 'b-blocks'), value: 'weibo' },
+	{ label: __('Xing', 'b-blocks'), value: 'xing' },
+	{ label: __('RenRen', 'b-blocks'), value: 'renren' },
 
-	{ label: __('Vkontakte (VK)', 'social-sharing'), value: 'vkontakte' },
-	{ label: __('Odnoklassniki', 'social-sharing'), value: 'odnoklassniki' },
-	{ label: __('My World@Mail.Ru', 'social-sharing'), value: 'moimir' },
-	{ label: __('Surfingbird', 'social-sharing'), value: 'surfingbird' },
-	{ label: __('LiveInternet', 'social-sharing'), value: 'liveinternet' }
+	{ label: __('Vkontakte (VK)', 'b-blocks'), value: 'vkontakte' },
+	{ label: __('Odnoklassniki', 'b-blocks'), value: 'odnoklassniki' },
+	{ label: __('My World@Mail.Ru', 'b-blocks'), value: 'moimir' },
+	{ label: __('Surfingbird', 'b-blocks'), value: 'surfingbird' },
+	{ label: __('LiveInternet', 'b-blocks'), value: 'liveinternet' }
 ];
 const mobileNetworks = [
-	{ label: __('SMS', 'social-sharing'), value: 'sms' },
-	{ label: __('Skype', 'social-sharing'), value: 'skype' },
-	{ label: __('Telegram', 'social-sharing'), value: 'telegram' },
-	{ label: __('Viber', 'social-sharing'), value: 'viber' },
-	{ label: __('WhatsApp', 'social-sharing'), value: 'whatsapp' },
-	{ label: __('WeChat', 'social-sharing'), value: 'wechat' },
-	{ label: __('LINE', 'social-sharing'), value: 'line' }
+	{ label: __('SMS', 'b-blocks'), value: 'sms' },
+	{ label: __('Skype', 'b-blocks'), value: 'skype' },
+	{ label: __('Telegram', 'b-blocks'), value: 'telegram' },
+	{ label: __('Viber', 'b-blocks'), value: 'viber' },
+	{ label: __('WhatsApp', 'b-blocks'), value: 'whatsapp' },
+	{ label: __('WeChat', 'b-blocks'), value: 'wechat' },
+	{ label: __('LINE', 'b-blocks'), value: 'line' }
 ];
 
-const Settings = ({ attributes, setAttributes }) => {
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) => {
 	const { socials, alignment, theme, background, size, padding, margin, border, shadow } = attributes;
-
-	const setActiveIndex = useContext(IndexContext);
 
 	const addSocial = () => {
 		setAttributes({
@@ -83,17 +79,17 @@ const Settings = ({ attributes, setAttributes }) => {
 		setActiveIndex(socials.length);
 	}
 
-	const updateSocial = (index, type, val, otherType = false) => {
+	const updateSocial = (type, val, otherType = false) => {
 		const newSocials = [...socials];
 
 		if (otherType) {
-			newSocials[index][type][otherType] = val;
+			newSocials[activeIndex][type][otherType] = val;
 			setAttributes({ socials: newSocials });
 		} else {
-			newSocials[index][type] = val;
+			newSocials[activeIndex][type] = val;
 			setAttributes({ socials: newSocials });
 		}
-		setActiveIndex(index);
+		setActiveIndex(activeIndex);
 	}
 
 	const updateAllSocial = (type, val, otherType = false) => {
@@ -109,68 +105,83 @@ const Settings = ({ attributes, setAttributes }) => {
 		setAttributes({ socials: newSocials });
 	}
 
+	const { networkType = '', network = '', isUpIcon = false, icon = {}, upIcon = {} } = socials[activeIndex] || {};
+
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove socials', 'social-sharing')}>
-				{socials.map((item, index) => {
-					const { networkType, network, isUpIcon, icon, upIcon } = item;
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/social-share-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
 
-					return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Social No ${index + 1}:`, 'social-sharing')} initialOpen={0 !== index ? false : true}>
-						<PanelRow>
-							<Title mt='0' mb='0'>{__('Network Type:', 'b-blocks')}</Title>
-							<SelectControl value={networkType} onChange={val => {
-								updateSocial(index, 'networkType', val);
-								updateSocial(index, 'network', 'mobileMessenger' === val ? 'sms' : 'facebook');
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
 
-								updateSocial(index, 'isUpIcon', false);
-								updateSocial(index, 'icon', 'mobileMessenger' === val ? 'fas fa-sms' : 'fab fa-facebook-f', 'class');
-								updateSocial(index, 'icon', 'mobileMessenger' === val ? '#000' : '#1877f2', 'color');
-							}} options={networkTypes} />
-						</PanelRow>
+			<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove socials', 'b-blocks')}>
+				{null !== activeIndex && <>
+					<h3 className='bplItemTitle'>{__(`Social No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-						<PanelRow>
-							<Title mt='0' mb='0'>{__('Network:', 'b-blocks')}</Title>
-							<SelectControl value={network} onChange={val => {
-								updateSocial(index, 'network', val);
+					<PanelRow>
+						<Title mt='0' mb='0'>{__('Network Type:', 'b-blocks')}</Title>
+						<SelectControl value={networkType} onChange={val => {
+							updateSocial('networkType', val);
+							updateSocial('network', 'mobileMessenger' === val ? 'sms' : 'facebook');
 
-								updateSocial(index, 'icon', 'facebook' === val ? 'fab fa-facebook-f' : 'twitter' === val ? 'fab fa-twitter' : 'linkedin' === val ? 'fab fa-linkedin-in' : 'pinterest' === val ? 'fab fa-pinterest-p' : 'blogger' === val ? 'fab fa-blogger-b' : 'wordpress' === val ? 'fab fa-wordpress' : 'tumblr' === val ? 'fab fa-tumblr' : 'reddit' === val ? 'fab fa-reddit-alien' : 'digg' === val ? 'fab fa-digg' : 'evernote' === val ? 'fab fa-evernote' : 'flipboard' === val ? 'fab fa-flipboard' : 'mix' === val ? 'fab fa-mix' : 'buffer' === val ? 'fab fa-buffer' : 'weibo' === val ? 'fab fa-weibo' : 'xing' === val ? 'fab fa-xing' : 'renren' === val ? 'fab fa-renren' : 'odnoklassniki' === val ? 'fab fa-odnoklassniki' :
+							updateSocial('isUpIcon', false);
+							updateSocial('icon', 'mobileMessenger' === val ? 'fas fa-sms' : 'fab fa-facebook-f', 'class');
+							updateSocial('icon', 'mobileMessenger' === val ? '#000' : '#1877f2', 'color');
+						}} options={networkTypes} />
+					</PanelRow>
 
-									'sms' === val ? 'fas fa-sms' : 'skype' === val ? 'fab fa-skype' : 'telegram' === val ? 'fab fa-telegram-plane' : 'viber' === val ? 'fab fa-viber' : 'whatsapp' === val ? 'fab fa-whatsapp' : 'line' === val && 'fab fa-line',
-									'class');
+					<PanelRow>
+						<Title mt='0' mb='0'>{__('Network:', 'b-blocks')}</Title>
+						<SelectControl value={network} onChange={val => {
+							updateSocial('network', val);
 
-								updateSocial(index, 'icon', 'facebook' === val ? '#1877f2' : 'twitter' === val ? '#1da1f2' : 'linkedin' === val ? '#0a66c2' : 'pinterest' === val ? '#bd081c' : 'blogger' === val ? '#fc4f08' : 'wordpress' === val ? '#0073aa' : 'tumblr' === val ? '#35465d' : 'reddit' === val ? '#ff4500' : 'digg' === val ? '#1b1a19' : 'evernote' === val ? '#00aa0f' : 'flipboard' === val ? '#f52828' : 'mix' === val ? '#ff8226' : 'buffer' === val ? '#000' : 'weibo' === val ? '#df152c' : 'xing' === val ? '#00a82d' : 'renren' === val ? '#0259a0' : 'odnoklassniki' === val ? '#f68b25' :
+							updateSocial('icon', 'facebook' === val ? 'fab fa-facebook-f' : 'twitter' === val ? 'fab fa-twitter' : 'linkedin' === val ? 'fab fa-linkedin-in' : 'pinterest' === val ? 'fab fa-pinterest-p' : 'blogger' === val ? 'fab fa-blogger-b' : 'wordpress' === val ? 'fab fa-wordpress' : 'tumblr' === val ? 'fab fa-tumblr' : 'reddit' === val ? 'fab fa-reddit-alien' : 'digg' === val ? 'fab fa-digg' : 'evernote' === val ? 'fab fa-evernote' : 'flipboard' === val ? 'fab fa-flipboard' : 'mix' === val ? 'fab fa-mix' : 'buffer' === val ? 'fab fa-buffer' : 'weibo' === val ? 'fab fa-weibo' : 'xing' === val ? 'fab fa-xing' : 'renren' === val ? 'fab fa-renren' : 'odnoklassniki' === val ? 'fab fa-odnoklassniki' :
 
-									'sms' === val ? '#000' : 'skype' === val ? '#00aff0' : 'telegram' === val ? '#0088cc' : 'viber' === val ? '#794f9b' : 'whatsapp' === val ? '#25d366' : 'line' === val && '#06c755',
-									'color');
+								'sms' === val ? 'fas fa-sms' : 'skype' === val ? 'fab fa-skype' : 'telegram' === val ? 'fab fa-telegram-plane' : 'viber' === val ? 'fab fa-viber' : 'whatsapp' === val ? 'fab fa-whatsapp' : 'line' === val && 'fab fa-line',
+								'class');
+
+							updateSocial('icon', 'facebook' === val ? '#1877f2' : 'twitter' === val ? '#1da1f2' : 'linkedin' === val ? '#0a66c2' : 'pinterest' === val ? '#bd081c' : 'blogger' === val ? '#fc4f08' : 'wordpress' === val ? '#0073aa' : 'tumblr' === val ? '#35465d' : 'reddit' === val ? '#ff4500' : 'digg' === val ? '#1b1a19' : 'evernote' === val ? '#00aa0f' : 'flipboard' === val ? '#f52828' : 'mix' === val ? '#ff8226' : 'buffer' === val ? '#000' : 'weibo' === val ? '#df152c' : 'xing' === val ? '#00a82d' : 'renren' === val ? '#0259a0' : 'odnoklassniki' === val ? '#f68b25' :
+
+								'sms' === val ? '#000' : 'skype' === val ? '#00aff0' : 'telegram' === val ? '#0088cc' : 'viber' === val ? '#794f9b' : 'whatsapp' === val ? '#25d366' : 'line' === val && '#06c755',
+								'color');
 
 
-								('facebook' === val || 'twitter' === val || 'linkedin' === val || 'pinterest' === val || 'blogger' === val || 'wordpress' === val || 'tumblr' === val || 'reddit' === val || 'digg' === val || 'evernote' === val || 'flipboard' === val || 'mix' === val || 'buffer' === val || 'weibo' === val || 'xing' === val || 'renren' === val || 'odnoklassniki' === val || 'sms' === val || 'skype' === val || 'telegram' === val || 'viber' === val || 'whatsapp' === val || 'line' === val) && updateSocial(index, 'isUpIcon', false);
+							('facebook' === val || 'twitter' === val || 'linkedin' === val || 'pinterest' === val || 'blogger' === val || 'wordpress' === val || 'tumblr' === val || 'reddit' === val || 'digg' === val || 'evernote' === val || 'flipboard' === val || 'mix' === val || 'buffer' === val || 'weibo' === val || 'xing' === val || 'renren' === val || 'odnoklassniki' === val || 'sms' === val || 'skype' === val || 'telegram' === val || 'viber' === val || 'whatsapp' === val || 'line' === val) && updateSocial('isUpIcon', false);
 
-								('livejournal' === val || 'pocket' === val || 'instapaper' === val || 'meneame' === val || 'baidu' === val || 'vkontakte' === val || 'moimir' === val || 'surfingbird' === val || 'liveinternet' === val || 'wechat' === val) && updateSocial(index, 'isUpIcon', true);
-							}} options={'mobileMessenger' === networkType ? mobileNetworks : socialNetworks} />
-						</PanelRow>
+							('livejournal' === val || 'pocket' === val || 'instapaper' === val || 'meneame' === val || 'baidu' === val || 'vkontakte' === val || 'moimir' === val || 'surfingbird' === val || 'liveinternet' === val || 'wechat' === val) && updateSocial('isUpIcon', true);
+						}} options={'mobileMessenger' === networkType ? mobileNetworks : socialNetworks} />
+					</PanelRow>
 
-						<ToggleControl className='mt20' label={__('Upload Icon?', 'social-sharing')} checked={isUpIcon} onChange={val => updateSocial(index, 'isUpIcon', val)} />
+					<ToggleControl className='mt20' label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateSocial('isUpIcon', val)} />
 
-						{isUpIcon ? <ImageHolderControl className='mt20' label={__('Icon:', 'social-sharing')} img={upIcon} onChange={val => updateSocial(index, 'upIcon', val)} /> :
-							<IconControl label={__('Icon:', 'social-sharing')} icon={icon} onChange={val => updateSocial(index, 'icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} isSize={false} />}
+					{isUpIcon ? <ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} img={upIcon} onChange={val => updateSocial('upIcon', val)} /> :
+						<IconControl label={__('Icon:', 'b-blocks')} icon={icon} onChange={val => updateSocial('icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} isSize={false} />}
 
-						<PanelRow className='itemAction mt20'>
-							<Button className='removeItem' label={__('Remove', 'social-sharing')} onClick={e => {
-								e.preventDefault();
-								setAttributes({ socials: [...socials.slice(0, index), ...socials.slice(index + 1)] });
-							}} ><Dashicon icon='no' size={18} />{__('Remove', 'social-sharing')}</Button>
+					<PanelRow className='itemAction mt20 mb15'>
+						<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+							e.preventDefault();
+							setActiveIndex(1 === socials.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
+							setAttributes({ socials: [...socials.slice(0, activeIndex), ...socials.slice(activeIndex + 1)] });
+						}} ><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
 
-							<Button className='duplicateItem' label={__('Duplicate', 'social-sharing')} onClick={e => {
-								e.preventDefault();
-								setAttributes({ socials: [...socials, { ...socials[index] }] });
-							}} >{icons.gearSettings}{__('Duplicate', 'social-sharing')}</Button>
-						</PanelRow>
-					</PanelBody>
-				})}
+						<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+							e.preventDefault();
+							setActiveIndex(socials.length);
+							setAttributes({ socials: [...socials, { ...socials[activeIndex] }] });
+						}} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+					</PanelRow>
+				</>}
 
 				<div className='addItem'>
-					<Button label={__('Add New Social', 'social-sharing')} onClick={addSocial}><Dashicon icon='plus' size={23} />{__('Add New Social', 'social-sharing')}</Button>
+					<Button label={__('Add New Social', 'b-blocks')} onClick={addSocial}><Dashicon icon='plus' size={23} />{__('Add New Social', 'b-blocks')}</Button>
 				</div>
 			</PanelBody>
 
@@ -224,9 +235,9 @@ const Settings = ({ attributes, setAttributes }) => {
 
 		<BlockControls>
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Social Icons Alignment')} alignmentControls={[
-				{ title: __('Social Icons in left', 'social-sharing'), align: 'left', icon: 'align-left' },
-				{ title: __('Social Icons in center', 'social-sharing'), align: 'center', icon: 'align-center' },
-				{ title: __('Social Icons in right', 'social-sharing'), align: 'right', icon: 'align-right' }
+				{ title: __('Social Icons in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+				{ title: __('Social Icons in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+				{ title: __('Social Icons in right', 'b-blocks'), align: 'right', icon: 'align-right' }
 			]} />
 		</BlockControls>
 	</>;

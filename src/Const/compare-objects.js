@@ -25,7 +25,7 @@
 // 	return true;
 // }
 
-const isObject = object => object != null && typeof object === 'object';
+// const isObject = object => object != null && typeof object === 'object';
 
 // const equalSpecific = (main, defaults) => {
 // 	const mainKeys = Object.keys(main);
@@ -42,40 +42,40 @@ const isObject = object => object != null && typeof object === 'object';
 // 	return true;
 // }
 
-const triCompare = (main, defaults, defaultVal) => {
-	const mainKeys = Object.keys(main);
+// const triCompare = (main, defaults, defaultVal) => {
+// 	const mainKeys = Object.keys(main);
 
-	const equalSpecific = (main, defaults) => {
-		const mainKeys = Object.keys(main);
+// 	const equalSpecific = (main, defaults) => {
+// 		const mainKeys = Object.keys(main);
 
-		for (const key of mainKeys) {
-			const mainSingle = main[key];
-			const defaultsSingle = defaults[key];
-			const areObjects = isObject(mainSingle) && isObject(defaultsSingle);
+// 		for (const key of mainKeys) {
+// 			const mainSingle = main[key];
+// 			const defaultsSingle = defaults[key];
+// 			const areObjects = isObject(mainSingle) && isObject(defaultsSingle);
 
-			if (areObjects && !equalSpecific(mainSingle, defaultsSingle) || !areObjects && mainSingle !== defaultsSingle)
-				return false;
-		}
+// 			if (areObjects && !equalSpecific(mainSingle, defaultsSingle) || !areObjects && mainSingle !== defaultsSingle)
+// 				return false;
+// 		}
 
-		return true;
-	}
+// 		return true;
+// 	}
 
-	for (const key of mainKeys) {
-		const mainSingle = main[key];
-		const defaultsSingle = defaults[key];
-		const defaultValSingle = defaultVal[key];
+// 	for (const key of mainKeys) {
+// 		const mainSingle = main[key];
+// 		const defaultsSingle = defaults[key];
+// 		const defaultValSingle = defaultVal[key];
 
-		const areObjects1 = isObject(mainSingle) && isObject(defaultsSingle);
-		const areObjects2 = isObject(mainSingle) && isObject(defaultValSingle);
+// 		const areObjects1 = isObject(mainSingle) && isObject(defaultsSingle);
+// 		const areObjects2 = isObject(mainSingle) && isObject(defaultValSingle);
 
-		if (!defaultsSingle) {
-			if (areObjects2 && !equalSpecific(mainSingle, defaultValSingle) || !areObjects2 && mainSingle !== defaultValSingle)
-				return false;
-		} else {
-			if (areObjects1 && !equalSpecific(mainSingle, defaultsSingle) || !areObjects1 && mainSingle !== defaultsSingle)
-				return false;
-		}
-	}
+// 		if (!defaultsSingle) {
+// 			if (areObjects2 && !equalSpecific(mainSingle, defaultValSingle) || !areObjects2 && mainSingle !== defaultValSingle)
+// 				return false;
+// 		} else {
+// 			if (areObjects1 && !equalSpecific(mainSingle, defaultsSingle) || !areObjects1 && mainSingle !== defaultsSingle)
+// 				return false;
+// 		}
+// 	}
 
-	return true;
-}
+// 	return true;
+// }

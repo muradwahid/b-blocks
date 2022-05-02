@@ -1,0 +1,13 @@
+.wp-block-b-blocks-video {
+	.bBlocksVideo {
+		overflow: hidden;
+		margin: 0 auto;
+		max-width: 100%;
+
+		.videoWrapper {
+			button {
+				color: #fff !important;
+			}
+		}
+	}
+}

@@ -27,6 +27,7 @@
 						"color": "#00000080"
 					},
 					"position": "center center",
+					"positionHolder": "center center",
 					"childPositions": [
 						{
 							"top": 11,
@@ -61,6 +62,7 @@
 						"color": "#00000080"
 					},
 					"position": "center center",
+					"positionHolder": "center center",
 					"childPositions": [
 						{
 							"top": 11,

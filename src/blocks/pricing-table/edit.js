@@ -3,26 +3,28 @@ import { useState, useEffect, useRef } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 import { CheckboxControl, Button, Tooltip, Dashicon } from '@wordpress/components';
 
-import Settings from './settings';
+import Settings from './Settings';
+import Style from './Style';
 
 const Edit = props => {
-	const { className, attributes: { pricingTables, columns, columnGap, rowGap, textAlign, padding, shadow }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId } = props;
+	const { pricingTables, columns } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
-	const updatePriceTable = (index, type, val, otherIndex = false, otherType = false) => {
+	const updatePriceTable = (type, val, otherIndex = false, otherType = false) => {
 		const newPricingTable = [...pricingTables];
 
 		if (false !== otherIndex && otherType) {
-			newPricingTable[index][type][otherIndex][otherType] = val;
+			newPricingTable[activeIndex][type][otherIndex][otherType] = val;
 			setAttributes({ pricingTables: newPricingTable });
 		} else {
-			newPricingTable[index][type] = val;
+			newPricingTable[activeIndex][type] = val;
 			setAttributes({ pricingTables: newPricingTable });
 		}
-		setActiveIndex(index);
+		setActiveIndex(activeIndex);
 	}
 
 	useEffect(() => {
@@ -43,45 +45,10 @@ const Edit = props => {
 	const isUltimate = className.includes('ultimate');
 
 	return <>
-		<Settings attributes={props.attributes} setAttributes={setAttributes} clientId={clientId} updatePriceTable={updatePriceTable} setActiveIndex={setActiveIndex} />
+		<Settings attributes={attributes} setAttributes={setAttributes} updatePriceTable={updatePriceTable} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
-		<div className={className} id={`bBlocksPricingTables-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				#bBlocksPricingTables-${clientId} .bBlocksPricingTables{
-					grid-gap: ${rowGap} ${columnGap};
-					text-align: ${textAlign};
-					padding: ${isStandard ? '30px 0' : '0'}
-				}
-				#bBlocksPricingTables-${clientId} .bBlocksPricingTables .bBlocksPriceTable{
-					padding: ${padding?.styles || '35px 25px'};
-					box-shadow: ${shadow?.styles || '0px 0px 30px 0px #6e8faf4d'};
-				}
-			`}} />
-			<style>
-				{pricingTables?.map((priceTable, index) => {
-					const defPriceTableSelect = `#bBlocksPricingTables-${clientId} .bBlocksPricingTables #bBlocksPriceTable-${index} .bBlocksPriceTable`;
-					const priceTableSelect = hasClass => `#bBlocksPricingTables-${clientId}.is-style-${hasClass} .bBlocksPricingTables #bBlocksPriceTable-${index} .bBlocksPriceTable`;
-
-					return `
-					${defPriceTableSelect} .priceName,
-					${priceTableSelect('basic')} .priceAmountWrap,
-					${priceTableSelect('standard')} .priceAmountWrap{
-						color: ${priceTable.color};
-					}
-					${defPriceTableSelect} .priceLink,
-					${priceTableSelect('basic')} .priceName,
-					${priceTableSelect('standard')}::before,
-					${priceTableSelect('ultimate')} .priceAmountWrap{
-						color: #fff;
-						background-color: ${priceTable.color};
-					}
-					${priceTableSelect('basic')} .priceName::before{
-						border-top-color: ${priceTable.color};
-					}
-				`.replace(/\s+/g, ' ')
-				})}
-			</style>
+		<div className={`${className} ${!isStandard && !isUltimate ? 'is-style-basic' : ''}`} id={`bBlocksPricingTables-${clientId}`}>
+			<Style attributes={attributes} clientId={clientId} isStandard={isStandard} />
 
 			<div className={`bBlocksPricingTables columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{pricingTables?.map((priceTable, index) => {
@@ -103,7 +70,7 @@ const Edit = props => {
 					const priceAmountEl = <span className='priceAmount'>{priceCurrency}{price}</span>;
 					const pricePeriodEl = <RichText className='pricePeriod' tagName='span' value={period} onChange={val => updatePriceTable(index, 'period', val)} placeholder={__('Period', 'b-blocks')} inlineToolbar />;
 
-					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'nowEditing' : ''}`} id={`bBlocksPriceTable-${index}`}>
+					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksPriceTable-${index}`}>
 						<div className='bBlocksPriceTable' ref={bBlocksPriceTable}>
 							<RichText className='priceName' tagName='h3' value={name} onChange={val => updatePriceTable(index, 'name', val)} placeholder={__('Plan Name', 'b-blocks')} inlineToolbar />
 
@@ -134,7 +101,7 @@ const Edit = props => {
 								}}><Dashicon icon='plus' size={23} />{__('Add New Feature', 'b-blocks')}</Button>
 							</div>
 
-							{isBasic && <div className='priceAmountWrap'>{priceAmountEl}</div>}
+							{!isStandard && !isUltimate ? <div className='priceAmountWrap'>{priceAmountEl}</div> : ''}
 							{!isBasic && <br />}
 
 							<RichText className='priceLink' tagName='a' value={linkLabel} href={link} onChange={val => updatePriceTable(index, 'linkLabel', val)} placeholder={__('Link Label', 'b-blocks')} inlineToolbar />
@@ -142,7 +109,7 @@ const Edit = props => {
 					</div>;
 				})}
 			</div>
-		</div >
+		</div>
 	</>;
 };
 export default Edit;

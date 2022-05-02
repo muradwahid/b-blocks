@@ -16,7 +16,7 @@ const Edit = props => {
 		<div className={className} id={`bBlocksAlert-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${typography?.googleFontLink ? `@import url(${typography?.googleFontLink})` : ''}
+				${typography?.googleFontLink ? `@import url(${typography?.googleFontLink});` : ''}
 
 				#bBlocksAlert-${clientId} .bBlocksAlert{
 					text-align: ${alignment};

@@ -13,6 +13,7 @@ module.exports = {
 		'wp': 'readonly',
 		'jQuery': 'readonly',
 		'Swiper': 'readonly',
+		'Plyr': 'readonly',
 		'Chart': 'readonly'
 	},
 	'parserOptions': {

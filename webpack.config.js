@@ -67,8 +67,8 @@ module.exports = (env, argv) => {
 							presets: [
 								'@babel/preset-env',
 								['@babel/preset-react', {
-									'pragma': 'wp.element.createElement',
-									'pragmaFrag': 'wp.element.Fragment',
+									// 'pragma': 'wp.element.createElement',
+									// 'pragmaFrag': 'wp.element.Fragment',
 									'development': isDev()
 								}]
 							]

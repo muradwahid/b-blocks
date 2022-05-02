@@ -1,5 +1,12 @@
-.wp-block-b-blocks-slider{
-	>.bBlocksSlider{
-		display: none;
+.wp-block-b-blocks-slider {
+	.csbContentSlider {
+		.swiper-slide {
+
+			.sliderTitle,
+			.sliderDescription,
+			.sliderBtn {
+				cursor: move;
+			}
+		}
 	}
 }

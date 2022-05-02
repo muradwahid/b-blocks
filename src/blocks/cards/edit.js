@@ -33,9 +33,9 @@ const Edit = props => {
 		<div className={className} id={`bBlocksCards-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${catTypo?.googleFontLink ? `@import url(${catTypo?.googleFontLink})` : ''}
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink})` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink})` : ''}
+				${catTypo?.googleFontLink ? `@import url(${catTypo?.googleFontLink});` : ''}
+				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
+				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
 
 				#bBlocksCards-${clientId} .bBlocksCards{
 					grid-gap: ${rowGap} ${columnGap};

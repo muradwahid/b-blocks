@@ -9,7 +9,7 @@
 		"number counter",
 		"at a glance"
 	],
-	"textdomain": "counters-block",
+	"textdomain": "b-blocks",
 	"attributes": {
 		"align": {
 			"type": "string",

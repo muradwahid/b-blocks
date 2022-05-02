@@ -1,0 +1,61 @@
+$primaryColor: #4527a4;
+
+@for $i from 1 through 12 {
+	&.columns-#{$i} {
+		>.block-editor-inner-blocks>.block-editor-block-list__layout {
+			grid-template-columns: repeat(#{$i}, 1fr);
+		}
+	}
+}
+
+// Services
+.wp-block-b-blocks-services .bBlocksServices {
+	display: block;
+
+	>.block-editor-inner-blocks>.block-editor-block-list__layout {
+		display: grid;
+		padding-bottom: 40px;
+
+		>.block-editor-block-list__block.wp-block {
+			width: 100%;
+			max-width: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.block-list-appender {
+			position: absolute;
+			width: fit-content;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+
+			button {
+				margin-left: 0;
+				width: auto;
+				height: auto;
+				padding: 8px 15px !important;
+				background-color: #4527a425 !important;
+				border-radius: 3px;
+
+				&::after {
+					content: 'Add New Service';
+					color: $primaryColor;
+					line-height: 80%;
+					font-weight: bold;
+					font-size: 16px;
+				}
+
+				svg {
+					fill: $primaryColor;
+					width: 20px !important;
+					height: 20px;
+					background-color: transparent !important;
+					border: 2px solid $primaryColor;
+					border-radius: 50% !important;
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}

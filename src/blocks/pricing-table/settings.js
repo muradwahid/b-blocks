@@ -14,7 +14,7 @@ import icons from '../../Const/icons';
 import options from '../../Const/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
-const Settings = ({ attributes, setAttributes, updatePriceTable, setActiveIndex }) => {
+const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, setActiveIndex }) => {
 	const { pricingTables, columns, columnGap, rowGap, textAlign, padding, shadow } = attributes;
 
 	const [device, setDevice] = useState('desktop');
@@ -60,41 +60,55 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, setActiveIndex 
 		setActiveIndex(updatePriceTable.length);
 	}
 
+	const { price = 0, priceCurrency = '', link = '', color = '' } = pricingTables[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Prices', 'b-blocks')}>
-						{pricingTables?.map((priceTable, index) => {
-							const { price, priceCurrency, link, color } = priceTable;
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+						<div className='helpItem'>
+							<a href='https://bblockswp.com/docs/pricing-table-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+						</div>
 
-							return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Price No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-								<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable(index, 'price', val)} />
+						<div className='helpItem rateUs'>
+							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+							</a>
+						</div>
+					</PanelBody>
 
-								<PanelRow>
-									<Title mt='0' mb='0'>{__('Currency:', 'b-blocks')}</Title>
-									<TextControl value={priceCurrency} onChange={val => updatePriceTable(index, 'priceCurrency', val)} />
-								</PanelRow>
+					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Prices', 'b-blocks')}>
+						{null !== activeIndex && <>
+							<h3 className='bplItemTitle'>{__(`Price No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-								<Title>{__('Link:', 'b-blocks')}</Title>
-								<TextControl value={link} onChange={val => updatePriceTable(index, 'link', val)} />
+							<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable('price', val)} />
 
-								<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable(index, 'color', val)} defaultColor='#4527a4' />
+							<PanelRow>
+								<Title mt='0' mb='0'>{__('Currency:', 'b-blocks')}</Title>
+								<TextControl value={priceCurrency} onChange={val => updatePriceTable('priceCurrency', val)} />
+							</PanelRow>
 
-								<PanelRow className='itemAction mt20'>
-									<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-										e.preventDefault();
-										setAttributes({ pricingTables: [...pricingTables.slice(0, index), ...pricingTables.slice(index + 1)] });
-									}} ><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+							<Title>{__('Link:', 'b-blocks')}</Title>
+							<TextControl value={link} onChange={val => updatePriceTable('link', val)} />
 
-									<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-										e.preventDefault();
-										setAttributes({ pricingTables: [...pricingTables, { ...pricingTables[index] }] });
-									}} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
-								</PanelRow>
-							</PanelBody>
-						})}
+							<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor='#4527a4' />
+
+							<PanelRow className='itemAction mt20 mb15'>
+								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
+									e.preventDefault();
+									setActiveIndex(1 === pricingTables.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
+									setAttributes({ pricingTables: [...pricingTables.slice(0, activeIndex), ...pricingTables.slice(activeIndex + 1)] });
+								}} ><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+
+								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
+									e.preventDefault();
+									setActiveIndex(pricingTables.length);
+									setAttributes({ pricingTables: [...pricingTables, { ...pricingTables[activeIndex] }] });
+								}} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+							</PanelRow>
+						</>}
 
 						<div className='addItem'>
 							<Button label={__('Add New Price', 'b-blocks')} onClick={addPricingTable}><Dashicon icon='plus' size={23} />{__('Add New Price', 'b-blocks')}</Button>
@@ -129,7 +143,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, setActiveIndex 
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Counter', 'b-blocks')} onClick={addPricingTable}><Dashicon icon='plus' size={23} /></ToolbarButton>
+				<ToolbarButton label={__('Add New Price', 'b-blocks')} onClick={addPricingTable}><Dashicon icon='plus' size={23} /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

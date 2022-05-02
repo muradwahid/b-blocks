@@ -1,42 +1,43 @@
 $primaryColor: #4527a4;
 
 // Counters
-.wp-block-b-blocks-counters .bBlocksCounters{
+.wp-block-b-blocks-counters .bBlocksCounters {
 	display: grid;
 
-	>div{
+	>div {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.bBlocksCounter{
+	.bBlocksCounter {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 
-		.counterIcon{
+		.counterIcon {
 			margin-bottom: 5px;
 
-			i{
+			i {
 				font-style: inherit;
 			}
 		}
 
-		.counterNumber{
+		.counterNumber {
 			margin: 0;
 			margin-bottom: 10px;
 		}
 
-		.counterLabel{
+		.counterLabel {
 			margin: 0;
 		}
 
-		.counterIconLabel{
+		.counterIconLabel {
 			display: inline-flex;
 			align-items: center;
+			justify-content: center;
 
-			i{
+			i {
 				font-style: inherit;
 				margin-right: 10px;
 			}

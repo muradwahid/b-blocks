@@ -37,7 +37,7 @@ const Edit = props => {
 	// Swiper Scripts
 	useEffect(() => {
 		// Slider in wrapper
-		sliderWrapperRef.current.innerHTML = renderToString(<Slider attributes={attributes} />);
+		sliderWrapperRef.current.innerHTML = renderToString(<Slider attributes={attributes} isBackend={true} />);
 
 		// Initialize Slider
 		new Swiper(`#bBlocksSlider-${clientId} .bBlocksSliderWrapper .bBlocksSlider`, sliderOptions(attributes, activeIndex, true));
@@ -81,6 +81,7 @@ const Edit = props => {
 			newSlides[index]['childPositions'] = newSlides[index]['childPositions'] || [{ left: 5.8, top: 11 }, { left: 5.8, top: 22 }, { left: 5.8, top: 33 }];
 
 			const resetPosition = () => {
+				newSlides[index]['positionHolder'] = newSlides[index]['position'];
 				newSlides[index]['position'] = '';
 				setAttributes({ slides: newSlides });
 			}

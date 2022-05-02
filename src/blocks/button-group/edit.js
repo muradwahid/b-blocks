@@ -15,8 +15,8 @@ const Edit = props => {
 		<div className={className} id={`bBlocksButtonGroup-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink})` : ''}
-				${sepTextTypo?.googleFontLink ? `@import url(${sepTextTypo?.googleFontLink})` : ''}
+				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
+				${sepTextTypo?.googleFontLink ? `@import url(${sepTextTypo?.googleFontLink});` : ''}
 
 				#bBlocksButtonGroup-${clientId}{
 					text-align: ${btnAlign};

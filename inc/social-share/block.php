@@ -13,37 +13,9 @@ class BBlocksSocialShare extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
-		// Generate Styles
-		$socialShareStyle = new BBlocksStyleGenerator();
-		$socialShareStyle::addStyle( "#bBlocksSocialShare-$cId", [
-			'text-align' => $alignment
-		] );
-		$socialShareStyle::addStyle( "#bBlocksSocialShare-$cId ul.bBlocksSocialShare li.icon", [
-			$background['styles'] ?? 'background-color: #0000;' => '',
-			'width' => "calc( $size + $padding + $padding )",
-			'height' => "calc( $size + $padding + $padding )",
-			'margin' => "0 calc( $margin / 2 )",
-			$border['styles'] ?? 'border-radius: 50%;' => '',
-			'box-shadow' => $shadow['styles'] ?? 'none'
-		] );
-		$socialShareStyle::addStyle( "#bBlocksSocialShare-$cId ul.bBlocksSocialShare li.icon i", [
-			'font-size' => $size
-		] );
-		$socialShareStyle::addStyle( "#bBlocksSocialShare-$cId ul.bBlocksSocialShare li.icon img", [
-			'width' => $size
-		] );
-
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-social-share <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>'>
-			<style><?php
-				echo wp_kses( $socialShareStyle::renderStyle(), [] );
-				foreach ( $socials as $index => $social ) {
-					$defIconColor = $social['icon']['color'] ?? '#4527a4';
-					$iconStyle = $social['icon']['styles'] ?? "color: $defIconColor;";
-					$socialStyles = "#bBlocksSocialShare-$cId ul.bBlocksSocialShare li.icon-$index i{ $iconStyle }";
-					echo wp_kses( $socialStyles, [] );
-				}
-			?></style>
+		<div class='wp-block-b-blocks-social-share <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+			<div class='socialShareStyle'></div>
 
 			<ul class='bBlocksSocialShare'>
 				<?php foreach ( $socials as $index => $social ) {
@@ -61,8 +33,7 @@ class BBlocksSocialShare extends BBlocks{
 			</ul>
 		</div>
 
-		<?php $socialShareStyle::$styles = []; // Empty styles
-		return ob_get_clean();
+		<?php return ob_get_clean();
 	}
 }
 new BBlocksSocialShare();

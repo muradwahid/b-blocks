@@ -9,7 +9,7 @@
 		"social share",
 		"page share"
 	],
-	"textdomain": "b-social-share",
+	"textdomain": "b-blocks",
 	"attributes": {
 		"align": {
 			"type": "string",

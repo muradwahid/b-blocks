@@ -1,10 +1,13 @@
 import { useEffect } from '@wordpress/element';
 import '@lottiefiles/lottie-player'; // Lottie player assets
 
-import Settings from './settings';
+import Settings from './Settings';
+import Style from './Style';
+import LottiePlayer from './LottiePlayer';
 
 const Edit = props => {
-	const { className, attributes: { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId } = props;
+	const { file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, background } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -35,39 +38,13 @@ const Edit = props => {
 	}, [file, isControls, isAutoplay, isLoop, isHover, mode, count, speed, intermission, background]);
 
 	return <>
-		<Settings settings={props} />
+		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div className={className} id={`bBlocksLottiePlayer-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				#bBlocksLottiePlayer-${clientId} .bBlocksLottiePlayer{
-					text-align: ${playerAlign};
-				}
-				#bBlocksLottiePlayer-${clientId} .bBlocksLottiePlayer lottie-player{
-					width: ${width};
-					--lottie-player-toolbar-height: ${controlsHeight};
-					--lottie-player-toolbar-background-color: ${controlsBG};
-					--lottie-player-toolbar-icon-color: ${controlsIconColor};
-					--lottie-player-toolbar-icon-hover-color: ${controlsIconHoverColor};
-					--lottie-player-toolbar-icon-active-color: ${controlsIconActiveColor};
-					--lottie-player-seeker-track-color: ${controlsTrackColor};
-					--lottie-player-seeker-thumb-color: ${controlsThumbColor};
-				}
-			`}} />
+			<Style attributes={attributes} clientId={clientId} />
 
 			<div className='bBlocksLottiePlayer'>
-				<lottie-player
-					src={file}
-					controls
-					autoplay
-					loop
-					mode={mode}
-					count={count}
-					speed={speed}
-					direction={1}
-					intermission={intermission * 1000}
-					background={background}
-				></lottie-player>
+				<LottiePlayer attributes={attributes} />
 			</div>
 		</div>
 	</>;

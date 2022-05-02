@@ -31,6 +31,8 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 		setAttributes({
 			slides: [...slides, {
 				background: { color: '#00000080' },
+				position: 'center center',
+				positionHolder: 'center center',
 				childPositions: [{ 'top': 11, 'left': 5.8 }, { 'top': 22, 'left': 5.8 }, { 'top': 33, 'left': 5.8 }],
 				title: `Slide Title ${slides.length + 1}`,
 				titleColor: '#fff',

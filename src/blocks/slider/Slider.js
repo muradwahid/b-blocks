@@ -1,16 +1,16 @@
-const Slider = ({ attributes }) => {
+const Slider = ({ attributes, isBackend = false }) => {
 	const { slides = [], isPage, isPrevNext, isTitle, isDesc, isBtn } = attributes;
 
 	return <div className='bBlocksSlider'>
 		<div className='swiper-wrapper'>
 			{slides.map((item, index) => {
-				const { position, title, description, btnText } = item;
+				const { positionHolder, title, description, btnText, btnLink } = item;
 
 				return <div key={index} className={`slide slide-${index} swiper-slide`}>
-					<div className={`sliderContent ${position?.split(' ')?.join('-')}`}>
+					<div className={`sliderContent ${positionHolder?.split(' ')?.join('-')}`}>
 						{isTitle && title && <h2 className='sliderTitle' dangerouslySetInnerHTML={{ __html: title }} />}
 						{isDesc && description && <p className='sliderDescription' dangerouslySetInnerHTML={{ __html: description }} />}
-						{isBtn && btnText && <a className='sliderBtn' dangerouslySetInnerHTML={{ __html: btnText }} />}
+						{isBtn && btnText && <a href={isBackend ? '#' : btnLink} className='sliderBtn' dangerouslySetInnerHTML={{ __html: btnText }} />}
 					</div>
 				</div>;
 			})}

@@ -15,8 +15,8 @@ const Edit = props => {
 		<div className={className} id={`bBlocksSectionHeading-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink})` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink})` : ''}
+				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
+				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
 
 				#bBlocksSectionHeading-${clientId} .bBlocksSectionHeading{
 					text-align: ${textAlign};

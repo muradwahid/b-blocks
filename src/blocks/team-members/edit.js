@@ -41,9 +41,9 @@ const Edit = props => {
 		<div className={className} id={`bBlocksTeamMembers-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink})` : ''}
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink})` : ''}
-				${bioTypo?.googleFontLink ? `@import url(${bioTypo?.googleFontLink})` : ''}
+				${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink});` : ''}
+				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
+				${bioTypo?.googleFontLink ? `@import url(${bioTypo?.googleFontLink});` : ''}
 
 				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers{
 					grid-gap: ${rowGap} ${columnGap};

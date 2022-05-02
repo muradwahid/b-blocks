@@ -15,9 +15,9 @@ const Edit = props => {
 		<div className={className} id={`bBlocksInfoBox-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink})` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink})` : ''}
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink})` : ''}
+				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
+				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
+				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
 
 				#bBlocksInfoBox-${clientId}{
 					text-align: ${infoBoxAlign};

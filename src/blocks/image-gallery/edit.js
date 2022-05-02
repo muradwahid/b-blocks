@@ -35,8 +35,8 @@ const Edit = props => {
 		<div id={`bBlocksImageGallery-${clientId}`} className={className}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${capTitleTypo?.googleFontLink ? `@import url(${capTitleTypo?.googleFontLink})` : ''}
-				${capDescTypo?.googleFontLink ? `@import url(${capDescTypo?.googleFontLink})` : ''}
+				${capTitleTypo?.googleFontLink ? `@import url(${capTitleTypo?.googleFontLink});` : ''}
+				${capDescTypo?.googleFontLink ? `@import url(${capDescTypo?.googleFontLink});` : ''}
 
 				#bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImg{
 					padding: ${imgPadding?.styles || '0 0'};

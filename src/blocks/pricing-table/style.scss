@@ -1,73 +1,77 @@
 $primaryColor: #4527a4;
 
 // Pricing Table
-.wp-block-b-blocks-pricing-table{
-	a{
+.wp-block-b-blocks-pricing-table {
+	a {
 		text-decoration: none !important;
 	}
 
-	.bBlocksPricingTables{
+	.bBlocksPricingTables {
 		display: grid;
 	}
 
-	.bBlocksPriceTable{
+	.bBlocksPriceTable {
 		background-color: #fff;
 		border-radius: 20px;
 		height: 100%;
 
-		h3, p{
+		h3,
+		p {
 			margin: 0;
 		}
 
-		.priceName{
+		.priceName {
 			font-size: 25px;
 			margin-bottom: 25px;
 		}
 
-		.priceAmountWrap{
+		.priceAmountWrap {
 			font-size: 22px;
 			margin-bottom: 25px;
 		}
 
-		.priceFeatures{
+		.priceFeatures {
 			display: inline-block;
 			margin: 0 auto 25px auto;
 
-			.priceFeature{
+			.priceFeature {
 				display: flex;
 				align-items: center;
 				margin-bottom: 15px;
 
-				svg{
+				svg {
 					margin-right: 10px;
 				}
 
-				.priceFeatureEnabled{
+				.priceFeatureEnabled {
 					width: 17px;
+					height: 17px;
 				}
-				.priceFeatureDisabled{
+
+				.priceFeatureDisabled {
 					width: 13px;
+					height: 19px;
 					margin-right: 14px;
 				}
 
-				.priceFeatureLabel{
+				.priceFeatureLabel {
 					font-size: 15px;
 				}
 			}
 		}
 
-		.priceLink{
+		.priceLink {
 			display: inline-block;
 			padding: 10px 35px;
 			border-radius: 8px;
 		}
 	}
 
-	&.is-style-basic{
-		.bBlocksPriceTable{
+	&.is-style-basic {
+		.bBlocksPriceTable {
 			position: relative;
 
-			.priceName{
+			.priceName {
 				position: absolute;
 				left: 0;
 				top: 0;
@@ -79,7 +83,7 @@ $primaryColor: #4527a4;
 				border-top-left-radius: 20px;
 				border-top-right-radius: 20px;
 
-				&::before{
+				&::before {
 					content: '';
 					position: absolute;
 					display: inline-block;
@@ -90,12 +94,12 @@ $primaryColor: #4527a4;
 				}
 			}
 
-			.priceFeatures{
+			.priceFeatures {
 				position: relative;
 				margin-top: 100px;
 				margin-bottom: 50px;
 
-				&::after{
+				&::after {
 					content: '';
 					width: 120px;
 					border-bottom: 2px solid #dfdfdf;
@@ -106,23 +110,23 @@ $primaryColor: #4527a4;
 				}
 			}
 
-			.priceAmountWrap{
+			.priceAmountWrap {
 				font-size: 50px;
 			}
 		}
 	}
 
-	&.is-style-standard{
-		.bBlocksPricingTables{
-			>div{
+	&.is-style-standard {
+		.bBlocksPricingTables {
+			>div {
 				z-index: 1;
 			}
 		}
 
-		.bBlocksPriceTable{
+		.bBlocksPriceTable {
 			position: relative;
 
-			&::before{
+			&::before {
 				content: '';
 				position: absolute;
 				width: 90%;
@@ -134,32 +138,32 @@ $primaryColor: #4527a4;
 				z-index: -1;
 			}
 
-			.priceName{
+			.priceName {
 				font-size: 45px;
 			}
 
-			.priceAmountWrap{
+			.priceAmountWrap {
 				font-size: 24px;
 			}
 		}
 	}
 
-	&.is-style-ultimate{
-		.bBlocksPricingTables{
-			>div{
+	&.is-style-ultimate {
+		.bBlocksPricingTables {
+			>div {
 				position: relative;
 				z-index: 1;
 			}
 		}
 
-		.bBlocksPriceTable{
+		.bBlocksPriceTable {
 			margin-left: 60px;
 
-			.priceName{
+			.priceName {
 				font-size: 45px;
 			}
 
-			.priceAmountWrap{
+			.priceAmountWrap {
 				font-size: 24px;
 				line-height: 100%;
 				width: 300px;
@@ -175,10 +179,11 @@ $primaryColor: #4527a4;
 				border-top-left-radius: 20px;
 				border-top-right-radius: 20px;
 
-				.priceAmount{
+				.priceAmount {
 					margin-right: 5px;
 				}
-				.pricePeriod{
+
+				.pricePeriod {
 					margin-left: 5px;
 				}
 			}

@@ -31,8 +31,8 @@ const pointStyles = [
 	{ label: __('Triangle', 'b-blocks'), value: 'triangle' },
 ];
 
-const Settings = ({ settings }) => {
-	const { attributes: { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload } = attributes;
 
 	const getRandomColor = () => {
 		const letters = '0123456789abcdef';
@@ -147,6 +147,19 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/chart-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
 			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Datasets', 'b-blocks')}>
 				{data.labels.map((label, labelIndex) => <PanelRow key={labelIndex}>
 					<Title mt='0' mb='0'>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Title>
@@ -215,7 +228,6 @@ const Settings = ({ settings }) => {
 					<Button label={__('Add Dataset Value', 'b-blocks')} onClick={addDatasetValue}><Dashicon icon='plus' size={20} />{__('Add Dataset Value', 'b-blocks')}</Button>
 				</div>
 			</PanelBody>
-
 
 			<PanelBody className='bPlPanelBody' title={__('Chart Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>

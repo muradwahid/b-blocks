@@ -2,15 +2,15 @@ import func from '../../Const/functions';
 const { mediaUrl } = func;
 
 const Styles = ({ posts, attributes, clientId }) => {
-    const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
-    return <>
-        <style dangerouslySetInnerHTML={{
-            __html: `
+	return <>
+		<style dangerouslySetInnerHTML={{
+			__html: `
 				@import url(${titleTypo?.googleFontLink || 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'});
-				${metaTypo?.googleFontLink ? `@import url(${metaTypo?.googleFontLink})` : ''}
-				${excerptTypo?.googleFontLink ? `@import url(${excerptTypo?.googleFontLink})` : ''}
-				${readMoreTypo?.googleFontLink ? `@import url(${readMoreTypo?.googleFontLink})` : ''}
+				${metaTypo?.googleFontLink ? `@import url(${metaTypo?.googleFontLink});` : ''}
+				${excerptTypo?.googleFontLink ? `@import url(${excerptTypo?.googleFontLink});` : ''}
+				${readMoreTypo?.googleFontLink ? `@import url(${readMoreTypo?.googleFontLink});` : ''}
 
 				#bBlocksPosts-${clientId} .bBlocksPost{
 					margin-bottom: ${'masonry' === layout ? `${rowGap}px` : '0px'};
@@ -76,17 +76,17 @@ const Styles = ({ posts, attributes, clientId }) => {
 				}
 				#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-next{ color: ${sliderPrevNextColor}; }
 			`}} />
-        <style>
-            {posts.map(post => {
-                const { id, featured_media } = post;
-                const fImgUrl = mediaUrl(featured_media);
+		<style>
+			{posts.map(post => {
+				const { id, featured_media } = post;
+				const fImgUrl = mediaUrl(featured_media);
 
-                const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${fImgUrl ? 'grid' : 'flex'}; }`;
-                const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
+				const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${fImgUrl ? 'grid' : 'flex'}; }`;
+				const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
 
-                return sideImgCSS + fImgCSS;
-            })}
-        </style>
-    </>;
+				return sideImgCSS + fImgCSS;
+			})}
+		</style>
+	</>;
 };
 export default Styles;

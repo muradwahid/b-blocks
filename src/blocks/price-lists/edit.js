@@ -33,9 +33,9 @@ const Edit = props => {
 		<div className={className} id={`bBlocksPriceLists-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink})` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink})` : ''}
-				${priceTypo?.googleFontLink ? `@import url(${priceTypo?.googleFontLink})` : ''}
+				${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink});` : ''}
+				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
+				${priceTypo?.googleFontLink ? `@import url(${priceTypo?.googleFontLink});` : ''}
 
 				#bBlocksPriceLists-${clientId} .bBlocksPriceLists{
 					grid-gap: ${rowGap} ${columnGap};

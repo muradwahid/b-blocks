@@ -1,5 +1,5 @@
 const sliderOptions = (attributes, initialSlide, isBackend = false) => {
-	const { columns, columnGap, isLoop, isAutoplay, speed, effect, isTouchMove, isPageClickable, isPageDynamic } = attributes;
+	const { columns, columnGap, isLoop, isTouchMove, speed, isAutoplay, effect, isPageClickable, isPageDynamic } = attributes;
 
 	return {
 		// Optional parameters
@@ -14,8 +14,8 @@ const sliderOptions = (attributes, initialSlide, isBackend = false) => {
 		},
 		spaceBetween: columnGap,
 		loop: isLoop,
-		allowTouchMove: isTouchMove,
-		grabCursor: isTouchMove,
+		allowTouchMove: isBackend ? false : isTouchMove,
+		grabCursor: isBackend ? false : isTouchMove,
 		// autoplay: false,
 		autoplay: isAutoplay && !isBackend ? { delay: speed * 1000 } : false,
 		speed: speed * 1000,
