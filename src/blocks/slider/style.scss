@@ -1,6 +1,10 @@
 .wp-block-b-blocks-slider {
 	overflow: hidden;
 
+	* {
+		box-sizing: border-box;
+	}
+
 	.bBlocksSlider {
 		display: inline-block;
 		position: relative;

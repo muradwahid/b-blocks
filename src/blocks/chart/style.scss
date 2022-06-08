@@ -2,21 +2,25 @@ $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
 
 // Chart
-.wp-block-b-blocks-chart{
-	.bBlocksChart{
+.wp-block-b-blocks-chart {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksChart {
 		display: inline-block;
 
-		canvas{
+		canvas {
 			padding: 10px 15px;
 		}
 	}
 
-	.downloadArea{
+	.downloadArea {
 		position: relative;
 		display: inline-block;
 		padding: 10px 15px;
 
-		.downloadChart{
+		.downloadChart {
 			display: inline-block;
 			position: absolute;
 			left: 0;
@@ -30,7 +34,7 @@ $secondaryColor: #8344c5;
 			border-radius: 5px;
 			cursor: pointer;
 
-			&:hover{
+			&:hover {
 				background-color: $secondaryColor;
 			}
 		}

@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useContext } from '@wordpress/element';
 import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl } from '@wordpress/components';
+import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -25,8 +25,21 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				{/* <div className='helpItem'>
+					<a href='https://bblockswp.com/docs/image-gallery-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div> */}
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('Layouts Settings')}>
-				{/* Columns */}
 				<PanelRow>
 					<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
@@ -34,40 +47,35 @@ const Settings = ({ settings }) => {
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={9} step={1} />
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-				{/* Padding */}
 				<SpaceControl label={__('Padding:', 'b-blocks')} space={imgPadding} onChange={val => setAttributes({ imgPadding: val })} />
 
-				{/* Border */}
 				<BorderControl label={__('Border:', 'b-blocks')} border={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />
 
-				{/* Shadow */}
 				<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
 
-				{/* Preview */}
 				<ToggleControl className='mt20' label={__('Preview Image?', 'b-blocks')} checked={isPreview} onChange={val => setAttributes({ isPreview: val })} />
 				<small>{__('Preview will only for frontend!', 'b-blocks')}</small>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
-				{/* Text Align */}
 				<PanelRow className='mt20'>
 					<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
 					<BtnGroup value={capAlign} onChange={val => setAttributes({ capAlign: val })} options={aligns} isIcon={true} />
 				</PanelRow>
 
-				{/* Color */}
 				<BColor label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
-				{/* Title Typography */}
 				<Typography label={__('Title Typography:', 'b-blocks')} typography={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: 18 }} />
 
-				{/* Description Typography */}
 				<Typography label={__('Description Typography:', 'b-blocks')} typography={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: 18 }} />
 			</PanelBody>
 		</InspectorControls>
+
 
 		{0 < images.length && <BlockControls>
 			<ToolbarGroup className='bPlToolbar'>

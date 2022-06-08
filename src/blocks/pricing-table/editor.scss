@@ -1,20 +1,20 @@
 $primaryColor: #4527a4;
 
 // Pricing Table
-.wp-block-b-blocks-pricing-table{
-	.bBlocksPriceTable{
-		.priceFeatures{
-			.components-checkbox-control .components-base-control__field{
+.wp-block-b-blocks-pricing-table {
+	.bBlocksPriceTable {
+		.priceFeatures {
+			.components-checkbox-control .components-base-control__field {
 				margin-bottom: 0;
 			}
 
-			.removePriceFeature{
+			.removePriceFeature {
 				color: red;
 				margin-right: 5px;
 				cursor: pointer;
 			}
 
-			.addPriceFeature{
+			.addPriceFeature {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -22,14 +22,15 @@ $primaryColor: #4527a4;
 				background-color: $primaryColor;
 				padding: 5px 8px;
 
-				&:focus{
+				&:focus {
 					box-shadow: none;
 				}
-				&:active{
+
+				&:active {
 					color: #fff;
 				}
 
-				.dashicon{
+				.dashicon {
 					margin-top: 5px;
 					margin-right: 5px;
 				}

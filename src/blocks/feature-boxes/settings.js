@@ -52,6 +52,20 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				{/* <div className='helpItem'>
+					<a href='https://bblockswp.com/docs/feature-boxes-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div> */}
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Features', 'b-blocks')}>
 				{features.map((item, index) => {
 					const { background, isUpIcon, icon, upIcon, iconWidth, titleColor, separator, descColor } = item;
@@ -94,8 +108,8 @@ const Settings = ({ settings }) => {
 				</div>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
-				{/* Columns */}
 				<PanelRow>
 					<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
@@ -107,15 +121,18 @@ const Settings = ({ settings }) => {
 				<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
 				<SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
 				{isIcon && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
@@ -127,11 +144,13 @@ const Settings = ({ settings }) => {
 				</>}
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
 				{isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '10px' }} />}
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />

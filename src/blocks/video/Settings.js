@@ -41,6 +41,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					</div>
 				</PanelBody>
 
+
 				<PanelBody className='bPlPanelBody' title={__('Settings', 'b-blocks')}>
 					<InlineMediaUpload value={source} type={['video']} onChange={val => setAttributes({ source: val })} placeholder={__('Video url', 'b-blocks')} />
 

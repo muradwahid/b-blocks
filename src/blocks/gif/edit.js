@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl } from '@wordpress/components';
+import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl, Dashicon } from '@wordpress/components';
 
 import options from '../../Const/options';
 const { pxUnit, perUnit, emUnit } = options;
@@ -57,6 +57,20 @@ const Edit = props => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/gif-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('Gif Settings', 'b-blocks')}>
 				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={gifWidth} onChange={val => setAttributes({ gifWidth: val })} units={[pxUnit, perUnit, emUnit]} />
 				<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>

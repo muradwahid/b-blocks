@@ -1,12 +1,16 @@
 .wp-block-b-blocks-lottie-player {
-	.bBlocksLottiePlayer{
-		lottie-player{
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksLottiePlayer {
+		lottie-player {
 			display: inline-flex;
 			max-width: 100%;
 
-			#lottie-controls.toolbar{
+			#lottie-controls.toolbar {
 				margin: 0;
 			}
 		}
-	} 
+	}
 }

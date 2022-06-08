@@ -130,7 +130,7 @@ class BBlocksPosts extends BBlocks{
 				<?php echo wp_kses( $postsStyles::renderStyle(), [] ); ?>
 
 				<?php foreach ( $posts as $post ) {
-					$imgUrl = get_the_post_thumbnail_url( $post->ID, 'large' );
+					$imgUrl = preg_replace( '/<[^>]+>/', '', get_the_post_thumbnail_url( $post->ID, 'large' ) );
 					$displayCSS = $imgUrl ? 'grid' : 'flex';
 
 					$sideImgCSS = "#bBlocksPosts-$cId .bBlocksPostSideImage.bBlocksPost-$post->ID{ display: $displayCSS; }";

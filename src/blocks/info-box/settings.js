@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, ToggleControl, __experimentalUnitControl as UnitControl, TextControl } from '@wordpress/components';
+import { PanelBody, PanelRow, ToggleControl, __experimentalUnitControl as UnitControl, TextControl, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -21,6 +21,20 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				{/* <div className='helpItem'>
+					<a href='https://bblockswp.com/docs/info-box-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div> */}
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('Info Box Settings', 'b-blocks')}>
 				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
@@ -33,13 +47,17 @@ const Settings = ({ settings }) => {
 				<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} defaults={{ blur: '15px' }} />
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-				<IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-info-circle', fontSize: 70, color: '#4527a4' }} />
+				{isIcon && <>
+					<IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-info-circle', fontSize: 70, color: '#4527a4' }} />
 
-				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
+					<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
+				</>}
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
 				<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25, fontWeight: 600 }} />
@@ -49,35 +67,41 @@ const Settings = ({ settings }) => {
 				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-				<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
+				{isDesc && <>
+					<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
 
-				<BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#333' />
+					<BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#333' />
 
-				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+					<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+				</>}
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Button', 'b-blocks')} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
-				<PanelRow>
-					<Title mt='0' mb='0'>{__('Button Link:', 'b-blocks')}</Title>
-					<TextControl value={btnLink} onChange={val => setAttributes({ btnLink: val })} placeholder={__('Button link', 'b-blocks')} />
-				</PanelRow>
+				{isBtn && <>
+					<PanelRow>
+						<Title mt='0' mb='0'>{__('Button Link:', 'b-blocks')}</Title>
+						<TextControl value={btnLink} onChange={val => setAttributes({ btnLink: val })} placeholder={__('Button link', 'b-blocks')} />
+					</PanelRow>
 
-				<ToggleControl className='mt10' label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
+					<ToggleControl className='mt10' label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
 
-				<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 15 }} />
+					<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 15 }} />
 
-				<ColorsControl colors={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+					<ColorsControl colors={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-				<ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+					<ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
 
-				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '8px', horizontal: '15px' }} />
+					<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '8px', horizontal: '15px' }} />
 
-				<BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '5px' }} />
+					<BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '5px' }} />
+				</>}
 			</PanelBody>
 		</InspectorControls>
 

@@ -1,59 +1,66 @@
-.wp-block-b-blocks-cards .bBlocksCards{
+.wp-block-b-blocks-cards .bBlocksCards {
 	display: grid;
 
-	&.vertical{
+	* {
+		box-sizing: border-box;
+	}
+
+	&.vertical {
 		margin-bottom: 30px;
 
-		.bBlocksCard{
+		.bBlocksCard {
 			flex-direction: column;
 
-			&.topImg{
+			&.topImg {
 				margin-top: 30px;
-		
-				.cardImage{
+
+				.cardImage {
 					margin-top: -30px;
 					margin-bottom: 0;
 				}
 			}
-			&.bottomImg{
+
+			&.bottomImg {
 				margin-bottom: 30px;
-		
-				.cardImage{
+
+				.cardImage {
 					margin-top: auto;
 					margin-bottom: -30px;
 				}
 			}
 		}
 	}
-	&.horizontal{
-		.bBlocksCard{
+
+	&.horizontal {
+		.bBlocksCard {
 			flex-direction: row;
 			align-items: center;
 
-			.cardDetails{
+			.cardDetails {
 				width: 50%;
 			}
 
-			.cardImage{
+			.cardImage {
 				height: calc(100% - 30px);
 				width: 50%;
 
-				img{
+				img {
 					min-height: 100%;
 				}
 			}
-			
-			&.topImg{
+
+			&.topImg {
 				margin-left: 30px;
-		
-				.cardImage{
+
+				.cardImage {
 					margin-left: -30px;
 				}
 			}
-			&.bottomImg{
+
+			&.bottomImg {
 				margin-right: 30px;
-		
-				.cardImage{
+
+				.cardImage {
 					margin-left: auto;
 					margin-right: -30px;
 				}
@@ -61,7 +68,7 @@
 		}
 	}
 
-	.bBlocksCard{
+	.bBlocksCard {
 		height: 100%;
 		display: flex;
 		position: relative;
@@ -69,36 +76,36 @@
 		color: rgba(0, 0, 0, 0.87);
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 
-		.cardImage{
+		.cardImage {
 			position: relative;
 			overflow: hidden;
 			margin: 15px;
 			box-shadow: 0 16px 38px -12px rgba(0, 0, 0, .56), 0 4px 25px 0px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
 
-			img{
+			img {
 				width: 100%;
 				object-fit: cover;
 			}
 
-			.cardTitle{
+			.cardTitle {
 				position: absolute;
 				left: 20px;
 				bottom: 15px;
 				text-shadow: 0 2px 5px rgba(33, 33, 33, .5);
-				margin-bottom: 0!important;
+				margin-bottom: 0 !important;
 			}
 		}
 
-		.cardDetails *{
+		.cardDetails * {
 			margin: 0 0 10px 0;
 		}
-		
-		.cardTitle{
+
+		.cardTitle {
 			font-weight: 600;
 			margin: 0;
 		}
 
-		.cardDescription{
+		.cardDescription {
 			margin: 0;
 		}
 	}

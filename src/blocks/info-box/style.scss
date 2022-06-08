@@ -1,20 +1,24 @@
-.wp-block-b-blocks-info-box{
-	.bBlocksInfoBox{
+.wp-block-b-blocks-info-box {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksInfoBox {
 		display: inline-block;
 		max-width: 100%;
 
-		.infoBoxIcon{
+		.infoBoxIcon {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
 			padding: 15px;
 
-			i{
+			i {
 				font-style: inherit;
 			}
 		}
 
-		.infoBoxButton{
+		.infoBoxButton {
 			display: inline-block;
 			text-decoration: none;
 		}

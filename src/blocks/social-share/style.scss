@@ -2,6 +2,10 @@ $primaryColor: #4527a4;
 
 // Social Sharing
 .wp-block-b-blocks-social-share {
+	* {
+		box-sizing: border-box;
+	}
+
 	ul.bBlocksSocialShare {
 		list-style-type: none;
 		line-height: 1;
@@ -9,6 +13,7 @@ $primaryColor: #4527a4;
 		padding: 5px;
 		display: inline-flex;
 		align-items: center;
+		flex-wrap: wrap;
 
 		li {
 			color: #4e4e4e;

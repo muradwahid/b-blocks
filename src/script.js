@@ -2,6 +2,7 @@
 import './style.scss';
 
 // Import Blocks
+// import './blocks/row/script';
 import './blocks/posts/script';
 import './blocks/slider/script';
 import './blocks/section-heading/script';

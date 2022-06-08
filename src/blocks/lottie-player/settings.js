@@ -34,6 +34,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						</div>
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody' title={__('Player Settings', 'b-blocks')}>
 						<Title mt='0'>{__('Lottie Json file url:', 'b-blocks')}</Title>
 						<TextControl value={file} onChange={val => setAttributes({ file: val })} />
@@ -66,14 +67,15 @@ const Settings = ({ attributes, setAttributes }) => {
 					</PanelBody>
 				</>}
 
+
 				{'style' == tab.name && <>
-					<PanelBody className='bPlPanelBody' title={__('Player Styles', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody' title={__('Player', 'b-blocks')}>
 						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
 						<BColor label={__('Background Color:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaultColor='#0000' />
 					</PanelBody>
 
-					<PanelBody className='bPlPanelBody' title={__('Controls Styles', 'b-blocks')} initialOpen={false}>
+					<PanelBody className='bPlPanelBody' title={__('Controls', 'b-blocks')} initialOpen={false}>
 						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={[pxUnit, perUnit, emUnit]} />
 
 						<BColor label={__('Background Color:', 'b-blocks')} value={controlsBG} onChange={val => setAttributes({ controlsBG: val })} defaultColor='#0000' />

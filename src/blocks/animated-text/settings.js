@@ -103,6 +103,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						</div>
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody' title={__('Animated Text Settings', 'b-blocks')}>
 						<Title mt='0'>{__('Animate text:', 'b-blocks')}</Title>
 						<TextareaControl value={content} onChange={val => setAttributes({ content: val })} />
@@ -139,6 +140,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					</PanelBody>
 				</>}
 
+
 				{'style' === tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Animated Text Style', 'b-blocks')}>
 						<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
@@ -154,6 +156,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>
+
 
 		<BlockControls>
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

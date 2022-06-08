@@ -1,8 +1,12 @@
-.wp-block-b-blocks-gif{
-	.bBlocksGif{
+.wp-block-b-blocks-gif {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksGif {
 		margin: 0;
 
-		figure{
+		figure {
 			display: inline-block;
 			max-width: 100%;
 			margin-block-start: 0;
@@ -11,7 +15,7 @@
 			margin-inline-end: 0;
 		}
 
-		img{
+		img {
 			width: 100%;
 		}
 	}

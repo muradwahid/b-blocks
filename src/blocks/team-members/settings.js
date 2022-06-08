@@ -76,8 +76,24 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Members', 'b-blocks')}>
-						{null !== activeIndex && <PanelBody className='bPlPanelBody editItem' title={__(`Member ${activeIndex + 1}:`, 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+						<div className='helpItem'>
+							<a href='https://bblockswp.com/docs/team-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+						</div>
+
+						<div className='helpItem rateUs'>
+							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+							</a>
+						</div>
+					</PanelBody>
+
+
+					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Members', 'b-blocks')}>
+						{null !== activeIndex && <>
+							<h3 className='bplItemTitle'>{__(`Member ${activeIndex + 1}:`, 'b-blocks')}</h3>
+
 							<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateMember('background', val)} />
 
 							<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => updateMember('border', val)} defaults={{ radius: '3px' }} />
@@ -99,7 +115,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 							<ColorsControl label={__('Social Icon Colors:', 'b-blocks')} colors={socialIconColors} onChange={val => updateMember('socialIconColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-							<PanelRow className='itemAction mt20'>
+							<PanelRow className='itemAction mt20 mb15'>
 								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
 									e.preventDefault();
 									setActiveIndex(1 === members.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
@@ -112,15 +128,15 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									setAttributes({ members: [...members, { ...members[activeIndex] }] });
 								}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>
-						</PanelBody>}
+						</>}
 
 						<div className='addItem'>
 							<Button label={__('Add New Member', 'b-blocks')} onClick={addMember}><Dashicon icon='plus' size={23} />{__('Add New Member', 'b-blocks')}</Button>
 						</div>
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
-						{/* Columns */}
 						<PanelRow>
 							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
@@ -131,7 +147,6 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
-						{/* Layout */}
 						<PanelRow className='mt20'>
 							<Title mt='0' mb='0'>{__('Layout:', 'b-blocks')}</Title>
 							<BtnGroup value={layout} onChange={val => {
@@ -149,7 +164,6 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 							}} options={layouts} isIcon={true} />
 						</PanelRow>
 
-						{/* Theme */}
 						<PanelRow>
 							<Title mt='0' mb='0'>{__('Theme:', 'b-blocks')}</Title>
 							<SelectControl value={theme} onChange={val => {
@@ -261,13 +275,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 							}} options={themes} />
 						</PanelRow>
 					</PanelBody>
-
 				</>}
 
+
 				{'style' === tab.name && <>
-					<PanelBody className='bPlPanelBody' title={__('Member Style', 'b-blocks')} initialOpen={false}>
+					<PanelBody className='bPlPanelBody' title={__('Member', 'b-blocks')} initialOpen={false}>
 						<SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
 					</PanelBody>
+
 
 					<PanelBody className='bPlPanelBody' title={__('Member Photo', 'b-blocks')} initialOpen={false}>
 						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={photoWidth} onChange={val => setAttributes({ photoWidth: val })} units={[pxUnit, perUnit, emUnit]} />
@@ -275,11 +290,13 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={photoMargin} onChange={val => setAttributes({ photoMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody' title={__('Member Name', 'b-blocks')} initialOpen={false}>
 						<Typography typography={nameTypo} onChange={val => setAttributes({ nameTypo: val })} defaults={{ fontSize: 20, fontWeight: 600 }} />
 
 						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={nameMargin} onChange={val => setAttributes({ nameMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>
+
 
 					<PanelBody className='bPlPanelBody' title={__('Designation/Title', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
@@ -291,11 +308,13 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						</>}
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody' title={__('Separator', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
 						{isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '15px' }} />}
 					</PanelBody>
+
 
 					<PanelBody className='bPlPanelBody' title={__('Member Bio', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Bio', 'b-blocks')} checked={isBio} onChange={val => setAttributes({ isBio: val })} />
@@ -306,6 +325,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 							<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={bioMargin} onChange={val => setAttributes({ bioMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
 						</>}
 					</PanelBody>
+
 
 					<PanelBody className='bPlPanelBody' title={__('Member Social', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Social', 'b-blocks')} checked={isSocial} onChange={val => setAttributes({ isSocial: val })} />

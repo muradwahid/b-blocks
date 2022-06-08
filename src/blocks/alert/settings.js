@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow } from '@wordpress/components';
+import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -26,6 +26,20 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/alert-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('Alert Settings', 'b-blocks')}>
 				<PanelRow>
 					<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
@@ -78,6 +92,7 @@ const Settings = ({ settings }) => {
 				<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
 			</PanelBody>
 		</InspectorControls>
+
 
 		<BlockControls>
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Alert Alignment')} alignmentControls={[

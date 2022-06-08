@@ -1,4 +1,8 @@
 .wp-block-b-blocks-video {
+	* {
+		box-sizing: border-box;
+	}
+
 	.bBlocksVideo {
 		overflow: hidden;
 		margin: 0 auto;

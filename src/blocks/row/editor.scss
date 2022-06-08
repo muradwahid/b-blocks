@@ -1,0 +1,9 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-row .bBlocksRow {
+	display: block;
+
+	>.block-editor-inner-blocks>.block-editor-block-list__layout {
+		display: flex;
+	}
+}

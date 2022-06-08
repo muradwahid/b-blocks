@@ -2,7 +2,7 @@
 	"apiVersion": "1",
 	"name": "b-blocks/cards",
 	"title": "Cards",
-	"description": "Display cards section.",
+	"description": "Provide cards to display anything.",
 	"category": "bBlocks",
 	"keywords": [
 		"card",

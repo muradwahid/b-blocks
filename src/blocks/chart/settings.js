@@ -160,6 +160,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</div>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Datasets', 'b-blocks')}>
 				{data.labels.map((label, labelIndex) => <PanelRow key={labelIndex}>
 					<Title mt='0' mb='0'>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Title>
@@ -229,6 +230,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</div>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Chart Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
 					<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
@@ -253,7 +255,9 @@ const Settings = ({ attributes, setAttributes }) => {
 				{(isXGridLine || isYGridLine) && <BColor label={__('Grid Line Color:', 'b-blocks')} value={gridLineColor} onChange={val => setAttributes({ gridLineColor: val })} defaultColor='#0000001a' />}
 			</PanelBody>
 
-			<PanelBody className='bPlPanelBody' title={__('Title & Subtitle', 'b-blocks')} initialOpen={false}>
+
+			<PanelBody className='bPlPanelBody' title={__('Title & Subtitle Settings', 'b-blocks')} initialOpen={false}>
+				{/* Title Settings */}
 				<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 				{isTitle && <>
 					<PanelRow>
@@ -267,6 +271,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 				</>}
 
+				{/* Subtitle Settings */}
 				<ToggleControl className='mt20' label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
 				{isSubtitle && <>
 					<PanelRow className='mt20'>
@@ -281,10 +286,12 @@ const Settings = ({ attributes, setAttributes }) => {
 				</>}
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Download Settings', 'chart-block')} initialOpen={false}>
 				<ToggleControl label={__('Download Button', 'chart-block')} checked={isDownload} onChange={val => setAttributes({ isDownload: val })} />
 			</PanelBody>
 		</InspectorControls>
+
 
 		<BlockControls>
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Chart Alignment')} alignmentControls={[

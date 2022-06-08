@@ -31,9 +31,9 @@ const Settings = ({ attributes, setAttributes }) => {
 		<InspectorControls>
 			<Title mt='0' mb='0'></Title> {/* Just use the component */}
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
-				{/* <div className='helpItem'>
-					<a href='https://bblockswp.com/docs/image-compare/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
-				</div> */}
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/image-comparison-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
 
 				<div className='helpItem rateUs'>
 					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
@@ -43,11 +43,10 @@ const Settings = ({ attributes, setAttributes }) => {
 				</div>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Comparison Settings', 'b-blocks')}>
-				{/* Width */}
 				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit, vwUnit]} />
 
-				{/* Border */}
 				<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
 
 				<TabPanel className='bPlTabPanel mt20' activeClass='activeTab' tabs={beforeAfterImgTab}>{tab => <>
@@ -65,30 +64,28 @@ const Settings = ({ attributes, setAttributes }) => {
 				<ToggleControl className='mt20' label={__('Swap Images', 'b-blocks')} checked={isSwap} onChange={val => { setAttributes({ isSwap: val }); swapImages(); }} />
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Labels Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
 				{isLabel && <>
-					{/* Typography */}
 					<Typography typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 15 }} />
 
 					<ColorsControl colors={labelColors} onChange={val => setAttributes({ labelColors: val })} defaults={{ color: '#fff', bg: '#00000080' }} />
 
-					{/* Padding */}
 					<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={labelPadding} onChange={val => setAttributes({ labelPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
 				</>}
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Caption Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
 				{isCap && <>
-					{/* Typography */}
 					<Typography typography={capTypo} onChange={val => setAttributes({ capTypo: val })} defaults={{ fontSize: 14 }} />
 
 					<ColorsControl colors={capColors} onChange={val => setAttributes({ capColors: val })} defaults={{ color: '#333', bg: '#f4f4f4' }} />
 
-					{/* Padding */}
 					<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={capPadding} onChange={val => setAttributes({ capPadding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
 				</>}
 			</PanelBody>

@@ -6,7 +6,7 @@ const $ = jQuery;
 
 // Settings Components
 import Settings from './settings';
-import Styles from './Styles';
+import Style from './Style';
 import MapPosts from './Layout/MapPosts';
 
 export const ExcerptLengthCtx = createContext();
@@ -148,7 +148,7 @@ const Edit = props => {
 		</ExcerptLengthCtx.Provider>
 
 		{!posts ? <Loading /> : posts?.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
-			<Styles posts={posts} attributes={attributes} clientId={clientId} />
+			<Style posts={posts} attributes={attributes} clientId={clientId} />
 
 			{'grid' === layout ? <div className={`bBlocksGridPosts columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				<MapPosts posts={posts} attributes={attributes} clientId={clientId} />

@@ -85,7 +85,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 				{'general' == tab.name && <>
 					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 						{/* <div className='helpItem'>
-							<a href='https://bblockswp.com/docs/b-blocks/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+							<a href='https://bblockswp.com/docs/flip-box-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
 						</div> */}
 
 						<div className='helpItem rateUs'>
@@ -207,32 +207,33 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					</PanelBody>
 				</>}
 
+
 				{'style' == tab.name && <>
-					<PanelBody className='bPlPanelBody' title={__('Box Style', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody' title={__('Box', 'b-blocks')}>
 						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight} onChange={val => setAttributes({ boxHeight: val })} units={[pxUnit, emUnit]} />
 
 						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={boxPadding} onChange={val => setAttributes({ boxPadding: val })} defaults={{ vertical: '30px', horizontal: '25px' }} />
 					</PanelBody>
 
 
-					{isIcon && <PanelBody className='bPlPanelBody' title={__('Icon Style', 'b-blocks')} initialOpen={false}>
+					{isIcon && <PanelBody className='bPlPanelBody' title={__('Icon', 'b-blocks')} initialOpen={false}>
 						<SpaceControl label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 					</PanelBody>}
 
 
-					<PanelBody className='bPlPanelBody' title={__('Title Style', 'b-blocks')} initialOpen={false}>
+					<PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
 						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
 						{titleTypo && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
 					</PanelBody>
 
 
-					{isDesc && <PanelBody className='bPlPanelBody' title={__('Description Style', 'b-blocks')} initialOpen={false}>
+					{isDesc && <PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
 						<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 16 }} />
 					</PanelBody>}
 
 
-					{isBtn && <PanelBody className='bPlPanelBody' title={__('Button Style', 'b-blocks')} initialOpen={false}>
+					{isBtn && <PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
 						<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 20 }} />
 
 						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '15px', horizontal: '25px' }} />

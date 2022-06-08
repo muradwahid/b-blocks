@@ -4,6 +4,10 @@ $primaryColor: #4527a4;
 .wp-block-b-blocks-services .bBlocksServices {
 	display: grid;
 
+	* {
+		box-sizing: border-box;
+	}
+
 	.wp-block-b-blocks-service {
 		height: 100%;
 		max-width: 100%;

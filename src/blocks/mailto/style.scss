@@ -2,39 +2,43 @@
 $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
 
-.wp-block-b-blocks-mailto .bBlocksMailto{
-	a.mailtoButton{
+.wp-block-b-blocks-mailto .bBlocksMailto {
+	* {
+		box-sizing: border-box;
+	}
+
+	a.mailtoButton {
 		display: inline-block;
 
-		&:hover{
+		&:hover {
 			text-decoration: none;
 		}
 
-		i{
+		i {
 			font-size: inherit;
 			font-style: inherit;
 			color: inherit;
 		}
 
-		> *:first-child{
+		>*:first-child {
 			margin-right: 12px;
 		}
 	}
 }
 
 .mailtoui-modal {
-	a{
-		text-decoration: none!important;
+	a {
+		text-decoration: none !important;
 	}
 
-	.mailtoui-modal-head{
+	.mailtoui-modal-head {
 		.mailtoui-modal-title {
 			color: $primaryColor;
 		}
 
-		.mailtoui-modal-close{
+		.mailtoui-modal-close {
 			color: $secondaryColor;
-		
+
 			&:focus,
 			&:hover {
 				color: $primaryColor;
@@ -49,29 +53,30 @@ $secondaryColor: #8344c5;
 			color: #fff;
 			background-color: $primaryColor;
 		}
-		
+
 		.mailtoui-button-content,
 		.mailtoui-button-copy {
 			color: #fff;
 			background-color: $secondaryColor;
-		
+
 			&:hover,
-			&:focus{
+			&:focus {
 				color: #fff;
 				background-color: $primaryColor;
 			}
 
 			.mailtoui-button-icon,
-			.mailtoui-button-text{
+			.mailtoui-button-text {
 				top: 0;
 			}
 		}
-		
+
 		.mailtoui-email-address {
 			color: $primaryColor;
 			background-color: #fff;
 			font-weight: bold;
 		}
+
 		.mailtoui-button-copy-clicked,
 		.mailtoui-button-copy-clicked:hover,
 		.mailtoui-button-copy-clicked:focus {

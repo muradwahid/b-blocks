@@ -1,0 +1,52 @@
+{
+	"apiVersion": "1",
+	"name": "b-blocks/row",
+	"title": "Row",
+	"description": "Row.",
+	"category": "bBlocks",
+	"keywords": [
+		"row",
+		"columns",
+		"multi columns"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"cId": {
+			"type": "string",
+			"default": ""
+		},
+		"background": {
+			"type": "object",
+			"default": {
+				"color": "#0000"
+			}
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"vertical": "15px",
+				"horizontal": "20px"
+			}
+		},
+		"border": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	}
+}

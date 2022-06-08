@@ -1,57 +1,62 @@
-.wp-block-b-blocks-team-members .bBlocksTeamMembers{
+.wp-block-b-blocks-team-members .bBlocksTeamMembers {
 	display: grid;
 
-	&.horizontal{
-		.bBlocksMember{
+	* {
+		box-sizing: border-box;
+	}
+
+	&.horizontal {
+		.bBlocksMember {
 			display: flex;
 			align-items: center;
 
-			.memberPhoto{
+			.memberPhoto {
 				width: calc(38% - 20px);
 				max-width: 38%;
 			}
 
-			.memberDetails{
+			.memberDetails {
 				padding: 0 20px 0 0;
 				width: 62%;
 			}
 		}
 	}
 
-	&.vertical{
-		.bBlocksMember{
-			.memberDetails{
+	&.vertical {
+		.bBlocksMember {
+			.memberDetails {
 				padding: 0 20px;
 			}
 		}
 	}
 
-	.bBlocksMember{
+	.bBlocksMember {
 		position: relative;
 
-		.memberPhoto{
+		.memberPhoto {
 			max-width: 100%;
 			height: auto;
+			display: inline-block;
 		}
-		
-		.memberName{
+
+		.memberName {
 			font-weight: 600;
 			margin: 0;
 		}
 
-		.memberTitle{
+		.memberTitle {
 			margin: 0;
 		}
 
-		.memberSeparator{
+		.memberSeparator {
 			display: inline-block;
 		}
 
-		.memberBio{
+		.memberBio {
 			display: block;
 		}
 
-		ul.memberSocial{
+		ul.memberSocial {
 			list-style-type: none;
 			line-height: 1;
 			margin: 0;
@@ -59,17 +64,18 @@
 			display: flex;
 			align-items: center;
 
-			li{
+			li {
 				display: inline-block;
-				
-				&:first-child{
+
+				&:first-child {
 					margin-left: 0 !important;
 				}
-				&:last-child{
+
+				&:last-child {
 					margin-right: 0 !important;
 				}
 
-				a{
+				a {
 					text-decoration: none;
 					color: #4e4e4e;
 					padding: 8px;
@@ -78,11 +84,11 @@
 					justify-content: center;
 					border-radius: 50%;
 
-					&:focus{
+					&:focus {
 						box-shadow: none;
 					}
 
-					i{
+					i {
 						font-style: inherit;
 						display: flex;
 						align-items: center;

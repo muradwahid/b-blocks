@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { PanelRow, PanelBody, TextControl, SelectControl } from '@wordpress/components';
+import { PanelRow, PanelBody, TextControl, SelectControl, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -23,6 +23,20 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/mail-to-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('Mail Settings', 'b-blocks')}>
 				<Title mt='0' mb='0'>{__('E-mail Address:', 'b-blocks')}</Title>
 				<TextControl value={receiverMail} onChange={val => setAttributes({ receiverMail: val })} placeholder={__('Email Address', 'b-blocks')} />
@@ -56,6 +70,7 @@ const Settings = ({ settings }) => {
 				</PanelRow>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
 				<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 22, fontWeight: 600 }} />
 
@@ -67,6 +82,7 @@ const Settings = ({ settings }) => {
 
 				<BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => setAttributes({ btnBorder: val })} defaults={{ radius: '50px' }} />
 			</PanelBody>
+
 
 			<PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
 				<IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-paper-plane' }} isSize={false} isColor={false} />

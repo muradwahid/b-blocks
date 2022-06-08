@@ -9,10 +9,12 @@ import Title from '../../../../Components/Title';
 import IconControl from '../../../../Components/IconControl';
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
-import Settings from './settings';
+import Settings from './Settings';
+import Style from './Style';
 
 const Edit = props => {
-	const { className, attributes: { members = [], columns, columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin }, setAttributes, clientId, isSelected } = props;
+	const { className, attributes, setAttributes, clientId, isSelected } = props;
+	const { members = [], columns, layout, isTitle, isSep, isBio, isSocial } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -36,91 +38,16 @@ const Edit = props => {
 	}
 
 	return <>
-		<Settings attributes={props.attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
 		<div className={className} id={`bBlocksTeamMembers-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink});` : ''}
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-				${bioTypo?.googleFontLink ? `@import url(${bioTypo?.googleFontLink});` : ''}
-
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers{
-					grid-gap: ${rowGap} ${columnGap};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember{
-					text-align: ${textAlign};
-					padding: ${padding?.styles || '50px 20px'};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberPhoto{
-					width: ${photoWidth};
-					margin: ${'horizontal' === layout ? '0 20px 0 0' : `${photoMargin?.styles || '0 0 20px 0'}`};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberName{
-					${nameTypo?.styles || 'font-size: 20px; font-weight: 600;'}
-					margin: ${nameMargin?.styles || '0 0 10px 0'};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberTitle{
-					${titleTypo?.styles || 'font-size: 16px;'}
-					margin: ${titleMargin?.styles || '0 0 10px 0'};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSeparator{
-					margin: ${sepMargin?.styles || '0 0 15px 0'};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberBio{
-					${bioTypo?.styles || 'font-size: 15px;'}
-					margin: ${bioMargin?.styles || '0 0 15px 0'};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .icon, #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .memberSocialAdd{
-					margin: ${socialIconMargin?.styles || '10px 10px'};
-				}
-				#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .icon i, #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .memberSocialAdd i{
-					font-size: ${socialSize};
-					width: ${socialSize};
-				}
-			`}} />
+			<Style attributes={attributes} clientId={clientId} />
 
 			<div className={`bBlocksTeamMembers ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{members.map((item, index) => {
-					const { background, border, shadow, photo, photoBorder, name, nameColor, title, titleColor, separator, bio, bioColor, social = [], socialIconColors } = item;
+					const { photo, name, title, bio, social = [] } = item;
 
 					return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksMember ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksMember-${index}`}>
-						<style dangerouslySetInnerHTML={{
-							__html: `
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index}{
-								${background?.styles || 'background-color: #0000;'}
-								${border?.styles || 'border-radius: 3px;'}
-								box-shadow: ${shadow?.styles || 'none'};
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberPhoto{
-								${photoBorder?.styles || 'border-radius: 50%;'}
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberName{
-								color: ${nameColor};
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberTitle{
-								color: ${titleColor};
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberSeparator{
-								${separator?.styles || 'width: 20%; border-top: 3px solid #777;'}
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberBio{
-								color: ${bioColor};
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial{
-								justify-content: ${'center' === textAlign ? 'center' : 'right' === textAlign ? 'flex-end' : 'flex-start'}
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial li a{
-								${socialIconColors?.styles || 'color: #fff; background: #4527a4;'}
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial li.isSelected{
-								border: 2px solid ${socialIconColors?.bg};
-							}
-							#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial li.memberSocialAdd button i{
-								color: ${socialIconColors?.bg};
-							}
-						`}} />
-
 						{photo?.url ? <>
 							<img className={`memberPhoto ${photo?.id ? `wp-image-${photo?.id}` : null}`} src={photo?.url} alt={photo?.alt} />
 							{isBlobURL(photo?.url) && <Spinner />}

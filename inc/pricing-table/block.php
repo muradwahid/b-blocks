@@ -13,6 +13,8 @@ class BBlocksPricingTable extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? 'is-style-basic';
+
 		$isStandard = false !== strpos($className, 'standard');
 		$isUltimate = false !== strpos($className, 'ultimate');
 

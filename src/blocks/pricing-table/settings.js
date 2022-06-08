@@ -79,6 +79,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 						</div>
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Prices', 'b-blocks')}>
 						{null !== activeIndex && <>
 							<h3 className='bplItemTitle'>{__(`Price No ${activeIndex + 1}:`, 'b-blocks')}</h3>
@@ -117,7 +118,6 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
-						{/* Columns */}
 						<PanelRow className='mt20'>
 							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
@@ -129,6 +129,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 					</PanelBody>
 				</>}
+
 
 				{'style' === tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Pricing Table', 'b-blocks')}>

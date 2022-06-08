@@ -1,21 +1,25 @@
 // Alert
-.wp-block-b-blocks-alert{
+.wp-block-b-blocks-alert {
 	transition: opacity .3s ease-in-out, transform 8s ease-in-out;
 	transform: translateY(0);
 	opacity: 1;
 
-	.bBlocksAlert{
-		.alert{
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksAlert {
+		.alert {
 			position: relative;
 			display: inline-block;
 			max-width: 100%;
 
-			.alertIcon{
-			   margin-right: 10px;
-			   font-style: inherit;
+			.alertIcon {
+				margin-right: 10px;
+				font-style: inherit;
 			}
 
-			.alertClose{
+			.alertClose {
 				font-style: inherit;
 				font-size: 18px;
 				position: absolute;
@@ -26,7 +30,7 @@
 		}
 	}
 
-	&.transformHidden{
+	&.transformHidden {
 		transform: translateY(-9999px);
 		opacity: 0;
 	}

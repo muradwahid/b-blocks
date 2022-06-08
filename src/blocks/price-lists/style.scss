@@ -1,52 +1,56 @@
-.wp-block-b-blocks-price-lists .bBlocksPriceLists{
+.wp-block-b-blocks-price-lists .bBlocksPriceLists {
 	display: grid;
 
-	&.horizontal{
-		.bBlocksPrice{
+	* {
+		box-sizing: border-box;
+	}
+
+	&.horizontal {
+		.bBlocksPrice {
 			display: flex;
 			align-items: center;
 
-			.productImage{
+			.productImage {
 				width: 40%;
 			}
 
-			.productDetails{
+			.productDetails {
 				padding: 0 20px 0 0;
 			}
 		}
 	}
 
-	&.vertical{
-		.bBlocksPrice{
-			.productDetails{
+	&.vertical {
+		.bBlocksPrice {
+			.productDetails {
 				padding: 0 20px;
 			}
 
-			.productSeparator{
+			.productSeparator {
 				left: 50%;
 				transform: translateX(-50%);
 			}
 		}
 	}
 
-	.bBlocksPrice{
+	.bBlocksPrice {
 		position: relative;
 
-		.productImage{
+		.productImage {
 			width: auto;
 			max-width: 100%;
 			height: auto;
 		}
-		
-		.productName{
+
+		.productName {
 			margin: 0;
 		}
 
-		.productDescription{
+		.productDescription {
 			margin: 0;
 		}
 
-		.productSeparator{
+		.productSeparator {
 			position: absolute;
 			bottom: 0;
 		}

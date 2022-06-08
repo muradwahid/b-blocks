@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.6.5
+ * Version: 1.6.7
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.5' );
+define( 'B_BLOCKS_PLUGIN_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.7' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -66,22 +66,15 @@ class BBlocks{
 
 	// On Init
 	function onInit(){
-		wp_register_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'swiperJS', 'plyrJS', 'chartJS', 'easyTicker', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
+		wp_enqueue_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'swiperJS', 'plyrJS', 'chartJS', 'easyTicker', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
 
-		wp_register_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [ 'wp-edit-blocks' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
+		wp_enqueue_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [ 'wp-edit-blocks' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 
-		wp_register_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-block-editor', 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-block-editor', 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 
-		wp_register_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'wp-editor' ], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
+		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'wp-editor' ], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
 		wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', plugin_dir_path( __FILE__ ) . 'languages' ); // Translate
-
-		register_block_type( 'b-blocks/blocks', [
-			'editor_script'	=> 'bBlocksEditorScript',
-			'editor_style'	=> 'bBlocksEditorStyle',
-			'script'		=> 'bBlocksScript',
-			'style'			=> 'bBlocksStyle',
-		] ); // Register Block
 	}
 
 	// Register categories
@@ -140,6 +133,8 @@ class BBlocks{
 BBlocks::instance();
 
 // Require files
+// require_once plugin_dir_path( __FILE__ ) . 'inc/row/block.php';
+// require_once plugin_dir_path( __FILE__ ) . 'inc/row/column/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/slider/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/section-heading/block.php';

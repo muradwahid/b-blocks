@@ -1,34 +1,38 @@
-.wp-block-b-blocks-feature-boxes .bBlocksFeatureBoxes{
+.wp-block-b-blocks-feature-boxes .bBlocksFeatureBoxes {
 	display: grid;
 
-	.bBlocksFeature{
-		.featureDetails{
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksFeature {
+		.featureDetails {
 			padding: 0 20px;
 		}
 
-		.featureIcon{
+		.featureIcon {
 			width: auto;
 			max-width: 100%;
 			height: auto;
 
-			i{
+			i {
 				font-style: inherit;
 			}
 
-			img{
+			img {
 				max-width: 100%;
 			}
 		}
-		
-		.featureTitle{
+
+		.featureTitle {
 			margin: 0;
 		}
 
-		.featureSeparator{
+		.featureSeparator {
 			display: inline-block;
 		}
 
-		.featureDescription{
+		.featureDescription {
 			margin: 0;
 		}
 	}

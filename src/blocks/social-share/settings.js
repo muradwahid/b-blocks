@@ -122,6 +122,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 				</div>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove socials', 'b-blocks')}>
 				{null !== activeIndex && <>
 					<h3 className='bplItemTitle'>{__(`Social No ${activeIndex + 1}:`, 'b-blocks')}</h3>
@@ -185,7 +186,8 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 				</div>
 			</PanelBody>
 
-			<PanelBody className='bPlPanelBody' title={__('Social Icon', 'b-blocks')}>
+
+			<PanelBody className='bPlPanelBody' title={__('Social Icon Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
 					<Title mt='0' mb='0'>{__('Theme:', 'b-blocks')}</Title>
 					<SelectControl value={theme} onChange={val => {
@@ -232,6 +234,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 				<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
 			</PanelBody>
 		</InspectorControls>
+
 
 		<BlockControls>
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Social Icons Alignment')} alignmentControls={[

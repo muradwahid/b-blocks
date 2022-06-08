@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TextControl, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, Button, ToolbarGroup, ToolbarButton } from '@wordpress/components';
+import { PanelBody, PanelRow, TextControl, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, Button, ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -25,6 +25,20 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<div className='helpItem'>
+					<a href='https://bblockswp.com/docs/3d-viewer-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div>
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('3D Model Settings', 'b-blocks')}>
 				<PanelRow>
 					<Title mt='0'>{__('Source Type:', 'b-blocks')}</Title>
@@ -74,6 +88,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</PanelRow>
 			</PanelBody>
 		</InspectorControls>
+
 
 		<BlockControls>
 			{model?.url && <ToolbarGroup className='bPlToolbar'>

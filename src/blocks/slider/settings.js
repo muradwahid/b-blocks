@@ -71,6 +71,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 						</div>
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Slides', 'b-blocks')}>
 						{slides.map((item, index) => {
 							const { background, title, titleColor, description, descColor, btnText, btnLink, btnColors, btnHovColors } = item;
@@ -130,7 +131,6 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 					</PanelBody>
 
 
-					{/* Layout Settings */}
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
@@ -192,8 +192,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 
 
 				{'style' === tab.name && <>
-					{/* Option Style */}
-					{isPage || isPrevNext ? <PanelBody className='bPlPanelBody' title={__('Options Style', 'b-blocks')}>
+					{isPage || isPrevNext ? <PanelBody className='bPlPanelBody' title={__('Options', 'b-blocks')}>
 						{isPage && <>
 							<BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
 
@@ -208,7 +207,6 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 					</PanelBody> : ''}
 
 
-					{/* Slide Title */}
 					<PanelBody className='bPlPanelBody' title={__('Slide Title', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
@@ -216,7 +214,6 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 					</PanelBody>
 
 
-					{/* Slide Description */}
 					<PanelBody className='bPlPanelBody' title={__('Slide Description', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
@@ -224,7 +221,6 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 					</PanelBody>
 
 
-					{/* Slide Button */}
 					<PanelBody className='bPlPanelBody' title={__('Slide Button', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Button', 'b-blocks')} checked={isBtn} onChange={val => setAttributes({ isBtn: val })} />
 
@@ -241,6 +237,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>
+
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>

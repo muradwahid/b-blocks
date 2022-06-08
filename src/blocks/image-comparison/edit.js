@@ -14,7 +14,7 @@ import { drags } from './functions';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;
-	const { beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
+	const { width, beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -36,7 +36,7 @@ const Edit = props => {
 				compSlider.find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
 			});
 		}
-	}, [$]);
+	}, [$, width, beforeImg, afterImg]);
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />

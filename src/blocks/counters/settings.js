@@ -78,6 +78,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</div>
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove counters', 'b-blocks')}>
 						{null !== activeIndex && <>
 							<h3 className='bplItemTitle'>{__(`Counter No ${activeIndex + 1}:`, 'b-blocks')}</h3>
@@ -123,6 +124,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<Button label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' size={23} />{__('Add New Counter', 'b-blocks')}</Button>
 						</div>
 					</PanelBody>
+
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
@@ -196,7 +198,6 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							}} options={themes} />
 						</PanelRow>
 
-						{/* Columns */}
 						<PanelRow className='mt20'>
 							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
@@ -208,10 +209,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 					</PanelBody>
 
+
 					<PanelBody className='bPlPanelBody' title={__('Counters Settings', 'b-blocks')} initialOpen={false}>
 						<NumberControl label={__('Duration:', 'b-blocks')} labelPosition='left' value={duration} onChange={val => setAttributes({ duration: val })} />
 						<small>{__('Duration in milliseconds:', 'b-blocks')}</small>
 					</PanelBody>
+
 
 					<PanelBody className='bPlPanelBody' title={__('Counter Elements', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />

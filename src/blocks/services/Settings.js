@@ -58,8 +58,8 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				</div>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')}>
-				{/* Layout */}
 				<PanelRow>
 					<Title mt='0' mb='0'>{__('Layout:', 'b-blocks')}</Title>
 					<SelectControl value={layout} onChange={val => {
@@ -96,7 +96,6 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 					}} options={layouts} />
 				</PanelRow>
 
-
 				<PanelRow className='mt20'>
 					<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
@@ -110,17 +109,14 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Item Settings', 'b-blocks')} initialOpen={false}>
-				{/* Min Height */}
 				<UnitControl label={__('Min Height:', 'b-blocks')} labelPosition='left' value={itemHeight} onChange={val => setAttributes({ itemHeight: val })} units={[pxUnit, emUnit]} />
 
-				{/* Padding */}
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={itemPadding} onChange={val => setAttributes({ itemPadding: val })} defaults={{ side: 4, top: '50px', right: '30px', bottom: '50px', left: '50px' }} />
 
-				{/* Shadow */}
 				<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={itemShadow} onChange={val => setAttributes({ itemShadow: val })} defaults={{ blur: '20px', color: '#0000001a' }} />
 
-				{/* Border */}
 				<BorderControl label={__('Border', 'b-blocks')} border={itemBorder} onChange={val => setAttributes({ itemBorder: val })} defaults={{ radius: '15px' }} />
 
 				<PanelRow className='mt20'>
@@ -129,28 +125,27 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				</PanelRow>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
+				{/* Icon Settings */}
 				<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon || childAttributes?.isIcon} onChange={val => { setChildAttributes({ isIcon: val }); setIsIcon(val); }} />
 
 				{isIcon || childAttributes?.isIcon ? <>
-					{/* Padding */}
 					<SpaceControl className='mt20' label={__('Icon Padding:', 'b-blocks')} space={iconPadding} onChange={val => setAttributes({ iconPadding: val })} defaults={{ side: 4, bottom: '10px' }} />
 
-					{/* Margin */}
 					<SpaceControl className='mt20' label={__('Icon Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 				</> : ''}
 
-
+				{/* Title Settings */}
 				<ToggleControl className='mt35' label={__('Show Title', 'b-blocks')} checked={isTitle || childAttributes?.isTitle} onChange={val => { setChildAttributes({ isTitle: val }); setIsTitle(val); }} />
 
 				{isTitle || childAttributes?.isTitle ? <>
 					<Typography label={__('Title Typography:', 'b-blocks')} typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 23 }} />
 
-					{/* Margin */}
 					<SpaceControl className='mt20' label={__('Title Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '30px' }} />
 				</> : ''}
 
-
+				{/* Description Settings */}
 				<ToggleControl className='mt35' label={__('Show Description', 'b-blocks')} checked={isDesc || childAttributes?.isDesc} onChange={val => { setChildAttributes({ isDesc: val }); setIsDesc(val); }} />
 
 				{isDesc || childAttributes?.isDesc ? <Typography label={__('Description Typography:', 'b-blocks')} typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 16 }} /> : ''}

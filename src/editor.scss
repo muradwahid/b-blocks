@@ -2,40 +2,43 @@ $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
 
 // Loading
-.bBlocksLoading{
+.bBlocksLoading {
 	color: $primaryColor !important;
 	font-size: 21px !important;
 	font-weight: bold !important;
 	display: flex;
 	align-items: center;
 
-	.components-spinner{
+	.components-spinner {
 		margin-top: 0;
 		color: $primaryColor;
 		background-color: $primaryColor;
 	}
 }
 
-.bBlocksNowEditing{
+.bBlocksNowEditing {
 	outline: 2px solid $primaryColor;
 }
-.addItemFirst{
+
+.addItemFirst {
 	text-align: center;
 	margin: 0;
 }
 
 // Panel Body
 // .bPlPanelBody, .bPlDropdownPopover .components-popover__content{
-	
+
 // }
 
 // Buttons
 // Inserter
-.block-editor-inserter, .block-list-appender, .block-editor-block-list__insertion-point-inserter{
-	button{
+.block-editor-inserter,
+.block-list-appender,
+.block-editor-block-list__insertion-point-inserter {
+	button {
 		background-color: transparent !important;
 
-		svg{
+		svg {
 			fill: $primaryColor;
 			width: 20px !important;
 			height: 20px;
@@ -50,28 +53,29 @@ $secondaryColor: #8344c5;
 
 // Older Components
 // Size Type
-.bBlocksSizeType{
+.bBlocksSizeType {
 	margin: 0;
 	text-align: right;
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 5px;
 }
-.bBlocksSizeType button{
-	box-shadow: none!important;
+
+.bBlocksSizeType button {
+	box-shadow: none !important;
 	outline: 0;
 }
 
 // Font Size Picker
-.components-font-size-picker__controls{
+.components-font-size-picker__controls {
 	display: grid;
 	grid-template-columns: 1.7fr 1fr 1fr;
 	margin-bottom: 0;
 
-	.components-font-size-picker__number-container{
+	.components-font-size-picker__number-container {
 		margin-right: 8px;
-		
-		.components-font-size-picker__number{
+
+		.components-font-size-picker__number {
 			margin: 0;
 		}
 	}
@@ -80,34 +84,34 @@ $secondaryColor: #8344c5;
 
 // Older Codes
 // Modal
-.modal-backdrop{
-	z-index: -1!important;
+.modal-backdrop {
+	z-index: -1 !important;
 }
 
-.b_blocks_close_modal_btn{
-	color: $primaryColor!important;
+.b_blocks_close_modal_btn {
+	color: $primaryColor !important;
 
-	svg{
+	svg {
 		width: 26px;
 		height: 26px;
 	}
 }
 
-.b_blocks_btn_text_control{
+.b_blocks_btn_text_control {
 	position: absolute;
 	bottom: -33px;
 	z-index: 100;
 
-	input{
-		width: 350px!important;
-		padding: 8px 15px!important;
-		border-radius: 3px!important;
-		color: #000!important;
+	input {
+		width: 350px !important;
+		padding: 8px 15px !important;
+		border-radius: 3px !important;
+		color: #000 !important;
 	}
 }
 
 // Media Button
-.b_blocks_media_upload{
+.b_blocks_media_upload {
 	position: absolute;
 	text-align: center;
 	top: 50%;
@@ -117,7 +121,8 @@ $secondaryColor: #8344c5;
 	width: fit-content;
 	z-index: 100;
 }
-.b_blocks_media_control{
+
+.b_blocks_media_control {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -126,23 +131,23 @@ $secondaryColor: #8344c5;
 	border-radius: 3px;
 	width: max-content;
 
-	button{
+	button {
 		color: $primaryColor;
 		font-weight: bold;
 	}
 }
 
 // Add Item
-.b_blocks_add_item{
+.b_blocks_add_item {
 	position: absolute;
 	bottom: -25px;
 	z-index: 100;
 
-	button{
-		font-size: 18px!important;
-		color: #fff!important;
-		background-color: $primaryColor!important;
-		padding: 20px!important;
+	button {
+		font-size: 18px !important;
+		color: #fff !important;
+		background-color: $primaryColor !important;
+		padding: 20px !important;
 		border-radius: 5px;
 	}
 }

@@ -1,13 +1,17 @@
-.wp-block-b-blocks-button-group{
-	.bBlocksButtonGroup{
+.wp-block-b-blocks-button-group {
+	.bBlocksButtonGroup {
 		display: inline-flex;
 		align-items: stretch;
 		max-width: 100%;
 
-		.bBlocksBtn{
+		* {
+			box-sizing: border-box;
+		}
+
+		.bBlocksBtn {
 			max-width: 100%;
 
-			a{
+			a {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -19,7 +23,9 @@
 				box-shadow: none;
 				transition: all .3s ease;
 
-				&:hover, &:focus, &:active{
+				&:hover,
+				&:focus,
+				&:active {
 					text-decoration: none;
 					outline: 0;
 					box-shadow: none;
@@ -27,11 +33,11 @@
 			}
 		}
 
-		.firstBtn{
+		.firstBtn {
 			position: relative;
 			display: inline-block;
 
-			.btnSeparator{
+			.btnSeparator {
 				position: absolute;
 				top: 50%;
 				right: 0;
@@ -43,11 +49,11 @@
 				overflow: hidden;
 				padding: 5px;
 
-				span{
+				span {
 					text-transform: uppercase;
 				}
 
-				i{
+				i {
 					font-style: normal;
 				}
 			}

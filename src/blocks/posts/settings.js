@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useContext } from '@wordpress/element';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, RangeControl, TextControl, ToggleControl, TabPanel, RadioControl, PanelRow, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, SelectControl, RangeControl, TextControl, ToggleControl, TabPanel, RadioControl, PanelRow, __experimentalUnitControl as UnitControl, Dashicon } from '@wordpress/components';
 import SelectPure from 'select-pure';
 
 // Settings Components
@@ -57,7 +57,20 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					{/* Layouts Settings */}
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+						<div className='helpItem'>
+							<a href='https://bblockswp.com/docs/posts-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+						</div>
+
+						<div className='helpItem rateUs'>
+							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+							</a>
+						</div>
+					</PanelBody>
+
+
 					<PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
 						<Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
 						<BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
@@ -123,7 +136,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>
 
 
-					{/* Posts Query */}
 					<PanelBody className='bPlPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<Title mt='0' mb='0'>{__('Post Type:', 'b-blocks')}</Title>
@@ -166,7 +178,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>
 
 
-					{/* Elements Settings */}
 					<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
 						{/*Feature Image */}
 						<Title mt='0'>{__('Feature Image:', 'b-blocks')}</Title>
@@ -226,7 +237,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>
 
 
-					{/* Slider Settings */}
 					{'slider' === layout && <PanelBody className='bPlPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Enable Loop', 'b-blocks')} checked={sliderIsLoop} onChange={val => setAttributes({ sliderIsLoop: val })} />
 
@@ -258,9 +268,9 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>}
 				</>}
 
+
 				{'style' === tab.name && <>
-					{/* Content Style */}
-					{isPosts && <PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={true}>
+					{isPosts && <PanelBody className='bPlPanelBody' title={__('Content', 'b-blocks')} initialOpen={true}>
 						<PanelRow>
 							<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
 							<BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
@@ -274,7 +284,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>}
 
 
-					{/* Slider Styles */}
 					{isPosts && 'slider' === layout && <PanelBody className='bPlPanelBody' title={__('Slider Options Style', 'b-blocks')} initialOpen={false}>
 						{sliderIsPage && <>
 							<BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={sliderPageColor} onChange={val => setAttributes({ sliderPageColor: val })} defaultColor='#4527a4' />
@@ -290,7 +299,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>}
 
 
-					{/* Title Styles */}
 					{isPosts && isTitle && <PanelBody className='bPlPanelBody' title={__('Title Styles', 'b-blocks')} initialOpen={false}>
 						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
 
@@ -300,7 +308,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>}
 
 
-					{/* Meta Data Styles */}
 					{isPosts && isMeta && <PanelBody className='bPlPanelBody' title={__('Meta Data Styles', 'b-blocks')} initialOpen={false}>
 						<Typography typography={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: 13, textTransform: 'uppercase' }} />
 
@@ -316,7 +323,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>}
 
 
-					{/* Excerpt Styles */}
 					{isPosts && isExcerpt && <PanelBody className='bPlPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
@@ -331,7 +337,6 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 					</PanelBody>}
 
 
-					{/* Read More Settings */}
 					{isPosts && isReadMore && <PanelBody className='bPlPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<Title mt='0' mb='0'>{__('Button Align:', 'b-blocks')}</Title>

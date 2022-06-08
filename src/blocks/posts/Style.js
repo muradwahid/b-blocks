@@ -1,7 +1,7 @@
 import func from '../../Const/functions';
 const { mediaUrl } = func;
 
-const Styles = ({ posts, attributes, clientId }) => {
+const Style = ({ posts, attributes, clientId }) => {
 	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, isFImg, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
 	return <>
@@ -79,7 +79,7 @@ const Styles = ({ posts, attributes, clientId }) => {
 		<style>
 			{posts.map(post => {
 				const { id, featured_media } = post;
-				const fImgUrl = mediaUrl(featured_media);
+				const fImgUrl = mediaUrl(featured_media)?.replace(/<[^>]+>/g, '');
 
 				const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${fImgUrl ? 'grid' : 'flex'}; }`;
 				const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
@@ -89,4 +89,4 @@ const Styles = ({ posts, attributes, clientId }) => {
 		</style>
 	</>;
 };
-export default Styles;
+export default Style;

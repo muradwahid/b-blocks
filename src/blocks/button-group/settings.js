@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { Dashicon, PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -28,11 +28,23 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				{/* <div className='helpItem'>
+					<a href='https://bblockswp.com/docs/button-group-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				</div> */}
+
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
+
+
 			<PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')}>
-				{/* Width */}
 				<UnitControl label={__('Container Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
-				{/* Button Type */}
 				<PanelRow>
 					<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
 					<BtnGroup value={btnType} onChange={val => {
@@ -56,10 +68,8 @@ const Settings = ({ settings }) => {
 				</PanelRow>
 				<small>{__('Some settings may change when type will be changed.', 'b-blocks')}</small>
 
-				{/* Typography */}
 				<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 16 }} />
 
-				{/* Padding */}
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
 
 				<Title>{__('Buttons:', 'b-blocks')}</Title>
@@ -93,6 +103,7 @@ const Settings = ({ settings }) => {
 				</TabPanel>
 			</PanelBody>
 
+
 			<PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
@@ -102,22 +113,17 @@ const Settings = ({ settings }) => {
 						<BtnGroup value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
 					</PanelRow>
 
-					{/* Separator Text */}
 					{'text' === sepType && <>
 						<Title>{__('Separator Text:', 'b-blocks')}</Title>
 						<TextControl value={sepText} onChange={val => setAttributes({ sepText: val })} />
 
-						{/* Text Typography */}
 						<Typography label={__('Text Typography', 'b-blocks')} typography={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: 15 }} />
 
-						{/* Text Color */}
 						<BColor label={__('Text Color:', 'b-blocks')} value={sepTextColor} onChange={val => setAttributes({ sepTextColor: val })} defaultColor='#333' />
 					</>}
 
-					{/* Icon */}
 					{'icon' === sepType && <IconControl icon={sepIcon} onChange={val => setAttributes({ sepIcon: val })} defaults={{ class: 'fa fa fa-arrows-alt-h', fontSize: 20, color: '#333' }} />}
 
-					{/* Background Color */}
 					<BColor label={__('Background Color:', 'b-blocks')} value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
 				</>}
 			</PanelBody>
