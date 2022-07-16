@@ -13,6 +13,9 @@ class BBlocksCards extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksCardsClassName = 'wp-block-b-blocks-cards ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$cardsStyle = new BBlocksStyleGenerator();
 		$cardsStyle::addStyle( "#bBlocksCards-$cId .bBlocksCards", [
@@ -38,7 +41,7 @@ class BBlocksCards extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-cards <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCards-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ) ?>'></div>
+		<div class='<?php echo esc_attr( $bBlocksCardsClassName ); ?>' id='bBlocksCards-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ) ?>'></div>
 
 		<?php $cardsStyle::$styles = []; // Empty styles
 		return ob_get_clean();

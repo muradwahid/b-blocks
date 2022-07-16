@@ -15,7 +15,7 @@ const Edit = props => {
 	const [gifData, setGifData] = useState([]);
 
 	// Gif scripts for modal
-	const GIFAPI = "dM3iQq13qK0Mls9ygR2zjxxPDQVlw1Ql";
+	const GIFAPI = 'dM3iQq13qK0Mls9ygR2zjxxPDQVlw1Ql';
 
 	// First Trending
 	search === '' && useEffect(() => {
@@ -59,12 +59,12 @@ const Edit = props => {
 		<InspectorControls>
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 				<div className='helpItem'>
-					<a href='https://bblockswp.com/docs/gif-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+					<a href='https://bblockswp.com/docs/gif-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div>
 
 				<div className='helpItem rateUs'>
 					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
 						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
 					</a>
 				</div>

@@ -9,8 +9,7 @@ const { colors } = options;
 const INNER_TEMPLATE = [['b-blocks/section-heading', {}]];
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icon
 import icons from '../Const/icons';
@@ -70,7 +69,7 @@ registerBlockType('b-blocks/section', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_section bBlocksInnerContent">
+			<div className='b_blocks_section bBlocksInnerContent'>
 				<div style={sectionStyle}>
 					<InnerBlocks template={INNER_TEMPLATE} />
 
@@ -86,7 +85,7 @@ registerBlockType('b-blocks/section', {
 		const sectionStyle = { backgroundColor: BGColor, padding: `${PT}px ${PR}px ${PB}px ${PL}px`, textAlign: 'inherit' }
 
 		return (
-			<div className="b_blocks_section bBlocksInnerContent">
+			<div className='b_blocks_section bBlocksInnerContent'>
 				<div style={sectionStyle}>
 					<InnerBlocks.Content />
 				</div>

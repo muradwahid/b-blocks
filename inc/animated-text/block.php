@@ -13,8 +13,11 @@ class BBlocksAnimatedText extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksAnimatedTextClassName = 'wp-block-b-blocks-animated-text ' . $className . ' align' . $align;
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-animated-text <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksAnimatedText-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+		<div class='<?php echo esc_attr( $bBlocksAnimatedTextClassName ); ?>' id='bBlocksAnimatedText-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
 		<?php return ob_get_clean();
 	}

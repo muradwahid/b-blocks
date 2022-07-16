@@ -12,8 +12,7 @@ const { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms 
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icons
 import icons from '../Const/icons';
@@ -105,7 +104,7 @@ registerBlockType('b-blocks/collapse', {
 
 					{/* Colors */}
 					{otherTitle('Colors:')}
-					<TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
 							{otherTitle('Color:')}
@@ -141,21 +140,21 @@ registerBlockType('b-blocks/collapse', {
 			</InspectorControls>,
 
 
-			<div className="b_blocks_collapse">
+			<div className='b_blocks_collapse'>
 				<BlockControls>
 					<AlignmentToolbar value={collBtnAlign} onChange={cng => setAttributes({ collBtnAlign: cng })} />
 				</BlockControls>
 
 				<div style={{ textAlign: collBtnAlign }}>
-					<button className="b_blocks_btn" type="button" data-toggle="collapse" data-target={`#bBlocksCollapse-${clientId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${clientId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>
-						<RichText className="b_blocks_collapse_btn_label" key="editable" tagName="span" placeholder={__('Enter Collapse Button Text', 'b-blocks')} value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} inlineToolbar style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
+					<button className='b_blocks_btn' type='button' data-toggle='collapse' data-target={`#bBlocksCollapse-${clientId}`} aria-expanded='false' aria-controls={`bBlocksCollapse-${clientId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>
+						<RichText className='b_blocks_collapse_btn_label' key='editable' tagName='span' placeholder={__('Enter Collapse Button Text', 'b-blocks')} value={collBtnLabel} onChange={cng => { setAttributes({ collBtnLabel: cng }) }} inlineToolbar style={{ padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px` }} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave} />
 					</button>
 				</div>
 
 
 				{/* Collapse */}
-				<div className="collapse" id={`bBlocksCollapse-${clientId}`}>
-					<div className="collapse_content bBlocksInnerContent" style={contentStyle}>
+				<div className='collapse' id={`bBlocksCollapse-${clientId}`}>
+					<div className='collapse_content bBlocksInnerContent' style={contentStyle}>
 						<InnerBlocks />
 					</div>
 				</div>
@@ -182,16 +181,16 @@ registerBlockType('b-blocks/collapse', {
 		}
 
 		return (
-			<div className="b_blocks_collapse" style={{ textAlign: 'inherit' }}>
+			<div className='b_blocks_collapse' style={{ textAlign: 'inherit' }}>
 				{/* Button Trigger Collapse */}
 				<div style={{ textAlign: collBtnAlign }}>
-					<button type="button" className="b_blocks_collapse_btn_label b_blocks_btn" data-toggle="collapse" data-target={`#bBlocksCollapse-${cId}`} aria-expanded="false" aria-controls={`bBlocksCollapse-${cId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>{collBtnLabel}</button>
+					<button type='button' className='b_blocks_collapse_btn_label b_blocks_btn' data-toggle='collapse' data-target={`#bBlocksCollapse-${cId}`} aria-expanded='false' aria-controls={`bBlocksCollapse-${cId}`} style={collBtnStyle} onMouseEnter={collBtnHov} onMouseLeave={collBtnHovLeave}>{collBtnLabel}</button>
 				</div>
 
 
 				{/* Collapse */}
-				<div className="collapse" id={`bBlocksCollapse-${cId}`}>
-					<div className="collapse_content bBlocksInnerContent" style={contentStyle}>
+				<div className='collapse' id={`bBlocksCollapse-${cId}`}>
+					<div className='collapse_content bBlocksInnerContent' style={contentStyle}>
 						<InnerBlocks.Content />
 					</div>
 				</div>

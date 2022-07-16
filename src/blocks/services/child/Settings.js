@@ -20,12 +20,12 @@ const Settings = ({ attributes, setAttributes }) => {
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 			<div className='helpItem'>
-				<a href='https://bblockswp.com/docs/services-section-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+				<a href='https://bblockswp.com/docs/services-section-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 			</div>
 
 			<div className='helpItem rateUs'>
 				<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-					<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+					<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
 					<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
 				</a>
 			</div>

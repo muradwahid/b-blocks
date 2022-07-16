@@ -18,6 +18,9 @@ class BBlocks3DViewer extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocks3DViewerClassName = 'wp-block-b-blocks-td-viewer ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$tDViewerStyle = new BBlocksStyleGenerator();
 		$tDViewerStyle::addStyle( "#bBlocks3DViewer-$cId .bBlocks3DViewer", [
@@ -31,7 +34,7 @@ class BBlocks3DViewer extends BBlocks{
 		$jsonData = wp_json_encode( [ 'isTouchMove' => $isTouchMove, 'isZoom' => $isZoom ] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-td-viewer <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocks3DViewer-<?php echo esc_attr( $cId ) ?>' data-model='<?php echo esc_attr( $jsonData ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocks3DViewerClassName ); ?>' id='bBlocks3DViewer-<?php echo esc_attr( $cId ) ?>' data-model='<?php echo esc_attr( $jsonData ); ?>'>
 			<style><?php echo wp_kses( $tDViewerStyle::renderStyle(), [] ) ?></style>
 
 			<div class='bBlocks3DViewer'>

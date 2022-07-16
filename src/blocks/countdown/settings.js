@@ -11,6 +11,7 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 
+import { tabController } from '../../Const/functions';
 import options from '../../Const/options';
 const { generalStyleTabs, flexPos, pxUnit, perUnit, emUnit, remUnit } = options;
 const layouts = [
@@ -30,16 +31,16 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={() => tabController()}>{tab => <>
 				{'general' == tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 						<div className='helpItem'>
-							<a href='https://bblockswp.com/docs/countdown-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+							<a href='https://bblockswp.com/docs/countdown-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
 
 						<div className='helpItem rateUs'>
 							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
 								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
 							</a>
 						</div>
@@ -110,15 +111,15 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<ToggleControl className='mt20' label={__('Box Inline?', 'b-blocks')} checked={boxIsInline} onChange={val => setAttributes({ boxIsInline: val })} />
 
-						<ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
+						<ToggleControl className='mt10' label={__('Show Labels', 'b-blocks')} checked={isLabels} onChange={val => setAttributes({ isLabels: val })} />
 
-						<ToggleControl label={__('Show Days', 'b-blocks')} checked={isDays} onChange={val => setAttributes({ isDays: val })} />
+						<ToggleControl className='mt10' label={__('Show Days', 'b-blocks')} checked={isDays} onChange={val => setAttributes({ isDays: val })} />
 
-						<ToggleControl label={__('Show Hours', 'b-blocks')} checked={isHours} onChange={val => setAttributes({ isHours: val })} />
+						<ToggleControl className='mt10' label={__('Show Hours', 'b-blocks')} checked={isHours} onChange={val => setAttributes({ isHours: val })} />
 
-						<ToggleControl label={__('Show Minutes', 'b-blocks')} checked={isMinutes} onChange={val => setAttributes({ isMinutes: val })} />
+						<ToggleControl className='mt10' label={__('Show Minutes', 'b-blocks')} checked={isMinutes} onChange={val => setAttributes({ isMinutes: val })} />
 
-						<ToggleControl label={__('Show Seconds', 'b-blocks')} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
+						<ToggleControl className='mt10' label={__('Show Seconds', 'b-blocks')} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
 					</PanelBody>
 				</>}
 

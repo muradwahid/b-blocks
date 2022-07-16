@@ -1,6 +1,5 @@
 // Functions
-import func from '../../../Const/functions';
-const { renderHTML, mediaUrl } = func;
+import { renderHTML, mediaUrl } from '../../../Const/functions';
 
 const FeatureImage = props => {
 	const { atts: { layout, isFImg, isFImgLink, isMeta, isMetaCategory, metaCategoryIn, isLinkNewTab }, post: { id, wbCategories, featured_media } } = props;
@@ -21,10 +20,10 @@ export default FeatureImage;
 
 // Categories in Images
 // {isMetaCategory && 0 !== cats.length && 0 !== categories.length ? <div className='bBlocksPostFImgCats'>
-//     {categories.map(id => {
-//         for (let key in cats) {
-//             if (cats[key].id === id)
-//                 return <a href={cats[key].link} target='_blank' rel='noreferrer'>{cats[key].name}</a>;
-//         }
-//     })}
+// 	{categories.map(id => {
+// 		for (let key in cats) {
+// 			if (cats[key].id === id)
+// 				return <a href={cats[key].link} target='_blank' rel='noreferrer'>{cats[key].name}</a>;
+// 		}
+// 	})}
 // </div> : null}

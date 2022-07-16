@@ -16,8 +16,7 @@ const tabLayouts = [
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icon
 import icons from '../Const/icons';
@@ -76,15 +75,15 @@ registerBlockType('b-blocks/tabs', {
 					const { index, title } = tab;
 
 					const active = index == 0 ? true : false;
-					const id = `${title && title.split(" ").join("")}-${index}`;
+					const id = `${title && title.split(' ').join('')}-${index}`;
 
 					// const activeDOM = document.querySelector('.nav-link.active');
 					// activeDOM && (activeDOM.style.cssText = `color: ${titleSecondaryColor}; background-color: ${titlePrimaryColor}`);
 
 					return (
-						<a key={tab.index} className={`pr-4 nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
+						<a key={tab.index} className={`pr-4 nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle='tab' href={`#${id}`} role='tab' aria-controls={id} aria-selected={active} style={titleStyle}>
 
-							<Button icon="no-alt" className="b_blocks_remove_tab_btn" onClick={() => {
+							<Button icon='no-alt' className='b_blocks_remove_tab_btn' onClick={() => {
 								const newTabs = tabs.filter(item => item.index != index).map(i => {
 									if (i.index > index) i.index -= 1;
 									return i;
@@ -92,7 +91,7 @@ registerBlockType('b-blocks/tabs', {
 								setAttributes({ tabs: newTabs });
 							}} style={tabRemoveStyle} />
 
-							<RichText tagName="h4" placeholder={__('Enter title', 'b-blocks')} value={title} onChange={cng => {
+							<RichText tagName='h4' placeholder={__('Enter title', 'b-blocks')} value={title} onChange={cng => {
 								const newObject = Object.assign({}, tab, { title: cng });
 								setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObject] });
 							}} inlineToolbar style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
@@ -109,12 +108,12 @@ registerBlockType('b-blocks/tabs', {
 					const { index, title, description } = tab;
 
 					const active = index == 0 ? true : false;
-					const id = `${title && title.split(" ").join("")}-${index}`;
+					const id = `${title && title.split(' ').join('')}-${index}`;
 
 					return (
-						<div key={tab.index} className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
+						<div key={tab.index} className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role='tabpanel' aria-labelledby={`${id}-tab`} style={contentStyle}>
 
-							<RichText tagName="span" placeholder={__('Enter content', 'b-blocks')} value={description} onChange={cng => {
+							<RichText tagName='span' placeholder={__('Enter content', 'b-blocks')} value={description} onChange={cng => {
 								const newObj = Object.assign({}, tab, { description: cng });
 								setAttributes({ tabs: [...tabs.filter(item => item.index != index), newObj] });
 							}} inlineToolbar />
@@ -133,9 +132,9 @@ registerBlockType('b-blocks/tabs', {
 					<SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={tabLayouts} />
 
 					{otherTitle('Width:')}
-					<BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes="bBlocksSizeType" size="small" />
+					<BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes='bBlocksSizeType' size='small' />
 
-					<RangeControl value={width} onChange={cng => setAttributes({ width: cng })} min={0} max={("%" == widthType) ? 100 : 1920} step={1} />
+					<RangeControl value={width} onChange={cng => setAttributes({ width: cng })} min={0} max={('%' == widthType) ? 100 : 1920} step={1} />
 
 					{/* Top Bottom Padding */}
 					{otherTitle('Top Bottom Padding:')}
@@ -180,48 +179,48 @@ registerBlockType('b-blocks/tabs', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_tabs" style={{ textAlign: `${contentAlign}` }}>
+			<div className='b_blocks_tabs' style={{ textAlign: `${contentAlign}` }}>
 				<BlockControls>
 					<AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
 				</BlockControls>
 
 				<div style={{ display: 'inline-block', width: `${width}${widthType}`, textAlign: 'initial' }}>
 					{
-						layout == 'tab' ? <div className="tabs" style={containerStyle}>
+						layout == 'tab' ? <div className='tabs' style={containerStyle}>
 							<nav>
-								<div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+								<div className='nav nav-tabs mb-3' id='nav-tab' role='tablist'>
 									{tabsTitle(tabs)}
 								</div>
 							</nav>
-							<div className="tab-content" id="nav-tabContent" style={{ textAlign: `${contentAlign}` }}>
+							<div className='tab-content' id='nav-tabContent' style={{ textAlign: `${contentAlign}` }}>
 								{tabsDesc(tabs)}
 							</div>
 						</div> :
 
-							layout == 'pills' ? <div className="pills" style={containerStyle}>
-								<div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+							layout == 'pills' ? <div className='pills' style={containerStyle}>
+								<div className='nav nav-pills mb-3' id='pills-tab' role='tablist'>
 									{tabsTitle(tabs)}
 								</div>
-								<div className="tab-content" style={{ textAlign: `${contentAlign}` }}>
+								<div className='tab-content' style={{ textAlign: `${contentAlign}` }}>
 									{tabsDesc(tabs)}
 								</div>
 							</div> :
 
-								layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
-									<div className="col-3 pl-0">
-										<div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+								layout == 'vertical-pills' ? <div className='row vertical-pills' style={containerStyle}>
+									<div className='col-3 pl-0'>
+										<div className='nav flex-column nav-pills' role='tablist' aria-orientation='vertical'>
 											{tabsTitle(tabs)}
 										</div>
 									</div>
-									<div className="col-9 pr-0">
-										<div className="tab-content" style={{ textAlign: `${contentAlign}` }}>
+									<div className='col-9 pr-0'>
+										<div className='tab-content' style={{ textAlign: `${contentAlign}` }}>
 											{tabsDesc(tabs)}
 										</div>
 									</div>
 								</div> : <h3 style={{ fontSize: '20px' }}>{__('Select a layout', 'b-blocks')}</h3>
 					}
 
-					{!tabs.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={() => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>{__('Add New Tab', 'b-blocks')}</Button></div> : null}
+					{!tabs.length || isSelected ? <div className='b_blocks_add_item'><Button icon='plus-alt' onClick={() => { setAttributes({ tabs: [...tabs, { index: tabs.length }] }) }}>{__('Add New Tab', 'b-blocks')}</Button></div> : null}
 				</div>
 			</div>
 		</>;
@@ -245,11 +244,11 @@ registerBlockType('b-blocks/tabs', {
 					const { index, title } = tab;
 
 					const active = index == 0 ? true : false;
-					const id = `${title && title.split(" ").join("")}-${index}`;
+					const id = `${title && title.split(' ').join('')}-${index}`;
 
 					return (
-						<a key={tab.index} className={`nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle="tab" href={`#${id}`} role="tab" aria-controls={id} aria-selected={active} style={titleStyle}>
-							<RichText.Content tagName="h4" value={title} style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
+						<a key={tab.index} className={`nav-item nav-link ${active ? 'active' : ''}`} id={`${id}-tab`} data-toggle='tab' href={`#${id}`} role='tab' aria-controls={id} aria-selected={active} style={titleStyle}>
+							<RichText.Content tagName='h4' value={title} style={{ margin: 0, color: 'inherit', fontSize: '16px' }} />
 						</a>
 					)
 				})
@@ -262,11 +261,11 @@ registerBlockType('b-blocks/tabs', {
 					const { index, title, description } = tab;
 
 					const active = index == 0 ? true : false;
-					const id = `${title && title.split(" ").join("")}-${index}`;
+					const id = `${title && title.split(' ').join('')}-${index}`;
 
 					return (
-						<div key={tab.index} className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role="tabpanel" aria-labelledby={`${id}-tab`} style={contentStyle}>
-							<RichText.Content tagName="span" value={description} />
+						<div key={tab.index} className={`tab-pane fade ${active ? 'show active' : ''}`} id={id} role='tabpanel' aria-labelledby={`${id}-tab`} style={contentStyle}>
+							<RichText.Content tagName='span' value={description} />
 						</div>
 					)
 				})
@@ -274,36 +273,36 @@ registerBlockType('b-blocks/tabs', {
 		}
 
 		return (
-			<div className="b_blocks_tabs" style={{ textAlign: `${contentAlign}` }}>
+			<div className='b_blocks_tabs' style={{ textAlign: `${contentAlign}` }}>
 				{
-					layout == 'tab' ? <div className="tabs" style={containerStyle}>
+					layout == 'tab' ? <div className='tabs' style={containerStyle}>
 						<nav>
-							<div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+							<div className='nav nav-tabs mb-3' id='nav-tab' role='tablist'>
 								{tabsTitle(tabs)}
 							</div>
 						</nav>
-						<div className="tab-content" id="nav-tabContent">
+						<div className='tab-content' id='nav-tabContent'>
 							{tabsDesc(tabs)}
 						</div>
 					</div> :
 
-						layout == 'pills' ? <div className="pills" style={containerStyle}>
-							<div className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+						layout == 'pills' ? <div className='pills' style={containerStyle}>
+							<div className='nav nav-pills mb-3' id='pills-tab' role='tablist'>
 								{tabsTitle(tabs)}
 							</div>
-							<div className="tab-content">
+							<div className='tab-content'>
 								{tabsDesc(tabs)}
 							</div>
 						</div> :
 
-							layout == 'vertical-pills' ? <div className="row vertical-pills" style={containerStyle}>
-								<div className="col-3 pl-0">
-									<div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+							layout == 'vertical-pills' ? <div className='row vertical-pills' style={containerStyle}>
+								<div className='col-3 pl-0'>
+									<div className='nav flex-column nav-pills' role='tablist' aria-orientation='vertical'>
 										{tabsTitle(tabs)}
 									</div>
 								</div>
-								<div className="col-9 pr-0">
-									<div className="tab-content">
+								<div className='col-9 pr-0'>
+									<div className='tab-content'>
 										{tabsDesc(tabs)}
 									</div>
 								</div>

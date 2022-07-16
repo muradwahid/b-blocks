@@ -1,9 +1,9 @@
 const Style = ({ attributes, clientId }) => {
-    const { socials, alignment, background, size, padding, margin, border, shadow } = attributes;
+	const { socials, alignment, background, size, padding, margin, border, shadow } = attributes;
 
-    return <>
-        <style dangerouslySetInnerHTML={{
-            __html: `
+	return <>
+		<style dangerouslySetInnerHTML={{
+			__html: `
 			#bBlocksSocialShare-${clientId}{
 				text-align: ${alignment};
 			}
@@ -22,15 +22,15 @@ const Style = ({ attributes, clientId }) => {
 				width: ${size};
 			}
 			`.replace(/\s+/g, ' ')
-        }} />
+		}} />
 
-        <style>
-            {socials?.map((item, index) => `
+		<style>
+			{socials?.map((item, index) => `
 				#bBlocksSocialShare-${clientId} ul.bBlocksSocialShare li.icon-${index} i{
 					${item?.icon?.styles || `color: ${item?.icon?.color || '#4527a4'};`}
 				}`.replace(/\s+/g, ' ')
-            )}
-        </style>
-    </>
+			)}
+		</style>
+	</>
 }
 export default Style;

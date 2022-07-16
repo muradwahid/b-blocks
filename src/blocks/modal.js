@@ -18,8 +18,7 @@ const modalSizes = [
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icon
 import icons from '../Const/icons';
@@ -154,7 +153,7 @@ registerBlockType('b-blocks/modal', {
 					<RangeControl value={modalBtnRadius} onChange={cng => setAttributes({ modalBtnRadius: cng })} min={0} max={50} step={1} />
 
 					{otherTitle('Colors:')}
-					<TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
 							{otherTitle('Color:')}
@@ -226,41 +225,41 @@ registerBlockType('b-blocks/modal', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_modal">
+			<div className='b_blocks_modal'>
 				<BlockControls>
 					<AlignmentToolbar value={modalBtnAlign} onChange={cng => setAttributes({ modalBtnAlign: cng })} />
 				</BlockControls>
 
 				{/* Button trigger modal */}
 				<div style={{ textAlign: modalBtnAlign, position: 'relative' }}>
-					<button className="b_blocks_btn" type="button" data-toggle="modal" data-target={`#bBlocksModal-${clientId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
+					<button className='b_blocks_btn' type='button' data-toggle='modal' data-target={`#bBlocksModal-${clientId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
 
-					{isSelected && <div className="b_blocks_btn_text_control" style={{ left: `${modalBtnAlign === 'left' ? '0%' : modalBtnAlign === 'center' ? '50%' : modalBtnAlign === 'right' && '100%'}`, transform: `${modalBtnAlign === 'left' ? 'translateX(0)' : modalBtnAlign === 'center' ? 'translateX(-50%)' : modalBtnAlign === 'right' && 'translateX(-100%)'}` }}>
+					{isSelected && <div className='b_blocks_btn_text_control' style={{ left: `${modalBtnAlign === 'left' ? '0%' : modalBtnAlign === 'center' ? '50%' : modalBtnAlign === 'right' && '100%'}`, transform: `${modalBtnAlign === 'left' ? 'translateX(0)' : modalBtnAlign === 'center' ? 'translateX(-50%)' : modalBtnAlign === 'right' && 'translateX(-100%)'}` }}>
 
-						<TextControl id="bBlocksModalBtnLabel" value={modalBtnLabel} onChange={cng => setAttributes({ modalBtnLabel: cng })} placeholder={__('Modal Button Label', 'b-blocks')} />
+						<TextControl id='bBlocksModalBtnLabel' value={modalBtnLabel} onChange={cng => setAttributes({ modalBtnLabel: cng })} placeholder={__('Modal Button Label', 'b-blocks')} />
 					</div>}
 				</div>
 
 
 				{/* Modal */}
-				<div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabIndex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true" style={{ zIndex: 99999 }}>
+				<div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${clientId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabIndex='-1' aria-labelledby='bBlocksModalLabel' aria-hidden='true' style={{ zIndex: 99999 }}>
 
 					<div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
-						<div className="modal-content">
-							{modalHead && <div className="modal-header" style={{ display: 'block', position: 'relative' }}>
-								{headingShow && <span><RichText className="b_blocks_modal_heading" key="editable" tagName={headingTag} placeholder={__('Write Modal Heading', 'b-blocks')} value={heading} onChange={cng => { setAttributes({ heading: cng }) }} inlineToolbar style={headingStyle} /></span>}
+						<div className='modal-content'>
+							{modalHead && <div className='modal-header' style={{ display: 'block', position: 'relative' }}>
+								{headingShow && <span><RichText className='b_blocks_modal_heading' key='editable' tagName={headingTag} placeholder={__('Write Modal Heading', 'b-blocks')} value={heading} onChange={cng => { setAttributes({ heading: cng }) }} inlineToolbar style={headingStyle} /></span>}
 
-								{modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" title={__('Close the modal', 'b-blocks')} data-dismiss="modal" aria-label={__('Close', 'b-blocks')} style={{ position: "absolute", top: '12px', right: '12px' }} />}
+								{modalHeadClose && <Button icon='no-alt' className='b_blocks_close_modal_btn close' title={__('Close the modal', 'b-blocks')} data-dismiss='modal' aria-label={__('Close', 'b-blocks')} style={{ position: 'absolute', top: '12px', right: '12px' }} />}
 							</div>}
 
-							<div className="modal-body">
+							<div className='modal-body'>
 								<InnerBlocks />
 							</div>
 
-							{modalFoot && <div className="modal-footer" style={{ display: 'block' }}>
-								{footerTextShow && <span><RichText className="b_blocks_modal_footer_text" key="editable" tagName="p" placeholder={__('Write Modal Footer Text', 'b-blocks')} value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerTextStyle} /></span>}
+							{modalFoot && <div className='modal-footer' style={{ display: 'block' }}>
+								{footerTextShow && <span><RichText className='b_blocks_modal_footer_text' key='editable' tagName='p' placeholder={__('Write Modal Footer Text', 'b-blocks')} value={footerText} onChange={cng => { setAttributes({ footerText: cng }) }} inlineToolbar style={footerTextStyle} /></span>}
 
-								{modalFootClose && <div style={{ textAlign: 'right' }}><button type="button" className="b_blocks_btn b_blocks_btn_small" title={__('Close the modal', 'b-blocks')} data-dismiss="modal">Close</button></div>}
+								{modalFootClose && <div style={{ textAlign: 'right' }}><button type='button' className='b_blocks_btn b_blocks_btn_small' title={__('Close the modal', 'b-blocks')} data-dismiss='modal'>Close</button></div>}
 							</div>}
 						</div>
 					</div>
@@ -290,32 +289,32 @@ registerBlockType('b-blocks/modal', {
 		}
 
 		return (
-			<div className="b_blocks_modal" style={{ textAlign: 'inherit' }}>
+			<div className='b_blocks_modal' style={{ textAlign: 'inherit' }}>
 				{/* Button trigger modal */}
 				<div style={{ textAlign: modalBtnAlign }}>
-					<button className="b_blocks_btn" type="button" data-toggle="modal" data-target={`#bBlocksModal-${cId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
+					<button className='b_blocks_btn' type='button' data-toggle='modal' data-target={`#bBlocksModal-${cId}`} style={modalBtnStyle} onMouseEnter={modalBtnHov} onMouseLeave={modalBtnHovLeave}>{modalBtnLabel}</button>
 				</div>
 
 
 				{/* Modal */}
-				<div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${cId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabIndex="-1" aria-labelledby="bBlocksModalLabel" aria-hidden="true" style={{ zIndex: 99999 }}>
+				<div className={`modal ${modalFade ? 'fade' : ''}`} id={`bBlocksModal-${cId}`} data-backdrop={`${modalStaticBackdrop ? 'static' : 'dynamic'}`} data-keyboard={`${modalStaticBackdrop ? 'false' : 'true'}`} tabIndex='-1' aria-labelledby='bBlocksModalLabel' aria-hidden='true' style={{ zIndex: 99999 }}>
 
 					<div className={`modal-dialog ${modalScrollable ? 'modal-dialog-scrollable' : ''} ${modalVCenter ? 'modal-dialog-centered' : ''} ${modalSize}`}>
-						<div className="modal-content">
-							{modalHead && <div className="modal-header" style={{ display: 'block', position: 'relative' }}>
-								{headingShow && <RichText.Content className="b_blocks_modal_heading" tagName={headingTag} value={heading} style={headingStyle} />}
+						<div className='modal-content'>
+							{modalHead && <div className='modal-header' style={{ display: 'block', position: 'relative' }}>
+								{headingShow && <RichText.Content className='b_blocks_modal_heading' tagName={headingTag} value={heading} style={headingStyle} />}
 
-								{modalHeadClose && <Button icon="no-alt" className="b_blocks_close_modal_btn close" title={__('Close the modal', 'b-blocks')} data-dismiss="modal" aria-label={__('Close', 'b-blocks')} style={{ position: "absolute", top: '12px', right: '12px' }} />}
+								{modalHeadClose && <Button icon='no-alt' className='b_blocks_close_modal_btn close' title={__('Close the modal', 'b-blocks')} data-dismiss='modal' aria-label={__('Close', 'b-blocks')} style={{ position: 'absolute', top: '12px', right: '12px' }} />}
 							</div>}
 
-							<div className="modal-body">
+							<div className='modal-body'>
 								<InnerBlocks.Content />
 							</div>
 
-							{modalFoot && <div className="modal-footer" style={{ display: 'block' }}>
-								{footerTextShow && <RichText.Content className="b_blocks_modal_footer_text" tagName="p" value={footerText} style={footerTextStyle} />}
+							{modalFoot && <div className='modal-footer' style={{ display: 'block' }}>
+								{footerTextShow && <RichText.Content className='b_blocks_modal_footer_text' tagName='p' value={footerText} style={footerTextStyle} />}
 
-								{modalFootClose && <div style={{ textAlign: 'right' }}><button type="button" className="b_blocks_btn b_blocks_btn_small" title={__('Close the modal', 'b-blocks')} data-dismiss="modal">Close</button></div>}
+								{modalFootClose && <div style={{ textAlign: 'right' }}><button type='button' className='b_blocks_btn b_blocks_btn_small' title={__('Close the modal', 'b-blocks')} data-dismiss='modal'>Close</button></div>}
 							</div>}
 						</div>
 					</div>

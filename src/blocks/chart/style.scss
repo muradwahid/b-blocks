@@ -8,6 +8,7 @@ $secondaryColor: #8344c5;
 	}
 
 	.bBlocksChart {
+		max-width: 100%;
 		display: inline-block;
 
 		canvas {
@@ -16,6 +17,7 @@ $secondaryColor: #8344c5;
 	}
 
 	.downloadArea {
+		max-width: 100%;
 		position: relative;
 		display: inline-block;
 		padding: 10px 15px;

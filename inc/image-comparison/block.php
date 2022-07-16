@@ -13,8 +13,11 @@ class BBlocksImageComparison extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksImageCompareClassName = 'wp-block-b-blocks-image-comparison ' . $className . ' align' . $align;
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-image-comparison <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksImageComparison-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+		<div class='<?php echo esc_attr( $bBlocksImageCompareClassName ); ?>' id='bBlocksImageComparison-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
 		<?php return ob_get_clean();
 	}

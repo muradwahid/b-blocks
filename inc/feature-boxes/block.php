@@ -13,6 +13,9 @@ class BBlocksFeatureBoxes extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksFeatureBoxesClassName = 'wp-block-b-blocks-feature-boxes ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$featureBoxesStyle = new BBlocksStyleGenerator();
 		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes", [
@@ -37,7 +40,7 @@ class BBlocksFeatureBoxes extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-feature-boxes <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksFeatureBoxesClassName ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>

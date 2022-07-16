@@ -13,6 +13,9 @@ class BBlocksButtonGroup extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksBtnGroupClassName = 'wp-block-b-blocks-button-group ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$btnBorderRadiusCSS = $btnBorder['radius'] ?? '50px';
 
@@ -68,7 +71,7 @@ class BBlocksButtonGroup extends BBlocks{
 		$sepContainerEl = $isSep ? "<div class='btnSeparator'>$sepIconEl $sepTextEl</div>" : '';
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-button-group <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksButtonGroup-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksBtnGroupClassName ); ?>' id='bBlocksButtonGroup-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $btnTypo['googleFontLink'] ) ? "@import url(". esc_url( $btnTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $sepTextTypo['googleFontLink'] ) ? "@import url(". esc_url( $sepTextTypo['googleFontLink'] ) .");" : ''; ?>

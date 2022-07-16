@@ -1,9 +1,9 @@
 const Style = ({ attributes, clientId }) => {
-    const { counters = [], columnGap, rowGap, background, padding, textAlign, counterWidth, counterHeight, iconSize, numberTypo, labelTypo, counterPadding, counterBorder, counterShadow } = attributes;
+	const { counters = [], columnGap, rowGap, background, padding, textAlign, counterWidth, counterHeight, iconSize, numberTypo, labelTypo, counterPadding, counterBorder, counterShadow } = attributes;
 
-    return <>
-        <style dangerouslySetInnerHTML={{
-            __html: `
+	return <>
+		<style dangerouslySetInnerHTML={{
+			__html: `
 			${numberTypo?.googleFontLink ? `@import url(${numberTypo?.googleFontLink});` : ''}
 			${labelTypo?.googleFontLink ? `@import url(${labelTypo?.googleFontLink});` : ''}
 			
@@ -30,10 +30,10 @@ const Style = ({ attributes, clientId }) => {
 				${labelTypo?.styles || 'font-size: 22px;'}
 			}
 			`.replace(/\s+/g, ' ')
-        }} />
+		}} />
 
-        <style>
-            {counters?.map((item, index) => `
+		<style>
+			{counters?.map((item, index) => `
 				#bBlocksCounters-${clientId} #bBlocksCounter-${index} .bBlocksCounter{
 					${item.background?.styles || `background-color: #4527a4;`}
 				}
@@ -47,7 +47,7 @@ const Style = ({ attributes, clientId }) => {
 					color: ${item.label.color};
 				}
 			`.replace(/\s+/g, ' '))}
-        </style>
-    </>
+		</style>
+	</>
 }
 export default Style;

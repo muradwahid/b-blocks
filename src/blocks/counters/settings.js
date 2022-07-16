@@ -67,12 +67,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 				{'general' === tab.name && <>
 					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 						<div className='helpItem'>
-							<a href='https://bblockswp.com/docs/counters-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+							<a href='https://bblockswp.com/docs/counters-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
 
 						<div className='helpItem rateUs'>
 							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-								<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+								<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
 								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
 							</a>
 						</div>
@@ -110,7 +110,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 									e.preventDefault();
 									setActiveIndex(1 === counters.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
 									setAttributes({ counters: [...counters.slice(0, activeIndex), ...counters.slice(activeIndex + 1)] });
-								}} ><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+								}} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
 
 								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 									e.preventDefault();
@@ -121,7 +121,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</>}
 
 						<div className='addItem'>
-							<Button label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' size={23} />{__('Add New Counter', 'b-blocks')}</Button>
+							<Button label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' />{__('Add New Counter', 'b-blocks')}</Button>
 						</div>
 					</PanelBody>
 
@@ -265,7 +265,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' size={23} /></ToolbarButton>
+				<ToolbarButton label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

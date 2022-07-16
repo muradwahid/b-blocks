@@ -4,10 +4,18 @@ import Settings from './Settings';
 import Style from './Style';
 import Countdown from './Countdown';
 
+import { tabController } from '../../Const/functions';
+
 const Edit = props => {
-	const { className, attributes, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId, isSelected } = props;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
+
+	useEffect(() => '' === attributes.destDate && setAttributes({
+		destDate: new Date(new Date().setDate(new Date().getDate() + 2))
+	}), []); // Set Initial Date
+
+	useEffect(() => tabController(), [isSelected]);
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />

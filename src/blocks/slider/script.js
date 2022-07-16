@@ -31,11 +31,11 @@
 // 			creativeEffect: {
 // 				prev: {
 // 					shadow: true,
-// 					translate: ["-120%", 0, -500],
+// 					translate: ['-120%', 0, -500],
 // 				},
 // 				next: {
 // 					shadow: true,
-// 					translate: ["120%", 0, -500],
+// 					translate: ['120%', 0, -500],
 // 				}
 // 			},
 // 			allowSlideNext: true,

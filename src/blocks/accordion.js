@@ -12,8 +12,7 @@ const { normalHoverTabs, fontSizes, colors, aligns, textTransforms } = options;
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icons
 import icons from '../Const/icons';
@@ -83,10 +82,10 @@ registerBlockType('b-blocks/accordion', {
 					const active = index == 0 ? true : false;
 
 					return (
-						<div key={acc.index} className="b_blocks_acc_item">
-							<a data-toggle="collapse" href={`#accCollapse-${clientId}-${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
+						<div key={acc.index} className='b_blocks_acc_item'>
+							<a data-toggle='collapse' href={`#accCollapse-${clientId}-${index}`} aria-expanded='true' aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
 
-								<Button icon="no-alt" className="b_blocks_remove_acc_btn" onClick={() => {
+								<Button icon='no-alt' className='b_blocks_remove_acc_btn' onClick={() => {
 									const newAcc = accordions.filter(item => item.index != index).map(i => {
 										if (i.index > index) i.index -= 1;
 										return i;
@@ -94,14 +93,14 @@ registerBlockType('b-blocks/accordion', {
 									setAttributes({ accordions: newAcc });
 								}} style={accRemoveStyle} />
 
-								<RichText tagName="h3" placeholder={__('Enter the Title', 'b-blocks')} value={title} onChange={cng => {
+								<RichText tagName='h3' placeholder={__('Enter the Title', 'b-blocks')} value={title} onChange={cng => {
 									const newObj = Object.assign({}, acc, { title: cng });
 									setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
 								}} inlineToolbar style={titleStyle} />
 							</a>
 
 							<div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle}>
-								<RichText tagName="p" placeholder={__('Enter the description', 'b-blocks')} value={description} onChange={cng => {
+								<RichText tagName='p' placeholder={__('Enter the description', 'b-blocks')} value={description} onChange={cng => {
 									const newObj = Object.assign({}, acc, { description: cng });
 									setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
 								}} inlineToolbar style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
@@ -136,7 +135,7 @@ registerBlockType('b-blocks/accordion', {
 					<RangeControl value={headingPLR} onChange={cng => setAttributes({ headingPLR: cng })} min={0} max={150} step={1} />
 
 					{otherTitle('Colors:')}
-					<TabPanel className="bBlocksTabPanel" activeClass="activeTab" tabs={normalHoverTabs}>{tab => <>
+					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
 							{firstTitle('Color:')}
@@ -177,12 +176,12 @@ registerBlockType('b-blocks/accordion', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_accordion">
-				<div className="accordion" id={`bBlocksAccordion-${clientId}`}>
+			<div className='b_blocks_accordion'>
+				<div className='accordion' id={`bBlocksAccordion-${clientId}`}>
 					{accordionItem(accordions)}
 				</div>
 
-				{!accordions.length || isSelected ? <div className="b_blocks_add_item"><Button icon="plus-alt" onClick={() => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>{__('Add New Accordion', 'b-blocks')}</Button></div> : null}
+				{!accordions.length || isSelected ? <div className='b_blocks_add_item'><Button icon='plus-alt' onClick={() => { setAttributes({ accordions: [...accordions, { index: accordions.length }] }) }}>{__('Add New Accordion', 'b-blocks')}</Button></div> : null}
 			</div>
 		</>
 	},
@@ -214,13 +213,13 @@ registerBlockType('b-blocks/accordion', {
 					const active = index == 0 ? true : false;
 
 					return (
-						<div key={acc.index} className="b_blocks_acc_item">
-							<a data-toggle="collapse" href={`#accCollapse-${cId}${index}`} aria-expanded="true" aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
-								<RichText.Content tagName="h3" value={title} style={titleStyle} />
+						<div key={acc.index} className='b_blocks_acc_item'>
+							<a data-toggle='collapse' href={`#accCollapse-${cId}${index}`} aria-expanded='true' aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
+								<RichText.Content tagName='h3' value={title} style={titleStyle} />
 							</a>
 
 							<div id={`accCollapse-${cId}${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${cId}`} style={contentStyle}>
-								<RichText.Content tagName="p" value={description} style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
+								<RichText.Content tagName='p' value={description} style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
 							</div>
 						</div>
 					);
@@ -229,8 +228,8 @@ registerBlockType('b-blocks/accordion', {
 		}
 
 		return (
-			<div className="b_blocks_accordion" style={{ textAlign: 'inherit' }}>
-				<div className="accordion" id={`bBlocksAccordion-${cId}`}>
+			<div className='b_blocks_accordion' style={{ textAlign: 'inherit' }}>
+				<div className='accordion' id={`bBlocksAccordion-${cId}`}>
 					{accordionItem(accordions)}
 				</div>
 			</div>

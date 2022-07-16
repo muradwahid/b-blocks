@@ -13,6 +13,9 @@ class BBlocksCounters extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksCountersClassName = 'wp-block-b-blocks-counters ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$countersStyle = new BBlocksStyleGenerator();
 		$countersStyle::addStyle( "#bBlocksCounters-$cId .bBlocksCounters", [
@@ -39,7 +42,7 @@ class BBlocksCounters extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-counters <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksCounters-<?php echo esc_attr( $cId ) ?>' data-duration='<?php echo wp_json_encode( $duration ?? 2000 ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksCountersClassName ); ?>' id='bBlocksCounters-<?php echo esc_attr( $cId ) ?>' data-duration='<?php echo wp_json_encode( $duration ?? 2000 ); ?>'>
 			<style>
 				<?php echo !empty( $numberTypo['googleFontLink'] ) ? "@import url(". esc_url( $numberTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $labelTypo['googleFontLink'] ) ? "@import url(". esc_url( $labelTypo['googleFontLink'] ) .");" : ''; ?>

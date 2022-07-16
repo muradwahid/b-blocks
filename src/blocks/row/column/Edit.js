@@ -70,13 +70,13 @@ const Edit = props => {
 		console.log('start' + { elt })
 	}
 
-	//  Update column and resize box width onResize
+	// Update column and resize box width onResize
 
-	//  If direction is Right then update next and current column width
-	//  Calculate column width by (next+current)/100
+	// If direction is Right then update next and current column width
+	// Calculate column width by (next+current)/100
 
-	//  If direction is left then update prev and current column width
-	//  Calculate colum width by (prev+current)/100
+	// If direction is left then update prev and current column width
+	// Calculate colum width by (prev+current)/100
 	const onResize = (event, direction, elt, delta) => {
 		// let currentBlockWidth = absWidth + delta.width;
 		// let calWidth = parseFloat((currentBlockWidth / rowWidth) * 100);

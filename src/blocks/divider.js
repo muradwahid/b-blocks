@@ -11,8 +11,7 @@ const { aligns, borderStyles, colors, sizeTypes } = options;
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icons
 import icons from '../Const/icons';
@@ -60,9 +59,9 @@ registerBlockType('b-blocks/divider', {
 
 					{/* Width */}
 					{otherTitle('Width:')}
-					<BtnGroup options={sizeTypes} myValue={divideWidthType} setState={(cng, def) => setAttributes({ divideWidthType: cng, divideWidth: def })} classes="bBlocksSizeType" size="small" />
+					<BtnGroup options={sizeTypes} myValue={divideWidthType} setState={(cng, def) => setAttributes({ divideWidthType: cng, divideWidth: def })} classes='bBlocksSizeType' size='small' />
 
-					<RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={("%" == divideWidthType) ? 100 : 1920} step={1} />
+					<RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={('%' == divideWidthType) ? 100 : 1920} step={1} />
 
 					{/* Thickness */}
 					{otherTitle('Thickness:')}
@@ -87,7 +86,7 @@ registerBlockType('b-blocks/divider', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_divider">
+			<div className='b_blocks_divider'>
 				<div style={containerStyle}>
 					<div style={dividerStyle}></div>
 				</div>
@@ -103,7 +102,7 @@ registerBlockType('b-blocks/divider', {
 		const dividerStyle = { display: 'inline-block', width: `${divideWidth}${divideWidthType}`, borderBottom: `${divideThick}px ${divideStyle} ${divideColor}` };
 
 		return (
-			<div className="b_blocks_divider">
+			<div className='b_blocks_divider'>
 				<div style={containerStyle}>
 					<div style={dividerStyle}></div>
 				</div>

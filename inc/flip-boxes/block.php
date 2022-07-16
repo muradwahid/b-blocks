@@ -13,8 +13,11 @@ class BBlocksFlipBoxes extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksFlipBoxesClassName = 'wp-block-b-blocks-flip-boxes ' . $className . ' align' . $align;
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-flip-boxes <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksFlipBoxes-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+		<div class='<?php echo esc_attr( $bBlocksFlipBoxesClassName ); ?>' id='bBlocksFlipBoxes-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
 		<?php return ob_get_clean();
 	}

@@ -13,8 +13,11 @@ class BBlocksChart extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksChartClassName = 'wp-block-b-blocks-chart ' . $className . ' align' . $align;
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-chart <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksChart-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+		<div class='<?php echo esc_attr( $bBlocksChartClassName ); ?>' id='bBlocksChart-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
 		<?php return ob_get_clean();
 	}

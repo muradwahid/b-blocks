@@ -11,8 +11,7 @@ const { colors } = options;
 import BColor from '../Components/BColor';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icon
 import icons from '../Const/icons';
@@ -83,7 +82,7 @@ registerBlockType('b-blocks/progress-bar', {
 					{otherTitle('Striped:')}
 					<ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
-					<BColor className='mt20' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor="#ffffff26" />
+					<BColor className='mt20' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor='#ffffff26' />
 
 					{progressBarStriped && <>
 						{/* Animation */}
@@ -94,9 +93,9 @@ registerBlockType('b-blocks/progress-bar', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_progress_bar">
-				<div className="progress" style={progressStyle}>
-					<div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100">{isLabel && `${progressBarWidth}%`}</div>
+			<div className='b_blocks_progress_bar'>
+				<div className='progress' style={progressStyle}>
+					<div className={`progress-bar ${progressBarStriped ? 'progress-bar-striped' : ''} ${progressBarStriped && progressBarAnimation ? 'progress-bar-animated' : ''}`} role='progressbar' style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin='0' aria-valuemax='100'>{isLabel && `${progressBarWidth}%`}</div>
 				</div>
 			</div>
 		</>
@@ -110,9 +109,9 @@ registerBlockType('b-blocks/progress-bar', {
 		const progressBarStyle = { backgroundColor: progressBarBG, width: `${progressBarWidth}%`, backgroundImage: progressBarStriped ? `linear-gradient(45deg, ${progressBarStripedColor} 25%, transparent 25%, transparent 50%, ${progressBarStripedColor} 50%, ${progressBarStripedColor} 75%, transparent 75%, transparent)` : null }
 
 		return (
-			<div className="b_blocks_progress_bar">
-				<div className="progress" style={progressStyle}>
-					<div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role="progressbar" style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin="0" aria-valuemax="100">{isLabel && `${progressBarWidth}%`}</div>
+			<div className='b_blocks_progress_bar'>
+				<div className='progress' style={progressStyle}>
+					<div className={`progress-bar ${progressBarStriped && 'progress-bar-striped'} ${progressBarAnimation && 'progress-bar-animated'}`} role='progressbar' style={progressBarStyle} aria-valuenow={progressBarWidth} aria-valuemin='0' aria-valuemax='100'>{isLabel && `${progressBarWidth}%`}</div>
 				</div>
 			</div>
 		)

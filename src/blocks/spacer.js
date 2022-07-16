@@ -4,8 +4,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle } = func;
+import { firstTitle } from '../Const/functions';
+
 
 // Icon
 import icons from '../Const/icons';
@@ -43,7 +43,7 @@ registerBlockType('b-blocks/spacer', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_spacer">
+			<div className='b_blocks_spacer'>
 				<div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
 					{__(`SPACER ---- This content ${isSelected ? '& background color' : ''}`, 'b-blocks')}
 
@@ -63,7 +63,7 @@ registerBlockType('b-blocks/spacer', {
 		const { height } = props.attributes;
 
 		return (
-			<div className="b_blocks_spacer">
+			<div className='b_blocks_spacer'>
 				<div style={{ height: `${height}px`, textAlign: 'inherit' }}></div>
 			</div>
 		)

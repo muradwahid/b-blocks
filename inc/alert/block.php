@@ -13,6 +13,9 @@ class BBlocksAlert extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksAlertClassName = 'wp-block-b-blocks-alert ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$alertStyle = new BBlocksStyleGenerator();
 		$alertStyle::addStyle( "#bBlocksAlert-$cId .bBlocksAlert", [
@@ -36,7 +39,7 @@ class BBlocksAlert extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-alert <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksAlert-<?php echo esc_attr( $cId ) ?>'>
+		<div class='<?php echo esc_attr( $bBlocksAlertClassName ); ?>' id='bBlocksAlert-<?php echo esc_attr( $cId ) ?>'>
 			<style>
 				<?php echo !empty( $typography['googleFontLink'] ) ? "@import url(". esc_url( $typography['googleFontLink'] ) .");" : ''; ?>
 				<?php echo wp_kses( $alertStyle::renderStyle(), [] ) ?>

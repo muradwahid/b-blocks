@@ -54,12 +54,12 @@ const Settings = ({ settings }) => {
 		<InspectorControls>
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 				{/* <div className='helpItem'>
-					<a href='https://bblockswp.com/docs/feature-boxes-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+					<a href='https://bblockswp.com/docs/feature-boxes-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div> */}
 
 				<div className='helpItem rateUs'>
 					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
 						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
 					</a>
 				</div>
@@ -93,7 +93,7 @@ const Settings = ({ settings }) => {
 							<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
 								e.preventDefault();
 								setAttributes({ features: [...features.slice(0, index), ...features.slice(index + 1)] });
-							}}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+							}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
 
 							<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 								e.preventDefault();
@@ -104,7 +104,7 @@ const Settings = ({ settings }) => {
 				})}
 
 				<div className='addItem'>
-					<Button label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' size={23} />{__('Add New Feature', 'b-blocks')}</Button>
+					<Button label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' />{__('Add New Feature', 'b-blocks')}</Button>
 				</div>
 			</PanelBody>
 
@@ -162,7 +162,7 @@ const Settings = ({ settings }) => {
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' size={23} /></ToolbarButton>
+				<ToolbarButton label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

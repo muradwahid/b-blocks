@@ -13,8 +13,11 @@ class BBlocksServices extends BBlocks{
 	function render( $attributes, $content ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksServicesClassName = 'wp-block-b-blocks-services ' . $className . ' align' . $align;
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-services <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksServices-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksServicesClassName ); ?>' id='bBlocksServices-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<div class='bBlocksServicesStyle'></div>
 
 			<div class='bBlocksServices <?php echo esc_attr( $layout ); ?> columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>

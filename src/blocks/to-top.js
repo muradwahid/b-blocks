@@ -11,8 +11,7 @@ const { fontSizes, aligns, colors } = options;
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icons
 import icons from '../Const/icons';
@@ -64,8 +63,8 @@ registerBlockType('b-blocks/to-top', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_to_top" style={{ textAlign: contentAlign }}>
-				<RichText className="b_blocks_to_top_link" key="editable" tagName="a" href="#" placeholder="Enter Go to top label" value={label} onChange={cng => { setAttributes({ label: cng }) }} inlineToolbar style={toTopStyle} />
+			<div className='b_blocks_to_top' style={{ textAlign: contentAlign }}>
+				<RichText className='b_blocks_to_top_link' key='editable' tagName='a' href='#' placeholder='Enter Go to top label' value={label} onChange={cng => { setAttributes({ label: cng }) }} inlineToolbar style={toTopStyle} />
 			</div>
 		</>;
 	},
@@ -77,8 +76,8 @@ registerBlockType('b-blocks/to-top', {
 		const toTopStyle = { fontSize: `${fontSize}px`, color, textDecoration: 'none' };
 
 		return (
-			<div className="b_blocks_to_top" style={{ textAlign: contentAlign }}>
-				<RichText.Content className="b_blocks_to_top_link" tagName="a" href="#" value={label} style={toTopStyle} />
+			<div className='b_blocks_to_top' style={{ textAlign: contentAlign }}>
+				<RichText.Content className='b_blocks_to_top_link' tagName='a' href='#' value={label} style={toTopStyle} />
 			</div>
 		);
 	},

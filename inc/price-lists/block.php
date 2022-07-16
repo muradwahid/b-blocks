@@ -13,6 +13,9 @@ class BBlocksPriceLists extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksPriceListsClassName = 'wp-block-b-blocks-price-lists ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$priceListsStyle = new BBlocksStyleGenerator();
 		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists", [
@@ -38,7 +41,7 @@ class BBlocksPriceLists extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-price-lists <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksPriceLists-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksPriceListsClassName ); ?>' id='bBlocksPriceLists-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $nameTypo['googleFontLink'] ) ? "@import url(". esc_url( $nameTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
@@ -50,7 +53,7 @@ class BBlocksPriceLists extends BBlocks{
 					$imgBorderStyle = $imgBorder['styles'] ?? '';
 					$separatorStyle = $separator['styles'] ?? 'width: 40%; border-top: 1px solid #bbb;';
 
-					$flipBoxStyles = "#bBlocksPriceLists-$cId #bBlocksPrice-$index{ $backgroundStyle  }
+					$flipBoxStyles = "#bBlocksPriceLists-$cId #bBlocksPrice-$index{ $backgroundStyle }
 					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productImage{ $imgBorderStyle }
 					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productName{ color: $nameColor; }
 					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productDescription{ color: $descColor; }

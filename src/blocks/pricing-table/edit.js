@@ -85,7 +85,7 @@ const Edit = props => {
 											<a className='removePriceFeature' onClick={e => {
 												e.preventDefault();
 												updatePriceTable(index, 'features', [...features.slice(0, featureIndex), ...features.slice(featureIndex + 1)]);
-											}}><Dashicon icon='no' size={18} /></a>
+											}}><Dashicon icon='no' /></a>
 										</Tooltip>
 
 										<CheckboxControl className='priceFeatureIsEnable' checked={isEnable} onChange={val => updatePriceTable(index, 'features', val, featureIndex, 'isEnable')} />
@@ -98,7 +98,7 @@ const Edit = props => {
 									updatePriceTable(index, 'features', [...features, {
 										isEnable: '#', label: 'New Feature of Price'
 									}]);
-								}}><Dashicon icon='plus' size={23} />{__('Add New Feature', 'b-blocks')}</Button>
+								}}><Dashicon icon='plus' />{__('Add New Feature', 'b-blocks')}</Button>
 							</div>
 
 							{!isStandard && !isUltimate ? <div className='priceAmountWrap'>{priceAmountEl}</div> : ''}

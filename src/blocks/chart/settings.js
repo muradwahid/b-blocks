@@ -149,12 +149,12 @@ const Settings = ({ attributes, setAttributes }) => {
 		<InspectorControls>
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 				<div className='helpItem'>
-					<a href='https://bblockswp.com/docs/chart-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' size={23} />{__('Read Documentation', 'b-blocks')}</a>
+					<a href='https://bblockswp.com/docs/chart-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div>
 
 				<div className='helpItem rateUs'>
 					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-						<span><Dashicon icon='star-filled' size={23} />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
 						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
 					</a>
 				</div>
@@ -170,12 +170,12 @@ const Settings = ({ attributes, setAttributes }) => {
 						<Button className='removeDataset' onClick={e => {
 							e.preventDefault();
 							removeDataset(labelIndex);
-						}}><Dashicon icon='no' size={20} /></Button>
+						}}><Dashicon icon='no' /></Button>
 					</Tooltip>
 				</PanelRow>)}
 
 				<div className='addItem'>
-					<Button label={__('Add New Dataset', 'b-blocks')} onClick={addDataset}><Dashicon icon='plus' size={20} />{__('Add New Dataset', 'b-blocks')}</Button>
+					<Button label={__('Add New Dataset', 'b-blocks')} onClick={addDataset}><Dashicon icon='plus' />{__('Add New Dataset', 'b-blocks')}</Button>
 				</div>
 
 				{data.datasets.map((dataset, datasetIndex) => <PanelBody key={datasetIndex} className='bPlPanelBody editItem' title={__(`Dataset Value ${datasetIndex + 1}:`, 'b-blocks')} initialOpen={0 !== datasetIndex ? false : true}>
@@ -216,7 +216,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
 							e.preventDefault();
 							removeDatasetValue(datasetIndex);
-						}}><Dashicon icon='no' size={18} />{__('Remove', 'b-blocks')}</Button>
+						}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
 
 						<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 							e.preventDefault();
@@ -226,7 +226,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</PanelBody>)}
 
 				<div className='addItem'>
-					<Button label={__('Add Dataset Value', 'b-blocks')} onClick={addDatasetValue}><Dashicon icon='plus' size={20} />{__('Add Dataset Value', 'b-blocks')}</Button>
+					<Button label={__('Add Dataset Value', 'b-blocks')} onClick={addDatasetValue}><Dashicon icon='plus' />{__('Add Dataset Value', 'b-blocks')}</Button>
 				</div>
 			</PanelBody>
 

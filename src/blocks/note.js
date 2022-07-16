@@ -11,8 +11,7 @@ const { hTags, fontSizes, borderStyles, colors } = options;
 import BtnGroup from '../Components/BtnGroup'
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icon
 import icons from '../Const/icons';
@@ -61,7 +60,7 @@ registerBlockType('b-blocks/note', {
 		// Styles
 		const containerStyle = { backgroundColor: BGColor, padding: `${padTB}px ${padLR}px`, borderRadius: `${borderRadius}px` }
 
-		const headStyle = { fontSize: `${headFontSize}px`, color: headColor, padding: `0 0  ${headPB}px 0`, margin: `0 0 ${headMB}px 0`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` }
+		const headStyle = { fontSize: `${headFontSize}px`, color: headColor, padding: `0 0 ${headPB}px 0`, margin: `0 0 ${headMB}px 0`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` }
 
 		const contentStyle = { fontSize: `${contentFontSize}px`, color: contentColor, margin: `0` }
 
@@ -147,11 +146,11 @@ registerBlockType('b-blocks/note', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_note">
+			<div className='b_blocks_note'>
 				<div style={containerStyle}>
-					{toggleHead && <span><RichText className="b_blocks_note_head" key="editable" tagName={headTag} placeholder={__('Write Note Heading', 'b-blocks')} value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
+					{toggleHead && <span><RichText className='b_blocks_note_head' key='editable' tagName={headTag} placeholder={__('Write Note Heading', 'b-blocks')} value={head} onChange={cng => { setAttributes({ head: cng }) }} inlineToolbar style={headStyle} /></span>}
 
-					<RichText className="b_blocks_note_content" key="editable" tagName="p" placeholder={__('Write Note Content', 'b-blocks')} value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
+					<RichText className='b_blocks_note_content' key='editable' tagName='p' placeholder={__('Write Note Content', 'b-blocks')} value={content} onChange={cng => { setAttributes({ content: cng }) }} inlineToolbar style={contentStyle} />
 				</div>
 			</div>
 		</>
@@ -163,16 +162,16 @@ registerBlockType('b-blocks/note', {
 		// Styles
 		const containerStyle = { backgroundColor: BGColor, padding: `${padTB}px ${padLR}px`, borderRadius: `${borderRadius}px`, textAlign: 'inherit' }
 
-		const headStyle = { fontSize: `${headFontSize}px`, color: headColor, padding: `0 0  ${headPB}px 0`, margin: `0 0 ${headMB}px 0`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` }
+		const headStyle = { fontSize: `${headFontSize}px`, color: headColor, padding: `0 0 ${headPB}px 0`, margin: `0 0 ${headMB}px 0`, borderBottom: `${sepThick}px ${sepStyle} ${sepColor}` }
 
 		const contentStyle = { fontSize: `${contentFontSize}px`, color: contentColor, margin: `0` }
 
 		return (
-			<div className="b_blocks_note">
+			<div className='b_blocks_note'>
 				<div style={containerStyle}>
-					{toggleHead && <RichText.Content className="b_blocks_note_head" tagName={headTag} value={head} style={headStyle} />}
+					{toggleHead && <RichText.Content className='b_blocks_note_head' tagName={headTag} value={head} style={headStyle} />}
 
-					<RichText.Content className="b_blocks_note_content" tagName="p" value={content} style={contentStyle} />
+					<RichText.Content className='b_blocks_note_content' tagName='p' value={content} style={contentStyle} />
 				</div>
 			</div>
 		);

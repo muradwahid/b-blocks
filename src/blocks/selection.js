@@ -17,8 +17,7 @@ const userSelect = [
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icon
 import icons from '../Const/icons';
@@ -49,7 +48,7 @@ registerBlockType('b-blocks/selection', {
 		const { attributes: { selection, BGColor, selectionPTB, selectionPLR }, setAttributes } = props;
 
 		// Styles
-		const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px` };
+		const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px ${selectionPLR}px` };
 
 		return <>
 			<InspectorControls>
@@ -74,8 +73,8 @@ registerBlockType('b-blocks/selection', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_selection">
-				<div className="bBlocksInnerContent" style={selectionStyle}>
+			<div className='b_blocks_selection'>
+				<div className='bBlocksInnerContent' style={selectionStyle}>
 					<InnerBlocks />
 				</div>
 			</div>
@@ -86,11 +85,11 @@ registerBlockType('b-blocks/selection', {
 		const { selection, BGColor, selectionPTB, selectionPLR } = props.attributes;
 
 		// Styles
-		const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px  ${selectionPLR}px`, textAlign: 'inherit' };
+		const selectionStyle = { userSelect: `${selection}!important`, backgroundColor: BGColor, padding: `${selectionPTB}px ${selectionPLR}px`, textAlign: 'inherit' };
 
 		return (
-			<div className="b_blocks_selection">
-				<div className="bBlocksInnerContent" style={selectionStyle}>
+			<div className='b_blocks_selection'>
+				<div className='bBlocksInnerContent' style={selectionStyle}>
 					<InnerBlocks.Content />
 				</div>
 			</div>

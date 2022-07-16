@@ -28,9 +28,9 @@ registerFormatType(type, {
 		return <InspectorControls>
 			<PanelBody className='bBlocksPanelBody' icon='admin-customizer' title={__('Inline Highlight', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<label htmlFor="b_blocks_text_highlight_toggle">{isActive ? __('Remove Inline Highlight', 'b-blocks') : __('Inline Highlight', 'b-blocks')}</label>
+					<label htmlFor='b_blocks_text_highlight_toggle'>{isActive ? __('Remove Inline Highlight', 'b-blocks') : __('Inline Highlight', 'b-blocks')}</label>
 
-					<FormToggle id="b_blocks_text_highlight_toggle" checked={isActive} onChange={onToggle} />
+					<FormToggle id='b_blocks_text_highlight_toggle' checked={isActive} onChange={onToggle} />
 				</PanelRow>
 			</PanelBody>
 		</InspectorControls>

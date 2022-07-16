@@ -1,9 +1,9 @@
 const Style = ({ attributes, clientId }) => {
-    const { background, width, height, alignment } = attributes;
+	const { background, width, height, alignment } = attributes;
 
-    return <style dangerouslySetInnerHTML={{
-        __html: `
-        #bBlocksChart-${clientId}{
+	return <style dangerouslySetInnerHTML={{
+		__html: `
+		#bBlocksChart-${clientId}{
 			text-align: ${alignment};
 		}
 		#bBlocksChart-${clientId} .bBlocksChart{
@@ -16,6 +16,6 @@ const Style = ({ attributes, clientId }) => {
 			${background?.styles || 'background-color: #0000;'};
 		}
 		`.replace(/\s+/g, ' ')
-    }} />
+	}} />
 }
 export default Style;

@@ -13,8 +13,11 @@ class BBlocksSocialShare extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksSocialShareClassName = 'wp-block-b-blocks-social-share ' . $className . ' align' . $align;
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-social-share <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksSocialShareClassName ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<div class='socialShareStyle'></div>
 
 			<ul class='bBlocksSocialShare'>

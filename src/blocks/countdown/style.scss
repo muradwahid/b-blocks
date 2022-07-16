@@ -1,16 +1,14 @@
 .wp-block-b-blocks-countdown {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 
 	* {
 		box-sizing: border-box;
 	}
 
 	.countdownItems {
-		display: flex;
-		align-items: center;
 		max-width: 100%;
+		display: inline-flex;
+		align-items: center;
 
 		.countdownItem {
 			display: flex;

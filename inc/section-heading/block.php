@@ -13,6 +13,9 @@ class BBlocksSectionHeading extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksHeadingClassName = 'wp-block-b-blocks-section-heading ' . $className . ' align' . $align;
+
 		// Generate Styles
 		$sectionHeadingStyle = new BBlocksStyleGenerator();
 		$sectionHeadingStyle::addStyle( "#bBlocksSectionHeading-$cId .bBlocksSectionHeading", [
@@ -34,7 +37,7 @@ class BBlocksSectionHeading extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-section-heading <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksSectionHeading-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksHeadingClassName ); ?>' id='bBlocksSectionHeading-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>

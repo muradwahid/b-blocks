@@ -15,6 +15,9 @@ class BBlocksPosts extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$bBlocksPostsClassName = 'wp-block-b-blocks-posts bBlocksPosts ' . $className . ' align' . $align;
+
 		// $taxonomies = get_object_taxonomies( $postType, 'array' );
 		// foreach( $taxonomies as $tax ){
 		// 	if( $tax->hierarchical ){
@@ -121,7 +124,7 @@ class BBlocksPosts extends BBlocks{
 		$sliderJsonData = wp_json_encode( [ 'layout' => $layout, 'columns' => $columns, 'columnGap' => $columnGap, 'sliderIsLoop' => $sliderIsLoop, 'sliderIsTouchMove' => $sliderIsTouchMove, 'sliderIsAutoplay' => $sliderIsAutoplay, 'sliderSpeed' => $sliderSpeed, 'sliderEffect' => $sliderEffect, 'sliderIsPageClickable' => $sliderIsPageClickable, 'sliderIsPageDynamic' => $sliderIsPageDynamic ] );
 
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-posts bBlocksPosts <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksPostsClassName ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				@import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ); ?> );
 				<?php echo !empty( $metaTypo['googleFontLink'] ) ? "@import url(". esc_url( $metaTypo['googleFontLink'] ) .");" : ''; ?>
@@ -290,7 +293,7 @@ class BBlocksPosts extends BBlocks{
 		if ( $isMetaAuthor ) {
 			ob_start(); ?>
 			<span>
-				<span class='dashicons dashicons-admin-users'></span>&nbsp;
+				<span class='dashicon dashicons dashicons-admin-users'></span>&nbsp;
 				<span><a href='<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>' rel="author"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a></span>
 			</span>
 			<?php return ob_get_clean();
@@ -304,7 +307,7 @@ class BBlocksPosts extends BBlocks{
 		if ( $isMetaDate ) {
 			ob_start(); ?>
 			<span>
-				<span class='dashicons dashicons-calendar'></span>&nbsp;
+				<span class='dashicon dashicons dashicons-calendar'></span>&nbsp;
 				<span><?php echo get_the_date( 'M j, Y', $post->ID ); ?></span>
 			</span>
 			<?php return ob_get_clean();
@@ -320,7 +323,7 @@ class BBlocksPosts extends BBlocks{
 		if ( $isMetaCategory && 'content' === $metaCategoryIn ) {
 			ob_start(); ?>
 			<span>
-				<span class='dashicons dashicons-category'></span>&nbsp;
+				<span class='dashicon dashicons dashicons-category'></span>&nbsp;
 				<span><?php echo get_the_category_list( esc_html__( ', ' ), '', $post->ID ); ?></span>
 			</span>
 			<?php return ob_get_clean();
@@ -334,7 +337,7 @@ class BBlocksPosts extends BBlocks{
 		if ( $isMetaComment ) {
 			ob_start(); ?>
 			<span>
-				<span class='dashicons dashicons-admin-comments'></span>&nbsp;
+				<span class='dashicon dashicons dashicons-admin-comments'></span>&nbsp;
 				<a href='<?php echo esc_url( get_permalink( $post ) ); ?>/#comments' target='_blank' rel='noreferrer'><?php echo wp_count_comments( $post->ID )->total_comments; ?></a>
 			</span>
 			<?php return ob_get_clean();

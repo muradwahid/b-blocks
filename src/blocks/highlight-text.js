@@ -8,8 +8,7 @@ import options from '../Const/options';
 const { fontSizes, colors } = options;
 
 // Functions
-import func from '../Const/functions';
-const { firstTitle, otherTitle } = func;
+import { firstTitle, otherTitle } from '../Const/functions';
 
 // Icons
 import icons from '../Const/icons';
@@ -62,12 +61,12 @@ registerBlockType('b-blocks/highlight-text', {
 			</InspectorControls>
 
 
-			<div className="b_blocks_highlight_text" style={{ textAlign: contentAlign }}>
+			<div className='b_blocks_highlight_text' style={{ textAlign: contentAlign }}>
 				<BlockControls>
 					<AlignmentToolbar value={contentAlign} onChange={cng => setAttributes({ contentAlign: cng })} />
 				</BlockControls>
 
-				<RichText className="b_blocks_highlighter" key="editable" tagName="mark" placeholder="Write Your Highlight Text" value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
+				<RichText className='b_blocks_highlighter' key='editable' tagName='mark' placeholder='Write Your Highlight Text' value={text} onChange={cng => { setAttributes({ text: cng }) }} inlineToolbar style={textStyle} />
 			</div>
 		</>
 	},
@@ -79,8 +78,8 @@ registerBlockType('b-blocks/highlight-text', {
 		const textStyle = { padding: '3px 5px', fontSize: `${fontS}px`, color, backgroundColor: BGColor, textAlign: 'inherit' }
 
 		return (
-			<div className="b_blocks_highlight_text" style={{ textAlign: contentAlign }}>
-				<RichText.Content className="b_blocks_highlighter" tagName="mark" value={text} style={textStyle} />
+			<div className='b_blocks_highlight_text' style={{ textAlign: contentAlign }}>
+				<RichText.Content className='b_blocks_highlighter' tagName='mark' value={text} style={textStyle} />
 			</div>
 		)
 	},
