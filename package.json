@@ -6,7 +6,7 @@
 	"scripts": {
 		"lint": "eslint src",
 		"start": "webpack --mode=development --watch",
-		"sync": "browser-sync start -p 'http://development.local/' --files '**/*.php' 'dist/*.js' 'dist/*.css'",
+		"sync": "browser-sync start -p 'http://localhost/' --files '**/*.php' 'dist/*.js' 'dist/*.css'",
 		"preview": "npm-run-all --parallel sync start",
 		"i18n-pot": "wp i18n make-pot . languages/b-blocks.pot --exclude=\"src\" && cp ./languages/b-blocks.pot ./languages/b-blocks-en_US.po",
 		"i18n-json": "wp i18n make-json languages/ --no-purge",
