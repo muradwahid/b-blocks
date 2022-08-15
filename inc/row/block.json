@@ -19,23 +19,51 @@
 			"type": "string",
 			"default": ""
 		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"columnGap": {
+			"type": "string",
+			"default": "30px"
+		},
+		"heightType": {
+			"type": "string",
+			"default": "auto"
+		},
+		"height": {
+			"type": "string",
+			"default": "0px"
+		},
+		"verticalPosition": {
+			"type": "string",
+			"default": "center"
+		},
 		"background": {
 			"type": "object",
 			"default": {
-				"color": "#0000"
+				"color": "#f5f5f5"
 			}
 		},
 		"padding": {
 			"type": "object",
 			"default": {
-				"vertical": "15px",
-				"horizontal": "20px"
+				"vertical": "50px",
+				"horizontal": "5px"
 			}
 		},
 		"border": {
 			"type": "object",
 			"default": {}
+		},
+		"shadow": {
+			"type": "object",
+			"default": {}
 		}
+	},
+	"providesContext": {
+		"b-blocks/rowColumns": "columns",
+		"b-blocks/rowColumnGap": "columnGap"
 	},
 	"supports": {
 		"align": [

@@ -1,5 +1,5 @@
 // Import Blocks
-// import './blocks/row';
+import './blocks/row';
 import './blocks/posts';
 import './blocks/slider';
 // import './blocks/section.js';

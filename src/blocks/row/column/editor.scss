@@ -1,0 +1,13 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-column {
+    height: 100%;
+    position: relative;
+
+    .widthPlaceholder {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        color: #999;
+    }
+}

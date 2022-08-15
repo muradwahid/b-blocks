@@ -133,8 +133,8 @@ class BBlocks{
 BBlocks::instance();
 
 // Require files
-// require_once plugin_dir_path( __FILE__ ) . 'inc/row/block.php';
-// require_once plugin_dir_path( __FILE__ ) . 'inc/row/column/block.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/row/block.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/row/column/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/slider/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/section-heading/block.php';

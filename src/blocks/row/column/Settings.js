@@ -1,75 +1,67 @@
 import { __ } from '@wordpress/i18n';
-import { InspectorControls } from '@wordpress/block-editor';
-import { Dashicon, PanelBody, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import { BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, PanelRow, RangeControl, Toolbar, Button, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../../Components/Title';
-import BColor from '../../../../../Components/BColor';
+import BDevice from '../../../../../Components/BDevice';
 import Background from '../../../../../Components/Background';
-import IconControl from '../../../../../Components/IconControl';
-import { ImageHolderControl } from '../../../../../Components/ImageControl';
+import SpaceControl from '../../../../../Components/SpaceControl';
 import BorderControl from '../../../../../Components/BorderControl';
+import ShadowControl from '../../../../../Components/ShadowControl';
 
-import options from '../../../Const/options';
-import servicePattern from '../../../img/service-pattern.png';
-const { pxUnit, perUnit, emUnit } = options;
+const Settings = props => {
+	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth } = props;
+	const { width, background, padding, border, shadow } = attributes;
 
-const Settings = ({ attributes, setAttributes }) => {
-	const { background, hoverBG, isIcon, isUpIcon, icon, upIcon, iconWidth, iconBorder, isTitle, titleColor, isDesc, descColor, isLink, link, linkIn, linkIconColor, linkBGColor, linkBGHovColor } = attributes;
+	const [device, setDevice] = useState('desktop');
 
-	return <InspectorControls>
-		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
-			<div className='helpItem'>
-				<a href='https://bblockswp.com/docs/services-section-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
-			</div>
+	const maxColWidth = 100 - (columns - 1) * 10;
 
-			<div className='helpItem rateUs'>
-				<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-					<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
-					<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
-				</a>
-			</div>
-		</PanelBody>
+	return <>
+		<InspectorControls>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
+				{/* <div className='helpItem'>
+					<a href='https://bblockswp.com/docs/column-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
+				</div> */}
 
-		<PanelBody className='bPlPanelBody' title={__('Service Settings', 'b-blocks')}>
-			<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+				<div className='helpItem rateUs'>
+					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
+						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+					</a>
+				</div>
+			</PanelBody>
 
-			<Background label={__('Hover Background:', 'b-blocks')} background={hoverBG} onChange={val => setAttributes({ hoverBG: val })} defaults={{ type: 'image', image: { url: servicePattern }, overlayColor: '#0000', position: 'bottom left', size: 'auto' }} />
-		</PanelBody>
+			<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
+				<PanelRow>
+					<Title mt='0'>{__('Width:', 'b-blocks')}</Title>
+					<BDevice device={device} onChange={val => setDevice(val)} />
+				</PanelRow>
+				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={10} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={nextClientId ? false : true} />
+			</PanelBody>
 
-		{isIcon && <PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
-			<ToggleControl label='Upload Icon?' checked={isUpIcon} onChange={val => setAttributes({ isUpIcon: val })} />
+			<PanelBody className='bPlPanelBody' title={__('Column', 'b-blocks')}>
+				<Title mt='0' mb='0' />
 
-			{isUpIcon ? <>
-				{/* After Image */}
-				<ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} img={upIcon} onChange={val => setAttributes({ upIcon: val })} />
+				<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />
 
-				<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => setAttributes({ iconWidth: val })} units={[pxUnit, perUnit, emUnit]} />
+				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
 
-			</> : <IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fab fa-wordpress', fontSize: 70 }} />}
+				<BorderControl className='mt20' label={__('Border', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
 
-			{/* Border */}
-			<BorderControl label={__('Border:', 'b-blocks')} border={iconBorder} onChange={val => setAttributes({ iconBorder: val })} />
-		</PanelBody>}
+				<ShadowControl label={__('Shadow', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+			</PanelBody>
+		</InspectorControls>
 
-		<PanelBody className='bPlPanelBody' title={__('Colors Settings', 'b-blocks')} initialOpen={false}>
-			{isTitle && <BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor={'#222'} />}
+		<BlockControls>
+			<Toolbar label={__('Column Options', 'b-blocks')}>
+				{columns < 6 && <Button icon='plus' label={__('Add Column', 'b-blocks')} onClick={() => updateColumns('add')} />}
 
-			{isDesc && <BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor={'#333'} />}
-		</PanelBody>
-
-		{isLink && <PanelBody className='bPlPanelBody' title={__('Link Settings', 'b-blocks')} initialOpen={false}>
-			<Title mt='0'>{__('Link:', 'b-blocks')}</Title>
-			<TextControl value={link} onChange={val => setAttributes({ link: val })} />
-
-			{'button' === linkIn && <>
-				<BColor label={__('Icon Color:', 'b-blocks')} value={linkIconColor} onChange={val => setAttributes({ linkIconColor: val })} defaultColor={'#fff'} />
-
-				<BColor label={__('Background Color:', 'b-blocks')} value={linkBGColor} onChange={val => setAttributes({ linkBGColor: val })} defaultColor={'#d2d2d2'} />
-
-				<BColor label={__('Background Hover Color:', 'b-blocks')} value={linkBGHovColor} onChange={val => setAttributes({ linkBGHovColor: val })} defaultColor={'#4527a4'} />
-			</>}
-		</PanelBody>}
-	</InspectorControls>;
+				{columns > 1 && <Button icon='trash' label={__('Delete Column', 'b-blocks')} onClick={() => updateColumns('delete')} />}
+			</Toolbar>
+		</BlockControls>
+	</>;
 };
 export default Settings;

@@ -5,7 +5,7 @@ import metadata from '../../../inc/row/block.json';
 import Edit from './Edit';
 import './column';
 import './editor.scss';
-import icons from '../../Const/icons';
+// import icons from '../../Const/icons';
 
 registerBlockType(metadata, {
 	icon: 'columns',

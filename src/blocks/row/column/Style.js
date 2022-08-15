@@ -1,7 +1,5 @@
-import servicePattern from '../../../img/service-pattern.png';
-
 const Style = ({ attributes, clientId, isBackend }) => {
-	const { width, background, padding, border } = attributes;
+	const { width, background, padding, border, shadow } = attributes;
 
 	const parentSelector = isBackend ? `#block-${clientId}` : `#bBlocksColumn-${clientId}`;
 
@@ -23,9 +21,10 @@ const Style = ({ attributes, clientId, isBackend }) => {
 		}
 
 		#bBlocksColumn-${clientId} .bBlocksColumn{
-			${background?.styles || 'background-color: #0000;'}
-			padding: ${padding?.styles || '5px 10px'};
+			${background?.styles || 'background-color: #fff;'}
+			padding: ${padding?.styles || '10px 10px'};
 			${border?.styles || ''}
+			box-shadow: ${shadow?.styles || 'none'};
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

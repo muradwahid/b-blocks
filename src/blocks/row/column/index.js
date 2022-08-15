@@ -3,7 +3,8 @@ import { InnerBlocks } from '@wordpress/block-editor';
 
 import metadata from '../../../../inc/row/column/block.json';
 import Edit from './Edit';
-import icons from '../../../Const/icons';
+import './editor.scss';
+// import icons from '../../../Const/icons';
 
 registerBlockType(metadata, {
 	icon: 'columns',

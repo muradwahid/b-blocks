@@ -33,21 +33,29 @@
 		"background": {
 			"type": "object",
 			"default": {
-				"color": "#0000"
+				"color": "#fff"
 			}
 		},
 		"padding": {
 			"type": "object",
 			"default": {
-				"vertical": "5px",
+				"vertical": "10px",
 				"horizontal": "10px"
 			}
 		},
 		"border": {
 			"type": "object",
 			"default": {}
+		},
+		"shadow": {
+			"type": "object",
+			"default": {}
 		}
 	},
+	"usesContext": [
+		"b-blocks/rowColumns",
+		"b-blocks/rowColumnGap"
+	],
 	"supports": {
 		"align": [
 			"wide",

@@ -1,5 +1,6 @@
 import { render } from '@wordpress/element';
 
+import './style.scss';
 import Style from './Style';
 
 // Column
