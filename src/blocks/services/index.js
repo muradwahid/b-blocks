@@ -5,7 +5,7 @@ import metadata from '../../../inc/services/block.json';
 import Edit from './Edit';
 import './child';
 import './editor.scss';
-import icons from '../../Const/icons';
+import icons from '../../utils/icons';
 
 registerBlockType(metadata, {
 	icon: icons.services,

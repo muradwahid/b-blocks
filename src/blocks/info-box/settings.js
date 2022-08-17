@@ -13,7 +13,7 @@ import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ settings }) => {

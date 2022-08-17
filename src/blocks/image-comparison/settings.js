@@ -10,7 +10,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import { ImageHolderControl, ImageEditControl, ChangeImageData } from '../../../../Components/ImageControl';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit, vwUnit } = options;
 const beforeAfterImgTab = [
 	{ name: 'before-img', title: __('Before Img', 'b-blocks') },

@@ -2,7 +2,7 @@ import { render, useEffect, useRef } from '@wordpress/element';
 
 import './style.scss';
 import Style from './Style';
-import { controlsHandler } from './functions';
+import { controlsHandler } from './utils/functions';
 
 // Countdown Time
 document.addEventListener('DOMContentLoaded', () => {

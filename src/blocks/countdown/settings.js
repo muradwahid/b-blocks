@@ -11,8 +11,8 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 
-import { tabController } from '../../Const/functions';
-import options from '../../Const/options';
+import { tabController } from '../../utils/functions';
+import options from '../../utils/options';
 const { generalStyleTabs, flexPos, pxUnit, perUnit, emUnit, remUnit } = options;
 const layouts = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },

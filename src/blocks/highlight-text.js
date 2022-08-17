@@ -4,14 +4,14 @@ import { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentTool
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { fontSizes, colors } = options;
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icons
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/highlight-text', {
 	// Build In attributes

@@ -3,6 +3,7 @@ $primaryColor: #4527a4;
 // Row
 .wp-block-b-blocks-row .bBlocksRow {
 	display: flex;
+	flex-wrap: wrap;
 
 	// * {
 	// 	box-sizing: border-box;

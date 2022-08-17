@@ -11,7 +11,7 @@ import BColor from '../../../../Components/BColor';
 import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { generalStyleTabs } = options;
 const animateInOpt = [
 	{ label: __('Char', 'b-blocks'), value: 'char' },

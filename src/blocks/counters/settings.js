@@ -14,9 +14,9 @@ import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
-import spaceOffice from '../../img/open-space-office.jpg';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
+import spaceOffice from './img/open-space-office.jpg';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },

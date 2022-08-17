@@ -14,8 +14,8 @@ import BDevice from '../../../../Components/BDevice';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard }) => {

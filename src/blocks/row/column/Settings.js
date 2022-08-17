@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, Toolbar, Button, Dashicon } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, Toolbar, Button } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../../Components/Title';
@@ -21,28 +21,16 @@ const Settings = props => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
-				{/* <div className='helpItem'>
-					<a href='https://bblockswp.com/docs/column-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
-				</div> */}
-
-				<div className='helpItem rateUs'>
-					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
-						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
-					</a>
-				</div>
-			</PanelBody>
-
 			<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
 				<PanelRow>
-					<Title mt='0'>{__('Width:', 'b-blocks')}</Title>
+					<Title mt='0'>{__('Width (%):', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
-				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={10} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={nextClientId ? false : true} />
+				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={10} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
 			</PanelBody>
 
-			<PanelBody className='bPlPanelBody' title={__('Column', 'b-blocks')}>
+
+			<PanelBody className='bPlPanelBody' title={__('Column', 'b-blocks')} initialOpen={false}>
 				<Title mt='0' mb='0' />
 
 				<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />

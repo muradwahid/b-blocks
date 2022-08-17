@@ -1,0 +1,9 @@
+onResize
+	get delta width and difference
+	calculate width and next width
+	if calNextWidth >= 10 && calWidth >= 10
+		apply style on next el and put calNextWidth in placeholder
+		apply style on current el and put calWidth in placeholder
+
+onResizeStop
+	set placeholder value in attributes

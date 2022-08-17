@@ -11,7 +11,7 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 const types = [
 	{ label: 'General', value: 'general' },

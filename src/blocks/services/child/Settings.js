@@ -10,8 +10,8 @@ import IconControl from '../../../../../Components/IconControl';
 import { ImageHolderControl } from '../../../../../Components/ImageControl';
 import BorderControl from '../../../../../Components/BorderControl';
 
-import options from '../../../Const/options';
-import servicePattern from '../../../img/service-pattern.png';
+import options from '../../../utils/options';
+import servicePattern from '../img/service-pattern.png';
 const { pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ attributes, setAttributes }) => {

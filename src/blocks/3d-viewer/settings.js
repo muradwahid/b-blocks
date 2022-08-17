@@ -6,7 +6,7 @@ import { PanelBody, PanelRow, TextControl, ToggleControl, SelectControl, __exper
 import Title from '../../../../Components/Title';
 import BtnGroup from '../../../../Components/BtnGroup';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 const sourceTypes = [
 	{ label: __('Upload', 'b-blocks'), value: 'upload' },

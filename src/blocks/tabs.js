@@ -4,7 +4,7 @@ import { RichText, InspectorControls, BlockControls, AlignmentToolbar } from '@w
 import { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { colors, fontSizes, aligns, textTransforms, sizeTypes } = options;
 const tabLayouts = [
 	{ label: __('Tabs', 'b-blocks'), value: 'tab' },
@@ -16,10 +16,10 @@ const tabLayouts = [
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/tabs', {
 	// Build In attributes

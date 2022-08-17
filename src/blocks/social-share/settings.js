@@ -10,8 +10,8 @@ import { ImageHolderControl } from '../../../../Components/ImageControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },

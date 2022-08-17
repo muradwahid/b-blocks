@@ -35,7 +35,7 @@ import './blocks/animated-text';
 import './blocks/alert';
 // import './blocks/progress-bar.js';
 // import './blocks/spacer';
-import './blocks/inline.js';
+import './blocks/inline';
 // import './blocks/selection.js';
 // import './blocks/divider.js';
 // import './blocks/to-top.js';

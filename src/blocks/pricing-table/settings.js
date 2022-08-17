@@ -10,8 +10,8 @@ import BDevice from '../../../../Components/BDevice';
 import ShadowControl from '../../../../Components/ShadowControl';
 import SpaceControl from '../../../../Components/SpaceControl';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, setActiveIndex }) => {

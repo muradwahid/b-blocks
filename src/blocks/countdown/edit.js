@@ -4,7 +4,7 @@ import Settings from './Settings';
 import Style from './Style';
 import Countdown from './Countdown';
 
-import { tabController } from '../../Const/functions';
+import { tabController } from '../../utils/functions';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId, isSelected } = props;

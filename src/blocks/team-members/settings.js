@@ -17,8 +17,8 @@ import Typography from '../../../../Components/Typography';
 import SeparatorControl from '../../../../Components/SeparatorControl';
 import SpaceControl from '../../../../Components/SpaceControl';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
 const themes = [

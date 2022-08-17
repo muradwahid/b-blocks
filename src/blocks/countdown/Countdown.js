@@ -1,8 +1,8 @@
 import { useEffect, useRef } from '@wordpress/element';
 
 import Box from './Box';
-import useCountdown from './useCountdown';
-import { getTwoFixed } from './functions';
+import useCountdown from './utils/useCountdown';
+import { getTwoFixed } from './utils/functions';
 
 const Countdown = ({ attributes, isBackend = false, wp }) => {
 	const { destDate, boxIsInline, isLabels, isDays, daysLabel, isHours, hoursLabel, isMinutes, minutesLabel, isSeconds, secondsLabel, isSep } = attributes;

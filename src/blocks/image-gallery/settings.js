@@ -14,7 +14,7 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 
 import { FilterImagesContext } from './edit';
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { aligns } = options;
 
 const Settings = ({ settings }) => {

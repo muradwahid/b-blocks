@@ -6,7 +6,7 @@ import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitCon
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import BtnGroup from '../../../../Components/BtnGroup';
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
 
 const modes = [

@@ -24,11 +24,12 @@ $primaryColor: #4527a4;
 		}
 
 		.block-list-appender {
-			position: absolute;
 			width: fit-content;
+			position: absolute;
 			bottom: 0;
 			left: 50%;
 			transform: translateX(-50%);
+			margin: 0;
 
 			button {
 				margin-left: 0;

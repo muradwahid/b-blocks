@@ -13,8 +13,8 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import Typography from '../../../../Components/Typography';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { sliderEffects, pxUnit, perUnit, emUnit, vhUnit } = options;
 const generalStyleTabs = [
 	{ name: 'general', title: __('General', 'b-blocks') },

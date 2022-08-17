@@ -4,17 +4,17 @@ import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { colors } = options;
 
 // Components
 import BColor from '../Components/BColor';
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/progress-bar', {
 	// Build In attributes

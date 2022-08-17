@@ -3,7 +3,7 @@ const $ = jQuery;
 
 import './style.scss';
 import Style from './Style';
-import { drags } from './functions';
+import { drags } from './utils/functions';
 
 // Image Compare
 document.addEventListener('DOMContentLoaded', () => {

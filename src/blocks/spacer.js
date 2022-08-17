@@ -4,11 +4,11 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
 // Functions
-import { firstTitle } from '../Const/functions';
+import { firstTitle } from '../utils/functions';
 
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/spacer', {
 	// Build In attributes

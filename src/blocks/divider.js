@@ -4,17 +4,17 @@ import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { aligns, borderStyles, colors, sizeTypes } = options;
 
 // Components
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icons
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/divider', {
 	// Build In attributes

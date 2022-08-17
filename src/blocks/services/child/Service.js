@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-import icons from '../../../Const/icons';
+import icons from '../../../utils/icons';
 
 const Service = ({ attributes, isBackend = false, custom }) => {
 	const { isIcon, isUpIcon, icon, upIcon, isTitle, title, isDesc, desc, isLink, link, linkIn } = attributes;

@@ -1,37 +1,32 @@
 const Style = ({ attributes, clientId, isBackend = false }) => {
-	const { columnGap, height, verticalPosition, background, padding, border, shadow } = attributes;
+	const { columnGap, height, columnPositionY, columnPositionX, background, padding, border, shadow } = attributes;
 
 	const blockListLayout = `#bBlocksRow-${clientId} .bBlocksRow >.block-editor-inner-blocks >.block-editor-block-list__layout`;
 	const rowSelect = `#bBlocksRow-${clientId} .bBlocksRow`;
 
 	const selector = isBackend ? blockListLayout : rowSelect;
 
-	const childColumn = isBackend ? `${blockListLayout} .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column`;
+	const childColumn = isBackend ? `${blockListLayout} .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column .bBlocksColumn`;
 
-	const firstChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:first-child .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:first-child`;
-	const lastChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:nth-last-child(2) .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:last-child`;
+	// const firstChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:first-child .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:first-child .bBlocksColumn`;
+	// const lastChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:nth-last-child(2) .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:last-child .bBlocksColumn`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		${rowSelect}{
+			row-gap: ${columnGap};
 			${background?.styles || 'background-color: #f5f5f5;'}
-			padding: ${padding?.styles || '50px 5px'};
+			padding: ${padding?.styles || '50px 0px'};
 			${border?.styles || ''}
 			box-shadow: ${shadow?.styles || 'none'};
 		}
 		${selector}{
 			min-height: ${height};
-			align-items: ${verticalPosition};
+			align-items: ${columnPositionY};
+			justify-content: ${columnPositionX};
 		}
 		${childColumn}{
-			background-color: red;
 			margin: 0 calc( ${columnGap} / 2 );
-		}
-		${firstChildCol}{
-			margin-left: 0;
-		}
-		${lastChildCol}{
-			margin-right: 0;
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

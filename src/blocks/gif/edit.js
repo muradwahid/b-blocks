@@ -3,7 +3,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl, Dashicon } from '@wordpress/components';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 
 const Edit = props => {

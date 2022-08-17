@@ -16,9 +16,9 @@ import ColorsControl from '../../../../Components/ColorsControl';
 import Typography from '../../../../Components/Typography';
 import BtnGroup from '../../../../Components/BtnGroup';
 
-import { ExcerptLengthCtx } from './edit';
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import { ExcerptLengthCtx } from './Edit';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders, pxUnit, emUnit, vhUnit } = options;
 const layouts = [
 	{ label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },

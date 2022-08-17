@@ -82,7 +82,7 @@ import { render, renderToString } from '@wordpress/element';
 import './style.scss';
 import Slider from './Slider';
 import Style from './Style';
-import sliderOptions from './sliderOptions';
+import sliderOptions from './utils/sliderOptions';
 
 // Content Slider
 document.addEventListener('DOMContentLoaded', () => {

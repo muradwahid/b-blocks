@@ -6,25 +6,27 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { ResizableBox } from '@wordpress/components';
 const { replaceInnerBlocks } = dispatch('core/block-editor');
 
+import { tabController } from '../../../../../Components/Helper/functions';
+
 import Settings from './Settings';
 import Style from './Style';
-import { calcPercentage, getInt, twoFixed } from '../functions';
+import { calcPercentage, getInt, toFixed } from '../utils/functions';
 
 const initialWidth = { mobile: 100, tablet: 50, desktop: 33.33 }
 
 const Edit = props => {
-	const { className, attributes, context, setAttributes, clientId, isSelected, toggleSelection, parentBlockId, rowWidth, innerBlocks, currentIndex, nextClientId, nextWidth, prevClientId, prevWidth, updateAttributes } = props;
+	const { className, attributes, context, setAttributes, clientId, isSelected, toggleSelection, parentBlockId, rowWidth, parentInnerBlocks, currentIndex, innerBlocks, nextClientId, nextWidth, updateAttributes } = props;
 	const { width } = attributes;
 	const columns = context['b-blocks/rowColumns'];
+	const columnGap = context['b-blocks/rowColumnGap'];
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
-	const [absWidth, setAbsWidth] = useState(0);
+	useEffect(() => tabController(), [isSelected]);
+
 	const [colWidth, setColWidth] = useState(initialWidth);
 	const [nextColWidth, setNextColWidth] = useState(nextWidth);
-	const [prevColWidth, setPrevColWidth] = useState(initialWidth);
 	const [isResizing, setIsResizing] = useState(false);
-	const [maxResizeWidth, setMaxResizeWidth] = useState(0);
 
 	const colWidthHold = useRef(width);
 	const nextColWidthHold = useRef(nextWidth);
@@ -32,92 +34,59 @@ const Edit = props => {
 	const columnEl = document.querySelector(`#block-${clientId}`);
 	const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
 
-	// Max Resize width
+	// Initial things
 	useEffect(() => {
 		if (columnEl) {
 			columnEl.style.width = width.desktop + '%';
 		}
-		setMaxResizeWidth(rowWidth);
 		setColWidth({ ...width });
 		colWidthHold.current = { ...width }
 		nextColWidthHold.current = { ...nextWidth }
 	}, [isSelected, columnEl, rowWidth]);
 
 
-	// On Resize start get the previous|next column width
-	// Calculate current column resize box based on row/parent element width
-	// Set resize box maxWidth by (next|prev+current) colum width
-	const onResizeStartEvent = (direction) => {
+	// On Resize start get the column width
+	// On Resize start get the next column width
+	const onResizeStartEvent = () => {
 		toggleSelection(false);
 
 		if (nextClientId !== null) {
 			nextColWidth.desktop = parseFloat(nextWidth?.desktop);
 		}
-		if (prevClientId !== null) {
-			prevColWidth.desktop = parseFloat(prevWidth?.desktop);
-		}
-		let maxResizeWidthHold = 0;
-		if (direction === 'right' && nextClientId !== null) {
-			const resizeNextColWidth = (nextColWidth.desktop / 100) * rowWidth - 100;
-			const resizeCurrentColWidth = (colWidth.desktop / 100) * rowWidth;
-			maxResizeWidthHold = resizeNextColWidth + resizeCurrentColWidth;
-		}
-		if (direction === 'left' && prevClientId !== null) {
-			const resizePrevColWidth = (prevColWidth.desktop / 100) * rowWidth - 100;
-			const resizeCurrentColWidth = (colWidth.desktop / 100) * rowWidth;
-			maxResizeWidthHold = resizePrevColWidth + resizeCurrentColWidth;
-		}
-
-		// Every time select resize handler set the width
-		let columnRect = {};
-		if (columnEl) {
-			columnRect = columnEl.getBoundingClientRect();
-		}
 
 		setColWidth(width);
 		setNextColWidth(nextColWidth);
-		setPrevColWidth(prevColWidth);
-		setMaxResizeWidth(maxResizeWidthHold);
 		setIsResizing(true);
-		setAbsWidth(columnRect.width || 0);
 	}
 
-	// Update column and resize box width onResize
-
-	// If direction is Right then update next and current column width
-	// Calculate column width by (next+current)/100
-
-	// If direction is left then update prev and current column width
-	// Calculate column width by (prev+current)/100
+	// Calculate difference(%) in onResize
+	// If col and nextCol width is equal and more then 10, then set current and next width in placeholder
 	const onResize = (event, direction, elt, delta) => {
-		const currentBlockWidth = absWidth + delta.width;
-		const calWidth = calcPercentage(currentBlockWidth, rowWidth);
-		const difference = parseFloat(colWidth.desktop) - calWidth;
+		const difference = calcPercentage(delta.width, rowWidth);
+		const calWidth = width.desktop + difference;
 
 		let nextBlockWidth = 0;
 		// If direction right then update next and current column
-		if (direction === 'right' && nextColumnEl && nextClientId !== null) {
-			nextBlockWidth = parseFloat(nextColWidth.desktop) + difference;
+		if (nextColumnEl && nextClientId !== null) {
+			nextBlockWidth = parseFloat(nextColWidth.desktop) - difference;
 
 			if (nextBlockWidth >= 10 && calWidth >= 10) {
 				nextBlockWidth = Math.abs(nextBlockWidth);
-				nextColumnEl.style.width = twoFixed(nextBlockWidth) + '%';
-				updateAttributes(nextClientId, { width: { ...nextWidth, desktop: twoFixed(nextBlockWidth) } });
-				nextColWidthHold.current = { ...nextWidth, desktop: twoFixed(nextBlockWidth) }
+				nextColumnEl.style.width = toFixed(nextBlockWidth) + '%';
+				updateAttributes(nextClientId, { width: { ...nextWidth, desktop: nextBlockWidth } });
+				nextColWidthHold.current = { ...nextWidth, desktop: nextBlockWidth }
 			}
 		}
 
 		if (nextBlockWidth >= 10 && calWidth >= 10) {
 			if (columnEl) {
-				columnEl.style.width = twoFixed(calWidth) + '%';
+				columnEl.style.width = toFixed(calWidth) + '%';
 			}
-			colWidthHold.current = { ...colWidth, desktop: twoFixed(calWidth) };
+			colWidthHold.current = { ...colWidth, desktop: calWidth };
 		}
 	}
 
-	// console.log({ currentIndex, width: width.desktop, colWidth: colWidth.desktop, nextWidth: nextWidth?.desktop, nextColWidth: nextColWidth?.desktop });
-
-	// On resize stop
+	// Set current and next column width from placeholder in onResizeStop
 	const onResizeStop = () => {
 		toggleSelection(true);
 		setIsResizing(false);
@@ -128,10 +97,10 @@ const Edit = props => {
 	// Update columns width base on add or remove
 	const updateColumns = type => {
 		const newColumns = type === 'add' ? columns + 1 : columns - 1;
-		const columnFixedWidth = twoFixed(100 / newColumns);
+		const columnFixedWidth = 100 / newColumns;
 		const equalWidth = { ...colWidth, desktop: columnFixedWidth };
 
-		let newInnerBlocks = [...innerBlocks];
+		let newInnerBlocks = [...parentInnerBlocks];
 		if (type === 'delete') {
 			newInnerBlocks.splice(currentIndex, 1);
 		} else {
@@ -141,6 +110,7 @@ const Edit = props => {
 		replaceInnerBlocks(parentBlockId, newInnerBlocks);
 	}
 
+	// Update column width on width change form sidebar
 	const updateColumnWidth = (device, val) => {
 		if ('desktop' !== device) {
 			setAttributes({ width: { ...width, [device]: val } });
@@ -150,31 +120,31 @@ const Edit = props => {
 			return;
 		}
 
-		const difference = twoFixed(val - width.desktop);
+		const difference = val - width.desktop;
 
-		let nextColumnNewWidth = {};
+		let nextBlockWidth = {};
 		if (nextColumnEl && nextClientId !== null) {
-			nextColumnNewWidth = { ...nextWidth };
-			nextColumnNewWidth.desktop = parseFloat(nextColumnNewWidth.desktop) - difference;
+			nextBlockWidth = { ...nextWidth };
+			nextBlockWidth.desktop = parseFloat(nextBlockWidth.desktop) - difference;
 
-			if (nextColumnNewWidth.desktop >= 10 && val >= 10) {
-				nextColumnEl.style.width = twoFixed(Math.abs(nextColumnNewWidth.desktop)) + '%';
-				updateAttributes(nextClientId, { width: { ...nextColumnNewWidth } });
-				setNextColWidth({ ...nextColumnNewWidth });
-				nextColWidthHold.current = { ...nextColumnNewWidth };
+			if (nextBlockWidth.desktop >= 10 && val >= 10) {
+				nextColumnEl.style.width = toFixed(Math.abs(nextBlockWidth.desktop)) + '%';
+				updateAttributes(nextClientId, { width: { ...nextBlockWidth } });
+				setNextColWidth({ ...nextBlockWidth });
+				nextColWidthHold.current = { ...nextBlockWidth };
 			}
 		}
 
-		if (nextColumnNewWidth.desktop >= 10 && val >= 10) {
+		if (nextBlockWidth.desktop >= 10 && val >= 10) {
 			const newWidth = Math.abs(val);
 
 			if (columnEl) {
-				columnEl.style.width = twoFixed(newWidth) + '%';
+				columnEl.style.width = toFixed(newWidth) + '%';
 			}
 
-			setAttributes({ width: { ...width, desktop: twoFixed(newWidth) } });
-			setColWidth({ ...colWidth, desktop: twoFixed(newWidth) });
-			colWidthHold.current = { ...colWidthHold.current, desktop: twoFixed(newWidth) };
+			setAttributes({ width: { ...width, desktop: newWidth } });
+			setColWidth({ ...colWidth, desktop: newWidth });
+			colWidthHold.current = { ...colWidthHold.current, desktop: newWidth };
 		}
 	}
 
@@ -196,21 +166,19 @@ const Edit = props => {
 					bottomLeft: false,
 					topLeft: false,
 				}}
-				minHeight={10}
 				onResize={(event, direction, elt, delta) => onResize(event, direction, elt, delta)}
 				onResizeStop={(event, direction, elt, delta) => onResizeStop(event, direction, elt, delta)}
 				onResizeStart={(event, direction, elt) => onResizeStartEvent(event, direction, elt)}
 				size={{ width: 'auto', height: '100%' }}
-				style={{ transition: 'all .2s ease' }}
+				style={{ minWidth: '100%', transition: 'all .2s ease' }}
+				minWidth={(rowWidth / 10) - getInt(columnGap || '0px')}
 			>
-				<div className='bBlocksColumnWrap'>
-					<div className='bBlocksColumn'>
-						<InnerBlocks />
-					</div>
+				<div className='bBlocksColumn'>
+					<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender className='columnEmpty' /> : <InnerBlocks.DefaultBlockAppender />} />
 				</div>
 			</ResizableBox>
 
-			<span className='widthPlaceholder'>{isResizing ? twoFixed(colWidthHold?.current?.desktop) : isSelected && twoFixed(width?.desktop)}</span>
+			<span className='widthPlaceholder'>{isResizing ? toFixed(colWidthHold?.current?.desktop) : isSelected && toFixed(width?.desktop)}</span>
 		</div>
 	</>;
 };
@@ -218,9 +186,6 @@ export default compose(
 	withSelect((select, props) => {
 		const { clientId } = props;
 		const { getBlocks, getBlockParents, getBlockIndex, getBlockAttributes, getPreviousBlockClientId, getNextBlockClientId } = select('core/block-editor');
-		// const columns = context['b-blocks/rowColumns'];
-		// const columnGap = context['b-blocks/rowColumnGap'];
-		// const totalGap = getInt(columnGap) * (columns - 1);
 
 		const parentBlockId = getBlockParents(clientId)[0];
 		const parentBlockEl = document.querySelector(`#block-${parentBlockId}`);
@@ -232,8 +197,9 @@ export default compose(
 		return {
 			parentBlockId,
 			rowWidth: getInt(parentWidth),
-			innerBlocks: getBlocks(parentBlockId),
+			parentInnerBlocks: getBlocks(parentBlockId),
 			currentIndex: getBlockIndex(clientId, parentBlockId),
+			innerBlocks: getBlocks(clientId),
 			nextClientId,
 			nextWidth: getBlockAttributes(nextClientId)?.width,
 			prevClientId,

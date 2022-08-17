@@ -5,17 +5,17 @@ import { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, 
 import { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms } = options;
 
 // Components
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icons
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/collapse', {
 	// Build In attributes

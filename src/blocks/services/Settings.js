@@ -13,8 +13,8 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 
-import options from '../../Const/options';
-import servicePattern from '../../img/service-pattern.png';
+import options from '../../utils/options';
+import servicePattern from './img/service-pattern.png';
 const { pxUnit, perUnit, emUnit } = options;
 const layouts = [
 	{ label: __('Default', 'services-section'), value: 'default' },

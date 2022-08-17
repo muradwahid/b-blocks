@@ -4,15 +4,15 @@ import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-e
 import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { colors } = options;
 const INNER_TEMPLATE = [['b-blocks/section-heading', {}]];
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/section', {
 	// Build In attributes

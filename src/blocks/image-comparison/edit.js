@@ -10,7 +10,7 @@ import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
 import Settings from './Settings';
 import Style from './Style';
-import { drags } from './functions';
+import { drags } from './utils/functions';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;

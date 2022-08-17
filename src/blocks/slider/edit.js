@@ -5,8 +5,8 @@ const $ = jQuery;
 import Settings from './Settings';
 import Slider from './Slider';
 import Style from './Style';
-import sliderOptions from './sliderOptions';
-import { calcPercentage, elWidth, elHeight, childPositionSet } from './functions';
+import sliderOptions from './utils/sliderOptions';
+import { calcPercentage, elWidth, elHeight, childPositionSet } from './utils/functions';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId, isEditorSidebarOpened } = props;

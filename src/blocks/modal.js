@@ -5,7 +5,7 @@ import { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, 
 import { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPanel, TextControl, SelectControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { normalHoverTabs, fontSizes, hTags, colors, aligns, fontWeights, textTransforms } = options;
 const modalSizes = [
 	{ label: __('Small', 'b-blocks'), value: 'modal-sm', icon: 'SM' },
@@ -18,10 +18,10 @@ const modalSizes = [
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/modal', {
 	// Build In attributes

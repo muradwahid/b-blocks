@@ -1,4 +1,4 @@
-import servicePattern from '../../../img/service-pattern.png';
+import servicePattern from '../img/service-pattern.png';
 
 const Style = ({ attributes, clientId }) => {
 	const { background, hoverBG, icon, iconWidth, iconBorder, titleColor, descColor, linkIconColor, linkBGColor, linkBGHovColor } = attributes;

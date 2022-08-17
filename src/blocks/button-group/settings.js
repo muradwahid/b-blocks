@@ -12,7 +12,7 @@ import BorderControl from '../../../../Components/BorderControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import IconControl from '../../../../Components/IconControl';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 const sepTypes = [
 	{ label: 'Icon', value: 'icon', icon: 'Icon' },

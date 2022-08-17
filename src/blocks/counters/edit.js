@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import Settings from './Settings';
 import Style from './Style';
 import Counters from './Counters';
-import { performCounter } from './functions';
+import { performCounter } from './utils/functions';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;

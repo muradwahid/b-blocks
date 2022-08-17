@@ -5,7 +5,7 @@ import { PanelBody } from '@wordpress/components';
 
 
 // Variables
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { colors } = options;
 
 

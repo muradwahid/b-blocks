@@ -144,7 +144,7 @@ body {
 		.nav-link {
 			box-shadow: none;
 			border: 1px solid $primaryColor;
-			color: $primaryColor !important;
+			color: $primaryColor  !important;
 
 			&.active {
 				color: #fff !important;
@@ -157,7 +157,7 @@ body {
 			}
 
 			.b_blocks_remove_tab_btn {
-				color: $primaryColor !important;
+				color: $primaryColor  !important;
 			}
 		}
 	}
@@ -189,7 +189,7 @@ body {
 			}
 
 			.b_blocks_remove_tab_btn {
-				color: $primaryColor !important;
+				color: $primaryColor  !important;
 			}
 		}
 	}
@@ -197,4 +197,24 @@ body {
 
 .mb-3 {
 	margin-bottom: 3px !important;
+}
+
+// Inline Text Style
+.bBlocksTextHighlight {
+	color: #333;
+	background-color: #beff14;
+	padding: .2em;
+	border-radius: 3px;
+}
+
+.bBlocksTextUppercase {
+	text-transform: uppercase;
+}
+
+.bBlocksTextUnderline {
+	text-decoration: underline;
+}
+
+.bBlocksTextOverline {
+	text-decoration: overline;
 }

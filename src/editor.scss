@@ -25,30 +25,10 @@ $secondaryColor: #8344c5;
 	margin: 0;
 }
 
-// Panel Body
-// .bPlPanelBody, .bPlDropdownPopover .components-popover__content{
-
-// }
-
-// Buttons
-// Inserter
-.block-editor-inserter,
-.block-list-appender,
-.block-editor-block-list__insertion-point-inserter {
-	button {
-		background-color: transparent !important;
-
-		svg {
-			fill: $primaryColor;
-			width: 20px !important;
-			height: 20px;
-			background-color: transparent !important;
-			border: 2px solid $primaryColor;
-			border-radius: 50% !important;
-		}
-	}
+// Toolbar inline style icon
+.bBlocksInlineIcon {
+	padding: 2.5px;
 }
-
 
 
 // Older Components

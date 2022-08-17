@@ -4,7 +4,7 @@ import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-e
 import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { colors } = options;
 
 const userSelect = [
@@ -17,10 +17,10 @@ const userSelect = [
 import BtnGroup from '../Components/BtnGroup';
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/selection', {
 	// Build In attributes

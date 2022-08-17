@@ -6,7 +6,7 @@ import { TabPanel, PanelBody, ToggleControl, __experimentalUnitControl as UnitCo
 import Title from '../../../../Components/Title';
 import { InlineMediaUpload } from '../../../../Components/MediaControl';
 
-import options from '../../Const/options';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ attributes, setAttributes }) => {

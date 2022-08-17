@@ -4,17 +4,17 @@ import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-edit
 import { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } from '@wordpress/components';
 
 // Variables
-import options from '../Const/options';
+import options from '../utils/options';
 const { hTags, fontSizes, borderStyles, colors } = options;
 
 // Components
 import BtnGroup from '../Components/BtnGroup'
 
 // Functions
-import { firstTitle, otherTitle } from '../Const/functions';
+import { firstTitle, otherTitle } from '../utils/functions';
 
 // Icon
-import icons from '../Const/icons';
+import icons from '../utils/icons';
 
 registerBlockType('b-blocks/note', {
 	// Build In attributes

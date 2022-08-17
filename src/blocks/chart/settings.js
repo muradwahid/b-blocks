@@ -7,8 +7,8 @@ import Title from '../../../../Components/Title';
 import Background from '../../../../Components/Background';
 import BColor from '../../../../Components/BColor';
 
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 const types = [
 	{ label: __('Line', 'b-blocks'), value: 'line' },

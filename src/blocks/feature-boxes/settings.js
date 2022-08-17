@@ -15,8 +15,8 @@ import SeparatorControl from '../../../../Components/SeparatorControl';
 import SpaceControl from '../../../../Components/SpaceControl';
 
 import { IndexContext } from './edit';
-import icons from '../../Const/icons';
-import options from '../../Const/options';
+import icons from '../../utils/icons';
+import options from '../../utils/options';
 const { pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ settings }) => {

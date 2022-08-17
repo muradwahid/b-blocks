@@ -5,7 +5,7 @@ import { BplMediaPlaceholder } from '../../../../Components/MediaControl';
 
 import Settings from './Settings';
 import Style from './Style';
-import { controlsHandler } from './functions';
+import { controlsHandler } from './utils/functions';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;
