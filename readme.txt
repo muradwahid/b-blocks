@@ -4,7 +4,7 @@ Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.0+
 Tested up to: 6.0.1
-Stable tag: 1.6.8
+Stable tag: 1.6.9
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.6.9 =
+* Add row column block
+
 = 1.6.8 =
 * Add translate feature
 * Update Countdown block
@@ -270,6 +273,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.6.9 =
+* Add row column block
 
 = 1.6.8 =
 * Add translate feature

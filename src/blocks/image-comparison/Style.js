@@ -10,7 +10,7 @@ const Style = ({ attributes, clientId }) => {
 			text-align: ${alignment};
 		}
 		#bBlocksImageComparison-${clientId} .bBlocksImageComparison{
-			width: ${width};
+			width: ${width || '100%'};
 			${border?.styles};
 		}
 

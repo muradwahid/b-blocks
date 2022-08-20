@@ -1,4 +1,4 @@
-import { render, useEffect } from '@wordpress/element';
+import { render, useEffect, useRef } from '@wordpress/element';
 const $ = jQuery;
 
 import './style.scss';
@@ -24,37 +24,66 @@ document.addEventListener('DOMContentLoaded', () => {
 const ImageCompare = ({ attributes }) => {
 	const { beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
 
+	const comparisonRef = useRef(null);
+	const dividerRef = useRef(null);
+	const resizeRef = useRef(null);
+	const beforeImgRef = useRef(null);
+
+	const setImgWidth = width => {
+		beforeImgRef.current.style.width = width;
+		beforeImgRef.current.style.minWidth = width;
+	}
+
 	// Image Slider Scripts
 	useEffect(() => {
-		if ($('.comparison-slider')[0]) {
-			let compSlider = $('.comparison-slider');
+		setTimeout(() => {
+			if (comparisonRef.current) {
+				const comparisonWidth = comparisonRef.current?.clientWidth + 'px';
 
-			//let's loop through the sliders and initialize each of them
-			compSlider.each(function () {
-				let compSliderWidth = $(this).width() + 'px';
-				$(this).find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
-				drags($(this).find('.divider'), $(this).find('.resize'), $(this));
-			});
+				setImgWidth(comparisonWidth);
 
-			//if the user resizes the windows lets update our variables and resize our images
-			$(window).on('resize', function () {
-				let compSliderWidth = compSlider.width() + 'px';
-				compSlider.find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
-			});
-		}
+				drags($(dividerRef.current), $(resizeRef.current), $(comparisonRef.current));
+
+				window.addEventListener('resize', () => {
+					const comparisonWidth = comparisonRef.current?.clientWidth + 'px';
+					setImgWidth(comparisonWidth);
+				});
+			}
+		}, 0);
 	}, [$]);
 
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		if ($('.comparison-slider')[0]) {
+	// 			let compSlider = $('.comparison-slider');
+
+	// 			//let's loop through the sliders and initialize each of them
+	// 			compSlider.each(function () {
+	// 				let compSliderWidth = $(this).width() + 'px';
+	// 				$(this).find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
+	// 				drags($(this).find('.divider'), $(this).find('.resize'), $(this));
+	// 			});
+
+	// 			//if the user resizes the windows lets update our variables and resize our images
+	// 			$(window).on('resize', function () {
+	// 				let compSliderWidth = compSlider.width() + 'px';
+	// 				compSlider.find('.resize img').css({ width: compSliderWidth, minWidth: compSliderWidth });
+	// 			});
+	// 		}
+	// 	});
+	// }, [$]);
+
 	return <div className='bBlocksImageComparison'>
-		<div className='comparison-slider'>
+		<div className='comparison-slider' ref={comparisonRef}>
 			{isLabel && afterLabel && <div className='overlay afterLabel'>{afterLabel}</div>}
 			<img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
 
-			<div className='resize'>
+			<div className='resize' ref={resizeRef}>
 				{isLabel && beforeLabel && <div className='overlay beforeLabel'>{beforeLabel}</div>}
-				<img className='beforeImg' src={beforeImg?.url} alt={beforeImg?.alt} />
+				<img className='beforeImg' src={beforeImg?.url} alt={beforeImg?.alt} ref={beforeImgRef} />
 			</div>
 
-			<div className='divider'></div>
+			<div className='divider' ref={dividerRef}></div>
 		</div>
 
 		{isCap && cap && <div className='caption'>{cap}</div>}

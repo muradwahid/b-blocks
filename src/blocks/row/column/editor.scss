@@ -4,6 +4,10 @@ $primaryColor: #4527a4;
     height: 100%;
     position: relative;
 
+    .components-resizable-box__container {
+        max-width: 100%;
+    }
+
     .widthPlaceholder {
         position: absolute;
         top: 0;

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Settings Components
@@ -25,62 +25,55 @@ const positions = axis => ([
 const Settings = ({ attributes, setAttributes }) => {
 	const { columnGap, heightType, height, columnPositionY, columnPositionX, background, padding, border, shadow } = attributes;
 
-	return <>
-		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
-				<div className='helpItem'>
-					<a href='https://bblockswp.com/docs/row/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
-				</div>
+	return <InspectorControls>
+		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
+			<div className='helpItem'>
+				<a href='https://bblockswp.com/docs/row/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
+			</div>
 
-				<div className='helpItem rateUs'>
-					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
-						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
-					</a>
-				</div>
-			</PanelBody>
-
-
-			<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
-				<UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit]} />
-
-				<PanelRow className='mt20'>
-					<Title mt='0' mb='0'>{__('Height:', 'b-blocks')}</Title>
-					<SelectControl value={heightType} onChange={val => {
-						setAttributes({ heightType: val, height: 'window' === val ? '100vh' : 'auto' === val ? 'auto' : 'initial' })
-					}} options={heightTypes} />
-				</PanelRow>
-
-				{'custom' === heightType && <UnitControl className='mt10' label={__('Min Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit, emUnit, vhUnit]} />}
-
-				<PanelRow className='mt20'>
-					<Title mt='0' mb='0'>{__('Columns Vertical Position:', 'b-blocks')}</Title>
-					<SelectControl value={columnPositionY} onChange={val => setAttributes({ columnPositionY: val })} options={positions('y')} />
-				</PanelRow>
-
-				<PanelRow className='mt10'>
-					<Title mt='0' mb='0'>{__('Columns Horizontal Position:', 'b-blocks')}</Title>
-					<SelectControl value={columnPositionX} onChange={val => setAttributes({ columnPositionX: val })} options={positions('x')} />
-				</PanelRow>
-			</PanelBody>
+			<div className='helpItem rateUs'>
+				<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
+					<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
+					<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
+				</a>
+			</div>
+		</PanelBody>
 
 
-			<PanelBody className='bPlPanelBody' title={__('Row Style', 'b-blocks')} initialOpen={false}>
-				<Title />
-				<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
+		<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
+			<UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit]} />
 
-				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '0px' }} />
+			<PanelRow className='mt20'>
+				<Title mt='0' mb='0'>{__('Height:', 'b-blocks')}</Title>
+				<SelectControl value={heightType} onChange={val => {
+					setAttributes({ heightType: val, height: 'window' === val ? '100vh' : 'auto' === val ? 'auto' : 'initial' })
+				}} options={heightTypes} />
+			</PanelRow>
 
-				<BorderControl label={__('Border', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
+			{'custom' === heightType && <UnitControl className='mt10' label={__('Min Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit, emUnit, vhUnit]} />}
 
-				<ShadowControl label={__('Shadow', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
-			</PanelBody>
-		</InspectorControls>
+			<PanelRow className='mt20'>
+				<Title mt='0' mb='0'>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+				<SelectControl value={columnPositionY} onChange={val => setAttributes({ columnPositionY: val })} options={positions('y')} />
+			</PanelRow>
+
+			<PanelRow className='mt10'>
+				<Title mt='0' mb='0'>{__('Columns Horizontal Position:', 'b-blocks')}</Title>
+				<SelectControl value={columnPositionX} onChange={val => setAttributes({ columnPositionX: val })} options={positions('x')} />
+			</PanelRow>
+		</PanelBody>
 
 
-		<BlockControls>
-			{/* <AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} /> */}
-		</BlockControls>
-	</>;
+		<PanelBody className='bPlPanelBody' title={__('Row Style', 'b-blocks')} initialOpen={false}>
+			<Title />
+			<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
+
+			<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '0px' }} />
+
+			<BorderControl label={__('Border', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
+
+			<ShadowControl label={__('Shadow', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+		</PanelBody>
+	</InspectorControls>;
 };
 export default Settings;
