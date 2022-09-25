@@ -1,4 +1,5 @@
-import { render, useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef } from 'react';
+import { render } from 'react-dom';
 const $ = jQuery;
 
 import './style.scss';

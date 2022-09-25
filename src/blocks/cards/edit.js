@@ -5,16 +5,19 @@ import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 
 // Settings Components
+import { tabController } from '../../../../Components/Helper/functions';
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
 import Settings from './Settings';
 import Style from './Style';
 
 const Edit = props => {
-	const { className, attributes, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId, isSelected } = props;
 	const { cards = [], columns, layout, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
+
+	useEffect(() => tabController(), [isSelected]);
 
 	const [activeIndex, setActiveIndex] = useState(0);
 

@@ -1,6 +1,3 @@
-import { Fragment } from '@wordpress/element';
-
-// Components
 import FeatureImage from '../Single/FeatureImage';
 import PostTitle from '../Single/PostTitle';
 import PostExcerpt from '../Single/PostExcerpt';
@@ -19,10 +16,10 @@ const Default = ({ post, attributes }) => {
 
 			<PostMeta atts={attributes} post={post} />
 
-			{'title-meta' !== subLayout && <Fragment>
+			{'title-meta' !== subLayout && <>
 				<PostExcerpt atts={attributes} post={post} />
 				<PostReadMore atts={attributes} post={post} />
-			</Fragment>}
+			</>}
 		</div>
 	</article>;
 };

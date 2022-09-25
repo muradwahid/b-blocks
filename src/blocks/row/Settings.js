@@ -28,7 +28,7 @@ const Settings = ({ attributes, setAttributes }) => {
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 			<div className='helpItem'>
-				<a href='https://bblockswp.com/docs/row/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
+				<a href='https://bblockswp.com/docs/row-block' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 			</div>
 
 			<div className='helpItem rateUs'>

@@ -10,7 +10,7 @@ const Counters = ({ attributes, isBackend = false, custom }) => {
 
 			const iconEl = icon?.class && <i className={icon.class}></i>;
 			const labelEl = isLabel && <>
-				{isBackend ? <RichText className='counterLabel' tagName='p' value={label.text} onChange={val => custom.updateCounter('label', val, 'text')} placeholder={__('Label', 'counters-block')} inlineToolbar /> : label.text && <RichText.Content className='counterLabel' tagName='p' value={label.text} />}
+				{isBackend ? <RichText className='counterLabel' tagName='p' value={label.text} onChange={val => custom.updateCounter('label', val, 'text')} placeholder={__('Label', 'counters-block')} inlineToolbar /> : label.text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: label.text }} />}
 			</>
 
 			return <div key={index} onClick={() => isBackend && custom.setActiveIndex(index)} className={`${isBackend && index === custom.activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksCounter-${index}`}>

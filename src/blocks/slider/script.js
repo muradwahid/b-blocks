@@ -77,7 +77,8 @@
 // });
 
 
-import { render, renderToString } from '@wordpress/element';
+import { renderToString } from '@wordpress/element';
+import { render } from 'react-dom';
 
 import './style.scss';
 import Slider from './Slider';

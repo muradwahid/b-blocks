@@ -4,6 +4,7 @@ $primaryColor: #4527a4;
 .wp-block-b-blocks-row .bBlocksRow {
 	display: flex;
 	flex-wrap: wrap;
+	overflow: hidden;
 
 	// * {
 	// 	box-sizing: border-box;

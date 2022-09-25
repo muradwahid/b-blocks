@@ -43,9 +43,9 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 				<PanelBody className='bPlPanelBody' title={__('Settings', 'b-blocks')}>
-					<InlineMediaUpload value={source} type={['video']} onChange={val => setAttributes({ source: val })} placeholder={__('Video url', 'b-blocks')} />
+					<InlineMediaUpload value={source} types={['video']} onChange={val => setAttributes({ source: val })} placeholder={__('Video url', 'b-blocks')} />
 
-					<InlineMediaUpload value={poster} type={['image']} onChange={val => setAttributes({ poster: val })} placeholder={__('Poster url', 'b-blocks')} />
+					<InlineMediaUpload value={poster} types={['image']} onChange={val => setAttributes({ poster: val })} placeholder={__('Poster url', 'b-blocks')} />
 
 					<ToggleControl className='mt20' label={__('Repeat', 'b-blocks')} checked={repeat} onChange={val => setAttributes({ repeat: val })} />
 

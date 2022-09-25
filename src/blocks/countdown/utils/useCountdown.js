@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from 'react';
 
 import { getDiff, getDays, getHours, getMinutes, getSeconds } from './functions';
 

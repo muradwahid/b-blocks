@@ -17,12 +17,12 @@ const Service = ({ attributes, isBackend = false, custom }) => {
 
 		{isTitle && <>
 			{isBackend ? <RichText className='title' tagName='h3' value={title} onChange={val => custom.setAttributes({ title: val })} placeholder={__('Service Title', 'b-blocks')} inlineToolbar /> : title && <>
-				{'title' === linkIn ? <a href={link}><RichText.Content className='title' tagName='h3' value={title} /></a> : <RichText.Content className='title' tagName='h3' value={title} />}
+				{'title' === linkIn ? <a href={link}><h3 className='title' dangerouslySetInnerHTML={{ __html: title }} /></a> : <h3 className='title' dangerouslySetInnerHTML={{ __html: title }} />}
 			</>}
 		</>}
 
 		{isDesc && <>
-			{isBackend ? <RichText className='description' tagName='p' value={desc} onChange={val => custom.setAttributes({ desc: val })} placeholder={__('Service Description', 'b-blocks')} inlineToolbar /> : desc && <RichText.Content className='description' tagName='p' value={desc} />}
+			{isBackend ? <RichText className='description' tagName='p' value={desc} onChange={val => custom.setAttributes({ desc: val })} placeholder={__('Service Description', 'b-blocks')} inlineToolbar /> : desc && <p className='description' dangerouslySetInnerHTML={{ __html: desc }} />}
 		</>}
 
 		{isLink && 'button' === linkIn && <div className='link'><a href={link}>{icons.longArrowToRight}</a></div>}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef } from 'react';
 
 const RenderChart = ({ attributes, clientId, isBackend = false }) => {
 	const { data, type, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload } = attributes;

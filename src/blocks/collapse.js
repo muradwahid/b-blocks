@@ -60,7 +60,7 @@ registerBlockType('b-blocks/collapse', {
 		const contentStyle = { border: '1px solid #4527a4', borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
 
 		// Functions
-		useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
+		useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]);
 
 		const collBtnHov = e => {
 			e.target.style.color = collBtnHovColor;

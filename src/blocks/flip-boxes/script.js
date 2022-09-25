@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { render } from 'react-dom';
 
 import './style.scss';
 import Style from './Style';

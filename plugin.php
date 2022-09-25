@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.6.9
+ * Version: 1.7.0
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.9' );
+define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.0' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -113,9 +113,9 @@ class BBlocks{
 	function onInit(){
 		wp_enqueue_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'swiperJS', 'plyrJS', 'chartJS', 'easyTicker', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
 
-		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-block-editor', 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 
-		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'wp-editor' ], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
+		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
 
 		wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', plugin_dir_path( __FILE__ ) . 'languages' ); // Translate
 	}

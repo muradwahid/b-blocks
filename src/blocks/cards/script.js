@@ -1,5 +1,4 @@
-import { RichText } from '@wordpress/block-editor';
-import { render } from '@wordpress/element';
+import { render } from 'react-dom';
 
 import './style.scss';
 import Style from './Style';
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					const { img, cat, title, desc } = item;
 
 					// Components
-					const CardTitle = () => isTitle && <RichText.Content className='cardTitle' tagName='h3' value={title} />
+					const CardTitle = () => isTitle && <h3 className='cardTitle' dangerouslySetInnerHTML={{ __html: title }} />
 
 					const CardImage = () => img?.url && <figure className='cardImage'>
 						<img className={img?.id ? `wp-image-${img.id}` : null} src={img.url} alt={img?.alt || img?.title} />
@@ -32,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
 							{'top' === imgPos && <CardImage />}
 
 							<div className='cardDetails'>
-								{isCat && <RichText.Content className='cardCategory' tagName='h6' value={cat} />}
+								{isCat && <h6 className='cardCategory' dangerouslySetInnerHTML={{ __html: cat }} />}
 
 								{'content' === titlePos && <CardTitle />}
 
-								{isDesc && <RichText.Content className='cardDescription' tagName='p' value={desc} />}
+								{isDesc && <p className='cardDescription' dangerouslySetInnerHTML={{ __html: desc }} />}
 							</div>
 
 							{'bottom' === imgPos && <CardImage />}

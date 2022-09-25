@@ -108,7 +108,9 @@ module.exports = (env, argv) => {
 			'@wordpress/element': ['wp', 'element'],
 			'@wordpress/html-entities': ['wp', 'htmlEntities'],
 			'@wordpress/i18n': ['wp', 'i18n'],
-			'@wordpress/rich-text': ['wp', 'richText']
+			'@wordpress/rich-text': ['wp', 'richText'],
+			'react': 'React',
+			'react-dom': 'ReactDOM'
 		} // Externals
 	};
 	return config;

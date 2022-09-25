@@ -1,5 +1,4 @@
-import { RichText } from '@wordpress/block-editor';
-import { render } from '@wordpress/element';
+import { render } from 'react-dom';
 
 import './style.scss';
 import Style from './Style';
@@ -22,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
 						{photo?.url && <img className={`memberPhoto ${photo?.id ? `wp-image-${photo?.id}` : null}`} src={photo?.url} alt={photo?.alt} />}
 
 						<div className='memberDetails'>
-							{name && <RichText.Content className='memberName' tagName='h4' value={name} />}
-							{isTitle && title && <RichText.Content className='memberTitle' tagName='p' value={title} />}
+							{name && <h4 className='memberName' dangerouslySetInnerHTML={{ __html: name }} />}
+							{isTitle && title && <p className='memberTitle' dangerouslySetInnerHTML={{ __html: title }} />}
 							{isSep && <span className='memberSeparator'></span>}
-							{isBio && bio && <RichText.Content className='memberBio' tagName='p' value={bio} />}
+							{isBio && bio && <p className='memberBio' dangerouslySetInnerHTML={{ __html: bio }} />}
 
 							{isSocial && <ul className='memberSocial'>
 								{social?.map((socialItem, socialIndex) => {

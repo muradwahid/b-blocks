@@ -1,4 +1,4 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 const $ = jQuery;
 
 const AnimatedText = ({ attributes, clientId }) => {

@@ -54,6 +54,9 @@ registerBlockType('b-blocks/accordion', {
 	edit: props => {
 		const { attributes: { accordions = [], headingAlign, headingFontSize, headingTransform, headingPTB, headingPLR, headingColor, headingBGColor, headingHovColor, headingHovBGColor, contentAlign, contentPTB, contentPLR }, setAttributes, clientId, isSelected } = props;
 
+		// Functions
+		useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]);
+
 		// Styles
 		const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
 
@@ -62,9 +65,6 @@ registerBlockType('b-blocks/accordion', {
 		const accRemoveStyle = { position: 'absolute', right: '1px', top: '1px', padding: 0, minWidth: '20px', height: '20px', backgroundColor: '#fff', color: '#4527a4' };
 
 		const contentStyle = { textAlign: contentAlign, border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
-
-		// Functions
-		useEffect(() => { clientId && setAttributes({ cId: clientId }); }, [clientId]);
 
 		const headingHov = e => {
 			e.target.style.color = headingHovColor;
