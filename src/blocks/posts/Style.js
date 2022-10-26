@@ -6,7 +6,7 @@ const Style = ({ posts, attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-				@import url(${titleTypo?.googleFontLink || 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'});
+				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
 				${metaTypo?.googleFontLink ? `@import url(${metaTypo?.googleFontLink});` : ''}
 				${excerptTypo?.googleFontLink ? `@import url(${excerptTypo?.googleFontLink});` : ''}
 				${readMoreTypo?.googleFontLink ? `@import url(${readMoreTypo?.googleFontLink});` : ''}

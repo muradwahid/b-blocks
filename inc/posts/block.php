@@ -3,7 +3,7 @@ class BBlocksPosts extends BBlocks{
 	public function __construct(){
 		add_action( 'init', [$this, 'onInit'] );
 		add_action( 'rest_api_init', [$this, 'customRestAPI'] );
-		add_filter( 'excerpt_more', [$this, 'excerptMore'] );
+		// add_filter( 'excerpt_more', [$this, 'excerptMore'] );
 	}
 
 	function onInit(){
@@ -351,7 +351,15 @@ class BBlocksPosts extends BBlocks{
 
 		if ( $isExcerpt ) {
 			ob_start(); ?>
-			<div class='bBlocksPostExcerpt bBlocksInnerPostContent'><?php echo implode( ' ', array_slice( explode( ' ', get_the_excerpt( $post->ID ) ), 0, $excerptLength ) ); ?></div>
+			<div class='bBlocksPostExcerpt bBlocksInnerPostContent'>
+				<?php echo implode( ' ', array_slice(
+					explode( ' ', get_the_excerpt( $post->ID ) ),
+				0, $excerptLength ) ); ?>
+
+				<p class='read-more'>
+					<a href='<?php echo esc_url( get_permalink( $post ) ); ?>'><?php echo __( 'Read More &raquo;', 'advanced-post-block' ); ?></a>
+				</p>
+			</div>
 			<?php return ob_get_clean();
 		} else {
 			return '';
