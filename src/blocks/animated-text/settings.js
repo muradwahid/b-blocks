@@ -105,35 +105,35 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Animated Text Settings', 'b-blocks')}>
-						<Title mt='0'>{__('Animate text:', 'b-blocks')}</Title>
+						<Title className='mb5'>{__('Animate text:', 'b-blocks')}</Title>
 						<TextareaControl value={content} onChange={val => setAttributes({ content: val })} />
 
 						<ToggleControl className='mt20' label={__('Loop', 'b-blocks')} checked={loop} onChange={val => setAttributes({ loop: val })} />
 						<small>{__('Loop will not work instantly in editor! you have to refresh the page.', 'b-blocks')}</small>
 
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Animate in:', 'b-blocks')}</Title>
+							<Title className=''>{__('Animate in:', 'b-blocks')}</Title>
 							<BtnGroup value={animateIn} onChange={val => setAttributes({ animateIn: val })} options={animateInOpt} />
 						</PanelRow>
 
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('In Effect:', 'b-blocks')}</Title>
+							<Title className=''>{__('In Effect:', 'b-blocks')}</Title>
 							<SelectControl value={inEffect} onChange={val => setAttributes({ inEffect: val })} options={[...effects, ...inEffects]} />
 						</PanelRow>
 
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('In Sequence:', 'b-blocks')}</Title>
+							<Title className=''>{__('In Sequence:', 'b-blocks')}</Title>
 							<SelectControl value={inSequence} onChange={val => setAttributes({ inSequence: val })} options={sequences} />
 						</PanelRow>
 
 						{loop && <>
 							<PanelRow>
-								<Title mt='0' mb='0'>{__('Out Effect:', 'b-blocks')}</Title>
+								<Title className=''>{__('Out Effect:', 'b-blocks')}</Title>
 								<SelectControl value={outEffect} onChange={val => setAttributes({ outEffect: val })} options={[...effects, ...outEffects]} />
 							</PanelRow>
 
 							<PanelRow>
-								<Title mt='0' mb='0'>{__('Out Sequence:', 'b-blocks')}</Title>
+								<Title className=''>{__('Out Sequence:', 'b-blocks')}</Title>
 								<SelectControl value={outSequence} onChange={val => setAttributes({ outSequence: val })} options={sequences} />
 							</PanelRow>
 						</>}

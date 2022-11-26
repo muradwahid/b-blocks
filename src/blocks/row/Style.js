@@ -1,5 +1,5 @@
 const Style = ({ attributes, clientId, isBackend = false }) => {
-	const { columnGap, height, columnPositionY, columnPositionX, background, padding, border, shadow } = attributes;
+	const { columnGap, height, columnPositionY, columnPositionX, overflow, background, padding, border, shadow } = attributes;
 
 	const blockListLayout = `#bBlocksRow-${clientId} .bBlocksRow >.block-editor-inner-blocks >.block-editor-block-list__layout`;
 	const rowSelect = `#bBlocksRow-${clientId} .bBlocksRow`;
@@ -15,6 +15,7 @@ const Style = ({ attributes, clientId, isBackend = false }) => {
 		__html: `
 		${rowSelect}{
 			row-gap: ${columnGap};
+			overflow: ${overflow};
 			${background?.styles || 'background-color: #f5f5f5;'}
 			padding: ${padding?.styles || '50px 0px'};
 			${border?.styles || ''}

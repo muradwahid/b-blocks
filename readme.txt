@@ -3,7 +3,7 @@ Contributors: abuhayat, charlescormier
 Donate link: https://gum.co/wpdonate/
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.3+
-Tested up to: 6.0.3
+Tested up to: 6.1.1
 Stable tag: 1.7.1
 Requires PHP: 7.1
 License: GPLv3 or later

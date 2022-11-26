@@ -29,86 +29,6 @@ class BBlocksPosts extends BBlocks{
 		// 	}
 		// }
 
-		// Generate Styles
-		$postsStyles = new BBlocksStyleGenerator();
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost", [
-			'margin-bottom' => 'masonry' === $layout ? $rowGap.'px' : '0px',
-			$border['styles'] ?? 'border-radius: 5px;' => ''
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostDefault, #bBlocksPosts-$cId .bBlocksPostSideImage", [
-			'text-align' => $contentAlign,
-			$contentBG['styles'] ?? 'background-color: #f4f2fc;' => ''
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostText", [
-			'padding' => $contentPadding['styles'] ?? '20px 25px'
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPostOverlay .bBlocksPostText", [
-			$contentBG['styles'] ?? 'background-color: #f4f2fc;' => '',
-			'align-items' => 'left' === $contentAlign ? 'flex-start' : ( 'right' === $contentAlign ? 'flex-end' : ( 'center' === $contentAlign ? 'center' : 'stretch' ) )
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle", [
-			'text-align' => $contentAlign,
-			$titleTypo['styles'] ?? 'font-size: 25px;' => '',
-			'color' => $titleColor,
-			'margin' => $titleMargin['styles'] ?? '0 0 15px 0'
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostTitle a", [ 'color' => $titleColor ] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta", [
-			'text-align' => $contentAlign,
-			$metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => '',
-			'color' => $metaTextColor,
-			'margin' => $metaMargin['styles'] ?? '0 0 15px 0'
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta a", [
-			'color' => $metaLinkColor
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostMeta .dashicons", [
-			'color' => $metaIconColor
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats", [
-			$metaTypo['styles'] ?? 'font-size: 13px; text-transform: uppercase;' => ''
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImgCats a", [
-			$metaColorsOnImage['styles'] ?? 'color: #fff; background: #4527a4;' => '',
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostExcerpt", [
-			'text-align' => $excerptAlign,
-			$excerptTypo['styles'] ?? 'font-size: 15px;' => '',
-			'color' => $excerptColor,
-			'margin' => $excerptMargin['styles'] ?? '0 0 10px 0'
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore", [
-			'text-align' => $readMoreAlign
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a", [
-			$readMoreTypo['styles'] ?? 'font-size: 14px; text-transform: uppercase; font-weight: 600;' => '',
-			$readMoreColors['styles'] ?? 'color: #fff; background: #8344c5;' => '',
-			'padding' => $readMorePadding['styles'] ?? '12px 35px',
-			$readMoreBorder['styles'] ?? 'border-radius: 3px;' => ''
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksPost .bBlocksPostReadMore a:hover", [
-			$readMoreHovColors['styles'] ?? 'color: #fff; background: #4527a4;' => ''
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksGridPosts", [
-			'grid-gap' => $rowGap .'px '. $columnGap .'px',
-			'align-items' => false === $isContentEqualHight ? 'start' : 'initial'
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksMasonryPosts", [
-			'gap' => $columnGap . 'px'
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-slide", [
-			'min-height' => $sliderHeight
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet", [
-			'background' => $sliderPageColor,
-			'width' => $sliderPageWidth,
-			'height' => $sliderPageHeight,
-			$sliderPageBorder['styles'] ?? 'border-radius: 50%;' => ''
-		] );
-		$postsStyles::addStyle( "#bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-prev, #bBlocksPosts-$cId .bBlocksSliderPosts .swiper-button-next", [
-			'color' => $sliderPrevNextColor
-		] );
-
 		// All Posts
 		$defaultPostFilter = 'post' === $postType ? [
 			'category' => $selectedCategories
@@ -121,20 +41,13 @@ class BBlocksPosts extends BBlocks{
 			'order'				=> $postsOrder
 		], $defaultPostFilter ) );
 
-		$sliderJsonData = wp_json_encode( [ 'layout' => $layout, 'columns' => $columns, 'columnGap' => $columnGap, 'sliderIsLoop' => $sliderIsLoop, 'sliderIsTouchMove' => $sliderIsTouchMove, 'sliderIsAutoplay' => $sliderIsAutoplay, 'sliderSpeed' => $sliderSpeed, 'sliderEffect' => $sliderEffect, 'sliderIsPageClickable' => $sliderIsPageClickable, 'sliderIsPageDynamic' => $sliderIsPageDynamic ] );
-
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksPostsClassName ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $bBlocksPostsClassName ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+			<div class='bBlocksPostsStyle'></div>
 			<style>
-				@import url( <?php echo esc_url( $titleTypo['googleFontLink'] ?? 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ); ?> );
-				<?php echo !empty( $metaTypo['googleFontLink'] ) ? "@import url(". esc_url( $metaTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $excerptTypo['googleFontLink'] ) ? "@import url(". esc_url( $excerptTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $readMoreTypo['googleFontLink'] ) ? "@import url(". esc_url( $readMoreTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo wp_kses( $postsStyles::renderStyle(), [] ); ?>
-
 				<?php foreach ( $posts as $post ) {
 					$imgUrl = preg_replace( '/<[^>]+>/', '', get_the_post_thumbnail_url( $post->ID, 'large' ) );
-					$displayCSS = $imgUrl ? 'grid' : 'flex';
+					$displayCSS = $isFImg && $imgUrl ? 'grid' : 'flex';
 
 					$sideImgCSS = "#bBlocksPosts-$cId .bBlocksPostSideImage.bBlocksPost-$post->ID{ display: $displayCSS; }";
 					$fImgCSS = $isFImg && $imgUrl ? "#bBlocksPosts-$cId .bBlocksPostOverlay.bBlocksPost-$post->ID, #bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImg-$post->ID{ background-image: url( $imgUrl ); }" : '';
@@ -153,7 +66,7 @@ class BBlocksPosts extends BBlocks{
 					<?php $this->foreachPosts( $attributes, $posts ); ?>
 				</div>
 			<?php }else if ( 'slider' === $layout ){ ?>
-				<div class='bBlocksSliderPosts' data-slider='<?php echo esc_attr( $sliderJsonData ); ?>'>
+				<div class='bBlocksSliderPosts'>
 					<div class='swiper-wrapper'>
 						<?php $this->foreachPosts( $attributes, $posts ); ?>
 					</div>
@@ -162,7 +75,7 @@ class BBlocksPosts extends BBlocks{
 					<?php echo $sliderIsPrevNext ? "<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>" : ''; ?>
 				</div>
 			<?php }else if ( 'ticker' === $layout ){ ?>
-				<div class='bBlocksTickerPosts' data-ticker='<?php echo esc_attr( wp_json_encode( [ 'rowGap' => $rowGap ] ) ); ?>'>
+				<div class='bBlocksTickerPosts'>
 					<div>
 						<?php $this->foreachPosts( $attributes, $posts ); ?>
 					</div>

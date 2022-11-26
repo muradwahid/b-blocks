@@ -6,7 +6,7 @@ const $ = jQuery;
 
 // Settings Components
 import Settings from './Settings';
-import Style from './Style';
+import { GeneralStyle, FImgStyle } from './Style';
 import MapPosts from './Layout/MapPosts';
 
 export const ExcerptLengthCtx = createContext();
@@ -148,7 +148,8 @@ const Edit = props => {
 		</ExcerptLengthCtx.Provider>
 
 		{!posts ? <Loading /> : posts?.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
-			<Style posts={posts} attributes={attributes} clientId={clientId} />
+			<GeneralStyle attributes={attributes} clientId={clientId} />
+			<FImgStyle posts={posts} attributes={attributes} clientId={clientId} />
 
 			{'grid' === layout ? <div className={`bBlocksGridPosts columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				<MapPosts posts={posts} attributes={attributes} clientId={clientId} />
@@ -201,7 +202,8 @@ export default withSelect((select, props) => {
 		posts: select('core').getEntityRecords('postType', postType, query),
 		categories: select('core').getEntityRecords('taxonomy', 'category', { per_page: -1 }),
 		media: id => select('core').getMedia(id),
-		authors: select('core').getAuthors(),
+		// authors: select('core').getAuthors(), // deprecated from 5.9
+		authors: select('core').getUsers({ who: 'authors' }),
 		isEditorSidebarOpened: select('core/edit-post').isEditorSidebarOpened()
 	};
 })(Edit);

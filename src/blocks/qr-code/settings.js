@@ -26,7 +26,7 @@ const Settings = ({ settings }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('QR Code Settings', 'b-blocks')}>
-				<Title mt='0'>{__('Website URL:', 'b-blocks')}</Title>
+				<Title className='mb5'>{__('Website URL:', 'b-blocks')}</Title>
 				<TextControl value={url} onChange={val => setAttributes({ url: val })} placeholder={__('Website URL:', 'b-blocks')} />
 
 				<Title>{__('Dimension:', 'b-blocks')}</Title>

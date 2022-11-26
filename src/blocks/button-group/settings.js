@@ -46,7 +46,7 @@ const Settings = ({ settings }) => {
 				<UnitControl label={__('Container Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
 
 				<PanelRow>
-					<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
+					<Title className=''>{__('Type:', 'b-blocks')}</Title>
 					<BtnGroup value={btnType} onChange={val => {
 						setAttributes({ btnType: val });
 						'fill' === val && setAttributes({
@@ -76,7 +76,7 @@ const Settings = ({ settings }) => {
 				<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
 					{'btn-one' == tab.name && <>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Link:', 'b-blocks')}</Title>
+							<Title className=''>{__('Link:', 'b-blocks')}</Title>
 							<TextControl value={btnOneLink} onChange={val => setAttributes({ btnOneLink: val })} />
 						</PanelRow>
 
@@ -89,7 +89,7 @@ const Settings = ({ settings }) => {
 
 					{'btn-two' == tab.name && <>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Link:', 'b-blocks')}</Title>
+							<Title className=''>{__('Link:', 'b-blocks')}</Title>
 							<TextControl value={btnTwoLink} onChange={val => setAttributes({ btnTwoLink: val })} />
 						</PanelRow>
 
@@ -109,7 +109,7 @@ const Settings = ({ settings }) => {
 
 				{isSep && <>
 					<PanelRow>
-						<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
+						<Title className=''>{__('Type:', 'b-blocks')}</Title>
 						<BtnGroup value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
 					</PanelRow>
 

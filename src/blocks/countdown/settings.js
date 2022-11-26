@@ -48,14 +48,14 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Countdown Settings', 'b-blocks')}>
-						<Title mt='0'>{__('Destination Date:', 'b-blocks')}</Title>
+						<Title className='mb5'>{__('Destination Date:', 'b-blocks')}</Title>
 						<DateTimePicker currentDate={destDate} onChange={val => setAttributes({ destDate: val })} is12Hour={true} />
 					</PanelBody>
 
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Layout:', 'b-blocks')}</Title>
+							<Title className=''>{__('Layout:', 'b-blocks')}</Title>
 							<SelectControl value={layout} onChange={val => {
 								setAttributes({ layout: val });
 								'default' === val && setAttributes({
@@ -139,7 +139,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Boxes', 'b-blocks')} initialOpen={false}>
 						{'0px' === width || '0%' === width || '0em' === width ? '' : <PanelRow>
-							<Title mt='0' mb='0'>{__('Box Position:', 'b-blocks')}</Title>
+							<Title className=''>{__('Box Position:', 'b-blocks')}</Title>
 							<SelectControl value={boxPosition} onChange={val => setAttributes({ boxPosition: val })} options={flexPos} />
 						</PanelRow>}
 
@@ -175,7 +175,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						{isSep && <>
 							<PanelRow>
-								<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
+								<Title className=''>{__('Type:', 'b-blocks')}</Title>
 								<SelectControl value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
 							</PanelRow>
 

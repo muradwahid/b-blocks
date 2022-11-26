@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, Toolbar, Button } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, SelectControl, Toolbar, Button } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../../Components/Title';
@@ -11,9 +11,11 @@ import SpaceControl from '../../../../../Components/SpaceControl';
 import BorderControl from '../../../../../Components/BorderControl';
 import ShadowControl from '../../../../../Components/ShadowControl';
 
+import { overflows } from '../utils/options';
+
 const Settings = props => {
 	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth } = props;
-	const { width, background, padding, border, shadow } = attributes;
+	const { width, overflow, background, padding, border, shadow } = attributes;
 
 	const [device, setDevice] = useState('desktop');
 
@@ -23,7 +25,7 @@ const Settings = props => {
 		<InspectorControls>
 			<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
 				<PanelRow>
-					<Title mt='0'>{__('Width (%):', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Width (%):', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={10} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
@@ -31,9 +33,12 @@ const Settings = props => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Column', 'b-blocks')} initialOpen={false}>
-				<Title mt='0' mb='0' />
+				<PanelRow>
+					<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+					<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
+				</PanelRow>
 
-				<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />
+				<Background className='mt20' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />
 
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
 

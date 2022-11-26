@@ -104,7 +104,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0'>{__('Layout:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Layout:', 'b-blocks')}</Title>
 							<ButtonGroup className='bPlBtnGroup'>
 								<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
 									<Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
@@ -127,7 +127,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</PanelRow>
 
 						<PanelRow className='mt20'>
-							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -140,7 +140,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0'>{__('Image Position:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Image Position:', 'b-blocks')}</Title>
 							<BtnGroup value={imgPos} onChange={val => setAttributes({ imgPos: val })} options={[
 								{ label: 'vertical' == layout ? 'Top' : 'Left', value: 'top', icon: 'vertical' == layout ? 'TOP' : 'LEFT' },
 								{ label: 'vertical' == layout ? 'Bottom' : 'Right', value: 'bottom', icon: 'vertical' == layout ? 'BOTTOM' : 'RIGHT' }
@@ -152,7 +152,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						<ToggleControl className='mt20' label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
 						{isTitle && <PanelRow>
-							<Title mt='0' mb='0'>{__('Title Position:', 'b-blocks')}</Title>
+							<Title className=''>{__('Title Position:', 'b-blocks')}</Title>
 							<BtnGroup value={titlePos} onChange={val => setAttributes({ titlePos: val })} options={[
 								{ label: 'Image', value: 'image', icon: 'IMAGE' },
 								{ label: 'Content', value: 'content', icon: 'CONTENT' }

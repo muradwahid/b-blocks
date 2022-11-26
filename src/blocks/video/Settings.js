@@ -27,7 +27,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			{ name: 'style', title: __('Style', 'b-blocks') }
 		]}>{tab => <>
 			{'settings' === tab.name && <>
-				<Title mt='0' mb='0' />
+				<Title className='' />
 				<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 					{/* <div className='helpItem'>
 						<a href='https://bblockswp.com/docs/video-player-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>

@@ -138,7 +138,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -148,7 +148,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
 
 						<PanelRow className='mt20'>
-							<Title mt='0' mb='0'>{__('Layout:', 'b-blocks')}</Title>
+							<Title className=''>{__('Layout:', 'b-blocks')}</Title>
 							<BtnGroup value={layout} onChange={val => {
 								setAttributes({ layout: val });
 								'vertical' === val && setAttributes({
@@ -165,7 +165,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						</PanelRow>
 
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Theme:', 'b-blocks')}</Title>
+							<Title className=''>{__('Theme:', 'b-blocks')}</Title>
 							<SelectControl value={theme} onChange={val => {
 								setAttributes({ theme: val });
 								'default' === val && setAttributes({

@@ -128,7 +128,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					<h3 className='bplItemTitle'>{__(`Social No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
 					<PanelRow>
-						<Title mt='0' mb='0'>{__('Network Type:', 'b-blocks')}</Title>
+						<Title className=''>{__('Network Type:', 'b-blocks')}</Title>
 						<SelectControl value={networkType} onChange={val => {
 							updateSocial('networkType', val);
 							updateSocial('network', 'mobileMessenger' === val ? 'sms' : 'facebook');
@@ -140,7 +140,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					</PanelRow>
 
 					<PanelRow>
-						<Title mt='0' mb='0'>{__('Network:', 'b-blocks')}</Title>
+						<Title className=''>{__('Network:', 'b-blocks')}</Title>
 						<SelectControl value={network} onChange={val => {
 							updateSocial('network', val);
 
@@ -189,7 +189,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 			<PanelBody className='bPlPanelBody' title={__('Social Icon Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title mt='0' mb='0'>{__('Theme:', 'b-blocks')}</Title>
+					<Title className=''>{__('Theme:', 'b-blocks')}</Title>
 					<SelectControl value={theme} onChange={val => {
 						setAttributes({ theme: val });
 						'default' === val && (

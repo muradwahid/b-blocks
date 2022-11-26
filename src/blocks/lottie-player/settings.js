@@ -36,7 +36,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Player Settings', 'b-blocks')}>
-						<Title mt='0'>{__('Lottie Json file url:', 'b-blocks')}</Title>
+						<Title className='mb5'>{__('Lottie Json file url:', 'b-blocks')}</Title>
 						<TextControl value={file} onChange={val => setAttributes({ file: val })} />
 
 						<ToggleControl className='mt20' label={__('Show Controls', 'b-blocks')} checked={isControls} onChange={val => setAttributes({ isControls: val })} />
@@ -48,7 +48,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<ToggleControl label={__('Enable Hover', 'b-blocks')} checked={isHover} onChange={val => setAttributes({ isHover: val })} />
 
 						<PanelRow className='mt20'>
-							<Title mt='0' mb='0'>{__('Mode:', 'b-blocks')}</Title>
+							<Title className=''>{__('Mode:', 'b-blocks')}</Title>
 							<BtnGroup value={mode} onChange={val => setAttributes({ mode: val })} options={modes} />
 						</PanelRow>
 
@@ -61,7 +61,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<Title>{__('Interval (s):', 'b-blocks')}</Title>
 						<RangeControl value={intermission} onChange={val => setAttributes({ intermission: val })} min={0} max={20} step={.01} />
 
-						<Title mt='0'>{__('Link the player:', 'lottie-player')}</Title>
+						<Title className='mb5'>{__('Link the player:', 'lottie-player')}</Title>
 						<TextControl value={link} onChange={val => setAttributes({ link: val })} />
 						<small>{__('If you want to link the player, enter the link here. Otherwise, leave as blank.')}</small>
 					</PanelBody>

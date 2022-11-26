@@ -41,7 +41,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('3D Model Settings', 'b-blocks')}>
 				<PanelRow>
-					<Title mt='0'>{__('Source Type:', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Source Type:', 'b-blocks')}</Title>
 					<BtnGroup value={sourceType} onChange={val => setAttributes({ sourceType: val })} options={sourceTypes} />
 				</PanelRow>
 				{'upload' === sourceType && <small>{__('Please refresh the page first, if you install the plugin for the first time from gutenberg editor')}</small>}
@@ -83,7 +83,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</>}
 
 				<PanelRow className='mt20'>
-					<Title mt='0' mb='0'>{__('Loading Type:', 'b-blocks')}</Title>
+					<Title className=''>{__('Loading Type:', 'b-blocks')}</Title>
 					<SelectControl value={loadingType} onChange={val => setAttributes({ loadingType: val })} options={loadingTypes} />
 				</PanelRow>
 			</PanelBody>

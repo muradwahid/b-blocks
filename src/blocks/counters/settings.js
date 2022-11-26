@@ -92,12 +92,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<NumberControl label={__('End Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter('number', val, 'end')} />
 
 							<PanelRow>
-								<Title mt='0' mb='0'>{__('Prefix:', 'b-blocks')}</Title>
+								<Title className=''>{__('Prefix:', 'b-blocks')}</Title>
 								<TextControl value={number.prefix} onChange={val => updateCounter('number', val, 'prefix')} />
 							</PanelRow>
 
 							<PanelRow>
-								<Title mt='0' mb='0'>{__('Suffix:', 'b-blocks')}</Title>
+								<Title className=''>{__('Suffix:', 'b-blocks')}</Title>
 								<TextControl value={number.suffix} onChange={val => updateCounter('number', val, 'suffix')} />
 							</PanelRow>
 
@@ -128,7 +128,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Theme:', 'b-blocks')}</Title>
+							<Title className=''>{__('Theme:', 'b-blocks')}</Title>
 							<SelectControl value={theme} onChange={val => {
 								setAttributes({ theme: val });
 								'default' === val && (
@@ -199,7 +199,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</PanelRow>
 
 						<PanelRow className='mt20'>
-							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -223,7 +223,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						<RangeControl value={iconSize} onChange={val => setAttributes({ iconSize: val })} min={0} max={400} step={1} allowReset={true} resetFallbackValue={50} initialPosition={50} />
 
 						<PanelRow className='mt10'>
-							<Title mt='0' mb='0'>{__('Icon Position:', 'b-blocks')}</Title>
+							<Title className=''>{__('Icon Position:', 'b-blocks')}</Title>
 							<SelectControl value={iconPosition} onChange={val => {
 								setAttributes({ iconPosition: val });
 								'top' === val && setAttributes({ iconSize: 50 });

@@ -41,7 +41,7 @@ const Settings = ({ settings }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Layouts Settings')}>
 				<PanelRow>
-					<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={9} step={1} />
@@ -64,7 +64,7 @@ const Settings = ({ settings }) => {
 				<ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
 				<PanelRow className='mt20'>
-					<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
+					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 					<BtnGroup value={capAlign} onChange={val => setAttributes({ capAlign: val })} options={aligns} isIcon={true} />
 				</PanelRow>
 

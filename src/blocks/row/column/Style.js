@@ -1,5 +1,5 @@
 const Style = ({ attributes, clientId, isBackend }) => {
-	const { width, background, padding, border, shadow } = attributes;
+	const { width, overflow, background, padding, border, shadow } = attributes;
 
 	const parentSelector = isBackend ? `#block-${clientId}` : `#bBlocksColumn-${clientId}`;
 
@@ -21,6 +21,7 @@ const Style = ({ attributes, clientId, isBackend }) => {
 		}
 
 		#bBlocksColumn-${clientId} .bBlocksColumn{
+			overflow: ${overflow};
 			${background?.styles || 'background-color: #fff;'}
 			padding: ${padding?.styles || '10px 10px'};
 			${border?.styles || ''}

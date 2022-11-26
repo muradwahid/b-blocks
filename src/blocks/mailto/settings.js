@@ -38,11 +38,11 @@ const Settings = ({ settings }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Mail Settings', 'b-blocks')}>
-				<Title mt='0' mb='0'>{__('E-mail Address:', 'b-blocks')}</Title>
+				<Title className=''>{__('E-mail Address:', 'b-blocks')}</Title>
 				<TextControl value={receiverMail} onChange={val => setAttributes({ receiverMail: val })} placeholder={__('Email Address', 'b-blocks')} />
 
 				<PanelRow className='mt20'>
-					<Title mt='0' mb='0'>{__('Style:', 'b-blocks')}</Title>
+					<Title className=''>{__('Style:', 'b-blocks')}</Title>
 					<SelectControl value={style} onChange={val => {
 						setAttributes({ style: val });
 
@@ -88,7 +88,7 @@ const Settings = ({ settings }) => {
 				<IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-paper-plane' }} isSize={false} isColor={false} />
 
 				<PanelRow className='mt20'>
-					<Title mt='0'>{__('Position:', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Position:', 'b-blocks')}</Title>
 					<BtnGroup value={iconPosition} onChange={val => setAttributes({ iconPosition: val })} options={[
 						{ label: 'Left', value: 'left', icon: 'LEFT' },
 						{ label: 'Right', value: 'right', icon: 'RIGHT' }

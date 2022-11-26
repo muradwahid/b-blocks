@@ -59,7 +59,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		</PanelBody>
 
 		{isLink && <PanelBody className='bPlPanelBody' title={__('Link Settings', 'b-blocks')} initialOpen={false}>
-			<Title mt='0'>{__('Link:', 'b-blocks')}</Title>
+			<Title className='mb5'>{__('Link:', 'b-blocks')}</Title>
 			<TextControl value={link} onChange={val => setAttributes({ link: val })} />
 
 			{'button' === linkIn && <>

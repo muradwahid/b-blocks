@@ -42,7 +42,7 @@ const Settings = ({ settings }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Alert Settings', 'b-blocks')}>
 				<PanelRow>
-					<Title mt='0' mb='0'>{__('Type:', 'b-blocks')}</Title>
+					<Title className=''>{__('Type:', 'b-blocks')}</Title>
 					<SelectControl value={type} onChange={val => {
 						setAttributes({ type: val });
 						'general' === val && setAttributes({

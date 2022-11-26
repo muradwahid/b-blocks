@@ -10,6 +10,7 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 
 import options from '../../utils/options';
+import { overflows } from './utils/options';
 const { pxUnit, emUnit, vhUnit } = options;
 const heightTypes = [
 	{ label: __('Auto', 'b-blocks'), value: 'auto' },
@@ -23,7 +24,7 @@ const positions = axis => ([
 ]);
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { columnGap, heightType, height, columnPositionY, columnPositionX, background, padding, border, shadow } = attributes;
+	const { columnGap, heightType, height, columnPositionY, columnPositionX, overflow, background, padding, border, shadow } = attributes;
 
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
@@ -44,7 +45,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			<UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit]} />
 
 			<PanelRow className='mt20'>
-				<Title mt='0' mb='0'>{__('Height:', 'b-blocks')}</Title>
+				<Title className=''>{__('Height:', 'b-blocks')}</Title>
 				<SelectControl value={heightType} onChange={val => {
 					setAttributes({ heightType: val, height: 'window' === val ? '100vh' : 'auto' === val ? 'auto' : 'initial' })
 				}} options={heightTypes} />
@@ -53,20 +54,24 @@ const Settings = ({ attributes, setAttributes }) => {
 			{'custom' === heightType && <UnitControl className='mt10' label={__('Min Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit, emUnit, vhUnit]} />}
 
 			<PanelRow className='mt20'>
-				<Title mt='0' mb='0'>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+				<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
 				<SelectControl value={columnPositionY} onChange={val => setAttributes({ columnPositionY: val })} options={positions('y')} />
 			</PanelRow>
 
 			<PanelRow className='mt10'>
-				<Title mt='0' mb='0'>{__('Columns Horizontal Position:', 'b-blocks')}</Title>
+				<Title className=''>{__('Columns Horizontal Position:', 'b-blocks')}</Title>
 				<SelectControl value={columnPositionX} onChange={val => setAttributes({ columnPositionX: val })} options={positions('x')} />
 			</PanelRow>
 		</PanelBody>
 
 
 		<PanelBody className='bPlPanelBody' title={__('Row Style', 'b-blocks')} initialOpen={false}>
-			<Title />
-			<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
+			<PanelRow>
+				<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+				<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
+			</PanelRow>
+
+			<Background className='mt20' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
 
 			<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '0px' }} />
 

@@ -29,7 +29,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<Title mt='0' mb='0'></Title> {/* Just use the component */}
+			<Title className=''></Title> {/* Just use the component */}
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/image-comparison-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>

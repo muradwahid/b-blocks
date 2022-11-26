@@ -116,14 +116,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Front Title', 'b-blocks')} initialOpen={false}>
-										<Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
 										<TextControl value={frontTitle} onChange={val => updateFlipBox('frontTitle', val)} />
 
 										<BColor label={__('Color:', 'b-blocks')} value={frontTitleColor} onChange={val => updateFlipBox('frontTitleColor', val)} defaultColor='#fff' />
 									</PanelBody>
 
 									<PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-										<Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
 										<TextareaControl value={desc} onChange={val => updateFlipBox('desc', val)} />
 
 										<BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox('descColor', val)} defaultColor='#fff' />
@@ -140,14 +140,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Back Title', 'b-blocks')} initialOpen={false}>
-										<Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
 										<TextControl value={backTitle} onChange={val => updateFlipBox('backTitle', val)} />
 
 										<BColor label={__('Color:', 'b-blocks')} value={backTitleColor} onChange={val => updateFlipBox('backTitleColor', val)} defaultColor='#fff' />
 									</PanelBody>
 
 									<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
-										<Title mt='0'>{__('Text:', 'b-blocks')}</Title>
+										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
 										<TextControl value={btn} onChange={val => updateFlipBox('btn', val)} />
 
 										<Title>{__('Link:', 'b-blocks')}</Title>
@@ -185,7 +185,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />

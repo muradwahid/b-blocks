@@ -72,11 +72,11 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
-						<Title mt='0'>{__('Layout Type:', 'b-blocks')}</Title>
+						<Title className='mb5'>{__('Layout Type:', 'b-blocks')}</Title>
 						<BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
 
 						<PanelRow className='mt10'>
-							<Title mt='0' mb='0'>{__('Sub Layout:', 'b-blocks')}</Title>
+							<Title className=''>{__('Sub Layout:', 'b-blocks')}</Title>
 							<SelectControl value={subLayout} onChange={val => {
 								setAttributes({ subLayout: val });
 								'default' === val || 'title-meta' === val || 'left-image' === val || 'right-image' === val ? setAttributes({
@@ -114,7 +114,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 						{'ticker' !== layout && <>
 							<PanelRow className='mt20'>
-								<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+								<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 								<BDevice device={device} onChange={val => setDevice(val)} />
 							</PanelRow>
 							<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -138,7 +138,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Post Type:', 'b-blocks')}</Title>
+							<Title className=''>{__('Post Type:', 'b-blocks')}</Title>
 							<SelectControl value={postType} onChange={val => setAttributes({ postType: val })} options={getPostTypes} />
 						</PanelRow>
 
@@ -167,12 +167,12 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 						{false === isPostsPerPageAll && <RangeControl value={postsPerPage} onChange={val => setAttributes({ postsPerPage: val })} min={1} max={36} step={1} />}
 
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Post Order By:', 'b-blocks')}</Title>
+							<Title className=''>{__('Post Order By:', 'b-blocks')}</Title>
 							<SelectControl value={postsOrderBy} onChange={val => setAttributes({ postsOrderBy: val })} options={postsOrdersBy} />
 						</PanelRow>
 
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Post Order:', 'b-blocks')}</Title>
+							<Title className=''>{__('Post Order:', 'b-blocks')}</Title>
 							<SelectControl value={postsOrder} onChange={val => setAttributes({ postsOrder: val })} options={postsOrders} />
 						</PanelRow>
 					</PanelBody>
@@ -180,7 +180,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
 						{/*Feature Image */}
-						<Title mt='0'>{__('Feature Image:', 'b-blocks')}</Title>
+						<Title className='mb5'>{__('Feature Image:', 'b-blocks')}</Title>
 						<ToggleControl label={__('Show Feature Image', 'b-blocks')} checked={isFImg} onChange={val => setAttributes({ isFImg: val })} />
 
 						{isFImg && <ToggleControl label={__('Enable Feature Image Link', 'b-blocks')} checked={isFImgLink} onChange={val => setAttributes({ isFImgLink: val })} />}
@@ -205,7 +205,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 							<ToggleControl label={__('Show Category', 'b-blocks')} checked={isMetaCategory} onChange={val => setAttributes({ isMetaCategory: val })} />
 
 							{isMetaCategory && <PanelRow>
-								<Title mt='0' mb='0'>{__('Category In:', 'b-blocks')}</Title>
+								<Title className=''>{__('Category In:', 'b-blocks')}</Title>
 								<RadioControl selected={metaCategoryIn} onChange={val => setAttributes({ metaCategoryIn: val })} options={categoriesPosition} />
 							</PanelRow>}
 
@@ -218,7 +218,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 						<ToggleControl label={__('Show Excerpt', 'b-blocks')} checked={isExcerpt} onChange={val => setAttributes({ isExcerpt: val })} />
 
 						{isExcerpt && <>
-							<Title mt='0' mb='0'>{__('Excerpt Length:', 'b-blocks')}</Title>
+							<Title className=''>{__('Excerpt Length:', 'b-blocks')}</Title>
 							<RangeControl value={excerptLength} onChange={val => setAttributes({ excerptLength: val })} min={0} max={maxExcerptLength} step={1} />
 							<small>{__('Excerpt max value will be your site default excerpt length', 'b-blocks')}</small>
 						</>}
@@ -229,7 +229,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 						<ToggleControl label={__('Show Read More', 'b-blocks')} checked={isReadMore} onChange={val => setAttributes({ isReadMore: val })} />
 
 						{isReadMore && <>
-							<Title mt='0' mb='0'>{__('Read More Label:', 'b-blocks')}</Title>
+							<Title className=''>{__('Read More Label:', 'b-blocks')}</Title>
 							<TextControl value={readMoreLabel} onChange={val => setAttributes({ readMoreLabel: '' === val ? 'Read More' : val })} />
 
 							<ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
@@ -249,7 +249,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 						<small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
 
 						<PanelRow className='mt20'>
-							<Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
+							<Title className=''>{__('Effect:', 'b-blocks')}</Title>
 							<SelectControl value={sliderEffect} onChange={cng => setAttributes({ sliderEffect: cng })} options={sliderEffects} />
 						</PanelRow>
 						<small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
@@ -272,7 +272,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 				{'style' === tab.name && <>
 					{isPosts && <PanelBody className='bPlPanelBody' title={__('Content', 'b-blocks')} initialOpen={true}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
+							<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 							<BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
 						</PanelRow>
 
@@ -325,7 +325,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 					{isPosts && isExcerpt && <PanelBody className='bPlPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Text Align:', 'b-blocks')}</Title>
+							<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 							<BtnGroup value={excerptAlign} onChange={val => setAttributes({ excerptAlign: val })} options={aligns} isIcon={true} />
 						</PanelRow>
 
@@ -339,7 +339,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 					{isPosts && isReadMore && <PanelBody className='bPlPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Button Align:', 'b-blocks')}</Title>
+							<Title className=''>{__('Button Align:', 'b-blocks')}</Title>
 							<BtnGroup value={readMoreAlign} onChange={val => setAttributes({ readMoreAlign: val })} options={aligns.filter(a => a.value !== 'justify')} isIcon={true} />
 						</PanelRow>
 

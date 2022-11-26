@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 const TWO50 = [50, 50];
 const THREE50 = [50, 50, 50];
 const TWO100 = [100, 100];
@@ -21,4 +23,9 @@ export const colOptions = [
 			tablet: [33.33, 33.33, 33.34, 33.33, 33.33, 33.34], mobile: [50, 50, 50, 50, 50, 50]
 		}
 	}
+];
+
+export const overflows = [
+	{ label: __('Hidden', 'b-blocks'), value: 'hidden' },
+	{ label: __('Visible', 'b-blocks'), value: 'visible' }
 ];

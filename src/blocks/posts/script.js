@@ -1,16 +1,27 @@
+import { render } from '@wordpress/element';
+
 const $ = jQuery;
 
 import './style.scss';
+import { GeneralStyle } from './Style';
 
 // Advanced Posts
 document.addEventListener('DOMContentLoaded', () => {
 	const allBBlocksPosts = document.querySelectorAll('.wp-block-b-blocks-posts');
 	allBBlocksPosts.forEach(posts => {
+		const attributes = JSON.parse(posts.dataset.attributes);
+		const { layout, columns, columnGap, rowGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPageClickable, sliderIsPageDynamic } = attributes;
+
+
+		// Style
+		const styleEl = document.querySelector(`#${posts.id} .bBlocksPostsStyle`);
+
+		render(<GeneralStyle attributes={attributes} clientId={attributes.cId} />, styleEl);
+
+
 		// Slider
 		const sliderEl = document.querySelector(`#${posts.id} .bBlocksSliderPosts`);
 		if (sliderEl) {
-			const { layout, columns, columnGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPageClickable, sliderIsPageDynamic } = JSON.parse(sliderEl.dataset.slider);
-
 			'slider' === layout && new Swiper(sliderEl, {
 				// Optional parameters
 				direction: 'horizontal',
@@ -67,14 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			slide.style.height = `${Math.max(...slideHeightArray)}px`;
 		});
 
-		// Remove data slider attributes
-		sliderEl?.removeAttribute('data-slider');
 
 		// Ticker
 		const tickerEl = document.querySelector(`#${posts.id} .bBlocksTickerPosts`);
 		if (tickerEl) {
-			const { rowGap } = JSON.parse(tickerEl.dataset.ticker);
-
 			$(tickerEl).easyTicker({
 				direction: 'up',
 				easing: 'swing',
@@ -87,7 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		}
 
-		// Remove data ticker attributes
-		tickerEl?.removeAttribute('data-ticker');
+
+		// Remove attributes data
+		posts?.removeAttribute('data-attributes');
 	});
 });

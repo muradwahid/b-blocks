@@ -87,7 +87,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 							<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable('price', val)} />
 
 							<PanelRow>
-								<Title mt='0' mb='0'>{__('Currency:', 'b-blocks')}</Title>
+								<Title className=''>{__('Currency:', 'b-blocks')}</Title>
 								<TextControl value={priceCurrency} onChange={val => updatePriceTable('priceCurrency', val)} />
 							</PanelRow>
 
@@ -119,7 +119,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow className='mt20'>
-							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -135,7 +135,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 					<PanelBody className='bPlPanelBody' title={__('Pricing Table', 'b-blocks')}>
 						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '35px', horizontal: '25px' }} />
 
-						<ShadowControl mt='20' label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} defaults={{ blur: '30px', color: '#6e8faf4d' }} />
+						<ShadowControl className='mt20' label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} defaults={{ blur: '30px', color: '#6e8faf4d' }} />
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

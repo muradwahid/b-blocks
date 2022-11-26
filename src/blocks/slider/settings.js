@@ -80,13 +80,13 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 								<Background label={__('Background', 'b-blocks')} background={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
 
 								<PanelRow>
-									<Title mt='0' mb='0'>{__('Content Position', 'b-blocks')}</Title>
+									<Title className=''>{__('Content Position', 'b-blocks')}</Title>
 									<AlignmentMatrixControl onChange={val => updateSlide(index, 'position', val)} />
 								</PanelRow>
 								<small>{__('You can also change the content position by dragging element.', 'b-blocks')}</small>
 
 								<PanelRow className='mt20'>
-									<Title mt='0' mb='0'>{__('Title:', 'b-blocks')}</Title>
+									<Title className=''>{__('Title:', 'b-blocks')}</Title>
 									<TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
 								</PanelRow>
 
@@ -98,12 +98,12 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 								<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateSlide(index, 'descColor', val)} defaultColor='#fff' />
 
 								<PanelRow className='mt20'>
-									<Title mt='0' mb='0'>{__('Button Text:', 'b-blocks')}</Title>
+									<Title className=''>{__('Button Text:', 'b-blocks')}</Title>
 									<TextControl value={btnText} onChange={val => updateSlide(index, 'btnText', val)} placeholder={__('Button label', 'b-blocks')} />
 								</PanelRow>
 
 								<PanelRow>
-									<Title mt='0' mb='0'>{__('Button Link:', 'b-blocks')}</Title>
+									<Title className=''>{__('Button Link:', 'b-blocks')}</Title>
 									<TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
 								</PanelRow>
 
@@ -133,7 +133,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -167,7 +167,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Effects', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title mt='0' mb='0'>{__('Effect:', 'b-blocks')}</Title>
+							<Title className=''>{__('Effect:', 'b-blocks')}</Title>
 							<SelectControl value={effect} onChange={val => setAttributes({ effect: val })} options={sliderEffects} />
 						</PanelRow>
 						<small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>

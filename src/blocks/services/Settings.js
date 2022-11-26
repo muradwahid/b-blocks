@@ -61,7 +61,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')}>
 				<PanelRow>
-					<Title mt='0' mb='0'>{__('Layout:', 'b-blocks')}</Title>
+					<Title className=''>{__('Layout:', 'b-blocks')}</Title>
 					<SelectControl value={layout} onChange={val => {
 						setAttributes({ layout: val });
 						'default' === val && setAttributes({
@@ -97,7 +97,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				</PanelRow>
 
 				<PanelRow className='mt20'>
-					<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -120,7 +120,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				<BorderControl label={__('Border', 'b-blocks')} border={itemBorder} onChange={val => setAttributes({ itemBorder: val })} defaults={{ radius: '15px' }} />
 
 				<PanelRow className='mt20'>
-					<Title mt='0' mb='0'>{__('Link In:', 'b-blocks')}</Title>
+					<Title className=''>{__('Link In:', 'b-blocks')}</Title>
 					<SelectControl value={linkIn} onChange={val => { setChildAttributes({ linkIn: val }); setLinkIn(val); }} options={linkPosition} />
 				</PanelRow>
 			</PanelBody>

@@ -13,12 +13,19 @@ class BBlocksRow extends BBlocks{
 	function render( $attributes, $content ){
 		extract( $attributes );
 
+		$className = $className ?? '';
+		$blockClassName = 'wp-block-b-blocks-row ' . $className . ' align' . $align;
+
+		// Style disappearing problem
+		global $allowedposttags;
+		$allowed_html = wp_parse_args( ['style' => []], $allowedposttags );
+
 		ob_start(); ?>
-		<div class='wp-block-b-blocks-row <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksRow-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksRow-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<div class='bBlocksRowStyle'></div>
 
 			<div class='bBlocksRow'>
-				<?php echo wp_kses_post( $content ); ?>
+				<?php echo wp_kses( $content, $allowed_html ); ?>
 			</div>
 		</div>
 

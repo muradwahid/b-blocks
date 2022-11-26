@@ -108,7 +108,7 @@ const Settings = ({ settings }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title mt='0'>{__('Layout:', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Layout:', 'b-blocks')}</Title>
 					<ButtonGroup className='bPlBtnGroup'>
 						<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
 							<Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => {
@@ -137,7 +137,7 @@ const Settings = ({ settings }) => {
 				</PanelRow>
 
 				<PanelRow className='mt20'>
-					<Title mt='0'>{__('Columns:', 'b-blocks')}</Title>
+					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />

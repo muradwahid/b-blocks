@@ -82,7 +82,7 @@ const Edit = props => {
 							</ul>}
 
 							{null !== selectedSocial && index === activeIndex && <div className='memberSocialForm'>
-								<Title mt='0'>{__('Link:', 'b-blocks')}</Title>
+								<Title className='mb5'>{__('Link:', 'b-blocks')}</Title>
 								<InputControl value={social[selectedSocial]?.link} onChange={val => updateMember(index, 'social', val, selectedSocial, 'link')} />
 
 								<IconControl icon={social[selectedSocial]?.icon} onChange={val => updateMember(index, 'social', val, selectedSocial, 'icon')} defaults={{ class: 'fa fa-facebook', fontSize: 22 }} isSize={false} isColor={false} />

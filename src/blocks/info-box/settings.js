@@ -86,7 +86,7 @@ const Settings = ({ settings }) => {
 
 				{isBtn && <>
 					<PanelRow>
-						<Title mt='0' mb='0'>{__('Button Link:', 'b-blocks')}</Title>
+						<Title className=''>{__('Button Link:', 'b-blocks')}</Title>
 						<TextControl value={btnLink} onChange={val => setAttributes({ btnLink: val })} placeholder={__('Button link', 'b-blocks')} />
 					</PanelRow>
 
