@@ -14,10 +14,10 @@ class BBlocksFlipBoxes extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksFlipBoxesClassName = 'wp-block-b-blocks-flip-boxes ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-flip-boxes ' . $className . ' align' . $align;
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksFlipBoxesClassName ); ?>' id='bBlocksFlipBoxes-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksFlipBoxes-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
 		<?php return ob_get_clean();
 	}

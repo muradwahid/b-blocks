@@ -1,6 +1,6 @@
 const $ = jQuery;
 
-const drags = (dragElement, resizeElement, container) => {
+export const drags = (dragElement, resizeElement, container) => {
 	// This creates a variable that detects if the user is using touch input instead of the mouse.
 	let touched = false;
 	window.addEventListener('touchstart', function () {
@@ -60,4 +60,3 @@ const drags = (dragElement, resizeElement, container) => {
 		resizeElement.removeClass('icResizable');
 	});
 }
-export { drags }

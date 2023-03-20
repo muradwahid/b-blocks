@@ -5,9 +5,7 @@ import { TabPanel, PanelBody, ToggleControl, __experimentalUnitControl as UnitCo
 // Settings Components
 import Title from '../../../../Components/Title';
 import { InlineMediaUpload } from '../../../../Components/MediaControl';
-
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { source, poster, controls, width, radius, repeat, autoplay, muted, resetOnEnd, autoHideControl } = attributes;
@@ -28,7 +26,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		]}>{tab => <>
 			{'settings' === tab.name && <>
 				<Title className='' />
-				<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+				<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 					{/* <div className='helpItem'>
 						<a href='https://bblockswp.com/docs/video-player-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 					</div> */}
@@ -94,9 +92,9 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 			{'style' === tab.name && <PanelBody className='bPlPanelBody'>
-				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, emUnit, perUnit]} />
+				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), emUnit(), perUnit()]} />
 
-				<UnitControl className='mt20' label={__('Round Corner:', 'b-blocks')} labelPosition='left' value={radius} onChange={val => setAttributes({ radius: val })} units={[pxUnit]} />
+				<UnitControl className='mt20' label={__('Round Corner:', 'b-blocks')} labelPosition='left' value={radius} onChange={val => setAttributes({ radius: val })} units={[pxUnit()]} />
 			</PanelBody>}
 		</>}</TabPanel>
 	</InspectorControls>;

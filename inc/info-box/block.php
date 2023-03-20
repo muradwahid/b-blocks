@@ -14,7 +14,7 @@ class BBlocksInfoBox extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksInfoBoxClassName = 'wp-block-b-blocks-info-box ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-info-box ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$infoBoxStyle = new BBlocksStyleGenerator();
@@ -58,7 +58,7 @@ class BBlocksInfoBox extends BBlocks{
 		$btnTab = $isLinkNewTab ? '_blank' : '';
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksInfoBoxClassName ); ?>' id='bBlocksInfoBox-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksInfoBox-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>

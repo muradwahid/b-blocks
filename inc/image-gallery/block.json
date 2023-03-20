@@ -62,13 +62,21 @@
 		"capTitleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 18
+				"fontSize": {
+					"desktop": 18,
+					"tablet": 17,
+					"mobile": 16
+				}
 			}
 		},
 		"capDescTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 15
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
 			}
 		}
 	},

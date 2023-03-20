@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl, Dashicon } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -10,10 +11,11 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
+import { pxUnit, perUnit, emUnit, remUnit } from '../../../../Components/Helper/options';
 
 import { tabController } from '../../utils/functions';
 import options from '../../utils/options';
-const { generalStyleTabs, flexPos, pxUnit, perUnit, emUnit, remUnit } = options;
+const { generalStyleTabs, flexPos } = options;
 const layouts = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
 	{ label: __('Layout 1', 'b-blocks'), value: 'layout1' },
@@ -60,11 +62,11 @@ const Settings = ({ attributes, setAttributes }) => {
 								setAttributes({ layout: val });
 								'default' === val && setAttributes({
 									boxIsInline: false,
-									background: { type: 'solid', color: '#0000', styles: '' },
-									shadow: { hOffset: '0px', vOffset: '0px', color: '#0000', styles: 'none' },
-									boxBG: { type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)', styles: 'background-image: linear-gradient(135deg, #4527a4, #8344c5);' },
+									background: { type: 'solid', color: '#0000' },
+									shadow: { hOffset: '0px', vOffset: '0px', color: '#0000' },
+									boxBG: { type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' },
 									boxSpace: '30px',
-									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%', styles: 'border-radius: 5%;' },
+									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%' },
 									digitColor: '#fff',
 									labelColor: '#fff',
 									isSep: false,
@@ -72,11 +74,11 @@ const Settings = ({ attributes, setAttributes }) => {
 								});
 								'layout1' === val && setAttributes({
 									boxIsInline: false,
-									background: { type: 'gradient', gradient: 'linear-gradient(180deg, #4527a4, #8344c5)', styles: 'background-image: linear-gradient(180deg, #4527a4, #8344c5);' },
-									shadow: { hOffset: '5px', vOffset: '5px', color: '#4527a4', styles: '5px 5px 0px 0px #4527a4' },
-									boxBG: { type: 'solid', color: '#0000', styles: 'background-color: #0000;' },
+									background: { type: 'gradient', gradient: 'linear-gradient(180deg, #4527a4, #8344c5)' },
+									shadow: { hOffset: '5px', vOffset: '5px', color: '#4527a4' },
+									boxBG: { type: 'solid', color: '#0000' },
 									boxSpace: '0px',
-									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%', styles: 'border-radius: 5%;' },
+									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%' },
 									digitColor: '#fff',
 									labelColor: '#fff',
 									isSep: true,
@@ -84,11 +86,11 @@ const Settings = ({ attributes, setAttributes }) => {
 								});
 								'layout2' === val && setAttributes({
 									boxIsInline: false,
-									background: { type: 'solid', color: '#0000', styles: '' },
-									shadow: { hOffset: '0px', vOffset: '0px', color: '#0000', styles: 'none' },
-									boxBG: { type: 'solid', color: '#0000', styles: 'background-color: #0000;' },
+									background: { type: 'solid', color: '#0000' },
+									shadow: { hOffset: '0px', vOffset: '0px', color: '#0000' },
+									boxBG: { type: 'solid', color: '#0000' },
 									boxSpace: '30px',
-									boxBorder: { width: '2px', type: 'solid', color: '#4527a4', radius: '5%', styles: 'border-top: 2px solid #4527a4; border-right: 2px solid #4527a4; border-bottom: 2px solid #4527a4; border-left: 2px solid #4527a4; border-radius: 5%;' },
+									boxBorder: { width: '2px', type: 'solid', color: '#4527a4', radius: '5%' },
 									digitColor: '#4527a4',
 									labelColor: '#4527a4',
 									isSep: true,
@@ -96,11 +98,11 @@ const Settings = ({ attributes, setAttributes }) => {
 								});
 								'layout3' === val && setAttributes({
 									boxIsInline: true,
-									background: { type: 'solid', color: '#0000', styles: '' },
-									shadow: { hOffset: '0px', vOffset: '8px', blur: '15px', color: '#4527a4', styles: '0px 8px 15px 0px #4527a4' },
-									boxBG: { type: 'solid', color: '#0000', styles: 'background-color: #0000;' },
+									background: { type: 'solid', color: '#0000' },
+									shadow: { hOffset: '0px', vOffset: '8px', blur: '15px', color: '#4527a4' },
+									boxBG: { type: 'solid', color: '#0000' },
 									boxSpace: '30px',
-									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%', styles: 'border-radius: 5%;' },
+									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%' },
 									digitColor: '#4527a4',
 									labelColor: '#4527a4',
 									isSep: true,
@@ -126,14 +128,14 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				{'style' == tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Countdown', 'b-blocks')}>
-						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 						<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>
 
-						<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '15px' }} />
 
-						<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+						<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => setAttributes({ shadow: val })} />
 					</PanelBody>
 
 
@@ -143,27 +145,27 @@ const Settings = ({ attributes, setAttributes }) => {
 							<SelectControl value={boxPosition} onChange={val => setAttributes({ boxPosition: val })} options={flexPos} />
 						</PanelRow>}
 
-						<Background label={__('Background:', 'b-blocks')} background={boxBG} onChange={val => setAttributes({ boxBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} />
+						<Background label={__('Background:', 'b-blocks')} value={boxBG} onChange={val => setAttributes({ boxBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} />
 
-						<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={boxWidth} onChange={val => setAttributes({ boxWidth: val })} units={[pxUnit, emUnit, remUnit]} />
+						<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={boxWidth} onChange={val => setAttributes({ boxWidth: val })} units={[pxUnit(), emUnit(), remUnit()]} />
 
-						<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight} onChange={val => setAttributes({ boxHeight: val })} units={[pxUnit, emUnit, remUnit]} />
+						<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight} onChange={val => setAttributes({ boxHeight: val })} units={[pxUnit(), emUnit(), remUnit()]} />
 
-						<UnitControl className='mt20' label={__('Space Between Boxes:', 'b-blocks')} labelPosition='left' value={boxSpace} onChange={val => setAttributes({ boxSpace: val })} units={[pxUnit, emUnit, remUnit]} />
+						<UnitControl className='mt20' label={__('Space Between Boxes:', 'b-blocks')} labelPosition='left' value={boxSpace} onChange={val => setAttributes({ boxSpace: val })} units={[pxUnit(), emUnit(), remUnit()]} />
 
-						<BorderControl label={__('Border', 'b-blocks')} border={boxBorder} onChange={val => setAttributes({ boxBorder: val })} defaults={{ radius: '5%' }} />
+						<BorderControl label={__('Border', 'b-blocks')} value={boxBorder} onChange={val => setAttributes({ boxBorder: val })} defaults={{ radius: '5%' }} />
 
-						<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={boxShadow} onChange={val => setAttributes({ boxShadow: val })} />
+						<ShadowControl label={__('Shadow:', 'b-blocks')} value={boxShadow} onChange={val => setAttributes({ boxShadow: val })} />
 					</PanelBody>
 
 
 					{isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bPlPanelBody' title={__('Content', 'b-blocks')} initialOpen={false}>
-						<Typography label={__('Digit Typography:', 'b-blocks')} typography={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: 48 }} />
+						<Typography label={__('Digit Typography:', 'b-blocks')} value={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} produce={produce} />
 
 						<BColor label={__('Digit Color:', 'b-blocks')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
 
 						{isLabels && <>
-							<Typography className='mt20' label={__('Label Typography:', 'b-blocks')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 18 }} />
+							<Typography className='mt20' label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} produce={produce} />
 
 							<BColor label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
 						</>}

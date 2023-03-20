@@ -6,10 +6,9 @@ import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, Sel
 import Title from '../../../../Components/Title';
 import Background from '../../../../Components/Background';
 import BColor from '../../../../Components/BColor';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import icons from '../../utils/icons';
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
 const types = [
 	{ label: __('Line', 'b-blocks'), value: 'line' },
 	{ label: __('Bar', 'b-blocks'), value: 'bar' },
@@ -147,7 +146,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/chart-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div>
@@ -221,7 +220,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 							e.preventDefault();
 							duplicateDatasetValue(datasetIndex);
-						}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+						}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 					</PanelRow>
 				</PanelBody>)}
 
@@ -238,9 +237,9 @@ const Settings = ({ attributes, setAttributes }) => {
 				</PanelRow>
 				<small>{__(`Use single dataset value for 'Pie', 'Doughnut', and 'Polar Area'`, 'b-blocks')}</small>
 
-				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-				<Background className='mt20' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+				<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
 				<BColor label={__('Text Color:', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#666' />
 

@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const allCards = document.querySelectorAll('.wp-block-b-blocks-cards');
 	allCards.forEach(card => {
 		const attributes = JSON.parse(card.dataset.attributes);
-		const { cards = [], columns, layout, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
+		const { cId, cards = [], columns, layout, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
 
 		render(<>
-			<Style attributes={attributes} clientId={attributes.cId} />
+			<Style attributes={attributes} clientId={cId} />
 
 			<div className={`bBlocksCards ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{cards.map((item, index) => {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					const CardTitle = () => isTitle && <h3 className='cardTitle' dangerouslySetInnerHTML={{ __html: title }} />
 
 					const CardImage = () => img?.url && <figure className='cardImage'>
-						<img className={img?.id ? `wp-image-${img.id}` : null} src={img.url} alt={img?.alt || img?.title} />
+						<img src={img.url} alt={img?.alt || img?.title} />
 
 						{'image' === titlePos && <CardTitle />}
 					</figure>;

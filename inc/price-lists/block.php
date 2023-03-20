@@ -14,7 +14,7 @@ class BBlocksPriceLists extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksPriceListsClassName = 'wp-block-b-blocks-price-lists ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-price-lists ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$priceListsStyle = new BBlocksStyleGenerator();
@@ -65,12 +65,10 @@ class BBlocksPriceLists extends BBlocks{
 
 			<div class='bBlocksPriceLists <?php echo esc_attr( $layout ?? 'vertical' ); ?> columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
 				<?php foreach ( $products as $index => $product ) {
-					extract( $product );
-					// Classes
-					$imgClass = isset( $img['id'] ) ? 'wp-image-'.$img['id'] : ''; ?>
+					extract( $product ); ?>
 
 					<div class='bBlocksPrice' id='bBlocksPrice-<?php echo esc_attr( $index ); ?>'>
-						<?php echo $img['url'] ? "<img class='productImage ". esc_attr( $imgClass ) ."' src='". esc_url( $img['url'] ) ."' alt='". esc_attr( $img['alt'] ) ."' />" : ''; ?>
+						<?php echo $img['url'] ? "<img class='productImage' src='". esc_url( $img['url'] ) ."' alt='". esc_attr( $img['alt'] ) ."' />" : ''; ?>
 
 						<div class='productDetails'>
 							<h4 class='productName'><?php echo wp_kses_post( $name ); ?></h4>

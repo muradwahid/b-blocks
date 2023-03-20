@@ -5,9 +5,8 @@ import { PanelBody, PanelRow, TextControl, ToggleControl, SelectControl, __exper
 // Settings Components
 import Title from '../../../../Components/Title';
 import BtnGroup from '../../../../Components/BtnGroup';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
 const sourceTypes = [
 	{ label: __('Upload', 'b-blocks'), value: 'upload' },
 	{ label: __('Link', 'b-blocks'), value: 'link' }
@@ -25,7 +24,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/3d-viewer-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div>
@@ -69,10 +68,10 @@ const Settings = ({ attributes, setAttributes }) => {
 					<TextControl value={modelLink} onChange={val => setAttributes({ modelLink: val })} />
 				</>}
 
-				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 				<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>
 
-				<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 				<small>{__('Keep height 0, to 350px height.', 'b-blocks')}</small>
 
 				<ToggleControl className='mt20' label={__('Controls via mouse/touch', 'b-blocks')} checked={isTouchMove} onChange={val => setAttributes({ isTouchMove: val })} />

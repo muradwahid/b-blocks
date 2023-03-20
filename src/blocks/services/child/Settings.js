@@ -9,16 +9,13 @@ import Background from '../../../../../Components/Background';
 import IconControl from '../../../../../Components/IconControl';
 import { ImageHolderControl } from '../../../../../Components/ImageControl';
 import BorderControl from '../../../../../Components/BorderControl';
-
-import options from '../../../utils/options';
-import servicePattern from '../img/service-pattern.png';
-const { pxUnit, perUnit, emUnit } = options;
+import { pxUnit, perUnit, emUnit } from '../../../../../Components/Helper/options';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { background, hoverBG, isIcon, isUpIcon, icon, upIcon, iconWidth, iconBorder, isTitle, titleColor, isDesc, descColor, isLink, link, linkIn, linkIconColor, linkBGColor, linkBGHovColor } = attributes;
 
 	return <InspectorControls>
-		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+		<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 			<div className='helpItem'>
 				<a href='https://bblockswp.com/docs/services-section-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 			</div>
@@ -32,24 +29,22 @@ const Settings = ({ attributes, setAttributes }) => {
 		</PanelBody>
 
 		<PanelBody className='bPlPanelBody' title={__('Service Settings', 'b-blocks')}>
-			<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+			<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-			<Background label={__('Hover Background:', 'b-blocks')} background={hoverBG} onChange={val => setAttributes({ hoverBG: val })} defaults={{ type: 'image', image: { url: servicePattern }, overlayColor: '#0000', position: 'bottom left', size: 'auto' }} />
+			<Background label={__('Hover Background:', 'b-blocks')} value={hoverBG} onChange={val => setAttributes({ hoverBG: val })} defaults={{ type: 'image', image: { url: 'https://i.ibb.co/HVF4NB3/service-pattern.png' }, overlayColor: '#0000', position: 'bottom left', size: 'auto' }} />
 		</PanelBody>
 
 		{isIcon && <PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
 			<ToggleControl label='Upload Icon?' checked={isUpIcon} onChange={val => setAttributes({ isUpIcon: val })} />
 
 			{isUpIcon ? <>
-				{/* After Image */}
-				<ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} img={upIcon} onChange={val => setAttributes({ upIcon: val })} />
+				<ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} value={upIcon} onChange={val => setAttributes({ upIcon: val })} />
 
-				<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => setAttributes({ iconWidth: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => setAttributes({ iconWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-			</> : <IconControl icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fab fa-wordpress', fontSize: 70 }} />}
+			</> : <IconControl value={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fab fa-wordpress', fontSize: 70 }} />}
 
-			{/* Border */}
-			<BorderControl label={__('Border:', 'b-blocks')} border={iconBorder} onChange={val => setAttributes({ iconBorder: val })} />
+			<BorderControl label={__('Border:', 'b-blocks')} value={iconBorder} onChange={val => setAttributes({ iconBorder: val })} />
 		</PanelBody>}
 
 		<PanelBody className='bPlPanelBody' title={__('Colors Settings', 'b-blocks')} initialOpen={false}>

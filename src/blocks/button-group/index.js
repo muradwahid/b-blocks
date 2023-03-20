@@ -1,7 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from '../../../inc/button-group/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
 import icons from '../../utils/icons';
 

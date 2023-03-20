@@ -8,17 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	const allTeams = document.querySelectorAll('.wp-block-b-blocks-team-members');
 	allTeams.forEach(team => {
 		const attributes = JSON.parse(team.dataset.attributes);
-		const { members = [], columns, layout, isTitle, isSep, isBio, isSocial } = attributes;
+		const { cId, members = [], columns, layout, isTitle, isSep, isBio, isSocial } = attributes;
 
 		render(<>
-			<Style attributes={attributes} clientId={attributes.cId} />
+			<Style attributes={attributes} clientId={cId} />
 
 			<div className={`bBlocksTeamMembers ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{members.map((item, index) => {
 					const { photo, name, title, bio, social = [] } = item;
 
-					return <div key={index} className={`bBlocksMember`} id={`bBlocksMember-${index}`}>
-						{photo?.url && <img className={`memberPhoto ${photo?.id ? `wp-image-${photo?.id}` : null}`} src={photo?.url} alt={photo?.alt} />}
+					return <div key={index} className='bBlocksMember' id={`bBlocksMember-${index}`}>
+						{photo?.url && <img className='memberPhoto' src={photo.url} alt={photo?.alt} />}
 
 						<div className='memberDetails'>
 							{name && <h4 className='memberName' dangerouslySetInnerHTML={{ __html: name }} />}

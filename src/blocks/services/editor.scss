@@ -10,7 +10,7 @@ $primaryColor: #4527a4;
 
 // Services
 .wp-block-b-blocks-services .bBlocksServices {
-	display: block;
+	display: block !important;
 
 	>.block-editor-inner-blocks>.block-editor-block-list__layout {
 		display: grid;

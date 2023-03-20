@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl, Tooltip, CheckboxControl } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -9,10 +9,11 @@ import BColor from '../../../../Components/BColor';
 import BDevice from '../../../../Components/BDevice';
 import ShadowControl from '../../../../Components/ShadowControl';
 import SpaceControl from '../../../../Components/SpaceControl';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import icons from '../../utils/icons';
 import options from '../../utils/options';
-const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
+const { generalStyleTabs } = options;
 
 const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, setActiveIndex }) => {
 	const { pricingTables, columns, columnGap, rowGap, textAlign, padding, shadow } = attributes;
@@ -60,13 +61,36 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 		setActiveIndex(updatePriceTable.length);
 	}
 
-	const { price = 0, priceCurrency = '', link = '', color = '' } = pricingTables[activeIndex] || {};
+	const duplicatePricingTable = e => {
+		e.preventDefault();
+
+		setAttributes({ pricingTables: [...pricingTables.slice(0, activeIndex), { ...pricingTables[activeIndex] }, ...pricingTables.slice(activeIndex)] });
+
+		setActiveIndex(activeIndex + 1);
+	}
+
+	const removePricingTable = e => {
+		e.preventDefault();
+
+		setAttributes({ pricingTables: [...pricingTables.slice(0, activeIndex), ...pricingTables.slice(activeIndex + 1)] });
+
+		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
+	}
+
+	const { price = 0, priceCurrency = '', features = [], link = '', color = '' } = pricingTables[activeIndex] || {};
+
+	const addFeature = e => {
+		e.preventDefault();
+		updatePriceTable('features', [...features, {
+			isEnable: '#', label: 'New Feature of Price'
+		}]);
+	}
 
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 						<div className='helpItem'>
 							<a href='https://bblockswp.com/docs/pricing-table-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
@@ -84,12 +108,36 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 						{null !== activeIndex && <>
 							<h3 className='bplItemTitle'>{__(`Price No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-							<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable('price', val)} />
+							<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable('price', parseFloat(val))} />
 
 							<PanelRow>
 								<Title className=''>{__('Currency:', 'b-blocks')}</Title>
 								<TextControl value={priceCurrency} onChange={val => updatePriceTable('priceCurrency', val)} />
 							</PanelRow>
+
+							<Title>{__('Features:', 'b-blocks')}</Title>
+							{features?.map((feature, featureIndex) => {
+								const { isEnable, label } = feature;
+
+								const removeFeature = e => {
+									e.preventDefault();
+									updatePriceTable('features', [...features.slice(0, featureIndex), ...features.slice(featureIndex + 1)]);
+								}
+
+								return <PanelRow key={featureIndex} className='editPriceFeature'>
+									<CheckboxControl className='priceFeatureIsEnable' checked={isEnable} onChange={val => updatePriceTable('features', val, featureIndex, 'isEnable')} />
+
+									<TextControl value={label} onChange={val => updatePriceTable('features', val, featureIndex, 'label')} />
+
+									<Tooltip text={__('Remove the feature', 'b-blocks')} position='top'>
+										<a className='removeItem' onClick={removeFeature}><Dashicon icon='no' /></a>
+									</Tooltip>
+								</PanelRow>;
+							})}
+
+							<div className='addItem addFeature mt5'>
+								<Button className='addItem' label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' />{__('Add New Feature', 'b-blocks')}</Button>
+							</div>
 
 							<Title>{__('Link:', 'b-blocks')}</Title>
 							<TextControl value={link} onChange={val => updatePriceTable('link', val)} />
@@ -97,17 +145,9 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 							<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor='#4527a4' />
 
 							<PanelRow className='itemAction mt20 mb15'>
-								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(1 === pricingTables.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
-									setAttributes({ pricingTables: [...pricingTables.slice(0, activeIndex), ...pricingTables.slice(activeIndex + 1)] });
-								}} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+								{1 < pricingTables?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removePricingTable} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(pricingTables.length);
-									setAttributes({ pricingTables: [...pricingTables, { ...pricingTables[activeIndex] }] });
-								}} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicatePricingTable} >{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>
 						</>}
 
@@ -124,18 +164,18 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 					</PanelBody>
 				</>}
 
 
 				{'style' === tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Pricing Table', 'b-blocks')}>
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '35px', horizontal: '25px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '35px', horizontal: '25px' }} />
 
-						<ShadowControl className='mt20' label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} defaults={{ blur: '30px', color: '#6e8faf4d' }} />
+						<ShadowControl className='mt20' label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => setAttributes({ shadow: val })} defaults={{ blur: '30px', color: '#6e8faf4d' }} />
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

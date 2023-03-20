@@ -8,10 +8,9 @@ import Background from '../../../../Components/Background';
 import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
+import { pxUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
 import { overflows } from './utils/options';
-const { pxUnit, emUnit, vhUnit } = options;
 const heightTypes = [
 	{ label: __('Auto', 'b-blocks'), value: 'auto' },
 	{ label: __('Window Height (100%)', 'b-blocks'), value: 'window' },
@@ -42,7 +41,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 		<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
-			<UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit]} />
+			<UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit()]} />
 
 			<PanelRow className='mt20'>
 				<Title className=''>{__('Height:', 'b-blocks')}</Title>
@@ -51,7 +50,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				}} options={heightTypes} />
 			</PanelRow>
 
-			{'custom' === heightType && <UnitControl className='mt10' label={__('Min Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit, emUnit, vhUnit]} />}
+			{'custom' === heightType && <UnitControl className='mt10' label={__('Min Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit(), emUnit(), vhUnit()]} />}
 
 			<PanelRow className='mt20'>
 				<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
@@ -71,13 +70,13 @@ const Settings = ({ attributes, setAttributes }) => {
 				<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 			</PanelRow>
 
-			<Background className='mt20' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
+			<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
 
-			<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '0px' }} />
+			<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '0px' }} />
 
-			<BorderControl label={__('Border', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
+			<BorderControl label={__('Border', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} />
 
-			<ShadowControl label={__('Shadow', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+			<ShadowControl label={__('Shadow', 'b-blocks')} value={shadow} onChange={val => setAttributes({ shadow: val })} />
 		</PanelBody>
 	</InspectorControls>;
 };

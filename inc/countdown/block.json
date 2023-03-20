@@ -129,7 +129,11 @@
 		"digitTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 48
+				"fontSize": {
+					"desktop": 48,
+					"tablet": 40,
+					"mobile": 32
+				}
 			}
 		},
 		"digitColor": {
@@ -139,7 +143,11 @@
 		"labelTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 18
+				"fontSize": {
+					"desktop": 18,
+					"tablet": 17,
+					"mobile": 16
+				}
 			}
 		},
 		"labelColor": {

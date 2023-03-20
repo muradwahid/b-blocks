@@ -74,49 +74,46 @@ class BBlocks{
 
 	// Enqueue block assets
 	function enqueueBockAssets(){
-		wp_enqueue_style( 'fontAwesome', B_BLOCKS_ASSETS_DIR . 'css/fontAwesome.min.css', [], '5.15.4' ); // Font Awesome
-		wp_enqueue_script( 'swiperJS', B_BLOCKS_ASSETS_DIR . 'js/swiper.min.js', [], '8.0.7', true ); // Posts, Slider
-		wp_enqueue_script( 'plyrJS', B_BLOCKS_ASSETS_DIR . 'js/plyr.js', [], '3.7.2', true ); // Video
-		wp_enqueue_script( 'chartJS', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', [], '3.5.1', true ); // Chart
-		wp_enqueue_script( 'easyTicker', B_BLOCKS_ASSETS_DIR . 'js/easy-ticker.min.js', [], '3.2.1', true ); // Posts
-		
-		wp_enqueue_style( 'swiperCSS', B_BLOCKS_ASSETS_DIR . 'css/swiper.min.css', [], '8.0.7' ); // Posts, Slider
-		wp_enqueue_style( 'plyrCSS', B_BLOCKS_ASSETS_DIR . 'css/plyr.css', [], '3.7.2' ); // Video
-		wp_enqueue_style( 'animate', B_BLOCKS_ASSETS_DIR . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
-		wp_enqueue_script( 'textillate', B_BLOCKS_ASSETS_DIR . 'js/jquery.textillate.min.js', [ 'jquery' ], B_BLOCKS_PLUGIN_VERSION, true ); // Animated Text
-		
-		echo wp_get_script_tag( [
-			'src'	=> B_BLOCKS_ASSETS_DIR . 'js/model-viewer.min.js',
-			'type'	=> 'module',
-		] ); // 3D Viewer
+		wp_register_script( 'easyTicker', B_BLOCKS_ASSETS_DIR . 'js/easy-ticker.min.js', [], '3.2.1', true ); // Posts
+		wp_register_script( 'swiper', B_BLOCKS_ASSETS_DIR . 'js/swiper.min.js', [], '8.0.7', true ); // Posts, Slider
+		wp_register_script( 'lottiePlayer', B_BLOCKS_ASSETS_DIR . 'js/lottie-player.js', [], '1.5.7', true );
+		wp_register_script( 'chart', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', [], '3.5.1', true ); // Chart
+		wp_register_script( 'plyr', B_BLOCKS_ASSETS_DIR . 'js/plyr.js', [], '3.7.2', true ); // Video
+		wp_register_script( 'textillate', B_BLOCKS_ASSETS_DIR . 'js/jquery.textillate.min.js', [], '0.6.1', true ); // Animated Text
+		wp_register_script( 'goodShare', B_BLOCKS_ASSETS_DIR . 'js/goodshare.min.js', [], B_BLOCKS_PLUGIN_VERSION, true ); // Social Share
 
-		wp_enqueue_script( 'goodShare', B_BLOCKS_ASSETS_DIR . 'js/goodshare.min.js', [], B_BLOCKS_PLUGIN_VERSION, true ); // Social Share
+		echo wp_get_script_tag( [ 'src'	=> B_BLOCKS_ASSETS_DIR . 'js/model-viewer.min.js', 'type' => 'module' ] ); // 3D Viewer
+		
+		wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS_DIR . 'css/fontAwesome.min.css', [], '5.15.4' ); // Font Awesome
+		wp_register_style( 'swiper', B_BLOCKS_ASSETS_DIR . 'css/swiper.min.css', [], '8.0.7' ); // Posts, Slider
+		wp_register_style( 'plyr', B_BLOCKS_ASSETS_DIR . 'css/plyr.css', [], '3.7.2' ); // Video
+		wp_register_style( 'animate', B_BLOCKS_ASSETS_DIR . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
+
+		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'fontAwesome', 'swiper', 'plyr', 'animate' ], B_BLOCKS_PLUGIN_VERSION ); // Style
 	}
 
 	// Enqueue Block Editor Assets
 	function enqueueBlockEditorAssets(){
-		wp_enqueue_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [ 'wp-edit-blocks' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
+		wp_enqueue_script( 'jqueryUI', B_BLOCKS_ASSETS_DIR . 'js/jquery-ui.min.js', [], '1.13.0', true ); // Slider Block
 
-		wp_enqueue_script( 'jqueryUI', B_BLOCKS_ASSETS_DIR . 'js/jquery-ui.min.js', [], '1.13.0', true );
+		wp_enqueue_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
+
+		wp_enqueue_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 	}
 
 	// WP enqueue scripts
 	function wpEnqueueScripts() {
+		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', [], '4.0', true ); // Image Gallery
+		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', [], '1.0.3', true ); // Mail To
+
 		wp_enqueue_style( 'dashicon' );
 		wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '4.0', 'all' ); // Image Gallery
 
-		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', [], '4.0', true ); // Image Gallery
-		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', [], B_BLOCKS_PLUGIN_VERSION, true ); // Mail To
+		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-element', 'jquery', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare', 'fancybox', 'mailtoui' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 	}
 
 	// On Init
 	function onInit(){
-		wp_enqueue_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'swiperJS', 'plyrJS', 'chartJS', 'easyTicker', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
-
-		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-element', 'jquery', 'swiperJS', 'chartJS', 'easyTicker', 'fancybox', 'mailtoui', 'textillate' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
-
-		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [], B_BLOCKS_PLUGIN_VERSION ); // Frontend Style
-
 		wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', plugin_dir_path( __FILE__ ) . 'languages' ); // Translate
 	}
 

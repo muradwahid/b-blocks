@@ -167,18 +167,24 @@
 		"iconMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "20px"
 			}
 		},
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 25
+				"fontSize": {
+					"desktop": 25,
+					"tablet": 22,
+					"mobile": 20
+				}
 			}
 		},
 		"titleMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "20px"
 			}
 		},
@@ -189,7 +195,11 @@
 		"descTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 16
+				"fontSize": {
+					"desktop": 16,
+					"tablet": 16,
+					"mobile": 16
+				}
 			}
 		},
 		"isBtn": {
@@ -203,7 +213,11 @@
 		"btnTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 16
+				"fontSize": {
+					"desktop": 16,
+					"tablet": 16,
+					"mobile": 16
+				}
 			}
 		},
 		"btnPadding": {

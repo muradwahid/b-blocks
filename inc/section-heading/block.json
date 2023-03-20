@@ -30,7 +30,11 @@
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 25,
+				"fontSize": {
+					"desktop": 25,
+					"tablet": 22,
+					"mobile": 20
+				},
 				"fontWeight": 600
 			}
 		},
@@ -41,6 +45,7 @@
 		"titleMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "10px"
 			}
 		},
@@ -59,6 +64,7 @@
 		"sepMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "5px"
 			}
 		},
@@ -73,7 +79,11 @@
 		"descTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 15
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
 			}
 		},
 		"descColor": {
@@ -83,6 +93,7 @@
 		"descMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "15px"
 			}
 		}

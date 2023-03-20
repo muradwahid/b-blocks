@@ -1,75 +1,77 @@
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { slides = [], sliderWidth, sliderHeight, pageColor, pageWidth, pageHeight, pageBorder, prevNextColor, sliderAlign, titleTypo, descTypo, btnTypo, btnPadding, btnBorder } = attributes;
 
-	const contentSlider = `#bBlocksSlider-${clientId} .bBlocksSlider`;
-	const currentSlide = index => `${contentSlider} .slide-${index}`;
+	const sliderSl = `#bBlocksSlider-${clientId} .bBlocksSlider`;
+	const gSlideSl = `${sliderSl} .slide`;
 
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
+				${getTypoCSS(`${gSlideSl} .sliderTitle`, titleTypo)}
+				${getTypoCSS(`${gSlideSl} .sliderDescription`, descTypo)}
+				${getTypoCSS(`${gSlideSl} .sliderBtn`, btnTypo)}
 
 				#bBlocksSlider-${clientId} .bBlocksSliderWrapper{
 					text-align: ${sliderAlign};
 				}
-				${contentSlider}{
+				${sliderSl}{
 					width: ${sliderWidth};
 					height: ${sliderHeight};
 				}
-				
-				${contentSlider} .slide .sliderTitle{
-					${titleTypo?.styles || 'font-size: 25px;'}
-				}
-				${contentSlider} .slide .sliderDescription{
-					${descTypo?.styles || 'font-size: 15px;'}
-				}
-				${contentSlider} .slide .sliderBtn{
-					${btnTypo?.styles || 'font-size: 16px;'}
-					padding: ${btnPadding?.styles || '12px 35px'};
-					${btnBorder?.styles || 'border-radius: 3px;'}
+
+				${gSlideSl} .sliderBtn{
+					padding: ${getSpaceCSS(btnPadding)};
+					${getBorderCSS(btnBorder)}
 				}
 
-				${contentSlider} .swiper-pagination .swiper-pagination-bullet{
+				${sliderSl} .swiper-pagination .swiper-pagination-bullet{
 					background: ${pageColor};
 					width: ${pageWidth};
 					height: ${pageHeight};
-					${pageBorder?.styles || 'border-radius: 50%;'}
+					${getBorderCSS(pageBorder)}
 				}
 				
-				${contentSlider} .swiper-button-prev, ${contentSlider} .swiper-button-next{ color: ${prevNextColor}; }
+				${sliderSl} .swiper-button-prev, ${sliderSl} .swiper-button-next{
+					color: ${prevNextColor};
+				}
 			`.replace(/\s+/g, ' ')
 		}} />
+
 		<style>
 			{slides.map((item, index) => {
 				const { childPositions = [{ left: 5.8, top: 11 }, { left: 5.8, top: 22 }, { left: 5.8, top: 33 }] } = item;
 
-				const curSlide = currentSlide(index);
-				const contentChild = document.querySelector(`${curSlide} .sliderContent`)?.children || [];
+				const slideSl = `${sliderSl} .slide-${index}`;
+				const contentChild = document.querySelector(`${slideSl} .sliderContent`)?.children || [];
 
 				let childElPositionCSS = '';
 				for (let i = 0; i < contentChild.length; i++) {
 					childPositions[i] = childPositions[i] || { left: 5.8, top: (i + 1) * 11 };
 
-					childElPositionCSS += `${curSlide} .sliderContent > *:nth-child(${i + 1}){ top: ${childPositions[i].top}%; left: ${childPositions[i].left}%; }`;
+					childElPositionCSS += `${slideSl} .sliderContent > *:nth-child(${i + 1}){
+						top: ${childPositions[i].top}%; left: ${childPositions[i].left}%;\
+					}`;
 				}
 
-				return `${curSlide}{
-						${item.background?.styles || 'background-color: #00000080;'}
+				return `${slideSl}{
+						${getBackgroundCSS(item.background) || 'background-color: #00000080;'}
 					}
-					${curSlide} .sliderTitle{
+					${slideSl} .sliderTitle{
 						color: ${item.titleColor || '#fff'};
 					}
-					${curSlide} .sliderDescription{
+					${slideSl} .sliderDescription{
 						color: ${item.descColor || '#fff'};
 					}
-					${curSlide} .sliderBtn{
-						${item.btnColors?.styles || 'color: #fff; background: #4527a4;'}
+					${slideSl} .sliderBtn{
+						${getColorsCSS(item.btnColors) || 'color: #fff; background: #4527a4;'}
 					}
-					${curSlide} .sliderBtn:hover{
-						${item.btnHovColors?.styles || 'color: #fff; background: #8344c5;'}
-					}${childElPositionCSS}`.replace(/\s+/g, ' ');
+					${slideSl} .sliderBtn:hover{
+						${getColorsCSS(item.btnHovColors) || 'color: #fff; background: #8344c5;'}
+					}
+					${childElPositionCSS}
+				`.replace(/\s+/g, ' ');
 			})}
 		</style>
 	</>;

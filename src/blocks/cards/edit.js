@@ -3,6 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
+import produce from 'immer';
 
 // Settings Components
 import { tabController } from '../../../../Components/Helper/functions';
@@ -22,9 +23,11 @@ const Edit = props => {
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	const updateCard = (type, val) => {
-		const newCard = [...cards];
-		newCard[activeIndex][type] = val;
+		const newCard = produce(cards, draft => {
+			draft[activeIndex][type] = val;
+		});
 		setAttributes({ cards: newCard });
+
 		setActiveIndex(activeIndex);
 	}
 
@@ -48,7 +51,7 @@ const Edit = props => {
 							{'image' === titlePos && <CardTitle />}
 						</figure>
 						{isBlobURL(img.url) && <Spinner />}
-					</> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} img={img} onChange={val => updateCard('img', val)} />;
+					</> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} value={img} onChange={val => updateCard('img', val)} />;
 
 					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksCard-${index}`}>
 						<div className={`bBlocksCard ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>

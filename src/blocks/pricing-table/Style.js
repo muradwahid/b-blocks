@@ -1,3 +1,5 @@
+import { getShadowCSS, getSpaceCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId, isStandard }) => {
 	const { pricingTables, columnGap, rowGap, textAlign, padding, shadow } = attributes;
 
@@ -10,11 +12,12 @@ const Style = ({ attributes, clientId, isStandard }) => {
 				padding: ${isStandard ? '30px 0' : '0'}
 			}
 			#bBlocksPricingTables-${clientId} .bBlocksPricingTables .bBlocksPriceTable{
-				padding: ${padding?.styles || '35px 25px'};
-				box-shadow: ${shadow?.styles || '0px 0px 30px 0px #6e8faf4d'};
+				padding: ${getSpaceCSS(padding)};
+				box-shadow: ${getShadowCSS(shadow)};
 			}
 			`.replace(/\s+/g, ' ')
 		}} />
+
 		<style>
 			{pricingTables?.map((priceTable, index) => {
 				const defPriceTableSelect = `#bBlocksPricingTables-${clientId} .bBlocksPricingTables #bBlocksPriceTable-${index} .bBlocksPriceTable`;

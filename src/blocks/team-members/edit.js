@@ -3,6 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner, Button, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -24,21 +25,21 @@ const Edit = props => {
 	useEffect(() => { setActiveIndex(!isSelected || !members.length ? null : 0); }, [isSelected]); // Set default activeIndex
 	useEffect(() => { !isSelected && setSelectedSocial(null); }, [isSelected]); // Selected Social
 
-	const updateMember = (index, type, val, otherIndex = false, otherType = false) => {
-		const newMember = [...members];
+	const updateMember = (index, type, val, childIndex = false, childType = false) => {
+		const newMembers = produce(members, draft => {
+			if (false !== childIndex && childType) {
+				draft[index][type][childIndex][childType] = val;
+			} else {
+				draft[index][type] = val;
+			}
+		});
+		setAttributes({ members: newMembers });
 
-		if (false !== otherIndex && otherType) {
-			newMember[index][type][otherIndex][otherType] = val;
-			setAttributes({ members: newMember });
-		} else {
-			newMember[index][type] = val;
-			setAttributes({ members: newMember });
-		}
 		setActiveIndex(index);
 	}
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+		<Settings attributes={attributes} setAttributes={setAttributes} updateMember={updateMember} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
 		<div className={className} id={`bBlocksTeamMembers-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />
@@ -51,7 +52,7 @@ const Edit = props => {
 						{photo?.url ? <>
 							<img className={`memberPhoto ${photo?.id ? `wp-image-${photo?.id}` : null}`} src={photo?.url} alt={photo?.alt} />
 							{isBlobURL(photo?.url) && <Spinner />}
-						</> : <ImagePlaceholder label={__(' Member Photo:', 'b-blocks')} img={photo} onChange={val => updateMember(index, 'photo', val)} />}
+						</> : <ImagePlaceholder label={__(' Member Photo:', 'b-blocks')} value={photo} onChange={val => updateMember(index, 'photo', val)} />}
 
 						<div className='memberDetails'>
 							<RichText className='memberName' tagName='h4' value={name} onChange={val => updateMember(index, 'name', val)} placeholder={__('Member name', 'b-blocks')} inlineToolbar />
@@ -70,35 +71,35 @@ const Edit = props => {
 										<a href={'#'}><i className={icon?.class}></i></a>
 									</li>;
 								})}
-
-								{isSelected && index === activeIndex && <li className='memberSocialAdd'>
-									<Button showTooltip={true} tooltipPosition='top enter' label={__('Add Social Link', 'b-blocks')} onClick={() => {
-										updateMember(index, 'social', [...social, {
-											link: '#', icon: { class: 'fa fa-facebook' }
-										}]);
-										setSelectedSocial(social.length);
-									}}><i className='fa fa-plus'></i></Button>
-								</li>}
 							</ul>}
 
-							{null !== selectedSocial && index === activeIndex && <div className='memberSocialForm'>
+							{(null !== selectedSocial && index === activeIndex) && <div className='socialAction memberSocialForm'>
 								<Title className='mb5'>{__('Link:', 'b-blocks')}</Title>
 								<InputControl value={social[selectedSocial]?.link} onChange={val => updateMember(index, 'social', val, selectedSocial, 'link')} />
 
-								<IconControl icon={social[selectedSocial]?.icon} onChange={val => updateMember(index, 'social', val, selectedSocial, 'icon')} defaults={{ class: 'fa fa-facebook', fontSize: 22 }} isSize={false} isColor={false} />
+								<IconControl value={social[selectedSocial]?.icon} onChange={val => updateMember(index, 'social', val, selectedSocial, 'icon')} defaults={{ class: 'fab fa-facebook-f', fontSize: 22 }} isSize={false} isColor={false} />
 
-								<a className='memberSocialRemove' onClick={e => {
+								<a className='memberSocialRemove mt15' onClick={e => {
 									e.preventDefault();
 									updateMember(index, 'social', [...social.slice(0, selectedSocial), ...social.slice(selectedSocial + 1)]);
 									setSelectedSocial(null);
 								}}><i className='fa fa-times'></i>{__('Remove this link', 'b-blocks')}</a>
+							</div>}
+
+							{(isSelected && isSocial && index === activeIndex) && <div className='socialAction memberSocialAdd mt20'>
+								<Button showTooltip={true} tooltipPosition='top enter' label={__('Add Social Link', 'b-blocks')} onClick={() => {
+									updateMember(index, 'social', [...social, {
+										link: '#', icon: { class: 'fab fa-facebook-f' }
+									}]);
+									setSelectedSocial(social.length);
+								}}><i className='fa fa-plus'></i> Add new social</Button>
 							</div>}
 						</div>
 					</div>;
 				})}
 			</div>
 
-			{!members.length && <h3 className='addItemFirst'>{__('Please add a member first!')}</h3>}
+			{!members.length && <h3 className='addItemFirst'>{__('Please add a member first!', 'b-blocks')}</h3>}
 		</div>
 	</>
 };

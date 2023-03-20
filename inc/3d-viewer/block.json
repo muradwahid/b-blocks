@@ -37,7 +37,7 @@
 		},
 		"modelLink": {
 			"type": "string",
-			"default": "https://modelviewer.dev/shared-assets/models/shishkebab.glb"
+			"default": "https://modelviewer.dev/assets/ShopifyModels/ToyTrain.glb"
 		},
 		"width": {
 			"type": "string",

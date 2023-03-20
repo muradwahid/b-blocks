@@ -1,43 +1,50 @@
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getMultiShadowCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { members = [], columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, titleTypo, titleMargin, sepMargin, bioTypo, bioMargin, socialSize, socialIconMargin } = attributes;
+
+	const mainSl = `#bBlocksTeamMembers-${clientId}`;
+	const membersSl = `${mainSl} .bBlocksTeamMembers`;
+	const gMemberSl = `${membersSl} .bBlocksMember`;
+	const gMemberDetailsSl = `${gMemberSl} .memberDetails`;
+	const gMemberSocialSl = `${gMemberDetailsSl} .memberSocial`;
 
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink});` : ''}
-			${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-			${bioTypo?.googleFontLink ? `@import url(${bioTypo?.googleFontLink});` : ''}
+			${getTypoCSS(`${gMemberDetailsSl} .memberName`, nameTypo)}
+			${getTypoCSS(`${gMemberDetailsSl} .memberTitle`, titleTypo)}
+			${getTypoCSS(`${gMemberDetailsSl} .memberBio`, bioTypo)}
 
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers{
+			${membersSl}{
 				grid-gap: ${rowGap} ${columnGap};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember{
+			${gMemberSl}{
 				text-align: ${textAlign};
-				padding: ${padding?.styles || '50px 20px'};
+				padding: ${getSpaceCSS(padding)};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberPhoto{
+			${gMemberSl} .memberPhoto{
 				width: ${photoWidth};
-				margin: ${'horizontal' === layout ? '0 20px 0 0' : `${photoMargin?.styles || '0 0 20px 0'}`};
+				margin: ${'horizontal' === layout ? '0 20px 0 0' : `${getSpaceCSS(photoMargin)}`};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberName{
-				${nameTypo?.styles || 'font-size: 20px; font-weight: 600;'}
-				margin: ${nameMargin?.styles || '0 0 10px 0'};
+			${gMemberDetailsSl} .memberName{
+				margin: ${getSpaceCSS(nameMargin)};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberTitle{
-				${titleTypo?.styles || 'font-size: 16px;'}
-				margin: ${titleMargin?.styles || '0 0 10px 0'};
+			${gMemberDetailsSl} .memberTitle{
+				margin: ${getSpaceCSS(titleMargin)};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSeparator{
-				margin: ${sepMargin?.styles || '0 0 15px 0'};
+			${gMemberDetailsSl} .memberSeparator{
+				margin: ${getSpaceCSS(sepMargin)};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberBio{
-				${bioTypo?.styles || 'font-size: 15px;'}
-				margin: ${bioMargin?.styles || '0 0 15px 0'};
+			${gMemberDetailsSl} .memberBio{
+				margin: ${getSpaceCSS(bioMargin)};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .icon, #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .memberSocialAdd{
-				margin: ${socialIconMargin?.styles || '10px 10px'};
+			${gMemberSocialSl} .icon,
+			${gMemberSocialSl} .memberSocialAdd{
+				margin: ${getSpaceCSS(socialIconMargin)};
 			}
-			#bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .icon i, #bBlocksTeamMembers-${clientId} .bBlocksTeamMembers .bBlocksMember .memberDetails .memberSocial .memberSocialAdd i{
+			${gMemberSocialSl} .icon i,
+			${gMemberSocialSl} .memberSocialAdd i{
 				font-size: ${socialSize};
 				width: ${socialSize};
 			}
@@ -47,38 +54,42 @@ const Style = ({ attributes, clientId }) => {
 		{members.map((item, index) => {
 			const { background, border, shadow, photoBorder, nameColor, titleColor, separator, bioColor, socialIconColors } = item;
 
+			const memberSl = `${mainSl} #bBlocksMember-${index}`;
+			const memberDetailsSl = `${memberSl} .memberDetails`;
+			const memberSocialSl = `${memberDetailsSl} .memberSocial`;
+
 			return <style key={index} dangerouslySetInnerHTML={{
 				__html: `
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index}{
-					${background?.styles || 'background-color: #0000;'}
-					${border?.styles || 'border-radius: 3px;'}
-					box-shadow: ${shadow?.styles || 'none'};
+				${memberSl}{
+					${getBackgroundCSS(background)}
+					${getBorderCSS(border)}
+					box-shadow: ${getMultiShadowCSS(shadow?.shadow || shadow)};
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberPhoto{
-					${photoBorder?.styles || 'border-radius: 50%;'}
+				${memberSl} .memberPhoto{
+					${getBorderCSS(photoBorder)}
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberName{
+				${memberDetailsSl} .memberName{
 					color: ${nameColor};
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberTitle{
+				${memberDetailsSl} .memberTitle{
 					color: ${titleColor};
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberSeparator{
-					${separator?.styles || 'width: 20%; border-top: 3px solid #777;'}
+				${memberSl} .memberSeparator{
+					${getSeparatorCSS(separator)}
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberBio{
+				${memberDetailsSl} .memberBio{
 					color: ${bioColor};
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial{
+				${memberSocialSl}{
 					justify-content: ${'center' === textAlign ? 'center' : 'right' === textAlign ? 'flex-end' : 'flex-start'}
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial li a{
-					${socialIconColors?.styles || 'color: #fff; background: #4527a4;'}
+				${memberSocialSl} li a{
+					${getColorsCSS(socialIconColors)}
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial li.isSelected{
+				${memberSocialSl} li.isSelected{
 					border: 2px solid ${socialIconColors?.bg};
 				}
-				#bBlocksTeamMembers-${clientId} #bBlocksMember-${index} .memberDetails .memberSocial li.memberSocialAdd button i{
+				${memberSocialSl} li.memberSocialAdd button i{
 					color: ${socialIconColors?.bg};
 				}
 				`.replace(/\s+/g, ' ')

@@ -1,42 +1,43 @@
-const Style = ({ attributes, clientId, isBackend = false }) => {
-	const { columnGap, rowGap, background, textAlign, itemHeight, itemPadding, itemShadow, itemBorder, iconPadding, iconMargin, titleTypo, titleMargin, descTypo } = attributes;
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-	const gapStyle = isBackend ? `#bBlocksServices-${clientId} .bBlocksServices .block-editor-inner-blocks .block-editor-block-list__layout{
+const Style = ({ attributes, clientId, isBackend = false }) => {
+	const { columnGap, rowGap, background, textAlign, itemHeight, itemPadding, itemBorder, itemShadow, iconPadding, iconMargin, titleTypo, titleMargin, descTypo } = attributes;
+
+	const servicesSl = `#bBlocksServices-${clientId} .bBlocksServices`;
+	const serviceSl = `${servicesSl} .bBlocksService`;
+
+	const gapStyle = isBackend ? `${servicesSl} .block-editor-inner-blocks .block-editor-block-list__layout{
 		grid-gap: ${rowGap} ${columnGap};
-	}` : `#bBlocksServices-${clientId} .bBlocksServices{
+	}` : `${servicesSl}{
 		grid-gap: ${rowGap} ${columnGap};
 	}`
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-		${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
+		${getTypoCSS(`${serviceSl} .title`, titleTypo)}
+		${getTypoCSS(`${serviceSl} .description`, descTypo)}
 
-		#bBlocksServices-${clientId} .bBlocksServices{
-			${background?.styles || 'background-color: #0000;'}
+		${servicesSl}{
+			${getBackgroundCSS(background)}
 		}
 		${gapStyle}
 
-		#bBlocksServices-${clientId} .bBlocksServices .bBlocksService{
+		${serviceSl}{
 			text-align: ${textAlign};
 			min-height: ${itemHeight};
-			padding: ${itemPadding?.styles || '50px 30px 50px 50px'};
-			box-shadow: ${itemShadow?.styles || '0 0 20px 0 #0000001a'};
-			${itemBorder?.styles || 'border-radius: 15px;'}
+			padding: ${getSpaceCSS(itemPadding)};
+			${getBorderCSS(itemBorder)}
+			box-shadow: ${getShadowCSS(itemShadow)};
 		}
-		#bBlocksServices-${clientId} .bBlocksServices .bBlocksService .bgLayer{
+		${serviceSl} .bgLayer{
 			border-radius: ${itemBorder?.radius || '15px'}
 		}
-		#bBlocksServices-${clientId} .bBlocksServices .bBlocksService .icon{
-			padding: ${iconPadding?.styles || '0 0 10px 0'};
-			margin: ${iconMargin?.styles || '0 0 20px 0'};
+		${serviceSl} .icon{
+			padding: ${getSpaceCSS(iconPadding)};
+			margin: ${getSpaceCSS(iconMargin)};
 		}
-		#bBlocksServices-${clientId} .bBlocksServices .bBlocksService .title{
-			${titleTypo?.styles || 'font-size: 23px;'}
-			margin: ${titleMargin?.styles || '0 0 30px 0'};
-		}
-		#bBlocksServices-${clientId} .bBlocksServices .bBlocksService .description{
-			${descTypo?.styles || 'font-size: 16px;'}
+		${serviceSl} .title{
+			margin: ${getSpaceCSS(titleMargin)};
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

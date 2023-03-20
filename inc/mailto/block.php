@@ -14,7 +14,7 @@ class BBlocksMailto extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksMailToClassName = 'wp-block-b-blocks-mailto ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-mailto ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$mailtoStyle = new BBlocksStyleGenerator();
@@ -34,7 +34,7 @@ class BBlocksMailto extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksMailToClassName ); ?>' id='bBlocksMailto-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksMailto-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $btnTypo['googleFontLink'] ) ? "@import url(". esc_url( $btnTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo wp_kses( $mailtoStyle::renderStyle(), [] ); ?>

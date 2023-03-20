@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -13,21 +14,13 @@ import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import icons from '../../utils/icons';
 import options from '../../utils/options';
-import spaceOffice from './img/open-space-office.jpg';
-const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
-const themes = [
-	{ label: __('Default', 'b-blocks'), value: 'default' },
-	{ label: __('Theme 1', 'b-blocks'), value: 'theme1' },
-	{ label: __('Theme 2', 'b-blocks'), value: 'theme2' },
-	{ label: __('Theme 3', 'b-blocks'), value: 'theme3' }
-];
-const iconPositions = [
-	{ label: __('Top', 'b-blocks'), value: 'top' },
-	{ label: __('Label', 'b-blocks'), value: 'label' }
-];
+const { generalStyleTabs } = options;
+
+import { iconPositions, themes } from './utils/options';
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCounter }) => {
 	const { counters = [], theme, columns, columnGap, rowGap, duration, background, padding, counterWidth, counterHeight, textAlign, isIcon, iconSize, iconPosition, numberTypo, isLabel, labelTypo, counterPadding, counterBorder, counterShadow } = attributes;
@@ -59,13 +52,29 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		setAttributes({ counters: newCounters });
 	}
 
+	const duplicateCounter = e => {
+		e.preventDefault();
+
+		setAttributes({ counters: [...counters.slice(0, activeIndex), { ...counters[activeIndex] }, ...counters.slice(activeIndex)] });
+
+		setActiveIndex(activeIndex + 1);
+	}
+
+	const removeCounter = e => {
+		e.preventDefault();
+
+		setAttributes({ counters: [...counters.slice(0, activeIndex), ...counters.slice(activeIndex + 1)] });
+
+		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
+	}
+
 	const { background: singleBG = {}, icon = {}, number = {}, label = {} } = counters[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 						<div className='helpItem'>
 							<a href='https://bblockswp.com/docs/counters-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
@@ -83,13 +92,13 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						{null !== activeIndex && <>
 							<h3 className='bplItemTitle'>{__(`Counter No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-							<Background label={__('Background:', 'b-blocks')} background={singleBG} onChange={val => updateCounter('background', val)} defaults={{ color: '#0000' }} />
+							<Background label={__('Background:', 'b-blocks')} value={singleBG} onChange={val => updateCounter('background', val)} defaults={{ color: '#0000' }} />
 
-							<IconControl label={__('Icon:', 'b-blocks')} icon={icon} onChange={val => updateCounter('icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} isSize={false} />
+							<IconControl label={__('Icon:', 'b-blocks')} value={icon} onChange={val => updateCounter('icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} isSize={false} />
 
-							<NumberControl label={__('Start Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.start} onChange={val => updateCounter('number', val, 'start')} />
+							<NumberControl label={__('Start Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.start} onChange={val => updateCounter('number', parseFloat(val), 'start')} />
 
-							<NumberControl label={__('End Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter('number', val, 'end')} />
+							<NumberControl label={__('End Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter('number', parseFloat(val), 'end')} />
 
 							<PanelRow>
 								<Title className=''>{__('Prefix:', 'b-blocks')}</Title>
@@ -106,17 +115,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<BColor label={__('Label Color:', 'b-blocks')} value={label.color} onChange={val => updateCounter('label', val, 'color')} defaultColor='#fff' />
 
 							<PanelRow className='itemAction mt20 mb15'>
-								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(1 === counters.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
-									setAttributes({ counters: [...counters.slice(0, activeIndex), ...counters.slice(activeIndex + 1)] });
-								}} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCounter} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
 
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(counters.length);
-									setAttributes({ counters: [...counters, { ...counters[activeIndex] }] });
-								}} >{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateCounter} >{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>
 						</>}
 
@@ -133,65 +134,57 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 								setAttributes({ theme: val });
 								'default' === val && (
 									setAttributes({
-										background: { ...background, type: 'solid', color: '#0000', styles: `background-color: #0000;` },
-										padding: { ...padding, vertical: '20px', horizontal: '0px', styles: '20px 0px' },
+										background: { ...background, type: 'solid', color: '#0000' },
+										padding: { ...padding, vertical: '20px', horizontal: '0px' },
 										counterHeight: '250px',
-										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%', styles: `border: none; border-radius: 50%;` },
+										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },
 										iconPosition: 'top',
 										iconSize: 50
 									}),
 									updateAllCounter('background', '#4527a4', 'color'),
-									updateAllCounter('background', 'background-color: #4527a4;', 'styles'),
 									updateAllCounter('icon', '#fff', 'color'),
-									updateAllCounter('icon', 'color: #fff;', 'styles'),
 									updateAllCounter('number', '#fff', 'color'),
 									updateAllCounter('label', '#fff', 'color')
 								);
 								'theme1' === val && (
 									setAttributes({
-										background: { ...background, type: 'solid', color: '#0000', styles: `background-color: #0000;` },
-										padding: { ...padding, vertical: '20px', horizontal: '0px', styles: '20px 0px' },
+										background: { ...background, type: 'solid', color: '#0000' },
+										padding: { ...padding, vertical: '20px', horizontal: '0px' },
 										counterHeight: '175px',
-										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '5px', styles: `border: none; border-radius: 5px;` },
+										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '5px' },
 										iconPosition: 'label',
 										iconSize: labelTypo?.fontSize
 									}),
 									updateAllCounter('background', '#4527a4', 'color'),
-									updateAllCounter('background', 'background-color: #4527a4;', 'styles'),
 									updateAllCounter('icon', '#fff', 'color'),
-									updateAllCounter('icon', 'color: #fff;', 'styles'),
 									updateAllCounter('number', '#fff', 'color'),
 									updateAllCounter('label', '#fff', 'color')
 								);
 								'theme2' === val && (
 									setAttributes({
-										background: { ...background, type: 'solid', color: '#0000', styles: `background-color: #0000;` },
-										padding: { ...padding, vertical: '20px', horizontal: '0px', styles: '20px 0px' },
+										background: { ...background, type: 'solid', color: '#0000' },
+										padding: { ...padding, vertical: '20px', horizontal: '0px' },
 										counterHeight: '175px',
-										counterBorder: { ...counterBorder, width: '2px', color: '#4527a4', radius: '5px', styles: `border: 2px solid #4507a4; border-radius: 5px;` },
+										counterBorder: { ...counterBorder, width: '2px', color: '#4527a4', radius: '5px' },
 										iconPosition: 'label',
 										iconSize: labelTypo?.fontSize
 									}),
 									updateAllCounter('background', '#0000', 'color'),
-									updateAllCounter('background', 'background-color: #0000;', 'styles'),
 									updateAllCounter('icon', '#4527a4', 'color'),
-									updateAllCounter('icon', 'color: #4527a4;', 'styles'),
 									updateAllCounter('number', '#4527a4', 'color'),
 									updateAllCounter('label', '#4527a4', 'color')
 								);
 								'theme3' === val && (
 									setAttributes({
-										background: { ...background, type: 'image', image: { url: spaceOffice }, overlayColor: '#000000b3', styles: `background-image: url(${spaceOffice}); background-position: center center; background-size: cover; background-repeat: no-repeat; background-color: #000000b3; background-blend-mode: overlay;` },
-										padding: { ...padding, vertical: '140px', horizontal: '0px', styles: '140px 0px' },
+										background: { ...background, type: 'image', image: { url: 'https://i.ibb.co/b18MWMw/open-space-office.jpg' }, overlayColor: '#000000b3' },
+										padding: { ...padding, vertical: '140px', horizontal: '0px' },
 										counterHeight: '250px',
-										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%', styles: `border: none; border-radius: 50%;` },
+										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },
 										iconPosition: 'top',
 										iconSize: 50
 									}),
 									updateAllCounter('background', '#0000', 'color'),
-									updateAllCounter('background', 'background-color: #0000;', 'styles'),
 									updateAllCounter('icon', '#fff', 'color'),
-									updateAllCounter('icon', 'color: #fff;', 'styles'),
 									updateAllCounter('number', '#fff', 'color'),
 									updateAllCounter('label', '#fff', 'color')
 								);
@@ -204,14 +197,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 					</PanelBody>
 
 
 					<PanelBody className='bPlPanelBody' title={__('Counters Settings', 'b-blocks')} initialOpen={false}>
-						<NumberControl label={__('Duration:', 'b-blocks')} labelPosition='left' value={duration} onChange={val => setAttributes({ duration: val })} />
+						<NumberControl label={__('Duration:', 'b-blocks')} labelPosition='left' value={duration} onChange={val => setAttributes({ duration: parseFloat(val) })} />
 						<small>{__('Duration in milliseconds:', 'b-blocks')}</small>
 					</PanelBody>
 
@@ -231,32 +224,32 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							}} options={iconPositions} />
 						</PanelRow>
 
-						<Typography className='mt20' label={__('Number Typography:', 'b-blocks')} typography={numberTypo} onChange={val => setAttributes({ numberTypo: val })} defaults={{ fontSize: 48 }} />
+						<Typography className='mt20' label={__('Number Typography:', 'b-blocks')} value={numberTypo} onChange={val => setAttributes({ numberTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} produce={produce} />
 
 						<ToggleControl className='mt20' label={__('Show Label', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
-						{isLabel && <Typography label={__('Label Typography:', 'b-blocks')} typography={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: 22 }} />}
+						{isLabel && <Typography label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} produce={produce} />}
 					</PanelBody>
 				</>}
 
 
 				{'style' === tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Counters Style', 'b-blocks')}>
-						<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
+						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '20px', horizontal: '0px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '20px', horizontal: '0px' }} />
 					</PanelBody>
 
 					<PanelBody className='bPlPanelBody' title={__('Single Counter Style', 'b-blocks')} initialOpen={false}>
-						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={counterWidth} onChange={val => setAttributes({ counterWidth: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={counterWidth} onChange={val => setAttributes({ counterWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={counterHeight} onChange={val => setAttributes({ counterHeight: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={counterHeight} onChange={val => setAttributes({ counterHeight: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={counterPadding} onChange={val => setAttributes({ counterPadding: val })} defaults={{ vertical: '20px', horizontal: '20px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={counterPadding} onChange={val => setAttributes({ counterPadding: val })} defaults={{ vertical: '20px', horizontal: '20px' }} />
 
-						<BorderControl label={__('Border:', 'b-blocks')} border={counterBorder} onChange={val => setAttributes({ counterBorder: val })} defaults={{ radius: '50%' }} />
+						<BorderControl label={__('Border:', 'b-blocks')} value={counterBorder} onChange={val => setAttributes({ counterBorder: val })} defaults={{ radius: '50%' }} />
 
-						<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={counterShadow} onChange={val => setAttributes({ counterShadow: val })} />
+						<ShadowControl label={__('Shadow:', 'b-blocks')} value={counterShadow} onChange={val => setAttributes({ counterShadow: val })} />
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

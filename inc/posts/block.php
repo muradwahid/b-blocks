@@ -16,7 +16,7 @@ class BBlocksPosts extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksPostsClassName = 'wp-block-b-blocks-posts bBlocksPosts ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-posts bBlocksPosts ' . $className . ' align' . $align;
 
 		// $taxonomies = get_object_taxonomies( $postType, 'array' );
 		// foreach( $taxonomies as $tax ){
@@ -42,7 +42,7 @@ class BBlocksPosts extends BBlocks{
 		], $defaultPostFilter ) );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksPostsClassName ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<div class='bBlocksPostsStyle'></div>
 			<style>
 				<?php foreach ( $posts as $post ) {
@@ -82,8 +82,7 @@ class BBlocksPosts extends BBlocks{
 				</div>
 			<?php }else{ echo ''; } ?>
 		</div>
-		<?php $postsStyles::$styles = []; // Empty styles
-		return ob_get_clean();
+		<?php return ob_get_clean();
 	} // Render
 
 	// ForEach Posts
@@ -262,11 +261,13 @@ class BBlocksPosts extends BBlocks{
 	function postExcerpt( $attributes, $post ) {
 		extract( $attributes );
 
+		$excerptContent = get_the_excerpt( $post->ID );
+
 		if ( $isExcerpt ) {
 			ob_start(); ?>
 			<div class='bBlocksPostExcerpt bBlocksInnerPostContent'>
 				<?php echo implode( ' ', array_slice(
-					explode( ' ', get_the_excerpt( $post->ID ) ),
+					explode( ' ', wp_kses( preg_replace('/(<([^>]+)>)/', '', $excerptContent), [] ) ),
 				0, $excerptLength ) ); ?>
 
 				<p class='read-more'>

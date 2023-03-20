@@ -1,18 +1,31 @@
+import { render } from 'react-dom';
+
 import './style.scss';
+import Style from './Style';
+import AlertBox from './AlertBox';
 
-// Alert
-const allAlert = document.querySelectorAll('.wp-block-b-blocks-alert');
+// Alert Box
+document.addEventListener('DOMContentLoaded', () => {
+	const allAlert = document.querySelectorAll('.wp-block-b-blocks-alert');
+	allAlert.forEach(alert => {
+		const attributes = JSON.parse(alert.dataset.attributes);
 
-Object.values(allAlert).map(alert => {
-	const alertEl = document.getElementById(alert.id);
+		render(<>
+			<Style attributes={attributes} clientId={attributes.cId} />
 
-	const alertCloseEl = document.querySelector(`#${alert.id} .bBlocksAlert .alert .alertClose`);
+			<AlertBox attributes={attributes} />
+		</>, alert);
 
-	alertCloseEl && alertCloseEl.addEventListener('click', () => {
-		alertEl.classList.add('transformHidden');
+		// Alert Close Script
+		const alertCloseEl = document.querySelector(`#${alert.id} .bBlocksAlert .alert .alertClose`);
+		alertCloseEl && alertCloseEl.addEventListener('click', () => {
+			alert.classList.add('transformHidden');
 
-		setTimeout(() => {
-			alertEl.style.display = 'none';
-		}, 400);
+			setTimeout(() => {
+				alert.style.display = 'none';
+			}, 400);
+		});
+
+		alert?.removeAttribute('data-attributes');
 	});
 });

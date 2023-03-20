@@ -3,41 +3,24 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { Tooltip } from '@wordpress/components';
 
-import Settings from './settings';
+import { tabController } from '../../../../Components/Helper/functions';
+
+import Settings from './Settings';
+import Style from './Style';
 
 const Edit = props => {
-	const { className, attributes: { width, alignment, textAlign, message, icon, isDismiss, typography, colors, padding, border, shadow }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId, isSelected } = props;
+	const { message, icon, isDismiss } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
+
+	useEffect(() => tabController(), [isSelected]);
 
 	return <>
 		<Settings settings={props} />
 
 		<div className={className} id={`bBlocksAlert-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				${typography?.googleFontLink ? `@import url(${typography?.googleFontLink});` : ''}
-
-				#bBlocksAlert-${clientId} .bBlocksAlert{
-					text-align: ${alignment};
-				}
-				#bBlocksAlert-${clientId} .bBlocksAlert .alert{
-					text-align: ${textAlign};
-					width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
-					${typography?.styles || 'font-size: 25px;'}
-					${colors?.styles || 'color: #333; background: #fff;'}
-					padding: ${padding?.styles || '15px 30px'};
-					${border?.styles || 'border: 2px solid #333; border-radius: 8px;'}
-					box-shadow: ${shadow?.styles || 'none'};
-				}
-				#bBlocksAlert-${clientId} .bBlocksAlert .alert .alertIcon{
-					font-size: ${typography?.fontSize || '25px'};
-					color: ${colors?.color || '#333'};
-				}
-				#bBlocksAlert-${clientId} .bBlocksAlert .alert .alertClose{
-					color: ${colors?.color || '#333'};
-				}
-			`}} />
+			<Style attributes={attributes} clientId={clientId} />
 
 			<div className='bBlocksAlert'>
 				<div className='alert'>

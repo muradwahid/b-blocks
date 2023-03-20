@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, Dashicon } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -10,15 +11,14 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
 const types = [
-	{ label: 'General', value: 'general' },
-	{ label: 'Success', value: 'success' },
-	{ label: 'Info', value: 'info' },
-	{ label: 'Warning', value: 'warning' },
-	{ label: 'Error', value: 'error' }
+	{ label: __('General', 'b-b-blocks'), value: 'general' },
+	{ label: __('Success', 'b-b-blocks'), value: 'success' },
+	{ label: __('Info', 'b-b-blocks'), value: 'info' },
+	{ label: __('Warning', 'b-b-blocks'), value: 'warning' },
+	{ label: __('Error', 'b-b-blocks'), value: 'error' }
 ];
 
 const Settings = ({ settings }) => {
@@ -26,7 +26,7 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/alert-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div>
@@ -74,22 +74,22 @@ const Settings = ({ settings }) => {
 				</PanelRow>
 				<small>{__('Some settings may change when type will be changed.', 'b-blocks')}</small>
 
-				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 				<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>
 
-				<IconControl label={__('Alert Icon:', 'b-blocks')} icon={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-exclamation-circle' }} isSize={false} isColor={false} />
+				<IconControl label={__('Alert Icon:', 'b-blocks')} value={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-exclamation-circle' }} isSize={false} isColor={false} />
 
 				<ToggleControl className='mt20' label={__('Alert Dismissible?', 'b-blocks')} checked={isDismiss} onChange={val => setAttributes({ isDismiss: val })} />
 
-				<Typography className='mt20' label={__('Typography:', 'b-blocks')} typography={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: 25 }} />
+				<Typography className='mt20' label={__('Typography:', 'b-blocks')} value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} produce={produce} />
 
-				<ColorsControl colors={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#333', bg: '#fff' }} />
+				<ColorsControl value={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#333', bg: '#fff' }} />
 
-				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '15px', horizontal: '30px' }} />
+				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '15px', horizontal: '30px' }} />
 
-				<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} defaults={{ width: '2px', color: '#333', radius: '8px' }} />
+				<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} defaults={{ width: '2px', color: '#333', radius: '8px' }} />
 
-				<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+				<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => setAttributes({ shadow: val })} />
 			</PanelBody>
 		</InspectorControls>
 

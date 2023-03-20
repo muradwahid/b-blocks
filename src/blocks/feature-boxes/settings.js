@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState, useContext } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -13,11 +14,10 @@ import IconControl from '../../../../Components/IconControl';
 import Typography from '../../../../Components/Typography';
 import SeparatorControl from '../../../../Components/SeparatorControl';
 import SpaceControl from '../../../../Components/SpaceControl';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
 import { IndexContext } from './edit';
-import icons from '../../utils/icons';
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ settings }) => {
 	const { attributes: { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo }, setAttributes } = settings;
@@ -52,7 +52,7 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				{/* <div className='helpItem'>
 					<a href='https://bblockswp.com/docs/feature-boxes-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div> */}
@@ -71,21 +71,22 @@ const Settings = ({ settings }) => {
 					const { background, isUpIcon, icon, upIcon, iconWidth, titleColor, separator, descColor } = item;
 
 					return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Feature No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-						<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateFeature(index, 'background', val)} />
+						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateFeature(index, 'background', val)} />
 
 						{isIcon && <>
 							<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateFeature(index, 'isUpIcon', val)} />
 
 							{isUpIcon ? <>
-								<ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} img={upIcon} onChange={val => updateFeature(index, 'upIcon', val)} />
+								<ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} value={upIcon} onChange={val => updateFeature(index, 'upIcon', val)} />
 
-								<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature(index, 'iconWidth', val)} units={[pxUnit, perUnit, emUnit]} />
+								<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature(index, 'iconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
 
-							</> : <IconControl icon={icon} onChange={val => updateFeature(index, 'icon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 120 }} />} </>}
+							</> : <IconControl value={icon} onChange={val => updateFeature(index, 'icon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 120 }} />}
+						</>}
 
 						<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateFeature(index, 'titleColor', val)} defaultColor='#333' />
 
-						<SeparatorControl separator={separator} onChange={val => updateFeature(index, 'separator', val)} defaults={{ width: '20%' }} />
+						<SeparatorControl value={separator} onChange={val => updateFeature(index, 'separator', val)} defaults={{ width: '20%' }} />
 
 						<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature(index, 'descColor', val)} defaultColor='#333' />
 
@@ -98,7 +99,7 @@ const Settings = ({ settings }) => {
 							<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 								e.preventDefault();
 								setAttributes({ features: [...features, { ...features[index] }] });
-							}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+							}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 						</PanelRow>
 					</PanelBody>
 				})}
@@ -116,21 +117,21 @@ const Settings = ({ settings }) => {
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-				<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-				<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
-				<SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
+				<SpaceControl label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-				{isIcon && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
+				{isIcon && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
 			</PanelBody>
 
 
@@ -138,9 +139,9 @@ const Settings = ({ settings }) => {
 				<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
 				{isTitle && <>
-					<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 20, fontWeight: 600 }} />
+					<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 }, fontWeight: 600 }} produce={produce} />
 
-					<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+					<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 				</>}
 			</PanelBody>
 
@@ -148,14 +149,14 @@ const Settings = ({ settings }) => {
 			<PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
-				{isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '10px' }} />}
+				{isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '10px' }} />}
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-				{isDesc && <Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />}
+				{isDesc && <Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />}
 			</PanelBody>
 		</InspectorControls>
 

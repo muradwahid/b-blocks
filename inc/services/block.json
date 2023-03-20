@@ -56,10 +56,17 @@
 		"itemPadding": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"top": "50px",
 				"right": "30px",
 				"bottom": "50px",
 				"left": "50px"
+			}
+		},
+		"itemBorder": {
+			"type": "object",
+			"default": {
+				"radius": "15px"
 			}
 		},
 		"itemShadow": {
@@ -69,40 +76,45 @@
 				"color": "#0000001a"
 			}
 		},
-		"itemBorder": {
-			"type": "object",
-			"default": {
-				"radius": "15px"
-			}
-		},
 		"iconPadding": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "10px"
 			}
 		},
 		"iconMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "20px"
 			}
 		},
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 23
+				"fontSize": {
+					"desktop": 23,
+					"tablet": 20,
+					"mobile": 20
+				}
 			}
 		},
 		"titleMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "30px"
 			}
 		},
 		"descTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 16
+				"fontSize": {
+					"desktop": 16,
+					"tablet": 16,
+					"mobile": 16
+				}
 			}
 		}
 	},

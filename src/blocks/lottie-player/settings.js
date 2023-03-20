@@ -6,9 +6,10 @@ import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitCon
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import BtnGroup from '../../../../Components/BtnGroup';
-import options from '../../utils/options';
-const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
+import options from '../../utils/options';
+const { generalStyleTabs } = options;
 const modes = [
 	{ label: __('Normal', 'b-blocks'), value: 'normal', icon: __('Normal', 'b-blocks') },
 	{ label: __('Bounce', 'b-blocks'), value: 'bounce', icon: __('Bounce', 'b-blocks') }
@@ -21,7 +22,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' == tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 						<div className='helpItem'>
 							<a href='https://bblockswp.com/docs/lottie-player-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
@@ -41,11 +42,11 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<ToggleControl className='mt20' label={__('Show Controls', 'b-blocks')} checked={isControls} onChange={val => setAttributes({ isControls: val })} />
 
-						<ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={isAutoplay} onChange={val => setAttributes({ isAutoplay: val })} />
+						<ToggleControl className='mt10' label={__('Enable Autoplay', 'b-blocks')} checked={isAutoplay} onChange={val => setAttributes({ isAutoplay: val })} />
 
-						<ToggleControl label={__('Enable Loop', 'b-blocks')} checked={isLoop} onChange={val => setAttributes({ isLoop: val })} />
+						<ToggleControl className='mt10' label={__('Enable Loop', 'b-blocks')} checked={isLoop} onChange={val => setAttributes({ isLoop: val })} />
 
-						<ToggleControl label={__('Enable Hover', 'b-blocks')} checked={isHover} onChange={val => setAttributes({ isHover: val })} />
+						<ToggleControl className='mt10' label={__('Enable Hover', 'b-blocks')} checked={isHover} onChange={val => setAttributes({ isHover: val })} />
 
 						<PanelRow className='mt20'>
 							<Title className=''>{__('Mode:', 'b-blocks')}</Title>
@@ -70,13 +71,13 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				{'style' == tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Player', 'b-blocks')}>
-						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
 						<BColor label={__('Background Color:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaultColor='#0000' />
 					</PanelBody>
 
 					<PanelBody className='bPlPanelBody' title={__('Controls', 'b-blocks')} initialOpen={false}>
-						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
 						<BColor label={__('Background Color:', 'b-blocks')} value={controlsBG} onChange={val => setAttributes({ controlsBG: val })} defaultColor='#0000' />
 

@@ -1,31 +1,31 @@
+import { getBackgroundCSS, getBorderCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { cards = [], columnGap, rowGap, textAlign, padding, imgHeight, catTypo, catMargin, titleTypo, titleMargin, descTypo } = attributes;
+
+	const gCardSl = `#bBlocksCards-${clientId} .bBlocksCards .bBlocksCard`;
+	const cardDetailsSl = `${gCardSl} .cardDetails`;
 
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${catTypo?.googleFontLink ? `@import url(${catTypo?.googleFontLink});` : ''}
-			${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-			${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
+			${getTypoCSS(`${cardDetailsSl} .cardCategory`, catTypo)}
+			${getTypoCSS(`${gCardSl} .cardTitle`, titleTypo)}
+			${getTypoCSS(`${gCardSl} .cardDescription`, descTypo)}
 
 			#bBlocksCards-${clientId} .bBlocksCards{
 				grid-gap: ${rowGap} ${columnGap};
 			}
-			#bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardImage img{ height: ${imgHeight}; }
-			#bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardDetails{
+			${gCardSl} .cardImage img{ height: ${imgHeight}; }
+			${cardDetailsSl}{
 				text-align: ${textAlign};
-				padding: ${padding?.styles || '20px 10px'}; 
+				padding: ${getSpaceCSS(padding)};
 			}
-			#bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardDetails .cardCategory{
-				${catTypo?.styles || 'font-size: 15px;'}
-				margin: ${catMargin?.styles || '0 0 10px 0'};
+			${cardDetailsSl} .cardCategory{
+				margin: ${getSpaceCSS(catMargin)};
 			}
-			#bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardTitle{
-				${titleTypo?.styles || 'font-size: 22px;'}
-				margin: ${titleMargin?.styles || '0 0 10px 0'};
-			}
-			#bBlocksCards-${clientId} .bBlocksCards .bBlocksCard .cardDescription{
-				${descTypo?.styles || 'font-size: 15px;'}
+			${gCardSl} .cardTitle{
+				margin: ${getSpaceCSS(titleMargin)};
 			}
 			`.replace(/\s+/g, ' ')
 		}} />
@@ -33,21 +33,23 @@ const Style = ({ attributes, clientId }) => {
 		{cards.map((item, index) => {
 			const { background, imgBorder, catColor, titleColor, descColor } = item;
 
+			const cardSl = `#bBlocksCards-${clientId} #bBlocksCard-${index}`;
+
 			return <style key={index} dangerouslySetInnerHTML={{
 				__html: `
-				#bBlocksCards-${clientId} #bBlocksCard-${index} .bBlocksCard{
-					${background?.styles || `background-color: #0000;`}
+				${cardSl} .bBlocksCard{
+					${getBackgroundCSS(background)}
 				}
-				#bBlocksCards-${clientId} #bBlocksCard-${index} .cardImage{
-					${imgBorder?.styles || 'border-radius: 5px;'}
+				${cardSl} .cardImage{
+					${getBorderCSS(imgBorder)}
 				}
-				#bBlocksCards-${clientId} #bBlocksCard-${index} .cardDetails .cardCategory{
+				${cardSl} .cardDetails .cardCategory{
 					color: ${catColor};
 				}
-				#bBlocksCards-${clientId} #bBlocksCard-${index} .cardTitle{
+				${cardSl} .cardTitle{
 					color: ${titleColor};
 				}
-				#bBlocksCards-${clientId} #bBlocksCard-${index} .cardDescription{
+				${cardSl} .cardDescription{
 					color: ${descColor};
 				}
 				`.replace(/\s+/g, ' ')

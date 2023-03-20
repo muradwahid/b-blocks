@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState, useContext } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -13,11 +14,11 @@ import { ImageHolderControl, ChangeImageData } from '../../../../Components/Imag
 import BDevice from '../../../../Components/BDevice';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
 import { IndexContext } from './edit';
 import icons from '../../utils/icons';
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
 
 const Settings = ({ settings }) => {
 	const { attributes: { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep }, setAttributes } = settings;
@@ -52,7 +53,7 @@ const Settings = ({ settings }) => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				{/* <div className='helpItem'>
 					<a href='https://bblockswp.com/docs/price-list-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div> */}
@@ -71,12 +72,12 @@ const Settings = ({ settings }) => {
 					const { background, img, imgBorder, nameColor, descColor, priceColor, separator } = item;
 
 					return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Product No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-						<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateProduct(index, 'background', val)} />
+						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateProduct(index, 'background', val)} />
 
-						<ImageHolderControl className='mt20' label={__('Image:', 'b-blocks')} img={img} onChange={val => updateProduct(index, 'img', val)} />
-						<ChangeImageData className='mt20' img={img} onChange={val => updateProduct(index, 'img', val)} />
+						<ImageHolderControl className='mt20' label={__('Image:', 'b-blocks')} value={img} onChange={val => updateProduct(index, 'img', val)} />
+						<ChangeImageData className='mt20' value={img} onChange={val => updateProduct(index, 'img', val)} />
 
-						<BorderControl label={__('Image Border:', 'b-blocks')} border={imgBorder} onChange={val => updateProduct(index, 'imgBorder', val)} />
+						<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateProduct(index, 'imgBorder', val)} />
 
 						<BColor label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateProduct(index, 'nameColor', val)} defaultColor='#333' />
 
@@ -84,7 +85,7 @@ const Settings = ({ settings }) => {
 
 						<BColor label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct(index, 'priceColor', val)} defaultColor='#4527a4' />
 
-						<SeparatorControl separator={separator} onChange={val => updateProduct(index, 'separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
+						<SeparatorControl value={separator} onChange={val => updateProduct(index, 'separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
 
 						<PanelRow className='itemAction mt20'>
 							<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
@@ -95,7 +96,7 @@ const Settings = ({ settings }) => {
 							<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
 								e.preventDefault();
 								setAttributes({ products: [...products, { ...products[index] }] });
-							}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+							}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 						</PanelRow>
 					</PanelBody>
 				})}
@@ -142,40 +143,40 @@ const Settings = ({ settings }) => {
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-				<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-				<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
-				<SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
+				<SpaceControl label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Image Settings', 'b-blocks')} initialOpen={false}>
-				<SpaceControl label={__('Margin:', 'b-blocks')} space={imgMargin} onChange={val => setAttributes({ imgMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
+				<SpaceControl label={__('Margin:', 'b-blocks')} value={imgMargin} onChange={val => setAttributes({ imgMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Name Settings', 'b-blocks')} initialOpen={false}>
-				<Typography typography={nameTypo} onChange={val => setAttributes({ nameTypo: val })} defaults={{ fontSize: 18, fontWeight: 600 }} />
+				<Typography value={nameTypo} onChange={val => setAttributes({ nameTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 }, fontWeight: 600 }} produce={produce} />
 
-				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={nameMargin} onChange={val => setAttributes({ nameMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={nameMargin} onChange={val => setAttributes({ nameMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-				<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15, fontStyle: 'italic' }} />
+				<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 }, fontStyle: 'italic' }} produce={produce} />
 
-				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={descMargin} onChange={val => setAttributes({ descMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
 			</PanelBody>
 
 
 			<PanelBody className='bPlPanelBody' title={__('Price Settings', 'b-blocks')} initialOpen={false}>
-				<Typography typography={priceTypo} onChange={val => setAttributes({ priceTypo: val })} defaults={{ fontSize: 24, fontStyle: 'italic' }} />
+				<Typography value={priceTypo} onChange={val => setAttributes({ priceTypo: val })} defaults={{ fontSize: { desktop: 24, tablet: 22, mobile: 20 }, fontStyle: 'italic' }} produce={produce} />
 			</PanelBody>
 
 

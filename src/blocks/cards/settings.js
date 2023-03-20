@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -9,14 +10,17 @@ import BColor from '../../../../Components/BColor';
 import BtnGroup from '../../../../Components/BtnGroup';
 import Background from '../../../../Components/Background';
 import BorderControl from '../../../../Components/BorderControl';
-import { ImageHolderControl, ChangeImageData } from '../../../../Components/ImageControl';
+import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
 import BDevice from '../../../../Components/BDevice';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { tabController } from '../../../../Components/Helper/functions';
 
 import icons from '../../utils/icons';
 import options from '../../utils/options';
-const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
+const { generalStyleTabs } = options;
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard }) => {
 	const { cards = [], columns, columnGap, rowGap, layout, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
@@ -44,16 +48,32 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		setActiveIndex(cards.length);
 	}
 
+	const duplicateCard = e => {
+		e.preventDefault();
+
+		setAttributes({ cards: [...cards.slice(0, activeIndex), { ...cards[activeIndex] }, ...cards.slice(activeIndex)] });
+
+		setActiveIndex(activeIndex + 1);
+	}
+
+	const removeCard = e => {
+		e.preventDefault();
+
+		setAttributes({ cards: [...cards.slice(0, activeIndex), ...cards.slice(activeIndex + 1)] });
+
+		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
+	}
+
 	const { background = {}, img = {}, imgBorder = {}, catColor = '', titleColor = '', descColor = '' } = cards[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
-						<div className='helpItem'>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
+						{/* <div className='helpItem'>
 							<a href='https://bblockswp.com/docs/cards-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
-						</div>
+						</div> */}
 
 						<div className='helpItem rateUs'>
 							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
@@ -68,12 +88,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						{null !== activeIndex && <>
 							<h3 className='bplItemTitle'>{__(`Card No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-							<Background label={__('Background:', 'b-blocks')} background={background} onChange={val => updateCard('background', val)} />
+							<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateCard('background', val)} />
 
-							<ImageHolderControl className='mt20' label={__('Image:', 'b-blocks')} img={img} onChange={val => updateCard('img', val)} />
-							<ChangeImageData className='mt20' img={img} onChange={val => updateCard('img', val)} />
+							<Title>{__('Image:', 'b-blocks')}</Title>
+							<InlineDetailMediaUpload value={img} onChange={val => updateCard('img', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
 
-							<BorderControl label={__('Image Border:', 'b-blocks')} border={imgBorder} onChange={val => updateCard('imgBorder', val)} defaults={{ radius: '5px' }} />
+							<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateCard('imgBorder', val)} defaults={{ radius: '5px' }} />
 
 							<BColor label={__('Category Color:', 'b-blocks')} value={catColor} onChange={val => updateCard('catColor', val)} defaultColor='#0dcaf0' />
 
@@ -82,17 +102,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateCard('descColor', val)} defaultColor='#333' />
 
 							<PanelRow className='itemAction mt20 mb15'>
-								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(1 === cards.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
-									setAttributes({ cards: [...cards.slice(0, activeIndex), ...cards.slice(activeIndex + 1)] });
-								}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+								{1 < cards?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCard}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(cards.length);
-									setAttributes({ cards: [...cards, { ...cards[activeIndex] }] });
-								}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateCard}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>
 						</>}
 
@@ -132,9 +144,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 					</PanelBody>
 
 
@@ -166,31 +178,31 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 				{'style' === tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Content Area', 'b-blocks')}>
-						<SpaceControl label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '20px', horizontal: '10px' }} />
+						<SpaceControl label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '20px', horizontal: '10px' }} />
 					</PanelBody>
 
 
 					<PanelBody className='bPlPanelBody' title={__('Image', 'b-blocks')} initialOpen={false}>
-						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight} onChange={val => setAttributes({ imgHeight: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight} onChange={val => setAttributes({ imgHeight: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 					</PanelBody>
 
 
 					{isCat && <PanelBody className='bPlPanelBody' title={__('Category', 'b-blocks')} initialOpen={false}>
-						<Typography typography={catTypo} onChange={val => setAttributes({ catTypo: val })} defaults={{ fontSize: 15 }} />
+						<Typography value={catTypo} onChange={val => setAttributes({ catTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
 
-						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={catMargin} onChange={val => setAttributes({ catMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={catMargin} onChange={val => setAttributes({ catMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>}
 
 
 					{isTitle && <PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
-						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 22 }} />
+						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} produce={produce} />
 
-						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>}
 
 
 					{isDesc && <PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-						<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 15 }} />
+						<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
 					</PanelBody>}
 				</>}
 			</>}</TabPanel>

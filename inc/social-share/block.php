@@ -14,19 +14,21 @@ class BBlocksSocialShare extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksSocialShareClassName = 'wp-block-b-blocks-social-share ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-social-share ' . $className . ' align' . $align;
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksSocialShareClassName ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<div class='socialShareStyle'></div>
 
 			<ul class='bBlocksSocialShare'>
 				<?php foreach ( $socials as $index => $social ) {
 					extract( $social );
-					// Classes
-					$upIconClass = isset( $upIcon['id'] ) ? 'wp-image-'.$upIcon['id'] : '';
-					$upIconEl = !empty( $upIcon['url'] ) ? "<img class='$upIconClass' src='". $upIcon['url'] ."' alt='". $upIcon['alt'] ."' />" : '';
-					$iconEl = !empty( $icon['class'] ) ? "<i class='". $icon['class'] ."'></i>" : '';
+					$upIconUrl = $upIcon['url'];
+					$upIconAlt = $upIcon['alt'];
+					$iconClass = $icon['class'];
+
+					$upIconEl = !empty( $upIconUrl ) ? "<img src='$upIconUrl' alt='$upIconAlt' />" : '';
+					$iconEl = !empty( $iconClass ) ? "<i class='$iconClass'></i>" : '';
 					$filterIconEl = $isUpIcon ? $upIconEl : $iconEl; ?>
 
 					<li class='icon icon-<?php echo esc_attr( $index ); ?>' data-social='<?php echo esc_attr( $network ); ?>'>

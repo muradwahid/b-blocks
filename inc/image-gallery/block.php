@@ -14,7 +14,7 @@ class BBlocksImageGallery extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksImageClassName = 'wp-block-b-blocks-image-gallery ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-image-gallery ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$imgShadow = $imgShadow['styles'] ?? '';
@@ -43,7 +43,7 @@ class BBlocksImageGallery extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksImageClassName ); ?>' id='bBlocksImageGallery-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksImageGallery-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $capTitleTypo['googleFontLink'] ) ? "@import url(". esc_url( $capTitleTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $capDescTypo['googleFontLink'] ) ? "@import url(". esc_url( $capDescTypo['googleFontLink'] ) .");" : ''; ?>

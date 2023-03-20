@@ -1,5 +1,4 @@
 import { useEffect } from '@wordpress/element';
-import '@lottiefiles/lottie-player'; // Lottie player assets
 
 import Settings from './Settings';
 import Style from './Style';

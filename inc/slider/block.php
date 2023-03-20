@@ -14,10 +14,10 @@ class BBlocksSlider extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksSliderClassName = 'wp-block-b-blocks-slider ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-slider ' . $className . ' align' . $align;
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksSliderClassName ); ?>' id='bBlocksSlider-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSlider-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<div class='bBlocksSliderStyle'></div>
 
 			<div class='bBlocksSliderWrapper'></div>

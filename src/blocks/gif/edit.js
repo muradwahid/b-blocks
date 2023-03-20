@@ -3,8 +3,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl, Dashicon } from '@wordpress/components';
 
-import options from '../../utils/options';
-const { pxUnit, perUnit, emUnit } = options;
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
 const Edit = props => {
 	const { className, attributes: { gif, gifAlign, gifWidth }, setAttributes, clientId } = props;
@@ -57,7 +56,7 @@ const Edit = props => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/gif-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 				</div>
@@ -72,7 +71,7 @@ const Edit = props => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Gif Settings', 'b-blocks')}>
-				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={gifWidth} onChange={val => setAttributes({ gifWidth: val })} units={[pxUnit, perUnit, emUnit]} />
+				<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={gifWidth} onChange={val => setAttributes({ gifWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 				<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>
 			</PanelBody>
 		</InspectorControls>

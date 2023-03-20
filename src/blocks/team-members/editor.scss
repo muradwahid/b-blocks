@@ -1,3 +1,5 @@
+$primaryColor: #4527a4;
+
 .wp-block-b-blocks-team-members .bBlocksTeamMembers {
 	.bBlocksMember {
 		ul.memberSocial {
@@ -12,42 +14,18 @@
 			}
 		}
 
-		.memberSocialAdd {
-			button {
-				width: 22px;
-				height: 22px;
-				border-radius: 50%;
-				padding: 8px 8px 8px 8px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-
-				i {
-					color: #4527a4;
-					font-size: 22px;
-				}
-			}
-		}
-
 		i {
 			font-style: inherit;
 		}
 
-		.memberSocialForm {
-			text-align: center;
+		.socialAction {
 
-			.bPlLabel {
-				text-align: left;
-			}
-
-			.memberSocialRemove {
+			a,
+			button {
 				display: inline-flex;
 				align-items: center;
 				font-size: 14px;
 				font-weight: bold;
-				color: #fff;
-				background-color: #dc3545;
-				margin-top: 20px;
 				padding: 6px 12px;
 				border-radius: 3px;
 				cursor: pointer;
@@ -58,5 +36,30 @@
 				}
 			}
 		}
+
+		.memberSocialForm {
+			text-align: center;
+
+			.bPlLabel {
+				text-align: left;
+			}
+
+			.memberSocialRemove {
+				color: #fff;
+				background-color: #dc3545;
+			}
+		}
+
+		.memberSocialAdd {
+			button {
+				color: #fff;
+				background-color: $primaryColor;
+			}
+		}
+	}
+
+	.addMemberFirst {
+		text-align: center;
+		margin: 0;
 	}
 }

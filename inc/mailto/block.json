@@ -39,7 +39,11 @@
 		"btnTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 22,
+				"fontSize": {
+					"desktop": 22,
+					"tablet": 20,
+					"mobile": 18
+				},
 				"fontWeight": 600
 			}
 		},

@@ -1,25 +1,27 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useRef } from '@wordpress/element';
 
-import Settings from './settings';
+import { tabController } from '../../../../Components/Helper/functions';
+
+import Settings from './Settings';
+import Style from './Style';
+import TDViewer from './TDViewer';
+import { toggleAttr } from './utils/functions';
 
 const Edit = props => {
-	const { className, attributes: { alignment, sourceType, model, modelLink, width, height, isTouchMove, isZoom, loadingType }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId, isSelected } = props;
+	const { sourceType, model, modelLink, isTouchMove, isZoom, loadingType } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
-	const bBlocks3DViewer = useRef(null);
+	useEffect(() => tabController(), [isSelected]);
 
-	const toggleAttr = (selector, condition, attribute, value) => {
-		condition && selector?.setAttribute(attribute, value);
-		!condition && selector?.removeAttribute(attribute, value);
-	}
+	const bBlocks3DViewer = useRef(null);
 
 	useEffect(() => {
 		bBlocks3DViewer.current.innerHTML = '';
 
 		const reInitModel = document.createElement('model-viewer');
-		toggleAttr(reInitModel, true, 'class', 'bBlocksModel');
 		toggleAttr(reInitModel, true, 'src', 'upload' === sourceType ? model?.url : modelLink);
 		toggleAttr(reInitModel, true, 'alt', 'upload' === sourceType ? model?.title : '');
 		toggleAttr(reInitModel, isTouchMove, 'camera-controls', '');
@@ -34,29 +36,11 @@ const Edit = props => {
 		<Settings attributes={props.attributes} setAttributes={setAttributes} clientId={clientId} />
 
 		<div className={className} id={`bBlocks3DViewer-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				#bBlocks3DViewer-${clientId} .bBlocks3DViewer{
-					text-align: ${alignment};
-				}
-				#bBlocks3DViewer-${clientId} .bBlocks3DViewer .bBlocksModel{
-					width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
-					height: ${'0px' === height || '0%' === height || '0em' === height ? '350px' : height};
-				}
-			`}} />
+			<Style attributes={attributes} clientId={clientId} />
 
 			{'upload' === sourceType && !model.url ? <p className='noModel'>{__('Please, upload Model or enter Model Link first!', '3d-viewer-block')}</p> : ''}
 
-			<div className='bBlocks3DViewer' ref={bBlocks3DViewer}>
-				<model-viewer
-					className='bBlocksModel'
-					src={'upload' === sourceType ? model?.url : modelLink}
-					alt={'upload' === sourceType ? model?.title : ''}
-					camera-controls
-					loading={loadingType}
-					auto-rotate
-				></model-viewer>
-			</div>
+			<TDViewer attributes={attributes} ref={bBlocks3DViewer} />
 		</div >
 	</>;
 };

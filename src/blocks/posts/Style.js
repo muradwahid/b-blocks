@@ -1,101 +1,100 @@
-import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
 import { mediaUrl } from '../../utils/functions';
 
 const GeneralStyle = ({ attributes, clientId }) => {
-	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, isTitleLink, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+
+	const mainSl = `#bBlocksPosts-${clientId}`;
+	const postSl = `${mainSl} .bBlocksPost`;
+	const sliderPostsSl = `${mainSl} .bBlocksSliderPosts`;
+	const postReadMoreSl = `${postSl} .bBlocksPostReadMore`;
+	const postTitleSl = `${postSl} .bBlocksPostTitle`;
+	const postMetaSl = `${postSl} .bBlocksPostMeta`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-			${getTypoCSS(titleTypo)?.googleFontLink ? `@import url(${getTypoCSS(titleTypo)?.googleFontLink});` : ''}
-			${getTypoCSS(metaTypo)?.googleFontLink ? `@import url(${getTypoCSS(metaTypo)?.googleFontLink});` : ''}
-			${getTypoCSS(excerptTypo)?.googleFontLink ? `@import url(${getTypoCSS(excerptTypo)?.googleFontLink});` : ''}
-			${getTypoCSS(readMoreTypo)?.googleFontLink ? `@import url(${getTypoCSS(readMoreTypo)?.googleFontLink});` : ''}
+			${getTypoCSS(`${postTitleSl}, ${postTitleSl} a`, titleTypo)}
+			${getTypoCSS(`${postMetaSl}, ${postMetaSl} *, ${postSl} .bBlocksPostFImgCats`, metaTypo)}
+			${getTypoCSS(`${postSl} .bBlocksPostExcerpt`, excerptTypo)}
+			${getTypoCSS(`${postReadMoreSl} a`, readMoreTypo)}
 
-			#bBlocksPosts-${clientId} .bBlocksPost{
+			${postSl}{
 				margin-bottom: ${'masonry' === layout ? `${rowGap}px` : '0px'};
-				${getBorderCSS(border) || 'border: 1px solid #4527a400; border-radius: 5px;'}
+				${getBorderCSS(border)}
 			}
-			#bBlocksPosts-${clientId} .bBlocksPostDefault,
-			#bBlocksPosts-${clientId} .bBlocksPostSideImage{
+			${mainSl} .bBlocksPostDefault,
+			${mainSl} .bBlocksPostSideImage{
 				text-align: ${contentAlign};
-				${getBackgroundCSS(contentBG) || 'background-color: #f4f2fc;'}
+				${getBackgroundCSS(contentBG)}
 			}
 
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostText{
-				padding: ${getSpaceCSS(contentPadding) || '20px 25px'};
+			${postSl} .bBlocksPostText{
+				padding: ${getSpaceCSS(contentPadding)};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPostOverlay .bBlocksPostText{
-				${getBackgroundCSS(contentBG) || 'background-color: #f4f2fc;'}
+			${mainSl} .bBlocksPostOverlay .bBlocksPostText{
+				${getBackgroundCSS(contentBG)}
 				align-items: ${'left' === contentAlign ? 'flex-start' : 'right' === contentAlign ? 'flex-end' : 'center' === contentAlign ? 'center' : ''}
 			}
 
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostTitle{
+			${postTitleSl}{
 				text-align: ${contentAlign};
-				${!isTitleLink ? getTypoCSS(titleTypo)?.styles || 'font-family: Roboto, sans-serif; font-size: 25px;' : ''}
 				color: ${titleColor};
-				margin: ${getSpaceCSS(titleMargin) || '0 0 15px 0'};
+				margin: ${getSpaceCSS(titleMargin)};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostTitle a{
-				${getTypoCSS(titleTypo)?.styles || 'font-family: Roboto, sans-serif; font-size: 25px;'}
+			${postTitleSl} a{
 				color: ${titleColor};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta{
+			${postMetaSl}{
 				text-align: ${contentAlign};
-				${getTypoCSS(metaTypo)?.styles || 'font-size: 13px; text-transform: uppercase;'}
 				color: ${metaTextColor};
-				margin: ${getSpaceCSS(metaMargin) || '0 0 15px 0'};
+				margin: ${getSpaceCSS(metaMargin)};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta a{
+			${postMetaSl} a{
 				color: ${metaLinkColor};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostMeta .dashicons{
+			${postMetaSl} .dashicons{
 				color: ${metaIconColor};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImgCats{
-				${getTypoCSS(metaTypo)?.styles || 'font-size: 13px; text-transform: uppercase;'}
+			${postSl} .bBlocksPostFImgCats a{
+				${getColorsCSS(metaColorsOnImage)}
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImgCats a{
-				${getColorsCSS(metaColorsOnImage) || 'color: #fff; background: #4527a4;'}
-			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostExcerpt{
+			${postSl} .bBlocksPostExcerpt{
 				text-align: ${excerptAlign};
-				${getTypoCSS(excerptTypo)?.styles || 'font-size: 15px;'}
 				color: ${excerptColor};
-				margin: ${getSpaceCSS(excerptMargin) || '0 0 10px 0'};
+				margin: ${getSpaceCSS(excerptMargin)};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostReadMore{
+			${postReadMoreSl}{
 				text-align: ${readMoreAlign};
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostReadMore a{
-				${getTypoCSS(readMoreTypo)?.styles || 'font-size: 14px; text-transform: uppercase; font-weight: 600;'}
-				${getColorsCSS(readMoreColors) || 'color: #fff; background: #8344c5;'}
-				padding: ${getSpaceCSS(readMorePadding) || '12px 35px'};
-				${getBorderCSS(readMoreBorder) || 'border-radius: 3px;'}
+			${postReadMoreSl} a{
+				${getColorsCSS(readMoreColors)}
+				padding: ${getSpaceCSS(readMorePadding)};
+				${getBorderCSS(readMoreBorder)}
 			}
-			#bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostReadMore a:hover{
-				${getColorsCSS(readMoreHovColors) || 'color: #fff; background: #4527a4;'}
+			${postReadMoreSl} a:hover{
+				${getColorsCSS(readMoreHovColors)}
 			}
 
-			#bBlocksPosts-${clientId} .bBlocksGridPosts{
+			${mainSl} .bBlocksGridPosts{
 				grid-gap: ${rowGap}px ${columnGap}px;
 				align-items: ${false === isContentEqualHight ? 'start' : 'initial'};
 			}
-			#bBlocksPosts-${clientId} .bBlocksMasonryPosts{
+			${mainSl} .bBlocksMasonryPosts{
 				gap: ${columnGap}px;
 			}
-			#bBlocksPosts-${clientId} .bBlocksSliderPosts,
-			#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-slide{
+			${sliderPostsSl},
+			${sliderPostsSl} .swiper-slide{
 				min-height: ${sliderHeight};
 			}
-			#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-pagination .swiper-pagination-bullet{
+			${sliderPostsSl} .swiper-pagination .swiper-pagination-bullet{
 				background: ${sliderPageColor};
 				width: ${sliderPageWidth};
 				height: ${sliderPageHeight};
-				${getBorderCSS(sliderPageBorder) || 'border-radius: 50%;'}
+				${getBorderCSS(sliderPageBorder)}
 			}
-			#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-prev,
-			#bBlocksPosts-${clientId} .bBlocksSliderPosts .swiper-button-next{
+			${sliderPostsSl} .swiper-button-prev,
+			${sliderPostsSl} .swiper-button-next{
 				color: ${sliderPrevNextColor};
 			}
 		`}} />;

@@ -2,10 +2,12 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 
-import Settings from './settings';
+import Settings from './Settings';
+import Style from './Style';
 
 const Edit = props => {
-	const { className, attributes: { width, btnAlign, btnType, btnTypo, btnPadding, btnOne, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwo, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepBGColor }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId } = props;
+	const { btnType, btnOne, btnOneLink, btnTwo, btnTwoLink, isSep, sepType, sepText, sepIcon } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -13,56 +15,7 @@ const Edit = props => {
 		<Settings settings={props} />
 
 		<div className={className} id={`bBlocksButtonGroup-${clientId}`}>
-			<style dangerouslySetInnerHTML={{
-				__html: `
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
-				${sepTextTypo?.googleFontLink ? `@import url(${sepTextTypo?.googleFontLink});` : ''}
-
-				#bBlocksButtonGroup-${clientId}{
-					text-align: ${btnAlign};
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup{
-					width: ${'0px' !== width && '0%' !== width && '0em' !== width ? width : 'auto'};
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .bBlocksBtn{
-					min-width: ${'0px' !== width && '0%' !== width && '0em' !== width ? '50%' : 'auto'};
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .bBlocksBtn a{
-					${btnTypo?.styles || 'font-size: 16px;'}
-					padding: ${btnPadding?.styles || '12px 30px'};
-				}
-
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnOne{
-					${btnOneBorder?.styles || 'border-radius: 50px;'}
-					${btnOneColors?.styles || 'color: #fff; background: #4527a4;'}
-					border-radius: ${btnOneBorder?.radius || '50px'} 0 0 ${btnOneBorder?.radius || '50px'};
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnOne:hover{
-					${btnOneHovColors?.styles || 'color: #fff; background: #8344c5;'}
-				}
-
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnTwo{
-					${btnTwoBorder?.styles || 'border-radius: 50px;'}
-					${btnTwoColors?.styles || 'color: #fff; background: #8344c5;'}
-					border-radius: 0 ${btnTwoBorder?.radius || '50px'} ${btnTwoBorder?.radius || '50px'} 0;
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnTwo:hover{
-					${btnTwoHovColors?.styles || 'color: #fff; background: #4527a4;'}
-				}
-
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnSeparator{
-					width: ${'text' === sepType ? `${sepTextTypo?.fontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
-					height: ${'text' === sepType ? `${sepTextTypo?.fontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
-					background-color: ${sepBGColor};
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnSeparator span{
-					${sepTextTypo?.styles || 'font-size: 15px;'}
-					color: ${sepTextColor};
-				}
-				#bBlocksButtonGroup-${clientId} .bBlocksButtonGroup .btnSeparator i{
-					${sepIcon?.styles || 'font-size: 20px; color: #333;'}
-				}
-			`}} />
+			<Style attributes={attributes} clientId={clientId} />
 
 			<div className='bBlocksButtonGroup'>
 				<div className='bBlocksBtn firstBtn'>

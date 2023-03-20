@@ -234,19 +234,25 @@
 		"photoMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "20px"
 			}
 		},
 		"nameTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 20,
+				"fontSize": {
+					"desktop": 20,
+					"tablet": 18,
+					"mobile": 16
+				},
 				"fontWeight": 600
 			}
 		},
 		"nameMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "10px"
 			}
 		},
@@ -257,12 +263,17 @@
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 16
+				"fontSize": {
+					"desktop": 16,
+					"tablet": 16,
+					"mobile": 16
+				}
 			}
 		},
 		"titleMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "10px"
 			}
 		},
@@ -273,6 +284,7 @@
 		"sepMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "15px"
 			}
 		},
@@ -283,12 +295,17 @@
 		"bioTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 15
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
 			}
 		},
 		"bioMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "15px"
 			}
 		},

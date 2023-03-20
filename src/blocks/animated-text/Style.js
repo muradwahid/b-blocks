@@ -1,18 +1,21 @@
+import { getBackgroundCSS, getBorderCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { textAlign, background, typography, color, padding, border } = attributes;
 
+	const animatedTextSl = `#bBlocksAnimatedText-${clientId} .bBlocksAnimatedText`;
+
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${typography?.googleFontLink ? `@import url(${typography?.googleFontLink});` : ''}
+		${getTypoCSS(`${animatedTextSl} .content`, typography)}
 
-		#bBlocksAnimatedText-${clientId} .bBlocksAnimatedText{
+		${animatedTextSl}{
 			text-align: ${textAlign};
-			${background?.styles ?? 'background-color: #0000;'}
-			padding: ${padding?.styles ?? '15px 15px'};
-			${border?.styles ?? 'border-radius: 5px;'}
+			${getBackgroundCSS(background)}
+			padding: ${getSpaceCSS(padding)};
+			${getBorderCSS(border)}
 		}
-		#bBlocksAnimatedText-${clientId} .bBlocksAnimatedText .content{
-			${typography?.styles || 'font-size: 22px;'}
+		${animatedTextSl} .content{
 			color: ${color};
 		}
 		`.replace(/\s+/g, ' ')

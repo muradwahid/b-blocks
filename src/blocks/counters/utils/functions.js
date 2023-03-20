@@ -1,4 +1,4 @@
-const performCounter = (counterEl, duration) => {
+export const performCounter = (counterEl, duration) => {
 	counterEl?.forEach(count => {
 		const startNumber = parseInt(count.dataset.countStart);
 		const endNumber = parseInt(count.dataset.countEnd);
@@ -20,4 +20,3 @@ const performCounter = (counterEl, duration) => {
 		}, duration);
 	});
 }
-export { performCounter }

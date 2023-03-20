@@ -1,22 +1,36 @@
+import { render, useEffect, useRef } from '@wordpress/element';
+
 import './style.scss';
+import Style from './Style';
+import TDViewer from './TDViewer';
+import { toggleAttr } from './utils/functions';
 
 // 3D Viewer
 document.addEventListener('DOMContentLoaded', () => {
 	const allTDViewer = document.querySelectorAll('.wp-block-b-blocks-td-viewer');
-	Object.values(allTDViewer).map(tDViewer => {
-		const currentTDViewer = document.getElementById(`${tDViewer.id}`);
-		const { isTouchMove, isZoom } = JSON.parse(currentTDViewer.dataset.model);
+	allTDViewer.forEach(tDViewer => {
+		const attributes = JSON.parse(tDViewer.dataset.attributes);
 
-		const model = document.querySelector(`#${tDViewer.id} model-viewer`);
+		render(<>
+			<Style attributes={attributes} clientId={attributes.cId} />
 
-		const toggleAttr = (condition, attribute, value) => {
-			condition && model?.setAttribute(attribute, value);
-			!condition && model?.removeAttribute(attribute, value);
-		}
+			<RenderTDViewer attributes={attributes} />
+		</>, tDViewer);
 
-		toggleAttr(isTouchMove, 'camera-controls', '');
-		toggleAttr(!isZoom, 'disable-zoom', '');
-
-		currentTDViewer.removeAttribute('data-controls');
+		tDViewer?.removeAttribute('data-attributes');
 	});
 });
+
+const RenderTDViewer = ({ attributes }) => {
+	const { isTouchMove, isZoom } = attributes;
+
+	const bBlocks3DViewer = useRef(null);
+
+	useEffect(() => {
+		const model = document.querySelector(`.${bBlocks3DViewer.current.classList[0]} .bBlocksModel`);
+		toggleAttr(model, isTouchMove, 'camera-controls', '');
+		toggleAttr(model, !isZoom, 'disable-zoom', '');
+	}, [bBlocks3DViewer.current]);
+
+	return <TDViewer attributes={attributes} ref={bBlocks3DViewer} />
+}

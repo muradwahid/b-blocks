@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
+import produce from 'immer';
 
 // Settings Components
 import Title from '../../../../Components/Title';
@@ -15,10 +16,11 @@ import Background from '../../../../Components/Background';
 import BDevice from '../../../../Components/BDevice';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
+import { gearIcon } from '../../../../Components/Helper/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import icons from '../../utils/icons';
 import options from '../../utils/options';
-const { generalStyleTabs, pxUnit, perUnit, emUnit } = options;
+const { generalStyleTabs } = options;
 const frontBackTab = [
 	{ name: 'front', title: __('Front', 'b-blocks') },
 	{ name: 'back', title: __('Back', 'b-blocks') }
@@ -83,7 +85,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' == tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 						{/* <div className='helpItem'>
 							<a href='https://bblockswp.com/docs/flip-box-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div> */}
@@ -100,19 +102,19 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Boxes', 'b-blocks')}>
 						{null !== activeIndex && <PanelBody className='bPlPanelBody editItem' title={__(`Flip Box No ${activeIndex + 1}:`, 'b-blocks')}>
 							<PanelBody className='bPlPanelBody' title={__('Box Settings', 'b-blocks')}>
-								<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => updateFlipBox('border', val)} />
+								<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateFlipBox('border', val)} />
 
-								<ShadowControl label={__('Shadow:', 'b-blocks')} shadow={shadow} onChange={val => updateFlipBox('shadow', val)} />
+								<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => updateFlipBox('shadow', val)} />
 							</PanelBody>
 
 							<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={frontBackTab}>{tab => <>
 								{'front' == tab.name && <>
 									<PanelBody className='bPlPanelBody' title={__('Front Box', 'b-blocks')}>
-										<Background label={__('Background:', 'b-blocks')} background={frontBG} onChange={val => updateFlipBox('frontBG', val)} />
+										<Background label={__('Background:', 'b-blocks')} value={frontBG} onChange={val => updateFlipBox('frontBG', val)} />
 									</PanelBody>
 
 									{isIcon && <PanelBody className='bPlPanelBody' title={__('Front Icon', 'b-blocks')} initialOpen={false}>
-										<IconControl icon={frontIcon} onChange={val => updateFlipBox('frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />
+										<IconControl value={frontIcon} onChange={val => updateFlipBox('frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Front Title', 'b-blocks')} initialOpen={false}>
@@ -132,11 +134,11 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 								{'back' == tab.name && <>
 									<PanelBody className='bPlPanelBody' title={__('Back Box', 'b-blocks')}>
-										<Background label={__('Background:', 'b-blocks')} background={backBG} onChange={val => updateFlipBox('backBG', val)} />
+										<Background label={__('Background:', 'b-blocks')} value={backBG} onChange={val => updateFlipBox('backBG', val)} />
 									</PanelBody>
 
 									{isIcon && <PanelBody className='bPlPanelBody' title={__('Back Icon', 'b-blocks')} initialOpen={false}>
-										<IconControl icon={backIcon} onChange={val => updateFlipBox('backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />
+										<IconControl value={backIcon} onChange={val => updateFlipBox('backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Back Title', 'b-blocks')} initialOpen={false}>
@@ -153,11 +155,11 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 										<Title>{__('Link:', 'b-blocks')}</Title>
 										<TextControl value={btnLink} onChange={val => updateFlipBox('btnLink', val)} />
 
-										<BorderControl label={__('Border:', 'b-blocks')} border={btnBorder} onChange={val => updateFlipBox('btnBorder', val)} defaults={{ radius: '3px' }} />
+										<BorderControl label={__('Border:', 'b-blocks')} value={btnBorder} onChange={val => updateFlipBox('btnBorder', val)} defaults={{ radius: '3px' }} />
 
-										<ColorsControl colors={btnColors} onChange={val => updateFlipBox('btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />
+										<ColorsControl value={btnColors} onChange={val => updateFlipBox('btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />
 
-										<ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={btnHovColors} onChange={val => updateFlipBox('btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />
+										<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateFlipBox('btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />
 									</PanelBody>
 								</>}
 							</>}</TabPanel>
@@ -173,7 +175,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									e.preventDefault();
 									setActiveIndex(boxes.length);
 									setAttributes({ boxes: [...boxes, { ...boxes[activeIndex] }] });
-								}}>{icons.gearSettings}{__('Duplicate', 'b-blocks')}</Button>
+								}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>
 						</PanelBody>}
 
@@ -190,9 +192,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit, perUnit, emUnit]} />
+						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 					</PanelBody>
 
 
@@ -210,33 +212,33 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 				{'style' == tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Box', 'b-blocks')}>
-						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight} onChange={val => setAttributes({ boxHeight: val })} units={[pxUnit, emUnit]} />
+						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={boxHeight} onChange={val => setAttributes({ boxHeight: val })} units={[pxUnit(), emUnit()]} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={boxPadding} onChange={val => setAttributes({ boxPadding: val })} defaults={{ vertical: '30px', horizontal: '25px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={boxPadding} onChange={val => setAttributes({ boxPadding: val })} defaults={{ vertical: '30px', horizontal: '25px' }} />
 					</PanelBody>
 
 
 					{isIcon && <PanelBody className='bPlPanelBody' title={__('Icon', 'b-blocks')} initialOpen={false}>
-						<SpaceControl label={__('Margin:', 'b-blocks')} space={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
+						<SpaceControl label={__('Margin:', 'b-blocks')} value={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 					</PanelBody>}
 
 
 					<PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
-						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
+						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} produce={produce} />
 
-						{titleTypo && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
+						{titleTypo && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
 					</PanelBody>
 
 
 					{isDesc && <PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-						<Typography typography={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: 16 }} />
+						<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} />
 					</PanelBody>}
 
 
 					{isBtn && <PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
-						<Typography typography={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: 20 }} />
+						<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 } }} produce={produce} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '15px', horizontal: '25px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '15px', horizontal: '25px' }} />
 					</PanelBody>}
 				</>}
 			</>}</TabPanel>

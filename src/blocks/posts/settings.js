@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from '@wordpress/element';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl, TextControl, ToggleControl, TabPanel, RadioControl, PanelRow, __experimentalUnitControl as UnitControl, Dashicon } from '@wordpress/components';
 import SelectPure from 'select-pure';
+import produce from 'immer';
 
 // Settings Components
 import BDevice from '../../../../Components/BDevice';
@@ -15,11 +16,12 @@ import SelectPureControl from '../../../../Components/SelectPureControl';
 import ColorsControl from '../../../../Components/ColorsControl';
 import Typography from '../../../../Components/Typography';
 import BtnGroup from '../../../../Components/BtnGroup';
+import { pxUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
 
 import { ExcerptLengthCtx } from './Edit';
 import icons from '../../utils/icons';
 import options from '../../utils/options';
-const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders, pxUnit, emUnit, vhUnit } = options;
+const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders } = options;
 const layouts = [
 	{ label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
 	{ label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
@@ -57,7 +59,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')}>
+					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 						<div className='helpItem'>
 							<a href='https://bblockswp.com/docs/posts-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
 						</div>
@@ -132,7 +134,7 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 						{'grid' === layout && <ToggleControl className='mt20' label={__('Enable Content Equal Height', 'b-blocks')} checked={isContentEqualHight} onChange={val => setAttributes({ isContentEqualHight: val })} />}
 
-						{'slider' === layout && <UnitControl className='mt20' label={__('Slider Min Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit, emUnit, vhUnit]} />}
+						{'slider' === layout && <UnitControl className='mt20' label={__('Slider Min Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit(), emUnit(), vhUnit()]} />}
 					</PanelBody>
 
 
@@ -276,11 +278,11 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 							<BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
 						</PanelRow>
 
-						<Background label={__('Background', 'b-blocks')} background={contentBG} onChange={val => setAttributes({ contentBG: val })} defaults={{ color: '#f4f2fc' }} />
+						<Background label={__('Background', 'b-blocks')} value={contentBG} onChange={val => setAttributes({ contentBG: val })} defaults={{ color: '#f4f2fc' }} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={contentPadding} onChange={val => setAttributes({ contentPadding: val })} defaults={{ vertical: '20px', horizontal: '25px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={contentPadding} onChange={val => setAttributes({ contentPadding: val })} defaults={{ vertical: '20px', horizontal: '25px' }} />
 
-						<BorderControl label={__('Border:', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
+						<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
 					</PanelBody>}
 
 
@@ -288,11 +290,11 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 						{sliderIsPage && <>
 							<BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={sliderPageColor} onChange={val => setAttributes({ sliderPageColor: val })} defaultColor='#4527a4' />
 
-							<UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={sliderPageWidth} onChange={val => setAttributes({ sliderPageWidth: val })} units={[pxUnit, emUnit]} />
+							<UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={sliderPageWidth} onChange={val => setAttributes({ sliderPageWidth: val })} units={[pxUnit(), emUnit()]} />
 
-							<UnitControl className='mt20' label={__('Pagination Height:', 'b-blocks')} labelPosition='left' value={sliderPageHeight} onChange={val => setAttributes({ sliderPageHeight: val })} units={[pxUnit, emUnit]} />
+							<UnitControl className='mt20' label={__('Pagination Height:', 'b-blocks')} labelPosition='left' value={sliderPageHeight} onChange={val => setAttributes({ sliderPageHeight: val })} units={[pxUnit(), emUnit()]} />
 
-							<BorderControl label={__('Pagination Border:', 'b-blocks')} border={sliderPageBorder} onChange={val => setAttributes({ sliderPageBorder: val })} defaults={{ radius: '50%' }} />
+							<BorderControl label={__('Pagination Border:', 'b-blocks')} value={sliderPageBorder} onChange={val => setAttributes({ sliderPageBorder: val })} defaults={{ radius: '50%' }} />
 						</>}
 
 						{sliderIsPrevNext && <BColor label={__('Preview Next Button Color:', 'b-blocks')} value={sliderPrevNextColor} onChange={val => setAttributes({ sliderPrevNextColor: val })} defaultColor='#4527a4' />}
@@ -300,16 +302,16 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 
 					{isPosts && isTitle && <PanelBody className='bPlPanelBody' title={__('Title Styles', 'b-blocks')} initialOpen={false}>
-						<Typography typography={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: 25 }} />
+						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} produce={produce} />
 
 						<BColor label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 
-						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
 					</PanelBody>}
 
 
 					{isPosts && isMeta && <PanelBody className='bPlPanelBody' title={__('Meta Data Styles', 'b-blocks')} initialOpen={false}>
-						<Typography typography={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: 13, textTransform: 'uppercase' }} />
+						<Typography value={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: { desktop: 13, tablet: 13, mobile: 13 }, textTransform: 'uppercase' }} produce={produce} />
 
 						<BColor label={__('Text Color:', 'b-blocks')} value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
 
@@ -317,9 +319,9 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 
 						<BColor label={__('Icon Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
 
-						<ColorsControl label={__('Category Colors On Image:', 'b-blocks')} colors={metaColorsOnImage} onChange={val => setAttributes({ metaColorsOnImage: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<ColorsControl label={__('Category Colors On Image:', 'b-blocks')} value={metaColorsOnImage} onChange={val => setAttributes({ metaColorsOnImage: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={metaMargin} onChange={val => setAttributes({ metaMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={metaMargin} onChange={val => setAttributes({ metaMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
 					</PanelBody>}
 
 
@@ -329,11 +331,11 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 							<BtnGroup value={excerptAlign} onChange={val => setAttributes({ excerptAlign: val })} options={aligns} isIcon={true} />
 						</PanelRow>
 
-						<Typography typography={excerptTypo} onChange={val => setAttributes({ excerptTypo: val })} defaults={{ fontSize: 15 }} />
+						<Typography value={excerptTypo} onChange={val => setAttributes({ excerptTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
 
 						<BColor label={__('Color:', 'b-blocks')} value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
 
-						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} space={excerptMargin} onChange={val => setAttributes({ excerptMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={excerptMargin} onChange={val => setAttributes({ excerptMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>}
 
 
@@ -343,15 +345,15 @@ const Settings = ({ settings, getPostTypes, categories }) => {
 							<BtnGroup value={readMoreAlign} onChange={val => setAttributes({ readMoreAlign: val })} options={aligns.filter(a => a.value !== 'justify')} isIcon={true} />
 						</PanelRow>
 
-						<Typography typography={readMoreTypo} onChange={val => setAttributes({ readMoreTypo: val })} defaults={{ fontSize: 14, textTransform: 'uppercase', fontWeight: 600 }} />
+						<Typography value={readMoreTypo} onChange={val => setAttributes({ readMoreTypo: val })} defaults={{ fontSize: { desktop: 14, tablet: 14, mobile: 14 }, textTransform: 'uppercase', fontWeight: 600 }} produce={produce} />
 
-						<ColorsControl colors={readMoreColors} onChange={val => setAttributes({ readMoreColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+						<ColorsControl value={readMoreColors} onChange={val => setAttributes({ readMoreColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
 
-						<ColorsControl label={__('Hover Colors:', 'b-blocks')} colors={readMoreHovColors} onChange={val => setAttributes({ readMoreHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={readMoreHovColors} onChange={val => setAttributes({ readMoreHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={readMorePadding} onChange={val => setAttributes({ readMorePadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={readMorePadding} onChange={val => setAttributes({ readMorePadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
 
-						<BorderControl label={__('Border:', 'b-blocks')} border={readMoreBorder} onChange={val => setAttributes({ readMoreBorder: val })} defaults={{ radius: '3px' }} />
+						<BorderControl label={__('Border:', 'b-blocks')} value={readMoreBorder} onChange={val => setAttributes({ readMoreBorder: val })} defaults={{ radius: '3px' }} />
 					</PanelBody>}
 				</>}
 			</>}</TabPanel>

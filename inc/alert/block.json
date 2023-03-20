@@ -53,7 +53,11 @@
 		"typography": {
 			"type": "object",
 			"default": {
-				"fontSize": 25
+				"fontSize": {
+					"desktop": 25,
+					"tablet": 22,
+					"mobile": 20
+				}
 			}
 		},
 		"colors": {

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { render } from 'react-dom';
-import '@lottiefiles/lottie-player'; // Lottie player assets
 
 import './style.scss';
 import Style from './Style';

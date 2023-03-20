@@ -34,7 +34,11 @@
 		"btnTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 16
+				"fontSize": {
+					"desktop": 16,
+					"tablet": 16,
+					"mobile": 16
+				}
 			}
 		},
 		"btnPadding": {
@@ -117,7 +121,11 @@
 		"sepTextTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 15
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
 			}
 		},
 		"sepTextColor": {

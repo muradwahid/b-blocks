@@ -130,12 +130,17 @@
 		"catTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 15
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
 			}
 		},
 		"catMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "10px"
 			}
 		},
@@ -150,12 +155,17 @@
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 22
+				"fontSize": {
+					"desktop": 22,
+					"tablet": 20,
+					"mobile": 18
+				}
 			}
 		},
 		"titleMargin": {
 			"type": "object",
 			"default": {
+				"side": 4,
 				"bottom": "10px"
 			}
 		},
@@ -166,7 +176,11 @@
 		"descTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": 15
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
 			}
 		}
 	},

@@ -14,7 +14,7 @@ class BBlocksGIF extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksGifClassName = 'wp-block-b-blocks-gif ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-gif ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$gifStyle = new BBlocksStyleGenerator();
@@ -26,7 +26,7 @@ class BBlocksGIF extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksGifClassName ); ?>' id='bBlocksGif-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksGif-<?php echo esc_attr( $cId ); ?>'>
 			<style><?php echo wp_kses( $gifStyle::renderStyle(), [] ); ?></style>
 
 			<div class='bBlocksGif'>

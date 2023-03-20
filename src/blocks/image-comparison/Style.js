@@ -1,28 +1,30 @@
+import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { alignment, width, border, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding } = attributes;
 
+	const imgCompareSl = `#bBlocksImageComparison-${clientId} .bBlocksImageComparison`;
+
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${labelTypo?.googleFontLink ? `@import url(${labelTypo?.googleFontLink});` : ''}
-		${capTypo?.googleFontLink ? `@import url(${capTypo?.googleFontLink});` : ''}
+		${getTypoCSS(`${imgCompareSl} .overlay`, labelTypo)}
+		${getTypoCSS(`${imgCompareSl} .caption`, capTypo)}
 
 		#bBlocksImageComparison-${clientId}{
 			text-align: ${alignment};
 		}
-		#bBlocksImageComparison-${clientId} .bBlocksImageComparison{
-			width: ${width || '100%'};
-			${border?.styles};
+		${imgCompareSl}{
+			width: ${width};
+			${getSpaceCSS(border)};
 		}
 
-		#bBlocksImageComparison-${clientId} .bBlocksImageComparison .overlay{
-			${labelTypo?.styles || 'font-size: 15px;'}
-			${labelColors?.styles || 'color: #fff; background: #00000080;'}
-			padding: ${labelPadding?.styles || '10px 15px'};
+		${imgCompareSl} .overlay{
+			${getColorsCSS(labelColors)}
+			padding: ${getSpaceCSS(labelPadding)};
 		}
-		#bBlocksImageComparison-${clientId} .bBlocksImageComparison .caption{
-			${capTypo?.styles || 'font-size: 14px;'}
-			${capColors?.styles || 'color: #333; background: #f4f4f4;'}
-			padding: ${capPadding?.styles || '10px 15px'};
+		${imgCompareSl} .caption{
+			${getColorsCSS(capColors)}
+			padding: ${getSpaceCSS(capPadding)};
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

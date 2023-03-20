@@ -1,3 +1,5 @@
+import { getBackgroundCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { background, width, height, alignment } = attributes;
 
@@ -13,7 +15,7 @@ const Style = ({ attributes, clientId }) => {
 			width: ${width};
 		}
 		#bBlocksChart-${clientId} .bBlocksChart canvas{
-			${background?.styles || 'background-color: #0000;'};
+			${getBackgroundCSS(background)};
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

@@ -1,4 +1,4 @@
-import servicePattern from '../img/service-pattern.png';
+import { getBackgroundCSS, getBorderCSS, getIconCSS } from '../../../../../Components/Helper/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { background, hoverBG, icon, iconWidth, iconBorder, titleColor, descColor, linkIconColor, linkBGColor, linkBGHovColor } = attributes;
@@ -6,20 +6,20 @@ const Style = ({ attributes, clientId }) => {
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		#bBlocksService-${clientId} .bBlocksService{
-			${background?.styles || `background-color: #0000;`}
+			${getBackgroundCSS(background)}
 		}
 		#bBlocksService-${clientId} .bBlocksService .bgLayer{
-			${hoverBG?.styles || `background-image: url(${servicePattern}); background-position: bottom left; background-size: auto; background-repeat: no-repeat; background-color: #0000;`}
+			${getBackgroundCSS(hoverBG)}
 		}
 
 		#bBlocksService-${clientId} .bBlocksService .title{
 			color: ${titleColor};
 		}
 		#bBlocksService-${clientId} .bBlocksService .icon{
-			${iconBorder?.styles || ''}
+			${getBorderCSS(iconBorder)}
 		}
 		#bBlocksService-${clientId} .bBlocksService .icon i{
-			${icon?.styles || 'font-size: 70px;'}
+			${getIconCSS(icon)}
 		}
 		#bBlocksService-${clientId} .bBlocksService .icon img{
 			width: ${iconWidth};

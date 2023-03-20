@@ -38,13 +38,13 @@ const Settings = props => {
 					<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 				</PanelRow>
 
-				<Background className='mt20' label={__('Background:', 'b-blocks')} background={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />
+				<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />
 
-				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} space={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
+				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
 
-				<BorderControl className='mt20' label={__('Border', 'b-blocks')} border={border} onChange={val => setAttributes({ border: val })} />
+				<BorderControl className='mt20' label={__('Border', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} />
 
-				<ShadowControl label={__('Shadow', 'b-blocks')} shadow={shadow} onChange={val => setAttributes({ shadow: val })} />
+				<ShadowControl label={__('Shadow', 'b-blocks')} value={shadow} onChange={val => setAttributes({ shadow: val })} />
 			</PanelBody>
 		</InspectorControls>
 

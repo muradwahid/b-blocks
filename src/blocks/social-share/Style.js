@@ -1,3 +1,5 @@
+import { getBackgroundCSS, getBorderCSS, getIconCSS, getShadowCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId }) => {
 	const { socials, alignment, background, size, padding, margin, border, shadow } = attributes;
 
@@ -8,15 +10,13 @@ const Style = ({ attributes, clientId }) => {
 				text-align: ${alignment};
 			}
 			#bBlocksSocialShare-${clientId} ul.bBlocksSocialShare li.icon{
-				${background?.styles || 'background-color: #0000;'}
+				font-size: ${size};
+				${getBackgroundCSS(background)}
 				width: calc( ${size} + ${padding} + ${padding} );
 				height: calc( ${size} + ${padding} + ${padding} );
 				margin: 0 calc( ${margin} / 2 );
-				${border?.styles || 'border-radius: 50%;'}
-				box-shadow: ${shadow?.styles || 'none'};
-			}
-			#bBlocksSocialShare-${clientId} ul.bBlocksSocialShare li.icon i{
-				font-size: ${size};
+				${getBorderCSS(border)}
+				box-shadow: ${getShadowCSS(shadow) || 'none'};
 			}
 			#bBlocksSocialShare-${clientId} ul.bBlocksSocialShare li.icon img{
 				width: ${size};
@@ -27,7 +27,8 @@ const Style = ({ attributes, clientId }) => {
 		<style>
 			{socials?.map((item, index) => `
 				#bBlocksSocialShare-${clientId} ul.bBlocksSocialShare li.icon-${index} i{
-					${item?.icon?.styles || `color: ${item?.icon?.color || '#4527a4'};`}
+					${getIconCSS(item?.icon)}
+					font-size: inherit;
 				}`.replace(/\s+/g, ' ')
 			)}
 		</style>

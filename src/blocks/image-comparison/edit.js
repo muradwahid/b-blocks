@@ -6,6 +6,7 @@ import { isBlobURL } from '@wordpress/blob';
 const $ = jQuery;
 
 // Settings Components
+import { tabController } from '../../../../Components/Helper/functions';
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
 
 import Settings from './Settings';
@@ -13,10 +14,12 @@ import Style from './Style';
 import { drags } from './utils/functions';
 
 const Edit = props => {
-	const { className, attributes, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId, isSelected } = props;
 	const { width, beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
+
+	useEffect(() => tabController(), [isSelected]);
 
 	// Image Slider Scripts
 	useEffect(() => {
@@ -65,7 +68,7 @@ const Edit = props => {
 								<img src={beforeImg?.url} alt={beforeImg?.alt} />
 								{isBlobURL(beforeImg?.url) && <Spinner />}
 							</> :
-								<ImagePlaceholder label={__(' Before Image:', 'b-blocks')} img={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+								<ImagePlaceholder label={__(' Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
 							}
 						</div>
 
@@ -74,7 +77,7 @@ const Edit = props => {
 								<img src={afterImg?.url} alt={afterImg?.alt} />
 								{isBlobURL(afterImg?.url) && <Spinner />}
 							</> :
-								<ImagePlaceholder label={__(' After Image:', 'b-blocks')} img={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+								<ImagePlaceholder label={__(' After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 							}
 						</div>
 					</div>}

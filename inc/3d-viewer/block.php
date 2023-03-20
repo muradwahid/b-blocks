@@ -19,38 +19,12 @@ class BBlocks3DViewer extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocks3DViewerClassName = 'wp-block-b-blocks-td-viewer ' . $className . ' align' . $align;
-
-		// Generate Styles
-		$tDViewerStyle = new BBlocksStyleGenerator();
-		$tDViewerStyle::addStyle( "#bBlocks3DViewer-$cId .bBlocks3DViewer", [
-			'text-align' => $alignment
-		] );
-		$tDViewerStyle::addStyle( "#bBlocks3DViewer-$cId .bBlocks3DViewer .bBlocksModel", [
-			'width' => '0px' === $width || '0%' === $width || '0em' === $width ? 'auto' : $width,
-			'height' => '0px' === $height || '0%' === $height || '0em' === $height ? '350px' : $height,
-		] );
-
-		$jsonData = wp_json_encode( [ 'isTouchMove' => $isTouchMove, 'isZoom' => $isZoom ] );
+		$blockClassName = 'wp-block-b-blocks-td-viewer ' . $className . ' align' . $align;
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocks3DViewerClassName ); ?>' id='bBlocks3DViewer-<?php echo esc_attr( $cId ) ?>' data-model='<?php echo esc_attr( $jsonData ); ?>'>
-			<style><?php echo wp_kses( $tDViewerStyle::renderStyle(), [] ) ?></style>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocks3DViewer-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
-			<div class='bBlocks3DViewer'>
-				<model-viewer
-					class='bBlocksModel'
-					src='<?php echo esc_url( 'upload' === $sourceType ? $model['url'] : $modelLink ); ?>'
-					alt='<?php echo esc_attr( 'upload' === $sourceType ? $model['title'] : '' ); ?>'
-					camera-controls
-					loading='<?php echo esc_attr( $loadingType ); ?>'
-					auto-rotate
-				></model-viewer>
-			</div> <!-- 3D Viewer Block -->
-		</div>
-
-		<?php $tDViewerStyle::$styles = []; // Empty styles
-		return ob_get_clean();
+		<?php return ob_get_clean();
 	}
 
 	//Allow some additional file types for upload

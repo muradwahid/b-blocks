@@ -90,7 +90,7 @@ const Edit = props => {
 						{img?.url ? <>
 							<img className={`productImage ${img?.id ? `wp-image-${img?.id}` : null}`} src={img?.url} alt={img?.alt} />
 							{isBlobURL(img?.url) && <Spinner />}
-						</> : <ImagePlaceholder label={__(' Product Image:', 'b-blocks')} img={img} onChange={val => updateProduct(index, 'img', val)} />}
+						</> : <ImagePlaceholder label={__(' Product Image:', 'b-blocks')} value={img} onChange={val => updateProduct(index, 'img', val)} />}
 
 						<div className='productDetails'>
 							<RichText className='productName' tagName='h4' value={name} onChange={val => updateProduct(index, 'name', val)} placeholder={__('Product name', 'b-blocks')} inlineToolbar />

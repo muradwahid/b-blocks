@@ -14,7 +14,7 @@ class BBlocksFeatureBoxes extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksFeatureBoxesClassName = 'wp-block-b-blocks-feature-boxes ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-feature-boxes ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$featureBoxesStyle = new BBlocksStyleGenerator();
@@ -40,7 +40,7 @@ class BBlocksFeatureBoxes extends BBlocks{
 		] );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksFeatureBoxesClassName ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
 				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
@@ -63,14 +63,12 @@ class BBlocksFeatureBoxes extends BBlocks{
 
 			<div class='bBlocksFeatureBoxes columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
 				<?php foreach ( $features as $index => $feature ) {
-					extract( $feature );
-					// Classes
-					$iconClass = isset( $upIcon['id'] ) ? 'wp-image-'.$upIcon['id'] : ''; ?>
+					extract( $feature ); ?>
 
 					<div class='bBlocksFeature' id='bBlocksFeature-<?php echo esc_attr( $index ); ?>'>
 						<div class='featureIcon'>
 							<?php echo $isUpIcon ?
-							( $upIcon['url'] ? "<img class='". esc_attr( $iconClass ) ."' src='". esc_url( $upIcon['url'] ) ."' alt='". esc_attr( $upIcon['alt'] ) ."' />" : '' ) :
+							( $upIcon['url'] ? "<img src='". esc_url( $upIcon['url'] ) ."' alt='". esc_attr( $upIcon['alt'] ) ."' />" : '' ) :
 							( $icon['class'] ? "<i class='". esc_attr( $icon['class'] ) ."'></i>" : '' ); ?>
 						</div>
 

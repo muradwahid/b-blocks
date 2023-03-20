@@ -14,7 +14,7 @@ class BBlocksQRCode extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$bBlocksQRCodeClassName = 'wp-block-b-blocks-qr-code ' . $className . ' align' . $align;
+		$blockClassName = 'wp-block-b-blocks-qr-code ' . $className . ' align' . $align;
 
 		// Generate Styles
 		$qrCodeStyle = new BBlocksStyleGenerator();
@@ -27,7 +27,7 @@ class BBlocksQRCode extends BBlocks{
 		$qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=". $dimension ."x". $dimension ."&color=". str_replace( '#', '', $color ) ."&bgcolor=". str_replace( '#', '', $bgColor ) ."&ecc=L&qzone=1&data=". $siteUrl;
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksQRCodeClassName ); ?>' id='bBlocksQRCode-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksQRCode-<?php echo esc_attr( $cId ); ?>'>
 			<style><?php echo wp_kses( $qrCodeStyle::renderStyle(), [] ); ?></style>
 
 			<div class='bBlocksQRCode'>
