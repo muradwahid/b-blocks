@@ -8,7 +8,7 @@ const Style = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${getTypoCSS(`${alertSl}`, typography)}
+		${getTypoCSS(alertSl, typography)}
 
 		${mainAlertSl}{
 			text-align: ${alignment};

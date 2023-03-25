@@ -1,3 +1,5 @@
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId, isBackend }) => {
 	const { width, overflow, background, padding, border, shadow } = attributes;
 
@@ -22,10 +24,10 @@ const Style = ({ attributes, clientId, isBackend }) => {
 
 		#bBlocksColumn-${clientId} .bBlocksColumn{
 			overflow: ${overflow};
-			${background?.styles || 'background-color: #fff;'}
-			padding: ${padding?.styles || '10px 10px'};
-			${border?.styles || ''}
-			box-shadow: ${shadow?.styles || 'none'};
+			${getBackgroundCSS(background)}
+			padding: ${getSpaceCSS(padding)};
+			${getBorderCSS(border)}
+			box-shadow: ${getShadowCSS(shadow)};
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

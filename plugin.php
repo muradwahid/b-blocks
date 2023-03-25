@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.7.0
+ * Version: 1.7.1
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.0' );
+define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.1' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -130,6 +130,8 @@ class BBlocks{
 BBlocks::instance();
 
 // Require files
+require_once plugin_dir_path( __FILE__ ) . 'inc/getCSS.php';
+
 require_once plugin_dir_path( __FILE__ ) . 'inc/row/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/row/column/block.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/posts/block.php';

@@ -187,7 +187,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 == Changelog ==
 
 = 1.7.1 =
-* Update Posts
+* Update Posts, Alert, Cards, Feature Boxes, Flip Boxes, Image Gallery, Info Box, Mail To, Row, Section Heading
 
 = 1.7.0 =
 * Reduce dependencies
@@ -281,7 +281,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 == Upgrade Notice ==
 
 = 1.7.1 =
-* Update posts
+* Update Posts, Alert, Cards, Feature Boxes, Flip Boxes, Image Gallery, Info Box, Mail To, Row, Section Heading
 
 = 1.7.0 =
 * Reduce dependencies

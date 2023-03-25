@@ -2,6 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 
+// Components
+import { getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 import Settings from './settings';
 
 const Edit = props => {
@@ -9,26 +12,27 @@ const Edit = props => {
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
+	const mailtoSl = `#bBlocksMailto-${clientId} .bBlocksMailto`;
+
 	return <>
 		<Settings settings={props} />
 
 		<div className={className} id={`bBlocksMailto-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
+				${getTypoCSS(`${mailtoSl} a.mailtoButton`, btnTypo)}
 
-				#bBlocksMailto-${clientId} .bBlocksMailto{
+				${mailtoSl}{
 					text-align: ${mailtoAlign};
 				}
-				#bBlocksMailto-${clientId} .bBlocksMailto a.mailtoButton{
-					${btnTypo?.styles || 'font-size: 22px; font-weight: 600;'}
-					${btnColors?.styles || 'color: #fff; background: #4527a4;'}
-					padding: ${btnPadding?.styles || '18px 45px'};
-					${btnBorder?.styles || 'border-radius: 50px;'}
+				${mailtoSl} a.mailtoButton{
+					${getColorsCSS(btnColors)}
+					padding: ${getSpaceCSS(btnPadding)};
+					${getBorderCSS(btnBorder)}
 					box-shadow: 0px 5px 20px 0px ${btnColors?.bg};
 				}
-				#bBlocksMailto-${clientId} .bBlocksMailto a.mailtoButton:hover{
-					${btnHovColors?.styles || 'color: #fff; background: #8344c5;'}
+				${mailtoSl} a.mailtoButton:hover{
+					${getColorsCSS(btnHovColors)}
 					box-shadow: 0px 5px 20px 0px ${btnHovColors?.bg};
 				}
 			`}} />

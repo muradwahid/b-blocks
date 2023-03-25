@@ -17,37 +17,35 @@ class BBlocksImageGallery extends BBlocks{
 		$blockClassName = 'wp-block-b-blocks-image-gallery ' . $className . ' align' . $align;
 
 		// Generate Styles
-		$imgShadow = $imgShadow['styles'] ?? '';
+		$imgShadow = GetCSS::getShadowCSS( $imgShadow );
 		$imgPaddingH = $imgPadding['horizontal'] ?? '0px';
 		$imgPaddingV = $imgPadding['vertical'] ?? '0px';
 
+		$imgLinkSl = "#bBlocksImageGallery-$cId .imgGalleryWrapper .imgGalleryImgLink";
+
 		$imageGalleryStyle = new BBlocksStyleGenerator();
-		$imageGalleryStyle::addStyle( "#bBlocksImageGallery-$cId .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImg", [
-			'padding' => $imgPadding['styles'] ?? '0 0',
-			$imgBorder['styles'] ?? '' => '',
+		$imageGalleryStyle::addStyle( "$imgLinkSl .imgGalleryImg", [
+			'padding' => GetCSS::getSpaceCSS( $imgPadding ),
+			GetCSS::getBorderCSS( $imgBorder ) => '',
 			'filter' => "drop-shadow( $imgShadow )"
 		] );
-		$imageGalleryStyle::addStyle( "#bBlocksImageGallery-$cId .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption", [
+		$imageGalleryStyle::addStyle( "$imgLinkSl .imgGalleryImgCaption", [
 			'text-align' => $capAlign,
 			'color' => $capColor,
-			'margin' => $imgPadding['styles'] ?? '0 0',
+			'margin' => GetCSS::getSpaceCSS( $imgPadding ),
 			'width' => "calc( ( 100% - 10px ) - ( $imgPaddingH * 2 ) )",
 			'height' => "calc( ( 100% - 10px ) - ( $imgPaddingV * 2 ) )",
 			'border-radius' => $imgBorder['radius'] ?? '0px'
-		] );
-		$imageGalleryStyle::addStyle( "#bBlocksImageGallery-$cId .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption h4", [
-			$capTitleTypo['styles'] ?? 'font-size: 18px;' => ''
-		] );
-		$imageGalleryStyle::addStyle( "#bBlocksImageGallery-$cId .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption p", [
-			$capDescTypo['styles'] ?? 'font-size: 15px;' => ''
 		] );
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksImageGallery-<?php echo esc_attr( $cId ); ?>'>
 			<style>
-				<?php echo !empty( $capTitleTypo['googleFontLink'] ) ? "@import url(". esc_url( $capTitleTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $capDescTypo['googleFontLink'] ) ? "@import url(". esc_url( $capDescTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo wp_kses( $imageGalleryStyle::renderStyle(), [] ); ?>
+				<?php
+					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption h4", $capTitleTypo );
+					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption p", $capDescTypo );
+					echo wp_kses( $imageGalleryStyle::renderStyle(), [] );
+				?>
 			</style>
 
 			<div class='imgGalleryWrapper columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>

@@ -1,3 +1,5 @@
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../Components/Helper/getCSS';
+
 const Style = ({ attributes, clientId, isBackend = false }) => {
 	const { columnGap, height, columnPositionY, columnPositionX, overflow, background, padding, border, shadow } = attributes;
 
@@ -16,10 +18,10 @@ const Style = ({ attributes, clientId, isBackend = false }) => {
 		${rowSelect}{
 			row-gap: ${columnGap};
 			overflow: ${overflow};
-			${background?.styles || 'background-color: #f5f5f5;'}
-			padding: ${padding?.styles || '50px 0px'};
-			${border?.styles || ''}
-			box-shadow: ${shadow?.styles || 'none'};
+			${getBackgroundCSS(background)}
+			padding: ${getSpaceCSS(padding)};
+			${getBorderCSS(border)}
+			box-shadow: ${getShadowCSS(shadow)};
 		}
 		${selector}{
 			min-height: ${height};

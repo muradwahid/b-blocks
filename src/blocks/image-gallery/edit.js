@@ -3,6 +3,9 @@ import { useEffect, createContext } from '@wordpress/element';
 import { MediaUpload } from '@wordpress/block-editor';
 import { withNotices, Button, Placeholder } from '@wordpress/components';
 
+// Components CSS
+import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 import Settings from './settings';
 
 export const FilterImagesContext = createContext();
@@ -27,6 +30,10 @@ const Edit = props => {
 		return newValue;
 	}
 
+	const mainSl = `#bBlocksImageGallery-${clientId}`;
+	const imgLinkSl = `${mainSl} .imgGalleryWrapper .imgGalleryImgLink`;
+	const imgCaptionSl = `${imgLinkSl} .imgGalleryImgCaption`;
+
 	return <>
 		<FilterImagesContext.Provider value={filterImages}>
 			<Settings settings={props} />
@@ -35,27 +42,21 @@ const Edit = props => {
 		<div id={`bBlocksImageGallery-${clientId}`} className={className}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${capTitleTypo?.googleFontLink ? `@import url(${capTitleTypo?.googleFontLink});` : ''}
-				${capDescTypo?.googleFontLink ? `@import url(${capDescTypo?.googleFontLink});` : ''}
+				${getTypoCSS(`${imgCaptionSl} h4`, capTitleTypo)}
+				${getTypoCSS(`${imgCaptionSl} p`, capDescTypo)}
 
-				#bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImg{
-					padding: ${imgPadding?.styles || '0 0'};
-					${imgBorder?.styles}
-					filter: drop-shadow(${imgShadow?.styles})
+				${imgLinkSl} .imgGalleryImg{
+					padding: ${getSpaceCSS(imgPadding)};
+					${getBorderCSS(imgBorder)}
+					filter: drop-shadow(${getShadowCSS(imgShadow)})
 				}
-				#bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption{
+				${imgCaptionSl}{
 					text-align: ${capAlign};
 					color: ${capColor};
-					margin: ${imgPadding?.styles || '0 0'};
+					margin: ${getSpaceCSS(imgPadding)};
 					width: calc((100% - 10px) - (${imgPadding?.horizontal || '0px'} * 2));
 					height: calc((100% - 10px) - (${imgPadding?.vertical || '0px'} * 2));
 					border-radius: ${imgBorder?.radius || '0px'};
-				}
-				#bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption h4{
-					${capTitleTypo?.styles || 'font-size: 18px;'}
-				}
-				#bBlocksImageGallery-${clientId} .imgGalleryWrapper .imgGalleryImgLink .imgGalleryImgCaption p{
-					${capDescTypo?.styles || 'font-size: 15px;'}
 				}
 			`}} />
 

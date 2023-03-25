@@ -17,42 +17,42 @@ class BBlocksInfoBox extends BBlocks{
 		$blockClassName = 'wp-block-b-blocks-info-box ' . $className . ' align' . $align;
 
 		// Generate Styles
+		$mainSl = "#bBlocksInfoBox-$cId";
+		$infoBoxSl = "$mainSl .bBlocksInfoBox";
+
 		$infoBoxStyle = new BBlocksStyleGenerator();
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId", [
+		$infoBoxStyle::addStyle( "$mainSl", [
 			'text-align' => $infoBoxAlign
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox", [
+		$infoBoxStyle::addStyle( "$infoBoxSl", [
 			'text-align' => $textAlign,
 			'width' => '0px' === $width || '0%' === $width || '0em' === $width ? '100%' : $width,
-			$background['styles'] ?? 'background-color: #f1f7ff;' => '',
-			'padding' => $padding['styles'] ?? '50px 50px',
-			$border['styles'] ?? 'border: 10px solid #fff; border-radius: 5px;' => '',
-			'box-shadow' => $shadow['styles'] ?? 'none'
+			GetCSS::getBackgroundCSS( $background ) => '',
+			'padding' => GetCSS::getSpaceCSS( $padding ),
+			GetCSS::getBorderCSS( $border ) => '',
+			'box-shadow' => GetCSS::getShadowCSS( $shadow )
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxIcon", [
-			'margin' => $iconMargin['styles'] ?? '0px 0px 20px 0px'
+		$infoBoxStyle::addStyle( "$infoBoxSl .infoBoxIcon", [
+			'margin' => GetCSS::getSpaceCSS( $iconMargin )
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxIcon i", [
-			$icon['styles'] ?? 'font-size: 70px; color: #4527a4;' => ''
+		$infoBoxStyle::addStyle( "$infoBoxSl .infoBoxIcon i", [
+			GetCSS::getIconCSS( $icon ) => ''
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxTitle", [
-			$titleTypo['styles'] ?? 'font-size: 25px; font-weight: 600;' => '',
+		$infoBoxStyle::addStyle( "$infoBoxSl .infoBoxTitle", [
 			'color' => $titleColor,
-			'margin' => $titleMargin['styles'] ?? '0px 0px 10px 0px'
+			'margin' => GetCSS::getSpaceCSS( $titleMargin )
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxDescription", [
-			$descTypo['styles'] ?? 'font-size: 15px;' => '',
+		$infoBoxStyle::addStyle( "$infoBoxSl .infoBoxDescription", [
 			'color' => $descColor,
-			'margin' => $descMargin['styles'] ?? '0px 0px 15px 0px'
+			'margin' => GetCSS::getSpaceCSS( $descMargin )
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxButton", [
-			$btnTypo['styles'] ?? 'font-size: 15px;' => '',
-			$btnColors['styles'] ?? 'color: #fff; background: #4527a4;' => '',
-			'padding' => $btnPadding['styles'] ?? '8px 15px',
-			$btnBorder['styles'] ?? 'border-radius: 5px;' => '',
+		$infoBoxStyle::addStyle( "$infoBoxSl .infoBoxButton", [
+			GetCSS::getColorsCSS( $btnColors ) => '',
+			'padding' => GetCSS::getSpaceCSS( $btnPadding ),
+			GetCSS::getBorderCSS( $btnBorder ) => ''
 		] );
-		$infoBoxStyle::addStyle( "#bBlocksInfoBox-$cId .bBlocksInfoBox .infoBoxButton:hover", [
-			$btnHovColors['styles'] ?? 'color: #fff; background: #8344c5;' => ''
+		$infoBoxStyle::addStyle( "$infoBoxSl .infoBoxButton:hover", [
+			GetCSS::getColorsCSS( $btnHovColors ) => ''
 		] );
 
 		$btnTab = $isLinkNewTab ? '_blank' : '';
@@ -60,10 +60,12 @@ class BBlocksInfoBox extends BBlocks{
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksInfoBox-<?php echo esc_attr( $cId ); ?>'>
 			<style>
-				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $btnTypo['googleFontLink'] ) ? "@import url(". esc_url( $btnTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo wp_kses( $infoBoxStyle::renderStyle(), [] ); ?>
+				<?php
+					echo GetCSS::getTypoCSS( "$infoBoxSl .infoBoxTitle", $titleTypo );
+					echo GetCSS::getTypoCSS( "$infoBoxSl .infoBoxDescription", $descTypo );
+					echo GetCSS::getTypoCSS( "$infoBoxSl .infoBoxButton", $btnTypo );
+					echo wp_kses( $infoBoxStyle::renderStyle(), [] );
+				?>
 			</style>
 
 			<div class='bBlocksInfoBox'>

@@ -17,48 +17,54 @@ class BBlocksFeatureBoxes extends BBlocks{
 		$blockClassName = 'wp-block-b-blocks-feature-boxes ' . $className . ' align' . $align;
 
 		// Generate Styles
+		$mainSl = "#bBlocksFeatureBoxes-$cId";
+		$featureBoxesSl = "$mainSl .bBlocksFeatureBoxes";
+		$gFeatureSl = "$featureBoxesSl .bBlocksFeature";
+
 		$featureBoxesStyle = new BBlocksStyleGenerator();
-		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes", [
+		$featureBoxesStyle::addStyle( "$featureBoxesSl", [
 			'grid-gap' => "$rowGap $columnGap"
 		] );
-		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature", [
+		$featureBoxesStyle::addStyle( "$gFeatureSl", [
 			'text-align' => $textAlign,
-			'padding' => $padding['styles'] ?? '50px 20px'
+			'padding' => GetCSS::getSpaceCSS( $padding )
 		] );
-		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureIcon", [
-			'margin' => $iconMargin['styles'] ?? '0 0 10px 0'
+		$featureBoxesStyle::addStyle( "$gFeatureSl .featureIcon", [
+			'margin' => GetCSS::getSpaceCSS( $iconMargin )
 		] );
-		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureTitle", [
-			$titleTypo['styles'] ?? 'font-size: 20px; font-weight: 600;' => '',
-			'margin' => $titleMargin['styles'] ?? '0 0 10px 0'
+		$featureBoxesStyle::addStyle( "$gFeatureSl .featureTitle", [
+			'margin' => GetCSS::getSpaceCSS( $titleMargin )
 		] );
-		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureSeparator", [
-			'margin' => $sepMargin['styles'] ?? '0 0 10px 0'
-		] );
-		$featureBoxesStyle::addStyle( "#bBlocksFeatureBoxes-$cId .bBlocksFeatureBoxes .bBlocksFeature .featureDescription", [
-			$descTypo['styles'] ?? 'font-size: 15px;' => ''
+		$featureBoxesStyle::addStyle( "$gFeatureSl .featureSeparator", [
+			'margin' => GetCSS::getSpaceCSS( $sepMargin )
 		] );
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
 			<style>
-				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo wp_kses( $featureBoxesStyle::renderStyle(), [] );
-				foreach ( $features as $index => $feature ) {
-					extract( $feature );
-					$backgroundStyle = $background['styles'] ?? 'background-color: #0000;';
-					$iconStyle = $icon['styles'] ?? 'font-size: 120px;';
-					$separatorStyle = $separator['styles'] ?? 'width: 20%; border-top: 1px solid #bbb;';
+				<?php
+					echo GetCSS::getTypoCSS( "$gFeatureSl .featureTitle", $titleTypo );
+					echo GetCSS::getTypoCSS( "$gFeatureSl .featureDescription", $descTypo );
+					echo wp_kses( $featureBoxesStyle::renderStyle(), [] );
+					
+					foreach ( $features as $index => $feature ) {
+						extract( $feature );
 
-					$featureStyles = "#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index{ $backgroundStyle }
-					#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon i{ $iconStyle }
-					#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureIcon img{ width: $iconWidth; }
-					#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureTitle{ color: $titleColor; }
-					#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureSeparator{ $separatorStyle }
-					#bBlocksFeatureBoxes-$cId #bBlocksFeature-$index .featureDescription{ color: $descColor; }";
-					echo esc_html( $featureStyles );
-				} ?>
+						$featureSl = "$mainSl #bBlocksFeature-$index";
+
+						$backgroundStyle = GetCSS::getBackgroundCSS($background );
+						$iconStyle = GetCSS::getIconCSS($icon );
+						$separatorStyle = GetCSS::getSeparatorCSS($separator );
+
+						$featureStyles = "$featureSl{ $backgroundStyle }
+						$featureSl .featureIcon i{ $iconStyle }
+						$featureSl .featureIcon img{ width: $iconWidth; }
+						$featureSl .featureTitle{ color: $titleColor; }
+						$featureSl .featureSeparator{ $separatorStyle }
+						$featureSl .featureDescription{ color: $descColor; }";
+						echo esc_html( $featureStyles );
+					}
+				?>
 			</style>
 
 			<div class='bBlocksFeatureBoxes columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>

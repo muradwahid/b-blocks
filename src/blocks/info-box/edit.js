@@ -2,6 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 
+// Components
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 import Settings from './settings';
 
 const Edit = props => {
@@ -9,51 +12,51 @@ const Edit = props => {
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
+	const mainSl = `#bBlocksInfoBox-${clientId}`;
+	const infoBoxSl = `${mainSl} .bBlocksInfoBox`;
+
 	return <>
 		<Settings settings={props} />
 
 		<div className={className} id={`bBlocksInfoBox-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
-				${btnTypo?.googleFontLink ? `@import url(${btnTypo?.googleFontLink});` : ''}
+				${getTypoCSS(`${infoBoxSl} .infoBoxTitle`, titleTypo)}
+				${getTypoCSS(`${infoBoxSl} .infoBoxDescription`, descTypo)}
+				${getTypoCSS(`${infoBoxSl} .infoBoxButton`, btnTypo)}
 
-				#bBlocksInfoBox-${clientId}{
+				${mainSl}{
 					text-align: ${infoBoxAlign};
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox{
+				${infoBoxSl}{
 					text-align: ${textAlign};
 					width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
-					${background?.styles || 'background-color: #f1f7ff;'}
-					padding: ${padding?.styles || '50px 50px'};
-					${border?.styles || 'border: 10px solid #fff; border-radius: 5px;'}
-					box-shadow: ${shadow?.styles || 'none'};
+					${getBackgroundCSS(background)}
+					padding: ${getSpaceCSS(padding)};
+					${getBorderCSS(border)}
+					box-shadow: ${getShadowCSS(shadow)};
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox .infoBoxIcon{
-					margin: ${iconMargin?.styles || '0px 0px 20px 0px'};
+				${infoBoxSl} .infoBoxIcon{
+					margin: ${getSpaceCSS(iconMargin)};
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox .infoBoxIcon i{
-					${icon?.styles || 'font-size: 70px; color: #4527a4;'}
+				${infoBoxSl} .infoBoxIcon i{
+					${getIconCSS(icon)}
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox .infoBoxTitle{
-					${titleTypo?.styles || 'font-size: 25px; font-weight: 600;'}
+				${infoBoxSl} .infoBoxTitle{
 					color: ${titleColor};
-					margin: ${titleMargin?.styles || '0px 0px 10px 0px'};
+					margin: ${getSpaceCSS(titleMargin)};
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox .infoBoxDescription{
-					${descTypo?.styles || 'font-size: 15px;'}
+				${infoBoxSl} .infoBoxDescription{
 					color: ${descColor};
-					margin: ${descMargin?.styles || '0px 0px 15px 0px'};
+					margin: ${getSpaceCSS(descMargin)};
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox .infoBoxButton{
-					${btnTypo?.styles || 'font-size: 15px;'}
-					${btnColors?.styles || 'color: #fff; background: #4527a4;'}
-					padding: ${btnPadding?.styles || '8px 15px'};
-					${btnBorder?.styles || 'border-radius: 5px;'}
+				${infoBoxSl} .infoBoxButton{
+					${getColorsCSS(btnColors)}
+					padding: ${getSpaceCSS(btnPadding)};
+					${getBorderCSS(btnBorder)}
 				}
-				#bBlocksInfoBox-${clientId} .bBlocksInfoBox .infoBoxButton:hover{
-					${btnHovColors?.styles || 'color: #fff; background: #8344c5;'}
+				${infoBoxSl} .infoBoxButton:hover{
+					${getColorsCSS(btnHovColors)}
 				}
 			`}} />
 

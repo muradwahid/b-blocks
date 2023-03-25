@@ -18,47 +18,50 @@ class BBlocksPriceLists extends BBlocks{
 
 		// Generate Styles
 		$priceListsStyle = new BBlocksStyleGenerator();
-		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists", [
+
+		$mainSl = "#bBlocksPriceLists-$cId";
+		$priceListsSl = "$mainSl .bBlocksPriceLists";
+		$gPriceSl = "$priceListsSl .bBlocksPrice";
+
+		$priceListsStyle::addStyle( "$priceListsSl", [
 			'grid-gap' => "$rowGap $columnGap"
 		] );
-		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists .bBlocksPrice", [
+		$priceListsStyle::addStyle( "$gPriceSl", [
 			'text-align' => $textAlign,
-			'padding' => $padding['styles'] ?? '50px 20px'
+			'padding' => GetCSS::getSpaceCSS( $padding )
 		] );
-		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists .bBlocksPrice .productImage", [
-			'margin' => $imgMargin['styles'] ?? '0 0 20px 0'
+		$priceListsStyle::addStyle( "$gPriceSl .productImage", [
+			'margin' => GetCSS::getSpaceCSS( $imgMargin )
 		] );
-		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists .bBlocksPrice .productName", [
-			$nameTypo['styles'] ?? 'font-size: 18px; font-weight: 600;' => '',
-			'margin' => $nameMargin['styles'] ?? '0 0 10px 0'
+		$priceListsStyle::addStyle( "$gPriceSl .productName", [
+			'margin' => GetCSS::getSpaceCSS( $nameMargin )
 		] );
-		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists .bBlocksPrice .productDescription", [
-			$descTypo['styles'] ?? 'font-size: 15px; font-style: italic;' => '',
-			'margin' => $descMargin['styles'] ?? '0 0 15px 0'
-		] );
-		$priceListsStyle::addStyle( "#bBlocksPriceLists-$cId .bBlocksPriceLists .bBlocksPrice .productPrice", [
-			$priceTypo['styles'] ?? 'font-size: 24px; font-style: italic;' => ''
+		$priceListsStyle::addStyle( "$gPriceSl .productDescription", [
+			'margin' => GetCSS::getSpaceCSS( $descMargin )
 		] );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $bBlocksPriceListsClassName ); ?>' id='bBlocksPriceLists-<?php echo esc_attr( $cId ); ?>'>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksPriceLists-<?php echo esc_attr( $cId ); ?>'>
 			<style>
-				<?php echo !empty( $nameTypo['googleFontLink'] ) ? "@import url(". esc_url( $nameTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $priceTypo['googleFontLink'] ) ? "@import url(". esc_url( $priceTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo wp_kses( $priceListsStyle::renderStyle(), [] );
+				<?php	
+					echo GetCSS::getTypoCSS( "$gPriceSl .productName", $nameTypo );
+					echo GetCSS::getTypoCSS( "$gPriceSl .productDescription", $descTypo );
+					echo GetCSS::getTypoCSS( "$gPriceSl .productPrice", $priceTypo );
+					echo wp_kses( $priceListsStyle::renderStyle(), [] );
 				foreach ( $products as $index => $product ) {
 					extract( $product );
-					$backgroundStyle = $background['styles'] ?? 'background-color: #0000;';
-					$imgBorderStyle = $imgBorder['styles'] ?? '';
-					$separatorStyle = $separator['styles'] ?? 'width: 40%; border-top: 1px solid #bbb;';
+					$priceSl = "$mainSl #bBlocksPrice-$index";
 
-					$flipBoxStyles = "#bBlocksPriceLists-$cId #bBlocksPrice-$index{ $backgroundStyle }
-					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productImage{ $imgBorderStyle }
-					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productName{ color: $nameColor; }
-					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productDescription{ color: $descColor; }
-					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productPrice{ color: $priceColor; }
-					#bBlocksPriceLists-$cId #bBlocksPrice-$index .productSeparator{ $separatorStyle }";
+					$backgroundStyle = GetCSS::getBackgroundCSS( $background );
+					$imgBorderStyle = GetCSS::getBorderCSS( $imgBorder );
+					$separatorStyle = GetCSS::getSeparatorCSS( $separator );
+
+					$flipBoxStyles = "$priceSl{ $backgroundStyle }
+					$priceSl .productImage{ $imgBorderStyle }
+					$priceSl .productName{ color: $nameColor; }
+					$priceSl .productDescription{ color: $descColor; }
+					$priceSl .productPrice{ color: $priceColor; }
+					$priceSl .productSeparator{ $separatorStyle }";
 					echo esc_html( $flipBoxStyles );
 				} ?>
 			</style>

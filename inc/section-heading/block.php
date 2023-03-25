@@ -18,30 +18,33 @@ class BBlocksSectionHeading extends BBlocks{
 
 		// Generate Styles
 		$sectionHeadingStyle = new BBlocksStyleGenerator();
-		$sectionHeadingStyle::addStyle( "#bBlocksSectionHeading-$cId .bBlocksSectionHeading", [
+
+		$sectionHeadingSl = "#bBlocksSectionHeading-$cId .bBlocksSectionHeading";
+
+		$sectionHeadingStyle::addStyle( "$sectionHeadingSl", [
 			'text-align' => $textAlign
 		] );
-		$sectionHeadingStyle::addStyle( "#bBlocksSectionHeading-$cId .bBlocksSectionHeading .sectionHeadingTitle", [
-			$titleTypo['styles'] ?? 'font-size: 25px; font-weight: 600;' => '',
+		$sectionHeadingStyle::addStyle( "$sectionHeadingSl .sectionHeadingTitle", [
 			'color' => $titleColor,
-			'margin' => $titleMargin['styles'] ?? '0 0 10px 0'
+			'margin' => GetCSS::getSpaceCSS( $titleMargin )
 		] );
-		$sectionHeadingStyle::addStyle( "#bBlocksSectionHeading-$cId .bBlocksSectionHeading .sectionHeadingSeparator", [
-			$separator['styles'] ?? 'width: 150px; border-top: 3px solid #8344c5;' => '',
-			'margin' => $sepMargin['styles'] ?? '0 0 5px 0'
+		$sectionHeadingStyle::addStyle( "$sectionHeadingSl .sectionHeadingSeparator", [
+			GetCSS::getSeparatorCSS( $separator ) => '',
+			'margin' => GetCSS::getSpaceCSS( $sepMargin )
 		] );
-		$sectionHeadingStyle::addStyle( "#bBlocksSectionHeading-$cId .bBlocksSectionHeading .sectionHeadingDescription", [
-			$descTypo['styles'] ?? 'font-size: 15px;' => '',
+		$sectionHeadingStyle::addStyle( "$sectionHeadingSl .sectionHeadingDescription", [
 			'color' => $descColor,
-			'margin' => $descMargin['styles'] ?? '0 0 15px 0'
+			'margin' => GetCSS::getSpaceCSS( $descMargin )
 		] );
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSectionHeading-<?php echo esc_attr( $cId ); ?>'>
 			<style>
-				<?php echo !empty( $titleTypo['googleFontLink'] ) ? "@import url(". esc_url( $titleTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo !empty( $descTypo['googleFontLink'] ) ? "@import url(". esc_url( $descTypo['googleFontLink'] ) .");" : ''; ?>
-				<?php echo wp_kses( $sectionHeadingStyle::renderStyle(), [] ); ?>
+				<?php
+					echo GetCSS::getTypoCSS( "$sectionHeadingSl .sectionHeadingTitle", $titleTypo );
+					echo GetCSS::getTypoCSS( "$sectionHeadingSl .sectionHeadingDescription", $descTypo );
+					echo wp_kses( $sectionHeadingStyle->renderStyle(), [] );
+				?>
 			</style>
 
 			<div class='bBlocksSectionHeading'>

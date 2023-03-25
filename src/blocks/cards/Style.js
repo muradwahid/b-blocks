@@ -27,34 +27,32 @@ const Style = ({ attributes, clientId }) => {
 			${gCardSl} .cardTitle{
 				margin: ${getSpaceCSS(titleMargin)};
 			}
+
+			${cards.map((item, index) => {
+				const { background, imgBorder, catColor, titleColor, descColor } = item;
+
+				const cardSl = `#bBlocksCards-${clientId} #bBlocksCard-${index}`;
+
+				return `
+					${cardSl} .bBlocksCard{
+						${getBackgroundCSS(background)}
+					}
+					${cardSl} .cardImage{
+						${getBorderCSS(imgBorder)}
+					}
+					${cardSl} .cardDetails .cardCategory{
+						color: ${catColor};
+					}
+					${cardSl} .cardTitle{
+						color: ${titleColor};
+					}
+					${cardSl} .cardDescription{
+						color: ${descColor};
+					}
+				`;
+			})}
 			`.replace(/\s+/g, ' ')
 		}} />
-
-		{cards.map((item, index) => {
-			const { background, imgBorder, catColor, titleColor, descColor } = item;
-
-			const cardSl = `#bBlocksCards-${clientId} #bBlocksCard-${index}`;
-
-			return <style key={index} dangerouslySetInnerHTML={{
-				__html: `
-				${cardSl} .bBlocksCard{
-					${getBackgroundCSS(background)}
-				}
-				${cardSl} .cardImage{
-					${getBorderCSS(imgBorder)}
-				}
-				${cardSl} .cardDetails .cardCategory{
-					color: ${catColor};
-				}
-				${cardSl} .cardTitle{
-					color: ${titleColor};
-				}
-				${cardSl} .cardDescription{
-					color: ${descColor};
-				}
-				`.replace(/\s+/g, ' ')
-			}} />;
-		})}
 	</>;
 }
-export default Style
+export default Style;

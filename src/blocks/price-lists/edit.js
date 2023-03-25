@@ -6,6 +6,7 @@ import { isBlobURL } from '@wordpress/blob';
 
 // Settings Components
 import { ImagePlaceholder } from '../../../../Components/ImageControl';
+import { getBackgroundCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
 import Settings from './settings';
 
@@ -25,6 +26,10 @@ const Edit = props => {
 		setActiveIndex(index);
 	}
 
+	const mainSl = `#bBlocksPriceLists-${clientId}`;
+	const priceListsSl = `${mainSl} .bBlocksPriceLists`;
+	const gPriceSl = `${priceListsSl} .bBlocksPrice`;
+
 	return <>
 		<IndexContext.Provider value={setActiveIndex}>
 			<Settings settings={props} />
@@ -33,30 +38,25 @@ const Edit = props => {
 		<div className={className} id={`bBlocksPriceLists-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${nameTypo?.googleFontLink ? `@import url(${nameTypo?.googleFontLink});` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
-				${priceTypo?.googleFontLink ? `@import url(${priceTypo?.googleFontLink});` : ''}
+				${getTypoCSS(`${gPriceSl} .productName`, nameTypo)}
+				${getTypoCSS(`${gPriceSl} .productDescription`, descTypo)}
+				${getTypoCSS(`${gPriceSl} .productPrice`, priceTypo)}
 
-				#bBlocksPriceLists-${clientId} .bBlocksPriceLists{
+				${priceListsSl}{
 					grid-gap: ${rowGap} ${columnGap};
 				}
-				#bBlocksPriceLists-${clientId} .bBlocksPriceLists .bBlocksPrice{
+				${gPriceSl}{
 					text-align: ${textAlign};
-					padding: ${padding?.styles || '50px 20px'};
+					padding: ${getSpaceCSS(padding)};
 				}
-				#bBlocksPriceLists-${clientId} .bBlocksPriceLists .bBlocksPrice .productImage{
-					margin: ${imgMargin?.styles || '0 0 20px 0'};
+				${gPriceSl} .productImage{
+					margin: ${getSpaceCSS(imgMargin)};
 				}
-				#bBlocksPriceLists-${clientId} .bBlocksPriceLists .bBlocksPrice .productName{
-					${nameTypo?.styles || 'font-size: 18px; font-weight: 600;'}
-					margin: ${nameMargin?.styles || '0 0 10px 0'};
+				${gPriceSl} .productName{
+					margin: ${getSpaceCSS(nameMargin)};
 				}
-				#bBlocksPriceLists-${clientId} .bBlocksPriceLists .bBlocksPrice .productDescription{
-					${descTypo?.styles || 'font-size: 15px; font-style: italic;'}
-					margin: ${descMargin?.styles || '0 0 15px 0'};
-				}
-				#bBlocksPriceLists-${clientId} .bBlocksPriceLists .bBlocksPrice .productPrice{
-					${priceTypo?.styles || 'font-size: 24px; font-style: italic;'}
+				${gPriceSl} .productDescription{
+					margin: ${getSpaceCSS(descMargin)};
 				}
 			`}} />
 
@@ -64,26 +64,28 @@ const Edit = props => {
 				{products?.map((item, index) => {
 					const { background, img, imgBorder, name, nameColor, desc, descColor, price, priceColor, separator } = item;
 
+					const priceSl = `${mainSl} #bBlocksPrice-${index}`;
+
 					return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksPrice ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksPrice-${index}`}>
 						<style dangerouslySetInnerHTML={{
 							__html: `
-							#bBlocksPriceLists-${clientId} #bBlocksPrice-${index}{
-								${background?.styles || `background-color: #0000;`}
+							${priceSl}{
+								${getBackgroundCSS(background)}
 							}
-							#bBlocksPriceLists-${clientId} #bBlocksPrice-${index} .productImage{
-								${imgBorder?.styles || ''}
+							${priceSl} .productImage{
+								${getSpaceCSS(imgBorder)}
 							}
-							#bBlocksPriceLists-${clientId} #bBlocksPrice-${index} .productName{
+							${priceSl} .productName{
 								color: ${nameColor};
 							}
-							#bBlocksPriceLists-${clientId} #bBlocksPrice-${index} .productDescription{
+							${priceSl} .productDescription{
 								color: ${descColor};
 							}
-							#bBlocksPriceLists-${clientId} #bBlocksPrice-${index} .productPrice{
+							${priceSl} .productPrice{
 								color: ${priceColor};
 							}
-							#bBlocksPriceLists-${clientId} #bBlocksPrice-${index} .productSeparator{
-								${separator?.styles || 'width: 40%; border-top: 1px solid #bbb;'}
+							${priceSl} .productSeparator{
+								${getSeparatorCSS(separator)}
 							}
 						`}} />
 

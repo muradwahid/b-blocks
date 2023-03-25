@@ -2,6 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { useState, useEffect, createContext } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 
+// Settings Components
+import { getBackgroundCSS, getIconCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+
 import Settings from './settings';
 
 export const IndexContext = createContext();
@@ -20,6 +23,10 @@ const Edit = props => {
 		setActiveIndex(index);
 	}
 
+	const mainSl = `#bBlocksFeatureBoxes-${clientId}`;
+	const featureBoxesSl = `${mainSl} .bBlocksFeatureBoxes`;
+	const gFeatureSl = `${featureBoxesSl} .bBlocksFeature`;
+
 	return <>
 		<IndexContext.Provider value={setActiveIndex}>
 			<Settings settings={props} />
@@ -28,28 +35,24 @@ const Edit = props => {
 		<div className={className} id={`bBlocksFeatureBoxes-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${titleTypo?.googleFontLink ? `@import url(${titleTypo?.googleFontLink});` : ''}
-				${descTypo?.googleFontLink ? `@import url(${descTypo?.googleFontLink});` : ''}
+				${getTypoCSS(`${gFeatureSl} .featureTitle`, titleTypo)}
+				${getTypoCSS(`${gFeatureSl} .featureDescription`, descTypo)}
 
-				#bBlocksFeatureBoxes-${clientId} .bBlocksFeatureBoxes{
+				${featureBoxesSl}{
 					grid-gap: ${rowGap} ${columnGap};
 				}
-				#bBlocksFeatureBoxes-${clientId} .bBlocksFeatureBoxes .bBlocksFeature{
+				${gFeatureSl}{
 					text-align: ${textAlign};
-					padding: ${padding?.styles || '50px 20px'};
+					padding: ${getSpaceCSS(padding)};
 				}
-				#bBlocksFeatureBoxes-${clientId} .bBlocksFeatureBoxes .bBlocksFeature .featureIcon{
-					margin: ${iconMargin?.styles || '0 0 20px 0'};
+				${gFeatureSl} .featureIcon{
+					margin: ${getSpaceCSS(iconMargin)};
 				}
-				#bBlocksFeatureBoxes-${clientId} .bBlocksFeatureBoxes .bBlocksFeature .featureTitle{
-					${titleTypo?.styles || 'font-size: 20px; font-weight: 600;'}
-					margin: ${titleMargin?.styles || '0 0 10px 0'};
+				${gFeatureSl} .featureTitle{
+					margin: ${getSpaceCSS(titleMargin)};
 				}
-				#bBlocksFeatureBoxes-${clientId} .bBlocksFeatureBoxes .bBlocksFeature .featureSeparator{
-					margin: ${sepMargin?.styles || '0 0 10px 0'};
-				}
-				#bBlocksFeatureBoxes-${clientId} .bBlocksFeatureBoxes .bBlocksFeature .featureDescription{
-					${descTypo?.styles || 'font-size: 15px;'}
+				${gFeatureSl} .featureSeparator{
+					margin: ${getSpaceCSS(sepMargin)};
 				}
 			`}} />
 
@@ -57,25 +60,27 @@ const Edit = props => {
 				{features.map((item, index) => {
 					const { background, isUpIcon, icon, upIcon, iconWidth, title, titleColor, separator, desc, descColor } = item;
 
+					const featureSl = `${mainSl} #bBlocksFeature-${index}`;
+
 					return <div key={index} onClick={() => setActiveIndex(index)} className={`bBlocksFeature ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFeature-${index}`}>
 						<style dangerouslySetInnerHTML={{
 							__html: `
-							#bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index}{
-								${background?.styles || `background-color: #0000;`}
+							${featureSl}{
+								${getBackgroundCSS(background)}
 							}
-							#bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index} .featureIcon i{
-								${icon?.styles || 'font-size: 120px;'}
+							${featureSl} .featureIcon i{
+								${getIconCSS(icon)}
 							}
-							#bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index} .featureIcon img{
+							${featureSl} .featureIcon img{
 								width: ${iconWidth};
 							}
-							#bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index} .featureTitle{
+							${featureSl} .featureTitle{
 								color: ${titleColor};
 							}
-							#bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index} .featureSeparator{
-								${separator?.styles || 'width: 20%; border-top: 1px solid #bbb;'}
+							${featureSl} .featureSeparator{
+								${getSeparatorCSS(separator)}
 							}
-							#bBlocksFeatureBoxes-${clientId} #bBlocksFeature-${index} .featureDescription{
+							${featureSl} .featureDescription{
 								color: ${descColor};
 							}
 						`}} />

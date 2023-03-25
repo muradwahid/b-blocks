@@ -51,7 +51,7 @@ const Edit = props => {
 	}
 
 	return <>
-		<Settings attributes={props.attributes} setAttributes={setAttributes} clientId={clientId} />
+		<Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} />
 
 		<div className={className} id={`bBlocksRow-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} isBackend={true} />
