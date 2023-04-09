@@ -9,9 +9,12 @@ const Style = ({ attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-				${getTypoCSS(`${gSlideSl} .sliderTitle`, titleTypo)}
-				${getTypoCSS(`${gSlideSl} .sliderDescription`, descTypo)}
-				${getTypoCSS(`${gSlideSl} .sliderBtn`, btnTypo)}
+				${getTypoCSS('', titleTypo)?.googleFontLink}
+				${getTypoCSS('', descTypo)?.googleFontLink}
+				${getTypoCSS('', btnTypo)?.googleFontLink}
+				${getTypoCSS(`${gSlideSl} .sliderTitle`, titleTypo)?.styles}
+				${getTypoCSS(`${gSlideSl} .sliderDescription`, descTypo)?.styles}
+				${getTypoCSS(`${gSlideSl} .sliderBtn`, btnTypo)?.styles}
 
 				#bBlocksSlider-${clientId} .bBlocksSliderWrapper{
 					text-align: ${sliderAlign};

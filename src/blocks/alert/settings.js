@@ -21,8 +21,8 @@ const types = [
 	{ label: __('Error', 'b-b-blocks'), value: 'error' }
 ];
 
-const Settings = ({ settings }) => {
-	const { attributes: { type, width, alignment, textAlign, icon, isDismiss, typography, colors, padding, border, shadow }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { type, width, alignment, textAlign, icon, isDismiss, typography, colors, padding, border, shadow } = attributes;
 
 	return <>
 		<InspectorControls>

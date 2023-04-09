@@ -7,8 +7,10 @@ const Style = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${getTypoCSS(`${imgCompareSl} .overlay`, labelTypo)}
-		${getTypoCSS(`${imgCompareSl} .caption`, capTypo)}
+		${getTypoCSS('', labelTypo)?.googleFontLink}
+		${getTypoCSS('', capTypo)?.googleFontLink}
+		${getTypoCSS(`${imgCompareSl} .overlay`, labelTypo)?.styles}
+		${getTypoCSS(`${imgCompareSl} .caption`, capTypo)?.styles}
 
 		#bBlocksImageComparison-${clientId}{
 			text-align: ${alignment};

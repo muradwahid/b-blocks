@@ -1,5 +1,5 @@
 import { createBlock } from '@wordpress/blocks';
-import { useState, useEffect, useRef } from '@wordpress/element';
+import { useState, useEffect, useRef } from 'react';
 import { compose } from '@wordpress/compose';
 import { withSelect, dispatch, withDispatch } from '@wordpress/data';
 import { InnerBlocks } from '@wordpress/block-editor';

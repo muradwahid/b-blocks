@@ -5,10 +5,10 @@ import metadata from '../../../inc/services/block.json';
 import Edit from './Edit';
 import './child';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { servicesIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.services,
+	icon: servicesIcon,
 
 	transforms: {
 		from: [

@@ -8,8 +8,7 @@ import BColor from '../../../../Components/BColor';
 import BtnGroup from '../../../../Components/BtnGroup';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { generalStyleTabs } from '../../utils/options';
 const modes = [
 	{ label: __('Normal', 'b-blocks'), value: 'normal', icon: __('Normal', 'b-blocks') },
 	{ label: __('Bounce', 'b-blocks'), value: 'bounce', icon: __('Bounce', 'b-blocks') }

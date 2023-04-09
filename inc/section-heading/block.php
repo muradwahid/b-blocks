@@ -41,8 +41,10 @@ class BBlocksSectionHeading extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSectionHeading-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( "$sectionHeadingSl .sectionHeadingTitle", $titleTypo );
-					echo GetCSS::getTypoCSS( "$sectionHeadingSl .sectionHeadingDescription", $descTypo );
+					echo GetCSS::getTypoCSS( '', $titleTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( "$sectionHeadingSl .sectionHeadingTitle", $titleTypo )['styles'];
+					echo GetCSS::getTypoCSS( "$sectionHeadingSl .sectionHeadingDescription", $descTypo )['styles'];
 					echo wp_kses( $sectionHeadingStyle->renderStyle(), [] );
 				?>
 			</style>

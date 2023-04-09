@@ -4,10 +4,10 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import metadata from '../../../../inc/row/column/block.json';
 import Edit from './Edit';
 import './editor.scss';
-import icons from '../../../utils/icons';
+import { columnsIcon } from '../utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.columns,
+	icon: columnsIcon,
 
 	// Build in Functions
 	edit: Edit,

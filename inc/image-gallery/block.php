@@ -13,6 +13,10 @@ class BBlocksImageGallery extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', [], '4.0', true );
+		wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '4.0', 'all' );
+
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-b-blocks-image-gallery ' . $className . ' align' . $align;
 
@@ -42,8 +46,10 @@ class BBlocksImageGallery extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksImageGallery-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption h4", $capTitleTypo );
-					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption p", $capDescTypo );
+					echo GetCSS::getTypoCSS( '', $capTitleTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( '', $capDescTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption h4", $capTitleTypo )['styles'];
+					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption p", $capDescTypo )['styles'];
 					echo wp_kses( $imageGalleryStyle::renderStyle(), [] );
 				?>
 			</style>

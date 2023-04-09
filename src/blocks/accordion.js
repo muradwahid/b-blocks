@@ -1,27 +1,24 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { normalHoverTabs, fontSizes, colors, aligns, textTransforms } = options;
+import { normalHoverTabs, fontSizes, colors, aligns, textTransforms } from '../utils/options';
 
 // Components
-import BtnGroup from '../Components/BtnGroup';
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icons
-import icons from '../utils/icons';
+import { accordionIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/accordion', {
 	// Build In attributes
 	title: __('Accordion', 'b-blocks'),
 	description: __('Place collapsible text contents', 'b-blocks'),
-	icon: icons.accordion,
+	icon: accordionIcon,
 	category: 'bBlocks',
 	keywords: [__('Accordion', 'b-blocks'), __('Collapse', 'b-blocks'), __('Closing', 'b-blocks')],
 	supports: {
@@ -115,44 +112,44 @@ registerBlockType('b-blocks/accordion', {
 			<InspectorControls>
 				<PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={true}>
 					{/* Text Align */}
-					{firstTitle('Text Align:')}
+					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 					<BtnGroup options={aligns} myValue={headingAlign} setState={cng => setAttributes({ headingAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					{otherTitle('Font Size:')}
+					<Title>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: 'undefined' === typeof cng ? 20 : cng })} />
 
 					{/* Text Transform */}
-					{otherTitle('Text Transform:')}
+					<Title>{__('Text Transform:', 'b-blocks')}</Title>
 					<BtnGroup options={textTransforms} myValue={headingTransform} setState={cng => setAttributes({ headingTransform: cng })} />
 
 					{/* Top Bottom Padding */}
-					{otherTitle('Top Bottom Padding:')}
+					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
 					<RangeControl value={headingPTB} onChange={cng => setAttributes({ headingPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					{otherTitle('Left Right Padding:')}
+					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
 					<RangeControl value={headingPLR} onChange={cng => setAttributes({ headingPLR: cng })} min={0} max={150} step={1} />
 
-					{otherTitle('Colors:')}
+					<Title>{__('Colors:', 'b-blocks')}</Title>
 					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
-							{firstTitle('Color:')}
+							<Title className=''>{__('Color:', 'b-blocks')}</Title>
 							<ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
 
 							{/* Background Color */}
-							{otherTitle('Background Color:')}
+							<Title>{__('Background Color:', 'b-blocks')}</Title>
 							<ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
 						</>}
 
 						{'hover' == tab.name && <>
 							{/* Hover Color */}
-							{firstTitle('Hover Color:')}
+							<Title className=''>{__('Hover Color:', 'b-blocks')}</Title>
 							<ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
 
 							{/* Hover Background Color */}
-							{otherTitle('Hover Background Color:')}
+							<Title>{__('Hover Background Color:', 'b-blocks')}</Title>
 							<ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
 						</>}
 					</>}</TabPanel>
@@ -162,15 +159,15 @@ registerBlockType('b-blocks/accordion', {
 				{/* Content Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
 					{/* Text Align */}
-					{firstTitle('Text Align:')}
+					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 					<BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
 
 					{/* Top Bottom Padding */}
-					{otherTitle('Top Bottom Padding:')}
+					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
 					<RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					{otherTitle('Left Right Padding:')}
+					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
 					<RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>

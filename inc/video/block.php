@@ -13,6 +13,10 @@ class BBlocksVideo extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_script( 'plyr' );
+		wp_enqueue_style( 'plyr' );
+
 		ob_start(); ?>
 		<div class='wp-block-b-blocks-video <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksVideo-<?php echo esc_attr( $clientId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 

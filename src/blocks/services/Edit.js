@@ -1,4 +1,4 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 import Settings from './Settings';
@@ -11,7 +11,7 @@ const Edit = props => {
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	return <>
-		<Settings attributes={props.attributes} setAttributes={setAttributes} clientId={clientId} />
+		<Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} />
 
 		<div className={className} id={`bBlocksServices-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} isBackend={true} />

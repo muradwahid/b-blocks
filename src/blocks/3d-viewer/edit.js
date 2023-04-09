@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef } from 'react';
 
 import { tabController } from '../../../../Components/Helper/functions';
 
@@ -33,7 +33,7 @@ const Edit = props => {
 	}, [sourceType, model, modelLink, isTouchMove, isZoom, loadingType]);
 
 	return <>
-		<Settings attributes={props.attributes} setAttributes={setAttributes} clientId={clientId} />
+		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div className={className} id={`bBlocks3DViewer-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />

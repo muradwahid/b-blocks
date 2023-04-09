@@ -1,27 +1,30 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 
 // Components
 import { getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-import Settings from './settings';
+import Settings from './Settings';
 
 const Edit = props => {
-	const { className, attributes: { textAlign, title, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, desc, descTypo, descColor, descMargin }, setAttributes, clientId } = props;
+	const { className, attributes, setAttributes, clientId } = props;
+	const { textAlign, title, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, desc, descTypo, descColor, descMargin } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	const sectionHeadingSl = `#bBlocksSectionHeading-${clientId} .bBlocksSectionHeading`;
 
 	return <>
-		<Settings settings={props} />
+		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div className={className} id={`bBlocksSectionHeading-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${getTypoCSS(`${sectionHeadingSl} .sectionHeadingTitle`, titleTypo)}
-				${getTypoCSS(`${sectionHeadingSl} .sectionHeadingDescription`, descTypo)}
+				${getTypoCSS('', titleTypo)?.googleFontLink}
+				${getTypoCSS('', descTypo)?.googleFontLink}
+				${getTypoCSS(`${sectionHeadingSl} .sectionHeadingTitle`, titleTypo)?.styles}
+				${getTypoCSS(`${sectionHeadingSl} .sectionHeadingDescription`, descTypo)?.styles}
 
 				${sectionHeadingSl}{
 					text-align: ${textAlign};

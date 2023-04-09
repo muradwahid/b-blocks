@@ -10,8 +10,10 @@ const Style = ({ attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${getTypoCSS(`${gCounterSl} .counterNumber`, numberTypo)}
-			${getTypoCSS(`${gCounterSl} .counterLabel`, labelTypo)}
+			${getTypoCSS('', numberTypo)?.googleFontLink}
+			${getTypoCSS('', labelTypo)?.googleFontLink}
+			${getTypoCSS(`${gCounterSl} .counterNumber`, numberTypo)?.styles}
+			${getTypoCSS(`${gCounterSl} .counterLabel`, labelTypo)?.styles}
 			
 			${countersSl}{
 				grid-gap: ${rowGap} ${columnGap};
@@ -30,31 +32,31 @@ const Style = ({ attributes, clientId }) => {
 			${gCounterSl} .counterIconLabel{
 				font-size: ${iconSize || 50}px;
 			}
-			`.replace(/\s+/g, ' ')
-		}} />
 
-		<style>
-			{counters?.map((item, index) => {
+			${counters?.map((item, index) => {
+				const { background, icon, number, label } = item;
+
 				const counterSl = `${mainSl} #bBlocksCounter-${index}`;
 
 				return `
 					${counterSl} .bBlocksCounter{
-						${getBackgroundCSS(item.background)}
+						${getBackgroundCSS(background)}
 					}
 					${counterSl} .counterIcon i,
 					${counterSl} .counterIconLabel i{
-						${getIconCSS(item.icon)}
+						${getIconCSS(icon)}
 						font-size: inherit;
 					}
 					${counterSl} .counterNumber{
-						color: ${item.number.color};
+						color: ${number.color};
 					}
 					${counterSl} .counterLabel{
-						color: ${item.label.color};
+						color: ${label.color};
 					}
-				`.replace(/\s+/g, ' ')
-			})}
-		</style>
+				`
+			}).join(' ')}
+			`.replace(/\s+/g, ' ')
+		}} />
 	</>
 }
 export default Style;

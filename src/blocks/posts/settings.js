@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect, useContext } from '@wordpress/element';
+import { useState, useEffect } from 'react';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl, TextControl, ToggleControl, TabPanel, RadioControl, PanelRow, __experimentalUnitControl as UnitControl, Dashicon } from '@wordpress/components';
 import SelectPure from 'select-pure';
@@ -18,15 +18,13 @@ import Typography from '../../../../Components/Typography';
 import BtnGroup from '../../../../Components/BtnGroup';
 import { pxUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
 
-import { ExcerptLengthCtx } from './Edit';
-import icons from '../../utils/icons';
-import options from '../../utils/options';
-const { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders } = options;
+import { gridIcon, masonryIcon, sliderNoColorIcon, tickerIcon } from './utils/icons';
+import { generalStyleTabs, sliderEffects, aligns, postsOrdersBy, postsOrders } from '../../utils/options';
 const layouts = [
-	{ label: __('Grid', 'b-blocks'), value: 'grid', icon: icons.grid },
-	{ label: __('Masonry', 'b-blocks'), value: 'masonry', icon: icons.masonry },
-	{ label: __('Slider', 'b-blocks'), value: 'slider', icon: icons.sliderNoColor },
-	{ label: __('Ticker', 'b-blocks'), value: 'ticker', icon: icons.ticker }
+	{ label: __('Grid', 'b-blocks'), value: 'grid', icon: gridIcon },
+	{ label: __('Masonry', 'b-blocks'), value: 'masonry', icon: masonryIcon },
+	{ label: __('Slider', 'b-blocks'), value: 'slider', icon: sliderNoColorIcon },
+	{ label: __('Ticker', 'b-blocks'), value: 'ticker', icon: tickerIcon }
 ];
 const subLayouts = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
@@ -42,11 +40,10 @@ const categoriesPosition = [
 	{ label: __('Image', 'b-blocks'), value: 'image' }
 ];
 
-const Settings = ({ settings, getPostTypes, categories }) => {
+const Settings = ({ settings, getPostTypes, categories, maxExcerptLength }) => {
 	const { attributes: { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder }, setAttributes, posts } = settings;
 
 	const [device, setDevice] = useState('desktop');
-	const maxExcerptLength = useContext(ExcerptLengthCtx);
 
 	useEffect(() => {
 		if (('slider' === layout || 'ticker' === layout) && ('default' === subLayout || 'title-meta' === subLayout))

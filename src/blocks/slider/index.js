@@ -3,10 +3,10 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import metadata from '../../../inc/slider/block.json';
 import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { sliderIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.slider,
+	icon: sliderIcon,
 
 	transforms: {
 		from: [

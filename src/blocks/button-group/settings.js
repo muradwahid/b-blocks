@@ -23,8 +23,8 @@ const btnGroupTabs = [
 	{ name: 'btn-two', title: __('Button Two', 'b-blocks') }
 ];
 
-const Settings = ({ settings }) => {
-	const { attributes: { width, btnAlign, btnType, btnTypo, btnPadding, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepBGColor }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { width, btnAlign, btnType, btnTypo, btnPadding, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepBGColor } = attributes;
 
 	return <>
 		<InspectorControls>

@@ -1,6 +1,6 @@
 
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 import produce from 'immer';
@@ -19,8 +19,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { generalStyleTabs } from '../../utils/options';
 const frontBackTab = [
 	{ name: 'front', title: __('Front', 'b-blocks') },
 	{ name: 'back', title: __('Back', 'b-blocks') }
@@ -73,10 +72,26 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 	}
 
 	const updateFlipBox = (type, val) => {
-		const newBoxes = [...boxes];
-		newBoxes[activeIndex][type] = val;
+		const newBoxes = produce(boxes, draft => {
+			draft[activeIndex][type] = val;
+		});
 		setAttributes({ boxes: newBoxes });
-		setActiveIndex(activeIndex);
+	}
+
+	const duplicateFlipBox = e => {
+		e.preventDefault();
+
+		setAttributes({ boxes: [...boxes.slice(0, activeIndex), { ...boxes[activeIndex] }, ...boxes.slice(activeIndex)] });
+
+		setActiveIndex(activeIndex + 1);
+	}
+
+	const removeFlipBox = e => {
+		e.preventDefault();
+
+		setAttributes({ boxes: [...boxes.slice(0, activeIndex), ...boxes.slice(activeIndex + 1)] });
+
+		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
 	}
 
 	const { frontBG = {}, backBG = {}, border = {}, shadow = {}, frontIcon = {}, backIcon = {}, frontTitle = '', frontTitleColor = '', backTitle = '', backTitleColor = '', desc = '', descColor = '', btn = '', btnLink = '', btnBorder = {}, btnColors = {}, btnHovColors = {} } = boxes[activeIndex] || {};
@@ -99,8 +114,10 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Boxes', 'b-blocks')}>
-						{null !== activeIndex && <PanelBody className='bPlPanelBody editItem' title={__(`Flip Box No ${activeIndex + 1}:`, 'b-blocks')}>
+					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Boxes', 'b-blocks')}>
+						{null !== activeIndex && <>
+							<h3 className='bplItemTitle'>{__(`Flip Box No ${activeIndex + 1}:`, 'b-blocks')}</h3>
+
 							<PanelBody className='bPlPanelBody' title={__('Box Settings', 'b-blocks')}>
 								<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateFlipBox('border', val)} />
 
@@ -164,20 +181,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 								</>}
 							</>}</TabPanel>
 
-							<PanelRow className='itemAction mt20'>
-								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(1 === boxes.length ? null : 0 === activeIndex ? 0 : activeIndex - 1);
-									setAttributes({ boxes: [...boxes.slice(0, activeIndex), ...boxes.slice(activeIndex + 1)] });
-								}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+							<PanelRow className='itemAction mt20 mb15'>
+								{1 < boxes?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeFlipBox}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-									e.preventDefault();
-									setActiveIndex(boxes.length);
-									setAttributes({ boxes: [...boxes, { ...boxes[activeIndex] }] });
-								}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
+								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateFlipBox}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>
-						</PanelBody>}
+						</>}
 
 						<div className='addItem'>
 							<Button label={__('Add New Flip Box', 'b-blocks')} onClick={addFlipBox}><Dashicon icon='plus' />{__('Add New Flip Box', 'b-blocks')}</Button>

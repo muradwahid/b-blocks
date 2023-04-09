@@ -10,8 +10,10 @@ const Style = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${getTypoCSS(`${btnGroupSl} .bBlocksBtn a`, btnTypo)}
-		${getTypoCSS(`${btnSeparatorSl} span`, sepTextTypo)}
+		${getTypoCSS('', btnTypo)?.googleFontLink}
+		${getTypoCSS('', sepTextTypo)?.googleFontLink}
+		${getTypoCSS(`${btnGroupSl} .bBlocksBtn a`, btnTypo)?.styles}
+		${getTypoCSS(`${btnSeparatorSl} span`, sepTextTypo)?.styles}
 
 		#bBlocksButtonGroup-${clientId}{
 			text-align: ${btnAlign};

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
@@ -49,12 +49,12 @@ const Edit = props => {
 
 			<div className='bBlocksImageComparison'>
 				{beforeImg?.url && afterImg?.url ? <div className='comparison-slider'>
-					{isLabel && <RichText className={`overlay afterLabel`} tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'b-blocks')} inlineToolbar />}
+					{isLabel && <RichText className='overlay afterLabel' tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'b-blocks')} inlineToolbar />}
 
 					<img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
 
 					<div className='resize'>
-						{isLabel && <RichText className={`overlay beforeLabel`} tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} inlineToolbar />}
+						{isLabel && <RichText className='overlay beforeLabel' tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} inlineToolbar />}
 
 						<img className='beforeImg' src={beforeImg?.url} alt={beforeImg?.alt} />
 					</div>

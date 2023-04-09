@@ -14,8 +14,10 @@ const Style = ({ attributes, clientId, isBackend = false }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${getTypoCSS(`${serviceSl} .title`, titleTypo)}
-		${getTypoCSS(`${serviceSl} .description`, descTypo)}
+		${getTypoCSS('', titleTypo)?.googleFontLink}
+		${getTypoCSS('', descTypo)?.googleFontLink}
+		${getTypoCSS(`${serviceSl} .title`, titleTypo)?.styles}
+		${getTypoCSS(`${serviceSl} .description`, descTypo)?.styles}
 
 		${servicesSl}{
 			${getBackgroundCSS(background)}

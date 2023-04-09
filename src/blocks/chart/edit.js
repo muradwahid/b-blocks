@@ -1,4 +1,4 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 
 import Settings from './Settings';
 import Style from './Style';

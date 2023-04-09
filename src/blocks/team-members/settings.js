@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, SelectControl } from '@wordpress/components';
 import produce from 'immer';
@@ -21,9 +21,8 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import icons from '../../utils/icons';
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
+import { generalStyleTabs } from '../../utils/options';
 
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
@@ -33,8 +32,8 @@ const themes = [
 	{ label: __('Theme 4', 'b-blocks'), value: 'theme4' },
 ];
 const layouts = [
-	{ label: __('Vertical', 'b-blocks'), value: 'vertical', icon: icons.verticalLine },
-	{ label: __('Horizontal', 'b-blocks'), value: 'horizontal', icon: icons.horizontalLine },
+	{ label: __('Vertical', 'b-blocks'), value: 'vertical', icon: verticalLineIcon },
+	{ label: __('Horizontal', 'b-blocks'), value: 'horizontal', icon: horizontalLineIcon },
 ]
 
 const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setActiveIndex }) => {

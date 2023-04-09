@@ -1,12 +1,12 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 import metadata from '../../../inc/alert/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { alertIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.alert,
+	icon: alertIcon,
 
 	transforms: {
 		from: [

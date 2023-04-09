@@ -4,23 +4,20 @@ import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { aligns, borderStyles, colors, sizeTypes } = options;
+import { aligns, borderStyles, colors, sizeTypes } from '../utils/options';
 
 // Components
-import BtnGroup from '../Components/BtnGroup';
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icons
-import icons from '../utils/icons';
+import { minusIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/divider', {
 	// Build In attributes
 	title: __('Divider', 'b-blocks'),
 	description: __('Divider between sections and blocks', 'b-blocks'),
-	icon: icons.minus,
+	icon: minusIcon,
 	category: 'bBlocks',
 	keywords: [__('Divide', 'b-blocks'), __('Divider', 'b-blocks'), __('Divider Line', 'b-blocks')],
 	supports: {
@@ -54,36 +51,36 @@ registerBlockType('b-blocks/divider', {
 				{/* Divider Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Divider Settings', 'b-blocks')} initialOpen={true}>
 					{/* Alignment */}
-					{firstTitle('Alignment:')}
+					<Title className=''>{__('Alignment:', 'b-blocks')}</Title>
 					<BtnGroup options={aligns} myValue={divideAlign} setState={cng => setAttributes({ divideAlign: cng })} icon={true} />
 
 					{/* Width */}
-					{otherTitle('Width:')}
+					<Title>{__('Width:', 'b-blocks')}</Title>
 					<BtnGroup options={sizeTypes} myValue={divideWidthType} setState={(cng, def) => setAttributes({ divideWidthType: cng, divideWidth: def })} classes='bBlocksSizeType' size='small' />
 
 					<RangeControl value={divideWidth} onChange={cng => setAttributes({ divideWidth: cng })} min={0} max={('%' == divideWidthType) ? 100 : 1920} step={1} />
 
 					{/* Thickness */}
-					{otherTitle('Thickness:')}
+					<Title>{__('Thickness:', 'b-blocks')}</Title>
 					<RangeControl value={divideThick} onChange={cng => setAttributes({ divideThick: cng })} min={0} max={50} step={.1} />
 
 					{/* Style */}
-					{otherTitle('Style:')}
+					<Title>{__('Style:', 'b-blocks')}</Title>
 					<SelectControl value={divideStyle} onChange={cng => setAttributes({ divideStyle: cng })} options={borderStyles} />
 
 					{/* Color */}
-					{otherTitle('Color:')}
+					<Title>{__('Color:', 'b-blocks')}</Title>
 					<ColorPalette value={divideColor} onChange={cng => setAttributes({ divideColor: cng })} colors={colors} />
 
 					{/* Margin Top */}
-					{otherTitle('Margin Top:')}
+					<Title>{__('Margin Top:', 'b-blocks')}</Title>
 					<RangeControl value={divideMT} onChange={cng => setAttributes({ divideMT: cng })} min={0} max={100} step={1} />
 
 					{/* Margin Bottom */}
-					{otherTitle('Margin Bottom:')}
+					<Title>{__('Margin Bottom:', 'b-blocks')}</Title>
 					<RangeControl value={divideMB} onChange={cng => setAttributes({ divideMB: cng })} min={0} max={100} step={1} />
 				</PanelBody>
-			</InspectorControls>
+			</InspectorControls >
 
 
 			<div className='b_blocks_divider'>

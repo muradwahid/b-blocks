@@ -9,14 +9,20 @@ const Style = ({ attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${getTypoCSS(`${cardDetailsSl} .cardCategory`, catTypo)}
-			${getTypoCSS(`${gCardSl} .cardTitle`, titleTypo)}
-			${getTypoCSS(`${gCardSl} .cardDescription`, descTypo)}
+			${getTypoCSS('', catTypo)?.googleFontLink}
+			${getTypoCSS('', titleTypo)?.googleFontLink}
+			${getTypoCSS('', descTypo)?.googleFontLink}
+			${getTypoCSS(`${cardDetailsSl} .cardCategory`, catTypo)?.styles}
+			${getTypoCSS(`${gCardSl} .cardTitle`, titleTypo)?.styles}
+			${getTypoCSS(`${gCardSl} .cardDescription`, descTypo)?.styles}
 
 			#bBlocksCards-${clientId} .bBlocksCards{
 				grid-gap: ${rowGap} ${columnGap};
 			}
-			${gCardSl} .cardImage img{ height: ${imgHeight}; }
+			${gCardSl} .cardImage,
+			${gCardSl} .cardImage img{
+				height: ${imgHeight};
+			}
 			${cardDetailsSl}{
 				text-align: ${textAlign};
 				padding: ${getSpaceCSS(padding)};
@@ -50,7 +56,7 @@ const Style = ({ attributes, clientId }) => {
 						color: ${descColor};
 					}
 				`;
-			})}
+			}).join(' ')}
 			`.replace(/\s+/g, ' ')
 		}} />
 	</>;

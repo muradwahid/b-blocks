@@ -2,7 +2,7 @@
 	"apiVersion": "1",
 	"name": "b-blocks/countdown",
 	"title": "Countdown",
-	"description": "Timer for an eventn.",
+	"description": "Display events date into a timer.",
 	"category": "bBlocks",
 	"keywords": [
 		"countdown timer",
@@ -26,6 +26,10 @@
 		"layout": {
 			"type": "string",
 			"default": "default"
+		},
+		"isResponsive": {
+			"type": "boolean",
+			"default": true
 		},
 		"boxIsInline": {
 			"type": "boolean",

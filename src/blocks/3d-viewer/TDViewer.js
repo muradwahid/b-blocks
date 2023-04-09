@@ -1,4 +1,4 @@
-import { forwardRef } from '@wordpress/element';
+import { forwardRef } from 'react';
 
 const TDViewer = ({ attributes }, ref) => {
 	const { sourceType, model, modelLink, loadingType } = attributes;

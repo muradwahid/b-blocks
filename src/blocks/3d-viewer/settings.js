@@ -1,24 +1,16 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TextControl, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, Button, ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
+import { PanelBody, PanelRow, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
 
 // Settings Components
 import Title from '../../../../Components/Title';
-import BtnGroup from '../../../../Components/BtnGroup';
+import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-const sourceTypes = [
-	{ label: __('Upload', 'b-blocks'), value: 'upload' },
-	{ label: __('Link', 'b-blocks'), value: 'link' }
-];
-const loadingTypes = [
-	{ label: __('Auto', 'b-blocks'), value: 'auto' },
-	{ label: __('Lazy', 'b-blocks'), value: 'lazy' },
-	{ label: __('Eager', 'b-blocks'), value: 'eager' }
-];
+import { loadingTypes } from './utils/options';
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { alignment, sourceType, model, modelLink, width, height, isTouchMove, isZoom, loadingType } = attributes;
+	const { alignment, model, width, height, isTouchMove, isZoom, loadingType } = attributes;
 
 	const onModelSelect = ({ id, url, title }) => setAttributes({ model: { ...model, id, url, title } });
 
@@ -39,7 +31,10 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('3D Model Settings', 'b-blocks')}>
-				<PanelRow>
+				<Title className=''>{__('Model:', 'b-blocks')}</Title>
+				<InlineDetailMediaUpload types={['model/gltf-binary']} value={model} onChange={val => setAttributes({ model: val })} placeholder={__('Enter Model URL', 'b-blocks')} />
+
+				{/* <PanelRow>
 					<Title className='mb5'>{__('Source Type:', 'b-blocks')}</Title>
 					<BtnGroup value={sourceType} onChange={val => setAttributes({ sourceType: val })} options={sourceTypes} />
 				</PanelRow>
@@ -66,7 +61,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				{'link' === sourceType && <>
 					<Title>{__('Model Link:', 'b-blocks')}</Title>
 					<TextControl value={modelLink} onChange={val => setAttributes({ modelLink: val })} />
-				</>}
+				</>} */}
 
 				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 				<small>{__('Keep width 0, to auto width.', 'b-blocks')}</small>

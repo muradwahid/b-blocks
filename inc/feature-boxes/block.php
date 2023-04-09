@@ -43,8 +43,10 @@ class BBlocksFeatureBoxes extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( "$gFeatureSl .featureTitle", $titleTypo );
-					echo GetCSS::getTypoCSS( "$gFeatureSl .featureDescription", $descTypo );
+					echo GetCSS::getTypoCSS( '', $titleTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( "$gFeatureSl .featureTitle", $titleTypo )['styles'];
+					echo GetCSS::getTypoCSS( "$gFeatureSl .featureDescription", $descTypo )['styles'];
 					echo wp_kses( $featureBoxesStyle::renderStyle(), [] );
 					
 					foreach ( $features as $index => $feature ) {
@@ -56,12 +58,14 @@ class BBlocksFeatureBoxes extends BBlocks{
 						$iconStyle = GetCSS::getIconCSS($icon );
 						$separatorStyle = GetCSS::getSeparatorCSS($separator );
 
-						$featureStyles = "$featureSl{ $backgroundStyle }
-						$featureSl .featureIcon i{ $iconStyle }
-						$featureSl .featureIcon img{ width: $iconWidth; }
-						$featureSl .featureTitle{ color: $titleColor; }
-						$featureSl .featureSeparator{ $separatorStyle }
-						$featureSl .featureDescription{ color: $descColor; }";
+						$featureStyles = "
+							$featureSl{ $backgroundStyle }
+							$featureSl .featureIcon i{ $iconStyle }
+							$featureSl .featureIcon img{ width: $iconWidth; }
+							$featureSl .featureTitle{ color: $titleColor; }
+							$featureSl .featureSeparator{ $separatorStyle }
+							$featureSl .featureDescription{ color: $descColor; }
+						";
 						echo esc_html( $featureStyles );
 					}
 				?>

@@ -1,8 +1,8 @@
-import { useState, useEffect } from '@wordpress/element';
-import FlipBoxes from './FlipBoxes';
+import { useState, useEffect } from 'react';
 
 import Settings from './Settings';
 import Style from './Style';
+import FlipBoxes from './FlipBoxes';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;

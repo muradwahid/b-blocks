@@ -16,16 +16,6 @@
 			align-items: center;
 			justify-content: center;
 
-			&:first-child {
-				margin-left: 0 !important;
-				margin-top: 0 !important;
-			}
-
-			&:last-child {
-				margin-right: 0 !important;
-				margin-bottom: 0 !important;
-			}
-
 			.digit {
 				display: block;
 				font-weight: 400;
@@ -75,12 +65,11 @@
 	}
 
 	@media (max-width: 575px) {
-		.countdownItems {
+		.countdownItems.bBlocksCountdownResponsive {
 			flex-direction: column;
 
-			.countdownItem {
-				margin-left: 0 !important;
-				margin-right: 0 !important;
+			.separator {
+				transform: rotate(90deg);
 			}
 		}
 	}

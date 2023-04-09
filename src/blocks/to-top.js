@@ -4,23 +4,20 @@ import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-edit
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { fontSizes, aligns, colors } = options;
+import { fontSizes, aligns, colors } from '../utils/options';
 
-// Components
-import BtnGroup from '../Components/BtnGroup';
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+// Settings Components
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icons
-import icons from '../utils/icons';
+import { toTopIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/to-top', {
 	// Build In attributes
 	title: __('Go To Top', 'b-blocks'),
 	description: __('Back to top of your page', 'b-blocks'),
-	icon: icons.toTop,
+	icon: toTopIcon,
 	category: 'bBlocks',
 	keywords: [__('To Top', 'b-blocks'), __('Back to Top', 'b-blocks'), __('Return to Top', 'b-blocks')],
 	supports: {
@@ -49,15 +46,15 @@ registerBlockType('b-blocks/to-top', {
 				{/* Go To Top Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Go To Top Settings', 'b-blocks')} initialOpen={false}>
 					{/* Text Align */}
-					{firstTitle('Text Align:')}
+					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 					<BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					{otherTitle('Font Size:')}
+					<Title>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontSize} onChange={cng => setAttributes({ fontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Color */}
-					{otherTitle('Color:')}
+					<Title>{__('Color:', 'b-blocks')}</Title>
 					<ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
 				</PanelBody>
 			</InspectorControls>

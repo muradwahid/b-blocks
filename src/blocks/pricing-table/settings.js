@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl, Tooltip, CheckboxControl } from '@wordpress/components';
 
@@ -12,8 +12,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { generalStyleTabs } from '../../utils/options';
 
 const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, setActiveIndex }) => {
 	const { pricingTables, columns, columnGap, rowGap, textAlign, padding, shadow } = attributes;

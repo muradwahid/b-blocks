@@ -121,7 +121,7 @@ class GetCSS{
 
 		$styles = 'text' === $type ? "$offsetBlur $color" : "$offsetBlur $spreed $color $inset";
 	
-		return $styles || 'none';
+		return $styles ?: 'none';
 	}
 	
 
@@ -162,17 +162,17 @@ class GetCSS{
 
 		$link = $isEmptyFamily ? '' : 'https://fonts.googleapis.com/css2?family='. str_replace( ' ', '+', $fontFamily ) ."$linkQuery&display=swap";
 
-		$importURL = !$isUploadFont || $isEmptyFamily ? '' : "@import url( $link );";
-		return preg_replace( '/\s+/', ' ', trim( "
-			$importURL
-
-			$selector{ $styles }
-			@media (max-width: 768px) {
-				$selector{ font-size: $tabletFontSize" . "px; }
-			}
-			@media (max-width: 576px) {
-				$selector{ font-size: $mobileFontSize" . "px; }
-			}
-		" ) );
+		return [
+			'googleFontLink' => !$isUploadFont || $isEmptyFamily ? '' : "@import url( $link );",
+			'styles' => preg_replace( '/\s+/', ' ', trim( "
+				$selector{ $styles }
+				@media (max-width: 768px) {
+					$selector{ font-size: $tabletFontSize" . "px; }
+				}
+				@media (max-width: 576px) {
+					$selector{ font-size: $mobileFontSize" . "px; }
+				}
+			" ) )
+		];
 	}
 }

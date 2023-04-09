@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { render } from 'react-dom';
 
 const $ = jQuery;
 

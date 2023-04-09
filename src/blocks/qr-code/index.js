@@ -1,12 +1,12 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from '../../../inc/qr-code/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { qrCodeIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.qrCode,
+	icon: qrCodeIcon,
 
 	// Build In Functions
 	edit: Edit,

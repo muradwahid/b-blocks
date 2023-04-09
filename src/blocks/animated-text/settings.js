@@ -12,8 +12,7 @@ import BColor from '../../../../Components/BColor';
 import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { generalStyleTabs } from '../../utils/options';
 import { animateInOpt, effects, inEffects, outEffects, sequences } from './utils/options';
 
 const Settings = ({ attributes, setAttributes }) => {

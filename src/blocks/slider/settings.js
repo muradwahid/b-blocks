@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, __experimentalUnitControl as UnitControl, SelectControl } from '@wordpress/components';
 import produce from 'immer';
@@ -16,8 +16,7 @@ import Typography from '../../../../Components/Typography';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { sliderEffects } = options;
+import { sliderEffects } from '../../utils/options';
 const generalStyleTabs = [
 	{ name: 'general', title: __('General', 'b-blocks') },
 	{ name: 'options', title: __('Options', 'b-blocks') },
@@ -49,11 +48,30 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 		setActiveIndex(slides.length);
 	}
 
+	// const updateSlide = (index, type, val) => {
+	// 	const newSlides = produce(slides, draft => {
+	// 		draft[index][type] = val;
+	// 	});
+	// 	setAttributes({ slides: newSlides });
+	// 	setActiveIndex(index);
+	// }
 	const updateSlide = (index, type, val) => {
 		const newSlides = [...slides];
 		newSlides[index][type] = val;
 		setAttributes({ slides: newSlides });
 		setActiveIndex(index);
+	}
+
+	const duplicateSlide = (e, index) => {
+		e.preventDefault();
+
+		setAttributes({ slides: [...slides.slice(0, index), { ...slides[index] }, ...slides.slice(index)] });
+	}
+
+	const removeSlide = (e, index) => {
+		e.preventDefault();
+
+		setAttributes({ slides: [...slides.slice(0, index), ...slides.slice(index + 1)] });
 	}
 
 	return <>
@@ -114,15 +132,9 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 								<ColorsControl label={__('Button Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateSlide(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#8344c5' }} />
 
 								<PanelRow className='itemAction mt20'>
-									<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-										e.preventDefault();
-										setAttributes({ slides: [...slides.slice(0, index), ...slides.slice(index + 1)] });
-									}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+									{1 < slides?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => removeSlide(e, index)}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
-									<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-										e.preventDefault();
-										setAttributes({ slides: [...slides, { ...slides[index] }] });
-									}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
+									<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => duplicateSlide(e, index)}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 								</PanelRow>
 							</PanelBody>
 						})}

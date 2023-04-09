@@ -1,7 +1,7 @@
 import { Dashicon } from '@wordpress/components';
 
 // Functions
-import { renderHTML } from '../../../utils/functions';
+import { renderHTML } from '../utils/functions';
 
 const PostMetaCategory = props => {
 	const { atts: { isMetaCategory, metaCategoryIn }, post: { wbCategories } } = props;

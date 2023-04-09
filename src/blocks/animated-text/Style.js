@@ -7,7 +7,8 @@ const Style = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${getTypoCSS(`${animatedTextSl} .content`, typography)}
+		${getTypoCSS('', typography)?.googleFontLink}
+		${getTypoCSS(`${animatedTextSl} .content`, typography)?.styles}
 
 		${animatedTextSl}{
 			text-align: ${textAlign};

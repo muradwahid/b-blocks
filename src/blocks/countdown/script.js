@@ -13,9 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
-			<Countdown attributes={attributes} />
+			<Countdown attributes={attributes} Box={Box} />
 		</>, countdown);
 
 		countdown?.removeAttribute('data-attributes');
 	});
 });
+
+const Box = (props) => {
+	const { is, boxClass, digit, isLabels, label } = props;
+
+	return is && <div className={`countdownItem ${boxClass}`}>
+		<span className='digit'>{digit}</span>
+		{(isLabels && label) && <label className='label' dangerouslySetInnerHTML={{ __html: label }} />}
+	</div>;
+}

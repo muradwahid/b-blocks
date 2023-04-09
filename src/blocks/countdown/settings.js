@@ -11,11 +11,10 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 import Typography from '../../../../Components/Typography';
+import { tabController } from '../../../../Components/Helper/functions';
 import { pxUnit, perUnit, emUnit, remUnit } from '../../../../Components/Helper/options';
 
-import { tabController } from '../../utils/functions';
-import options from '../../utils/options';
-const { generalStyleTabs, flexPos } = options;
+import { generalStyleTabs, flexPos } from '../../utils/options';
 const layouts = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
 	{ label: __('Layout 1', 'b-blocks'), value: 'layout1' },
@@ -29,7 +28,7 @@ const sepTypes = [
 ];
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { destDate, layout, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor } = attributes;
+	const { destDate, layout, isResponsive, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isSep, sepType, sepSize, sepColor } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -110,6 +109,8 @@ const Settings = ({ attributes, setAttributes }) => {
 								});
 							}} options={layouts} />
 						</PanelRow>
+
+						<ToggleControl className='mt20' label={__('Responsive on Mobile', 'b-blocks')} checked={isResponsive} onChange={val => setAttributes({ isResponsive: val })} />
 
 						<ToggleControl className='mt20' label={__('Box Inline?', 'b-blocks')} checked={boxIsInline} onChange={val => setAttributes({ boxIsInline: val })} />
 

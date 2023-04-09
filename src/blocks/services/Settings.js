@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { select, dispatch } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, PanelRow, RangeControl, SelectControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
@@ -118,7 +118,6 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
-				{/* Icon Settings */}
 				<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon || childAttributes?.isIcon} onChange={val => { setChildAttributes({ isIcon: val }); setIsIcon(val); }} />
 
 				{isIcon || childAttributes?.isIcon ? <>
@@ -127,7 +126,6 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 					<SpaceControl className='mt20' label={__('Icon Margin:', 'b-blocks')} value={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 				</> : ''}
 
-				{/* Title Settings */}
 				<ToggleControl className='mt35' label={__('Show Title', 'b-blocks')} checked={isTitle || childAttributes?.isTitle} onChange={val => { setChildAttributes({ isTitle: val }); setIsTitle(val); }} />
 
 				{isTitle || childAttributes?.isTitle ? <>
@@ -136,7 +134,6 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 					<SpaceControl className='mt20' label={__('Title Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '30px' }} />
 				</> : ''}
 
-				{/* Description Settings */}
 				<ToggleControl className='mt35' label={__('Show Description', 'b-blocks')} checked={isDesc || childAttributes?.isDesc} onChange={val => { setChildAttributes({ isDesc: val }); setIsDesc(val); }} />
 
 				{isDesc || childAttributes?.isDesc ? <Typography label={__('Description Typography:', 'b-blocks')} value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} /> : ''}

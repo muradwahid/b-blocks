@@ -15,6 +15,9 @@ class BBlocksPosts extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_style( 'dashicons' );
+
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-b-blocks-posts bBlocksPosts ' . $className . ' align' . $align;
 

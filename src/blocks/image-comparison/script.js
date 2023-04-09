@@ -76,17 +76,17 @@ const ImageCompare = ({ attributes }) => {
 
 	return <div className='bBlocksImageComparison'>
 		<div className='comparison-slider' ref={comparisonRef}>
-			{isLabel && afterLabel && <div className='overlay afterLabel'>{afterLabel}</div>}
+			{isLabel && afterLabel && <div className='overlay afterLabel' dangerouslySetInnerHTML={{ __html: afterLabel }} />}
 			<img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
 
 			<div className='resize' ref={resizeRef}>
-				{isLabel && beforeLabel && <div className='overlay beforeLabel'>{beforeLabel}</div>}
+				{isLabel && beforeLabel && <div className='overlay beforeLabel' dangerouslySetInnerHTML={{ __html: beforeLabel }} />}
 				<img className='beforeImg' src={beforeImg?.url} alt={beforeImg?.alt} ref={beforeImgRef} />
 			</div>
 
 			<div className='divider' ref={dividerRef}></div>
 		</div>
 
-		{isCap && cap && <div className='caption'>{cap}</div>}
+		{isCap && cap && <div className='caption' dangerouslySetInnerHTML={{ __html: cap }} />}
 	</div>
 }

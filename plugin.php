@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.7.1
+ * Version: 1.7.2
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.1' );
+define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.2' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 
 // Generate Styles
@@ -54,7 +54,6 @@ class BBlocks{
 		if ( version_compare( $GLOBALS['wp_version'], '5.8-alpha-1', '<' ) ) {
 			add_filter( 'block_categories', [$this, 'registerCategories'] );
 		} else { add_filter( 'block_categories_all', [$this, 'registerCategories'] ); }
-		add_action( 'after_setup_theme', [$this, 'afterSetupTheme'] );
 	}
 
 	public static function instance(){
@@ -76,20 +75,20 @@ class BBlocks{
 	function enqueueBockAssets(){
 		wp_register_script( 'easyTicker', B_BLOCKS_ASSETS_DIR . 'js/easy-ticker.min.js', [], '3.2.1', true ); // Posts
 		wp_register_script( 'swiper', B_BLOCKS_ASSETS_DIR . 'js/swiper.min.js', [], '8.0.7', true ); // Posts, Slider
-		wp_register_script( 'lottiePlayer', B_BLOCKS_ASSETS_DIR . 'js/lottie-player.js', [], '1.5.7', true );
+		wp_register_script( 'lottiePlayer', B_BLOCKS_ASSETS_DIR . 'js/lottie-player.js', [], '1.5.7', true ); // Lottie Player
 		wp_register_script( 'chart', B_BLOCKS_ASSETS_DIR . 'js/chart.min.js', [], '3.5.1', true ); // Chart
 		wp_register_script( 'plyr', B_BLOCKS_ASSETS_DIR . 'js/plyr.js', [], '3.7.2', true ); // Video
 		wp_register_script( 'textillate', B_BLOCKS_ASSETS_DIR . 'js/jquery.textillate.min.js', [], '0.6.1', true ); // Animated Text
 		wp_register_script( 'goodShare', B_BLOCKS_ASSETS_DIR . 'js/goodshare.min.js', [], B_BLOCKS_PLUGIN_VERSION, true ); // Social Share
 
 		echo wp_get_script_tag( [ 'src'	=> B_BLOCKS_ASSETS_DIR . 'js/model-viewer.min.js', 'type' => 'module' ] ); // 3D Viewer
-		
+
 		wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS_DIR . 'css/fontAwesome.min.css', [], '5.15.4' ); // Font Awesome
 		wp_register_style( 'swiper', B_BLOCKS_ASSETS_DIR . 'css/swiper.min.css', [], '8.0.7' ); // Posts, Slider
 		wp_register_style( 'plyr', B_BLOCKS_ASSETS_DIR . 'css/plyr.css', [], '3.7.2' ); // Video
 		wp_register_style( 'animate', B_BLOCKS_ASSETS_DIR . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
 
-		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'fontAwesome', 'swiper', 'plyr', 'animate' ], B_BLOCKS_PLUGIN_VERSION ); // Style
+		wp_enqueue_style( 'bBlocksStyle', plugins_url( 'dist/style.css', __FILE__ ), [ 'fontAwesome', 'swiper' ], B_BLOCKS_PLUGIN_VERSION ); // Style
 	}
 
 	// Enqueue Block Editor Assets
@@ -98,33 +97,17 @@ class BBlocks{
 
 		wp_enqueue_script( 'bBlocksEditorScript', plugins_url( 'dist/editor.js', __FILE__ ), [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_PLUGIN_VERSION, false ); // Backend Script
 
-		wp_enqueue_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
+		wp_enqueue_style( 'bBlocksEditorStyle', plugins_url( 'dist/editor.css', __FILE__ ), [ 'plyr' ], B_BLOCKS_PLUGIN_VERSION ); // Backend Style
 	}
 
 	// WP enqueue scripts
 	function wpEnqueueScripts() {
-		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', [], '4.0', true ); // Image Gallery
-		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', [], '1.0.3', true ); // Mail To
-
-		wp_enqueue_style( 'dashicon' );
-		wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '4.0', 'all' ); // Image Gallery
-
-		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'wp-element', 'jquery', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare', 'fancybox', 'mailtoui' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
+		wp_enqueue_script( 'bBlocksScript', plugins_url( 'dist/script.js', __FILE__ ), [ 'react', 'react-dom', 'jquery', 'easyTicker', 'swiper' ], B_BLOCKS_PLUGIN_VERSION, true ); // Frontend Script
 	}
 
 	// On Init
 	function onInit(){
 		wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', plugin_dir_path( __FILE__ ) . 'languages' ); // Translate
-	}
-
-	// After setup theme
-	function afterSetupTheme(){
-		add_theme_support( 'align-wide' );
-
-		add_image_size( 'b_blocks_large', 1200, 800, true );
-		add_image_size( 'b_blocks_medium', 525, 350, true );
-		add_image_size( 'b_blocks_square', 300, 300, true );
-		add_image_size( 'b_blocks_thumbnail', 150, 100, true );
 	}
 }
 BBlocks::instance();

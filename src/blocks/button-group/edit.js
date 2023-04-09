@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 import { RichText } from '@wordpress/block-editor';
 
 import Settings from './Settings';
@@ -12,7 +12,7 @@ const Edit = props => {
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	return <>
-		<Settings settings={props} />
+		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div className={className} id={`bBlocksButtonGroup-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />

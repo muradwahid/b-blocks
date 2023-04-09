@@ -1,12 +1,12 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 import metadata from '../../../inc/3d-viewer/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { tDViewerIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.tDViewer,
+	icon: tDViewerIcon,
 
 	transforms: {
 		from: [

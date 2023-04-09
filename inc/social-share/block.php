@@ -13,6 +13,9 @@ class BBlocksSocialShare extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_script( 'goodShare' );
+
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-b-blocks-social-share ' . $className . ' align' . $align;
 

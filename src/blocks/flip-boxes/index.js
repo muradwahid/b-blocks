@@ -3,10 +3,10 @@ import { registerBlockType } from '@wordpress/blocks';
 import metadata from '../../../inc/flip-boxes/block.json';
 import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { flipBoxIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.flipBox,
+	icon: flipBoxIcon,
 
 	// Build In Functions
 	edit: Edit,

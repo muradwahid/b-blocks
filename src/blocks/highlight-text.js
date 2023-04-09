@@ -3,21 +3,20 @@ import { __ } from '@wordpress/i18n';
 import { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
-// Variables
-import options from '../utils/options';
-const { fontSizes, colors } = options;
+// Settings Components
+import Title from '../../../Components/Title';
 
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+// Variables
+import { fontSizes, colors } from '../utils/options';
 
 // Icons
-import icons from '../utils/icons';
+import { paintIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/highlight-text', {
 	// Build In attributes
 	title: __('Highlight Text', 'b-blocks'),
 	description: __('Highlight text with custom color', 'b-blocks'),
-	icon: icons.paint,
+	icon: paintIcon,
 	category: 'bBlocks',
 	keywords: [__('Highlight', 'b-blocks'), __('Highlight Text', 'b-blocks'), __('Color Text', 'b-blocks')],
 	supports: {
@@ -47,15 +46,15 @@ registerBlockType('b-blocks/highlight-text', {
 				{/* Highlight Text Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Highlight Text Settings', 'b-blocks')} initialOpen={true}>
 					{/* Font Size */}
-					{firstTitle('Font Size:')}
+					<Title className=''>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontS} onChange={cng => setAttributes({ fontS: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Color */}
-					{otherTitle('Color:')}
+					<Title>{('Color:', 'b-blocks')}</Title>
 					<ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
 
 					{/* Background Color */}
-					{otherTitle('Background Color:')}
+					<Title>{('Background Color:', 'b-blocks')}</Title>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 				</PanelBody>
 			</InspectorControls>

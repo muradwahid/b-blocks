@@ -1,6 +1,6 @@
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-import { mediaUrl } from '../../utils/functions';
+import { mediaUrl } from './utils/functions';
 
 const GeneralStyle = ({ attributes, clientId }) => {
 	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
@@ -14,10 +14,14 @@ const GeneralStyle = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-			${getTypoCSS(`${postTitleSl}, ${postTitleSl} a`, titleTypo)}
-			${getTypoCSS(`${postMetaSl}, ${postMetaSl} *, ${postSl} .bBlocksPostFImgCats`, metaTypo)}
-			${getTypoCSS(`${postSl} .bBlocksPostExcerpt`, excerptTypo)}
-			${getTypoCSS(`${postReadMoreSl} a`, readMoreTypo)}
+			${getTypoCSS('', titleTypo)?.googleFontLink}
+			${getTypoCSS('', metaTypo)?.googleFontLink}
+			${getTypoCSS('', excerptTypo)?.googleFontLink}
+			${getTypoCSS('', readMoreTypo)?.googleFontLink}
+			${getTypoCSS(`${postTitleSl}, ${postTitleSl} a`, titleTypo)?.styles}
+			${getTypoCSS(`${postMetaSl}, ${postMetaSl} *, ${postSl} .bBlocksPostFImgCats`, metaTypo)?.styles}
+			${getTypoCSS(`${postSl} .bBlocksPostExcerpt`, excerptTypo)?.styles}
+			${getTypoCSS(`${postReadMoreSl} a`, readMoreTypo)?.styles}
 
 			${postSl}{
 				margin-bottom: ${'masonry' === layout ? `${rowGap}px` : '0px'};

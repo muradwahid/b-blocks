@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 
 // Components
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-import Settings from './settings';
+import Settings from './Settings';
 
 const Edit = props => {
 	const { className, attributes: { infoBoxAlign, textAlign, width, background, padding, border, shadow, isIcon, icon, iconMargin, title, titleTypo, titleColor, titleMargin, isDesc, desc, descTypo, descColor, descMargin, isBtn, btn, btnLink, isLinkNewTab, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes, clientId } = props;
@@ -21,9 +21,12 @@ const Edit = props => {
 		<div className={className} id={`bBlocksInfoBox-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${getTypoCSS(`${infoBoxSl} .infoBoxTitle`, titleTypo)}
-				${getTypoCSS(`${infoBoxSl} .infoBoxDescription`, descTypo)}
-				${getTypoCSS(`${infoBoxSl} .infoBoxButton`, btnTypo)}
+				${getTypoCSS('', titleTypo)?.googleFontLink}
+				${getTypoCSS('', descTypo)?.googleFontLink}
+				${getTypoCSS('', btnTypo)?.googleFontLink}
+				${getTypoCSS(`${infoBoxSl} .infoBoxTitle`, titleTypo)?.styles}
+				${getTypoCSS(`${infoBoxSl} .infoBoxDescription`, descTypo)?.styles}
+				${getTypoCSS(`${infoBoxSl} .infoBoxButton`, btnTypo)?.styles}
 
 				${mainSl}{
 					text-align: ${infoBoxAlign};

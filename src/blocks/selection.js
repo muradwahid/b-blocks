@@ -4,8 +4,7 @@ import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-e
 import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { colors } = options;
+import { colors } from '../utils/options';
 
 const userSelect = [
 	{ label: __('Auto', 'b-blocks'), value: 'auto', icon: 'AUTO' },
@@ -13,20 +12,18 @@ const userSelect = [
 	{ label: __('None', 'b-blocks'), value: 'none', icon: 'NONE' },
 ];
 
-// Components
-import BtnGroup from '../Components/BtnGroup';
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+// Settings Components
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icon
-import icons from '../utils/icons';
+import { selectionIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/selection', {
 	// Build In attributes
 	title: __('Selection', 'b-blocks'),
 	description: __('Text selection enabled disabled', 'b-blocks'),
-	icon: icons.selection,
+	icon: selectionIcon,
 	category: 'bBlocks',
 	keywords: [__('Select', 'b-blocks'), __('Text Selection', 'b-blocks'), __('Block Selection', 'b-blocks')],
 	supports: {
@@ -55,19 +52,19 @@ registerBlockType('b-blocks/selection', {
 				{/* Selection Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
 					{/* Selection */}
-					{firstTitle('Selection:')}
+					<Title className=''>{__('Selection:', 'b-blocks')}</Title>
 					<BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />
 
 					{/* Background Color */}
-					{otherTitle('Background Color:')}
+					<Title>{__('Background Color:', 'b-blocks')}</Title>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
 					{/* Padding Top Bottom */}
-					{otherTitle('Padding Top Bottom:')}
+					<Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
 					<RangeControl value={selectionPTB} onChange={cng => setAttributes({ selectionPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Padding Left Right */}
-					{otherTitle('Padding Left Right:')}
+					<Title>{__('Padding Left Right:', 'b-blocks')}</Title>
 					<RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>

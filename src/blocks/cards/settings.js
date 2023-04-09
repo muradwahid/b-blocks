@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
 import produce from 'immer';
@@ -18,9 +18,8 @@ import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 import { tabController } from '../../../../Components/Helper/functions';
 
-import icons from '../../utils/icons';
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
+import { generalStyleTabs } from '../../utils/options';
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard }) => {
 	const { cards = [], columns, columnGap, rowGap, layout, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
@@ -119,7 +118,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<Title className='mb5'>{__('Layout:', 'b-blocks')}</Title>
 							<ButtonGroup className='bPlBtnGroup'>
 								<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
-									<Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
+									<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
 										layout: 'vertical',
 										columns: { ...columns, ['desktop']: 3 },
 										textAlign: 'center',
@@ -128,7 +127,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 								</Tooltip>
 
 								<Tooltip text={__('Horizontal', 'b-blocks')} position='top'>
-									<Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({
+									<Button icon={horizontalLineIcon} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({
 										layout: 'horizontal',
 										columns: { ...columns, ['desktop']: 2 },
 										textAlign: 'left',

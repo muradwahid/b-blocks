@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl, Dashicon } from '@wordpress/components';
 
@@ -102,12 +102,14 @@ const Edit = props => {
 					{gif && <img src={gif?.images?.original?.url} alt={gif?.title} />}
 
 					<div className='mediaControl'>
-						{!gif ? <div className='btnControl'>
-							<Button icon='upload' onClick={setPopup}>{__('Insert GIF', 'b-blocks')}</Button>
-						</div> : <div className='btnControl'>
-							<Button icon='controls-repeat' onClick={setPopup}>{__('Replace', 'b-blocks')}</Button>
-							<Button icon='exit' onClick={() => setAttributes({ gif: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
-						</div>}
+						{!gif ?
+							<div className='btnControl'>
+								<Button icon='upload' onClick={setPopup}>{__('Insert GIF', 'b-blocks')}</Button>
+							</div> :
+							<div className='btnControl'>
+								<Button icon='controls-repeat' onClick={setPopup}>{__('Replace', 'b-blocks')}</Button>
+								<Button icon='exit' onClick={() => setAttributes({ gif: null })} className='btnRed'>{__('Remove', 'b-blocks')}</Button>
+							</div>}
 					</div>
 				</figure>
 

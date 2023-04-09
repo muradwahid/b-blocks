@@ -6,8 +6,8 @@ import { Dashicon, PanelBody, RangeControl, TextControl } from '@wordpress/compo
 import Title from '../../../../Components/Title';
 import ColorControl from '../../../../Components/ColorControl';
 
-const Settings = ({ settings }) => {
-	const { attributes: { qrAlign, url, dimension, color, bgColor }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes }) => {
+	const { qrAlign, url, dimension, color, bgColor } = attributes;
 
 	return <>
 		<InspectorControls>

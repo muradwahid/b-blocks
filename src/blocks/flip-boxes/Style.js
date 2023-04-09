@@ -9,9 +9,12 @@ const Style = ({ attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${getTypoCSS(`${gFlipBoxSl} .flipTitle`, titleTypo)}
-			${getTypoCSS(`${gFlipBoxSl} .flipDescription`, descTypo)}
-			${getTypoCSS(`${gFlipBoxSl} .flipBtn`, btnTypo)}
+			${getTypoCSS('', titleTypo)?.googleFontLink}
+			${getTypoCSS('', descTypo)?.googleFontLink}
+			${getTypoCSS('', btnTypo)?.googleFontLink}
+			${getTypoCSS(`${gFlipBoxSl} .flipTitle`, titleTypo)?.styles}
+			${getTypoCSS(`${gFlipBoxSl} .flipDescription`, descTypo)?.styles}
+			${getTypoCSS(`${gFlipBoxSl} .flipBtn`, btnTypo)?.styles}
 
 			${mainSl} .bBlocksFlipBoxes{ grid-gap: ${rowGap} ${columnGap}; }
 			${gFlipBoxSl}{

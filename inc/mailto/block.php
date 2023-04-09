@@ -13,6 +13,9 @@ class BBlocksMailto extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', [], '1.0.3', true );
+
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-b-blocks-mailto ' . $className . ' align' . $align;
 
@@ -39,7 +42,8 @@ class BBlocksMailto extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksMailto-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( "$mailToSl a.mailtoButton", $btnTypo );
+					echo GetCSS::getTypoCSS( '', $btnTypo )['googleFontLink'];
+					echo GetCSS::getTypoCSS( "$mailToSl a.mailtoButton", $btnTypo )['styles'];
 					echo wp_kses( $mailtoStyle::renderStyle(), [] );
 				?>
 			</style>

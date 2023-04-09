@@ -3,10 +3,10 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import metadata from '../../../inc/countdown/block.json';
 import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { countdownIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.countdown,
+	icon: countdownIcon,
 
 	transforms: {
 		from: [

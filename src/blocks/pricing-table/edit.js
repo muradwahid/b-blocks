@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect, useRef } from '@wordpress/element';
+import { useState, useEffect, useRef } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import produce from 'immer';
 

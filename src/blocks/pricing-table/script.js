@@ -10,15 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const allPricingTables = document.querySelectorAll('.wp-block-b-blocks-pricing-table');
 	allPricingTables.forEach(priceTable => {
 		const attributes = JSON.parse(priceTable.dataset.attributes);
+		const { cId } = attributes;
 
 		const isBasic = priceTable.className.includes('basic');
 		const isStandard = priceTable.className.includes('standard');
 		const isUltimate = priceTable.className.includes('ultimate');
 
 		render(<>
-			<Style attributes={attributes} clientId={attributes.cId} isStandard={isStandard} />
+			<Style attributes={attributes} clientId={cId} isStandard={isStandard} />
 
-			<PricingTable attributes={attributes} clientId={attributes.cId} isBasic={isBasic} isStandard={isStandard} isUltimate={isUltimate} />
+			<PricingTable attributes={attributes} clientId={cId} isBasic={isBasic} isStandard={isStandard} isUltimate={isUltimate} />
 		</>, priceTable);
 
 		priceTable?.removeAttribute('data-attributes');

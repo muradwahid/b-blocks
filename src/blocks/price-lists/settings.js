@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useContext } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
 import produce from 'immer';
@@ -10,20 +10,19 @@ import BColor from '../../../../Components/BColor';
 import Background from '../../../../Components/Background';
 import SeparatorControl from '../../../../Components/SeparatorControl';
 import BorderControl from '../../../../Components/BorderControl';
-import { ImageHolderControl, ChangeImageData } from '../../../../Components/ImageControl';
+import { ChangeImageData } from '../../../../Components/ImageControl';
+import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
 import BDevice from '../../../../Components/BDevice';
 import Typography from '../../../../Components/Typography';
 import SpaceControl from '../../../../Components/SpaceControl';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import { IndexContext } from './edit';
-import icons from '../../utils/icons';
+import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
 
-const Settings = ({ settings }) => {
-	const { attributes: { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setActiveIndex }) => {
+	const { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep } = attributes;
 
-	const setActiveIndex = useContext(IndexContext);
 	const [device, setDevice] = useState('desktop');
 
 	const addProduct = () => {
@@ -44,12 +43,23 @@ const Settings = ({ settings }) => {
 		setActiveIndex(products.length);
 	}
 
-	const updateProduct = (index, type, val) => {
-		const newProduct = [...products];
-		newProduct[index][type] = val;
-		setAttributes({ products: newProduct });
-		setActiveIndex(index);
+	const duplicateProduct = e => {
+		e.preventDefault();
+
+		setAttributes({ products: [...products.slice(0, activeIndex), { ...products[activeIndex] }, ...products.slice(activeIndex)] });
+
+		setActiveIndex(activeIndex + 1);
 	}
+
+	const removeProduct = e => {
+		e.preventDefault();
+
+		setAttributes({ products: [...products.slice(0, activeIndex), ...products.slice(activeIndex + 1)] });
+
+		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
+	}
+
+	const { background = {}, img = {}, imgBorder = {}, nameColor = '', descColor = '', priceColor = '', separator = {} } = products[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
@@ -67,39 +77,32 @@ const Settings = ({ settings }) => {
 			</PanelBody>
 
 
-			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Product', 'b-blocks')}>
-				{products.map((item, index) => {
-					const { background, img, imgBorder, nameColor, descColor, priceColor, separator } = item;
+			<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Product', 'b-blocks')}>
+				{null !== activeIndex && <>
+					<h3 className='bplItemTitle'>{__(`Product No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-					return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Product No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateProduct(index, 'background', val)} />
+					<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateProduct('background', val)} />
 
-						<ImageHolderControl className='mt20' label={__('Image:', 'b-blocks')} value={img} onChange={val => updateProduct(index, 'img', val)} />
-						<ChangeImageData className='mt20' value={img} onChange={val => updateProduct(index, 'img', val)} />
+					<Title>{__('Image:', 'b-blocks')}</Title>
+					<InlineDetailMediaUpload value={img} onChange={val => updateProduct('img', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
+					<ChangeImageData className='mt20' value={img} onChange={val => updateProduct('img', val)} />
 
-						<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateProduct(index, 'imgBorder', val)} />
+					<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateProduct('imgBorder', val)} />
 
-						<BColor label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateProduct(index, 'nameColor', val)} defaultColor='#333' />
+					<BColor label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateProduct('nameColor', val)} defaultColor='#333' />
 
-						<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateProduct(index, 'descColor', val)} defaultColor='#333' />
+					<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateProduct('descColor', val)} defaultColor='#333' />
 
-						<BColor label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct(index, 'priceColor', val)} defaultColor='#4527a4' />
+					<BColor label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct('priceColor', val)} defaultColor='#4527a4' />
 
-						<SeparatorControl value={separator} onChange={val => updateProduct(index, 'separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
+					<SeparatorControl value={separator} onChange={val => updateProduct('separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
 
-						<PanelRow className='itemAction mt20'>
-							<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-								e.preventDefault();
-								setAttributes({ products: [...products.slice(0, index), ...products.slice(index + 1)] });
-							}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+					<PanelRow className='itemAction mt20 mb15'>
+						{1 < products?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeProduct}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
-							<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-								e.preventDefault();
-								setAttributes({ products: [...products, { ...products[index] }] });
-							}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-						</PanelRow>
-					</PanelBody>
-				})}
+						<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateProduct}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
+					</PanelRow>
+				</>}
 
 				<div className='addItem'>
 					<Button label={__('Add New Product', 'b-blocks')} onClick={addProduct}><Dashicon icon='plus' />{__('Add New Product', 'b-blocks')}</Button>
@@ -112,7 +115,7 @@ const Settings = ({ settings }) => {
 					<Title className='mb5'>{__('Layout:', 'b-blocks')}</Title>
 					<ButtonGroup className='bPlBtnGroup'>
 						<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
-							<Button icon={icons.verticalLine} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => {
+							<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => {
 								setAttributes({
 									layout: 'vertical',
 									columns: { ...columns, ['desktop']: 3 },
@@ -124,7 +127,7 @@ const Settings = ({ settings }) => {
 						</Tooltip>
 
 						<Tooltip text={__('Horizontal', 'b-blocks')} position='top'>
-							<Button icon={icons.horizontalLine} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => {
+							<Button icon={horizontalLineIcon} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => {
 								setAttributes({
 									layout: 'horizontal',
 									columns: { ...columns, ['desktop']: 2 },

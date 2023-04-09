@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useContext } from '@wordpress/element';
+import { useState } from 'react';
 import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl, Dashicon } from '@wordpress/components';
 import produce from 'immer';
@@ -14,14 +14,11 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import BorderControl from '../../../../Components/BorderControl';
 import ShadowControl from '../../../../Components/ShadowControl';
 
-import { FilterImagesContext } from './edit';
-import options from '../../utils/options';
-const { aligns } = options;
+import { aligns } from '../../utils/options';
 
-const Settings = ({ settings }) => {
+const Settings = ({ settings, filterImages }) => {
 	const { attributes: { images, columns, imgPadding, imgBorder, imgShadow, isPreview, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes } = settings;
 
-	const filterImages = useContext(FilterImagesContext);
 	const [device, setDevice] = useState('desktop');
 
 	return <>

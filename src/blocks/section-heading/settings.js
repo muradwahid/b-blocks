@@ -9,8 +9,8 @@ import Typography from '../../../../Components/Typography';
 import BColor from '../../../../Components/BColor';
 import SpaceControl from '../../../../Components/SpaceControl';
 
-const Settings = ({ settings }) => {
-	const { attributes: { textAlign, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, descTypo, descColor, descMargin }, setAttributes } = settings;
+const Settings = ({ attributes ,setAttributes}) => {
+	const {  textAlign, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, descTypo, descColor, descMargin  } = attributes;
 
 	return <>
 		<InspectorControls>

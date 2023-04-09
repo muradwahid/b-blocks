@@ -13,6 +13,9 @@ class BBlocksChart extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_script( 'chart' );
+
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-b-blocks-chart ' . $className . ' align' . $align;
 

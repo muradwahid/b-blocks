@@ -4,23 +4,20 @@ import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-edit
 import { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { hTags, fontSizes, borderStyles, colors } = options;
+import { hTags, fontSizes, borderStyles, colors } from '../utils/options';
 
-// Components
-import BtnGroup from '../Components/BtnGroup'
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+// Settings Components
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icon
-import icons from '../utils/icons';
+import { noteIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/note', {
 	// Build In attributes
 	title: __('Note', 'b-blocks'),
 	description: __('Create Note', 'b-blocks'),
-	icon: icons.note,
+	icon: noteIcon,
 	category: 'bBlocks',
 	keywords: [__('Note', 'b-blocks'), __('Note Text', 'b-blocks'), __('Store Text', 'b-blocks')],
 	supports: {
@@ -69,19 +66,19 @@ registerBlockType('b-blocks/note', {
 				{/* Note Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Note Settings', 'b-blocks')} initialOpen={true}>
 					{/* Background Color */}
-					{firstTitle('Background Color:')}
+					<Title className=''>{__('Background Color:', 'b-blocks')}</Title>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
 					{/* Top Bottom Padding */}
-					{otherTitle('Top Bottom Padding:')}
+					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
 					<RangeControl value={padTB} onChange={cng => setAttributes({ padTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					{otherTitle('Left Right Padding:')}
+					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
 					<RangeControl value={padLR} onChange={cng => setAttributes({ padLR: cng })} min={0} max={150} step={1} />
 
 					{/* Border Radius */}
-					{otherTitle('Border Radius:')}
+					<Title>{__('Border Radius:', 'b-blocks')}</Title>
 					<RangeControl value={borderRadius} onChange={cng => setAttributes({ borderRadius: cng })} min={0} max={50} step={1} />
 				</PanelBody>
 
@@ -93,19 +90,19 @@ registerBlockType('b-blocks/note', {
 
 					{toggleHead && <>
 						{/* Heading Tag */}
-						{otherTitle('Heading Tag:')}
+						<Title>{__('Heading Tag:', 'b-blocks')}</Title>
 						<BtnGroup options={hTags} myValue={headTag} setState={(cng, def) => setAttributes({ headTag: cng, headFontSize: def })} />
 
 						{/* Font Size */}
-						{otherTitle('Font Size:')}
+						<Title>{__('Font Size:', 'b-blocks')}</Title>
 						<FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headFontSize} onChange={cng => setAttributes({ headFontSize: 'undefined' === typeof cng ? 25 : cng })} />
 
 						{/* Color */}
-						{otherTitle('Color:')}
+						<Title>{__('Color:', 'b-blocks')}</Title>
 						<ColorPalette value={headColor} onChange={cng => setAttributes({ headColor: cng })} colors={colors} />
 
 						{/* Margin Bottom */}
-						{otherTitle('Margin Bottom:')}
+						<Title>{__('Margin Bottom:', 'b-blocks')}</Title>
 						<RangeControl value={headPB} onChange={cng => setAttributes({ headPB: cng })} min={0} max={100} step={1} />
 					</>}
 				</PanelBody>
@@ -115,19 +112,19 @@ registerBlockType('b-blocks/note', {
 					{/* Separator Settings */}
 					<PanelBody className='bBlocksPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
 						{/* Thickness */}
-						{firstTitle('Thickness:')}
+						<Title className=''>{__('Thickness:', 'b-blocks')}</Title>
 						<RangeControl value={sepThick} onChange={cng => setAttributes({ sepThick: cng })} min={0} max={50} step={.1} />
 
 						{/* Style */}
-						{otherTitle('Style:')}
+						<Title>{__('Style:', 'b-blocks')}</Title>
 						<SelectControl value={sepStyle} onChange={cng => setAttributes({ sepStyle: cng })} options={borderStyles} />
 
 						{/* Color */}
-						{otherTitle('Color:')}
+						<Title>{__('Color:', 'b-blocks')}</Title>
 						<ColorPalette value={sepColor} onChange={cng => setAttributes({ sepColor: cng })} colors={colors} />
 
 						{/* Margin Bottom */}
-						{otherTitle('Margin Bottom:')}
+						<Title>{__('Margin Bottom:', 'b-blocks')}</Title>
 						<RangeControl value={headMB} onChange={cng => setAttributes({ headMB: cng })} min={0} max={100} step={1} />
 					</PanelBody>
 				</>}
@@ -136,11 +133,11 @@ registerBlockType('b-blocks/note', {
 				{/* Content Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
 					{/* Font Size */}
-					{firstTitle('Font Size:')}
+					<Title className=''>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Color */}
-					{otherTitle('Color:')}
+					<Title>{__('Color:', 'b-blocks')}</Title>
 					<ColorPalette value={contentColor} onChange={cng => setAttributes({ contentColor: cng })} colors={colors} />
 				</PanelBody>
 			</InspectorControls>

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner, Button, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';

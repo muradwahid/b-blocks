@@ -3,10 +3,10 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import metadata from '../../../inc/cards/block.json';
 import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { cardIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.card,
+	icon: cardIcon,
 
 	transforms: {
 		from: [

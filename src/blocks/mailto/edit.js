@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 
 // Components
 import { getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-import Settings from './settings';
+import Settings from './Settings';
 
 const Edit = props => {
 	const { className, attributes: { mailtoAlign, btn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder, icon, iconPosition }, setAttributes, clientId } = props;
@@ -20,7 +20,8 @@ const Edit = props => {
 		<div className={className} id={`bBlocksMailto-${clientId}`}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${getTypoCSS(`${mailtoSl} a.mailtoButton`, btnTypo)}
+				${getTypoCSS('', btnTypo)?.googleFontLink}
+				${getTypoCSS(`${mailtoSl} a.mailtoButton`, btnTypo)?.styles}
 
 				${mailtoSl}{
 					text-align: ${mailtoAlign};

@@ -15,11 +15,10 @@ const Style = ({ attributes, clientId, isStandard }) => {
 				padding: ${getSpaceCSS(padding)};
 				box-shadow: ${getShadowCSS(shadow)};
 			}
-			`.replace(/\s+/g, ' ')
-		}} />
 
-		<style>
-			{pricingTables?.map((priceTable, index) => {
+			${pricingTables?.map((priceTable, index) => {
+				const { color } = priceTable;
+
 				const defPriceTableSelect = `#bBlocksPricingTables-${clientId} .bBlocksPricingTables #bBlocksPriceTable-${index} .bBlocksPriceTable`;
 				const priceTableSelect = hasClass => `#bBlocksPricingTables-${clientId}.is-style-${hasClass} .bBlocksPricingTables #bBlocksPriceTable-${index} .bBlocksPriceTable`;
 
@@ -27,21 +26,22 @@ const Style = ({ attributes, clientId, isStandard }) => {
 				${defPriceTableSelect} .priceName,
 				${priceTableSelect('basic')} .priceAmountWrap,
 				${priceTableSelect('standard')} .priceAmountWrap{
-					color: ${priceTable.color};
+					color: ${color};
 				}
 				${defPriceTableSelect} .priceLink,
 				${priceTableSelect('basic')} .priceName,
 				${priceTableSelect('standard')}::before,
 				${priceTableSelect('ultimate')} .priceAmountWrap{
 					color: #fff;
-					background-color: ${priceTable.color};
+					background-color: ${color};
 				}
 				${priceTableSelect('basic')} .priceName::before{
-					border-top-color: ${priceTable.color};
+					border-top-color: ${color};
 				}
-				`.replace(/\s+/g, ' ')
-			})}
-		</style>
+				`;
+			}).join(' ')}
+			`.replace(/\s+/g, ' ')
+		}} />
 	</>
 }
 export default Style;

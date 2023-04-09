@@ -3,18 +3,17 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
-// Functions
-import { firstTitle } from '../utils/functions';
-
+// Settings Components
+import Title from '../../../Components/Title';
 
 // Icon
-import icons from '../utils/icons';
+import { rectangleIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/spacer', {
 	// Build In attributes
 	title: __('Spacer', 'b-blocks'),
 	description: __('Empty space between blocks & sections', 'b-blocks'),
-	icon: icons.rectangle,
+	icon: rectangleIcon,
 	category: 'bBlocks',
 	keywords: [__('Space', 'b-blocks'), __('Empty Space', 'b-blocks'), __('Empty', 'b-blocks')],
 	supports: {
@@ -37,7 +36,7 @@ registerBlockType('b-blocks/spacer', {
 				{/* Spacer Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Spacer Settings', 'b-blocks')} initialOpen={true}>
 					{/* Height/Size */}
-					{firstTitle('Height/Size:')}
+					<Title className=''>{__('Height/Size:', 'b-blocks')}</Title>
 					<RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={1000} step={1} />
 				</PanelBody>
 			</InspectorControls>

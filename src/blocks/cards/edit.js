@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
@@ -27,8 +27,6 @@ const Edit = props => {
 			draft[activeIndex][type] = val;
 		});
 		setAttributes({ cards: newCard });
-
-		setActiveIndex(activeIndex);
 	}
 
 	return <>

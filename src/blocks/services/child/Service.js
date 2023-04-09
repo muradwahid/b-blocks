@@ -1,4 +1,4 @@
-import icons from '../../../utils/icons';
+import { longArrowToRightIcon } from '../utils/icons';
 
 const Service = ({ attributes, children }) => {
 	const { isIcon, isUpIcon, icon, upIcon, isLink, link, linkIn } = attributes;
@@ -14,7 +14,7 @@ const Service = ({ attributes, children }) => {
 
 		{children}
 
-		{isLink && 'button' === linkIn && <div className='link'><a href={link}>{icons.longArrowToRight}</a></div>}
+		{isLink && 'button' === linkIn && <div className='link'><a href={link}>{longArrowToRightIcon}</a></div>}
 	</div>
 }
 export default Service;

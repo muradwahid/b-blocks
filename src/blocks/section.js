@@ -3,22 +3,21 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
+// Settings Components
+import Title from '../../../Components/Title';
+
 // Variables
-import options from '../utils/options';
-const { colors } = options;
+import { colors } from '../utils/options';
 const INNER_TEMPLATE = [['b-blocks/section-heading', {}]];
 
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
-
 // Icon
-import icons from '../utils/icons';
+import { sectionIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/section', {
 	// Build In attributes
 	title: __('Section', 'b-blocks'),
 	description: __('Implement a section', 'b-blocks'),
-	icon: icons.section,
+	icon: sectionIcon,
 	category: 'bBlocks',
 	keywords: [__('Section', 'b-blocks'), __('Section Content', 'b-blocks'), __('Inner Block', 'b-blocks')],
 	supports: {
@@ -47,23 +46,23 @@ registerBlockType('b-blocks/section', {
 				{/* Section Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Section Settings', 'b-blocks')} initialOpen={true}>
 					{/* Background Color */}
-					{firstTitle('Background Color:')}
+					<Title>{__('Background Color:', 'b-blocks')}</Title>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
 					{/* Padding Top */}
-					{otherTitle('Padding Top:')}
+					<Title>{__('Padding Top:', 'b-blocks')}</Title>
 					<RangeControl value={PT} onChange={cng => setAttributes({ PT: cng })} min={0} max={100} step={1} />
 
 					{/* Padding Right */}
-					{otherTitle('Padding Right:')}
+					<Title>{__('Padding Right:', 'b-blocks')}</Title>
 					<RangeControl value={PR} onChange={cng => setAttributes({ PR: cng })} min={0} max={150} step={1} />
 
 					{/* Padding Bottom */}
-					{otherTitle('Padding Bottom:')}
+					<Title>{__('Padding Bottom:', 'b-blocks')}</Title>
 					<RangeControl value={PB} onChange={cng => setAttributes({ PB: cng })} min={0} max={100} step={1} />
 
 					{/* Padding Left */}
-					{otherTitle('Padding Left:')}
+					<Title>{__('Padding Left:', 'b-blocks')}</Title>
 					<RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>

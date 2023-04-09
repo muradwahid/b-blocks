@@ -1,5 +1,6 @@
+import { useEffect, useState, useRef } from 'react';
+import { renderToString } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
-import { useEffect, useState, useRef, renderToString } from '@wordpress/element';
 const $ = jQuery;
 
 import Settings from './Settings';

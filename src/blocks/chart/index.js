@@ -3,10 +3,10 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import metadata from '../../../inc/chart/block.json';
 import Edit from './edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { chartIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.chart,
+	icon: chartIcon,
 
 	transforms: {
 		from: [

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useContext } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 import produce from 'immer';
@@ -8,7 +8,7 @@ import produce from 'immer';
 import Title from '../../../../Components/Title';
 import BColor from '../../../../Components/BColor';
 import Background from '../../../../Components/Background';
-import { ImageHolderControl } from '../../../../Components/ImageControl';
+import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
 import BDevice from '../../../../Components/BDevice';
 import IconControl from '../../../../Components/IconControl';
 import Typography from '../../../../Components/Typography';
@@ -17,12 +17,10 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import { IndexContext } from './edit';
 
-const Settings = ({ settings }) => {
-	const { attributes: { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo }, setAttributes } = settings;
+const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setActiveIndex }) => {
+	const { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo } = attributes;
 
-	const setActiveIndex = useContext(IndexContext);
 	const [device, setDevice] = useState('desktop');
 
 	const addFeature = () => {
@@ -43,12 +41,23 @@ const Settings = ({ settings }) => {
 		setActiveIndex(features.length);
 	}
 
-	const updateFeature = (index, type, val) => {
-		const newFeature = [...features];
-		newFeature[index][type] = val;
-		setAttributes({ features: newFeature });
-		setActiveIndex(index);
+	const duplicateFeature = e => {
+		e.preventDefault();
+
+		setAttributes({ features: [...features.slice(0, activeIndex), { ...features[activeIndex] }, ...features.slice(activeIndex)] });
+
+		setActiveIndex(activeIndex + 1);
 	}
+
+	const removeFeature = e => {
+		e.preventDefault();
+
+		setAttributes({ features: [...features.slice(0, activeIndex), ...features.slice(activeIndex + 1)] });
+
+		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
+	}
+
+	const { background = {}, isUpIcon = false, icon = {}, upIcon = {}, iconWidth = '', titleColor = '', separator = {}, descColor = '' } = features[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
@@ -66,43 +75,36 @@ const Settings = ({ settings }) => {
 			</PanelBody>
 
 
-			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Features', 'b-blocks')}>
-				{features.map((item, index) => {
-					const { background, isUpIcon, icon, upIcon, iconWidth, titleColor, separator, descColor } = item;
+			<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Features', 'b-blocks')}>
+				{null !== activeIndex && <>
+					<h3 className='bplItemTitle'>{__(`Feature No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-					return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Feature No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateFeature(index, 'background', val)} />
+					<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateFeature('background', val)} />
 
-						{isIcon && <>
-							<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateFeature(index, 'isUpIcon', val)} />
+					{isIcon && <>
+						<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateFeature('isUpIcon', val)} />
 
-							{isUpIcon ? <>
-								<ImageHolderControl className='mt20' label={__('Icon:', 'b-blocks')} value={upIcon} onChange={val => updateFeature(index, 'upIcon', val)} />
+						{isUpIcon ? <>
+							<Title>{__('Icon:', 'b-blocks')}</Title>
+							<InlineDetailMediaUpload value={upIcon} onChange={val => updateFeature('upIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
 
-								<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature(index, 'iconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
+							<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature('iconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
 
-							</> : <IconControl value={icon} onChange={val => updateFeature(index, 'icon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 120 }} />}
-						</>}
+						</> : <IconControl value={icon} onChange={val => updateFeature('icon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 120 }} />}
+					</>}
 
-						<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateFeature(index, 'titleColor', val)} defaultColor='#333' />
+					<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateFeature('titleColor', val)} defaultColor='#333' />
 
-						<SeparatorControl value={separator} onChange={val => updateFeature(index, 'separator', val)} defaults={{ width: '20%' }} />
+					<SeparatorControl value={separator} onChange={val => updateFeature('separator', val)} defaults={{ width: '20%' }} />
 
-						<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature(index, 'descColor', val)} defaultColor='#333' />
+					<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature('descColor', val)} defaultColor='#333' />
 
-						<PanelRow className='itemAction mt20'>
-							<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-								e.preventDefault();
-								setAttributes({ features: [...features.slice(0, index), ...features.slice(index + 1)] });
-							}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+					<PanelRow className='itemAction mt20 mb15'>
+						{1 < features?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeFeature}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
-							<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-								e.preventDefault();
-								setAttributes({ features: [...features, { ...features[index] }] });
-							}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-						</PanelRow>
-					</PanelBody>
-				})}
+						<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateFeature}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
+					</PanelRow>
+				</>}
 
 				<div className='addItem'>
 					<Button label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' />{__('Add New Feature', 'b-blocks')}</Button>

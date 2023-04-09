@@ -13,6 +13,9 @@ class BBlocksSlider extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		// Enqueue assets where has block
+		wp_enqueue_script( 'wp-element' );
+
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-b-blocks-slider ' . $className . ' align' . $align;
 

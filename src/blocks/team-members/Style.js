@@ -12,9 +12,12 @@ const Style = ({ attributes, clientId }) => {
 	return <>
 		<style dangerouslySetInnerHTML={{
 			__html: `
-			${getTypoCSS(`${gMemberDetailsSl} .memberName`, nameTypo)}
-			${getTypoCSS(`${gMemberDetailsSl} .memberTitle`, titleTypo)}
-			${getTypoCSS(`${gMemberDetailsSl} .memberBio`, bioTypo)}
+			${getTypoCSS('', nameTypo)?.googleFontLink}
+			${getTypoCSS('', titleTypo)?.googleFontLink}
+			${getTypoCSS('', bioTypo)?.googleFontLink}
+			${getTypoCSS(`${gMemberDetailsSl} .memberName`, nameTypo)?.styles}
+			${getTypoCSS(`${gMemberDetailsSl} .memberTitle`, titleTypo)?.styles}
+			${getTypoCSS(`${gMemberDetailsSl} .memberBio`, bioTypo)?.styles}
 
 			${membersSl}{
 				grid-gap: ${rowGap} ${columnGap};

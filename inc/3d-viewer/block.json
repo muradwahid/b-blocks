@@ -31,7 +31,7 @@
 			"type": "object",
 			"default": {
 				"id": null,
-				"url": "",
+				"url": "https://modelviewer.dev/assets/ShopifyModels/ToyTrain.glb",
 				"title": ""
 			}
 		},

@@ -1,27 +1,24 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms } = options;
+import { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms } from '../utils/options';
 
 // Components
-import BtnGroup from '../Components/BtnGroup';
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icons
-import icons from '../utils/icons';
+import { collapseIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/collapse', {
 	// Build In attributes
 	title: __('Collapse', 'b-blocks'),
 	description: __('Show hide content by clicking a button', 'b-blocks'),
-	icon: icons.collapse,
+	icon: collapseIcon,
 	category: 'bBlocks',
 	keywords: [__('Collapse', 'b-blocks'), __('Downfall', 'b-blocks'), __('Closing', 'b-blocks')],
 	supports: {
@@ -75,53 +72,53 @@ registerBlockType('b-blocks/collapse', {
 			<InspectorControls>
 				<PanelBody className='bBlocksPanelBody' title={__('Collapse Button Settings', 'b-blocks')} initialOpen={true}>
 					{/* Button Align */}
-					{firstTitle('Button Align:')}
+					<Title className=''>{__('Button Align:', 'b-blocks')}</Title>
 					<BtnGroup options={aligns} myValue={collBtnAlign} setState={cng => setAttributes({ collBtnAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					{otherTitle('Font Size:')}
+					<Title>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={collBtnFontSize} onChange={cng => setAttributes({ collBtnFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Text Transform */}
-					{otherTitle('Text Transform:')}
+					<Title>{__('Text Transform:', 'b-blocks')}</Title>
 					<BtnGroup options={textTransforms} myValue={collBtnTransform} setState={cng => setAttributes({ collBtnTransform: cng })} />
 
 					{/* Font Weight */}
-					{otherTitle('Font Weight:')}
+					<Title>{__('Font Weight:', 'b-blocks')}</Title>
 					<SelectControl value={collBtnFontWeight} onChange={cng => setAttributes({ collBtnFontWeight: cng })} options={fontWeights} />
 
 					{/* Top Bottom Padding */}
-					{otherTitle('Top Bottom Padding:')}
+					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
 					<RangeControl value={collBtnPTB} onChange={cng => setAttributes({ collBtnPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					{otherTitle('Left Right Padding:')}
+					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
 					<RangeControl value={collBtnPLR} onChange={cng => setAttributes({ collBtnPLR: cng })} min={0} max={150} step={1} />
 
 					{/* Border Radius */}
-					{otherTitle('Border Radius:')}
+					<Title>{__('Border Radius:', 'b-blocks')}</Title>
 					<RangeControl value={collBtnRadius} onChange={cng => setAttributes({ collBtnRadius: cng })} min={0} max={50} step={1} />
 
 					{/* Colors */}
-					{otherTitle('Colors:')}
+					<Title>{__('Colors:', 'b-blocks')}</Title>
 					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
-							{otherTitle('Color:')}
+							<Title>{__('Color:', 'b-blocks')}</Title>
 							<ColorPalette value={collBtnColor} onChange={cng => setAttributes({ collBtnColor: cng })} colors={colors} />
 
 							{/* Background Color */}
-							{otherTitle('Background Color:')}
+							<Title>{__('Background Color:', 'b-blocks')}</Title>
 							<ColorPalette value={collBtnBGColor} onChange={cng => setAttributes({ collBtnBGColor: cng })} colors={colors} />
 						</>}
 
 						{'hover' == tab.name && <>
 							{/* Hover Color */}
-							{otherTitle('Hover Color:')}
+							<Title>{__('Hover Color:', 'b-blocks')}</Title>
 							<ColorPalette value={collBtnHovColor} onChange={cng => setAttributes({ collBtnHovColor: cng })} colors={colors} />
 
 							{/* Hover Background Color */}
-							{otherTitle('Hover Background Color:')}
+							<Title>{__('Hover Background Color:', 'b-blocks')}</Title>
 							<ColorPalette value={collBtnHovBGColor} onChange={cng => setAttributes({ collBtnHovBGColor: cng })} colors={colors} />
 						</>}
 					</>}</TabPanel>
@@ -130,11 +127,11 @@ registerBlockType('b-blocks/collapse', {
 
 				<PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
 					{/* Top Bottom Padding */}
-					{firstTitle('Top Bottom Padding:')}
+					<Title className=''>{__('Top Bottom Padding:', 'b-blocks')}</Title>
 					<RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					{otherTitle('Left Right Padding:')}
+					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
 					<RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>,

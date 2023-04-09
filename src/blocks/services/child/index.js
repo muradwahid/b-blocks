@@ -2,10 +2,10 @@ import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from '../../../../inc/services/child/block.json';
 import Edit from './Edit';
-import icons from '../../../utils/icons';
+import { servicesIcon } from '../utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.services,
+	icon: servicesIcon,
 
 	// Build in Functions
 	edit: Edit,

@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
-import { useEffect, useRef, useState, createContext } from '@wordpress/element';
+import { useEffect, useRef, useState } from 'react';
 import { Spinner } from '@wordpress/components';
 const $ = jQuery;
 
@@ -8,8 +8,6 @@ const $ = jQuery;
 import Settings from './Settings';
 import { GeneralStyle, FImgStyle } from './Style';
 import MapPosts from './Layout/MapPosts';
-
-export const ExcerptLengthCtx = createContext();
 
 const Edit = props => {
 	const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories, isEditorSidebarOpened } = props;
@@ -143,9 +141,7 @@ const Edit = props => {
 	}, [posts]);
 
 	return <>
-		<ExcerptLengthCtx.Provider value={maxExcerptLength}>
-			<Settings settings={props} getPostTypes={getPostTypes} categories={categories} />
-		</ExcerptLengthCtx.Provider>
+		<Settings settings={props} getPostTypes={getPostTypes} categories={categories} maxExcerptLength={maxExcerptLength} />
 
 		{!posts ? <Loading /> : posts?.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
 			<GeneralStyle attributes={attributes} clientId={clientId} />

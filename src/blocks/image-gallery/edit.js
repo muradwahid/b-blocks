@@ -1,14 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, createContext } from '@wordpress/element';
+import { useEffect } from 'react';
 import { MediaUpload } from '@wordpress/block-editor';
 import { withNotices, Button, Placeholder } from '@wordpress/components';
 
 // Components CSS
 import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-import Settings from './settings';
-
-export const FilterImagesContext = createContext();
+import Settings from './Settings';
 
 const Edit = props => {
 	const { className, attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeUI } = props;
@@ -35,15 +33,15 @@ const Edit = props => {
 	const imgCaptionSl = `${imgLinkSl} .imgGalleryImgCaption`;
 
 	return <>
-		<FilterImagesContext.Provider value={filterImages}>
-			<Settings settings={props} />
-		</FilterImagesContext.Provider>
+		<Settings settings={props} filterImages={filterImages} />
 
 		<div id={`bBlocksImageGallery-${clientId}`} className={className}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
-				${getTypoCSS(`${imgCaptionSl} h4`, capTitleTypo)}
-				${getTypoCSS(`${imgCaptionSl} p`, capDescTypo)}
+				${getTypoCSS('', capTitleTypo)?.googleFontLink}
+				${getTypoCSS('', capDescTypo)?.googleFontLink}
+				${getTypoCSS(`${imgCaptionSl} h4`, capTitleTypo)?.styles}
+				${getTypoCSS(`${imgCaptionSl} p`, capDescTypo)?.styles}
 
 				${imgLinkSl} .imgGalleryImg{
 					padding: ${getSpaceCSS(imgPadding)};

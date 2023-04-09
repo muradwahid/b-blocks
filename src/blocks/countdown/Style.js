@@ -9,14 +9,17 @@ const Style = ({ attributes, clientId }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${getTypoCSS(`${itemSl} .digit`, digitTypo)}
-		${getTypoCSS(`${itemSl} .label`, labelTypo)}
+		${getTypoCSS('', digitTypo)?.googleFontLink}
+		${getTypoCSS('', labelTypo)?.googleFontLink}
+		${getTypoCSS(`${itemSl} .digit`, digitTypo)?.styles}
+		${getTypoCSS(`${itemSl} .label`, labelTypo)?.styles}
 
 		${mainSl}{
 			align-items: ${alignment};
 			justify-content: ${alignment};
 		}
 		${itemsSl}{
+			gap: ${boxSpace};
 			width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
 			${getBackgroundCSS(background)}
 			padding: ${getSpaceCSS(padding)};
@@ -27,18 +30,9 @@ const Style = ({ attributes, clientId }) => {
 			${getBackgroundCSS(boxBG)}
 			width: ${boxWidth};
 			height: ${boxHeight};
-			margin-left: calc(${boxSpace} / 2);
-			margin-right: calc(${boxSpace} / 2);
 			${getBorderCSS(boxBorder)}
 			box-shadow: ${getShadowCSS(boxShadow)};
 		}
-		@media (max-width: 575px){
-			${itemSl}{
-				margin-top: calc(${boxSpace} / 2);
-				margin-bottom: calc(${boxSpace} / 2);
-			}
-		}
-
 		${itemsSl} .separator::before{
 			content: '${sepType}';
 			font-size: ${sepSize}px;

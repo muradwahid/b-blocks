@@ -1,12 +1,12 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from '../../../inc/price-lists/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { priceListIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.priceList,
+	icon: priceListIcon,
 
 	// Build In Functions
 	edit: Edit,

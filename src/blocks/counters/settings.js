@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import produce from 'immer';
@@ -17,8 +17,7 @@ import SpaceControl from '../../../../Components/SpaceControl';
 import { gearIcon } from '../../../../Components/Helper/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
 
-import options from '../../utils/options';
-const { generalStyleTabs } = options;
+import { generalStyleTabs } from '../../utils/options';
 
 import { iconPositions, themes } from './utils/options';
 
@@ -115,7 +114,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<BColor label={__('Label Color:', 'b-blocks')} value={label.color} onChange={val => updateCounter('label', val, 'color')} defaultColor='#fff' />
 
 							<PanelRow className='itemAction mt20 mb15'>
-								<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCounter} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
+								{1 < counters?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCounter} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
 								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateCounter} >{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
 							</PanelRow>

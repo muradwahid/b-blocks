@@ -4,28 +4,25 @@ import { RichText, InspectorControls, BlockControls, AlignmentToolbar } from '@w
 import { Button, PanelBody, RangeControl, ColorPalette, FontSizePicker, SelectControl } from '@wordpress/components';
 
 // Variables
-import options from '../utils/options';
-const { colors, fontSizes, aligns, textTransforms, sizeTypes } = options;
+import { colors, fontSizes, aligns, textTransforms, sizeTypes } from '../utils/options';
 const tabLayouts = [
 	{ label: __('Tabs', 'b-blocks'), value: 'tab' },
 	{ label: __('Pills', 'b-blocks'), value: 'pills' },
 	{ label: __('Vertical Pills', 'b-blocks'), value: 'vertical-pills' },
-]
+];
 
-// Components
-import BtnGroup from '../Components/BtnGroup';
-
-// Functions
-import { firstTitle, otherTitle } from '../utils/functions';
+// Settings Components
+import Title from '../../../Components/Title';
+import BtnGroup from '../../../Components/BtnGroup';
 
 // Icon
-import icons from '../utils/icons';
+import { tabIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/tabs', {
 	// Build In attributes
 	title: __('Tabs', 'b-blocks'),
 	description: __('Display beautiful predesigned tabs', 'b-blocks'),
-	icon: icons.tab,
+	icon: tabIcon,
 	category: 'bBlocks',
 	keywords: [__('Tabs', 'b-blocks'), __('Link Tab', 'b-blocks'), __('List Tab', 'b-blocks')],
 	supports: {
@@ -128,28 +125,28 @@ registerBlockType('b-blocks/tabs', {
 			<InspectorControls>
 				<PanelBody className='bBlocksPanelBody' title={__('Tabs Settings', 'b-blocks')} initialOpen={true}>
 					{/* Layout */}
-					{firstTitle('Layout:')}
+					<Title className=''>{__('Layout:', 'b-blocks')}</Title>
 					<SelectControl value={layout} onChange={cng => setAttributes({ layout: cng })} options={tabLayouts} />
 
-					{otherTitle('Width:')}
+					<Title>{__('Width:', 'b-blocks')}</Title>
 					<BtnGroup options={sizeTypes} myValue={widthType} setState={(cng, def) => setAttributes({ widthType: cng, width: def })} classes='bBlocksSizeType' size='small' />
 
 					<RangeControl value={width} onChange={cng => setAttributes({ width: cng })} min={0} max={('%' == widthType) ? 100 : 1920} step={1} />
 
 					{/* Top Bottom Padding */}
-					{otherTitle('Top Bottom Padding:')}
+					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
 					<RangeControl value={PTB} onChange={cng => setAttributes({ PTB: cng })} min={0} max={100} step={.1} />
 
 					{/* Left Right Padding */}
-					{otherTitle('Left Right Padding:')}
+					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
 					<RangeControl value={PLR} onChange={cng => setAttributes({ PLR: cng })} min={0} max={150} step={.1} />
 
 					{/* Color */}
-					{otherTitle('Color:')}
+					<Title>{__('Color:', 'b-blocks')}</Title>
 					<ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
 
 					{/* Background Color */}
-					{otherTitle('Background Color:')}
+					<Title>{__('Background Color:', 'b-blocks')}</Title>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 				</PanelBody>
 
@@ -157,15 +154,15 @@ registerBlockType('b-blocks/tabs', {
 				{/* Title Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Title Settings', 'b-blocks')} initialOpen={false}>
 					{/* Text Align */}
-					{firstTitle('Text Align:')}
+					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
 					<BtnGroup options={aligns} myValue={titleAlign} setState={cng => setAttributes({ titleAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					{otherTitle('Font Size:')}
+					<Title>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={16} value={titleFontSize} onChange={cng => setAttributes({ titleFontSize: 'undefined' === typeof cng ? 16 : cng })} />
 
 					{/* Text Transform */}
-					{otherTitle('Text Transform:')}
+					<Title>{__('Text Transform:', 'b-blocks')}</Title>
 					<BtnGroup options={textTransforms} myValue={titleTextTransform} setState={cng => setAttributes({ titleTextTransform: cng })} />
 				</PanelBody>
 
@@ -173,7 +170,7 @@ registerBlockType('b-blocks/tabs', {
 				{/* Content Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
 					{/* Font Size */}
-					{firstTitle('Font Size:')}
+					<Title className=''>{__('Font Size:', 'b-blocks')}</Title>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={contentFontSize} onChange={cng => setAttributes({ contentFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 				</PanelBody>
 			</InspectorControls>

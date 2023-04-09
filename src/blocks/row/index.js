@@ -5,10 +5,10 @@ import metadata from '../../../inc/row/block.json';
 import Edit from './Edit';
 import './column';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { rowIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.row,
+	icon: rowIcon,
 
 	// Build in Functions
 	edit: Edit,

@@ -1,4 +1,4 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import produce from 'immer';
@@ -30,8 +30,6 @@ const Edit = props => {
 			}
 		});
 		setAttributes({ counters: newCounters });
-
-		setActiveIndex(activeIndex);
 	}
 
 	return <>

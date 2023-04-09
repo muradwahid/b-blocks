@@ -1,4 +1,4 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { Tooltip } from '@wordpress/components';
@@ -17,7 +17,7 @@ const Edit = props => {
 	useEffect(() => tabController(), [isSelected]);
 
 	return <>
-		<Settings settings={props} />
+		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div className={className} id={`bBlocksAlert-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />

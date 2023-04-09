@@ -1,12 +1,12 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from '../../../inc/mailto/block.json';
-import Edit from './edit';
+import Edit from './Edit';
 import './editor.scss';
-import icons from '../../utils/icons';
+import { mailIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-	icon: icons.mail,
+	icon: mailIcon,
 
 	// Build In Functions
 	edit: Edit,
