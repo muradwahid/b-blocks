@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 const $ = jQuery;
 
 import './style.scss';
-import { GeneralStyle } from './Style';
+import Style from './Style';
 
 // Advanced Posts
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Style
 		const styleEl = document.querySelector(`#${posts.id} .bBlocksPostsStyle`);
 
-		render(<GeneralStyle attributes={attributes} clientId={attributes.cId} />, styleEl);
+		render(<Style attributes={attributes} clientId={attributes.cId} />, styleEl);
 
 
 		// Slider

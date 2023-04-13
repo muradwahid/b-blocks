@@ -6,13 +6,14 @@ const $ = jQuery;
 
 // Settings Components
 import Settings from './Settings';
-import { GeneralStyle, FImgStyle } from './Style';
+import Style from './Style';
 import MapPosts from './Layout/MapPosts';
+import { mediaUrl } from './utils/functions';
 
 const Edit = props => {
 	const { attributes, setAttributes, className, clientId, getPostTypes, posts, categories, isEditorSidebarOpened } = props;
 
-	const { align, layout, columns, columnGap, rowGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderIsPrevNext } = attributes;
+	const { align, layout, columns, columnGap, rowGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderIsPrevNext, isFImg } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -144,8 +145,17 @@ const Edit = props => {
 		<Settings settings={props} getPostTypes={getPostTypes} categories={categories} maxExcerptLength={maxExcerptLength} />
 
 		{!posts ? <Loading /> : posts?.length ? <div className={`${className} bBlocksPosts`} id={`bBlocksPosts-${clientId}`}>
-			<GeneralStyle attributes={attributes} clientId={clientId} />
-			<FImgStyle posts={posts} attributes={attributes} clientId={clientId} />
+			<Style attributes={attributes} clientId={clientId} />
+
+			{posts.map(post => {
+				const { id, featured_media } = post;
+				const fImgUrl = mediaUrl(featured_media)?.replace(/<[^>]+>/g, '');
+
+				const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${isFImg && fImgUrl ? 'grid' : 'flex'}; }`;
+				const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
+
+				return sideImgCSS + fImgCSS;
+			})}
 
 			{'grid' === layout ? <div className={`bBlocksGridPosts columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				<MapPosts posts={posts} attributes={attributes} clientId={clientId} />

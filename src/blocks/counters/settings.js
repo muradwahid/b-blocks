@@ -38,15 +38,16 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		setActiveIndex(counters.length);
 	}
 
-	const updateAllCounter = (type, val, otherType = false) => {
-		const newCounters = [...counters];
+	const updateAllCounters = (params) => {
+		const newCounters = produce(counters, draft => {
+			draft.map((__, index) => {
+				for (const param of params) {
+					const type = param[0];
+					const value = param[1];
 
-		newCounters.map((counter, index) => {
-			if (otherType) {
-				newCounters[index][type][otherType] = val;
-			} else {
-				newCounters[index][type] = val;
-			}
+					draft[index][type] = value;
+				}
+			});
 		});
 		setAttributes({ counters: newCounters });
 	}
@@ -131,62 +132,72 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<Title className=''>{__('Theme:', 'b-blocks')}</Title>
 							<SelectControl value={theme} onChange={val => {
 								setAttributes({ theme: val });
-								'default' === val && (
-									setAttributes({
-										background: { ...background, type: 'solid', color: '#0000' },
-										padding: { ...padding, vertical: '20px', horizontal: '0px' },
-										counterHeight: '250px',
-										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },
-										iconPosition: 'top',
-										iconSize: 50
-									}),
-									updateAllCounter('background', '#4527a4', 'color'),
-									updateAllCounter('icon', '#fff', 'color'),
-									updateAllCounter('number', '#fff', 'color'),
-									updateAllCounter('label', '#fff', 'color')
-								);
-								'theme1' === val && (
-									setAttributes({
-										background: { ...background, type: 'solid', color: '#0000' },
-										padding: { ...padding, vertical: '20px', horizontal: '0px' },
-										counterHeight: '175px',
-										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '5px' },
-										iconPosition: 'label',
-										iconSize: labelTypo?.fontSize
-									}),
-									updateAllCounter('background', '#4527a4', 'color'),
-									updateAllCounter('icon', '#fff', 'color'),
-									updateAllCounter('number', '#fff', 'color'),
-									updateAllCounter('label', '#fff', 'color')
-								);
-								'theme2' === val && (
-									setAttributes({
-										background: { ...background, type: 'solid', color: '#0000' },
-										padding: { ...padding, vertical: '20px', horizontal: '0px' },
-										counterHeight: '175px',
-										counterBorder: { ...counterBorder, width: '2px', color: '#4527a4', radius: '5px' },
-										iconPosition: 'label',
-										iconSize: labelTypo?.fontSize
-									}),
-									updateAllCounter('background', '#0000', 'color'),
-									updateAllCounter('icon', '#4527a4', 'color'),
-									updateAllCounter('number', '#4527a4', 'color'),
-									updateAllCounter('label', '#4527a4', 'color')
-								);
-								'theme3' === val && (
-									setAttributes({
-										background: { ...background, type: 'image', image: { url: 'https://i.ibb.co/b18MWMw/open-space-office.jpg' }, overlayColor: '#000000b3' },
-										padding: { ...padding, vertical: '140px', horizontal: '0px' },
-										counterHeight: '250px',
-										counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },
-										iconPosition: 'top',
-										iconSize: 50
-									}),
-									updateAllCounter('background', '#0000', 'color'),
-									updateAllCounter('icon', '#fff', 'color'),
-									updateAllCounter('number', '#fff', 'color'),
-									updateAllCounter('label', '#fff', 'color')
-								);
+								'default' === val && setAttributes({
+									background: { ...background, type: 'solid', color: '#0000' },
+									padding: { ...padding, vertical: '20px', horizontal: '0px' },
+									counterHeight: '250px',
+									counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },
+									iconPosition: 'top',
+									iconSize: 50
+								});
+								'theme1' === val && setAttributes({
+									background: { ...background, type: 'solid', color: '#0000' },
+									padding: { ...padding, vertical: '20px', horizontal: '0px' },
+									counterHeight: '175px',
+									counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '5px' },
+									iconPosition: 'label',
+									iconSize: labelTypo?.fontSize
+								});
+								'theme2' === val && setAttributes({
+									background: { ...background, type: 'solid', color: '#0000' },
+									padding: { ...padding, vertical: '20px', horizontal: '0px' },
+									counterHeight: '175px',
+									counterBorder: { ...counterBorder, width: '2px', color: '#4527a4', radius: '5px' },
+									iconPosition: 'label',
+									iconSize: labelTypo?.fontSize
+								});
+								'theme3' === val && setAttributes({
+									background: { ...background, type: 'image', image: { url: 'https://i.ibb.co/b18MWMw/open-space-office.jpg' }, overlayColor: '#000000b3' },
+									padding: { ...padding, vertical: '140px', horizontal: '0px' },
+									counterHeight: '250px',
+									counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },
+									iconPosition: 'top',
+									iconSize: 50
+								});
+
+								counters?.map(member => {
+									const { background, icon, number, label } = member;
+
+									const defaultParams = [
+										['background', { ...background, type: 'solid', color: '#4527a4' }],
+										['icon', { ...icon, color: '#fff' }],
+										['number', { ...number, color: '#fff' }],
+										['label', { ...label, color: '#fff' }]
+									];
+									const theme1Params = [
+										['background', { ...background, type: 'solid', color: '#4527a4' }],
+										['icon', { ...icon, color: '#fff' }],
+										['number', { ...number, color: '#fff' }],
+										['label', { ...label, color: '#fff' }]
+									];
+									const theme2Params = [
+										['background', { ...background, type: 'solid', color: '#0000' }],
+										['icon', { ...icon, color: '#4527a4' }],
+										['number', { ...number, color: '#4527a4' }],
+										['label', { ...label, color: '#4527a4' }]
+									];
+									const theme3Params = [
+										['background', { ...background, type: 'solid', color: '#0000' }],
+										['icon', { ...icon, color: '#fff' }],
+										['number', { ...number, color: '#fff' }],
+										['label', { ...label, color: '#fff' }]
+									];
+
+									'default' === val && updateAllCounters(defaultParams);
+									'theme1' === val && updateAllCounters(theme1Params);
+									'theme2' === val && updateAllCounters(theme2Params);
+									'theme3' === val && updateAllCounters(theme3Params);
+								});
 							}} options={themes} />
 						</PanelRow>
 

@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 5.3+
 Tested up to: 6.2
-Stable tag: 1.7.2
+Stable tag: 1.7.3
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.7.3 =
+Fix issue
+
 = 1.7.2 =
 Assets load where block present.
 
@@ -282,6 +285,9 @@ Assets load where block present.
 
 
 == Upgrade Notice ==
+
+= 1.7.3 =
+Fix issue
 
 = 1.7.2 =
 Assets load where block present.

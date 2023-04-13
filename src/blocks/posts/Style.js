@@ -1,8 +1,6 @@
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
-import { mediaUrl } from './utils/functions';
-
-const GeneralStyle = ({ attributes, clientId }) => {
+const Style = ({ attributes, clientId }) => {
 	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
 	const mainSl = `#bBlocksPosts-${clientId}`;
@@ -101,22 +99,7 @@ const GeneralStyle = ({ attributes, clientId }) => {
 			${sliderPostsSl} .swiper-button-next{
 				color: ${sliderPrevNextColor};
 			}
-		`}} />;
+		`.replace(/\s+/g, ' ')
+	}} />;
 };
-
-const FImgStyle = ({ posts, attributes, clientId }) => {
-	const { isFImg } = attributes;
-
-	return <style>
-		{posts.map(post => {
-			const { id, featured_media } = post;
-			const fImgUrl = mediaUrl(featured_media)?.replace(/<[^>]+>/g, '');
-
-			const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${isFImg && fImgUrl ? 'grid' : 'flex'}; }`;
-			const fImgCSS = isFImg && fImgUrl ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${fImgUrl}); }` : '';
-
-			return sideImgCSS + fImgCSS;
-		})}
-	</style>;
-};
-export { GeneralStyle, FImgStyle }
+export default Style
