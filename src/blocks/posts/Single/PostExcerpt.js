@@ -1,11 +1,12 @@
 // Functions
-import { truncate, renderHTML } from '../utils/functions';
+import { truncate } from '../utils/functions';
 
-const PostExcerpt = props => {
-	const { atts: { isExcerpt, excerptLength }, post: { excerpt, content } } = props;
+const PostExcerpt = ({ post, attributes }) => {
+	const { excerpt, content } = post;
+	const { isExcerpt, isExcerptFromContent, excerptLength } = attributes;
 
-	const renderContent = excerpt ? excerpt?.rendered : content?.raw.replace(/(<([^>]+)>)/gi, '');
+	const renderContent = !isExcerptFromContent && excerpt ? excerpt : content;
 
-	return isExcerpt ? <div className='bBlocksPostExcerpt bBlocksInnerPostContent'>{renderHTML(truncate(renderContent, excerptLength))}</div> : null;
+	return isExcerpt ? <div className='bBlocksPostExcerpt bBlocksInnerContent' dangerouslySetInnerHTML={{ __html: truncate(renderContent, excerptLength) }} /> : null;
 };
 export default PostExcerpt;

@@ -9,16 +9,16 @@ const Default = ({ post, attributes }) => {
 	const { layout, subLayout } = attributes;
 
 	return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostDefault ${'slider' === layout ? 'swiper-slide' : ''}`}>
-		<FeatureImage atts={attributes} post={post} />
+		<FeatureImage post={post} attributes={attributes} />
 
 		<div className='bBlocksPostText'>
-			<PostTitle atts={attributes} post={post} />
+			<PostTitle post={post} attributes={attributes} />
 
-			<PostMeta atts={attributes} post={post} />
+			<PostMeta post={post} attributes={attributes} />
 
 			{'title-meta' !== subLayout && <>
-				<PostExcerpt atts={attributes} post={post} />
-				<PostReadMore atts={attributes} post={post} />
+				<PostExcerpt post={post} attributes={attributes} />
+				<PostReadMore post={post} attributes={attributes} />
 			</>}
 		</div>
 	</article>;

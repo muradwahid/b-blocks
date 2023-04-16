@@ -1,25 +1,21 @@
-// Components
 import PostTitle from '../Single/PostTitle';
 import PostExcerpt from '../Single/PostExcerpt';
 import PostReadMore from '../Single/PostReadMore';
 import PostMeta from '../Single/PostMeta';
 
-// Functions
-import { mediaUrl } from '../utils/functions';
-
 const Overlay = ({ post, attributes }) => {
-	const { id, featured_media } = post;
+	const { id, thumbnail } = post;
 	const { layout, subLayout } = attributes;
 
-	return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostOverlay ${'overlay-content-hover' === subLayout && mediaUrl(featured_media) ? 'bBlocksPostOverlayHover' : ''} ${'overlay-box' === subLayout ? 'bBlocksPostOverlayBox' : ''} ${'slider' === layout ? 'swiper-slide' : ''}`}>
+	return <article className={`bBlocksPost bBlocksPost-${id} bBlocksPostOverlay ${'overlay-content-hover' === subLayout && thumbnail ? 'bBlocksPostOverlayHover' : ''} ${'overlay-box' === subLayout ? 'bBlocksPostOverlayBox' : ''} ${'slider' === layout ? 'swiper-slide' : ''}`}>
 		<div className='bBlocksPostText'>
-			<PostTitle atts={attributes} post={post} />
+			<PostTitle post={post} attributes={attributes} />
 
-			<PostMeta atts={attributes} post={post} />
+			<PostMeta post={post} attributes={attributes} />
 
 			{'overlay-box' !== subLayout && <>
-				<PostExcerpt atts={attributes} post={post} />
-				<PostReadMore atts={attributes} post={post} />
+				<PostExcerpt post={post} attributes={attributes} />
+				<PostReadMore post={post} attributes={attributes} />
 			</>}
 		</div>
 	</article>;

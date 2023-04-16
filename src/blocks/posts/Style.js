@@ -1,7 +1,7 @@
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
 
 const Style = ({ attributes, clientId }) => {
-	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
+	const { layout, columnGap, rowGap, isContentEqualHight, sliderHeight, fImgFitting, contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
 	const mainSl = `#bBlocksPosts-${clientId}`;
 	const postSl = `${mainSl} .bBlocksPost`;
@@ -58,6 +58,9 @@ const Style = ({ attributes, clientId }) => {
 			${postMetaSl} .dashicons{
 				color: ${metaIconColor};
 			}
+			${postSl} .bBlocksPostFImg{
+				background-size: ${fImgFitting};
+			}
 			${postSl} .bBlocksPostFImgCats a{
 				${getColorsCSS(metaColorsOnImage)}
 			}
@@ -102,4 +105,19 @@ const Style = ({ attributes, clientId }) => {
 		`.replace(/\s+/g, ' ')
 	}} />;
 };
-export default Style
+export default Style;
+
+export const FImgStyle = ({ posts, attributes, clientId }) => {
+	const { isFImg } = attributes;
+
+	return <style>
+		{posts.map(post => {
+			const { id, thumbnail } = post;
+
+			const sideImgCSS = `#bBlocksPosts-${clientId} .bBlocksPostSideImage.bBlocksPost-${id}{ display: ${isFImg && thumbnail ? 'grid' : 'flex'}; }`;
+			const fImgCSS = isFImg && thumbnail ? `#bBlocksPosts-${clientId} .bBlocksPostOverlay.bBlocksPost-${id}, #bBlocksPosts-${clientId} .bBlocksPost .bBlocksPostFImg-${id}{ background-image: url(${thumbnail}); }` : '';
+
+			return sideImgCSS + fImgCSS;
+		})}
+	</style>
+}

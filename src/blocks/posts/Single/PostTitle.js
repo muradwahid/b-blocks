@@ -1,8 +1,13 @@
-const PostTitle = props => {
-	const { atts: { isTitle, isTitleLink, isLinkNewTab }, post: { title } } = props;
+const PostTitle = ({ post, attributes }) => {
+	const { link, title } = post;
+	const { isTitle, isTitleLink, isLinkNewTab } = attributes;
 
-	return isTitle ? <h2 className='bBlocksPostTitle'>
-		{isTitleLink ? <a target={isLinkNewTab ? '_blank' : '_self'} rel='noreferrer'>{title.rendered}</a> : title.rendered}
-	</h2> : null;
+	return isTitle ? <>
+		{isTitleLink ?
+			<h2 className='bBlocksPostTitle'>
+				<a href={link} target={isLinkNewTab ? '_blank' : '_self'} rel='noreferrer' dangerouslySetInnerHTML={{ __html: title }} />
+			</h2> :
+			<h2 className='bBlocksPostTitle' dangerouslySetInnerHTML={{ __html: title }} />}
+	</> : null;
 };
 export default PostTitle;
