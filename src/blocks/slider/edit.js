@@ -120,6 +120,6 @@ const Edit = props => {
 };
 export default withSelect((select) => {
 	return {
-		isEditorSidebarOpened: select('core/edit-post').isEditorSidebarOpened()
+		isEditorSidebarOpened: !!select('core/edit-post')?.isEditorSidebarOpened()
 	};
 })(Edit);
