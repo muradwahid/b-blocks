@@ -1,0 +1,15 @@
+$primaryColor: #4527a4;
+
+// 3D Viewer
+.wp-block-b-blocks-td-viewer {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocks3DViewer {
+		model-viewer {
+			display: inline-block;
+			--poster-color: transparent;
+		}
+	}
+}

@@ -1,0 +1,22 @@
+.wp-block-b-blocks-gif {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksGif {
+		margin: 0;
+
+		figure {
+			display: inline-block;
+			max-width: 100%;
+			margin-block-start: 0;
+			margin-block-end: 0;
+			margin-inline-start: 0;
+			margin-inline-end: 0;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+}

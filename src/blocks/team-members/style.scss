@@ -1,0 +1,101 @@
+.wp-block-b-blocks-team-members .bBlocksTeamMembers {
+	display: grid;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	&.horizontal {
+		.bBlocksMember {
+			display: flex;
+			align-items: center;
+
+			.memberPhoto {
+				width: calc(38% - 20px);
+				max-width: 38%;
+			}
+
+			.memberDetails {
+				padding: 0 20px 0 0;
+				width: 62%;
+			}
+		}
+	}
+
+	&.vertical {
+		.bBlocksMember {
+			.memberDetails {
+				padding: 0 20px;
+			}
+		}
+	}
+
+	.bBlocksMember {
+		position: relative;
+
+		.memberPhoto {
+			max-width: 100%;
+			height: auto;
+			display: inline-block;
+		}
+
+		.memberName {
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.memberTitle {
+			margin: 0;
+		}
+
+		.memberSeparator {
+			display: inline-block;
+		}
+
+		.memberBio {
+			display: block;
+		}
+
+		ul.memberSocial {
+			list-style-type: none;
+			line-height: 1;
+			margin: 0;
+			padding: 5px;
+			display: flex;
+			align-items: center;
+
+			li {
+				display: inline-block;
+
+				&:first-child {
+					margin-left: 0 !important;
+				}
+
+				&:last-child {
+					margin-right: 0 !important;
+				}
+
+				a {
+					text-decoration: none;
+					color: #4e4e4e;
+					padding: 8px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border-radius: 50%;
+
+					&:focus {
+						box-shadow: none;
+					}
+
+					i {
+						font-style: inherit;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
+				}
+			}
+		}
+	}
+}

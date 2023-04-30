@@ -1,0 +1,76 @@
+.wp-block-b-blocks-countdown {
+	display: flex;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.countdownItems {
+		max-width: 100%;
+		display: inline-flex;
+		align-items: center;
+
+		.countdownItem {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+			.digit {
+				display: block;
+				font-weight: 400;
+			}
+
+			.label {
+				text-transform: none;
+				font-style: normal;
+				text-decoration: initial;
+				line-height: 100%;
+				display: block;
+			}
+
+			&.inline {
+				flex-direction: row;
+				justify-content: center;
+
+				.digit {
+					display: flex;
+					flex: 1 1 0%;
+					justify-content: center;
+				}
+
+				.label {
+					display: flex;
+					flex: 1 1 0%;
+				}
+			}
+		}
+
+		.separator {
+			position: relative;
+
+			&::before {
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%, -65%);
+				line-height: 100%;
+			}
+		}
+
+		.countdownItem.inline~.separator {
+			&::before {
+				transform: translate(-50%, -60%);
+			}
+		}
+	}
+
+	@media (max-width: 575px) {
+		.countdownItems.bBlocksCountdownResponsive {
+			flex-direction: column;
+
+			.separator {
+				transform: rotate(90deg);
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+.wp-block-b-blocks-image-gallery {
+	.imgGalleryUploadButton {
+		display: flex;
+		align-items: center;
+		justify-content: center !important;
+		height: 50px;
+		width: 100%;
+		background: #e3e3e3;
+		color: #666666;
+	}
+
+	.bBlocksImageGalleryUpload {
+		.components-form-file-upload {
+			display: none;
+		}
+	}
+}

@@ -1,5 +1,4 @@
 # Ignore everything
-src
 bundled
 dist/*
 !dist/*.php
