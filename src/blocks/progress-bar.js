@@ -3,15 +3,11 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 
-// Variables
-import { colors } from '../utils/options';
-
 // Settings Components
-import Title from '../../../Components/Title';
-import BColor from '../../../Components/BColor';
+import { Label, BColor } from '../../../Components';
 
-// Icon
 import { progressIcon } from '../utils/icons';
+import { colors } from '../utils/options';
 
 registerBlockType('b-blocks/progress-bar', {
 	// Build In attributes
@@ -52,11 +48,11 @@ registerBlockType('b-blocks/progress-bar', {
 				{/* Progress Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Progress Settings', 'b-blocks')} initialOpen={true}>
 					{/* Background Color */}
-					<Title className=''>{__('Background Color:', 'b-blocks')}</Title>
+					<Label className=''>{__('Background Color:', 'b-blocks')}</Label>
 					<ColorPalette value={progressBG} onChange={cng => setAttributes({ progressBG: cng })} colors={colors} />
 
 					{/* Height */}
-					<Title>{__('Height:', 'b-blocks')}</Title>
+					<Label>{__('Height:', 'b-blocks')}</Label>
 					<RangeControl value={progressHeight} onChange={cng => setAttributes({ progressHeight: cng })} min={0} max={200} step={1} />
 				</PanelBody>
 
@@ -64,26 +60,26 @@ registerBlockType('b-blocks/progress-bar', {
 				{/* Progress Bar Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Progress Bar Settings', 'b-blocks')} initialOpen={false}>
 					{/* Background Color */}
-					<Title className=''>{__('Background Color:', 'b-blocks')}</Title>
+					<Label className=''>{__('Background Color:', 'b-blocks')}</Label>
 					<ColorPalette value={progressBarBG} onChange={cng => setAttributes({ progressBarBG: cng })} colors={colors} />
 
 					{/* Label */}
-					<Title>{__('Label:', 'b-blocks')}</Title>
+					<Label>{__('Label:', 'b-blocks')}</Label>
 					<ToggleControl label={isLabel ? 'Disable Label' : 'Enable Label'} checked={isLabel} onChange={cng => setAttributes({ isLabel: cng })} />
 
 					{/* Width */}
-					<Title>{__('Width:', 'b-blocks')}</Title>
+					<Label>{__('Width:', 'b-blocks')}</Label>
 					<RangeControl value={progressBarWidth} onChange={cng => setAttributes({ progressBarWidth: cng })} min={0} max={100} step={1} />
 
 					{/* Striped */}
-					<Title>{__('Striped:', 'b-blocks')}</Title>
+					<Label>{__('Striped:', 'b-blocks')}</Label>
 					<ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
 					<BColor className='mt20' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor='#ffffff26' />
 
 					{progressBarStriped && <>
 						{/* Animation */}
-						<Title>{__('Animation', 'b-blocks')}</Title>
+						<Label>{__('Animation', 'b-blocks')}</Label>
 						<ToggleControl label={progressBarAnimation ? 'Disable Animation' : 'Enable Animation'} checked={progressBarAnimation} onChange={cng => setAttributes({ progressBarAnimation: cng })} />
 					</>}
 				</PanelBody>

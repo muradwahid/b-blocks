@@ -3,9 +3,8 @@ import { InspectorControls, BlockControls, AlignmentToolbar, MediaUpload, MediaU
 import { PanelBody, PanelRow, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, InlineDetailMediaUpload } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { loadingTypes } from './utils/options';
 
@@ -31,7 +30,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('3D Model Settings', 'b-blocks')}>
-				<Title className=''>{__('Model:', 'b-blocks')}</Title>
+				<Label className=''>{__('Model:', 'b-blocks')}</Label>
 				<InlineDetailMediaUpload types={['model/gltf-binary']} value={model} onChange={val => setAttributes({ model: val })} placeholder={__('Enter Model URL', 'b-blocks')} />
 
 				{/* <PanelRow>
@@ -77,7 +76,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</>}
 
 				<PanelRow className='mt20'>
-					<Title className=''>{__('Loading Type:', 'b-blocks')}</Title>
+					<Label className=''>{__('Loading Type:', 'b-blocks')}</Label>
 					<SelectControl value={loadingType} onChange={val => setAttributes({ loadingType: val })} options={loadingTypes} />
 				</PanelRow>
 			</PanelBody>

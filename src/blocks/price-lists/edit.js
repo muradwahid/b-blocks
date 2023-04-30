@@ -6,8 +6,8 @@ import { isBlobURL } from '@wordpress/blob';
 import produce from 'immer';
 
 // Settings Components
-import { ImagePlaceholder } from '../../../../Components/ImageControl';
-import { getBackgroundCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { ImagePlaceholder } from '../../../../Components';
+import { getBackgroundCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 import Settings from './Settings';
 

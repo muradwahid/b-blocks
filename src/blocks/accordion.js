@@ -4,15 +4,11 @@ import { useEffect } from 'react';
 import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } from '@wordpress/components';
 
-// Variables
-import { normalHoverTabs, fontSizes, colors, aligns, textTransforms } from '../utils/options';
+// Settings Components
+import { Label, BtnGroup } from '../../../Components';
 
-// Components
-import Title from '../../../Components/Title';
-import BtnGroup from '../../../Components/BtnGroup';
-
-// Icons
 import { accordionIcon } from '../utils/icons';
+import { normalHoverTabs, fontSizes, colors, aligns, textTransforms } from '../utils/options';
 
 registerBlockType('b-blocks/accordion', {
 	// Build In attributes
@@ -112,44 +108,44 @@ registerBlockType('b-blocks/accordion', {
 			<InspectorControls>
 				<PanelBody className='bBlocksPanelBody' title={__('Heading Settings', 'b-blocks')} initialOpen={true}>
 					{/* Text Align */}
-					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
+					<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
 					<BtnGroup options={aligns} myValue={headingAlign} setState={cng => setAttributes({ headingAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					<Title>{__('Font Size:', 'b-blocks')}</Title>
+					<Label>{__('Font Size:', 'b-blocks')}</Label>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={20} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: 'undefined' === typeof cng ? 20 : cng })} />
 
 					{/* Text Transform */}
-					<Title>{__('Text Transform:', 'b-blocks')}</Title>
+					<Label>{__('Text Transform:', 'b-blocks')}</Label>
 					<BtnGroup options={textTransforms} myValue={headingTransform} setState={cng => setAttributes({ headingTransform: cng })} />
 
 					{/* Top Bottom Padding */}
-					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
+					<Label>{__('Top Bottom Padding:', 'b-blocks')}</Label>
 					<RangeControl value={headingPTB} onChange={cng => setAttributes({ headingPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
+					<Label>{__('Left Right Padding:', 'b-blocks')}</Label>
 					<RangeControl value={headingPLR} onChange={cng => setAttributes({ headingPLR: cng })} min={0} max={150} step={1} />
 
-					<Title>{__('Colors:', 'b-blocks')}</Title>
+					<Label>{__('Colors:', 'b-blocks')}</Label>
 					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
-							<Title className=''>{__('Color:', 'b-blocks')}</Title>
+							<Label className=''>{__('Color:', 'b-blocks')}</Label>
 							<ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
 
 							{/* Background Color */}
-							<Title>{__('Background Color:', 'b-blocks')}</Title>
+							<Label>{__('Background Color:', 'b-blocks')}</Label>
 							<ColorPalette value={headingBGColor} onChange={cng => setAttributes({ headingBGColor: cng })} colors={colors} />
 						</>}
 
 						{'hover' == tab.name && <>
 							{/* Hover Color */}
-							<Title className=''>{__('Hover Color:', 'b-blocks')}</Title>
+							<Label className=''>{__('Hover Color:', 'b-blocks')}</Label>
 							<ColorPalette value={headingHovColor} onChange={cng => setAttributes({ headingHovColor: cng })} colors={colors} />
 
 							{/* Hover Background Color */}
-							<Title>{__('Hover Background Color:', 'b-blocks')}</Title>
+							<Label>{__('Hover Background Color:', 'b-blocks')}</Label>
 							<ColorPalette value={headingHovBGColor} onChange={cng => setAttributes({ headingHovBGColor: cng })} colors={colors} />
 						</>}
 					</>}</TabPanel>
@@ -159,15 +155,15 @@ registerBlockType('b-blocks/accordion', {
 				{/* Content Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Content Settings', 'b-blocks')} initialOpen={false}>
 					{/* Text Align */}
-					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
+					<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
 					<BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
 
 					{/* Top Bottom Padding */}
-					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
+					<Label>{__('Top Bottom Padding:', 'b-blocks')}</Label>
 					<RangeControl value={contentPTB} onChange={cng => setAttributes({ contentPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
+					<Label>{__('Left Right Padding:', 'b-blocks')}</Label>
 					<RangeControl value={contentPLR} onChange={cng => setAttributes({ contentPLR: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>

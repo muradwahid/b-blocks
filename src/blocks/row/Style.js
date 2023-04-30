@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId, isBackend = false }) => {
 	const { columnGap, height, columnPositionY, columnPositionX, overflow, background, padding, border, shadow } = attributes;

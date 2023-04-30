@@ -4,14 +4,8 @@ import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, Tab
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import Typography from '../../../../Components/Typography';
-import BorderControl from '../../../../Components/BorderControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import ColorsControl from '../../../../Components/ColorsControl';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import { ImageEditControl, ChangeImageData } from '../../../../Components/ImageControl';
-import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../Components/Helper/options';
+import { Label, BorderControl, ColorsControl, ImageEditControl, ChangeImageData, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
+import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../Components/utils/options';
 
 const beforeAfterImgTab = [
 	{ name: 'before-img', title: __('Before Img', 'b-blocks') },
@@ -23,7 +17,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<Title className=''></Title> {/* Just use the component */}
+			<Label className=''></Label> {/* Just use the component */}
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/image-comparison-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>

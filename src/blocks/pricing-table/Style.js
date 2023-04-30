@@ -1,4 +1,4 @@
-import { getShadowCSS, getSpaceCSS } from '../../../../Components/Helper/getCSS';
+import { getShadowCSS, getSpaceCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId, isStandard }) => {
 	const { pricingTables, columnGap, rowGap, textAlign, padding, shadow } = attributes;

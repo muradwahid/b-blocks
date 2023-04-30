@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { textAlign, background, typography, color, padding, border } = attributes;

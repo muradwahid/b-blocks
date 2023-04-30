@@ -1,4 +1,4 @@
-import { getColorsCSS, getBorderCSS, getIconCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getColorsCSS, getBorderCSS, getIconCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { width, btnAlign, btnTypo, btnPadding, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoBorder, btnTwoColors, btnTwoHovColors, sepType, sepTextTypo, sepTextColor, sepIcon, sepBGColor } = attributes;

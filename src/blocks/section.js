@@ -4,14 +4,12 @@ import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-e
 import { PanelBody, RangeControl } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../Components/Title';
+import { Label } from '../../../Components';
 
-// Variables
-import { colors } from '../utils/options';
-const INNER_TEMPLATE = [['b-blocks/section-heading', {}]];
-
-// Icon
 import { sectionIcon } from '../utils/icons';
+import { colors } from '../utils/options';
+
+const INNER_TEMPLATE = [['b-blocks/section-heading', {}]];
 
 registerBlockType('b-blocks/section', {
 	// Build In attributes
@@ -46,23 +44,23 @@ registerBlockType('b-blocks/section', {
 				{/* Section Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Section Settings', 'b-blocks')} initialOpen={true}>
 					{/* Background Color */}
-					<Title>{__('Background Color:', 'b-blocks')}</Title>
+					<Label>{__('Background Color:', 'b-blocks')}</Label>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
 					{/* Padding Top */}
-					<Title>{__('Padding Top:', 'b-blocks')}</Title>
+					<Label>{__('Padding Top:', 'b-blocks')}</Label>
 					<RangeControl value={PT} onChange={cng => setAttributes({ PT: cng })} min={0} max={100} step={1} />
 
 					{/* Padding Right */}
-					<Title>{__('Padding Right:', 'b-blocks')}</Title>
+					<Label>{__('Padding Right:', 'b-blocks')}</Label>
 					<RangeControl value={PR} onChange={cng => setAttributes({ PR: cng })} min={0} max={150} step={1} />
 
 					{/* Padding Bottom */}
-					<Title>{__('Padding Bottom:', 'b-blocks')}</Title>
+					<Label>{__('Padding Bottom:', 'b-blocks')}</Label>
 					<RangeControl value={PB} onChange={cng => setAttributes({ PB: cng })} min={0} max={100} step={1} />
 
 					{/* Padding Left */}
-					<Title>{__('Padding Left:', 'b-blocks')}</Title>
+					<Label>{__('Padding Left:', 'b-blocks')}</Label>
 					<RangeControl value={PL} onChange={cng => setAttributes({ PL: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>

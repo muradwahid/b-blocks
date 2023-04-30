@@ -2,11 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl, TextControl, TabPanel, Dashicon } from '@wordpress/components';
 
-// Variables
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import BtnGroup from '../../../../Components/BtnGroup';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+// Settings Components
+import { Label, BColor, BtnGroup } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { generalStyleTabs } from '../../utils/options';
 const modes = [
@@ -36,7 +34,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Player Settings', 'b-blocks')}>
-						<Title className='mb5'>{__('Lottie Json file url:', 'b-blocks')}</Title>
+						<Label className='mb5'>{__('Lottie Json file url:', 'b-blocks')}</Label>
 						<TextControl value={file} onChange={val => setAttributes({ file: val })} />
 
 						<ToggleControl className='mt20' label={__('Show Controls', 'b-blocks')} checked={isControls} onChange={val => setAttributes({ isControls: val })} />
@@ -48,20 +46,20 @@ const Settings = ({ attributes, setAttributes }) => {
 						<ToggleControl className='mt10' label={__('Enable Hover', 'b-blocks')} checked={isHover} onChange={val => setAttributes({ isHover: val })} />
 
 						<PanelRow className='mt20'>
-							<Title className=''>{__('Mode:', 'b-blocks')}</Title>
+							<Label className=''>{__('Mode:', 'b-blocks')}</Label>
 							<BtnGroup value={mode} onChange={val => setAttributes({ mode: val })} options={modes} />
 						</PanelRow>
 
-						<Title>{__('Count (Set 0 to infinite):', 'b-blocks')}</Title>
+						<Label>{__('Count (Set 0 to infinite):', 'b-blocks')}</Label>
 						<RangeControl value={count} onChange={val => setAttributes({ count: val })} min={0} max={50} step={1} />
 
-						<Title>{__('Speed:', 'b-blocks')}</Title>
+						<Label>{__('Speed:', 'b-blocks')}</Label>
 						<RangeControl value={speed} onChange={val => setAttributes({ speed: val })} min={0.01} max={20} step={.01} />
 
-						<Title>{__('Interval (s):', 'b-blocks')}</Title>
+						<Label>{__('Interval (s):', 'b-blocks')}</Label>
 						<RangeControl value={intermission} onChange={val => setAttributes({ intermission: val })} min={0} max={20} step={.01} />
 
-						<Title className='mb5'>{__('Link the player:', 'lottie-player')}</Title>
+						<Label className='mb5'>{__('Link the player:', 'lottie-player')}</Label>
 						<TextControl value={link} onChange={val => setAttributes({ link: val })} />
 						<small>{__('If you want to link the player, enter the link here. Otherwise, leave as blank.')}</small>
 					</PanelBody>

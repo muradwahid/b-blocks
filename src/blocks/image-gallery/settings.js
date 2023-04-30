@@ -5,14 +5,7 @@ import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleC
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import BtnGroup from '../../../../Components/BtnGroup';
-import BDevice from '../../../../Components/BDevice';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
+import { Label, BColor, BDevice, BorderControl, BtnGroup, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 
 import { aligns } from '../../utils/options';
 
@@ -39,7 +32,7 @@ const Settings = ({ settings, filterImages }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Layouts Settings')}>
 				<PanelRow>
-					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={9} step={1} />
@@ -62,7 +55,7 @@ const Settings = ({ settings, filterImages }) => {
 				<ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
 				<PanelRow className='mt20'>
-					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
+					<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
 					<BtnGroup value={capAlign} onChange={val => setAttributes({ capAlign: val })} options={aligns} isIcon={true} />
 				</PanelRow>
 

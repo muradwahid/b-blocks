@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 // Settings Components
-import { BplMediaPlaceholder } from '../../../../Components/MediaControl';
+import { BplMediaPlaceholder } from '../../../../Components';
 
 import Settings from './Settings';
 import Style from './Style';

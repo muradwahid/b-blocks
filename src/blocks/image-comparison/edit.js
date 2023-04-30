@@ -6,8 +6,8 @@ import { isBlobURL } from '@wordpress/blob';
 const $ = jQuery;
 
 // Settings Components
-import { tabController } from '../../../../Components/Helper/functions';
-import { ImagePlaceholder } from '../../../../Components/ImageControl';
+import { ImagePlaceholder } from '../../../../Components';
+import { tabController } from '../../../../Components/utils/functions';
 
 import Settings from './Settings';
 import Style from './Style';

@@ -6,14 +6,8 @@ import { Dashicon, PanelBody, PanelRow, RangeControl, SelectControl, ToggleContr
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import Background from '../../../../Components/Background';
-import Typography from '../../../../Components/Typography';
-import BDevice from '../../../../Components/BDevice';
-import SpaceControl from '../../../../Components/SpaceControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { layouts, linkPosition } from './utils/options';
 
@@ -52,7 +46,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')}>
 				<PanelRow>
-					<Title className=''>{__('Layout:', 'b-blocks')}</Title>
+					<Label className=''>{__('Layout:', 'b-blocks')}</Label>
 					<SelectControl value={layout} onChange={val => {
 						setAttributes({ layout: val });
 						'default' === val && setAttributes({
@@ -88,7 +82,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				</PanelRow>
 
 				<PanelRow className='mt20'>
-					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -111,7 +105,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				<ShadowControl label={__('Shadow:', 'b-blocks')} value={itemShadow} onChange={val => setAttributes({ itemShadow: val })} defaults={{ blur: '20px', color: '#0000001a' }} />
 
 				<PanelRow className='mt20'>
-					<Title className=''>{__('Link In:', 'b-blocks')}</Title>
+					<Label className=''>{__('Link In:', 'b-blocks')}</Label>
 					<SelectControl value={linkIn} onChange={val => { setChildAttributes({ linkIn: val }); setLinkIn(val); }} options={linkPosition} />
 				</PanelRow>
 			</PanelBody>

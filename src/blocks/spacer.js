@@ -4,7 +4,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../Components/Title';
+import { Label } from '../../../Components';
 
 // Icon
 import { rectangleIcon } from '../utils/icons';
@@ -36,7 +36,7 @@ registerBlockType('b-blocks/spacer', {
 				{/* Spacer Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Spacer Settings', 'b-blocks')} initialOpen={true}>
 					{/* Height/Size */}
-					<Title className=''>{__('Height/Size:', 'b-blocks')}</Title>
+					<Label className=''>{__('Height/Size:', 'b-blocks')}</Label>
 					<RangeControl value={height} onChange={cng => setAttributes({ height: cng })} min={0} max={1000} step={1} />
 				</PanelBody>
 			</InspectorControls>

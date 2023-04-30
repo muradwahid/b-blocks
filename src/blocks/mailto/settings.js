@@ -4,13 +4,7 @@ import { PanelRow, PanelBody, TextControl, SelectControl, Dashicon } from '@word
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import ColorsControl from '../../../../Components/ColorsControl';
-import IconControl from '../../../../Components/IconControl';
-import BorderControl from '../../../../Components/BorderControl';
-import Typography from '../../../../Components/Typography';
-import BtnGroup from '../../../../Components/BtnGroup';
-import SpaceControl from '../../../../Components/SpaceControl';
+import { Label, BorderControl, BtnGroup, ColorsControl, IconControl, SpaceControl, Typography } from '../../../../Components';
 
 const mailtoStyles = [
 	{ label: 'Default', value: 'default' },
@@ -39,11 +33,11 @@ const Settings = ({ settings }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Mail Settings', 'b-blocks')}>
-				<Title className=''>{__('E-mail Address:', 'b-blocks')}</Title>
+				<Label className=''>{__('E-mail Address:', 'b-blocks')}</Label>
 				<TextControl value={receiverMail} onChange={val => setAttributes({ receiverMail: val })} placeholder={__('Email Address', 'b-blocks')} />
 
 				<PanelRow className='mt20'>
-					<Title className=''>{__('Style:', 'b-blocks')}</Title>
+					<Label className=''>{__('Style:', 'b-blocks')}</Label>
 					<SelectControl value={style} onChange={val => {
 						setAttributes({ style: val });
 
@@ -89,7 +83,7 @@ const Settings = ({ settings }) => {
 				<IconControl value={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa fa-paper-plane' }} isSize={false} isColor={false} />
 
 				<PanelRow className='mt20'>
-					<Title className='mb5'>{__('Position:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Position:', 'b-blocks')}</Label>
 					<BtnGroup value={iconPosition} onChange={val => setAttributes({ iconPosition: val })} options={[
 						{ label: 'Left', value: 'left', icon: 'LEFT' },
 						{ label: 'Right', value: 'right', icon: 'RIGHT' }

@@ -5,17 +5,9 @@ import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitCon
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import Background from '../../../../Components/Background';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import BDevice from '../../../../Components/BDevice';
-import IconControl from '../../../../Components/IconControl';
-import Typography from '../../../../Components/Typography';
-import SeparatorControl from '../../../../Components/SeparatorControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, IconControl, InlineDetailMediaUpload, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 
 const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setActiveIndex }) => {
@@ -85,7 +77,7 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 						<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateFeature('isUpIcon', val)} />
 
 						{isUpIcon ? <>
-							<Title>{__('Icon:', 'b-blocks')}</Title>
+							<Label>{__('Icon:', 'b-blocks')}</Label>
 							<InlineDetailMediaUpload value={upIcon} onChange={val => updateFeature('upIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
 
 							<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => updateFeature('iconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
@@ -114,7 +106,7 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />

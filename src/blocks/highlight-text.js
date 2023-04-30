@@ -4,13 +4,10 @@ import { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentTool
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../Components/Title';
+import { Label } from '../../../Components';
 
-// Variables
-import { fontSizes, colors } from '../utils/options';
-
-// Icons
 import { paintIcon } from '../utils/icons';
+import { fontSizes, colors } from '../utils/options';
 
 registerBlockType('b-blocks/highlight-text', {
 	// Build In attributes
@@ -46,15 +43,15 @@ registerBlockType('b-blocks/highlight-text', {
 				{/* Highlight Text Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Highlight Text Settings', 'b-blocks')} initialOpen={true}>
 					{/* Font Size */}
-					<Title className=''>{__('Font Size:', 'b-blocks')}</Title>
+					<Label className=''>{__('Font Size:', 'b-blocks')}</Label>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontS} onChange={cng => setAttributes({ fontS: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Color */}
-					<Title>{('Color:', 'b-blocks')}</Title>
+					<Label>{('Color:', 'b-blocks')}</Label>
 					<ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
 
 					{/* Background Color */}
-					<Title>{('Background Color:', 'b-blocks')}</Title>
+					<Label>{('Background Color:', 'b-blocks')}</Label>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 				</PanelBody>
 			</InspectorControls>

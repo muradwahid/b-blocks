@@ -6,9 +6,7 @@ import { isBlobURL } from '@wordpress/blob';
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import IconControl from '../../../../Components/IconControl';
-import { ImagePlaceholder } from '../../../../Components/ImageControl';
+import { Label, IconControl, ImagePlaceholder } from '../../../../Components';
 
 import Settings from './Settings';
 import Style from './Style';
@@ -74,7 +72,7 @@ const Edit = props => {
 							</ul>}
 
 							{(null !== selectedSocial && index === activeIndex) && <div className='socialAction memberSocialForm'>
-								<Title className='mb5'>{__('Link:', 'b-blocks')}</Title>
+								<Label className='mb5'>{__('Link:', 'b-blocks')}</Label>
 								<InputControl value={social[selectedSocial]?.link} onChange={val => updateMember(index, 'social', val, selectedSocial, 'link')} />
 
 								<IconControl value={social[selectedSocial]?.icon} onChange={val => updateMember(index, 'social', val, selectedSocial, 'icon')} defaults={{ class: 'fab fa-facebook-f', fontSize: 22 }} isSize={false} isColor={false} />

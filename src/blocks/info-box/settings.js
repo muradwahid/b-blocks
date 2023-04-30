@@ -4,16 +4,8 @@ import { PanelBody, PanelRow, ToggleControl, __experimentalUnitControl as UnitCo
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import Background from '../../../../Components/Background';
-import ColorsControl from '../../../../Components/ColorsControl';
-import IconControl from '../../../../Components/IconControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 const Settings = ({ settings }) => {
 	const { attributes: { infoBoxAlign, textAlign, width, background, padding, border, shadow, isIcon, icon, iconMargin, titleTypo, titleColor, titleMargin, isDesc, descTypo, descColor, descMargin, isBtn, btnLink, isLinkNewTab, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes } = settings;
@@ -85,7 +77,7 @@ const Settings = ({ settings }) => {
 
 				{isBtn && <>
 					<PanelRow>
-						<Title className=''>{__('Button Link:', 'b-blocks')}</Title>
+						<Label className=''>{__('Button Link:', 'b-blocks')}</Label>
 						<TextControl value={btnLink} onChange={val => setAttributes({ btnLink: val })} placeholder={__('Button link', 'b-blocks')} />
 					</PanelRow>
 

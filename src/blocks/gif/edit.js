@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl, Dashicon } from '@wordpress/components';
 
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 const Edit = props => {
 	const { className, attributes: { gif, gifAlign, gifWidth }, setAttributes, clientId } = props;

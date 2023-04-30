@@ -3,7 +3,10 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
+import { Label, BtnGroup } from '../../../Components';
+
+import { selectionIcon } from '../utils/icons';
 import { colors } from '../utils/options';
 
 const userSelect = [
@@ -11,13 +14,6 @@ const userSelect = [
 	{ label: __('All', 'b-blocks'), value: 'all', icon: 'ALL' },
 	{ label: __('None', 'b-blocks'), value: 'none', icon: 'NONE' },
 ];
-
-// Settings Components
-import Title from '../../../Components/Title';
-import BtnGroup from '../../../Components/BtnGroup';
-
-// Icon
-import { selectionIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/selection', {
 	// Build In attributes
@@ -52,19 +48,19 @@ registerBlockType('b-blocks/selection', {
 				{/* Selection Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Selection Settings', 'b-blocks')} initialOpen={true}>
 					{/* Selection */}
-					<Title className=''>{__('Selection:', 'b-blocks')}</Title>
+					<Label className=''>{__('Selection:', 'b-blocks')}</Label>
 					<BtnGroup options={userSelect} myValue={selection} setState={cng => setAttributes({ selection: cng })} />
 
 					{/* Background Color */}
-					<Title>{__('Background Color:', 'b-blocks')}</Title>
+					<Label>{__('Background Color:', 'b-blocks')}</Label>
 					<ColorPalette value={BGColor} onChange={cng => setAttributes({ BGColor: cng })} colors={colors} />
 
 					{/* Padding Top Bottom */}
-					<Title>{__('Padding Top Bottom:', 'b-blocks')}</Title>
+					<Label>{__('Padding Top Bottom:', 'b-blocks')}</Label>
 					<RangeControl value={selectionPTB} onChange={cng => setAttributes({ selectionPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Padding Left Right */}
-					<Title>{__('Padding Left Right:', 'b-blocks')}</Title>
+					<Label>{__('Padding Left Right:', 'b-blocks')}</Label>
 					<RangeControl value={selectionPLR} onChange={cng => setAttributes({ selectionPLR: cng })} min={0} max={150} step={1} />
 				</PanelBody>
 			</InspectorControls>

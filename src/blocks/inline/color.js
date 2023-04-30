@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 
-// Variables
 import { colors } from '../../utils/options';
 
 const allOptions = [

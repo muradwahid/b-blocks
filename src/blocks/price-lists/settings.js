@@ -5,18 +5,9 @@ import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitCon
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import Background from '../../../../Components/Background';
-import SeparatorControl from '../../../../Components/SeparatorControl';
-import BorderControl from '../../../../Components/BorderControl';
-import { ChangeImageData } from '../../../../Components/ImageControl';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import BDevice from '../../../../Components/BDevice';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, BorderControl, ChangeImageData, InlineDetailMediaUpload, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
 
@@ -83,7 +74,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 
 					<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateProduct('background', val)} />
 
-					<Title>{__('Image:', 'b-blocks')}</Title>
+					<Label>{__('Image:', 'b-blocks')}</Label>
 					<InlineDetailMediaUpload value={img} onChange={val => updateProduct('img', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
 					<ChangeImageData className='mt20' value={img} onChange={val => updateProduct('img', val)} />
 
@@ -112,7 +103,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title className='mb5'>{__('Layout:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Layout:', 'b-blocks')}</Label>
 					<ButtonGroup className='bPlBtnGroup'>
 						<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
 							<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => {
@@ -141,7 +132,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 				</PanelRow>
 
 				<PanelRow className='mt20'>
-					<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />

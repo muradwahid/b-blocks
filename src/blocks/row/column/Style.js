@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId, isBackend }) => {
 	const { width, overflow, background, padding, border, shadow } = attributes;

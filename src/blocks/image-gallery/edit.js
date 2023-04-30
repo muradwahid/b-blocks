@@ -4,7 +4,7 @@ import { MediaUpload } from '@wordpress/block-editor';
 import { withNotices, Button, Placeholder } from '@wordpress/components';
 
 // Components CSS
-import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 import Settings from './Settings';
 

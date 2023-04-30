@@ -4,12 +4,7 @@ import { BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, SelectControl, Toolbar, Button } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../../Components/Title';
-import BDevice from '../../../../../Components/BDevice';
-import Background from '../../../../../Components/Background';
-import SpaceControl from '../../../../../Components/SpaceControl';
-import BorderControl from '../../../../../Components/BorderControl';
-import ShadowControl from '../../../../../Components/ShadowControl';
+import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl } from '../../../../../Components';
 
 import { overflows } from '../utils/options';
 
@@ -25,7 +20,7 @@ const Settings = props => {
 		<InspectorControls>
 			<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
 				<PanelRow>
-					<Title className='mb5'>{__('Width (%):', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Width (%):', 'b-blocks')}</Label>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
 				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={10} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
@@ -34,7 +29,7 @@ const Settings = props => {
 
 			<PanelBody className='bPlPanelBody' title={__('Column', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+					<Label className=''>{__('Columns Vertical Position:', 'b-blocks')}</Label>
 					<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 				</PanelRow>
 

@@ -4,14 +4,8 @@ import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, Sel
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import IconControl from '../../../../Components/IconControl';
-import ColorsControl from '../../../../Components/ColorsControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import Typography from '../../../../Components/Typography';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 const types = [
 	{ label: __('General', 'b-b-blocks'), value: 'general' },
@@ -42,7 +36,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Alert Settings', 'b-blocks')}>
 				<PanelRow>
-					<Title className=''>{__('Type:', 'b-blocks')}</Title>
+					<Label className=''>{__('Type:', 'b-blocks')}</Label>
 					<SelectControl value={type} onChange={val => {
 						setAttributes({ type: val });
 						'general' === val && setAttributes({

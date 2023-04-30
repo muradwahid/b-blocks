@@ -5,18 +5,10 @@ import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimen
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import BtnGroup from '../../../../Components/BtnGroup';
-import Background from '../../../../Components/Background';
-import BorderControl from '../../../../Components/BorderControl';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import BDevice from '../../../../Components/BDevice';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
-import { tabController } from '../../../../Components/Helper/functions';
+import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { tabController } from '../../../../Components/utils/functions';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
 import { generalStyleTabs } from '../../utils/options';
@@ -89,7 +81,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 							<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateCard('background', val)} />
 
-							<Title>{__('Image:', 'b-blocks')}</Title>
+							<Label>{__('Image:', 'b-blocks')}</Label>
 							<InlineDetailMediaUpload value={img} onChange={val => updateCard('img', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
 
 							<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateCard('imgBorder', val)} defaults={{ radius: '5px' }} />
@@ -115,7 +107,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className='mb5'>{__('Layout:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Layout:', 'b-blocks')}</Label>
 							<ButtonGroup className='bPlBtnGroup'>
 								<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
 									<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
@@ -138,7 +130,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</PanelRow>
 
 						<PanelRow className='mt20'>
-							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -151,7 +143,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Elements Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className='mb5'>{__('Image Position:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Image Position:', 'b-blocks')}</Label>
 							<BtnGroup value={imgPos} onChange={val => setAttributes({ imgPos: val })} options={[
 								{ label: 'vertical' == layout ? 'Top' : 'Left', value: 'top', icon: 'vertical' == layout ? 'TOP' : 'LEFT' },
 								{ label: 'vertical' == layout ? 'Bottom' : 'Right', value: 'bottom', icon: 'vertical' == layout ? 'BOTTOM' : 'RIGHT' }
@@ -163,7 +155,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						<ToggleControl className='mt20' label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
 						{isTitle && <PanelRow>
-							<Title className=''>{__('Title Position:', 'b-blocks')}</Title>
+							<Label className=''>{__('Title Position:', 'b-blocks')}</Label>
 							<BtnGroup value={titlePos} onChange={val => setAttributes({ titlePos: val })} options={[
 								{ label: 'Image', value: 'image', icon: 'IMAGE' },
 								{ label: 'Content', value: 'content', icon: 'CONTENT' }

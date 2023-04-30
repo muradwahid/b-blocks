@@ -5,18 +5,12 @@ import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton,
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BDevice from '../../../../Components/BDevice';
-import Background from '../../../../Components/Background';
-import BColor from '../../../../Components/BColor';
-import BorderControl from '../../../../Components/BorderControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import ColorsControl from '../../../../Components/ColorsControl';
-import Typography from '../../../../Components/Typography';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../Components/utils/options';
 
 import { sliderEffects } from '../../utils/options';
+
 const generalStyleTabs = [
 	{ name: 'general', title: __('General', 'b-blocks') },
 	{ name: 'options', title: __('Options', 'b-blocks') },
@@ -100,30 +94,30 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 								<Background label={__('Background', 'b-blocks')} value={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
 
 								<PanelRow>
-									<Title className=''>{__('Content Position', 'b-blocks')}</Title>
+									<Label className=''>{__('Content Position', 'b-blocks')}</Label>
 									<AlignmentMatrixControl onChange={val => updateSlide(index, 'position', val)} />
 								</PanelRow>
 								<small>{__('You can also change the content position by dragging element.', 'b-blocks')}</small>
 
 								<PanelRow className='mt20'>
-									<Title className=''>{__('Title:', 'b-blocks')}</Title>
+									<Label className=''>{__('Title:', 'b-blocks')}</Label>
 									<TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
 								</PanelRow>
 
 								<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateSlide(index, 'titleColor', val)} defaultColor='#fff' />
 
-								<Title>{__('Description:', 'b-blocks')}</Title>
+								<Label>{__('Description:', 'b-blocks')}</Label>
 								<TextareaControl value={description} onChange={val => updateSlide(index, 'description', val)} placeholder={__('Description of the slider', 'b-blocks')} />
 
 								<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateSlide(index, 'descColor', val)} defaultColor='#fff' />
 
 								<PanelRow className='mt20'>
-									<Title className=''>{__('Button Text:', 'b-blocks')}</Title>
+									<Label className=''>{__('Button Text:', 'b-blocks')}</Label>
 									<TextControl value={btnText} onChange={val => updateSlide(index, 'btnText', val)} placeholder={__('Button label', 'b-blocks')} />
 								</PanelRow>
 
 								<PanelRow>
-									<Title className=''>{__('Button Link:', 'b-blocks')}</Title>
+									<Label className=''>{__('Button Link:', 'b-blocks')}</Label>
 									<TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
 								</PanelRow>
 
@@ -147,12 +141,12 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
-						<Title>{__('Column Gap:', 'b-blocks')}</Title>
+						<Label>{__('Column Gap:', 'b-blocks')}</Label>
 						<RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={250} step={1} beforeIcon='arrow-right-alt' />
 
 						<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={sliderWidth} onChange={val => setAttributes({ sliderWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
@@ -168,7 +162,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 
 						<ToggleControl className='mt10' label={__('Enable Touch Move', 'b-blocks')} checked={isTouchMove} onChange={val => setAttributes({ isTouchMove: val })} />
 
-						<Title>{__('Speed & Delay (s):', 'b-blocks')}</Title>
+						<Label>{__('Speed & Delay (s):', 'b-blocks')}</Label>
 						<RangeControl value={speed} onChange={val => setAttributes({ speed: val })} min={0} max={10} step={.05} />
 						<small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
 					</PanelBody>
@@ -181,7 +175,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Effects', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className=''>{__('Effect:', 'b-blocks')}</Title>
+							<Label className=''>{__('Effect:', 'b-blocks')}</Label>
 							<SelectControl value={effect} onChange={val => setAttributes({ effect: val })} options={sliderEffects} />
 						</PanelRow>
 						<small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>

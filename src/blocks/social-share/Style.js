@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getIconCSS, getShadowCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getIconCSS, getShadowCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { socials, alignment, background, size, padding, margin, border, shadow } = attributes;

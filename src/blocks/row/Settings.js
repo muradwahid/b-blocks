@@ -3,14 +3,11 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import Background from '../../../../Components/Background';
-import SpaceControl from '../../../../Components/SpaceControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import { pxUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BorderControl, ShadowControl, SpaceControl } from '../../../../Components';
+import { pxUnit, emUnit, vhUnit } from '../../../../Components/utils/options';
 
 import { overflows } from './utils/options';
+
 const heightTypes = [
 	{ label: __('Auto', 'b-blocks'), value: 'auto' },
 	{ label: __('Window Height (100%)', 'b-blocks'), value: 'window' },
@@ -44,7 +41,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			<UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit()]} />
 
 			<PanelRow className='mt20'>
-				<Title className=''>{__('Height:', 'b-blocks')}</Title>
+				<Label className=''>{__('Height:', 'b-blocks')}</Label>
 				<SelectControl value={heightType} onChange={val => {
 					setAttributes({ heightType: val, height: 'window' === val ? '100vh' : 'auto' === val ? 'auto' : 'initial' })
 				}} options={heightTypes} />
@@ -53,12 +50,12 @@ const Settings = ({ attributes, setAttributes }) => {
 			{'custom' === heightType && <UnitControl className='mt10' label={__('Min Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit(), emUnit(), vhUnit()]} />}
 
 			<PanelRow className='mt20'>
-				<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+				<Label className=''>{__('Columns Vertical Position:', 'b-blocks')}</Label>
 				<SelectControl value={columnPositionY} onChange={val => setAttributes({ columnPositionY: val })} options={positions('y')} />
 			</PanelRow>
 
 			<PanelRow className='mt10'>
-				<Title className=''>{__('Columns Horizontal Position:', 'b-blocks')}</Title>
+				<Label className=''>{__('Columns Horizontal Position:', 'b-blocks')}</Label>
 				<SelectControl value={columnPositionX} onChange={val => setAttributes({ columnPositionX: val })} options={positions('x')} />
 			</PanelRow>
 		</PanelBody>
@@ -66,7 +63,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 		<PanelBody className='bPlPanelBody' title={__('Row Style', 'b-blocks')} initialOpen={false}>
 			<PanelRow>
-				<Title className=''>{__('Columns Vertical Position:', 'b-blocks')}</Title>
+				<Label className=''>{__('Columns Vertical Position:', 'b-blocks')}</Label>
 				<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 			</PanelRow>
 

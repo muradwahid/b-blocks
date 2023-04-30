@@ -4,21 +4,18 @@ import { useEffect } from 'react';
 import { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPanel, TextControl, SelectControl } from '@wordpress/components';
 
-// Variables
+// Settings Components
+import { Label, BtnGroup } from '../../../Components';
+
+import { modalIcon } from '../utils/icons';
 import { normalHoverTabs, fontSizes, hTags, colors, aligns, fontWeights, textTransforms } from '../utils/options';
+
 const modalSizes = [
 	{ label: __('Small', 'b-blocks'), value: 'modal-sm', icon: 'SM' },
 	{ label: __('Default', 'b-blocks'), value: '', icon: 'DF' },
 	{ label: __('Large', 'b-blocks'), value: 'modal-lg', icon: 'LG' },
 	{ label: __('Extra Large', 'b-blocks'), value: 'modal-xl', icon: 'XL' },
 ];
-
-// Settings Components
-import Title from '../../../Components/Title';
-import BtnGroup from '../../../Components/BtnGroup';
-
-// Icon
-import { modalIcon } from '../utils/icons';
 
 registerBlockType('b-blocks/modal', {
 	// Build In attributes
@@ -99,75 +96,75 @@ registerBlockType('b-blocks/modal', {
 				{/* Modal Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Modal Settings', 'b-blocks')} initialOpen={true}>
 					{/* Fade Effect */}
-					<Title className=''>{__('Fade Effect:', 'b-blocks')}</Title>
+					<Label className=''>{__('Fade Effect:', 'b-blocks')}</Label>
 					<ToggleControl label={modalFade ? 'Disable Fade Effect' : 'Enable Fade Effect'} checked={modalFade} onChange={cng => setAttributes({ modalFade: cng })} />
 
 					{/* Static Backdrop */}
-					<Title>{__('Static Backdrop:', 'b-blocks')}</Title>
+					<Label>{__('Static Backdrop:', 'b-blocks')}</Label>
 					<ToggleControl label={modalStaticBackdrop ? 'Disable Static Backdrop' : 'Enable Static Backdrop'} help={modalStaticBackdrop ? 'The modal will not close when clicking outside' : 'The modal will close when clicking outside'} checked={modalStaticBackdrop} onChange={cng => setAttributes({ modalStaticBackdrop: cng })} />
 
 					{/* Scrollable */}
-					<Title>{__('Scrollable:', 'b-blocks')}</Title>
+					<Label>{__('Scrollable:', 'b-blocks')}</Label>
 					<ToggleControl label={modalScrollable ? 'Disable Modal Dialog Scrollable' : 'Enable Modal Dialog Scrollable'} checked={modalScrollable} onChange={cng => setAttributes({ modalScrollable: cng })} />
 
 					{/* Vertically Center */}
-					<Title>{__('Vertically Center:', 'b-blocks')}</Title>
+					<Label>{__('Vertically Center:', 'b-blocks')}</Label>
 					<ToggleControl label={modalVCenter ? 'Disable Vertically Centered' : 'Enable Vertically Centered'} checked={modalVCenter} onChange={cng => setAttributes({ modalVCenter: cng })} />
 
 					{/* Modal Size */}
-					<Title>{__('Modal Size:', 'b-blocks')}</Title>
+					<Label>{__('Modal Size:', 'b-blocks')}</Label>
 					<BtnGroup options={modalSizes} myValue={modalSize} setState={cng => setAttributes({ modalSize: cng })} />
 				</PanelBody>
 
 
 				<PanelBody className='bBlocksPanelBody' title={__('Modal Button Settings', 'b-blocks')} initialOpen={false}>
 					{/* Button Align */}
-					<Title className=''>{__('Button Align:', 'b-blocks')}</Title>
+					<Label className=''>{__('Button Align:', 'b-blocks')}</Label>
 					<BtnGroup options={aligns} myValue={modalBtnAlign} setState={cng => setAttributes({ modalBtnAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					<Title>{__('Font Size:', 'b-blocks')}</Title>
+					<Label>{__('Font Size:', 'b-blocks')}</Label>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={modalBtnFontSize} onChange={cng => setAttributes({ modalBtnFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Text Transform */}
-					<Title>{__('Text Transform:', 'b-blocks')}</Title>
+					<Label>{__('Text Transform:', 'b-blocks')}</Label>
 					<BtnGroup options={textTransforms} myValue={modalBtnTransform} setState={cng => setAttributes({ modalBtnTransform: cng })} />
 
 					{/* Font Weight */}
-					<Title>{__('Font Weight:', 'b-blocks')}</Title>
+					<Label>{__('Font Weight:', 'b-blocks')}</Label>
 					<SelectControl value={modalBtnFontWeight} onChange={cng => setAttributes({ modalBtnFontWeight: cng })} options={fontWeights} />
 
 					{/* Top Bottom Padding */}
-					<Title>{__('Top Bottom Padding:', 'b-blocks')}</Title>
+					<Label>{__('Top Bottom Padding:', 'b-blocks')}</Label>
 					<RangeControl value={modalBtnPTB} onChange={cng => setAttributes({ modalBtnPTB: cng })} min={0} max={100} step={1} />
 
 					{/* Left Right Padding */}
-					<Title>{__('Left Right Padding:', 'b-blocks')}</Title>
+					<Label>{__('Left Right Padding:', 'b-blocks')}</Label>
 					<RangeControl value={modalBtnPLR} onChange={cng => setAttributes({ modalBtnPLR: cng })} min={0} max={150} step={1} />
 
 					{/* Border Radius */}
-					<Title>{__('Border Radius:', 'b-blocks')}</Title>
+					<Label>{__('Border Radius:', 'b-blocks')}</Label>
 					<RangeControl value={modalBtnRadius} onChange={cng => setAttributes({ modalBtnRadius: cng })} min={0} max={50} step={1} />
 
-					<Title>{__('Colors:', 'b-blocks')}</Title>
+					<Label>{__('Colors:', 'b-blocks')}</Label>
 					<TabPanel className='bBlocksTabPanel' activeClass='activeTab' tabs={normalHoverTabs}>{tab => <>
 						{'normal' == tab.name && <>
 							{/* Color */}
-							<Title>{__('Color:', 'b-blocks')}</Title>
+							<Label>{__('Color:', 'b-blocks')}</Label>
 							<ColorPalette value={modalBtnColor} onChange={cng => setAttributes({ modalBtnColor: cng })} colors={colors} />
 
 							{/* Background Color */}
-							<Title>{__('Background Color:', 'b-blocks')}</Title>
+							<Label>{__('Background Color:', 'b-blocks')}</Label>
 							<ColorPalette value={modalBtnBGColor} onChange={cng => setAttributes({ modalBtnBGColor: cng })} colors={colors} />
 						</>}
 
 						{'hover' == tab.name && <>
 							{/* Hover Color */}
-							<Title>{__('Hover Color:', 'b-blocks')}</Title>
+							<Label>{__('Hover Color:', 'b-blocks')}</Label>
 							<ColorPalette value={modalBtnHovColor} onChange={cng => setAttributes({ modalBtnHovColor: cng })} colors={colors} />
 
 							{/* Hover Background Color */}
-							<Title>{__('Hover Background Color:', 'b-blocks')}</Title>
+							<Label>{__('Hover Background Color:', 'b-blocks')}</Label>
 							<ColorPalette value={modalBtnHovBGColor} onChange={cng => setAttributes({ modalBtnHovBGColor: cng })} colors={colors} />
 						</>}
 					</>}</TabPanel>
@@ -179,24 +176,24 @@ registerBlockType('b-blocks/modal', {
 
 					{modalHead && <>
 						{/* Close Button in Header */}
-						<Title>{__('Close Button in Header:', 'b-blocks')}</Title>
+						<Label>{__('Close Button in Header:', 'b-blocks')}</Label>
 						<ToggleControl label={modalHeadClose ? 'Hide Close Button in Header' : 'Show Close Button in Header'} checked={modalHeadClose} onChange={cng => setAttributes({ modalHeadClose: cng })} />
 
 						{/* Heading */}
-						<Title>{__('Heading:', 'b-blocks')}</Title>
+						<Label>{__('Heading:', 'b-blocks')}</Label>
 						<ToggleControl label={headingShow ? 'Hide Heading' : 'Show Heading'} checked={headingShow} onChange={cng => setAttributes({ headingShow: cng })} />
 
 						{headingShow && <>
 							{/* Heading Tag */}
-							<Title className=''>{__('Heading Tag:', 'b-blocks')}</Title>
+							<Label className=''>{__('Heading Tag:', 'b-blocks')}</Label>
 							<BtnGroup options={hTags} myValue={headingTag} setState={(cng, def) => setAttributes({ headingTag: cng, headingFontSize: def })} />
 
 							{/* Heading Font Size */}
-							<Title>{__('Heading Font Size:', 'b-blocks')}</Title>
+							<Label>{__('Heading Font Size:', 'b-blocks')}</Label>
 							<FontSizePicker fontSizes={fontSizes} fallbackFontSize={25} value={headingFontSize} onChange={cng => setAttributes({ headingFontSize: 'undefined' === typeof cng ? 25 : cng })} />
 
 							{/* Heading Color */}
-							<Title>{__('Heading Color:', 'b-blocks')}</Title>
+							<Label>{__('Heading Color:', 'b-blocks')}</Label>
 							<ColorPalette value={headingColor} onChange={cng => setAttributes({ headingColor: cng })} colors={colors} />
 						</>}
 					</>}
@@ -207,15 +204,15 @@ registerBlockType('b-blocks/modal', {
 
 					{modalFoot && <>
 						{/* Footer Text Font Size */}
-						<Title>{__('Footer Text Font Size:', 'b-blocks')}</Title>
+						<Label>{__('Footer Text Font Size:', 'b-blocks')}</Label>
 						<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={footerTextFontSize} onChange={cng => setAttributes({ footerTextFontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
 						{/* Footer Text Color */}
-						<Title>{__('Footer Text Color:', 'b-blocks')}</Title>
+						<Label>{__('Footer Text Color:', 'b-blocks')}</Label>
 						<ColorPalette value={footerTextColor} onChange={cng => setAttributes({ footerTextColor: cng })} colors={colors} />
 
 						{/* Close Button in Footer */}
-						<Title>{__('Close Button in Footer:', 'b-blocks')}</Title>
+						<Label>{__('Close Button in Footer:', 'b-blocks')}</Label>
 						<ToggleControl label={modalFootClose ? 'Hide Close Button in Footer' : 'Show Close Button in Footer'} checked={modalFootClose} onChange={cng => setAttributes({ modalFootClose: cng })} />
 					</>}
 				</PanelBody>

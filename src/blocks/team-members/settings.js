@@ -5,21 +5,9 @@ import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimen
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BtnGroup from '../../../../Components/BtnGroup';
-import BColor from '../../../../Components/BColor';
-import Background from '../../../../Components/Background';
-import ColorsControl from '../../../../Components/ColorsControl';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import { ChangeImageData } from '../../../../Components/ImageControl';
-import BDevice from '../../../../Components/BDevice';
-import BorderControl from '../../../../Components/BorderControl';
-import MultiShadowControl from '../../../../Components/MultiShadowControl';
-import Typography from '../../../../Components/Typography';
-import SeparatorControl from '../../../../Components/SeparatorControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, ColorsControl, ChangeImageData, InlineDetailMediaUpload, MultiShadowControl, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
 import { generalStyleTabs } from '../../utils/options';
@@ -129,7 +117,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 							<MultiShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => updateMember(activeIndex, 'shadow', val)} produce={produce} />
 
-							<Title>{__('Photo:', 'team-section')}</Title>
+							<Label>{__('Photo:', 'team-section')}</Label>
 							<InlineDetailMediaUpload value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} placeholder={__('Enter Image URL', 'team-section')} />
 							<ChangeImageData className='mt20' value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} />
 
@@ -160,7 +148,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -170,7 +158,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
 						<PanelRow className='mt20'>
-							<Title className=''>{__('Layout:', 'b-blocks')}</Title>
+							<Label className=''>{__('Layout:', 'b-blocks')}</Label>
 							<BtnGroup value={layout} onChange={val => {
 								setAttributes({ layout: val });
 								'vertical' === val && setAttributes({
@@ -187,7 +175,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 						</PanelRow>
 
 						<PanelRow>
-							<Title className=''>{__('Theme:', 'b-blocks')}</Title>
+							<Label className=''>{__('Theme:', 'b-blocks')}</Label>
 							<SelectControl value={theme} onChange={val => {
 								setAttributes({ theme: val });
 								'default' === val && setAttributes({

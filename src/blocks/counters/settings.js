@@ -5,20 +5,11 @@ import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import Background from '../../../../Components/Background';
-import IconControl from '../../../../Components/IconControl';
-import BDevice from '../../../../Components/BDevice';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, BorderControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { generalStyleTabs } from '../../utils/options';
-
 import { iconPositions, themes } from './utils/options';
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCounter }) => {
@@ -101,12 +92,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							<NumberControl label={__('End Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter('number', parseFloat(val), 'end')} />
 
 							<PanelRow>
-								<Title className=''>{__('Prefix:', 'b-blocks')}</Title>
+								<Label className=''>{__('Prefix:', 'b-blocks')}</Label>
 								<TextControl value={number.prefix} onChange={val => updateCounter('number', val, 'prefix')} />
 							</PanelRow>
 
 							<PanelRow>
-								<Title className=''>{__('Suffix:', 'b-blocks')}</Title>
+								<Label className=''>{__('Suffix:', 'b-blocks')}</Label>
 								<TextControl value={number.suffix} onChange={val => updateCounter('number', val, 'suffix')} />
 							</PanelRow>
 
@@ -129,7 +120,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className=''>{__('Theme:', 'b-blocks')}</Title>
+							<Label className=''>{__('Theme:', 'b-blocks')}</Label>
 							<SelectControl value={theme} onChange={val => {
 								setAttributes({ theme: val });
 								'default' === val && setAttributes({
@@ -202,7 +193,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						</PanelRow>
 
 						<PanelRow className='mt20'>
-							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
@@ -222,11 +213,11 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 					<PanelBody className='bPlPanelBody' title={__('Counter Elements', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
 
-						<Title>{__('Icon Size:', 'b-blocks')}</Title>
+						<Label>{__('Icon Size:', 'b-blocks')}</Label>
 						<RangeControl value={iconSize} onChange={val => setAttributes({ iconSize: val })} min={0} max={400} step={1} allowReset={true} resetFallbackValue={50} initialPosition={50} />
 
 						<PanelRow className='mt10'>
-							<Title className=''>{__('Icon Position:', 'b-blocks')}</Title>
+							<Label className=''>{__('Icon Position:', 'b-blocks')}</Label>
 							<SelectControl value={iconPosition} onChange={val => {
 								setAttributes({ iconPosition: val });
 								'top' === val && setAttributes({ iconSize: 50 });

@@ -6,20 +6,12 @@ import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeContr
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import ShadowControl from '../../../../Components/ShadowControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ColorsControl from '../../../../Components/ColorsControl';
-import IconControl from '../../../../Components/IconControl';
-import Background from '../../../../Components/Background';
-import BDevice from '../../../../Components/BDevice';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { generalStyleTabs } from '../../utils/options';
+
 const frontBackTab = [
 	{ name: 'front', title: __('Front', 'b-blocks') },
 	{ name: 'back', title: __('Back', 'b-blocks') }
@@ -135,14 +127,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Front Title', 'b-blocks')} initialOpen={false}>
-										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
+										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextControl value={frontTitle} onChange={val => updateFlipBox('frontTitle', val)} />
 
 										<BColor label={__('Color:', 'b-blocks')} value={frontTitleColor} onChange={val => updateFlipBox('frontTitleColor', val)} defaultColor='#fff' />
 									</PanelBody>
 
 									<PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
+										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextareaControl value={desc} onChange={val => updateFlipBox('desc', val)} />
 
 										<BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox('descColor', val)} defaultColor='#fff' />
@@ -159,17 +151,17 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Back Title', 'b-blocks')} initialOpen={false}>
-										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
+										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextControl value={backTitle} onChange={val => updateFlipBox('backTitle', val)} />
 
 										<BColor label={__('Color:', 'b-blocks')} value={backTitleColor} onChange={val => updateFlipBox('backTitleColor', val)} defaultColor='#fff' />
 									</PanelBody>
 
 									<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
-										<Title className='mb5'>{__('Text:', 'b-blocks')}</Title>
+										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextControl value={btn} onChange={val => updateFlipBox('btn', val)} />
 
-										<Title>{__('Link:', 'b-blocks')}</Title>
+										<Label>{__('Link:', 'b-blocks')}</Label>
 										<TextControl value={btnLink} onChange={val => updateFlipBox('btnLink', val)} />
 
 										<BorderControl label={__('Border:', 'b-blocks')} value={btnBorder} onChange={val => updateFlipBox('btnBorder', val)} defaults={{ radius: '3px' }} />
@@ -196,7 +188,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />

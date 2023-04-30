@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 
 // Components
-import { getBackgroundCSS, getBorderCSS, getColorsCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 import Settings from './Settings';
 

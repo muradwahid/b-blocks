@@ -3,9 +3,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import { InlineMediaUpload } from '../../../../Components/MediaControl';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, InlineMediaUpload } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { source, poster, controls, width, radius, repeat, autoplay, muted, resetOnEnd, autoHideControl } = attributes;
@@ -25,7 +24,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			{ name: 'style', title: __('Style', 'b-blocks') }
 		]}>{tab => <>
 			{'settings' === tab.name && <>
-				<Title className='' />
+				<Label className='' />
 				<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 					{/* <div className='helpItem'>
 						<a href='https://bblockswp.com/docs/video-player-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>

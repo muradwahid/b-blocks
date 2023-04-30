@@ -7,21 +7,12 @@ import SelectPure from 'select-pure';
 import produce from 'immer';
 
 // Settings Components
-import BDevice from '../../../../Components/BDevice';
-import Background from '../../../../Components/Background';
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import BorderControl from '../../../../Components/BorderControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import SelectPureControl from '../../../../Components/SelectPureControl';
-import ColorsControl from '../../../../Components/ColorsControl';
-import Typography from '../../../../Components/Typography';
-import BtnGroup from '../../../../Components/BtnGroup';
-import { pxUnit, emUnit, vhUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, ColorsControl, SelectPureControl, SpaceControl, Typography } from '../../../../Components';
+import { pxUnit, emUnit, vhUnit } from '../../../../Components/utils/options';
 
+import { filterSelected } from './utils/functions';
 import { sliderEffects, aligns, postsOrdersBy, postsOrders } from '../../utils/options';
 import { tabs, categoriesPosition, imageFittings, layouts, subLayouts } from './utils/options';
-import { filterSelected } from './utils/functions';
 
 const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) => {
 	const { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, postType, selectedCategories, postsPerPage, postsOrderBy, postsOrder, contentAlign, contentBG, contentPadding, border, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderIsPrevNext, sliderPrevNextColor, isFImg, fImgFitting, isFImgLink, isTitle, isTitleLink, titleTypo, titleColor, titleMargin, isMeta, isMetaAuthor, isMetaDate, isMetaCategory, metaCategoryIn, isMetaComment, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, isExcerpt, excerptLength, excerptAlign, excerptTypo, excerptColor, excerptMargin, isReadMore, readMoreLabel, isLinkNewTab, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
@@ -54,11 +45,11 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 
 					<PanelBody className='bPlPanelBody' title={__('Layouts Settings', 'b-blocks')} initialOpen={true}>
-						<Title className='mb5'>{__('Layout Type:', 'b-blocks')}</Title>
+						<Label className='mb5'>{__('Layout Type:', 'b-blocks')}</Label>
 						<BtnGroup value={layout} onChange={val => setAttributes({ layout: val })} options={layouts} isTextIcon={true} />
 
 						<PanelRow className='mt10'>
-							<Title className=''>{__('Sub Layout:', 'b-blocks')}</Title>
+							<Label className=''>{__('Sub Layout:', 'b-blocks')}</Label>
 							<SelectControl value={subLayout} onChange={val => {
 								setAttributes({ subLayout: val });
 								'default' === val || 'title-meta' === val || 'left-image' === val || 'right-image' === val ? setAttributes({
@@ -96,19 +87,19 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 						{'ticker' !== layout && <>
 							<PanelRow className='mt20'>
-								<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+								<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 								<BDevice device={device} onChange={val => setDevice(val)} />
 							</PanelRow>
 							<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 						</>}
 
 						{'ticker' !== layout && <>
-							<Title>{__('Column Gap:', 'b-blocks')}</Title>
+							<Label>{__('Column Gap:', 'b-blocks')}</Label>
 							<RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={100} step={1} beforeIcon='arrow-right-alt' />
 						</>}
 
 						{'slider' !== layout && <>
-							<Title>{__('Row Gap:', 'b-blocks')}</Title>
+							<Label>{__('Row Gap:', 'b-blocks')}</Label>
 							<RangeControl value={rowGap} onChange={val => setAttributes({ rowGap: val })} min={0} max={150} step={1} beforeIcon='arrow-down-alt' />
 						</>}
 
@@ -120,7 +111,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 					<PanelBody className='bPlPanelBody' title={__('Posts Query', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className=''>{__('Post Type:', 'b-blocks')}</Title>
+							<Label className=''>{__('Post Type:', 'b-blocks')}</Label>
 							<SelectControl value={postType} onChange={val => setAttributes({ postType: val })} options={postTypes} />
 						</PanelRow>
 
@@ -134,7 +125,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 						</> : null} */}
 
 						{'post' === postType && getTaxonomy('category')?.length ? <>
-							<Title>{__('Select Categories:', 'b-blocks')}</Title>
+							<Label>{__('Select Categories:', 'b-blocks')}</Label>
 							<SelectPureControl
 								value={filterSelected(getTaxonomy('category'), selectedCategories).map(cat => cat.toString())}
 								onChange={val => setAttributes({ selectedCategories: val.map(cat => parseInt(cat)) })}
@@ -143,17 +134,17 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 							/>
 						</> : null}
 
-						<Title>{__('Post Per Page:', 'b-blocks')}</Title>
+						<Label>{__('Post Per Page:', 'b-blocks')}</Label>
 						<RangeControl value={postsPerPage} onChange={val => setAttributes({ postsPerPage: val, isPostsPerPageAll: -1 === val })} min={-1} max={36} step={1} />
 						<small>{__('To show all posts set -1', 'b-blocks')}</small>
 
 						<PanelRow className='mt20'>
-							<Title className=''>{__('Post Order By:', 'b-blocks')}</Title>
+							<Label className=''>{__('Post Order By:', 'b-blocks')}</Label>
 							<SelectControl value={postsOrderBy} onChange={val => setAttributes({ postsOrderBy: val })} options={postsOrdersBy} />
 						</PanelRow>
 
 						<PanelRow>
-							<Title className=''>{__('Post Order:', 'b-blocks')}</Title>
+							<Label className=''>{__('Post Order:', 'b-blocks')}</Label>
 							<SelectControl value={postsOrder} onChange={val => setAttributes({ postsOrder: val })} options={postsOrders} />
 						</PanelRow>
 					</PanelBody>
@@ -166,17 +157,17 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 						<ToggleControl className='mt10' label={__('Enable Autoplay', 'b-blocks')} checked={sliderIsAutoplay} onChange={val => setAttributes({ sliderIsAutoplay: val })} />
 
-						<Title>{__('Speed & Delay (s):', 'b-blocks')}</Title>
+						<Label>{__('Speed & Delay (s):', 'b-blocks')}</Label>
 						<RangeControl value={sliderSpeed} onChange={val => setAttributes({ sliderSpeed: val })} min={0} max={10} step={.05} />
 						<small>{__('Smaller speed & delay value will be slide faster', 'b-blocks')}</small>
 
 						<PanelRow className='mt20'>
-							<Title className=''>{__('Effect:', 'b-blocks')}</Title>
+							<Label className=''>{__('Effect:', 'b-blocks')}</Label>
 							<SelectControl value={sliderEffect} onChange={cng => setAttributes({ sliderEffect: cng })} options={sliderEffects} />
 						</PanelRow>
 						<small>{__('To work fade & creative effects properly, set single column per view', 'b-blocks')}</small>
 
-						<Title>{__('Pagination:', 'b-blocks')}</Title>
+						<Label>{__('Pagination:', 'b-blocks')}</Label>
 						<ToggleControl label={__('Show Pagination', 'b-blocks')} checked={sliderIsPage} onChange={val => setAttributes({ sliderIsPage: val })} />
 
 						{sliderIsPage && <>
@@ -185,7 +176,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 							<ToggleControl className='mt10' label={__('Enable Pagination Dynamic Bullets', 'b-blocks')} checked={sliderIsPageDynamic} onChange={val => setAttributes({ sliderIsPageDynamic: val })} />
 						</>}
 
-						<Title>{__('Preview Next Button:', 'b-blocks')}</Title>
+						<Label>{__('Preview Next Button:', 'b-blocks')}</Label>
 						<ToggleControl label={__('Show Preview Next Button', 'b-blocks')} checked={sliderIsPrevNext} onChange={val => setAttributes({ sliderIsPrevNext: val })} />
 					</PanelBody>}
 				</>}
@@ -197,7 +188,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 						{isFImg && <>
 							<PanelRow>
-								<Title className=''>{__('Fitting:', 'b-blocks')}</Title>
+								<Label className=''>{__('Fitting:', 'b-blocks')}</Label>
 								<SelectControl value={fImgFitting} onChange={val => setAttributes({ fImgFitting: val })} options={imageFittings} />
 							</PanelRow>
 
@@ -224,7 +215,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 							<ToggleControl className='20px' label={__('Show Category', 'b-blocks')} checked={isMetaCategory} onChange={val => setAttributes({ isMetaCategory: val })} />
 
 							{isMetaCategory && <PanelRow>
-								<Title className=''>{__('Category In:', 'b-blocks')}</Title>
+								<Label className=''>{__('Category In:', 'b-blocks')}</Label>
 								<RadioControl selected={metaCategoryIn} onChange={val => setAttributes({ metaCategoryIn: val })} options={categoriesPosition} />
 							</PanelRow>}
 
@@ -237,7 +228,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 						<ToggleControl label={__('Show Excerpt', 'b-blocks')} checked={isExcerpt} onChange={val => setAttributes({ isExcerpt: val })} />
 
 						{isExcerpt && <>
-							<Title className='mt15'>{__('Excerpt Length:', 'b-blocks')}</Title>
+							<Label className='mt15'>{__('Excerpt Length:', 'b-blocks')}</Label>
 							<RangeControl value={excerptLength} onChange={val => setAttributes({ excerptLength: val })} min={0} max={55} step={1} />
 							<small>{__('Excerpt max value will be your site default excerpt length', 'b-blocks')}</small>
 						</>}
@@ -248,7 +239,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 						<ToggleControl label={__('Show Read More', 'b-blocks')} checked={isReadMore} onChange={val => setAttributes({ isReadMore: val })} />
 
 						{isReadMore && <>
-							<Title>{__('Read More Label:', 'b-blocks')}</Title>
+							<Label>{__('Read More Label:', 'b-blocks')}</Label>
 							<TextControl value={readMoreLabel} onChange={val => setAttributes({ readMoreLabel: '' === val ? 'Read More' : val })} />
 
 							<ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
@@ -260,7 +251,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 				{'style' === tab.name && <>
 					{isPosts && <PanelBody className='bPlPanelBody' title={__('Content', 'b-blocks')} initialOpen={true}>
 						<PanelRow>
-							<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
+							<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
 							<BtnGroup value={contentAlign} onChange={val => setAttributes({ contentAlign: val })} options={aligns} isIcon={true} />
 						</PanelRow>
 
@@ -313,7 +304,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 					{isPosts && isExcerpt && <PanelBody className='bPlPanelBody' title={__('Excerpt Styles', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
+							<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
 							<BtnGroup value={excerptAlign} onChange={val => setAttributes({ excerptAlign: val })} options={aligns} isIcon={true} />
 						</PanelRow>
 
@@ -327,7 +318,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 
 					{isPosts && isReadMore && <PanelBody className='bPlPanelBody' title={__('Read More Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className=''>{__('Button Align:', 'b-blocks')}</Title>
+							<Label className=''>{__('Button Align:', 'b-blocks')}</Label>
 							<BtnGroup value={readMoreAlign} onChange={val => setAttributes({ readMoreAlign: val })} options={aligns.filter(a => a.value !== 'justify')} isIcon={true} />
 						</PanelRow>
 

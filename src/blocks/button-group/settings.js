@@ -4,15 +4,8 @@ import { Dashicon, PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import BtnGroup from '../../../../Components/BtnGroup';
-import Typography from '../../../../Components/Typography';
-import SpaceControl from '../../../../Components/SpaceControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ColorsControl from '../../../../Components/ColorsControl';
-import IconControl from '../../../../Components/IconControl';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, BColor, BorderControl, BtnGroup, ColorsControl, IconControl, SpaceControl, Typography } from '../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 const sepTypes = [
 	{ label: 'Icon', value: 'icon', icon: 'Icon' },
@@ -46,7 +39,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				<UnitControl label={__('Container Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
 				<PanelRow>
-					<Title className=''>{__('Type:', 'b-blocks')}</Title>
+					<Label className=''>{__('Type:', 'b-blocks')}</Label>
 					<BtnGroup value={btnType} onChange={val => {
 						setAttributes({ btnType: val });
 						'fill' === val && setAttributes({
@@ -72,11 +65,11 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
 
-				<Title>{__('Buttons:', 'b-blocks')}</Title>
+				<Label>{__('Buttons:', 'b-blocks')}</Label>
 				<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
 					{'btn-one' == tab.name && <>
 						<PanelRow>
-							<Title className=''>{__('Link:', 'b-blocks')}</Title>
+							<Label className=''>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={btnOneLink} onChange={val => setAttributes({ btnOneLink: val })} />
 						</PanelRow>
 
@@ -89,7 +82,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 					{'btn-two' == tab.name && <>
 						<PanelRow>
-							<Title className=''>{__('Link:', 'b-blocks')}</Title>
+							<Label className=''>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={btnTwoLink} onChange={val => setAttributes({ btnTwoLink: val })} />
 						</PanelRow>
 
@@ -109,12 +102,12 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				{isSep && <>
 					<PanelRow>
-						<Title className=''>{__('Type:', 'b-blocks')}</Title>
+						<Label className=''>{__('Type:', 'b-blocks')}</Label>
 						<BtnGroup value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
 					</PanelRow>
 
 					{'text' === sepType && <>
-						<Title>{__('Separator Text:', 'b-blocks')}</Title>
+						<Label>{__('Separator Text:', 'b-blocks')}</Label>
 						<TextControl value={sepText} onChange={val => setAttributes({ sepText: val })} />
 
 						<Typography label={__('Text Typography', 'b-blocks')} value={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />

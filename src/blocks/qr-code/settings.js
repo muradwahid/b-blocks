@@ -3,8 +3,7 @@ import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/b
 import { Dashicon, PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import ColorControl from '../../../../Components/ColorControl';
+import { Label, ColorControl } from '../../../../Components';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { qrAlign, url, dimension, color, bgColor } = attributes;
@@ -26,10 +25,10 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('QR Code Settings', 'b-blocks')}>
-				<Title className='mb5'>{__('Website URL:', 'b-blocks')}</Title>
+				<Label className='mb5'>{__('Website URL:', 'b-blocks')}</Label>
 				<TextControl value={url} onChange={val => setAttributes({ url: val })} placeholder={__('Website URL:', 'b-blocks')} />
 
-				<Title>{__('Dimension:', 'b-blocks')}</Title>
+				<Label>{__('Dimension:', 'b-blocks')}</Label>
 				<RangeControl value={dimension} onChange={val => setAttributes({ dimension: val })} min={50} max={1000} step={1} />
 
 				<ColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => setAttributes({ color: val })} defaultColor='#000' disableAlpha={true} />

@@ -4,13 +4,9 @@ import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/b
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl, Tooltip, CheckboxControl } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import BDevice from '../../../../Components/BDevice';
-import ShadowControl from '../../../../Components/ShadowControl';
-import SpaceControl from '../../../../Components/SpaceControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, BColor, BDevice, ShadowControl, SpaceControl } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { generalStyleTabs } from '../../utils/options';
 
@@ -110,11 +106,11 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 							<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable('price', parseFloat(val))} />
 
 							<PanelRow>
-								<Title className=''>{__('Currency:', 'b-blocks')}</Title>
+								<Label className=''>{__('Currency:', 'b-blocks')}</Label>
 								<TextControl value={priceCurrency} onChange={val => updatePriceTable('priceCurrency', val)} />
 							</PanelRow>
 
-							<Title>{__('Features:', 'b-blocks')}</Title>
+							<Label>{__('Features:', 'b-blocks')}</Label>
 							{features?.map((feature, featureIndex) => {
 								const { isEnable, label } = feature;
 
@@ -138,7 +134,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 								<Button className='addItem' label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' />{__('Add New Feature', 'b-blocks')}</Button>
 							</div>
 
-							<Title>{__('Link:', 'b-blocks')}</Title>
+							<Label>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={link} onChange={val => updatePriceTable('link', val)} />
 
 							<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor='#4527a4' />
@@ -158,7 +154,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow className='mt20'>
-							<Title className='mb5'>{__('Columns:', 'b-blocks')}</Title>
+							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<BDevice device={device} onChange={val => setDevice(val)} />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />

@@ -3,13 +3,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../../Components/Title';
-import BColor from '../../../../../Components/BColor';
-import Background from '../../../../../Components/Background';
-import IconControl from '../../../../../Components/IconControl';
-import { InlineDetailMediaUpload } from '../../../../../Components/MediaControl';
-import BorderControl from '../../../../../Components/BorderControl';
-import { pxUnit, perUnit, emUnit } from '../../../../../Components/Helper/options';
+import { Label, Background, BColor, BorderControl, IconControl, InlineDetailMediaUpload } from '../../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../../Components/utils/options';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { background, hoverBG, isIcon, isUpIcon, icon, upIcon, iconWidth, iconBorder, isTitle, titleColor, isDesc, descColor, isLink, link, linkIn, linkIconColor, linkBGColor, linkBGHovColor } = attributes;
@@ -38,7 +33,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			<ToggleControl label='Upload Icon?' checked={isUpIcon} onChange={val => setAttributes({ isUpIcon: val })} />
 
 			{isUpIcon ? <>
-				<Title>{__('Icon:', 'b-blocks')}</Title>
+				<Label>{__('Icon:', 'b-blocks')}</Label>
 				<InlineDetailMediaUpload value={upIcon} onChange={val => setAttributes({ upIcon: val })} placeholder={__('Enter Icon URL', 'b-blocks')} />
 
 				<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => setAttributes({ iconWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
@@ -55,7 +50,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		</PanelBody>
 
 		{isLink && <PanelBody className='bPlPanelBody' title={__('Link Settings', 'b-blocks')} initialOpen={false}>
-			<Title className='mb5'>{__('Link:', 'b-blocks')}</Title>
+			<Label className='mb5'>{__('Link:', 'b-blocks')}</Label>
 			<TextControl value={link} onChange={val => setAttributes({ link: val })} />
 
 			{'button' === linkIn && <>

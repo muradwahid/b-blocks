@@ -1,4 +1,4 @@
-import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { alignment, width, border, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding } = attributes;

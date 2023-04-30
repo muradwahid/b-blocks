@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getColorsCSS, getMultiShadowCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getMultiShadowCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { members = [], columnGap, rowGap, layout, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, titleTypo, titleMargin, sepMargin, bioTypo, bioMargin, socialSize, socialIconMargin } = attributes;
@@ -66,7 +66,7 @@ const Style = ({ attributes, clientId }) => {
 				${memberSl}{
 					${getBackgroundCSS(background)}
 					${getBorderCSS(border)}
-					box-shadow: ${getMultiShadowCSS(shadow?.shadow || shadow)};
+					box-shadow: ${getMultiShadowCSS(shadow?.shadow || (shadow?.color ? [shadow] : shadow))};
 				}
 				${memberSl} .memberPhoto{
 					${getBorderCSS(photoBorder)}

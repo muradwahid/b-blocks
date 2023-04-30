@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { slides = [], sliderWidth, sliderHeight, pageColor, pageWidth, pageHeight, pageBorder, prevNextColor, sliderAlign, titleTypo, descTypo, btnTypo, btnPadding, btnBorder } = attributes;
@@ -44,6 +44,8 @@ const Style = ({ attributes, clientId }) => {
 
 		<style>
 			{slides.map((item, index) => {
+				const { background, titleColor, descColor, btnColors, btnHovColors } = item;
+
 				const { childPositions = [{ left: 5.8, top: 11 }, { left: 5.8, top: 22 }, { left: 5.8, top: 33 }] } = item;
 
 				const slideSl = `${sliderSl} .slide-${index}`;
@@ -59,19 +61,19 @@ const Style = ({ attributes, clientId }) => {
 				}
 
 				return `${slideSl}{
-						${getBackgroundCSS(item.background) || 'background-color: #00000080;'}
+						${getBackgroundCSS(background)}
 					}
 					${slideSl} .sliderTitle{
-						color: ${item.titleColor || '#fff'};
+						color: ${titleColor};
 					}
 					${slideSl} .sliderDescription{
-						color: ${item.descColor || '#fff'};
+						color: ${descColor};
 					}
 					${slideSl} .sliderBtn{
-						${getColorsCSS(item.btnColors) || 'color: #fff; background: #4527a4;'}
+						${getColorsCSS(btnColors)}
 					}
 					${slideSl} .sliderBtn:hover{
-						${getColorsCSS(item.btnHovColors) || 'color: #fff; background: #8344c5;'}
+						${getColorsCSS(btnHovColors)}
 					}
 					${childElPositionCSS}
 				`.replace(/\s+/g, ' ');

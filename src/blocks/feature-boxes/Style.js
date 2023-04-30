@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getIconCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getIconCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { features = [], columnGap, rowGap, textAlign, padding, iconMargin, titleTypo, titleMargin, sepMargin, descTypo } = attributes;

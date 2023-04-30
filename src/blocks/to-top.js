@@ -3,15 +3,11 @@ import { __ } from '@wordpress/i18n';
 import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
-// Variables
-import { fontSizes, aligns, colors } from '../utils/options';
-
 // Settings Components
-import Title from '../../../Components/Title';
-import BtnGroup from '../../../Components/BtnGroup';
+import { Label, BtnGroup } from '../../../Components';
 
-// Icons
 import { toTopIcon } from '../utils/icons';
+import { fontSizes, aligns, colors } from '../utils/options';
 
 registerBlockType('b-blocks/to-top', {
 	// Build In attributes
@@ -46,15 +42,15 @@ registerBlockType('b-blocks/to-top', {
 				{/* Go To Top Settings */}
 				<PanelBody className='bBlocksPanelBody' title={__('Go To Top Settings', 'b-blocks')} initialOpen={false}>
 					{/* Text Align */}
-					<Title className=''>{__('Text Align:', 'b-blocks')}</Title>
+					<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
 					<BtnGroup options={aligns} myValue={contentAlign} setState={cng => setAttributes({ contentAlign: cng })} icon={true} />
 
 					{/* Font Size */}
-					<Title>{__('Font Size:', 'b-blocks')}</Title>
+					<Label>{__('Font Size:', 'b-blocks')}</Label>
 					<FontSizePicker fontSizes={fontSizes} fallbackFontSize={15} value={fontSize} onChange={cng => setAttributes({ fontSize: 'undefined' === typeof cng ? 15 : cng })} />
 
 					{/* Color */}
-					<Title>{__('Color:', 'b-blocks')}</Title>
+					<Label>{__('Color:', 'b-blocks')}</Label>
 					<ColorPalette value={color} onChange={cng => setAttributes({ color: cng })} colors={colors} />
 				</PanelBody>
 			</InspectorControls>

@@ -4,17 +4,12 @@ import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, Dat
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import BColor from '../../../../Components/BColor';
-import Background from '../../../../Components/Background';
-import SpaceControl from '../../../../Components/SpaceControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import Typography from '../../../../Components/Typography';
-import { tabController } from '../../../../Components/Helper/functions';
-import { pxUnit, perUnit, emUnit, remUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor, BorderControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { tabController } from '../../../../Components/utils/functions';
+import { pxUnit, perUnit, emUnit, remUnit } from '../../../../Components/utils/options';
 
 import { generalStyleTabs, flexPos } from '../../utils/options';
+
 const layouts = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
 	{ label: __('Layout 1', 'b-blocks'), value: 'layout1' },
@@ -49,14 +44,14 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Countdown Settings', 'b-blocks')}>
-						<Title className='mb5'>{__('Destination Date:', 'b-blocks')}</Title>
+						<Label className='mb5'>{__('Destination Date:', 'b-blocks')}</Label>
 						<DateTimePicker currentDate={destDate} onChange={val => setAttributes({ destDate: val })} is12Hour={true} />
 					</PanelBody>
 
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Title className=''>{__('Layout:', 'b-blocks')}</Title>
+							<Label className=''>{__('Layout:', 'b-blocks')}</Label>
 							<SelectControl value={layout} onChange={val => {
 								setAttributes({ layout: val });
 								'default' === val && setAttributes({
@@ -142,7 +137,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 					<PanelBody className='bPlPanelBody' title={__('Boxes', 'b-blocks')} initialOpen={false}>
 						{'0px' === width || '0%' === width || '0em' === width ? '' : <PanelRow>
-							<Title className=''>{__('Box Position:', 'b-blocks')}</Title>
+							<Label className=''>{__('Box Position:', 'b-blocks')}</Label>
 							<SelectControl value={boxPosition} onChange={val => setAttributes({ boxPosition: val })} options={flexPos} />
 						</PanelRow>}
 
@@ -178,11 +173,11 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						{isSep && <>
 							<PanelRow>
-								<Title className=''>{__('Type:', 'b-blocks')}</Title>
+								<Label className=''>{__('Type:', 'b-blocks')}</Label>
 								<SelectControl value={sepType} onChange={val => setAttributes({ sepType: val })} options={sepTypes} />
 							</PanelRow>
 
-							<Title>{__('Size:', 'b-blocks')}</Title>
+							<Label>{__('Size:', 'b-blocks')}</Label>
 							<RangeControl value={sepSize} onChange={val => setAttributes({ sepSize: val })} min={0} max={160} step={1} allowReset={true} resetFallbackValue={48} initialPosition={48} />
 
 							<BColor label={__('Color:', 'b-blocks')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#4527a4' />

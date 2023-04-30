@@ -3,11 +3,9 @@ import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/b
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, TextControl, __experimentalNumberControl as NumberControl, Button, Dashicon, Tooltip, RangeControl } from '@wordpress/components';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import Background from '../../../../Components/Background';
-import BColor from '../../../../Components/BColor';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BColor } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 const types = [
 	{ label: __('Line', 'b-blocks'), value: 'line' },
@@ -162,7 +160,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Datasets', 'b-blocks')}>
 				{data.labels.map((label, labelIndex) => <PanelRow key={labelIndex}>
-					<Title className=''>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Title>
+					<Label className=''>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Label>
 					<TextControl value={label} onChange={val => updateData('labels', labelIndex, val)} />
 
 					<Tooltip text={__('Remove this Dataset', 'b-blocks')} position='top center'>
@@ -179,12 +177,12 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				{data.datasets.map((dataset, datasetIndex) => <PanelBody key={datasetIndex} className='bPlPanelBody editItem' title={__(`Dataset Value ${datasetIndex + 1}:`, 'b-blocks')} initialOpen={0 !== datasetIndex ? false : true}>
 					<PanelRow>
-						<Title className=''>{__('Label:', 'b-blocks')}</Title>
+						<Label className=''>{__('Label:', 'b-blocks')}</Label>
 						<TextControl value={dataset.label} onChange={val => updateData('datasets', datasetIndex, val, 'label')} />
 					</PanelRow>
 
 					{data.labels.map((label, labelIndex) => <PanelRow key={labelIndex} className='bBlocksChartDatasetEdit'>
-						<Title className=''>{__(`${label}:`, 'b-blocks')}</Title>
+						<Label className=''>{__(`${label}:`, 'b-blocks')}</Label>
 
 						<NumberControl className='chartDataValue' value={dataset.data[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'data', labelIndex)} />
 
@@ -207,7 +205,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<NumberControl className='mt15' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointHoverRadius')} />
 
 					<PanelRow className='mt10'>
-						<Title className=''>{__('Point Style:', 'b-blocks')}</Title>
+						<Label className=''>{__('Point Style:', 'b-blocks')}</Label>
 						<SelectControl value={dataset.pointStyle} onChange={val => updateData('datasets', datasetIndex, val, 'pointStyle')} options={pointStyles} />
 					</PanelRow>
 
@@ -232,7 +230,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Chart Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title className=''>{__('Type:', 'b-blocks')}</Title>
+					<Label className=''>{__('Type:', 'b-blocks')}</Label>
 					<SelectControl value={type} onChange={val => setAttributes({ type: val })} options={types} />
 				</PanelRow>
 				<small>{__(`Use single dataset value for 'Pie', 'Doughnut', and 'Polar Area'`, 'b-blocks')}</small>
@@ -260,11 +258,11 @@ const Settings = ({ attributes, setAttributes }) => {
 				<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 				{isTitle && <>
 					<PanelRow>
-						<Title className=''>{__('Title:', 'b-blocks')}</Title>
+						<Label className=''>{__('Title:', 'b-blocks')}</Label>
 						<TextControl value={title} onChange={val => setAttributes({ title: val })} />
 					</PanelRow>
 
-					<Title>{__('Title Font Size:', 'b-blocks')}</Title>
+					<Label>{__('Title Font Size:', 'b-blocks')}</Label>
 					<RangeControl value={titleFontSize} onChange={val => setAttributes({ titleFontSize: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={22} initialPosition={22} />
 
 					<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
@@ -274,11 +272,11 @@ const Settings = ({ attributes, setAttributes }) => {
 				<ToggleControl className='mt20' label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
 				{isSubtitle && <>
 					<PanelRow className='mt20'>
-						<Title className=''>{__('Subtitle:', 'b-blocks')}</Title>
+						<Label className=''>{__('Subtitle:', 'b-blocks')}</Label>
 						<TextControl value={subtitle} onChange={val => setAttributes({ subtitle: val })} />
 					</PanelRow>
 
-					<Title>{__('Subtitle Font Size:', 'b-blocks')}</Title>
+					<Label>{__('Subtitle Font Size:', 'b-blocks')}</Label>
 					<RangeControl value={subtitleFontSize} onChange={val => setAttributes({ subtitleFontSize: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={13} initialPosition={13} />
 
 					<BColor label={__('Subtitle Color:', 'b-blocks')} value={subtitleColor} onChange={val => setAttributes({ subtitleColor: val })} defaultColor='#8344c5' />

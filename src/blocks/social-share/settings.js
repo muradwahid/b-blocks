@@ -4,14 +4,9 @@ import { PanelBody, PanelRow, SelectControl, ToggleControl, Button, Dashicon, __
 import produce from 'immer';
 
 // Settings Components
-import Title from '../../../../Components/Title';
-import IconControl from '../../../../Components/IconControl';
-import Background from '../../../../Components/Background';
-import { InlineDetailMediaUpload } from '../../../../Components/MediaControl';
-import BorderControl from '../../../../Components/BorderControl';
-import ShadowControl from '../../../../Components/ShadowControl';
-import { gearIcon } from '../../../../Components/Helper/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/Helper/options';
+import { Label, Background, BorderControl, IconControl, InlineDetailMediaUpload, ShadowControl } from '../../../../Components';
+import { gearIcon } from '../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { compareAndReturn } from './utils/functions';
 import { themes, networkTypes, socialNetworks, mobileNetworks, iconClassList, iconColorList, isUpIconList } from './utils/options';
@@ -110,7 +105,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					<h3 className='bplItemTitle'>{__(`Social No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
 					<PanelRow>
-						<Title className=''>{__('Network Type:', 'b-blocks')}</Title>
+						<Label className=''>{__('Network Type:', 'b-blocks')}</Label>
 						<SelectControl value={networkType} onChange={val => {
 							const params = [
 								['networkType', val],
@@ -124,7 +119,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					</PanelRow>
 
 					<PanelRow>
-						<Title className=''>{__('Network:', 'b-blocks')}</Title>
+						<Label className=''>{__('Network:', 'b-blocks')}</Label>
 						<SelectControl value={network} onChange={val => {
 							const params = [
 								['network', val],
@@ -139,7 +134,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					<ToggleControl className='mt20' label={__('Upload Icon?', 'b-blocks')} checked={isUpIcon} onChange={val => updateSocial('isUpIcon', val)} />
 
 					{isUpIcon ? <>
-						<Title>{__('Icon:', 'b-blocks')}</Title>
+						<Label>{__('Icon:', 'b-blocks')}</Label>
 						<InlineDetailMediaUpload className='mt10' value={upIcon} onChange={val => updateSocial('upIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
 					</> :
 						<IconControl label={__('Icon:', 'b-blocks')} value={icon} onChange={val => updateSocial('icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} isSize={false} />}
@@ -159,7 +154,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 			<PanelBody className='bPlPanelBody' title={__('Social Icon Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Title className=''>{__('Theme:', 'b-blocks')}</Title>
+					<Label className=''>{__('Theme:', 'b-blocks')}</Label>
 					<SelectControl value={theme} onChange={val => {
 						setAttributes({ theme: val });
 						'default' === val && (

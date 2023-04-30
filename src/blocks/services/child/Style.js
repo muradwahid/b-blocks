@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getIconCSS } from '../../../../../Components/Helper/getCSS';
+import { getBackgroundCSS, getBorderCSS, getIconCSS } from '../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { background, hoverBG, icon, iconWidth, iconBorder, titleColor, descColor, linkIconColor, linkBGColor, linkBGHovColor } = attributes;

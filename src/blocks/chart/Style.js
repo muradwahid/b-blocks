@@ -1,4 +1,4 @@
-import { getBackgroundCSS } from '../../../../Components/Helper/getCSS';
+import { getBackgroundCSS } from '../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { background, width, height, alignment } = attributes;

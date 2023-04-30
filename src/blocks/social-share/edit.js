@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { tabController } from '../../../../Components/Helper/functions';
+import { tabController } from '../../../../Components/utils/functions';
 
 import Settings from './Settings';
 import Style from './Style';

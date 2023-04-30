@@ -4,13 +4,10 @@ import { Dashicon, PanelBody, ToggleControl } from '@wordpress/components';
 import produce from 'immer';
 
 // Settings Components
-import SeparatorControl from '../../../../Components/SeparatorControl';
-import Typography from '../../../../Components/Typography';
-import BColor from '../../../../Components/BColor';
-import SpaceControl from '../../../../Components/SpaceControl';
+import { BColor, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
 
-const Settings = ({ attributes ,setAttributes}) => {
-	const {  textAlign, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, descTypo, descColor, descMargin  } = attributes;
+const Settings = ({ attributes, setAttributes }) => {
+	const { textAlign, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, descTypo, descColor, descMargin } = attributes;
 
 	return <>
 		<InspectorControls>
