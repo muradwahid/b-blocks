@@ -26,10 +26,10 @@ exports.bundle = () => (
 		'!.eslintrc.js',
 		'!.gitignore',
 		'!gulpfile.js',
-		'!pending.txt',
 		'!package.json',
 		'!package-lock.json',
 		'!readme.md',
+		'!todo.txt',
 		'!webpack.config.js',
 	])
 		.pipe(zip('b-blocks.zip'))

@@ -3,4 +3,3 @@ bundled
 dist/*
 !dist/*.php
 node_modules
-pending.txt

@@ -34,13 +34,13 @@ const Settings = ({ attributes, setAttributes }) => {
 				<InlineDetailMediaUpload types={['model/gltf-binary']} value={model} onChange={val => setAttributes({ model: val })} placeholder={__('Enter Model URL', 'b-blocks')} />
 
 				{/* <PanelRow>
-					<Title className='mb5'>{__('Source Type:', 'b-blocks')}</Title>
+					<Label className='mb5'>{__('Source Type:', 'b-blocks')}</Label>
 					<BtnGroup value={sourceType} onChange={val => setAttributes({ sourceType: val })} options={sourceTypes} />
 				</PanelRow>
 				{'upload' === sourceType && <small>{__('Please refresh the page first, if you install the plugin for the first time from gutenberg editor')}</small>}
 
 				{'upload' === sourceType && <>
-					<Title>{__('Upload:', 'b-blocks')}</Title>
+					<Label>{__('Upload:', 'b-blocks')}</Label>
 
 					<div className='editImageHolder'>
 						<div className='mediaControl'>
@@ -58,7 +58,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</>}
 
 				{'link' === sourceType && <>
-					<Title>{__('Model Link:', 'b-blocks')}</Title>
+					<Label>{__('Model Link:', 'b-blocks')}</Label>
 					<TextControl value={modelLink} onChange={val => setAttributes({ modelLink: val })} />
 				</>} */}
 

@@ -33,7 +33,7 @@ const Edit = props => {
 				}
 				${infoBoxSl}{
 					text-align: ${textAlign};
-					width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
+					width: ${['0px', '0%', '0em'].includes(width) ? 'auto' : width};
 					${getBackgroundCSS(background)}
 					padding: ${getSpaceCSS(padding)};
 					${getBorderCSS(border)}

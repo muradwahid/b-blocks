@@ -116,7 +116,7 @@ const Settings = ({ attributes, setAttributes, posts, postTypes, getTaxonomy }) 
 						</PanelRow>
 
 						{/* {'post' === postType && categories?.length ? <>
-							<Title>{__('Select Categories:', 'b-blocks')}</Title>
+							<Label>{__('Select Categories:', 'b-blocks')}</Label>
 							{categories.map(cat => {
 								const isInc = selectedCategories.includes(cat.id);
 

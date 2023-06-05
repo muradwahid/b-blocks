@@ -4,7 +4,7 @@ const Style = ({ attributes, clientId }) => {
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		#bBlocksVideo-${clientId} .bBlocksVideo{
-			width: ${'0px' === width || '0%' === width || '0em' === width ? '100%' : width};
+			width: ${['0px', '0%', '0em'].includes(width) ? '100%' : width};
 			border-radius: ${radius};
 		}
 		`.replace(/\s+/g, ' ')

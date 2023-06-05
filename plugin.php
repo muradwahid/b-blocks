@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.7.6
+ * Version: 1.7.7
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,8 +14,56 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.6' );
+define( 'B_BLOCKS_PLUGIN_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.7' );
 define( 'B_BLOCKS_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
+
+if ( ! function_exists( 'bb_fs' ) ) {
+    // Create a helper function for easy SDK access.
+    function bb_fs() {
+        global $bb_fs;
+
+        if ( ! isset( $bb_fs ) ) {
+            // Activate multisite network integration.
+            if ( ! defined( 'WP_FS__PRODUCT_12845_MULTISITE' ) ) {
+                define( 'WP_FS__PRODUCT_12845_MULTISITE', true );
+            }
+
+            // Include Freemius SDK.
+            require_once dirname(__FILE__) . '/freemius/start.php';
+
+            $bb_fs = fs_dynamic_init( array(
+                'id'                  => '12845',
+                'slug'                => 'b-blocks',
+                'premium_slug'        => 'b-blocks-pro',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_d6426b344df4918bc066a7a0b4719',
+                'is_premium'          => true,
+                'premium_suffix'      => 'Pro',
+                // If your plugin is a serviceware, set this option to false.
+                'has_premium_version' => true,
+                'has_addons'          => false,
+                'has_paid_plans'      => true,
+                'trial'               => array(
+                    'days'               => 7,
+                    'is_require_payment' => true,
+                ),
+                'menu'                => array(
+                    'first-path'     => 'plugins.php',
+                ),
+                // Set the SDK to work in a sandbox mode (for development & testing).
+                // IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
+                'secret_key'          => 'sk_nhpu<pa1bS#~tO{8<;spDwO?3:d_b',
+            ) );
+        }
+
+        return $bb_fs;
+    }
+
+    // Init Freemius.
+    bb_fs();
+    // Signal that SDK was initiated.
+    do_action( 'bb_fs_loaded' );
+}
 
 // Generate Styles
 class BBlocksStyleGenerator {

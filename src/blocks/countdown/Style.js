@@ -14,13 +14,13 @@ const Style = ({ attributes, clientId }) => {
 		${getTypoCSS(`${itemSl} .digit`, digitTypo)?.styles}
 		${getTypoCSS(`${itemSl} .label`, labelTypo)?.styles}
 
-		${mainSl}{
+		${mainSl}{	
 			align-items: ${alignment};
 			justify-content: ${alignment};
 		}
 		${itemsSl}{
 			gap: ${boxSpace};
-			width: ${'0px' === width || '0%' === width || '0em' === width ? 'auto' : width};
+			width: ${['0px', '0%', '0em'].includes(width) ? 'auto' : width};
 			${getBackgroundCSS(background)}
 			padding: ${getSpaceCSS(padding)};
 			box-shadow: ${getShadowCSS(shadow)};

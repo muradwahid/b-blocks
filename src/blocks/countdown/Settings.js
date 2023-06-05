@@ -136,7 +136,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					<PanelBody className='bPlPanelBody' title={__('Boxes', 'b-blocks')} initialOpen={false}>
-						{'0px' === width || '0%' === width || '0em' === width ? '' : <PanelRow>
+						{['0px', '0%', '0em'].includes(width) ? '' : <PanelRow>
 							<Label className=''>{__('Box Position:', 'b-blocks')}</Label>
 							<SelectControl value={boxPosition} onChange={val => setAttributes({ boxPosition: val })} options={flexPos} />
 						</PanelRow>}
