@@ -13,8 +13,11 @@ class BBlocksPriceLists extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-price-lists-style' );
+		// wp_enqueue_script( 'b-blocks-price-lists-script', B_BLOCKS_DIST . 'price-lists.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-price-lists ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-price-lists $className align$align";
 
 		// Generate Styles
 		$priceListsStyle = new BBlocksStyleGenerator();

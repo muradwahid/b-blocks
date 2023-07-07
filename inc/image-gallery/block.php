@@ -13,12 +13,15 @@ class BBlocksImageGallery extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-image-gallery-style' );
+		// wp_enqueue_script( 'b-blocks-image-gallery-script', B_BLOCKS_DIST . 'image-gallery.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+
 		// Enqueue assets where has block
-		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS_DIR . 'js/fancybox.min.js', [], '4.0', true );
-		wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS_DIR . 'css/fancybox.min.css', '', '4.0', 'all' );
+		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS . 'js/fancybox.min.js', [], '4.0', true );
+		wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS . 'css/fancybox.min.css', '', '4.0', 'all' );
 
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-image-gallery ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-image-gallery $className align$align";
 
 		// Generate Styles
 		$imgShadow = GetCSS::getShadowCSS( $imgShadow );

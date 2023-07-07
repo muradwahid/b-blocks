@@ -13,11 +13,12 @@ class BBlocksMailto extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
-		// Enqueue assets where has block
-		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS_DIR . 'js/mailtoui-min.js', [], '1.0.3', true );
+		wp_enqueue_style( 'b-blocks-mailto-style' );
+		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS . 'js/mailtoui-min.js', [], '1.0.3', true );
+		// wp_enqueue_script( 'b-blocks-mailto-script', B_BLOCKS_DIST . 'mailto.js', [ 'mailtoui' ], B_BLOCKS_VERSION, true ); // Not Needed
 
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-mailto ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-mailto $className align$align";
 
 		// Generate Styles
 		$mailtoStyle = new BBlocksStyleGenerator();

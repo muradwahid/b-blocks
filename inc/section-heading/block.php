@@ -13,8 +13,11 @@ class BBlocksSectionHeading extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-section-heading-style' );
+		// wp_enqueue_script( 'b-blocks-section-heading-script', B_BLOCKS_DIST . 'section-heading.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true ); // Not Needed
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-section-heading ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-section-heading $className align$align";
 
 		// Generate Styles
 		$sectionHeadingStyle = new BBlocksStyleGenerator();

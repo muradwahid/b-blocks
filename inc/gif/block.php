@@ -13,8 +13,11 @@ class BBlocksGIF extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-gif-style' );
+		// wp_enqueue_script( 'b-blocks-gif-script', B_BLOCKS_DIST . 'gif.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-gif ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-gif $className align$align";
 
 		// Generate Styles
 		$gifStyle = new BBlocksStyleGenerator();

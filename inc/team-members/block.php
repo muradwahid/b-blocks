@@ -13,8 +13,11 @@ class BBlocksTeamMembers extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-team-members-style' );
+		wp_enqueue_script( 'b-blocks-team-members-script', B_BLOCKS_DIST . 'team-members.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-team-members ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-team-members $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksTeamMembers-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ) ?>'></div>

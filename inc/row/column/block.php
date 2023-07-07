@@ -14,7 +14,7 @@ class BBlocksColumn extends BBlocks{
 		extract( $attributes );
 
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-column ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-column $className align$align";
 
 		// Style disappearing problem
 		global $allowedposttags;

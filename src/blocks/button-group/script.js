@@ -1,7 +1,7 @@
 import { render } from 'react-dom';
-import Style from './Style';
 
 import './style.scss';
+import Style from './Style';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const allButtonGroup = document.querySelectorAll('.wp-block-b-blocks-button-group');

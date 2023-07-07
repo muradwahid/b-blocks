@@ -15,11 +15,14 @@ class BBlocksPosts extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-posts-style' );
+		wp_enqueue_script( 'b-blocks-posts-script', B_BLOCKS_DIST . 'posts.js', [ 'react', 'react-dom', 'swiper', 'easyTicker' ], B_BLOCKS_VERSION, true );
+
 		// Enqueue assets where has block
 		wp_enqueue_style( 'dashicons' );
 
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-posts bBlocksPosts ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-posts bBlocksPosts $className align$align";
 
 		// $taxonomies = get_object_taxonomies( $postType, 'array' );
 		// foreach( $taxonomies as $tax ){

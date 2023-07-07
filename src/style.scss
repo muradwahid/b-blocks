@@ -108,90 +108,90 @@ body {
 }
 
 // Button
-.b_blocks_btn {
-	display: inline-block;
-	border: none;
-	outline: 0;
-	transition: all .3s ease;
-	text-decoration: none;
+// .b_blocks_btn {
+// 	display: inline-block;
+// 	border: none;
+// 	outline: 0;
+// 	transition: all .3s ease;
+// 	text-decoration: none;
 
-	&:focus {
-		outline: 0;
-	}
-}
+// 	&:focus {
+// 		outline: 0;
+// 	}
+// }
 
-.b_blocks_btn_small {
-	color: #fff !important;
-	background-color: $primaryColor;
-	padding: 8px 25px;
-	border-radius: 50px;
+// .b_blocks_btn_small {
+// 	color: #fff !important;
+// 	background-color: $primaryColor;
+// 	padding: 8px 25px;
+// 	border-radius: 50px;
 
-	&:hover {
-		background-color: $secondaryColor;
-	}
-}
+// 	&:hover {
+// 		background-color: $secondaryColor;
+// 	}
+// }
 
 
 // Tabs
-.b_blocks_tabs {
-	.nav.nav-pills {
-		.nav-link {
-			box-shadow: none;
-			border: 1px solid $primaryColor;
-			color: $primaryColor !important;
+// .b_blocks_tabs {
+// 	.nav.nav-pills {
+// 		.nav-link {
+// 			box-shadow: none;
+// 			border: 1px solid $primaryColor;
+// 			color: $primaryColor !important;
 
-			&.active {
-				color: #fff !important;
-				background-color: $primaryColor;
-				border-color: transparent;
+// 			&.active {
+// 				color: #fff !important;
+// 				background-color: $primaryColor;
+// 				border-color: transparent;
 
-				.b_blocks_remove_tab_btn {
-					color: #fff !important;
-				}
-			}
+// 				.b_blocks_remove_tab_btn {
+// 					color: #fff !important;
+// 				}
+// 			}
 
-			.b_blocks_remove_tab_btn {
-				color: $primaryColor !important;
-			}
-		}
-	}
+// 			.b_blocks_remove_tab_btn {
+// 				color: $primaryColor !important;
+// 			}
+// 		}
+// 	}
 
-	>.pills {
-		.nav-link {
-			margin-right: 5px;
-		}
-	}
+// 	>.pills {
+// 		.nav-link {
+// 			margin-right: 5px;
+// 		}
+// 	}
 
-	>.vertical-pills {
-		.nav-link {
-			margin-bottom: 5px;
-			width: 100%;
-		}
-	}
+// 	>.vertical-pills {
+// 		.nav-link {
+// 			margin-bottom: 5px;
+// 			width: 100%;
+// 		}
+// 	}
 
-	.nav.nav-tabs {
-		border-bottom: 1px solid $primaryColor;
+// 	.nav.nav-tabs {
+// 		border-bottom: 1px solid $primaryColor;
 
-		.nav-link {
-			box-shadow: none;
+// 		.nav-link {
+// 			box-shadow: none;
 
-			&.active,
-			&:hover {
-				background-color: transparent;
-				border-color: $primaryColor;
-				border-bottom-width: 3px;
-			}
+// 			&.active,
+// 			&:hover {
+// 				background-color: transparent;
+// 				border-color: $primaryColor;
+// 				border-bottom-width: 3px;
+// 			}
 
-			.b_blocks_remove_tab_btn {
-				color: $primaryColor !important;
-			}
-		}
-	}
-}
+// 			.b_blocks_remove_tab_btn {
+// 				color: $primaryColor !important;
+// 			}
+// 		}
+// 	}
+// }
 
-.mb-3 {
-	margin-bottom: 3px !important;
-}
+// .mb-3 {
+// 	margin-bottom: 3px !important;
+// }
 
 // Inline Text Style
 .bBlocksTextHighlight {

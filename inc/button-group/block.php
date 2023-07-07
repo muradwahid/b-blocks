@@ -13,8 +13,11 @@ class BBlocksButtonGroup extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-button-group-style' );
+		wp_enqueue_script( 'b-blocks-button-group-script', B_BLOCKS_DIST . 'button-group.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-button-group ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-button-group $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksButtonGroup-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

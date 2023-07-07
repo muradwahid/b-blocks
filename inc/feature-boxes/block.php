@@ -13,8 +13,11 @@ class BBlocksFeatureBoxes extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-feature-boxes-style' );
+		// wp_enqueue_script( 'b-blocks-feature-boxes-script', B_BLOCKS_DIST . 'feature-boxes.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-feature-boxes ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-feature-boxes $className align$align";
 
 		// Generate Styles
 		$mainSl = "#bBlocksFeatureBoxes-$cId";

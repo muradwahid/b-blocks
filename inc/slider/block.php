@@ -13,8 +13,11 @@ class BBlocksSlider extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-slider-style' );
+		wp_enqueue_script( 'b-blocks-slider-script', B_BLOCKS_DIST . 'slider.js', [ 'wp-element', 'swiper' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-slider ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-slider $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSlider-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>

@@ -13,8 +13,11 @@ class BBlocksInfoBox extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-info-box-style' );
+		// wp_enqueue_script( 'b-blocks-info-box-script', B_BLOCKS_DIST . 'info-box.js', [], B_BLOCKS_VERSION, true ); // Not needed
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-info-box ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-info-box $className align$align";
 
 		// Generate Styles
 		$mainSl = "#bBlocksInfoBox-$cId";

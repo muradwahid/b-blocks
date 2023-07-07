@@ -13,8 +13,11 @@ class BBlocksCountdown extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-countdown-style' );
+		wp_enqueue_script( 'b-blocks-countdown-script', B_BLOCKS_DIST . 'countdown.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-countdown ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-countdown $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

@@ -13,12 +13,11 @@ class BBlocksAnimatedText extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
-		// Enqueue assets where has block
-		wp_enqueue_script( 'textillate' );
-		wp_enqueue_style( 'animate' );
+		wp_enqueue_style( 'b-blocks-animated-text-style' );
+		wp_enqueue_script( 'b-blocks-animated-text-script', B_BLOCKS_DIST . 'animated-text.js', [ 'react', 'react-dom', 'textillate' ], B_BLOCKS_VERSION, true );
 
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-animated-text ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-animated-text $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksAnimatedText-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

@@ -1,0 +1,28 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-shape-divider {
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+	background-color: #4527a4;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.shapeContent {
+		z-index: 2;
+		position: relative;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	svg {
+		position: absolute;
+		left: 0;
+		line-height: 0;
+		z-index: 1;
+	}
+}

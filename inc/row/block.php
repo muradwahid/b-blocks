@@ -13,8 +13,11 @@ class BBlocksRow extends BBlocks{
 	function render( $attributes, $content ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-row-style' );
+		wp_enqueue_script( 'b-blocks-row-script', B_BLOCKS_DIST . 'row.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-row ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-row $className align$align";
 
 		// Style disappearing problem
 		global $allowedposttags;

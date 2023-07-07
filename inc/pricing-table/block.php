@@ -13,13 +13,16 @@ class BBlocksPricingTable extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-pricing-table-style' );
+		wp_enqueue_script( 'b-blocks-pricing-table-script', B_BLOCKS_DIST . 'pricing-table.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? 'is-style-basic';
 
 		$isStandard = false !== strpos($className, 'standard');
 		$isUltimate = false !== strpos($className, 'ultimate');
 
 		$basicClass = !$isStandard && !$isUltimate ? ' is-style-basic': '';
-		$blockClassName = 'wp-block-b-blocks-pricing-table ' . $className . $basicClass . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-pricing-table $className $basicClass align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksPricingTables-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

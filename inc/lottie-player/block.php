@@ -13,11 +13,11 @@ class BBlocksLottiePlayer extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
-		// Enqueue assets where has block
-		wp_enqueue_script( 'lottiePlayer' );
+		wp_enqueue_style( 'b-blocks-lottie-player-style' );
+		wp_enqueue_script( 'b-blocks-lottie-player-script', B_BLOCKS_DIST . 'lottie-player.js', [ 'react', 'react-dom', 'lottiePlayer' ], B_BLOCKS_VERSION, true );
 
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-lottie-player ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-lottie-player $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksLottiePlayer-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

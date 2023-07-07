@@ -33,6 +33,7 @@ import './blocks/qr-code';
 import './blocks/social-share';
 import './blocks/animated-text';
 import './blocks/alert';
+import './blocks/shape-divider';
 // import './blocks/progress-bar.js';
 // import './blocks/spacer';
 import './blocks/inline';

@@ -13,8 +13,11 @@ class BBlocksCards extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-cards-style' );
+		wp_enqueue_script( 'b-blocks-cards-script', B_BLOCKS_DIST . 'cards.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-cards ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-cards $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksCards-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ) ?>'></div>

@@ -13,8 +13,11 @@ class BBlocksCounters extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-counters-style' );
+		wp_enqueue_script( 'b-blocks-counters-script', B_BLOCKS_DIST . 'counters.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-counters ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-counters $className align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksCounters-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ) ?>'></div>

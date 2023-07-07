@@ -2,20 +2,20 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 1.7.7\n"
+"Project-Id-Version: B Blocks 1.7.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-06-05T16:15:23+00:00\n"
+"POT-Creation-Date: 2023-07-07T17:04:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
-#: plugin.php:118
+#: plugin.php:120
 msgid "B Blocks"
 msgstr ""
 
@@ -31,28 +31,28 @@ msgstr ""
 msgid "http://bplugins.com"
 msgstr ""
 
-#: inc/image-gallery/block.php:90
+#: inc/image-gallery/block.php:93
 msgid "Preview"
 msgstr ""
 
-#: inc/posts/block.php:102
+#: inc/posts/block.php:105
 msgid "Please, select a sub layout"
 msgstr ""
 
-#: inc/posts/block.php:333
-#: inc/posts/block.php:343
+#: inc/posts/block.php:336
+#: inc/posts/block.php:346
 msgid "Author name and link"
 msgstr ""
 
-#: inc/posts/block.php:355
+#: inc/posts/block.php:358
 msgid "Category link lists"
 msgstr ""
 
-#: inc/posts/block.php:365
+#: inc/posts/block.php:368
 msgid "Comment"
 msgstr ""
 
-#: inc/posts/block.php:373
+#: inc/posts/block.php:376
 msgid "Read More &raquo;"
 msgstr ""
 
@@ -90,6 +90,7 @@ msgstr ""
 #: dist/editor.js:1
 #: dist/editor.js:8792
 #: dist/editor.js:17049
+#: dist/editor.js:19066
 msgid "Top"
 msgstr ""
 
@@ -105,6 +106,7 @@ msgstr ""
 
 #: dist/editor.js:1
 #: dist/editor.js:8794
+#: dist/editor.js:19066
 msgid "Bottom"
 msgstr ""
 
@@ -257,6 +259,8 @@ msgstr ""
 #: dist/editor.js:15684
 #: dist/editor.js:16744
 #: dist/editor.js:17298
+#: dist/editor.js:19053
+#: dist/editor.js:19072
 msgid "Height:"
 msgstr ""
 
@@ -332,6 +336,7 @@ msgstr ""
 #: dist/editor.js:18306
 #: dist/editor.js:18596
 #: dist/editor.js:18865
+#: dist/editor.js:19081
 msgid "Padding:"
 msgstr ""
 
@@ -802,6 +807,7 @@ msgstr ""
 #: dist/editor.js:1
 #: dist/editor.js:9958
 #: dist/editor.js:10768
+#: dist/editor.js:19079
 msgid "Background"
 msgstr ""
 
@@ -880,6 +886,7 @@ msgstr ""
 #: dist/editor.js:16779
 #: dist/editor.js:17890
 #: dist/editor.js:18594
+#: dist/editor.js:19086
 msgid "Color:"
 msgstr ""
 
@@ -1131,6 +1138,7 @@ msgstr ""
 #: dist/editor.js:17296
 #: dist/editor.js:17758
 #: dist/editor.js:18854
+#: dist/editor.js:19069
 msgid "Width:"
 msgstr ""
 
@@ -2487,6 +2495,7 @@ msgstr ""
 #: dist/editor.js:16447
 #: dist/editor.js:16772
 #: dist/editor.js:18822
+#: dist/editor.js:19059
 msgid "Type:"
 msgstr ""
 
@@ -2877,6 +2886,7 @@ msgstr ""
 
 #: dist/editor.js:1
 #: dist/editor.js:17591
+#: dist/editor.js:19064
 msgid "Position:"
 msgstr ""
 
@@ -3563,27 +3573,39 @@ msgid "Alert Message"
 msgstr ""
 
 #: dist/editor.js:1
-#: dist/editor.js:19032
+#: dist/editor.js:19052
+#: dist/editor.js:19078
+msgid "Section"
+msgstr ""
+
+#: dist/editor.js:1
+#: dist/editor.js:19057
+#: dist/editor.js:19085
+msgid "Shape"
+msgstr ""
+
+#: dist/editor.js:1
+#: dist/editor.js:19270
 msgid "B Remove All Formats"
 msgstr ""
 
 #: dist/editor.js:1
-#: dist/editor.js:19067
+#: dist/editor.js:19305
 msgid "B Text Highlight"
 msgstr ""
 
 #: dist/editor.js:1
-#: dist/editor.js:19068
+#: dist/editor.js:19306
 msgid "B Text Uppercase"
 msgstr ""
 
 #: dist/editor.js:1
-#: dist/editor.js:19069
+#: dist/editor.js:19307
 msgid "B Text Underline"
 msgstr ""
 
 #: dist/editor.js:1
-#: dist/editor.js:19070
+#: dist/editor.js:19308
 msgid "B Text Overline"
 msgstr ""
 
@@ -4218,6 +4240,31 @@ msgstr ""
 #: inc/services/child/block.json
 msgctxt "block keyword"
 msgid "service card"
+msgstr ""
+
+#: inc/shape-divider/block.json
+msgctxt "block title"
+msgid "Shape Divider"
+msgstr ""
+
+#: inc/shape-divider/block.json
+msgctxt "block description"
+msgid "Create unique and visually appealing dividers."
+msgstr ""
+
+#: inc/shape-divider/block.json
+msgctxt "block keyword"
+msgid "shape divider"
+msgstr ""
+
+#: inc/shape-divider/block.json
+msgctxt "block keyword"
+msgid "svg shape"
+msgstr ""
+
+#: inc/shape-divider/block.json
+msgctxt "block keyword"
+msgid "dynamic divider"
 msgstr ""
 
 #: inc/slider/block.json

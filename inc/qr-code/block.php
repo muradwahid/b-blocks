@@ -13,8 +13,11 @@ class BBlocksQRCode extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		wp_enqueue_style( 'b-blocks-qr-code-style' );
+		// wp_enqueue_script( 'b-blocks-qr-code-script', B_BLOCKS_DIST . 'qr-code.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true ); // Not Needed
+
 		$className = $className ?? '';
-		$blockClassName = 'wp-block-b-blocks-qr-code ' . $className . ' align' . $align;
+		$blockClassName = "wp-block-b-blocks-qr-code $className align$align";
 
 		// Generate Styles
 		$qrCodeStyle = new BBlocksStyleGenerator();
