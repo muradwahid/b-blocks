@@ -1,22 +1,21 @@
 import { useEffect, useRef } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 const $ = jQuery;
 
 import './style.scss';
 import Style from './Style';
 import { drags } from './utils/functions';
 
-// Image Compare
 document.addEventListener('DOMContentLoaded', () => {
 	const allImageCompare = document.querySelectorAll('.wp-block-b-blocks-image-comparison');
 	allImageCompare.forEach(imageCompare => {
 		const attributes = JSON.parse(imageCompare.dataset.attributes);
 
-		render(<>
+		createRoot(imageCompare).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
 			<ImageCompare attributes={attributes} />
-		</>, imageCompare);
+		</>);
 
 		imageCompare?.removeAttribute('data-attributes');
 	});
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const ImageCompare = ({ attributes }) => {
 	const { beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
 
-	const comparisonRef = useRef(null);
+	const imgCompareRef = useRef(null);
 	const dividerRef = useRef(null);
 	const resizeRef = useRef(null);
 	const beforeImgRef = useRef(null);
@@ -38,20 +37,46 @@ const ImageCompare = ({ attributes }) => {
 	// Image Slider Scripts
 	useEffect(() => {
 		setTimeout(() => {
-			if (comparisonRef.current) {
-				const comparisonWidth = comparisonRef.current?.clientWidth + 'px';
+			if (imgCompareRef.current) {
+				const comparisonWidth = imgCompareRef.current?.clientWidth + 'px';
 
 				setImgWidth(comparisonWidth);
 
-				drags($(dividerRef.current), $(resizeRef.current), $(comparisonRef.current));
+				drags($(dividerRef.current), $(resizeRef.current), $(imgCompareRef.current));
 
 				window.addEventListener('resize', () => {
-					const comparisonWidth = comparisonRef.current?.clientWidth + 'px';
+					const comparisonWidth = imgCompareRef.current?.clientWidth + 'px';
 					setImgWidth(comparisonWidth);
 				});
 			}
 		}, 0);
 	}, [$]);
+
+	useEffect(() => {
+		const compareEl = imgCompareRef.current
+
+		const handleResize = () => {
+			const imgCompareWidth = compareEl?.clientWidth;
+
+			if (imgCompareWidth) {
+				setImgWidth(`${imgCompareWidth}px`);
+				drags($(dividerRef.current), $(resizeRef.current), $(compareEl));
+			}
+		};
+
+		const observer = new ResizeObserver(handleResize);
+
+		if (compareEl) {
+			observer.observe(compareEl);
+		}
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
 
 	// useEffect(() => {
 	// 	setTimeout(() => {
@@ -75,7 +100,7 @@ const ImageCompare = ({ attributes }) => {
 	// }, [$]);
 
 	return <div className='bBlocksImageComparison'>
-		<div className='comparison-slider' ref={comparisonRef}>
+		<div className='comparison-slider' ref={imgCompareRef}>
 			{isLabel && afterLabel && <div className='overlay afterLabel' dangerouslySetInnerHTML={{ __html: afterLabel }} />}
 			<img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
 

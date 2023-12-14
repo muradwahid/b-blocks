@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl, Tooltip, CheckboxControl } from '@wordpress/components';
 
-// Settings Components
 import { Label, BColor, BDevice, ShadowControl, SpaceControl } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
@@ -124,7 +123,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 
 									<TextControl value={label} onChange={val => updatePriceTable('features', val, featureIndex, 'label')} />
 
-									<Tooltip text={__('Remove the feature', 'b-blocks')} position='top'>
+									<Tooltip text={__('Remove the feature', 'b-blocks')} placement='top' position='top'>
 										<a className='removeItem' onClick={removeFeature}><Dashicon icon='no' /></a>
 									</Tooltip>
 								</PanelRow>;

@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, TextControl, __experimentalNumberControl as NumberControl, Button, Dashicon, Tooltip, RangeControl } from '@wordpress/components';
 
-// Settings Components
 import { Label, Background, BColor } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
@@ -163,7 +162,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<Label className=''>{__(`Label ${labelIndex + 1}:`, 'b-blocks')}</Label>
 					<TextControl value={label} onChange={val => updateData('labels', labelIndex, val)} />
 
-					<Tooltip text={__('Remove this Dataset', 'b-blocks')} position='top center'>
+					<Tooltip text={__('Remove this Dataset', 'b-blocks')} placement='top' position='top'>
 						<Button className='removeDataset' onClick={e => {
 							e.preventDefault();
 							removeDataset(labelIndex);
@@ -186,11 +185,11 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<NumberControl className='chartDataValue' value={dataset.data[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'data', labelIndex)} />
 
-						<Tooltip text={__('Dataset Background Color', 'b-blocks')} position='top center'>
+						<Tooltip text={__('Dataset Background Color', 'b-blocks')} placement='top' position='top'>
 							<BColor className='chartBGColor' label='' value={dataset.backgroundColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'backgroundColor', labelIndex)} />
 						</Tooltip>
 
-						<Tooltip text={__('Dataset Border Color', 'b-blocks')} position='top center'>
+						<Tooltip text={__('Dataset Border Color', 'b-blocks')} placement='top' position='top'>
 							<BColor label='' value={dataset.borderColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'borderColor', labelIndex)} />
 						</Tooltip>
 					</PanelRow>)}

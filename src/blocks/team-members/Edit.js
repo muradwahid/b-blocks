@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner, Button, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
-import produce from 'immer';
+import { produce } from 'immer';
 
-// Settings Components
 import { Label, IconControl, ImagePlaceholder } from '../../../../Components';
 
 import Settings from './Settings';
@@ -14,6 +13,7 @@ import Style from './Style';
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId, isSelected } = props;
 	const { members = [], columns, layout, isTitle, isSep, isBio, isSocial } = attributes;
+	const { desktop, tablet, mobile } = columns || {};
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -42,7 +42,7 @@ const Edit = props => {
 		<div className={className} id={`bBlocksTeamMembers-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />
 
-			<div className={`bBlocksTeamMembers ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
+			<div className={`bBlocksTeamMembers ${layout || 'vertical'} columns-${desktop} columns-tablet-${tablet} columns-mobile-${mobile}`}>
 				{members.map((item, index) => {
 					const { photo, name, title, bio, social = [] } = item;
 
@@ -57,7 +57,7 @@ const Edit = props => {
 
 							{isTitle && <RichText className='memberTitle' tagName='p' value={title} onChange={val => updateMember(index, 'title', val)} placeholder={__('Member designation/title', 'b-blocks')} inlineToolbar />}
 
-							{isSep && <span className='memberSeparator'></span>}
+							{isSep && <span className='memberSeparator' />}
 
 							{isBio && <RichText className='memberBio' tagName='p' value={bio} onChange={val => updateMember(index, 'bio', val)} placeholder={__('Biography of the member', 'b-blocks')} inlineToolbar />}
 
@@ -66,7 +66,7 @@ const Edit = props => {
 									const { icon } = socialItem;
 
 									return <li key={socialIndex} onClick={() => setSelectedSocial(socialIndex)} className={`icon icon-${index}-${socialIndex} ${isSelected && index === activeIndex && socialIndex === selectedSocial ? 'isSelected' : null}`}>
-										<a href={'#'}><i className={icon?.class}></i></a>
+										<a href={'#'}><i className={icon?.class} /></a>
 									</li>;
 								})}
 							</ul>}
@@ -81,7 +81,7 @@ const Edit = props => {
 									e.preventDefault();
 									updateMember(index, 'social', [...social.slice(0, selectedSocial), ...social.slice(selectedSocial + 1)]);
 									setSelectedSocial(null);
-								}}><i className='fa fa-times'></i>{__('Remove this link', 'b-blocks')}</a>
+								}}><i className='fa fa-times' />{__('Remove this link', 'b-blocks')}</a>
 							</div>}
 
 							{(isSelected && isSocial && index === activeIndex) && <div className='socialAction memberSocialAdd mt20'>
@@ -90,7 +90,7 @@ const Edit = props => {
 										link: '#', icon: { class: 'fab fa-facebook-f' }
 									}]);
 									setSelectedSocial(social.length);
-								}}><i className='fa fa-plus'></i> Add new social</Button>
+								}}><i className='fa fa-plus' /> Add new social</Button>
 							</div>}
 						</div>
 					</div>;

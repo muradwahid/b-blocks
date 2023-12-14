@@ -29,7 +29,7 @@ const Background = props => {
 	return <PanelRow className={`bPlDropdown ${className}`}>
 		<Label className='mb5'>{label}</Label>
 
-		<Dropdown className='bPlDropdownContainer' contentClassName='bPlDropdownPopover' position='bottom right'
+		<Dropdown className='bPlDropdownContainer' contentClassName='bPlDropdownPopover' popoverProps={{ placement: 'bottom-end' }}
 			renderToggle={({ isOpen, onToggle }) => <Button icon='edit' onClick={onToggle} aria-expanded={isOpen} />}
 			renderContent={() => <>
 				{/* Type */}

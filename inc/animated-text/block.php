@@ -15,6 +15,7 @@ class BBlocksAnimatedText extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-animated-text-style' );
 		wp_enqueue_script( 'b-blocks-animated-text-script', B_BLOCKS_DIST . 'animated-text.js', [ 'react', 'react-dom', 'textillate' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-animated-text-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-animated-text $className align$align";

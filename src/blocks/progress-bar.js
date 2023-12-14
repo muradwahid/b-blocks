@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 
-// Settings Components
 import { Label, BColor } from '../../../Components';
 
 import { progressIcon } from '../utils/icons';

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } from '@wordpress/components';
 
-// Settings Components
 import { Label, BtnGroup } from '../../../Components';
 
 import { accordionIcon } from '../utils/icons';

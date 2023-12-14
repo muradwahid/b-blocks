@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
-import produce from 'immer';
+import { produce } from 'immer';
 
-// Settings Components
 import { ImagePlaceholder } from '../../../../Components';
 import { tabController } from '../../../../Components/utils/functions';
 

@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
-// Settings Components
 import { Label } from '../../../Components';
 
 // Icon

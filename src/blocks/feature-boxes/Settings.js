@@ -2,9 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BDevice, IconControl, InlineDetailMediaUpload, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
@@ -133,7 +131,7 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 				<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
 				{isTitle && <>
-					<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 }, fontWeight: 600 }} produce={produce} />
+					<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 }, fontWeight: 600 }} />
 
 					<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 				</>}
@@ -150,7 +148,7 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 			<PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-				{isDesc && <Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />}
+				{isDesc && <Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />}
 			</PanelBody>
 		</InspectorControls>
 

@@ -15,6 +15,7 @@ class BBlocksAlert extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-alert-style' );
 		wp_enqueue_script( 'b-blocks-alert-script', B_BLOCKS_DIST . 'alert.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-alert-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-alert $className align$align";

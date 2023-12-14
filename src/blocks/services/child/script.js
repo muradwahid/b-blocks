@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Style from './Style';
 import Service from './Service';
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const attributes = JSON.parse(service.dataset.attributes);
 		const { isTitle, title, isDesc, desc, link, linkIn } = attributes;
 
-		render(<>
+		createRoot(service).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
 			<Service attributes={attributes}>
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				{isDesc && desc && <p className='description' dangerouslySetInnerHTML={{ __html: desc }} />}
 			</Service>
-		</>, service);
+		</>);
 
 		service?.removeAttribute('data-attributes');
 	});

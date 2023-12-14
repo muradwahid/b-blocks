@@ -2,9 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, __experimentalUnitControl as UnitControl, SelectControl } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../Components/utils/options';
@@ -218,14 +216,14 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 					<PanelBody className='bPlPanelBody' title={__('Slide Title', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 
-						{isTitle && <Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} produce={produce} />}
+						{isTitle && <Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} />}
 					</PanelBody>
 
 
 					<PanelBody className='bPlPanelBody' title={__('Slide Description', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-						{isDesc && <Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />}
+						{isDesc && <Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />}
 					</PanelBody>
 
 
@@ -235,7 +233,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex }) => {
 						{isBtn && <>
 							<ToggleControl label={__('Open link in new tab', 'b-blocks')} checked={'_blank' === linkTarget ? true : false} onChange={val => setAttributes({ linkTarget: val ? '_blank' : '' })} />
 
-							<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} />
+							<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} />
 
 							<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '35px' }} />
 

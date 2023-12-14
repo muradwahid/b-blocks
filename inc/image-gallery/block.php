@@ -15,6 +15,7 @@ class BBlocksImageGallery extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-image-gallery-style' );
 		// wp_enqueue_script( 'b-blocks-image-gallery-script', B_BLOCKS_DIST . 'image-gallery.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-image-gallery-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		// Enqueue assets where has block
 		wp_enqueue_script( 'fancybox', B_BLOCKS_ASSETS . 'js/fancybox.min.js', [], '4.0', true );

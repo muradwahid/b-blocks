@@ -15,6 +15,7 @@ class BBlocksQRCode extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-qr-code-style' );
 		// wp_enqueue_script( 'b-blocks-qr-code-script', B_BLOCKS_DIST . 'qr-code.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-qr-code-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-qr-code $className align$align";

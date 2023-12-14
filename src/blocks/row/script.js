@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './column/script';
 import './style.scss';
@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const bBlocksRowStyle = document.querySelector(`#${row.id} .bBlocksRowStyle`);
 
-		render(<>
+		createRoot(bBlocksRowStyle).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
-		</>, bBlocksRowStyle);
+		</>);
 
 		row?.removeAttribute('data-attributes');
 	});

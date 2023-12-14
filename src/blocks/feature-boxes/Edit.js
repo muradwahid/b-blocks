@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
-import produce from 'immer';
+import { produce } from 'immer';
 
 import Settings from './Settings';
 import Style from './Style';

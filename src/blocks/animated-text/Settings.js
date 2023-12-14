@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TabPanel, TextareaControl, ToggleControl, SelectControl, Dashicon } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BorderControl, BtnGroup, SpaceControl, Typography } from '../../../../Components';
 
 import { generalStyleTabs } from '../../utils/options';
@@ -71,7 +69,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<PanelBody className='bPlPanelBody' title={__('Animated Text Style', 'b-blocks')}>
 						<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-						<Typography className='mt20' label={__('Typography:', 'b-blocks')} value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} produce={produce} />
+						<Typography className='mt20' label={__('Typography:', 'b-blocks')} value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} />
 
 						<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => setAttributes({ color: val })} defaultColor='#333' />
 

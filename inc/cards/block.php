@@ -15,6 +15,7 @@ class BBlocksCards extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-cards-style' );
 		wp_enqueue_script( 'b-blocks-cards-script', B_BLOCKS_DIST . 'cards.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-cards-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-cards $className align$align";

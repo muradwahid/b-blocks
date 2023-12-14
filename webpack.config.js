@@ -13,6 +13,7 @@ module.exports = (env, argv) => {
 
 	var config = {
 		entry: {
+			admin: './src/admin.js',
 			editor: './src/editor.js',
 			script: './src/script.js',
 			'3d-viewer': './src/blocks/3d-viewer/script.js',

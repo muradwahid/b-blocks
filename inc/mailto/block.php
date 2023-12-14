@@ -16,6 +16,7 @@ class BBlocksMailto extends BBlocks{
 		wp_enqueue_style( 'b-blocks-mailto-style' );
 		wp_enqueue_script( 'mailtoui', B_BLOCKS_ASSETS . 'js/mailtoui-min.js', [], '1.0.3', true );
 		// wp_enqueue_script( 'b-blocks-mailto-script', B_BLOCKS_DIST . 'mailto.js', [ 'mailtoui' ], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-mailto-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-mailto $className align$align";

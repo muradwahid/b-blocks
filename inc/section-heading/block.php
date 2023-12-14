@@ -15,6 +15,7 @@ class BBlocksSectionHeading extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-section-heading-style' );
 		// wp_enqueue_script( 'b-blocks-section-heading-script', B_BLOCKS_DIST . 'section-heading.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-section-heading-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-section-heading $className align$align";

@@ -2,9 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { tabController } from '../../../../Components/utils/functions';
@@ -109,7 +107,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 						<PanelRow>
 							<Label className='mb5'>{__('Layout:', 'b-blocks')}</Label>
 							<ButtonGroup className='bPlBtnGroup'>
-								<Tooltip text={__('Vertical', 'b-blocks')} position='top'>
+								<Tooltip text={__('Vertical', 'b-blocks')} placement='top' position='top'>
 									<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
 										layout: 'vertical',
 										columns: { ...columns, ['desktop']: 3 },
@@ -118,7 +116,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 									})}></Button>
 								</Tooltip>
 
-								<Tooltip text={__('Horizontal', 'b-blocks')} position='top'>
+								<Tooltip text={__('Horizontal', 'b-blocks')} placement='top' position='top'>
 									<Button icon={horizontalLineIcon} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({
 										layout: 'horizontal',
 										columns: { ...columns, ['desktop']: 2 },
@@ -179,21 +177,21 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 
 					{isCat && <PanelBody className='bPlPanelBody' title={__('Category', 'b-blocks')} initialOpen={false}>
-						<Typography value={catTypo} onChange={val => setAttributes({ catTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
+						<Typography value={catTypo} onChange={val => setAttributes({ catTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
 						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={catMargin} onChange={val => setAttributes({ catMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>}
 
 
 					{isTitle && <PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
-						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} produce={produce} />
+						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} />
 
 						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>}
 
 
 					{isDesc && <PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-						<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
+						<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 					</PanelBody>}
 				</>}
 			</>}</TabPanel>

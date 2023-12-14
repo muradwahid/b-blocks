@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	allPlayers.forEach(player => {
 		const attributes = JSON.parse(player.dataset.attributes);
 
-		render(<>
+		createRoot(player).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
 			<RenderLottiePlayer attributes={attributes} clientId={attributes.cId} />
-		</>, player);
+		</>);
 
 		player?.removeAttribute('data-attributes')
 	});

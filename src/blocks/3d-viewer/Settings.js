@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
 
-// Settings Components
 import { Label, InlineDetailMediaUpload } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 

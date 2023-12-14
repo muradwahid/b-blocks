@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
 import { performCounter } from './utils/functions';
 
-// Counters
 document.addEventListener('DOMContentLoaded', () => {
 	const allCounters = document.querySelectorAll('.wp-block-b-blocks-counters');
 	allCounters.forEach(counters => {
 		const attributes = JSON.parse(counters.dataset.attributes);
 
-		render(<Counters attributes={attributes} countersEl={counters} />, counters);
+		createRoot(counters).render(<Counters attributes={attributes} countersEl={counters} />);
 
 		counters?.removeAttribute('data-attributes');
 	});

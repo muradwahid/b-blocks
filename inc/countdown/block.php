@@ -15,6 +15,7 @@ class BBlocksCountdown extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-countdown-style' );
 		wp_enqueue_script( 'b-blocks-countdown-script', B_BLOCKS_DIST . 'countdown.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-countdown-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-countdown $className align$align";

@@ -3,9 +3,8 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
-import produce from 'immer';
+import { produce } from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
@@ -225,19 +224,19 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 
 
 					<PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
-						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} produce={produce} />
+						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} />
 
 						{titleTypo && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '20px' }} />}
 					</PanelBody>
 
 
 					{isDesc && <PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-						<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} />
+						<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} />
 					</PanelBody>}
 
 
 					{isBtn && <PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
-						<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 } }} produce={produce} />
+						<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 } }} />
 
 						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '15px', horizontal: '25px' }} />
 					</PanelBody>}

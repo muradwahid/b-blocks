@@ -15,6 +15,7 @@ class BBlocksImageComparison extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-image-comparison-style' );
 		wp_enqueue_script( 'b-blocks-image-comparison-script', B_BLOCKS_DIST . 'image-comparison.js', [ 'react', 'react-dom', 'jquery' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-image-comparison-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-image-comparison $className align$align";

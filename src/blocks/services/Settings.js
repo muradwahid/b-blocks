@@ -3,9 +3,7 @@ import { useState } from 'react';
 import { select, dispatch } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, PanelRow, RangeControl, SelectControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
@@ -123,14 +121,14 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 				<ToggleControl className='mt35' label={__('Show Title', 'b-blocks')} checked={isTitle || childAttributes?.isTitle} onChange={val => { setChildAttributes({ isTitle: val }); setIsTitle(val); }} />
 
 				{isTitle || childAttributes?.isTitle ? <>
-					<Typography label={__('Title Typography:', 'b-blocks')} value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 23, tablet: 20, mobile: 18 } }} produce={produce} />
+					<Typography label={__('Title Typography:', 'b-blocks')} value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 23, tablet: 20, mobile: 18 } }} />
 
 					<SpaceControl className='mt20' label={__('Title Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '30px' }} />
 				</> : ''}
 
 				<ToggleControl className='mt35' label={__('Show Description', 'b-blocks')} checked={isDesc || childAttributes?.isDesc} onChange={val => { setChildAttributes({ isDesc: val }); setIsDesc(val); }} />
 
-				{isDesc || childAttributes?.isDesc ? <Typography label={__('Description Typography:', 'b-blocks')} value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} /> : ''}
+				{isDesc || childAttributes?.isDesc ? <Typography label={__('Description Typography:', 'b-blocks')} value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} /> : ''}
 			</PanelBody>
 		</InspectorControls>
 

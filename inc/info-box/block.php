@@ -15,6 +15,7 @@ class BBlocksInfoBox extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-info-box-style' );
 		// wp_enqueue_script( 'b-blocks-info-box-script', B_BLOCKS_DIST . 'info-box.js', [], B_BLOCKS_VERSION, true ); // Not needed
+		// wp_set_script_translations( 'b-blocks-info-box-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-info-box $className align$align";

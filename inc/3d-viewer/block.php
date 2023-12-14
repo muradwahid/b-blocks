@@ -20,6 +20,7 @@ class BBlocks3DViewer extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-td-viewer-style' );
 		wp_enqueue_script( 'b-blocks-td-viewer-script', B_BLOCKS_DIST . '3d-viewer.js', [ 'react', 'react-dom', 'modelViewer' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-td-viewer-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-td-viewer $className align$align";

@@ -48,28 +48,123 @@ $secondaryColor: #8344c5;
 	}
 }
 
-
-.wp-block-b-blocks-posts.bBlocksPosts {
+.wp-block-b-blocks-posts {
 	overflow: hidden;
 
 	* {
 		box-sizing: border-box;
 	}
 
+	.fillContentHeight {
+		&.bBlocksDefault {
+			display: flex;
+			flex-direction: column;
+
+			.bBlocksText {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+		}
+
+		&.bBlocksSideImage {
+			.bBlocksText {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+		}
+	}
+
 	.bBlocksGridPosts {
 		display: grid;
+
+		&::before,
+		&::after {
+			content: none;
+		}
 
 		.swiper-notification {
 			display: none;
 		}
 	}
 
-	.bBlocksMasonryPosts {
-		article {
-			break-inside: avoid;
+	.bBlocksGrid1Posts {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		.bBlocksPost:nth-child(4n + 1) {
+			grid-column: span 2;
+			grid-row: span 2;
+		}
+
+		.bBlocksPost:nth-child(4n + 2),
+		.bBlocksPost:nth-child(4n + 3) {
+			grid-column: span 1;
+			grid-row: span 1;
+		}
+
+		.bBlocksPost:nth-child(4n + 4) {
+			grid-column: span 2;
+			grid-row: span 1;
+		}
+
+		@media (max-width: 992px) {
+			grid-template-columns: repeat(2, 1fr);
+
+			.bBlocksPost:nth-child(3n + 1) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+
+			.bBlocksPost:nth-child(3n + 2),
+			.bBlocksPost:nth-child(3n + 3) {
+				grid-column: span 1;
+				grid-row: span 1;
+			}
+		}
+
+		@media (max-width: 576px) {
+			grid-template-columns: repeat(1, 1fr);
+
+			.bBlocksPost:nth-child(2n + 1),
+			.bBlocksPost:nth-child(2n + 2) {
+				grid-column: span 1;
+				grid-row: span 1;
+			}
 		}
 
 		.swiper-notification {
+			display: none;
+		}
+	}
+
+	.bBlocksPagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		list-style-type: none;
+		padding: 0;
+		margin: 15px 0 0 0;
+
+		.bBlocksPagePrev,
+		.bBlocksPageNumber,
+		.bBlocksPageNext {
+			border-radius: 3px;
+			cursor: pointer;
+
+			&.bBlocksActivePage {
+				cursor: default;
+			}
+		}
+
+		.disabled {
 			display: none;
 		}
 	}
@@ -91,7 +186,7 @@ $secondaryColor: #8344c5;
 		}
 	}
 
-	.bBlocksPostOverlay:not(.bBlocksPostOverlayBox) .bBlocksPostText {
+	.bBlocksOverlay:not(.bBlocksOverlayBox) .bBlocksText {
 		width: -webkit-fill-available !important;
 	}
 
@@ -121,20 +216,44 @@ $secondaryColor: #8344c5;
 	}
 }
 
+// .bBlocksTickerPosts {
+// 	>div {
+// 		width: 100%;
+// 	}
+// }
+
 .bBlocksPost {
 	border-radius: 5px;
 	overflow: hidden;
 	box-sizing: border-box;
+	margin: 0;
 
-	.bBlocksPostMeta {
+	.bBlocksMeta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px;
+
 		>span {
 			display: inline-flex;
 			align-items: center;
-			margin-right: 10px;
+			gap: 10px;
 
 			a {
 				color: inherit;
 			}
+		}
+
+		img {
+			width: 1em;
+			height: 1em;
+			object-fit: contain;
+		}
+
+		.dashicons {
+			width: auto;
+			height: auto;
+			font-size: inherit;
 		}
 
 		.dashicons-admin-comments {
@@ -142,16 +261,22 @@ $secondaryColor: #8344c5;
 		}
 	}
 
-	.bBlocksPostExcerpt {
+	.bBlocksExcerpt {
 		p {
-			margin: 0;
-			font-size: inherit;
+			margin: 0 !important;
+			font-size: inherit !important;
 		}
 	}
 
-	.bBlocksPostReadMore a {
-		display: inline-block;
-		transition: all .3s ease;
+	.bBlocksReadMore {
+		&.bottom {
+			margin-top: auto;
+		}
+
+		a {
+			display: inline-block;
+			transition: all .3s ease;
+		}
 	}
 
 	a {
@@ -159,9 +284,10 @@ $secondaryColor: #8344c5;
 		text-decoration: none;
 		display: inline-block;
 		transition: all .3s ease;
+		cursor: pointer;
 	}
 
-	.bBlocksPostFImg {
+	.bBlocksThumb {
 		position: relative;
 		text-align: center;
 		background-size: cover;
@@ -171,23 +297,27 @@ $secondaryColor: #8344c5;
 		height: 10px;
 		padding-bottom: 60%;
 
-		>a {
+		>a,
+		img {
 			position: absolute;
 			width: 100%;
-			height: 100%;
+			height: 100% !important;
 			left: 0;
 			top: 0;
 		}
 
-		.bBlocksPostFImgCats {
+		.bBlocksThumbCats {
 			position: absolute;
 			left: 10px;
 			bottom: 10px;
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 5px;
 
 			a {
 				text-decoration: none !important;
 				padding: 2px 10px;
-				margin-right: 5px;
 				border-radius: 2px;
 
 				&:hover {
@@ -198,10 +328,20 @@ $secondaryColor: #8344c5;
 	}
 
 
-	&.bBlocksPostSideImage {
+	&.bBlocksSideImage {
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		height: inherit;
+		display: flex;
+
+		&.grid {
+			display: grid;
+
+			&::before,
+			&::after {
+				content: none;
+			}
+		}
 
 		&.leftImage {
 			grid-template-columns: 1fr 1.3fr;
@@ -211,7 +351,7 @@ $secondaryColor: #8344c5;
 			grid-template-columns: 1.3fr 1fr;
 		}
 
-		.bBlocksPostFImg {
+		.bBlocksThumb {
 			padding-bottom: 0;
 			height: 100% !important;
 		}
@@ -222,34 +362,26 @@ $secondaryColor: #8344c5;
 			align-self: stretch !important;
 
 			&.rightImage {
-				.bBlocksPostFImg {
+				.bBlocksThumb {
 					margin-top: auto;
 				}
 			}
 
-			.bBlocksPostFImg {
+			.bBlocksThumb {
 				width: 100%;
 				height: 200px !important;
 			}
 		}
 	}
 
-	&.bBlocksPostOverlay {
+	&.bBlocksOverlay {
 		position: relative;
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
 		z-index: 0;
 
-		.bBlocksPostText {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			width: 100%;
-			min-height: 100%;
-		}
-
-		&.bBlocksPostOverlayHover {
+		&.bBlocksOverlayHover {
 			>div {
 				opacity: 0;
 				transition: all .3s ease-out !important;
@@ -267,11 +399,11 @@ $secondaryColor: #8344c5;
 			}
 		}
 
-		&.bBlocksPostOverlayBox {
+		&.bBlocksOverlayBox {
 			padding: 10% 7.5%;
 
 			&.swiper-slide {
-				.bBlocksPostText {
+				.bBlocksText {
 					padding-left: 0 !important;
 					padding-right: 0 !important;
 					width: 85% !important;
@@ -283,6 +415,31 @@ $secondaryColor: #8344c5;
 					transform: translate(-50%, -50%);
 				}
 			}
+		}
+
+		&.bBlocksOverlayHalfContent {
+			min-height: 400px;
+
+			.bBlocksText {
+				justify-content: flex-end;
+			}
+		}
+
+		img {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			z-index: -1;
+		}
+
+		.bBlocksText {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			width: 100%;
+			min-height: 100%;
 		}
 	}
 }

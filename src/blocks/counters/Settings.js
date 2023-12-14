@@ -2,9 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
-import produce from 'immer';
+import { produce } from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BDevice, BorderControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
@@ -225,11 +224,11 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 							}} options={iconPositions} />
 						</PanelRow>
 
-						<Typography className='mt20' label={__('Number Typography:', 'b-blocks')} value={numberTypo} onChange={val => setAttributes({ numberTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} produce={produce} />
+						<Typography className='mt20' label={__('Number Typography:', 'b-blocks')} value={numberTypo} onChange={val => setAttributes({ numberTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} />
 
 						<ToggleControl className='mt20' label={__('Show Label', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
-						{isLabel && <Typography label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} produce={produce} />}
+						{isLabel && <Typography label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} />}
 					</PanelBody>
 				</>}
 

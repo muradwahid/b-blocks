@@ -1,9 +1,8 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
 
-// Column
 document.addEventListener('DOMContentLoaded', () => {
 	const allColumns = document.querySelectorAll('.wp-block-b-blocks-column');
 	allColumns.forEach(column => {
@@ -11,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const bBlocksColumnStyle = document.querySelector(`#${column.id} .bBlocksColumnStyle`);
 
-		render(<>
+		createRoot(bBlocksColumnStyle).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
-		</>, bBlocksColumnStyle);
+		</>);
 
 		column?.removeAttribute('data-attributes');
 	});

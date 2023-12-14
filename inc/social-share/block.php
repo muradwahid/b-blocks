@@ -15,6 +15,7 @@ class BBlocksSocialShare extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-social-share-style' );
 		wp_enqueue_script( 'b-blocks-social-share-script', B_BLOCKS_DIST . 'social-share.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-social-share-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		// Enqueue assets where has block
 		wp_enqueue_script( 'goodShare' );

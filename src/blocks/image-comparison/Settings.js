@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel, Dashicon } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, BorderControl, ColorsControl, ImageEditControl, ChangeImageData, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
 import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../Components/utils/options';
 
@@ -59,7 +57,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				<ToggleControl label={__('Show Labels', 'b-blocks')} checked={isLabel} onChange={val => setAttributes({ isLabel: val })} />
 
 				{isLabel && <>
-					<Typography value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
+					<Typography value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
 					<ColorsControl value={labelColors} onChange={val => setAttributes({ labelColors: val })} defaults={{ color: '#fff', bg: '#00000080' }} />
 
@@ -72,7 +70,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				<ToggleControl label={__('Show Caption', 'b-blocks')} checked={isCap} onChange={val => setAttributes({ isCap: val })} />
 
 				{isCap && <>
-					<Typography value={capTypo} onChange={val => setAttributes({ capTypo: val })} defaults={{ fontSize: { desktop: 14, tablet: 14, mobile: 14 } }} produce={produce} />
+					<Typography value={capTypo} onChange={val => setAttributes({ capTypo: val })} defaults={{ fontSize: { desktop: 14, tablet: 14, mobile: 14 } }} />
 
 					<ColorsControl value={capColors} onChange={val => setAttributes({ capColors: val })} defaults={{ color: '#333', bg: '#f4f4f4' }} />
 

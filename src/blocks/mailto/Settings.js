@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelRow, PanelBody, TextControl, SelectControl, Dashicon } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, BorderControl, BtnGroup, ColorsControl, IconControl, SpaceControl, Typography } from '../../../../Components';
 
 const mailtoStyles = [
@@ -67,7 +65,7 @@ const Settings = ({ settings }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
-				<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 }, fontWeight: 600 }} produce={produce} />
+				<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 }, fontWeight: 600 }} />
 
 				<ColorsControl value={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
 

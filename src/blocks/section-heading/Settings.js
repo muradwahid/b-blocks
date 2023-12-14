@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, ToggleControl } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { BColor, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
 
 const Settings = ({ attributes, setAttributes }) => {
@@ -26,7 +24,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Title Settings', 'b-blocks')}>
-				<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 }, fontWeight: 600 }} produce={produce} />
+				<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 }, fontWeight: 600 }} />
 
 				<BColor label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 
@@ -46,7 +44,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			<PanelBody className='bPlPanelBody' title={__('Description Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 
-				<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
+				<Typography value={descTypo} onChange={val => setAttributes({ descTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
 				<BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor='#333' />
 

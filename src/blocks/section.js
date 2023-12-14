@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette, InnerBlocks } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
-// Settings Components
 import { Label } from '../../../Components';
 
 import { sectionIcon } from '../utils/icons';

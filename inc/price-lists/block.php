@@ -15,6 +15,7 @@ class BBlocksPriceLists extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-price-lists-style' );
 		// wp_enqueue_script( 'b-blocks-price-lists-script', B_BLOCKS_DIST . 'price-lists.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-price-lists-script', 'b-blocks', B_BLOCKS_DIR_PATH
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-price-lists $className align$align";

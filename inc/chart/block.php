@@ -15,6 +15,7 @@ class BBlocksChart extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-chart-style' );
 		wp_enqueue_script( 'b-blocks-chart-script', B_BLOCKS_DIST . 'chart.js', [ 'react', 'react-dom', 'chart' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-chart-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-chart $className align$align";

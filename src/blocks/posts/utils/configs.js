@@ -1,8 +1,21 @@
-export const sliderConfig = (attributes) => {
-	const { columns, columnGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderSpeed, sliderEffect, sliderIsPageClickable, sliderIsPageDynamic } = attributes;
+export const masonryConfig = (container, attributes) => {
+	const { columnGap, rowGap } = attributes;
 
 	return {
-		// Optional parameters
+		container,
+		baseWidth: 400,
+		gutterX: columnGap,
+		gutterY: rowGap,
+		minify: false,
+		ultimateGutter: 5,
+		surroundingGutter: false
+	}
+}
+
+export const sliderConfig = (attributes) => {
+	const { columns, columnGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderAutoplayOptions = { delay: 1.5 }, sliderSpeed, sliderEffect, sliderIsPageClickable, sliderIsPageDynamic } = attributes;
+
+	return {
 		direction: 'horizontal',
 		slidesPerView: columns?.mobile,
 		breakpoints: {
@@ -15,7 +28,7 @@ export const sliderConfig = (attributes) => {
 		loop: sliderIsLoop,
 		allowTouchMove: sliderIsTouchMove,
 		grabCursor: sliderIsTouchMove,
-		autoplay: sliderIsAutoplay ? { delay: sliderSpeed * 1000 } : false,
+		autoplay: sliderIsAutoplay ? { delay: sliderAutoplayOptions?.delay * 1000 } : false,
 		speed: sliderSpeed * 1000,
 		effect: sliderEffect,
 		fadeEffect: { crossFade: true },
@@ -48,28 +61,28 @@ export const sliderConfig = (attributes) => {
 }
 
 export const setSliderHeight = (id) => {
-	const slideHeightArray = [];
-	const swiperSlide = document.querySelectorAll(`#${id} .apbSliderPosts .swiper-slide`);
-	const swiperSlideText = document.querySelectorAll(`#${id} .apbSliderPosts .swiper-slide .apbPostText`);
-	swiperSlideText?.forEach(slideText => {
-		slideHeightArray.push(slideText?.clientHeight);
+	const heightArray = [];
+	const slideEls = document.querySelectorAll(`#${id} .swiper .swiper-slide`);
+	const textEls = document.querySelectorAll(`#${id} .swiper .swiper-slide .bBlocksText`);
+	textEls?.forEach(textEl => {
+		heightArray.push(textEl?.clientHeight);
 	});
-	swiperSlide?.length && swiperSlide.forEach(slide => {
-		slide.style.height = `${Math.max(...slideHeightArray)}px`;
+	slideEls?.length && slideEls.forEach(slideEl => {
+		slideEl.querySelector('article').style.height = `${Math.max(...heightArray)}px`;
 	});
 }
 
 export const tickerConfig = (attributes) => {
-	const { rowGap } = attributes;
+	const { rowGap, tickerDirection = 'up', tickerSpeed = 'slow', tickerInterval = 2000, tickerHeight = '0px', tickerVisible = 3, tickerIsMousePause = true } = attributes;
 
 	return {
-		direction: 'up',
+		direction: tickerDirection,
 		easing: 'swing',
-		speed: 'slow',
-		interval: 2000,
-		height: 'auto',
-		visible: 3,
+		speed: isNaN(tickerSpeed) ? tickerSpeed : parseInt(tickerSpeed),
+		interval: tickerInterval,
+		height: '0px' === tickerHeight || '0em' === tickerHeight ? 'auto' : tickerHeight,
 		gap: rowGap,
-		mousePause: true
+		visible: tickerVisible,
+		mousePause: tickerIsMousePause
 	}
 }

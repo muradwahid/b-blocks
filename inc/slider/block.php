@@ -15,6 +15,7 @@ class BBlocksSlider extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-slider-style' );
 		wp_enqueue_script( 'b-blocks-slider-script', B_BLOCKS_DIST . 'slider.js', [ 'wp-element', 'swiper' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-slider-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-slider $className align$align";

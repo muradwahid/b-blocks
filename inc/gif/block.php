@@ -15,6 +15,7 @@ class BBlocksGIF extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-gif-style' );
 		// wp_enqueue_script( 'b-blocks-gif-script', B_BLOCKS_DIST . 'gif.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-gif-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-gif $className align$align";

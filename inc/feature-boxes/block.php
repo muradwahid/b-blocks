@@ -15,6 +15,7 @@ class BBlocksFeatureBoxes extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-feature-boxes-style' );
 		// wp_enqueue_script( 'b-blocks-feature-boxes-script', B_BLOCKS_DIST . 'feature-boxes.js', [], B_BLOCKS_VERSION, true ); // Not Needed
+		// wp_set_script_translations( 'b-blocks-feature-boxes-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-feature-boxes $className align$align";

@@ -1,10 +1,9 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './child/script';
 import './style.scss';
 import Style from './Style';
 
-// // Services
 document.addEventListener('DOMContentLoaded', () => {
 	const allServices = document.querySelectorAll('.wp-block-b-blocks-services');
 	allServices.forEach(services => {
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const bBlocksServicesStyle = document.querySelector(`#${services.id} .bBlocksServicesStyle`);
 
-		render(<Style attributes={attributes} clientId={attributes.cId} />, bBlocksServicesStyle);
+		createRoot(bBlocksServicesStyle).render(<Style attributes={attributes} clientId={attributes.cId} />);
 
 		services?.removeAttribute('data-attributes');
 	});

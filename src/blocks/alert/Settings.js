@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, Dashicon } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
@@ -75,7 +73,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<ToggleControl className='mt20' label={__('Alert Dismissible?', 'b-blocks')} checked={isDismiss} onChange={val => setAttributes({ isDismiss: val })} />
 
-				<Typography className='mt20' label={__('Typography:', 'b-blocks')} value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} produce={produce} />
+				<Typography className='mt20' label={__('Typography:', 'b-blocks')} value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} />
 
 				<ColorsControl value={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#333', bg: '#fff' }} />
 

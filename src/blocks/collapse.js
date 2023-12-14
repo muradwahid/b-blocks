@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } from '@wordpress/components';
 
-// Settings Components
 import { Label, BtnGroup } from '../../../Components';
 
 import { collapseIcon } from '../utils/icons';

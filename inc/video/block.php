@@ -15,6 +15,7 @@ class BBlocksVideo extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-video-style' );
 		wp_enqueue_script( 'b-blocks-video-script', B_BLOCKS_DIST . 'video.js', [ 'react', 'react-dom', 'plyr' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-video-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		ob_start(); ?>
 		<div class='wp-block-b-blocks-video <?php echo 'align' . esc_attr( $align ); ?>' id='bBlocksVideo-<?php echo esc_attr( $clientId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

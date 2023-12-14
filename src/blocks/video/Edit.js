@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-// Settings Components
 import { BplMediaPlaceholder } from '../../../../Components';
 
 import Settings from './Settings';
@@ -40,6 +39,7 @@ const Edit = props => {
 			<div className='bBlocksVideo'>
 				<div className='videoWrapper' ref={videoWrapper}></div>
 
+				{/* eslint-disable-next-line react/no-unknown-property */}
 				<video controls playsinline data-poster={poster} preload={'metadata'} ref={videoElement}>
 					Your browser does not support the video tag.
 					<source src={source} type='video/mp4' />

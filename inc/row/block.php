@@ -15,6 +15,7 @@ class BBlocksRow extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-row-style' );
 		wp_enqueue_script( 'b-blocks-row-script', B_BLOCKS_DIST . 'row.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-row-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-row $className align$align";

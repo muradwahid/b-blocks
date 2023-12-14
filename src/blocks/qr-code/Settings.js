@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
-// Settings Components
 import { Label, ColorControl } from '../../../../Components';
 
 const Settings = ({ attributes, setAttributes }) => {

@@ -2,15 +2,14 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, SelectControl } from '@wordpress/components';
-import produce from 'immer';
+import { produce } from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, ColorsControl, ChangeImageData, InlineDetailMediaUpload, MultiShadowControl, SeparatorControl, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
-import { generalStyleTabs } from '../../utils/options';
+import { aligns, generalStyleTabs } from '../../utils/options';
 
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
@@ -25,7 +24,7 @@ const layouts = [
 ]
 
 const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setActiveIndex }) => {
-	const { members = [], columns, columnGap, rowGap, layout, theme, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin } = attributes;
+	const { members = [], columns, columnGap, rowGap, layout, theme, isLinkNewTab, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin } = attributes;
 
 	const [device, setDevice] = useState('desktop');
 
@@ -115,10 +114,10 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 							<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateMember(activeIndex, 'border', val)} defaults={{ radius: '3px' }} />
 
-							<MultiShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => updateMember(activeIndex, 'shadow', val)} produce={produce} />
+							<MultiShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => updateMember(activeIndex, 'shadow', val)} />
 
-							<Label>{__('Photo:', 'team-section')}</Label>
-							<InlineDetailMediaUpload value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} placeholder={__('Enter Image URL', 'team-section')} />
+							<Label>{__('Photo:', 'b-blocks')}</Label>
+							<InlineDetailMediaUpload value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
 							<ChangeImageData className='mt20' value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} />
 
 							<BorderControl label={__('Photo Border:', 'b-blocks')} value={photoBorder} onChange={val => updateMember(activeIndex, 'photoBorder', val)} defaults={{ radius: '50%' }} />
@@ -292,12 +291,30 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 							}} options={themes} />
 						</PanelRow>
 					</PanelBody>
+
+
+					<PanelBody className='bPlPanelBody' title={__('Elements', 'b-blocks')} initialOpen={false}>
+						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
+
+						<ToggleControl className='mt10' label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
+
+						<ToggleControl className='mt10' label={__('Show Bio', 'b-blocks')} checked={isBio} onChange={val => setAttributes({ isBio: val })} />
+
+						<ToggleControl className='mt10' label={__('Show Social', 'b-blocks')} checked={isSocial} onChange={val => setAttributes({ isSocial: val })} />
+
+						<ToggleControl className='mt10' label={__('Open Link in New Tab', 'b-blocks')} checked={isLinkNewTab} onChange={val => setAttributes({ isLinkNewTab: val })} />
+					</PanelBody>
 				</>}
 
 
 				{'style' === tab.name && <>
-					<PanelBody className='bPlPanelBody' title={__('Member', 'b-blocks')} initialOpen={false}>
-						<SpaceControl label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
+					<PanelBody className='bPlPanelBody' title={__('Member', 'b-blocks')}>
+						<PanelRow>
+							<Label className=''>{__('Text Align:', 'b-blocks')}</Label>
+							<BtnGroup value={textAlign} onChange={val => setAttributes({ textAlign: val })} options={aligns.filter(a => 'justify' !== a.value)} isIcon={true} />
+						</PanelRow>
+
+						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '20px' }} />
 					</PanelBody>
 
 
@@ -309,50 +326,36 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 
 					<PanelBody className='bPlPanelBody' title={__('Member Name', 'b-blocks')} initialOpen={false}>
-						<Typography value={nameTypo} onChange={val => setAttributes({ nameTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 }, fontWeight: 600 }} produce={produce} />
+						<Typography value={nameTypo} onChange={val => setAttributes({ nameTypo: val })} defaults={{ fontSize: { desktop: 20, tablet: 18, mobile: 16 }, fontWeight: 600 }} />
 
 						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={nameMargin} onChange={val => setAttributes({ nameMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 					</PanelBody>
 
 
-					<PanelBody className='bPlPanelBody' title={__('Designation/Title', 'b-blocks')} initialOpen={false}>
-						<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
+					{isTitle && <PanelBody className='bPlPanelBody' title={__('Designation/Title', 'b-blocks')} initialOpen={false}>
+						<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} />
 
-						{isTitle && <>
-							<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} />
-
-							<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
-						</>}
-					</PanelBody>
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
+					</PanelBody>}
 
 
-					<PanelBody className='bPlPanelBody' title={__('Separator', 'b-blocks')} initialOpen={false}>
-						<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
-
-						{isSep && <SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '15px' }} />}
-					</PanelBody>
+					{isSep && <PanelBody className='bPlPanelBody' title={__('Separator', 'b-blocks')} initialOpen={false}>
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+					</PanelBody>}
 
 
-					<PanelBody className='bPlPanelBody' title={__('Member Bio', 'b-blocks')} initialOpen={false}>
-						<ToggleControl label={__('Show Bio', 'b-blocks')} checked={isBio} onChange={val => setAttributes({ isBio: val })} />
+					{isBio && <PanelBody className='bPlPanelBody' title={__('Member Bio', 'b-blocks')} initialOpen={false}>
+						<Typography value={bioTypo} onChange={val => setAttributes({ bioTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
-						{isBio && <>
-							<Typography value={bioTypo} onChange={val => setAttributes({ bioTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
-
-							<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={bioMargin} onChange={val => setAttributes({ bioMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
-						</>}
-					</PanelBody>
+						<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={bioMargin} onChange={val => setAttributes({ bioMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
+					</PanelBody>}
 
 
-					<PanelBody className='bPlPanelBody' title={__('Member Social', 'b-blocks')} initialOpen={false}>
-						<ToggleControl label={__('Show Social', 'b-blocks')} checked={isSocial} onChange={val => setAttributes({ isSocial: val })} />
+					{isSocial && <PanelBody className='bPlPanelBody' title={__('Member Social', 'b-blocks')} initialOpen={false}>
+						<UnitControl label={__('Icon Size:', 'b-blocks')} labelPosition='left' value={socialSize} onChange={val => setAttributes({ socialSize: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						{isSocial && <>
-							<UnitControl label={__('Icon Size:', 'b-blocks')} labelPosition='left' value={socialSize} onChange={val => setAttributes({ socialSize: val })} units={[pxUnit(), perUnit(), emUnit()]} />
-
-							<SpaceControl className='mt20' label={__('Icon Margin:', 'b-blocks')} value={socialIconMargin} onChange={val => setAttributes({ socialIconMargin: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
-						</>}
-					</PanelBody>
+						<SpaceControl className='mt20' label={__('Icon Margin:', 'b-blocks')} value={socialIconMargin} onChange={val => setAttributes({ socialIconMargin: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
+					</PanelBody>}
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>

@@ -9,60 +9,56 @@ const Style = ({ attributes, clientId }) => {
 	const gMemberDetailsSl = `${gMemberSl} .memberDetails`;
 	const gMemberSocialSl = `${gMemberDetailsSl} .memberSocial`;
 
-	return <>
-		<style dangerouslySetInnerHTML={{
-			__html: `
-			${getTypoCSS('', nameTypo)?.googleFontLink}
-			${getTypoCSS('', titleTypo)?.googleFontLink}
-			${getTypoCSS('', bioTypo)?.googleFontLink}
-			${getTypoCSS(`${gMemberDetailsSl} .memberName`, nameTypo)?.styles}
-			${getTypoCSS(`${gMemberDetailsSl} .memberTitle`, titleTypo)?.styles}
-			${getTypoCSS(`${gMemberDetailsSl} .memberBio`, bioTypo)?.styles}
+	return <style dangerouslySetInnerHTML={{
+		__html: `
+		${getTypoCSS('', nameTypo)?.googleFontLink}
+		${getTypoCSS('', titleTypo)?.googleFontLink}
+		${getTypoCSS('', bioTypo)?.googleFontLink}
+		${getTypoCSS(`${gMemberDetailsSl} .memberName`, nameTypo)?.styles}
+		${getTypoCSS(`${gMemberDetailsSl} .memberTitle`, titleTypo)?.styles}
+		${getTypoCSS(`${gMemberDetailsSl} .memberBio`, bioTypo)?.styles}
 
-			${membersSl}{
-				grid-gap: ${rowGap} ${columnGap};
-			}
-			${gMemberSl}{
-				text-align: ${textAlign};
-				padding: ${getSpaceCSS(padding)};
-			}
-			${gMemberSl} .memberPhoto{
-				width: ${photoWidth};
-				margin: ${'horizontal' === layout ? '0 20px 0 0' : `${getSpaceCSS(photoMargin)}`};
-			}
-			${gMemberDetailsSl} .memberName{
-				margin: ${getSpaceCSS(nameMargin)};
-			}
-			${gMemberDetailsSl} .memberTitle{
-				margin: ${getSpaceCSS(titleMargin)};
-			}
-			${gMemberDetailsSl} .memberSeparator{
-				margin: ${getSpaceCSS(sepMargin)};
-			}
-			${gMemberDetailsSl} .memberBio{
-				margin: ${getSpaceCSS(bioMargin)};
-			}
-			${gMemberSocialSl} .icon,
-			${gMemberSocialSl} .memberSocialAdd{
-				margin: ${getSpaceCSS(socialIconMargin)};
-			}
-			${gMemberSocialSl} .icon i,
-			${gMemberSocialSl} .memberSocialAdd i{
-				font-size: ${socialSize};
-				width: ${socialSize};
-			}
-			`.replace(/\s+/g, ' ')
-		}} />
+		${membersSl}{
+			grid-gap: ${rowGap} ${columnGap};
+		}
+		${gMemberSl}{
+			text-align: ${textAlign};
+			padding: ${getSpaceCSS(padding)};
+		}
+		${gMemberSl} .memberPhoto{
+			width: ${photoWidth};
+			margin: ${'horizontal' === layout ? '0 20px 0 0' : `${getSpaceCSS(photoMargin)}`};
+		}
+		${gMemberDetailsSl} .memberName{
+			margin: ${getSpaceCSS(nameMargin)};
+		}
+		${gMemberDetailsSl} .memberTitle{
+			margin: ${getSpaceCSS(titleMargin)};
+		}
+		${gMemberDetailsSl} .memberSeparator{
+			margin: ${getSpaceCSS(sepMargin)};
+		}
+		${gMemberDetailsSl} .memberBio{
+			margin: ${getSpaceCSS(bioMargin)};
+		}
+		${gMemberSocialSl} .icon,
+		${gMemberSocialSl} .memberSocialAdd{
+			margin: ${getSpaceCSS(socialIconMargin)};
+		}
+		${gMemberSocialSl} .icon i,
+		${gMemberSocialSl} .memberSocialAdd i{
+			font-size: ${socialSize};
+			width: ${socialSize};
+		}
 
-		{members.map((item, index) => {
+		${members.map((item, index) => {
 			const { background, border, shadow, photoBorder, nameColor, titleColor, separator, bioColor, socialIconColors } = item;
 
 			const memberSl = `${mainSl} #bBlocksMember-${index}`;
 			const memberDetailsSl = `${memberSl} .memberDetails`;
 			const memberSocialSl = `${memberDetailsSl} .memberSocial`;
 
-			return <style key={index} dangerouslySetInnerHTML={{
-				__html: `
+			return `
 				${memberSl}{
 					${getBackgroundCSS(background)}
 					${getBorderCSS(border)}
@@ -95,9 +91,9 @@ const Style = ({ attributes, clientId }) => {
 				${memberSocialSl} li.memberSocialAdd button i{
 					color: ${socialIconColors?.bg};
 				}
-				`.replace(/\s+/g, ' ')
-			}} />;
-		})}
-	</>;
+			`;
+		}).join(' ')}
+		`.replace(/\s+/g, ' ')
+	}} />;
 }
 export default Style;

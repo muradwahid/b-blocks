@@ -1,9 +1,73 @@
 <?php
+
+require_once B_BLOCKS_DIR_PATH . '/inc/posts/helpers/functions.php';
+
 class BBlocksPosts extends BBlocks{
 	public function __construct(){
+		add_action( 'wp_ajax_bBlocksPosts', [$this, 'bBlocksPosts'] );
+		add_action( 'wp_ajax_nopriv_bBlocksPosts', [$this, 'bBlocksPosts'] );
+
 		add_action( 'init', [$this, 'onInit'] );
 		add_action( 'rest_api_init', [$this, 'customRestAPI'] );
-		// add_filter( 'excerpt_more', [$this, 'excerptMore'] );
+	}
+
+	function query( $attributes ){
+		extract( $attributes );
+
+		$termsQuery = ['relation' => 'AND'];
+		foreach ( $selectedTaxonomies as $taxonomy => $terms ){
+			if( count( $terms ) ){
+				$termsQuery[] = [
+					'taxonomy'	=> $taxonomy,
+					'field'		=> 'term_id',
+					'terms'		=> $terms,
+				];
+			}
+		}
+
+		$defaultPostQuery = 'post' === $postType ? [
+			'category__in'	=> $selectedCategories,
+			'tag__in'		=> $selectedTags ?? []
+		] : [];
+
+		$postsInclude = BBlocks\Inc\Posts\Helpers\Functions::filterNaN( $postsInclude ?? [] );
+		$post__in = !empty( $postsInclude ) ? [ 'post__in' => $postsInclude ] : [];
+		$postsExclude = BBlocks\Inc\Posts\Helpers\Functions::filterNaN( $postsExclude ?? [] );
+
+		$query = array_merge( [
+			'post_type'			=> $postType,
+			'posts_per_page'	=> $isPostsPerPageAll ? -1 : $postsPerPage,
+			'orderby'			=> $postsOrderBy,
+			'order'				=> $postsOrder,
+			'tax_query'			=> $termsQuery,
+			'offset'			=> $isPostsPerPageAll ? 0 : $postsOffset,
+			'post__not_in'		=> $isExcludeCurrent ? array_merge( [ get_the_ID() ], $postsExclude ) : $postsExclude
+		], $post__in, $defaultPostQuery );
+
+		if( BBlocks\Inc\BBlocksUtils::isPro() ) {
+			$query = apply_filters( 'b_blocks_posts_query', $query );
+		}
+
+		return $query;
+	}
+
+	function bBlocksPosts(){
+		$attributes = $_POST['queryAttr'];
+		$pageNumber = (int)$_POST['pageNumber'];
+		extract( $attributes );
+
+		$attributes['isPostsPerPageAll'] = 'true' === $isPostsPerPageAll;
+		$attributes['isExcludeCurrent'] = 'true' === $isExcludeCurrent;
+
+		$newArgs = wp_parse_args( [ 'offset' => ( $postsPerPage * ( $pageNumber - 1 ) ) + $postsOffset ], $this->query( $attributes ) );
+		$posts = BBlocks\Inc\Posts\Helpers\Functions::arrangedPosts(
+			get_posts( $newArgs ),
+			$postType,
+			$fImgSize,
+			$metaDateFormat
+		);
+
+		wp_send_json_success( $posts );
 	}
 
 	function onInit(){
@@ -16,78 +80,25 @@ class BBlocksPosts extends BBlocks{
 		extract( $attributes );
 
 		wp_enqueue_style( 'b-blocks-posts-style' );
-		wp_enqueue_script( 'b-blocks-posts-script', B_BLOCKS_DIST . 'posts.js', [ 'react', 'react-dom', 'swiper', 'easyTicker' ], B_BLOCKS_VERSION, true );
-
-		// Enqueue assets where has block
-		wp_enqueue_style( 'dashicons' );
+		if( 'ticker' === $layout ){
+			wp_enqueue_script( 'easyTicker' );
+		}
+		wp_enqueue_script( 'b-blocks-posts-script', B_BLOCKS_DIST . 'posts.js', [ 'wp-api', 'wp-util', 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-posts-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-posts bBlocksPosts $className align$align";
 
-		// $taxonomies = get_object_taxonomies( $postType, 'array' );
-		// foreach( $taxonomies as $tax ){
-		// 	if( $tax->hierarchical ){
-		// 		$terms = get_terms( $tax->name, [
-		// 			'orderby'		=> 'term_id', 
-		// 			'order'			=> 'ASC',
-		// 			'hide_empty'	=> true, 
-		// 		) );
-		// 	}
-		// }
-
-		// All Posts
-		$defaultPostFilter = 'post' === $postType ? [
-			'category' => $selectedCategories
-		] : [];
-
-		$posts = get_posts( array_merge( [
-			'post_type'			=> $postType,
-			'posts_per_page'	=> $isPostsPerPageAll ? -1 : $postsPerPage,
-			'orderby'			=> $postsOrderBy,
-			'order'				=> $postsOrder
-		], $defaultPostFilter ) );
+		$allPosts = get_posts( array_merge( $this->query( $attributes ), [ 'posts_per_page' => -1 ] ) );
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
-			<div class='bBlocksPostsStyle'></div>
-			<style>
-				<?php foreach ( $posts as $post ) {
-					$imgUrl = preg_replace( '/<[^>]+>/', '', get_the_post_thumbnail_url( $post->ID, 'large' ) );
-					$displayCSS = $isFImg && $imgUrl ? 'grid' : 'flex';
-
-					$sideImgCSS = "#bBlocksPosts-$cId .bBlocksPostSideImage.bBlocksPost-$post->ID{ display: $displayCSS; }";
-					$fImgCSS = $isFImg && $imgUrl ? "#bBlocksPosts-$cId .bBlocksPostOverlay.bBlocksPost-$post->ID, #bBlocksPosts-$cId .bBlocksPost .bBlocksPostFImg-$post->ID{ background-image: url( $imgUrl ); }" : '';
-
-					echo esc_html( $sideImgCSS . $fImgCSS );
-				} ?>
-			</style>
-
-
-			<?php if( 'grid' === $layout ){ ?>
-				<div class='bBlocksGridPosts columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
-					<?php echo $this->foreachPosts( $attributes, $posts ); ?>
-				</div>
-			<?php }else if( 'masonry' === $layout ){ ?>
-				<div class='bBlocksMasonryPosts cols-<?php echo esc_attr( $columns['desktop'] ); ?> cols-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> cols-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
-					<?php $this->foreachPosts( $attributes, $posts ); ?>
-				</div>
-			<?php }else if ( 'slider' === $layout ){ ?>
-				<div class='bBlocksSliderPosts'>
-					<div class='swiper-wrapper'>
-						<?php $this->foreachPosts( $attributes, $posts ); ?>
-					</div>
-
-					<?php echo $sliderIsPage ? "<div class='swiper-pagination'></div>" : ''; ?>
-					<?php echo $sliderIsPrevNext ? "<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>" : ''; ?>
-				</div>
-			<?php }else if ( 'ticker' === $layout ){ ?>
-				<div class='bBlocksTickerPosts'>
-					<div>
-						<?php $this->foreachPosts( $attributes, $posts ); ?>
-					</div>
-				</div>
-			<?php }else{ echo ''; } ?>
-		</div>
+		<div
+			class='<?php echo esc_attr( $blockClassName ); ?>'
+			id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'
+			data-nonce='<?php echo esc_attr( wp_json_encode( wp_create_nonce( 'wp_ajax' ) ) ); ?>'
+			data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'
+			data-extra='<?php echo esc_attr( wp_json_encode( [ 'totalPosts' => count( $allPosts ) ] ) ); ?>'
+		></div>
 		<?php return ob_get_clean();
 	} // Render
 

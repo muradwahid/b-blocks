@@ -5,7 +5,6 @@ import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 const $ = jQuery;
 
-// Settings Components
 import { ImagePlaceholder } from '../../../../Components';
 import { tabController } from '../../../../Components/utils/functions';
 

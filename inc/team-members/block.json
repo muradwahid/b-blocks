@@ -216,6 +216,10 @@
 			"type": "string",
 			"default": "default"
 		},
+		"isLinkNewTab": {
+			"type": "boolean",
+			"default": false
+		},
 		"textAlign": {
 			"type": "string",
 			"default": "center"

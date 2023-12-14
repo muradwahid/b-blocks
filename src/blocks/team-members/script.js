@@ -1,19 +1,19 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
 
-// Separator
 document.addEventListener('DOMContentLoaded', () => {
-	const allTeams = document.querySelectorAll('.wp-block-b-blocks-team-members');
-	allTeams.forEach(team => {
-		const attributes = JSON.parse(team.dataset.attributes);
-		const { cId, members = [], columns, layout, isTitle, isSep, isBio, isSocial } = attributes;
+	const teamEls = document.querySelectorAll('.wp-block-b-blocks-team-members');
+	teamEls.forEach(teamEl => {
+		const attributes = JSON.parse(teamEl.dataset.attributes);
+		const { cId, members = [], columns, layout, isLinkNewTab, isTitle, isSep, isBio, isSocial } = attributes;
+		const { desktop, tablet, mobile } = columns || {};
 
-		render(<>
+		createRoot(teamEl).render(<>
 			<Style attributes={attributes} clientId={cId} />
 
-			<div className={`bBlocksTeamMembers ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
+			<div className={`bBlocksTeamMembers ${layout || 'vertical'} columns-${desktop} columns-tablet-${tablet} columns-mobile-${mobile}`}>
 				{members.map((item, index) => {
 					const { photo, name, title, bio, social = [] } = item;
 
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div className='memberDetails'>
 							{name && <h4 className='memberName' dangerouslySetInnerHTML={{ __html: name }} />}
 							{isTitle && title && <p className='memberTitle' dangerouslySetInnerHTML={{ __html: title }} />}
-							{isSep && <span className='memberSeparator'></span>}
+							{isSep && <span className='memberSeparator' />}
 							{isBio && bio && <p className='memberBio' dangerouslySetInnerHTML={{ __html: bio }} />}
 
 							{isSocial && <ul className='memberSocial'>
@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 									const { link, icon } = socialItem;
 
 									return <li key={socialIndex} className={`icon icon-${index}-${socialIndex}`}>
-										<a href={link}><i className={icon?.class}></i></a>
+										<a href={link} target={isLinkNewTab ? '_blank' : '_self'} rel="noreferrer">
+											<i className={icon?.class} />
+										</a>
 									</li>;
 								})}
 							</ul>}
@@ -39,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					</div>;
 				})}
 			</div>
-		</>, team);
+		</>);
 
-		team?.removeAttribute('data-attributes');
+		teamEl?.removeAttribute('data-attributes');
 	});
 });

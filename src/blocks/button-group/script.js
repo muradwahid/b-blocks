@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const attributes = JSON.parse(buttonGroup.dataset.attributes);
 		const { cId, btnType, btnOne, btnOneLink, btnTwo, btnTwoLink, isSep, sepType, sepText, sepIcon } = attributes;
 
-		render(<>
+		createRoot(buttonGroup).render(<>
 			<Style attributes={attributes} clientId={cId} />
 
 			<div className='bBlocksButtonGroup'>
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					<a className={`btnTwo btn-${btnType}`} href={btnTwoLink} dangerouslySetInnerHTML={{ __html: btnTwo }} />
 				</div>
 			</div>
-		</>, buttonGroup);
+		</>);
 
 		buttonGroup?.removeAttribute('data-attributes');
 	});

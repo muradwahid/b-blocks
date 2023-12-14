@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon } from '@wordpress/components';
 
-// Settings Components
 import { Label, InlineMediaUpload } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 

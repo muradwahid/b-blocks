@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
 import PriceFeatures from './PriceFeatures';
 
-// Pricing Tables
 document.addEventListener('DOMContentLoaded', () => {
 	const allPricingTables = document.querySelectorAll('.wp-block-b-blocks-pricing-table');
 	allPricingTables.forEach(priceTable => {
@@ -16,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		const isStandard = priceTable.className.includes('standard');
 		const isUltimate = priceTable.className.includes('ultimate');
 
-		render(<>
+		createRoot(priceTable).render(<>
 			<Style attributes={attributes} clientId={cId} isStandard={isStandard} />
 
 			<PricingTable attributes={attributes} clientId={cId} isBasic={isBasic} isStandard={isStandard} isUltimate={isUltimate} />
-		</>, priceTable);
+		</>);
 
 		priceTable?.removeAttribute('data-attributes');
 	});

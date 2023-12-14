@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, SelectControl, Toolbar, Button } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, SelectControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 
-// Settings Components
 import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl } from '../../../../../Components';
 
 import { overflows } from '../utils/options';
@@ -43,12 +42,13 @@ const Settings = props => {
 			</PanelBody>
 		</InspectorControls>
 
-		<BlockControls>
-			<Toolbar label={__('Column Options', 'b-blocks')}>
-				{columns < 6 && <Button icon='plus' label={__('Add Column', 'b-blocks')} onClick={() => updateColumns('add')} />}
 
-				{columns > 1 && <Button icon='trash' label={__('Delete Column', 'b-blocks')} onClick={() => updateColumns('delete')} />}
-			</Toolbar>
+		<BlockControls>
+			<ToolbarGroup label={__('Column Options', 'b-blocks')}>
+				{columns < 6 && <ToolbarButton icon='plus' label={__('Add Column', 'b-blocks')} onClick={() => updateColumns('add')} />}
+
+				{columns > 1 && <ToolbarButton icon='trash' label={__('Delete Column', 'b-blocks')} onClick={() => updateColumns('delete')} />}
+			</ToolbarGroup>
 		</BlockControls>
 	</>;
 };

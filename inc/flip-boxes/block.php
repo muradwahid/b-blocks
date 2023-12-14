@@ -15,6 +15,7 @@ class BBlocksFlipBoxes extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-flip-boxes-style' );
 		wp_enqueue_script( 'b-blocks-flip-boxes-script', B_BLOCKS_DIST . 'flip-boxes.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-flip-boxes-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
 		$blockClassName = "wp-block-b-blocks-flip-boxes $className align$align";

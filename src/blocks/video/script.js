@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	allVideos.forEach(video => {
 		const attributes = JSON.parse(video.dataset.attributes);
 
-		render(<>
+		createRoot(video).render(<>
 			<Style attributes={attributes} clientId={attributes.clientId} />
 
 			<RenderVideo attributes={attributes} />
-		</>, video);
+		</>);
 
 		video?.removeAttribute('data-attributes');
 	});
@@ -40,6 +40,7 @@ const RenderVideo = ({ attributes }) => {
 
 	return <div className='bBlocksVideo'>
 		<div className='videoWrapper'>
+			{/* eslint-disable-next-line react/no-unknown-property */}
 			<video controls playsinline data-poster={poster} preload='metadata' ref={videoEl}>
 				Your browser does not support the video tag.
 				<source src={source} type='video/mp4' />

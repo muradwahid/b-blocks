@@ -28,7 +28,7 @@ const Edit = props => {
 
 					<RichText className='alertMessage' tagName='span' value={message} onChange={val => setAttributes({ message: val })} placeholder={__('Alert Message', 'b-blocks')} inlineToolbar />
 
-					{isDismiss && <Tooltip text='Hide will only work in frontend' position='top center'>
+					{isDismiss && <Tooltip text='Hide will only work in frontend' placement='top' position='top'>
 						<i className='alertClose fa fa-times-circle'></i>
 					</Tooltip>}
 				</div>

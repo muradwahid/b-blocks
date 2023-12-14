@@ -2,9 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl, Dashicon } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, BColor, BDevice, BorderControl, BtnGroup, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 
 import { aligns } from '../../utils/options';
@@ -61,9 +59,9 @@ const Settings = ({ settings, filterImages }) => {
 
 				<BColor label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
-				<Typography label={__('Title Typography:', 'b-blocks')} value={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} produce={produce} />
+				<Typography label={__('Title Typography:', 'b-blocks')} value={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} />
 
-				<Typography label={__('Description Typography:', 'b-blocks')} value={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} produce={produce} />
+				<Typography label={__('Description Typography:', 'b-blocks')} value={capDescTypo} onChange={val => setAttributes({ capDescTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} />
 			</PanelBody>
 		</InspectorControls>
 

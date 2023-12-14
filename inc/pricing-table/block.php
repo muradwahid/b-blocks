@@ -15,6 +15,7 @@ class BBlocksPricingTable extends BBlocks{
 
 		wp_enqueue_style( 'b-blocks-pricing-table-style' );
 		wp_enqueue_script( 'b-blocks-pricing-table-script', B_BLOCKS_DIST . 'pricing-table.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_set_script_translations( 'b-blocks-pricing-table-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? 'is-style-basic';
 

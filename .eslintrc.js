@@ -34,7 +34,7 @@ module.exports = {
 	'rules': {
 		'func-names': 'off',
 		'no-console': 'warn',
-		'no-unused-vars': 'warn',
+		'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
 		'react/jsx-filename-extension': [
 			1,
 			{

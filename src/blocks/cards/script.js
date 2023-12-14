@@ -1,16 +1,15 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
 
-// Cards
 document.addEventListener('DOMContentLoaded', () => {
 	const allCards = document.querySelectorAll('.wp-block-b-blocks-cards');
 	allCards.forEach(card => {
 		const attributes = JSON.parse(card.dataset.attributes);
 		const { cId, cards = [], columns, layout, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
 
-		render(<>
+		createRoot(card).render(<>
 			<Style attributes={attributes} clientId={cId} />
 
 			<div className={`bBlocksCards ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
@@ -43,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					</div>;
 				})}
 			</div>
-		</>, card);
+		</>);
 
 		card?.removeAttribute('data-attributes');
 	});

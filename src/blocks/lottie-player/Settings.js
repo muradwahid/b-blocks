@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl, TextControl, TabPanel, Dashicon } from '@wordpress/components';
 
-// Settings Components
 import { Label, BColor, BtnGroup } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 

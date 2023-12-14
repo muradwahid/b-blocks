@@ -1,7 +1,7 @@
 $primaryColor: #4527a4;
 
 @for $i from 1 through 12 {
-	&.columns-#{$i} {
+	.columns-#{$i} {
 		>.block-editor-inner-blocks>.block-editor-block-list__layout {
 			grid-template-columns: repeat(#{$i}, 1fr);
 		}

@@ -1,45 +1,53 @@
-import { render } from 'react-dom';
-const $ = jQuery;
+import { createRoot } from 'react-dom/client';
+import 'swiper/css/bundle';
+// const $ = jQuery;
 
 import './style.scss';
-import Style from './Style';
-import { setSliderHeight, sliderConfig, tickerConfig } from './utils/configs';
+// import Style from './Style';
+import Posts from './Components/Frontend/Posts';
+// import { setSliderHeight, sliderConfig, tickerConfig } from './utils/configs';
 
-// Advanced Posts
 document.addEventListener('DOMContentLoaded', () => {
-	const allBBlocksPosts = document.querySelectorAll('.wp-block-b-blocks-posts');
-	allBBlocksPosts.forEach(posts => {
-		const attributes = JSON.parse(posts.dataset.attributes);
-		const { layout } = attributes;
+	const postsEls = document.querySelectorAll('.wp-block-b-blocks-posts');
+	postsEls.forEach(postsEl => {
+		const nonce = JSON.parse(postsEl.dataset.nonce);
+		const attributes = JSON.parse(postsEl.dataset.attributes);
+		const { totalPosts } = JSON.parse(postsEl.dataset.extra);
+
+		createRoot(postsEl).render(<Posts nonce={nonce} totalPosts={totalPosts} attributes={attributes} />);
+
+		postsEl?.removeAttribute('data-posts');
+		postsEl?.removeAttribute('data-attributes');
+		postsEl?.removeAttribute('data-extra');
 
 
-		// Style
-		const styleEl = document.querySelector(`#${posts.id} .bBlocksPostsStyle`);
-		render(<Style attributes={attributes} clientId={attributes.cId} />, styleEl);
+		// const { layout } = attributes;
+
+		// // Style
+		// const styleEl = document.querySelector(`#${postsEl.id} .bBlocksPostsStyle`);
+		// createRoot(styleEl).render(<Style attributes={attributes} clientId={attributes.cId} />);
 
 
-		// Slider
-		if ('slider' === layout) {
-			const sliderEl = document.querySelector(`#${posts.id} .bBlocksSliderPosts`);
+		// // Slider
+		// if ('slider' === layout) {
+		// 	const sliderEl = document.querySelector(`#${postsEl.id} .bBlocksSliderPosts`);
 
-			if (sliderEl) {
-				new Swiper(sliderEl, sliderConfig(attributes));
+		// 	if (sliderEl) {
+		// 		new Swiper(sliderEl, sliderConfig(attributes));
 
-				// Slider Height
-				setSliderHeight(posts.id);
-			}
-		}
-
-
-		// Ticker
-		if ('ticker' === layout) {
-			const tickerEl = document.querySelector(`#${posts.id} .bBlocksTickerPosts`);
-
-			tickerEl && $(tickerEl).easyTicker(tickerConfig(attributes));
-		}
+		// 		// Slider Height
+		// 		setSliderHeight(postsEl.id);
+		// 	}
+		// }
 
 
-		// Remove attributes data
-		posts?.removeAttribute('data-attributes');
+		// // Ticker
+		// if ('ticker' === layout) {
+		// 	const tickerEl = document.querySelector(`#${postsEl.id} .bBlocksTickerPosts`);
+
+		// 	tickerEl && $(tickerEl).easyTicker(tickerConfig(attributes));
+		// }
+
+		// postsEl?.removeAttribute('data-attributes');
 	});
 });

@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl, Dashicon } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, Background, BColor, BorderControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
 import { tabController } from '../../../../Components/utils/functions';
 import { pxUnit, perUnit, emUnit, remUnit } from '../../../../Components/utils/options';
@@ -156,12 +154,12 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 					{isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bPlPanelBody' title={__('Content', 'b-blocks')} initialOpen={false}>
-						<Typography label={__('Digit Typography:', 'b-blocks')} value={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} produce={produce} />
+						<Typography label={__('Digit Typography:', 'b-blocks')} value={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} />
 
 						<BColor label={__('Digit Color:', 'b-blocks')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
 
 						{isLabels && <>
-							<Typography className='mt20' label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} produce={produce} />
+							<Typography className='mt20' label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} />
 
 							<BColor label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
 						</>}

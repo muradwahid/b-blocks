@@ -1,22 +1,21 @@
 import { useEffect, useRef } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './style.scss';
 import Style from './Style';
 import TDViewer from './TDViewer';
 import { toggleAttr } from './utils/functions';
 
-// 3D Viewer
 document.addEventListener('DOMContentLoaded', () => {
 	const allTDViewer = document.querySelectorAll('.wp-block-b-blocks-td-viewer');
 	allTDViewer.forEach(tDViewer => {
 		const attributes = JSON.parse(tDViewer.dataset.attributes);
 
-		render(<>
+		createRoot(tDViewer).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
 			<RenderTDViewer attributes={attributes} />
-		</>, tDViewer);
+		</>);
 
 		tDViewer?.removeAttribute('data-attributes');
 	});

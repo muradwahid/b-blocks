@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.7.8
+ * Version: 1.7.9
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,17 +14,18 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.8' );
-define( 'B_BLOCKS_DIR', plugin_dir_url( __FILE__ ) );
-define( 'B_BLOCKS_DIST', B_BLOCKS_DIR . 'dist/' );
-define( 'B_BLOCKS_ASSETS', B_BLOCKS_DIR . 'assets/' );
+define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.9' );
+define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
+define( 'B_BLOCKS_DIST', B_BLOCKS_DIR_URL . 'dist/' );
+define( 'B_BLOCKS_ASSETS', B_BLOCKS_DIR_URL . 'assets/' );
 
-if ( ! function_exists( 'bb_fs' ) ) {
+if ( ! function_exists( 'b_blocks_fs' ) ) {
     // Create a helper function for easy SDK access.
-    function bb_fs() {
-        global $bb_fs;
+    function b_blocks_fs() {
+        global $b_blocks_fs;
 
-        if ( ! isset( $bb_fs ) ) {
+        if ( ! isset( $b_blocks_fs ) ) {
             // Activate multisite network integration.
             if ( ! defined( 'WP_FS__PRODUCT_12845_MULTISITE' ) ) {
                 define( 'WP_FS__PRODUCT_12845_MULTISITE', true );
@@ -33,7 +34,7 @@ if ( ! function_exists( 'bb_fs' ) ) {
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/freemius/start.php';
 
-            $bb_fs = fs_dynamic_init( array(
+            $b_blocks_fs = fs_dynamic_init( array(
                 'id'                  => '12845',
                 'slug'                => 'b-blocks',
                 'premium_slug'        => 'b-blocks-pro',
@@ -50,21 +51,21 @@ if ( ! function_exists( 'bb_fs' ) ) {
                     'is_require_payment' => true,
                 ),
                 'menu'                => array(
-                    'first-path'     => 'plugins.php',
+                    'slug'           => 'b-blocks',
+                    'first-path'     => 'admin.php?page=b-blocks-help',
+                    'contact'        => false,
+                    'support'        => false,
                 ),
-                // Set the SDK to work in a sandbox mode (for development & testing).
-                // IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
-                'secret_key'          => 'sk_nhpu<pa1bS#~tO{8<;spDwO?3:d_b',
             ) );
         }
 
-        return $bb_fs;
+        return $b_blocks_fs;
     }
 
     // Init Freemius.
-    bb_fs();
+    b_blocks_fs();
     // Signal that SDK was initiated.
-    do_action( 'bb_fs_loaded' );
+    do_action( 'b_blocks_fs_loaded' );
 }
 
 // Generate Styles
@@ -97,13 +98,15 @@ class BBlocks{
 	protected static $_instance = null;
 
 	function __construct(){
+		add_action( 'wp_ajax_bBlocksPipeChecker', [$this, 'bBlocksPipeChecker'] );
+		add_action( 'wp_ajax_nopriv_bBlocksPipeChecker', [$this, 'bBlocksPipeChecker'] );
+		add_action( 'admin_init', [$this, 'registerSettings'] );
+		add_action( 'rest_api_init', [$this, 'registerSettings']);
 		add_action( 'init', [$this, 'onInit'] );
 		add_action( 'enqueue_block_assets', [$this, 'enqueueBockAssets'] );
 		add_action( 'enqueue_block_editor_assets', [$this, 'enqueueBlockEditorAssets'] );
 		add_filter( 'script_loader_tag', [$this, 'scriptLoaderTag'], 10, 3 );
-		if ( version_compare( $GLOBALS['wp_version'], '5.8-alpha-1', '<' ) ) {
-			add_filter( 'block_categories', [$this, 'registerCategories'] );
-		} else { add_filter( 'block_categories_all', [$this, 'registerCategories'] ); }
+		add_filter( 'block_categories_all', [$this, 'registerCategories'] );
 	}
 
 	public static function instance(){
@@ -113,18 +116,41 @@ class BBlocks{
 		return self::$_instance;
 	}
 
-	// Register categories
+	function bBlocksPipeChecker(){
+		$nonce = $_POST['_wpnonce'];
+
+		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
+			wp_send_json_error( 'Invalid Request' );
+		}
+
+		wp_send_json_success( [
+			'isPipe' => BBlocks\Inc\BBlocksUtils::isPro()
+		] );
+	}
+
+	function registerSettings(){
+		register_setting( 'bBlocksUtils', 'bBlocksUtils', [
+			'show_in_rest'		=> [
+				'name'			=> 'bBlocksUtils',
+				'schema'		=> [ 'type' => 'string' ]
+			],
+			'type'				=> 'string',
+			'default'			=> wp_json_encode( [ 'nonce' => wp_create_nonce( 'wp_ajax' ) ] ),
+			'sanitize_callback'	=> 'sanitize_text_field'
+		] );
+	}
+
 	function registerCategories( $categories ){
 		return array_merge( [ [
 			'slug'	=> 'bBlocks',
 			'title'	=> __( 'B Blocks', 'b-blocks' ),
 		] ], $categories );
-	}
+	} // Register categories
 
 	// Enqueue block assets
 	function enqueueBockAssets(){
 		wp_register_script( 'easyTicker', B_BLOCKS_ASSETS . 'js/easy-ticker.min.js', [ 'jquery' ], '3.2.1', true ); // Posts
-		wp_register_script( 'swiper', B_BLOCKS_ASSETS . 'js/swiper.min.js', [], '8.0.7', true ); // Posts, Slider
+		wp_register_script( 'swiper', B_BLOCKS_ASSETS . 'js/swiper.min.js', [], '8.0.7', true ); // Slider
 		wp_register_script( 'lottiePlayer', B_BLOCKS_ASSETS . 'js/lottie-player.js', [], '1.5.7', true ); // Lottie Player
 		wp_register_script( 'chart', B_BLOCKS_ASSETS . 'js/chart.min.js', [], '3.5.1', true ); // Chart
 		wp_register_script( 'plyr', B_BLOCKS_ASSETS . 'js/plyr.js', [], '3.7.2', true ); // Video
@@ -132,8 +158,8 @@ class BBlocks{
 		wp_register_script( 'goodShare', B_BLOCKS_ASSETS . 'js/goodshare.min.js', [], B_BLOCKS_VERSION, true ); // Social Share
 		wp_register_script( 'modelViewer', B_BLOCKS_ASSETS . 'js/model-viewer.min.js', [], B_BLOCKS_VERSION, true ); // 3D Viewer
 
-		wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS . 'css/fontAwesome.min.css', [], '5.15.4' ); // Font Awesome
-		wp_register_style( 'swiper', B_BLOCKS_ASSETS . 'css/swiper.min.css', [], '8.0.7' ); // Posts, Slider
+		wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS . 'css/font-awesome.min.css', [], '6.4.2' ); // Icon
+		wp_register_style( 'swiper', B_BLOCKS_ASSETS . 'css/swiper.min.css', [], '8.0.7' ); // Slider
 		wp_register_style( 'animate', B_BLOCKS_ASSETS . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
 		wp_register_style( 'plyr', B_BLOCKS_ASSETS . 'css/plyr.css', [], '3.7.2' ); // Video
 
@@ -156,7 +182,7 @@ class BBlocks{
 		wp_register_style( 'b-blocks-info-box-style', B_BLOCKS_DIST . 'info-box.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-lottie-player-style', B_BLOCKS_DIST . 'lottie-player.css', [], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-mailto-style', B_BLOCKS_DIST . 'mailto.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
-		wp_register_style( 'b-blocks-posts-style', B_BLOCKS_DIST . 'posts.css', [ 'swiper' ], B_BLOCKS_VERSION );
+		wp_register_style( 'b-blocks-posts-style', B_BLOCKS_DIST . 'posts.css', [ 'dashicons' ], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-price-lists-style', B_BLOCKS_DIST . 'price-lists.css', [], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-pricing-table-style', B_BLOCKS_DIST . 'pricing-table.css', [], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-qr-code-style', B_BLOCKS_DIST . 'qr-code.css', [], B_BLOCKS_VERSION );
@@ -174,7 +200,7 @@ class BBlocks{
 	function enqueueBlockEditorAssets(){
 		wp_register_script( 'jqueryUI', B_BLOCKS_ASSETS . 'js/jquery-ui.min.js', [ 'jquery' ], '1.13.0', true ); // Slider Block
 
-		wp_enqueue_script( 'bBlocksEditorScript', B_BLOCKS_DIST . 'editor.js', [ 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false ); // Backend Script
+		wp_enqueue_script( 'bBlocksEditorScript', B_BLOCKS_DIST . 'editor.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false ); // Backend Script
 
 		wp_enqueue_style( 'bBlocksEditorStyle', B_BLOCKS_DIST . 'editor.css', [
 			'fontAwesome',
@@ -211,52 +237,52 @@ class BBlocks{
 	}
 
 	function scriptLoaderTag( $tag, $handle, $src ){
-        // if not your script, do nothing and return original $tag
-        if ( 'modelViewer' !== $handle ) {
-            return $tag;
-        }
-        // change the script tag by adding type="module" and return it.
-        $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
-        return $tag;
-    }
+		if ( 'modelViewer' !== $handle ) {
+			return $tag;
+		}
+		$tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+		return $tag;
+	}
 
 	// On Init
 	function onInit(){
-		wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', plugin_dir_path( __FILE__ ) . 'languages' ); // Translate
+		wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 	}
 }
 BBlocks::instance();
 
 // Require files
-require_once plugin_dir_path( __FILE__ ) . 'inc/getCSS.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/Utils.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/AdminMenu.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/getCSS.php';
 
-require_once plugin_dir_path( __FILE__ ) . 'inc/row/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/row/column/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/posts/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/slider/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/section-heading/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/video/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/services/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/services/child/child.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/3d-viewer/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/image-gallery/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/image-comparison/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/flip-boxes/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/team-members/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/cards/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/pricing-table/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/price-lists/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/feature-boxes/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/info-box/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/lottie-player/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/chart/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/button-group/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/countdown/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/counters/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/mailto/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/gif/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/qr-code/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/social-share/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/animated-text/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/alert/block.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/shape-divider/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/row/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/row/column/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/posts/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/slider/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/section-heading/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/video/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/services/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/services/child/child.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/3d-viewer/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/image-gallery/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/image-comparison/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/flip-boxes/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/team-members/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/cards/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/pricing-table/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/price-lists/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/feature-boxes/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/info-box/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/lottie-player/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/chart/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/button-group/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/countdown/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/counters/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/mailto/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/gif/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/qr-code/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/social-share/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/animated-text/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/alert/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/shape-divider/block.php';

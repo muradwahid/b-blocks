@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { useEffect } from 'react';
 import { RichText } from '@wordpress/block-editor';
 
-// Settings Components
 import { getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
 import Settings from './Settings';

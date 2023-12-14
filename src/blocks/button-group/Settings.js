@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import produce from 'immer';
 
-// Settings Components
 import { Label, BColor, BorderControl, BtnGroup, ColorsControl, IconControl, SpaceControl, Typography } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
@@ -61,7 +59,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				</PanelRow>
 				<small>{__('Some settings may change when type will be changed.', 'b-blocks')}</small>
 
-				<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} produce={produce} />
+				<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 16, tablet: 16, mobile: 16 } }} />
 
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
 
@@ -110,7 +108,7 @@ const Settings = ({ attributes, setAttributes }) => {
 						<Label>{__('Separator Text:', 'b-blocks')}</Label>
 						<TextControl value={sepText} onChange={val => setAttributes({ sepText: val })} />
 
-						<Typography label={__('Text Typography', 'b-blocks')} value={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} produce={produce} />
+						<Typography label={__('Text Typography', 'b-blocks')} value={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
 						<BColor label={__('Text Color:', 'b-blocks')} value={sepTextColor} onChange={val => setAttributes({ sepTextColor: val })} defaultColor='#333' />
 					</>}

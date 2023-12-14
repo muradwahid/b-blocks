@@ -2,40 +2,40 @@
 Contributors: abuhayat, charlescormier
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
-Requires at least: 5.3+
-Tested up to: 6.2.2
-Stable tag: 1.7.8
+Requires at least: 6.2+
+Tested up to: 6.4.2
+Stable tag: 1.7.9
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be use as a WordPress Page Building tools!
+B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be used as a WordPress page-building tool!
 
 == Description ==
 
-B Blocks is a Gutenberg addon that power up your Block editor. It can be use as a WordPress Page Building tool, which contain a variety of beautiful blocks. It is optimized for performance and provide you maximum options to achieve your design goals.
+B Blocks is a Gutenberg addon that powers up your Block editor. It can be used as a WordPress page-building tool, which contains a variety of beautiful blocks. It is optimized for performance and provides you with maximum options to achieve your design goals.
 
 
 **[Demos](https://links.bplugins.com/b-blocks)**
 
 
-=== How to use? ===
+=== How to use ===
 - Install the B Blocks plugin
-- Add the one or more blocks from block category called "B Blocks" in Gutenberg editor.
-- You can change block settings from the right side settings sidebar.
+- Add one or more blocks from the block category called "B Blocks" in the Gutenberg editor.
+- You can change block settings from the right-side settings sidebar.
 - Enjoy!
 
 * For installation help click on the Installation Tab
 
 
 = Features =
-- **Customize**: Customize every block as your design requirement. All blocks elements has their own settings, such as typography, colors, spacing etc.
+- **Customize**: Customize every block as per your design requirement. All blocks have their settings, such as typography, colors, spacing etc.
 
-- **Layouts**: Some of the blocks has layouts/theme. Its provide the custom pre-designed structure of the block.
+- **Layouts**: Some of the blocks has layouts/theme. It provides the custom pre-designed structure of the block.
 
-- **Icons Library**: Include custom icon library. Implements in which blocks needs.
+- **Icons Library**: Include custom icon library. Implements in which blocks are needed.
 
-- **Google Fonts**: Include the google fonts in typography settings
+- **Google Fonts**: Include the Google fonts in the typography settings.
 
 
 = Block Lists =
@@ -43,27 +43,27 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 - **Slider**: Design an image and content slider with change style slider indicators.
 
-- **Section Heading**: Section Heading with a heading, separator, and a description, show hide controls for separator and description.
+- **Section Heading**: Section Heading with a heading, separator, and description, show hide controls for separator and description.
 
 - **3D Viewer**: Display interactive 3D models on the web.
 
 - **Image Gallery**: Display beautiful images as a gallery to present your photos in a stunning, attractive way.
 
-- **Image Comparison**: Compare between two images to see their difference.
+- **Image Comparison**: Compare two images to see their difference.
 
 - **Flip Boxes**: Highlight your content inside your site in a great way.
 
-- **Team Members**: Present your employees/team members to your clients in beautiful way.
+- **Team Members**: Present your employees/team members to your clients in a beautiful way.
 
-- **Card**: Design a card that includes image, heading, description heading, description, and footer with custom typography.
+- **Card**: Design a card that includes an image, heading, description heading, description, and footer with custom typography.
 
-- **Pricing Table**: Create and display product professional looking pricing table in WordPress’s block editor. This is a block plugin and it will only work with Gutenberg editor.
+- **Pricing Table**: Create and display a professional-looking pricing table in WordPress’s block editor. This is a block plugin and it will only work with the Gutenberg editor.
 
-- **Price Lists**: Display Price lists section with image, title, description, price and a separator.
+- **Price Lists**: Display the Price lists section with an image, title, description, price and a separator.
 
-- **Feature Boxes**: Display Feature boxes section with feature image, title, separator and description.
+- **Feature Boxes**: Display the Feature Boxes section with the feature image, title, separator and description.
 
-- **Info Box**: Show information in your website for the users in a attractive way.
+- **Info Box**: Show information on your website for the users in an attractive way.
 
 - **Lottie Player**: Display animated lottie lottie files/images.
 
@@ -75,11 +75,11 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 - **Counters**: Display Number as animated counter(start to end).
 
-- **Mail To**: Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also default app.
+- **Mail To**: Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also the default app.
 
-- **Gif Image**: Embed gif image to your posts and pages.
+- **GIF Image**: Embed gif image to your posts and pages.
 
-- **QR Code**: Just input a URL then it will automatically show QR code.
+- **QR Code**: Just input a URL then it will automatically show a QR code.
 
 - **Social Share**: Share your website/website-page link to social networks and mobile messengers.
 
@@ -89,7 +89,7 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 
 = Feedback =
-- Liked that plugin? Hate it? Want a new feature? [Send me some feedback](mailto:support@bplugins.com 'Send feedback')
+- Did you like this plugin? Dislike it? Have a feature request? [Please share your feedback with us](mailto:support@bplugins.com 'Send feedback')
 
 
 = ⭐ Check out our other WordPress Plugins- =
@@ -108,7 +108,7 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 == Installation ==
 
 = Automatic installation =
-1. Go to Plugin menu and click on **Add New** Button
+1. Go to the Plugin menu and click on the **Add New** Button
 2. Search for **B Blocks**
 3. Install and activate the B Blocks plugin from there
 
@@ -124,7 +124,7 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 = Use Block: =
 1. Go to the WordPress Block/Gutenberg Editor
-2. Add one or more blocks from block category called **B Blocks** in Gutenberg editor
+2. Add one or more blocks from the block category called **B Blocks** in the Gutenberg editor
 3. Enjoy!
 
 
@@ -132,11 +132,11 @@ B Blocks is a Gutenberg addon that power up your Block editor. It can be use as 
 
 = How do I install this plugin? =
 
-You can install as others regular WordPress plugin. No different way. Please see on installation tab.
+You can install it as other regular WordPress plugins. No different way. Please see on installation tab.
 
 = Is B Blocks free? =
 
-Yes, B Blocks is free Gutenberg block plugin.
+Yes, B Blocks is a free Gutenberg block plugin.
 
 = Can I change block settings? =
 
@@ -186,6 +186,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.7.9 - 12 Dec 2023 =
+* Update Font Awesome Library
+* Update Posts Block
+
 = 1.7.8 =
 * Add Shape Divider block
 * Separate Block assets
@@ -215,7 +219,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Reduce dependencies
 
 = 1.6.9 =
-* Add row column block
+* Add row-column block
 
 = 1.6.8 =
 * Add translate feature
@@ -248,7 +252,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.5.9 =
 * Gradient Picker fixing
-* Update Chart, Posts, Slider blocks
+* Update Chart, Posts, and Slider blocks
 
 = 1.5.8 =
 * Update Posts block
@@ -257,7 +261,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Add Pricing Table block
 
 = 1.5.6 =
-* Add 3D Viewer, Animated Text, Social Share blocks
+* Add 3D Viewer, Animated Text, and Social Share blocks
 
 = 1.5.5 =
 * Performance Upgrade
@@ -279,7 +283,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.5 =
 * Add Lottie Player Block
-* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
+* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, and QR Code blocks
 
 = 1.4 =
 * Add Image Comparison, Team Members and Flip Boxes blocks
@@ -290,7 +294,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.2 =
 * Add Image Gallery and Info Box blocks
-* Responsive the Price Lists and Feature Boxes
+* Responsive for the Price Lists and Feature Boxes
 
 = 1.1 =
 * Add Price Lists and Feature Boxes blocks
@@ -302,6 +306,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Upgrade Notice ==
 
+= 1.7.9 - 12 Dec 2023 =
+* Update Font Awesome Library
+* Update Posts Block
+
 = 1.7.8 =
 * Add Shape Divider block
 * Separate Block assets
@@ -331,7 +339,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Reduce dependencies
 
 = 1.6.9 =
-* Add row column block
+* Add row-column block
 
 = 1.6.8 =
 * Add translate feature
@@ -364,7 +372,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.5.9 =
 * Gradient Picker fixing
-* Update Chart, Posts, Slider blocks
+* Update Chart, Posts, and Slider blocks
 
 = 1.5.8 =
 * Update Posts block
@@ -373,7 +381,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Add Pricing Table block
 
 = 1.5.6 =
-* Add 3D Viewer, Animated Text, Social Share blocks
+* Add 3D Viewer, Animated Text, and Social Share blocks
 
 = 1.5.5 =
 * Performance Upgrade
@@ -395,7 +403,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.5 =
 * Add Lottie Player Block
-* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, QR Code blocks
+* Update Posts, Slider, Section Heading, Image Gallery, Image Comparison, Flip Boxes, Team Members, Price Lists, Feature Boxes, Info Box, Button Group, Countdown, Cards, Mail To, GIF, and QR Code blocks
 
 = 1.4 =
 * Add Image Comparison, Team Members and Flip Boxes blocks
@@ -406,7 +414,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 = 1.2 =
 * Add Image Gallery and Info Box blocks
-* Responsive the Price Lists and Feature Boxes
+* Responsive for the Price Lists and Feature Boxes
 
 = 1.1 =
 * Add Price Lists and Feature Boxes blocks

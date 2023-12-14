@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, SelectControl, ToggleControl, Button, Dashicon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import produce from 'immer';
+import { produce } from 'immer';
 
-// Settings Components
 import { Label, Background, BorderControl, IconControl, InlineDetailMediaUpload, ShadowControl } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';

@@ -1,0 +1,31 @@
+import Default from './Default';
+import SideImage from './SideImage';
+import Overlay from './Overlay';
+import { classNames } from '../../../utils/functions';
+
+const SubLayout = ({ post, attributes }) => {
+    const { subLayout, content = { height: 'auto' } } = attributes;
+
+    const { id, thumbnail } = post;
+    const postClass = classNames('bBlocksPost', `bBlocksPost-${id}`, `${content?.height}ContentHeight`, {
+        'hasThumbnail': thumbnail.url
+    });
+
+    switch (subLayout) {
+        case 'default':
+        case 'title-meta':
+            return <Default post={post} attributes={attributes} postClass={postClass} />;
+        case 'left-image':
+        case 'right-image':
+            return <SideImage post={post} attributes={attributes} postClass={postClass} />;
+        case 'overlay-content':
+        case 'overlay-content-hover':
+        case 'overlay-box':
+        case 'overlay-content-box':
+        case 'overlay-half-content':
+            return <Overlay post={post} attributes={attributes} postClass={postClass} />;
+        default:
+            return null;
+    }
+}
+export default SubLayout;
