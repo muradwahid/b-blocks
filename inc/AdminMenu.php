@@ -47,8 +47,12 @@ class AdminMenu{
 		global $submenu;
 
 		$arr = array();
-		$arr[] = $submenu['b-blocks'][1]; // Help
-		$arr[] = $submenu['b-blocks'][2]; // Upgrade || Account
+		if( isset( $submenu['b-blocks'][1] ) ){
+			$arr[] = $submenu['b-blocks'][1]; // Help	
+		}
+		if( isset( $submenu['b-blocks'][2] ) ){
+			$arr[] = $submenu['b-blocks'][2]; // Upgrade || Account
+		}
 		$submenu['b-blocks'] = $arr;
 
 		return $menu_ord;

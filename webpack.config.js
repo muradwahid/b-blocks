@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
 	var config = {
 		entry: {
 			admin: './src/admin.js',
+			'template-library': './src/template-library.js',
 			editor: './src/editor.js',
 			script: './src/script.js',
 			'3d-viewer': './src/blocks/3d-viewer/script.js',
@@ -42,6 +43,7 @@ module.exports = (env, argv) => {
 			'shape-divider': './src/blocks/shape-divider/script.js',
 			'slider': './src/blocks/slider/script.js',
 			'social-share': './src/blocks/social-share/script.js',
+			'star-rating': './src/blocks/star-rating/script.js',
 			'team-members': './src/blocks/team-members/script.js',
 			'video': './src/blocks/video/script.js'
 		},
@@ -134,6 +136,7 @@ module.exports = (env, argv) => {
 			'@wordpress/components': ['wp', 'components'],
 			'@wordpress/compose': ['wp', 'compose'],
 			'@wordpress/data': ['wp', 'data'],
+			'@wordpress/dom-ready': ['wp', 'domReady'],
 			'@wordpress/element': ['wp', 'element'],
 			'@wordpress/html-entities': ['wp', 'htmlEntities'],
 			'@wordpress/i18n': ['wp', 'i18n'],

@@ -1,9 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
-import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToolbarGroup, ToolbarButton, PanelRow, ToggleControl, Dashicon } from '@wordpress/components';
+import { BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, RangeControl, PanelRow, ToggleControl, Dashicon } from '@wordpress/components';
 
-import { Label, BColor, BDevice, BorderControl, BtnGroup, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { Label, BColor, BDevice, BorderControl, BtnGroup, ShadowControl, SpaceControl, Typography, MediaEditControl } from '../../../../Components';
 
 import { aligns } from '../../utils/options';
 
@@ -67,11 +67,7 @@ const Settings = ({ settings, filterImages }) => {
 
 
 		{0 < images.length && <BlockControls>
-			<ToolbarGroup className='bPlToolbar'>
-				<MediaUploadCheck>
-					<MediaUpload allowedTypes={['image']} value={images.map(img => img.id)} onSelect={val => setAttributes({ images: filterImages(val) })} multiple render={({ open }) => <ToolbarButton label={__('Edit Gallery', 'b-blocks')} icon='edit' onClick={open} />} />
-				</MediaUploadCheck>
-			</ToolbarGroup>
+			<MediaEditControl label={__('Edit Gallery', 'b-blocks')} icon='format-gallery' value={images} onChange={val => setAttributes({ images: filterImages(val) })} isMultiple={true} />
 		</BlockControls>}
 	</>;
 };

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.7.9
+ * Version: 1.8.0
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.7.9' );
+define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.0' );
 define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'B_BLOCKS_DIST', B_BLOCKS_DIR_URL . 'dist/' );
@@ -190,6 +190,7 @@ class BBlocks{
 		wp_register_style( 'b-blocks-section-heading-style', B_BLOCKS_DIST . 'section-heading.css', [], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-services-style', B_BLOCKS_DIST . 'services.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-shape-divider-style', B_BLOCKS_DIST . 'shape-divider.css', [], B_BLOCKS_VERSION );
+		wp_register_style( 'b-blocks-star-rating-style', B_BLOCKS_DIST . 'star-rating.css', [], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-slider-style', B_BLOCKS_DIST . 'slider.css', [ 'swiper' ], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-social-share-style', B_BLOCKS_DIST . 'social-share.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
 		wp_register_style( 'b-blocks-team-members-style', B_BLOCKS_DIST . 'team-members.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
@@ -198,6 +199,9 @@ class BBlocks{
 
 	// Enqueue Block Editor Assets
 	function enqueueBlockEditorAssets(){
+		wp_enqueue_script( 'bBlocksTemplateLibraryScript', B_BLOCKS_DIST . 'template-library.js', [ 'wp-data', 'wp-dom-ready', 'wp-i18n', 'react', 'react-dom' ], B_BLOCKS_VERSION, false );
+		wp_enqueue_style( 'bBlocksTemplateStyle', B_BLOCKS_DIST . 'template-library.css', [], B_BLOCKS_VERSION );
+
 		wp_register_script( 'jqueryUI', B_BLOCKS_ASSETS . 'js/jquery-ui.min.js', [ 'jquery' ], '1.13.0', true ); // Slider Block
 
 		wp_enqueue_script( 'bBlocksEditorScript', B_BLOCKS_DIST . 'editor.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false ); // Backend Script
@@ -230,6 +234,7 @@ class BBlocks{
 			'b-blocks-services-style',
 			'b-blocks-slider-style',
 			'b-blocks-shape-divider-style',
+			'b-blocks-star-rating-style',
 			'b-blocks-social-share-style',
 			'b-blocks-team-members-style',
 			'b-blocks-video-style'
@@ -286,3 +291,4 @@ require_once B_BLOCKS_DIR_PATH . 'inc/social-share/block.php';
 require_once B_BLOCKS_DIR_PATH . 'inc/animated-text/block.php';
 require_once B_BLOCKS_DIR_PATH . 'inc/alert/block.php';
 require_once B_BLOCKS_DIR_PATH . 'inc/shape-divider/block.php';
+require_once B_BLOCKS_DIR_PATH . 'inc/star-rating/block.php';

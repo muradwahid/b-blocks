@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { InnerBlocks, Inserter } from '@wordpress/block-editor';
-import { IconButton } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 
 import { tabController } from '../../../../Components/utils/functions';
 
@@ -65,19 +65,15 @@ const Edit = props => {
 			<div className='shapeContent'>
 				<InnerBlocks
 					template={innerBlocksTemplate}
-					renderAppender={() => (
-						<Inserter
-							rootClientId={clientId}
-							isAppender
-							renderToggle={({ onToggle, disabled }) => (
-								<IconButton
-									onClick={onToggle}
-									disabled={disabled}
-									icon='plus-alt'>
-								</IconButton>
-							)}
-						/>
-					)}
+					renderAppender={() => <Inserter
+						rootClientId={clientId}
+						isAppender
+						renderToggle={({ onToggle, disabled }) => <Button
+							onClick={onToggle}
+							disabled={disabled}
+							icon='plus-alt'>
+						</Button>}
+					/>}
 				/>
 			</div>
 		</div>

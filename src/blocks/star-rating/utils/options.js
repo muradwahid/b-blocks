@@ -1,0 +1,1 @@
+export const ratingScales = [{ label: '0-5', value: 5 }, { label: '0-10', value: 10 }]

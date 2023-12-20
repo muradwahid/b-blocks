@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { InspectorControls, BlockControls, AlignmentToolbar, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
+import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, PanelRow, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl, Dashicon } from '@wordpress/components';
 
-import { Label, InlineDetailMediaUpload } from '../../../../Components';
+import { Label, InlineDetailMediaUpload, MediaEditControl } from '../../../../Components';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { loadingTypes } from './utils/options';
@@ -83,11 +83,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 		<BlockControls>
-			{model?.url && <ToolbarGroup className='bPlToolbar'>
-				<MediaUploadCheck>
-					<MediaUpload allowedTypes={['model/gltf-binary']} value={model?.id} onSelect={onModelSelect} render={({ open }) => <ToolbarButton label={__('Edit 3D Model:', 'b-blocks')} icon='edit' onClick={open} />} />
-				</MediaUploadCheck>
-			</ToolbarGroup>}
+			<MediaEditControl label={__('Edit 3D Model:', 'b-blocks')} icon='edit' types={['model/gltf-binary']} value={model} onChange={onModelSelect} />
 
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('3D Model Alignment')} alignmentControls={[
 				{ title: __('3D Model in left', 'b-blocks'), align: 'left', icon: 'align-left' },
