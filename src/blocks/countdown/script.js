@@ -1,21 +1,39 @@
 import { createRoot } from 'react-dom/client';
 
 import './style.scss';
-import Style from './Style';
-import Countdown from './Countdown';
+import Style from './Components/Common/Style';
+import Countdown from './Components/Common/Countdown';
+import { isMobile, isTablet } from './utils/functions';
+import { closeIcon } from './utils/icons';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const allCountdown = document.querySelectorAll('.wp-block-b-blocks-countdown');
-	allCountdown.forEach(countdown => {
-		const attributes = JSON.parse(countdown.dataset.attributes);
+	const countdownEls = document.querySelectorAll('.wp-block-b-blocks-countdown');
+	countdownEls.forEach(countdownEl => {
+		const attributes = JSON.parse(countdownEl.dataset.attributes);
+		const content = JSON.parse(countdownEl.dataset.content);
+		const { cId, hideOnMobile = false, hideOnTablet = false } = attributes;
 
-		createRoot(countdown).render(<>
-			<Style attributes={attributes} clientId={attributes.cId} />
+		const ifHideOnMobile = hideOnMobile && isMobile.matches;
+		const ifHideOnTablet = hideOnTablet && isTablet.matches;
 
-			<Countdown attributes={attributes} Box={Box} />
-		</>);
+		const closeEl = <span onClick={() => {
+			countdownEl.classList.add('transformHidden');
 
-		countdown?.removeAttribute('data-attributes');
+			setTimeout(() => {
+				countdownEl.style.display = 'none';
+			}, 450);
+		}}>{closeIcon}</span>
+
+		createRoot(countdownEl).render(!ifHideOnMobile && !ifHideOnTablet ? <>
+			<Style attributes={attributes} clientId={cId} />
+
+			<Countdown attributes={attributes} Box={Box} closeEl={closeEl}>
+				<div className='countdownExpired' dangerouslySetInnerHTML={{ __html: content }} />
+			</Countdown>
+		</> : <></>);
+
+		countdownEl?.removeAttribute('data-attributes');
+		countdownEl?.removeAttribute('data-content');
 	});
 });
 
@@ -26,4 +44,4 @@ const Box = (props) => {
 		<span className='digit'>{digit}</span>
 		{(isLabels && label) && <label className='label' dangerouslySetInnerHTML={{ __html: label }} />}
 	</div>;
-}
+};

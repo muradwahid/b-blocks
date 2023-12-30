@@ -9,16 +9,19 @@ import Loading from './Loading';
 import NoPosts from './NoPosts';
 import { filterNaN, filterObject, wordCount } from '../../utils/functions';
 import Posts from './Posts';
+import usePremiumInEditor from '../../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, className, clientId, isSelected, totalPosts, posts, taxOfPostType } = props;
+
+	const { isPremium } = usePremiumInEditor();
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	useEffect(() => tabController(), [isSelected]);
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} posts={posts} taxOfPostType={taxOfPostType} />
+		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} posts={posts} taxOfPostType={taxOfPostType} />
 
 		{!posts ?
 			<Loading /> :

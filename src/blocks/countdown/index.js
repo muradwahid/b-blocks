@@ -1,7 +1,8 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 import metadata from '../../../inc/countdown/block.json';
-import Edit from './Edit';
+import Edit from './Components/Backend/Edit';
 import './editor.scss';
 import { countdownIcon } from './utils/icons';
 
@@ -28,5 +29,5 @@ registerBlockType(metadata, {
 	// Build In Functions
 	edit: Edit,
 
-	save: () => null
+	save: () => <InnerBlocks.Content />
 });

@@ -26,11 +26,6 @@ if ( ! function_exists( 'b_blocks_fs' ) ) {
         global $b_blocks_fs;
 
         if ( ! isset( $b_blocks_fs ) ) {
-            // Activate multisite network integration.
-            if ( ! defined( 'WP_FS__PRODUCT_12845_MULTISITE' ) ) {
-                define( 'WP_FS__PRODUCT_12845_MULTISITE', true );
-            }
-
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/freemius/start.php';
 
@@ -101,7 +96,7 @@ class BBlocks{
 		add_action( 'wp_ajax_bBlocksPipeChecker', [$this, 'bBlocksPipeChecker'] );
 		add_action( 'wp_ajax_nopriv_bBlocksPipeChecker', [$this, 'bBlocksPipeChecker'] );
 		add_action( 'admin_init', [$this, 'registerSettings'] );
-		add_action( 'rest_api_init', [$this, 'registerSettings']);
+		add_action( 'rest_api_init', [$this, 'registerSettings'] );
 		add_action( 'init', [$this, 'onInit'] );
 		add_action( 'enqueue_block_assets', [$this, 'enqueueBockAssets'] );
 		add_action( 'enqueue_block_editor_assets', [$this, 'enqueueBlockEditorAssets'] );
@@ -117,7 +112,7 @@ class BBlocks{
 	}
 
 	function bBlocksPipeChecker(){
-		$nonce = $_POST['_wpnonce'];
+		$nonce = $_POST['_wpnonce'] ?? null;
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
@@ -199,12 +194,12 @@ class BBlocks{
 
 	// Enqueue Block Editor Assets
 	function enqueueBlockEditorAssets(){
-		wp_enqueue_script( 'bBlocksTemplateLibraryScript', B_BLOCKS_DIST . 'template-library.js', [ 'wp-data', 'wp-dom-ready', 'wp-i18n', 'react', 'react-dom' ], B_BLOCKS_VERSION, false );
+		wp_enqueue_script( 'bBlocksTemplateLibraryScript', B_BLOCKS_DIST . 'template-library.js', [ 'wp-api', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-data', 'wp-dom-ready', 'wp-i18n', 'wp-util', 'react', 'react-dom' ], B_BLOCKS_VERSION, false );
 		wp_enqueue_style( 'bBlocksTemplateStyle', B_BLOCKS_DIST . 'template-library.css', [], B_BLOCKS_VERSION );
 
 		wp_register_script( 'jqueryUI', B_BLOCKS_ASSETS . 'js/jquery-ui.min.js', [ 'jquery' ], '1.13.0', true ); // Slider Block
 
-		wp_enqueue_script( 'bBlocksEditorScript', B_BLOCKS_DIST . 'editor.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false ); // Backend Script
+		wp_enqueue_script( 'bBlocksEditorScript', B_BLOCKS_DIST . 'editor.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-date', 'wp-element', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'lottiePlayer', 'chart', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false ); // Backend Script
 
 		wp_enqueue_style( 'bBlocksEditorStyle', B_BLOCKS_DIST . 'editor.css', [
 			'fontAwesome',

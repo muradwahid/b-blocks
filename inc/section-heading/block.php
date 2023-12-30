@@ -18,7 +18,8 @@ class BBlocksSectionHeading extends BBlocks{
 		// wp_set_script_translations( 'b-blocks-section-heading-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-section-heading $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-section-heading $className $planClass align$align";
 
 		// Generate Styles
 		$sectionHeadingStyle = new BBlocksStyleGenerator();

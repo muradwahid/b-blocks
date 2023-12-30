@@ -11,12 +11,10 @@ import General from './General';
 import Elements from './Elements';
 import Style from './Style';
 import { generalStyleTabs } from '../../../utils/options';
-import usePremiumInEditor from '../../../../../hooks/usePremiumInEditor';
 
-const Settings = ({ attributes, setAttributes, posts, taxOfPostType }) => {
+const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }) => {
 	const { contentAlign } = attributes;
 
-	const { isPremium } = usePremiumInEditor();
 	const [aboutProOpen, setAboutProOpen] = useState(false);
 
 	const isPosts = posts?.length;

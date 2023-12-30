@@ -18,12 +18,13 @@ class BBlocksPricingTable extends BBlocks{
 		wp_set_script_translations( 'b-blocks-pricing-table-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? 'is-style-basic';
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
 
 		$isStandard = false !== strpos($className, 'standard');
 		$isUltimate = false !== strpos($className, 'ultimate');
 
 		$basicClass = !$isStandard && !$isUltimate ? ' is-style-basic': '';
-		$blockClassName = "wp-block-b-blocks-pricing-table $className $basicClass align$align";
+		$blockClassName = "wp-block-b-blocks-pricing-table $className $basicClass $planClass align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksPricingTables-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>

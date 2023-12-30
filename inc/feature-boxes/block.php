@@ -18,7 +18,8 @@ class BBlocksFeatureBoxes extends BBlocks{
 		// wp_set_script_translations( 'b-blocks-feature-boxes-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-feature-boxes $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-feature-boxes $className $planClass align$align";
 
 		// Generate Styles
 		$mainSl = "#bBlocksFeatureBoxes-$cId";

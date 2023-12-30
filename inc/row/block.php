@@ -18,7 +18,8 @@ class BBlocksRow extends BBlocks{
 		wp_set_script_translations( 'b-blocks-row-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-row $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-row $className $planClass align$align";
 
 		// Style disappearing problem
 		global $allowedposttags;

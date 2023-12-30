@@ -16,7 +16,8 @@ class BBlocksShapeDivider extends BBlocks{
 		wp_enqueue_style( 'b-blocks-shape-divider-style' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-shape-divider $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-shape-divider $className $planClass align$align";
 
 		// Generate Styles
 		$mainSl = "#bBlocksShapeDivider-$cId";

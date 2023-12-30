@@ -75,6 +75,50 @@
 			"type": "string",
 			"default": "Seconds"
 		},
+		"isExpired": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideOn0": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideOnMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideOnTablet": {
+			"type": "boolean",
+			"default": false
+		},
+		"prefixSuffixDirection": {
+			"type": "string",
+			"default": "row"
+		},
+		"prefixText": {
+			"type": "string",
+			"default": ""
+		},
+		"suffixButtonText": {
+			"type": "string",
+			"default": ""
+		},
+		"suffixButtonUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"addID": {
+			"type": "string",
+			"default": ""
+		},
+		"addClass": {
+			"type": "string",
+			"default": ""
+		},
+		"addCSS": {
+			"type": "string",
+			"default": ""
+		},
 		"width": {
 			"type": "string",
 			"default": "0px"
@@ -158,6 +202,86 @@
 			"type": "string",
 			"default": "#fff"
 		},
+		"isDaysSingleStyle": {
+			"type": "boolean",
+			"default": false
+		},
+		"daysBG": {
+			"type": "object",
+			"default": {
+				"type": "gradient",
+				"color": "#4527a4",
+				"gradient": "linear-gradient(135deg, #4527a4, #8344c5)"
+			}
+		},
+		"daysDigitColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"daysLabelColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"isHoursSingleStyle": {
+			"type": "boolean",
+			"default": false
+		},
+		"hoursBG": {
+			"type": "object",
+			"default": {
+				"type": "gradient",
+				"color": "#4527a4",
+				"gradient": "linear-gradient(135deg, #4527a4, #8344c5)"
+			}
+		},
+		"hoursDigitColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"hoursLabelColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"isMinutesSingleStyle": {
+			"type": "boolean",
+			"default": false
+		},
+		"minutesBG": {
+			"type": "object",
+			"default": {
+				"type": "gradient",
+				"color": "#4527a4",
+				"gradient": "linear-gradient(135deg, #4527a4, #8344c5)"
+			}
+		},
+		"minutesDigitColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"minutesLabelColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"isSecondsSingleStyle": {
+			"type": "boolean",
+			"default": false
+		},
+		"secondsBG": {
+			"type": "object",
+			"default": {
+				"type": "gradient",
+				"color": "#4527a4",
+				"gradient": "linear-gradient(135deg, #4527a4, #8344c5)"
+			}
+		},
+		"secondsDigitColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"secondsLabelColor": {
+			"type": "string",
+			"default": "#fff"
+		},
 		"isSep": {
 			"type": "boolean",
 			"default": false
@@ -173,6 +297,52 @@
 		"sepColor": {
 			"type": "string",
 			"default": "#4527a4"
+		},
+		"prefixTextTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 15,
+					"mobile": 15
+				}
+			}
+		},
+		"prefixTextColor": {
+			"type": "string",
+			"default": "#222"
+		},
+		"suffixButtonTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": 16,
+					"tablet": 16,
+					"mobile": 16
+				}
+			}
+		},
+		"suffixButtonColors": {
+			"type": "object",
+			"default": {
+				"color": "#fff",
+				"bg": "#222"
+			}
+		},
+		"suffixButtonPadding": {
+			"type": "object",
+			"default": {
+				"vertical": "14px",
+				"horizontal": "28px"
+			}
+		},
+		"isDismiss": {
+			"type": "boolean",
+			"default": false
+		},
+		"dismissColor": {
+			"type": "string",
+			"default": "#333"
 		}
 	},
 	"supports": {

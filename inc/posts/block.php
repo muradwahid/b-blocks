@@ -1,5 +1,4 @@
 <?php
-
 require_once B_BLOCKS_DIR_PATH . '/inc/posts/helpers/functions.php';
 
 class BBlocksPosts extends BBlocks{
@@ -87,7 +86,8 @@ class BBlocksPosts extends BBlocks{
 		wp_set_script_translations( 'b-blocks-posts-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-posts bBlocksPosts $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-posts bBlocksPosts $className $planClass align$align";
 
 		$allPosts = get_posts( array_merge( $this->query( $attributes ), [ 'posts_per_page' => -1 ] ) );
 

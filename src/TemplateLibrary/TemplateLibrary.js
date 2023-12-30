@@ -3,8 +3,11 @@ import { __ } from '@wordpress/i18n';
 
 import './TemplateLibrary.scss';
 import Modal from './Modal/Modal';
+import usePremiumInEditor from '../hooks/usePremiumInEditor';
 
 const TemplateLibrary = () => {
+	const { isPremium } = usePremiumInEditor();
+
 	const [show, setShow] = useState(false);
 
 	return <>
@@ -13,7 +16,7 @@ const TemplateLibrary = () => {
 			{__('Template Library', 'b-blocks')}
 		</button>
 
-		<Modal show={show} setShow={setShow} />
+		<Modal isPremium={isPremium} show={show} setShow={setShow} />
 	</>;
 };
 export default TemplateLibrary;

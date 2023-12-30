@@ -10,7 +10,7 @@ class BBlocksCountdown extends BBlocks{
 		] ); // Register Block
 	}
 
-	function render( $attributes ){
+	function render( $attributes, $content ){
 		extract( $attributes );
 
 		wp_enqueue_style( 'b-blocks-countdown-style' );
@@ -18,10 +18,17 @@ class BBlocksCountdown extends BBlocks{
 		wp_set_script_translations( 'b-blocks-countdown-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-countdown $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-countdown $className $planClass align$align";
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+		<div
+			class='<?php echo esc_attr( $blockClassName ); ?>'
+			id='bBlocksCountdown-<?php echo esc_attr( $cId ); ?>'
+			data-nonce='<?php echo esc_attr( wp_json_encode( wp_create_nonce( 'wp_ajax' ) ) ); ?>'
+			data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'
+			data-content='<?php echo esc_attr( wp_json_encode( $content ) ); ?>'
+		></div>
 
 		<?php return ob_get_clean();
 	}

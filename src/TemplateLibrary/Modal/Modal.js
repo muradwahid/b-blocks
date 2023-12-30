@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 
-import usePremiumInEditor from '../../hooks/usePremiumInEditor';
 import Sidebar from './Sidebar';
 import Templates from './Templates';
 import { closeIcon } from '../utils/icons';
@@ -8,12 +7,10 @@ import { searchData } from '../utils/functions';
 import pages from '../data/pages.json';
 import patterns from '../data/patterns.json';
 
-const Modal = ({ show, setShow }) => {
+const Modal = ({ isPremium, show, setShow }) => {
 	const [type, setType] = useState('pages');
 	const [category, setCategory] = useState('all');
 	const [search, setSearch] = useState('');
-
-	const { isPremium } = usePremiumInEditor();
 
 	// Modal outside click
 	const contentRef = useRef();

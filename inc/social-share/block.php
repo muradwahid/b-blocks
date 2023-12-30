@@ -21,7 +21,8 @@ class BBlocksSocialShare extends BBlocks{
 		wp_enqueue_script( 'goodShare' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-social-share $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-social-share $className $planClass align$align";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSocialShare-<?php echo esc_attr( $cId ) ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>

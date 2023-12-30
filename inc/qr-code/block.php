@@ -18,7 +18,8 @@ class BBlocksQRCode extends BBlocks{
 		// wp_set_script_translations( 'b-blocks-qr-code-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-qr-code $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-qr-code $className $planClass align$align";
 
 		// Generate Styles
 		$qrCodeStyle = new BBlocksStyleGenerator();

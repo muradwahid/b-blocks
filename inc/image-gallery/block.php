@@ -22,7 +22,8 @@ class BBlocksImageGallery extends BBlocks{
 		wp_enqueue_style( 'fancybox', B_BLOCKS_ASSETS . 'css/fancybox.min.css', '', '4.0', 'all' );
 
 		$className = $className ?? '';
-		$blockClassName = "wp-block-b-blocks-image-gallery $className align$align";
+		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
+		$blockClassName = "wp-block-b-blocks-image-gallery $className $planClass align$align";
 
 		// Generate Styles
 		$imgShadow = GetCSS::getShadowCSS( $imgShadow );
