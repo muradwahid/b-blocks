@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.8.0
+ * Version: 1.8.1
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.0' );
+define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.1' );
 define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'B_BLOCKS_DIST', B_BLOCKS_DIR_URL . 'dist/' );

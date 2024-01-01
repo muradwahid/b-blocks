@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: blocks, gutenberg, gutenberg blocks, editor, block, page builder
 Requires at least: 6.2+
 Tested up to: 6.4.2
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.8.1 - 1 Jan 2024 =
+* Update Countdown Block
+
 = 1.8.0 - 20 Dec 2023 =
 * Add Star Rating Block
 * Add Template Library
@@ -309,6 +312,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.8.1 - 1 Jan 2024 =
+* Update Countdown Block
 
 = 1.8.0 - 20 Dec 2023 =
 * Add Star Rating Block

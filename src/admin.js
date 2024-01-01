@@ -29,17 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	];
 
-	createRoot(adminEl).render(<div className='bplContainer'>
-		<div className='header box'>
-			<h1 className='heading'>Helpful Links</h1>
-		</div>
-
-		<div className='body'>
-			<div className='features col-3 col-tab-2 col-mob-1'>
-				{features.map((feature, index) => <Feature key={index} feature={feature} />)}
+	if (adminEl) {
+		createRoot(adminEl).render(<div className='bplContainer'>
+			<div className='header box'>
+				<h1 className='heading'>Helpful Links</h1>
 			</div>
-		</div>
-	</div>);
+
+			<div className='body'>
+				<div className='features col-3 col-tab-2 col-mob-1'>
+					{features.map((feature, index) => <Feature key={index} feature={feature} />)}
+				</div>
+			</div>
+		</div>);
+	}
 });
 
 const Feature = ({ feature }) => {
