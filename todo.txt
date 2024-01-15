@@ -7,6 +7,8 @@ mailto: send parameter with subject, cc, bcc
 
 update function in function.js
 
+whatsapp chat block
+
 
 readme.txt
 

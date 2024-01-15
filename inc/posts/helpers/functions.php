@@ -9,7 +9,10 @@ class Functions{
 	}
 
 	static function wordCount( $content ) {
-		return $content ? count( preg_split( '/[\s]+/', strip_tags( $content ) ) ) : 0;
+		return $content ? count( preg_split( 
+			'/[\s]+/',
+			preg_replace( '/(<([^>]+)>)/i', '', $content )
+		) ) : 0;
 	}
 
 	static function arrangedPosts ( $posts, $postType, $fImgSize = 'full', $metaDateFormat = 'M j, Y' ) {
@@ -19,7 +22,7 @@ class Functions{
 
 		foreach( $posts as $post ){
 			$id = $post->ID;
-			$content = preg_replace( '/(<([^>]+)>)/i', '', $post->post_content ); // Can use strip_tags also
+			$content = preg_replace( '/(<([^>]+)>)/i', '', $post->post_content );
 			$contentWords = self::wordCount( $content );
 
 			$thumbnail = [
