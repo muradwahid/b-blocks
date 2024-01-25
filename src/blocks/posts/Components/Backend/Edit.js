@@ -99,7 +99,7 @@ export default withSelect((select, { attributes, setAttributes }) => {
 				taxonomies[t.slug] = links?.join('')
 			});
 
-			const filteredContent = content?.raw?.replace(/(<([^>]+)>)/gi, '');
+			const plainContent = content?.raw?.replace(/(<([^>]+)>)/gi, '');
 			const categoriesLink = categories?.length ? getTaxonomy('category')?.filter(c => categories?.includes(c.id))?.map(c => `<a href='${c.link}' rel='category tag'>${c.name}</a>`) : [];
 
 			const authorInfo = getUsers({ who: 'authors' })?.map(({ id, name, link }) => ({ id, name, link }))?.find(a => a.id === author);
@@ -110,8 +110,8 @@ export default withSelect((select, { attributes, setAttributes }) => {
 				name,
 				thumbnail,
 				title: title?.rendered,
-				excerpt: excerpt?.raw,
-				content: filteredContent,
+				excerpt: excerpt?.raw?.replace(/(<([^>]+)>)/gi, '')?.trim(),
+				content: plainContent,
 				author: authorInfo,
 				date: dateI18n(metaDateFormat, new Date(date)),
 				dateGMT: date_gmt,
@@ -125,8 +125,8 @@ export default withSelect((select, { attributes, setAttributes }) => {
 				},
 				taxonomies,
 				readTime: {
-					min: Math.floor(wordCount(filteredContent) / 200),
-					sec: Math.floor((wordCount(filteredContent) % 200) / (200 / 60))
+					min: Math.floor(wordCount(plainContent) / 200),
+					sec: Math.floor((wordCount(plainContent) % 200) / (200 / 60))
 				},
 				status
 			};

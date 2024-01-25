@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
@@ -200,9 +199,9 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 				}}
 					options={
 						isGrid1 ? subLayouts.filter(l => !['left-image', 'right-image'].includes(l.value)) :
-							// isSlider ? subLayouts.filter(l => !['default', 'title-meta'].includes(l.value)) :
-							isTicker ? subLayouts.filter(l => !['overlay-half-content'].includes(l.value)) :
-								subLayouts
+							isSlider ? subLayouts.filter(l => !['default', 'title-meta'].includes(l.value)) :
+								isTicker ? subLayouts.filter(l => !['overlay-half-content'].includes(l.value)) :
+									subLayouts
 					}
 					proValues={['overlay-content-box', 'overlay-half-content']}
 					{...premiumProps}
@@ -232,7 +231,7 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 
 			{isSlider && <UnitControl className='mt20' label={__('Slider Min Height:', 'b-blocks')} labelPosition='left' value={sliderHeight} onChange={val => setAttributes({ sliderHeight: val })} units={[pxUnit(), emUnit(), vhUnit()]} />}
 
-			{/* <BControlPro className='mt20' label={__('Content/Texts Height:', 'b-blocks')} labelPosition='left' value={content?.height} onChange={val => setAttributes({ content: { ...content, height: val } })} options={contentHeights} {...premiumProps} Component={SelectControl} /> */}
+			<BControlPro className='mt20' label={__('Content/Texts Height:', 'b-blocks')} labelPosition='left' value={content?.height} onChange={val => setAttributes({ content: { ...content, height: val } })} options={contentHeights} {...premiumProps} Component={SelectControl} />
 		</PanelBody>
 
 
@@ -251,7 +250,7 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 				/>
 			</> : null}
 
-			{/* {'post' === postType && getTaxonomy('post_tag')?.length ? <>
+			{'post' === postType && getTaxonomy('post_tag')?.length ? <>
 				<BControlPro
 					className='mt20'
 					label={__('Select Tags:', 'b-blocks')}
@@ -260,9 +259,9 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 					options={getTaxonomy('post_tag').map(tag => ({ label: tag.name, value: tag.id.toString() }))}
 					{...premiumProps} Component={SelectPureControl}
 				/>
-			</> : null} */}
+			</> : null}
 
-			{/* {allTaxonomies?.length ? <>
+			{allTaxonomies?.length ? <>
 				<Label>{__('Select Taxonomies for filter:', 'b-blocks')}</Label>
 				{allTaxonomies.map(tax => {
 					const isInc = Object.keys(selectedTaxonomies).includes(tax.slug);
@@ -278,7 +277,7 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 				onChange={val => setAttributes({ selectedTaxonomies: { ...selectedTaxonomies, [tax]: val.map(tax => parseInt(tax)) } })}
 				options={getTaxonomy(tax).map(tax => ({ label: tax.name, value: tax.id.toString() }))}
 				{...premiumProps} Component={SelectPureControl}
-			/> : null) : null} */}
+			/> : null) : null}
 
 			<Label>{__('Post Per Page:', 'b-blocks')}</Label>
 			<RangeControl value={postsPerPage} onChange={val => setAttributes({ postsPerPage: val, isPostsPerPageAll: -1 === val })} min={-1} max={36} step={1} />
@@ -294,7 +293,7 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 				<SelectControl value={postsOrder} onChange={val => setAttributes({ postsOrder: val })} options={postsOrders} />
 			</PanelRow>
 
-			{/* {!isPostsPerPageAll && <>
+			{!isPostsPerPageAll && <>
 				<BControlPro className='mt20' label={__('Post Offset:', 'b-blocks')} labelPosition='left' value={postsOffset} onChange={val => setAttributes({ postsOffset: parseInt(val) })} min={0} {...premiumProps} Component={NumberControl} />
 				<small>{__('`Post Offset` will not work if `Post Per Page` is -1', 'b-blocks')}</small>
 			</>}
@@ -305,15 +304,15 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 			<BControlPro className='mt20' label={__('Exclude Posts:', 'b-blocks')} value={postsExclude?.join(',')} onChange={val => setAttributes({ postsExclude: strToIntArr(val) })} {...premiumProps} Component={TextControl} />
 			<small>{__('Enter the posts id by coma separated Ex: `23,45,16`', 'b-blocks')}</small>
 
-			{currentPostType === postType && <BControlPro className='mt20' label={__('Exclude Current Post', 'b-blocks')} checked={isExcludeCurrent} onChange={val => setAttributes({ isExcludeCurrent: val })} {...premiumProps} Component={ToggleControl} />} */}
+			{currentPostType === postType && <BControlPro className='mt20' label={__('Exclude Current Post', 'b-blocks')} checked={isExcludeCurrent} onChange={val => setAttributes({ isExcludeCurrent: val })} {...premiumProps} Component={ToggleControl} />}
 		</PanelBody>
 
 
-		{/* {!isSlider && !isTicker && !isPostsPerPageAll ? <Pagination {...props} /> : ''} */}
+		{!isSlider && !isTicker && !isPostsPerPageAll ? <Pagination {...props} /> : ''}
 
 		{isSlider && <SliderOptions {...props} />}
 
-		{/* {isTicker && <TickerOptions {...props} />} */}
+		{isTicker && <TickerOptions {...props} />}
 	</>
 }
 

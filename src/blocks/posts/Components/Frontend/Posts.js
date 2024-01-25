@@ -7,7 +7,7 @@ import Pagination from '../Common/Pagination';
 import Slider from '../Common/Layout/Slider';
 import Ticker from './Layout/Ticker';
 
-const Posts = ({ nonce, totalPosts, attributes }) => {
+const Posts = ({ firstPosts, nonce, totalPosts, attributes }) => {
 	const { cId, postType, selectedTaxonomies = {}, selectedCategories, selectedTags = [], isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset = 0, postsInclude = [], postsExclude = [], isExcludeCurrent, fImgSize = 'full', metaDateFormat = 'M j, Y' } = attributes;
 
 	const [pageNumber, setPageNumber] = useState(1);
@@ -29,10 +29,12 @@ const Posts = ({ nonce, totalPosts, attributes }) => {
 		}
 	}, [data]);
 
+	const dpPosts = (Array.isArray(posts) && posts.length) || pageNumber > 1 ? posts : ((Array.isArray(firstPosts) && firstPosts.length) ? firstPosts : []);
+
 	return <>
 		<Style attributes={attributes} clientId={cId} />
 
-		<DisplayPosts posts={posts} attributes={attributes} clientId={cId} Slider={Slider} Ticker={Ticker} />
+		<DisplayPosts posts={dpPosts} attributes={attributes} clientId={cId} Slider={Slider} Ticker={Ticker} />
 
 		<Pagination attributes={attributes} totalCount={totalPosts} onChange={val => setPageNumber(val)} />
 	</>

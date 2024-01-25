@@ -18,43 +18,43 @@ const Style = ({ attributes, clientId }) => {
 		#bBlocksButtonGroup-${clientId}{
 			text-align: ${btnAlign};
 		}
-	   ${btnGroupSl}{
+		${btnGroupSl}{
 			width: ${'0px' !== width && '0%' !== width && '0em' !== width ? width : 'auto'};
 		}
-	   ${btnGroupSl} .bBlocksBtn{
+		${btnGroupSl} .bBlocksBtn{
 			min-width: ${'0px' !== width && '0%' !== width && '0em' !== width ? '50%' : 'auto'};
 		}
-	   ${btnGroupSl} .bBlocksBtn a{
+		${btnGroupSl} .bBlocksBtn a{
 			padding: ${getSpaceCSS(btnPadding)};
 		}
 
-	   ${btnGroupSl} .btnOne{
+		${btnGroupSl} .btnOne{
 			${getBorderCSS(btnOneBorder) || 'border-radius: 50px;'}
 			${getColorsCSS(btnOneColors)}
 			border-radius: ${btnOneBorder?.radius || '50px'} 0 0 ${btnOneBorder?.radius || '50px'};
 		}
-	   ${btnGroupSl} .btnOne:hover{
+		${btnGroupSl} .btnOne:hover{
 			${getColorsCSS(btnOneHovColors)}
 		}
 
-	   ${btnGroupSl} .btnTwo{
+		${btnGroupSl} .btnTwo{
 			${getBorderCSS(btnTwoBorder) || 'border-radius: 50px;'}
 			${getColorsCSS(btnTwoColors)}
 			border-radius: 0 ${btnTwoBorder?.radius || '50px'} ${btnTwoBorder?.radius || '50px'} 0;
 		}
-	   ${btnGroupSl} .btnTwo:hover{
+		${btnGroupSl} .btnTwo:hover{
 			${getColorsCSS(btnTwoHovColors)}
 		}
 
-	   ${btnSeparatorSl}{
+		${btnSeparatorSl}{
 			width: ${'text' === sepType ? `${sepTextFontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
 			height: ${'text' === sepType ? `${sepTextFontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
 			background-color: ${sepBGColor};
 		}
-	   ${btnSeparatorSl} span{
+		${btnSeparatorSl} span{
 			color: ${sepTextColor};
 		}
-	   ${btnSeparatorSl} i{
+		${btnSeparatorSl} i{
 			${getIconCSS(sepIcon)}
 		}
 		`.replace(/\s+/g, ' ')

@@ -6,10 +6,10 @@ import './editor.scss';
 import { ratingIcon } from './utils/icons';
 
 registerBlockType(metadata, {
-    icon: ratingIcon,
+	icon: ratingIcon,
 
-    // Build in Functions
-    edit: Edit,
+	// Build in Functions
+	edit: Edit,
 
-    save: () => null,
+	save: () => null,
 });

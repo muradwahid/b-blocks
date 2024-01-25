@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl } from '@wordpress/components';
 
 import { Label, Background, BColor, BorderControl, ShadowControl, SpaceControl, Typography, HelpPanel, ColorsControl } from '../../../../../../../Components';
-import { AboutPro, BControlPro } from '../../../../../../../Components/Pro';
+import { BControlPro } from '../../../../../../../Components/Pro';
 import { tabController } from '../../../../../../../Components/utils/functions';
 import { pxUnit, perUnit, emUnit, remUnit } from '../../../../../../../Components/utils/options';
 
@@ -14,15 +13,16 @@ import { TextControl } from '@wordpress/components';
 import { Button } from '@wordpress/components';
 import { TextareaControl } from '@wordpress/components';
 import { flexDirections, layouts, sepTypes } from '../../../utils/options';
+import ProModal from '../../../../../ProModal/ProModal';
 
 const Settings = ({ attributes, setAttributes, isPremium }) => {
 	const { destDate, layout, isResponsive, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, isExpired = false, hideOn0 = false, hideOnMobile = false, hideOnTablet = false, prefixSuffixDirection = 'row', prefixText = '', suffixButtonText = '', suffixButtonUrl = '#', addID = '', addClass = '', addCSS = '', width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isDaysSingleStyle = false, daysBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, daysDigitColor = '#fff', daysLabelColor = '#fff', isHoursSingleStyle = false, hoursBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, hoursDigitColor = '#fff', hoursLabelColor = '#fff', isMinutesSingleStyle = false, minutesBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, minutesDigitColor = '#fff', minutesLabelColor = '#fff', isSecondsSingleStyle = false, secondsBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, secondsDigitColor = '#fff', secondsLabelColor = '#fff', isSep, sepType, sepSize, sepColor, prefixTextTypo = { fontSize: { desktop: 15 } }, prefixTextColor = '#222', suffixButtonTypo = { fontSize: { desktop: 16 } }, suffixButtonColors = { color: '#fff', bg: '#222' }, suffixButtonPadding = { vertical: '14px', horizontal: '28px' }, isDismiss = false, dismissColor = '#333' } = attributes;
 
-	const [aboutProOpen, setAboutProOpen] = useState(false);
+	const [isProModal, setIsProModal] = useState(false);
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setAboutProOpen
+		setOpen: setIsProModal
 	};
 
 	return <>
@@ -108,17 +108,17 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 
 						<ToggleControl className='mt10' label={__('Show Seconds', 'b-blocks')} checked={isSeconds} onChange={val => setAttributes({ isSeconds: val })} />
 
-						{/* <BControlPro className='mt10' label={__('Show expired content on expire', 'b-blocks')} checked={isExpired} onChange={val => setAttributes({ isExpired: val })} {...premiumProps} Component={ToggleControl} />
+						<BControlPro className='mt10' label={__('Show expired content on expire', 'b-blocks')} checked={isExpired} onChange={val => setAttributes({ isExpired: val })} {...premiumProps} Component={ToggleControl} />
 
 						<BControlPro className='mt10' label={__('Hide box if value is 0', 'b-blocks')} checked={hideOn0} onChange={val => setAttributes({ hideOn0: val })} {...premiumProps} Component={ToggleControl} />
 
 						<BControlPro className='mt10' label={__('Hide Countdown on Mobile', 'b-blocks')} checked={hideOnMobile} onChange={val => setAttributes({ hideOnMobile: val })} {...premiumProps} Component={ToggleControl} />
 
-						<BControlPro className='mt10' label={__('Hide Countdown on Tablet', 'b-blocks')} checked={hideOnTablet} onChange={val => setAttributes({ hideOnTablet: val })} {...premiumProps} Component={ToggleControl} /> */}
+						<BControlPro className='mt10' label={__('Hide Countdown on Tablet', 'b-blocks')} checked={hideOnTablet} onChange={val => setAttributes({ hideOnTablet: val })} {...premiumProps} Component={ToggleControl} />
 					</PanelBody>
 
 
-					{/* <PanelBody className='bPlPanelBody' title={__('Prefix & Suffix', 'b-blocks')} initialOpen={false}>
+					<PanelBody className='bPlPanelBody' title={__('Prefix & Suffix', 'b-blocks')} initialOpen={false}>
 						<BControlPro label={__('Prefix Suffix Direction:', 'b-blocks')} labelPosition='left' value={prefixSuffixDirection} onChange={val => setAttributes({ prefixSuffixDirection: val })} options={flexDirections} {...premiumProps} Component={SelectControl} />
 
 						<BControlPro className='mt20' label={__('Prefix Text:', 'b-blocks')} value={prefixText} onChange={val => setAttributes({ prefixText: val })} placeholder={__('Prefix/Before Text', 'b-blocks')} {...premiumProps} Component={TextControl} />
@@ -141,7 +141,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						<BControlPro className='mt20' label={__('Class:', 'b-blocks')} value={addClass} onChange={val => setAttributes({ addClass: val })} placeholder={__('Enter additional Class', 'b-blocks')} {...premiumProps} Component={TextControl} />
 
 						<BControlPro className='mt20' label={__('CSS:', 'b-blocks')} value={addCSS} onChange={val => setAttributes({ addCSS: val })} placeholder={__('Enter additional CSS', 'b-blocks')} {...premiumProps} Component={TextareaControl} />
-					</PanelBody> */}
+					</PanelBody>
 				</>}
 
 
@@ -191,7 +191,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 					</PanelBody> : null}
 
 
-					{/* {isDays && <PanelBody className='bPlPanelBody' title={__('Days Style', 'b-blocks')} initialOpen={false}>
+					{isDays && <PanelBody className='bPlPanelBody' title={__('Days Style', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<BControlPro label={__('Enable Single Style', 'b-blocks')} checked={isDaysSingleStyle} onChange={val => setAttributes({ isDaysSingleStyle: val })} {...premiumProps} Component={ToggleControl} />
 
@@ -272,7 +272,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 
 							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={secondsLabelColor} onChange={val => setAttributes({ secondsLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />}
 						</>}
-					</PanelBody>} */}
+					</PanelBody>}
 
 
 					<PanelBody className='bPlPanelBody' title={__('Separator', 'b-blocks')} initialOpen={false}>
@@ -292,7 +292,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 					</PanelBody>
 
 
-					{/* {prefixText && <PanelBody className='bPlPanelBody' title={__('Prefix Text', 'b-blocks')} initialOpen={false}>
+					{prefixText && <PanelBody className='bPlPanelBody' title={__('Prefix Text', 'b-blocks')} initialOpen={false}>
 						<BControlPro label={__('Typography:', 'b-blocks')} value={prefixTextTypo} onChange={val => setAttributes({ prefixTextTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} {...premiumProps} Component={Typography} />
 
 						<BControlPro label={__('Color:', 'b-blocks')} value={prefixTextColor} onChange={val => setAttributes({ prefixTextColor: val })} defaultColor='#222' {...premiumProps} Component={BColor} />
@@ -314,13 +314,13 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						{isDismiss && <>
 							<BControlPro label={__('Color:', 'b-blocks')} value={dismissColor} onChange={val => setAttributes({ dismissColor: val })} defaultColor='#333' {...premiumProps} Component={BColor} />
 						</>}
-					</PanelBody> */}
+					</PanelBody>
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>
 
 
-		<AboutPro aboutProOpen={aboutProOpen} setAboutProOpen={setAboutProOpen} link='https://bplugins.com/products/countdown-time/#pricing'>
+		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Countdown'>
 			<li>&emsp;<strong>{__('Expired Display: ', 'b-blocks')}</strong>{__('Show content that has expired after the countdown timer has elapsed.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Hide at Zero: ', 'b-blocks')}</strong>{__('Conceal the box when the countdown timer reaches 0.', 'b-blocks')}</li>
@@ -346,7 +346,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 			<li>&emsp;<strong>{__('Patterns: ', 'b-blocks')}</strong>{__('Additional patterns for expanding the variety of countdown styles.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Shortcode Integration: ', 'b-blocks')}</strong>{__('Shortcode for flexible use across various locations.', 'b-blocks')}</li>
-		</AboutPro>
+		</ProModal>
 
 
 		<BlockControls>

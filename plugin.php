@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.8.1
+ * Version: 1.8.2
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -14,53 +14,53 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.1' );
+define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.2' );
 define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'B_BLOCKS_DIST', B_BLOCKS_DIR_URL . 'dist/' );
 define( 'B_BLOCKS_ASSETS', B_BLOCKS_DIR_URL . 'assets/' );
 
 if ( ! function_exists( 'b_blocks_fs' ) ) {
-    // Create a helper function for easy SDK access.
-    function b_blocks_fs() {
-        global $b_blocks_fs;
+	// Create a helper function for easy SDK access.
+	function b_blocks_fs() {
+		global $b_blocks_fs;
 
-        if ( ! isset( $b_blocks_fs ) ) {
-            // Include Freemius SDK.
-            require_once dirname(__FILE__) . '/freemius/start.php';
+		if ( ! isset( $b_blocks_fs ) ) {
+			// Include Freemius SDK.
+			require_once dirname(__FILE__) . '/freemius/start.php';
 
-            $b_blocks_fs = fs_dynamic_init( array(
-                'id'                  => '12845',
-                'slug'                => 'b-blocks',
-                'premium_slug'        => 'b-blocks-pro',
-                'type'                => 'plugin',
-                'public_key'          => 'pk_d6426b344df4918bc066a7a0b4719',
-                'is_premium'          => true,
-                'premium_suffix'      => 'Pro',
-                // If your plugin is a serviceware, set this option to false.
-                'has_premium_version' => true,
-                'has_addons'          => false,
-                'has_paid_plans'      => true,
-                'trial'               => array(
-                    'days'               => 7,
-                    'is_require_payment' => true,
-                ),
-                'menu'                => array(
-                    'slug'           => 'b-blocks',
-                    'first-path'     => 'admin.php?page=b-blocks-help',
-                    'contact'        => false,
-                    'support'        => false,
-                ),
-            ) );
-        }
+			$b_blocks_fs = fs_dynamic_init( array(
+				'id'					=> '12845',
+				'slug'					=> 'b-blocks',
+				'premium_slug'			=> 'b-blocks-pro',
+				'type'					=> 'plugin',
+				'public_key'			=> 'pk_d6426b344df4918bc066a7a0b4719',
+				'is_premium'			=> true,
+				'premium_suffix'		=> 'Pro',
+				// If your plugin is a serviceware, set this option to false.
+				'has_premium_version'	=> true,
+				'has_addons'			=> false,
+				'has_paid_plans'		=> true,
+				'trial'					=> array(
+					'days'					=> 7,
+					'is_require_payment'	=> true,
+				),
+				'menu'					=> array(
+					'slug'				=> 'b-blocks',
+					'first-path'		=> 'admin.php?page=b-blocks-help',
+					'contact'			=> false,
+					'support'			=> false,
+				),
+			) );
+		}
 
-        return $b_blocks_fs;
-    }
+		return $b_blocks_fs;
+	}
 
-    // Init Freemius.
-    b_blocks_fs();
-    // Signal that SDK was initiated.
-    do_action( 'b_blocks_fs_loaded' );
+	// Init Freemius.
+	b_blocks_fs();
+	// Signal that SDK was initiated.
+	do_action( 'b_blocks_fs_loaded' );
 }
 
 // Generate Styles

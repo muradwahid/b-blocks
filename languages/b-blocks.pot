@@ -2,16 +2,16 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 1.8.1\n"
+"Project-Id-Version: B Blocks 1.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-01T09:50:02+00:00\n"
+"POT-Creation-Date: 2024-01-25T16:43:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
@@ -41,28 +41,6 @@ msgstr ""
 
 #: inc/image-gallery/block.php:95
 msgid "Preview"
-msgstr ""
-
-#: inc/posts/block.php:116
-msgid "Please, select a sub layout"
-msgstr ""
-
-#: inc/posts/block.php:347
-#: inc/posts/block.php:357
-msgid "Author name and link"
-msgstr ""
-
-#: inc/posts/block.php:369
-msgid "Category link lists"
-msgstr ""
-
-#: inc/posts/block.php:379
-#: dist/editor.js:1
-msgid "Comment"
-msgstr ""
-
-#: inc/posts/block.php:387
-msgid "Read More &raquo;"
 msgstr ""
 
 #: dist/editor.js:1
@@ -190,6 +168,10 @@ msgid "Grid"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Grid 1"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Masonry"
 msgstr ""
 
@@ -227,6 +209,14 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Overlay Box"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Overlay Content Box"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Overlay Half Content"
 msgstr ""
 
 #: dist/editor.js:1
@@ -334,6 +324,46 @@ msgid "Style"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Ticker Options"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Direction:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Speed:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Values: slow, medium, fast or any value in milliseconds."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Interval:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Values: time in milliseconds."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Keep height 0, to auto height."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Post Visible:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "0 to display all"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Ticker Mouse Pause"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Slider Options"
 msgstr ""
 
@@ -390,6 +420,34 @@ msgid "Show Preview Next Button"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Pagination"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Pagination will not work if, 'Show All Posts' is enable"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Previous Label:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Next Label:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Colors:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Active & Hover Colors:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Space Between:"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Layout:"
 msgstr ""
 
@@ -418,6 +476,10 @@ msgid "Slider Min Height:"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Content/Texts Height:"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Posts Query"
 msgstr ""
 
@@ -427,6 +489,14 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Select Categories:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Select Tags:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Select Taxonomies for filter:"
 msgstr ""
 
 #: dist/editor.js:1
@@ -446,11 +516,39 @@ msgid "Post Order:"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Post Offset:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "`Post Offset` will not work if `Post Per Page` is -1"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Include Posts:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter the posts id by coma separated Ex: `23,45,16`"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Exclude Posts:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Exclude Current Post"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Feature Image"
 msgstr ""
 
 #: dist/editor.js:1
 msgid "Show Feature Image"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Size:"
 msgstr ""
 
 #: dist/editor.js:1
@@ -482,7 +580,35 @@ msgid "Show Author"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Author Link"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Author Icon:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter Author Icon URL"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Show Date"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Date Format:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Documentation on date formatting in "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Date Icon:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter Date Icon URL"
 msgstr ""
 
 #: dist/editor.js:1
@@ -498,11 +624,63 @@ msgid "Category In:"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Category Icon:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter Category Icon URL"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Taxonomies"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reading Time"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Show Reading Time"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reading Time will be displayed if the post has content!"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Show Reading Time Seconds"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reading Time Label:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reading Time Icon:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter Reading Time Icon URL"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Comment"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Show Comment"
 msgstr ""
 
 #: dist/editor.js:1
 msgid "Comment Count will be displayed if the comment status is open!"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Comment Icon:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter Comment Icon URL"
 msgstr ""
 
 #: dist/editor.js:1
@@ -518,11 +696,11 @@ msgid "Show Excerpt from Content"
 msgstr ""
 
 #: dist/editor.js:1
-msgid "Excerpt Length:"
+msgid "Show Ellipsis"
 msgstr ""
 
 #: dist/editor.js:1
-msgid "Excerpt max value will be your site default excerpt length"
+msgid "Excerpt Length:"
 msgstr ""
 
 #: dist/editor.js:1
@@ -531,6 +709,14 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Show Read More"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Position:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "For the bottom position, select 'Fill Available Space' option for the 'Content/Texts Height' from General->Layout"
 msgstr ""
 
 #: dist/editor.js:1
@@ -611,6 +797,10 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Hover Colors:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Upgrade to B Blocks Pro for advanced features"
 msgstr ""
 
 #: dist/editor.js:1
@@ -871,10 +1061,6 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Effects"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Pagination"
 msgstr ""
 
 #: dist/editor.js:1
@@ -1710,10 +1896,6 @@ msgid "Count (Set 0 to infinite):"
 msgstr ""
 
 #: dist/editor.js:1
-msgid "Speed:"
-msgstr ""
-
-#: dist/editor.js:1
 msgid "Interval (s):"
 msgstr ""
 
@@ -2030,6 +2212,90 @@ msgid "Show Seconds"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Show expired content on expire"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Hide box if value is 0"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Hide Countdown on Mobile"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Hide Countdown on Tablet"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Prefix & Suffix"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Prefix Suffix Direction:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Prefix Text:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Prefix/Before Text"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter prefix text to show a message before countdown"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Suffix Button Text:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Suffix/After Button Text"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter suffix button text to display a button after countdown"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Suffix Button Url:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Button url"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Additional"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "ID:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter additional ID"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Class:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter additional Class"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "CSS:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enter additional CSS"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Countdown"
 msgstr ""
 
@@ -2062,7 +2328,51 @@ msgid "Label Color:"
 msgstr ""
 
 #: dist/editor.js:1
-msgid "Size:"
+msgid "Days Style"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enable Single Style"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reset style according to parent"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Box Background:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Hours Style"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Minutes Style"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Seconds Style"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Prefix Text"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Typography:"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Suffix Button"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Dismiss Button"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Countdown Dismissible?"
 msgstr ""
 
 #: dist/editor.js:1
@@ -2263,10 +2573,6 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Style:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Position:"
 msgstr ""
 
 #: dist/editor.js:1
@@ -2495,10 +2801,6 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Social Icon Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Space Between:"
 msgstr ""
 
 #: dist/editor.js:1
@@ -2779,10 +3081,6 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Animated Text Style"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Typography:"
 msgstr ""
 
 #: dist/editor.js:1

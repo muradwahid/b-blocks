@@ -10,11 +10,17 @@ import Posts from './Components/Frontend/Posts';
 document.addEventListener('DOMContentLoaded', () => {
 	const postsEls = document.querySelectorAll('.wp-block-b-blocks-posts');
 	postsEls.forEach(postsEl => {
+		let firstPosts;
+		try {
+			firstPosts = JSON.parse(postsEl.dataset.firstposts);
+		} catch (error) {
+			firstPosts = [];
+		}
 		const nonce = JSON.parse(postsEl.dataset.nonce);
 		const attributes = JSON.parse(postsEl.dataset.attributes);
 		const { totalPosts } = JSON.parse(postsEl.dataset.extra);
 
-		createRoot(postsEl).render(<Posts nonce={nonce} totalPosts={totalPosts} attributes={attributes} />);
+		createRoot(postsEl).render(<Posts firstPosts={firstPosts} nonce={nonce} totalPosts={totalPosts} attributes={attributes} />);
 
 		postsEl?.removeAttribute('data-posts');
 		postsEl?.removeAttribute('data-attributes');

@@ -87,8 +87,8 @@ class GetCSS{
 		$height = $height ?? '2px';
 		$style = $style ?? 'solid';
 		$color = $color ?? '#bbb';
-    
-    	return "width: $width;" . (('0' === preg_replace('/[^\d]/', '', $height)) ? '' : "border-top: $height $style $color;");
+
+		return "width: $width;" . (('0' === preg_replace('/[^\d]/', '', $height)) ? '' : "border-top: $height $style $color;");
 	}
 
 	static function getSpaceCSS( $space ) {

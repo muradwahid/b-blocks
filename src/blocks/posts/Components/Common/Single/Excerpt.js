@@ -6,7 +6,8 @@ const Excerpt = ({ post, attributes }) => {
 
 	const finalExcerpt = (!isExcerptFromContent && excerpt) ? excerpt : content;
 	const ellipsis = (isEllipsisOnExcerpt && (strLength(finalExcerpt) > excerptLength)) ? '...' : '';
+	const excerptContent = -1 === excerptLength ? finalExcerpt : `${truncate(finalExcerpt, excerptLength)}${ellipsis}`;
 
-	return (isExcerpt && finalExcerpt) ? <div className='bBlocksExcerpt bBlocksInnerContent' dangerouslySetInnerHTML={{ __html: `${truncate(finalExcerpt, excerptLength)}${ellipsis}` }} /> : null;
+	return (isExcerpt && finalExcerpt) ? <div className='bBlocksExcerpt bBlocksInnerContent' dangerouslySetInnerHTML={{ __html: excerptContent }} /> : null;
 };
 export default Excerpt;

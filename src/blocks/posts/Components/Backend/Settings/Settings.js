@@ -4,18 +4,18 @@ import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/b
 import { TabPanel } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { AboutPro } from '../../../../../../../Components/Pro';
 import { tabController } from '../../../../../../../Components/utils/functions';
 
 import General from './General';
 import Elements from './Elements';
 import Style from './Style';
 import { generalStyleTabs } from '../../../utils/options';
+import ProModal from '../../../../../ProModal/ProModal';
 
 const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }) => {
 	const { contentAlign } = attributes;
 
-	const [aboutProOpen, setAboutProOpen] = useState(false);
+	const [isProModal, setIsProModal] = useState(false);
 
 	const isPosts = posts?.length;
 
@@ -33,7 +33,7 @@ const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setAboutProOpen
+		setOpen: setIsProModal
 	};
 
 	const props = {
@@ -54,7 +54,7 @@ const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }
 		</InspectorControls>
 
 
-		<AboutPro aboutProOpen={aboutProOpen} setAboutProOpen={setAboutProOpen} link='https://bblockswp.com/#pricing'>
+		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Posts'>
 			<li>&emsp;<strong>{__('Layouts: ', 'b-blocks')}</strong>{__('Checkout more layouts and sub layouts.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Display Pages: ', 'b-blocks')}</strong>{__('Effortlessly showcase pages, just like you do with posts.', 'b-blocks')}</li>
@@ -92,7 +92,7 @@ const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }
 			<li>&emsp;<strong>{__('Shortcode: ', 'b-blocks')}</strong>{__('Shortcode option to use anywhere.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Update Post Query: ', 'b-blocks')}</strong>{__('Update Post Query using b_blocks_posts_query filter.', 'b-blocks')}</li>
-		</AboutPro>
+		</ProModal>
 
 
 		<BlockControls>

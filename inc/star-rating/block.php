@@ -19,8 +19,8 @@ class BBlocksStarRating extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
-        wp_enqueue_style('b-blocks-star-rating-style');
-        wp_enqueue_script( 'b-blocks-star-rating-script', B_BLOCKS_DIST . 'star-rating.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
+		wp_enqueue_style('b-blocks-star-rating-style');
+		wp_enqueue_script( 'b-blocks-star-rating-script', B_BLOCKS_DIST . 'star-rating.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
 		wp_set_script_translations( 'b-blocks-star-rating-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';

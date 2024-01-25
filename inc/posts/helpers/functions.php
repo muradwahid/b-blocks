@@ -15,6 +15,16 @@ class Functions{
 		) ) : 0;
 	}
 
+	static function applyAPBFilter( $rawContent ){
+		$textAllowedHTML = [ 'a' => [ 'href' => [], 'title' => [] ], 'br' => [], 'em' => [], 'strong' => [] ];
+		$innerAllowedHTML = array_merge( [ 'span' => [ $textAllowedHTML ] ], $textAllowedHTML );
+		$allowedHTML = array_merge( [ 'p' => [ $innerAllowedHTML ] ], $innerAllowedHTML );
+		$content = wp_kses( $rawContent, $allowedHTML );
+		$plainText = trim( strip_tags( $content ?? '' ) );
+
+		return \BBlocks\Inc\BBlocksUtils::isPro() ? apply_filters( 'b_blocks_posts_excerpt_filter', $plainText, $content ) : $plainText;
+	}
+
 	static function arrangedPosts ( $posts, $postType, $fImgSize = 'full', $metaDateFormat = 'M j, Y' ) {
 		$arranged = [];
 
@@ -50,8 +60,8 @@ class Functions{
 				'name' => $post->post_name,
 				'thumbnail' => $thumbnail,
 				'title' => $post->post_title,
-				'excerpt' => $post->post_excerpt,
-				'content' => $content,
+				'excerpt' => self::applyAPBFilter( $post->post_excerpt ),
+				'content' => self::applyAPBFilter( $post->post_content ),
 				'author' => [
 					'name' => get_the_author_meta( 'display_name', $post->post_author ),
 					'link' => get_author_posts_url( $post->post_author )
