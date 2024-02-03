@@ -14,7 +14,7 @@ class BBlocksSlider extends BBlocks{
 		extract( $attributes );
 
 		wp_enqueue_style( 'b-blocks-slider-style' );
-		wp_enqueue_script( 'b-blocks-slider-script', B_BLOCKS_DIST . 'slider.js', [ 'wp-element', 'swiper' ], B_BLOCKS_VERSION, true );
+		wp_enqueue_script( 'b-blocks-slider-script', B_BLOCKS_DIST . 'slider.js', [ 'wp-util', 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
 		wp_set_script_translations( 'b-blocks-slider-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';
@@ -22,11 +22,7 @@ class BBlocksSlider extends BBlocks{
 		$blockClassName = "wp-block-b-blocks-slider $className $planClass align$align";
 
 		ob_start(); ?>
-		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSlider-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
-			<div class='bBlocksSliderStyle'></div>
-
-			<div class='bBlocksSliderWrapper'></div>
-		</div>
+		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksSlider-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
 		<?php return ob_get_clean();
 	}

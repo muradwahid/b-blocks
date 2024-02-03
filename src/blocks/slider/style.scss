@@ -17,7 +17,7 @@
 				display: block;
 				position: relative;
 
-				.sliderContent {
+				.slideContent {
 					position: absolute;
 					width: 100%;
 					max-width: 100%;
@@ -25,21 +25,21 @@
 					text-align: center;
 					box-sizing: border-box;
 
-					.sliderTitle {
+					.slideTitle {
 						width: auto;
 						color: #fff;
 						margin: 0;
 						position: absolute !important;
 					}
 
-					.sliderDescription {
+					.slideDesc {
 						width: auto;
 						color: #fff;
 						margin: 0;
 						position: absolute !important;
 					}
 
-					.sliderBtn {
+					.slideBtn {
 						width: auto;
 						display: inline-block;
 						text-decoration: none;
@@ -52,7 +52,7 @@
 
 			@media screen and (max-width: 768px) {
 				.swiper-slide {
-					.sliderContent {
+					.slideContent {
 						height: auto;
 						padding: 30px 50px;
 
@@ -104,17 +104,17 @@
 							bottom: 0;
 						}
 
-						.sliderTitle {
+						.slideTitle {
 							position: static !important;
 							margin-bottom: 15px;
 						}
 
-						.sliderDescription {
+						.slideDesc {
 							position: static !important;
 							margin-bottom: 20px;
 						}
 
-						.sliderBtn {
+						.slideBtn {
 							position: static !important;
 						}
 					}

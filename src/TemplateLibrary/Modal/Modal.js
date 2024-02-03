@@ -29,7 +29,7 @@ const Modal = ({ isPremium, show, setShow }) => {
 	// Filter and search
 	const typeFilter = 'pages' === type ? pages : patterns;
 	const categoryFilter = typeFilter.filter(item => 'all' === category ? true : item.categories?.includes(category));
-	const filteredItems = search ? searchData(search, [...pages, ...patterns]).filter(item => !item.pro) : categoryFilter.filter(item => !item.pro);
+	const filteredItems = search ? searchData(search, [...pages, ...patterns]) : categoryFilter;
 
 	// Load More
 	const [itemsDisplayed, setItemsDisplayed] = useState(9);

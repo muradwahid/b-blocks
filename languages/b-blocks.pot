@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 1.8.2\n"
+"Project-Id-Version: B Blocks 1.8.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-25T16:43:04+00:00\n"
+"POT-Creation-Date: 2024-02-03T11:17:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: b-blocks\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: inc/AdminMenu.php:24
 #: inc/AdminMenu.php:25
-#: plugin.php:141
+#: plugin.php:151
 msgid "B Blocks"
 msgstr ""
 
@@ -964,10 +964,6 @@ msgid "No posts found!! Please update the query or add some posts"
 msgstr ""
 
 #: dist/editor.js:1
-msgid "Options"
-msgstr ""
-
-#: dist/editor.js:1
 msgid "Add or Remove Slides"
 msgstr ""
 
@@ -1052,7 +1048,15 @@ msgid "Basic Options"
 msgstr ""
 
 #: dist/editor.js:1
-msgid "Speed & Delay (s):"
+msgid "Switch slide with grab in anywhere in slide"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Touch Move will not work in backend"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Smaller speed value will be slide faster"
 msgstr ""
 
 #: dist/editor.js:1
@@ -1060,11 +1064,99 @@ msgid "Autoplay"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "Autoplay will not work in backend"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Delay (s):"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Smaller delay value will be autoplay faster"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Disable on Interaction"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Pause on Mouse Enter"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "If 'Disable on Interaction' is also enabled, it will stop autoplay instead of pause"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reverse Direction"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Stop on Last Slide"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Free Mode"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enable Free Mode"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Smooth Scrolling with dragging the slide"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enable Touch Move to use Free Mode"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Sticky"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Effects"
 msgstr ""
 
 #: dist/editor.js:1
+msgid "To work fade, cube, creative, flip & cards effects properly, set single column per view."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Some settings may change when effect will be changed."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Keyboard Control"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enable Keyboard Control"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Mousewheel"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Enable Slide on Mousewheel"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Show On Tablet"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Show On Mobile"
+msgstr ""
+
+#: dist/editor.js:1
 msgid "Navigation"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Options"
 msgstr ""
 
 #: dist/editor.js:1
@@ -1097,6 +1189,126 @@ msgstr ""
 
 #: dist/editor.js:1
 msgid "Slider in right"
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Border: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Border style options in every single slide."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Delay time: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Delay time option in autoplay."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Disable on Interaction: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Disable on Interaction option in autoplay."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reverse Direction: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Reverse Direction option in autoplay."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Pause on Mouse Enter: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Pause on Mouse Enter option in autoplay."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Stop on Last Slide: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Stop on Last Slide option in autoplay."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Free Mode: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Free Mode option on drag slide."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Sticky: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Sticky option in free mode."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Effects: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Explore more effects such as Cube, Coverflow, Flip, and Cards."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Keyboard Control: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Slide with Keyboard control."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Slide on Mousewheel: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Slide on Mousewheel option."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Pagination Device: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Show/Hide pagination in different devices(tablet and mobile)."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Navigation Device: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Show/Hide navigation in different devices(tablet and mobile)."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Background: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Background style option for slider wrapper."
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Padding: "
+msgstr ""
+
+#: dist/editor.js:1
+msgid "Padding style option for slider wrapper."
 msgstr ""
 
 #: dist/editor.js:1
@@ -3200,17 +3412,17 @@ msgid "B Text Overline"
 msgstr ""
 
 #: dist/template-library.js:1
-#: dist/template-library.js:112
+#: dist/template-library.js:113
 msgid "Pages"
 msgstr ""
 
 #: dist/template-library.js:1
-#: dist/template-library.js:113
+#: dist/template-library.js:114
 msgid "Patterns"
 msgstr ""
 
 #: dist/template-library.js:1
-#: dist/template-library.js:374
+#: dist/template-library.js:375
 msgid "Template Library"
 msgstr ""
 

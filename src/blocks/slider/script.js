@@ -1,27 +1,23 @@
-import { renderToString } from '@wordpress/element';
 import { createRoot } from 'react-dom/client';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './style.scss';
-import Slider from './Slider';
-import Style from './Style';
-import sliderOptions from './utils/sliderOptions';
+import Slider from './Components/Common/Slider';
+import Style from './Components/Common/Style';
 
-// Content Slider
 document.addEventListener('DOMContentLoaded', () => {
-	const allSlider = document.querySelectorAll('.wp-block-b-blocks-slider');
-	allSlider.forEach(slider => {
-		const attributes = JSON.parse(slider.dataset.attributes);
+	const sliderEls = document.querySelectorAll('.wp-block-b-blocks-slider');
+	sliderEls.forEach(sliderEl => {
+		const attributes = JSON.parse(sliderEl.dataset.attributes);
+		const { cId } = attributes;
 
-		// Slider in wrapper
-		const bBlocksSliderWrapper = document.querySelector(`#${slider.id} .bBlocksSliderWrapper`);
-		bBlocksSliderWrapper.innerHTML = renderToString(<Slider attributes={attributes} />);
+		createRoot(sliderEl).render(<>
+			<Style attributes={attributes} clientId={cId} />
+			<Slider attributes={attributes} />
+		</>);
 
-		// Render Style
-		createRoot(document.querySelector(`#${slider.id} .bBlocksSliderStyle`)).render(<Style attributes={attributes} clientId={attributes.cId} />);
-
-		// Initialize Slider
-		new Swiper(`#${slider.id} .bBlocksSlider`, sliderOptions(attributes, 0));
-
-		slider?.removeAttribute('data-attributes');
+		sliderEl?.removeAttribute('data-attributes');
 	});
 });

@@ -7,7 +7,7 @@ const Templates = ({ filteredItems, pageItems, isPremium, setShow, children }) =
 	return filteredItems.length ? <div className='modalBodyTemplates'>
 		<div className='grid columns-3 columns-tablet-1 columns-mobile-1'>
 			{pageItems.map((item, index) => {
-				const { title, pro, url = '', content } = item;
+				const { title, pro, content } = item;
 				const hasAccess = isPremium || !pro;
 
 				const linkProps = hasAccess ? {
@@ -17,7 +17,7 @@ const Templates = ({ filteredItems, pageItems, isPremium, setShow, children }) =
 						setShow(false);
 					}
 				} : {
-					href: url,
+					href: 'https://bblockswp.com/#pricing',
 					target: '_blank',
 					rel: 'noreferrer'
 				};

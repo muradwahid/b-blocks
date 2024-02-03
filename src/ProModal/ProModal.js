@@ -3,7 +3,7 @@ import { Modal } from '@wordpress/components';
 
 import './ProModal.scss';
 
-const proBlocks = ['Posts', 'Countdown'];
+const proBlocks = ['Posts', 'Countdown', 'Slider'];
 
 const ProModal = ({ isProModal, setIsProModal, block, children }) => {
 	const restBlocks = proBlocks.filter(b => b !== block).map((b, i) => (proBlocks.length > 2 && i === proBlocks.length - 2) ? `and ${b}` : b).join(', ')
