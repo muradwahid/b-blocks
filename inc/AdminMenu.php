@@ -5,7 +5,6 @@ class AdminMenu{
 	function __construct(){
 		add_action( 'admin_enqueue_scripts', [$this, 'adminEnqueueScripts'] );
 		add_action( 'admin_menu', [$this, 'adminMenu'] );
-		add_filter( 'custom_menu_order', [$this, 'orderSubMenu'] );
 	}
 
 	function adminEnqueueScripts( $hook ) {
@@ -34,7 +33,7 @@ class AdminMenu{
 			__( 'Help', 'b-blocks' ),
 			__( 'Help', 'b-blocks' ),
 			'manage_options',
-			'b-blocks-help',
+			'b-blocks',
 			[$this, 'helpPage']
 		);
 	}
@@ -42,20 +41,5 @@ class AdminMenu{
 	function helpPage(){ ?>
 		<div class='bplAdminHelpPage'></div>
 	<?php }
-
-	function orderSubMenu( $menu_ord ){
-		global $submenu;
-
-		$arr = array();
-		if( isset( $submenu['b-blocks'][1] ) ){
-			$arr[] = $submenu['b-blocks'][1]; // Help	
-		}
-		if( isset( $submenu['b-blocks'][2] ) ){
-			$arr[] = $submenu['b-blocks'][2]; // Upgrade || Account
-		}
-		$submenu['b-blocks'] = $arr;
-
-		return $menu_ord;
-	}
 }
 new AdminMenu();
