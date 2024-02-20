@@ -1,7 +1,7 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 import metadata from '../../../inc/chart/block.json';
-import Edit from './edit';
+import Edit from './Components/Backend/Edit';
 import './editor.scss';
 import { chartIcon } from './utils/icons';
 

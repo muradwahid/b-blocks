@@ -27,16 +27,32 @@
 					"backBG": {},
 					"border": {},
 					"shadow": {},
+					"isFrontUpIcon": false,
 					"frontIcon": {
 						"class": "fa fa-sync-alt",
 						"fontSize": 70,
 						"color": "#fff"
 					},
+					"upFrontIcon": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": ""
+					},
+					"frontIconWidth": "70px",
+					"isBackUpIcon": false,
 					"backIcon": {
 						"class": "fab fa-wordpress",
 						"fontSize": 70,
 						"color": "#fff"
 					},
+					"upBackIcon": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": ""
+					},
+					"backIconWidth": "70px",
 					"frontTitle": "Front Title 1",
 					"frontTitleColor": "#fff",
 					"backTitle": "Back Title 1",
@@ -62,16 +78,32 @@
 					"backBG": {},
 					"border": {},
 					"shadow": {},
+					"isFrontUpIcon": false,
 					"frontIcon": {
 						"class": "fa fa-sync-alt",
 						"fontSize": 70,
 						"color": "#fff"
 					},
+					"upFrontIcon": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": ""
+					},
+					"frontIconWidth": "70px",
+					"isBackUpIcon": false,
 					"backIcon": {
 						"class": "fab fa-wordpress",
 						"fontSize": 70,
 						"color": "#fff"
 					},
+					"upBackIcon": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": ""
+					},
+					"backIconWidth": "70px",
 					"frontTitle": "Front Title 2",
 					"frontTitleColor": "#fff",
 					"backTitle": "Back Title 2",
@@ -97,16 +129,32 @@
 					"backBG": {},
 					"border": {},
 					"shadow": {},
+					"isFrontUpIcon": false,
 					"frontIcon": {
 						"class": "fa fa-sync-alt",
 						"fontSize": 70,
 						"color": "#fff"
 					},
+					"upFrontIcon": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": ""
+					},
+					"frontIconWidth": "70px",
+					"isBackUpIcon": false,
 					"backIcon": {
 						"class": "fab fa-wordpress",
 						"fontSize": 70,
 						"color": "#fff"
 					},
+					"upBackIcon": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": ""
+					},
+					"backIconWidth": "70px",
 					"frontTitle": "Front Title 3",
 					"frontTitleColor": "#fff",
 					"backTitle": "Back Title 3",

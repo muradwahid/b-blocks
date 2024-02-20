@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import { chartConfig } from '../../utils/config';
+
 const RenderChart = ({ attributes, clientId, isBackend = false }) => {
 	const { data, type, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload } = attributes;
 
@@ -16,74 +18,7 @@ const RenderChart = ({ attributes, clientId, isBackend = false }) => {
 
 		const chartCtx = document.querySelector(`#bBlocksChart-${clientId} .bBlocksChart canvas`);
 
-		const bChart = chartCtx && new Chart(chartCtx, {
-			type,
-			data,
-			options: {
-				maintainAspectRatio: false,
-				plugins: {
-					legend: {
-						position: 'top',
-
-						labels: {
-							usePointStyle: true,
-							color: textColor
-						}
-					},
-					title: {
-						display: isTitle,
-						text: title,
-						color: titleColor,
-						font: {
-							size: titleFontSize,
-							family: 'Roboto',
-						},
-						padding: {
-							bottom: 10
-						}
-					},
-					subtitle: {
-						display: isSubtitle,
-						text: subtitle,
-						color: subtitleColor,
-						font: {
-							size: subtitleFontSize,
-							family: 'Roboto',
-						},
-						padding: {
-							bottom: 15
-						}
-					},
-					tooltip: {
-						position: 'nearest',
-						usePointStyle: true
-					}
-				},
-				scales: {
-					x: {
-						display: isXScale,
-						ticks: {
-							color: textColor
-						},
-						grid: {
-							display: isXGridLine,
-							color: gridLineColor
-						}
-					},
-					y: {
-						display: isYScale,
-						beginAtZero: true,
-						ticks: {
-							color: textColor
-						},
-						grid: {
-							display: isYGridLine,
-							color: gridLineColor
-						}
-					}
-				}
-			}
-		});
+		const bChart = chartCtx && new Chart(chartCtx, chartConfig(attributes));
 
 		isDownload && downloadChart?.current.addEventListener('click', () => {
 			const a = document.createElement('a');

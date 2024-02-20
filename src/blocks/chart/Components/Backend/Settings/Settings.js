@@ -1,10 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, SelectControl, PanelRow, TextControl, __experimentalNumberControl as NumberControl, Button, Dashicon, Tooltip, RangeControl } from '@wordpress/components';
+import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { PanelBody, PanelRow, TextControl, ToggleControl, RangeControl, SelectControl, __experimentalUnitControl as UnitControl, __experimentalNumberControl as NumberControl, Tooltip, Button, Dashicon } from '@wordpress/components';
 
-import { Label, Background, BColor } from '../../../../Components';
-import { gearIcon } from '../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
+import { Label, Background, BColor, HelpPanel } from '../../../../../../../Components';
+import { gearIcon } from '../../../../../../../Components/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../../Components/utils/options';
 
 const types = [
 	{ label: __('Line', 'b-blocks'), value: 'line' },
@@ -28,7 +28,7 @@ const pointStyles = [
 ];
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload } = attributes;
+	const { data, type, background, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, width, height, alignment, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload } = attributes;
 
 	const getRandomColor = () => {
 		const letters = '0123456789abcdef';
@@ -39,19 +39,16 @@ const Settings = ({ attributes, setAttributes }) => {
 		return color;
 	}
 
-	const updateData = (type, index, val, otherType = false, otherIndex = false) => {
-		const newData = { ...data };
-
-		if (false !== otherIndex && otherType) {
-			newData[type][index][otherType][otherIndex] = val;
-			setAttributes({ data: newData });
-		} else if (otherType) {
-			newData[type][index][otherType] = val;
-			setAttributes({ data: newData });
+	const updateData = (property, index, val, childProp = false, childI = false) => {
+		const newData = { ...data }
+		if (false !== childI && childProp) {
+			newData[property][index][childProp][childI] = val;
+		} else if (childProp) {
+			newData[property][index][childProp] = val;
 		} else {
-			newData[type][index] = val;
-			setAttributes({ data: newData });
+			newData[property][index] = val;
 		}
+		setAttributes({ data: newData });
 	}
 
 	const addDataset = () => {
@@ -62,8 +59,11 @@ const Settings = ({ attributes, setAttributes }) => {
 				data: [...data.datasets[i].data, Math.ceil(Math.random() * 20)],
 				backgroundColor: [...data.datasets[i].backgroundColor, '#4527a433'],
 				borderColor: [...data.datasets[i].borderColor, '#4527a4'],
-				borderWidth: data.datasets[i].borderWidth,
 				tension: data.datasets[i].tension,
+				borderWidth: data.datasets[i].borderWidth,
+				hoverBorderWidth: data.datasets[i].hoverBorderWidth,
+				pointRadius: data.datasets[i].pointRadius,
+				pointHoverRadius: data.datasets[i].pointHoverRadius,
 				pointStyle: data.datasets[i].pointStyle
 			})
 		}
@@ -83,8 +83,11 @@ const Settings = ({ attributes, setAttributes }) => {
 				data: [...data.datasets[i].data.slice(0, index), ...data.datasets[i].data.slice(index + 1)],
 				backgroundColor: [...data.datasets[i].backgroundColor.slice(0, index), ...data.datasets[i].backgroundColor.slice(index + 1)],
 				borderColor: [...data.datasets[i].borderColor.slice(0, index), ...data.datasets[i].borderColor.slice(index + 1)],
-				borderWidth: data.datasets[i].borderWidth,
 				tension: data.datasets[i].tension,
+				borderWidth: data.datasets[i].borderWidth,
+				hoverBorderWidth: data.datasets[i].hoverBorderWidth,
+				pointRadius: data.datasets[i].pointRadius,
+				pointHoverRadius: data.datasets[i].pointHoverRadius,
 				pointStyle: data.datasets[i].pointStyle
 			})
 		}
@@ -117,13 +120,17 @@ const Settings = ({ attributes, setAttributes }) => {
 					data: newData,
 					backgroundColor: newBackgroundColor,
 					borderColor: newBorderColor,
-					borderWidth: 2,
 					tension: 0.4,
+					borderWidth: 2,
+					hoverBorderWidth: 2,
+					pointRadius: 3,
+					pointHoverRadius: 4,
 					pointStyle: 'rectRounded'
 				}]
 			}
 		});
 	}
+
 	const removeDatasetValue = (index) => {
 		setAttributes({
 			data: {
@@ -132,6 +139,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			}
 		});
 	}
+
 	const duplicateDatasetValue = (index) => {
 		setAttributes({
 			data: {
@@ -143,18 +151,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
-				<div className='helpItem'>
-					<a href='https://bblockswp.com/docs/chart-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
-				</div>
-
-				<div className='helpItem rateUs'>
-					<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-						<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
-						<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
-					</a>
-				</div>
-			</PanelBody>
+			<HelpPanel slug='b-blocks' docsLink='https://bblockswp.com/docs/chart-block' />
 
 
 			<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Datasets', 'b-blocks')}>
@@ -170,7 +167,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					</Tooltip>
 				</PanelRow>)}
 
-				<div className='addItem'>
+				<div className='addItem mt10 mb10'>
 					<Button label={__('Add New Dataset', 'b-blocks')} onClick={addDataset}><Dashicon icon='plus' />{__('Add New Dataset', 'b-blocks')}</Button>
 				</div>
 
@@ -183,7 +180,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					{data.labels.map((label, labelIndex) => <PanelRow key={labelIndex} className='bBlocksChartDatasetEdit'>
 						<Label className=''>{__(`${label}:`, 'b-blocks')}</Label>
 
-						<NumberControl className='chartDataValue' value={dataset.data[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'data', labelIndex)} />
+						<NumberControl className='chartDataValue' value={dataset.data[labelIndex]} onChange={val => updateData('datasets', datasetIndex, parseFloat(val), 'data', labelIndex)} />
 
 						<Tooltip text={__('Dataset Background Color', 'b-blocks')} placement='top' position='top'>
 							<BColor className='chartBGColor' label='' value={dataset.backgroundColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'backgroundColor', labelIndex)} />
@@ -195,13 +192,19 @@ const Settings = ({ attributes, setAttributes }) => {
 					</PanelRow>)}
 
 					<NumberControl className='mt20' label={__('Border Width:')} labelPosition='left' value={dataset.borderWidth} onChange={val => {
-						updateData('datasets', datasetIndex, val, 'borderWidth');
-						updateData('datasets', datasetIndex, val, 'hoverBorderWidth');
+						// const newData = produce(data, draft => {
+						// 	draft['datasets'][datasetIndex]['borderWidth'] = parseFloat(val);
+						// 	draft['datasets'][datasetIndex]['hoverBorderWidth'] = parseFloat(val);
+						// });
+						const newData = { ...data }
+						newData['datasets'][datasetIndex]['borderWidth'] = parseFloat(val);
+						newData['datasets'][datasetIndex]['hoverBorderWidth'] = parseFloat(val);
+						setAttributes({ data: newData });
 					}} />
 
-					<NumberControl className='mt15' label={__('Point Size:')} labelPosition='left' value={dataset.pointRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointRadius')} />
+					<NumberControl className='mt15' label={__('Point Size:')} labelPosition='left' value={dataset.pointRadius} onChange={val => updateData('datasets', datasetIndex, parseFloat(val), 'pointRadius')} />
 
-					<NumberControl className='mt15' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, val, 'pointHoverRadius')} />
+					<NumberControl className='mt15' label={__('Point Hover Size:')} labelPosition='left' value={dataset.pointHoverRadius} onChange={val => updateData('datasets', datasetIndex, parseFloat(val), 'pointHoverRadius')} />
 
 					<PanelRow className='mt10'>
 						<Label className=''>{__('Point Style:', 'b-blocks')}</Label>
@@ -236,6 +239,8 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
+				<UnitControl className='mt20' label={__('Height:', 'b-blocks')} labelPosition='left' value={height} onChange={val => setAttributes({ height: val })} units={[pxUnit(), perUnit(), emUnit()]} />
+
 				<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
 				<BColor label={__('Text Color:', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#666' />
@@ -253,7 +258,6 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 			<PanelBody className='bPlPanelBody' title={__('Title & Subtitle Settings', 'b-blocks')} initialOpen={false}>
-				{/* Title Settings */}
 				<ToggleControl label={__('Show Title', 'b-blocks')} checked={isTitle} onChange={val => setAttributes({ isTitle: val })} />
 				{isTitle && <>
 					<PanelRow>
@@ -267,10 +271,9 @@ const Settings = ({ attributes, setAttributes }) => {
 					<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 				</>}
 
-				{/* Subtitle Settings */}
 				<ToggleControl className='mt20' label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
 				{isSubtitle && <>
-					<PanelRow className='mt20'>
+					<PanelRow>
 						<Label className=''>{__('Subtitle:', 'b-blocks')}</Label>
 						<TextControl value={subtitle} onChange={val => setAttributes({ subtitle: val })} />
 					</PanelRow>
@@ -283,8 +286,8 @@ const Settings = ({ attributes, setAttributes }) => {
 			</PanelBody>
 
 
-			<PanelBody className='bPlPanelBody' title={__('Download Settings', 'chart-block')} initialOpen={false}>
-				<ToggleControl label={__('Download Button', 'chart-block')} checked={isDownload} onChange={val => setAttributes({ isDownload: val })} />
+			<PanelBody className='bPlPanelBody' title={__('Download Settings', 'b-blocks')} initialOpen={false}>
+				<ToggleControl label={__('Download Button', 'b-blocks')} checked={isDownload} onChange={val => setAttributes({ isDownload: val })} />
 			</PanelBody>
 		</InspectorControls>
 

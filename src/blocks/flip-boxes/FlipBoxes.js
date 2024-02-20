@@ -3,12 +3,14 @@ const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
 
 	return <div className={`bBlocksFlipBoxes columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 		{boxes.map((item, index) => {
-			const { frontIcon, backIcon, frontTitle, backTitle, desc, btn, btnLink } = item;
+			const { isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, isBackUpIcon = false, backIcon = {}, upBackIcon = {}, frontTitle, backTitle, desc, btn, btnLink } = item;
 
 			return <div key={index} onClick={() => isBackend && custom.setActiveIndex(index)} className={`bBlocksFlipBox ${isBackend && index === custom.activeIndex ? 'bBlocksNowEditing' : ''}`} id={`bBlocksFlipBox-${index}`}>
 				<div className='box front'>
 					<div className='frontContent'>
-						{isIcon && frontIcon?.class && <i className={`flipIcon frontIcon ${frontIcon?.class}`}></i>}
+						{isIcon && <>
+							{isFrontUpIcon ? <img className={upFrontIcon?.id ? `flipIcon frontIcon` : null} src={upFrontIcon?.url} alt={upFrontIcon?.alt} /> : frontIcon?.class && <i className={`flipIcon frontIcon ${frontIcon?.class}`} />}
+						</>}
 
 						{frontTitle && <h3 className='flipTitle flipFrontTitle'>{frontTitle}</h3>}
 
@@ -18,7 +20,9 @@ const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
 
 				<div className='box back'>
 					<div className='backContent'>
-						{isIcon && backIcon?.class && <i className={`flipIcon backIcon ${backIcon?.class}`}></i>}
+						{isIcon && <>
+							{isBackUpIcon ? <img className={upBackIcon?.id ? `flipIcon backIcon` : null} src={upBackIcon?.url} alt={upBackIcon?.alt} /> : backIcon?.class && <i className={`flipIcon backIcon ${backIcon?.class}`} />}
+						</>}
 
 						{backTitle && <h3 className='flipTitle flipBackTitle'>{backTitle}</h3>}
 

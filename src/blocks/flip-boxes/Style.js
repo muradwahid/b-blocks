@@ -24,10 +24,10 @@ const Style = ({ attributes, clientId }) => {
 				text-align: ${textAlign};
 				padding: ${getSpaceCSS(boxPadding)};
 			}
-			${gFlipBoxSl} .flipIcon{
+			${gFlipBoxSl} i.flipIcon{
 				margin: ${getSpaceCSS(iconMargin)};
 			}
-			${gFlipBoxSl} .flipTitle{
+			${gFlipBoxSl} i.flipTitle{
 				margin: ${getSpaceCSS(titleMargin)};
 			}
 			${gFlipBoxSl} .flipBtn{
@@ -37,7 +37,7 @@ const Style = ({ attributes, clientId }) => {
 		}} />
 
 		{boxes.map((item, index) => {
-			const { frontBG, backBG, border, shadow, frontIcon, backIcon, frontTitleColor, backTitleColor, descColor, btnBorder, btnColors, btnHovColors } = item;
+			const { frontBG, backBG, border, shadow, frontIcon = {}, frontIconWidth = '70px', backIcon = {}, backIconWidth = '70px', frontTitleColor, backTitleColor, descColor, btnBorder, btnColors, btnHovColors } = item;
 
 			const flipBoxSl = `${mainSl} #bBlocksFlipBox-${index}`;
 
@@ -53,10 +53,16 @@ const Style = ({ attributes, clientId }) => {
 				${flipBoxSl} .box.back{
 					${getBackgroundCSS(backBG)}
 				}
-				${flipBoxSl} .flipIcon.frontIcon{
+				${flipBoxSl} img.flipIcon.frontIcon{
+					width: ${frontIconWidth};
+				}
+				${flipBoxSl} i.flipIcon.frontIcon{
 					${getIconCSS(frontIcon)}
 				}
-				${flipBoxSl} .flipIcon.backIcon{
+				${flipBoxSl} img.flipIcon.backIcon{
+					width: ${backIconWidth};
+				}
+				${flipBoxSl} i.flipIcon.backIcon{
 					${getIconCSS(backIcon)}
 				}
 				${flipBoxSl} .flipTitle.flipFrontTitle{

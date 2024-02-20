@@ -5,7 +5,7 @@ import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/b
 import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
+import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography, InlineDetailMediaUpload } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
@@ -85,7 +85,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
 	}
 
-	const { frontBG = {}, backBG = {}, border = {}, shadow = {}, frontIcon = {}, backIcon = {}, frontTitle = '', frontTitleColor = '', backTitle = '', backTitleColor = '', desc = '', descColor = '', btn = '', btnLink = '', btnBorder = {}, btnColors = {}, btnHovColors = {} } = boxes[activeIndex] || {};
+	const { frontBG = {}, backBG = {}, border = {}, shadow = {}, isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, frontIconWidth = '70px', isBackUpIcon = false, backIcon = {}, upBackIcon = {}, backIconWidth = '70px', frontTitle = '', frontTitleColor = '', backTitle = '', backTitleColor = '', desc = '', descColor = '', btn = '', btnLink = '', btnBorder = {}, btnColors = {}, btnHovColors = {} } = boxes[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
@@ -122,7 +122,15 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									</PanelBody>
 
 									{isIcon && <PanelBody className='bPlPanelBody' title={__('Front Icon', 'b-blocks')} initialOpen={false}>
-										<IconControl value={frontIcon} onChange={val => updateFlipBox('frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />
+										<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isFrontUpIcon} onChange={val => updateFlipBox('isFrontUpIcon', val)} />
+
+										{isFrontUpIcon ? <>
+											<Label>{__('Icon:', 'b-blocks')}</Label>
+											<InlineDetailMediaUpload value={upFrontIcon} onChange={val => updateFlipBox('upFrontIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
+
+											<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={frontIconWidth} onChange={val => updateFlipBox('frontIconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
+
+										</> : <IconControl value={frontIcon} onChange={val => updateFlipBox('frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />}
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Front Title', 'b-blocks')} initialOpen={false}>
@@ -146,7 +154,15 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 									</PanelBody>
 
 									{isIcon && <PanelBody className='bPlPanelBody' title={__('Back Icon', 'b-blocks')} initialOpen={false}>
-										<IconControl value={backIcon} onChange={val => updateFlipBox('backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />
+										<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isBackUpIcon} onChange={val => updateFlipBox('isBackUpIcon', val)} />
+
+										{isBackUpIcon ? <>
+											<Label>{__('Icon:', 'b-blocks')}</Label>
+											<InlineDetailMediaUpload value={upBackIcon} onChange={val => updateFlipBox('upBackIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
+
+											<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={backIconWidth} onChange={val => updateFlipBox('backIconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
+
+										</> : <IconControl value={backIcon} onChange={val => updateFlipBox('backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />}
 									</PanelBody>}
 
 									<PanelBody className='bPlPanelBody' title={__('Back Title', 'b-blocks')} initialOpen={false}>

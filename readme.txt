@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.4.3
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -39,11 +39,17 @@ B Blocks is a Gutenberg addon that powers up your Block editor. It can be used a
 
 
 = Block Lists =
+- **Row**: Implement row and column layout.
+
 - **Posts**: Display posts in grid and masonry layouts. Define post number, categories, control margin, determine post excerpts, and do many more.
 
 - **Slider**: Design an image and content slider with change style slider indicators.
 
 - **Section Heading**: Section Heading with a heading, separator, and description, show hide controls for separator and description.
+
+- **Video**: A Simple, accessible, Easy to Use & fully Customizable video player.
+
+- **Services**: Services section for web page.
 
 - **3D Viewer**: Display interactive 3D models on the web.
 
@@ -55,7 +61,7 @@ B Blocks is a Gutenberg addon that powers up your Block editor. It can be used a
 
 - **Team Members**: Present your employees/team members to your clients in a beautiful way.
 
-- **Card**: Design a card that includes an image, heading, description heading, description, and footer with custom typography.
+- **Cards**: Design a card that includes an image, heading, description heading, description, and footer with custom typography.
 
 - **Pricing Table**: Create and display a professional-looking pricing table in WordPress’s block editor. This is a block plugin and it will only work with the Gutenberg editor.
 
@@ -86,6 +92,10 @@ B Blocks is a Gutenberg addon that powers up your Block editor. It can be used a
 - **Animated Text**: Apply animation on any text.
 
 - **Alert**: Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
+
+- **Shape Divider**: Create unique and visually appealing dividers.
+
+- **Star Rating**: Gutenberg editing with easy-to-use, responsive star-rating more.
 
 
 = Feedback =
@@ -185,6 +195,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 1.8.5 - 20 Feb 2024 =
+* Update Chart Block
+* Add Upload Icon option in Flip Boxes block.
 
 = 1.8.4 - 17 Feb 2024 =
 * Fix Admin Menu
@@ -321,6 +335,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.8.5 - 20 Feb 2024 =
+* Update Chart Block
+* Add Upload Icon option in Flip Boxes block.
 
 = 1.8.4 - 17 Feb 2024 =
 * Fix Admin Menu

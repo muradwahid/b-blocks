@@ -1,20 +1,24 @@
-import { getBackgroundCSS } from '../../../../Components/utils/getCSS';
+import { getBackgroundCSS } from '../../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { background, width, height, alignment } = attributes;
 
+	const mainSl = `#bBlocksChart-${clientId}`;
+	const chartSl = `${mainSl} .bBlocksChart`;
+
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		#bBlocksChart-${clientId}{
+		${mainSl}{
 			text-align: ${alignment};
 		}
-		#bBlocksChart-${clientId} .bBlocksChart{
+		${chartSl}{
 			height: ${height};
 		}
-		#bBlocksChart-${clientId} .bBlocksChart, #bBlocksChart-${clientId} .downloadArea{
+		${chartSl},
+		${mainSl} .downloadArea{
 			width: ${width};
 		}
-		#bBlocksChart-${clientId} .bBlocksChart canvas{
+		${chartSl} canvas{
 			${getBackgroundCSS(background)};
 		}
 		`.replace(/\s+/g, ' ')

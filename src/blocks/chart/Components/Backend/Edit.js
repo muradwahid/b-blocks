@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import Settings from './Settings';
-import Style from './Style';
-import RenderChart from './RenderChart';
+import Settings from './Settings/Settings';
+import Style from '../Common/Style';
+import RenderChart from '../Common/RenderChart';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;

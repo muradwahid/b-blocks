@@ -16,3 +16,23 @@ $secondaryColor: #8344c5;
 		}
 	}
 }
+
+.bPlPanelBody {
+	.bBlocksChartDatasetEdit {
+		label {
+			flex: 1;
+		}
+
+		.chartDataValue {
+			width: 60px;
+		}
+
+		.components-panel__row {
+			margin-top: 0;
+		}
+
+		.chartBGColor {
+			margin: 0 5px;
+		}
+	}
+}
