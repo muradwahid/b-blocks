@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.8.5
+ * Version: 1.8.6
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -24,7 +24,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.5' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.8.6' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_DIST', B_BLOCKS_DIR_URL . 'dist/' );
@@ -162,11 +162,13 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 			wp_register_script( 'textillate', B_BLOCKS_ASSETS . 'js/jquery.textillate.min.js', [ 'jquery' ], '0.6.1', true ); // Animated Text
 			wp_register_script( 'goodShare', B_BLOCKS_ASSETS . 'js/goodshare.min.js', [], B_BLOCKS_VERSION, true ); // Social Share
 			wp_register_script( 'modelViewer', B_BLOCKS_ASSETS . 'js/model-viewer.min.js', [], B_BLOCKS_VERSION, true ); // 3D Viewer
+			wp_register_script( 'aos', B_BLOCKS_ASSETS . 'js/aos.js', [], '3.0.0', true ); // Button
 
 			wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS . 'css/font-awesome.min.css', [], '6.4.2' ); // Icon
 			wp_register_style( 'swiper', B_BLOCKS_ASSETS . 'css/swiper.min.css', [], '8.0.7' ); // Slider
 			wp_register_style( 'animate', B_BLOCKS_ASSETS . 'css/animate.min.css', [], '4.1.1' ); // Animated Text
 			wp_register_style( 'plyr', B_BLOCKS_ASSETS . 'css/plyr.css', [], '3.7.2' ); // Video
+			wp_register_style( 'aos', B_BLOCKS_ASSETS . 'css/aos.css', [], '3.0.0' ); // Button
 
 			wp_enqueue_style( 'bBlocksStyle', B_BLOCKS_DIST . 'style.css', [], B_BLOCKS_VERSION ); // Style
 
@@ -174,6 +176,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 			wp_register_style( 'b-blocks-td-viewer-style', B_BLOCKS_DIST . '3d-viewer.css', [], B_BLOCKS_VERSION );
 			wp_register_style( 'b-blocks-alert-style', B_BLOCKS_DIST . 'alert.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
 			wp_register_style( 'b-blocks-animated-text-style', B_BLOCKS_DIST . 'animated-text.css', [ 'animate' ], B_BLOCKS_VERSION );
+			wp_register_style( 'b-blocks-button-style', B_BLOCKS_DIST . 'button.css', [ 'fontAwesome', 'aos' ], B_BLOCKS_VERSION );
 			wp_register_style( 'b-blocks-button-group-style', B_BLOCKS_DIST . 'button-group.css', [ 'fontAwesome' ], B_BLOCKS_VERSION );
 			wp_register_style( 'b-blocks-cards-style', B_BLOCKS_DIST . 'cards.css', [], B_BLOCKS_VERSION );
 			wp_register_style( 'b-blocks-chart-style', B_BLOCKS_DIST . 'chart.css', [], B_BLOCKS_VERSION );
@@ -217,6 +220,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				'b-blocks-td-viewer-style',
 				'b-blocks-alert-style',
 				'b-blocks-animated-text-style',
+				'b-blocks-button-style',
 				'b-blocks-button-group-style',
 				'b-blocks-cards-style',
 				'b-blocks-chart-style',
@@ -265,12 +269,14 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	require_once B_BLOCKS_DIR_PATH . 'inc/Utils.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/AdminMenu.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/getCSS.php';
+	require_once B_BLOCKS_DIR_PATH . 'inc/Ajax.php';
 
 	require_once B_BLOCKS_DIR_PATH . 'inc/row/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/row/column/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/posts/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/slider/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/section-heading/block.php';
+	require_once B_BLOCKS_DIR_PATH . 'inc/button/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/video/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/services/block.php';
 	require_once B_BLOCKS_DIR_PATH . 'inc/services/child/child.php';

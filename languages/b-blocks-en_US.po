@@ -2,16 +2,16 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 1.8.5\n"
+"Project-Id-Version: B Blocks 1.8.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-20T13:42:39+00:00\n"
+"POT-Creation-Date: 2024-03-12T08:15:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
@@ -35,7 +35,7 @@ msgstr ""
 
 #: inc/AdminMenu.php:33
 #: inc/AdminMenu.php:34
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Help"
 msgstr ""
 
@@ -43,3379 +43,3787 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Hidden"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Visible"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Auto"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Window Height (100%)"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Custom"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Top"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bottom"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Read Documentation"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Would you please rate us?"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "We are new and we need your help to grow!🙏"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Layout"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Column Gap:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Height:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Min Height:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Columns Vertical Position:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Columns Horizontal Position:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Row Style"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Background:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Padding:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Border"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Shadow"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Select a column layout"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Width (%):"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Column"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Column Options"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Add Column"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Delete Column"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Grid"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Grid 1"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Masonry"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slider"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Ticker"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Default"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Title Meta"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Left Image"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Right Image"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Overlay Content"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Overlay Content Hover"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Overlay Box"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Overlay Content Box"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Overlay Half Content"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fill Available Space"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Content"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Image"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Creative"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Up"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Down"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Author"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Title"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Date"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Last Modified"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Ascending"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Descending"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Cover"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Contain"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Justify"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "01/15/2022"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "15/01/2022"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "January 15, 2022"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Jan 15, 2022"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "15th Jan, 2022"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "15th January, 2022"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "General"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Elements"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Style"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Ticker Options"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Direction:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Speed:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Values: slow, medium, fast or any value in milliseconds."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Interval:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Values: time in milliseconds."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Keep height 0, to auto height."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Visible:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "0 to display all"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Ticker Mouse Pause"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slider Options"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Loop"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Touch Move"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Autoplay"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Speed (s):"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Smaller speed & delay value will be slide faster"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Effect:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "To work fade & creative effects properly, set single column per view"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Pagination"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Pagination Clickable"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Pagination Dynamic Bullets"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Preview Next Button:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Preview Next Button"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination will not work if, 'Show All Posts' is enable"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Previous Label:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Next Label:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Colors:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Active & Hover Colors:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Space Between:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Layout:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sub Layout:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Some settings may change when sub layout will be changed."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Columns:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Row Gap:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Equal Height"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slider Min Height:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Content/Texts Height:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Posts Query"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Type:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Select Categories:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Select Tags:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Select Taxonomies for filter:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Per Page:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "To show all posts set -1"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Order By:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Order:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Offset:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "`Post Offset` will not work if `Post Per Page` is -1"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Include Posts:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enter the posts id by coma separated Ex: `23,45,16`"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Exclude Posts:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Exclude Current Post"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Feature Image"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Feature Image"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Size:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fitting:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Link"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Title"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Title Link"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Meta Data"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Meta Data"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Author"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Author Link"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Author Icon:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enter Author Icon URL"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Date"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Date Format:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Documentation on date formatting in "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Date Icon:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enter Date Icon URL"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Category"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Category"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Category In:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Category Icon:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enter Category Icon URL"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Taxonomies"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reading Time"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Reading Time"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reading Time will be displayed if the post has content!"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Reading Time Seconds"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reading Time Label:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reading Time Icon:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enter Reading Time Icon URL"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Comment"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Comment"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Comment Count will be displayed if the comment status is open!"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Comment Icon:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enter Comment Icon URL"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Excerpt"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Excerpt"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Excerpt from Content"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Ellipsis"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Excerpt Length:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Read More"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Read More"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Position:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "For the bottom position, select 'Fill Available Space' option for the 'Content/Texts Height' from General->Layout"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Read More Label:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Open link in new tab"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Normal"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Hover"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Text Align:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Background"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Border:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination Bullets Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination Width:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination Height:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination Border:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Preview Next Button Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Margin:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Text Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Link Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Icon Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Category Colors On Image:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button Align:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Hover Colors:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Upgrade to B Blocks Pro for advanced features"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Layouts: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Checkout more layouts and sub layouts."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Display Pages: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Effortlessly showcase pages, just like you do with posts."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Tag Filter: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post filter by tags (only for default post)."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Custom Taxonomy Filter: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Custom Taxonomy filter for post and custom posts."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Post Offset: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Offset to exclude first N posts."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Include or Exclude Posts: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Include or Exclude the posts by ids."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Exclude Current Post: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "If you use this block in a post and that post type is selected post then you can exclude the post."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Add custom pagination bottom of the posts."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sort Elements: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sort the title and meta elements."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Meta Data Icon: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Custom icon for meta data."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Meta Author Link Toggle: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show meta author with or without link."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Taxonomies in Meta: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Display taxonomies within the meta data, including tags."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reading Time: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show post reading time in meta area."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Excerpt from Content: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show excerpt from main content."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Ticker Layout Options: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Options for ticker post layout."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Feature Image Size: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Options to set feature image size."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Read More Position: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Options to set the position fo Read More button."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Shortcode: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Shortcode option to use anywhere."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Update Post Query: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Update Post Query using b_blocks_posts_query filter."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Loading..."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "No posts found!! Please update the query or add some posts"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Add or Remove Slides"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Content Position"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "You can also change the content position by dragging element."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Title:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide title"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Title Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Description:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Description of the slider"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Description Color:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button Text:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button label"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button Link:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button link"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button Colors:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button Hover Colors:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Remove"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Duplicate"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Add New Slide"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Layout Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Width:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Basic Options"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Switch slide with grab in anywhere in slide"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Touch Move will not work in backend"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Smaller speed value will be slide faster"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Autoplay"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Autoplay will not work in backend"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Delay (s):"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Smaller delay value will be autoplay faster"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Disable on Interaction"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pause on Mouse Enter"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "If 'Disable on Interaction' is also enabled, it will stop autoplay instead of pause"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reverse Direction"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Stop on Last Slide"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Free Mode"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Free Mode"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Smooth Scrolling with dragging the slide"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Touch Move to use Free Mode"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sticky"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Effects"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "To work fade, cube, creative, flip & cards effects properly, set single column per view."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Some settings may change when effect will be changed."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Keyboard Control"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Keyboard Control"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mousewheel"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Enable Slide on Mousewheel"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show On Tablet"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show On Mobile"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Navigation"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Options"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide Title"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide Description"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Description"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide Button"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Button"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slider in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slider in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slider in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Border: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Border style options in every single slide."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Delay time: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Delay time option in autoplay."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Disable on Interaction: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Disable on Interaction option in autoplay."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reverse Direction: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reverse Direction option in autoplay."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pause on Mouse Enter: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pause on Mouse Enter option in autoplay."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Stop on Last Slide: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Stop on Last Slide option in autoplay."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Free Mode: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Free Mode option on drag slide."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sticky: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sticky option in free mode."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Effects: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Explore more effects such as Cube, Coverflow, Flip, and Cards."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Keyboard Control: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide with Keyboard control."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide on Mousewheel: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Slide on Mousewheel option."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pagination Device: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show/Hide pagination in different devices(tablet and mobile)."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Navigation Device: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show/Hide navigation in different devices(tablet and mobile)."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Background: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Background style option for slider wrapper."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Padding: "
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Padding style option for slider wrapper."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Title Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Separator Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Separator"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Description Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Section heading title"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Section heading description"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Controls"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Video url"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Poster url"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Repeat"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Muted"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Reset On End"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Auto Hide Control"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Play Large"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Restart"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Rewind"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Play"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Fast Forward"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Progress"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Current Time"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Duration"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Mute"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Volume"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "PIP"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Airplay"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Download"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Fullscreen"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Round Corner:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Item Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Shadow:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Link In:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Elements Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Icon"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icon Padding:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icon Margin:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Title Typography:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Title Margin:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Description Typography:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Service Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Hover Background:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icon Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icon:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enter Icon URL"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icon Width:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Colors Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Link Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Link:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Background Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Background Hover Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Service Title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Service Description"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Upload"
-msgstr ""
-
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Link"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Lazy"
+#: dist/editor.js:10
+msgid "Popup"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Eager"
+#: dist/editor.js:10
+msgid "None"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "3D Model Settings"
+#: dist/editor.js:10
+msgid "Password Protected"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Model:"
+#: dist/editor.js:10
+msgid "Login Protected"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Enter Model URL"
+#: dist/editor.js:10
+msgid "Alternate"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Keep width 0, to auto width."
+#: dist/editor.js:10
+msgid "Bookmark"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Keep height 0, to 350px height."
+#: dist/editor.js:10
+msgid "External"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Controls via mouse/touch"
+#: dist/editor.js:10
+msgid "License"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Zoom"
+#: dist/editor.js:10
+msgid "Next"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Enable 'Controls via mouse/touch' to work Zoom!"
+#: dist/editor.js:10
+msgid "No Follow"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Loading Type:"
+#: dist/editor.js:10
+msgid "No Opener"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Edit 3D Model:"
+#: dist/editor.js:10
+msgid "No Referrer"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "3D Model in left"
+#: dist/editor.js:10
+msgid "Prev"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "3D Model in center"
+#: dist/editor.js:10
+msgid "Search"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "3D Model in right"
+#: dist/editor.js:10
+msgid "Tag"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Image Settings"
+#: dist/editor.js:10
+msgid "No Referrer When Downgrade"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Preview Image?"
+#: dist/editor.js:10
+msgid "Origin"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Preview will only for frontend!"
+#: dist/editor.js:10
+msgid "Origin When Cross Origin"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Caption Settings"
+#: dist/editor.js:10
+msgid "Same Origin"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Show Caption"
+#: dist/editor.js:10
+msgid "Strict Origin When Cross Origin"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Edit Gallery"
+#: dist/editor.js:10
+msgid "Unsafe Url"
 msgstr ""
 
-#: dist/editor.js:1
-msgid " Gallery Images"
+#: dist/editor.js:10
+msgid "Flat"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Select image files from your library."
+#: dist/editor.js:10
+msgid "3D"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Media Library"
+#: dist/editor.js:10
+msgid "Small"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Add Images"
+#: dist/editor.js:10
+msgid "Medium"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Before Img"
+#: dist/editor.js:10
+msgid "Large"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "After Img"
+#: dist/editor.js:10
+msgid "X Large"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Comparison Settings"
+#: dist/editor.js:10
+msgid "Fade Up"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Enter Image URL"
+#: dist/editor.js:10
+msgid "Fade Down"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Swap Images"
+#: dist/editor.js:10
+msgid "Fade Left"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Labels Settings"
+#: dist/editor.js:10
+msgid "Fade Right"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Show Labels"
+#: dist/editor.js:10
+msgid "Flip Up"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Edit Before Image:"
+#: dist/editor.js:10
+msgid "Flip Down"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Edit After Image:"
+#: dist/editor.js:10
+msgid "Flip Left"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Image Comparison in left"
+#: dist/editor.js:10
+msgid "Flip Right"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Image Comparison in center"
+#: dist/editor.js:10
+msgid "Zoom In"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Image Comparison in right"
+#: dist/editor.js:10
+msgid "Zoom In Up"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "After image label"
+#: dist/editor.js:10
+msgid "Zoom In Down"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Before image label"
+#: dist/editor.js:10
+msgid "Zoom In Left"
 msgstr ""
 
-#: dist/editor.js:1
-msgid " Before Image:"
+#: dist/editor.js:10
+msgid "Zoom In Right"
 msgstr ""
 
-#: dist/editor.js:1
-msgid " After Image:"
+#: dist/editor.js:10
+msgid "Audio"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Caption of the image comparison"
+#: dist/editor.js:10
+msgid "Video"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Front"
+#: dist/editor.js:10
+msgid "Document"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Back"
+#: dist/editor.js:10
+msgid "Iframe"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Add or Remove Boxes"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Box Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Front Box"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Front Icon"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Upload Icon?"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Front Title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Text:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Description"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Back Box"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Back Icon"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Back Title"
-msgstr ""
-
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Button"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Add New Flip Box"
+#: dist/editor.js:10
+msgid "Text:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Link in New Tab"
+#: dist/editor.js:10
+msgid "Action:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Box"
+#: dist/editor.js:10
+msgid "Security:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Icon"
+#: dist/editor.js:10
+msgid "Set User Role:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Add New Box"
+#: dist/editor.js:10
+msgid "Set Password:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Theme 1"
+#: dist/editor.js:10
+msgid "URL:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Theme 2"
+#: dist/editor.js:10
+msgid "URL/Link Rel/Relation:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Theme 3"
+#: dist/editor.js:10
+msgid "Enter Referer Policy:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Theme 4"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Vertical"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Horizontal"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove Members"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Photo:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Photo Border:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Name Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Designation/Title Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Bio Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Social Icon Colors:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Member"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Theme:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Bio"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Social"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Open Link in New Tab"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member Photo"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member Name"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Designation/Title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Separator"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member Bio"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member Social"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icon Size:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid " Member Photo:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member name"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Member designation/title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Biography of the member"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Remove this link"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add Social Link"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Please add a member first!"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove Cards"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Image:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Image Border:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Category Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Card"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Image Position:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Title Position:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Content Area"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Card title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid " Card Image:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Card category"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Description of the card"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove Prices"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Price:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Currency:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Features:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Remove the feature"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Feature"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Price"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Pricing Table"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Period"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Plan Name"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Link Label"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove Product"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Price Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Product"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Content Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Name Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Price Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid " Product Image:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Product name"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Description of the product"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "$99.99"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove Features"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Feature title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Description of the feature"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Info Box Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Button Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Info Box in left"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Info Box in center"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Info Box in right"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Info box title"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Info box description"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Click Me"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Bounce"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Player Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Lottie Json file url:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Controls"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enable Hover"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Mode:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Count (Set 0 to infinite):"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Interval (s):"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Player"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icons Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icons Hover Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Icons Active Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Track Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Thumb Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Player in left"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Player in center"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Player in right"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Line"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Bar"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Pie"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Radar"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Doughnut"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Polar Area"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Circle"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Cross"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Cross Rot"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dash"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Rect"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Rect Rounded"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Rect Rot"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Star"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Triangle"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove Datasets"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Remove this Dataset"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Dataset"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Label:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dataset Background Color"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dataset Border Color"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Point Style:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add Dataset Value"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Chart Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Type:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Use single dataset value for 'Pie', 'Doughnut', and 'Polar Area'"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show X Scale"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show X Grid Line"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Y Scale"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Y Grid Line"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Grid Line Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Title & Subtitle Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Title Font Size:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Subtitle"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Subtitle:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Subtitle Font Size:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Subtitle Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Download Settings"
-msgstr ""
-
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Download Button"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Chart in left"
+#: dist/editor.js:10
+msgid "Make sure the URL/link is downloadable!"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Chart in center"
+#: dist/editor.js:10
+msgid "Download File Name:"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Chart in right"
+#: dist/editor.js:10
+msgid "This is an experimental feature, and it may not work reliably every time."
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Button One"
+#: dist/editor.js:10
+msgid "Upload Icon?"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Button Two"
+#: dist/editor.js:10
+msgid "Enter Icon URL"
 msgstr ""
 
-#: dist/editor.js:1
-msgid "Container Width:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Fill"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Outline"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Some settings may change when type will be changed."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Buttons:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Separator Text:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Text Typography"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Button Group in left"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Button Group in center"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Button Group in right"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "First Button"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Second Button"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Layout 1"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Layout 2"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Layout 3"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dotted"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dashed"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Solid"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Row"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Countdown Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Destination Date:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Responsive on Mobile"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Box Inline?"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Days"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Hours"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Minutes"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show Seconds"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show expired content on expire"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Hide box if value is 0"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Hide Countdown on Mobile"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Hide Countdown on Tablet"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix & Suffix"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix Suffix Direction:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix Text:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix/Before Text"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enter prefix text to show a message before countdown"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix Button Text:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix/After Button Text"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enter suffix button text to display a button after countdown"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix Button Url:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Button url"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Additional"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "ID:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enter additional ID"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Class:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enter additional Class"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "CSS:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enter additional CSS"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Countdown"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Boxes"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Box Position:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Space Between Boxes:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Digit Typography:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Digit Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Label Typography:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Label Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Days Style"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Enable Single Style"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Reset style according to parent"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Box Background:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Hours Style"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Minutes Style"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Seconds Style"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix Text"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Typography:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix Button"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dismiss Button"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Countdown Dismissible?"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Expired Display: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show content that has expired after the countdown timer has elapsed."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Hide at Zero: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Conceal the box when the countdown timer reaches 0."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Mobile Visibility: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Toggle visibility of the countdown timer on mobile devices."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Tablet Visibility: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Toggle visibility of the countdown timer on tablet devices."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix Text: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Display text before the countdown timer."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix Style: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Implement typography settings and adjust the color for the prefix text."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix Button: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Show a button after the countdown timer."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix Button Style: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Apply typography, colors(text and background) and padding for the suffix button."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix Suffix Direction: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Direction of the content displayed before and after the countdown timer."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Single Style: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Apply different styles to each box, including variations in background, digit color, and label color."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Dismiss Button: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Provide a button to dismiss/hide the countdown timer."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Patterns: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Additional patterns for expanding the variety of countdown styles."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Shortcode Integration: "
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Shortcode for flexible use across various locations."
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Countdown in left"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Countdown in center"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Countdown in right"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Label"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add or Remove counters"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Start Number:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "End Number:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Prefix:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Suffix:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Number Color:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Add New Counter"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Counters Settings"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Duration:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Duration in milliseconds:"
-msgstr ""
-
-#: dist/editor.js:1
-msgid "Counter Elements"
-msgstr ""
-
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Icon Position:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
+msgid "Tooltip Text:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "If you want to add tooltip on button, type text rather then leave empty."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Tooltip Position:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide On Desktop"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide On Tablet"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide On Mobile"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Design"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Full Width?"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Size:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Type:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Animation"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Type:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Duration (Speed) (s):"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Additional"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "ID:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter additional ID"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "CSS:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter additional CSS"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Please select the popup from the button action to enable these options."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Content Type:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter Image URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Audio:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter Audio URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Video:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter Video URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Also support YouTube and Vimeo video."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Document:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter Document URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Supported Document: .pdf, .doc, .docx, .xls, .xlsx"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Iframe Source:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter Iframe URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Note: Enter only source URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Title/Caption:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Action: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Use the button as a link or popup trigger."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "rel Attribute: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add the rel/relation attribute to the anchor link."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "referrer-policy Attribute: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add the Referrer Policy attribute to the anchor link."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Download File Name: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "For the download, enter a custom name for the download file. This is an experimental feature, and it may not work reliably every time."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon Position: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Set the icon position to the left or right."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Tooltip Position: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Choose a different position for the tooltip."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide on Devices: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide on various devices (desktop, tablet, and mobile)."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Popup Content: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Image, Audio, Video, Block Content, Document(.pdf, .doc, .docx, .xls, .xlsx), and Iframe."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Security Features: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Login, Password Required"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Text"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Controls"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Video url"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Poster url"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Repeat"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Muted"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Reset On End"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Auto Hide Control"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Play Large"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Restart"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Rewind"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Play"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Fast Forward"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Progress"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Current Time"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Duration"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Mute"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Volume"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "PIP"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Airplay"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Download"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Fullscreen"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Round Corner:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Item Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Shadow:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Link In:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Elements Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Icon"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon Padding:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon Margin:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Title Typography:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Title Margin:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Description Typography:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Service Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hover Background:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon Width:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Colors Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Link Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Link:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Background Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Background Hover Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Service Title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Service Description"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Upload"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Lazy"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Eager"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "3D Model Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Model:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter Model URL"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Keep width 0, to auto width."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Keep height 0, to 350px height."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Controls via mouse/touch"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Zoom"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enable 'Controls via mouse/touch' to work Zoom!"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Loading Type:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Edit 3D Model:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "3D Model in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "3D Model in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "3D Model in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Preview Image?"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Preview will only for frontend!"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Caption Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Caption"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Edit Gallery"
+msgstr ""
+
+#: dist/editor.js:10
+msgid " Gallery Images"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Select image files from your library."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Media Library"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add Images"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Before Img"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "After Img"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Comparison Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Swap Images"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Labels Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Labels"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Edit Before Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Edit After Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image Comparison in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image Comparison in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image Comparison in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "After image label"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Before image label"
+msgstr ""
+
+#: dist/editor.js:10
+msgid " Before Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid " After Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Caption of the image comparison"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Front"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Back"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Boxes"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Box Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Front Box"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Front Icon"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Front Title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Description"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Back Box"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Back Icon"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Back Title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Flip Box"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Link in New Tab"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Box"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Box"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Theme 1"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Theme 2"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Theme 3"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Theme 4"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Vertical"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Horizontal"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Members"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Photo:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Photo Border:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Name Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Designation/Title Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Bio Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Social Icon Colors:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Member"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Theme:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Bio"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Social"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Open Link in New Tab"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member Photo"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member Name"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Designation/Title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Separator"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member Bio"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member Social"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icon Size:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid " Member Photo:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member name"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Member designation/title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Biography of the member"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Remove this link"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add Social Link"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Please add a member first!"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Cards"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image Border:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Category Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Card"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Image Position:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Title Position:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Content Area"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Card title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid " Card Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Card category"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Description of the card"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Prices"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Price:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Currency:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Features:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Remove the feature"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Feature"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Price"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Pricing Table"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Period"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Plan Name"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Link Label"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Product"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Price Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Product"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Content Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Name Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Price Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid " Product Image:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Product name"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Description of the product"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "$99.99"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Features"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Feature title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Description of the feature"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Info Box Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Info Box in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Info Box in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Info Box in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Info box title"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Info box description"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Click Me"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Bounce"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Player Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Lottie Json file url:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Controls"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enable Hover"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Mode:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Count (Set 0 to infinite):"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Interval (s):"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Player"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icons Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icons Hover Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Icons Active Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Track Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Thumb Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Player in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Player in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Player in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Line"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Bar"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Pie"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Radar"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Doughnut"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Polar Area"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Circle"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Cross"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Cross Rot"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dash"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Rect"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Rect Rounded"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Rect Rot"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Star"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Triangle"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove Datasets"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Remove this Dataset"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Dataset"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Label:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dataset Background Color"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dataset Border Color"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Point Style:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add Dataset Value"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Chart Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Use single dataset value for 'Pie', 'Doughnut', and 'Polar Area'"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show X Scale"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show X Grid Line"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Y Scale"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Y Grid Line"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Grid Line Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Title & Subtitle Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Title Font Size:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Subtitle"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Subtitle:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Subtitle Font Size:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Subtitle Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Download Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Chart in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Chart in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Chart in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button One"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Two"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Container Width:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Fill"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Outline"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Some settings may change when type will be changed."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Buttons:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Separator Text:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Text Typography"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Group in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Group in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button Group in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "First Button"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Second Button"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Layout 1"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Layout 2"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Layout 3"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dotted"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dashed"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Solid"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Row"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Countdown Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Destination Date:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Responsive on Mobile"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Box Inline?"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Days"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Hours"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Minutes"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show Seconds"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show expired content on expire"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide box if value is 0"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide Countdown on Mobile"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide Countdown on Tablet"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix & Suffix"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix Suffix Direction:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix Text:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix/Before Text"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter prefix text to show a message before countdown"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix Button Text:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix/After Button Text"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter suffix button text to display a button after countdown"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix Button Url:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Button url"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Class:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter additional Class"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Countdown"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Boxes"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Box Position:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Space Between Boxes:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Digit Typography:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Digit Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Label Typography:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Label Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Days Style"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enable Single Style"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Reset style according to parent"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Box Background:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hours Style"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Minutes Style"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Seconds Style"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix Text"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Typography:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix Button"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dismiss Button"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Countdown Dismissible?"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Expired Display: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show content that has expired after the countdown timer has elapsed."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hide at Zero: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Conceal the box when the countdown timer reaches 0."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Mobile Visibility: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Toggle visibility of the countdown timer on mobile devices."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Tablet Visibility: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Toggle visibility of the countdown timer on tablet devices."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix Text: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Display text before the countdown timer."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix Style: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Implement typography settings and adjust the color for the prefix text."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix Button: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Show a button after the countdown timer."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix Button Style: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Apply typography, colors(text and background) and padding for the suffix button."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix Suffix Direction: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Direction of the content displayed before and after the countdown timer."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Single Style: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Apply different styles to each box, including variations in background, digit color, and label color."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Dismiss Button: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Provide a button to dismiss/hide the countdown timer."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Patterns: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Additional patterns for expanding the variety of countdown styles."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Shortcode Integration: "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Shortcode for flexible use across various locations."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Countdown in left"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Countdown in center"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Countdown in right"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Label"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add or Remove counters"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Start Number:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "End Number:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Prefix:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Suffix:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Number Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add New Counter"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Counters Settings"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Duration:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Duration in milliseconds:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Counter Elements"
+msgstr ""
+
+#: dist/editor.js:10
 msgid "Number Typography:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Show Label"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Counters Style"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Single Counter Style"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mail Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "E-mail Address:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Email Address"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Style:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mail Button in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mail Button in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mail Button in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Send E-mail"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Gif Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "GIF in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "GIF in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "GIF in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Replace"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Insert GIF"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Search gif here"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "QR Code Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Website URL:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Dimension:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "QR Code in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "QR Code in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "QR Code in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Social Networks"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mobile Messenger"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Facebook"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Twitter"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "LinkedIn"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pinterest"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Blogger"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "WordPress"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Tumblr"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reddit"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Digg"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "LiveJournal"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Evernote"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flipboard"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Mix"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pocket"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Buffer"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Instapaper"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Meneame"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Baidu"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Weibo"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Xing"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "RenRen"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Vkontakte (VK)"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Odnoklassniki"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "My World@Mail.Ru"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Surfingbird"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "LiveInternet"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "SMS"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Skype"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Telegram"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Viber"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "WhatsApp"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "WeChat"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "LINE"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Add or Remove socials"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Network Type:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Network:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Add New Social"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Social Icon Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Social Icons in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Social Icons in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Social Icons in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Char"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Word"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flash"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Shake"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Tada"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Swing"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Wobble"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Pulse"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flip"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flip In X"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flip In Y"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Up"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Down"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Up Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Down Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Left Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade In Right Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce In"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce In Up"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce In Down"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce In Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce In Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate In"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate In Up Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate In Up Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate In Down Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate In Down Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Roll In"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flip Out X"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Flip Out Y"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Up"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Down"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Up Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Down Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Left Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Fade Out Right Big"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce Out"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce Out Up"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce Out Down"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce Out Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Bounce Out Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate Out"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate Out Up Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate Out Up Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate Out Down Left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rotate Out Down Right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Hinge"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Roll Out"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Sync"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Shuffle"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Reverse"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Animated Text Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Animate text:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Loop"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Loop will not work instantly in editor! you have to refresh the page."
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Animate in:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "In Effect:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "In Sequence:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Out Effect:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Out Sequence:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Animated Text Style"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert Settings"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert Icon:"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert Dismissible?"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alert Message"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Section"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Shape"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Star Rating"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rating Scale"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Prefix"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rating"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Icon Style"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Alignment"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Gap"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Text Color"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Text Shadow"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rating in left"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rating in center"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "Rating in right"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "B Remove All Formats"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "B Text Highlight"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "B Text Uppercase"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "B Text Underline"
 msgstr ""
 
-#: dist/editor.js:1
+#: dist/editor.js:10
 msgid "B Text Overline"
 msgstr ""
 
@@ -3532,6 +3940,31 @@ msgstr ""
 #: inc/button-group/block.json
 msgctxt "block keyword"
 msgid "group of buttons"
+msgstr ""
+
+#: inc/button/block.json
+msgctxt "block title"
+msgid "Button"
+msgstr ""
+
+#: inc/button/block.json
+msgctxt "block description"
+msgid "Implement multi-functional button."
+msgstr ""
+
+#: inc/button/block.json
+msgctxt "block keyword"
+msgid "multi-functional button"
+msgstr ""
+
+#: inc/button/block.json
+msgctxt "block keyword"
+msgid "download button"
+msgstr ""
+
+#: inc/button/block.json
+msgctxt "block keyword"
+msgid "link button"
 msgstr ""
 
 #: inc/cards/block.json

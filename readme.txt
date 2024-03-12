@@ -4,12 +4,12 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.4.3
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be used as a WordPress page-building tool!
+B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the Gutenberg block editor. It can be used as a WordPress page builder!
 
 == Description ==
 
@@ -104,15 +104,17 @@ B Blocks is a Gutenberg addon that powers up your Block editor. It can be used a
 
 = ⭐ Check out our other WordPress Plugins- =
 
-🔥 **[Html5 Audio Player](https://bplugins.com/products/html5-audio-player)** – Best audio player plugin for WordPress.
+🔥 **[Html5 Audio Player](https://bplugins.com/products/html5-audio-player/)** – Play .mp3, .wav, and .ogg audio files in WordPress.
 
-🔥 **[Html5 Video Player](https://bplugins.com/products/html5-video-player)** – Best video player plugin for WordPress.
+🔥 **[Html5 Video Player](https://bplugins.com/products/html5-video-player/)** – Best video player plugin for WordPress.
 
-🔥 **[PDF Poster](https://bplugins.com/products/pdf-poster)** – A fully-featured PDF Viewer Plugin for WordPress.
+🔥 **[PDF Poster](https://bplugins.com/products/pdf-poster/)** – A fully-featured PDF Viewer Plugin for WordPress.
 
-🔥 **[StreamCast](https://bplugins.com/products/streamcast-radio-player)** – A fully-featured Radio Player Plugin for WordPress.
+🔥 **[Document Embedder](https://bplugins.com/products/document-embedder/)** – Embed Word, Excel, PowerPoint, Apple Pages, Psd, Pdf and more.
 
-🔥 **[3D Viewer](https://bplugins.com/products/3d-viewer)** – Display interactive 3D models on the webs.
+🔥 **[3D Viewer](https://bplugins.com/products/3d-viewer/)** – Display interactive 3D models on the webs.
+
+🔥 **[Advanced Post Block](https://bplugins.com/products/advanced-post-block/)** – Display your Posts, Custom Post Content and Blogs in a professional way!
 
 
 == Installation ==
@@ -195,6 +197,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 1.8.6 - 12 Mar 2024 =
+* Add Button Block
 
 = 1.8.5 - 20 Feb 2024 =
 * Update Chart Block
@@ -335,6 +340,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.8.6 - 12 Mar 2024 =
+* Add Button Block
 
 = 1.8.5 - 20 Feb 2024 =
 * Update Chart Block

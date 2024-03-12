@@ -20,6 +20,7 @@ module.exports = (env, argv) => {
 			'3d-viewer': './src/blocks/3d-viewer/script.js',
 			'alert': './src/blocks/alert/script.js',
 			'animated-text': './src/blocks/animated-text/script.js',
+			'button': './src/blocks/button/script.js',
 			'button-group': './src/blocks/button-group/script.js',
 			'cards': './src/blocks/cards/script.js',
 			'chart': './src/blocks/chart/script.js',

@@ -4,6 +4,7 @@ import './blocks/posts';
 import './blocks/slider';
 // import './blocks/section.js';
 import './blocks/section-heading';
+import './blocks/button';
 import './blocks/video';
 import './blocks/services';
 import './blocks/3d-viewer';
