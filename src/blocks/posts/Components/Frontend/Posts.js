@@ -8,11 +8,11 @@ import Slider from '../Common/Layout/Slider';
 import Ticker from './Layout/Ticker';
 
 const Posts = ({ firstPosts, nonce, totalPosts, attributes }) => {
-	const { cId, postType, selectedTaxonomies = {}, selectedCategories, selectedTags = [], isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset = 0, postsInclude = [], postsExclude = [], isExcludeCurrent, fImgSize = 'full', metaDateFormat = 'M j, Y' } = attributes;
+	const { cId, postType, selectedTaxonomies = {}, selectedCategories, selectedTags = [], isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset = 0, postsInclude = [], postsExclude = [], isExcludeCurrent, passFilter = null, fImgSize = 'full', metaDateFormat = 'M j, Y' } = attributes;
 
 	const [pageNumber, setPageNumber] = useState(1);
 
-	const queryAttr = { postType, selectedTaxonomies, selectedCategories, selectedTags, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset, postsInclude, postsExclude, isExcludeCurrent, fImgSize, metaDateFormat }
+	const queryAttr = { postType, selectedTaxonomies, selectedCategories, selectedTags, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset, postsInclude, postsExclude, isExcludeCurrent, passFilter, fImgSize, metaDateFormat }
 	const { data = null, saveData } = useWPAjax('bBlocksPosts', { _wpnonce: nonce, queryAttr, pageNumber });
 
 	const [posts, setPosts] = useState([]);

@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.4.3
-Stable tag: 1.8.6
+Stable tag: 1.8.7
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -99,7 +99,7 @@ B Blocks is a Gutenberg addon that powers up your Block editor. It can be used a
 
 
 = Feedback =
-- Did you like this plugin? Dislike it? Have a feature request? [Please share your feedback with us](mailto:support@bplugins.com 'Send feedback')
+- Did you like this plugin? Dislike it? Do you have a feature request? [Please share your feedback with us](mailto:support@bplugins.com 'Send feedback')
 
 
 = ⭐ Check out our other WordPress Plugins- =
@@ -197,6 +197,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 1.8.7 - 23 Mar 2024 =
+* Update Posts block (password filter)
 
 = 1.8.6 - 12 Mar 2024 =
 * Add Button Block
@@ -340,6 +343,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.8.7 - 23 Mar 2024 =
+* Update Posts block (password filter)
 
 = 1.8.6 - 12 Mar 2024 =
 * Add Button Block

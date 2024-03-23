@@ -39,6 +39,8 @@ class BBlocksPosts extends BBlocks{
 		$post__in = !empty( $postsInclude ) ? [ 'post__in' => $postsInclude ] : [];
 		$postsExclude = BBlocks\Inc\Posts\Helpers\Functions::filterNaN( $postsExclude ?? [] );
 
+		$passFilter = $passFilter ?? null;
+
 		$query = array_merge( [
 			'post_type'			=> $postType,
 			'posts_per_page'	=> $isPostsPerPageAll ? -1 : $postsPerPage,
@@ -46,7 +48,8 @@ class BBlocksPosts extends BBlocks{
 			'order'				=> $postsOrder,
 			'tax_query'			=> $termsQuery,
 			'offset'			=> $isPostsPerPageAll ? 0 : $postsOffset,
-			'post__not_in'		=> $isExcludeCurrent ? array_merge( [ get_the_ID() ], $postsExclude ) : $postsExclude
+			'post__not_in'		=> $isExcludeCurrent ? array_merge( [ get_the_ID() ], $postsExclude ) : $postsExclude,
+			'has_password'		=> $passFilter === 'true' && current_user_can( 'read' ) ? true : ( current_user_can( 'read' ) && $passFilter === 'null' ? null : false)
 		], $post__in, $defaultPostQuery );
 
 		if( BBlocks\Inc\BBlocksUtils::isPro() ) {

@@ -154,3 +154,14 @@ export const classNames = (...args) => {
 
 	return classes.join(' ');
 }
+
+export const filterPassword = (posts = [], has_password) => {
+	switch (has_password) {
+		case 'true':
+			return posts?.filter(p => p.password)
+		case 'false':
+			return posts?.filter(p => !p.password)
+		default:
+			return posts
+	}
+}

@@ -7,7 +7,7 @@ import { tabController } from '../../../../../../Components/utils/functions';
 import Settings from './Settings/Settings';
 import Loading from './Loading';
 import NoPosts from './NoPosts';
-import { filterNaN, filterObject, wordCount } from '../../utils/functions';
+import { filterNaN, filterObject, filterPassword, wordCount } from '../../utils/functions';
 import Posts from './Posts';
 import usePremiumInEditor from '../../../../hooks/usePremiumInEditor';
 
@@ -37,7 +37,7 @@ const Edit = props => {
 export default withSelect((select, { attributes, setAttributes }) => {
 	const { getUsers, getEntityRecords, getTaxonomies, getMedia, getComments } = select('core');
 
-	const { postType, selectedTaxonomies = {}, selectedCategories, selectedTags = [], isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset = 0, postsInclude = [], postsExclude = [], isExcludeCurrent, isPagination, paginationCurrentPage, fImgSize = 'full', metaDateFormat = 'M j, Y' } = attributes;
+	const { postType, selectedTaxonomies = {}, selectedCategories = [], selectedTags = [], isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset = 0, postsInclude = [], postsExclude = [], isExcludeCurrent, passFilter = 'null', isPagination, paginationCurrentPage, fImgSize = 'full', metaDateFormat = 'M j, Y' } = attributes;
 
 	// Query Filter
 	const catsFilter = 'post' === postType ? { categories: selectedCategories } : {};
@@ -64,7 +64,7 @@ export default withSelect((select, { attributes, setAttributes }) => {
 		exclude: isExcludeCurrent ? [select('core/editor').getCurrentPostId(), ...filterNaN(postsExclude)] : filterNaN(postsExclude)
 	}
 
-	const allPosts = getEntityRecords('postType', postType, { ...query, per_page: -1 });
+	const allPosts = filterPassword(getEntityRecords('postType', postType, { ...query, per_page: -1 }), passFilter);
 
 	// Pagination Scripts
 	useEffect(() => setAttributes({ paginationCurrentPage: 1 }), []);
@@ -133,12 +133,12 @@ export default withSelect((select, { attributes, setAttributes }) => {
 		})
 	}
 
+	const posts = (isPagination && !isPostsPerPageAll) ? paginationPosts : filterPassword(getEntityRecords('postType', postType, query), passFilter);
+
 	return {
 		totalPosts: allPosts?.length,
 
-		posts: isPagination && !isPostsPerPageAll ?
-			arrangedPosts(paginationPosts) :
-			arrangedPosts(getEntityRecords('postType', postType, query)),
+		posts: arrangedPosts(posts),
 
 		taxOfPostType,
 
