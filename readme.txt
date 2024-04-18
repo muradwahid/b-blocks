@@ -1,9 +1,9 @@
 === B Blocks - The ultimate block collection ===
-Contributors: abuhayat, charlescormier
+Contributors: bplugins, abuhayat, charlescormier
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
-Tested up to: 6.4.3
+Tested up to: 6.5.2
 Stable tag: 1.8.7
 Requires PHP: 7.1
 License: GPLv3 or later
@@ -13,10 +13,9 @@ B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the G
 
 == Description ==
 
+👉 [Plugin Demo](https://bblockswp.com/#demos) | [Documentation](https://bblockswp.com/docs/) | [Get Pro Version](https://bblockswp.com/#pricing) 👈
+
 B Blocks is a Gutenberg addon that powers up your Block editor. It can be used as a WordPress page-building tool, which contains a variety of beautiful blocks. It is optimized for performance and provides you with maximum options to achieve your design goals.
-
-
-**[Demos](https://links.bplugins.com/b-blocks)**
 
 
 === How to use ===
