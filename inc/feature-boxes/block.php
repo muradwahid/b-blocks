@@ -48,10 +48,10 @@ class BBlocksFeatureBoxes extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksFeatureBoxes-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( '', $titleTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( "$gFeatureSl .featureTitle", $titleTypo )['styles'];
-					echo GetCSS::getTypoCSS( "$gFeatureSl .featureDescription", $descTypo )['styles'];
+					echo esc_html( GetCSS::getTypoCSS( '', $titleTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( "$gFeatureSl .featureTitle", $titleTypo )['styles'] );
+					echo esc_html( GetCSS::getTypoCSS( "$gFeatureSl .featureDescription", $descTypo )['styles'] );
 					echo wp_kses( $featureBoxesStyle::renderStyle(), [] );
 					
 					foreach ( $features as $index => $feature ) {

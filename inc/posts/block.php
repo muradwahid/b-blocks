@@ -39,8 +39,6 @@ class BBlocksPosts extends BBlocks{
 		$post__in = !empty( $postsInclude ) ? [ 'post__in' => $postsInclude ] : [];
 		$postsExclude = BBlocks\Inc\Posts\Helpers\Functions::filterNaN( $postsExclude ?? [] );
 
-		$passFilter = $passFilter ?? null;
-
 		$query = array_merge( [
 			'post_type'			=> $postType,
 			'posts_per_page'	=> $isPostsPerPageAll ? -1 : $postsPerPage,
@@ -49,7 +47,7 @@ class BBlocksPosts extends BBlocks{
 			'tax_query'			=> $termsQuery,
 			'offset'			=> $isPostsPerPageAll ? 0 : $postsOffset,
 			'post__not_in'		=> $isExcludeCurrent ? array_merge( [ get_the_ID() ], $postsExclude ) : $postsExclude,
-			'has_password'		=> $passFilter === 'true' && current_user_can( 'read' ) ? true : ( current_user_can( 'read' ) && $passFilter === 'null' ? null : false)
+			'has_password'		=> false
 		], $post__in, $defaultPostQuery );
 
 		if( BBlocks\Inc\BBlocksUtils::isPro() ) {
@@ -77,8 +75,14 @@ class BBlocksPosts extends BBlocks{
 	}
 
 	function bBlocksPosts(){
+		$nonce = $_POST['_wpnonce'] ?? null;
+
+		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
+			wp_send_json_error( 'Invalid Request' );
+		}
+
 		$attributes = $_POST['queryAttr'];
-		$pageNumber = (int)$_POST['pageNumber'];
+		$pageNumber = (int)$_POST['pageNumber'] ?? 1;
 
 		wp_send_json_success( $this->getPosts( $attributes, $pageNumber ) );
 	}

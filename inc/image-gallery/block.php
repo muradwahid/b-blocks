@@ -51,10 +51,10 @@ class BBlocksImageGallery extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksImageGallery-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( '', $capTitleTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( '', $capDescTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption h4", $capTitleTypo )['styles'];
-					echo GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption p", $capDescTypo )['styles'];
+					echo esc_html( GetCSS::getTypoCSS( '', $capTitleTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( '', $capDescTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption h4", $capTitleTypo )['styles'] );
+					echo esc_html( GetCSS::getTypoCSS( "$imgLinkSl .imgGalleryImgCaption p", $capDescTypo )['styles'] );
 					echo wp_kses( $imageGalleryStyle::renderStyle(), [] );
 				?>
 			</style>
@@ -92,7 +92,7 @@ class BBlocksImageGallery extends BBlocks{
 											data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 992w'
 											data-sizes='( max-width: 576px ) 576px, 992px'
 											data-caption='<?php echo wp_kses_post( $imgCap ); ?>'>
-											<i class='fa fa-eye'></i><?php echo __( 'Preview', 'b-blocks' ); ?>
+											<i class='fa fa-eye'></i><?php echo esc_html__( 'Preview', 'b-blocks' ); ?>
 										</button>
 									<?php } ?>
 								</div>

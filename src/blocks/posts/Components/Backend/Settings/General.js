@@ -7,7 +7,7 @@ import { Label, BDevice, BtnGroup, ColorsControl, HelpPanel, SelectPureControl, 
 import { BControlPro, SelectControlPro, BtnGroupPro } from '../../../../../../../Components/Pro';
 import { pxUnit, emUnit, vhUnit } from '../../../../../../../Components/utils/options';
 
-import { layouts, effects, tickerDirections, postsOrdersBy, postsOrders, subLayouts, contentHeights, passFilters } from '../../../utils/options';
+import { layouts, effects, tickerDirections, postsOrdersBy, postsOrders, subLayouts, contentHeights } from '../../../utils/options';
 import { omit, filterSelected, strToIntArr } from '../../../utils/functions';
 
 
@@ -100,7 +100,7 @@ const Pagination = ({ attributes, setAttributes, premiumProps }) => {
 
 
 const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPostType, allTaxonomies, getTaxonomy }) => {
-	const { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, content, postType, selectedTaxonomies, selectedCategories, selectedTags, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset, postsInclude, postsExclude, isExcludeCurrent, passFilter = 'null' } = attributes;
+	const { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, content, postType, selectedTaxonomies, selectedCategories, selectedTags, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset, postsInclude, postsExclude, isExcludeCurrent } = attributes;
 
 	const isGrid = 'grid' === layout;
 	const isGrid1 = 'grid1' === layout;
@@ -277,9 +277,6 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 			<small>{__('Enter the posts id by coma separated Ex: `23,45,16`', 'b-blocks')}</small>
 
 			{currentPostType === postType && <BControlPro className='mt20' label={__('Exclude Current Post', 'b-blocks')} checked={isExcludeCurrent} onChange={val => setAttributes({ isExcludeCurrent: val })} {...premiumProps} Component={ToggleControl} />}
-
-			<BControlPro className='mt20' label={__('Password Filter:', 'b-blocks')} labelPosition='left' value={passFilter} onChange={val => setAttributes({ passFilter: val })} options={passFilters} {...premiumProps} Component={SelectControl} />
-			<small>{__('Only logged in user can see the password protected posts.', 'b-blocks')}</small>
 		</PanelBody>
 
 

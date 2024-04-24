@@ -49,12 +49,12 @@ class BBlocksPriceLists extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksPriceLists-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php	
-					echo GetCSS::getTypoCSS( '', $nameTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( '', $priceTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( "$gPriceSl .productName", $nameTypo )['styles'];
-					echo GetCSS::getTypoCSS( "$gPriceSl .productDescription", $descTypo )['styles'];
-					echo GetCSS::getTypoCSS( "$gPriceSl .productPrice", $priceTypo )['styles'];
+					echo esc_html( GetCSS::getTypoCSS( '', $nameTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( '', $priceTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( "$gPriceSl .productName", $nameTypo )['styles'] );
+					echo esc_html( GetCSS::getTypoCSS( "$gPriceSl .productDescription", $descTypo )['styles'] );
+					echo esc_html( GetCSS::getTypoCSS( "$gPriceSl .productPrice", $priceTypo )['styles'] );
 					echo wp_kses( $priceListsStyle::renderStyle(), [] );
 				foreach ( $products as $index => $product ) {
 					extract( $product );

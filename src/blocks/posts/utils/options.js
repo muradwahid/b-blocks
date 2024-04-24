@@ -55,12 +55,6 @@ export const postsOrders = [
 	{ label: __('Descending', 'b-blocks'), value: 'desc' }
 ];
 
-export const passFilters = [
-	{ label: __('All Posts', 'b-blocks'), value: 'null' },
-	{ label: __('Password Protected', 'b-blocks'), value: 'true' },
-	{ label: __('Public', 'b-blocks'), value: 'false' }
-];
-
 export const imageFittings = [
 	{ label: __('Cover', 'b-blocks'), value: 'cover' },
 	{ label: __('Contain', 'b-blocks'), value: 'contain' }

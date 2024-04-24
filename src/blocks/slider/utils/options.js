@@ -9,3 +9,9 @@ export const effects = [
     { label: __('Flip', 'content-slider-block'), value: 'flip' },
     { label: __('Cards', 'content-slider-block'), value: 'cards' }
 ];
+
+export const tabs = [
+    { name: 'general', title: __('General', 'b-blocks') },
+    { name: 'options', title: __('Options', 'b-blocks') },
+    { name: 'style', title: __('Style', 'b-blocks') }
+]

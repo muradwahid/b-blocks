@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.5.2
-Stable tag: 1.8.7
+Stable tag: 1.8.8
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -197,6 +197,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.8.8 - 24 Apr 2024 =
+* Update Posts ( remove password filter ) and Slider blocks
+
 = 1.8.7 - 23 Mar 2024 =
 * Update Posts block (password filter)
 
@@ -342,6 +345,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.8.8 - 24 Apr 2024 =
+* Update Posts ( remove password filter ) and Slider blocks
 
 = 1.8.7 - 23 Mar 2024 =
 * Update Posts block (password filter)

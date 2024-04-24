@@ -10,8 +10,7 @@ import { gearIcon } from '../../../../../../../Components/utils/icons';
 import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../../../../Components/utils/options';
 
 import ProModal from '../../../../../ProModal/ProModal';
-import { generalStyleTabs } from '../../../../../utils/options';
-import { effects } from '../../../utils/options';
+import { effects, tabs } from '../../../utils/options';
 import { getPosByPos } from '../../../utils/functions';
 
 const defaultChildPositions = [
@@ -81,7 +80,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, client
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={tabs}>{tab => <>
 				{'general' === tab.name && <>
 					<HelpPanel slug='b-blocks' docsLink='https://bplugins.com/docs/content-slider-block/guides/general' />
 

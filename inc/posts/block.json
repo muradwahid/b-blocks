@@ -105,10 +105,6 @@
 			"type": "boolean",
 			"default": false
 		},
-		"passFilter": {
-			"type": "string",
-			"default": null
-		},
 		"isPagination": {
 			"type": "boolean",
 			"default": false

@@ -20,7 +20,7 @@ class Functions{
 		$innerAllowedHTML = array_merge( [ 'span' => [ $textAllowedHTML ] ], $textAllowedHTML );
 		$allowedHTML = array_merge( [ 'p' => [ $innerAllowedHTML ] ], $innerAllowedHTML );
 		$content = wp_kses( $rawContent, $allowedHTML );
-		$plainText = trim( strip_tags( $content ?? '' ) );
+		$plainText = trim( wp_strip_all_tags( $content ?? '' ) );
 
 		return \BBlocks\Inc\BBlocksUtils::isPro() ? apply_filters( 'b_blocks_posts_excerpt_filter', $plainText, $content ) : $plainText;
 	}
@@ -74,8 +74,8 @@ class Functions{
 				'commentCount' => $post->comment_count,
 				'commentStatus' => $post->comment_status,
 				'categories' => [
-					'coma' => get_the_category_list( esc_html__( ', ' ), '', $id ),
-					'space' => get_the_category_list( esc_html__( ' ' ), '', $id )
+					'coma' => get_the_category_list( ', ', '', $id ),
+					'space' => get_the_category_list( ' ', '', $id )
 				],
 				'taxonomies' => $taxonomies,
 				'readTime' => [

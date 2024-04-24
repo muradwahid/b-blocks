@@ -66,12 +66,12 @@ class BBlocksInfoBox extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksInfoBox-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( '', $titleTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( '', $btnTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( "$infoBoxSl .infoBoxTitle", $titleTypo )['styles'];
-					echo GetCSS::getTypoCSS( "$infoBoxSl .infoBoxDescription", $descTypo )['styles'];
-					echo GetCSS::getTypoCSS( "$infoBoxSl .infoBoxButton", $btnTypo )['styles'];
+					echo esc_html( GetCSS::getTypoCSS( '', $titleTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( '', $descTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( '', $btnTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( "$infoBoxSl .infoBoxTitle", $titleTypo )['styles'] );
+					echo esc_html( GetCSS::getTypoCSS( "$infoBoxSl .infoBoxDescription", $descTypo )['styles'] );
+					echo esc_html( GetCSS::getTypoCSS( "$infoBoxSl .infoBoxButton", $btnTypo )['styles'] );
 					echo wp_kses( $infoBoxStyle::renderStyle(), [] );
 				?>
 			</style>

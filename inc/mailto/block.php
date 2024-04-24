@@ -45,14 +45,14 @@ class BBlocksMailto extends BBlocks{
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='bBlocksMailto-<?php echo esc_attr( $cId ); ?>'>
 			<style>
 				<?php
-					echo GetCSS::getTypoCSS( '', $btnTypo )['googleFontLink'];
-					echo GetCSS::getTypoCSS( "$mailToSl a.mailtoButton", $btnTypo )['styles'];
+					echo esc_html( GetCSS::getTypoCSS( '', $btnTypo )['googleFontLink'] );
+					echo esc_html( GetCSS::getTypoCSS( "$mailToSl a.mailtoButton", $btnTypo )['styles'] );
 					echo wp_kses( $mailtoStyle::renderStyle(), [] );
 				?>
 			</style>
 
 			<div class='bBlocksMailto'>
-				<a href='<?php echo 'mailto:' .sanitize_email( $receiverMail ); ?>' class='mailtoui mailtoButton'>
+				<a href='<?php echo 'mailto:' . esc_attr( sanitize_email( $receiverMail ) ); ?>' class='mailtoui mailtoButton'>
 					<?php echo 'left' === $iconPosition && $icon['class'] ? "<i class='". esc_html( $icon['class'] ) ."'></i>" : ''; ?>
 
 					<span><?php echo wp_kses_post( $btn ); ?></span>

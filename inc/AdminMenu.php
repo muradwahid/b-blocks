@@ -10,7 +10,7 @@ class AdminMenu{
 	function adminEnqueueScripts( $hook ) {
 		if( str_contains( $hook, 'b-blocks' ) ){
 			wp_enqueue_style( 'b-blocks-admin-style', B_BLOCKS_DIR_URL . 'dist/admin.css', [], B_BLOCKS_VERSION );
-			wp_enqueue_script( 'b-blocks-admin-script', B_BLOCKS_DIR_URL . 'dist/admin.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION );
+			wp_enqueue_script( 'b-blocks-admin-script', B_BLOCKS_DIR_URL . 'dist/admin.js', [ 'react', 'react-dom' ], B_BLOCKS_VERSION, true );
 		}
 	}
 
