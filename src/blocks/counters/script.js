@@ -2,52 +2,46 @@ import { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import './style.scss';
-import Style from './Style';
+import Style from './Components/Common/Style';
 import { performCounter } from './utils/functions';
+import Counter from './Components/Common/Counter';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const allCounters = document.querySelectorAll('.wp-block-b-blocks-counters');
-	allCounters.forEach(counters => {
-		const attributes = JSON.parse(counters.dataset.attributes);
+	const countersEls = document.querySelectorAll('.wp-block-b-blocks-counters');
+	countersEls.forEach(countersEl => {
+		const attributes = JSON.parse(countersEl.dataset.attributes);
 
-		createRoot(counters).render(<Counters attributes={attributes} countersEl={counters} />);
+		createRoot(countersEl).render(<Counters attributes={attributes} countersEl={countersEl} />);
 
-		counters?.removeAttribute('data-attributes');
+		countersEl?.removeAttribute('data-attributes');
 	});
 });
 
 const Counters = ({ attributes, countersEl }) => {
-	const { cId, counters = [], columns, isIcon, iconPosition, isLabel } = attributes;
+	const { cId, counters = [], columns, duration, separator = {}, isLabel } = attributes;
 
 	useEffect(() => {
 		const counterEl = document.querySelectorAll(`#${countersEl.id} .bBlocksCounters .counterNumber .number`);
 
-		performCounter(counterEl, attributes.duration);
+		const intersectionObserver = new IntersectionObserver((entries) => {
+			if (entries[0].intersectionRatio <= 0) return;
+
+			performCounter(counterEl, duration, separator);
+			intersectionObserver.unobserve(entries[0].target); // Remove if use multiple
+		});
+		intersectionObserver.observe(document.querySelector(`#${countersEl.id} .bBlocksCounters .counterNumber .number`));
 	}, []);
 
 	return <>
 		<Style attributes={attributes} clientId={cId} />
 
 		<div className={`bBlocksCounters columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
-			{counters?.map((item, index) => {
-				const { icon, number, label } = item;
+			{counters?.map((counter, index) => {
+				const { text } = counter.label;
 
-				const iconEl = icon?.class && <i className={icon.class}></i>;
-				const labelEl = isLabel && label.text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: label.text }} />
+				const labelEl = isLabel && text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: text }} />
 
-				return <div key={index} id={`bBlocksCounter-${index}`}>
-					<div className='bBlocksCounter'>
-						{isIcon && 'top' === iconPosition && <div className='counterIcon'>{iconEl}</div>}
-
-						<div className='counterNumber'>
-							<span className='prefix'>{number.prefix}</span>
-							<span className='number' data-count-start={number.start} data-count-end={number.end}>{number.start}</span>
-							<span className='suffix'>{number.suffix}</span>
-						</div>
-
-						{'label' === iconPosition ? <div className='counterIconLabel'>{iconEl}{labelEl}</div> : labelEl}
-					</div>
-				</div>;
+				return <Counter key={index} attributes={attributes} counter={counter} index={index} labelEl={labelEl} />;
 			})}
 		</div>
 	</>;

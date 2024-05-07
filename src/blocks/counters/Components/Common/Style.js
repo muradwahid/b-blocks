@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
+import { getBackgroundCSS, getBorderCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { counters = [], columnGap, rowGap, background, padding, textAlign, counterWidth, counterHeight, iconSize, numberTypo, labelTypo, counterPadding, counterBorder, counterShadow } = attributes;
@@ -35,7 +35,6 @@ const Style = ({ attributes, clientId }) => {
 
 			${counters?.map((item, index) => {
 				const { background, icon, number, label } = item;
-
 				const counterSl = `${mainSl} #bBlocksCounter-${index}`;
 
 				return `

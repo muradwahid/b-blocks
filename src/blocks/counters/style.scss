@@ -1,49 +1,55 @@
 $primaryColor: #4527a4;
 
 // Counters
-.wp-block-b-blocks-counters .bBlocksCounters {
-	display: grid;
-
+.wp-block-b-blocks-counters {
 	* {
 		box-sizing: border-box;
 	}
 
-	>div {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+	.bBlocksCounters {
+		display: grid;
 
-	.bBlocksCounter {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-
-		.counterIcon {
-			margin-bottom: 5px;
-
-			i {
-				font-style: inherit;
-			}
+		* {
+			box-sizing: border-box;
 		}
 
-		.counterNumber {
-			margin: 0;
-			margin-bottom: 10px;
-		}
-
-		.counterLabel {
-			margin: 0;
-		}
-
-		.counterIconLabel {
-			display: inline-flex;
+		>div {
+			display: flex;
 			align-items: center;
 			justify-content: center;
+		}
 
-			i {
-				font-style: inherit;
-				margin-right: 10px;
+		.bBlocksCounter {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			.counterIcon {
+				margin-bottom: 5px;
+
+				i {
+					font-style: inherit;
+				}
+			}
+
+			.counterNumber {
+				margin: 0;
+				margin-bottom: 10px;
+			}
+
+			.counterLabel {
+				margin: 0;
+			}
+
+			.counterIconLabel {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+
+				i {
+					font-style: inherit;
+					margin-right: 10px;
+				}
 			}
 		}
 	}

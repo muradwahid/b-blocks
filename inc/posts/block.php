@@ -47,7 +47,8 @@ class BBlocksPosts extends BBlocks{
 			'tax_query'			=> $termsQuery,
 			'offset'			=> $isPostsPerPageAll ? 0 : $postsOffset,
 			'post__not_in'		=> $isExcludeCurrent ? array_merge( [ get_the_ID() ], $postsExclude ) : $postsExclude,
-			'has_password'		=> false
+			'has_password'		=> false,
+			'post_status'		=> 'publish'
 		], $post__in, $defaultPostQuery );
 
 		if( BBlocks\Inc\BBlocksUtils::isPro() ) {

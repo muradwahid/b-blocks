@@ -1,4 +1,4 @@
-export const performCounter = (counterEl, duration) => {
+export const performCounter = (counterEl, duration, separator = {}) => {
 	counterEl?.forEach(count => {
 		const startNumber = parseInt(count.dataset.countStart);
 		const endNumber = parseInt(count.dataset.countEnd);
@@ -12,11 +12,17 @@ export const performCounter = (counterEl, duration) => {
 				return;
 			}
 
-			count.innerText = parseInt((timePassed / (duration / (endNumber - startNumber))) + startNumber);
+			count.innerText = formateNumberWithSeparator(parseInt((timePassed / (duration / (endNumber - startNumber))) + startNumber), separator);
 		}, 20);
 
 		setTimeout(() => {
-			count.innerText = endNumber
+			count.innerText = formateNumberWithSeparator(endNumber, separator)
 		}, duration);
 	});
+}
+
+export const formateNumberWithSeparator = (number, separator) => {
+	const { char = '' } = separator;
+
+	return char ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, char) : number;
 }

@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.5.2
-Stable tag: 1.8.8
+Stable tag: 1.8.9
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -16,28 +16,28 @@ B Blocks is a Powerful Gutenberg addon that adds many new useful blocks to the G
 👉 [Plugin Demo](https://bblockswp.com/#demos) | [Documentation](https://bblockswp.com/docs/) | [Get Pro Version](https://bblockswp.com/#pricing) 👈
 
 B Blocks is a Gutenberg addon that powers up your Block editor. It can be used as a WordPress page-building tool, which contains a variety of beautiful blocks. It is optimized for performance and provides you with maximum options to achieve your design goals.
+With B Blocks, every block is a canvas for your creativity. Customize each block to your exact specifications, adjusting typography, colors, spacing, and more to achieve the perfect look for your website. From simple buttons to complex sliders, B Blocks offers comprehensive settings to ensure every element aligns with your design requirements.
+
+Some blocks even come with pre-designed layouts and themes, providing you with a head start in creating stunning pages in minutes. Plus, with access to a custom icon library and seamless integration with Google Fonts, you can enhance your designs with stylish icons and typography choices.
+
+B Blocks includes over 30 blocks, covering everything from essential elements like Buttons and Section Headings to advanced options like Sliders and 3D Viewers. Each block is meticulously crafted to offer maximum flexibility and versatility, allowing you to create a website that stands out from the crowd.
+
+Unlock even more customization options with B Blocks Pro. Premium features for specific blocks, including Posts, Slider, Countdown, and Button blocks, provide advanced functionality to take your designs to the next level. From enhanced post-display options to dynamic slider effects and captivating countdown timers, B Blocks Pro empowers you to create engaging and interactive elements that captivate your audience.
+
+With B Blocks, designing a professional and visually stunning WordPress website has never been easier. Explore the endless possibilities, unleash your creativity, and craft a website that truly reflects your brand identity. Try B Blocks today and experience the power of effortless website design.
 
 
-=== How to use ===
-- Install the B Blocks plugin
-- Add one or more blocks from the block category called "B Blocks" in the Gutenberg editor.
-- You can change block settings from the right-side settings sidebar.
-- Enjoy!
+### B Blocks Features
+- **Customize:** Customize every block as per your design requirement. All blocks have their settings, such as typography, colors, spacing etc.
 
-* For installation help click on the Installation Tab
+- **Layouts:** Some of the blocks have layouts/themes. It provides the custom pre-designed structure of the block.
 
+- **Icons Library:** Include custom icon library. Implements in which blocks are needed.
 
-= Features =
-- **Customize**: Customize every block as per your design requirement. All blocks have their settings, such as typography, colors, spacing etc.
-
-- **Layouts**: Some of the blocks has layouts/theme. It provides the custom pre-designed structure of the block.
-
-- **Icons Library**: Include custom icon library. Implements in which blocks are needed.
-
-- **Google Fonts**: Include the Google fonts in the typography settings.
+- **Google Fonts:** Include the Google fonts in the typography settings.
 
 
-= Block Lists =
+### Block Lists
 - **Row**: Implement row and column layout.
 
 - **Posts**: Display posts in grid and masonry layouts. Define post number, categories, control margin, determine post excerpts, and do many more.
@@ -97,43 +97,88 @@ B Blocks is a Gutenberg addon that powers up your Block editor. It can be used a
 - **Star Rating**: Gutenberg editing with easy-to-use, responsive star-rating more.
 
 
-= Feedback =
-- Did you like this plugin? Dislike it? Do you have a feature request? [Please share your feedback with us](mailto:support@bplugins.com 'Send feedback')
+### How to use B Blocks
+- Install the B Blocks plugin
+- Add one or more blocks from the block category called "B Blocks" in the Gutenberg editor.
+- You can change block settings from the right-side settings sidebar.
+- Enjoy!
+
+* For installation help click on the Installation Tab
 
 
-= ⭐ Check out our other WordPress Plugins- =
+### User Feedback
 
-🔥 **[Html5 Audio Player](https://bplugins.com/products/html5-audio-player/)** – Play .mp3, .wav, and .ogg audio files in WordPress.
+#### ⭐⭐⭐⭐⭐ [Very complete!](https://wordpress.org/support/topic/very-complete-34/)
 
-🔥 **[Html5 Video Player](https://bplugins.com/products/html5-video-player/)** – Best video player plugin for WordPress.
+❛❛***Very complete plugin.***❜❜
 
-🔥 **[PDF Poster](https://bplugins.com/products/pdf-poster/)** – A fully-featured PDF Viewer Plugin for WordPress.
+***-[aprop](https://profiles.wordpress.org/aprop/)***
 
-🔥 **[Document Embedder](https://bplugins.com/products/document-embedder/)** – Embed Word, Excel, PowerPoint, Apple Pages, Psd, Pdf and more.
 
-🔥 **[3D Viewer](https://bplugins.com/products/3d-viewer/)** – Display interactive 3D models on the webs.
+#### ⭐⭐⭐⭐⭐ [Easy, time saving](https://wordpress.org/support/topic/easy-time-saving/)
 
-🔥 **[Advanced Post Block](https://bplugins.com/products/advanced-post-block/)** – Display your Posts, Custom Post Content and Blogs in a professional way!
+❛❛***I recently started using the B Blocks plugin and it has made a huge difference in the quality and functionality of my WordPress websites. The Ultimate Block Collection is truly a timesaver and – it includes a wide range of blocks that have helped me create more interesting dynamic pages.***❜❜
+
+***-[cjvalotta](https://wordpress.org/support/users/cjvalotta/)***
+
+
+#### ⭐⭐⭐⭐⭐ [OUTSTANDING](https://wordpress.org/support/topic/outstanding-566/)
+
+❛❛***This plugin set has it all and it all works outstanding. I am completely in love with all the options. Thank you so very much. AMAZING WORK!***❜❜
+
+***-[jiggyjaeg](https://profiles.wordpress.org/jiggyjaeg/)***
+
+
+#### ⭐⭐⭐⭐⭐ [B Blocks from bPlugins is amazing.](https://wordpress.org/support/topic/b-blocks-from-bplugins-is-amazing/)
+
+❛❛***I just wanted to say that if you are looking for the best block plug-in collection then you need not look any further. This is the ultimate block collection. Highly recommended.***❜❜
+
+***-[Sigurgeir](https://profiles.wordpress.org/sigurgeir/)***
+
+
+#### ⭐⭐⭐⭐⭐ [Very useful](https://wordpress.org/support/topic/very-useful-2920/)
+
+❛❛***I think this is something new. But very good. Many more will be using it soon. And it will have plenty of five-star ratings.***❜❜
+
+***-[bzpr123pt](https://wordpress.org/support/users/bzpr123pt/)***
+
+
+#### - Did you like this plugin? Dislike it? Have a feature request? [Please share your feedback with us](mailto:support@bplugins.com 'Send feedback')
+
+
+### ⭐ Check out our other WordPress Plugins-
+
+🔥 **[Html5 Audio Player](https://bplugins.com/products/html5-audio-player)** – Best audio player plugin for WordPress.
+
+🔥 **[Html5 Video Player](https://bplugins.com/products/html5-video-player)** – Best video player plugin for WordPress.
+
+🔥 **[PDF Poster](https://bplugins.com/products/pdf-poster)** – A fully-featured PDF Viewer Plugin for WordPress.
+
+🔥 **[Document Embedder](https://bplugins.com/products/document-embedder)** – Best WordPress Document Embeder Plugin.
+
+🔥 **[3D Viewer](https://bplugins.com/products/3d-viewer)** – Display interactive 3D models on the webs.
+
+🔥 **[Advanced Post Block](https://bplugins.com/products/advanced-post-block)** – Best Post Display Plugin for WordPress.
 
 
 == Installation ==
 
-= Automatic installation =
+### Automatic installation
 1. Go to the Plugin menu and click on the **Add New** Button
 2. Search for **B Blocks**
 3. Install and activate the B Blocks plugin from there
 
-= Download & Upload: =
+### Download & Upload:
 1. Download the **b Blocks** plugin (*.zip file*)
 2. In your admin area, go to the Plugins menu and click on **Add New**
 3. Click on **Upload Plugin** and choose the **`b-blocks.zip`** file and click on **Install Now**
 4. Activate the plugin and Enjoy!
 
-= Manually: =
+### Manually:
 1. Download and upload the **B Blocks** plugin to the **`/wp-content/plugins/`** directory
 2. Activate the plugin through the Plugins menu in WordPress
 
-= Use Block: =
+### Use Block:
 1. Go to the WordPress Block/Gutenberg Editor
 2. Add one or more blocks from the block category called **B Blocks** in the Gutenberg editor
 3. Enjoy!
@@ -196,6 +241,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 1.8.9 - 7 May 2024 =
+* Update Posts and Counter's blocks
 
 = 1.8.8 - 24 Apr 2024 =
 * Update Posts ( remove password filter ) and Slider blocks
@@ -345,6 +393,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.8.9 - 7 May 2024 =
+* Update Posts and Counter's blocks
 
 = 1.8.8 - 24 Apr 2024 =
 * Update Posts ( remove password filter ) and Slider blocks

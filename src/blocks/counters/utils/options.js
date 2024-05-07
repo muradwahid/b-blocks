@@ -10,3 +10,8 @@ export const iconPositions = [
 	{ label: __('Top', 'b-blocks'), value: 'top' },
 	{ label: __('Label', 'b-blocks'), value: 'label' }
 ];
+export const sepChars = [
+	{ label: __('None', 'b-blocks'), value: '' },
+	{ label: __('Coma (1,000)', 'b-blocks'), value: ',' },
+	{ label: __('Space (1 000)', 'b-blocks'), value: ' ' }
+];

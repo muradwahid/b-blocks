@@ -111,6 +111,12 @@
 			"type": "number",
 			"default": 2000
 		},
+		"separator": {
+			"type": "object",
+			"default": {
+				"char": ""
+			}
+		},
 		"background": {
 			"type": "object",
 			"default": {

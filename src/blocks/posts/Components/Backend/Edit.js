@@ -61,7 +61,8 @@ export default withSelect((select, { attributes, setAttributes }) => {
 		order: postsOrder,
 		offset: isPostsPerPageAll ? 0 : postsOffset,
 		...includes,
-		exclude: isExcludeCurrent ? [select('core/editor').getCurrentPostId(), ...filterNaN(postsExclude)] : filterNaN(postsExclude)
+		exclude: isExcludeCurrent ? [select('core/editor').getCurrentPostId(), ...filterNaN(postsExclude)] : filterNaN(postsExclude),
+		status: 'publish'
 	}
 
 	const allPosts = filterPassword(getEntityRecords('postType', postType, { ...query, per_page: -1 }), 'false');
