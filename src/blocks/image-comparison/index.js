@@ -1,7 +1,7 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 import metadata from '../../../inc/image-comparison/block.json';
-import Edit from './Edit';
+import Edit from './Components/Backend/Edit';
 import './editor.scss';
 import { imageCompareIcon } from './utils/icons';
 

@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel, Dashicon } from '@wordpress/components';
 
-import { Label, BorderControl, ColorsControl, ImageEditControl, ChangeImageData, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
-import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../Components/utils/options';
+import { BorderControl, ColorsControl, ImageEditControl, ChangeImageData, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../../../../Components';
+import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../../../../Components/utils/options';
 
 const beforeAfterImgTab = [
 	{ name: 'before-img', title: __('Before Img', 'b-blocks') },
@@ -15,7 +15,6 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			<Label className=''></Label> {/* Just use the component */}
 			<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
 				<div className='helpItem'>
 					<a href='https://bblockswp.com/docs/image-comparison-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>

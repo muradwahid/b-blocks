@@ -1,9 +1,10 @@
-import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
+import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { alignment, width, border, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding } = attributes;
 
-	const imgCompareSl = `#bBlocksImageComparison-${clientId} .bBlocksImageComparison`;
+	const mainSl = `#bBlocksImageComparison-${clientId}`;
+	const imgCompareSl = `${mainSl} .bBlocksImageComparison`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
@@ -12,7 +13,7 @@ const Style = ({ attributes, clientId }) => {
 		${getTypoCSS(`${imgCompareSl} .overlay`, labelTypo)?.styles}
 		${getTypoCSS(`${imgCompareSl} .caption`, capTypo)?.styles}
 
-		#bBlocksImageComparison-${clientId}{
+		${mainSl}{
 			text-align: ${alignment};
 		}
 		${imgCompareSl}{
