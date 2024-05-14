@@ -26,7 +26,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div className={className} id={`bBlocksImageComparison-${clientId}`}>
+		<div className={className} id={`bBlocksImageCompare-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />
 
 			{bImgURL && aImgURL ? <ImageCompare attributes={attributes} beforeLabelEl={beforeLabelEl} afterLabelEl={afterLabelEl} captionEl={captionEl} /> :

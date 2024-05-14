@@ -1,10 +1,10 @@
-import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
+import { getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { alignment, width, border, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding } = attributes;
 
-	const mainSl = `#bBlocksImageComparison-${clientId}`;
-	const imgCompareSl = `${mainSl} .bBlocksImageComparison`;
+	const mainSl = `#bBlocksImageCompare-${clientId}`;
+	const imgCompareSl = `${mainSl} .bBlocksImageCompare`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
@@ -18,7 +18,7 @@ const Style = ({ attributes, clientId }) => {
 		}
 		${imgCompareSl}{
 			width: ${width};
-			${getSpaceCSS(border)};
+			${getBorderCSS(border)};
 		}
 
 		${imgCompareSl} .overlay{

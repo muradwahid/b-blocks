@@ -43,7 +43,7 @@ const ImageCompare = ({ attributes, beforeLabelEl, afterLabelEl, captionEl }) =>
 		};
 	}, []);
 
-	return <div className='bBlocksImageComparison' ref={imgCompareRef}>
+	return <div className='bBlocksImageCompare' ref={imgCompareRef}>
 		<div className='comparison-slider'>
 			{afterLabelEl}
 			<img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
