@@ -47,6 +47,10 @@
 			"type": "string",
 			"default": "normal"
 		},
+		"direction": {
+			"type": "number",
+			"default": 1
+		},
 		"count": {
 			"type": "number",
 			"default": 0
@@ -62,6 +66,26 @@
 		"link": {
 			"type": "string",
 			"default": ""
+		},
+		"isLinkInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"interactivity": {
+			"type": "string",
+			"default": "noInteractivity"
+		},
+		"interactivityMode": {
+			"type": "string",
+			"default": ""
+		},
+		"interactivityContainer": {
+			"type": "string",
+			"default": ".wp-block-b-blocks-lottie-player"
+		},
+		"interactivityActions": {
+			"type": "array",
+			"default": []
 		},
 		"width": {
 			"type": "string",
@@ -98,6 +122,49 @@
 		"controlsThumbColor": {
 			"type": "string",
 			"default": "#4527a4"
+		},
+		"isCap": {
+			"type": "boolean",
+			"default": false
+		},
+		"caption": {
+			"type": "string",
+			"default": "",
+			"selector": ".bBlocksLottiePlayer .caption"
+		},
+		"capAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"capColors": {
+			"type": "object",
+			"default": {
+				"color": "#333"
+			}
+		},
+		"capTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": 14,
+					"tablet": 14,
+					"mobile": 14
+				}
+			}
+		},
+		"capPadding": {
+			"type": "object",
+			"default": {
+				"vertical": "5px",
+				"horizontal": "10px"
+			}
+		},
+		"capMargin": {
+			"type": "object",
+			"default": {
+				"side": 4,
+				"top": "5px"
+			}
 		}
 	},
 	"supports": {

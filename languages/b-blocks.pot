@@ -2,22 +2,22 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 1.9.0\n"
+"Project-Id-Version: B Blocks 1.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-05-13T11:09:43+00:00\n"
+"POT-Creation-Date: 2024-05-20T05:04:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
 #: inc/AdminMenu.php:23
 #: inc/AdminMenu.php:24
-#: plugin.php:151
+#: plugin.php:150
 msgid "B Blocks"
 msgstr ""
 
@@ -2524,11 +2524,83 @@ msgid "Bounce"
 msgstr ""
 
 #: dist/editor.js:10
-msgid "Player Settings"
+msgid "Forward"
 msgstr ""
 
 #: dist/editor.js:10
-msgid "Lottie Json file url:"
+msgid "Backward"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "No Interactivity"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Sync with scroll"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Scroll relative to container"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Scroll with offset"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Sync animation with cursor position"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Sync animation with cursor horizontal movement"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Play animation on click"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Play animation when visible"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Scroll"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Cursor"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Chain"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Seek"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Stop"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Loop"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Player"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Lottie file url:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter lottie file url"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Support only .json or .lottie file!"
 msgstr ""
 
 #: dist/editor.js:10
@@ -2552,7 +2624,47 @@ msgid "Interval (s):"
 msgstr ""
 
 #: dist/editor.js:10
-msgid "Player"
+msgid "Link the player:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "If you want to link the player, enter the link here. Otherwise, leave as blank."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Open link in a new tab"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Interactivity"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Interactivity:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Upload file first then change interactivity option."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Interactivity will not working in backend(editor)."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Container Selector"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Enter container selector. Ex: if id enter '#id', if class '.class' or if tag 'tag name'"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Offset (%)"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Caption"
 msgstr ""
 
 #: dist/editor.js:10
@@ -2573,6 +2685,98 @@ msgstr ""
 
 #: dist/editor.js:10
 msgid "Thumb Color:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Typography:"
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Upload File "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Upload Lottie JSON files from the media library."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Hover "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Play the Lottie animation on mouseover."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Mode "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Choose between normal and bounce modes."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Direction "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Set the animation direction to forward or backward."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Count "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Specify how many times the animation will play."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Speed "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Adjust the player speed."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Interval "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Set the autoplay interval."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Link Tab "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Option to open the link in a new tab."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Interactivity "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Define interactivity options to determine when and where the animation will play."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Caption "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Add a caption for the Lottie player."
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Caption Style "
+msgstr ""
+
+#: dist/editor.js:10
+msgid "Style the caption, including text alignment, typography, text and background colors, padding, and margin."
 msgstr ""
 
 #: dist/editor.js:10
@@ -2989,10 +3193,6 @@ msgstr ""
 
 #: dist/editor.js:10
 msgid "Prefix Text"
-msgstr ""
-
-#: dist/editor.js:10
-msgid "Typography:"
 msgstr ""
 
 #: dist/editor.js:10
@@ -3625,10 +3825,6 @@ msgstr ""
 
 #: dist/editor.js:10
 msgid "Animate text:"
-msgstr ""
-
-#: dist/editor.js:10
-msgid "Loop"
 msgstr ""
 
 #: dist/editor.js:10

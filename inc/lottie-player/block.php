@@ -14,7 +14,7 @@ class BBlocksLottiePlayer extends BBlocks{
 		extract( $attributes );
 
 		wp_enqueue_style( 'b-blocks-lottie-player-style' );
-		wp_enqueue_script( 'b-blocks-lottie-player-script', B_BLOCKS_DIST . 'lottie-player.js', [ 'react', 'react-dom', 'lottiePlayer' ], B_BLOCKS_VERSION, true );
+		wp_enqueue_script( 'b-blocks-lottie-player-script', B_BLOCKS_DIST . 'lottie-player.js', [ 'react', 'react-dom', 'dotLottiePlayer', 'lottieInteractivity' ], B_BLOCKS_VERSION, true );
 		wp_set_script_translations( 'b-blocks-lottie-player-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 		$className = $className ?? '';

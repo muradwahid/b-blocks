@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.5.3
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -242,6 +242,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.9.1 - 20 May 2024 =
+* Update Lottie Player Block
+
 = 1.9.0 - 9 May 2024 =
 * Update Image Compare Block
 
@@ -396,6 +399,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.9.1 - 20 May 2024 =
+* Update Lottie Player Block
 
 = 1.9.0 - 9 May 2024 =
 * Update Image Compare Block

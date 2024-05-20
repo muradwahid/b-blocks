@@ -4,13 +4,14 @@
 	}
 
 	.bBlocksLottiePlayer {
-		lottie-player {
+		dotlottie-player {
 			display: inline-flex;
 			max-width: 100%;
+		}
 
-			#lottie-controls.toolbar {
-				margin: 0;
-			}
+		.caption {
+			max-width: 100%;
+			display: inline-block;
 		}
 	}
 }

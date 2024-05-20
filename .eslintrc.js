@@ -18,6 +18,7 @@ module.exports = {
 		'wp': 'readonly',
 		'jQuery': 'readonly',
 		'Swiper': 'readonly',
+		'LottieInteractivity': 'readonly',
 		'Plyr': 'readonly',
 		'Chart': 'readonly'
 	},
