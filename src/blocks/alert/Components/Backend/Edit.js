@@ -3,10 +3,10 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { Tooltip } from '@wordpress/components';
 
-import { tabController } from '../../../../Components/utils/functions';
+import { tabController } from '../../../../../../Components/utils/functions';
 
-import Settings from './Settings';
-import Style from './Style';
+import Settings from './Settings/Settings';
+import Style from '../Common/Style';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId, isSelected } = props;

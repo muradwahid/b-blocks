@@ -28,7 +28,7 @@ const Edit = props => {
 
 			posts?.length ?
 				<div className={className} id={`bBlocksPosts-${clientId}`}>
-					<Posts posts={posts} totalPosts={totalPosts} attributes={attributes} setAttributes={setAttributes} clientId={clientId} />
+					<Posts posts={posts} totalPosts={totalPosts} attributes={attributes} setAttributes={setAttributes} clientId={clientId} isPremium={isPremium} />
 				</div> :
 
 				<NoPosts />}

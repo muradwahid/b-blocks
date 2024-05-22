@@ -2,6 +2,27 @@
 namespace BBlocks\Inc\Posts\Helpers;
 
 class Functions{	
+	static function sanitize_array($array){
+		if( !is_array( $array ) ) {
+			return false;
+		}
+
+		foreach( $array as $key => $value ) {
+			if( strpos( $key, 'secret_key' ) !== false && strlen( $value ) == 32 ) {
+				$value = sanitize_text_field( str_replace( '<', '&lt;', $value ) ); 
+				$value = sanitize_text_field( $value );
+				$array[$key] = str_replace( ['&lt;', '&gt;', '&amp;'], [ '<', '>', '&'], $value );
+			}else {
+				if( is_array( $value ) ) {
+					$array[$key] = self::sanitize_array( $value );
+				}else {
+					$array[$key] =$value == 'true' ? true : ( $value == 'false' ? false :  sanitize_text_field( $value ) );
+				}
+			}
+		}
+		return $array;
+	}
+
 	static function filterNaN( $array ) {
 		return array_filter( $array, function( $id ) {
 			return $id && is_numeric( $id );

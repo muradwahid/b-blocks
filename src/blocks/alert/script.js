@@ -1,30 +1,30 @@
 import { createRoot } from 'react-dom/client';
 
 import './style.scss';
-import Style from './Style';
-import AlertBox from './AlertBox';
+import Style from './Components/Common/Style';
+import AlertBox from './Components/Common/AlertBox';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const allAlert = document.querySelectorAll('.wp-block-b-blocks-alert');
-	allAlert.forEach(alert => {
-		const attributes = JSON.parse(alert.dataset.attributes);
+	const alertEls = document.querySelectorAll('.wp-block-b-blocks-alert');
+	alertEls.forEach(alertEl => {
+		const attributes = JSON.parse(alertEl.dataset.attributes);
 
-		createRoot(alert).render(<>
+		createRoot(alertEl).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
 			<AlertBox attributes={attributes} />
 		</>);
 
 		// Alert Close Script
-		const alertCloseEl = document.querySelector(`#${alert.id} .bBlocksAlert .alert .alertClose`);
+		const alertCloseEl = document.querySelector(`#${alertEl.id} .bBlocksAlert .alert .alertClose`);
 		alertCloseEl && alertCloseEl.addEventListener('click', () => {
-			alert.classList.add('transformHidden');
+			alertEl.classList.add('transformHidden');
 
 			setTimeout(() => {
-				alert.style.display = 'none';
+				alertEl.style.display = 'none';
 			}, 400);
 		});
 
-		alert?.removeAttribute('data-attributes');
+		alertEl?.removeAttribute('data-attributes');
 	});
 });

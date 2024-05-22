@@ -1,4 +1,3 @@
-// Alert
 .wp-block-b-blocks-alert {
 	transition: opacity .3s ease-in-out, transform 8s ease-in-out;
 	transform: translateY(0);
@@ -26,6 +25,11 @@
 				top: 3px;
 				right: 4px;
 				cursor: pointer;
+			}
+
+			.alertMessage,
+			.alertMessage * {
+				display: inline;
 			}
 		}
 	}

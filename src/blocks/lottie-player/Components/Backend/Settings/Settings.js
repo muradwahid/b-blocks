@@ -12,6 +12,7 @@ import { tabController } from '../../../../../../../Components/utils/functions';
 import ProModal from '../../../../../ProModal/ProModal';
 import { aligns, generalStyleTabs } from '../../../../../utils/options';
 import { directions, interactivities, modes } from '../../../utils/options';
+import { actionsOnInteractivityChange } from '../../../utils/functions';
 
 const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 	const { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, link, isLinkInNewTab = false, interactivity = 'noInteractivity', interactivityContainer = '.wp-block-b-blocks-lottie-player', interactivityActions = [], width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor, isCap = false, caption = '', capAlign = 'center', capTypo = {}, capColors = { color: '#333' }, capPadding = {}, capMargin = {} } = attributes;
@@ -80,95 +81,12 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 
 
 					<PanelBody title={__('Interactivity', 'b-blocks')} {...panelBodyIF}>
-						<BControlPro label={__('Interactivity:', 'b-blocks')} value={interactivity} onChange={val => {
-							setAttributes({ interactivity: val });
-							'noInteractivity' === val && setAttributes({
-								interactivityMode: '',
-								interactivityActions: []
-							});
-							'syncWithScroll' === val && setAttributes({
-								interactivityMode: 'scroll',
-								interactivityActions: [
-									{
-										visibility: [0, 1],
-										type: 'seek',
-										frames: [0, fileFrameSize]
-									}
-								]
-							});
-							'scrollRelativeToContainer' === val && setAttributes({
-								interactivityMode: 'scroll',
-								interactivityContainer: '.wp-block-b-blocks-lottie-player',
-								interactivityActions: [
-									{
-										visibility: [0, 1],
-										type: 'seek',
-										frames: [0, fileFrameSize]
-									}
-								]
-							});
-							'scrollWithOffset' === val && setAttributes({
-								interactivityMode: 'scroll',
-								interactivityActions: [
-									{
-										visibility: [0, 0.3],
-										type: 'stop',
-										frames: [0]
-									},
-									{
-										visibility: [0.3, 1.0],
-										type: 'seek',
-										frames: [0, fileFrameSize]
-									}
-								]
-							});
-							'syncAnimationWithCursorPosition' === val && setAttributes({
-								interactivityMode: 'cursor',
-								interactivityActions: [
-									{
-										position: { x: [0, 1], y: [0, 1] },
-										type: 'seek',
-										frames: [0, fileFrameSize]
-									}
-								]
-							});
-							'syncAnimationWithCursorHorizontalMovement' === val && setAttributes({
-								interactivityMode: 'cursor',
-								interactivityActions: [
-									{
-										position: { x: [0, 1], y: [-1, 2] },
-										type: 'seek',
-										frames: [0, fileFrameSize]
-									}
-								]
-							});
-							'playAnimationOnClick' === val && setAttributes({
-								interactivityMode: 'cursor',
-								interactivityActions: [
-									{
-										type: 'click',
-										forceFlag: false
-									}
-								]
-							});
-							'toggleAnimation' === val && setAttributes({
-								interactivityMode: 'cursor',
-								interactivityActions: [
-									{
-										type: 'toggle'
-									}
-								]
-							});
-							'playAnimationWhenVisible' === val && setAttributes({
-								interactivityMode: 'scroll',
-								interactivityActions: [
-									{
-										visibility: [0.50, 1.0],
-										type: 'play'
-									}
-								]
-							});
-						}} options={interactivities} {...premiumProps} Component={SelectControl} />
+						<BControlPro label={__('Interactivity:', 'b-blocks')} value={interactivity} onChange={val => setAttributes({
+							interactivity: val,
+							interactivityMode: ['syncWithScroll', 'scrollRelativeToContainer', 'scrollWithOffset', 'playAnimationWhenVisible'].includes(val) ? 'scroll' : (['syncAnimationWithCursorPosition', 'syncAnimationWithCursorHorizontalMovement', 'playAnimationOnClick', 'toggleAnimation'].includes(val) ? 'cursor' : ''),
+							interactivityContainer: 'scrollRelativeToContainer' === val ? '.wp-block-lpb-lottie-player' : interactivityContainer,
+							interactivityActions: actionsOnInteractivityChange(val, fileFrameSize)
+						})} options={interactivities} {...premiumProps} Component={SelectControl} />
 
 						<small>{__('Upload file first then change interactivity option.', 'b-blocks')}</small>
 						<br />
@@ -182,10 +100,12 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 						</>}
 
 						{'scrollWithOffset' === interactivity && <>
-							<NumberControl className='mt20' label={__('Offset (%)', 'b-blocks')} labelPosition='left' value={interactivityActions?.[0]?.visibility?.[1] * 100} onChange={val => {
-								updateInteractivityAction(0, 'visibility', parseFloat(val) / 100, 1);
-								updateInteractivityAction(1, 'visibility', parseFloat(val) / 100, 0);
-							}} />
+							<NumberControl className='mt20' label={__('Offset (%)', 'b-blocks')} labelPosition='left' value={interactivityActions?.[0]?.visibility?.[1] * 100} onChange={val => setAttributes({
+								interactivityActions: produce(interactivityActions, draft => {
+									draft[0]['visibility'][1] = parseFloat(val) / 100;
+									draft[1]['visibility'][0] = parseFloat(val) / 100;
+								})
+							})} />
 
 							<small>{__(`Scroll animation when lottie player reached at ${interactivityActions?.[0]?.visibility?.[1] * 100} % of viewport`, 'b-blocks')}</small>
 						</>}

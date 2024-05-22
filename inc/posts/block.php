@@ -1,11 +1,10 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) { exit; }
+
 require_once B_BLOCKS_DIR_PATH . '/inc/posts/helpers/functions.php';
 
 class BBlocksPosts extends BBlocks{
 	public function __construct(){
-		add_action( 'wp_ajax_bBlocksPosts', [$this, 'bBlocksPosts'] );
-		add_action( 'wp_ajax_nopriv_bBlocksPosts', [$this, 'bBlocksPosts'] );
-
 		add_action( 'init', [$this, 'onInit'] );
 
 		add_filter( 'b_blocks_posts_excerpt_filter', function( $plainText, $htmlContent ){
@@ -75,19 +74,6 @@ class BBlocksPosts extends BBlocks{
 		return $posts;
 	}
 
-	function bBlocksPosts(){
-		$nonce = $_POST['_wpnonce'] ?? null;
-
-		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
-			wp_send_json_error( 'Invalid Request' );
-		}
-
-		$attributes = $_POST['queryAttr'];
-		$pageNumber = (int)$_POST['pageNumber'] ?? 1;
-
-		wp_send_json_success( $this->getPosts( $attributes, $pageNumber ) );
-	}
-
 	function onInit(){
 		register_block_type( __DIR__, [
 			'render_callback' => [$this, 'render']
@@ -111,15 +97,21 @@ class BBlocksPosts extends BBlocks{
 		$allPosts = get_posts( array_merge( $this->query( $attributes ), [ 'posts_per_page' => -1 ] ) );
 
 		ob_start(); ?>
+		<script id='bBlocksFirstPagePostsScript-<?php echo esc_attr( $cId ); ?>'>
+			window['bBlocksFirstPagePosts-<?php echo esc_html( $cId ); ?>'] = <?php echo wp_json_encode( $this->getPosts( $attributes ) ); ?>;
+		</script>
 		<div
 			class='<?php echo esc_attr( $blockClassName ); ?>'
 			id='bBlocksPosts-<?php echo esc_attr( $cId ); ?>'
 			data-nonce='<?php echo esc_attr( wp_json_encode( wp_create_nonce( 'wp_ajax' ) ) ); ?>'
 			data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'
 			data-extra='<?php echo esc_attr( wp_json_encode( [ 'totalPosts' => count( $allPosts ) ] ) ); ?>'
-			data-firstposts='<?php echo esc_attr( wp_json_encode( $this->getPosts( $attributes ) ) ); ?>'
 		></div>
 		<?php return ob_get_clean();
 	} // Render
 }
 new BBlocksPosts();
+
+if( BBlocks\Inc\BBlocksUtils::isPro() ){
+	require_once B_BLOCKS_DIR_PATH . '/inc/posts/Ajax.php';
+}

@@ -1,4 +1,4 @@
-import { getColorsCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
+import { getColorsCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId }) => {
 	const { width, alignment, textAlign, typography, colors, padding, border, shadow } = attributes;
@@ -11,7 +11,7 @@ const Style = ({ attributes, clientId }) => {
 		${getTypoCSS('', typography)?.googleFontLink}
 		${getTypoCSS(alertSl, typography)?.styles}
 
-		${mainAlertSl}{
+		${alertSl}{
 			text-align: ${alignment};
 		}
 		${alertSl}{
@@ -23,11 +23,21 @@ const Style = ({ attributes, clientId }) => {
 			box-shadow: ${getShadowCSS(shadow)};
 		}
 		${alertSl} .alertIcon{
-			font-size: ${typography?.fontSize}px;
+			font-size: ${typography?.fontSize?.desktop};
 			color: ${colors?.color};
 		}
 		${alertSl} .alertClose{
 			color: ${colors?.color};
+		}
+		@media (max-width: 768px) {
+			${alertSl} .alertIcon{
+				font-size: ${typography?.fontSize?.tablet};
+			}
+		}
+		@media (max-width: 576px) {
+			${alertSl} .alertIcon{
+				font-size: ${typography?.fontSize?.mobile};
+			}c
 		}
 		`.replace(/\s+/g, ' ')
 	}} />;

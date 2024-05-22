@@ -43,7 +43,7 @@
 		"icon": {
 			"type": "object",
 			"default": {
-				"class": "fa fa-exclamation-circle"
+				"class": "fa-solid fa-bell"
 			}
 		},
 		"isDismiss": {
