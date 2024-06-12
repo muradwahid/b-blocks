@@ -42,7 +42,7 @@
 					"frontIconWidth": "70px",
 					"isBackUpIcon": false,
 					"backIcon": {
-						"class": "fab fa-wordpress",
+						"class": "fa-brands fa-wordpress",
 						"fontSize": 70,
 						"color": "#fff"
 					},
@@ -93,7 +93,7 @@
 					"frontIconWidth": "70px",
 					"isBackUpIcon": false,
 					"backIcon": {
-						"class": "fab fa-wordpress",
+						"class": "fa-brands fa-wordpress",
 						"fontSize": 70,
 						"color": "#fff"
 					},
@@ -144,7 +144,7 @@
 					"frontIconWidth": "70px",
 					"isBackUpIcon": false,
 					"backIcon": {
-						"class": "fab fa-wordpress",
+						"class": "fa-brands fa-wordpress",
 						"fontSize": 70,
 						"color": "#fff"
 					},

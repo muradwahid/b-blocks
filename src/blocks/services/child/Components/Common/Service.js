@@ -1,4 +1,4 @@
-import { longArrowToRightIcon } from '../utils/icons';
+import { longArrowToRightIcon } from '../../../utils/icons';
 
 const Service = ({ attributes, children }) => {
 	const { isIcon, isUpIcon, icon, upIcon, isLink, link, linkIn } = attributes;

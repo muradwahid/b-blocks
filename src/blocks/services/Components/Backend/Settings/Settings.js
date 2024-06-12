@@ -4,10 +4,10 @@ import { select, dispatch } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, PanelRow, RangeControl, SelectControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl, Typography } from '../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
+import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl, Typography } from '../../../../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../../../../Components/utils/options';
 
-import { layouts, linkPosition } from './utils/options';
+import { layouts, linkPosition } from '../../../utils/options';
 
 const Settings = ({ attributes, setAttributes, clientId }) => {
 	const { layout, columns, columnGap, rowGap, background, textAlign, itemHeight, itemPadding, itemBorder, itemShadow, iconPadding, iconMargin, titleTypo, titleMargin, descTypo } = attributes;
@@ -118,7 +118,10 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 					<SpaceControl className='mt20' label={__('Icon Margin:', 'b-blocks')} value={iconMargin} onChange={val => setAttributes({ iconMargin: val })} defaults={{ side: 4, bottom: '20px' }} />
 				</> : ''}
 
-				<ToggleControl className='mt35' label={__('Show Title', 'b-blocks')} checked={isTitle || childAttributes?.isTitle} onChange={val => { setChildAttributes({ isTitle: val }); setIsTitle(val); }} />
+				<ToggleControl className='mt35' label={__('Show Title', 'b-blocks')} checked={isTitle || childAttributes?.isTitle} onChange={val => {
+					setChildAttributes({ isTitle: val });
+					setIsTitle(val);
+				}} />
 
 				{isTitle || childAttributes?.isTitle ? <>
 					<Typography label={__('Title Typography:', 'b-blocks')} value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 23, tablet: 20, mobile: 18 } }} />

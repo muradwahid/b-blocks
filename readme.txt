@@ -3,7 +3,7 @@ Contributors: bplugins, abuhayat, charlescormier
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
-Tested up to: 6.5.3
+Tested up to: 6.5.4
 Stable tag: 1.9.2
 Requires PHP: 7.1
 License: GPLv3 or later
@@ -154,7 +154,7 @@ With B Blocks, designing a professional and visually stunning WordPress website 
 
 🔥 **[PDF Poster](https://bplugins.com/products/pdf-poster)** – A fully-featured PDF Viewer Plugin for WordPress.
 
-🔥 **[Document Embedder](https://bplugins.com/products/document-embedder)** – Best WordPress Document Embeder Plugin.
+🔥 **[Document Embedder](https://bplugins.com/products/document-embedder)** – Best WordPress Document Embedder Plugin.
 
 🔥 **[3D Viewer](https://bplugins.com/products/3d-viewer)** – Display interactive 3D models on the webs.
 

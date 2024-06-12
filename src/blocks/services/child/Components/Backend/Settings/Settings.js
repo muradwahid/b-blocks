@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { Dashicon, PanelBody, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, BColor, BorderControl, IconControl, InlineDetailMediaUpload } from '../../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../../Components/utils/options';
+import { Label, Background, BColor, BorderControl, IconControl, InlineDetailMediaUpload } from '../../../../../../../../Components';
+import { pxUnit, perUnit, emUnit } from '../../../../../../../../Components/utils/options';
 
 const Settings = ({ attributes, setAttributes }) => {
 	const { background, hoverBG, isIcon, isUpIcon, icon, upIcon, iconWidth, iconBorder, isTitle, titleColor, isDesc, descColor, isLink, link, linkIn, linkIconColor, linkBGColor, linkBGHovColor } = attributes;
@@ -37,7 +37,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={iconWidth} onChange={val => setAttributes({ iconWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-			</> : <IconControl value={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fab fa-wordpress', fontSize: 70 }} />}
+			</> : <IconControl value={icon} onChange={val => setAttributes({ icon: val })} defaults={{ class: 'fa-brands fa-wordpress', fontSize: 70 }} />}
 
 			<BorderControl label={__('Border:', 'b-blocks')} value={iconBorder} onChange={val => setAttributes({ iconBorder: val })} />
 		</PanelBody>}

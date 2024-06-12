@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
 
 const Style = ({ attributes, clientId, isBackend = false }) => {
 	const { columnGap, rowGap, background, textAlign, itemHeight, itemPadding, itemBorder, itemShadow, iconPadding, iconMargin, titleTypo, titleMargin, descTypo } = attributes;
@@ -28,7 +28,7 @@ const Style = ({ attributes, clientId, isBackend = false }) => {
 			text-align: ${textAlign};
 			min-height: ${itemHeight};
 			padding: ${getSpaceCSS(itemPadding)};
-			${getBorderCSS(itemBorder)}
+			${getBorderCSS(itemBorder) || 'border-radius: 15px;'}
 			box-shadow: ${getShadowCSS(itemShadow)};
 		}
 		${serviceSl} .bgLayer{

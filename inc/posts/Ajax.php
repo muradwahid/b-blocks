@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
-class APBPremium extends BBlocksPosts{
+class BBlocksPostsPremium extends BBlocksPosts{
 	function __construct(){
 		add_action( 'wp_ajax_bBlocksPosts', [$this, 'bBlocksPosts'] );
 		add_action( 'wp_ajax_nopriv_bBlocksPosts', [$this, 'bBlocksPosts'] );
@@ -20,4 +20,4 @@ class APBPremium extends BBlocksPosts{
 		wp_send_json_success( $this->getPosts( $attributes, $pageNumber ) );
 	}
 }
-new APBPremium();
+new BBlocksPostsPremium();

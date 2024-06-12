@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 
-import Settings from './Settings';
-import Style from './Style';
+import Settings from './Settings/Settings';
+import Style from '../Common/Style';
 
 const Edit = props => {
 	const { className, attributes, setAttributes, clientId } = props;

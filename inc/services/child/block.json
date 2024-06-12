@@ -51,7 +51,7 @@
 		"icon": {
 			"type": "object",
 			"default": {
-				"class": "fab fa-wordpress",
+				"class": "fa-brands fa-wordpress",
 				"fontSize": 70
 			}
 		},

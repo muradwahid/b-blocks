@@ -34,7 +34,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					color: '#fff'
 				},
 				backIcon: {
-					class: 'fab fa-wordpress',
+					class: 'fa-brands fa-wordpress',
 					fontSize: 70,
 					color: '#fff'
 				},

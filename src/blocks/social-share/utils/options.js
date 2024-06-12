@@ -59,7 +59,7 @@ export const iconClassList = [
 	['linkedin', 'fab fa-linkedin-in'],
 	['pinterest', 'fab fa-pinterest-p'],
 	['blogger', 'fab fa-blogger-b'],
-	['wordpress', 'fab fa-wordpress'],
+	['wordpress', 'fa-brands fa-wordpress'],
 	['tumblr', 'fab fa-tumblr'],
 	['reddit', 'fab fa-reddit-alien'],
 	['digg', 'fab fa-digg'],

@@ -28,7 +28,7 @@
 					},
 					"isUpIcon": false,
 					"icon": {
-						"class": "fab fa-wordpress",
+						"class": "fa-brands fa-wordpress",
 						"fontSize": 120
 					},
 					"upIcon": {
@@ -55,7 +55,7 @@
 					},
 					"isUpIcon": false,
 					"icon": {
-						"class": "fab fa-wordpress",
+						"class": "fa-brands fa-wordpress",
 						"fontSize": 120
 					},
 					"upIcon": {
@@ -82,7 +82,7 @@
 					},
 					"isUpIcon": false,
 					"icon": {
-						"class": "fab fa-wordpress",
+						"class": "fa-brands fa-wordpress",
 						"fontSize": 120
 					},
 					"upIcon": {

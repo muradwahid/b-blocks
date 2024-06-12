@@ -2,7 +2,7 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 import metadata from '../../../inc/services/block.json';
-import Edit from './Edit';
+import Edit from './Components/Backend/Edit';
 import './child';
 import './editor.scss';
 import { servicesIcon } from './utils/icons';

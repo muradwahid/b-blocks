@@ -1,16 +1,15 @@
 import { createRoot } from 'react-dom/client';
 
-import Style from './Style';
-import Service from './Service';
+import Style from './Components/Common/Style';
+import Service from './Components/Common/Service';
 
-// Service
 document.addEventListener('DOMContentLoaded', () => {
-	const allService = document.querySelectorAll('.wp-block-b-blocks-service');
-	allService.forEach(service => {
-		const attributes = JSON.parse(service.dataset.attributes);
+	const serviceEls = document.querySelectorAll('.wp-block-b-blocks-service');
+	serviceEls.forEach(serviceEl => {
+		const attributes = JSON.parse(serviceEl.dataset.attributes);
 		const { isTitle, title, isDesc, desc, link, linkIn } = attributes;
 
-		createRoot(service).render(<>
+		createRoot(serviceEl).render(<>
 			<Style attributes={attributes} clientId={attributes.cId} />
 
 			<Service attributes={attributes}>
@@ -24,6 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			</Service>
 		</>);
 
-		service?.removeAttribute('data-attributes');
+		serviceEl?.removeAttribute('data-attributes');
 	});
 });
