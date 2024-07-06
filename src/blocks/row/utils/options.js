@@ -26,6 +26,7 @@ export const colOptions = [
 ];
 
 export const overflows = [
+	{ label: __('Auto', 'b-blocks'), value: 'auto' },
 	{ label: __('Hidden', 'b-blocks'), value: 'hidden' },
 	{ label: __('Visible', 'b-blocks'), value: 'visible' }
 ];

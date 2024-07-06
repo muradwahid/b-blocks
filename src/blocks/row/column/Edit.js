@@ -13,6 +13,7 @@ import Style from './Style';
 import { calcPercentage, getInt, toFixed } from '../utils/functions';
 
 // const initialWidth = { mobile: 100, tablet: 50, desktop: 33.33 }
+const MINWIDTH = 10;
 
 const Edit = props => {
 	const { className, attributes, context, setAttributes, clientId, isSelected, toggleSelection, parentBlockId, rowWidth, parentInnerBlocks, currentIndex, innerBlocks, nextClientId, nextWidth, updateAttributes } = props;
@@ -60,7 +61,7 @@ const Edit = props => {
 	}
 
 	// Calculate difference(%) in onResize
-	// If col and nextCol width is equal and more then 10, then set current and next width in placeholder
+	// If col and nextCol width is equal and more then MINWIDTH, then set current and next width in placeholder
 	const onResize = (event, direction, elt, delta) => {
 		const difference = calcPercentage(delta.width, rowWidth);
 		const calWidth = colWidthHold.current.desktop + difference;
@@ -72,7 +73,7 @@ const Edit = props => {
 			nextBlockWidth = parseFloat(nextColWidthHold.current.desktop) - difference;
 
 
-			if (nextBlockWidth >= 10 && calWidth >= 10) {
+			if (nextBlockWidth >= MINWIDTH && calWidth >= MINWIDTH) {
 				nextBlockWidth = Math.abs(nextBlockWidth);
 				// nextColumnEl.style.width = toFixed(nextBlockWidth) + '%';
 				updateAttributes(nextClientId, { width: { ...nextWidth, desktop: nextBlockWidth } });
@@ -80,7 +81,7 @@ const Edit = props => {
 			}
 		}
 
-		if (nextBlockWidth >= 10 && calWidth >= 10) {
+		if (nextBlockWidth >= MINWIDTH && calWidth >= MINWIDTH) {
 			// if (columnEl) {
 			// 	columnEl.style.width = toFixed(calWidth) + '%';
 			// }
@@ -128,7 +129,7 @@ const Edit = props => {
 			setAttributes({ width: { ...width, [device]: val } });
 			return;
 		}
-		if (val < 10) {
+		if (val < MINWIDTH) {
 			return;
 		}
 
@@ -139,7 +140,7 @@ const Edit = props => {
 			nextBlockWidth = { ...nextWidth };
 			nextBlockWidth.desktop = parseFloat(nextBlockWidth.desktop) - difference;
 
-			if (nextBlockWidth.desktop >= 10 && val >= 10) {
+			if (nextBlockWidth.desktop >= MINWIDTH && val >= MINWIDTH) {
 				// nextColumnEl.style.width = toFixed(Math.abs(nextBlockWidth.desktop)) + '%';
 				updateAttributes(nextClientId, { width: { ...nextBlockWidth } });
 				// setNextColWidth({ ...nextBlockWidth });
@@ -147,7 +148,7 @@ const Edit = props => {
 			}
 		}
 
-		if (nextBlockWidth.desktop >= 10 && val >= 10) {
+		if (nextBlockWidth.desktop >= MINWIDTH && val >= MINWIDTH) {
 			const newWidth = Math.abs(val);
 
 			// if (columnEl) {
@@ -161,7 +162,7 @@ const Edit = props => {
 	}
 
 	return <>
-		<Settings {...props} {...{ attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth }} />
+		<Settings {...props} {...{ attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH }} />
 
 		<div className={className} id={`bBlocksColumn-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} isBackend={true} />
@@ -183,9 +184,9 @@ const Edit = props => {
 				onResizeStart={(event, direction, elt) => onResizeStartEvent(event, direction, elt)}
 				size={{ width: 'auto', height: '100%' }}
 				style={{ transition: 'all .2s ease' }}
-				minWidth={(rowWidth / 10) - getInt(columnGap || '0px')}
+				minWidth={(rowWidth / MINWIDTH) - getInt(columnGap || '0px')}
 			>
-				<div className='bBlocksColumn'>
+				<div className='bBlocksColumn' style={innerBlocks?.length === 0 ? { padding: '10px', background: '#fff' } : {}}>
 					<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender className='columnEmpty' /> : <InnerBlocks.DefaultBlockAppender />} />
 				</div>
 			</ResizableBox>

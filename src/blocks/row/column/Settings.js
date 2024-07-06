@@ -8,12 +8,12 @@ import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl 
 import { overflows } from '../utils/options';
 
 const Settings = props => {
-	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth } = props;
+	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH } = props;
 	const { width, overflow, background, padding, border, shadow } = attributes;
 
 	const [device, setDevice] = useState('desktop');
 
-	const maxColWidth = 100 - (columns - 1) * 10;
+	const maxColWidth = 100 - (columns - 1) * MINWIDTH;
 
 	return <>
 		<InspectorControls>
@@ -22,13 +22,13 @@ const Settings = props => {
 					<Label className='mb5'>{__('Width (%):', 'b-blocks')}</Label>
 					<BDevice device={device} onChange={val => setDevice(val)} />
 				</PanelRow>
-				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={10} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
+				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={MINWIDTH} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
 			</PanelBody>
 
 
-			<PanelBody className='bPlPanelBody' title={__('Column', 'b-blocks')} initialOpen={false}>
+			<PanelBody className='bPlPanelBody' title={__('Column Style', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
-					<Label className=''>{__('Columns Vertical Position:', 'b-blocks')}</Label>
+					<Label className=''>{__('Overflow:', 'b-blocks')}</Label>
 					<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 				</PanelRow>
 

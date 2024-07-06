@@ -8,10 +8,15 @@ const Style = ({ attributes, clientId, isBackend = false }) => {
 
 	const selector = isBackend ? blockListLayout : rowSelect;
 
+	const innerCount = document.querySelector(selector)?.children?.length;
+	const totalInnerBlocks = isBackend ? innerCount - 1 : innerCount;
+	const totalGap = parseInt(columnGap) * (totalInnerBlocks - 1);
+	const gapPerCol = totalGap / totalInnerBlocks;
+
 	const childColumn = isBackend ? `${blockListLayout} .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column .bBlocksColumn`;
 
-	// const firstChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:first-child .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:first-child .bBlocksColumn`;
-	// const lastChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:nth-last-child(2) .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:last-child .bBlocksColumn`;
+	const firstChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:first-child .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:first-child .bBlocksColumn`;
+	const lastChildCol = isBackend ? `${blockListLayout} .block-editor-block-list__block:nth-last-child(2) .wp-block-b-blocks-column` : `${rowSelect} .wp-block-b-blocks-column:last-child .bBlocksColumn`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
@@ -29,7 +34,13 @@ const Style = ({ attributes, clientId, isBackend = false }) => {
 			justify-content: ${columnPositionX};
 		}
 		${childColumn}{
-			margin: 0 calc( ${columnGap} / 2 );
+			margin: 0 calc( ${gapPerCol}px / 2 );
+		}
+		${firstChildCol}{
+			margin: 0 ${gapPerCol}px 0 0;
+		}
+		${lastChildCol}{
+			margin: 0 0 0 ${gapPerCol}px;
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

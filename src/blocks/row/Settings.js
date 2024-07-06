@@ -62,7 +62,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 		<PanelBody className='bPlPanelBody' title={__('Row Style', 'b-blocks')} initialOpen={false}>
 			<PanelRow>
-				<Label className=''>{__('Columns Vertical Position:', 'b-blocks')}</Label>
+				<Label className=''>{__('Overflow:', 'b-blocks')}</Label>
 				<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 			</PanelRow>
 
