@@ -3,7 +3,7 @@ Contributors: bplugins, abuhayat, charlescormier
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
-Tested up to: 6.5.5
+Tested up to: 6.6.1
 Stable tag: 1.9.3
 Requires PHP: 7.1
 License: GPLv3 or later
