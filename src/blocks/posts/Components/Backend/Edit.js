@@ -16,9 +16,9 @@ const Edit = props => {
 
 	const { isPremium } = usePremiumInEditor();
 
-	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
-
 	useEffect(() => tabController(), [isSelected]);
+
+	const id = `bBlocksPosts-${clientId}`;
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} posts={posts} taxOfPostType={taxOfPostType} />
@@ -27,8 +27,8 @@ const Edit = props => {
 			<Loading /> :
 
 			posts?.length ?
-				<div className={className} id={`bBlocksPosts-${clientId}`}>
-					<Posts posts={posts} totalPosts={totalPosts} attributes={attributes} setAttributes={setAttributes} clientId={clientId} isPremium={isPremium} />
+				<div className={className} id={id}>
+					<Posts posts={posts} totalPosts={totalPosts} attributes={attributes} setAttributes={setAttributes} id={id} isPremium={isPremium} />
 				</div> :
 
 				<NoPosts />}

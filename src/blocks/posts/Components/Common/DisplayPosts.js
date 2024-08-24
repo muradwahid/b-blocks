@@ -1,7 +1,7 @@
 import SubLayout from './SubLayout/SubLayout';
 import Masonry from './Layout/Masonry';
 
-const DisplayPosts = ({ posts, attributes, clientId, Slider, Ticker }) => {
+const DisplayPosts = ({ posts, attributes, id, Slider, Ticker }) => {
 	const { layout, columns } = attributes;
 	const { desktop = 3, tablet = 2, mobile = 1 } = columns;
 
@@ -22,10 +22,10 @@ const DisplayPosts = ({ posts, attributes, clientId, Slider, Ticker }) => {
 			return <Masonry posts={posts} attributes={attributes} />;
 
 		case 'slider':
-			return <Slider posts={posts} attributes={attributes} clientId={clientId} />
+			return <Slider posts={posts} attributes={attributes} id={id} />
 
 		case 'ticker':
-			return <Ticker posts={posts} attributes={attributes} clientId={clientId} />;
+			return <Ticker posts={posts} attributes={attributes} id={id} />;
 
 		default:
 			return null;

@@ -39,10 +39,6 @@ const Settings = ({ attributes, setAttributes }) => {
 
 	return <>
 		<InspectorControls>
-			{!isPremium && <div className='btnInspectorInfo'>
-				Need more block like this? Checkout the bundle ➡ <a href='https://wordpress.org/plugins/b-blocks' target='_blank' rel='noopener noreferrer'>B Blocks</a>
-			</div>}
-
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={tabs} onSelect={tabController}>{tab => <>
 				{'general' === tab.name && <>
 					<HelpPanel slug='b-blocks' docsLink='https://bplugins.com/docs/button-block' />

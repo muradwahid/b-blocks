@@ -37,6 +37,9 @@ class Functions{
 	}
 
 	static function applyAPBFilter( $rawContent ){
+		// remove script and style tag
+		// $rawContent = preg_replace( '/<script\b[^>]*>(.*?)<\/script>|<style\b[^>]*>(.*?)<\/style>/is', '', $rawContent );
+
 		$textAllowedHTML = [ 'a' => [ 'href' => [], 'title' => [] ], 'br' => [], 'em' => [], 'strong' => [] ];
 		$innerAllowedHTML = array_merge( [ 'span' => [ $textAllowedHTML ] ], $textAllowedHTML );
 		$allowedHTML = array_merge( [ 'p' => [ $innerAllowedHTML ] ], $innerAllowedHTML );
@@ -46,8 +49,10 @@ class Functions{
 		return \BBlocks\Inc\BBlocksUtils::isPro() ? apply_filters( 'b_blocks_posts_excerpt_filter', $plainText, $content ) : $plainText;
 	}
 
-	static function arrangedPosts ( $posts, $postType, $fImgSize = 'full', $metaDateFormat = 'M j, Y' ) {
+	static function arrangedPosts ( $posts, $postType, $fImgSize = 'full', $metaDateFormat = 'M j, Y', $excerptLength = 25 ) {
 		$arranged = [];
+
+		$excerptLength = (int)$excerptLength;
 
 		$taxOfPostType = array_diff( get_object_taxonomies( $postType ), array( 'post_format', 'category' ) );
 
@@ -82,7 +87,7 @@ class Functions{
 				'thumbnail' => $thumbnail,
 				'title' => $post->post_title,
 				'excerpt' => self::applyAPBFilter( $post->post_excerpt ),
-				'content' => self::applyAPBFilter( $post->post_content ),
+				'content' => $excerptLength > -1 ? wp_trim_words( self::applyAPBFilter( $post->post_content ), $excerptLength, '' ) : self::applyAPBFilter( $post->post_content ),
 				'author' => [
 					'name' => get_the_author_meta( 'display_name', $post->post_author ),
 					'link' => get_author_posts_url( $post->post_author )

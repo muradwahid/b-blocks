@@ -1,9 +1,9 @@
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
 
-const Style = ({ attributes, clientId }) => {
+const Style = ({ attributes, id }) => {
 	const { columnGap, rowGap, isContentEqualHight, sliderHeight, paginationColors, paginationHovColors, paginationPadding, paginationSpacing, fImgFitting = 'cover', contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
-	const mainSl = `#bBlocksPosts-${clientId}`;
+	const mainSl = `#${id}`;
 	const postSl = `${mainSl} .bBlocksPost`;
 	const sliderPostsSl = `${mainSl} .bBlocksSliderPosts`;
 	const postReadMoreSl = `${postSl} .bBlocksReadMore`;

@@ -1,5 +1,8 @@
 $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
+$loadingColor1: #e1f3ff;
+$loadingColor2: #ebeeff;
+$loadingColor3: #bbdefb;
 
 // Inner Content
 .bBlocksInnerPostContent {
@@ -45,6 +48,177 @@ $secondaryColor: #8344c5;
 
 	* {
 		font-family: inherit !important;
+	}
+}
+
+// Loading Placeholder
+.bBlocksLoadingPlaceholder {
+	.bBlocksLoadingItem {
+		width: 100%;
+		height: 60px;
+		display: inline-block;
+		background-color: $loadingColor1;
+		border-radius: 3px;
+		animation: bgBlink 1.5s linear infinite alternate;
+	}
+
+	.bBlocksPost {
+		border: 1px solid $loadingColor1;
+
+		.bBlocksThumb {
+			position: relative;
+		}
+
+		.bBlocksText {
+			padding: 20px 15px;
+		}
+
+		.bBlocksTitle,
+		.bBlocksMeta {
+			margin-bottom: 15px;
+		}
+
+		.bBlocksTitle {
+			span {
+				height: 25px;
+
+				&:first-child {
+					margin-bottom: 4px;
+				}
+
+				&:last-child {
+					width: 80%;
+				}
+			}
+		}
+
+		.bBlocksMeta {
+			span {
+				width: 95%;
+				height: 14px;
+			}
+		}
+
+		.bBlocksExcerpt {
+			display: grid;
+			gap: 5px;
+			margin-bottom: 10px;
+
+			span {
+				height: 15px;
+
+				&:last-child {
+					width: 60%;
+				}
+			}
+		}
+
+		.bBlocksReadMore {
+			height: 42px;
+
+			span {
+				width: 148px;
+				height: 42px;
+			}
+		}
+	}
+
+	.bBlocksGridPosts,
+	.bBlocksGrid1Posts {
+		grid-gap: 15px 15px;
+	}
+
+	.bBlocksSliderSkeleton {
+		position: relative;
+
+		.swiper-wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 15px 15px;
+
+			@media (max-width: 768px) {
+				grid-template-columns: 1fr;
+
+				.swiper-slide:last-child {
+					display: none;
+				}
+			}
+		}
+
+		.bBlocksPost {
+			display: grid;
+			grid-template-columns: 1fr 1.3fr;
+			align-items: center;
+
+			.bBlocksThumb {
+				height: 100%;
+			}
+		}
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			color: $loadingColor3;
+		}
+
+		.swiper-pagination {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color: $loadingColor3;
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+
+			&::before,
+			&::after {
+				content: '';
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background-color: $loadingColor3;
+				position: absolute;
+				top: 2px;
+			}
+
+			&::before {
+				left: -20px;
+			}
+
+			&::after {
+				right: -20px;
+			}
+		}
+	}
+
+	.bBlocksTickerPosts {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		.bBlocksPost {
+			display: grid;
+			grid-template-columns: 1fr 1.3fr;
+
+			.bBlocksThumb {
+				height: 207px;
+				padding-bottom: 0;
+			}
+
+			.bBlocksTitle {
+				span:first-child {
+					display: none;
+				}
+			}
+
+			.bBlocksExcerpt {
+
+				span:nth-child(1),
+				span:nth-child(2) {
+					display: none;
+				}
+			}
+		}
 	}
 }
 

@@ -4,13 +4,13 @@ const $ = jQuery;
 import SubLayout from '../../Common/SubLayout/SubLayout';
 import { tickerConfig } from '../../../utils/configs';
 
-const Ticker = ({ posts, attributes, clientId }) => {
+const Ticker = ({ posts, attributes, id }) => {
 	const { rowGap, tickerDirection, tickerSpeed, tickerInterval, tickerHeight, tickerVisible, tickerIsMousePause } = attributes;
 
 	const tickerRef = useRef(null);
 	const tickerWrapperRef = useRef(null);
 
-	const mainSl = `#bBlocksPosts-${clientId}`;
+	const mainSl = `#${id}`;
 
 	useEffect(() => {
 		const tickerWrapEl = tickerWrapperRef.current;

@@ -4,8 +4,8 @@ const $ = jQuery;
 import SubLayout from '../../Common/SubLayout/SubLayout';
 import { tickerConfig } from '../../../utils/configs';
 
-const Ticker = ({ posts, attributes, clientId }) => {
-	const tickerSl = `#bBlocksPosts-${clientId} .bBlocksTickerPosts`;
+const Ticker = ({ posts, attributes, id }) => {
+	const tickerSl = `#${id} .bBlocksTickerPosts`;
 
 	useEffect(() => {
 		if (posts?.length) {

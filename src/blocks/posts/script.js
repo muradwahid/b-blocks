@@ -9,18 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	postsEls.forEach(postsEl => {
 		const nonce = JSON.parse(postsEl.dataset.nonce);
 		const attributes = JSON.parse(postsEl.dataset.attributes);
-		const { cId } = attributes;
 		const { totalPosts } = JSON.parse(postsEl.dataset.extra);
 
-		const firstPosts = window[`bBlocksFirstPagePosts-${cId}`] || [];
+		const firstPostsText = postsEl.querySelector('pre#firstPosts').innerText;
+		const firstPosts = firstPostsText ? JSON.parse(firstPostsText?.replace(/\n/g, ' ')?.replace(/\s+/g, ' ')?.trim()) : [];
 
-		createRoot(postsEl).render(<Posts firstPosts={firstPosts} nonce={nonce} totalPosts={totalPosts} attributes={attributes} />);
-
-		window[`bBlocksFirstPagePosts-${cId}`] = undefined;
-		const scriptTag = document.getElementById(`bBlocksFirstPagePostsScript-${cId}`);
-		if (scriptTag) {
-			scriptTag.remove();
-		}
+		createRoot(postsEl).render(<Posts firstPosts={firstPosts} nonce={nonce} totalPosts={totalPosts} attributes={attributes} id={postsEl.id} />);
 
 		postsEl?.removeAttribute('data-nonce');
 		postsEl?.removeAttribute('data-attributes');

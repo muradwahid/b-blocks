@@ -8,9 +8,7 @@ import Ticker from './Layout/Ticker';
 import useAjaxPosts from '../../hooks/useAjaxPosts';
 import usePremium from '../../../../hooks/usePremium';
 
-const Posts = ({ firstPosts, nonce, totalPosts, attributes }) => {
-	const { cId } = attributes;
-
+const Posts = ({ firstPosts, nonce, totalPosts, attributes, id }) => {
 	const [pageNumber, setPageNumber] = useState(1);
 
 	const { isPremium } = usePremium(nonce);
@@ -18,21 +16,21 @@ const Posts = ({ firstPosts, nonce, totalPosts, attributes }) => {
 	const posts = (Array.isArray(firstPosts) && firstPosts.length) ? firstPosts : [];
 
 	return <>
-		<Style attributes={attributes} clientId={cId} />
+		<Style attributes={attributes} id={id} />
 
 		{isPremium ? <>
-			<PremiumDisplayPosts firstPosts={posts} attributes={attributes} clientId={cId} isPremium={isPremium} nonce={nonce} pageNumber={pageNumber} />
+			<PremiumDisplayPosts firstPosts={posts} attributes={attributes} id={id} isPremium={isPremium} nonce={nonce} pageNumber={pageNumber} />
 
 			<Pagination attributes={attributes} totalCount={totalPosts} onChange={val => setPageNumber(val)} />
 		</> :
-			<FreeDisplayPosts posts={posts} attributes={attributes} clientId={cId} />}
+			<FreeDisplayPosts posts={posts} attributes={attributes} id={id} />}
 	</>
 }
 export default Posts;
 
-const FreeDisplayPosts = ({ posts, attributes, clientId }) => <DisplayPosts posts={posts} attributes={attributes} clientId={clientId} Slider={Slider} Ticker={Ticker} />
+const FreeDisplayPosts = ({ posts, attributes, id }) => <DisplayPosts posts={posts} attributes={attributes} id={id} Slider={Slider} Ticker={Ticker} />
 
-const PremiumDisplayPosts = ({ firstPosts, attributes, clientId, isPremium, nonce, pageNumber }) => {
+const PremiumDisplayPosts = ({ firstPosts, attributes, id, isPremium, nonce, pageNumber }) => {
 	const [posts, setPosts] = useState(firstPosts);
 
 	const { posts: ajaxPosts, isLoading: isAPLoading } = useAjaxPosts(nonce, attributes, pageNumber);
@@ -46,5 +44,5 @@ const PremiumDisplayPosts = ({ firstPosts, attributes, clientId, isPremium, nonc
 
 	const dpPosts = (Array.isArray(posts) && posts.length) ? posts : [];
 
-	return <DisplayPosts posts={dpPosts} attributes={attributes} clientId={clientId} Slider={Slider} Ticker={Ticker} />
+	return <DisplayPosts posts={dpPosts} attributes={attributes} id={id} Slider={Slider} Ticker={Ticker} />
 }
