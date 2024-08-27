@@ -3,6 +3,7 @@ const $ = jQuery;
 
 import SubLayout from '../../Common/SubLayout/SubLayout';
 import { tickerConfig } from '../../../utils/configs';
+import { prefix } from '../../../utils/data';
 
 const Ticker = ({ posts, attributes, id }) => {
 	const { rowGap, tickerDirection, tickerSpeed, tickerInterval, tickerHeight, tickerVisible, tickerIsMousePause } = attributes;
@@ -19,13 +20,13 @@ const Ticker = ({ posts, attributes, id }) => {
 			tickerWrapEl.innerHTML = '';
 			tickerWrapEl.innerHTML = tickerRef.current.outerHTML;
 
-			$(`${mainSl} .bBlocksTickerWrapper .bBlocksTickerPosts`).easyTicker(tickerConfig(attributes));
+			$(`${mainSl} .${prefix}LayoutTickerWrapper .${prefix}LayoutTicker`).easyTicker(tickerConfig(attributes));
 		}
 	}, [rowGap, tickerDirection, tickerSpeed, tickerInterval, tickerHeight, tickerVisible, tickerIsMousePause]);
 
 	return <>
-		<div className='bBlocksTickerWrapper' ref={tickerWrapperRef}></div>
-		<div className='bBlocksTickerPosts' ref={tickerRef}>
+		<div className={`${prefix}LayoutTickerWrapper`} ref={tickerWrapperRef}></div>
+		<div className={`${prefix}LayoutTicker`} ref={tickerRef}>
 			<div>
 				{posts.map(post => <SubLayout key={post.id} post={post} attributes={attributes} />)}
 			</div>

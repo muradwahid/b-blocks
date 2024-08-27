@@ -1,3 +1,4 @@
+import { prefix } from '../../../utils/data';
 import { truncate, strLength } from '../../../utils/functions';
 
 const Excerpt = ({ post, attributes }) => {
@@ -8,6 +9,6 @@ const Excerpt = ({ post, attributes }) => {
 	const ellipsis = (isEllipsisOnExcerpt && (strLength(finalExcerpt) > excerptLength)) ? '...' : '';
 	const excerptContent = -1 === excerptLength ? finalExcerpt : `${truncate(finalExcerpt, excerptLength)}${ellipsis}`;
 
-	return (isExcerpt && finalExcerpt) ? <div className='bBlocksExcerpt bBlocksInnerContent' dangerouslySetInnerHTML={{ __html: excerptContent }} /> : null;
+	return (isExcerpt && finalExcerpt) ? <div className={`${prefix}ElExcerpt`} dangerouslySetInnerHTML={{ __html: excerptContent }} /> : null;
 };
 export default Excerpt;

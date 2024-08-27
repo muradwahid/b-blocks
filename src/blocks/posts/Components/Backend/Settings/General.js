@@ -112,7 +112,7 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 	const props = { attributes, setAttributes, premiumProps }
 
 	return <>
-		{/* {currentPostType === 'bBlocksPosts' && <ShortCode currentPostId={currentPostId} />} */}
+		{/* {currentPostType === prefix && <ShortCode currentPostId={currentPostId} />} */}
 
 		<HelpPanel slug='b-blocks' docsLink='https://bplugins.com/docs/advanced-post-block' />
 

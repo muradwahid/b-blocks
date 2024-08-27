@@ -1,15 +1,16 @@
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../../Components/utils/getCSS';
+import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
 	const { columnGap, rowGap, isContentEqualHight, sliderHeight, paginationColors, paginationHovColors, paginationPadding, paginationSpacing, fImgFitting = 'cover', contentAlign, contentBG, contentPadding, border, sliderPageColor, sliderPageWidth, sliderPageHeight, sliderPageBorder, sliderPrevNextColor, titleTypo, titleColor, titleMargin, metaTypo, metaTextColor, metaLinkColor, metaIconColor, metaColorsOnImage, metaMargin, excerptAlign, excerptTypo, excerptColor, excerptMargin, readMoreAlign, readMoreTypo, readMoreColors, readMoreHovColors, readMorePadding, readMoreBorder } = attributes;
 
 	const mainSl = `#${id}`;
-	const postSl = `${mainSl} .bBlocksPost`;
-	const sliderPostsSl = `${mainSl} .bBlocksSliderPosts`;
-	const postReadMoreSl = `${postSl} .bBlocksReadMore`;
-	const postTitleSl = `${postSl} .bBlocksTitle`;
-	const postMetaSl = `${postSl} .bBlocksMeta`;
-	const paginationSl = `${mainSl} .bBlocksPagination`;
+	const articleSl = `${mainSl} .${prefix}Article`;
+	const sliderPostsSl = `${mainSl} .${prefix}LayoutSlider`;
+	const postReadMoreSl = `${articleSl} .${prefix}ElReadMore`;
+	const postTitleSl = `${articleSl} .${prefix}ElTitle`;
+	const postMetaSl = `${articleSl} .${prefix}ElMeta`;
+	const paginationSl = `${mainSl} .${prefix}Pagination`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
@@ -18,47 +19,47 @@ const Style = ({ attributes, id }) => {
 		${getTypoCSS('', excerptTypo)?.googleFontLink}
 		${getTypoCSS('', readMoreTypo)?.googleFontLink}
 		${getTypoCSS(`${postTitleSl}, ${postTitleSl} a`, titleTypo)?.styles}
-		${getTypoCSS(`${postMetaSl}, ${postMetaSl} *, ${postSl} .bBlocksThumbCats`, metaTypo)?.styles}
-		${getTypoCSS(`${postSl} .bBlocksExcerpt`, excerptTypo)?.styles}
+		${getTypoCSS(`${postMetaSl}, ${postMetaSl} *, ${articleSl} .${prefix}ElThumbCats`, metaTypo)?.styles}
+		${getTypoCSS(`${articleSl} .${prefix}ElExcerpt`, excerptTypo)?.styles}
 		${getTypoCSS(`${postReadMoreSl} a`, readMoreTypo)?.styles}
 
-		${paginationSl} .bBlocksPagePrev,
-		${paginationSl} .bBlocksPageNumber,
-		${paginationSl} .bBlocksPageNext{
+		${paginationSl} .${prefix}PagePrev,
+		${paginationSl} .${prefix}PageNumber,
+		${paginationSl} .${prefix}PageNext{
 			font-size: 15px;
 			${getColorsCSS(paginationColors)}
 			padding: ${getSpaceCSS(paginationPadding)};
 			margin: 0 calc( ${paginationSpacing} / 2 );
 		}
 		@media (max-width: 576px) {
-			${paginationSl} .bBlocksPagePrev,
-			${paginationSl} .bBlocksPageNumber,
-			${paginationSl} .bBlocksPageNext{
+			${paginationSl} .${prefix}PagePrev,
+			${paginationSl} .${prefix}PageNumber,
+			${paginationSl} .${prefix}PageNext{
 				font-size: 12px;
 				padding: ${getSpaceCSS(paginationPadding)?.split(' ').map(v => `calc( ${v} / 2 )`).join(' ')};
 				margin: 0 calc( ${paginationSpacing} / 4 );
 			}
 		}
-		${paginationSl} .bBlocksPagePrev:hover,
-		${paginationSl} .bBlocksPageNumber:hover,
-		${paginationSl} .bBlocksPageNext:hover,
-		${paginationSl} .bBlocksActivePage{
+		${paginationSl} .${prefix}PagePrev:hover,
+		${paginationSl} .${prefix}PageNumber:hover,
+		${paginationSl} .${prefix}PageNext:hover,
+		${paginationSl} .${prefix}PageActive{
 			${getColorsCSS(paginationHovColors)}
 		}
 
-		${postSl}{
+		${articleSl}{
 			${getBorderCSS(border)}
 		}
-		${mainSl} .bBlocksDefault,
-		${mainSl} .bBlocksSideImage{
+		${mainSl} .${prefix}SLDefault,
+		${mainSl} .${prefix}SLSideImage{
 			text-align: ${contentAlign};
 			${getBackgroundCSS(contentBG)}
 		}
 
-		${postSl} .bBlocksText{
+		${articleSl} .${prefix}ElTexts{
 			padding: ${getSpaceCSS(contentPadding)};
 		}
-		${mainSl} .bBlocksOverlay .bBlocksText{
+		${mainSl} .${prefix}SLOverlay .${prefix}ElTexts{
 			${getBackgroundCSS(contentBG)}
 			align-items: ${'left' === contentAlign ? 'flex-start' : 'right' === contentAlign ? 'flex-end' : 'center' === contentAlign ? 'center' : ''}
 		}
@@ -81,13 +82,13 @@ const Style = ({ attributes, id }) => {
 		${postMetaSl} .dashicons{
 			color: ${metaIconColor};
 		}
-		${postSl} .bBlocksThumb img, ${postSl}.bBlocksOverlay img{
+		${articleSl} .${prefix}ElThumb img, ${articleSl}.${prefix}SLOverlay img{
 			object-fit: ${fImgFitting};
 		}
-		${postSl} .bBlocksThumbCats a{
+		${articleSl} .${prefix}ElThumbCats a{
 			${getColorsCSS(metaColorsOnImage)}
 		}
-		${postSl} .bBlocksExcerpt{
+		${articleSl} .${prefix}ElExcerpt{
 			text-align: ${excerptAlign};
 			color: ${excerptColor};
 			margin: ${getSpaceCSS(excerptMargin)};
@@ -104,8 +105,8 @@ const Style = ({ attributes, id }) => {
 			${getColorsCSS(readMoreHovColors)}
 		}
 
-		${mainSl} .bBlocksGridPosts,
-		${mainSl} .bBlocksGrid1Posts{
+		${mainSl} .${prefix}LayoutGrid,
+		${mainSl} .${prefix}LayoutGrid1{
 			grid-gap: ${rowGap}px ${columnGap}px;
 			align-items: ${false === isContentEqualHight ? 'start' : 'initial'};
 		}

@@ -23,6 +23,7 @@
 			"type": "array",
 			"default": [
 				{
+					"link": "",
 					"background": {
 						"color": "#0000"
 					},
@@ -43,6 +44,7 @@
 					"descColor": "#333"
 				},
 				{
+					"link": "",
 					"background": {
 						"color": "#0000"
 					},
@@ -63,6 +65,7 @@
 					"descColor": "#333"
 				},
 				{
+					"link": "",
 					"background": {
 						"color": "#0000"
 					},
@@ -103,6 +106,13 @@
 		"layout": {
 			"type": "string",
 			"default": "vertical"
+		},
+		"link": {
+			"type": "object",
+			"default": {
+				"target": "_self",
+				"element": "card"
+			}
 		},
 		"textAlign": {
 			"type": "string",

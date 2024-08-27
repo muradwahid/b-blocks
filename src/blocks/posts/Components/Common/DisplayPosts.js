@@ -1,5 +1,6 @@
 import SubLayout from './SubLayout/SubLayout';
 import Masonry from './Layout/Masonry';
+import { prefix } from '../../utils/data';
 
 const DisplayPosts = ({ posts, attributes, id, Slider, Ticker }) => {
 	const { layout, columns } = attributes;
@@ -9,12 +10,12 @@ const DisplayPosts = ({ posts, attributes, id, Slider, Ticker }) => {
 
 	switch (layout) {
 		case 'grid':
-			return <div className={`bBlocksGridPosts columns-${desktop} columns-tablet-${tablet} columns-mobile-${mobile}`}>
+			return <div className={`${prefix}LayoutGrid columns-${desktop} columns-tablet-${tablet} columns-mobile-${mobile}`}>
 				<PostsLoop />
 			</div>;
 
 		case 'grid1':
-			return <div className='bBlocksGrid1Posts'>
+			return <div className={`${prefix}LayoutGrid1`}>
 				<PostsLoop />
 			</div>;
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { usePagination, DOTS } from './usePagination';
+import { prefix } from '../../../utils/data';
 
 const Pagination = ({ attributes, totalCount, onChange }) => {
 	const { layout, isPostsPerPageAll, postsPerPage, isPagination, paginationPrevLabel, paginationNextLabel } = attributes;
@@ -25,8 +26,8 @@ const Pagination = ({ attributes, totalCount, onChange }) => {
 		setCurrentPage(pageNumber);
 	}
 
-	return isPagination && !isPostsPerPageAll && 'slider' !== layout && 'ticker' !== layout ? <ul className={`bBlocksPagination`}>
-		<li className={`bBlocksPageNumber ${currentPage === 1 ? 'disabled' : ''}`}
+	return isPagination && !isPostsPerPageAll && 'slider' !== layout && 'ticker' !== layout ? <ul className={`${prefix}Pagination`}>
+		<li className={`${prefix}PageNumber ${currentPage === 1 ? 'disabled' : ''}`}
 			onClick={() => setPageNumber(currentPage - 1)}
 		>{paginationPrevLabel}</li>
 
@@ -36,12 +37,12 @@ const Pagination = ({ attributes, totalCount, onChange }) => {
 			}
 
 			return <li key={index}
-				className={`bBlocksPageNumber ${pageNumber === currentPage ? 'bBlocksActivePage' : ''}`}
+				className={`${prefix}PageNumber ${pageNumber === currentPage ? '${prefix}PageActive' : ''}`}
 				onClick={() => setPageNumber(pageNumber)}
 			> {pageNumber}</li>;
 		})}
 
-		<li className={`bBlocksPageNumber ${currentPage === lastPage ? 'disabled' : ''}`}
+		<li className={`${prefix}PageNumber ${currentPage === lastPage ? 'disabled' : ''}`}
 			onClick={() => setPageNumber(currentPage + 1)}
 		>{paginationNextLabel}</li>
 	</ul> : null;

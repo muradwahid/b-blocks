@@ -84,6 +84,8 @@ class BBlocksPosts extends BBlocks{
 	function render( $attributes ){
 		extract( $attributes );
 
+		$prefix = 'bBlocksPosts';
+
 		wp_enqueue_style( 'b-blocks-posts-style' );
 		if( 'ticker' === $layout ){
 			wp_enqueue_script( 'easyTicker' );
@@ -93,7 +95,7 @@ class BBlocksPosts extends BBlocks{
 
 		$className = $className ?? '';
 		$planClass = BBlocks\Inc\BBlocksUtils::isPro() ? 'pro' : 'free';
-		$blockClassName = "wp-block-b-blocks-posts bBlocksPosts $className $planClass align$align";
+		$blockClassName = "wp-block-b-blocks-posts $prefix $className $planClass align$align";
 
 		$allPosts = get_posts( array_merge( $this->query( $attributes ), [ 'posts_per_page' => -1 ] ) );
 
@@ -104,7 +106,7 @@ class BBlocksPosts extends BBlocks{
 			'span'		=> [ 'class' => [] ],
 		];
 
-		$id = wp_unique_id( 'bBlocksPosts-' );
+		$id = wp_unique_id( "$prefix-" );
 
 		ob_start(); ?>
 		<div
@@ -118,60 +120,62 @@ class BBlocksPosts extends BBlocks{
 				<?php echo esc_html( wp_json_encode( $this->getPosts( $attributes ) ) ) ?>
 			</pre>
 
-			<?php echo wp_kses( $this->loadingPlaceholder( $attributes ), $skeletonAllowedTags ); ?>
+			<?php echo wp_kses( $this->loadingPlaceholder( $attributes, $prefix ), $skeletonAllowedTags ); ?>
 		</div>
 		<?php return ob_get_clean();
 	} // Render
 
-	function skeletonArticle(){
-		ob_start(); ?>
-			<article class='bBlocksPost'>
-				<span class='bBlocksLoadingItem bBlocksThumb'></span>
-				
-				<div class='bBlocksText'>
-					<div class='bBlocksTitle'>
-						<span class='bBlocksLoadingItem'></span>
-						<span class='bBlocksLoadingItem'></span>
-					</div>
-					<div class='bBlocksMeta'>
-						<span class='bBlocksLoadingItem'></span>
-					</div>
-					<div class='bBlocksExcerpt'>
-						<span class='bBlocksLoadingItem'></span>
-						<span class='bBlocksLoadingItem'></span>
-						<span class='bBlocksLoadingItem'></span>
-						<span class='bBlocksLoadingItem'></span>
-					</div>
-					<div class='bBlocksReadMore'>
-						<span class='bBlocksLoadingItem'></span>
-					</div>
+	function skeletonArticle( $prefix ){
+		$articleEl = "<article class='". $prefix ."Article'>
+			<span class='". $prefix ."LoadingItem ". $prefix ."ElThumb'></span>
+			
+			<div class='". $prefix ."ElTexts'>
+				<div class='". $prefix ."ElTitle'>
+					<span class='". $prefix ."LoadingItem'></span>
+					<span class='". $prefix ."LoadingItem'></span>
 				</div>
-			</article>
-		<?php return ob_get_clean();
+				<div class='". $prefix ."ElMeta'>
+					<span class='". $prefix ."LoadingItem'></span>
+				</div>
+				<div class='". $prefix ."ElExcerpt'>
+					<span class='". $prefix ."LoadingItem'></span>
+					<span class='". $prefix ."LoadingItem'></span>
+					<span class='". $prefix ."LoadingItem'></span>
+					<span class='". $prefix ."LoadingItem'></span>
+				</div>
+				<div class='". $prefix ."ElReadMore'>
+					<span class='". $prefix ."LoadingItem'></span>
+				</div>
+			</div>
+		</article>";
+
+		ob_start();
+			echo wp_kses( $articleEl, [ 'article' => [ 'class' => [] ], 'div' => [ 'class' => [] ], 'span' => [ 'class' => [] ] ] );
+		return ob_get_clean();
 	}
 
-	function loadingPlaceholder( $attributes ){
+	function loadingPlaceholder( $attributes, $prefix ){
 		extract( $attributes );
 		$posts = $this->getPosts( $attributes );
 
 		$colD = $columns['desktop'];
 		$colT = $columns['tablet'];
 		$colM = $columns['mobile'];
-		$gridClass = "bBlocksGridPosts columns-$colD columns-tablet-$colT columns-mobile-$colM";
+		$gridClass = $prefix ."LayoutGrid columns-$colD columns-tablet-$colT columns-mobile-$colM";
 
-		$placeholderId = wp_unique_id( 'bBlocksLoadingPlaceholder-' );
+		$placeholderId = wp_unique_id( $prefix .'LoadingPlaceholder-' );
 
-		$sliderStyles = "#$placeholderId .bBlocksSliderSkeleton article{
+		$sliderStyles = "#$placeholderId .$prefix" . "SliderSkeleton article{
 			min-height: $sliderHeight;
 		}";
 
 		ob_start(); ?>
-			<div class='bBlocksLoadingPlaceholder' id='<?php echo esc_attr( $placeholderId ); ?>'>
+			<div class='<?php echo esc_attr( $prefix ); ?>LoadingPlaceholder' id='<?php echo esc_attr( $placeholderId ); ?>'>
 				<?php switch ( $layout ) {
 					case 'grid1': ?>
-						<div class='bBlocksGrid1Posts'>
+						<div class='<?php echo esc_attr( $prefix ); ?>LayoutGrid1'>
 							<?php foreach ( range( 1, count( $posts ) ) as $item ) {
-								echo $this->skeletonArticle();
+								echo $this->skeletonArticle( $prefix );
 							} ?>
 						</div>
 					<?php break;
@@ -179,10 +183,10 @@ class BBlocksPosts extends BBlocks{
 						<style>
 							<?php echo esc_html( $sliderStyles ); ?>
 						</style>
-						<div class='bBlocksSliderSkeleton'>
+						<div class='<?php echo esc_attr( $prefix ); ?>SliderSkeleton'>
 							<div class='swiper-wrapper'>
 								<?php foreach ( range( 1, 2 ) as $item ) {
-									echo $this->skeletonArticle();
+									echo $this->skeletonArticle( $prefix );
 								} ?>
 							</div>
 							<?php echo $sliderIsPage ? "<div class='swiper-pagination'></div>" : ''; ?>
@@ -190,16 +194,16 @@ class BBlocksPosts extends BBlocks{
 						</div>
 					<?php break;
 					case 'ticker': ?>
-						<div class='bBlocksTickerPosts'>
+						<div class='<?php echo esc_attr( $prefix ); ?>LayoutTicker'>
 							<?php foreach ( range( 1, $tickerVisible ) as $item ) {
-								echo $this->skeletonArticle();
+								echo $this->skeletonArticle( $prefix );
 							} ?>
 						</div>
 					<?php break;
 					default: ?>
 						<div class='<?php echo esc_attr( $gridClass ); ?>'>
 							<?php foreach ( range( 1, count( $posts ) ) as $item ) {
-								echo $this->skeletonArticle();
+								echo $this->skeletonArticle( $prefix );
 							} ?>
 						</div>
 					<?php break;

@@ -1,20 +1,24 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
+import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 
-import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
+import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, HelpPanel, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../Components';
 import { gearIcon } from '../../../../Components/utils/icons';
 import { tabController } from '../../../../Components/utils/functions';
 import { pxUnit, perUnit, emUnit } from '../../../../Components/utils/options';
 
 import { horizontalLineIcon, verticalLineIcon } from '../../utils/icons';
 import { generalStyleTabs } from '../../utils/options';
+import ProModal from '../../ProModal/ProModal';
+import { BControlPro, SelectControlPro } from '../../../../Components/Pro';
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard }) => {
-	const { cards = [], columns, columnGap, rowGap, layout, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard, isPremium }) => {
+	const { cards = [], columns, columnGap, rowGap, layout, link = {}, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
+	const { target: linkTarget = '_self', element: linkElement = 'card' } = link;
 
 	const [device, setDevice] = useState('desktop');
+	const [isProModal, setIsProModal] = useState(false);
 
 	const addCard = () => {
 		setAttributes({
@@ -53,24 +57,18 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
 	}
 
-	const { background = {}, img = {}, imgBorder = {}, catColor = '', titleColor = '', descColor = '' } = cards[activeIndex] || {};
+	const premiumProps = {
+		isPremium,
+		setOpen: setIsProModal
+	};
+
+	const { background = {}, img = {}, imgBorder = {}, catColor = '', titleColor = '', descColor = '', link: cardLink = '', } = cards[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>{tab => <>
 				{'general' === tab.name && <>
-					<PanelBody className='bPlPanelBody help' title={__('Help', 'b-blocks')} initialOpen={false}>
-						{/* <div className='helpItem'>
-							<a href='https://bblockswp.com/docs/cards-block/' target='_blank' rel='noreferrer'><Dashicon icon='book' />{__('Read Documentation', 'b-blocks')}</a>
-						</div> */}
-
-						<div className='helpItem rateUs'>
-							<a href='https://wordpress.org/support/plugin/b-blocks/reviews/#new-post' target='_blank' rel='noreferrer'>
-								<span><Dashicon icon='star-filled' />{__('Would you please rate us?', 'b-blocks')}</span>
-								<span>{__('We are new and we need your help to grow!🙏', 'b-blocks')}</span>
-							</a>
-						</div>
-					</PanelBody>
+					<HelpPanel slug='b-blocks' />
 
 
 					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Cards', 'b-blocks')}>
@@ -90,6 +88,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 							<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateCard('descColor', val)} defaultColor='#333' />
 
+							<TextControl className='mt10' label={__('Link:', 'b-blocks')} value={cardLink} onChange={val => updateCard('link', val)} />
+							<span>{__('Insert the link if you want; otherwise, leave it blank.', 'b-blocks')}</span>
+
 							<PanelRow className='itemAction mt20 mb15'>
 								{1 < cards?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCard}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
 
@@ -105,26 +106,17 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
-							<Label className='mb5'>{__('Layout:', 'b-blocks')}</Label>
-							<ButtonGroup className='bPlBtnGroup'>
-								<Tooltip text={__('Vertical', 'b-blocks')} placement='top' position='top'>
-									<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => setAttributes({
-										layout: 'vertical',
-										columns: { ...columns, ['desktop']: 3 },
-										textAlign: 'center',
-										imgHeight: '250px'
-									})}></Button>
-								</Tooltip>
+							<Label className=''>{__('Layout:', 'b-blocks')}</Label>
 
-								<Tooltip text={__('Horizontal', 'b-blocks')} placement='top' position='top'>
-									<Button icon={horizontalLineIcon} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => setAttributes({
-										layout: 'horizontal',
-										columns: { ...columns, ['desktop']: 2 },
-										textAlign: 'left',
-										imgHeight: '200px'
-									})}></Button>
-								</Tooltip>
-							</ButtonGroup>
+							<BtnGroup value={layout} onChange={val => setAttributes({
+								layout: val,
+								columns: { ...columns, ['desktop']: 'vertical' === val ? 3 : 2 },
+								textAlign: 'vertical' === val ? 'center' : 'left',
+								imgHeight: 'vertical' === val ? '250px' : '200px'
+							})} options={[
+								{ label: 'Vertical', value: 'vertical', icon: verticalLineIcon },
+								{ label: 'Horizontal', value: 'horizontal', icon: horizontalLineIcon }
+							]} isIcon={true} />
 						</PanelRow>
 
 						<PanelRow className='mt20'>
@@ -162,6 +154,21 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 						<ToggleControl className='mt20' label={__('Show Description', 'b-blocks')} checked={isDesc} onChange={val => setAttributes({ isDesc: val })} />
 					</PanelBody>
+
+
+					<PanelBody className='bPlPanelBody' title={__('Link', 'b-blocks')} initialOpen={false}>
+						<BControlPro label={__('Open link in new tab?', 'b-blocks')} checked={'_blank' === linkTarget ? true : false} onChange={val => setAttributes({ link: { ...link, target: val ? '_blank' : '_self' } })} {...premiumProps} Component={ToggleControl} />
+
+						<SelectControlPro className='mt20' label={__('Link to:', 'b-blocks')} labelPosition='left' value={linkElement} onChange={val => setAttributes({ link: { ...link, element: val } })}
+							options={[
+								{ label: 'Card', value: 'card' },
+								{ label: 'Image', value: 'image' },
+								{ label: 'Title', value: 'title' }
+							]}
+							proValues={['image', 'title']}
+							{...premiumProps}
+						/>
+					</PanelBody>
 				</>}
 
 
@@ -196,6 +203,13 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>
+
+
+		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Cards'>
+			<li>&emsp;<strong>{__('Link Target: ', 'b-blocks')}</strong>{__('Set the card link target.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Link Element: ', 'b-blocks')}</strong>{__('Choose the link element you want to link to.', 'b-blocks')}</li>
+		</ProModal>
 
 
 		<BlockControls>

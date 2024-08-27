@@ -19,7 +19,7 @@ const Posts = ({ firstPosts, nonce, totalPosts, attributes, id }) => {
 		<Style attributes={attributes} id={id} />
 
 		{isPremium ? <>
-			<PremiumDisplayPosts firstPosts={posts} attributes={attributes} id={id} isPremium={isPremium} nonce={nonce} pageNumber={pageNumber} />
+			<PremiumDisplayPosts firstPosts={posts} attributes={attributes} id={id} nonce={nonce} pageNumber={pageNumber} />
 
 			<Pagination attributes={attributes} totalCount={totalPosts} onChange={val => setPageNumber(val)} />
 		</> :
@@ -30,17 +30,16 @@ export default Posts;
 
 const FreeDisplayPosts = ({ posts, attributes, id }) => <DisplayPosts posts={posts} attributes={attributes} id={id} Slider={Slider} Ticker={Ticker} />
 
-const PremiumDisplayPosts = ({ firstPosts, attributes, id, isPremium, nonce, pageNumber }) => {
+const PremiumDisplayPosts = ({ firstPosts, attributes, id, nonce, pageNumber }) => {
 	const [posts, setPosts] = useState(firstPosts);
 
 	const { posts: ajaxPosts, isLoading: isAPLoading } = useAjaxPosts(nonce, attributes, pageNumber);
 
 	useEffect(() => {
-		if (isPremium && Array.isArray(ajaxPosts) && !isAPLoading) {
+		if (Array.isArray(ajaxPosts) && !isAPLoading && pageNumber > 1) {
 			setPosts(ajaxPosts);
 		}
-	}, [isPremium, ajaxPosts, isAPLoading, pageNumber]);
-
+	}, [ajaxPosts, isAPLoading, pageNumber]);
 
 	const dpPosts = (Array.isArray(posts) && posts.length) ? posts : [];
 

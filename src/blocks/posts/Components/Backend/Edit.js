@@ -10,6 +10,7 @@ import NoPosts from './NoPosts';
 import { filterNaN, filterObject, filterPassword, wordCount } from '../../utils/functions';
 import Posts from './Posts';
 import usePremiumInEditor from '../../../../hooks/usePremiumInEditor';
+import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, className, clientId, isSelected, totalPosts, posts, taxOfPostType } = props;
@@ -18,7 +19,7 @@ const Edit = props => {
 
 	useEffect(() => tabController(), [isSelected]);
 
-	const id = `bBlocksPosts-${clientId}`;
+	const id = `${prefix}-${clientId}`;
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} posts={posts} taxOfPostType={taxOfPostType} />

@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 
 import SubLayout from '../SubLayout/SubLayout';
 import { setSliderHeight } from '../../../utils/configs';
+import { prefix } from '../../../utils/data';
 
 const Slider = ({ posts, attributes, id }) => {
 	const { columns, columnGap, sliderIsLoop, sliderIsTouchMove, sliderIsAutoplay, sliderAutoplayOptions = { delay: 1.5 }, sliderSpeed, sliderEffect, sliderIsPage, sliderIsPageClickable, sliderIsPageDynamic, sliderIsPrevNext } = attributes;
@@ -15,7 +16,7 @@ const Slider = ({ posts, attributes, id }) => {
 		setSliderHeight(id);
 	}, [posts?.length]);
 
-	return <Swiper className='bBlocksSliderPosts'
+	return <Swiper className={`${prefix}LayoutSlider`}
 		spaceBetween={columnGap}
 		slidesPerView={columns.mobile}
 		breakpoints={{ 576: { slidesPerView: columns.tablet }, 768: { slidesPerView: columns.desktop } }}

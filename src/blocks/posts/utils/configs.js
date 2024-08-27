@@ -1,3 +1,5 @@
+import { prefix } from './data';
+
 export const masonryConfig = (container, attributes) => {
 	const { columnGap, rowGap } = attributes;
 
@@ -63,7 +65,7 @@ export const sliderConfig = (attributes) => {
 export const setSliderHeight = (id) => {
 	const heightArray = [];
 	const slideEls = document.querySelectorAll(`#${id} .swiper .swiper-slide`);
-	const textEls = document.querySelectorAll(`#${id} .swiper .swiper-slide .bBlocksText`);
+	const textEls = document.querySelectorAll(`#${id} .swiper .swiper-slide .${prefix}ElTexts`);
 	textEls?.forEach(textEl => {
 		heightArray.push(textEl?.clientHeight);
 	});

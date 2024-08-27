@@ -8,6 +8,7 @@ import { produce } from 'immer';
 import { ImagePlaceholder } from '../../../../Components';
 import { tabController } from '../../../../Components/utils/functions';
 
+import usePremiumInEditor from '../../hooks/usePremiumInEditor';
 import Settings from './Settings';
 import Style from './Style';
 
@@ -16,6 +17,8 @@ const Edit = props => {
 	const { cards = [], columns, layout, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
+
+	const { isPremium = false } = usePremiumInEditor();
 
 	useEffect(() => tabController(), [isSelected]);
 
@@ -29,7 +32,7 @@ const Edit = props => {
 	}
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} updateCard={updateCard} />
+		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} updateCard={updateCard} isPremium={isPremium} />
 
 		<div className={className} id={`bBlocksCards-${clientId}`}>
 			<Style attributes={attributes} clientId={clientId} />

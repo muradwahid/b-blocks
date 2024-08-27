@@ -2,7 +2,6 @@ components: empty label, select size margin top none
 
 flip-box: add hov when edit
 flip-box: upload icon: hannarabah@gmail.com
-card, button-group: ButtonGroup
 mailto: send parameter with subject, cc, bcc
 
 update function in function.js

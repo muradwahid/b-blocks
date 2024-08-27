@@ -2,12 +2,13 @@ import Default from './Default';
 import SideImage from './SideImage';
 import Overlay from './Overlay';
 import { classNames } from '../../../utils/functions';
+import { prefix } from '../../../utils/data';
 
 const SubLayout = ({ post, attributes }) => {
 	const { subLayout, content = { height: 'auto' } } = attributes;
 
 	const { id, thumbnail } = post;
-	const postClass = classNames('bBlocksPost', `bBlocksPost-${id}`, `${content?.height}ContentHeight`, {
+	const postClass = classNames(`${prefix}Article`, `${prefix}Article-${id}`, `${content?.height}ContentHeight`, {
 		'hasThumbnail': thumbnail.url
 	});
 

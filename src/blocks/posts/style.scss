@@ -4,56 +4,12 @@ $loadingColor1: #e1f3ff;
 $loadingColor2: #ebeeff;
 $loadingColor3: #bbdefb;
 
-// Inner Content
-.bBlocksInnerPostContent {
-	h1 {
-		font-size: 18px !important;
-	}
-
-	h2 {
-		font-size: 17px !important;
-	}
-
-	h3 {
-		font-size: 16px !important;
-	}
-
-	h4 {
-		font-size: 15px !important;
-	}
-
-	h5 {
-		font-size: 14px !important;
-	}
-
-	h6 {
-		font-size: 14px !important;
-	}
-
-	p,
-	span,
-	div,
-	a,
-	button,
-	mark {
-		font-size: 15px !important;
-	}
-
-	.read-more,
-	.wp-block-cover,
-	.wp-block-image,
-	img {
-		display: none;
-	}
-
-	* {
-		font-family: inherit !important;
-	}
-}
+$prefix: 'bBlocksPosts';
+// #{$prefix}
 
 // Loading Placeholder
-.bBlocksLoadingPlaceholder {
-	.bBlocksLoadingItem {
+.#{$prefix}LoadingPlaceholder {
+	.#{$prefix}LoadingItem {
 		width: 100%;
 		height: 60px;
 		display: inline-block;
@@ -62,23 +18,23 @@ $loadingColor3: #bbdefb;
 		animation: bgBlink 1.5s linear infinite alternate;
 	}
 
-	.bBlocksPost {
+	.#{$prefix}Article {
 		border: 1px solid $loadingColor1;
 
-		.bBlocksThumb {
+		.#{$prefix}ElThumb {
 			position: relative;
 		}
 
-		.bBlocksText {
+		.#{$prefix}ElTexts {
 			padding: 20px 15px;
 		}
 
-		.bBlocksTitle,
-		.bBlocksMeta {
+		.#{$prefix}ElTitle,
+		.#{$prefix}ElMeta {
 			margin-bottom: 15px;
 		}
 
-		.bBlocksTitle {
+		.#{$prefix}ElTitle {
 			span {
 				height: 25px;
 
@@ -92,14 +48,14 @@ $loadingColor3: #bbdefb;
 			}
 		}
 
-		.bBlocksMeta {
+		.#{$prefix}ElMeta {
 			span {
 				width: 95%;
 				height: 14px;
 			}
 		}
 
-		.bBlocksExcerpt {
+		.#{$prefix}ElExcerpt {
 			display: grid;
 			gap: 5px;
 			margin-bottom: 10px;
@@ -113,7 +69,7 @@ $loadingColor3: #bbdefb;
 			}
 		}
 
-		.bBlocksReadMore {
+		.#{$prefix}ElReadMore {
 			height: 42px;
 
 			span {
@@ -123,12 +79,12 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksGridPosts,
-	.bBlocksGrid1Posts {
+	.#{$prefix}LayoutGrid,
+	.#{$prefix}LayoutGrid1 {
 		grid-gap: 15px 15px;
 	}
 
-	.bBlocksSliderSkeleton {
+	.#{$prefix}SliderSkeleton {
 		position: relative;
 
 		.swiper-wrapper {
@@ -145,12 +101,12 @@ $loadingColor3: #bbdefb;
 			}
 		}
 
-		.bBlocksPost {
+		.#{$prefix}Article {
 			display: grid;
 			grid-template-columns: 1fr 1.3fr;
 			align-items: center;
 
-			.bBlocksThumb {
+			.#{$prefix}ElThumb {
 				height: 100%;
 			}
 		}
@@ -191,27 +147,27 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksTickerPosts {
+	.#{$prefix}LayoutTicker {
 		display: flex;
 		flex-direction: column;
 		gap: 15px;
 
-		.bBlocksPost {
+		.#{$prefix}Article {
 			display: grid;
 			grid-template-columns: 1fr 1.3fr;
 
-			.bBlocksThumb {
+			.#{$prefix}ElThumb {
 				height: 207px;
 				padding-bottom: 0;
 			}
 
-			.bBlocksTitle {
+			.#{$prefix}ElTitle {
 				span:first-child {
 					display: none;
 				}
 			}
 
-			.bBlocksExcerpt {
+			.#{$prefix}ElExcerpt {
 
 				span:nth-child(1),
 				span:nth-child(2) {
@@ -230,19 +186,19 @@ $loadingColor3: #bbdefb;
 	}
 
 	.fillContentHeight {
-		&.bBlocksDefault {
+		&.#{$prefix}SLDefault {
 			display: flex;
 			flex-direction: column;
 
-			.bBlocksText {
+			.#{$prefix}ElTexts {
 				flex: 1;
 				display: flex;
 				flex-direction: column;
 			}
 		}
 
-		&.bBlocksSideImage {
-			.bBlocksText {
+		&.#{$prefix}SLSideImage {
+			.#{$prefix}ElTexts {
 				height: 100%;
 				display: flex;
 				flex-direction: column;
@@ -251,7 +207,7 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksGridPosts {
+	.#{$prefix}LayoutGrid {
 		display: grid;
 
 		&::before,
@@ -264,7 +220,7 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksGrid1Posts {
+	.#{$prefix}LayoutGrid1 {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 
@@ -273,18 +229,18 @@ $loadingColor3: #bbdefb;
 			content: none;
 		}
 
-		.bBlocksPost:nth-child(4n + 1) {
+		.#{$prefix}Article:nth-child(4n + 1) {
 			grid-column: span 2;
 			grid-row: span 2;
 		}
 
-		.bBlocksPost:nth-child(4n + 2),
-		.bBlocksPost:nth-child(4n + 3) {
+		.#{$prefix}Article:nth-child(4n + 2),
+		.#{$prefix}Article:nth-child(4n + 3) {
 			grid-column: span 1;
 			grid-row: span 1;
 		}
 
-		.bBlocksPost:nth-child(4n + 4) {
+		.#{$prefix}Article:nth-child(4n + 4) {
 			grid-column: span 2;
 			grid-row: span 1;
 		}
@@ -292,13 +248,13 @@ $loadingColor3: #bbdefb;
 		@media (max-width: 992px) {
 			grid-template-columns: repeat(2, 1fr);
 
-			.bBlocksPost:nth-child(3n + 1) {
+			.#{$prefix}Article:nth-child(3n + 1) {
 				grid-column: span 1;
 				grid-row: span 2;
 			}
 
-			.bBlocksPost:nth-child(3n + 2),
-			.bBlocksPost:nth-child(3n + 3) {
+			.#{$prefix}Article:nth-child(3n + 2),
+			.#{$prefix}Article:nth-child(3n + 3) {
 				grid-column: span 1;
 				grid-row: span 1;
 			}
@@ -307,8 +263,8 @@ $loadingColor3: #bbdefb;
 		@media (max-width: 576px) {
 			grid-template-columns: repeat(1, 1fr);
 
-			.bBlocksPost:nth-child(2n + 1),
-			.bBlocksPost:nth-child(2n + 2) {
+			.#{$prefix}Article:nth-child(2n + 1),
+			.#{$prefix}Article:nth-child(2n + 2) {
 				grid-column: span 1;
 				grid-row: span 1;
 			}
@@ -319,7 +275,7 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksPagination {
+	.#{$prefix}Pagination {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -327,13 +283,13 @@ $loadingColor3: #bbdefb;
 		padding: 0;
 		margin: 15px 0 0 0;
 
-		.bBlocksPagePrev,
-		.bBlocksPageNumber,
-		.bBlocksPageNext {
+		.#{$prefix}PagePrev,
+		.#{$prefix}PageNumber,
+		.#{$prefix}PageNext {
 			border-radius: 3px;
 			cursor: pointer;
 
-			&.bBlocksActivePage {
+			&.#{$prefix}PageActive {
 				cursor: default;
 			}
 		}
@@ -344,7 +300,7 @@ $loadingColor3: #bbdefb;
 	}
 }
 
-.bBlocksSliderPosts {
+.#{$prefix}LayoutSlider {
 	position: relative;
 	overflow: hidden;
 	height: auto;
@@ -360,7 +316,7 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksOverlay:not(.bBlocksOverlayBox) .bBlocksText {
+	.#{$prefix}SLOverlay:not(.#{$prefix}SLOverlayBox) .#{$prefix}ElTexts {
 		width: -webkit-fill-available !important;
 	}
 
@@ -390,19 +346,19 @@ $loadingColor3: #bbdefb;
 	}
 }
 
-// .bBlocksTickerPosts {
+// .#{$prefix}LayoutTicker {
 // 	>div {
 // 		width: 100%;
 // 	}
 // }
 
-.bBlocksPost {
+.#{$prefix}Article {
 	border-radius: 5px;
 	overflow: hidden;
 	box-sizing: border-box;
 	margin: 0;
 
-	.bBlocksMeta {
+	.#{$prefix}ElMeta {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -435,14 +391,14 @@ $loadingColor3: #bbdefb;
 		}
 	}
 
-	.bBlocksExcerpt {
+	.#{$prefix}ElExcerpt {
 		p {
 			margin: 0 !important;
 			font-size: inherit !important;
 		}
 	}
 
-	.bBlocksReadMore {
+	.#{$prefix}ElReadMore {
 		&.bottom {
 			margin-top: auto;
 		}
@@ -461,7 +417,7 @@ $loadingColor3: #bbdefb;
 		cursor: pointer;
 	}
 
-	.bBlocksThumb {
+	.#{$prefix}ElThumb {
 		position: relative;
 		text-align: center;
 		background-size: cover;
@@ -480,7 +436,7 @@ $loadingColor3: #bbdefb;
 			top: 0;
 		}
 
-		.bBlocksThumbCats {
+		.#{$prefix}ElThumbCats {
 			position: absolute;
 			left: 10px;
 			bottom: 10px;
@@ -502,7 +458,7 @@ $loadingColor3: #bbdefb;
 	}
 
 
-	&.bBlocksSideImage {
+	&.#{$prefix}SLSideImage {
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		height: inherit;
@@ -525,7 +481,7 @@ $loadingColor3: #bbdefb;
 			grid-template-columns: 1.3fr 1fr;
 		}
 
-		.bBlocksThumb {
+		.#{$prefix}ElThumb {
 			padding-bottom: 0;
 			height: 100% !important;
 		}
@@ -536,26 +492,26 @@ $loadingColor3: #bbdefb;
 			align-self: stretch !important;
 
 			&.rightImage {
-				.bBlocksThumb {
+				.#{$prefix}ElThumb {
 					margin-top: auto;
 				}
 			}
 
-			.bBlocksThumb {
+			.#{$prefix}ElThumb {
 				width: 100%;
 				height: 200px !important;
 			}
 		}
 	}
 
-	&.bBlocksOverlay {
+	&.#{$prefix}SLOverlay {
 		position: relative;
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
 		z-index: 0;
 
-		&.bBlocksOverlayHover {
+		&.#{$prefix}SLOverlayHover {
 			>div {
 				opacity: 0;
 				transition: all .3s ease-out !important;
@@ -573,11 +529,11 @@ $loadingColor3: #bbdefb;
 			}
 		}
 
-		&.bBlocksOverlayBox {
+		&.#{$prefix}SLOverlayBox {
 			padding: 10% 7.5%;
 
 			&.swiper-slide {
-				.bBlocksText {
+				.#{$prefix}ElTexts {
 					padding-left: 0 !important;
 					padding-right: 0 !important;
 					width: 85% !important;
@@ -591,10 +547,10 @@ $loadingColor3: #bbdefb;
 			}
 		}
 
-		&.bBlocksOverlayHalfContent {
+		&.#{$prefix}SLOverlayHalfContent {
 			min-height: 400px;
 
-			.bBlocksText {
+			.#{$prefix}ElTexts {
 				justify-content: flex-end;
 			}
 		}
@@ -608,7 +564,7 @@ $loadingColor3: #bbdefb;
 			z-index: -1;
 		}
 
-		.bBlocksText {
+		.#{$prefix}ElTexts {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
