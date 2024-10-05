@@ -1,5 +1,3 @@
-# Ignore everything
-bundled
-dist/*
-!dist/*.php
 node_modules
+b-blocks.zip
+b-blocks-pro.zip

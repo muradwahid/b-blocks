@@ -1,29 +1,6 @@
 $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
 
-// .alignwide{
-// 	max-width: 100vw!important;
-// 	margin: 0 calc(-50vw + 58%)!important;
-// }
-
-// @media screen and (max-width: 1200px){
-// 	.alignwide{
-// 		margin: 0 calc(-50vw + 55%)!important;
-// 	}
-// }
-
-// @media screen and (max-width: 992px){
-// 	.alignwide{
-// 		margin: 0 calc(-50vw + 53%)!important;
-// 	}
-// }
-
-// @media screen and (max-width: 576px){
-// 	.alignwide{
-// 		margin: 0 calc(-50vw + 55%)!important;
-// 	}
-// }
-
 body {
 	box-sizing: border-box;
 }
@@ -107,31 +84,6 @@ body {
 	}
 }
 
-// Button
-// .b_blocks_btn {
-// 	display: inline-block;
-// 	border: none;
-// 	outline: 0;
-// 	transition: all .3s ease;
-// 	text-decoration: none;
-
-// 	&:focus {
-// 		outline: 0;
-// 	}
-// }
-
-// .b_blocks_btn_small {
-// 	color: #fff !important;
-// 	background-color: $primaryColor;
-// 	padding: 8px 25px;
-// 	border-radius: 50px;
-
-// 	&:hover {
-// 		background-color: $secondaryColor;
-// 	}
-// }
-
-
 // Tabs
 // .b_blocks_tabs {
 // 	.nav.nav-pills {
@@ -211,4 +163,23 @@ body {
 
 .bBlocksTextOverline {
 	text-decoration: overline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+a {
+	color: #2D3E50;
+	color: #28A745;
+	color: #FF6F61;
+	color: #F5F5F5;
+	color: #495057;
 }

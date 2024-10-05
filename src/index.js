@@ -1,0 +1,52 @@
+import './index.scss';
+import { pluginIcon } from './utils/icons';
+
+import './row';
+import './column';
+import './posts';
+import './slider';
+import './section-heading';
+import './button';
+import './video';
+import './services';
+import './service';
+import './3d-viewer';
+import './image-gallery';
+import './image-comparison';
+import './flip-boxes';
+import './team-members';
+import './cards';
+import './pricing-table';
+import './price-lists';
+import './feature-boxes';
+import './info-box';
+import './lottie-player';
+import './chart';
+import './button-group';
+import './countdown';
+import './counters';
+import './mailto';
+import './gif';
+import './qr-code';
+import './social-share';
+import './animated-text';
+import './alert';
+import './shape-divider';
+import './star-rating';
+// import './blocks/section.js';
+// import './blocks/modal.js';
+// import './blocks/tabs.js';
+// import './blocks/accordion.js';
+// import './blocks/collapse.js';
+// import './blocks/note.js';
+// import './blocks/highlight-text.js';
+// import './blocks/progress-bar.js';
+// import './blocks/spacer';
+// import './blocks/selection.js';
+// import './blocks/divider.js';
+// import './blocks/to-top.js';
+
+import './inline';
+
+// Update Block Category Icon
+wp.blocks.updateCategory('bBlocks', { icon: pluginIcon });

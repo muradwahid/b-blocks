@@ -1,0 +1,58 @@
+.wp-block-b-blocks-price-lists .bBlocksPriceLists {
+	display: grid;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	&.horizontal {
+		.priceItem {
+			display: flex;
+			align-items: center;
+
+			.productImage {
+				width: 40%;
+			}
+
+			.productDetails {
+				padding: 0 20px 0 0;
+			}
+		}
+	}
+
+	&.vertical {
+		.priceItem {
+			.productDetails {
+				padding: 0 20px;
+			}
+
+			.productSeparator {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+	}
+
+	.priceItem {
+		position: relative;
+
+		.productImage {
+			width: auto;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.productName {
+			margin: 0;
+		}
+
+		.productDescription {
+			margin: 0;
+		}
+
+		.productSeparator {
+			position: absolute;
+			bottom: 0;
+		}
+	}
+}
