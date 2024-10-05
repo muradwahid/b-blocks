@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/flip-boxes",
 	"title": "Flip Boxes",
 	"description": "Display Flip boxes section.",

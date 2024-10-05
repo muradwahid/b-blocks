@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/countdown",
 	"title": "Countdown",
 	"description": "Display events date into a timer.",

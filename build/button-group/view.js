@@ -1,1 +1,518 @@
-(()=>{"use strict";var t={8744:(t,n,e)=>{var o=e(5795);n.H=o.createRoot,o.hydrateRoot},5795:t=>{t.exports=window.ReactDOM}},n={};const e=window.React;var o=function e(o){var r=n[o];if(void 0!==r)return r.exports;var a=n[o]={exports:{}};return t[o](a,a.exports,e),a.exports}(8744);const r=t=>{const{width:n="0px",style:e="solid",color:o="#0000",side:r="all",radius:a="0px"}=t||{},s=t=>{const n=r?.toLowerCase();return n?.includes("all")||n?.includes(t)},i=`${n} ${e} ${o}`,l=`\n\t\t${"0px"!==n&&n?["top","right","bottom","left"].map((t=>s(t)?`border-${t}: ${i};`:"")).join(""):""}\n\t\t${a?`border-radius: ${a};`:""}\n\t`;return l},a=t=>{const{color:n="#333",bgType:e="solid",bg:o="#0000",gradient:r="linear-gradient(135deg, #4527a4, #8344c5)"}=t||{};return`\n\t\t${n?`color: ${n};`:""}\n\t\t${r||o?`background: ${"gradient"===e?r:o};`:""}\n\t`},s=(t,n=!0,e=!0)=>{const{fontSize:o=16,colorType:r="solid",color:a="inherit",gradient:s="linear-gradient(135deg, #4527a4, #8344c5)"}=t||{};return`\n\t\t${o&&n?`font-size: ${o}px;`:""}\n\t\t${e?"gradient"===r?`color: transparent; background-image: ${s}; -webkit-background-clip: text; background-clip: text;`:`color: ${a};`:""}\n\t`},i=t=>{const{side:n=2,vertical:e="0px",horizontal:o="0px",top:r="0px",right:a="0px",bottom:s="0px",left:i="0px"}=t||{};return 2===n?`${e} ${o}`:`${r} ${a} ${s} ${i}`},l=(t,n,e=!0)=>{const{fontFamily:o="Default",fontCategory:r="sans-serif",fontVariant:a=400,fontWeight:s=400,isUploadFont:i=!0,fontSize:l={desktop:15,tablet:15,mobile:15},fontStyle:$="normal",textTransform:c="none",textDecoration:d="auto",lineHeight:p="135%",letterSpace:b="0px"}=n||{},u=(t,n)=>t?`${n}: ${t};`:"",x=!e||!o||"Default"===o,g=l?.desktop||l,m=l?.tablet||g,f=l?.mobile||m,h=`\n\t\t${x?"":`font-family: '${o}', ${r};`}\n\t\t${u(s,"font-weight")}\n\t\tfont-size: ${g}px;\n\t\t${u($,"font-style")}\n\t\t${u(c,"text-transform")}\n\t\t${u(d,"text-decoration")}\n\t\t${u(p,"line-height")}\n\t\t${u(b,"letter-spacing")}\n\t`,w=a&&400!==a?"400i"===a?":ital@1":a?.includes("00i")?`: ital, wght@1, ${a?.replace("00i","00")} `:`: wght@${a} `:"",y=x?"":`https://fonts.googleapis.com/css2?family=${o?.split(" ").join("+")}${w.replace(/ /g,"")}&display=swap`;return{googleFontLink:!i||x?"":`@import url(${y});`,styles:`${t}{\n\t\t\t${h}\n\t\t}\n\t\t@media (max-width: 768px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${m}px;\n\t\t\t}\n\t\t}\n\t\t@media (max-width: 576px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${f}px;\n\t\t\t}\n\t\t}`.replace(/\s+/g," ").trim()}},$="bBlocksButtonGroup",c=({attributes:t,id:n})=>{const{width:o,btnAlign:c,btnTypo:d,btnPadding:p,btnOneBorder:b,btnOneColors:u,btnOneHovColors:x,btnTwoBorder:g,btnTwoColors:m,btnTwoHovColors:f,sepType:h,sepTextTypo:w,sepTextColor:y,sepIcon:k,sepBGColor:T}=t,v=`#${n}`,B=`${v} .${$}`,S=`${B} .btnSeparator`,E=w?.fontSize?.desktop||w?.fontSize;return(0,e.createElement)("style",{dangerouslySetInnerHTML:{__html:`\n\t\t${l("",d)?.googleFontLink}\n\t\t${l("",w)?.googleFontLink}\n\t\t${l(`${B} .bBlocksBtn a`,d)?.styles}\n\t\t${l(`${S} span`,w)?.styles}\n\n\t\t${v}{\n\t\t\ttext-align: ${c};\n\t\t}\n\t\t${B}{\n\t\t\twidth: ${"0px"!==o&&"0%"!==o&&"0em"!==o?o:"auto"};\n\t\t}\n\t\t${B} .bBlocksBtn{\n\t\t\tmin-width: ${"0px"!==o&&"0%"!==o&&"0em"!==o?"50%":"auto"};\n\t\t}\n\t\t${B} .bBlocksBtn a{\n\t\t\tpadding: ${i(p)};\n\t\t}\n\n\t\t${B} .btnOne{\n\t\t\t${r(b)||"border-radius: 50px;"}\n\t\t\t${a(u)}\n\t\t\tborder-radius: ${b?.radius||"50px"} 0 0 ${b?.radius||"50px"};\n\t\t}\n\t\t${B} .btnOne:hover{\n\t\t\t${a(x)}\n\t\t}\n\n\t\t${B} .btnTwo{\n\t\t\t${r(g)||"border-radius: 50px;"}\n\t\t\t${a(m)}\n\t\t\tborder-radius: 0 ${g?.radius||"50px"} ${g?.radius||"50px"} 0;\n\t\t}\n\t\t${B} .btnTwo:hover{\n\t\t\t${a(f)}\n\t\t}\n\n\t\t${S}{\n\t\t\twidth: ${"text"===h?1.75*E+"px":1.65*k?.fontSize+"px"};\n\t\t\theight: ${"text"===h?1.75*E+"px":1.65*k?.fontSize+"px"};\n\t\t\tbackground-color: ${T};\n\t\t}\n\t\t${S} span{\n\t\t\tcolor: ${y};\n\t\t}\n\t\t${S} i{\n\t\t\t${s(k)}\n\t\t}\n\t\t`.replace(/\s+/g," ")}})};document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".wp-block-b-blocks-button-group").forEach((t=>{const n=JSON.parse(t.dataset.attributes),{btnType:r,btnOne:a,btnOneLink:s,btnTwo:i,btnTwoLink:l,isSep:d,sepType:p,sepText:b,sepIcon:u}=n;(0,o.H)(t).render((0,e.createElement)(e.Fragment,null,(0,e.createElement)(c,{attributes:n,id:t.id}),(0,e.createElement)("div",{className:$},(0,e.createElement)("div",{className:"bBlocksBtn firstBtn"},(0,e.createElement)("a",{className:`btnOne btn-${r}`,href:s,dangerouslySetInnerHTML:{__html:a}}),d&&(0,e.createElement)("div",{className:"btnSeparator"},"text"===p?(0,e.createElement)("span",null,b):"icon"===p&&u?.class?(0,e.createElement)("i",{className:u?.class}):"")),(0,e.createElement)("div",{className:"bBlocksBtn secondBtn"},(0,e.createElement)("a",{className:`btnTwo btn-${r}`,href:l,dangerouslySetInnerHTML:{__html:i}}))))),t?.removeAttribute("data-attributes")}))}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "../Components/utils/getCSS.js":
+/*!*************************************!*\
+  !*** ../Components/utils/getCSS.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
+/* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
+/* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
+/* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
+/* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
+/* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
+/* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
+/* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
+/* harmony export */ });
+const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
+  const {
+    type = 'solid',
+    color = '#000000b3',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)',
+    image = {},
+    position = 'center center',
+    attachment = 'initial',
+    repeat = 'no-repeat',
+    size = 'cover',
+    overlayColor = '#000000b3'
+  } = bg || {};
+  const styles = 'gradient' === type && isGradient ? `background: ${gradient};` : 'image' === type && isImage ? `background: url(${image?.url});
+				background-color: ${overlayColor};
+				background-position: ${position};
+				background-size: ${size};
+				background-repeat: ${repeat};
+				background-attachment: ${attachment};
+				background-blend-mode: overlay;` : isSolid && `background: ${color};`;
+  return styles;
+}; // PHP version in Stepped Content
+
+const getBorderCSS = border => {
+  const {
+    width = '0px',
+    style = 'solid',
+    color = '#0000',
+    side = 'all',
+    radius = '0px'
+  } = border || {};
+  const borderSideCheck = s => {
+    const bSide = side?.toLowerCase();
+    return bSide?.includes('all') || bSide?.includes(s);
+  };
+  const noWidth = width === '0px' || !width;
+  const borderCSS = `${width} ${style} ${color}`;
+  const styles = `
+		${noWidth ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
+		${!radius ? '' : `border-radius: ${radius};`}
+	`;
+  return styles;
+};
+const getColorsCSS = colors => {
+  const {
+    color = '#333',
+    bgType = 'solid',
+    bg = '#0000',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = colors || {};
+  const styles = `
+		${color ? `color: ${color};` : ''}
+		${gradient || bg ? `background: ${'gradient' === bgType ? gradient : bg};` : ''}
+	`;
+  return styles;
+};
+const getIconCSS = (icon, isSize = true, isColor = true) => {
+  const {
+    fontSize = 16,
+    colorType = 'solid',
+    color = 'inherit',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = icon || {};
+  const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : `color: ${color};`;
+  const styles = `
+		${!fontSize || !isSize ? '' : `font-size: ${fontSize}px;`}
+		${isColor ? colorCSS : ''}
+	`;
+  return styles;
+};
+const getMultiShadowCSS = (value, type = 'box') => {
+  let styles = '';
+  value?.map((item, index) => {
+    const {
+      hOffset = '0px',
+      vOffset = '0px',
+      blur = '0px',
+      spreed = '0px',
+      color = '#7090b0',
+      isInset = false
+    } = item || {};
+    const inset = isInset ? 'inset' : '';
+    const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+    const isComa = index + 1 >= value.length ? '' : ', ';
+    styles += 'text' === type ? `${offsetBlur} ${color}${isComa}` : `${offsetBlur} ${spreed} ${color} ${inset}${isComa}`;
+  });
+  return styles || 'none';
+};
+const getSeparatorCSS = separator => {
+  const {
+    width = '50%',
+    height = '2px',
+    style = 'solid',
+    color = '#bbb'
+  } = separator || {};
+  const styles = `
+		width: ${width};
+		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+	`;
+  return styles;
+};
+const getShadowCSS = shadow => {
+  const {
+    type = 'box',
+    hOffset = '0px',
+    vOffset = '0px',
+    blur = '0px',
+    spreed = '0px',
+    color = '#7090b0',
+    isInset = false
+  } = shadow || {};
+  const inset = isInset ? 'inset' : '';
+  const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+  const styles = 'text' === type ? `${offsetBlur} ${color}` : `${offsetBlur} ${spreed} ${color} ${inset}`;
+  return styles || 'none';
+};
+const getSpaceCSS = space => {
+  const {
+    side = 2,
+    vertical = '0px',
+    horizontal = '0px',
+    top = '0px',
+    right = '0px',
+    bottom = '0px',
+    left = '0px'
+  } = space || {};
+  const styles = 2 === side ? `${vertical} ${horizontal}` : `${top} ${right} ${bottom} ${left}`;
+  return styles;
+};
+const getTypoCSS = (selector, typo, isFamily = true) => {
+  const {
+    fontFamily = 'Default',
+    fontCategory = 'sans-serif',
+    fontVariant = 400,
+    fontWeight = 400,
+    isUploadFont = true,
+    fontSize = {
+      desktop: 15,
+      tablet: 15,
+      mobile: 15
+    },
+    fontStyle = 'normal',
+    textTransform = 'none',
+    textDecoration = 'auto',
+    lineHeight = '135%',
+    letterSpace = '0px'
+  } = typo || {};
+  const generateCss = (value, cssProperty) => !value ? '' : `${cssProperty}: ${value};`;
+  const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
+  const desktopFontSize = fontSize?.desktop || fontSize;
+  const tabletFontSize = fontSize?.tablet || desktopFontSize;
+  const mobileFontSize = fontSize?.mobile || tabletFontSize;
+  const styles = `
+		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
+		${generateCss(fontWeight, 'font-weight')}
+		${`font-size: ${desktopFontSize}px;`}
+		${generateCss(fontStyle, 'font-style')}
+		${generateCss(textTransform, 'text-transform')}
+		${generateCss(textDecoration, 'text-decoration')}
+		${generateCss(lineHeight, 'line-height')}
+		${generateCss(letterSpace, 'letter-spacing')}
+	`;
+
+  // Google font link
+  const linkQuery = !fontVariant || 400 === fontVariant ? '' : '400i' === fontVariant ? ':ital@1' : fontVariant?.includes('00i') ? `: ital, wght@1, ${fontVariant?.replace('00i', '00')} ` : `: wght@${fontVariant} `;
+  const link = isEmptyFamily ? '' : `https://fonts.googleapis.com/css2?family=${fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+  return {
+    googleFontLink: !isUploadFont || isEmptyFamily ? '' : `@import url(${link});`,
+    styles: `${selector}{
+			${styles}
+		}
+		@media (max-width: 768px) {
+			${selector}{
+				${`font-size: ${tabletFontSize}px;`}
+			}
+		}
+		@media (max-width: 576px) {
+			${selector}{
+				${`font-size: ${mobileFontSize}px;`}
+			}
+		}`.replace(/\s+/g, ' ').trim()
+  };
+};
+const getBoxCSS = (val = {}) => Object.values(val).join(' ');
+
+/***/ }),
+
+/***/ "./src/button-group/Components/Common/Style.js":
+/*!*****************************************************!*\
+  !*** ./src/button-group/Components/Common/Style.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/button-group/utils/data.js");
+
+
+
+const Style = ({
+  attributes,
+  id
+}) => {
+  const {
+    width,
+    btnAlign,
+    btnTypo,
+    btnPadding,
+    btnOneBorder,
+    btnOneColors,
+    btnOneHovColors,
+    btnTwoBorder,
+    btnTwoColors,
+    btnTwoHovColors,
+    sepType,
+    sepTextTypo,
+    sepTextColor,
+    sepIcon,
+    sepBGColor
+  } = attributes;
+  const mainSl = `#${id}`;
+  const btnGroupSl = `${mainSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix}`;
+  const btnSeparatorSl = `${btnGroupSl} .btnSeparator`;
+  const sepTextFontSize = sepTextTypo?.fontSize?.desktop || sepTextTypo?.fontSize;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', btnTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', sepTextTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${btnGroupSl} .bBlocksBtn a`, btnTypo)?.styles}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${btnSeparatorSl} span`, sepTextTypo)?.styles}
+
+		${mainSl}{
+			text-align: ${btnAlign};
+		}
+		${btnGroupSl}{
+			width: ${'0px' !== width && '0%' !== width && '0em' !== width ? width : 'auto'};
+		}
+		${btnGroupSl} .bBlocksBtn{
+			min-width: ${'0px' !== width && '0%' !== width && '0em' !== width ? '50%' : 'auto'};
+		}
+		${btnGroupSl} .bBlocksBtn a{
+			padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(btnPadding)};
+		}
+
+		${btnGroupSl} .btnOne{
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(btnOneBorder) || 'border-radius: 50px;'}
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(btnOneColors)}
+			border-radius: ${btnOneBorder?.radius || '50px'} 0 0 ${btnOneBorder?.radius || '50px'};
+		}
+		${btnGroupSl} .btnOne:hover{
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(btnOneHovColors)}
+		}
+
+		${btnGroupSl} .btnTwo{
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(btnTwoBorder) || 'border-radius: 50px;'}
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(btnTwoColors)}
+			border-radius: 0 ${btnTwoBorder?.radius || '50px'} ${btnTwoBorder?.radius || '50px'} 0;
+		}
+		${btnGroupSl} .btnTwo:hover{
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(btnTwoHovColors)}
+		}
+
+		${btnSeparatorSl}{
+			width: ${'text' === sepType ? `${sepTextFontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
+			height: ${'text' === sepType ? `${sepTextFontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
+			background-color: ${sepBGColor};
+		}
+		${btnSeparatorSl} span{
+			color: ${sepTextColor};
+		}
+		${btnSeparatorSl} i{
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getIconCSS)(sepIcon)}
+		}
+		`.replace(/\s+/g, ' ')
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/button-group/utils/data.js":
+/*!****************************************!*\
+  !*** ./src/button-group/utils/data.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   prefix: () => (/* binding */ prefix)
+/* harmony export */ });
+const prefix = 'bBlocksButtonGroup';
+
+/***/ }),
+
+/***/ "./src/button-group/style.scss":
+/*!*************************************!*\
+  !*** ./src/button-group/style.scss ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../plugin-slug/node_modules/react-dom/client.js":
+/*!*******************************************************!*\
+  !*** ../plugin-slug/node_modules/react-dom/client.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/*!**********************************!*\
+  !*** ./src/button-group/view.js ***!
+  \**********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/button-group/style.scss");
+/* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/button-group/Components/Common/Style.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/data */ "./src/button-group/utils/data.js");
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const allButtonGroupEls = document.querySelectorAll('.wp-block-b-blocks-button-group');
+  allButtonGroupEls.forEach(buttonGroupEl => {
+    const attributes = JSON.parse(buttonGroupEl.dataset.attributes);
+    const {
+      btnType,
+      btnOne,
+      btnOneLink,
+      btnTwo,
+      btnTwoLink,
+      isSep,
+      sepType,
+      sepText,
+      sepIcon
+    } = attributes;
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(buttonGroupEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      attributes: attributes,
+      id: buttonGroupEl.id
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: _utils_data__WEBPACK_IMPORTED_MODULE_4__.prefix
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "bBlocksBtn firstBtn"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: `btnOne btn-${btnType}`,
+      href: btnOneLink,
+      dangerouslySetInnerHTML: {
+        __html: btnOne
+      }
+    }), isSep && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "btnSeparator"
+    }, 'text' === sepType ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, sepText) : 'icon' === sepType && sepIcon?.class ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+      className: sepIcon?.class
+    }) : '')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "bBlocksBtn secondBtn"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: `btnTwo btn-${btnType}`,
+      href: btnTwoLink,
+      dangerouslySetInnerHTML: {
+        __html: btnTwo
+      }
+    })))));
+    buttonGroupEl?.removeAttribute('data-attributes');
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

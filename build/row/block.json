@@ -1,5 +1,5 @@
 {
-  "apiVersion": 3,
+  "apiVersion": 2,
   "name": "b-blocks/row",
   "title": "Row",
   "description": "Implement row and column layout.",

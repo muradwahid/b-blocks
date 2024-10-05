@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/animated-text",
 	"title": "Animated Text",
 	"description": "Apply animation on any text.",

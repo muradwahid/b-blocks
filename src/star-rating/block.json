@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/star-rating",
 	"title": "Star Rating",
 	"description": "Gutenberg editing with easy-to-use, responsive star-rating more.",

@@ -30,21 +30,21 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_register_style( 'aos', B_BLOCKS_ASSETS . 'css/aos.css', [], '3.0.0' ); // Button
 			wp_register_style( 'fancybox', B_BLOCKS_ASSETS . 'css/fancybox.min.css', '', '4.0', 'all' ); // Image Gallery
 
-			wp_enqueue_style( 'bBlocksStyle', B_BLOCKS_BUILD . 'script.css', [], B_BLOCKS_VERSION ); // Style
+			wp_enqueue_style( 'b-blocks-style', B_BLOCKS_BUILD . 'script.css', [], B_BLOCKS_VERSION ); // Style
 		}
 
 		function enqueueBlockEditorAssets(){
 			wp_register_script( 'jqueryUI', B_BLOCKS_ASSETS . 'js/jquery-ui.min.js', [ 'jquery' ], '1.13.0', true ); // Slider Block
 
-			wp_enqueue_script( 'bBlocksTemplateLibraryScript', B_BLOCKS_BUILD . 'template-library.js', [ 'wp-api', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-data', 'wp-dom-ready', 'wp-i18n', 'wp-util', 'react', 'react-dom' ], B_BLOCKS_VERSION, false );
-			wp_set_script_translations( 'bBlocksTemplateLibraryScript', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
+			wp_enqueue_script( 'b-blocks-template-library-script', B_BLOCKS_BUILD . 'template-library.js', [ 'wp-api', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-data', 'wp-dom-ready', 'wp-i18n', 'wp-util', 'react', 'react-dom' ], B_BLOCKS_VERSION, false );
+			wp_set_script_translations( 'b-blocks-template-library-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
-			wp_enqueue_style( 'bBlocksTemplateStyle', B_BLOCKS_BUILD . 'template-library.css', [], B_BLOCKS_VERSION );
+			wp_enqueue_style( 'b-blocks-template-library-style', B_BLOCKS_BUILD . 'template-library.css', [], B_BLOCKS_VERSION );
 
-			wp_enqueue_script( 'bBlocksEditorScript', B_BLOCKS_BUILD . 'index.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-date', 'wp-element', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'dotLottiePlayer', 'lottieInteractivity', 'chartJS', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false );
-			wp_set_script_translations( 'bBlocksEditorScript', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
+			wp_enqueue_script( 'b-blocks-index-script', B_BLOCKS_BUILD . 'index.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-date', 'wp-element', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'dotLottiePlayer', 'lottieInteractivity', 'chartJS', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false );
+			wp_set_script_translations( 'b-blocks-index-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
-			wp_enqueue_style( 'bBlocksEditorStyle', B_BLOCKS_DIST . 'editor.css', [ 'fontAwesome', 'bBlocksStyle' ], B_BLOCKS_VERSION );
+			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );
 		}
 
 		function scriptLoaderTag( $tag, $handle, $src ){

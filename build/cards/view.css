@@ -1,1 +1,97 @@
-.wp-block-b-blocks-cards .bBlocksCards{display:grid}.wp-block-b-blocks-cards .bBlocksCards *{box-sizing:border-box}.wp-block-b-blocks-cards .bBlocksCards .cardLink{text-decoration:none}.wp-block-b-blocks-cards .bBlocksCards.vertical{margin-bottom:30px}.wp-block-b-blocks-cards .bBlocksCards.vertical .card{flex-direction:column}.wp-block-b-blocks-cards .bBlocksCards.vertical .card.topImg{margin-top:30px}.wp-block-b-blocks-cards .bBlocksCards.vertical .card.topImg .cardImage{margin-bottom:0;margin-top:-30px}.wp-block-b-blocks-cards .bBlocksCards.vertical .card.bottomImg{margin-bottom:30px}.wp-block-b-blocks-cards .bBlocksCards.vertical .card.bottomImg .cardImage{margin-bottom:-30px;margin-top:auto}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card{align-items:center;flex-direction:row}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card .cardDetails{width:50%}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card .cardImage{height:calc(100% - 30px);width:50%}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card .cardImage img{min-height:100%}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.topImg{margin-left:30px}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.topImg .cardImage{margin-left:-30px}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.bottomImg{margin-right:30px}.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.bottomImg .cardImage{margin-left:auto;margin-right:-30px}.wp-block-b-blocks-cards .bBlocksCards .card{border-radius:5px;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);color:rgba(0,0,0,.87);display:flex;height:100%;position:relative}.wp-block-b-blocks-cards .bBlocksCards .card .cardImage{box-shadow:0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);margin:15px;overflow:hidden;position:relative}.wp-block-b-blocks-cards .bBlocksCards .card .cardImage img{-o-object-fit:cover;object-fit:cover;width:100%}.wp-block-b-blocks-cards .bBlocksCards .card .cardImage .cardTitle{bottom:15px;left:20px;margin-bottom:0!important;position:absolute;text-shadow:0 2px 5px rgba(33,33,33,.5)}.wp-block-b-blocks-cards .bBlocksCards .card .cardDetails *{margin:0 0 10px}.wp-block-b-blocks-cards .bBlocksCards .card .cardTitle{font-weight:600;margin:0}.wp-block-b-blocks-cards .bBlocksCards .card .cardDescription{margin:0}
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/cards/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-cards .bBlocksCards {
+  display: grid;
+}
+.wp-block-b-blocks-cards .bBlocksCards * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-cards .bBlocksCards .cardLink {
+  text-decoration: none;
+}
+.wp-block-b-blocks-cards .bBlocksCards.vertical {
+  margin-bottom: 30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.vertical .card {
+  flex-direction: column;
+}
+.wp-block-b-blocks-cards .bBlocksCards.vertical .card.topImg {
+  margin-top: 30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.vertical .card.topImg .cardImage {
+  margin-top: -30px;
+  margin-bottom: 0;
+}
+.wp-block-b-blocks-cards .bBlocksCards.vertical .card.bottomImg {
+  margin-bottom: 30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.vertical .card.bottomImg .cardImage {
+  margin-top: auto;
+  margin-bottom: -30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card {
+  flex-direction: row;
+  align-items: center;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card .cardDetails {
+  width: 50%;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card .cardImage {
+  height: calc(100% - 30px);
+  width: 50%;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card .cardImage img {
+  min-height: 100%;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.topImg {
+  margin-left: 30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.topImg .cardImage {
+  margin-left: -30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.bottomImg {
+  margin-right: 30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards.horizontal .card.bottomImg .cardImage {
+  margin-left: auto;
+  margin-right: -30px;
+}
+.wp-block-b-blocks-cards .bBlocksCards .card {
+  height: 100%;
+  display: flex;
+  position: relative;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.wp-block-b-blocks-cards .bBlocksCards .card .cardImage {
+  position: relative;
+  overflow: hidden;
+  margin: 15px;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+.wp-block-b-blocks-cards .bBlocksCards .card .cardImage img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.wp-block-b-blocks-cards .bBlocksCards .card .cardImage .cardTitle {
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+  text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
+  margin-bottom: 0 !important;
+}
+.wp-block-b-blocks-cards .bBlocksCards .card .cardDetails * {
+  margin: 0 0 10px 0;
+}
+.wp-block-b-blocks-cards .bBlocksCards .card .cardTitle {
+  font-weight: 600;
+  margin: 0;
+}
+.wp-block-b-blocks-cards .bBlocksCards .card .cardDescription {
+  margin: 0;
+}
+
+/*# sourceMappingURL=view.css.map*/

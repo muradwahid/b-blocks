@@ -1,5 +1,5 @@
 {
-  "apiVersion": 3,
+  "apiVersion": 2,
   "name": "b-blocks/pricing-table",
   "title": "Pricing Table",
   "description": "Display product prices as a table.",

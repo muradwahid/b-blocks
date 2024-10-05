@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/image-gallery",
 	"title": "Image Gallery",
 	"description": "Display Multiple Images as Gallery.",

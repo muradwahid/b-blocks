@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/counters",
 	"title": "Counters",
 	"description": "Display Number as animated counter.",

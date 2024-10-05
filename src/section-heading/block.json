@@ -1,5 +1,5 @@
 {
-	"apiVersion": 3,
+	"apiVersion": 2,
 	"name": "b-blocks/section-heading",
 	"title": "Section Heading",
 	"description": "Display heading before section.",

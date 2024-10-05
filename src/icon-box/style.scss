@@ -1,0 +1,14 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-icon-box {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksIconBox {
+		display: inline-grid;
+		place-items: center;
+	}
+}

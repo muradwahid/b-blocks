@@ -297,7 +297,7 @@ export default withSelect((select, { attributes }) => {
 	const taxonomies = getTaxonomies({ per_page: -1 });
 
 	return {
-		postTypes: getPostTypes({ per_page: -1 })?.filter(p => !['apb', 'attachment', 'wp_block', 'wp_template', 'wp_navigation', 'wp_template_part', 'nav_menu_item'].includes(p.slug))?.map(({ name, slug }) => ({ label: name, value: slug })),
+		postTypes: getPostTypes({ per_page: -1 })?.filter(p => !['apb', 'attachment', 'nav_menu_item'].includes(p.slug) && !p.slug.startsWith('wp_'))?.map(({ name, slug }) => ({ label: name, value: slug })),
 
 		currentPostType: getCurrentPostType(),
 

@@ -1,5 +1,5 @@
 {
-  "apiVersion": 3,
+  "apiVersion": 2,
   "name": "b-blocks/qr-code",
   "title": "QR Code",
   "description": "Show QR Code in posts and pages.",

@@ -28,7 +28,6 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.4' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
-	define( 'B_BLOCKS_DIST', B_BLOCKS_DIR_URL . 'dist/' );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
 	define( 'B_BLOCKS_ASSETS', B_BLOCKS_DIR_URL . 'assets/' );
 
@@ -112,7 +111,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/Utils.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/GetCSS.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ajax.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/Posts/Posts.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/posts/Posts.php';
 
 	class BBlocks{
 		protected static $_instance = null;
@@ -137,7 +136,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
-			$blocks = [ '3d-viewer', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'services', 'service', 'shape-divider', 'slider', 'social-share', 'star-rating', 'team-members', 'video' ];
+			$blocks = [ '3d-viewer', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'services', 'service', 'shape-divider', 'slider', 'social-share', 'star-rating', 'team-members', 'video' ];
 
 			foreach ( $blocks as $block ) {
 				register_block_type( __DIR__ . '/build/' . $block );
