@@ -4,6 +4,11 @@ export const generalStyleTabs = [
 	{ name: 'general', title: __('General', 'b-blocks') },
 	{ name: 'style', title: __('Style', 'b-blocks') }
 ];
+export const generalStyleAdvancedTabs = [
+	{ name: 'general', title: __('General', 'b-blocks') },
+	{ name: 'style', title: __('Style', 'b-blocks') },
+	{ name: 'advanced', title: __('Advanced', 'b-blocks') }
+];
 
 export const fontSizes = [
 	{ name: 'Small', slug: 'small', size: 13 },

@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
 Requires at least: 6.2+
 Tested up to: 6.6.2
-Stable tag: 1.9.4
+Stable tag: 1.9.5
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -242,6 +242,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.9.5 - 10 Oct 2024 =
+* Update SDK.
+
 = 1.9.4 - 27 Aug 2024 =
 * Add new features to the Cards block.
 
@@ -408,6 +411,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Upgrade Notice ==
+
+= 1.9.5 - 10 Oct 2024 =
+* Update SDK.
 
 = 1.9.4 - 27 Aug 2024 =
 * Add new features to the Cards block.

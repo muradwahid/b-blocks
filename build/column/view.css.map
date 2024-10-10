@@ -1,1 +1,0 @@
-{"version":3,"file":"column/view.css","mappings":";;;AAAA;EACC;AACD;AACC;EACC;AACF,C","sources":["webpack://plugin-slug/./src/column/style.scss"],"sourcesContent":[".wp-block-b-blocks-column {\r\n\tbox-sizing: border-box;\r\n\r\n\t.bBlocksColumn {\r\n\t\toverflow: hidden;\r\n\t}\r\n}"],"names":[],"sourceRoot":""}

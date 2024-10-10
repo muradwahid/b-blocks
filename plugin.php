@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks Pro
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.9.4
+ * Version: 1.9.5
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.4' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.5' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -136,7 +136,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
-			$blocks = [ '3d-viewer', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'services', 'service', 'shape-divider', 'slider', 'social-share', 'star-rating', 'team-members', 'video' ];
+			$blocks = [ '3d-viewer', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'services', 'service', 'shape-divider', 'slider', 'social-share', 'star-rating', 'team-members', 'video' ];
 
 			foreach ( $blocks as $block ) {
 				register_block_type( __DIR__ . '/build/' . $block );

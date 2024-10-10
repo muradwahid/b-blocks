@@ -3,11 +3,12 @@ import { pluginIcon } from './utils/icons';
 
 import './row';
 import './column';
+// import './container';
 import './posts';
 import './slider';
 import './section-heading';
 import './button';
-import './icon-box';
+// import './icon-box';
 import './video';
 import './services';
 import './service';

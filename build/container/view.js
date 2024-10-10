@@ -1,0 +1,1 @@
+(()=>{"use strict";var t={8744:(t,r,e)=>{var o=e(5795);o.createRoot,o.hydrateRoot},5795:t=>{t.exports=window.ReactDOM}},r={};!function e(o){var a=r[o];if(void 0!==a)return a.exports;var s=r[o]={exports:{}};return t[o](s,s.exports,e),s.exports}(8744);const e=document.querySelectorAll(".wp-block-b-blocks-container");e?.forEach((t=>{JSON.parse(t.dataset.attributes)}))})();
