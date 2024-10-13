@@ -1,1 +1,34 @@
-.wp-block-b-blocks-container *{box-sizing:border-box}.wp-block-b-blocks-container .bBlocksContainer{box-sizing:border-box;display:flex;flex-direction:column;position:relative}.wp-block-b-blocks-container .bBlocksContainer .content{max-width:100%;position:relative}.wp-block-b-blocks-container .bBlocksContainer .topShaped{left:0;position:absolute;right:0;top:0}.wp-block-b-blocks-container .bBlocksContainer .topShaped svg{height:auto}.wp-block-b-blocks-container .bBlocksContainer .bottomShaped svg{bottom:0;height:auto;left:0;position:absolute}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/container/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-container {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.wp-block-b-blocks-container * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-container .topShaped {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.wp-block-b-blocks-container .topShaped svg {
+  height: auto;
+}
+.wp-block-b-blocks-container .bottomShaped {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.wp-block-b-blocks-container .bottomShaped svg {
+  height: auto;
+}
+.wp-block-b-blocks-container .bBlocksContainerContent {
+  position: relative;
+  max-width: 100%;
+}
+
+/*# sourceMappingURL=view.css.map*/

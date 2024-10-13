@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { InspectorControls } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 
-import { tabController } from '../../../../../../Components/utils/functions';
 import { AboutPro } from '../../../../../../Components/Pro';
 import Advanced from '../../../../../../bpl-tools/Advanced';
 
@@ -22,7 +21,7 @@ const Settings = (props) => {
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleAdvancedTabs} onSelect={tabController}>{tab => <>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleAdvancedTabs}>{tab => <>
 				{'general' === tab.name && <>
 					<Wrapper {...props} />
 
@@ -37,7 +36,7 @@ const Settings = (props) => {
 
 
 				{'advanced' === tab.name && <>
-					<Advanced value={advanced} onChange={val => setAttributes({ advanced: val })} enabled={{ dimension: ['padding'], background: ['normal', 'hover'] }} />
+					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} enabled={{ dimension: ['padding'], background: ['normal', 'hover'] }} />
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>

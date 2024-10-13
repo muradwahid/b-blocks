@@ -136,7 +136,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
-			$blocks = [ '3d-viewer', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'services', 'service', 'shape-divider', 'slider', 'social-share', 'star-rating', 'team-members', 'video' ];
+			$blocks = [ '3d-viewer', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'services', 'service', 'shape-divider', 'slider', 'social-share', 'star-rating', 'team-members', 'video' ];
 
 			foreach ( $blocks as $block ) {
 				register_block_type( __DIR__ . '/build/' . $block );

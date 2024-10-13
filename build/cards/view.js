@@ -1,1 +1,574 @@
-(()=>{"use strict";var t={8744:(t,e,n)=>{var a=n(5795);e.H=a.createRoot,a.hydrateRoot},5795:t=>{t.exports=window.ReactDOM}},e={};const n=window.React;var a=function n(a){var r=e[a];if(void 0!==r)return r.exports;var o=e[a]={exports:{}};return t[a](o,o.exports,n),o.exports}(8744);const r=t=>{const{side:e=2,vertical:n="0px",horizontal:a="0px",top:r="0px",right:o="0px",bottom:l="0px",left:i="0px"}=t||{};return 2===e?`${n} ${a}`:`${r} ${o} ${l} ${i}`},o=(t,e,n=!0)=>{const{fontFamily:a="Default",fontCategory:r="sans-serif",fontVariant:o=400,fontWeight:l=400,isUploadFont:i=!0,fontSize:c={desktop:15,tablet:15,mobile:15},fontStyle:s="normal",textTransform:d="none",textDecoration:$="auto",lineHeight:m="135%",letterSpace:g="0px"}=e||{},p=(t,e)=>t?`${e}: ${t};`:"",u=!n||!a||"Default"===a,b=c?.desktop||c,y=c?.tablet||b,h=c?.mobile||y,f=`\n\t\t${u?"":`font-family: '${a}', ${r};`}\n\t\t${p(l,"font-weight")}\n\t\tfont-size: ${b}px;\n\t\t${p(s,"font-style")}\n\t\t${p(d,"text-transform")}\n\t\t${p($,"text-decoration")}\n\t\t${p(m,"line-height")}\n\t\t${p(g,"letter-spacing")}\n\t`,x=o&&400!==o?"400i"===o?":ital@1":o?.includes("00i")?`: ital, wght@1, ${o?.replace("00i","00")} `:`: wght@${o} `:"",k=u?"":`https://fonts.googleapis.com/css2?family=${a?.split(" ").join("+")}${x.replace(/ /g,"")}&display=swap`;return{googleFontLink:!i||u?"":`@import url(${k});`,styles:`${t}{\n\t\t\t${f}\n\t\t}\n\t\t@media (max-width: 768px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${y}px;\n\t\t\t}\n\t\t}\n\t\t@media (max-width: 576px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${h}px;\n\t\t\t}\n\t\t}`.replace(/\s+/g," ").trim()}},l="bBlocksCards",i=({attributes:t,id:e})=>{const{cards:a=[],columnGap:i,rowGap:c,textAlign:s,padding:d,imgHeight:$,catTypo:m,catMargin:g,titleTypo:p,titleMargin:u,descTypo:b}=t,y=`#${e}`,h=`${y} .${l} .card`,f=`${h} .cardDetails`;return(0,n.createElement)("style",{dangerouslySetInnerHTML:{__html:`\n\t\t${o("",m)?.googleFontLink}\n\t\t${o("",p)?.googleFontLink}\n\t\t${o("",b)?.googleFontLink}\n\t\t${o(`${f} .cardCategory`,m)?.styles}\n\t\t${o(`${h} .cardTitle`,p)?.styles}\n\t\t${o(`${h} .cardDescription`,b)?.styles}\n\n\t\t${y} .${l}{\n\t\t\tgrid-gap: ${c} ${i};\n\t\t}\n\t\t${h} .cardImage,\n\t\t${h} .cardImage img{\n\t\t\theight: ${$};\n\t\t}\n\t\t${f}{\n\t\t\ttext-align: ${s};\n\t\t\tpadding: ${r(d)};\n\t\t}\n\t\t${f} .cardCategory{\n\t\t\tmargin: ${r(g)};\n\t\t}\n\t\t${h} .cardTitle{\n\t\t\tmargin: ${r(u)};\n\t\t}\n\n\t\t${a.map(((t,n)=>{const{background:a,imgBorder:r,catColor:o,titleColor:l,descColor:i}=t,c=`#${e} #card-${n}`;return`\n\t\t\t\t${c} .card{\n\t\t\t\t\t${((t,e=!0,n=!0,a=!0)=>{const{type:r="solid",color:o="#000000b3",gradient:l="linear-gradient(135deg, #4527a4, #8344c5)",image:i={},position:c="center center",attachment:s="initial",repeat:d="no-repeat",size:$="cover",overlayColor:m="#000000b3"}=t||{};return"gradient"===r&&n?`background: ${l};`:"image"===r&&a?`background: url(${i?.url});\n\t\t\t\tbackground-color: ${m};\n\t\t\t\tbackground-position: ${c};\n\t\t\t\tbackground-size: ${$};\n\t\t\t\tbackground-repeat: ${d};\n\t\t\t\tbackground-attachment: ${s};\n\t\t\t\tbackground-blend-mode: overlay;`:e&&`background: ${o};`})(a)}\n\t\t\t\t}\n\t\t\t\t${c} .cardImage{\n\t\t\t\t\t${(t=>{const{width:e="0px",style:n="solid",color:a="#0000",side:r="all",radius:o="0px"}=t||{},l=t=>{const e=r?.toLowerCase();return e?.includes("all")||e?.includes(t)},i=`${e} ${n} ${a}`;return`\n\t\t${"0px"!==e&&e?["top","right","bottom","left"].map((t=>l(t)?`border-${t}: ${i};`:"")).join(""):""}\n\t\t${o?`border-radius: ${o};`:""}\n\t`})(r)}\n\t\t\t\t}\n\t\t\t\t${c} .cardDetails .cardCategory{\n\t\t\t\t\tcolor: ${o};\n\t\t\t\t}\n\t\t\t\t${c} .cardTitle{\n\t\t\t\t\tcolor: ${l};\n\t\t\t\t}\n\t\t\t\t${c} .cardDescription{\n\t\t\t\t\tcolor: ${i};\n\t\t\t\t}\n\t\t\t`})).join(" ")}\n\t\t`.replace(/\s+/g," ")}})};document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".wp-block-b-blocks-cards").forEach((t=>{const e=JSON.parse(t.dataset.attributes),{cards:r=[],columns:o,layout:s,link:d={},imgPos:$,isCat:m,isTitle:g,titlePos:p,isDesc:u}=e,{target:b="_self",element:y="card"}=d;(0,a.H)(t).render((0,n.createElement)(n.Fragment,null,(0,n.createElement)(i,{attributes:e,id:t.id}),(0,n.createElement)("div",{className:`${l} ${s||"vertical"} columns-${o.desktop} columns-tablet-${o.tablet} columns-mobile-${o.mobile}`},r.map(((t,e)=>{const{img:a,cat:r,title:o,desc:l,link:i=""}=t,s=()=>g&&(0,n.createElement)(c,{enabled:"title"===y,url:i,target:b},(0,n.createElement)("h3",{className:"cardTitle",dangerouslySetInnerHTML:{__html:o}})),d=()=>a?.url&&(0,n.createElement)(c,{enabled:"image"===y,url:i,target:b},(0,n.createElement)("figure",{className:"cardImage"},(0,n.createElement)("img",{src:a.url,alt:a?.alt||a?.title}),"image"===p&&(0,n.createElement)(s,null)));return(0,n.createElement)("div",{key:e,id:`card-${e}`},(0,n.createElement)(c,{enabled:"card"===y,url:i,target:b},(0,n.createElement)("div",{className:"card "+("bottom"===$?"bottomImg":"topImg")},"top"===$&&(0,n.createElement)(d,null),(0,n.createElement)("div",{className:"cardDetails"},m&&(0,n.createElement)("h6",{className:"cardCategory",dangerouslySetInnerHTML:{__html:r}}),"content"===p&&(0,n.createElement)(s,null),u&&(0,n.createElement)("p",{className:"cardDescription",dangerouslySetInnerHTML:{__html:l}})),"bottom"===$&&(0,n.createElement)(d,null))))}))))),t?.removeAttribute("data-attributes")}))}));const c=({enabled:t,url:e,target:a,children:r})=>t&&e?(0,n.createElement)("a",{className:"cardLink",href:e,target:a},r):r})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "../Components/utils/getCSS.js":
+/*!*************************************!*\
+  !*** ../Components/utils/getCSS.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
+/* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
+/* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
+/* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
+/* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
+/* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
+/* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
+/* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
+/* harmony export */ });
+const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
+  const {
+    type = 'solid',
+    color = '#000000b3',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)',
+    image = {},
+    position = 'center center',
+    attachment = 'initial',
+    repeat = 'no-repeat',
+    size = 'cover',
+    overlayColor = '#000000b3'
+  } = bg || {};
+  const styles = 'gradient' === type && isGradient ? `background: ${gradient};` : 'image' === type && isImage ? `background: url(${image?.url});
+				background-color: ${overlayColor};
+				background-position: ${position};
+				background-size: ${size};
+				background-repeat: ${repeat};
+				background-attachment: ${attachment};
+				background-blend-mode: overlay;` : isSolid && `background: ${color};`;
+  return styles;
+}; // PHP version in Stepped Content
+
+const getBorderCSS = border => {
+  const {
+    width = '0px',
+    style = 'solid',
+    color = '#0000',
+    side = 'all',
+    radius = '0px'
+  } = border || {};
+  const borderSideCheck = s => {
+    const bSide = side?.toLowerCase();
+    return bSide?.includes('all') || bSide?.includes(s);
+  };
+  const noWidth = width === '0px' || !width;
+  const borderCSS = `${width} ${style} ${color}`;
+  const styles = `
+		${noWidth ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
+		${!radius ? '' : `border-radius: ${radius};`}
+	`;
+  return styles;
+};
+const getColorsCSS = colors => {
+  const {
+    color = '#333',
+    bgType = 'solid',
+    bg = '#0000',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = colors || {};
+  const styles = `
+		${color ? `color: ${color};` : ''}
+		${gradient || bg ? `background: ${'gradient' === bgType ? gradient : bg};` : ''}
+	`;
+  return styles;
+};
+const getIconCSS = (icon, isSize = true, isColor = true) => {
+  const {
+    fontSize = 16,
+    colorType = 'solid',
+    color = 'inherit',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = icon || {};
+  const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : `color: ${color};`;
+  const styles = `
+		${!fontSize || !isSize ? '' : `font-size: ${fontSize}px;`}
+		${isColor ? colorCSS : ''}
+	`;
+  return styles;
+};
+const getMultiShadowCSS = (value, type = 'box') => {
+  let styles = '';
+  value?.map((item, index) => {
+    const {
+      hOffset = '0px',
+      vOffset = '0px',
+      blur = '0px',
+      spreed = '0px',
+      color = '#7090b0',
+      isInset = false
+    } = item || {};
+    const inset = isInset ? 'inset' : '';
+    const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+    const isComa = index + 1 >= value.length ? '' : ', ';
+    styles += 'text' === type ? `${offsetBlur} ${color}${isComa}` : `${offsetBlur} ${spreed} ${color} ${inset}${isComa}`;
+  });
+  return styles || 'none';
+};
+const getSeparatorCSS = separator => {
+  const {
+    width = '50%',
+    height = '2px',
+    style = 'solid',
+    color = '#bbb'
+  } = separator || {};
+  const styles = `
+		width: ${width};
+		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+	`;
+  return styles;
+};
+const getShadowCSS = shadow => {
+  const {
+    type = 'box',
+    hOffset = '0px',
+    vOffset = '0px',
+    blur = '0px',
+    spreed = '0px',
+    color = '#7090b0',
+    isInset = false
+  } = shadow || {};
+  const inset = isInset ? 'inset' : '';
+  const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+  const styles = 'text' === type ? `${offsetBlur} ${color}` : `${offsetBlur} ${spreed} ${color} ${inset}`;
+  return styles || 'none';
+};
+const getSpaceCSS = space => {
+  const {
+    side = 2,
+    vertical = '0px',
+    horizontal = '0px',
+    top = '0px',
+    right = '0px',
+    bottom = '0px',
+    left = '0px'
+  } = space || {};
+  const styles = 2 === side ? `${vertical} ${horizontal}` : `${top} ${right} ${bottom} ${left}`;
+  return styles;
+};
+const getTypoCSS = (selector, typo, isFamily = true) => {
+  const {
+    fontFamily = 'Default',
+    fontCategory = 'sans-serif',
+    fontVariant = 400,
+    fontWeight = 400,
+    isUploadFont = true,
+    fontSize = {
+      desktop: 15,
+      tablet: 15,
+      mobile: 15
+    },
+    fontStyle = 'normal',
+    textTransform = 'none',
+    textDecoration = 'auto',
+    lineHeight = '135%',
+    letterSpace = '0px'
+  } = typo || {};
+  const generateCss = (value, cssProperty) => !value ? '' : `${cssProperty}: ${value};`;
+  const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
+  const desktopFontSize = fontSize?.desktop || fontSize;
+  const tabletFontSize = fontSize?.tablet || desktopFontSize;
+  const mobileFontSize = fontSize?.mobile || tabletFontSize;
+  const styles = `
+		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
+		${generateCss(fontWeight, 'font-weight')}
+		${`font-size: ${desktopFontSize}px;`}
+		${generateCss(fontStyle, 'font-style')}
+		${generateCss(textTransform, 'text-transform')}
+		${generateCss(textDecoration, 'text-decoration')}
+		${generateCss(lineHeight, 'line-height')}
+		${generateCss(letterSpace, 'letter-spacing')}
+	`;
+
+  // Google font link
+  const linkQuery = !fontVariant || 400 === fontVariant ? '' : '400i' === fontVariant ? ':ital@1' : fontVariant?.includes('00i') ? `: ital, wght@1, ${fontVariant?.replace('00i', '00')} ` : `: wght@${fontVariant} `;
+  const link = isEmptyFamily ? '' : `https://fonts.googleapis.com/css2?family=${fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+  return {
+    googleFontLink: !isUploadFont || isEmptyFamily ? '' : `@import url(${link});`,
+    styles: `${selector}{
+			${styles}
+		}
+		@media (max-width: 768px) {
+			${selector}{
+				${`font-size: ${tabletFontSize}px;`}
+			}
+		}
+		@media (max-width: 576px) {
+			${selector}{
+				${`font-size: ${mobileFontSize}px;`}
+			}
+		}`.replace(/\s+/g, ' ').trim()
+  };
+};
+const getBoxCSS = (val = {}) => Object.values(val).join(' ');
+
+/***/ }),
+
+/***/ "./src/cards/Components/Common/Style.js":
+/*!**********************************************!*\
+  !*** ./src/cards/Components/Common/Style.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/cards/utils/data.js");
+
+
+
+const Style = ({
+  attributes,
+  id
+}) => {
+  const {
+    cards = [],
+    columnGap,
+    rowGap,
+    textAlign,
+    padding,
+    imgHeight,
+    catTypo,
+    catMargin,
+    titleTypo,
+    titleMargin,
+    descTypo
+  } = attributes;
+  const mainSl = `#${id}`;
+  const gCardSl = `${mainSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix} .card`;
+  const cardDetailsSl = `${gCardSl} .cardDetails`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', catTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', titleTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', descTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${cardDetailsSl} .cardCategory`, catTypo)?.styles}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${gCardSl} .cardTitle`, titleTypo)?.styles}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${gCardSl} .cardDescription`, descTypo)?.styles}
+
+		${mainSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix}{
+			grid-gap: ${rowGap} ${columnGap};
+		}
+		${gCardSl} .cardImage,
+		${gCardSl} .cardImage img{
+			height: ${imgHeight};
+		}
+		${cardDetailsSl}{
+			text-align: ${textAlign};
+			padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(padding)};
+		}
+		${cardDetailsSl} .cardCategory{
+			margin: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(catMargin)};
+		}
+		${gCardSl} .cardTitle{
+			margin: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(titleMargin)};
+		}
+
+		${cards.map((item, index) => {
+        const {
+          background,
+          imgBorder,
+          catColor,
+          titleColor,
+          descColor
+        } = item;
+        const cardSl = `#${id} #card-${index}`;
+        return `
+				${cardSl} .card{
+					${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(background)}
+				}
+				${cardSl} .cardImage{
+					${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(imgBorder)}
+				}
+				${cardSl} .cardDetails .cardCategory{
+					color: ${catColor};
+				}
+				${cardSl} .cardTitle{
+					color: ${titleColor};
+				}
+				${cardSl} .cardDescription{
+					color: ${descColor};
+				}
+			`;
+      }).join(' ')}
+		`.replace(/\s+/g, ' ')
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/cards/utils/data.js":
+/*!*********************************!*\
+  !*** ./src/cards/utils/data.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   prefix: () => (/* binding */ prefix)
+/* harmony export */ });
+const prefix = 'bBlocksCards';
+
+/***/ }),
+
+/***/ "./src/cards/style.scss":
+/*!******************************!*\
+  !*** ./src/cards/style.scss ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../plugin-slug/node_modules/react-dom/client.js":
+/*!*******************************************************!*\
+  !*** ../plugin-slug/node_modules/react-dom/client.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!***************************!*\
+  !*** ./src/cards/view.js ***!
+  \***************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/cards/style.scss");
+/* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/cards/Components/Common/Style.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/data */ "./src/cards/utils/data.js");
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cardsEls = document.querySelectorAll('.wp-block-b-blocks-cards');
+  cardsEls.forEach(cardEl => {
+    const attributes = JSON.parse(cardEl.dataset.attributes);
+    const {
+      cards = [],
+      columns,
+      layout,
+      link = {},
+      imgPos,
+      isCat,
+      isTitle,
+      titlePos,
+      isDesc
+    } = attributes;
+    const {
+      target: linkTarget = '_self',
+      element: linkElement = 'card'
+    } = link;
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(cardEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      attributes: attributes,
+      id: cardEl.id
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `${_utils_data__WEBPACK_IMPORTED_MODULE_4__.prefix} ${layout || 'vertical'} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`
+    }, cards.map((item, index) => {
+      const {
+        img,
+        cat,
+        title,
+        desc,
+        link = ''
+      } = item;
+
+      // Components
+      const CardTitle = () => isTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LinkProvider, {
+        enabled: linkElement === 'title',
+        url: link,
+        target: linkTarget
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+        className: "cardTitle",
+        dangerouslySetInnerHTML: {
+          __html: title
+        }
+      }));
+      const CardImage = () => img?.url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LinkProvider, {
+        enabled: linkElement === 'image',
+        url: link,
+        target: linkTarget
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", {
+        className: "cardImage"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: img.url,
+        alt: img?.alt || img?.title
+      }), 'image' === titlePos && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardTitle, null)));
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        key: index,
+        id: `card-${index}`
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LinkProvider, {
+        enabled: linkElement === 'card',
+        url: link,
+        target: linkTarget
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: `card ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`
+      }, 'top' === imgPos && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardImage, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "cardDetails"
+      }, isCat && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", {
+        className: "cardCategory",
+        dangerouslySetInnerHTML: {
+          __html: cat
+        }
+      }), 'content' === titlePos && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardTitle, null), isDesc && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+        className: "cardDescription",
+        dangerouslySetInnerHTML: {
+          __html: desc
+        }
+      })), 'bottom' === imgPos && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardImage, null))));
+    }))));
+    cardEl?.removeAttribute('data-attributes');
+  });
+});
+const LinkProvider = ({
+  enabled,
+  url,
+  target,
+  children
+}) => {
+  if (enabled && url) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: "cardLink",
+      href: url,
+      target: target
+    }, children);
+  } else {
+    return children;
+  }
+};
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

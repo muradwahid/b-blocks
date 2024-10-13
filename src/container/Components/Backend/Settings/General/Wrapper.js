@@ -1,6 +1,5 @@
 import { PanelBody, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import React from "react";
 import { emUnit, pxUnit, vhUnit } from '../../../../../../../Components/utils/options';
 
 const Wrapper = (props) => {

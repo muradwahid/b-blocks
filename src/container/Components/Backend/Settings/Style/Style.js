@@ -1,19 +1,16 @@
-import { PanelBody, PanelRow, TabPanel } from '@wordpress/components';
-import { Fragment, useState } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
+import { PanelBody, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { produce } from 'immer';
-import React from 'react';
-import { BorderControl, Label, MultiShadowControl, BoxControl } from '../../../../../../../Components';
-import { updateData } from '../../../../utils/functions';
+
+import { BorderControl, MultiShadowControl } from '../../../../../../../Components';
 import { Overlay } from '../../../../../../../bpl-tools/Components/Overlay/Overlay';
-import { Device } from '../../../../../../../bpl-tools/Components/Device/Device';
 import { borderTabs } from '../../../../utils/options';
 import { AdvBackground } from '../../../../../../../bpl-tools/Components/AdvBackground/AdvBackground';
 
 
 const Style = ({ attributes, setAttributes }) => {
     const { wrapper, background2, overlay } = attributes;
-    const [device, setDevice] = useState('desktop');
     const { border, shadow } = wrapper;
     const { normalBorder, hoverBorder } = border;
     const { normal, hover } = shadow;

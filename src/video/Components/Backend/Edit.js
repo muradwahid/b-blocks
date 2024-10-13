@@ -7,30 +7,33 @@ import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import { controlsHandler } from '../../utils/functions';
 import { prefix } from '../../utils/data';
+import Video from '../Common/Video';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { source, poster, controls, repeat, muted, autoHideControl } = attributes;
 
-	const videoWrapper = useRef(null);
-	const videoElement = useRef(null);
+	// const videoWrapper = useRef(null);
+	// const videoElement = useRef(null);
 
-	useEffect(() => {
-		if (source) {
-			videoWrapper.current.innerHTML = '';
-			videoWrapper.current.innerHTML = videoElement.current.outerHTML;
+	// useEffect(() => {
+	// 	if (source) {
+	// 		videoWrapper.current.innerHTML = '';
+	// 		videoWrapper.current.innerHTML = videoElement.current.outerHTML;
 
-			new Plyr(videoWrapper.current.children[0], {
-				controls: controlsHandler(controls),
-				clickToPlay: false,
-				loop: { active: repeat },
-				muted,
-				hideControls: autoHideControl,
-			});
-		}
-	}, [source, poster, controls, videoWrapper]);
+	// 		new Plyr(videoWrapper.current.children[0], {
+	// 			controls: controlsHandler(controls),
+	// 			clickToPlay: false,
+	// 			loop: { active: repeat },
+	// 			muted,
+	// 			hideControls: autoHideControl,
+	// 		});
+	// 	}
+	// }, [source, poster, controls, videoWrapper]);
 
 	const id = `${prefix}-${clientId}`;
+
+	const VideoEl = () => <Video attributes={attributes} />
 
 	return source ? <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
@@ -38,15 +41,17 @@ const Edit = props => {
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} />
 
-			<div className={prefix}>
-				<div className='videoWrapper' ref={videoWrapper}></div>
+			{/* <div className={prefix}> */}
+			{/* <div className='videoWrapper' ref={videoWrapper}></div> */}
 
-				{/* eslint-disable-next-line react/no-unknown-property */}
-				<video controls playsinline data-poster={poster} preload={'metadata'} ref={videoElement}>
+			{/* eslint-disable-next-line react/no-unknown-property */}
+			{/* <video controls playsinline data-poster={poster} preload={'metadata'} ref={videoElement}>
 					Your browser does not support the video tag.
 					<source src={source} type='video/mp4' />
-				</video>
-			</div>
+				</video> */}
+			{/* </div> */}
+
+			<VideoEl />
 		</div>
 	</> : <BplMediaPlaceholder type='video' icon={<svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 24 24' className='html5-block-icon' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
 		<polygon points='23 7 16 12 23 17 23 7'></polygon>

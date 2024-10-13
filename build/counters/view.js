@@ -1,1 +1,640 @@
-(()=>{"use strict";var t={8744:(t,e,n)=>{var o=n(5795);e.H=o.createRoot,o.hydrateRoot},5795:t=>{t.exports=window.ReactDOM}},e={};const n=window.React;var o=function n(o){var r=e[o];if(void 0!==r)return r.exports;var a=e[o]={exports:{}};return t[o](a,a.exports,n),a.exports}(8744);const r=(t,e=!0,n=!0,o=!0)=>{const{type:r="solid",color:a="#000000b3",gradient:c="linear-gradient(135deg, #4527a4, #8344c5)",image:s={},position:i="center center",attachment:l="initial",repeat:u="no-repeat",size:d="cover",overlayColor:$="#000000b3"}=t||{};return"gradient"===r&&n?`background: ${c};`:"image"===r&&o?`background: url(${s?.url});\n\t\t\t\tbackground-color: ${$};\n\t\t\t\tbackground-position: ${i};\n\t\t\t\tbackground-size: ${d};\n\t\t\t\tbackground-repeat: ${u};\n\t\t\t\tbackground-attachment: ${l};\n\t\t\t\tbackground-blend-mode: overlay;`:e&&`background: ${a};`},a=t=>{const{width:e="0px",style:n="solid",color:o="#0000",side:r="all",radius:a="0px"}=t||{},c=t=>{const e=r?.toLowerCase();return e?.includes("all")||e?.includes(t)},s=`${e} ${n} ${o}`,i=`\n\t\t${"0px"!==e&&e?["top","right","bottom","left"].map((t=>c(t)?`border-${t}: ${s};`:"")).join(""):""}\n\t\t${a?`border-radius: ${a};`:""}\n\t`;return i},c=t=>{const{type:e="box",hOffset:n="0px",vOffset:o="0px",blur:r="0px",spreed:a="0px",color:c="#7090b0",isInset:s=!1}=t||{},i=`${n} ${o} ${r}`;return("text"===e?`${i} ${c}`:`${i} ${a} ${c} ${s?"inset":""}`)||"none"},s=t=>{const{side:e=2,vertical:n="0px",horizontal:o="0px",top:r="0px",right:a="0px",bottom:c="0px",left:s="0px"}=t||{};return 2===e?`${n} ${o}`:`${r} ${a} ${c} ${s}`},i=(t,e,n=!0)=>{const{fontFamily:o="Default",fontCategory:r="sans-serif",fontVariant:a=400,fontWeight:c=400,isUploadFont:s=!0,fontSize:i={desktop:15,tablet:15,mobile:15},fontStyle:l="normal",textTransform:u="none",textDecoration:d="auto",lineHeight:$="135%",letterSpace:p="0px"}=e||{},m=(t,e)=>t?`${e}: ${t};`:"",b=!n||!o||"Default"===o,g=i?.desktop||i,x=i?.tablet||g,f=i?.mobile||x,h=`\n\t\t${b?"":`font-family: '${o}', ${r};`}\n\t\t${m(c,"font-weight")}\n\t\tfont-size: ${g}px;\n\t\t${m(l,"font-style")}\n\t\t${m(u,"text-transform")}\n\t\t${m(d,"text-decoration")}\n\t\t${m($,"line-height")}\n\t\t${m(p,"letter-spacing")}\n\t`,k=a&&400!==a?"400i"===a?":ital@1":a?.includes("00i")?`: ital, wght@1, ${a?.replace("00i","00")} `:`: wght@${a} `:"",v=b?"":`https://fonts.googleapis.com/css2?family=${o?.split(" ").join("+")}${k.replace(/ /g,"")}&display=swap`;return{googleFontLink:!s||b?"":`@import url(${v});`,styles:`${t}{\n\t\t\t${h}\n\t\t}\n\t\t@media (max-width: 768px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${x}px;\n\t\t\t}\n\t\t}\n\t\t@media (max-width: 576px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${f}px;\n\t\t\t}\n\t\t}`.replace(/\s+/g," ").trim()}},l="bBlocksCounters",u=({attributes:t,id:e})=>{const{counters:o=[],columnGap:u,rowGap:d,background:$,padding:p,textAlign:m,counterWidth:b,counterHeight:g,iconSize:x,numberTypo:f,labelTypo:h,counterPadding:k,counterBorder:v,counterShadow:y}=t,E=`#${e}`,w=`${E} .${l}`,I=`${w} .counter`;return(0,n.createElement)("style",{dangerouslySetInnerHTML:{__html:`\n\t\t${i("",f)?.googleFontLink}\n\t\t${i("",h)?.googleFontLink}\n\t\t${i(`${I} .counterNumber`,f)?.styles}\n\t\t${i(`${I} .counterLabel`,h)?.styles}\n\t\t\n\t\t${w}{\n\t\t\tgrid-gap: ${d} ${u};\n\t\t\t${r($)}\n\t\t\tpadding: ${s(p)};\n\t\t}\n\t\t${I}{\n\t\t\ttext-align: ${m};\n\t\t\twidth: ${"0px"===b||"0%"===b||"0em"===b?"250px":b};\n\t\t\theight: ${"0px"===g||"0%"===g||"0em"===g?"250px":g};\n\t\t\tpadding: ${s(k)};\n\t\t\t${a(v)}\n\t\t\tbox-shadow: ${c(y)};\n\t\t}\n\t\t${I} .counterIcon,\n\t\t${I} .counterIconLabel{\n\t\t\tfont-size: ${x||50}px;\n\t\t}\n\n\t\t${o?.map(((t,e)=>{const{background:n,icon:o,number:a,label:c}=t,s=`${E} #counter-${e}`;return`\n\t\t\t\t${s} .counter{\n\t\t\t\t\t${r(n)}\n\t\t\t\t}\n\t\t\t\t${s} .counterIcon i,\n\t\t\t\t${s} .counterIconLabel i{\n\t\t\t\t\t${((t,e=!0,n=!0)=>{const{fontSize:o=16,colorType:r="solid",color:a="inherit",gradient:c="linear-gradient(135deg, #4527a4, #8344c5)"}=t||{};return`\n\t\t${o&&e?`font-size: ${o}px;`:""}\n\t\t${n?"gradient"===r?`color: transparent; background-image: ${c}; -webkit-background-clip: text; background-clip: text;`:`color: ${a};`:""}\n\t`})(o)}\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t}\n\t\t\t\t${s} .counterNumber{\n\t\t\t\t\tcolor: ${a.color};\n\t\t\t\t}\n\t\t\t\t${s} .counterLabel{\n\t\t\t\t\tcolor: ${c.color};\n\t\t\t\t}\n\t\t\t`})).join(" ")}\n\t\t`.replace(/\s+/g," ")}})},d=({attributes:t,counter:e,index:o,labelEl:r,isBackend:a=!1,custom:c={}})=>{const{isIcon:s,iconPosition:i}=t,{icon:l,number:u}=e,{start:d,end:$,prefix:p,suffix:m}=u,b=l?.class&&(0,n.createElement)("i",{className:l.class});return(0,n.createElement)("div",{onClick:()=>a?c.setActiveIndex(o):null,className:a&&o===c.activeIndex?"bBlocksNowEditing":"",id:`counter-${o}`},(0,n.createElement)("div",{className:"counter"},s&&"top"===i&&(0,n.createElement)("div",{className:"counterIcon"},b),(0,n.createElement)("div",{className:"counterNumber"},(0,n.createElement)("span",{className:"prefix"},p),(0,n.createElement)("span",{className:"number","data-count-start":d,"data-count-end":$},d),(0,n.createElement)("span",{className:"suffix"},m)),"label"===i?(0,n.createElement)("div",{className:"counterIconLabel"},b,r):r))},$=(t,e)=>{const{char:n=""}=e;return n?t.toString().replace(/\B(?=(\d{3})+(?!\d))/g,n):t};document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".wp-block-b-blocks-counters").forEach((t=>{const e=JSON.parse(t.dataset.attributes);(0,o.H)(t).render((0,n.createElement)(p,{attributes:e,countersEl:t})),t?.removeAttribute("data-attributes")}))}));const p=({attributes:t,countersEl:e})=>{const{counters:o=[],columns:r,duration:a,separator:c={},isLabel:s}=t;return(0,n.useEffect)((()=>{const t=document.querySelectorAll(`#${e.id} .${l} .counterNumber .number`),n=new IntersectionObserver((e=>{e[0].intersectionRatio<=0||(((t,e,n={})=>{t?.forEach((t=>{const o=parseInt(t.dataset.countStart),r=parseInt(t.dataset.countEnd),a=Date.now(),c=setInterval((()=>{const s=Date.now()-a;s>=e?clearInterval(c):t.innerText=$(parseInt(s/(e/(r-o))+o),n)}),20);setTimeout((()=>{t.innerText=$(r,n)}),e)}))})(t,a,c),n.unobserve(e[0].target))}));n.observe(document.querySelector(`#${e.id} .${l} .counterNumber .number`))}),[]),(0,n.createElement)(n.Fragment,null,(0,n.createElement)(u,{attributes:t,id:e.id}),(0,n.createElement)("div",{className:`${l} columns-${r.desktop} columns-tablet-${r.tablet} columns-mobile-${r.mobile}`},o?.map(((e,o)=>{const{text:r}=e.label,a=s&&r&&(0,n.createElement)("p",{className:"counterLabel",dangerouslySetInnerHTML:{__html:r}});return(0,n.createElement)(d,{key:o,attributes:t,counter:e,index:o,labelEl:a})}))))}})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "../Components/utils/getCSS.js":
+/*!*************************************!*\
+  !*** ../Components/utils/getCSS.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
+/* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
+/* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
+/* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
+/* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
+/* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
+/* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
+/* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
+/* harmony export */ });
+const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
+  const {
+    type = 'solid',
+    color = '#000000b3',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)',
+    image = {},
+    position = 'center center',
+    attachment = 'initial',
+    repeat = 'no-repeat',
+    size = 'cover',
+    overlayColor = '#000000b3'
+  } = bg || {};
+  const styles = 'gradient' === type && isGradient ? `background: ${gradient};` : 'image' === type && isImage ? `background: url(${image?.url});
+				background-color: ${overlayColor};
+				background-position: ${position};
+				background-size: ${size};
+				background-repeat: ${repeat};
+				background-attachment: ${attachment};
+				background-blend-mode: overlay;` : isSolid && `background: ${color};`;
+  return styles;
+}; // PHP version in Stepped Content
+
+const getBorderCSS = border => {
+  const {
+    width = '0px',
+    style = 'solid',
+    color = '#0000',
+    side = 'all',
+    radius = '0px'
+  } = border || {};
+  const borderSideCheck = s => {
+    const bSide = side?.toLowerCase();
+    return bSide?.includes('all') || bSide?.includes(s);
+  };
+  const noWidth = width === '0px' || !width;
+  const borderCSS = `${width} ${style} ${color}`;
+  const styles = `
+		${noWidth ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
+		${!radius ? '' : `border-radius: ${radius};`}
+	`;
+  return styles;
+};
+const getColorsCSS = colors => {
+  const {
+    color = '#333',
+    bgType = 'solid',
+    bg = '#0000',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = colors || {};
+  const styles = `
+		${color ? `color: ${color};` : ''}
+		${gradient || bg ? `background: ${'gradient' === bgType ? gradient : bg};` : ''}
+	`;
+  return styles;
+};
+const getIconCSS = (icon, isSize = true, isColor = true) => {
+  const {
+    fontSize = 16,
+    colorType = 'solid',
+    color = 'inherit',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = icon || {};
+  const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : `color: ${color};`;
+  const styles = `
+		${!fontSize || !isSize ? '' : `font-size: ${fontSize}px;`}
+		${isColor ? colorCSS : ''}
+	`;
+  return styles;
+};
+const getMultiShadowCSS = (value, type = 'box') => {
+  let styles = '';
+  value?.map((item, index) => {
+    const {
+      hOffset = '0px',
+      vOffset = '0px',
+      blur = '0px',
+      spreed = '0px',
+      color = '#7090b0',
+      isInset = false
+    } = item || {};
+    const inset = isInset ? 'inset' : '';
+    const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+    const isComa = index + 1 >= value.length ? '' : ', ';
+    styles += 'text' === type ? `${offsetBlur} ${color}${isComa}` : `${offsetBlur} ${spreed} ${color} ${inset}${isComa}`;
+  });
+  return styles || 'none';
+};
+const getSeparatorCSS = separator => {
+  const {
+    width = '50%',
+    height = '2px',
+    style = 'solid',
+    color = '#bbb'
+  } = separator || {};
+  const styles = `
+		width: ${width};
+		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+	`;
+  return styles;
+};
+const getShadowCSS = shadow => {
+  const {
+    type = 'box',
+    hOffset = '0px',
+    vOffset = '0px',
+    blur = '0px',
+    spreed = '0px',
+    color = '#7090b0',
+    isInset = false
+  } = shadow || {};
+  const inset = isInset ? 'inset' : '';
+  const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+  const styles = 'text' === type ? `${offsetBlur} ${color}` : `${offsetBlur} ${spreed} ${color} ${inset}`;
+  return styles || 'none';
+};
+const getSpaceCSS = space => {
+  const {
+    side = 2,
+    vertical = '0px',
+    horizontal = '0px',
+    top = '0px',
+    right = '0px',
+    bottom = '0px',
+    left = '0px'
+  } = space || {};
+  const styles = 2 === side ? `${vertical} ${horizontal}` : `${top} ${right} ${bottom} ${left}`;
+  return styles;
+};
+const getTypoCSS = (selector, typo, isFamily = true) => {
+  const {
+    fontFamily = 'Default',
+    fontCategory = 'sans-serif',
+    fontVariant = 400,
+    fontWeight = 400,
+    isUploadFont = true,
+    fontSize = {
+      desktop: 15,
+      tablet: 15,
+      mobile: 15
+    },
+    fontStyle = 'normal',
+    textTransform = 'none',
+    textDecoration = 'auto',
+    lineHeight = '135%',
+    letterSpace = '0px'
+  } = typo || {};
+  const generateCss = (value, cssProperty) => !value ? '' : `${cssProperty}: ${value};`;
+  const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
+  const desktopFontSize = fontSize?.desktop || fontSize;
+  const tabletFontSize = fontSize?.tablet || desktopFontSize;
+  const mobileFontSize = fontSize?.mobile || tabletFontSize;
+  const styles = `
+		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
+		${generateCss(fontWeight, 'font-weight')}
+		${`font-size: ${desktopFontSize}px;`}
+		${generateCss(fontStyle, 'font-style')}
+		${generateCss(textTransform, 'text-transform')}
+		${generateCss(textDecoration, 'text-decoration')}
+		${generateCss(lineHeight, 'line-height')}
+		${generateCss(letterSpace, 'letter-spacing')}
+	`;
+
+  // Google font link
+  const linkQuery = !fontVariant || 400 === fontVariant ? '' : '400i' === fontVariant ? ':ital@1' : fontVariant?.includes('00i') ? `: ital, wght@1, ${fontVariant?.replace('00i', '00')} ` : `: wght@${fontVariant} `;
+  const link = isEmptyFamily ? '' : `https://fonts.googleapis.com/css2?family=${fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+  return {
+    googleFontLink: !isUploadFont || isEmptyFamily ? '' : `@import url(${link});`,
+    styles: `${selector}{
+			${styles}
+		}
+		@media (max-width: 768px) {
+			${selector}{
+				${`font-size: ${tabletFontSize}px;`}
+			}
+		}
+		@media (max-width: 576px) {
+			${selector}{
+				${`font-size: ${mobileFontSize}px;`}
+			}
+		}`.replace(/\s+/g, ' ').trim()
+  };
+};
+const getBoxCSS = (val = {}) => Object.values(val).join(' ');
+
+/***/ }),
+
+/***/ "./src/counters/Components/Common/Counter.js":
+/*!***************************************************!*\
+  !*** ./src/counters/Components/Common/Counter.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const Counter = ({
+  attributes,
+  counter,
+  index,
+  labelEl,
+  isBackend = false,
+  custom = {}
+}) => {
+  const {
+    isIcon,
+    iconPosition
+  } = attributes;
+  const {
+    icon,
+    number
+  } = counter;
+  const {
+    start,
+    end,
+    prefix,
+    suffix
+  } = number;
+  const iconEl = icon?.class && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: icon.class
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => isBackend ? custom.setActiveIndex(index) : null,
+    className: `${isBackend && index === custom.activeIndex ? 'bBlocksNowEditing' : ''}`,
+    id: `counter-${index}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "counter"
+  }, isIcon && 'top' === iconPosition && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "counterIcon"
+  }, iconEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "counterNumber"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "prefix"
+  }, prefix), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "number",
+    "data-count-start": start,
+    "data-count-end": end
+  }, start), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "suffix"
+  }, suffix)), 'label' === iconPosition ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "counterIconLabel"
+  }, iconEl, labelEl) : labelEl));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Counter);
+
+/***/ }),
+
+/***/ "./src/counters/Components/Common/Style.js":
+/*!*************************************************!*\
+  !*** ./src/counters/Components/Common/Style.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/counters/utils/data.js");
+
+
+
+const Style = ({
+  attributes,
+  id
+}) => {
+  const {
+    counters = [],
+    columnGap,
+    rowGap,
+    background,
+    padding,
+    textAlign,
+    counterWidth,
+    counterHeight,
+    iconSize,
+    numberTypo,
+    labelTypo,
+    counterPadding,
+    counterBorder,
+    counterShadow
+  } = attributes;
+  const mainSl = `#${id}`;
+  const countersSl = `${mainSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix}`;
+  const gCounterSl = `${countersSl} .counter`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', numberTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', labelTypo)?.googleFontLink}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${gCounterSl} .counterNumber`, numberTypo)?.styles}
+		${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${gCounterSl} .counterLabel`, labelTypo)?.styles}
+		
+		${countersSl}{
+			grid-gap: ${rowGap} ${columnGap};
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(background)}
+			padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(padding)};
+		}
+		${gCounterSl}{
+			text-align: ${textAlign};
+			width: ${'0px' === counterWidth || '0%' === counterWidth || '0em' === counterWidth ? '250px' : counterWidth};
+			height: ${'0px' === counterHeight || '0%' === counterHeight || '0em' === counterHeight ? '250px' : counterHeight};
+			padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(counterPadding)};
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(counterBorder)}
+			box-shadow: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getShadowCSS)(counterShadow)};
+		}
+		${gCounterSl} .counterIcon,
+		${gCounterSl} .counterIconLabel{
+			font-size: ${iconSize || 50}px;
+		}
+
+		${counters?.map((item, index) => {
+        const {
+          background,
+          icon,
+          number,
+          label
+        } = item;
+        const counterSl = `${mainSl} #counter-${index}`;
+        return `
+				${counterSl} .counter{
+					${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(background)}
+				}
+				${counterSl} .counterIcon i,
+				${counterSl} .counterIconLabel i{
+					${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getIconCSS)(icon)}
+					font-size: inherit;
+				}
+				${counterSl} .counterNumber{
+					color: ${number.color};
+				}
+				${counterSl} .counterLabel{
+					color: ${label.color};
+				}
+			`;
+      }).join(' ')}
+		`.replace(/\s+/g, ' ')
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/counters/utils/data.js":
+/*!************************************!*\
+  !*** ./src/counters/utils/data.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   prefix: () => (/* binding */ prefix)
+/* harmony export */ });
+const prefix = 'bBlocksCounters';
+
+/***/ }),
+
+/***/ "./src/counters/utils/functions.js":
+/*!*****************************************!*\
+  !*** ./src/counters/utils/functions.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   formateNumberWithSeparator: () => (/* binding */ formateNumberWithSeparator),
+/* harmony export */   performCounter: () => (/* binding */ performCounter)
+/* harmony export */ });
+const performCounter = (counterEl, duration, separator = {}) => {
+  counterEl?.forEach(count => {
+    const startNumber = parseInt(count.dataset.countStart);
+    const endNumber = parseInt(count.dataset.countEnd);
+    const start = Date.now(); // Remember start time
+    const timer = setInterval(() => {
+      const timePassed = Date.now() - start; // How much time passed from the start?
+
+      if (timePassed >= duration) {
+        clearInterval(timer); // Finish the animation after duration
+        return;
+      }
+      count.innerText = formateNumberWithSeparator(parseInt(timePassed / (duration / (endNumber - startNumber)) + startNumber), separator);
+    }, 20);
+    setTimeout(() => {
+      count.innerText = formateNumberWithSeparator(endNumber, separator);
+    }, duration);
+  });
+};
+const formateNumberWithSeparator = (number, separator) => {
+  const {
+    char = ''
+  } = separator;
+  return char ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, char) : number;
+};
+
+/***/ }),
+
+/***/ "./src/counters/style.scss":
+/*!*********************************!*\
+  !*** ./src/counters/style.scss ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../plugin-slug/node_modules/react-dom/client.js":
+/*!*******************************************************!*\
+  !*** ../plugin-slug/node_modules/react-dom/client.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!******************************!*\
+  !*** ./src/counters/view.js ***!
+  \******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/counters/style.scss");
+/* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/counters/Components/Common/Style.js");
+/* harmony import */ var _Components_Common_Counter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/Counter */ "./src/counters/Components/Common/Counter.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/functions */ "./src/counters/utils/functions.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/data */ "./src/counters/utils/data.js");
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const countersEls = document.querySelectorAll('.wp-block-b-blocks-counters');
+  countersEls.forEach(countersEl => {
+    const attributes = JSON.parse(countersEl.dataset.attributes);
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(countersEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Counters, {
+      attributes: attributes,
+      countersEl: countersEl
+    }));
+    countersEl?.removeAttribute('data-attributes');
+  });
+});
+const Counters = ({
+  attributes,
+  countersEl
+}) => {
+  const {
+    counters = [],
+    columns,
+    duration,
+    separator = {},
+    isLabel
+  } = attributes;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const counterEl = document.querySelectorAll(`#${countersEl.id} .${_utils_data__WEBPACK_IMPORTED_MODULE_6__.prefix} .counterNumber .number`);
+    const intersectionObserver = new IntersectionObserver(entries => {
+      if (entries[0].intersectionRatio <= 0) return;
+      (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.performCounter)(counterEl, duration, separator);
+      intersectionObserver.unobserve(entries[0].target); // Remove if use multiple
+    });
+    intersectionObserver.observe(document.querySelector(`#${countersEl.id} .${_utils_data__WEBPACK_IMPORTED_MODULE_6__.prefix} .counterNumber .number`));
+  }, []);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    attributes: attributes,
+    id: countersEl.id
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `${_utils_data__WEBPACK_IMPORTED_MODULE_6__.prefix} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`
+  }, counters?.map((counter, index) => {
+    const {
+      text
+    } = counter.label;
+    const labelEl = isLabel && text && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: "counterLabel",
+      dangerouslySetInnerHTML: {
+        __html: text
+      }
+    });
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Counter__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      key: index,
+      attributes: attributes,
+      counter: counter,
+      index: index,
+      labelEl: labelEl
+    });
+  })));
+};
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=view.js.map
