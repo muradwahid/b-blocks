@@ -1,19 +1,18 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, ButtonGroup, Tooltip } from '@wordpress/components';
 
-import { Label, Background, BColor, BDevice, BorderControl, ChangeImageData, InlineDetailMediaUpload, SeparatorControl, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, InlineDetailMediaUpload, SeparatorControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
 
-const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setActiveIndex }) => {
+const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setActiveIndex, device }) => {
 	const { products = [], columns, columnGap, rowGap, layout, textAlign, padding, imgMargin, nameTypo, nameMargin, isDesc, descTypo, descMargin, priceTypo, isSep } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const addProduct = () => {
 		setAttributes({
@@ -68,11 +67,11 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 
 					<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateProduct('imgBorder', val)} />
 
-					<BColor label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateProduct('nameColor', val)} defaultColor='#333' />
+					<ColorControl label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateProduct('nameColor', val)} defaultColor='#333' />
 
-					<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateProduct('descColor', val)} defaultColor='#333' />
+					<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateProduct('descColor', val)} defaultColor='#333' />
 
-					<BColor label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct('priceColor', val)} defaultColor='#4527a4' />
+					<ColorControl label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct('priceColor', val)} defaultColor='#4527a4' />
 
 					<SeparatorControl value={separator} onChange={val => updateProduct('separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
 
@@ -121,7 +120,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 
 				<PanelRow className='mt20'>
 					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-					<BDevice device={device} onChange={val => setDevice(val)} />
+					<Device />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -177,4 +176,10 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

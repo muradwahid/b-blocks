@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getIconCSS } from '../../../../../Components/utils/getCSS';
+import { getBackgroundCSS, getBorderCSS, getIconCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { childPrefix } from '../../../services/utils/data';
 

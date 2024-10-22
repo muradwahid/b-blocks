@@ -1,17 +1,16 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, SelectControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 
-import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl } from '../../../../../../Components';
+import { Label, Background, Device, ShadowControl } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 
 import { overflows } from '../../../../row/utils/options';
 
 const Settings = props => {
-	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH } = props;
+	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH, device } = props;
 	const { width, overflow, background, padding, border, shadow } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const maxColWidth = 100 - (columns - 1) * MINWIDTH;
 
@@ -20,7 +19,7 @@ const Settings = props => {
 			<PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
 				<PanelRow>
 					<Label className='mb5'>{__('Width (%):', 'b-blocks')}</Label>
-					<BDevice device={device} onChange={val => setDevice(val)} />
+					<Device />
 				</PanelRow>
 				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={MINWIDTH} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
 			</PanelBody>
@@ -52,4 +51,10 @@ const Settings = props => {
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

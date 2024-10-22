@@ -3,7 +3,7 @@ import { withSelect } from '@wordpress/data';
 import { useBlockProps } from '@wordpress/block-editor';
 const { dateI18n } = wp.date;
 
-import { tabController } from '../../../../../Components/utils/functions';
+import { tabController } from '../../../../../bpl-tools/utils/functions';
 
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';

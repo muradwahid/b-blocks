@@ -1,27 +1,30 @@
 import { useState } from 'react';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 
-import { AboutPro } from '../../../../../../Components/Pro';
 import Advanced from '../../../../../../bpl-tools/Advanced';
 
+import { generalStyleTabs } from '../../../../utils/options';
+import ProModal from '../../../../backend/ProModal/ProModal';
 import Content from './General/Content';
 import Wrapper from './General/Wrapper';
 import Shape from './General/Shape';
-import Style from './Style/Style';
-import { generalStyleAdvancedTabs } from '../../../../utils/options';
 
 const Settings = (props) => {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, isPremium } = props;
 	const { advanced } = attributes;
-	const { isPremium } = props;
-	const [isAboutPro, setIsAboutPro] = useState(false);
 
-	const premiumProps = { isPremium, setOpen: setIsAboutPro }
+	const [isProModal, setIsProModal] = useState(false);
+
+	const premiumProps = {
+		isPremium,
+		setOpen: setIsProModal
+	};
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleAdvancedTabs}>{tab => <>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
 					<Wrapper {...props} />
 
@@ -31,19 +34,15 @@ const Settings = (props) => {
 
 
 				{'style' === tab.name && <>
-					<Style {...props} />
-				</>}
-
-
-				{'advanced' === tab.name && <>
-					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} enabled={{ dimension: ['padding'], background: ['normal', 'hover'] }} />
+					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} isBGVideo={isPremium} />
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>
 
-		<AboutPro aboutProOpen={isAboutPro} setAboutProOpen={setIsAboutPro} link=''>
-			<li>Feature 1</li>
-		</AboutPro>
+
+		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Countdown'>
+			<li>&emsp;<strong>{__(': ', 'b-blocks')}</strong>{__('', 'b-blocks')}</li>
+		</ProModal>
 	</>
 };
 

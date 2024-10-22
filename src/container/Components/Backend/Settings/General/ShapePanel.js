@@ -1,106 +1,83 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { PanelRow, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Device } from '../../../../../../../bpl-tools/Components/Device/Device';
-import { MediaArea } from '../../../../../../../bpl-tools/Components/MediaControl/MediaControl';
-import { BColor, Label } from '../../../../../../../Components';
-import { SelectControlPro } from '../../../../../../../Components/Pro';
+import { Label, ColorControl, Device, MediaArea } from '../../../../../../../bpl-tools/Components';
+import { SelectControlPro } from '../../../../../../../bpl-tools/ProControls';
+import { updateData } from '../../../../../../../bpl-tools/utils/functions';
 
 import { shapedOptions } from '../../../../utils/options';
-import { updateData } from '../../../../utils/functions';
 
+const ShapePanel = ({ labelPrefix, shape, setAttributes, uploadSvg, type, color, width, height, isUpload, isFlip, isFront, name, premiumProps, device }) => {
 
-export const ShapePanel = ({
-    labelPrefix,
-    shape,
-    setAttributes,
-    uploadSvg,
-    type,
-    color,
-    width,
-    height,
-    isUpload,
-    isFlip,
-    isFront,
-    name,
-    premiumProps
-}) => {
-    const [device, setDevice] = useState('desktop');
-    return <>
-        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-            <ToggleControl
-                label={`${labelPrefix} Upload Shape`}
-                checked={isUpload}
-                onChange={val => setAttributes({ shape: updateData(shape, val, name, 'isUpload') })}
-            />
-        </div>
-        {isUpload ? (
-            <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-                <MediaArea
-                    value={uploadSvg}
-                    types="image/svg+xml"
-                    onChange={val => setAttributes({ shape: updateData(shape, val, name, 'uploadSvg') })}
-                    height="100%"
-                    width="100%"
-                />
-            </div>
-        ) : (
-            <SelectControlPro
-                label={__(`${labelPrefix} Shape Type`, 'container-block')}
-                value={type}
-                options={shapedOptions}
-                onChange={val => setAttributes({ shape: updateData(shape, val, name, "type") })}
-                {...premiumProps}
-                proValues={['cloud', 'mountain', 'fire', 'sports', 'travel']}
-            />
-        )}
+	return <>
+		<ToggleControl className='mt15' label={`${labelPrefix} Upload Shape`} checked={isUpload} onChange={val => setAttributes({ shape: updateData(shape, val, name, 'isUpload') })} />
 
+		{isUpload ? <MediaArea
+			className='mt20'
+			value={uploadSvg}
+			types='image/svg+xml'
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'uploadSvg') })}
+			height='100%'
+			width='100%'
+		/> : <SelectControlPro
+			className='mt20'
+			label={__(`${labelPrefix} Shape Type`, 'b-blocks')}
+			value={type}
+			options={shapedOptions}
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'type') })}
+			{...premiumProps}
+			proValues={['cloud', 'mountain', 'fire', 'sports', 'travel']}
+		/>}
 
-        <BColor
-            label={__(`${labelPrefix} Shape Color`, 'container-block')}
-            value={color}
-            onChange={val => setAttributes({ shape: updateData(shape, val, name, "color") })}
-            defaultColor="#333"
-        />
+		<PanelRow className='mt20'>
+			<Label className=''>{__(`${labelPrefix} Shape Width:`, 'b-blocks')}</Label>
+			<Device />
+		</PanelRow>
+		<UnitControl
+			value={width[device]}
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'width', device) })}
+			beforeIcon='grid-view'
+			step={1}
+		/>
 
-        {/* shape width */}
-        <div style={{ marginTop: '10px', marginBottom: '20px' }}>
-            <PanelRow>
-                <Label className="mb5">{__(`${labelPrefix} Shape Width:`, 'container-block')}</Label>
-                <Device onChange={val => setDevice(val)} />
-            </PanelRow>
-            <UnitControl
-                value={width[device]}
-                onChange={val => setAttributes({ shape: updateData(shape, val, name, "width", device) })}
-                beforeIcon="grid-view"
-                step={1}
-            />
-        </div>
+		<PanelRow className='mt20'>
+			<Label className=''>{__(`${labelPrefix} Shape Height:`, 'b-blocks')}</Label>
+			<Device />
+		</PanelRow>
+		<UnitControl
+			value={height[device]}
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'height', device) })}
+			beforeIcon='grid-view'
+		/>
 
-        {/* shape Height */}
-        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-            <PanelRow>
-                <Label className="mb5">{__(`${labelPrefix} Shape Height:`, 'container-block')}</Label>
-                <Device onChange={val => setDevice(val)} />
-            </PanelRow>
-            <UnitControl
-                value={height[device]}
-                onChange={val => setAttributes({ shape: updateData(shape, val, name, "height", device) })}
-                beforeIcon="grid-view"
-            />
-        </div>
-        <div style={{ marginBottom: "10px" }}>
-            <ToggleControl
-                label="Flip"
-                checked={isFlip}
-                onChange={val => setAttributes({ shape: updateData(shape, val, name, "isFlip") })}
-            />
-        </div>
-        <ToggleControl
-            label="Bring to Front"
-            checked={isFront}
-            onChange={val => setAttributes({ shape: updateData(shape, val, name, "isFront") })}
-        />
-    </>
+		<ColorControl
+			className='mt20'
+			label={__(`${labelPrefix} Shape Color`, 'b-blocks')}
+			value={color}
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'color') })}
+			defaultColor='#000'
+		/>
+
+		<ToggleControl
+			className='mt20'
+			label='Flip'
+			checked={isFlip}
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'isFlip') })}
+		/>
+
+		<ToggleControl
+			className='mt10'
+			label='Bring to Front'
+			checked={isFront}
+			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'isFront') })}
+		/>
+	</>
 }
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(ShapePanel);

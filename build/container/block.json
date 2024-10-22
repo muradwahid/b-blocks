@@ -19,26 +19,7 @@
     "wrapper": {
       "type": "object",
       "default": {
-        "minHeight": {
-          "desktop": "0px",
-          "tablet": "0px",
-          "mobile": "0px"
-        },
-        "border": {
-          "normalBorder": {
-            "radius": "5px"
-          },
-          "hoverBorder": {
-            "radius": "5px"
-          }
-        },
-        "shadow": {
-          "type": "object",
-          "default": {
-            "normal": [],
-            "hover": []
-          }
-        }
+        "minHeight": ""
       }
     },
     "content": {
@@ -47,13 +28,11 @@
         "isFullWidth": true,
         "width": {
           "desktop": "100%",
-          "tablet": "100%",
-          "mobile": "100%"
+          "tablet": "",
+          "mobile": ""
         },
         "verticalAlign": "center",
-        "horizontalAlign": "center",
-        "textAlign": "left",
-        "color": "#333"
+        "horizontalAlign": "center"
       }
     },
     "shape": {
@@ -65,7 +44,7 @@
             "url": ""
           },
           "type": "none",
-          "color": "#777",
+          "color": "#000",
           "isFlip": false,
           "isFront": false,
           "width": {
@@ -85,7 +64,7 @@
             "url": ""
           },
           "type": "none",
-          "color": "#777",
+          "color": "#000",
           "isFlip": false,
           "isFront": false,
           "width": {
@@ -99,179 +78,6 @@
             "mobile": ""
           }
         }
-      }
-    },
-    "background2": {
-      "type": "object",
-      "default": {
-        "normal": {
-          "type": "color",
-          "color": "",
-          "gradient": {
-            "type": "linear",
-            "radialType": "ellipse",
-            "colors": [
-              {
-                "color": "#7FD1E5",
-                "position": 0
-              },
-              {
-                "color": "#A152B2",
-                "position": 80
-              }
-            ],
-            "centerPositions": {
-              "x": 0,
-              "y": 0
-            },
-            "angel": 90
-          },
-          "img": {
-            "url": "",
-            "desktop": {
-              "position": "center center",
-              "repeat": "no-repeat"
-            },
-            "tablet": {
-              "position": "center center",
-              "repeat": "no-repeat"
-            },
-            "mobile": {
-              "position": "center center",
-              "repeat": "no-repeat"
-            }
-          },
-          "video": {
-            "url": "",
-            "loop": true
-          }
-        },
-        "hover": {
-          "type": "color",
-          "color": "",
-          "gradient": {
-            "type": "linear",
-            "radialType": "ellipse",
-            "colors": [
-              {
-                "color": "#7FD1E5",
-                "position": 0
-              },
-              {
-                "color": "#A152B2",
-                "position": 80
-              }
-            ],
-            "centerPositions": {
-              "x": 0,
-              "y": 0
-            },
-            "angel": 90
-          },
-          "transition": 0.3,
-          "img": {
-            "url": "",
-            "desktop": {
-              "position": "center center",
-              "repeat": "no-repeat"
-            },
-            "tablet": {
-              "position": "center center",
-              "repeat": "no-repeat"
-            },
-            "mobile": {
-              "position": "center center",
-              "repeat": "no-repeat"
-            }
-          },
-          "video": {
-            "url": "",
-            "loop": false
-          }
-        },
-        "hoverType": "normal"
-      }
-    },
-    "overlay": {
-      "type": "object",
-      "default": {
-        "isEnabled": false,
-        "colors": {
-          "normal": {
-            "type": "color",
-            "color": "",
-            "gradient": {
-              "type": "linear",
-              "radialType": "ellipse",
-              "colors": [
-                {
-                  "color": "",
-                  "position": 0
-                },
-                {
-                  "color": "",
-                  "position": 0
-                }
-              ],
-              "centerPositions": {
-                "x": 0,
-                "y": 0
-              },
-              "angel": 90
-            },
-            "img": {
-              "url": "",
-              "desktop": {
-                "position": ""
-              },
-              "tablet": {
-                "position": ""
-              },
-              "mobile": {
-                "position": ""
-              }
-            }
-          },
-          "hover": {
-            "type": "color",
-            "color": "#0000",
-            "gradient": {
-              "type": "linear",
-              "radialType": "ellipse",
-              "colors": [
-                {
-                  "color": "",
-                  "position": 0
-                },
-                {
-                  "color": "",
-                  "position": 0
-                }
-              ],
-              "centerPositions": {
-                "x": 0,
-                "y": 0
-              },
-              "angel": 90
-            },
-            "transition": 0.3,
-            "img": {
-              "url": "",
-              "desktop": {},
-              "tablet": {},
-              "mobile": {}
-            }
-          },
-          "hoverType": "normal"
-        },
-        "opacity": 1,
-        "blend": "normal",
-        "isCssFilter": false,
-        "blur": 0,
-        "brightness": 100,
-        "contrast": 100,
-        "saturation": 100,
-        "hue": 0
       }
     },
     "advanced": {
@@ -306,6 +112,22 @@
           "hover": {
             "type": "color"
           }
+        },
+        "borderShadow": {
+          "normal": {
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": {
+              "top": "",
+              "right": "",
+              "bottom": "",
+              "left": ""
+            },
+            "shadow": []
+          }
         }
       }
     }
@@ -326,7 +148,13 @@
       "preview": true
     }
   },
-  "style": "file:./view.css",
+  "style": [
+    "file:./view.css",
+    "aos"
+  ],
   "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+  "viewScript": [
+    "file:./view.js",
+    "aos"
+  ]
 }

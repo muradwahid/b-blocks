@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../Components/utils/getCSS';
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { rowPrefix, colPrefix } from '../../utils/data';
 

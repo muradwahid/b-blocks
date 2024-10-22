@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 
-import { Label, BtnGroup } from '../../../Components';
+import { Label, BtnGroup } from '../../../bpl-tools/Components';
 
 import { minusIcon } from '../utils/icons';
 import { aligns, borderStyles, colors, sizeTypes } from '../utils/options';

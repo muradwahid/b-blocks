@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Tooltip } from '@wordpress/components';
 
-import { tabController } from '../../../../../Components/utils/functions';
+import { tabController } from '../../../../../bpl-tools/utils/functions';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';

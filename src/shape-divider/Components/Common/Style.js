@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBoxCSS } from '../../../../../Components/utils/getCSS';
+import { getBackgroundCSS, getBoxCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 const Style = ({ attributes, id }) => {
 	const { shapeColor, shapePosition, shapeWidth, shapeHeight, padding, background, height } = attributes;

@@ -10,28 +10,30 @@ $primaryColor: #4527a4;
 		box-sizing: border-box;
 	}
 
-	.topShaped {
+	.shaped {
+		width: 100%;
+		display: grid;
 		position: absolute;
-		top: 0;
-		left: 0;
+		z-index: 2;
 
 		svg {
 			height: auto;
 		}
 	}
 
+	.topShaped {
+		top: 0;
+		left: 0;
+	}
+
 	.bottomShaped {
-		position: absolute;
 		left: 0;
 		bottom: 0;
-
-		svg {
-			height: auto;
-		}
 	}
 
 	.bBlocksContainerContent {
 		position: relative;
 		max-width: 100%;
+		z-index: 3;
 	}
 }

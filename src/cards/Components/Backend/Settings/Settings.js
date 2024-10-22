@@ -1,24 +1,25 @@
-import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
+import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 
-import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, HelpPanel, InlineDetailMediaUpload, SpaceControl, Typography } from '../../../../../../Components';
-import { BControlPro, SelectControlPro } from '../../../../../../Components/Pro';
-import { tabController } from '../../../../../../Components/utils/functions';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, BtnGroup, HelpPanel, InlineDetailMediaUpload, Typography } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
 import { generalStyleTabs } from '../../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard, isPremium }) => {
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard, isPremium, device }) => {
 	const { cards = [], columns, columnGap, rowGap, layout, link = {}, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
 	const { target: linkTarget = '_self', element: linkElement = 'card' } = link;
 
-	const [device, setDevice] = useState('desktop');
 	const [isProModal, setIsProModal] = useState(false);
 
 	const addCard = () => {
@@ -83,11 +84,11 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 							<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateCard('imgBorder', val)} defaults={{ radius: '5px' }} />
 
-							<BColor label={__('Category Color:', 'b-blocks')} value={catColor} onChange={val => updateCard('catColor', val)} defaultColor='#0dcaf0' />
+							<ColorControl label={__('Category Color:', 'b-blocks')} value={catColor} onChange={val => updateCard('catColor', val)} defaultColor='#0dcaf0' />
 
-							<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateCard('titleColor', val)} defaultColor='#ff7500' />
+							<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateCard('titleColor', val)} defaultColor='#ff7500' />
 
-							<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateCard('descColor', val)} defaultColor='#333' />
+							<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateCard('descColor', val)} defaultColor='#333' />
 
 							<TextControl className='mt10' label={__('Link:', 'b-blocks')} value={cardLink} onChange={val => updateCard('link', val)} />
 							<span>{__('Insert the link if you want; otherwise, leave it blank.', 'b-blocks')}</span>
@@ -122,7 +123,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 						<PanelRow className='mt20'>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-							<BDevice device={device} onChange={val => setDevice(val)} />
+							<Device />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -222,4 +223,10 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

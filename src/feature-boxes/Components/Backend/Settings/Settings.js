@@ -1,18 +1,17 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 
-import { Label, Background, BColor, BDevice, IconControl, InlineDetailMediaUpload, SeparatorControl, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, IconControl, InlineDetailMediaUpload, SeparatorControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug } from '../../../../utils/data';
 
-const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setActiveIndex }) => {
+const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setActiveIndex, device }) => {
 	const { features = [], columns, columnGap, rowGap, textAlign, padding, isIcon, iconMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isDesc, descTypo } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const addFeature = () => {
 		setAttributes({
@@ -73,11 +72,11 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 						</> : <IconControl value={icon} onChange={val => updateFeature('icon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 120 }} />}
 					</>}
 
-					<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateFeature('titleColor', val)} defaultColor='#333' />
+					<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateFeature('titleColor', val)} defaultColor='#333' />
 
 					<SeparatorControl value={separator} onChange={val => updateFeature('separator', val)} defaults={{ width: '20%' }} />
 
-					<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature('descColor', val)} defaultColor='#333' />
+					<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateFeature('descColor', val)} defaultColor='#333' />
 
 					<PanelRow className='itemAction mt20 mb15'>
 						{1 < features?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeFeature}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
@@ -95,7 +94,7 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 			<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 				<PanelRow>
 					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-					<BDevice device={device} onChange={val => setDevice(val)} />
+					<Device />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -152,4 +151,10 @@ const Settings = ({ attributes, setAttributes, updateFeature, activeIndex, setAc
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

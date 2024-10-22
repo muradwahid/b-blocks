@@ -1,4 +1,4 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../Components/utils/getCSS';
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../bpl-tools/utils/getCSS';
 import { colPrefix } from '../../../row/utils/data';
 
 const Style = ({ attributes, id }) => {

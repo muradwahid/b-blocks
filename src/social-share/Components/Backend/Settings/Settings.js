@@ -3,9 +3,10 @@ import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/b
 import { PanelBody, PanelRow, SelectControl, ToggleControl, Button, Dashicon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, BorderControl, IconControl, InlineDetailMediaUpload, ShadowControl, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, IconControl, InlineDetailMediaUpload, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, socialShareDocs } from '../../../../utils/data';
 import { compareAndReturn } from '../../../utils/functions';

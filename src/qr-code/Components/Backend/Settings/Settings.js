@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
-import { Label, ColorControl, HelpPanel } from '../../../../../../Components';
+import { Label, ColorControl, HelpPanel } from '../../../../../../bpl-tools/Components';
 
 import { pluginSlug, qrCodeDocs } from '../../../../utils/data';
 

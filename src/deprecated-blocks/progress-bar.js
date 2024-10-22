@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 
-import { Label, BColor } from '../../../Components';
+import { Label, ColorControl } from '../../../bpl-tools/Components';
 
 import { progressIcon } from '../utils/icons';
 import { colors } from '../utils/options';
@@ -74,7 +74,7 @@ registerBlockType('b-blocks/progress-bar', {
 					<Label>{__('Striped:', 'b-blocks')}</Label>
 					<ToggleControl label={progressBarStriped ? 'Disable Striped' : 'Enable Striped'} checked={progressBarStriped} onChange={cng => setAttributes({ progressBarStriped: cng })} />
 
-					<BColor className='mt20' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor='#ffffff26' />
+					<ColorControl className='mt20' label={__('Striped Color:', 'b-blocks')} value={progressBarStripedColor} onChange={cng => setAttributes({ progressBarStripedColor: cng })} defaultColor='#ffffff26' />
 
 					{progressBarStriped && <>
 						{/* Animation */}

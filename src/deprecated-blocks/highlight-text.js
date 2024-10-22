@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
-import { Label } from '../../../Components';
+import { Label } from '../../../bpl-tools/Components';
 
 import { paintIcon } from '../utils/icons';
 import { fontSizes, colors } from '../utils/options';

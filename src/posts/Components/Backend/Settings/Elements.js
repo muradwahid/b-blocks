@@ -3,8 +3,8 @@ import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { PanelBody, SelectControl, RangeControl, TextControl, ToggleControl, PanelRow } from '@wordpress/components';
 
-import { Label, BtnGroup, InlineMediaUpload, SortableControl } from '../../../../../../Components';
-import { BControlPro } from '../../../../../../Components/Pro';
+import { Label, BtnGroup, InlineMediaUpload, SortableControl } from '../../../../../../bpl-tools/Components';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 
 import { categoriesPosition, imageFittings, dateFormats, readMorePositions } from '../../../utils/options';
 

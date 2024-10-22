@@ -2,9 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TextControl, ToggleControl, RangeControl, SelectControl, __experimentalUnitControl as UnitControl, __experimentalNumberControl as NumberControl, Tooltip, Button, Dashicon } from '@wordpress/components';
 
-import { Label, Background, BColor, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, chartDocs } from '../../../../utils/data';
 import { prefix } from '../../../utils/data';
@@ -186,11 +186,11 @@ const Settings = ({ attributes, setAttributes }) => {
 						<NumberControl className='chartDataValue' value={dataset.data[labelIndex]} onChange={val => updateData('datasets', datasetIndex, parseFloat(val), 'data', labelIndex)} />
 
 						<Tooltip text={__('Dataset Background Color', 'b-blocks')} placement='top' position='top'>
-							<BColor className='chartBGColor' label='' value={dataset.backgroundColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'backgroundColor', labelIndex)} />
+							<ColorControl className='chartBGColor' label='' value={dataset.backgroundColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'backgroundColor', labelIndex)} />
 						</Tooltip>
 
 						<Tooltip text={__('Dataset Border Color', 'b-blocks')} placement='top' position='top'>
-							<BColor label='' value={dataset.borderColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'borderColor', labelIndex)} />
+							<ColorControl label='' value={dataset.borderColor[labelIndex]} onChange={val => updateData('datasets', datasetIndex, val, 'borderColor', labelIndex)} />
 						</Tooltip>
 					</PanelRow>)}
 
@@ -246,7 +246,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-				<BColor label={__('Text Color:', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#666' />
+				<ColorControl label={__('Text Color:', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#666' />
 
 				<ToggleControl className='mt20' label={__('Show X Scale', 'b-blocks')} checked={isXScale} onChange={val => setAttributes({ isXScale: val })} />
 
@@ -256,7 +256,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				{isYScale && <ToggleControl label={__('Show Y Grid Line', 'b-blocks')} checked={isYGridLine} onChange={val => setAttributes({ isYGridLine: val })} />}
 
-				{(isXGridLine || isYGridLine) && <BColor label={__('Grid Line Color:', 'b-blocks')} value={gridLineColor} onChange={val => setAttributes({ gridLineColor: val })} defaultColor='#0000001a' />}
+				{(isXGridLine || isYGridLine) && <ColorControl label={__('Grid Line Color:', 'b-blocks')} value={gridLineColor} onChange={val => setAttributes({ gridLineColor: val })} defaultColor='#0000001a' />}
 			</PanelBody>
 
 
@@ -271,7 +271,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<Label>{__('Title Font Size:', 'b-blocks')}</Label>
 					<RangeControl value={titleFontSize} onChange={val => setAttributes({ titleFontSize: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={22} initialPosition={22} />
 
-					<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
+					<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 				</>}
 
 				<ToggleControl className='mt20' label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
@@ -284,7 +284,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<Label>{__('Subtitle Font Size:', 'b-blocks')}</Label>
 					<RangeControl value={subtitleFontSize} onChange={val => setAttributes({ subtitleFontSize: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={13} initialPosition={13} />
 
-					<BColor label={__('Subtitle Color:', 'b-blocks')} value={subtitleColor} onChange={val => setAttributes({ subtitleColor: val })} defaultColor='#8344c5' />
+					<ColorControl label={__('Subtitle Color:', 'b-blocks')} value={subtitleColor} onChange={val => setAttributes({ subtitleColor: val })} defaultColor='#8344c5' />
 				</>}
 			</PanelBody>
 

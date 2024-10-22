@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 // Components
-import { getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../Components/utils/getCSS';
+import { getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';

@@ -5,7 +5,7 @@ import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 import { produce } from 'immer';
 
-import { ImagePlaceholder } from '../../../../../Components';
+import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
 
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';

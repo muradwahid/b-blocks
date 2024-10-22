@@ -1,4 +1,4 @@
-import { getColorsCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../Components/utils/getCSS';
+import { getColorsCSS, getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {

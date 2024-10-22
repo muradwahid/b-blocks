@@ -2,8 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TabPanel, TextareaControl, ToggleControl, SelectControl } from '@wordpress/components';
 
-import { Label, Background, BColor, BorderControl, BtnGroup, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { tabController } from '../../../../../../Components/utils/functions';
+import { Label, Background, ColorControl, BtnGroup, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
 import { pluginSlug, animatedTextDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
@@ -62,7 +63,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<Typography className='mt20' label={__('Typography:', 'b-blocks')} value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} />
 
-						<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => setAttributes({ color: val })} defaultColor='#333' />
+						<ColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => setAttributes({ color: val })} defaultColor='#333' />
 
 						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '15px', horizontal: '15px' }} />
 

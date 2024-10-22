@@ -6,7 +6,7 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { ResizableBox } from '@wordpress/components';
 const { replaceInnerBlocks } = dispatch('core/block-editor');
 
-import { tabController } from '../../../../../Components/utils/functions';
+import { tabController } from '../../../../../bpl-tools/utils/functions';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';

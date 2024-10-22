@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { PanelBody, PanelRow, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, BColor, BorderControl, BtnGroup, ColorsControl, SpaceControl, Typography } from '../../../../../../Components';
-import { pxUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, BtnGroup, ColorsControl, Typography } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { aligns } from '../../../../utils/options';
 
@@ -28,7 +29,7 @@ const Style = ({ attributes, setAttributes }) => {
 
 		{isSlider && <PanelBody className='bPlPanelBody' title={__('Slider Options', 'b-blocks')} initialOpen={false}>
 			{sliderIsPage && <>
-				<BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={sliderPageColor} onChange={val => setAttributes({ sliderPageColor: val })} defaultColor='#4527a4' />
+				<ColorControl label={__('Pagination Bullets Color:', 'b-blocks')} value={sliderPageColor} onChange={val => setAttributes({ sliderPageColor: val })} defaultColor='#4527a4' />
 
 				<UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={sliderPageWidth} onChange={val => setAttributes({ sliderPageWidth: val })} units={[pxUnit(), emUnit()]} />
 
@@ -37,14 +38,14 @@ const Style = ({ attributes, setAttributes }) => {
 				<BorderControl label={__('Pagination Border:', 'b-blocks')} value={sliderPageBorder} onChange={val => setAttributes({ sliderPageBorder: val })} defaults={{ radius: '50%' }} />
 			</>}
 
-			{sliderIsPrevNext && <BColor label={__('Preview Next Button Color:', 'b-blocks')} value={sliderPrevNextColor} onChange={val => setAttributes({ sliderPrevNextColor: val })} defaultColor='#4527a4' />}
+			{sliderIsPrevNext && <ColorControl label={__('Preview Next Button Color:', 'b-blocks')} value={sliderPrevNextColor} onChange={val => setAttributes({ sliderPrevNextColor: val })} defaultColor='#4527a4' />}
 		</PanelBody>}
 
 
 		{isTitle && <PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
 			<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 } }} />
 
-			<BColor label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
+			<ColorControl label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
 
 			<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '15px' }} />
 		</PanelBody>}
@@ -53,11 +54,11 @@ const Style = ({ attributes, setAttributes }) => {
 		{isMeta && <PanelBody className='bPlPanelBody' title={__('Meta Data', 'b-blocks')} initialOpen={false}>
 			<Typography value={metaTypo} onChange={val => setAttributes({ metaTypo: val })} defaults={{ fontSize: { desktop: 13, tablet: 13, mobile: 13 }, textTransform: 'uppercase' }} />
 
-			<BColor label={__('Text Color:', 'b-blocks')} value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
+			<ColorControl label={__('Text Color:', 'b-blocks')} value={metaTextColor} onChange={val => setAttributes({ metaTextColor: val })} defaultColor='#333' />
 
-			<BColor label={__('Link Color:', 'b-blocks')} value={metaLinkColor} onChange={val => setAttributes({ metaLinkColor: val })} defaultColor='#8344c5' />
+			<ColorControl label={__('Link Color:', 'b-blocks')} value={metaLinkColor} onChange={val => setAttributes({ metaLinkColor: val })} defaultColor='#8344c5' />
 
-			<BColor label={__('Icon Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
+			<ColorControl label={__('Icon Color:', 'b-blocks')} value={metaIconColor} onChange={val => setAttributes({ metaIconColor: val })} defaultColor='#4527a4' />
 
 			{'image' === metaCategoryIn && <ColorsControl label={__('Category Colors On Image:', 'b-blocks')} value={metaColorsOnImage} onChange={val => setAttributes({ metaColorsOnImage: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />}
 
@@ -73,7 +74,7 @@ const Style = ({ attributes, setAttributes }) => {
 
 			<Typography value={excerptTypo} onChange={val => setAttributes({ excerptTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
-			<BColor label={__('Color:', 'b-blocks')} value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
+			<ColorControl label={__('Color:', 'b-blocks')} value={excerptColor} onChange={val => setAttributes({ excerptColor: val })} defaultColor='#333' />
 
 			<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={excerptMargin} onChange={val => setAttributes({ excerptMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 		</PanelBody>}

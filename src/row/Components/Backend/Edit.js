@@ -5,7 +5,7 @@ import { withSelect, withDispatch } from '@wordpress/data';
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { Button, Dashicon } from '@wordpress/components';
 
-import { tabController } from '../../../../../Components/utils/functions';
+import { tabController } from '../../../../../bpl-tools/utils/functions';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';

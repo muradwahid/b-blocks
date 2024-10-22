@@ -1,19 +1,18 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl, Tooltip, CheckboxControl } from '@wordpress/components';
 
-import { Label, BColor, BDevice, ShadowControl, SpaceControl, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, ColorControl, Device, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, pricingTableDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, setActiveIndex }) => {
+const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, setActiveIndex, device }) => {
 	const { pricingTables, columns, columnGap, rowGap, textAlign, padding, shadow } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const addPricingTable = () => {
 		setAttributes({
@@ -126,7 +125,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 							<Label>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={link} onChange={val => updatePriceTable('link', val)} />
 
-							<BColor label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor='#4527a4' />
+							<ColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor='#4527a4' />
 
 							<PanelRow className='itemAction mt20 mb15'>
 								{1 < pricingTables?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removePricingTable} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
@@ -144,7 +143,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow className='mt20'>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-							<BDevice device={device} onChange={val => setDevice(val)} />
+							<Device />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -175,4 +174,10 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TabPanel, TextControl, SelectControl, RangeControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { BColor, BtnGroup, MultiShadowControl, Typography } from '../../../../../../Components'
-import { emUnit, pxUnit } from '../../../../../../Components/utils/options';
+import { ColorControl, BtnGroup, ShadowControl, Typography } from '../../../../../../bpl-tools/Components'
+import { emUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { generalStyleTabs } from '../../../../utils/options';
 import { solidStar, outlineStar } from '../../../utils/icons';
@@ -49,11 +49,11 @@ const Settings = ({ attributes, setAttributes }) => {
 						<PanelBody className='bPlPanelBody' title={__('Title', 'b-blocks')} initialOpen={false}>
 							<UnitControl label={__('Gap', 'b-blocks')} labelPosition='left' value={gap} onChange={(val) => setAttributes({ gap: val })} units={[pxUnit(10), emUnit(1)]} isResetValueOnUnitChange={true} />
 
-							<BColor label={__('Text Color', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#7a7a7a' />
+							<ColorControl label={__('Text Color', 'b-blocks')} value={textColor} onChange={val => setAttributes({ textColor: val })} defaultColor='#7a7a7a' />
 
 							<Typography label={__('Text Typography', 'b-blocks')} value={textTypo} onChange={val => setAttributes({ textTypo: val })} defaults={{ fontSize: 16 }} />
 
-							<MultiShadowControl label={__('Text Shadow', 'b-blocks')} value={textShadow} onChange={val => setAttributes({ textShadow: val })} type='text' />
+							<ShadowControl label={__('Text Shadow', 'b-blocks')} value={textShadow} onChange={val => setAttributes({ textShadow: val })} type='text' />
 						</PanelBody>
 					</>}
 				</>}

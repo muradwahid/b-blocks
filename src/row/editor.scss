@@ -71,70 +71,7 @@ $primaryColor: #4527a4;
 		>.block-editor-inner-blocks>.block-editor-block-list__layout {
 			display: flex;
 			flex-wrap: wrap;
-			// padding-bottom: 45px;
 			position: inherit;
-
-			// >.block-list-appender {
-			// 	width: fit-content;
-			// 	position: absolute;
-			// 	bottom: 0;
-			// 	left: 50%;
-			// 	transform: translateX(-50%);
-			// 	margin: 0;
-
-			// 	button {
-			// 		margin-left: 0;
-			// 		width: auto;
-			// 		height: auto;
-			// 		display: flex;
-			// 		flex-direction: row;
-			// 		padding: 8px 15px !important;
-			// 		background-color: #4527a425 !important;
-			// 		border-radius: 3px;
-			// 		box-shadow: none;
-
-			// 		&::after {
-			// 			content: 'Add New Column';
-			// 			color: $primaryColor;
-			// 			line-height: 80%;
-			// 			font-weight: bold;
-			// 			font-size: 16px;
-			// 		}
-
-			// 		svg {
-			// 			margin-right: 10px;
-			// 		}
-			// 	}
-			// }
-		}
-
-		// &.has-6-columns,
-		// &.notSelected {
-		// 	>.block-editor-inner-blocks>.block-editor-block-list__layout {
-		// 		padding-bottom: 0;
-		// 	}
-		// }
-	}
-
-	// Block inserter style
-	.block-list-appender,
-	.block-editor-inserter {
-		button {
-			background-color: transparent !important;
-			box-shadow: none;
-
-			&.block-editor-button-block-appender {
-				border: 1px solid $primaryColor;
-			}
-
-			svg {
-				fill: $primaryColor;
-				width: 20px !important;
-				height: 20px;
-				background-color: transparent !important;
-				border: 2px solid $primaryColor;
-				border-radius: 50% !important;
-			}
 		}
 	}
 }

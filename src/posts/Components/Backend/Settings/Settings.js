@@ -4,7 +4,7 @@ import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/b
 import { TabPanel } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { tabController } from '../../../../../../Components/utils/functions';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
 import General from './General';
 import Elements from './Elements';

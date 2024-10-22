@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { PanelBody, SelectControl, RangeControl, CheckboxControl, TextControl, ToggleControl, PanelRow, __experimentalUnitControl as UnitControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
-import { Label, BDevice, BtnGroup, ColorsControl, HelpPanel, SelectPureControl, SpaceControl } from '../../../../../../Components';
-import { BControlPro, SelectControlPro, BtnGroupPro } from '../../../../../../Components/Pro';
-import { pxUnit, emUnit, vhUnit } from '../../../../../../Components/utils/options';
+import { Label, Device, BtnGroup, ColorsControl, HelpPanel, SelectPureControl } from '../../../../../../bpl-tools/Components';
+import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro, SelectControlPro, BtnGroupPro } from '../../../../../../bpl-tools/ProControls';
+import { pxUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug } from '../../../../utils/data';
 import { layouts, effects, tickerDirections, postsOrdersBy, postsOrders, subLayouts, contentHeights } from '../../../utils/options';
@@ -100,15 +100,13 @@ const Pagination = ({ attributes, setAttributes, premiumProps }) => {
 }
 
 
-const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPostType, allTaxonomies, getTaxonomy }) => {
+const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPostType, allTaxonomies, getTaxonomy, device }) => {
 	const { layout, subLayout, columns, columnGap, rowGap, isContentEqualHight, sliderHeight, content, postType, selectedTaxonomies, selectedCategories, selectedTags, isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset, postsInclude, postsExclude, isExcludeCurrent } = attributes;
 
 	const isGrid = 'grid' === layout;
 	const isGrid1 = 'grid1' === layout;
 	const isSlider = 'slider' === layout;
 	const isTicker = 'ticker' === layout;
-
-	const [device, setDevice] = useState('desktop');
 
 	const props = { attributes, setAttributes, premiumProps }
 
@@ -185,7 +183,7 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 			{!isGrid1 && !isTicker && <>
 				<PanelRow className='mt20'>
 					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-					<BDevice device={device} onChange={val => setDevice(val)} />
+					<Device />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 			</>}
@@ -291,12 +289,14 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 
 export default withSelect((select, { attributes }) => {
 	const { getPostTypes, getTaxonomies, getEntityRecords } = select('core');
-	const { getCurrentPostType, getCurrentPostId } = select('core/editor');
+	const { getDeviceType, getCurrentPostType, getCurrentPostId } = select('core/editor');
 
 	const { postType } = attributes;
 	const taxonomies = getTaxonomies({ per_page: -1 });
 
 	return {
+		device: getDeviceType()?.toLowerCase(),
+
 		postTypes: getPostTypes({ per_page: -1 })?.filter(p => !['apb', 'attachment', 'nav_menu_item'].includes(p.slug) && !p.slug.startsWith('wp_'))?.map(({ name, slug }) => ({ label: name, value: slug })),
 
 		currentPostType: getCurrentPostType(),

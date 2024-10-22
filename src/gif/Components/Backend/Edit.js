@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useBlockProps, InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl } from '@wordpress/components';
 
-import { HelpPanel } from '../../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../../Components/utils/options';
+import { HelpPanel } from '../../../../../bpl-tools/Components';
+import { pxUnit, perUnit, emUnit } from '../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, gifDocs } from '../../../utils/data';
 import { prefix } from '../../utils/data';

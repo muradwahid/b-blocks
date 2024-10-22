@@ -2,9 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TabPanel, SelectControl, __experimentalUnitControl as UnitControl, RangeControl, __experimentalBoxControl as BoxControl } from '@wordpress/components';
 
-import { Label, BColor, Background } from '../../../../../../Components';
-import { tabController } from '../../../../../../Components/utils/functions';
-import { emUnit, pxUnit, vhUnit } from '../../../../../../Components/utils/options';
+import { Label, ColorControl, Background } from '../../../../../../bpl-tools/Components';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { emUnit, pxUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { generalStyleTabs } from '../../../../utils/options';
 import { shapes } from '../../../utils/options';
@@ -49,7 +49,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 				<PanelBody className='bPlPanelBody' title={__('Shape', 'b-blocks')} initialOpen={false}>
-					<BColor label={__('Color:', 'b-blocks')} value={shapeColor} onChange={val => setAttributes({ shapeColor: val })} defaultColor='#fff' />
+					<ColorControl label={__('Color:', 'b-blocks')} value={shapeColor} onChange={val => setAttributes({ shapeColor: val })} defaultColor='#fff' />
 				</PanelBody>
 			</>}
 		</>}</TabPanel>

@@ -1,13 +1,14 @@
 
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, IconControl, ShadowControl, SpaceControl, Typography, InlineDetailMediaUpload, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, ColorsControl, IconControl, Typography, InlineDetailMediaUpload, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { generalStyleTabs } from '../../../../utils/options';
 
@@ -17,10 +18,8 @@ const frontBackTab = [
 	{ name: 'back', title: __('Back', 'b-blocks') }
 ];
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) => {
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, device }) => {
 	const { boxes = [], columns, columnGap, rowGap, boxHeight, textAlign, boxPadding, isIcon, iconMargin, titleTypo, titleMargin, isDesc, descTypo, isBtn, isLinkNewTab, btnTypo, btnPadding } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const addFlipBox = () => {
 		setAttributes({
@@ -127,14 +126,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextControl value={frontTitle} onChange={val => updateFlipBox('frontTitle', val)} />
 
-										<BColor label={__('Color:', 'b-blocks')} value={frontTitleColor} onChange={val => updateFlipBox('frontTitleColor', val)} defaultColor='#fff' />
+										<ColorControl label={__('Color:', 'b-blocks')} value={frontTitleColor} onChange={val => updateFlipBox('frontTitleColor', val)} defaultColor='#fff' />
 									</PanelBody>
 
 									<PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
 										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextareaControl value={desc} onChange={val => updateFlipBox('desc', val)} />
 
-										<BColor label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox('descColor', val)} defaultColor='#fff' />
+										<ColorControl label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox('descColor', val)} defaultColor='#fff' />
 									</PanelBody>
 								</>}
 
@@ -159,7 +158,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
 										<TextControl value={backTitle} onChange={val => updateFlipBox('backTitle', val)} />
 
-										<BColor label={__('Color:', 'b-blocks')} value={backTitleColor} onChange={val => updateFlipBox('backTitleColor', val)} defaultColor='#fff' />
+										<ColorControl label={__('Color:', 'b-blocks')} value={backTitleColor} onChange={val => updateFlipBox('backTitleColor', val)} defaultColor='#fff' />
 									</PanelBody>
 
 									<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
@@ -194,7 +193,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-							<BDevice device={device} onChange={val => setDevice(val)} />
+							<Device />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -260,4 +259,10 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

@@ -1,22 +1,21 @@
-import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, BColor, BDevice, BorderControl, HelpPanel, IconControl, ShadowControl, SpaceControl, Typography } from '../../../../../../Components';
-import { tabController } from '../../../../../../Components/utils/functions';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, HelpPanel, IconControl, Typography } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, countersDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
 import { themes, iconPositions, sepChars } from '../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCounter }) => {
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCounter, device }) => {
 	const { counters = [], theme, columns, columnGap, rowGap, duration, separator, background, padding, counterWidth, counterHeight, textAlign, isIcon, iconSize, iconPosition, numberTypo, isLabel, labelTypo, counterPadding, counterBorder, counterShadow } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const addCounter = () => {
 		setAttributes({
@@ -91,9 +90,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 								<TextControl value={number.suffix} onChange={val => updateCounter('number', val, 'suffix')} />
 							</PanelRow>
 
-							<BColor label={__('Number Color:', 'b-blocks')} value={number.color} onChange={val => updateCounter('number', val, 'color')} defaultColor='#fff' />
+							<ColorControl label={__('Number Color:', 'b-blocks')} value={number.color} onChange={val => updateCounter('number', val, 'color')} defaultColor='#fff' />
 
-							<BColor label={__('Label Color:', 'b-blocks')} value={label.color} onChange={val => updateCounter('label', val, 'color')} defaultColor='#fff' />
+							<ColorControl label={__('Label Color:', 'b-blocks')} value={label.color} onChange={val => updateCounter('label', val, 'color')} defaultColor='#fff' />
 
 							<PanelRow className='itemAction mt20 mb15'>
 								{1 < counters?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCounter} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
@@ -184,7 +183,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 						<PanelRow className='mt20'>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-							<BDevice device={device} onChange={val => setDevice(val)} />
+							<Device />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -259,4 +258,10 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

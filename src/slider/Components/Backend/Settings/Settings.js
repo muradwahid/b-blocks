@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, BColor, BDevice, BorderControl, ColorsControl, HelpPanel, SpaceControl, Typography } from '../../../../../../Components';
-import { BControlPro, SelectControlPro } from '../../../../../../Components/Pro';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, ColorsControl, HelpPanel, Typography } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug } from '../../../../utils/data';
@@ -35,10 +37,9 @@ const defaultChildPositions = [
 	}
 ];
 
-const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) => {
+const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, device }) => {
 	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isTouchMove, speed, isAutoplay, autoplayOptions = {}, freeModeOptions = {}, effect, keyboardOptions = {}, isMousewheel = false, isPage, pageOnDevice = {}, isPageClickable, isPageDynamic, isPrevNext, prevNextOnDevice = {}, sliderBG = {}, sliderPadding = {}, pageColor, pageWidth, pageHeight, pageBorder, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, linkTarget, btnTypo, btnPadding, btnBorder } = attributes;
 
-	const [device, setDevice] = useState('desktop');
 	const [isProModal, setIsProModal] = useState(false);
 
 	const addSlide = () => {
@@ -93,7 +94,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) 
 							return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Slide No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
 								<Background label={__('Background', 'b-blocks')} value={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
 
-								<BControlPro label={__('Border:', 'b-blocks')} value={border} onChange={val => updateSlide(index, 'border', val)}  {...premiumProps} Component={BorderControl} />
+								<BControlPro label={__('Border:', 'b-blocks')} value={border} onChange={val => updateSlide(index, 'border', val)} {...premiumProps} Component={BorderControl} />
 
 								<PanelRow>
 									<Label className=''>{__('Content Position', 'b-blocks')}</Label>
@@ -113,12 +114,12 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) 
 									<TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
 								</PanelRow>
 
-								<BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateSlide(index, 'titleColor', val)} defaultColor='#fff' />
+								<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateSlide(index, 'titleColor', val)} defaultColor='#fff' />
 
 								<Label>{__('Description:', 'b-blocks')}</Label>
 								<TextareaControl value={description} onChange={val => updateSlide(index, 'description', val)} placeholder={__('Description of the slider', 'b-blocks')} />
 
-								<BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateSlide(index, 'descColor', val)} defaultColor='#fff' />
+								<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateSlide(index, 'descColor', val)} defaultColor='#fff' />
 
 								<PanelRow className='mt20'>
 									<Label className=''>{__('Button Text:', 'b-blocks')}</Label>
@@ -157,7 +158,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) 
 					<PanelBody title={__('Layout Settings', 'b-blocks')} {...panelBodyIF}>
 						<PanelRow>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-							<BDevice device={device} onChange={val => setDevice(val)} />
+							<Device />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -322,7 +323,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) 
 
 					{isPage || isPrevNext ? <PanelBody title={__('Options', 'b-blocks')} {...panelBodyIF}>
 						{isPage && <>
-							<BColor label={__('Pagination Bullets Color:', 'b-blocks')} value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
+							<ColorControl label={__('Pagination Bullets Color:', 'b-blocks')} value={pageColor} onChange={val => setAttributes({ pageColor: val })} defaultColor='#fff' />
 
 							<UnitControl className='mt20' label={__('Pagination Width:', 'b-blocks')} labelPosition='left' value={pageWidth} onChange={val => setAttributes({ pageWidth: val })} units={[pxUnit(), emUnit()]} />
 
@@ -331,7 +332,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) 
 							<BorderControl label={__('Pagination Border:', 'b-blocks')} value={pageBorder} onChange={val => setAttributes({ pageBorder: val })} defaults={{ radius: '50%' }} />
 						</>}
 
-						{isPrevNext && <BColor label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />}
+						{isPrevNext && <ColorControl label={__('Preview Next Button Color:', 'b-blocks')} value={prevNextColor} onChange={val => setAttributes({ prevNextColor: val })} defaultColor='#fff' />}
 					</PanelBody> : ''}
 
 
@@ -415,4 +416,10 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id }) 
 		</ProModal>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

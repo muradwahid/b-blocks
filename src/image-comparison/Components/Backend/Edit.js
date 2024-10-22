@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-import { ImagePlaceholder } from '../../../../../Components';
+import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';

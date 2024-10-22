@@ -1,33 +1,27 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getBoxCSS } from "../../../../../Components/utils/getCSS";
-
-import { prefix } from '../../utils/data';
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
+import { getShadowCSS } from "../../../../../bpl-tools/utils/getCSS";
 
 const Style = ({ attributes, id }) => {
-	const { alignment, wrapper, icon } = attributes;
+	const { wrapper, icon, advanced } = attributes;
+	const { size, color, shadow } = icon;
+	const { width, height } = wrapper;
 
 	const mainSl = `#${id}`;
-	const iconBoxSl = `${mainSl} .${prefix}`;
-	const svgSl = `${iconBoxSl} svg`;
+	const svgSl = `${mainSl} svg`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
+		${generateCSS(id, advanced, true)}
+
 		${mainSl}{
-			text-align: ${alignment};
-		}
-		${iconBoxSl}{
-			width: ${wrapper.width};
-			height: ${wrapper.height};
-			${getBackgroundCSS(wrapper.background)}
-			${getBorderCSS({ ...wrapper.border, radius: wrapper.borderRadius })}
-			padding: ${getBoxCSS(wrapper.padding)};
-			box-shadow: ${getShadowCSS(wrapper.shadow)};
-			margin: ${getBoxCSS(wrapper.margin)};
+			width: ${!width || 0 === parseInt(width) ? 'auto' : width};
+			height: ${!height || 0 === parseInt(height) ? 'auto' : height};
 		}
 		${svgSl}{
-			fill:${icon.color};
-			height:${icon.size};
-			width:${icon.size};
-			box-shadow: ${getShadowCSS(icon.shadow)};
+			fill: ${color};
+			height: ${size};
+			width: ${size};
+			filter: drop-shadow(${getShadowCSS(shadow)});
 		}
 	`}} />;
 }

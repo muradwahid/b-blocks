@@ -1,6 +1,31 @@
 /*!******************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/index.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************/
+.bBlocksRow .block-list-appender button,
+.bBlocksRow .block-editor-inserter button,
+.bBlocksContainerContent .block-list-appender button,
+.bBlocksContainerContent .block-editor-inserter button {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+.bBlocksRow .block-list-appender button.block-editor-button-block-appender,
+.bBlocksRow .block-editor-inserter button.block-editor-button-block-appender,
+.bBlocksContainerContent .block-list-appender button.block-editor-button-block-appender,
+.bBlocksContainerContent .block-editor-inserter button.block-editor-button-block-appender {
+  border: 1px solid #4527a4;
+}
+.bBlocksRow .block-list-appender button svg,
+.bBlocksRow .block-editor-inserter button svg,
+.bBlocksContainerContent .block-list-appender button svg,
+.bBlocksContainerContent .block-editor-inserter button svg {
+  fill: #4527a4;
+  width: 20px !important;
+  height: 20px;
+  background-color: transparent !important;
+  border: 2px solid #4527a4;
+  border-radius: 50% !important;
+}
+
 .bBlocksLoading {
   color: #4527a4 !important;
   font-size: 21px !important;
@@ -179,27 +204,9 @@
   flex-wrap: wrap;
   position: inherit;
 }
-.wp-block-b-blocks-row .block-list-appender button,
-.wp-block-b-blocks-row .block-editor-inserter button {
-  background-color: transparent !important;
-  box-shadow: none;
-}
-.wp-block-b-blocks-row .block-list-appender button.block-editor-button-block-appender,
-.wp-block-b-blocks-row .block-editor-inserter button.block-editor-button-block-appender {
-  border: 1px solid #4527a4;
-}
-.wp-block-b-blocks-row .block-list-appender button svg,
-.wp-block-b-blocks-row .block-editor-inserter button svg {
-  fill: #4527a4;
-  width: 20px !important;
-  height: 20px;
-  background-color: transparent !important;
-  border: 2px solid #4527a4;
-  border-radius: 50% !important;
-}
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/style.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************/
 .edit-post-visual-editor .editor-styles-wrapper {
   max-width: inherit !important;
 }
@@ -321,6 +328,7 @@
 }
 .bPlTabPanel.small .components-tab-panel__tabs button, .bPlTabPanel.mini .components-tab-panel__tabs button {
   height: 30px;
+  text-transform: capitalize;
   justify-content: center;
   border-bottom: 0px;
   border: 1px solid #4527a4;
@@ -372,6 +380,12 @@
   margin-right: 0 !important;
 }
 
+.bPlPanelBody label,
+.bPlDropdownPopover .components-popover__content label {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  text-transform: unset !important;
+}
 .bPlPanelBody .components-notice,
 .bPlDropdownPopover .components-popover__content .components-notice {
   margin: 0;
@@ -405,6 +419,7 @@
 .bPlPanelBody .components-input-control__suffix .components-unit-control__unit-label,
 .bPlDropdownPopover .components-popover__content .components-unit-control-wrapper .components-unit-control__select,
 .bPlDropdownPopover .components-popover__content .components-input-control__suffix .components-unit-control__unit-label {
+  text-align: center;
   font-size: 11px !important;
   width: 25px !important;
   color: #fff !important;
@@ -800,101 +815,9 @@
   align-items: center;
   justify-content: center;
 }
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/BColor/BColor.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
-.bColorDropdownPopover .components-popover__content {
-  min-width: auto;
-  max-width: 250px;
-}
-
-.bColor {
-  display: flex;
-  align-items: center;
-}
-
-.bColorButtonContainer {
-  height: 30px;
-  width: 30px;
-  background-image: linear-gradient(45deg, #ddd 25%, transparent 0), linear-gradient(-45deg, #ddd 25%, transparent 0), linear-gradient(45deg, transparent 75%, #ddd 0), linear-gradient(-45deg, transparent 75%, #ddd 0);
-  background-size: 10px 10px;
-  background-position: 0 0, 0 5px, 5px -5px, -5px 0;
-  border: 1px solid #e9e9e9;
-  border-radius: 50%;
-}
-.bColorButtonContainer .bColorButton {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  outline: 0px;
-  border: none;
-  cursor: pointer;
-}
-.bColorButtonContainer .bColorButton:hover {
-  cursor: pointer;
-}
-
-.themeColors {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px;
-}
-/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/BDevice/BDevice.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlPanelBody .bDevicePopup,
-.bPlDropdownPopover .components-popover__content .bDevicePopup {
-  position: absolute;
-  width: 30px;
-  z-index: 999;
-  top: -11px;
-}
-.bPlPanelBody .bDevice button,
-.bPlDropdownPopover .components-popover__content .bDevice button {
-  cursor: pointer;
-  padding: 1px 6px;
-}
-.bPlPanelBody .bDevice,
-.bPlDropdownPopover .components-popover__content .bDevice {
-  width: 30px;
-  position: relative;
-}
-.bPlPanelBody .bDevice + div,
-.bPlDropdownPopover .components-popover__content .bDevice + div {
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
-}
-.bPlPanelBody .iconButton,
-.bPlDropdownPopover .components-popover__content .iconButton {
-  background: #ffffff;
-  border: 1px solid #4527a4;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 !important;
-  margin-left: 3px;
-  height: 22px;
-  width: 26px;
-}
-.bPlPanelBody .iconButton span,
-.bPlDropdownPopover .components-popover__content .iconButton span {
-  font-size: 14px;
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-}
-.bPlPanelBody .iconButton svg,
-.bPlDropdownPopover .components-popover__content .iconButton svg {
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-}
-.bPlPanelBody .iconButton span:before,
-.bPlDropdownPopover .components-popover__content .iconButton span:before {
-  font-size: inherit;
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/BoxControl/BoxControl.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/BoxControl/BoxControl.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
 .bPlBoxControl .sides {
   display: flex;
   align-items: center;
@@ -942,9 +865,12 @@
 .bPlBoxControl .boxLinkButton .dashicons.dashicons-image-rotate:hover {
   color: black;
 }
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/ColorControl/ColorControl.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/ColorControl/ColorControl.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bPlColorPopover {
+  z-index: 10000000;
+}
 .bPlColorPopover .components-popover__content {
   min-width: auto;
   max-width: 250px;
@@ -976,14 +902,58 @@
   cursor: pointer;
 }
 
-.themeColors {
+.bPlThemeColors {
   display: flex;
   flex-wrap: wrap;
   gap: 3px;
 }
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/HelpPanel/HelpPanel.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../bpl-tools/Components/Device/style.css ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/* .single-device {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 22px;
+    width: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.single-device span.dashicons{
+    font-size: 18px;
+    margin-top: 2px;
+  } */
+.advancedOptionssingle-device {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding:1px;
+    height: 17px !important;
+    width: 17px !important;
+    display: flex;
+    cursor: pointer;
+}
+.advancedOptionssingle-device.active{
+    border-color: #4527a4 !important;
+}
+.advancedOptionssingle-device>.dashicons.active{
+    color: #4527a4 !important;
+}
+.advancedOptionssingle-device span.dashicons{
+    font-size: 13px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/Gradient/Gradient.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bplAdvRangeColor .components-base-control.components-range-control .components-base-control__field .components-range-control__root .components-range-control__wrapper .components-range-control__track,
+.bplAdvRangeColor .components-base-control.components-range-control .components-base-control__field .components-range-control__root .components-range-control__wrapper .components-range-control__thumb-wrapper span {
+  background: #4527a4 !important;
+}
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/HelpPanel/HelpPanel.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
 .bPlHelpPanel .helpItems {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1023,9 +993,9 @@
   color: inherit;
   margin: 0;
 }
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/IconControl/IconControl.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/IconControl/IconControl.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
 .bPlIconTitle i {
   font-size: 25px;
 }
@@ -1070,16 +1040,16 @@
   top: 50%;
   transform: translateY(-50%);
 }
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/IconLibrary/IconLibrary.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/IconLibrary/IconLibrary.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
 .bPlIconLibrary .panel-icon {
   display: flex;
 }
 .bPlIconLibrary .panel-icon svg {
   height: 18px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper {
   background: rgba(0, 0, 0, 0.158);
   position: fixed;
   inset: 0;
@@ -1089,10 +1059,12 @@
   transition: all 0.3s ease-in-out;
   z-index: 9999999 !important;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper * {
+.bPlIconLibrary .bPlIconLibraryModalWrapper * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper.isOpen .bPl-icon-library-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper.isOpen .bPlIconLibraryModal {
   animation: open 0.3s ease-in;
 }
 @keyframes open {
@@ -1103,28 +1075,15 @@
     transform: scale(1);
   }
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper h1,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h2,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h3,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h4,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h5,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h6,
-.bPlIconLibrary .bPl-icon-library-main-wrapper p,
-.bPlIconLibrary .bPl-icon-library-main-wrapper ul,
-.bPlIconLibrary .bPl-icon-library-main-wrapper li {
-  margin: 0;
-  padding: 0;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal {
   width: 55%;
   height: 80%;
   background: #fff;
   border-radius: 5px;
-  /* header section */
   /* body section */
   /* footer section */
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryHeader {
   border-bottom: 1px solid #ccc;
   margin: 0;
   height: 40px;
@@ -1133,40 +1092,40 @@
   align-items: center;
   justify-content: space-between;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-logo {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryHeader .bPlIconLibraryHeaderLogo {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-logo h3 {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryHeader .bPlIconLibraryHeaderLogo h3 {
   font-size: 18px;
   font-weight: 600;
   text-transform: none;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-closebtn {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryHeader .bPlIconLibraryHeaderClose {
   border-left: 1px solid #ccc;
   padding-left: 5px;
   display: grid;
   place-items: center;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-closebtn svg {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryHeader .bPlIconLibraryHeaderClose svg {
   cursor: pointer;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody {
   display: flex;
   height: calc(100% - 90px);
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibrarySidebar {
   width: 255px;
   border-right: 1px solid #ccc;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibrarySidebar .bPlIconLibrarySidebarMenu {
   list-style: none;
   font-size: 15px;
   font-weight: 400;
   color: gray;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus li {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibrarySidebar .bPlIconLibrarySidebarMenu li {
   font-weight: 400;
   padding: 15px 0;
   padding-left: 30px;
@@ -1174,15 +1133,15 @@
   transition: background 0.2s ease-in-out;
   border-left: 3px solid transparent;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus li:hover {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibrarySidebar .bPlIconLibrarySidebarMenu li:hover {
   background: #f4f2fa;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus li.active {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibrarySidebar .bPlIconLibrarySidebarMenu li.active {
   background: #efebfa;
   border-left: 3px solid #4527a4;
   color: #000;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain {
   width: calc(100% - 255px);
   padding-left: 70px;
   padding-top: 20px;
@@ -1191,11 +1150,11 @@
   flex-direction: column;
   /* .bPl-icon-library-body { */
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibrarySearch {
   position: relative;
   margin-right: 70px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField .bPl-icon-library-search-input {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibrarySearch .bPlIconLibrarySearchInput {
   width: 100%;
   height: 30px;
   padding: 0 15px;
@@ -1205,13 +1164,13 @@
   transition: all 0.1s ease-in-out;
   font-size: 13px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField .bPl-icon-library-search-input:focus {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibrarySearch .bPlIconLibrarySearchInput:focus {
   outline: none;
   box-shadow: none;
   box-shadow: 0px 0px 0px 1px #4527a4;
   border-color: #4527a4;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField .bPl-icon-library-searchIcon {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibrarySearch .bPlIconLibrarySearchIcon {
   position: absolute;
   height: 15px;
   fill: #707070;
@@ -1219,20 +1178,19 @@
   transform: translateY(-50%);
   right: 12px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper {
   margin-right: 45px;
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* } */
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-iconCategory {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPl-icon-library-iconCategory {
   margin-top: 15px;
   display: flex;
   gap: 5px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-iconCategory .bPl-icon-singleCategory {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPl-icon-library-iconCategory .bPl-icon-singleCategory {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -1246,12 +1204,12 @@
   border-radius: 20px;
   box-shadow: 0px 0px 5px 2px #d9d9d9;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-iconCategory .bPl-icon-singleCategory svg {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPl-icon-library-iconCategory .bPl-icon-singleCategory svg {
   margin: 0;
   padding: 0;
   cursor: pointer;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons {
   display: flex;
   /* flex: 1; */
   flex-wrap: wrap;
@@ -1260,7 +1218,7 @@
   /* height: calc(100% - 76px); */
   margin-top: 15px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons .bPlIconLibraryIcon {
   height: 80px;
   width: 80px;
   border: 1px solid #ccc;
@@ -1272,21 +1230,21 @@
   transition: background 0.2s ease-in-out;
   cursor: pointer;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon.isActive {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons .bPlIconLibraryIcon.isActive {
   background: #4527a4;
   color: #fff;
   fill: #fff;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon.isActive:hover {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons .bPlIconLibraryIcon.isActive:hover {
   background: #4527a4;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon:hover {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons .bPlIconLibraryIcon:hover {
   background: #f3f0ff;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon svg {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons .bPlIconLibraryIcon svg {
   height: 22px;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon .bPl-icon-label {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryBody .bPlIconLibraryMain .bPlIconLibraryIconsWrapper .bPlIconLibraryIcons .bPlIconLibraryIcon .bPlIconLibraryIconLabel {
   font-size: 11px;
   padding: 0px 12px 0;
   max-width: 100%;
@@ -1294,7 +1252,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-footer {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryFooter {
   border-top: 1px solid #ccc;
   height: 50px;
   padding: 0 10px;
@@ -1302,7 +1260,7 @@
   align-items: center;
   justify-content: end;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-footer .bPl-icon-insert-btn {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryFooter .bPlIconLibraryFooterInsert {
   all: unset;
   background: #4527a4;
   padding: 6px 12px;
@@ -1312,131 +1270,33 @@
   transition: background 0.2s ease-in-out;
   cursor: pointer;
 }
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-footer .bPl-icon-insert-btn:hover {
+.bPlIconLibrary .bPlIconLibraryModalWrapper .bPlIconLibraryModal .bPlIconLibraryFooter .bPlIconLibraryFooterInsert:hover {
   box-shadow: 1px 1px 1px #d1d1d1;
   background: #6244c1;
 }
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/ImageControl/ImageControl.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
-.editImageHolder {
-  position: relative;
-  min-height: 40px;
-  text-align: center;
-}
-.editImageHolder .mediaControl {
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  width: -moz-fit-content;
-  width: fit-content;
-  z-index: 100;
-}
-.editImageHolder .mediaControl .btnControl {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0 10px;
-  border-radius: 3px;
-  width: -moz-max-content;
-  width: max-content;
-}
-.editImageHolder .mediaControl .btnControl button {
-  color: #4527a4;
-  font-weight: bold;
-}
-.editImageHolder .mediaControl .btnControl button.btnRed {
-  color: red;
-}
-.editImageHolder img {
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/MediaControl/MediaControl.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplInlineMediaUpload .components-base-control {
-  width: calc(100% - 36px) !important;
-}
-.bplInlineMediaUpload button {
-  height: 31px;
-  padding: 3px !important;
-  color: #fff !important;
-  background-color: #4527a4 !important;
-  border: none !important;
-  outline: 0;
-}
-.bplInlineMediaUpload button:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0px #4527a4 !important;
-}
-
-.bplMediaPlaceholder .components-placeholder__fieldset {
-  flex-direction: row !important;
-}
-.bplMediaPlaceholder button {
-  color: #fff !important;
-  background-color: #4527a4 !important;
-}
-.bplMediaPlaceholder .components-button {
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 0 !important;
-}
-.bplMediaPlaceholder .bplUrlInput {
-  flex: 1;
-}
-.bplMediaPlaceholder .bplUrlInput h3 {
-  font-size: 15px !important;
-  margin: 0 10px;
-  text-transform: uppercase;
-}
-.bplMediaPlaceholder .bplUrlInput input {
-  width: -webkit-fill-available;
-  padding: 8.5px 15px;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  line-height: 0;
-}
-.bplMediaPlaceholder .bplUrlInput button {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  margin-left: 10px !important;
-}
-
-.bPlPanelBody .bplMediaPlaceholder .bplUrlInput .components-base-control {
-  flex: 1;
-}
-.bPlPanelBody .bplMediaPlaceholder .bplUrlInput input {
-  width: 100%;
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/ItemsPanel/ItemsPanel.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlItemsPanelItem .itemsPanelHeader {
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/ItemsPanel/Sortable.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bPlSortablePanelItem .itemsPanelHeader {
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
   height: 40px;
   margin: 0px;
 }
-.bPlItemsPanelItem .itemsPanelHeader .gripIcon {
+.bPlSortablePanelItem .itemsPanelHeader .gripIcon {
   cursor: grab;
   margin: 0px;
   display: grid;
   padding: 0 10px;
   height: 100%;
 }
-.bPlItemsPanelItem .itemsPanelHeader .gripIcon svg {
+.bPlSortablePanelItem .itemsPanelHeader .gripIcon svg {
   width: 16px;
   height: 16px;
   place-self: center;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1446,7 +1306,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title p {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p {
   cursor: pointer;
   margin: 0px;
   height: 100%;
@@ -1457,19 +1317,19 @@
   transition: background-color 0.2s ease-in-out;
   overflow: hidden;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title p div {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p div {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title p:hover {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p:hover {
   background-color: #ccc;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title .itemAction {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction {
   display: flex;
   height: 100%;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title .itemAction > div {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction > div {
   border-left: 1px solid #ccc;
   height: 100%;
   display: flex;
@@ -1479,551 +1339,21 @@
   cursor: pointer;
   font-size: 17px;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title .itemAction > div svg {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction > div svg {
   width: 18px;
   height: 18px;
 }
-.bPlItemsPanelItem .itemsPanelHeader .panel-header-title .itemAction > div:hover {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction > div:hover {
   background-color: #ccc;
 }
-.bPlItemsPanelItem .itemsPanelBody {
+.bPlSortablePanelItem .itemsPanelBody {
   padding: 10px;
   border: 1px solid #ccc;
   border-top: 0px;
   transition: all 0.5s ease;
 }
-.bPlItemsPanelItem .itemsPanelBody.hidden {
+.bPlSortablePanelItem .itemsPanelBody.hidden {
   height: 0;
-}
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/PanelSelectControl/PanelSelectControl.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
-.anchor-list-admin-panel {
-  height: 34px;
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  padding: 4px;
-  margin-top: 0;
-}
-
-.anchor-list-admin-panel .anchor-admin-panel-list {
-  background: #515962;
-  color: white;
-  line-height: 1.2;
-  font-size: 10px;
-  border: none;
-  border-radius: 3px;
-  white-space: nowrap;
-  padding: 2px 3px;
-  text-transform: capitalize;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  margin: 0;
-}
-
-.anchor-list-admin-panel .anchor-admin-panel-list .deleteIcon {
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.anchor-list-admin-panel .anchor-admin-panel-list-plus-icon {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  margin-bottom: 2px;
-}
-
-.anchor-list-admin-panel .anchor-admin-panel-list-plus-icon .squirePlusIcon {
-  font-size: 17px;
-  color: #515962;
-  cursor: pointer;
-}
-
-.anchor-list-admin-panel input[type=search] {
-  border: none;
-  outline: none;
-  width: 100%;
-}
-
-.anchor-list-admin-panel input[type=search]:focus {
-  box-shadow: none;
-}
-
-.popover-anchor-admin-panel {
-  width: 246px;
-}
-
-.popover-anchor-admin-panel .components-popover__content {
-  width: 100%;
-}
-
-.popover-anchor-admin-panel p {
-  margin: 0;
-  padding: 2px 4px;
-  cursor: pointer;
-  width: 100%;
-  text-transform: capitalize;
-}
-
-.popover-anchor-admin-panel .isActiveTag {
-  background-color: #d5d8dc;
-}
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/SelectPureControl/SelectPureControl.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplSelectPure {
-  font-size: 15px;
-  font-weight: 500;
-  width: 100%;
-  min-height: 44px;
-  background-color: rgba(68, 39, 164, 0.1450980392);
-  position: relative;
-  padding: 5px 10px;
-  border: 1px solid rgba(68, 39, 165, 0.3137254902);
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(68, 39, 165, 0.1450980392);
-  cursor: pointer;
-  transition: 0.3s;
-}
-.bplSelectPure .selectSelectedLabel {
-  font-size: 14px;
-  color: #fff;
-  background-color: #4527a4;
-  display: inline-flex;
-  border-radius: 3px;
-  padding: 4px 5px;
-  margin: 5px 10px 5px 0;
-  cursor: initial;
-}
-.bplSelectPure .selectSelectedLabel:last-of-type {
-  margin-right: 0;
-}
-.bplSelectPure .selectSelectedLabel .closeIcon {
-  cursor: pointer;
-  width: 18px;
-  display: inline-block;
-  position: relative;
-  margin-left: 5px;
-}
-.bplSelectPure .selectSelectedLabel .closeIcon:hover {
-  color: #e4e4e4;
-}
-.bplSelectPure .selectSelectedLabel .closeIcon::before, .bplSelectPure .selectSelectedLabel .closeIcon::after {
-  content: "";
-  width: 13px;
-  height: 2px;
-  background-color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-.bplSelectPure .selectSelectedLabel .closeIcon::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-.bplSelectPure .selectOptions {
-  display: none;
-  width: 100%;
-  max-height: 220px;
-  color: #4527a4;
-  background-color: #fff;
-  position: absolute;
-  left: 0;
-  top: 100% !important;
-  border-radius: 4px;
-  box-shadow: 0 4px 15px 0 rgba(69, 39, 164, 0.5019607843);
-  overflow: hidden;
-  overflow-y: scroll;
-  z-index: 99;
-}
-.bplSelectPure.selectOptionsOpened .selectOptions {
-  display: block;
-}
-.bplSelectPure .selectAutocomplete {
-  font-size: 15px;
-  width: 100%;
-  background-color: #f9f9f8;
-  padding: 5px 10px;
-  border: none;
-  border-bottom: 1px solid #4527a4;
-  border-radius: 0;
-  outline: none;
-}
-.bplSelectPure .selectAutocomplete:focus {
-  border-color: #4527a4;
-  box-shadow: none;
-}
-.bplSelectPure .selectOption {
-  line-height: 24px;
-  height: 44px;
-  padding: 10px;
-  border-bottom: 1px solid #4527a4;
-}
-.bplSelectPure .selectOptionSelected {
-  color: rgba(69, 39, 164, 0.3137254902);
-  cursor: initial;
-  pointer-events: none;
-}
-.bplSelectPure .selectOptionHidden {
-  display: none;
-}
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/SortableControl/SortableControl.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlPanelBody .bplSortableList ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0;
-  cursor: grab;
-}
-
-.bplSortableListItem {
-  list-style-type: none;
-  color: #fff;
-  background-color: #4527a4;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin: 0;
-  box-sizing: border-box;
-  cursor: grab;
-}
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/SpaceControl/SpaceControl.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlSpaceControl .components-unit-control-wrapper .components-unit-control__select {
-  width: 18px !important;
-}
-.bPlSpaceControl .fourColumn {
-  justify-content: space-between;
-}
-.bPlSpaceControl .fourColumn > .components-unit-control-wrapper > .components-unit-control {
-  width: 55px;
-}
-.bPlSpaceControl .fourColumn > .components-unit-control-wrapper > .components-unit-control > .css-d373l0-Item-LabelWrapper {
-  margin-right: 0;
-}
-.bPlSpaceControl .twoColumn {
-  justify-content: space-between;
-}
-.bPlSpaceControl .twoColumn > .components-unit-control-wrapper > .components-unit-control {
-  width: 110px;
-}
-.bPlSpaceControl .twoColumn > .components-unit-control-wrapper > .components-unit-control > .css-d373l0-Item-LabelWrapper {
-  margin-right: 0;
-}
-.bPlSpaceControl .bPlBtnGroup {
-  display: flex;
-}
-.bPlSpaceControl .bPlBtnGroup .components-button,
-.bPlSpaceControl .bPlBtnGroup .bPlBtnGroup .is-primary {
-  height: auto;
-  padding: 6px;
-}
-.bPlSpaceControl .bPlBtnGroup .components-button.side2 {
-  align-items: baseline;
-}
-.bPlSpaceControl .bPlBtnGroup .bPlBtnGroup .is-primary:hover {
-  color: #fff;
-}
-.bPlSpaceControl .bPlBtnGroup .sideScrollIcon svg {
-  transform: rotate(90deg);
-}
-.bPlSpaceControl .bPlBtnGroup .scrollIcon,
-.bPlSpaceControl .bPlBtnGroup .sideScrollIcon,
-.bPlSpaceControl .bPlBtnGroup .dashicons {
-  width: 14px;
-  height: 14px;
-  font-size: 14px;
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Typography/Typography.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlDropdown .dashicon {
-  margin-right: 0 !important;
-}
-
-.bPlDropdownPopover .bPlTypoFontTitle p:last-child {
-  width: 73px;
-  margin-right: 0;
-}
-.bPlDropdownPopover .bPlTypoFont {
-  margin-top: 0;
-}
-.bPlDropdownPopover .bPlTypoFont .bPlTypoFontSelect {
-  position: relative;
-  margin-right: 8px;
-  width: 175px;
-}
-.bPlDropdownPopover .bPlTypoFont .bPlTypoFontSelect input {
-  width: 100%;
-}
-.bPlDropdownPopover .bPlTypoFont .bPlTypoFontSelect .bPlTypoFontLists {
-  position: absolute;
-  height: 200px;
-  background: #fff;
-  width: 100%;
-  overflow-y: scroll;
-  z-index: 99;
-  margin: 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px 0 rgba(69, 39, 164, 0.5019607843);
-}
-.bPlDropdownPopover .bPlTypoFont .bPlTypoFontSelect .bPlTypoFontLists li {
-  margin: 0;
-  padding: 3px 10px;
-}
-.bPlDropdownPopover .bPlTypoFont .bPlTypoFontSelect .bPlTypoFontLists li:hover {
-  background-color: rgba(69, 39, 164, 0.0588235294);
-  cursor: pointer;
-}
-.bPlDropdownPopover .bPlTypoFont .bPlTypoFontSelect .dashicon {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.bPlDropdownPopover .bPlTypoFont > div.components-base-control > div.components-base-control__field {
-  margin-bottom: 0 !important;
-  border-radius: 4px;
-}
-.bPlDropdownPopover .bPlTypoFont > div.components-base-control > div.components-base-control__field select {
-  height: 32px;
-  width: 73px;
-}
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/column/editor.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
-.wp-block-b-blocks-column {
-  height: 100%;
-  position: relative;
-}
-.wp-block-b-blocks-column .components-resizable-box__container {
-  max-width: 100%;
-}
-.wp-block-b-blocks-column .widthPlaceholder {
-  position: absolute;
-  top: 0;
-  right: 5px;
-  color: #999;
-}
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/container/editor.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
-
-/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Pro/style.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************/
-
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Pro/AboutPro/AboutPro.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplAboutPro h3 {
-  margin: 0 0 15px 0;
-}
-.bplAboutPro .text {
-  font-size: 15px;
-  margin: 25px 0 0 0;
-}
-.bplAboutPro .upgradeNow {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 500;
-  color: #fff;
-  background-color: #4527a4;
-  text-decoration: none;
-  padding: 12px 20px;
-  margin-top: 20px;
-  border-radius: 50px;
-}
-.bplAboutPro .upgradeNow:hover, .bplAboutPro .upgradeNow:focus {
-  color: #fff;
-  background-color: #8344c5;
-}
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Pro/BControlPro/BControlPro.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplProIdentifier .labelPro {
-  padding: 0px 5px;
-  border-radius: 5px;
-  color: #fff;
-  background-color: #4527a4;
-}
-.bplProIdentifier .components-input-control__container {
-  opacity: 0.75;
-}
-.bplProIdentifier .bplOpacity75 {
-  opacity: 0.75;
-}
-.bplProIdentifier .components-form-toggle {
-  opacity: 0.75;
-}
-
-.bplOpacity50 {
-  opacity: 0.5;
-}
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Pro/SelectControlPro/SelectControlPro.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplPorSelect .proOption {
-  color: #fff;
-  background-color: #4527a4;
-}
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Pro/BtnGroupPro/BtnGroupPro.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplProGroupBtn {
-  position: relative;
-}
-.bplProGroupBtn::before {
-  content: "Pro";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  background: #4527a4;
-  padding: 2px 8px;
-  border-radius: 50px;
-  z-index: 10;
-  display: none;
-}
-.bplProGroupBtn:hover::before {
-  display: block;
-}
-.bplProGroupBtn svg {
-  opacity: 0.75;
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Pro/FrontShortCode/FrontShortCode.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlFrontShortCode {
-  text-align: center;
-  padding: 0 0 10px 0;
-}
-.bPlFrontShortCode label {
-  display: inline-block;
-  box-sizing: border-box;
-}
-.bPlFrontShortCode .bPlFrontShortCodeInput {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-.bPlFrontShortCode .bPlFrontShortCodeInput input {
-  cursor: pointer;
-  text-align: center;
-  border: none;
-  outline: none;
-  background-color: #4527a4;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 3px;
-}
-.bPlFrontShortCode .bPlFrontShortCodeInput .tooltip {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.bPlFrontShortCode .bPlFrontShortCodeInput .tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-.bPlFrontShortCode .bPlFrontShortCodeInput:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/ColorControl/ColorControl.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlColorPopover .components-popover__content {
-  min-width: auto;
-  max-width: 250px;
-}
-
-.bPlColor {
-  display: flex;
-  align-items: center;
-}
-
-.bPlColorButtonContainer {
-  height: 30px;
-  width: 30px;
-  background-image: linear-gradient(45deg, #ddd 25%, transparent 0), linear-gradient(-45deg, #ddd 25%, transparent 0), linear-gradient(45deg, transparent 75%, #ddd 0), linear-gradient(-45deg, transparent 75%, #ddd 0);
-  background-size: 10px 10px;
-  background-position: 0 0, 0 5px, 5px -5px, -5px 0;
-  border: 1px solid #e9e9e9;
-  border-radius: 50%;
-}
-.bPlColorButtonContainer .bPlColorButton {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  outline: 0px;
-  border: none;
-  cursor: pointer;
-}
-.bPlColorButtonContainer .bPlColorButton:hover {
-  cursor: pointer;
-}
-
-.bPlThemeColors {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px;
-}
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../bpl-tools/Components/SolidBackground/panelCustomColorControl.css ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
-.panel-custom-color-control-container {
-  border-radius: 5px;
-  width: 250px;
-}
-
-.panel-custom-color-control-container .panel-custom-tab {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.panel-custom-color-control-container .panel-custom-tab .custom-single-tab {
-  padding: 3px 6px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-
-.panel-custom-color-control-container .panel-custom-tab .custom-single-tab:last-child {
-  border-left: none;
-}
-
-.panel-custom-color-control-container .panel-custom-tab .custom-single-tab:hover {
-  background: #ccc;
-}
-
-.panel-custom-color-control-container .panel-custom-tab .active {
-  background: #006ba1;
-  color: #e7e7e7;
 }
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/MediaControl/MediaControl.scss ***!
@@ -2141,516 +1471,6 @@
 }
 .bPlMediaArea .mediaAreaContainer:hover .mediaDelete {
   display: block;
-}
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../bpl-tools/Components/Device/style.css ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/* .single-device {
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    cursor: pointer;
-    height: 22px;
-    width: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.single-device span.dashicons{
-    font-size: 18px;
-    margin-top: 2px;
-  } */
-.advancedOptionssingle-device {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding:1px;
-    height: 17px !important;
-    width: 17px !important;
-    display: flex;
-    cursor: pointer;
-}
-.advancedOptionssingle-device.active{
-    border-color: #4527a4 !important;
-}
-.advancedOptionssingle-device>.dashicons.active{
-    color: #4527a4 !important;
-}
-.advancedOptionssingle-device span.dashicons{
-    font-size: 13px;
-}
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/Gradient/Gradient.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bplAdvRangeColor .components-base-control.components-range-control .components-base-control__field .components-range-control__root .components-range-control__wrapper .components-range-control__track,
-.bplAdvRangeColor .components-base-control.components-range-control .components-base-control__field .components-range-control__root .components-range-control__wrapper .components-range-control__thumb-wrapper span {
-  background: #4527a4 !important;
-}
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/BoxControl/BoxControl.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlBoxControl .sides {
-  display: flex;
-  align-items: center;
-}
-.bPlBoxControl .sides.gap {
-  gap: 5px;
-}
-.bPlBoxControl .bplUnitControlWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.bPlBoxControl .bplUnitControlWrapper .components-base-control.components-input-control.components-number-control {
-  margin-bottom: 0px !important;
-}
-.bPlBoxControl .bplUnitControlWrapper .components-base-control.components-input-control.components-number-control .components-base-control__field .components-input-base .components-input-control__container .components-input-control__input {
-  font-size: 13px !important;
-  padding-right: 0px !important;
-}
-.bPlBoxControl .bplUnitControlWrapper .components-base-control.components-input-control.components-number-control .components-base-control__field .components-input-base .components-input-control__container .components-input-control__suffix .components-unit-control__select {
-  font-size: 8px !important;
-  padding: 0px 0px;
-}
-.bPlBoxControl .bplUnitControlWrapper .components-base-control.components-input-control.components-number-control .components-base-control__field .components-input-base .components-input-control__container .components-input-control__suffix {
-  width: 17px !important;
-}
-.bPlBoxControl .bplUnitControlWrapper .sideLabel {
-  font-size: 11px;
-  text-transform: capitalize;
-}
-.bPlBoxControl .boxLinkButton {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin-top: -13px;
-  cursor: pointer;
-}
-.bPlBoxControl .boxLinkButton .dashicons {
-  font-size: 16px;
-}
-.bPlBoxControl .boxLinkButton .dashicons.dashicons-image-rotate {
-  color: #666;
-}
-.bPlBoxControl .boxLinkButton .dashicons.dashicons-image-rotate:hover {
-  color: black;
-}
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/HelpPanel/HelpPanel.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlHelpPanel .helpItems {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.bPlHelpPanel .helpItems a {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
-  text-decoration: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-align: center;
-  display: inline-flex;
-  color: #fff;
-  background-color: #4527a4;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  transition: all 0.3s ease-in-out;
-}
-.bPlHelpPanel .helpItems a:hover {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 12px 1px, rgba(0, 0, 0, 0.06) 0px 2px 16px 1px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-  transform: translateY(-4px);
-}
-.bPlHelpPanel .helpItems a:hover, .bPlHelpPanel .helpItems a:focus, .bPlHelpPanel .helpItems a:active {
-  border: none;
-  outline: 0;
-}
-.bPlHelpPanel .helpItems a svg {
-  fill: #fff;
-}
-.bPlHelpPanel .helpItems a p {
-  font-weight: bold;
-  color: inherit;
-  margin: 0;
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/IconControl/IconControl.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlIconTitle i {
-  font-size: 25px;
-}
-
-.bPlIconSelect {
-  position: relative;
-}
-.bPlIconSelect input {
-  width: 100%;
-}
-.bPlIconSelect .bPlIconLists {
-  position: absolute;
-  width: 100%;
-  min-height: 80px;
-  max-height: 200px;
-  background: #fff;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-  justify-items: center;
-  overflow-y: scroll;
-  z-index: 99;
-  margin: 0;
-  box-shadow: 0 4px 15px 0 rgba(69, 39, 164, 0.5019607843);
-  border-radius: 8px;
-}
-.bPlIconSelect .bPlIconLists i {
-  width: 24px;
-  height: 24px;
-  font-size: 24px;
-  box-sizing: content-box;
-  padding: 8px 0;
-  margin: 0;
-}
-.bPlIconSelect .bPlIconLists i:hover {
-  background-color: rgba(69, 39, 164, 0.0588235294);
-  cursor: pointer;
-}
-.bPlIconSelect .dashicon {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/IconLibrary/IconLibrary.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlIconLibrary .panel-icon {
-  display: flex;
-}
-.bPlIconLibrary .panel-icon svg {
-  height: 18px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper {
-  background: rgba(0, 0, 0, 0.158);
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
-  z-index: 9999999 !important;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper * {
-  box-sizing: border-box;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper.isOpen .bPl-icon-library-wrapper {
-  animation: open 0.3s ease-in;
-}
-@keyframes open {
-  0% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper h1,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h2,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h3,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h4,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h5,
-.bPlIconLibrary .bPl-icon-library-main-wrapper h6,
-.bPlIconLibrary .bPl-icon-library-main-wrapper p,
-.bPlIconLibrary .bPl-icon-library-main-wrapper ul,
-.bPlIconLibrary .bPl-icon-library-main-wrapper li {
-  margin: 0;
-  padding: 0;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper {
-  width: 55%;
-  height: 80%;
-  background: #fff;
-  border-radius: 5px;
-  /* header section */
-  /* body section */
-  /* footer section */
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header {
-  border-bottom: 1px solid #ccc;
-  margin: 0;
-  height: 40px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-logo {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-logo h3 {
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: none;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-closebtn {
-  border-left: 1px solid #ccc;
-  padding-left: 5px;
-  display: grid;
-  place-items: center;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-header .bPl-icon-library-closebtn svg {
-  cursor: pointer;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper {
-  display: flex;
-  height: calc(100% - 90px);
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper {
-  width: 255px;
-  border-right: 1px solid #ccc;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus {
-  list-style: none;
-  font-size: 15px;
-  font-weight: 400;
-  color: gray;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus li {
-  font-weight: 400;
-  padding: 15px 0;
-  padding-left: 30px;
-  cursor: pointer;
-  transition: background 0.2s ease-in-out;
-  border-left: 3px solid transparent;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus li:hover {
-  background: #f4f2fa;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-sidebar-wrapper .bPl-icon-menus li.active {
-  background: #efebfa;
-  border-left: 3px solid #4527a4;
-  color: #000;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper {
-  width: calc(100% - 255px);
-  padding-left: 70px;
-  padding-top: 20px;
-  padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  /* .bPl-icon-library-body { */
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField {
-  position: relative;
-  margin-right: 70px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField .bPl-icon-library-search-input {
-  width: 100%;
-  height: 30px;
-  padding: 0 15px;
-  color: #757575;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  transition: all 0.1s ease-in-out;
-  font-size: 13px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField .bPl-icon-library-search-input:focus {
-  outline: none;
-  box-shadow: none;
-  box-shadow: 0px 0px 0px 1px #4527a4;
-  border-color: #4527a4;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-searchField .bPl-icon-library-searchIcon {
-  position: absolute;
-  height: 15px;
-  fill: #707070;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 12px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList {
-  margin-right: 45px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  /* } */
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-iconCategory {
-  margin-top: 15px;
-  display: flex;
-  gap: 5px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-iconCategory .bPl-icon-singleCategory {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  background-color: #4527a4;
-  color: #fff;
-  text-transform: capitalize;
-  font-size: 10px;
-  font-weight: 400;
-  padding: 6px 10px;
-  /* padding-right: 5px; */
-  border-radius: 20px;
-  box-shadow: 0px 0px 5px 2px #d9d9d9;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-iconCategory .bPl-icon-singleCategory svg {
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper {
-  display: flex;
-  /* flex: 1; */
-  flex-wrap: wrap;
-  gap: 10px;
-  overflow: hidden auto;
-  /* height: calc(100% - 76px); */
-  margin-top: 15px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon {
-  height: 80px;
-  width: 80px;
-  border: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: background 0.2s ease-in-out;
-  cursor: pointer;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon.isActive {
-  background: #4527a4;
-  color: #fff;
-  fill: #fff;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon.isActive:hover {
-  background: #4527a4;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon:hover {
-  background: #f3f0ff;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon svg {
-  height: 22px;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-body-main-wrapper .bPl-icon-library-body-wrapper .bPl-icon-library-iconsList .bPl-icon-library-single-icon-wrapper .bPl-icon-library-single-icon .bPl-icon-label {
-  font-size: 11px;
-  padding: 0px 12px 0;
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-footer {
-  border-top: 1px solid #ccc;
-  height: 50px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-footer .bPl-icon-insert-btn {
-  all: unset;
-  background: #4527a4;
-  padding: 6px 12px;
-  font-size: 13px;
-  color: #fff;
-  border-radius: 4px;
-  transition: background 0.2s ease-in-out;
-  cursor: pointer;
-}
-.bPlIconLibrary .bPl-icon-library-main-wrapper .bPl-icon-library-wrapper .bPl-icon-library-footer .bPl-icon-insert-btn:hover {
-  box-shadow: 1px 1px 1px #d1d1d1;
-  background: #6244c1;
-}
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/ItemsPanel/Sortable.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
-.bPlSortablePanelItem .itemsPanelHeader {
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  height: 40px;
-  margin: 0px;
-}
-.bPlSortablePanelItem .itemsPanelHeader .gripIcon {
-  cursor: grab;
-  margin: 0px;
-  display: grid;
-  padding: 0 10px;
-  height: 100%;
-}
-.bPlSortablePanelItem .itemsPanelHeader .gripIcon svg {
-  width: 16px;
-  height: 16px;
-  place-self: center;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p {
-  cursor: pointer;
-  margin: 0px;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 5px;
-  transition: background-color 0.2s ease-in-out;
-  overflow: hidden;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p div {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p:hover {
-  background-color: #ccc;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction {
-  display: flex;
-  height: 100%;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction > div {
-  border-left: 1px solid #ccc;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 35px;
-  cursor: pointer;
-  font-size: 17px;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction > div svg {
-  width: 18px;
-  height: 18px;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction > div:hover {
-  background-color: #ccc;
-}
-.bPlSortablePanelItem .itemsPanelBody {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-top: 0px;
-  transition: all 0.5s ease;
-}
-.bPlSortablePanelItem .itemsPanelBody.hidden {
-  height: 0;
 }
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/MultiSelectControl/MultiSelectControl.scss ***!
@@ -2901,6 +1721,37 @@
 .bplSelectPure .selectOptionHidden {
   display: none;
 }
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../bpl-tools/Components/SolidBackground/panelCustomColorControl.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.panel-custom-color-control-container {
+	border-radius: 5px;
+	width: 250px;
+}
+
+.panel-custom-color-control-container .panel-custom-tab {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.panel-custom-color-control-container .panel-custom-tab .custom-single-tab {
+	padding: 3px 6px;
+	cursor: pointer;
+	border: 1px solid #ccc;
+}
+
+.panel-custom-color-control-container .panel-custom-tab .custom-single-tab:last-child {
+	border-left: none;
+}
+
+.panel-custom-color-control-container .panel-custom-tab .custom-single-tab:hover {
+	background: #ccc;
+}
+
+.panel-custom-color-control-container .panel-custom-tab .active {
+	background: #006ba1;
+	color: #e7e7e7;
+}
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/SortableControl/SortableControl.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -3119,18 +1970,26 @@
   height: 14px;
   font-size: 14px;
 }
-/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/posts/editor.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************/
-.bBlocksPostsNotFound {
-  color: red;
-  font-size: 20px;
-  text-align: center;
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/column/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-column {
+  height: 100%;
+  position: relative;
 }
+.wp-block-b-blocks-column .components-resizable-box__container {
+  max-width: 100%;
+}
+.wp-block-b-blocks-column .widthPlaceholder {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: #999;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/container/editor.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
 
-.wp-block-b-blocks-posts.bBlocksPosts > .bBlocksPostsLayoutTicker {
-  display: none;
-}
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/backend/ProModal/ProModal.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -3174,6 +2033,158 @@
 .bBlocksProModal .upgradeNow:hover, .bBlocksProModal .upgradeNow:focus {
   color: #fff;
   background-color: #8344c5;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/AboutProModal/AboutProModal.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bplAboutProModal h3 {
+  margin: 0 0 15px 0;
+}
+.bplAboutProModal .text {
+  font-size: 15px;
+  margin: 25px 0 0 0;
+}
+.bplAboutProModal .upgradeNow {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #4527a4;
+  text-decoration: none;
+  padding: 12px 20px;
+  margin-top: 20px;
+  border-radius: 50px;
+}
+.bplAboutProModal .upgradeNow:hover, .bplAboutProModal .upgradeNow:focus {
+  color: #fff;
+  background-color: #8344c5;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/BControlPro/BControlPro.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bplProIdentifier .labelPro {
+  padding: 0px 5px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #4527a4;
+}
+.bplProIdentifier .components-input-control__container {
+  opacity: 0.75;
+}
+.bplProIdentifier .bplOpacity75 {
+  opacity: 0.75;
+}
+.bplProIdentifier .components-form-toggle {
+  opacity: 0.75;
+}
+
+.bplOpacity50 {
+  opacity: 0.5;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/SelectControlPro/SelectControlPro.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bplPorSelect .proOption {
+  color: #fff;
+  background-color: #4527a4;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/BtnGroupPro/BtnGroupPro.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bplProGroupBtn {
+  position: relative;
+}
+.bplProGroupBtn::before {
+  content: "Pro";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: #4527a4;
+  padding: 2px 8px;
+  border-radius: 50px;
+  z-index: 10;
+  display: none;
+}
+.bplProGroupBtn:hover::before {
+  display: block;
+}
+.bplProGroupBtn svg {
+  opacity: 0.75;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/FrontShortCode/FrontShortCode.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bPlFrontShortCode {
+  text-align: center;
+  padding: 0 0 10px 0;
+}
+.bPlFrontShortCode label {
+  display: inline-block;
+  box-sizing: border-box;
+}
+.bPlFrontShortCode .bPlFrontShortCodeInput {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.bPlFrontShortCode .bPlFrontShortCodeInput input {
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: #4527a4;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+.bPlFrontShortCode .bPlFrontShortCodeInput .tooltip {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.bPlFrontShortCode .bPlFrontShortCodeInput .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+.bPlFrontShortCode .bPlFrontShortCodeInput:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/posts/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.bBlocksPostsNotFound {
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}
+
+.wp-block-b-blocks-posts.bBlocksPosts > .bBlocksPostsLayoutTicker {
+  display: none;
 }
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../plugin-slug/node_modules/swiper/swiper.css ***!
@@ -3916,43 +2927,7 @@ button.swiper-pagination-bullet {
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/icon-box/editor.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************/
-.bBlocksInspectorInfo {
-  padding: 6px;
-}
-.bBlocksInspectorInfo a {
-  text-decoration: none;
-  font-weight: 700;
-}
 
-.wp-block-b-blocks-icon-box .bBlocksIconBox {
-  box-sizing: border-box;
-}
-.wp-block-b-blocks-icon-box .bBlocksIconBox .icon-box-container {
-  box-sizing: border-box;
-}
-
-.panel-icon-library {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.panel-icon-library .panel-icon {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 3px;
-  display: grid;
-  place-items: center;
-}
-.panel-icon-library .panel-icon svg {
-  height: 22px;
-}
-
-.bPl-iconBoxPanel .components-h-stack .components-base-control.components-input-control.components-number-control {
-  margin-bottom: 8px;
-}
-.bPl-iconBoxPanel .components-h-stack .components-base-control.components-range-control {
-  margin-bottom: 8px !important;
-}
 /*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/video/editor.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************/

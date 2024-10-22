@@ -1,4 +1,4 @@
-import { getMultiShadowCSS, getTypoCSS } from '../../../../../Components/utils/getCSS';
+import { getMultiShadowCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { getArrFromNum } from '../../utils/functions';
 import { prefix } from '../../utils/data';

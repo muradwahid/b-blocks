@@ -14,51 +14,152 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   generateCSS: () => (/* binding */ generateCSS)
 /* harmony export */ });
 /* harmony import */ var _utils_getCSS__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getCSS */ "../bpl-tools/utils/getCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/data */ "../bpl-tools/utils/data.js");
+
 
 const dimensionCSS = dimension => {
   const {
     padding,
     margin
   } = dimension || {};
-  const pCSS = p => p ? `padding: ${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getBoxCSS)(p)};` : '';
-  const mCSS = m => m ? `margin: ${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getBoxCSS)(m)};` : '';
+  const pCSS = p => (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getPropertyBoxCSS)('padding', p);
+  const mCSS = m => (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getPropertyBoxCSS)('margin', m);
   return {
     desktop: pCSS(padding?.desktop) + mCSS(margin?.desktop),
     tablet: pCSS(padding?.tablet) + mCSS(margin?.tablet),
     mobile: pCSS(padding?.mobile) + mCSS(margin?.mobile)
   };
 };
-const generateCSS = (id, advanced) => {
+const borderShadowCSS = borderShadow => {
+  const {
+    normal,
+    hover
+  } = borderShadow || {};
+  const stateGenerate = state => {
+    const {
+      border,
+      radius,
+      shadow
+    } = state || {};
+    const radiusCSS = radius ? (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getPropertyBoxCSS)('border-radius', radius) : '';
+    const shadowCSS = shadow ? `box-shadow: ${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getMultiShadowCSS)(shadow)};` : '';
+    return (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getBorderBoxCSS)(border) + radiusCSS + shadowCSS;
+  };
+  return {
+    normal: stateGenerate(normal),
+    hover: stateGenerate(hover)
+  };
+};
+const visibilityCSS = visibility => {
+  const {
+    zIndex,
+    overflow
+  } = visibility || {};
+  const overflowCSS = overflow ? `overflow: ${overflow};` : '';
+  const zIndexCSS = device => zIndex?.[device] ? `z-index: ${zIndex[device]};` : '';
+  return {
+    desktop: zIndexCSS('desktop') + overflowCSS,
+    tablet: zIndexCSS('tablet'),
+    mobile: zIndexCSS('mobile')
+  };
+};
+const responsiveCSS = (responsive, isBackend) => {
+  const {
+    desktop = false,
+    tablet = false,
+    mobile = false
+  } = responsive || {};
+  const css = isBackend ? 'opacity: 0.5;' : 'display: none;';
+  const resCSS = val => val ? css : '';
+  return {
+    desktop: resCSS(desktop),
+    tablet: resCSS(tablet),
+    mobile: resCSS(mobile)
+  };
+};
+const transitionCSS = (background, borderShadow, animation) => {
+  const {
+    transition: bgT = 0.4
+  } = background || {};
+  const {
+    transition: bsT = 0.4
+  } = borderShadow || {};
+  const {
+    duration = 0.4
+  } = animation || {};
+  return `transition: background ${bgT}s, border ${bsT}s, border-radius ${bsT}s, box-shadow ${bsT}s, opacity ${duration}s, transform ${duration}s, -webkit-transform ${duration}s;`;
+};
+const generateCSS = (id, advanced, isBackend = false) => {
   const {
     dimension,
-    background
+    background,
+    borderShadow,
+    animation,
+    visibility,
+    responsive,
+    css = ''
   } = advanced || {};
-  const dCSS = dimensionCSS(dimension).desktop;
-  const tCSS = dimensionCSS(dimension).tablet;
-  const mCSS = dimensionCSS(dimension).mobile;
+  const selector = `#${id}`;
+  const dCSS = dimensionCSS(dimension).desktop + visibilityCSS(visibility).desktop + transitionCSS(background, borderShadow, animation);
+  const tCSS = dimensionCSS(dimension).tablet + visibilityCSS(visibility).tablet + responsiveCSS(responsive, isBackend).tablet;
+  const mCSS = dimensionCSS(dimension).mobile + visibilityCSS(visibility).mobile + responsiveCSS(responsive, isBackend).mobile;
+  const nCSS = borderShadowCSS(borderShadow).normal;
+  const hCSS = borderShadowCSS(borderShadow).hover;
+  const resCSS = responsiveCSS(responsive, isBackend).desktop;
   return `
-		${dCSS ? `#${id} {
+		${dCSS || nCSS ? `${selector} {
 			${dCSS}
-			${background?.transition ? `transition all ${background?.transition} ease;` : ''}
+			${nCSS}
+		}` : ''}
+		${hCSS ? `${selector}:hover {
+			${hCSS}
 		}` : ''}
 
-		${tCSS ? `@media only screen and (min-width:641px) and (max-width: 1024px) {
-			#${id}{
+		${resCSS ? `${_utils_data__WEBPACK_IMPORTED_MODULE_1__.deskBreakpoint} {
+			${selector}{
+				${resCSS}
+			}
+		}` : ''}
+
+		${tCSS ? `${_utils_data__WEBPACK_IMPORTED_MODULE_1__.tabBreakpoint} {
+			${selector}{
 				${tCSS}
 			}
 		}` : ''}
 
-		${mCSS ? `@media only screen and (max-width: 640px) {
-			#${id}{
+		${mCSS ? `${_utils_data__WEBPACK_IMPORTED_MODULE_1__.mobileBreakpoint} {
+			${selector}{
 				${mCSS}
 			}
 		}` : ''}
 
-		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getAdvBGCSS)(background?.normal, `#${id}`)}
-		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getAdvBGCSS)(background?.hover, `#${id}`, true)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getAdvBGCSS)(background?.normal, selector)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getAdvBGCSS)(background?.hover, selector, true)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getOverlayCSS)(background?.overlay, selector)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_0__.getOverlayCSS)(background?.hoverOverlay, selector, true)}
+
+		${css}
 	`.replace(/\s+/g, ' ');
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (generateCSS);
+
+/***/ }),
+
+/***/ "../bpl-tools/utils/data.js":
+/*!**********************************!*\
+  !*** ../bpl-tools/utils/data.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deskBreakpoint: () => (/* binding */ deskBreakpoint),
+/* harmony export */   mobileBreakpoint: () => (/* binding */ mobileBreakpoint),
+/* harmony export */   tabBreakpoint: () => (/* binding */ tabBreakpoint)
+/* harmony export */ });
+const deskBreakpoint = '@media only screen and (min-width: 1025px)';
+const tabBreakpoint = '@media only screen and (min-width: 641px) and (max-width: 1024px)';
+const mobileBreakpoint = '@media only screen and (max-width: 640px)';
 
 /***/ }),
 
@@ -72,6 +173,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getAdvBGCSS: () => (/* binding */ getAdvBGCSS),
 /* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderBoxCSS: () => (/* binding */ getBorderBoxCSS),
 /* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
 /* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
 /* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
@@ -79,11 +181,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
 /* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
 /* harmony export */   getOverlayCSS: () => (/* binding */ getOverlayCSS),
+/* harmony export */   getPropertyBoxCSS: () => (/* binding */ getPropertyBoxCSS),
 /* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
 /* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
 /* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
 /* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
 /* harmony export */ });
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "../bpl-tools/utils/data.js");
+
 const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
   const {
     type = 'solid',
@@ -110,7 +215,7 @@ const getBorderCSS = border => {
   const {
     width = '0px',
     style = 'solid',
-    color = '#0000',
+    color = '',
     side = 'all',
     radius = '0px'
   } = border || {};
@@ -126,11 +231,31 @@ const getBorderCSS = border => {
 	`;
   return styles;
 };
+const getBorderBoxCSS = border => {
+  if (!border) return '';
+  const generateBorderCSS = borderObj => {
+    const {
+      color = '#000000',
+      style = 'solid',
+      width = '0px'
+    } = borderObj;
+    return `${width} ${style} ${color}`;
+  };
+  if ('object' === typeof border && !Array.isArray(border)) {
+    if (border.hasOwnProperty('top') || border.hasOwnProperty('right') || border.hasOwnProperty('bottom') || border.hasOwnProperty('left')) {
+      const sides = ['top', 'right', 'bottom', 'left'];
+      return sides.map(side => border[side] ? `border-${side}: ${generateBorderCSS(border[side])};` : '').join(' ').trim();
+    } else {
+      return `border: ${generateBorderCSS(border)};`;
+    }
+  }
+  return '';
+};
 const getColorsCSS = colors => {
   const {
     color = '#333',
     bgType = 'solid',
-    bg = '#0000',
+    bg = '',
     gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
   } = colors || {};
   const styles = `
@@ -254,19 +379,28 @@ const getTypoCSS = (selector, typo, isFamily = true) => {
     styles: `${selector}{
 			${styles}
 		}
-		@media (max-width: 768px) {
+		${_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
 			${selector}{
 				${`font-size: ${tabletFontSize}px;`}
 			}
 		}
-		@media (max-width: 576px) {
+		${_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
 			${selector}{
 				${`font-size: ${mobileFontSize}px;`}
 			}
 		}`.replace(/\s+/g, ' ').trim()
   };
 };
-const getBoxCSS = (val = {}) => Object.values(val).join(' ');
+const getBoxCSS = val => {
+  if (!val) return '0';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object' && !Array.isArray(val)) {
+    const order = ['top', 'right', 'bottom', 'left'];
+    return order.map(side => val[side] || '0').join(' ');
+  }
+  return '0';
+};
+const getPropertyBoxCSS = (property, value) => value ? `${property}: ${getBoxCSS(value)};` : '';
 
 // Murad Wahid
 const getGradientCSS = gradient => {
@@ -276,7 +410,7 @@ const getGradientCSS = gradient => {
     colors,
     centerPositions,
     angel
-  } = gradient;
+  } = gradient || {};
   if (gradient) {
     const gradientColors = colors?.map(({
       color,
@@ -284,7 +418,7 @@ const getGradientCSS = gradient => {
     }) => `${color} ${position}%`);
     const liner = `linear-gradient(${angel}deg, ${gradientColors})`;
     const radial = `radial-gradient(${radialType} at ${centerPositions?.x}% ${centerPositions?.y}%,${gradientColors})`;
-    return type === 'linear' ? `background:${liner};` : `background:${radial};`;
+    return type === 'linear' ? `background: ${liner};` : `background: ${radial};`;
   }
   return '';
 };
@@ -300,13 +434,13 @@ const getImagePosition = img => {
     customSize = '0px'
   } = img || {};
   return `
-		${position ? `background-position: ${'custom' === position ? `${xPosition} ${yPosition};` : `${position};`}` : ''}
-		${attachment ? `background-attachment: ${attachment};` : ''}
-		${repeat ? `background-repeat: ${repeat};` : ''}
-		${size ? `background-size: ${'custom' === size ? `${customSize} auto` : size};` : ''}
+		background-position: ${'custom' === position ? `${xPosition} ${yPosition}` : position};
+		background-attachment: ${attachment};
+		background-repeat: ${repeat};
+		background-size: ${'custom' === size ? `${customSize} auto` : size};
 	`;
 };
-const getImageCSS = img => {
+const getImageCSS = (img = {}) => {
   let desktop, tablet, mobile;
   if (Object.keys(img).length > 1) {
     if (img?.desktop) {
@@ -332,7 +466,7 @@ const getVideoCSS = (video, selector) => {
   const {
     url,
     loop
-  } = video;
+  } = video || {};
   const parentEl = document.querySelector(selector);
   const el = parentEl?.querySelector('.bPlVideo');
   const videoEl = document.createElement('video');
@@ -355,11 +489,11 @@ const getVideoCSS = (video, selector) => {
 		width: -webkit-fill-available;
 		top: 0;
 		z-index: 0;
-  	}`;
+	}`;
 };
 const getAdvBGCSS = (background, selector, isHover = false) => {
   const {
-    type,
+    type = 'color',
     color,
     gradient,
     img,
@@ -371,17 +505,17 @@ const getAdvBGCSS = (background, selector, isHover = false) => {
   const sl = isHover ? `${selector}:hover` : selector;
   return `
 		${type === 'video' ? getVideoCSS(video, selector) : ''}
-		
+
 		${sl}{
 			${bgCSS}
 		}
-  
-		@media only screen and (min-width:641px) and (max-width: 1024px) {
+
+		${_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
 			${sl}{
 				${tablet}
 			}
 		}
-		@media only screen and (max-width: 640px) {
+		${_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
 			${sl}{
 				${mobile}
 			}
@@ -392,16 +526,17 @@ const getOverlayCSS = (overlay, selector, isHover = false) => {
   const {
     isEnabled,
     colors,
-    opacity,
+    opacity = 1,
     blend,
-    isCssFilter,
-    blur,
-    brightness,
-    contrast,
-    saturation,
-    hue
+    filter = '',
+    blur = 0,
+    brightness = 100,
+    contrast = 100,
+    saturation = 100,
+    hue = 0
   } = overlay || {};
-  const filter = isCssFilter ? `filter: brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) blur(${blur}px) hue-rotate(${hue}deg); -webkit-filter:brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) blur(${blur}px) hue-rotate(${hue}deg);` : '';
+  const filterCSSValue = `${100 !== brightness ? `brightness(${brightness}%)` : ''} ${100 !== contrast ? `contrast(${contrast}%)` : ''} ${100 !== saturation ? `saturate(${saturation}%)` : ''} ${0 !== blur ? `blur(${blur}px)` : ''} ${0 !== hue ? `hue-rotate(${hue}deg)` : ''}`;
+  const filterCSS = `${filter}: ${filter ? filterCSSValue : ''}; -webkit-${filter}: ${filter ? filterCSSValue : ''};`;
   const blendCSS = blend ? `mix-blend-mode: ${blend};` : '';
   const sl = isHover ? `${selector}:hover::after` : `${selector}::after`;
   return isEnabled ? `
@@ -414,7 +549,7 @@ const getOverlayCSS = (overlay, selector, isHover = false) => {
 		${sl}{
 			opacity: ${opacity};
 			${blendCSS}
-			${filter}
+			${filterCSS}
 		}
 	`.replace(/\s+/g, ' ').trim() : '';
 };
@@ -478,8 +613,6 @@ const getOverlayCSS = (overlay, selector, isHover = false) => {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
 /*!**************************************!*\
   !*** ../bpl-tools/Advanced/style.js ***!
   \**************************************/
@@ -495,6 +628,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dataAdvanced) {
       try {
         const advanced = JSON.parse(dataAdvanced);
+        // const { animation } = advanced;
+
+        // if (animation && animation?.type) {
+        // 	element.setAttribute('data-aos', animation.type);
+        // 	element.setAttribute('data-aos-duration', animation.duration || 0.4);
+        // 	element.setAttribute('data-aos-delay', animation.delay || 0);
+
+        // 	setTimeout(() => {
+        // 		AOS.init();
+        // 	}, []);
+        // }
+
         const newCSS = (0,_generateCSS__WEBPACK_IMPORTED_MODULE_0__["default"])(element.id, advanced);
         css += newCSS;
         element.removeAttribute('data-bblocks-advanced');
@@ -512,8 +657,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(style);
   }
 });
-})();
-
 /******/ })()
 ;
 //# sourceMappingURL=advanced.js.map

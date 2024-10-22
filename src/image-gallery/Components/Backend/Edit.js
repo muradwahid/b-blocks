@@ -1,14 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps,MediaUpload  } from '@wordpress/block-editor';
+import { useBlockProps, MediaUpload } from '@wordpress/block-editor';
 import { withNotices, Button, Placeholder } from '@wordpress/components';
 
-import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../Components/utils/getCSS';
+import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';
 
 const Edit = props => {
-	const {  attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeUI } = props;
+	const { attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeUI } = props;
 
 	// Get only urls
 	let urls = [];

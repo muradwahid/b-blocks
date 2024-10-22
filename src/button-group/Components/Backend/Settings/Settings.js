@@ -2,8 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, BColor, BorderControl, BtnGroup, ColorsControl, IconControl, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, ColorControl, BtnGroup, ColorsControl, IconControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug } from '../../../../utils/data';
 const sepTypes = [
@@ -100,12 +101,12 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<Typography label={__('Text Typography', 'b-blocks')} value={sepTextTypo} onChange={val => setAttributes({ sepTextTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} />
 
-						<BColor label={__('Text Color:', 'b-blocks')} value={sepTextColor} onChange={val => setAttributes({ sepTextColor: val })} defaultColor='#333' />
+						<ColorControl label={__('Text Color:', 'b-blocks')} value={sepTextColor} onChange={val => setAttributes({ sepTextColor: val })} defaultColor='#333' />
 					</>}
 
 					{'icon' === sepType && <IconControl value={sepIcon} onChange={val => setAttributes({ sepIcon: val })} defaults={{ class: 'fa fa fa-arrows-alt-h', fontSize: 20, color: '#333' }} />}
 
-					<BColor label={__('Background Color:', 'b-blocks')} value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
+					<ColorControl label={__('Background Color:', 'b-blocks')} value={sepBGColor} onChange={val => setAttributes({ sepBGColor: val })} defaultColor='#fff' />
 				</>}
 			</PanelBody>
 		</InspectorControls>

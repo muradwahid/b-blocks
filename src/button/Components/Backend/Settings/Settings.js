@@ -3,9 +3,10 @@ import { PanelBody, PanelRow, RangeControl, SelectControl, TabPanel, TextControl
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 
-import { BorderControl, BtnGroup, ColorsControl, HelpPanel, IconControl, InlineDetailMediaUpload, InlineMediaUpload, Label, MultiShadowControl, SpaceControl, Typography } from '../../../../../../Components';
-import { BControlPro, SelectControlPro } from '../../../../../../Components/Pro';
-import { tabController } from '../../../../../../Components/utils/functions';
+import { BtnGroup, ColorsControl, HelpPanel, IconControl, InlineDetailMediaUpload, InlineMediaUpload, Label, ShadowControl, Typography } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
 import { pluginSlug } from '../../../../utils/data';
 import usePremiumInEditor from '../../../../hooks/usePremiumInEditor';
@@ -224,7 +225,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<BorderControl className='mt20' value={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
 
-						<MultiShadowControl label={__('Shadow:', 'team-section')} value={shadow?.shadow || shadow} onChange={val => setAttributes({ shadow: val })} />
+						<ShadowControl label={__('Shadow:', 'team-section')} value={shadow?.shadow || shadow} onChange={val => setAttributes({ shadow: val })} />
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

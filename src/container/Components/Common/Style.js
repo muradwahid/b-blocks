@@ -1,94 +1,43 @@
 
 
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
-import { getBorderCSS, getMultiShadowCSS } from '../../../../../Components/utils/getCSS';
+import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
+
+import { prefix } from '../../utils/data';
+import { shapeCSS } from '../../utils/functions';
 
 const Style = ({ attributes, id }) => {
-	const { wrapper, content, shape, } = attributes;
-	const { top, bottom } = shape;
-	const { isFlip } = top;
-	const { minHeight, border, shadow } = wrapper;
-	const { isFullWidth, width, textAlign, color, verticalAlign, horizontalAlign } = content;
-	const { normal, hover } = shadow;
-	const { normalBorder, hoverBorder, } = border;
+	const { wrapper, content, shape, advanced } = attributes;
+	const { minHeight } = wrapper;
+	const { isFullWidth, width, verticalAlign, horizontalAlign } = content;
 
 	const mainSl = `#${id}`;
-	const contentSl = `${mainSl} .bBlocksContainerContent`;
-	const bottomShaped = `${mainSl} .bottomShaped`;
-	const topShaped = `${mainSl} .topShaped`;
+	const contentSl = `${mainSl} .${prefix}Content`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${generateCSS(id, attributes.advanced)}
+		${generateCSS(id, advanced, true)}
+
 		${mainSl}{
 			min-height: ${0 === parseInt(minHeight) ? 'auto' : minHeight};
-			${getBorderCSS(normalBorder)};
-			box-shadow:${getMultiShadowCSS(normal)};
 			align-items: ${horizontalAlign};
 			justify-content: ${verticalAlign};
-			overflow: hidden;
-		}
-
-		${mainSl}:hover{
-			${getBorderCSS(hoverBorder)};
-			box-shadow:${getMultiShadowCSS(hover)};
 		}
 
 		${contentSl}{
 			width: ${(isFullWidth || 0 === parseInt(width.desktop)) ? '100%' : width.desktop};
-			text-align: ${textAlign};
-			color: ${color};
-			z-index: 99999;
 		}
-
-		${topShaped} svg{
-			width: ${top?.width.desktop};
-			height: ${top?.height.desktop};
-			color: ${top?.color};
-			fill: ${top?.color};
-			${isFlip ? `transform: translateX(0%) rotateY(180deg);` : ''}
-		}
-
-		${topShaped} svg path{
-			color: ${top?.color};
-			fill: ${top?.color};
-		}
-
-		${bottomShaped} svg{
-			width: ${bottom?.width.desktop};
-			height: ${bottom?.height.desktop};
-			color: ${bottom?.color};
-			fill: ${bottom?.color};
-
-		${bottom?.isFlip ? `transform: translateX(0%) rotateX(180deg);` : `transform: rotate(180deg);`}
-		${bottom?.isUpload ? `transform: none;` : ''}
-		}
-		${bottomShaped} svg path{
-			color: ${bottom?.color};
-			fill: ${bottom?.color};
-		}
-
-		@media only screen and (max-width:640px){
-			${topShaped} svg{
-				width: ${top?.width.mobile};
-				height: ${top?.height.mobile};
-			}
-			${bottomShaped} svg{
-				width: ${bottom?.width.mobile};
-				height: ${bottom?.height.mobile};
+		${tabBreakpoint}{
+			${contentSl}{
+				width: ${(isFullWidth || 0 === parseInt(width.tablet)) ? '100%' : width.tablet};
 			}
 		}
-
-		@media only screen and (min-width:641px) and (max-width: 1024px){
-			${topShaped} svg{
-				width: ${top?.width.tablet};
-				height: ${top?.height.tablet};
-			}
-			${bottomShaped} svg{
-				width: ${bottom?.width.tablet};
-				height: ${bottom?.height.tablet};
+		${mobileBreakpoint}{
+			${contentSl}{
+				width: ${(isFullWidth || 0 === parseInt(width.mobile)) ? '100%' : width.mobile};
 			}
 		}
+		${shapeCSS(shape, id)}
 	`.replace(/\s+/g, ' ')
 	}} />
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useBlockProps } from '@wordpress/block-editor';
 
-import { tabController } from '../../../../../Components/utils/functions';
+import { tabController } from '../../../../../bpl-tools/utils/functions';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';

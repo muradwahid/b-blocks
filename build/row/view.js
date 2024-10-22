@@ -2,25 +2,145 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../Components/utils/getCSS.js":
-/*!*************************************!*\
-  !*** ../Components/utils/getCSS.js ***!
-  \*************************************/
+/***/ "./src/row/Components/Common/Style.js":
+/*!********************************************!*\
+  !*** ./src/row/Components/Common/Style.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/row/utils/data.js");
+
+
+
+const Style = ({
+  attributes,
+  id,
+  isBackend = false
+}) => {
+  const {
+    columnGap,
+    height,
+    columnPositionY,
+    columnPositionX,
+    overflow,
+    background,
+    padding,
+    border,
+    shadow
+  } = attributes;
+  const rowSl = `#${id} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.rowPrefix}`;
+  const blockListLayout = `${rowSl} >.block-editor-inner-blocks >.block-editor-block-list__layout`;
+  const selector = isBackend ? blockListLayout : rowSl;
+  const innerCount = document.querySelector(selector)?.children?.length;
+  const totalInnerBlocks = isBackend ? innerCount - 1 : innerCount;
+  const totalGap = parseInt(columnGap) * (totalInnerBlocks - 1);
+  const gapPerCol = totalGap / totalInnerBlocks;
+  const colCls = '.wp-block-b-blocks-column:not(.wp-block)';
+  const backBlockSl = `${blockListLayout} >.block-editor-block-list__block`;
+  const frontColSl = `${rowSl} ${colCls}`;
+  const childColumn = isBackend ? `${blockListLayout} ${colCls}` : `${frontColSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.colPrefix}`;
+  const firstChildCol = isBackend ? `${backBlockSl}:first-child ${colCls}` : `${frontColSl}:first-child .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.colPrefix}`;
+  const lastChildCol = isBackend ? `${backBlockSl}:nth-last-child(2) ${colCls}` : `${frontColSl}:last-child .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.colPrefix}`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		${rowSl}{
+			row-gap: ${columnGap};
+			overflow: ${overflow};
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(background)}
+			padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(padding)};
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(border)}
+			box-shadow: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getShadowCSS)(shadow)};
+		}
+		${selector}{
+			min-height: ${height};
+			align-items: ${columnPositionY};
+			justify-content: ${columnPositionX};
+		}
+		${childColumn}{
+			margin: 0 calc( ${gapPerCol}px / 2 );
+		}
+		${firstChildCol}{
+			margin: 0 ${gapPerCol}px 0 0;
+		}
+		${lastChildCol}{
+			margin: 0 0 0 ${gapPerCol}px;
+		}
+		`.replace(/\s+/g, ' ')
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/row/utils/data.js":
+/*!*******************************!*\
+  !*** ./src/row/utils/data.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   colPrefix: () => (/* binding */ colPrefix),
+/* harmony export */   rowPrefix: () => (/* binding */ rowPrefix)
+/* harmony export */ });
+const rowPrefix = 'bBlocksRow';
+const colPrefix = 'bBlocksColumn';
+
+/***/ }),
+
+/***/ "../bpl-tools/utils/data.js":
+/*!**********************************!*\
+  !*** ../bpl-tools/utils/data.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deskBreakpoint: () => (/* binding */ deskBreakpoint),
+/* harmony export */   mobileBreakpoint: () => (/* binding */ mobileBreakpoint),
+/* harmony export */   tabBreakpoint: () => (/* binding */ tabBreakpoint)
+/* harmony export */ });
+const deskBreakpoint = '@media only screen and (min-width: 1025px)';
+const tabBreakpoint = '@media only screen and (min-width: 641px) and (max-width: 1024px)';
+const mobileBreakpoint = '@media only screen and (max-width: 640px)';
+
+/***/ }),
+
+/***/ "../bpl-tools/utils/getCSS.js":
+/*!************************************!*\
+  !*** ../bpl-tools/utils/getCSS.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getAdvBGCSS: () => (/* binding */ getAdvBGCSS),
 /* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderBoxCSS: () => (/* binding */ getBorderBoxCSS),
 /* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
 /* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
 /* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
+/* harmony export */   getGradientCSS: () => (/* binding */ getGradientCSS),
 /* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
 /* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   getOverlayCSS: () => (/* binding */ getOverlayCSS),
+/* harmony export */   getPropertyBoxCSS: () => (/* binding */ getPropertyBoxCSS),
 /* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
 /* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
 /* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
 /* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
 /* harmony export */ });
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "../bpl-tools/utils/data.js");
+
 const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
   const {
     type = 'solid',
@@ -47,7 +167,7 @@ const getBorderCSS = border => {
   const {
     width = '0px',
     style = 'solid',
-    color = '#0000',
+    color = '',
     side = 'all',
     radius = '0px'
   } = border || {};
@@ -63,11 +183,31 @@ const getBorderCSS = border => {
 	`;
   return styles;
 };
+const getBorderBoxCSS = border => {
+  if (!border) return '';
+  const generateBorderCSS = borderObj => {
+    const {
+      color = '#000000',
+      style = 'solid',
+      width = '0px'
+    } = borderObj;
+    return `${width} ${style} ${color}`;
+  };
+  if ('object' === typeof border && !Array.isArray(border)) {
+    if (border.hasOwnProperty('top') || border.hasOwnProperty('right') || border.hasOwnProperty('bottom') || border.hasOwnProperty('left')) {
+      const sides = ['top', 'right', 'bottom', 'left'];
+      return sides.map(side => border[side] ? `border-${side}: ${generateBorderCSS(border[side])};` : '').join(' ').trim();
+    } else {
+      return `border: ${generateBorderCSS(border)};`;
+    }
+  }
+  return '';
+};
 const getColorsCSS = colors => {
   const {
     color = '#333',
     bgType = 'solid',
-    bg = '#0000',
+    bg = '',
     gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
   } = colors || {};
   const styles = `
@@ -191,114 +331,180 @@ const getTypoCSS = (selector, typo, isFamily = true) => {
     styles: `${selector}{
 			${styles}
 		}
-		@media (max-width: 768px) {
+		${_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
 			${selector}{
 				${`font-size: ${tabletFontSize}px;`}
 			}
 		}
-		@media (max-width: 576px) {
+		${_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
 			${selector}{
 				${`font-size: ${mobileFontSize}px;`}
 			}
 		}`.replace(/\s+/g, ' ').trim()
   };
 };
-const getBoxCSS = (val = {}) => Object.values(val).join(' ');
-
-/***/ }),
-
-/***/ "./src/row/Components/Common/Style.js":
-/*!********************************************!*\
-  !*** ./src/row/Components/Common/Style.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
-/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/row/utils/data.js");
-
-
-
-const Style = ({
-  attributes,
-  id,
-  isBackend = false
-}) => {
-  const {
-    columnGap,
-    height,
-    columnPositionY,
-    columnPositionX,
-    overflow,
-    background,
-    padding,
-    border,
-    shadow
-  } = attributes;
-  const rowSl = `#${id} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.rowPrefix}`;
-  const blockListLayout = `${rowSl} >.block-editor-inner-blocks >.block-editor-block-list__layout`;
-  const selector = isBackend ? blockListLayout : rowSl;
-  const innerCount = document.querySelector(selector)?.children?.length;
-  const totalInnerBlocks = isBackend ? innerCount - 1 : innerCount;
-  const totalGap = parseInt(columnGap) * (totalInnerBlocks - 1);
-  const gapPerCol = totalGap / totalInnerBlocks;
-  const colCls = '.wp-block-b-blocks-column:not(.wp-block)';
-  const backBlockSl = `${blockListLayout} >.block-editor-block-list__block`;
-  const frontColSl = `${rowSl} ${colCls}`;
-  const childColumn = isBackend ? `${blockListLayout} ${colCls}` : `${frontColSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.colPrefix}`;
-  const firstChildCol = isBackend ? `${backBlockSl}:first-child ${colCls}` : `${frontColSl}:first-child .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.colPrefix}`;
-  const lastChildCol = isBackend ? `${backBlockSl}:nth-last-child(2) ${colCls}` : `${frontColSl}:last-child .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.colPrefix}`;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
-    dangerouslySetInnerHTML: {
-      __html: `
-		${rowSl}{
-			row-gap: ${columnGap};
-			overflow: ${overflow};
-			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(background)}
-			padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(padding)};
-			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(border)}
-			box-shadow: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getShadowCSS)(shadow)};
-		}
-		${selector}{
-			min-height: ${height};
-			align-items: ${columnPositionY};
-			justify-content: ${columnPositionX};
-		}
-		${childColumn}{
-			margin: 0 calc( ${gapPerCol}px / 2 );
-		}
-		${firstChildCol}{
-			margin: 0 ${gapPerCol}px 0 0;
-		}
-		${lastChildCol}{
-			margin: 0 0 0 ${gapPerCol}px;
-		}
-		`.replace(/\s+/g, ' ')
-    }
-  });
+const getBoxCSS = val => {
+  if (!val) return '0';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object' && !Array.isArray(val)) {
+    const order = ['top', 'right', 'bottom', 'left'];
+    return order.map(side => val[side] || '0').join(' ');
+  }
+  return '0';
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+const getPropertyBoxCSS = (property, value) => value ? `${property}: ${getBoxCSS(value)};` : '';
 
-/***/ }),
+// Murad Wahid
+const getGradientCSS = gradient => {
+  const {
+    type,
+    radialType,
+    colors,
+    centerPositions,
+    angel
+  } = gradient || {};
+  if (gradient) {
+    const gradientColors = colors?.map(({
+      color,
+      position
+    }) => `${color} ${position}%`);
+    const liner = `linear-gradient(${angel}deg, ${gradientColors})`;
+    const radial = `radial-gradient(${radialType} at ${centerPositions?.x}% ${centerPositions?.y}%,${gradientColors})`;
+    return type === 'linear' ? `background: ${liner};` : `background: ${radial};`;
+  }
+  return '';
+};
+const getSolidBGCSS = bg => `${bg ? `background: ${bg};` : ''}`;
+const getImagePosition = img => {
+  const {
+    position = 'center center',
+    xPosition = 0,
+    yPosition = 0,
+    attachment = '',
+    repeat = 'no-repeat',
+    size = 'cover',
+    customSize = '0px'
+  } = img || {};
+  return `
+		background-position: ${'custom' === position ? `${xPosition} ${yPosition}` : position};
+		background-attachment: ${attachment};
+		background-repeat: ${repeat};
+		background-size: ${'custom' === size ? `${customSize} auto` : size};
+	`;
+};
+const getImageCSS = (img = {}) => {
+  let desktop, tablet, mobile;
+  if (Object.keys(img).length > 1) {
+    if (img?.desktop) {
+      desktop = getImagePosition(img?.desktop);
+    }
+    if (img?.tablet) {
+      tablet = getImagePosition(img?.tablet);
+    }
+    if (img?.mobile) {
+      mobile = getImagePosition(img?.mobile);
+    }
+  }
+  if (img) {
+    return {
+      desktop: img.url ? `background-image: url(${img.url}); ${desktop}` : '',
+      tablet: img.url ? tablet : '',
+      mobile: img.url ? mobile : ''
+    };
+  }
+  return '';
+};
+const getVideoCSS = (video, selector) => {
+  const {
+    url,
+    loop
+  } = video || {};
+  const parentEl = document.querySelector(selector);
+  const el = parentEl?.querySelector('.bPlVideo');
+  const videoEl = document.createElement('video');
+  videoEl.muted = true;
+  videoEl.autoplay = true;
+  videoEl.classList.add('bPlVideo');
+  if (!el) {
+    if (parentEl && url) {
+      videoEl.innerHTML = `<source src=${url}></source>`;
+      parentEl.appendChild(videoEl);
+    }
+  }
+  videoEl.loop = loop;
+  videoEl.play();
+  return `${selector} .bPlVideo{
+		left: 0;
+		min-height: 100%;
+		min-width: 100%;
+		position: absolute;
+		width: -webkit-fill-available;
+		top: 0;
+		z-index: 0;
+	}`;
+};
+const getAdvBGCSS = (background, selector, isHover = false) => {
+  const {
+    type = 'color',
+    color,
+    gradient,
+    img,
+    video
+  } = background || {};
+  const bgCSS = type === 'color' ? getSolidBGCSS(color) : type === 'gradient' ? getGradientCSS(gradient) : type === 'image' ? getImageCSS(img).desktop : '';
+  const tablet = type === 'image' ? getImageCSS(img).tablet : '';
+  const mobile = type === 'image' ? getImageCSS(img).mobile : '';
+  const sl = isHover ? `${selector}:hover` : selector;
+  return `
+		${type === 'video' ? getVideoCSS(video, selector) : ''}
 
-/***/ "./src/row/utils/data.js":
-/*!*******************************!*\
-  !*** ./src/row/utils/data.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+		${sl}{
+			${bgCSS}
+		}
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   colPrefix: () => (/* binding */ colPrefix),
-/* harmony export */   rowPrefix: () => (/* binding */ rowPrefix)
-/* harmony export */ });
-const rowPrefix = 'bBlocksRow';
-const colPrefix = 'bBlocksColumn';
+		${_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
+			${sl}{
+				${tablet}
+			}
+		}
+		${_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
+			${sl}{
+				${mobile}
+			}
+		}
+	`.replace(/\s+/g, ' ').trim();
+};
+const getOverlayCSS = (overlay, selector, isHover = false) => {
+  const {
+    isEnabled,
+    colors,
+    opacity = 1,
+    blend,
+    filter = '',
+    blur = 0,
+    brightness = 100,
+    contrast = 100,
+    saturation = 100,
+    hue = 0
+  } = overlay || {};
+  const filterCSSValue = `${100 !== brightness ? `brightness(${brightness}%)` : ''} ${100 !== contrast ? `contrast(${contrast}%)` : ''} ${100 !== saturation ? `saturate(${saturation}%)` : ''} ${0 !== blur ? `blur(${blur}px)` : ''} ${0 !== hue ? `hue-rotate(${hue}deg)` : ''}`;
+  const filterCSS = `${filter}: ${filter ? filterCSSValue : ''}; -webkit-${filter}: ${filter ? filterCSSValue : ''};`;
+  const blendCSS = blend ? `mix-blend-mode: ${blend};` : '';
+  const sl = isHover ? `${selector}:hover::after` : `${selector}::after`;
+  return isEnabled ? `
+		${selector}::after{
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
+		${getAdvBGCSS(colors, sl, false)}
+		${sl}{
+			opacity: ${opacity};
+			${blendCSS}
+			${filterCSS}
+		}
+	`.replace(/\s+/g, ' ').trim() : '';
+};
 
 /***/ }),
 
@@ -435,8 +641,6 @@ module.exports = window["ReactDOM"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
 /*!*************************!*\
   !*** ./src/row/view.js ***!
   \*************************/
@@ -464,8 +668,6 @@ document.addEventListener('DOMContentLoaded', () => {
     rowEl?.removeAttribute('data-attributes');
   });
 });
-})();
-
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map

@@ -1,4 +1,4 @@
-import { getShadowCSS, getSpaceCSS } from '../../../../../Components/utils/getCSS';
+import { getShadowCSS, getSpaceCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { prefix } from '../../utils/data';
 

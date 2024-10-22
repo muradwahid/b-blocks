@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, ToggleControl, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, InlineDetailMediaUpload, MediaEditControl, HelpPanel } from '../../../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, InlineDetailMediaUpload, MediaEditControl, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, tdViewerDocs } from '../../../../utils/data';
 import { loadingTypes } from '../../../utils/options';

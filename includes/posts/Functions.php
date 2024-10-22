@@ -18,7 +18,7 @@ class Functions{
 				if( is_array( $value ) ) {
 					$array[$key] = self::sanitize_array( $value );
 				}else {
-					$array[$key] =$value == 'true' ? true : ( $value == 'false' ? false :  sanitize_text_field( $value ) );
+					$array[$key] =$value == 'true' ? true : ( $value == 'false' ? false : sanitize_text_field( $value ) );
 				}
 			}
 		}

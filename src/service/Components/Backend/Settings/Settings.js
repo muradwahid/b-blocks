@@ -2,8 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, BColor, BorderControl, IconControl, InlineDetailMediaUpload, HelpPanel } from '../../../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, IconControl, InlineDetailMediaUpload, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, servicesDocs } from '../../../../utils/data';
 
@@ -35,9 +36,9 @@ const Settings = ({ attributes, setAttributes }) => {
 		</PanelBody>}
 
 		<PanelBody className='bPlPanelBody' title={__('Colors Settings', 'b-blocks')} initialOpen={false}>
-			{isTitle && <BColor label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor={'#222'} />}
+			{isTitle && <ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor={'#222'} />}
 
-			{isDesc && <BColor label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor={'#333'} />}
+			{isDesc && <ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => setAttributes({ descColor: val })} defaultColor={'#333'} />}
 		</PanelBody>
 
 		{isLink && <PanelBody className='bPlPanelBody' title={__('Link Settings', 'b-blocks')} initialOpen={false}>
@@ -45,11 +46,11 @@ const Settings = ({ attributes, setAttributes }) => {
 			<TextControl value={link} onChange={val => setAttributes({ link: val })} />
 
 			{'button' === linkIn && <>
-				<BColor label={__('Icon Color:', 'b-blocks')} value={linkIconColor} onChange={val => setAttributes({ linkIconColor: val })} defaultColor={'#fff'} />
+				<ColorControl label={__('Icon Color:', 'b-blocks')} value={linkIconColor} onChange={val => setAttributes({ linkIconColor: val })} defaultColor={'#fff'} />
 
-				<BColor label={__('Background Color:', 'b-blocks')} value={linkBGColor} onChange={val => setAttributes({ linkBGColor: val })} defaultColor={'#d2d2d2'} />
+				<ColorControl label={__('Background Color:', 'b-blocks')} value={linkBGColor} onChange={val => setAttributes({ linkBGColor: val })} defaultColor={'#d2d2d2'} />
 
-				<BColor label={__('Background Hover Color:', 'b-blocks')} value={linkBGHovColor} onChange={val => setAttributes({ linkBGHovColor: val })} defaultColor={'#4527a4'} />
+				<ColorControl label={__('Background Hover Color:', 'b-blocks')} value={linkBGHovColor} onChange={val => setAttributes({ linkBGHovColor: val })} defaultColor={'#4527a4'} />
 			</>}
 		</PanelBody>}
 	</InspectorControls>;

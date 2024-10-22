@@ -2,7 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelRow, PanelBody, TextControl, SelectControl } from '@wordpress/components';
 
-import { Label, BorderControl, BtnGroup, ColorsControl, IconControl, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
+import { Label, BtnGroup, ColorsControl, IconControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 
 import { pluginSlug, mailToDocs } from '../../../../utils/data';
 const mailtoStyles = [

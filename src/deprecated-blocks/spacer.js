@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
-import { Label } from '../../../Components';
+import { Label } from '../../../bpl-tools/Components';
 
 // Icon
 import { rectangleIcon } from '../utils/icons';

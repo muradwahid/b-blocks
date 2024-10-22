@@ -8,7 +8,7 @@ import './Popup.scss';
 const Button = ({ attributes, securityPass = true, setSecurityPass, isPremium, Popup, popupContent, isBackend = false, children, onClick = () => { } }, ref) => {
 	const { actionType = 'link', iconPos = 'left' } = attributes;
 	return <>
-		<a ref={ref} {...btnProps(attributes, securityPass, isPremium, isBackend)} onClick={() => onClick(true)}  >
+		<a ref={ref} {...btnProps(attributes, securityPass, isPremium, isBackend)} onClick={() => onClick(true)}>
 			{'right' !== iconPos && <ButtonIcon attributes={attributes} />}
 
 			{children}

@@ -1,12 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, SelectControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, BColor, BDevice, BorderControl, BtnGroup, ColorsControl, ChangeImageData, InlineDetailMediaUpload, MultiShadowControl, SeparatorControl, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { gearIcon } from '../../../../../../Components/utils/icons';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Device, BtnGroup, ColorsControl, InlineDetailMediaUpload, ShadowControl, SeparatorControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, teamMembersDocs } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
@@ -24,10 +25,8 @@ const layouts = [
 	{ label: __('Horizontal', 'b-blocks'), value: 'horizontal', icon: horizontalLineIcon },
 ]
 
-const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setActiveIndex }) => {
+const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setActiveIndex, device }) => {
 	const { members = [], columns, columnGap, rowGap, layout, theme, isLinkNewTab, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	const addMember = () => {
 		const { background = { color: '#0000' }, border = { radius: '3px' }, shadow = {}, photoBorder = { radius: '50%' }, nameColor = '#333', titleColor = '#333', separator = { width: '20%', height: '3px', style: 'solid', color: '#777' }, bioColor = '#333', socialIconColors = { color: '#fff', bg: '#4527a4' } } = members[0] || {};
@@ -104,7 +103,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 							<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateMember(activeIndex, 'border', val)} defaults={{ radius: '3px' }} />
 
-							<MultiShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => updateMember(activeIndex, 'shadow', val)} />
+							<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => updateMember(activeIndex, 'shadow', val)} />
 
 							<Label>{__('Photo:', 'b-blocks')}</Label>
 							<InlineDetailMediaUpload value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
@@ -112,13 +111,13 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 							<BorderControl label={__('Photo Border:', 'b-blocks')} value={photoBorder} onChange={val => updateMember(activeIndex, 'photoBorder', val)} defaults={{ radius: '50%' }} />
 
-							<BColor label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateMember(activeIndex, 'nameColor', val)} defaultColor='#333' />
+							<ColorControl label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateMember(activeIndex, 'nameColor', val)} defaultColor='#333' />
 
-							<BColor label={__('Designation/Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateMember(activeIndex, 'titleColor', val)} defaultColor='#333' />
+							<ColorControl label={__('Designation/Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateMember(activeIndex, 'titleColor', val)} defaultColor='#333' />
 
 							<SeparatorControl value={separator} onChange={val => updateMember(activeIndex, 'separator', val)} defaults={{ width: '20%', height: '3px', color: '#777' }} />
 
-							<BColor label={__('Bio Color:', 'b-blocks')} value={bioColor} onChange={val => updateMember(activeIndex, 'bioColor', val)} defaultColor='#333' />
+							<ColorControl label={__('Bio Color:', 'b-blocks')} value={bioColor} onChange={val => updateMember(activeIndex, 'bioColor', val)} defaultColor='#333' />
 
 							<ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={socialIconColors} onChange={val => updateMember(activeIndex, 'socialIconColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
 
@@ -138,7 +137,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-							<BDevice device={device} onChange={val => setDevice(val)} />
+							<Device />
 						</PanelRow>
 						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -360,4 +359,10 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

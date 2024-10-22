@@ -3,10 +3,11 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, Button, ToggleControl, __experimentalUnitControl as UnitControl, DateTimePicker, SelectControl, PanelRow, TabPanel, RangeControl } from '@wordpress/components';
 
-import { Label, Background, BColor, BorderControl, ShadowControl, SpaceControl, Typography, HelpPanel, ColorsControl } from '../../../../../../Components';
-import { BControlPro } from '../../../../../../Components/Pro';
-import { tabController } from '../../../../../../Components/utils/functions';
-import { pxUnit, perUnit, emUnit, remUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, ColorControl, Typography, HelpPanel, ColorsControl } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { pxUnit, perUnit, emUnit, remUnit } from '../../../../../../bpl-tools/utils/options';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug, countdownDocs } from '../../../../utils/data';
@@ -179,12 +180,12 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 					{isDays || isHours || isMinutes || isSeconds ? <PanelBody className='bPlPanelBody' title={__('Content', 'b-blocks')} initialOpen={false}>
 						<Typography label={__('Digit Typography:', 'b-blocks')} value={digitTypo} onChange={val => setAttributes({ digitTypo: val })} defaults={{ fontSize: { desktop: 48, tablet: 40, mobile: 32 } }} />
 
-						<BColor label={__('Digit Color:', 'b-blocks')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
+						<ColorControl label={__('Digit Color:', 'b-blocks')} value={digitColor} onChange={val => setAttributes({ digitColor: val })} defaultColor='#fff' />
 
 						{isLabels && <>
 							<Typography className='mt20' label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} />
 
-							<BColor label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
+							<ColorControl label={__('Label Color:', 'b-blocks')} value={labelColor} onChange={val => setAttributes({ labelColor: val })} defaultColor='#fff' />
 						</>}
 					</PanelBody> : null}
 
@@ -203,9 +204,9 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						{isDaysSingleStyle && <>
 							<BControlPro label={__('Box Background:', 'b-blocks')} value={daysBG} onChange={val => setAttributes({ daysBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
 
-							<BControlPro label={__('Digit Color:', 'b-blocks')} value={daysDigitColor} onChange={val => setAttributes({ daysDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />
+							<BControlPro label={__('Digit Color:', 'b-blocks')} value={daysDigitColor} onChange={val => setAttributes({ daysDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
-							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={daysLabelColor} onChange={val => setAttributes({ daysLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />}
+							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={daysLabelColor} onChange={val => setAttributes({ daysLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />}
 						</>}
 					</PanelBody>}
 
@@ -224,9 +225,9 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						{isHoursSingleStyle && <>
 							<BControlPro label={__('Box Background:', 'b-blocks')} value={hoursBG} onChange={val => setAttributes({ hoursBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
 
-							<BControlPro label={__('Digit Color:', 'b-blocks')} value={hoursDigitColor} onChange={val => setAttributes({ hoursDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />
+							<BControlPro label={__('Digit Color:', 'b-blocks')} value={hoursDigitColor} onChange={val => setAttributes({ hoursDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
-							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={hoursLabelColor} onChange={val => setAttributes({ hoursLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />}
+							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={hoursLabelColor} onChange={val => setAttributes({ hoursLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />}
 						</>}
 					</PanelBody>}
 
@@ -245,9 +246,9 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						{isMinutesSingleStyle && <>
 							<BControlPro label={__('Box Background:', 'b-blocks')} value={minutesBG} onChange={val => setAttributes({ minutesBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
 
-							<BControlPro label={__('Digit Color:', 'b-blocks')} value={minutesDigitColor} onChange={val => setAttributes({ minutesDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />
+							<BControlPro label={__('Digit Color:', 'b-blocks')} value={minutesDigitColor} onChange={val => setAttributes({ minutesDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
-							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={minutesLabelColor} onChange={val => setAttributes({ minutesLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />}
+							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={minutesLabelColor} onChange={val => setAttributes({ minutesLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />}
 						</>}
 					</PanelBody>}
 
@@ -266,9 +267,9 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						{isSecondsSingleStyle && <>
 							<BControlPro label={__('Box Background:', 'b-blocks')} value={secondsBG} onChange={val => setAttributes({ secondsBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
 
-							<BControlPro label={__('Digit Color:', 'b-blocks')} value={secondsDigitColor} onChange={val => setAttributes({ secondsDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />
+							<BControlPro label={__('Digit Color:', 'b-blocks')} value={secondsDigitColor} onChange={val => setAttributes({ secondsDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
-							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={secondsLabelColor} onChange={val => setAttributes({ secondsLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={BColor} />}
+							{isLabels && <BControlPro label={__('Label Color:', 'b-blocks')} value={secondsLabelColor} onChange={val => setAttributes({ secondsLabelColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />}
 						</>}
 					</PanelBody>}
 
@@ -285,7 +286,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 							<Label>{__('Size:', 'b-blocks')}</Label>
 							<RangeControl value={sepSize} onChange={val => setAttributes({ sepSize: val })} min={0} max={160} step={1} allowReset={true} resetFallbackValue={48} initialPosition={48} />
 
-							<BColor label={__('Color:', 'b-blocks')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#4527a4' />
+							<ColorControl label={__('Color:', 'b-blocks')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#4527a4' />
 						</>}
 					</PanelBody>
 
@@ -293,7 +294,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 					{prefixText && <PanelBody className='bPlPanelBody' title={__('Prefix Text', 'b-blocks')} initialOpen={false}>
 						<BControlPro label={__('Typography:', 'b-blocks')} value={prefixTextTypo} onChange={val => setAttributes({ prefixTextTypo: val })} defaults={{ fontSize: { desktop: 15, tablet: 15, mobile: 15 } }} {...premiumProps} Component={Typography} />
 
-						<BControlPro label={__('Color:', 'b-blocks')} value={prefixTextColor} onChange={val => setAttributes({ prefixTextColor: val })} defaultColor='#222' {...premiumProps} Component={BColor} />
+						<BControlPro label={__('Color:', 'b-blocks')} value={prefixTextColor} onChange={val => setAttributes({ prefixTextColor: val })} defaultColor='#222' {...premiumProps} Component={ColorControl} />
 					</PanelBody>}
 
 
@@ -310,7 +311,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						<BControlPro label={__('Countdown Dismissible?', 'b-blocks')} checked={isDismiss} onChange={val => setAttributes({ isDismiss: val })} {...premiumProps} Component={ToggleControl} />
 
 						{isDismiss && <>
-							<BControlPro label={__('Color:', 'b-blocks')} value={dismissColor} onChange={val => setAttributes({ dismissColor: val })} defaultColor='#333' {...premiumProps} Component={BColor} />
+							<BControlPro label={__('Color:', 'b-blocks')} value={dismissColor} onChange={val => setAttributes({ dismissColor: val })} defaultColor='#333' {...premiumProps} Component={ColorControl} />
 						</>}
 					</PanelBody>
 				</>}

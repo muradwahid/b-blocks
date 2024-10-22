@@ -2,9 +2,10 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel } from '@wordpress/components';
 
-import { BorderControl, ColorsControl, ImageEditControl, ChangeImageData, InlineDetailMediaUpload, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../../../Components/utils/options';
-import { tabController } from '../../../../../../Components/utils/functions';
+import { ColorsControl, InlineDetailMediaUpload, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ChangeImageData, ImageEditControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../../../bpl-tools/utils/options';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
 import { pluginSlug, imbCompareDocs } from '../../../../utils/data';
 const beforeAfterImgTab = [

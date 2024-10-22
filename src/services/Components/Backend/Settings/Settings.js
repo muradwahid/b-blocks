@@ -1,19 +1,18 @@
-import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
-import { select, dispatch } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
+import { withSelect, select, dispatch } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, SelectControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, BDevice, BorderControl, ShadowControl, SpaceControl, Typography, HelpPanel } from '../../../../../../Components';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, Device, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, servicesDocs } from '../../../../utils/data';
 import { layouts, linkPosition } from '../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, clientId }) => {
+const Settings = ({ attributes, setAttributes, clientId, device }) => {
 	const { layout, columns, columnGap, rowGap, background, textAlign, itemHeight, itemPadding, itemBorder, itemShadow, iconPadding, iconMargin, titleTypo, titleMargin, descTypo } = attributes;
-
-	const [device, setDevice] = useState('desktop');
 
 	// Play with child data
 	const innerBlocks = select('core/block-editor').getBlocksByClientId(clientId)[0]?.innerBlocks;
@@ -71,7 +70,7 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 
 				<PanelRow className='mt20'>
 					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-					<BDevice device={device} onChange={val => setDevice(val)} />
+					<Device />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
 
@@ -131,4 +130,10 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 		</BlockControls>
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

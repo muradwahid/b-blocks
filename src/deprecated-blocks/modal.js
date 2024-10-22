@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPanel, TextControl, SelectControl } from '@wordpress/components';
 
-import { Label, BtnGroup } from '../../../Components';
+import { Label, BtnGroup } from '../../../bpl-tools/Components';
 
 import { modalIcon } from '../utils/icons';
 import { normalHoverTabs, fontSizes, hTags, colors, aligns, fontWeights, textTransforms } from '../utils/options';

@@ -5,7 +5,8 @@ import { Spinner, Button, __experimentalInputControl as InputControl } from '@wo
 import { isBlobURL } from '@wordpress/blob';
 import { produce } from 'immer';
 
-import { Label, IconControl, ImagePlaceholder } from '../../../../../Components';
+import { Label, IconControl } from '../../../../../bpl-tools/Components';
+import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';

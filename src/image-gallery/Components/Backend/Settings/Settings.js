@@ -1,17 +1,16 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import { withSelect } from '@wordpress/data';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, PanelRow, ToggleControl } from '@wordpress/components';
 
-import { Label, BColor, BDevice, BorderControl, BtnGroup, ShadowControl, SpaceControl, Typography, MediaEditControl, HelpPanel } from '../../../../../../Components';
+import { Label, ColorControl, Device, BtnGroup, Typography, MediaEditControl, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
 
 import { pluginSlug } from '../../../../utils/data';
 import { aligns } from '../../../../utils/options';
 
-const Settings = ({ settings, filterImages }) => {
+const Settings = ({ settings, filterImages, device }) => {
 	const { attributes: { images, columns, imgPadding, imgBorder, imgShadow, isPreview, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes } = settings;
-
-	const [device, setDevice] = useState('desktop');
 
 	return <>
 		<InspectorControls>
@@ -21,7 +20,7 @@ const Settings = ({ settings, filterImages }) => {
 			<PanelBody className='bPlPanelBody' title={__('Layouts Settings')}>
 				<PanelRow>
 					<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
-					<BDevice device={device} onChange={val => setDevice(val)} />
+					<Device />
 				</PanelRow>
 				<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={9} step={1} />
 			</PanelBody>
@@ -47,7 +46,7 @@ const Settings = ({ settings, filterImages }) => {
 					<BtnGroup value={capAlign} onChange={val => setAttributes({ capAlign: val })} options={aligns} isIcon={true} />
 				</PanelRow>
 
-				<BColor label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
+				<ColorControl label={__('Color:', 'b-blocks')} value={capColor} onChange={val => setAttributes({ capColor: val })} defaultColor='#333' />
 
 				<Typography label={__('Title Typography:', 'b-blocks')} value={capTitleTypo} onChange={val => setAttributes({ capTitleTypo: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 } }} />
 
@@ -61,4 +60,10 @@ const Settings = ({ settings, filterImages }) => {
 		</BlockControls>}
 	</>;
 };
-export default Settings;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	}
+})(Settings);

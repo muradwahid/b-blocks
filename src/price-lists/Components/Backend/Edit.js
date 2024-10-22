@@ -5,8 +5,8 @@ import { Spinner } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
 import { produce } from 'immer';
 
-import { ImagePlaceholder } from '../../../../../Components';
-import { getBackgroundCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../Components/utils/getCSS';
+import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
+import { getBackgroundCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';

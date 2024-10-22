@@ -2,8 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, BorderControl, ShadowControl, SpaceControl, HelpPanel } from '../../../../../../Components';
-import { pxUnit, emUnit, vhUnit } from '../../../../../../Components/utils/options';
+import { Label, Background, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { pluginSlug, rowDocs } from '../../../../utils/data';
 import { overflows } from '../../../utils/options';

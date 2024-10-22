@@ -1,6 +1,32 @@
 $primaryColor: #4527a4;
 $secondaryColor: #8344c5;
 
+// Block inserter style
+.bBlocksRow,
+.bBlocksContainerContent {
+
+	.block-list-appender,
+	.block-editor-inserter {
+		button {
+			background-color: transparent !important;
+			box-shadow: none;
+
+			&.block-editor-button-block-appender {
+				border: 1px solid $primaryColor;
+			}
+
+			svg {
+				fill: $primaryColor;
+				width: 20px !important;
+				height: 20px;
+				background-color: transparent !important;
+				border: 2px solid $primaryColor;
+				border-radius: 50% !important;
+			}
+		}
+	}
+}
+
 // Loading
 .bBlocksLoading {
 	color: $primaryColor !important;

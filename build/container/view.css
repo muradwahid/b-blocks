@@ -10,25 +10,27 @@
 .wp-block-b-blocks-container * {
   box-sizing: border-box;
 }
-.wp-block-b-blocks-container .topShaped {
+.wp-block-b-blocks-container .shaped {
+  width: 100%;
+  display: grid;
   position: absolute;
+  z-index: 2;
+}
+.wp-block-b-blocks-container .shaped svg {
+  height: auto;
+}
+.wp-block-b-blocks-container .topShaped {
   top: 0;
   left: 0;
 }
-.wp-block-b-blocks-container .topShaped svg {
-  height: auto;
-}
 .wp-block-b-blocks-container .bottomShaped {
-  position: absolute;
   left: 0;
   bottom: 0;
-}
-.wp-block-b-blocks-container .bottomShaped svg {
-  height: auto;
 }
 .wp-block-b-blocks-container .bBlocksContainerContent {
   position: relative;
   max-width: 100%;
+  z-index: 3;
 }
 
 /*# sourceMappingURL=view.css.map*/

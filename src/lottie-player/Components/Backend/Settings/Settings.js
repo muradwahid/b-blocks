@@ -4,10 +4,11 @@ import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/b
 import { TabPanel, PanelBody, TextControl, __experimentalNumberControl as NumberControl, ToggleControl, RangeControl, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, BColor, BtnGroup, ColorsControl, HelpPanel, InlineMediaUpload, SpaceControl, Typography } from '../../../../../../Components';
-import { BControlPro } from '../../../../../../Components/Pro';
-import { pxUnit, perUnit, emUnit } from '../../../../../../Components/utils/options';
-import { tabController } from '../../../../../../Components/utils/functions';
+import { Label, ColorControl, BtnGroup, ColorsControl, HelpPanel, InlineMediaUpload, Typography } from '../../../../../../bpl-tools/Components';
+import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
+import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug } from '../../../../utils/data';
@@ -131,24 +132,24 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 					<PanelBody className='bPlPanelBody' title={__('Player', 'b-blocks')}>
 						<UnitControl label={__('Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<BColor label={__('Background Color:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaultColor='#0000' />
+						<ColorControl label={__('Background Color:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaultColor='#0000' />
 					</PanelBody>
 
 
 					{isControls && <PanelBody title={__('Controls', 'b-blocks')}{...panelBodyIF}>
 						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={controlsHeight} onChange={val => setAttributes({ controlsHeight: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 
-						<BColor label={__('Background Color:', 'b-blocks')} value={controlsBG} onChange={val => setAttributes({ controlsBG: val })} defaultColor='#0000' />
+						<ColorControl label={__('Background Color:', 'b-blocks')} value={controlsBG} onChange={val => setAttributes({ controlsBG: val })} defaultColor='#0000' />
 
-						<BColor label={__('Icons Color:', 'b-blocks')} value={controlsIconColor} onChange={val => setAttributes({ controlsIconColor: val })} defaultColor='#4527a4' />
+						<ColorControl label={__('Icons Color:', 'b-blocks')} value={controlsIconColor} onChange={val => setAttributes({ controlsIconColor: val })} defaultColor='#4527a4' />
 
-						<BColor label={__('Icons Hover Color:', 'b-blocks')} value={controlsIconHoverColor} onChange={val => setAttributes({ controlsIconHoverColor: val })} defaultColor='#8344c5' />
+						<ColorControl label={__('Icons Hover Color:', 'b-blocks')} value={controlsIconHoverColor} onChange={val => setAttributes({ controlsIconHoverColor: val })} defaultColor='#8344c5' />
 
-						<BColor label={__('Icons Active Color:', 'b-blocks')} value={controlsIconActiveColor} onChange={val => setAttributes({ controlsIconActiveColor: val })} defaultColor='#8344c5' />
+						<ColorControl label={__('Icons Active Color:', 'b-blocks')} value={controlsIconActiveColor} onChange={val => setAttributes({ controlsIconActiveColor: val })} defaultColor='#8344c5' />
 
-						<BColor label={__('Track Color:', 'b-blocks')} value={controlsTrackColor} onChange={val => setAttributes({ controlsTrackColor: val })} defaultColor='#8344c5' />
+						<ColorControl label={__('Track Color:', 'b-blocks')} value={controlsTrackColor} onChange={val => setAttributes({ controlsTrackColor: val })} defaultColor='#8344c5' />
 
-						<BColor label={__('Thumb Color:', 'b-blocks')} value={controlsThumbColor} onChange={val => setAttributes({ controlsThumbColor: val })} defaultColor='#4527a4' />
+						<ColorControl label={__('Thumb Color:', 'b-blocks')} value={controlsThumbColor} onChange={val => setAttributes({ controlsThumbColor: val })} defaultColor='#4527a4' />
 					</PanelBody>}
 
 
