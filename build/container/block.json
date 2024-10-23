@@ -105,14 +105,6 @@
             }
           }
         },
-        "background": {
-          "normal": {
-            "type": "color"
-          },
-          "hover": {
-            "type": "color"
-          }
-        },
         "borderShadow": {
           "normal": {
             "border": {

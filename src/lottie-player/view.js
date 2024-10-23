@@ -23,16 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const RenderLottiePlayer = ({ attributes, id }) => {
-	const { isControls, isAutoplay, isLoop, isHover, link, isLinkInNewTab = false, interactivity = 'noInteractivity', interactivityMode = '', interactivityContainer = '.wp-block-b-blocks-lottie-player', interactivityActions = [], isCap = false, caption = '' } = attributes;
+	const { isControls, isAutoplay, isLoop, isHover, count, link, isLinkInNewTab = false, interactivity = 'noInteractivity', interactivityMode = '', interactivityContainer = '.wp-block-b-blocks-lottie-player', interactivityActions = [], isCap = false, caption = '' } = attributes;
 
 	const lottieEl = useRef(null);
 
 	useEffect(() => {
 		const lottiePlayer = document.querySelector(`#${id} .${prefix} lottie-player`);
 
+		const loopCount = 0 < count ? count : true;
+		const loopVal = isLoop ? loopCount : false;
+
 		toggleAttr(lottiePlayer, isControls, 'controls', '');
 		toggleAttr(lottiePlayer, isAutoplay, 'autoplay', '');
-		toggleAttr(lottiePlayer, isLoop, 'loop', '');
+		toggleAttr(lottiePlayer, isLoop, 'loop', loopVal);
 		toggleAttr(lottiePlayer, isHover, 'hover', '');
 	}, []);
 

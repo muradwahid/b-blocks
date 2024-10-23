@@ -21,7 +21,7 @@ const Style = ({ attributes, id }) => {
 			fill: ${color};
 			height: ${size};
 			width: ${size};
-			filter: drop-shadow(${getShadowCSS(shadow)});
+			filter: drop-shadow(${getShadowCSS(shadow, 'text')});
 		}
 	`}} />;
 }

@@ -3,8 +3,8 @@ import { withSelect } from '@wordpress/data';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, SelectControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 
-import { Label, Background, Device, ShadowControl } from '../../../../../../bpl-tools/Components';
-import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { Label, Background, Device } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ShadowControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 
 import { overflows } from '../../../../row/utils/options';
 

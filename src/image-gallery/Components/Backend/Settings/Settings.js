@@ -31,7 +31,7 @@ const Settings = ({ settings, filterImages, device }) => {
 
 				<BorderControl label={__('Border:', 'b-blocks')} value={imgBorder} onChange={val => setAttributes({ imgBorder: val })} />
 
-				<ShadowControl label={__('Shadow:', 'b-blocks')} value={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} />
+				<ShadowControl label={__('Shadow:', 'b-blocks')} value={imgShadow} onChange={val => setAttributes({ imgShadow: val })} defaults={{ type: 'text' }} type='text' />
 
 				<ToggleControl className='mt20' label={__('Preview Image?', 'b-blocks')} checked={isPreview} onChange={val => setAttributes({ isPreview: val })} />
 				<small>{__('Preview will only for frontend!', 'b-blocks')}</small>

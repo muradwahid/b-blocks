@@ -108,9 +108,8 @@ class GetCSS{
 		return $styles;
 	}
 
-	static function getShadowCSS( $shadow ) {
+	static function getShadowCSS( $shadow, $type = 'box' ) {
 		extract( $shadow );
-		$type = $type ?? 'box';
 		$hOffset = $hOffset ?? '0px';
 		$vOffset = $vOffset ?? '0px';
 		$blur = $blur ?? '0px';
@@ -150,7 +149,7 @@ class GetCSS{
 		$tabletFontSize = $fontSize['tablet'] ?? $desktopFontSize;
 		$mobileFontSize = $fontSize['mobile'] ?? $tabletFontSize;
 
-		$styles = ( $isEmptyFamily ? '' : "font-family: '$fontFamily', $fontCategory;" )
+		$styles = ( $isEmptyFamily ? '' : "font-family: $fontFamily, $fontCategory;" )
 			. self::generateCss( $fontWeight, 'font-weight' )
 			. 'font-size: '. $desktopFontSize .'px;'
 			. self::generateCss( $fontStyle, 'font-style' )

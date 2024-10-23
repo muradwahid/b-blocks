@@ -9,7 +9,7 @@ if( !function_exists( 'bBlocksImageGalleryStyle' ) ) {
 	function bBlocksImageGalleryStyle($attributes, $id){
 		extract( $attributes );
 
-		$imgShadow = GetCSS::getShadowCSS( $imgShadow );
+		$imgShadow = GetCSS::getShadowCSS( $imgShadow, 'text' );
 		$imgPaddingH = $imgPadding['horizontal'] ?? '0px';
 		$imgPaddingV = $imgPadding['vertical'] ?? '0px';
 

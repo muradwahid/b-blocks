@@ -28,7 +28,7 @@ const Style = ({ attributes, id }) => {
 		${gFlipBoxSl} i.flipIcon{
 			margin: ${getSpaceCSS(iconMargin)};
 		}
-		${gFlipBoxSl} i.flipTitle{
+		${gFlipBoxSl} .flipTitle{
 			margin: ${getSpaceCSS(titleMargin)};
 		}
 		${gFlipBoxSl} .flipBtn{

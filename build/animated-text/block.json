@@ -94,7 +94,10 @@
       "preview": true
     }
   },
-  "style": "file:./view.css",
+  "style": [
+    "file:./view.css",
+    "animate"
+  ],
   "render": "file:./render.php",
   "viewScript": [
     "file:./view.js",

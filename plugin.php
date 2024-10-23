@@ -74,12 +74,6 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		do_action( 'b_blocks_fs_loaded' );
 	}
 
-	if( function_exists( 'b_blocks_fs' ) ){
-		b_blocks_fs()->add_filter( 'freemius_pricing_js_path', function() {
-			return B_BLOCKS_DIR_PATH . '/includes/freemius-pricing/freemius-pricing.js';
-		} );
-	}
-
 	// Generate Styles
 	class BBlocksStyleGenerator {
 		public static $styles = [];

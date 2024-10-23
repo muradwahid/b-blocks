@@ -7,9 +7,12 @@ const DotLottiePlayer = ({ attributes }, ref) => {
 
 	useEffect(() => {
 		if (ref?.current) {
+			const loopCount = 0 < count ? count : true;
+			const loopVal = isLoop ? loopCount : false;
+
 			toggleAttr(ref?.current, isControls, 'controls', '');
 			toggleAttr(ref?.current, isAutoplay, 'autoplay', '');
-			toggleAttr(ref?.current, isLoop, 'loop', '');
+			toggleAttr(ref?.current, isLoop, 'loop', loopVal);
 			toggleAttr(ref?.current, isHover, 'hover', '');
 		}
 	}, [ref]);
@@ -20,7 +23,6 @@ const DotLottiePlayer = ({ attributes }, ref) => {
 		autoplay
 		loop
 		mode={mode}
-		count={count}
 		speed={speed}
 		direction={direction}
 		intermission={intermission * 1000}

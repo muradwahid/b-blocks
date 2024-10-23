@@ -55,7 +55,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '12px', horizontal: '30px' }} />
 
 				<Label>{__('Buttons:', 'b-blocks')}</Label>
-				<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
+				<TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
 					{'btn-one' == tab.name && <>
 						<PanelRow>
 							<Label className=''>{__('Link:', 'b-blocks')}</Label>

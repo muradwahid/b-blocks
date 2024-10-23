@@ -26,7 +26,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} />
 
-				<TabPanel className='bPlTabPanel mt20' activeClass='activeTab' tabs={beforeAfterImgTab} onSelect={tabController}>{tab => <>
+				<TabPanel className='bPlTabPanel small mt20' activeClass='activeTab' tabs={beforeAfterImgTab} onSelect={tabController}>{tab => <>
 					{'before-img' == tab.name && <>
 						<InlineDetailMediaUpload className='mt10' value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} placeholder={__('Enter Image URL', 'b-blocks')} />
 

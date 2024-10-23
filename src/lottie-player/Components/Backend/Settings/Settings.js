@@ -19,7 +19,7 @@ import { actionsOnInteractivityChange } from '../../../utils/functions';
 const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 	const { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, link, isLinkInNewTab = false, interactivity = 'noInteractivity', interactivityContainer = '.wp-block-b-blocks-lottie-player', interactivityActions = [], width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor, isCap = false, caption = '', capAlign = 'center', capTypo = {}, capColors = { color: '#333' }, capPadding = {}, capMargin = {} } = attributes;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const updateInteractivityAction = (index, type, val, otherIndex = null) => {
 		const newInterAction = produce(interactivityActions, draft => {
@@ -34,7 +34,7 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	const panelBodyIF = {
@@ -169,7 +169,7 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 		</InspectorControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Lottie Player'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Lottie Player'>
 			<li>&emsp;<strong>{__('Upload File ', 'b-blocks')}</strong>{__('Upload Lottie JSON files from the media library.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Hover ', 'b-blocks')}</strong>{__('Play the Lottie animation on mouseover.', 'b-blocks')}</li>

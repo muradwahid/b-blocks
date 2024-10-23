@@ -25,7 +25,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		<Settings attributes={attributes} setAttributes={setAttributes} updateFeature={updateFeature} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
 		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} clientId={clientId} />
+			<Style attributes={attributes} id={id} />
 
 			<div className={`${prefix} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{features.map((item, index) => {

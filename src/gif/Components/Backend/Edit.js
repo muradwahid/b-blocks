@@ -17,6 +17,8 @@ const Edit = props => {
 	const [search, setSearch] = useState('');
 	const [gifData, setGifData] = useState([]);
 
+	const id = `${prefix}-${clientId}`;
+
 	// Gif scripts for modal
 	const GIFAPI = 'dM3iQq13qK0Mls9ygR2zjxxPDQVlw1Ql';
 
@@ -38,7 +40,7 @@ const Edit = props => {
 		}).catch(err => alert(err.message));
 	}, [search]);
 
-	const thisBlock = document.getElementById(`block-${clientId}`); // This Block
+	const thisBlock = document.getElementById(id); // This Block
 	const modal = document.getElementById(`gifModal-${clientId}`); // Get the modal
 
 	const setPopup = () => {
@@ -57,8 +59,6 @@ const Edit = props => {
 			modal.style.display = 'none';
 		}
 	});
-
-	const id = `${prefix}-${clientId}`;
 
 	return <>
 		<InspectorControls>

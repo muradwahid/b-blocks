@@ -6,10 +6,11 @@ import { siteURL } from '../../utils/data';
 
 const proBlocks = ['Posts', 'Countdown', 'Slider', 'Lottie Player', 'Button', 'Cards'];
 
-const ProModal = ({ isProModal, setIsProModal, block, children }) => {
-	const restBlocks = proBlocks.filter(b => b !== block).map((b, i) => (proBlocks.length > 2 && i === proBlocks.length - 2) ? `and ${b}` : b).join(', ')
+const ProModal = ({ isProModalOpen, setIsProModalOpen, block, children }) => {
+	const restBlocks = proBlocks.filter(b => b !== block).map((b, i) => (proBlocks.length > 2 && i === proBlocks.length - 2) ? `and ${b}` : b).join(', ');
 
-	return isProModal && <Modal className='bBlocksProModal' title={<Title />} onRequestClose={() => setIsProModal(false)}>
+
+	return isProModalOpen && <Modal className='bBlocksProModal' title={<Title />} onRequestClose={() => setIsProModalOpen(false)}>
 		<h3>Enhance your experience with Pro features of the <span>{block}</span> block</h3>
 
 		<ul className='features'>

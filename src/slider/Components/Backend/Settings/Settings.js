@@ -40,7 +40,7 @@ const defaultChildPositions = [
 const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, device }) => {
 	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isTouchMove, speed, isAutoplay, autoplayOptions = {}, freeModeOptions = {}, effect, keyboardOptions = {}, isMousewheel = false, isPage, pageOnDevice = {}, isPageClickable, isPageDynamic, isPrevNext, prevNextOnDevice = {}, sliderBG = {}, sliderPadding = {}, pageColor, pageWidth, pageHeight, pageBorder, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, linkTarget, btnTypo, btnPadding, btnBorder } = attributes;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const addSlide = () => {
 		setAttributes({
@@ -72,7 +72,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, de
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	const panelBodyIF = {
@@ -381,7 +381,7 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, de
 		</BlockControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Slider'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Slider'>
 			<li>&emsp;<strong>{__('Border: ', 'b-blocks')}</strong>{__('Border style options in every single slide.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Delay time: ', 'b-blocks')}</strong>{__('Delay time option in autoplay.', 'b-blocks')}</li>

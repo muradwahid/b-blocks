@@ -18,14 +18,14 @@ const Settings = ({ attributes, setAttributes }) => {
 	const { text, actionType = 'link', security, url, tooltip, tooltipPos = 'top', target, attrs = {}, hideOn = {}, isDownload, downloadFileName = '', isUpIcon, icon, upIcon, iconPos, type, isFullWidth, size, popup = {}, animationType, animationDuration, addID, addCSS, alignment, typography, colors, hovColors, padding, border, shadow, securityPassword, securityRole } = attributes;
 	const { type: popType = 'image', content: popContent = '', caption: popCaption = '' } = popup;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const { isPremium } = usePremiumInEditor();
 	const { roles } = useUserRoles();
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	const updateObj = (obj, key, val) => {
@@ -232,7 +232,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		</InspectorControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Button'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Button'>
 			<li>&emsp;<strong>{__('Button Action: ', 'b-blocks')}</strong>{__('Use the button as a link or popup trigger.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('rel Attribute: ', 'b-blocks')}</strong>{__('Add the rel/relation attribute to the anchor link.', 'b-blocks')}</li>

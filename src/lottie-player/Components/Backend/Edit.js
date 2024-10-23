@@ -33,14 +33,16 @@ const Edit = props => {
 	useEffect(() => {
 		lottieWrapper ? lottieWrapper.innerHTML = '' : '';
 
+		const loopCount = 0 < count ? count : true;
+		const loopVal = isLoop ? loopCount : false;
+
 		const reInitPlayer = document.createElement('dotlottie-player');
 		toggleAttr(reInitPlayer, file, 'src', file);
 		toggleAttr(reInitPlayer, isControls, 'controls', '');
 		toggleAttr(reInitPlayer, isAutoplay, 'autoplay', '');
-		toggleAttr(reInitPlayer, isLoop, 'loop', '');
+		toggleAttr(reInitPlayer, isLoop, 'loop', loopVal);
 		toggleAttr(reInitPlayer, isHover, 'hover', '');
 		toggleAttr(reInitPlayer, mode, 'mode', mode);
-		toggleAttr(reInitPlayer, count, 'count', count);
 		toggleAttr(reInitPlayer, speed, 'speed', speed);
 		toggleAttr(reInitPlayer, true, 'direction', direction);
 		toggleAttr(reInitPlayer, intermission, 'intermission', intermission * 1000);

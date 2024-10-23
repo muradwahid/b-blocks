@@ -104,7 +104,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, devi
 								<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => updateFlipBox('shadow', val)} />
 							</PanelBody>
 
-							<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={frontBackTab}>{tab => <>
+							<TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={frontBackTab}>{tab => <>
 								{'front' == tab.name && <>
 									<PanelBody className='bPlPanelBody' title={__('Front Box', 'b-blocks')}>
 										<Background label={__('Background:', 'b-blocks')} value={frontBG} onChange={val => updateFlipBox('frontBG', val)} />

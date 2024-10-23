@@ -15,7 +15,7 @@ import ProModal from '../../../../backend/ProModal/ProModal';
 const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }) => {
 	const { contentAlign } = attributes;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const isPosts = posts?.length;
 
@@ -33,7 +33,7 @@ const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	const props = {
@@ -54,7 +54,7 @@ const Settings = ({ attributes, setAttributes, isPremium, posts, taxOfPostType }
 		</InspectorControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Posts'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Posts'>
 			<li>&emsp;<strong>{__('Layouts: ', 'b-blocks')}</strong>{__('Checkout more layouts and sub layouts.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Display Pages: ', 'b-blocks')}</strong>{__('Effortlessly showcase pages, just like you do with posts.', 'b-blocks')}</li>

@@ -19,6 +19,7 @@ $primaryColor: #4527a4;
 		justify-content: center;
 		text-decoration: none;
 		transition: all 0.3s ease-in-out;
+		transition-property: all !important;
 		cursor: pointer;
 
 		img {

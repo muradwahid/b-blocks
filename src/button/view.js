@@ -171,8 +171,5 @@ const SecurityPopup = ({ attributes, info, setSecurityPass, setSecurityPop }) =>
 				</svg>
 			</button>
 		</div>
-
 	</>
-
-
 }

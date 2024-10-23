@@ -17,11 +17,11 @@ import { flexDirections, layouts, sepTypes } from '../../../utils/options';
 const Settings = ({ attributes, setAttributes, isPremium }) => {
 	const { destDate, layout, isResponsive, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, isExpired = false, hideOn0 = false, hideOnMobile = false, hideOnTablet = false, prefixSuffixDirection = 'row', prefixText = '', suffixButtonText = '', suffixButtonUrl = '#', addID = '', addClass = '', addCSS = '', width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isDaysSingleStyle = false, daysBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, daysDigitColor = '#fff', daysLabelColor = '#fff', isHoursSingleStyle = false, hoursBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, hoursDigitColor = '#fff', hoursLabelColor = '#fff', isMinutesSingleStyle = false, minutesBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, minutesDigitColor = '#fff', minutesLabelColor = '#fff', isSecondsSingleStyle = false, secondsBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, secondsDigitColor = '#fff', secondsLabelColor = '#fff', isSep, sepType, sepSize, sepColor, prefixTextTypo = { fontSize: { desktop: 15 } }, prefixTextColor = '#222', suffixButtonTypo = { fontSize: { desktop: 16 } }, suffixButtonColors = { color: '#fff', bg: '#222' }, suffixButtonPadding = { vertical: '14px', horizontal: '28px' }, isDismiss = false, dismissColor = '#333' } = attributes;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	return <>
@@ -319,7 +319,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 		</InspectorControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Countdown'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Countdown'>
 			<li>&emsp;<strong>{__('Expired Display: ', 'b-blocks')}</strong>{__('Show content that has expired after the countdown timer has elapsed.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Hide at Zero: ', 'b-blocks')}</strong>{__('Conceal the box when the countdown timer reaches 0.', 'b-blocks')}</li>

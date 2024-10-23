@@ -15,11 +15,11 @@ const Settings = (props) => {
 	const { attributes, setAttributes, isPremium } = props;
 	const { advanced } = attributes;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	return <>
@@ -40,7 +40,7 @@ const Settings = (props) => {
 		</InspectorControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Countdown'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Countdown'>
 			<li>&emsp;<strong>{__(': ', 'b-blocks')}</strong>{__('', 'b-blocks')}</li>
 		</ProModal>
 	</>

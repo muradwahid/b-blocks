@@ -45,7 +45,7 @@ const Edit = props => {
 				${imgLinkSl} .imgGalleryImg{
 					padding: ${getSpaceCSS(imgPadding)};
 					${getBorderCSS(imgBorder)}
-					filter: drop-shadow(${getShadowCSS(imgShadow)})
+					filter: drop-shadow(${getShadowCSS(imgShadow, 'text')})
 				}
 				${imgCaptionSl}{
 					text-align: ${capAlign};

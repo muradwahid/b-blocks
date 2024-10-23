@@ -20,7 +20,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 	const { cards = [], columns, columnGap, rowGap, layout, link = {}, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
 	const { target: linkTarget = '_self', element: linkElement = 'card' } = link;
 
-	const [isProModal, setIsProModal] = useState(false);
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
 	const addCard = () => {
 		setAttributes({
@@ -61,7 +61,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 	const premiumProps = {
 		isPremium,
-		setOpen: setIsProModal
+		setIsProModalOpen
 	};
 
 	const { background = {}, img = {}, imgBorder = {}, catColor = '', titleColor = '', descColor = '', link: cardLink = '' } = cards[activeIndex] || [{}];
@@ -207,7 +207,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		</InspectorControls>
 
 
-		<ProModal isProModal={isProModal} setIsProModal={setIsProModal} block='Cards'>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Cards'>
 			<li>&emsp;<strong>{__('Link Target: ', 'b-blocks')}</strong>{__('Set the card link target.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Link Element: ', 'b-blocks')}</strong>{__('Choose the link element you want to link to.', 'b-blocks')}</li>

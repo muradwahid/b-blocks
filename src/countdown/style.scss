@@ -6,6 +6,33 @@
 		box-sizing: border-box;
 	}
 
+	.bBlocksCountdown {
+		max-width: 100%;
+		display: inline-flex;
+		align-items: center;
+		// justify-content: center;
+		// flex-direction: column;
+		position: relative;
+
+		.prefixText {
+			margin: 0 !important;
+		}
+
+		.suffixButton {
+			text-decoration: none;
+		}
+
+		.countdownClose {
+			fill: #333;
+			position: absolute;
+			top: 3px;
+			right: 4px;
+			outline: 0;
+			cursor: pointer;
+			z-index: 10;
+		}
+	}
+
 	.countdownItems {
 		display: flex;
 		flex-grow: 1;

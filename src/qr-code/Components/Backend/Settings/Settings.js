@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, TextControl } from '@wordpress/components';
 
-import { Label, ColorControl, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { Label, HexColorControl, HelpPanel } from '../../../../../../bpl-tools/Components';
 
 import { pluginSlug, qrCodeDocs } from '../../../../utils/data';
 
@@ -21,9 +21,9 @@ const Settings = ({ attributes, setAttributes }) => {
 				<Label>{__('Dimension:', 'b-blocks')}</Label>
 				<RangeControl value={dimension} onChange={val => setAttributes({ dimension: val })} min={50} max={1000} step={1} />
 
-				<ColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => setAttributes({ color: val })} defaultColor='#000' disableAlpha={true} />
+				<HexColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => setAttributes({ color: val })} defaultColor='#000' disableAlpha={true} />
 
-				<ColorControl label={__('Background Color:', 'b-blocks')} value={bgColor} onChange={val => setAttributes({ bgColor: val })} defaultColor='#fff' disableAlpha={true} />
+				<HexColorControl label={__('Background Color:', 'b-blocks')} value={bgColor} onChange={val => setAttributes({ bgColor: val })} defaultColor='#fff' disableAlpha={true} />
 			</PanelBody>
 		</InspectorControls>
 

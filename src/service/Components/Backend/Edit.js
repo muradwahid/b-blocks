@@ -15,7 +15,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={props.attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps} id={id}>
+		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} />
 
 			<Service attributes={attributes} isBackend={true} custom={{ setAttributes }}>
