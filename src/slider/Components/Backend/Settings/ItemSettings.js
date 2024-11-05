@@ -1,0 +1,70 @@
+import { __ } from '@wordpress/i18n';
+import { PanelRow, TextControl, TextareaControl, __experimentalAlignmentMatrixControl as AlignmentMatrixControl } from '@wordpress/components';
+import { produce } from 'immer';
+
+import { Label, Background, ColorControl, ColorsControl } from '../../../../../../bpl-tools/Components';
+import { BorderControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
+
+import { getPosByPos } from '../../../utils/functions';
+import { prefix } from '../../../utils/data';
+
+const ItemSettings = ({ attributes, setAttributes, clientId, arrKey, index, setActiveIndex = false, premiumProps }) => {
+	const items = attributes[arrKey];
+	const { background, border = {}, title, titleColor, description, descColor, btnText, btnLink, btnColors, btnHovColors } = items[index];
+
+	const updateSlide = (index, property, val) => {
+		const newSlides = produce(attributes[arrKey], draft => {
+			draft[index][property] = val;
+		});
+
+		setAttributes({ [arrKey]: newSlides });
+		setActiveIndex && setActiveIndex(index);
+	}
+
+	return <>
+		<Background label={__('Background', 'b-blocks')} value={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
+
+		<BControlPro label={__('Border:', 'b-blocks')} value={border} onChange={val => updateSlide(index, 'border', val)} {...premiumProps} Component={BorderControl} />
+
+		<PanelRow>
+			<Label className=''>{__('Content Position', 'b-blocks')}</Label>
+			<AlignmentMatrixControl onChange={val => {
+				setAttributes({
+					slides: produce(items, draft => {
+						draft[index]['position'] = val;
+						draft[index]['childPositions'] = getPosByPos(`${prefix}-${clientId}`, index, val);
+					})
+				})
+			}} />
+		</PanelRow>
+		<small>{__('You can also change the content position by dragging element.', 'b-blocks')}</small>
+
+		<PanelRow className='mt20'>
+			<Label className=''>{__('Title:', 'b-blocks')}</Label>
+			<TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
+		</PanelRow>
+
+		<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateSlide(index, 'titleColor', val)} defaultColor='#fff' />
+
+		<Label>{__('Description:', 'b-blocks')}</Label>
+		<TextareaControl value={description} onChange={val => updateSlide(index, 'description', val)} placeholder={__('Description of the slider', 'b-blocks')} />
+
+		<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateSlide(index, 'descColor', val)} defaultColor='#fff' />
+
+		<PanelRow className='mt20'>
+			<Label className=''>{__('Button Text:', 'b-blocks')}</Label>
+			<TextControl value={btnText} onChange={val => updateSlide(index, 'btnText', val)} placeholder={__('Button label', 'b-blocks')} />
+		</PanelRow>
+
+		<PanelRow>
+			<Label className=''>{__('Button Link:', 'b-blocks')}</Label>
+			<TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
+		</PanelRow>
+
+		<ColorsControl label={__('Button Colors:', 'b-blocks')} value={btnColors} onChange={val => updateSlide(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
+
+		<ColorsControl label={__('Button Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateSlide(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#8344c5' }} />
+	</>
+}
+export default ItemSettings;

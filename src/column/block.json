@@ -61,7 +61,13 @@
 			"wide",
 			"full"
 		],
-		"html": false
+		"html": false,
+		"layout": {
+			"allowSizingOnChildren": true
+		},
+		"interactivity": {
+			"clientNavigation": true
+		}
 	},
 	"example": {
 		"attributes": {

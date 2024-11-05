@@ -1,1 +1,9 @@
 $primaryColor: #4527a4;
+
+.wp-block-b-blocks-container {
+    .bBlocksContainerContent {
+        >.block-editor-inner-blocks {
+            width: inherit;
+        }
+    }
+}

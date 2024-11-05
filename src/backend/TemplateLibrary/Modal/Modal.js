@@ -5,7 +5,7 @@ import Templates from './Templates';
 import { closeIcon } from '../utils/icons';
 import { searchData } from '../utils/functions';
 import pages from '../data/pages.json';
-import patterns from '../data/patterns.json';
+import patterns from '../data/patterns';
 
 const Modal = ({ isPremium, show, setShow }) => {
 	const [type, setType] = useState('pages');

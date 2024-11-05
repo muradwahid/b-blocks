@@ -4,8 +4,8 @@ import { useBlockProps } from '@wordpress/block-editor';
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
-import { toggleAttr } from '../../utils/functions';
 import DotLottiePlayer from '../Common/DotLottiePlayer';
+import { toggleAttr } from '../../utils/functions';
 import { prefix } from '../../utils/data';
 
 const Edit = props => {

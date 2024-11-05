@@ -12,7 +12,7 @@ import Wrapper from './General/Wrapper';
 import Shape from './General/Shape';
 
 const Settings = (props) => {
-	const { attributes, setAttributes, isPremium } = props;
+	const { attributes, setAttributes, id, isPremium } = props;
 	const { advanced } = attributes;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
@@ -34,7 +34,7 @@ const Settings = (props) => {
 
 
 				{'style' === tab.name && <>
-					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} isBGVideo={isPremium} />
+					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} id={id} isPremium={isPremium} />
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>

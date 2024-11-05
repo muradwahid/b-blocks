@@ -12,8 +12,9 @@ const Style = ({ attributes, id, isBackend = false }) => {
 	const selector = isBackend ? blockListLayout : rowSl;
 
 	const innerCount = document.querySelector(selector)?.children?.length;
-	const totalInnerBlocks = isBackend ? innerCount - 1 : innerCount;
-	const totalGap = parseInt(columnGap) * (totalInnerBlocks - 1);
+	const totalInnerBlocks = isBackend ? Number(innerCount) - 1 : innerCount;
+	const totalGap = parseInt(columnGap) * (Number(totalInnerBlocks) - 1);
+
 	const gapPerCol = totalGap / totalInnerBlocks;
 
 	const colCls = '.wp-block-b-blocks-column:not(.wp-block)';

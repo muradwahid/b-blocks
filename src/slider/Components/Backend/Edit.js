@@ -71,7 +71,7 @@ const Edit = props => {
 	const SliderEl = () => <Slider attributes={attributes} initialSlide={activeIndex} isBackend={true} />
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} setActiveIndex={setActiveIndex} id={id} />
+		<Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} activeIndex={activeIndex} isPremium={isPremium} setActiveIndex={setActiveIndex} id={id} />
 
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} />

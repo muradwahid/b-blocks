@@ -2,19 +2,18 @@ import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, Button, ToolbarGroup, ToolbarButton, Dashicon, TextControl, TextareaControl, ToggleControl, TabPanel, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import { produce } from 'immer';
+import { PanelBody, PanelRow, RangeControl,  ToolbarGroup, ToolbarButton, Dashicon,   ToggleControl, TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, ColorControl, Device, ColorsControl, HelpPanel, Typography } from '../../../../../../bpl-tools/Components';
+import { Label, Background, ColorControl, Device,  HelpPanel, Typography, ItemsPanel } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
-import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
+
 import { pluginSlug } from '../../../../utils/data';
 import { effects, tabs } from '../../../utils/options';
-import { getPosByPos } from '../../../utils/functions';
+import ItemSettings from './ItemSettings';
 
 const defaultChildPositions = [
 	{
@@ -37,37 +36,31 @@ const defaultChildPositions = [
 	}
 ];
 
-const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, device }) => {
+const Settings = ({ attributes, setAttributes, clientId, activeIndex, setActiveIndex, isPremium,  device }) => {
 	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isTouchMove, speed, isAutoplay, autoplayOptions = {}, freeModeOptions = {}, effect, keyboardOptions = {}, isMousewheel = false, isPage, pageOnDevice = {}, isPageClickable, isPageDynamic, isPrevNext, prevNextOnDevice = {}, sliderBG = {}, sliderPadding = {}, pageColor, pageWidth, pageHeight, pageBorder, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, linkTarget, btnTypo, btnPadding, btnBorder } = attributes;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
-	const addSlide = () => {
-		setAttributes({
-			slides: [...slides, {
-				background: { color: '#00000080' },
-				border: {},
-				position: 'center center',
-				childPositions: defaultChildPositions,
-				title: `Slide Title ${slides.length + 1}`,
-				titleColor: '#fff',
-				description: `This content area describes slider ${slides.length + 1} descriptions/details.`,
-				descColor: '#fff',
-				btnText: `Button ${slides.length + 1}`,
-				btnLink: '#',
-				btnColors: { color: '#fff', bg: '#4527a4' },
-				btnHovColors: { color: '#fff', bg: '#8344c5' }
-			}]
-		});
-		setActiveIndex(slides.length);
+	const newSlide = {
+		background: { color: '#00000080' },
+		border: {},
+		position: 'center center',
+		childPositions: defaultChildPositions,
+		title: `Slide Title ${slides.length + 1}`,
+		titleColor: '#fff',
+		description: `This content area describes slider ${slides.length + 1} descriptions/details.`,
+		descColor: '#fff',
+		btnText: `Button ${slides.length + 1}`,
+		btnLink: '#',
+		btnColors: { color: '#fff', bg: '#4527a4' },
+		btnHovColors: { color: '#fff', bg: '#8344c5' }
 	}
 
-	const updateSlide = (index, type, val) => {
-		const newSlides = produce(slides, draft => {
-			draft[index][type] = val;
-		})
-		setAttributes({ slides: newSlides });
-		setActiveIndex(index);
+	const addSlide = () => {
+		setAttributes({
+			slides: [...slides, newSlide]
+		});
+		setActiveIndex(slides.length);
 	}
 
 	const premiumProps = {
@@ -80,6 +73,8 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, de
 		initialOpen: false
 	}
 
+	const itemsProps = { attributes, setAttributes, clientId, arrKey: 'slides', activeIndex, setActiveIndex, premiumProps }
+
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={tabs}>{tab => <>
@@ -87,71 +82,8 @@ const Settings = ({ attributes, setAttributes, setActiveIndex, isPremium, id, de
 					<HelpPanel slug={pluginSlug} docsLink='https://bplugins.com/docs/content-slider-block/guides/general' />
 
 
-					<PanelBody className='bPlPanelBody addRemoveItems' title={__('Add or Remove Slides', 'b-blocks')}>
-						{slides.map((item, index) => {
-							const { background, border = {}, title, titleColor, description, descColor, btnText, btnLink, btnColors, btnHovColors } = item;
-
-							return <PanelBody key={index} className='bPlPanelBody editItem' title={__(`Slide No ${index + 1}:`, 'b-blocks')} initialOpen={0 !== index ? false : true}>
-								<Background label={__('Background', 'b-blocks')} value={background} onChange={val => updateSlide(index, 'background', val)} defaults={{ color: '#00000080' }} />
-
-								<BControlPro label={__('Border:', 'b-blocks')} value={border} onChange={val => updateSlide(index, 'border', val)} {...premiumProps} Component={BorderControl} />
-
-								<PanelRow>
-									<Label className=''>{__('Content Position', 'b-blocks')}</Label>
-									<AlignmentMatrixControl onChange={val => {
-										setAttributes({
-											slides: produce(slides, draft => {
-												draft[index]['position'] = val;
-												draft[index]['childPositions'] = getPosByPos(id, index, val);
-											})
-										})
-									}} />
-								</PanelRow>
-								<small>{__('You can also change the content position by dragging element.', 'b-blocks')}</small>
-
-								<PanelRow className='mt20'>
-									<Label className=''>{__('Title:', 'b-blocks')}</Label>
-									<TextControl value={title} onChange={val => updateSlide(index, 'title', val)} placeholder={__('Slide title', 'b-blocks')} />
-								</PanelRow>
-
-								<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateSlide(index, 'titleColor', val)} defaultColor='#fff' />
-
-								<Label>{__('Description:', 'b-blocks')}</Label>
-								<TextareaControl value={description} onChange={val => updateSlide(index, 'description', val)} placeholder={__('Description of the slider', 'b-blocks')} />
-
-								<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateSlide(index, 'descColor', val)} defaultColor='#fff' />
-
-								<PanelRow className='mt20'>
-									<Label className=''>{__('Button Text:', 'b-blocks')}</Label>
-									<TextControl value={btnText} onChange={val => updateSlide(index, 'btnText', val)} placeholder={__('Button label', 'b-blocks')} />
-								</PanelRow>
-
-								<PanelRow>
-									<Label className=''>{__('Button Link:', 'b-blocks')}</Label>
-									<TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
-								</PanelRow>
-
-								<ColorsControl label={__('Button Colors:', 'b-blocks')} value={btnColors} onChange={val => updateSlide(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
-
-								<ColorsControl label={__('Button Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateSlide(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#8344c5' }} />
-
-								<PanelRow className='itemAction mt20'>
-									<Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={e => {
-										e.preventDefault();
-										setAttributes({ slides: [...slides.slice(0, index), ...slides.slice(index + 1)] });
-									}}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>
-
-									<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={e => {
-										e.preventDefault();
-										setAttributes({ slides: [...slides, { ...slides[index] }] });
-									}}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-								</PanelRow>
-							</PanelBody>
-						})}
-
-						<div className='addItem'>
-							<Button label={__('Add New Slide', 'b-blocks')} onClick={addSlide}><Dashicon icon='plus' />{__('Add New Slide', 'b-blocks')}</Button>
-						</div>
+					<PanelBody className='bPlPanelBody' title={__('Slides', 'b-blocks')}>
+						<ItemsPanel {...itemsProps} newItem={newSlide} ItemSettings={ItemSettings} itemLabel='Slide' design={isPremium ? 'sortable' : 'all'} />
 					</PanelBody>
 
 

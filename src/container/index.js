@@ -9,5 +9,6 @@ import { containerIcon } from './utils/icons';
 registerBlockType(metadata, {
 	icon: containerIcon,
 	edit: Edit,
-	save: () => <InnerBlocks.Content />
+	save: () => <InnerBlocks.Content />,
+	variations: [{ isDefault: true }]
 });

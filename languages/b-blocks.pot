@@ -2,20 +2,23 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks Pro 1.9.6\n"
+"Project-Id-Version: B Blocks 1.9.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-23T14:41:47+00:00\n"
+"POT-Creation-Date: 2024-11-05T12:40:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
-msgid "B Blocks Pro"
+#: includes/AdminMenu.php:23
+#: includes/AdminMenu.php:24
+#: plugin.php:167
+msgid "B Blocks"
 msgstr ""
 
 #. Description of the plugin
@@ -32,12 +35,6 @@ msgstr ""
 
 #: build/image-gallery/render.php:77
 msgid "Preview"
-msgstr ""
-
-#: includes/AdminMenu.php:23
-#: includes/AdminMenu.php:24
-#: plugin.php:167
-msgid "B Blocks"
 msgstr ""
 
 #: includes/AdminMenu.php:33

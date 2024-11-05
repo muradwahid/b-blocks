@@ -9,9 +9,9 @@ import { shapeCSS } from '../../utils/functions';
 const Style = ({ attributes, id }) => {
 	const { wrapper, content, shape, advanced } = attributes;
 	const { minHeight } = wrapper;
-	const { isFullWidth, width, verticalAlign, horizontalAlign } = content;
+	const { isFullWidth, width, height, verticalAlign, horizontalAlign } = content;
 
-	const mainSl = `#${id}`;
+	const mainSl = `#${id} .${prefix}`;
 	const contentSl = `${mainSl} .${prefix}Content`;
 
 	return <style dangerouslySetInnerHTML={{
@@ -20,12 +20,13 @@ const Style = ({ attributes, id }) => {
 
 		${mainSl}{
 			min-height: ${0 === parseInt(minHeight) ? 'auto' : minHeight};
-			align-items: ${horizontalAlign};
-			justify-content: ${verticalAlign};
 		}
 
 		${contentSl}{
 			width: ${(isFullWidth || 0 === parseInt(width.desktop)) ? '100%' : width.desktop};
+			flex-grow: ${height};
+			align-items: ${horizontalAlign};
+			justify-content: ${verticalAlign};
 		}
 		${tabBreakpoint}{
 			${contentSl}{

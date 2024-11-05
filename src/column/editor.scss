@@ -4,6 +4,10 @@ $primaryColor: #4527a4;
 	height: 100%;
 	position: relative;
 
+	&.wp-block {
+		margin-block-start: 0;
+	}
+
 	.components-resizable-box__container {
 		max-width: 100%;
 	}

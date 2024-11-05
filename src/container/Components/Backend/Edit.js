@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { withSelect } from '@wordpress/data';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
@@ -8,7 +9,7 @@ import SVGShape from '../Common/SVGShape';
 import { prefix } from '../../utils/data';
 
 const Edit = props => {
-	const { setAttributes, attributes, clientId, innerBlocks, device } = props;
+	const { attributes, setAttributes, clientId, innerBlocks, device } = props;
 	const { shape } = attributes;
 	const { top, bottom } = shape;
 
@@ -16,24 +17,28 @@ const Edit = props => {
 
 	const id = `${prefix}-${clientId}`;
 
+	useEffect(() => {
+		window['AOS']?.init();
+	}, []);
 
 	return <div {...useBlockProps()} id={id}>
-		<Settings attributes={attributes} setAttributes={setAttributes} device={device} isPremium={isPremium} />
+		<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={id} isPremium={isPremium} />
 
 		<Style attributes={attributes} id={id} />
 
-		{top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>
-			<SVGShape data={top} />
-		</div>}
+		<div className={prefix}>
+			{top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>
+				<SVGShape data={top} />
+			</div>}
 
-		<div className={`${prefix}Content`}>
-			<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender /> : <InnerBlocks.DefaultBlockAppender />} />
-		</div>
+			<div className={`${prefix}Content`}>
+				<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender /> : <InnerBlocks.DefaultBlockAppender />} />
+			</div>
 
-		{bottom?.uploadSvg?.url || 'none' !== bottom?.type && <div className='shaped bottomShaped'>
-			<SVGShape data={bottom} />
-		</div>}
-	</div>
+			{bottom?.uploadSvg?.url || 'none' !== bottom?.type && <div className='shaped bottomShaped'>
+				<SVGShape data={bottom} />
+			</div>}
+		</div></div>
 }
 export default withSelect((select, { clientId }) => {
 	const { getDeviceType } = select('core/editor');

@@ -1,12 +1,13 @@
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 import { getShadowCSS } from "../../../../../bpl-tools/utils/getCSS";
+import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
 	const { wrapper, icon, advanced } = attributes;
 	const { size, color, shadow } = icon;
 	const { width, height } = wrapper;
 
-	const mainSl = `#${id}`;
+	const mainSl = `#${id} .${prefix}`;
 	const svgSl = `${mainSl} svg`;
 
 	return <style dangerouslySetInnerHTML={{

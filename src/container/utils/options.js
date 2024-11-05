@@ -1,5 +1,10 @@
 import { __ } from '@wordpress/i18n';
 
+export const heights = [
+	{ value: 'initial', label: 'Auto' },
+	{ value: 1, label: 'Full' }
+];
+
 export const shapedOptions = [
 	{ value: 'none', label: 'None' },
 	{ value: 'ocean-wave', label: 'Ocean Wave' },

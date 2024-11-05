@@ -18,7 +18,7 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 
 			wp_enqueue_style( 'b-blocks-template-library-style', B_BLOCKS_BUILD . 'template-library.css', [], B_BLOCKS_VERSION );
 
-			wp_enqueue_script( 'b-blocks-index-script', B_BLOCKS_BUILD . 'index.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-date', 'wp-element', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'modelViewer', 'easyTicker', 'swiper', 'dotLottiePlayer', 'lottieInteractivity', 'chartJS', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false );
+			wp_enqueue_script( 'b-blocks-index-script', B_BLOCKS_BUILD . 'index.js', [ 'wp-api', 'wp-blob', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-date', 'wp-element', 'wp-i18n', 'wp-rich-text', 'wp-util', 'jquery', 'jqueryUI', 'aos', 'modelViewer', 'easyTicker', 'swiper', 'dotLottiePlayer', 'lottieInteractivity', 'chartJS', 'plyr', 'textillate', 'goodShare' ], B_BLOCKS_VERSION, false );
 			wp_set_script_translations( 'b-blocks-index-script', 'b-blocks', B_BLOCKS_DIR_PATH . 'languages' );
 
 			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );

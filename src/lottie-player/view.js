@@ -8,17 +8,17 @@ import { toggleAttr } from './utils/functions';
 import { prefix } from './utils/data';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const lottiePlayerEls = document.querySelectorAll('.wp-block-b-blocks-lottie-player');
-	lottiePlayerEls.forEach(lottiePlayerEl => {
-		const attributes = JSON.parse(lottiePlayerEl.dataset.attributes);
+	const playerEls = document.querySelectorAll('.wp-block-b-blocks-lottie-player');
+	playerEls.forEach(playerEl => {
+		const attributes = JSON.parse(playerEl.dataset.attributes);
 
-		createRoot(lottiePlayerEl).render(<>
-			<Style attributes={attributes} id={lottiePlayerEl.id} />
+		createRoot(playerEl).render(<>
+			<Style attributes={attributes} id={playerEl.id} />
 
-			<RenderLottiePlayer attributes={attributes} id={lottiePlayerEl.id} />
+			<RenderLottiePlayer attributes={attributes} id={playerEl.id} />
 		</>);
 
-		lottiePlayerEl?.removeAttribute('data-attributes')
+		playerEl?.removeAttribute('data-attributes')
 	});
 });
 

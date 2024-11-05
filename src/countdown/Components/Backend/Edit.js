@@ -30,7 +30,7 @@ const Edit = props => {
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} />
 
-			<Countdown attributes={attributes} Box={Box} closeEl={<Tooltip text='Hide will only work in frontend' placement='top' position='top'>{closeIcon}</Tooltip>}>
+			<Countdown attributes={attributes} Box={Box} closeEl={<Tooltip text='Hide will only work in frontend' placement='top' position='top'>{closeIcon}</Tooltip>} isBackend={true} custom={{ setAttributes }}>
 				<div className='countdownExpired'>
 					<InnerBlocks template={[
 						['core/heading', {

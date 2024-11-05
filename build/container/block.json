@@ -16,6 +16,12 @@
       "type": "string",
       "default": ""
     },
+    "layout": {
+      "type": "object",
+      "default": {
+        "type": "constrained"
+      }
+    },
     "wrapper": {
       "type": "object",
       "default": {
@@ -31,6 +37,7 @@
           "tablet": "",
           "mobile": ""
         },
+        "height": "initial",
         "verticalAlign": "center",
         "horizontalAlign": "center"
       }
@@ -124,20 +131,14 @@
       }
     }
   },
-  "providesContext": {
-    "b-blocks/rowColumns": "columns",
-    "b-blocks/rowColumnGap": "columnGap"
-  },
   "supports": {
     "align": [
       "wide",
       "full"
     ],
-    "html": false
-  },
-  "example": {
-    "attributes": {
-      "preview": true
+    "html": false,
+    "layout": {
+      "allowSizingOnChildren": true
     }
   },
   "style": [

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: B Blocks Pro
+ * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
  * Version: 1.9.6
  * Author: bPlugins

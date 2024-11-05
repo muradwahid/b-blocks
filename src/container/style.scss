@@ -1,39 +1,43 @@
 $primaryColor: #4527a4;
 
 .wp-block-b-blocks-container {
-	box-sizing: border-box;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-
 	* {
 		box-sizing: border-box;
 	}
 
-	.shaped {
-		width: 100%;
-		display: grid;
-		position: absolute;
-		z-index: 2;
-
-		svg {
-			height: auto;
-		}
-	}
-
-	.topShaped {
-		top: 0;
-		left: 0;
-	}
-
-	.bottomShaped {
-		left: 0;
-		bottom: 0;
-	}
-
-	.bBlocksContainerContent {
+	.bBlocksContainer {
 		position: relative;
-		max-width: 100%;
-		z-index: 3;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		.shaped {
+			width: 100%;
+			display: grid;
+			position: absolute;
+			z-index: 2;
+
+			svg {
+				height: auto;
+			}
+		}
+
+		.topShaped {
+			top: 0;
+			left: 0;
+		}
+
+		.bottomShaped {
+			left: 0;
+			bottom: 0;
+		}
+
+		.bBlocksContainerContent {
+			max-width: 100%;
+			display: flex;
+			flex-direction: column;
+			z-index: 3;
+		}
 	}
 }
