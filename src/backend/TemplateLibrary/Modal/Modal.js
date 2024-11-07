@@ -8,7 +8,7 @@ import pages from '../data/pages.json';
 import patterns from '../data/patterns';
 
 const Modal = ({ isPremium, show, setShow }) => {
-	const [type, setType] = useState('pages');
+	const [type, setType] = useState('patterns');
 	const [category, setCategory] = useState('all');
 	const [search, setSearch] = useState('');
 

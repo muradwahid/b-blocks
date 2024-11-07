@@ -26,7 +26,7 @@ const Sidebar = ({ type, setType, category, setCategory, setSearch, setItemsDisp
 				className='bPlTabPanel'
 				activeClass='activeTab'
 				tabs={[
-					{ name: 'pages', title: __('Pages', 'b-blocks') },
+					// { name: 'pages', title: __('Pages', 'b-blocks') },
 					{ name: 'patterns', title: __('Patterns', 'b-blocks') }
 				]}
 				onSelect={tabName => {

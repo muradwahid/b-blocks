@@ -24,7 +24,7 @@ const Settings = (props) => {
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
+			<TabPanel className='bPlTabPanel bPlRemPrev' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
 					<Wrapper {...props} />
 

@@ -27,7 +27,7 @@ const Templates = ({ filteredItems, pageItems, isPremium, setShow, children }) =
 				return <div className='modalBodyTemplateItem' key={index}>
 					<div className='modalBodyTemplateItemPreviewWrap'>
 						<div className='modalBodyTemplateItemPreview'>
-							<BlockPreview blocks={parse(content)} viewportWidth={700} />
+							<BlockPreview blocks={parse(content)} viewportWidth={1600} />
 						</div>
 
 						<div className='modalBodyTemplateItemButton'>

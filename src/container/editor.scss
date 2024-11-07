@@ -7,3 +7,7 @@ $primaryColor: #4527a4;
         }
     }
 }
+
+.components-panel__body:has(+ .bPlRemPrev) {
+    display: none;
+}

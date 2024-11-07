@@ -1,0 +1,38 @@
+[
+  {
+    "name": "bb-patterns/product-1",
+    "title": "Product 1",
+    "description": "Awesome Product Section Design",
+    "type": "patterns",
+    "categories": ["product"],
+    "keywords": ["product", "animated text", "pricing", "services", "features"],
+    "blockTypes": [
+      "b-blocks/animated-text",
+      "b-blocks/row",
+      "b-blocks/column",
+      "core/paragraph",
+      "core/image",
+      "core/buttons",
+      "core/button"
+    ],
+    "content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":2,\"background\":{\"color\":\"rgba(252, 252, 251, 1)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"10%\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":57.758225424325005,\"tablet\":100,\"mobile\":100}} --> <!-- wp:image {\"sizeSlug\":\"large\"} --> <figure class=\"wp-block-image size-large\"><img src=\"https://i.ibb.co.com/Qkt82dZ/img-10.png\" alt=\"\"/></figure> <!-- /wp:image --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":42.241774575674995,\"tablet\":100,\"mobile\":100}} --> <!-- wp:image {\"width\":\"105px\",\"height\":\"auto\",\"sizeSlug\":\"large\"} --> <figure class=\"wp-block-image size-large is-resized\"><img src=\"https://i.ibb.co.com/GsL7S02/logo.png\" alt=\"\" style=\"width:105px;height:auto\"/></figure> <!-- /wp:image --> <!-- wp:heading {\"level\":4,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|accent-3\"}}}},\"textColor\":\"accent-3\"} --> <h4 class=\"wp-block-heading has-accent-3-color has-text-color has-link-color\"><strong>Best Quality Products</strong></h4> <!-- /wp:heading --> <!-- wp:b-blocks/animated-text {\"inEffect\":\"fadeInUp\",\"outEffect\":\"hinge\",\"textAlign\":\"left\",\"content\":\"Join The Organic Movement!\",\"typography\":{\"fontSize\":{\"desktop\":56,\"tablet\":20,\"mobile\":18},\"fontWeight\":800,\"fontVariant\":\"800\",\"fontFamily\":\"Abhaya Libre\",\"fontCategory\":\"serif\",\"lineHeight\":\"95%\"},\"color\":\"rgba(90, 145, 53, 1)\",\"padding\":{\"vertical\":\"15px\",\"horizontal\":\"0px\",\"side\":4,\"top\":\"0px\",\"right\":\"136px\",\"bottom\":\"10px\",\"left\":\"0px\"}} /--> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|contrast\"}}}},\"textColor\":\"contrast\"} --> <p class=\"has-contrast-color has-text-color has-link-color\">Interactively leverage other's real-time relationships for cross-unit best practices. Interactively maintain adaptive technology after robust.</p> <!-- /wp:paragraph --> <!-- wp:buttons --> <div class=\"wp-block-buttons\"><!-- wp:button {\"textColor\":\"base-2\",\"style\":{\"color\":{\"background\":\"#87b11c\"},\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"typography\":{\"fontSize\":\"1.2rem\",\"textTransform\":\"uppercase\"},\"spacing\":{\"padding\":{\"left\":\"var:preset|spacing|30\",\"right\":\"var:preset|spacing|30\"}}}} --> <div class=\"wp-block-button has-custom-font-size\" style=\"font-size:1.2rem;text-transform:uppercase\"><a class=\"wp-block-button__link has-base-2-color has-text-color has-background has-link-color wp-element-button\" style=\"background-color:#87b11c;padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)\"><strong>Shop Now</strong></a></div> <!-- /wp:button --></div> <!-- /wp:buttons --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
+  },
+  {
+    "name": "bb-patterns/product-2",
+    "title": "Product 2",
+    "description": "Awesome Product Section Design",
+    "type": "patterns",
+    "categories": ["product"],
+    "keywords": ["product", "animated text", "pricing", "services", "features"],
+    "blockTypes": [
+      "b-blocks/animated-text",
+      "b-blocks/row",
+      "b-blocks/column",
+      "core/paragraph",
+      "core/image",
+      "core/buttons",
+      "core/button"
+    ],
+    "content": "<!-- wp:b-blocks/row {\"columns\":2,\"background\":{\"color\":\"rgba(247, 250, 253, 1)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"10%\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"level\":5,\"style\":{\"color\":{\"text\":\"#6852f4\"},\"elements\":{\"link\":{\"color\":{\"text\":\"#6852f4\"}}}},\"fontFamily\":\"body\"} --> <h5 class=\"wp-block-heading has-text-color has-link-color has-body-font-family\" style=\"color:#6852f4\"><strong>Why Choose Us</strong></h5> <!-- /wp:heading --> <!-- wp:b-blocks/animated-text {\"inEffect\":\"flip\",\"outEffect\":\"bounceOutDown\",\"textAlign\":\"left\",\"content\":\"Awesome themes \u0026 plugins for WordPress\",\"typography\":{\"fontSize\":{\"desktop\":60,\"tablet\":20,\"mobile\":18},\"fontWeight\":700,\"fontVariant\":\"700\"},\"color\":\"rgba(104, 82, 244, 1)\",\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"1px\"}} /--> <!-- wp:b-blocks/animated-text {\"animateIn\":\"word\",\"inEffect\":\"bounceInUp\",\"outEffect\":\"bounceOutUp\",\"textAlign\":\"left\",\"content\":\"Competently recaptiualize enabled mindshare and cooperative synergy. Conveniently synthesize high-quality human capital vis-a-vis multimedia based.\",\"padding\":{\"vertical\":\"15px\",\"horizontal\":\"1px\"}} /--> <!-- wp:b-blocks/row {\"columns\":1} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:buttons --> <div class=\"wp-block-buttons\"><!-- wp:button {\"style\":{\"color\":{\"background\":\"#6852f4\"}},\"fontSize\":\"medium\"} --> <div class=\"wp-block-button has-custom-font-size has-medium-font-size\"><a class=\"wp-block-button__link has-background wp-element-button\" style=\"background-color:#6852f4\"><strong>Explore Our Products</strong></a></div> <!-- /wp:button --></div> <!-- /wp:buttons --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:image {\"sizeSlug\":\"large\"} --> <figure class=\"wp-block-image size-large\"><img src=\"https://i.ibb.co.com/SN3W5Wj/img-9.png\" alt=\"\"/></figure> <!-- /wp:image --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
+  }
+]

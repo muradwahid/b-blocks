@@ -1,3 +1,30 @@
+import about from './patterns/about.json';
+import blog from './patterns/blog.json';
+import contact from './patterns/contact.json';
+import countdown from './patterns/countdown.json';
+import counters from './patterns/counters.json';
+import course from './patterns/course.json';
+import cta from './patterns/cta.json';
+import faq from './patterns/faq.json';
+import featuresServices from './patterns/features-services.json';
+import footer from './patterns/footer.json';
+import gallery from './patterns/gallery.json';
+import header from './patterns/header.json';
+import hero from './patterns/hero-banner.json';
+import info from './patterns/info.json';
+import maps from './patterns/maps.json';
+import portfolio from './patterns/portfolio.json';
+import pricing from './patterns/pricing.json';
+import product from './patterns/product.json';
+import qrcode from './patterns/qrcode.json';
+import search from './patterns/search.json';
+import singlePage from './patterns/single-page.json';
+import slider from './patterns/slider.json';
+import subscription from './patterns/subscription.json';
+import teamMember from './patterns/team-member.json';
+import testimonials from './patterns/testimonials.json';
+import videos from './patterns/videos.json';
+
 import patterns from '../data/patterns.json';
 
-export default patterns;
+export default [...about, ...blog, ...contact, ...countdown, ...counters, ...course, ...cta, ...faq, ...featuresServices, ...footer, ...gallery, ...header, ...hero, ...info, ...maps, ...portfolio, ...pricing, ...product, ...qrcode, ...search, ...singlePage, ...slider, ...subscription, ...teamMember, ...testimonials, ...videos];
