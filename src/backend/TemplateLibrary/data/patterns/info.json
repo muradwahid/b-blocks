@@ -1,32 +1,44 @@
 [
-  {
-    "name": "bb-patterns/info-section-1",
-    "title": "Info 1",
-    "description": "Awesome Info Section Design",
-    "type": "patterns",
-    "categories": ["info"],
-    "keywords": ["info", "info box", "information"],
-    "blockTypes": [
-      "b-blocks/animated-text",
-      "b-blocks/row",
-      "b-blocks/column",
-      "core/heading"
-    ],
-    "content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100},\"background\":{\"color\":\"#111111\",\"type\":\"image\",\"image\":{\"id\":null,\"url\":\"https://i.ibb.co.com/W3RnzKh/img-8.webp\",\"alt\":\"\",\"title\":\"\",\"caption\":\"\"}},\"padding\":{\"vertical\":\"30px\",\"horizontal\":\"0px\"}} --> <!-- wp:heading {\"textAlign\":\"center\",\"level\":4,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|luminous-vivid-orange\"}}}},\"textColor\":\"luminous-vivid-orange\"} --> <h4 class=\"wp-block-heading has-text-align-center has-luminous-vivid-orange-color has-text-color has-link-color\">March 4, 2024</h4> <!-- /wp:heading --> <!-- wp:b-blocks/animated-text {\"inEffect\":\"bounce\",\"outEffect\":\"hinge\",\"background\":{\"color\":\"#0000\",\"type\":\"image\",\"image\":{\"id\":null,\"url\":\"https://cdn.prod.website-files.com/65cc7b7d8792f0ced96796f8/65ddb4dcbf4179d6f92c4f87_isometric-macu-white.webp\",\"alt\":\"\",\"title\":\"\",\"caption\":\"\"}},\"content\":\"12+ Website Section Designs For Inspiration\",\"typography\":{\"fontSize\":{\"desktop\":60,\"tablet\":20,\"mobile\":18},\"fontWeight\":400,\"fontVariant\":400,\"fontFamily\":\"Abhaya Libre\",\"fontCategory\":\"serif\"},\"color\":\"#ffffff\",\"padding\":{\"vertical\":\"15px\",\"horizontal\":\"29%\"}} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-  },
-  {
-    "name": "bb-patterns/info-section-2",
-    "title": "Info 2",
-    "description": "Awesome Info Section Design",
-    "type": "patterns",
-    "categories": ["info"],
-    "keywords": ["info", "flip box", "information"],
-    "blockTypes": [
-      "b-blocks/flip-boxes",
-      "b-blocks/row",
-      "b-blocks/column",
-      "core/paragraph"
-    ],
-    "content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1,\"background\":{\"color\":\"#A4A4A4\",\"type\":\"solid\",\"gradient\":\"linear-gradient(135deg, #fed1c7, #fe8dc6)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"40px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"textAlign\":\"center\",\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|contrast\"}}}},\"textColor\":\"contrast\"} --> <h2 class=\"wp-block-heading has-text-align-center has-contrast-color has-text-color has-link-color\">Social Feed News</h2> <!-- /wp:heading --> <!-- wp:paragraph {\"align\":\"center\",\"style\":{\"typography\":{\"lineHeight\":1.4},\"spacing\":{\"padding\":{\"right\":\"30%\",\"left\":\"30%\"}}}} --> <p class=\"has-text-align-center\" style=\"padding-right:30%;padding-left:30%;line-height:1.4\">Intrinsically fashion best-of-breed potentialities without frictionless e-services. Interactively simplify one-to-one infrastructures through viral convergence. Seamlessly aggregate client-based.</p> <!-- /wp:paragraph --> <!-- wp:b-blocks/flip-boxes {\"boxes\":[{\"frontBG\":{\"type\":\"gradient\",\"gradient\":\"linear-gradient(135deg, #00ff8f, #00a1ff)\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":[],\"isFrontUpIcon\":false,\"frontIcon\":{\"class\":\"fa-brands fa-facebook\",\"fontSize\":70,\"color\":\"#fff\"},\"upFrontIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"frontIconWidth\":\"70px\",\"isBackUpIcon\":false,\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"rgba(68, 124, 201, 1)\"},\"upBackIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"backIconWidth\":\"70px\",\"frontTitle\":\"facebook\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Like\",\"backTitleColor\":\"rgba(54, 198, 193, 1)\",\"desc\":\"This content area describes flip box 1 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"Button 1\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}},{\"frontBG\":{\"type\":\"gradient\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":[],\"isFrontUpIcon\":false,\"frontIcon\":{\"class\":\"fa-brands fa-twitter\",\"fontSize\":70,\"color\":\"#fff\"},\"upFrontIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"frontIconWidth\":\"70px\",\"isBackUpIcon\":false,\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"#fff\"},\"upBackIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"backIconWidth\":\"70px\",\"frontTitle\":\"twitter\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Follow\",\"backTitleColor\":\"rgba(163, 45, 187, 1)\",\"desc\":\"This content area describes flip box 2 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"Button 2\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}},{\"frontBG\":{\"type\":\"gradient\",\"gradient\":\"linear-gradient(176deg,rgb(254,102,1) 0%,rgb(251,176,64) 74%)\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":[],\"isFrontUpIcon\":false,\"frontIcon\":{\"class\":\"fa-brands fa-youtube\",\"fontSize\":70,\"color\":\"#fff\"},\"upFrontIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"frontIconWidth\":\"70px\",\"isBackUpIcon\":false,\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"#fff\"},\"upBackIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"backIconWidth\":\"70px\",\"frontTitle\":\"youtube\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Watch\",\"backTitleColor\":\"#d8613c\",\"desc\":\"This content area describes flip box 3 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}},{\"frontBG\":{\"type\":\"gradient\",\"gradient\":\"linear-gradient(135deg, #ff7db8, #ee2a7b)\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":{},\"frontIcon\":{\"class\":\"fa-brands fa-instagram\",\"fontSize\":70,\"color\":\"#fff\"},\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"#fff\"},\"frontTitle\":\"instagram\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Share\",\"backTitleColor\":\"rgba(191, 53, 184, 1)\",\"desc\":\"This content area describes flip box 4 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"Button 4\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}}],\"columns\":{\"desktop\":4,\"tablet\":2,\"mobile\":1},\"columnGap\":\"18px\",\"boxHeight\":\"255px\",\"isDesc\":false,\"isBtn\":false} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-  }
+	{
+		"name": "bb-patterns/info-section-1",
+		"title": "Info 1",
+		"description": "Awesome Info Section Design",
+		"type": "patterns",
+		"categories": [
+			"info"
+		],
+		"keywords": [
+			"info",
+			"info box",
+			"information"
+		],
+		"blockTypes": [
+			"b-blocks/animated-text",
+			"b-blocks/row",
+			"b-blocks/column",
+			"core/heading"
+		],
+		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100},\"background\":{\"color\":\"#111111\",\"type\":\"image\",\"image\":{\"id\":null,\"url\":\"https://i.ibb.co.com/W3RnzKh/img-8.webp\",\"alt\":\"\",\"title\":\"\",\"caption\":\"\"}},\"padding\":{\"vertical\":\"30px\",\"horizontal\":\"0px\"}} --> <!-- wp:heading {\"textAlign\":\"center\",\"level\":4,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|luminous-vivid-orange\"}}}},\"textColor\":\"luminous-vivid-orange\"} --> <h4 class=\"wp-block-heading has-text-align-center has-luminous-vivid-orange-color has-text-color has-link-color\">March 4, 2024</h4> <!-- /wp:heading --> <!-- wp:b-blocks/animated-text {\"inEffect\":\"bounce\",\"outEffect\":\"hinge\",\"background\":{\"color\":\"#0000\",\"type\":\"image\",\"image\":{\"id\":null,\"url\":\"https://cdn.prod.website-files.com/65cc7b7d8792f0ced96796f8/65ddb4dcbf4179d6f92c4f87_isometric-macu-white.webp\",\"alt\":\"\",\"title\":\"\",\"caption\":\"\"}},\"content\":\"12+ Website Section Designs For Inspiration\",\"typography\":{\"fontSize\":{\"desktop\":60,\"tablet\":20,\"mobile\":18},\"fontWeight\":400,\"fontVariant\":400,\"fontFamily\":\"Abhaya Libre\",\"fontCategory\":\"serif\"},\"color\":\"#ffffff\",\"padding\":{\"vertical\":\"15px\",\"horizontal\":\"29%\"}} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
+	},
+	{
+		"name": "bb-patterns/info-section-2",
+		"title": "Info 2",
+		"description": "Awesome Info Section Design",
+		"type": "patterns",
+		"categories": [
+			"info"
+		],
+		"keywords": [
+			"info",
+			"flip box",
+			"information"
+		],
+		"blockTypes": [
+			"b-blocks/flip-boxes",
+			"b-blocks/row",
+			"b-blocks/column",
+			"core/paragraph"
+		],
+		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1,\"background\":{\"color\":\"#A4A4A4\",\"type\":\"solid\",\"gradient\":\"linear-gradient(135deg, #fed1c7, #fe8dc6)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"40px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"textAlign\":\"center\",\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|contrast\"}}}},\"textColor\":\"contrast\"} --> <h2 class=\"wp-block-heading has-text-align-center has-contrast-color has-text-color has-link-color\">Social Feed News</h2> <!-- /wp:heading --> <!-- wp:paragraph {\"align\":\"center\",\"style\":{\"typography\":{\"lineHeight\":1.4},\"spacing\":{\"padding\":{\"right\":\"30%\",\"left\":\"30%\"}}}} --> <p class=\"has-text-align-center\" style=\"padding-right:30%;padding-left:30%;line-height:1.4\">Intrinsically fashion best-of-breed potentialities without frictionless e-services. Interactively simplify one-to-one infrastructures through viral convergence. Seamlessly aggregate client-based.</p> <!-- /wp:paragraph --> <!-- wp:b-blocks/flip-boxes {\"boxes\":[{\"frontBG\":{\"type\":\"gradient\",\"gradient\":\"linear-gradient(135deg, #00ff8f, #00a1ff)\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":[],\"isFrontUpIcon\":false,\"frontIcon\":{\"class\":\"fa-brands fa-facebook\",\"fontSize\":70,\"color\":\"#fff\"},\"upFrontIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"frontIconWidth\":\"70px\",\"isBackUpIcon\":false,\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"rgba(68, 124, 201, 1)\"},\"upBackIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"backIconWidth\":\"70px\",\"frontTitle\":\"facebook\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Like\",\"backTitleColor\":\"rgba(54, 198, 193, 1)\",\"desc\":\"This content area describes flip box 1 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"Button 1\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}},{\"frontBG\":{\"type\":\"gradient\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":[],\"isFrontUpIcon\":false,\"frontIcon\":{\"class\":\"fa-brands fa-twitter\",\"fontSize\":70,\"color\":\"#fff\"},\"upFrontIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"frontIconWidth\":\"70px\",\"isBackUpIcon\":false,\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"#fff\"},\"upBackIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"backIconWidth\":\"70px\",\"frontTitle\":\"twitter\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Follow\",\"backTitleColor\":\"rgba(163, 45, 187, 1)\",\"desc\":\"This content area describes flip box 2 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"Button 2\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}},{\"frontBG\":{\"type\":\"gradient\",\"gradient\":\"linear-gradient(176deg,rgb(254,102,1) 0%,rgb(251,176,64) 74%)\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":[],\"isFrontUpIcon\":false,\"frontIcon\":{\"class\":\"fa-brands fa-youtube\",\"fontSize\":70,\"color\":\"#fff\"},\"upFrontIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"frontIconWidth\":\"70px\",\"isBackUpIcon\":false,\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"#fff\"},\"upBackIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"},\"backIconWidth\":\"70px\",\"frontTitle\":\"youtube\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Watch\",\"backTitleColor\":\"#d8613c\",\"desc\":\"This content area describes flip box 3 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}},{\"frontBG\":{\"type\":\"gradient\",\"gradient\":\"linear-gradient(135deg, #ff7db8, #ee2a7b)\"},\"backBG\":{\"color\":\"#ffffff\"},\"border\":{\"radius\":\"8px\"},\"shadow\":{},\"frontIcon\":{\"class\":\"fa-brands fa-instagram\",\"fontSize\":70,\"color\":\"#fff\"},\"backIcon\":{\"class\":\"\",\"fontSize\":70,\"color\":\"#fff\"},\"frontTitle\":\"instagram\",\"frontTitleColor\":\"#fff\",\"backTitle\":\"Share\",\"backTitleColor\":\"rgba(191, 53, 184, 1)\",\"desc\":\"This content area describes flip box 4 descriptions/details.\",\"descColor\":\"#fff\",\"btn\":\"Button 4\",\"btnLink\":\"#\",\"btnBorder\":{\"radius\":\"3px\"},\"btnColors\":{\"color\":\"#fff\",\"bg\":\"#ff4500\"},\"btnHovColors\":{\"color\":\"#fff\",\"bg\":\"#ff7500\"}}],\"columns\":{\"desktop\":4,\"tablet\":2,\"mobile\":1},\"columnGap\":\"18px\",\"boxHeight\":\"255px\",\"isDesc\":false,\"isBtn\":false} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
+	}
 ]

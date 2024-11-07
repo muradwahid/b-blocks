@@ -25,6 +25,4 @@ import teamMember from './patterns/team-member.json';
 import testimonials from './patterns/testimonials.json';
 import videos from './patterns/videos.json';
 
-import patterns from '../data/patterns.json';
-
 export default [...about, ...blog, ...contact, ...countdown, ...counters, ...course, ...cta, ...faq, ...featuresServices, ...footer, ...gallery, ...header, ...hero, ...info, ...maps, ...portfolio, ...pricing, ...product, ...qrcode, ...search, ...singlePage, ...slider, ...subscription, ...teamMember, ...testimonials, ...videos];

@@ -15,7 +15,7 @@ const Templates = ({ filteredItems, pageItems, isPremium, setShow, children }) =
 					onClick: () => {
 						const blocks = parse(content);
 						wp.data.dispatch('core/block-editor').insertBlocks(blocks);
-						setShow(false);
+						// setShow(false);
 					}
 				} : {
 					href: `${siteURL}#pricing`,

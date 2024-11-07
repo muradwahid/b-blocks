@@ -1,1 +1,664 @@
-(()=>{"use strict";var t={8744:(t,n,e)=>{var o=e(5795);n.H=o.createRoot,o.hydrateRoot},5795:t=>{t.exports=window.ReactDOM}},n={};const e=window.React;var o=function e(o){var r=n[o];if(void 0!==r)return r.exports;var i=n[o]={exports:{}};return t[o](i,i.exports,e),i.exports}(8744);const r=(t,n=!0,e=!0,o=!0)=>{const{type:r="solid",color:i="#000000b3",gradient:a="linear-gradient(135deg, #4527a4, #8344c5)",image:s={},position:l="center center",attachment:$="initial",repeat:d="no-repeat",size:c="cover",overlayColor:p="#000000b3"}=t||{};return"gradient"===r&&e?`background: ${a};`:"image"===r&&o?`background: url(${s?.url});\n\t\t\t\tbackground-color: ${p};\n\t\t\t\tbackground-position: ${l};\n\t\t\t\tbackground-size: ${c};\n\t\t\t\tbackground-repeat: ${d};\n\t\t\t\tbackground-attachment: ${$};\n\t\t\t\tbackground-blend-mode: overlay;`:n&&`background: ${i};`},i=t=>{const{width:n="0px",style:e="solid",color:o="",side:r="all",radius:i="0px"}=t||{},a=t=>{const n=r?.toLowerCase();return n?.includes("all")||n?.includes(t)},s=`${n} ${e} ${o}`,l=`\n\t\t${"0px"!==n&&n?["top","right","bottom","left"].map((t=>a(t)?`border-${t}: ${s};`:"")).join(""):""}\n\t\t${i?`border-radius: ${i};`:""}\n\t`;return l},a=(t,n="box")=>{const{hOffset:e="0px",vOffset:o="0px",blur:r="0px",spreed:i="0px",color:a="#7090b0",isInset:s=!1}=t||{},l=`${e} ${o} ${r}`;return("text"===n?`${l} ${a}`:`${l} ${i} ${a} ${s?"inset":""}`)||"none"},s=t=>{const{side:n=2,vertical:e="0px",horizontal:o="0px",top:r="0px",right:i="0px",bottom:a="0px",left:s="0px"}=t||{};return 2===n?`${e} ${o}`:`${r} ${i} ${a} ${s}`},l=(t,n,e=!0)=>{const{fontFamily:o="Default",fontCategory:r="sans-serif",fontVariant:i=400,fontWeight:a=400,isUploadFont:s=!0,fontSize:l={desktop:15,tablet:15,mobile:15},fontStyle:$="normal",textTransform:d="none",textDecoration:c="auto",lineHeight:p="135%",letterSpace:g="0px"}=n||{},u=(t,n)=>t?`${n}: ${t};`:"",b=!e||!o||"Default"===o,m=l?.desktop||l,x=l?.tablet||m,f=l?.mobile||x,h=`\n\t\t${b?"":`font-family: '${o}', ${r};`}\n\t\t${u(a,"font-weight")}\n\t\tfont-size: ${m}px;\n\t\t${u($,"font-style")}\n\t\t${u(d,"text-transform")}\n\t\t${u(c,"text-decoration")}\n\t\t${u(p,"line-height")}\n\t\t${u(g,"letter-spacing")}\n\t`,y=i&&400!==i?"400i"===i?":ital@1":i?.includes("00i")?`: ital, wght@1, ${i?.replace("00i","00")} `:`: wght@${i} `:"",k=b?"":`https://fonts.googleapis.com/css2?family=${o?.split(" ").join("+")}${y.replace(/ /g,"")}&display=swap`;return{googleFontLink:!s||b?"":`@import url(${k});`,styles:`${t}{\n\t\t\t${h}\n\t\t}\n\t\t@media only screen and (min-width: 641px) and (max-width: 1024px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${x}px;\n\t\t\t}\n\t\t}\n\t\t@media only screen and (max-width: 640px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${f}px;\n\t\t\t}\n\t\t}`.replace(/\s+/g," ").trim()}},$="bBlocksServices",d=({attributes:t,id:n,isBackend:o=!1})=>{const{columnGap:d,rowGap:c,background:p,textAlign:g,itemHeight:u,itemPadding:b,itemBorder:m,itemShadow:x,iconPadding:f,iconMargin:h,titleTypo:y,titleMargin:k,descTypo:w}=t,v=`#${n} .${$}`,S=`${v} .bBlocksService`,L=o?`${v} .block-editor-inner-blocks .block-editor-block-list__layout{\n\t\tgrid-gap: ${c} ${d};\n\t}`:`${v}{\n\t\tgrid-gap: ${c} ${d};\n\t}`;return(0,e.createElement)("style",{dangerouslySetInnerHTML:{__html:`\n\t\t${l("",y)?.googleFontLink}\n\t\t${l("",w)?.googleFontLink}\n\t\t${l(`${S} .title`,y)?.styles}\n\t\t${l(`${S} .description`,w)?.styles}\n\n\t\t${v}{\n\t\t\t${r(p)}\n\t\t}\n\t\t${L}\n\n\t\t${S}{\n\t\t\ttext-align: ${g};\n\t\t\tmin-height: ${u};\n\t\t\tpadding: ${s(b)};\n\t\t\t${i(m)||"border-radius: 15px;"}\n\t\t\tbox-shadow: ${a(x)};\n\t\t}\n\t\t${S} .bgLayer{\n\t\t\tborder-radius: ${m?.radius||"15px"}\n\t\t}\n\t\t${S} .icon{\n\t\t\tpadding: ${s(f)};\n\t\t\tmargin: ${s(h)};\n\t\t}\n\t\t${S} .title{\n\t\t\tmargin: ${s(k)};\n\t\t}\n\t\t`.replace(/\s+/g," ")}})};document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".wp-block-b-blocks-services").forEach((t=>{const n=JSON.parse(t.dataset.attributes),r=document.querySelector(`#${t.id} .${$}Style`);(0,o.H)(r).render((0,e.createElement)(d,{attributes:n,id:t.id})),t?.removeAttribute("data-attributes")}))}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/services/Components/Common/Style.js":
+/*!*************************************************!*\
+  !*** ./src/services/Components/Common/Style.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/services/utils/data.js");
+
+
+
+const Style = ({
+  attributes,
+  id,
+  isBackend = false
+}) => {
+  const {
+    columnGap,
+    rowGap,
+    background,
+    textAlign,
+    itemHeight,
+    itemPadding,
+    itemBorder,
+    itemShadow,
+    iconPadding,
+    iconMargin,
+    titleTypo,
+    titleMargin,
+    descTypo
+  } = attributes;
+  const servicesSl = `#${id} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix}`;
+  const serviceSl = `${servicesSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.childPrefix}`;
+  const gapStyle = isBackend ? `${servicesSl} .block-editor-inner-blocks .block-editor-block-list__layout{
+		grid-gap: ${rowGap} ${columnGap};
+	}` : `${servicesSl}{
+		grid-gap: ${rowGap} ${columnGap};
+	}`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', titleTypo)?.googleFontLink}
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', descTypo)?.googleFontLink}
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${serviceSl} .title`, titleTypo)?.styles}
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(`${serviceSl} .description`, descTypo)?.styles}
+
+		${servicesSl}{
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(background)}
+		}
+		${gapStyle}
+
+		${serviceSl}{
+			text-align: ${textAlign};
+			min-height: ${itemHeight};
+			padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(itemPadding)};
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(itemBorder) || 'border-radius: 15px;'}
+			box-shadow: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getShadowCSS)(itemShadow)};
+		}
+		${serviceSl} .bgLayer{
+			border-radius: ${itemBorder?.radius || '15px'}
+		}
+		${serviceSl} .icon{
+			padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(iconPadding)};
+			margin: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(iconMargin)};
+		}
+		${serviceSl} .title{
+			margin: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getSpaceCSS)(titleMargin)};
+		}
+		`.replace(/\s+/g, ' ')
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/services/utils/data.js":
+/*!************************************!*\
+  !*** ./src/services/utils/data.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   childPrefix: () => (/* binding */ childPrefix),
+/* harmony export */   prefix: () => (/* binding */ prefix)
+/* harmony export */ });
+const prefix = 'bBlocksServices';
+const childPrefix = 'bBlocksService';
+
+/***/ }),
+
+/***/ "../bpl-tools/utils/data.js":
+/*!**********************************!*\
+  !*** ../bpl-tools/utils/data.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deskBreakpoint: () => (/* binding */ deskBreakpoint),
+/* harmony export */   mobileBreakpoint: () => (/* binding */ mobileBreakpoint),
+/* harmony export */   tabBreakpoint: () => (/* binding */ tabBreakpoint)
+/* harmony export */ });
+const deskBreakpoint = '@media only screen and (min-width: 1025px)';
+const tabBreakpoint = '@media only screen and (min-width: 641px) and (max-width: 1024px)';
+const mobileBreakpoint = '@media only screen and (max-width: 640px)';
+
+/***/ }),
+
+/***/ "../bpl-tools/utils/getCSS.js":
+/*!************************************!*\
+  !*** ../bpl-tools/utils/getCSS.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getAdvBGCSS: () => (/* binding */ getAdvBGCSS),
+/* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderBoxCSS: () => (/* binding */ getBorderBoxCSS),
+/* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
+/* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
+/* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
+/* harmony export */   getGradientCSS: () => (/* binding */ getGradientCSS),
+/* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
+/* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   getOverlayCSS: () => (/* binding */ getOverlayCSS),
+/* harmony export */   getPropertyBoxCSS: () => (/* binding */ getPropertyBoxCSS),
+/* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
+/* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
+/* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
+/* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
+/* harmony export */ });
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "../bpl-tools/utils/data.js");
+
+const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
+  const {
+    type = 'solid',
+    color = '#000000b3',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)',
+    image = {},
+    position = 'center center',
+    attachment = 'initial',
+    repeat = 'no-repeat',
+    size = 'cover',
+    overlayColor = '#000000b3'
+  } = bg || {};
+  const styles = 'gradient' === type && isGradient ? `background: ${gradient};` : 'image' === type && isImage ? `background: url(${image?.url});
+				background-color: ${overlayColor};
+				background-position: ${position};
+				background-size: ${size};
+				background-repeat: ${repeat};
+				background-attachment: ${attachment};
+				background-blend-mode: overlay;` : isSolid && `background: ${color};`;
+  return styles;
+}; // PHP version in Stepped Content
+
+const getBorderCSS = border => {
+  const {
+    width = '0px',
+    style = 'solid',
+    color = '',
+    side = 'all',
+    radius = '0px'
+  } = border || {};
+  const borderSideCheck = s => {
+    const bSide = side?.toLowerCase();
+    return bSide?.includes('all') || bSide?.includes(s);
+  };
+  const noWidth = width === '0px' || !width;
+  const borderCSS = `${width} ${style} ${color}`;
+  const styles = `
+		${noWidth ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
+		${!radius ? '' : `border-radius: ${radius};`}
+	`;
+  return styles;
+};
+const getBorderBoxCSS = border => {
+  if (!border) return '';
+  const generateBorderCSS = borderObj => {
+    const {
+      color = '#000000',
+      style = 'solid',
+      width = '0px'
+    } = borderObj;
+    return `${width} ${style} ${color}`;
+  };
+  if ('object' === typeof border && !Array.isArray(border)) {
+    if (border.hasOwnProperty('top') || border.hasOwnProperty('right') || border.hasOwnProperty('bottom') || border.hasOwnProperty('left')) {
+      const sides = ['top', 'right', 'bottom', 'left'];
+      return sides.map(side => border[side] ? `border-${side}: ${generateBorderCSS(border[side])};` : '').join(' ').trim();
+    } else {
+      return `border: ${generateBorderCSS(border)};`;
+    }
+  }
+  return '';
+};
+const getColorsCSS = colors => {
+  const {
+    color = '#333',
+    bgType = 'solid',
+    bg = '',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = colors || {};
+  const styles = `
+		${color ? `color: ${color};` : ''}
+		${gradient || bg ? `background: ${'gradient' === bgType ? gradient : bg};` : ''}
+	`;
+  return styles;
+};
+const getIconCSS = (icon, isSize = true, isColor = true) => {
+  const {
+    fontSize = 16,
+    colorType = 'solid',
+    color = 'inherit',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = icon || {};
+  const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : `color: ${color};`;
+  const styles = `
+		${!fontSize || !isSize ? '' : `font-size: ${fontSize}px;`}
+		${isColor ? colorCSS : ''}
+	`;
+  return styles;
+};
+const getMultiShadowCSS = (value, type = 'box') => {
+  let styles = '';
+  value?.map((item, index) => {
+    const {
+      hOffset = '0px',
+      vOffset = '0px',
+      blur = '0px',
+      spreed = '0px',
+      color = '#7090b0',
+      isInset = false
+    } = item || {};
+    const inset = isInset ? 'inset' : '';
+    const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+    const isComa = index + 1 >= value.length ? '' : ', ';
+    styles += 'text' === type ? `${offsetBlur} ${color}${isComa}` : `${offsetBlur} ${spreed} ${color} ${inset}${isComa}`;
+  });
+  return styles || 'none';
+};
+const getSeparatorCSS = separator => {
+  const {
+    width = '50%',
+    height = '2px',
+    style = 'solid',
+    color = '#bbb'
+  } = separator || {};
+  const styles = `
+		width: ${width};
+		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+	`;
+  return styles;
+};
+const getShadowCSS = (shadow, type = 'box') => {
+  const {
+    hOffset = '0px',
+    vOffset = '0px',
+    blur = '0px',
+    spreed = '0px',
+    color = '#7090b0',
+    isInset = false
+  } = shadow || {};
+  const inset = isInset ? 'inset' : '';
+  const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+  const styles = 'text' === type ? `${offsetBlur} ${color}` : `${offsetBlur} ${spreed} ${color} ${inset}`;
+  return styles || 'none';
+};
+const getSpaceCSS = space => {
+  const {
+    side = 2,
+    vertical = '0px',
+    horizontal = '0px',
+    top = '0px',
+    right = '0px',
+    bottom = '0px',
+    left = '0px'
+  } = space || {};
+  const styles = 2 === side ? `${vertical} ${horizontal}` : `${top} ${right} ${bottom} ${left}`;
+  return styles;
+};
+const getTypoCSS = (selector, typo, isFamily = true) => {
+  const {
+    fontFamily = 'Default',
+    fontCategory = 'sans-serif',
+    fontVariant = 400,
+    fontWeight = 400,
+    isUploadFont = true,
+    fontSize = {
+      desktop: 15,
+      tablet: 15,
+      mobile: 15
+    },
+    fontStyle = 'normal',
+    textTransform = 'none',
+    textDecoration = 'auto',
+    lineHeight = '135%',
+    letterSpace = '0px'
+  } = typo || {};
+  const generateCss = (value, cssProperty) => !value ? '' : `${cssProperty}: ${value};`;
+  const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
+  const desktopFontSize = fontSize?.desktop || fontSize;
+  const tabletFontSize = fontSize?.tablet || desktopFontSize;
+  const mobileFontSize = fontSize?.mobile || tabletFontSize;
+  const styles = `
+		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
+		${generateCss(fontWeight, 'font-weight')}
+		${`font-size: ${desktopFontSize}px;`}
+		${generateCss(fontStyle, 'font-style')}
+		${generateCss(textTransform, 'text-transform')}
+		${generateCss(textDecoration, 'text-decoration')}
+		${generateCss(lineHeight, 'line-height')}
+		${generateCss(letterSpace, 'letter-spacing')}
+	`;
+
+  // Google font link
+  const linkQuery = !fontVariant || 400 === fontVariant ? '' : '400i' === fontVariant ? ':ital@1' : fontVariant?.includes('00i') ? `: ital, wght@1, ${fontVariant?.replace('00i', '00')} ` : `: wght@${fontVariant} `;
+  const link = isEmptyFamily ? '' : `https://fonts.googleapis.com/css2?family=${fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+  return {
+    googleFontLink: !isUploadFont || isEmptyFamily ? '' : `@import url(${link});`,
+    styles: `${selector}{
+			${styles}
+		}
+		${_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
+			${selector}{
+				${`font-size: ${tabletFontSize}px;`}
+			}
+		}
+		${_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
+			${selector}{
+				${`font-size: ${mobileFontSize}px;`}
+			}
+		}`.replace(/\s+/g, ' ').trim()
+  };
+};
+const getBoxCSS = val => {
+  if (!val) return '0';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object' && !Array.isArray(val)) {
+    const order = ['top', 'right', 'bottom', 'left'];
+    return order.map(side => val[side] || '0').join(' ');
+  }
+  return '0';
+};
+const getPropertyBoxCSS = (property, value) => value ? `${property}: ${getBoxCSS(value)};` : '';
+
+// Murad Wahid
+const getGradientCSS = gradient => {
+  const {
+    type,
+    radialType,
+    colors,
+    centerPositions,
+    angel
+  } = gradient || {};
+  if (gradient) {
+    const gradientColors = colors?.map(({
+      color,
+      position
+    }) => `${color} ${position}%`);
+    const liner = `linear-gradient(${angel}deg, ${gradientColors})`;
+    const radial = `radial-gradient(${radialType} at ${centerPositions?.x}% ${centerPositions?.y}%,${gradientColors})`;
+    return type === 'linear' ? `background: ${liner};` : `background: ${radial};`;
+  }
+  return '';
+};
+const getSolidBGCSS = bg => `${bg ? `background: ${bg};` : ''}`;
+const getImagePosition = img => {
+  const {
+    position = 'center center',
+    xPosition = 0,
+    yPosition = 0,
+    attachment = '',
+    repeat = 'no-repeat',
+    size = 'cover',
+    customSize = '0px'
+  } = img || {};
+  const cd = v => 'initial' !== v;
+  return `
+		${cd(position) ? `background-position: ${'custom' === position ? `${xPosition} ${yPosition}` : position};` : ''}
+		${attachment && cd(attachment) ? `background-attachment: ${attachment};` : ''}
+		${cd(repeat) ? `background-repeat: ${repeat};` : ''}
+		${cd(size) ? `background-size: ${'custom' === size ? `${customSize} auto` : size};` : ''}
+	`;
+};
+const getImageCSS = (img = {}) => {
+  if (img) {
+    return {
+      desktop: img.url ? `background-image: url(${img.url}); ${getImagePosition(img?.desktop)}` : '',
+      tablet: img.url ? getImagePosition(img?.tablet) : '',
+      mobile: img.url ? getImagePosition(img?.mobile) : ''
+    };
+  }
+  return '';
+};
+const getVideoCSS = (video, selector) => {
+  const {
+    url,
+    loop
+  } = video || {};
+  const parentEl = document.querySelector(selector);
+  const el = parentEl?.querySelector('.bPlVideo');
+  const videoEl = document.createElement('video');
+  videoEl.muted = true;
+  videoEl.autoplay = true;
+  videoEl.classList.add('bPlVideo');
+  if (!el) {
+    if (parentEl && url) {
+      videoEl.innerHTML = `<source src=${url}></source>`;
+      parentEl.appendChild(videoEl);
+    }
+  }
+  videoEl.loop = loop;
+  videoEl.play();
+  return `${selector} .bPlVideo{
+		left: 0;
+		min-height: 100%;
+		min-width: 100%;
+		position: absolute;
+		width: -webkit-fill-available;
+		top: 0;
+		z-index: 0;
+	}`;
+};
+const getAdvBGCSS = (background, selector, isHover = false) => {
+  const {
+    type = 'color',
+    color,
+    gradient,
+    img,
+    video
+  } = background || {};
+  const bgCSS = type === 'color' ? getSolidBGCSS(color) : type === 'gradient' ? getGradientCSS(gradient) : type === 'image' ? getImageCSS(img).desktop : '';
+  const tablet = type === 'image' ? getImageCSS(img).tablet : '';
+  const mobile = type === 'image' ? getImageCSS(img).mobile : '';
+  const sl = isHover ? `${selector}:hover` : selector;
+  return `
+		${type === 'video' ? getVideoCSS(video, selector) : ''}
+
+		${sl}{
+			${bgCSS}
+		}
+
+		${_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
+			${sl}{
+				${tablet}
+			}
+		}
+		${_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
+			${sl}{
+				${mobile}
+			}
+		}
+	`.replace(/\s+/g, ' ').trim();
+};
+const getOverlayCSS = (overlay, selector, isHover = false) => {
+  const {
+    isEnabled,
+    colors,
+    opacity = 1,
+    blend,
+    filter = '',
+    blur = 0,
+    brightness = 100,
+    contrast = 100,
+    saturation = 100,
+    hue = 0
+  } = overlay || {};
+  const filterCSSValue = `${100 !== brightness ? `brightness(${brightness}%)` : ''} ${100 !== contrast ? `contrast(${contrast}%)` : ''} ${100 !== saturation ? `saturate(${saturation}%)` : ''} ${0 !== blur ? `blur(${blur}px)` : ''} ${0 !== hue ? `hue-rotate(${hue}deg)` : ''}`;
+  const filterCSS = `${filter}: ${filter ? filterCSSValue : ''}; -webkit-${filter}: ${filter ? filterCSSValue : ''};`;
+  const blendCSS = blend ? `mix-blend-mode: ${blend};` : '';
+  const sl = isHover ? `${selector}:hover::after` : `${selector}::after`;
+  return isEnabled ? `
+		${selector}::after{
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
+		${getAdvBGCSS(colors, sl, false)}
+		${sl}{
+			opacity: ${opacity};
+			${blendCSS}
+			${filterCSS}
+		}
+	`.replace(/\s+/g, ' ').trim() : '';
+};
+
+/***/ }),
+
+/***/ "./src/services/style.scss":
+/*!*********************************!*\
+  !*** ./src/services/style.scss ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../plugin-slug/node_modules/react-dom/client.js":
+/*!*******************************************************!*\
+  !*** ../plugin-slug/node_modules/react-dom/client.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/*!******************************!*\
+  !*** ./src/services/view.js ***!
+  \******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/services/style.scss");
+/* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/services/Components/Common/Style.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/data */ "./src/services/utils/data.js");
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const servicesEls = document.querySelectorAll('.wp-block-b-blocks-services');
+  servicesEls.forEach(servicesEl => {
+    const attributes = JSON.parse(servicesEl.dataset.attributes);
+    const styleSl = document.querySelector(`#${servicesEl.id} .${_utils_data__WEBPACK_IMPORTED_MODULE_4__.prefix}Style`);
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(styleSl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      attributes: attributes,
+      id: servicesEl.id
+    }));
+    servicesEl?.removeAttribute('data-attributes');
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=view.js.map
