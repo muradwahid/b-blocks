@@ -121,29 +121,5 @@
 			"core/group"
 		],
 		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1,\"background\":{\"color\":\"rgba(255, 138, 134, 1)\"},\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"10%\"},\"metadata\":{\"name\":\"Social-Share-Pro-Design-4\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":2} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"level\":1,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"700\",\"letterSpacing\":\"5px\"}},\"textColor\":\"base-2\",\"fontSize\":\"xx-large\",\"fontFamily\":\"body\"} --> <h1 class=\"wp-block-heading has-base-2-color has-text-color has-link-color has-body-font-family has-xx-large-font-size\" style=\"font-style:normal;font-weight:700;letter-spacing:5px\">Teamwork</h1> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"500\",\"letterSpacing\":\"1px\"}},\"textColor\":\"base-2\",\"fontSize\":\"small\",\"fontFamily\":\"body\"} --> <p class=\"has-base-2-color has-text-color has-link-color has-body-font-family has-small-font-size\" style=\"font-style:normal;font-weight:500;letter-spacing:1px\">Friendkit provides a very high quality UI design to jumpstart your project. Its clean and modern UI will help you build a memorable website seamlessly.You'll find a lot of different page layouts, and more will be coming wight each update. Leverage existing layouts or create your own the existing building blocks.</p> <!-- /wp:paragraph --> <!-- wp:group {\"layout\":{\"type\":\"constrained\",\"justifyContent\":\"left\"}} --> <div class=\"wp-block-group\"><!-- wp:paragraph --> <p></p> <!-- /wp:paragraph --> <!-- wp:b-blocks/button {\"text\":\"Start Now\",\"alignment\":\"left\",\"typography\":{\"fontSize\":{\"desktop\":16,\"tablet\":16,\"mobile\":16},\"fontWeight\":400,\"textDecoration\":\"none\",\"fontFamily\":\"IBM Plex Sans\",\"fontCategory\":\"sans-serif\",\"fontVariant\":400,\"textTransform\":\"uppercase\"},\"colors\":{\"color\":\"#fff\",\"bg\":\"rgba(243, 82, 126, 1)\"},\"hovColors\":{\"color\":\"#fff\",\"bg\":\"rgba(243, 82, 126, 1)\"}} /--> <!-- wp:paragraph --> <p></p> <!-- /wp:paragraph --></div> <!-- /wp:group --> <!-- wp:b-blocks/social-share {\"socials\":[{\"networkType\":\"socialNetworks\",\"network\":\"facebook\",\"isUpIcon\":false,\"icon\":{\"class\":\"fab fa-facebook-f\",\"color\":\"#ffffff\"},\"upIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"}},{\"networkType\":\"socialNetworks\",\"network\":\"twitter\",\"isUpIcon\":false,\"icon\":{\"class\":\"fab fa-twitter\",\"color\":\"#ffffff\"},\"upIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"}},{\"networkType\":\"socialNetworks\",\"network\":\"linkedin\",\"isUpIcon\":false,\"icon\":{\"class\":\"fab fa-linkedin-in\",\"color\":\"#ffffff\"},\"upIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"}},{\"networkType\":\"mobileMessenger\",\"network\":\"whatsapp\",\"isUpIcon\":false,\"icon\":{\"class\":\"fa-solid fa-message\",\"color\":\"#ffffff\",\"colorType\":\"solid\",\"gradient\":\"linear-gradient(135deg, #e100ff, #7f00ff)\"},\"upIcon\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\"}}],\"background\":{\"color\":\"rgba(168, 107, 174, 1)\",\"type\":\"gradient\",\"gradient\":\"linear-gradient(90deg,rgb(15,32,39) 0%,rgb(32,58,67) 49%,rgb(44,83,100) 100%)\"},\"size\":\"22px\",\"margin\":\"15px\"} /--> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:image {\"width\":\"442px\",\"height\":\"auto\",\"aspectRatio\":\"1\",\"scale\":\"contain\",\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} --> <figure class=\"wp-block-image size-large is-resized\"><img src=\"https://i.ibb.co.com/MMTwxrV/i-5.png\" alt=\"\" style=\"aspect-ratio:1;object-fit:contain;width:442px;height:auto\"/></figure> <!-- /wp:image --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-	},
-	{
-		"name": "bb-patterns/contact-6",
-		"title": "Booking Social Media 1",
-		"description": "Awesome Contact Design",
-		"type": "patterns",
-		"categories": [
-			"contact"
-		],
-		"pro": true,
-		"keywords": [
-			"contact",
-			"social share",
-			"social media"
-		],
-		"blockTypes": [
-			"b-blocks/social-share",
-			"b-blocks/row",
-			"b-blocks/column",
-			"core/paragraph",
-			"core/heading",
-			"core/image"
-		],
-		"content": ""
 	}
 ]

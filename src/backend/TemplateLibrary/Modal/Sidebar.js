@@ -1,16 +1,14 @@
-import { __ } from '@wordpress/i18n';
 import { TabPanel } from '@wordpress/components';
 
-import { pageCategories, patternCategories } from '../utils/options';
-
-
-const Sidebar = ({ type, setType, category, setCategory, setSearch, setItemsDisplayed, itemsPerPage }) => {
+const Sidebar = ({ isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }) => {
 	const handleSearch = (event) => {
 		setSearch(event.target.value);
-		setItemsDisplayed(itemsPerPage);
 	};
 
-	const categories = 'pages' === type ? pageCategories : patternCategories;
+	const { 'patterns-category': patternsCats = [], 'pages-category': pagesCats = [], type: types = [] } = main || {};
+
+	const cats = 'pages' === type ? pagesCats : patternsCats;
+	const categories = [{ label: 'All', name: 'all' }, ...cats.filter(c => 'pro' !== c.name)];
 
 	return (
 		<aside className='modalBodySidebar'>
@@ -22,28 +20,26 @@ const Sidebar = ({ type, setType, category, setCategory, setSearch, setItemsDisp
 				</svg>
 			</div>
 
-			<TabPanel
+			{mainLoading ? <div>Main Loading</div> : <TabPanel
 				className='bPlTabPanel'
 				activeClass='activeTab'
-				tabs={[
-					// { name: 'pages', title: __('Pages', 'b-blocks') },
-					{ name: 'patterns', title: __('Patterns', 'b-blocks') }
-				]}
+				tabs={types.map(t => ({ ...t, title: t.label })).filter(t => 'pages' !== t.name)}
 				onSelect={tabName => {
 					setType(tabName);
 					setCategory('all');
-					setItemsDisplayed(itemsPerPage);
+					setPageNumber(1);
+					refetchTemplates({ type: tabName, category: 'all', pageNumber: 1, search });
 				}}
 			>
 				{() => <li className='modalBodySidebarCategories'>
-					{categories.map((cat, i) => <li onClick={() => {
-						setCategory(cat.name);
-						setItemsDisplayed(itemsPerPage);
-					}} className={`libraryBtn ${cat.name === category ? 'active' : ''}`} key={i}>{cat.label}</li>)}
+					{categories.map(({ name, label }, i) => <li onClick={() => {
+						setCategory(name);
+						setPageNumber(1);
+						refetchTemplates({ type, category: name, pageNumber: 1, search });
+					}} className={`libraryBtn ${name === category ? 'active' : ''}`} key={i}>{label}</li>)}
 				</li>}
-			</TabPanel>
+			</TabPanel>}
 		</aside>
 	);
 };
-
 export default Sidebar;

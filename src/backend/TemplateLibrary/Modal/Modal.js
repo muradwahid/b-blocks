@@ -7,10 +7,8 @@ import { searchData } from '../utils/functions';
 import pages from '../data/pages.json';
 import patterns from '../data/patterns';
 
-const Modal = ({ isPremium, show, setShow }) => {
-	const [type, setType] = useState('patterns');
-	const [category, setCategory] = useState('all');
-	const [search, setSearch] = useState('');
+const Modal = (props) => {
+	const { isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch } = props;
 
 	// Modal outside click
 	const contentRef = useRef();
@@ -25,6 +23,8 @@ const Modal = ({ isPremium, show, setShow }) => {
 			document.removeEventListener('mousedown', handler);
 		};
 	});
+
+	console.log(templates);
 
 	// Filter and search
 	const typeFilter = 'pages' === type ? pages : patterns;
@@ -47,9 +47,9 @@ const Modal = ({ isPremium, show, setShow }) => {
 			</header>
 
 			{show && <div className='modalBody'>
-				<Sidebar type={type} category={category} search={search} setType={setType} setCategory={setCategory} setSearch={setSearch} setItemsDisplayed={setItemsDisplayed} itemsPerPage={itemsPerPage} />
+				<Sidebar {...props} />
 
-				<Templates filteredItems={filteredItems} pageItems={pageItems} setShow={setShow} isPremium={isPremium}>
+				<Templates {...props} filteredItems={filteredItems} pageItems={pageItems} setShow={setShow} isPremium={isPremium}>
 					{itemsDisplayed < filteredItems.length && <button className='modalBodyTemplateLoadMore libraryBtn active' onClick={() => setItemsDisplayed(itemsDisplayed + itemsPerPage)}>Load More</button>}
 				</Templates>
 			</div>}

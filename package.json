@@ -32,5 +32,15 @@
 		"@wordpress/i18n": "^5.5.0",
 		"@wordpress/scripts": "^27.9.0",
 		"eslint-webpack-plugin": "^4.2.0"
-	}
+	},
+	"files": [
+		"assets",
+		"build",
+		"freemius",
+		"includes",
+		"languages",
+		"index.php",
+		"plugin.php",
+		"readme.txt"
+	]
 }

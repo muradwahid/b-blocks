@@ -1,0 +1,25 @@
+[
+	{
+		"name": "bb-patterns/lottie-player-1",
+		"title": "Subscription 1",
+		"description": "Awesome Subscription Design",
+		"type": "patterns",
+		"categories": [
+			"subscription"
+		],
+		"keywords": [
+			"subscribe",
+			"subscription",
+			"buy"
+		],
+		"blockTypes": [
+			"b-blocks/team-members ",
+			"b-blocks/row",
+			"b-blocks/column",
+			"b-blocks/button",
+			"core/paragraph",
+			"core/heading"
+		],
+		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100},\"background\":{\"color\":\"rgba(0, 3, 45, 1)\",\"type\":\"solid\",\"image\":{\"id\":null,\"url\":\"\",\"alt\":\"\",\"title\":\"\",\"caption\":\"\"}},\"padding\":{\"vertical\":\"2%\",\"horizontal\":\"15%\"}} --> <!-- wp:heading {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}}},\"textColor\":\"base-2\",\"fontSize\":\"x-large\",\"fontFamily\":\"body\"} --> <h2 class=\"wp-block-heading has-base-2-color has-text-color has-link-color has-body-font-family has-x-large-font-size\"><strong>We are the best Web Hosts</strong></h2> <!-- /wp:heading --> <!-- wp:b-blocks/row {\"columns\":1,\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"0px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":2,\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"0px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":1,\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"0px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"level\":3,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"spacing\":{\"padding\":{\"top\":\"0px\",\"bottom\":\"0px\"}}},\"textColor\":\"base-2\",\"fontFamily\":\"body\"} --> <h3 class=\"wp-block-heading has-base-2-color has-text-color has-link-color has-body-font-family\" style=\"padding-top:0px;padding-bottom:0px\"><strong>Affordable Pricing</strong></h3> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"spacing\":{\"padding\":{\"top\":\"0px\",\"bottom\":\"0px\"}}},\"textColor\":\"base-2\",\"fontSize\":\"medium\"} --> <p class=\"has-base-2-color has-text-color has-link-color has-medium-font-size\" style=\"padding-top:0px;padding-bottom:0px\">Continually disintermediate world-class resources via backend benefits. Seamlessly mesh cooperative in our best company.</p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- wp:b-blocks/row {\"columns\":1,\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"0px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"level\":3,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}}},\"textColor\":\"base-2\",\"fontFamily\":\"body\"} --> <h3 class=\"wp-block-heading has-base-2-color has-text-color has-link-color has-body-font-family\"><strong>Fast Server</strong></h3> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}}},\"textColor\":\"base-2\"} --> <p class=\"has-base-2-color has-text-color has-link-color\">Continually disintermediate world-class resources via backend benefits. Seamlessly mesh cooperative in our best company.</p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- wp:b-blocks/row {\"columns\":1,\"padding\":{\"vertical\":\"0px\",\"horizontal\":\"0px\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"level\":3,\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}}},\"textColor\":\"base-2\",\"fontFamily\":\"body\"} --> <h3 class=\"wp-block-heading has-base-2-color has-text-color has-link-color has-body-font-family\"><strong>24 / 7 Support</strong></h3> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}}},\"textColor\":\"base-2\"} --> <p class=\"has-base-2-color has-text-color has-link-color\">Continually disintermediate world-class resources via backend benefits. Seamlessly mesh cooperative in our best company.</p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/lottie-player {\"file\":\"https://lottie.host/651d3208-7d19-4565-9398-e9186b876092/8nANNoSg8d.json\",\"isControls\":false,\"width\":\"600px\"} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
+	}
+]

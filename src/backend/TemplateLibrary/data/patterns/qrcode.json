@@ -413,29 +413,5 @@
 			"core/image"
 		],
 		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1,\"background\":{\"color\":\"#0000\",\"type\":\"gradient\",\"gradient\":\"radial-gradient(rgb(105,36,163) 0%,rgb(9,13,43) 100%)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"10%\"},\"metadata\":{\"name\":\"QR-Code-Pro-Design-3\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":3} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":33.33,\"tablet\":50,\"mobile\":100}} --> <!-- wp:heading {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"#eb46ff\"}}},\"typography\":{\"fontStyle\":\"italic\",\"fontWeight\":\"800\",\"letterSpacing\":\"3px\"},\"color\":{\"text\":\"#eb46ff\"}},\"fontSize\":\"xx-large\",\"fontFamily\":\"body\"} --> <h2 class=\"wp-block-heading has-text-color has-link-color has-body-font-family has-xx-large-font-size\" style=\"color:#eb46ff;font-style:italic;font-weight:800;letter-spacing:3px\">QR CODE</h2> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"typography\":{\"letterSpacing\":\"2px\",\"fontStyle\":\"normal\",\"fontWeight\":\"700\"}},\"textColor\":\"base-2\",\"fontFamily\":\"body\"} --> <p class=\"has-base-2-color has-text-color has-link-color has-body-font-family\" style=\"font-style:normal;font-weight:700;letter-spacing:2px\">VERIFICATION</p> <!-- /wp:paragraph --> <!-- wp:paragraph {\"style\":{\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"300\",\"letterSpacing\":\"2px\"},\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}}},\"textColor\":\"base-2\",\"fontFamily\":\"body\"} --> <p class=\"has-base-2-color has-text-color has-link-color has-body-font-family\" style=\"font-style:normal;font-weight:300;letter-spacing:2px\">Authoritatively redefine user-centric paradigms through resource maximizing portals. Rapidiously fabricate collaborative schemas rather than impactful e-commerce. Globally envisioneer empowered systems vis-a-vis B2C human capital. </p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":33.33,\"tablet\":50,\"mobile\":100}} --> <!-- wp:image {\"width\":\"321px\",\"height\":\"auto\",\"aspectRatio\":\"1\",\"scale\":\"contain\",\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} --> <figure class=\"wp-block-image size-large is-resized\"><img src=\"https://i.ibb.co.com/F05L9QC/i-37.png\" alt=\"\" style=\"aspect-ratio:1;object-fit:contain;width:321px;height:auto\"/></figure> <!-- /wp:image --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":33.34,\"tablet\":50,\"mobile\":100}} --> <!-- wp:b-blocks/qr-code {\"dimension\":270,\"color\":\"#111111\",\"bgColor\":\"#ffffff\"} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-	},
-	{
-		"name": "bb-patterns/qrCode-pro-19",
-		"title": "Scan QR Code 17",
-		"description": "Awesome QR Code Section Design",
-		"type": "patterns",
-		"pro": true,
-		"categories": [
-			"qrcode"
-		],
-		"keywords": [
-			"qr code",
-			"qr",
-			"scan"
-		],
-		"blockTypes": [
-			"b-blocks/qr-code",
-			"b-blocks/row",
-			"b-blocks/column",
-			"core/heading",
-			"core/paragraph",
-			"core/image"
-		],
-		"content": ""
 	}
 ]

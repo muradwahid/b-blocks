@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.9.6
+ * Version: 1.9.61
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.6' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.61' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -106,6 +106,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/GetCSS.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ajax.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/posts/Posts.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/Templates/Templates.php';
 
 	class BBlocks{
 		protected static $_instance = null;

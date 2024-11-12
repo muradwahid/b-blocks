@@ -74,9 +74,6 @@
 			"full"
 		],
 		"html": false,
-		"layout": {
-			"allowSizingOnChildren": true
-		},
 		"interactivity": {
 			"clientNavigation": true
 		}

@@ -1,0 +1,31 @@
+import { useState, useEffect } from 'react';
+
+import { useWPAjax, useWPOptionQuery } from '../../../../../react-utils/hooks';
+
+const useTemplates = (type = 'patterns', category = 'all', pageNumber = 1, search = '') => {
+	const src = search.split(' ').join(',');
+
+	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
+	const { data = null, saveData, refetch, isLoading } = useWPAjax('bblocks_templates', { _wpnonce: bBlocksUtils?.nonce, type, category, pageNumber, search: src }, false);
+
+	useEffect(() => {
+		refetch()
+	}, [bBlocksUtils]);
+
+	const [templates, setTemplates] = useState([]);
+
+	useEffect(() => {
+		if (type, category, pageNumber) {
+			saveData({ type, category, pageNumber, search: src });
+		}
+	}, [type, category, pageNumber, search]);
+
+	useEffect(() => {
+		if (data) {
+			setTemplates(data);
+		}
+	}, [data]);
+
+	return { templates, refetchTemplates: saveData, isLoading };
+};
+export default useTemplates;

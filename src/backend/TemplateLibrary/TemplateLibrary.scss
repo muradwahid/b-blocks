@@ -119,6 +119,7 @@ $primaryColor: #4527a4;
 			}
 
 			.modalBody {
+				height: calc(100% - 71px);
 				margin: 0 auto;
 				display: flex;
 				gap: 30px;
@@ -126,8 +127,7 @@ $primaryColor: #4527a4;
 				.modalBodySidebar {
 					width: 280px;
 					height: 100%;
-					padding-left: 30px;
-					margin: 20px 0 0 0;
+					padding: 20px 0 0 30px;
 					overflow: hidden;
 
 					.modalBodySidebarSearch {
@@ -180,7 +180,7 @@ $primaryColor: #4527a4;
 
 				.modalBodyTemplates {
 					flex: 1;
-					max-height: calc(80vh - 90px);
+					max-height: 100%;
 					padding-right: 30px;
 					overflow-y: auto;
 					overflow-x: hidden;

@@ -73896,15 +73896,15 @@ const useAnimation = (element, animation) => {
     type,
     duration,
     delay
-  } = animation;
+  } = animation || {};
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     window['AOS']?.init();
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (element) {
-      element.setAttribute('data-aos', animation.type);
-      element.setAttribute('data-aos-duration', animation.duration || 0.4);
-      element.setAttribute('data-aos-delay', animation.delay || 0);
+    if (element && type) {
+      element.setAttribute('data-aos', type);
+      element.setAttribute('data-aos-duration', duration || 0.4);
+      element.setAttribute('data-aos-delay', delay || 0);
       element.classList.remove('aos-init');
       element.classList.remove('aos-animate');
       setTimeout(() => {
@@ -94305,7 +94305,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/chart
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/column","title":"Column","description":"Column of the row.","category":"bBlocks","parent":["b-blocks/row"],"keywords":["column","columns","multi columns"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"width":{"type":"object","default":{"mobile":100,"tablet":50,"desktop":33.33}},"overflow":{"type":"string","default":"hidden"},"background":{"type":"object","default":{"color":"#0000"}},"padding":{"type":"object","default":{"vertical":"0px","horizontal":"0px"}},"border":{"type":"object","default":{}},"shadow":{"type":"object","default":{}}},"usesContext":["b-blocks/rowColumns","b-blocks/rowColumnGap"],"supports":{"align":["wide","full"],"html":false,"layout":{"allowSizingOnChildren":true},"interactivity":{"clientNavigation":true}},"example":{"attributes":{"preview":true}},"style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/column","title":"Column","description":"Column of the row.","category":"bBlocks","parent":["b-blocks/row"],"keywords":["column","columns","multi columns"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"width":{"type":"object","default":{"mobile":100,"tablet":50,"desktop":33.33}},"overflow":{"type":"string","default":"hidden"},"background":{"type":"object","default":{"color":"#0000"}},"padding":{"type":"object","default":{"vertical":"0px","horizontal":"0px"}},"border":{"type":"object","default":{}},"shadow":{"type":"object","default":{}}},"usesContext":["b-blocks/rowColumns","b-blocks/rowColumnGap"],"supports":{"align":["wide","full"],"html":false,"interactivity":{"clientNavigation":true}},"example":{"attributes":{"preview":true}},"style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -94492,7 +94492,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/qr-co
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/row","title":"Row","description":"Implement row and column layout.","category":"bBlocks","keywords":["row","columns","multi columns"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"columns":{"type":"number"},"columnGap":{"type":"string","default":"0px"},"heightType":{"type":"string","default":"auto"},"height":{"type":"string","default":"0px"},"columnPositionY":{"type":"string","default":"center"},"columnPositionX":{"type":"string","default":"center"},"overflow":{"type":"string","default":"hidden"},"background":{"type":"object","default":{"color":"#0000"}},"padding":{"type":"object","default":{"vertical":"50px","horizontal":"0px"}},"border":{"type":"object","default":{}},"shadow":{"type":"object","default":{}}},"providesContext":{"b-blocks/rowColumns":"columns","b-blocks/rowColumnGap":"columnGap"},"supports":{"align":["wide","full"],"html":false,"layout":{"allowSizingOnChildren":true},"interactivity":{"clientNavigation":true}},"example":{"attributes":{"preview":true}},"style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/row","title":"Row","description":"Implement row and column layout.","category":"bBlocks","keywords":["row","columns","multi columns"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"columns":{"type":"number"},"columnGap":{"type":"string","default":"0px"},"heightType":{"type":"string","default":"auto"},"height":{"type":"string","default":"0px"},"columnPositionY":{"type":"string","default":"center"},"columnPositionX":{"type":"string","default":"center"},"overflow":{"type":"string","default":"hidden"},"background":{"type":"object","default":{"color":"#0000"}},"padding":{"type":"object","default":{"vertical":"50px","horizontal":"0px"}},"border":{"type":"object","default":{}},"shadow":{"type":"object","default":{}}},"providesContext":{"b-blocks/rowColumns":"columns","b-blocks/rowColumnGap":"columnGap"},"supports":{"align":["wide","full"],"html":false,"interactivity":{"clientNavigation":true}},"example":{"attributes":{"preview":true}},"style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 

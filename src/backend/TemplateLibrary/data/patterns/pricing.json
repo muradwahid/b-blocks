@@ -650,29 +650,5 @@
 			"core/separator"
 		],
 		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1,\"background\":{\"color\":\"rgba(250, 247, 240, 1)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"10%\"},\"metadata\":{\"name\":\"Pricing-Table-Pro-Design-11\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"textAlign\":\"center\",\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|contrast\"}}},\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"700\",\"letterSpacing\":\"2px\"}},\"textColor\":\"contrast\",\"fontFamily\":\"body\"} --> <h2 class=\"wp-block-heading has-text-align-center has-contrast-color has-text-color has-link-color has-body-font-family\" style=\"font-style:normal;font-weight:700;letter-spacing:2px\"><strong>Pricing Tables</strong></h2> <!-- /wp:heading --> <!-- wp:separator {\"align\":\"center\",\"backgroundColor\":\"contrast\"} --> <hr class=\"wp-block-separator aligncenter has-text-color has-contrast-color has-alpha-channel-opacity has-contrast-background-color has-background\"/> <!-- /wp:separator --> <!-- wp:b-blocks/pricing-table {\"pricingTables\":[{\"name\":\"Basic\",\"price\":2.99,\"priceCurrency\":\"$\",\"period\":\"Month\",\"link\":\"#\",\"linkLabel\":\"Enroll Now\",\"color\":\"#111111\",\"features\":[{\"isEnable\":true,\"label\":\"25GB Disk Space\"},{\"isEnable\":true,\"label\":\"25 Email Accounts\"},{\"isEnable\":true,\"label\":\"50GB Bandwidth\"},{\"isEnable\":true,\"label\":\"25 Subdomains\"},{\"isEnable\":false,\"label\":\"Maintenance\"}]},{\"name\":\"Standard\",\"price\":5.99,\"priceCurrency\":\"$\",\"period\":\"Month\",\"link\":\"#\",\"linkLabel\":\"Enroll Now\",\"color\":\"rgba(242, 194, 0, 1)\",\"features\":[{\"isEnable\":true,\"label\":\"50GB Disk Space\"},{\"isEnable\":true,\"label\":\"50 Email Accounts\"},{\"isEnable\":true,\"label\":\"100GB Bandwidth\"},{\"isEnable\":true,\"label\":\"50 Subdomains\"},{\"isEnable\":false,\"label\":\"Maintenance\"}]},{\"name\":\"Premium\",\"price\":9.99,\"priceCurrency\":\"$\",\"period\":\"Month\",\"link\":\"#\",\"linkLabel\":\"Enroll Now\",\"color\":\"#111111\",\"features\":[{\"isEnable\":true,\"label\":\"100GB Disk Space\"},{\"isEnable\":true,\"label\":\"100 Email Accounts\"},{\"isEnable\":true,\"label\":\"Unlimited Bandwidth\"},{\"isEnable\":true,\"label\":\"100 Subdomains\"},{\"isEnable\":true,\"label\":\"Maintenance\"}]}],\"className\":\"is-style-standard\"} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-	},
-	{
-		"name": "bb-patterns/pricing-section-pro-12",
-		"title": "Pricing Table pro 12",
-		"description": "Awesome Pricing Table Design",
-		"type": "patterns",
-		"pro": true,
-		"categories": [
-			"pricing"
-		],
-		"keywords": [
-			"pricing table",
-			"price",
-			"table",
-			"responsive price table"
-		],
-		"blockTypes": [
-			"b-blocks/pricing-table",
-			"b-blocks/row",
-			"b-blocks/column",
-			"core/heading",
-			"core/separator"
-		],
-		"content": ""
 	}
 ]
