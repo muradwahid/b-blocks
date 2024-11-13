@@ -326,6 +326,9 @@
   font-weight: bold;
   background-color: rgba(69, 39, 164, 0.15);
 }
+.bPlTabPanel.bPlAutoTab .components-tab-panel__tabs button {
+  width: auto;
+}
 .bPlTabPanel.small .components-tab-panel__tabs button, .bPlTabPanel.mini .components-tab-panel__tabs button {
   height: 30px;
   text-transform: capitalize;

@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { BlockPreview } from '@wordpress/block-editor';
 import { parse } from '@wordpress/blocks';
+import { Spinner } from '@wordpress/components';
 
 import { externalIcon } from '../utils/icons';
 import { siteURL } from '../../../utils/data';
 import useTemplateImport from '../hooks/useTemplateImport';
 
-const Templates = ({ isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch, filteredItems, pageItems, children }) => {
+const Templates = ({ isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch, children }) => {
 	const { data, getContent, isLoading } = useTemplateImport();
 
 	useEffect(() => {
@@ -25,7 +26,9 @@ const Templates = ({ isPremium, show, setShow, main, mainLoading, templates, ref
 	}, [isLoading]);
 
 	return <div className='modalBodyTemplates'>
-		{templatesLoading ? <div className='placeCenter'>Templates Loading</div> : (
+		{mainLoading || templatesLoading ? <div className='bPlPlaceCenter'>
+			<Spinner className='bPlSpinner' />
+		</div> : (
 			templates?.length ? <>
 				<div className='grid columns-3 columns-tablet-1 columns-mobile-1'>
 					{templates.map((item, index) => {
@@ -53,7 +56,12 @@ const Templates = ({ isPremium, show, setShow, main, mainLoading, templates, ref
 
 								<div className='modalBodyTemplateItemButton'>
 									<a {...linkProps}>
-										{hasAccess ? 'Import' : <>
+										{hasAccess ? <>
+											<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'>
+												<path d='M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z' />
+											</svg>
+											Import
+										</> : <>
 											Get Pro
 											{externalIcon}
 										</>}
@@ -61,18 +69,18 @@ const Templates = ({ isPremium, show, setShow, main, mainLoading, templates, ref
 								</div>
 							</div>
 
-							<div className='modalBodyTemplateItemTitle'>
+							{/* <div className='modalBodyTemplateItemTitle'>
 								<span>{title}</span>
 
 								{hasAccess ? '' : <span className='modalBodyTemplateItemProBadge'>Pro</span>}
-							</div>
+							</div> */}
 						</div>
 					})}
 				</div>
 
 				{children}
 			</> :
-				<div className='placeCenter modalBodyTemplateNotFound'>No Templates Found!!</div>)}
+				<div className='bPlPlaceCenter modalBodyTemplateNotFound'>No Templates Found!!</div>)}
 	</div>
 };
 export default Templates;
