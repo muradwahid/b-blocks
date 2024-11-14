@@ -37,14 +37,19 @@ class Templates {
 		$type = $_POST['type'] ?? 'patterns';
 		$category = $_POST['category'] ?? 'all';
 		$pageNumber = $_POST['pageNumber'] ?? 1;
+		$start = $pageNumber - 1;
 		$search = $_POST['search'] ?? '';
 
 		$typeFilter = 'patterns' === $type ? 'blocks': '';
 
-		$response =  wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=0&end=$pageNumber&category=$category&keywords=$search" );
+		try {
+			$response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=$start&end=$pageNumber&category=$category&keywords=$search" );
 
-		$body = json_decode( wp_remote_retrieve_body( $response ) );
-		wp_send_json_success( $body );
+			$body = json_decode( wp_remote_retrieve_body( $response ) );
+			wp_send_json_success( $body );
+		} catch (\Throwable $th) {
+			wp_send_json_error( $th->getMessage() );
+		}
 	}
 
 	public function bblocks_template_import(){

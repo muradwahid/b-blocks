@@ -13,6 +13,7 @@ const useTemplates = (type = 'patterns', category = 'all', pageNumber = 1, searc
 	}, [bBlocksUtils]);
 
 	const [templates, setTemplates] = useState([]);
+	const [totalCount, setTotalCount] = useState([]);
 
 	useEffect(() => {
 		if (type, category, pageNumber) {
@@ -22,10 +23,11 @@ const useTemplates = (type = 'patterns', category = 'all', pageNumber = 1, searc
 
 	useEffect(() => {
 		if (data) {
-			setTemplates(data);
+			setTemplates(data?.patterns || []);
+			setTotalCount(parseInt(data?.count) || 0);
 		}
 	}, [data]);
 
-	return { templates, refetchTemplates: saveData, isLoading };
+	return { templates, totalCount, refetchTemplates: saveData, isLoading };
 };
 export default useTemplates;

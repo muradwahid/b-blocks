@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 
 import './TemplateLibrary.scss';
@@ -15,9 +15,14 @@ const TemplateLibrary = () => {
 	const [category, setCategory] = useState('all');
 	const [pageNumber, setPageNumber] = useState(1);
 	const [search, setSearch] = useState('');
+	const [templates, setTemplates] = useState([]);
 
 	const { main, isLoading: mainLoading } = useTemplatesMain();
-	const { templates, refetchTemplates, isLoading: templatesLoading } = useTemplates(type, category, pageNumber, search);
+	const { templates: fTemplates, totalCount, refetchTemplates, isLoading: templatesLoading } = useTemplates(type, category, pageNumber, search);
+
+	useEffect(() => {
+		setTemplates([...templates, ...fTemplates]);
+	}, [fTemplates]);
 
 	return <>
 		<button className='templateLibraryButton' onClick={() => setShow(true)}>
@@ -25,7 +30,7 @@ const TemplateLibrary = () => {
 			{__('Template Library', 'b-blocks')}
 		</button>
 
-		<Modal {...{ isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
+		<Modal {...{ isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
 	</>;
 };
 export default TemplateLibrary;

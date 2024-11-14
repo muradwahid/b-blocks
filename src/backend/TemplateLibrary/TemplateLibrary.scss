@@ -94,7 +94,7 @@ $primaryColor: #4527a4;
 				align-items: center;
 				justify-content: space-between;
 				border-bottom: 1px solid #cecece;
-				padding: 20px 30px;
+				padding: 0px 30px;
 
 				.modalHeaderLogo {
 					color: $primaryColor;
@@ -109,6 +109,15 @@ $primaryColor: #4527a4;
 					img {
 						width: 30px;
 						height: 30px;
+					}
+				}
+
+				.bPlTabPanel {
+					button {
+						height: auto;
+						font-size: 15px;
+						display: inline-block;
+						padding: 18px 16px;
 					}
 				}
 
@@ -243,14 +252,14 @@ $primaryColor: #4527a4;
 								right: 0;
 								bottom: 0;
 								left: 0;
-								padding: 8px 12px;
+								padding: 6px 12px;
 								visibility: hidden;
 								opacity: 0;
 								z-index: 99;
 								transition: all 0.3s ease-in-out;
 
 								a {
-									font-size: 13px;
+									font-size: 12px;
 									text-decoration: none;
 									color: white;
 									background: $primaryColor;
@@ -258,7 +267,7 @@ $primaryColor: #4527a4;
 									align-items: center;
 									justify-content: center;
 									gap: 5px;
-									padding: 7px 20px;
+									padding: 5px 15px;
 									border-radius: 4px;
 									transition: all 0.3s;
 									cursor: pointer;
@@ -289,7 +298,6 @@ $primaryColor: #4527a4;
 
 					.modalBodyTemplateLoadMore {
 						padding: 10px 20px;
-						margin-top: 25px;
 					}
 				}
 
@@ -300,6 +308,11 @@ $primaryColor: #4527a4;
 					font-weight: 600;
 					color: #ff6666;
 					padding: 30px;
+				}
+
+				.modalBodyBottom {
+					margin-top: 35px;
+					position: relative;
 				}
 			}
 		}

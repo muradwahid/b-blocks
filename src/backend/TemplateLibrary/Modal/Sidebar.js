@@ -1,12 +1,13 @@
-import { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { TabPanel, Spinner } from '@wordpress/components';
+import { useMemo } from 'react';
+import { Spinner } from '@wordpress/components';
 
 import { debounce } from '../../../../../bpl-tools/utils/functions';
 
-const Sidebar = ({ isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }) => {
-
+const Sidebar = ({ main, mainLoading, setTemplates, type, category, setCategory, setPageNumber, search, setSearch }) => {
 	const handleSearch = useMemo(() => debounce((sq) => {
 		setSearch(sq);
+		setPageNumber(1);
+		setTemplates([]);
 	}, 600), [search]);
 
 	const handleInputChange = (e) => {
@@ -14,10 +15,10 @@ const Sidebar = ({ isPremium, show, setShow, main, mainLoading, templates, refet
 		handleSearch(sq);
 	};
 
-	const { 'patterns-category': patternsCats = [], 'pages-category': pagesCats = [], type: types = [] } = main || {};
+	const { 'patterns-category': patternsCats = [], 'pages-category': pagesCats = [] } = main || {};
 
 	const cats = 'pages' === type ? pagesCats : patternsCats;
-	const categories = [{ label: 'All', name: 'all' }, ...cats.filter(c => 'pro' !== c.name)];
+	const categories = [{ label: 'All', name: 'all' }, ...cats?.filter(c => 'pro' !== c.name)];
 
 	return (
 		<aside className='modalBodySidebar'>
@@ -37,25 +38,9 @@ const Sidebar = ({ isPremium, show, setShow, main, mainLoading, templates, refet
 					categories.map(({ name, label }, i) => <li onClick={() => {
 						setCategory(name);
 						setPageNumber(1);
+						setTemplates([]);
 					}} className={`libraryBtn ${name === category ? 'active' : ''}`} key={i}>{label}</li>)}
 			</li>
-			{/* <TabPanel
-					className='bPlTabPanel'
-					activeClass='activeTab'
-					tabs={types.map(t => ({ ...t, title: t.label })).filter(t => 'pages' !== t.name)}
-					onSelect={tabName => {
-						setType(tabName);
-						setCategory('all');
-						setPageNumber(1);
-					}}
-				>
-					{() => <li className='modalBodySidebarCategories'>
-						{categories.map(({ name, label }, i) => <li onClick={() => {
-							setCategory(name);
-							setPageNumber(1);
-						}} className={`libraryBtn ${name === category ? 'active' : ''}`} key={i}>{label}</li>)}
-					</li>}
-				</TabPanel> */}
 		</aside>
 	);
 };

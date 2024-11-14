@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { __ } from '@wordpress/i18n';
-import { TabPanel } from '@wordpress/components';
+import { Spinner, TabPanel } from '@wordpress/components';
 
 import Sidebar from './Sidebar';
 import Templates from './Templates';
@@ -9,7 +9,7 @@ import { closeIcon } from '../utils/icons';
 const perPage = 9;
 
 const Modal = (props) => {
-	const { isPremium, show, setShow, main, mainLoading, templates, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch } = props;
+	const { isPremium, show, setShow, setTemplates, totalCount, templatesLoading, setType, setCategory, pageNumber, setPageNumber } = props;
 
 	// Modal outside click
 	const contentRef = useRef();
@@ -24,6 +24,7 @@ const Modal = (props) => {
 			document.removeEventListener('mousedown', handler);
 		};
 	});
+
 
 	return <div className='templateLibraryModalWrap' style={{ visibility: show ? 'visible' : 'hidden' }} >
 		<div ref={contentRef} style={{ marginTop: show ? '0' : '50px', transition: 'margin 0.5s ease-out' }} className='modalContainer'>
@@ -44,6 +45,7 @@ const Modal = (props) => {
 							setType(tabName);
 							setCategory('all');
 							setPageNumber(1);
+							setTemplates([]);
 						}}
 					>{() => <></>}</TabPanel>
 				</div>
@@ -55,7 +57,11 @@ const Modal = (props) => {
 				<Sidebar {...props} />
 
 				<Templates {...props} setShow={setShow} isPremium={isPremium}>
-					{(perPage * pageNumber) < templates.length && <button className='modalBodyTemplateLoadMore libraryBtn active' onClick={() => setPageNumber(prev => prev + 1)}>Load More</button>}
+					<div className='modalBodyBottom'>
+						{templatesLoading ? <div className='bPlPlaceCenter'>
+							<Spinner className='bPlSpinner' />
+						</div> : (perPage * pageNumber) < totalCount && <button className='modalBodyTemplateLoadMore libraryBtn active' onClick={() => setPageNumber(prev => prev + 1)}>Load More</button>}
+					</div>
 				</Templates>
 			</div>}
 		</div>
