@@ -58,20 +58,9 @@ class Templates {
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
-
-		$id = $_POST['id'] ?? null;
-
-		if(!$id){
-			wp_send_json_error('Invalid Template ID');
-		}
-
-		$data = [
-			'id' => sanitize_text_field( $_POST['id'] ),
-			'content' => $_POST['original_content']
-		];
 		
 		try {
-			$data = Image::instance()->maybe_import_images( $data['content'] );
+			$data = Image::instance()->maybe_import_images( $_POST['original_content'] ?? '' );
 			wp_send_json_success( $data );
 		} catch ( \Throwable $th ) {
 			wp_send_json_error( $th->getMessage() );

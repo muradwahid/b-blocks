@@ -39,7 +39,7 @@ const Sidebar = ({ main, mainLoading, setTemplates, type, category, setCategory,
 						setCategory(name);
 						setPageNumber(1);
 						setTemplates([]);
-					}} className={`libraryBtn ${name === category ? 'active' : ''}`} key={i}>{label}</li>)}
+					}} className={`libraryBtn ${name === category ? 'active' : ''}`} key={i} dangerouslySetInnerHTML={{ __html: label }} />)}
 			</li>
 		</aside>
 	);

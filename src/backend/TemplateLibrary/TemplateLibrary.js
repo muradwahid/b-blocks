@@ -6,6 +6,7 @@ import Modal from './Modal/Modal';
 import usePremiumInEditor from '../../hooks/usePremiumInEditor';
 import useTemplatesMain from './hooks/useTemplatesMain';
 import useTemplates from './hooks/useTemplates';
+import { useWPOptionQuery } from '../../../../react-utils/hooks';
 
 const TemplateLibrary = () => {
 	const { isPremium } = usePremiumInEditor();
@@ -17,8 +18,9 @@ const TemplateLibrary = () => {
 	const [search, setSearch] = useState('');
 	const [templates, setTemplates] = useState([]);
 
-	const { main, isLoading: mainLoading } = useTemplatesMain();
-	const { templates: fTemplates, totalCount, refetchTemplates, isLoading: templatesLoading } = useTemplates(type, category, pageNumber, search);
+	const { data = {} } = useWPOptionQuery('bBlocksUtils');
+	const { main, isLoading: mainLoading } = useTemplatesMain(data?.nonce);
+	const { templates: fTemplates, totalCount, refetchTemplates, isLoading: templatesLoading } = useTemplates(data?.nonce, type, category, pageNumber, search);
 
 	useEffect(() => {
 		setTemplates([...templates, ...fTemplates]);
@@ -30,7 +32,7 @@ const TemplateLibrary = () => {
 			{__('Template Library', 'b-blocks')}
 		</button>
 
-		<Modal {...{ isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
+		<Modal {...{ nonce: data?.nonce, isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, refetchTemplates, templatesLoading, type, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
 	</>;
 };
 export default TemplateLibrary;

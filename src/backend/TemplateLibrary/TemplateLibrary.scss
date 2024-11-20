@@ -247,7 +247,8 @@ $primaryColor: #4527a4;
 								backdrop-filter: blur(5px);
 								display: flex;
 								align-items: center;
-								justify-content: space-between;
+								justify-content: start;
+								gap: 10px;
 								position: absolute;
 								right: 0;
 								bottom: 0;
@@ -271,12 +272,22 @@ $primaryColor: #4527a4;
 									border-radius: 4px;
 									transition: all 0.3s;
 									cursor: pointer;
+
+									&.disabled {
+										pointer-events: none;
+										opacity: 0.5;
+									}
 								}
 
 								svg {
 									width: 1em;
 									height: 1em;
 									fill: currentColor;
+								}
+
+								.bPlSpinner {
+									width: 16px !important;
+									height: 16px !important;
 								}
 							}
 						}

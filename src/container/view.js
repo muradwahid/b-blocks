@@ -17,8 +17,13 @@ containerEls?.forEach(containerEl => {
 	const topShapedEl = containerEl.querySelector('.topShaped');
 	const bottomShapedEl = containerEl.querySelector('.bottomShaped');
 
-	createRoot(topShapedEl).render(<SVGShape data={top} />);
-	createRoot(bottomShapedEl).render(<SVGShape data={bottom} />);
+	if (topShapedEl) {
+		createRoot(topShapedEl).render(<SVGShape data={top} />);
+	}
+
+	if (bottomShapedEl) {
+		createRoot(bottomShapedEl).render(<SVGShape data={bottom} />);
+	}
 
 	containerEl?.removeAttribute('data-attributes');
 })
