@@ -5,7 +5,7 @@ const Counter = ({ attributes, counter, index, labelEl, isBackend = false, custo
 
 	const iconEl = icon?.class && <i className={icon.class}></i>;
 
-	return <div onClick={() => isBackend ? custom.setActiveIndex(index) : null} className={`${isBackend && index === custom.activeIndex ? 'bBlocksNowEditing' : ''}`} id={`counter-${index}`}>
+	return <div onClick={() => isBackend ? custom.setActiveIndex(index) : null} className={`${isBackend && index === custom.activeIndex ? 'bPlNowEditing' : ''}`} id={`counter-${index}`}>
 		<div className='counter'>
 			{isIcon && 'top' === iconPosition && <div className='counterIcon'>{iconEl}</div>}
 

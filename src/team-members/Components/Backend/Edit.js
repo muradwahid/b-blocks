@@ -48,7 +48,7 @@ const Edit = props => {
 				{members.map((item, index) => {
 					const { photo, name, title, bio, social = [] } = item;
 
-					return <div key={index} onClick={() => setActiveIndex(index)} className={`teamMember ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`teamMember-${index}`}>
+					return <div key={index} onClick={() => setActiveIndex(index)} className={`teamMember ${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`teamMember-${index}`}>
 						{photo?.url ? <>
 							<img className={`memberPhoto ${photo?.id ? `wp-image-${photo?.id}` : null}`} src={photo?.url} alt={photo?.alt} />
 							{isBlobURL(photo?.url) && <Spinner />}

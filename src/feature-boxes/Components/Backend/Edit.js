@@ -31,7 +31,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				{features.map((item, index) => {
 					const { isUpIcon, icon, upIcon, title, desc } = item;
 
-					return <div key={index} onClick={() => setActiveIndex(index)} className={`feature ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`feature-${index}`}>
+					return <div key={index} onClick={() => setActiveIndex(index)} className={`feature ${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`feature-${index}`}>
 						{isIcon && <div className='featureIcon'>
 							{isUpIcon ? <img className={upIcon?.id ? `wp-image-${upIcon?.id}` : null} src={upIcon?.url} alt={upIcon?.alt} /> : icon?.class && <i className={icon?.class}></i>}
 						</div>}

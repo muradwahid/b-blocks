@@ -357,6 +357,7 @@
 			"destDate": ""
 		}
 	},
+	"editorScript": "file:../index.js",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

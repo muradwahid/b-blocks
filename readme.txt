@@ -1,10 +1,10 @@
 === B Blocks - The ultimate block collection ===
 Contributors: bplugins, abuhayat, charlescormier
 Donate link: https://www.buymeacoffee.com/abuhayat
-Tags: block, Gutenberg page builder, Gutenberg blocks, WordPress page building tool, Page builder for Gutenberg
+Tags: block, gutenberg page builder, gutenberg blocks, page builder for wordpress, page builder for gutenberg
 Requires at least: 6.5+
 Tested up to: 6.7
-Stable tag: 1.9.7
+Stable tag: 1.9.8
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -242,7 +242,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
-= 1.9.7 - 22 Oct 2024 =
+= 1.9.8 - 21 Nov 2024 =
+* Fix Templates issue.
+
+= 1.9.7 - 20 Nov 2024 =
 * Improve templates library
 * Update Container Block
 

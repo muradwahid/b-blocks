@@ -7,7 +7,7 @@ const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
 		{boxes.map((item, index) => {
 			const { isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, isBackUpIcon = false, backIcon = {}, upBackIcon = {}, frontTitle, backTitle, desc, btn, btnLink } = item;
 
-			return <div key={index} onClick={() => isBackend && custom.setActiveIndex(index)} className={`flipBox ${isBackend && index === custom.activeIndex ? 'bBlocksNowEditing' : ''}`} id={`flipBox-${index}`}>
+			return <div key={index} onClick={() => isBackend && custom.setActiveIndex(index)} className={`flipBox ${isBackend && index === custom.activeIndex ? 'bPlNowEditing' : ''}`} id={`flipBox-${index}`}>
 				<div className='box front'>
 					<div className='frontContent'>
 						{isIcon && <>

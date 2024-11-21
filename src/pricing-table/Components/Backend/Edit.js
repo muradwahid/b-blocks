@@ -65,7 +65,7 @@ const Edit = props => {
 		const priceAmountEl = <span className='priceAmount'>{priceCurrency}{price}</span>;
 		const pricePeriodEl = <RichText className='pricePeriod' tagName='span' value={period} onChange={val => updatePriceTable('period', val)} placeholder={__('Period', 'b-blocks')} inlineToolbar />;
 
-		return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`priceItem-${index}`}>
+		return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`priceItem-${index}`}>
 			<div className='priceItem' ref={priceItem}>
 				<RichText className='priceName' tagName='h3' value={name} onChange={val => updatePriceTable('name', val)} placeholder={__('Plan Name', 'b-blocks')} inlineToolbar />
 

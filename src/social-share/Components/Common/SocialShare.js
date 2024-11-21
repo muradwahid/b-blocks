@@ -7,7 +7,7 @@ const SocialShare = ({ attributes, isBackend = false, custom }) => <ul className
 		return <li
 			key={index}
 			onClick={() => isBackend && custom.setActiveIndex(index)}
-			className={`icon icon-${index} ${isBackend && index === custom.activeIndex ? 'bBlocksNowEditing' : ''}`}
+			className={`icon icon-${index} ${isBackend && index === custom.activeIndex ? 'bPlNowEditing' : ''}`}
 			data-social={network}>
 			{isUpIcon ? <img className={upIcon?.id ? `wp-image-${upIcon?.id}` : null} src={upIcon?.url} alt={upIcon?.alt} /> : icon?.class && <i className={icon?.class}></i>}
 		</li>;

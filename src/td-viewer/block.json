@@ -69,6 +69,7 @@
 			"sourceType": "link"
 		}
 	},
+	"editorScript": "file:../index.js",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": [

@@ -51,7 +51,7 @@ const Edit = props => {
 						{isBlobURL(img.url) && <Spinner />}
 					</> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} value={img} onChange={val => updateCard('img', val)} />;
 
-					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`card-${index}`}>
+					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`card-${index}`}>
 						<div className={`card ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
 							{'top' === imgPos && <CardImage />}
 

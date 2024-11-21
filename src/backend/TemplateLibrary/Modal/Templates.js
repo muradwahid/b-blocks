@@ -29,7 +29,13 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 									setIsLoading(false);
 
 									if (res) {
-										const content = res.replaceAll('\\"', '"');
+										const content = res
+											.replaceAll('\\"', '"')
+											.replaceAll(`\\\\u003cbr\\\\u003e`, '<br/>')
+											.replaceAll(`\\\\u003cstrong\\\\u003e`, '<strong>')
+											.replaceAll(`\\\\u003c/strong\\\\u003e`, '</strong>')
+											.replaceAll(`\\\\u003cem\\\\u003e`, '<em>')
+											.replaceAll(`\\\\u003c/em\\\\u003e`, '</em>');
 
 										// Try insert block to the editor
 										try {

@@ -12,7 +12,7 @@ import './icon-box';
 import './video';
 import './services';
 import './service';
-import './3d-viewer';
+import './td-viewer';
 import './image-gallery';
 import './image-comparison';
 import './flip-boxes';

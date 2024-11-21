@@ -67,7 +67,7 @@ const Edit = props => {
 
 					const priceSl = `${mainSl} #priceItem-${index}`;
 
-					return <div key={index} onClick={() => setActiveIndex(index)} className={`priceItem ${index === activeIndex ? 'bBlocksNowEditing' : ''}`} id={`priceItem-${index}`}>
+					return <div key={index} onClick={() => setActiveIndex(index)} className={`priceItem ${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`priceItem-${index}`}>
 						<style dangerouslySetInnerHTML={{
 							__html: `
 							${priceSl}{
