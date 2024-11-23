@@ -1,50 +1,5 @@
 [
 	{
-		"name": "bb-patterns/qrCode-section-1",
-		"title": "WhatsApp QR Code",
-		"description": "Awesome QR Code Section Design",
-		"type": "patterns",
-		"categories": [
-			"qrcode"
-		],
-		"keywords": [
-			"qr code",
-			"qr",
-			"whatsapp"
-		],
-		"blockTypes": [
-			"b-blocks/qr-code",
-			"b-blocks/row",
-			"b-blocks/column",
-			"core/heading",
-			"core/paragraph"
-		],
-		"content": "<!-- wp:b-blocks/row {\"align\":\"full\",\"columns\":1,\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"15%\"},\"metadata\":{\"name\":\"QR-Code-Design-1\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":2} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"style\":{\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"500\",\"letterSpacing\":\"2px\"}},\"fontFamily\":\"body\"} --> <h2 class=\"wp-block-heading has-body-font-family\" style=\"font-style:normal;font-weight:500;letter-spacing:2px\">To Use WhatsApp To Your Phone</h2> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|contrast\"}}},\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"300\",\"letterSpacing\":\"2px\"}},\"textColor\":\"contrast\",\"fontFamily\":\"body\"} --> <p class=\"has-contrast-color has-text-color has-link-color has-body-font-family\" style=\"font-style:normal;font-weight:300;letter-spacing:2px\">01.Open whats app to your phone</p> <!-- /wp:paragraph --> <!-- wp:paragraph {\"style\":{\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"300\",\"letterSpacing\":\"2px\"}},\"fontFamily\":\"body\"} --> <p class=\"has-body-font-family\" style=\"font-style:normal;font-weight:300;letter-spacing:2px\">02.Point your phone to this screen to capture the code</p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/qr-code {\"color\":\"#128c7e\"} /--> <!-- wp:paragraph {\"align\":\"center\",\"style\":{\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"300\",\"letterSpacing\":\"2px\"}},\"fontFamily\":\"body\"} --> <p class=\"has-text-align-center has-body-font-family\" style=\"font-style:normal;font-weight:300;letter-spacing:2px\">Keep Me Sign In</p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-	},
-	{
-		"name": "bb-patterns/qrCode-section-2",
-		"title": "Automatically QR Code",
-		"description": "Awesome QR Code Section Design",
-		"type": "patterns",
-		"categories": [
-			"qrcode"
-		],
-		"keywords": [
-			"qr code",
-			"qr",
-			"scan"
-		],
-		"blockTypes": [
-			"b-blocks/qr-code",
-			"b-blocks/row",
-			"b-blocks/column",
-			"b-blocks/button",
-			"core/heading",
-			"core/paragraph"
-		],
-		"content": "<!-- wp:b-blocks/row {\"align\":\"wide\",\"columns\":1,\"metadata\":{\"name\":\"QR-Code-Design-2\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":100,\"tablet\":100,\"mobile\":100}} --> <!-- wp:b-blocks/row {\"columns\":2,\"background\":{\"color\":\"rgba(236, 247, 255, 1)\"},\"padding\":{\"vertical\":\"50px\",\"horizontal\":\"10%\"},\"border\":{\"width\":\"4px\",\"radius\":\"20px\",\"color\":\"#ffffff\"}} --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100}} --> <!-- wp:heading {\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"#00288a\"}}},\"typography\":{\"fontStyle\":\"normal\",\"fontWeight\":\"500\",\"letterSpacing\":\"1px\"},\"color\":{\"text\":\"#00288a\"}},\"fontFamily\":\"body\"} --> <h2 class=\"wp-block-heading has-text-color has-link-color has-body-font-family\" style=\"color:#00288a;font-style:normal;font-weight:500;letter-spacing:1px\">Enter Your Test</h2> <!-- /wp:heading --> <!-- wp:paragraph {\"style\":{\"color\":{\"text\":\"#00288a\"},\"elements\":{\"link\":{\"color\":{\"text\":\"#00288a\"}}},\"typography\":{\"letterSpacing\":\"2px\"}}} --> <p class=\"has-text-color has-link-color\" style=\"color:#00288a;letter-spacing:2px\">Your QR code be Generated Automatically</p> <!-- /wp:paragraph --> <!-- /wp:b-blocks/column --> <!-- wp:b-blocks/column {\"width\":{\"desktop\":50,\"tablet\":100,\"mobile\":100},\"background\":{\"color\":\"rgba(0, 40, 138, 1)\"},\"padding\":{\"vertical\":\"20px\",\"horizontal\":\"20px\"},\"border\":{\"radius\":\"20px\"}} --> <!-- wp:b-blocks/qr-code {\"dimension\":200,\"bgColor\":\"#ffffff\"} /--> <!-- wp:paragraph {\"align\":\"center\",\"style\":{\"elements\":{\"link\":{\"color\":{\"text\":\"var:preset|color|base-2\"}}},\"spacing\":{\"padding\":{\"top\":\"var:preset|spacing|10\",\"bottom\":\"var:preset|spacing|10\",\"left\":\"0\",\"right\":\"0\"}},\"typography\":{\"letterSpacing\":\"2px\"}},\"textColor\":\"base-2\",\"fontSize\":\"medium\"} --> <p class=\"has-text-align-center has-base-2-color has-text-color has-link-color has-medium-font-size\" style=\"padding-top:var(--wp--preset--spacing--10);padding-right:0;padding-bottom:var(--wp--preset--spacing--10);padding-left:0;letter-spacing:2px\">Share</p> <!-- /wp:paragraph --> <!-- wp:b-blocks/button {\"text\":\"SVG/EPS\",\"colors\":{\"color\":\"#fff\",\"bg\":\"rgba(110, 163, 39, 1)\"},\"hovColors\":{\"color\":\"#fff\",\"bg\":\"#111111\"}} /--> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row --> <!-- /wp:b-blocks/column --> <!-- /wp:b-blocks/row -->"
-	},
-	{
 		"name": "bb-patterns/qrCode-section-3",
 		"title": "Scan QR Code",
 		"description": "Awesome QR Code Section Design",

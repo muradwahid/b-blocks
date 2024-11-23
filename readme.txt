@@ -242,8 +242,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
-= 1.9.8 - 21 Nov 2024 =
+= 1.9.8 - 23 Nov 2024 =
 * Fix Templates issue.
+* Fix 3D Viewer zoom issue.
 
 = 1.9.7 - 20 Nov 2024 =
 * Improve templates library
