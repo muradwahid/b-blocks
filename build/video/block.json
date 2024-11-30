@@ -86,6 +86,7 @@
       "sourceType": "link"
     }
   },
+  "editorScript": "file:../index.js",
   "style": [
     "file:./view.css",
     "plyr"

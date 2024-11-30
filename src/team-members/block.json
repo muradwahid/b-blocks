@@ -343,6 +343,7 @@
 			}
 		}
 	},
+	"editorScript": "file:../index.js",
 	"style": [
 		"file:./view.css",
 		"fontAwesome"

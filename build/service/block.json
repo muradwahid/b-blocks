@@ -129,6 +129,7 @@
       "preview": true
     }
   },
+  "editorScript": "file:../index.js",
   "render": "file:./render.php",
   "viewScript": "file:./view.js"
 }
