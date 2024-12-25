@@ -6,6 +6,7 @@ export const docsURL = `${siteURL}docs/`;
 export const tdViewerDocs = `${docsURL}3d-viewer-block/`;
 export const alertDocs = `${docsURL}alert-block/`;
 export const animatedTextDocs = `${docsURL}animated-text-block/`;
+export const buttonDocs = `https://bplugins.com/docs/button-block`;
 export const chartDocs = `${docsURL}chart-block/`;
 export const countdownDocs = `${docsURL}countdown-block/`;
 export const countersDocs = `${docsURL}counters-block/`;

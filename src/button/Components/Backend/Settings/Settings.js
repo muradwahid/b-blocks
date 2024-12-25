@@ -8,19 +8,17 @@ import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Compone
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
-import { pluginSlug } from '../../../../utils/data';
-import usePremiumInEditor from '../../../../hooks/usePremiumInEditor';
+import { buttonDocs, pluginSlug } from '../../../../utils/data';
 import useUserRoles from '../../../../hooks/useUserRoles';
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { actionTypes, animationTypes, buttonSizes, buttonTypes, contentTypes, securities, tabs, xPositions, xyPositions } from '../../../utils/options';
 
-const Settings = ({ attributes, setAttributes }) => {
+const Settings = ({ attributes, setAttributes, isPremium }) => {
 	const { text, actionType = 'link', security, url, tooltip, tooltipPos = 'top', target, attrs = {}, hideOn = {}, isDownload, downloadFileName = '', isUpIcon, icon, upIcon, iconPos, type, isFullWidth, size, popup = {}, animationType, animationDuration, addID, addCSS, alignment, typography, colors, hovColors, padding, border, shadow, securityPassword, securityRole } = attributes;
 	const { type: popType = 'image', content: popContent = '', caption: popCaption = '' } = popup;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
-	const { isPremium } = usePremiumInEditor();
 	const { roles } = useUserRoles();
 
 	const premiumProps = {
@@ -43,7 +41,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={tabs} onSelect={tabController}>{tab => <>
 				{'general' === tab.name && <>
-					<HelpPanel slug={pluginSlug} docsLink='https://bplugins.com/docs/button-block' />
+					<HelpPanel slug={pluginSlug} docsLink={buttonDocs} />
 
 
 					<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')}>
@@ -225,7 +223,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<BorderControl className='mt20' value={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
 
-						<ShadowControl label={__('Shadow:', 'team-section')} value={shadow?.shadow || shadow} onChange={val => setAttributes({ shadow: val })} />
+						<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => setAttributes({ shadow: val })} />
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

@@ -5,6 +5,7 @@ import './row';
 import './column';
 import './container';
 import './posts';
+import './navigation';
 import './slider';
 import './section-heading';
 import './button';

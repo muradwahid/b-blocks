@@ -37,12 +37,12 @@ const Edit = props => {
 	const id = `${prefix}-${clientId}`;
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} />
+		<Settings {...{ attributes, setAttributes, isPremium }} />
 
 		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+			<Style {...{ attributes, id }} />
 
-			<Button attributes={attributes} isPremium={isPremium} Popup={Popup} popupContent={<BackendContent popup={popup} setAttributes={setAttributes} />} ref={buttonEl} isBackend={true}>
+			<Button {...{ attributes, isPremium, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, ref: buttonEl, isBackend: true }}>
 				<RichText className='btnText' tagName='span' value={text} onChange={val => setAttributes({ text: val })} placeholder={__('Button Text', 'b-blocks')} inlineToolbar />
 			</Button>
 		</div>

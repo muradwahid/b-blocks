@@ -93,7 +93,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 					<Label className='mb5'>{__('Layout:', 'b-blocks')}</Label>
 					<ButtonGroup className='bPlBtnGroup'>
 						<Tooltip text={__('Vertical', 'b-blocks')} placement='top' position='top'>
-							<Button icon={verticalLineIcon} isMedium isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => {
+							<Button icon={verticalLineIcon} isPrimary={'vertical' === layout} aria-pressed={'vertical' === layout} onClick={() => {
 								setAttributes({
 									layout: 'vertical',
 									columns: { ...columns, ['desktop']: 3 },
@@ -105,7 +105,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 						</Tooltip>
 
 						<Tooltip text={__('Horizontal', 'b-blocks')} placement='top' position='top'>
-							<Button icon={horizontalLineIcon} isMedium isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => {
+							<Button icon={horizontalLineIcon} isPrimary={'horizontal' === layout} aria-pressed={'horizontal' === layout} onClick={() => {
 								setAttributes({
 									layout: 'horizontal',
 									columns: { ...columns, ['desktop']: 2 },
