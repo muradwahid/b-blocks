@@ -13459,6 +13459,8 @@ SwiperSlide.displayName = 'SwiperSlide';
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!****************************!*\
   !*** ./src/slider/view.js ***!
   \****************************/
@@ -13493,6 +13495,8 @@ document.addEventListener('DOMContentLoaded', () => {
     sliderEl?.removeAttribute('data-attributes');
   });
 });
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map

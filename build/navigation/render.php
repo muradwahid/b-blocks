@@ -13,9 +13,9 @@ $align = ($orientation === 'is-vertical') ? 'vertical-align-' . $layout['vertica
 $className = "$prefix $orientation $displayMenu ". ( $wrapMultipleLine ? '' : 'no-wrap' ) ." $align";
 ?>
 <div <?php echo get_block_wrapper_attributes(); ?> id='<?php echo esc_attr( $id ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
-    <div class='<?php echo esc_attr( $className ) ?>'>
-        <?php echo wp_kses( $content, BBlocks\Inc\Utils::allowedInnerHTML() ); ?>
-    </div>
+	<div class='<?php echo esc_attr( $className ) ?>'>
+		<?php echo wp_kses( $content, BBlocks\Inc\Utils::allowedInnerHTML() ); ?>
+	</div>
 </div>
 
 

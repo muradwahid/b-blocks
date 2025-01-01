@@ -1,0 +1,34 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/advanced-image/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-advanced-image {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-advanced-image * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage {
+  display: flex;
+  flex-direction: column;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  transition: transform 0.5s, border 0.5s, border-radius 0.5s, box-shadow 0.5s;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .image {
+  position: relative;
+  max-width: 100%;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .image h3 {
+  color: red;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .caption {
+  position: absolute;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+/*# sourceMappingURL=view.css.map*/

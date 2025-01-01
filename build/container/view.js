@@ -2864,6 +2864,8 @@ function InlineSVG(props) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!*******************************!*\
   !*** ./src/container/view.js ***!
   \*******************************/
@@ -2906,6 +2908,8 @@ containerEls?.forEach(containerEl => {
   }
   containerEl?.removeAttribute('data-attributes');
 });
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map

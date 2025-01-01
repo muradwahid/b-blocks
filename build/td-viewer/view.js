@@ -241,6 +241,8 @@ module.exports = window["ReactDOM"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!*******************************!*\
   !*** ./src/td-viewer/view.js ***!
   \*******************************/
@@ -279,6 +281,8 @@ const RenderTDViewer = ({
     ref: tdViewerRef
   });
 };
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map

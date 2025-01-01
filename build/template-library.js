@@ -775,7 +775,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const useWPAjax = (action, params = {}, set = true) => {
+const useWPAjax = (action, params = {}, set = false) => {
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [isError, setIsError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
@@ -805,7 +805,7 @@ const useWPAjax = (action, params = {}, set = true) => {
     sendRequest(payload);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (set) {
+    if (!set) {
       sendRequest(params);
     }
   }, []);
@@ -2307,6 +2307,8 @@ function castImmutable(value) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!*****************************************!*\
   !*** ./src/backend/template-library.js ***!
   \*****************************************/
@@ -2344,6 +2346,8 @@ const mountTemplateLibrary = () => {
   });
 };
 _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_2___default()(mountTemplateLibrary);
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=template-library.js.map

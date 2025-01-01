@@ -1962,6 +1962,8 @@ function castImmutable(value) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!****************************!*\
   !*** ./src/column/view.js ***!
   \****************************/
@@ -1989,6 +1991,8 @@ document.addEventListener('DOMContentLoaded', () => {
     columnEl?.removeAttribute('data-attributes');
   });
 });
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map

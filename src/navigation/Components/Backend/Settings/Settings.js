@@ -37,7 +37,7 @@ const Settings = (props) => {
 		</InspectorControls>
 
 
-		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link='https://bplugins.com/products/advanced-post-block/#pricing'>
+		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link='https://bblockswp.com/#pricing'>
 			<li>
 				&emsp;<strong>{__('Feature: ', 'b-blocks')}</strong>
 				{__('Feature details.', 'b-blocks')}

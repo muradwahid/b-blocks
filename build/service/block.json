@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "b-blocks/service",
   "title": "Service",
-  "description": "Service item for services.",
+  "description": "Service item for services section.",
   "parent": [
     "b-blocks/services"
   ],

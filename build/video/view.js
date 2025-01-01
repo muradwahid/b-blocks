@@ -210,6 +210,8 @@ module.exports = window["ReactDOM"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!***************************!*\
   !*** ./src/video/view.js ***!
   \***************************/
@@ -283,6 +285,8 @@ const RenderVideo = ({
     type: "video/mp4"
   }))));
 };
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map

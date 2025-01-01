@@ -1,123 +1,73 @@
-import { __ } from "@wordpress/i18n";
-import { withSelect } from "@wordpress/data";
-import { TabPanel, PanelBody, RangeControl } from "@wordpress/components";
+import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
+import { TabPanel, PanelBody, PanelRow, RangeControl } from '@wordpress/components';
 
-import { ColorControl, Typography, BoxControl, Device } from "../../../../../../../bpl-tools/Components";
-import { updateData } from '../../../../../../../bpl-tools/utils/functions';
+import { ColorControl, Typography, BoxControl, Device } from '../../../../../../../bpl-tools/Components';
 
-import DropdownMenuStyle from "./DropdownMenuStyle";
-import HamburgerMenuStyle from "./HamburgerMenuStyle";
+import DropdownMenu from './DropdownMenu';
+import HamburgerMenu from './HamburgerMenu';
 
 const Style = (props) => {
-    const { attributes, setAttributes, device, updateObj } = props;
-    const { navigationStyle, caret } = attributes;
+	const { attributes, device, updateObj } = props;
+	const { navigationStyle, caret } = attributes;
+	const { padding, margin, typo, colors } = navigationStyle;
 
-    return (
-        <>
-            <PanelBody
-                className="bPlPanelBody"
-                title={__("Navigation", "b-blocks")}
-                initialOpen={true}
-            >
-                <div className="bPl-device-position-wrapper">
-                    <Device className="bPl-device" />
-                    <BoxControl
-                        label={__("Padding", "b-blocks")}
-                        values={navigationStyle.padding[device]}
-                        onChange={(val) => updateObj('navigationStyle', val, 'padding', device)}
-                    />
-                </div>
-                <div className="bPl-device-position-wrapper">
-                    <Device className="bPl-device" />
-                    <BoxControl
-                        label={__("Margin", "b-blocks")}
-                        values={navigationStyle.margin[device]}
-                        onChange={(val) =>
-                            setAttributes({
-                                navigationStyle: updateData(
-                                    navigationStyle,
-                                    val,
-                                    "margin",
-                                    device
-                                ),
-                            })
-                        }
-                    />
-                </div>
-                <Typography
-                    value={navigationStyle.typo}
-                    onChange={(val) =>
-                        setAttributes({
-                            navigationStyle: updateData(navigationStyle, val, "typo"),
-                        })
-                    }
-                />
+	return <>
+		<PanelBody className='bPlPanelBody' title={__('Navigation Link/Item', 'b-blocks')} initialOpen={true}>
+			<BoxControl label={<PanelRow>
+				{__('Padding', 'b-blocks')}
+				<Device />
+			</PanelRow>} values={padding[device]} onChange={(val) => updateObj('navigationStyle', val, 'padding', device)} />
 
-                <TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={[
-                    { title: "Normal", name: "normal" },
-                    { title: "Active", name: "active" },
-                ]}>{({ name: active }) => <>
-                    <TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={[
-                        { title: "Normal", name: "normal" },
-                        { title: "Hover", name: "hover" },
-                    ]}>{({ name: hover }) => <>
-                        <ColorControl
-                            label={__("Text", "b-blocks")}
-                            value={navigationStyle.colors[active][hover]}
-                            onChange={(val) =>
-                                setAttributes({
-                                    navigationStyle: updateData(
-                                        navigationStyle,
-                                        val,
-                                        "colors",
-                                        active,
-                                        hover
-                                    )
-                                })
-                            }
-                        />
-                    </>}</TabPanel>
-                </>}</TabPanel>
+			<br />
+			<br />
+
+			<BoxControl label={<PanelRow>
+				{__('Margin', 'b-blocks')}
+				<Device />
+			</PanelRow>} values={margin[device]} onChange={(val) => updateObj('navigationStyle', val, 'margin', device)} />
+
+			<Typography className='mt20' value={typo} onChange={(val) => updateObj('navigationStyle', val, 'typo')} />
+
+			<TabPanel className='bPlTabPanel small mt20' activeClass='activeTab' tabs={[
+				{ title: 'Normal', name: 'normal' },
+				{ title: 'Active', name: 'active' },
+			]}>
+				{({ name: active }) => <TabPanel className='bPlTabPanel small mt10' activeClass='activeTab' tabs={[
+					{ title: 'Normal', name: 'normal' },
+					{ title: 'Hover', name: 'hover' },
+				]}>
+					{({ name: hover }) => <ColorControl className='mt10' label={__('Text', 'b-blocks')} value={colors[active][hover]} onChange={(val) => updateObj('navigationStyle', val, 'colors', active, hover)} />}
+				</TabPanel>}
+			</TabPanel>
+		</PanelBody>
 
 
-            </PanelBody>
-            <DropdownMenuStyle attributes={attributes} setAttributes={setAttributes} device={device} />
-            {/* caret Style */}
-            <PanelBody className="bPlPanelBody" title={__("Caret", "b-blocks")} initialOpen={false}>
-                <div className="bPl-device-position-wrapper">
-                    <Device className="bPl-device" />
-                    <RangeControl
-                        label={__("Size", "b-blocks")}
-                        min={0}
-                        max={100}
-                        value={caret.size[device]}
-                        onChange={(val) =>
-                            setAttributes({ caret: updateData(caret, val, "size", device) })
-                        }
-                    />
-                </div>
+		<DropdownMenu {...props} />
 
-                <TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={[
-                    { title: "Normal", name: "normal" },
-                    { title: "Hover", name: "hover" },
-                ]}>
-                    {({ name }) => <ColorControl
-                        label={__("Color", "b-blocks")}
-                        value={caret.color[name]}
-                        onChange={(val) =>
-                            setAttributes({ caret: updateData(caret, val, "color", name) })
-                        }
-                    />}
-                </TabPanel>
-            </PanelBody>
-            <HamburgerMenuStyle {...props} />
-        </>
-    );
+
+		<PanelBody className='bPlPanelBody' title={__('Caret', 'b-blocks')} initialOpen={false}>
+			<RangeControl label={<PanelRow>
+				{__('Size', 'b-blocks')}
+				<Device />
+			</PanelRow>} value={caret.size[device]} onChange={(val) => updateObj('caret', val, 'size', device)} min={0} max={100} />
+
+			<TabPanel className='bPlTabPanel small mt20' activeClass='activeTab' tabs={[
+				{ title: 'Normal', name: 'normal' },
+				{ title: 'Hover', name: 'hover' },
+			]}>
+				{({ name }) => <ColorControl className='mt10' label={__('Color', 'b-blocks')} value={caret.color[name]} onChange={(val) => updateObj('caret', val, 'color', name)} />}
+			</TabPanel>
+		</PanelBody>
+
+
+		<HamburgerMenu {...props} />
+	</>
 };
 export default withSelect((select) => {
-    const { getDeviceType } = select('core/editor');
+	const { getDeviceType } = select('core/editor');
 
-    return {
-        device: getDeviceType()?.toLowerCase(),
-    };
+	return {
+		device: getDeviceType()?.toLowerCase(),
+	};
 })(Style);

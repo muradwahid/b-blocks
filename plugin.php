@@ -131,7 +131,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
-			$blocks = [ 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
+			$blocks = [ 'advanced-image', 'alert', 'animated-text', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
 
 			foreach ( $blocks as $block ) {
 				register_block_type( __DIR__ . "/build/$block/block.json" );

@@ -2141,6 +2141,8 @@ function castImmutable(value) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!******************************!*\
   !*** ./src/icon-box/view.js ***!
   \******************************/
@@ -2169,6 +2171,8 @@ document.addEventListener('DOMContentLoaded', () => {
     el?.removeAttribute('data-attributes');
   });
 });
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map
