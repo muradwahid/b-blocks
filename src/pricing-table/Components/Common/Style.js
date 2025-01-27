@@ -6,16 +6,16 @@ const Style = ({ attributes, id, isStandard }) => {
 	const { pricingTables, columnGap, rowGap, textAlign, padding, shadow } = attributes;
 
 	const mainSl = `#${id}`;
-	const pricingTableSl = `${mainSl} .${prefix}`;
+	const tableSl = `${mainSl} .${prefix}`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${pricingTableSl}{
+		${tableSl}{
 			grid-gap: ${rowGap} ${columnGap};
 			text-align: ${textAlign};
 			padding: ${isStandard ? '30px 0' : '0'}
 		}
-		${pricingTableSl} .priceItem{
+		${tableSl} .priceItem{
 			padding: ${getSpaceCSS(padding)};
 			box-shadow: ${getShadowCSS(shadow)};
 		}
@@ -23,7 +23,7 @@ const Style = ({ attributes, id, isStandard }) => {
 		${pricingTables?.map((priceTable, index) => {
 			const { color } = priceTable;
 
-			const defPriceTableSelect = `${pricingTableSl} #priceItem-${index} .priceItem`;
+			const defPriceTableSelect = `${tableSl} #priceItem-${index} .priceItem`;
 			const priceTableSelect = hasClass => `${mainSl}.is-style-${hasClass} .${prefix} #priceItem-${index} .priceItem`;
 
 			return `

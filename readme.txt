@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, gutenberg page builder, gutenberg blocks, page builder for wordpress, page builder for gutenberg
 Requires at least: 6.5+
 Tested up to: 6.7.1
-Stable tag: 1.9.8
+Stable tag: 1.9.9
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -242,6 +242,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 1.9.9 - 27 Jan 2025 =
+* Update SDK.
+
 = 1.9.8 - 23 Nov 2024 =
 * Fix Templates issue.
 * Fix 3D Viewer zoom issue.
@@ -418,4 +421,4 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Compatible with PHP 5.4
 
 = 1.0 =
-* Initial Release
+* Initial Release.

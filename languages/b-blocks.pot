@@ -1,17 +1,17 @@
-# Copyright (C) 2024 bPlugins
+# Copyright (C) 2025 bPlugins
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 1.9.8\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
+"Project-Id-Version: B Blocks 1.9.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-24T06:34:45+00:00\n"
+"POT-Creation-Date: 2025-01-27T17:13:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
@@ -48,6 +48,36 @@ msgstr ""
 
 #: build/template-library.js:1
 msgid "Template Library"
+msgstr ""
+
+#: build/advanced-image/block.json
+msgctxt "block title"
+msgid "Advanced Image"
+msgstr ""
+
+#: build/advanced-image/block.json
+msgctxt "block description"
+msgid "A block that allows for advanced image handling with custom features."
+msgstr ""
+
+#: build/advanced-image/block.json
+msgctxt "block keyword"
+msgid "b blocks"
+msgstr ""
+
+#: build/advanced-image/block.json
+msgctxt "block keyword"
+msgid "advanced"
+msgstr ""
+
+#: build/advanced-image/block.json
+msgctxt "block keyword"
+msgid "image"
+msgstr ""
+
+#: build/advanced-image/block.json
+msgctxt "block keyword"
+msgid "advanced image"
 msgstr ""
 
 #: build/alert/block.json
@@ -538,6 +568,36 @@ msgctxt "block keyword"
 msgid "Email sending"
 msgstr ""
 
+#: build/navigation/block.json
+msgctxt "block title"
+msgid "Navigation"
+msgstr ""
+
+#: build/navigation/block.json
+msgctxt "block description"
+msgid "Display navigation in your website with stunning & organized appearance."
+msgstr ""
+
+#: build/navigation/block.json
+msgctxt "block keyword"
+msgid "navbar"
+msgstr ""
+
+#: build/navigation/block.json
+msgctxt "block keyword"
+msgid "navigation"
+msgstr ""
+
+#: build/navigation/block.json
+msgctxt "block keyword"
+msgid "menu"
+msgstr ""
+
+#: build/navigation/block.json
+msgctxt "block keyword"
+msgid "menubar"
+msgstr ""
+
 #: build/posts/block.json
 msgctxt "block title"
 msgid "Posts"
@@ -700,7 +760,7 @@ msgstr ""
 
 #: build/service/block.json
 msgctxt "block description"
-msgid "Service item for services."
+msgid "Service item for services section."
 msgstr ""
 
 #: build/service/block.json

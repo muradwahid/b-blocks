@@ -9,7 +9,7 @@ const AnimatedText = ({ attributes, id }) => {
 
 	useEffect(() => {
 		$(`#${id} .content`).textillate(textillateConfig(attributes));
-	}, [loop, animateIn, inEffect, inSequence, outEffect, outSequence]);
+	}, [loop, animateIn, inEffect, inSequence, outEffect, outSequence, content]);
 
 	return <div className={prefix}>
 		<p className='content'>{content}</p>

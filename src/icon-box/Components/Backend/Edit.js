@@ -1,5 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
+
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import IconBox from '../Common/IconBox';
@@ -14,7 +16,7 @@ const Edit = props => {
 		<Settings {...{ attributes, setAttributes }} />
 
 		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+			<Style attributes={attributes} id={id} extraCSS={generateCSS(id, attributes.advanced, true)} />
 			<IconBox attributes={attributes} />
 		</div>
 	</>;

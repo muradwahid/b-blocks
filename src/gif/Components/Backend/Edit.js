@@ -90,7 +90,8 @@ const Edit = props => {
 				#${id} .${prefix} figure{
 					width: ${'0px' === gifWidth || '0%' === gifWidth || '0em' === gifWidth ? 'auto' : gifWidth};
 				}
-			`}} />
+			`.replace(/\s+/g, ' ')
+			}} />
 
 			<div className={prefix}>
 				<figure className='editImageHolder'>

@@ -1,4 +1,4 @@
-import { getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from '../../../../../Components/utils/getCSS';
+import { getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { prefix } from '../../utils/data';
 
@@ -8,11 +8,9 @@ const Style = ({ attributes, id, device = 'desktop' }) => {
 	const { hoverEffect, optionType, alignment, border, shadow } = style;
 	const { typo, textAlign, horizontalAlign, colors, verticalAlign, width: capWidth, margin, padding } = captionStyle;
 
-
 	const mainSl = `#${id} .${prefix}`;
 	const imageSl = `${mainSl} .image`;
 	const captionSl = `${imageSl} .caption`;
-
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `

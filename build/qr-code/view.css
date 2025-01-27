@@ -1,11 +1,1 @@
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/qr-code/style.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
-.wp-block-b-blocks-qr-code * {
-  box-sizing: border-box;
-}
-.wp-block-b-blocks-qr-code .bBlocksQRCode img {
-  display: inline-block;
-}
-
-/*# sourceMappingURL=view.css.map*/
+.wp-block-b-blocks-qr-code *{box-sizing:border-box}.wp-block-b-blocks-qr-code .bBlocksQRCode img{display:inline-block}

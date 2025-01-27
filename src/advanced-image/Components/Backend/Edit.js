@@ -15,7 +15,7 @@ const Edit = props => {
 
 	const id = `${prefix}-${clientId}`;
 
-	console.log(featuredImageURL);
+	console.log(featuredImageURL)
 
 	return <>
 		<Settings {...{ attributes, setAttributes }} />
@@ -52,11 +52,13 @@ export default withSelect((select, props) => {
 	const { getMedia } = select('core');
 	const { getDeviceType, getEditedPostAttribute } = select('core/editor');
 
-	const mediaObj = getMedia(getEditedPostAttribute('featured_media'));
-	console.log({ id: getEditedPostAttribute('featured_media'), mediaObj });
+	const featureMediaID = getEditedPostAttribute('featured_media');
+	const mediaObj = getMedia(featureMediaID);
+
+	const featuredImageURL = mediaObj?.media_details?.sizes[size]?.source_url || mediaObj?.source_url;
 
 	return {
 		device: getDeviceType()?.toLowerCase(),
-		featuredImageURL: mediaObj?.media_details?.sizes[size]?.source_url || mediaObj?.source_url
+		featuredImageURL
 	}
 })(Edit);

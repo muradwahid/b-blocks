@@ -49,7 +49,7 @@ const Settings = ({ attributes, setAttributes, clientId, device }) => {
 							const { hoverBG, icon, iconBorder } = block?.attributes;
 
 							'default' === val && dispatch('core/block-editor').updateBlockAttributes(block.clientId, {
-								hoverBG: { ...hoverBG, type: 'image', image: { url: 'https://i.ibb.co/HVF4NB3/service-pattern.png' }, overlayColor: '#0000', position: 'bottom left', size: 'auto' },
+								hoverBG: { ...hoverBG, type: 'image', image: { url: 'https://i.imgur.com/i6qCSdM.png' }, overlayColor: '#0000', position: 'bottom left', size: 'auto' },
 								icon: { ...icon, colorType: 'solid', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' },
 								iconBorder: { ...iconBorder, width: '0px', color: '#0000', side: 'all' },
 								titleColor: '#222',

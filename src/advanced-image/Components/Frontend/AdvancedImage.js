@@ -11,7 +11,7 @@ const AdvancedImage = ({ attributes, featuredImageURL }) => {
 		<div className='image'>
 			{'custom' === sourceType ? <>
 				{source.url && <>
-					<img src={source.url} alt={source.alt || source.title} onClick={() => link.url ? window.open(`${link.url}`, link.tab) : {}} />
+					<Image image={source} link={link} />
 
 					{enabled && <div className='caption'>
 						<p dangerouslySetInnerHTML={{ __html: text }} />

@@ -34,6 +34,8 @@ $primaryColor: #4527a4;
 		}
 
 		.bBlocksContainerContent {
+			display: flex;
+			flex-direction: column;
 			max-width: 100%;
 			z-index: 3;
 

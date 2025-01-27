@@ -71,7 +71,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
 	}
 
-	const { price = 0, priceCurrency = '', features = [], link = '', color = '' } = pricingTables[activeIndex] || {};
+	const { name = '', price = 0, priceCurrency = '', period = '', features = [], linkLabel = '', link = '', color = '' } = pricingTables[activeIndex] || {};
 
 	const addFeature = e => {
 		e.preventDefault();
@@ -91,11 +91,18 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 						{null !== activeIndex && <>
 							<h3 className='bplItemTitle'>{__(`Price No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
+							<TextControl label={__('Plan Name:', 'b-blocks')} value={name} onChange={val => updatePriceTable('name', val)} />
+
 							<NumberControl label={__('Price:', 'b-blocks')} labelPosition='left' value={price} onChange={val => updatePriceTable('price', parseFloat(val))} />
 
-							<PanelRow>
+							<PanelRow className='mt10'>
 								<Label className=''>{__('Currency:', 'b-blocks')}</Label>
 								<TextControl value={priceCurrency} onChange={val => updatePriceTable('priceCurrency', val)} />
+							</PanelRow>
+
+							<PanelRow className='mt10'>
+								<Label className=''>{__('Period:', 'b-blocks')}</Label>
+								<TextControl value={period} onChange={val => updatePriceTable('period', val)} />
 							</PanelRow>
 
 							<Label>{__('Features:', 'b-blocks')}</Label>
@@ -121,6 +128,11 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 							<div className='addItem addFeature mt5'>
 								<Button className='addItem' label={__('Add New Feature', 'b-blocks')} onClick={addFeature}><Dashicon icon='plus' />{__('Add New Feature', 'b-blocks')}</Button>
 							</div>
+
+							<PanelRow className='mt20'>
+								<Label className=''>{__('Button Label:', 'b-blocks')}</Label>
+								<TextControl value={linkLabel} onChange={val => updatePriceTable('linkLabel', val)} />
+							</PanelRow>
 
 							<Label>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={link} onChange={val => updatePriceTable('link', val)} />

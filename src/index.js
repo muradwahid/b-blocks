@@ -9,7 +9,7 @@ import './posts';
 import './slider';
 import './section-heading';
 import './button';
-import './advanced-image';
+// import './advanced-image';
 import './icon-box';
 import './video';
 import './services';

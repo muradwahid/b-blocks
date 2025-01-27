@@ -137,7 +137,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 									iconSize: labelTypo?.fontSize
 								});
 								'theme3' === val && setAttributes({
-									background: { ...background, type: 'image', image: { url: 'https://i.ibb.co/b18MWMw/open-space-office.jpg' }, overlayColor: '#000000b3' },
+									background: { ...background, type: 'image', image: { url: 'https://i.imgur.com/n8bbzIE.jpeg' }, overlayColor: '#000000b3' },
 									padding: { ...padding, vertical: '140px', horizontal: '0px' },
 									counterHeight: '250px',
 									counterBorder: { ...counterBorder, width: '0px', color: '#0000', radius: '50%' },

@@ -18,7 +18,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		<PanelBody className='bPlPanelBody' title={__('Service Settings', 'b-blocks')}>
 			<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#0000' }} />
 
-			<Background label={__('Hover Background:', 'b-blocks')} value={hoverBG} onChange={val => setAttributes({ hoverBG: val })} defaults={{ type: 'image', image: { url: 'https://i.ibb.co/HVF4NB3/service-pattern.png' }, overlayColor: '#0000', position: 'bottom left', size: 'auto' }} />
+			<Background label={__('Hover Background:', 'b-blocks')} value={hoverBG} onChange={val => setAttributes({ hoverBG: val })} defaults={{ type: 'image', image: { url: 'https://i.imgur.com/i6qCSdM.png' }, overlayColor: '#0000', position: 'bottom left', size: 'auto' }} />
 		</PanelBody>
 
 		{isIcon && <PanelBody className='bPlPanelBody' title={__('Icon Settings', 'b-blocks')} initialOpen={false}>
