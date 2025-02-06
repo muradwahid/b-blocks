@@ -17,7 +17,7 @@ const ShapePanel = ({ labelPrefix, shape, setAttributes, uploadSvg, type, color,
 			className='mt20'
 			value={uploadSvg}
 			types='image/svg+xml'
-			onChange={val => setAttributes({ shape: updateData(shape, val, name, 'uploadSvg') })}
+			onChange={({ id, url, alt, title }) => setAttributes({ shape: updateData(shape, { id, url, alt, title }, name, 'uploadSvg') })}
 			height='100%'
 			width='100%'
 		/> : <SelectControlPro

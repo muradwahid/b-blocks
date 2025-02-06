@@ -4,7 +4,7 @@ import { Abstract, AsymmetricCurve, AsymmetricTriangle, OceanWave } from '../../
 const SVGShape = ({ data }) => {
 	const { isUpload, uploadSvg, type } = data || {};
 
-	return isUpload ? <SVG src={uploadSvg?.url} height='' width='' /> : <>{(() => {
+	return isUpload ? <SVG src={uploadSvg?.url} /> : <>{(() => {
 		switch (type) {
 			case 'ocean-wave':
 				return <OceanWave />;

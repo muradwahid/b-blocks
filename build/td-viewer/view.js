@@ -1,1 +1,288 @@
-(()=>{"use strict";var t={8744:(t,e,r)=>{var n=r(5795);e.H=n.createRoot,n.hydrateRoot},5795:t=>{t.exports=window.ReactDOM}},e={};const r=window.React;var n=function r(n){var o=e[n];if(void 0!==o)return o.exports;var a=e[n]={exports:{}};return t[n](a,a.exports,r),a.exports}(8744);const o="bBlocks3DViewer",a=({attributes:t,id:e})=>{const{alignment:n,width:a,height:s}=t,i=`#${e} .${o}`;return(0,r.createElement)("style",{dangerouslySetInnerHTML:{__html:`\n\t\t${i}{\n\t\t\ttext-align: ${n};\n\t\t}\n\t\t${i} model-viewer{\n\t\t\twidth: ${["0px","0%","0em"].includes(a)?"auto":a};\n\t\t\theight: ${["0px","0%","0em"].includes(s)?"350px":s};\n\t\t}\n\t\t`.replace(/\s+/g," ")}})},s=(0,r.forwardRef)((({attributes:t},e)=>{const{sourceType:n,model:a,modelLink:s,isTouchMove:i,isZoom:l,loadingType:c}=t,d=i?{"camera-controls":""}:{},u=l?{}:{"disable-zoom":""};return(0,r.createElement)("div",{className:o,ref:e},(0,r.createElement)("model-viewer",{src:"upload"===n?a?.url:s,alt:"upload"===n?a?.title:"",loading:c,"auto-rotate":!0,...d,...u}))}));document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".wp-block-b-blocks-td-viewer").forEach((t=>{const e=JSON.parse(t.dataset.attributes);(0,n.H)(t).render((0,r.createElement)(r.Fragment,null,(0,r.createElement)(a,{attributes:e,id:t.id}),(0,r.createElement)(i,{attributes:e}))),t?.removeAttribute("data-attributes")}))}));const i=({attributes:t})=>{const e=(0,r.useRef)(null);return(0,r.createElement)(s,{attributes:t,ref:e})}})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/td-viewer/Components/Common/Style.js":
+/*!**************************************************!*\
+  !*** ./src/td-viewer/Components/Common/Style.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/data */ "./src/td-viewer/utils/data.js");
+
+
+const Style = ({
+  attributes,
+  id
+}) => {
+  const {
+    alignment,
+    width,
+    height
+  } = attributes;
+  const mainSl = `#${id} .${_utils_data__WEBPACK_IMPORTED_MODULE_1__.prefix}`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		${mainSl}{
+			text-align: ${alignment};
+		}
+		${mainSl} model-viewer{
+			width: ${['0px', '0%', '0em'].includes(width) ? 'auto' : width};
+			height: ${['0px', '0%', '0em'].includes(height) ? '350px' : height};
+		}
+		`.replace(/\s+/g, ' ')
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/td-viewer/Components/Common/TDViewer.js":
+/*!*****************************************************!*\
+  !*** ./src/td-viewer/Components/Common/TDViewer.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/data */ "./src/td-viewer/utils/data.js");
+
+
+
+const TDViewer = ({
+  attributes
+}, ref) => {
+  const {
+    sourceType,
+    model,
+    modelLink,
+    isTouchMove,
+    isZoom,
+    loadingType
+  } = attributes;
+  const touchProps = isTouchMove ? {
+    'camera-controls': ''
+  } : {};
+  const zoomProps = isZoom ? {} : {
+    'disable-zoom': ''
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: _utils_data__WEBPACK_IMPORTED_MODULE_1__.prefix,
+    ref: ref
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("model-viewer", {
+    src: 'upload' === sourceType ? model?.url : modelLink,
+    alt: 'upload' === sourceType ? model?.title : '',
+    loading: loadingType,
+    "auto-rotate": true,
+    ...touchProps,
+    ...zoomProps
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(TDViewer));
+
+/***/ }),
+
+/***/ "./src/td-viewer/utils/data.js":
+/*!*************************************!*\
+  !*** ./src/td-viewer/utils/data.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   prefix: () => (/* binding */ prefix)
+/* harmony export */ });
+const prefix = 'bBlocks3DViewer';
+
+/***/ }),
+
+/***/ "./src/td-viewer/style.scss":
+/*!**********************************!*\
+  !*** ./src/td-viewer/style.scss ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../plugin-slug/node_modules/react-dom/client.js":
+/*!*******************************************************!*\
+  !*** ../plugin-slug/node_modules/react-dom/client.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!*******************************!*\
+  !*** ./src/td-viewer/view.js ***!
+  \*******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/td-viewer/style.scss");
+/* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/td-viewer/Components/Common/Style.js");
+/* harmony import */ var _Components_Common_TDViewer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/TDViewer */ "./src/td-viewer/Components/Common/TDViewer.js");
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tdViewerEls = document.querySelectorAll('.wp-block-b-blocks-td-viewer');
+  tdViewerEls.forEach(tDViewerEl => {
+    const attributes = JSON.parse(tDViewerEl.dataset.attributes);
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(tDViewerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      attributes: attributes,
+      id: tDViewerEl.id
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RenderTDViewer, {
+      attributes: attributes
+    })));
+    tDViewerEl?.removeAttribute('data-attributes');
+  });
+});
+const RenderTDViewer = ({
+  attributes
+}) => {
+  const tdViewerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_TDViewer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    attributes: attributes,
+    ref: tdViewerRef
+  });
+};
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

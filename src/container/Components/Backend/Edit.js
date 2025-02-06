@@ -28,7 +28,7 @@ const Edit = props => {
 			<Style attributes={attributes} id={id} isBackend={false} />
 
 			<div className={prefix}>
-				{top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>
+				{!!top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>
 					<SVGShape data={top} />
 				</div>}
 
@@ -36,9 +36,9 @@ const Edit = props => {
 					<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender /> : <InnerBlocks.DefaultBlockAppender />} />
 				</div>
 
-				{bottom?.uploadSvg?.url || 'none' !== bottom?.type && <div className='shaped bottomShaped'>
+				{!!bottom?.uploadSvg?.url || 'none' !== bottom?.type ? <div className='shaped bottomShaped'>
 					<SVGShape data={bottom} />
-				</div>}
+				</div> : null}
 			</div>
 		</div>
 	</div>

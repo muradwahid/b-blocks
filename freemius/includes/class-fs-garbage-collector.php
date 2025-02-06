@@ -186,7 +186,7 @@
                     continue;
                 }
 
-                if ( $this->is_product_active( $slug ) ) {
+                if ( $this->is_product_active( $slug ) && $product_data->id ) {
                     $active_products_by_id_map[ $product_data->id ] = true;
                     continue;
                 }
