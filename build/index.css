@@ -3004,6 +3004,44 @@ button.swiper-pagination-bullet {
   transform: translate(-50%, calc(100% + 10px));
   margin: 0 !important;
 }
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/advanced-image/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-advanced-image {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-advanced-image * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector {
+  padding: 40px 0;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector h4 {
+  font-weight: 600;
+  text-align: center;
+  color: #4527a4;
+  margin: 0 0 20px 0;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector .sourceOptions {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector .sourceOptions div {
+  color: #aaa;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector .sourceOptions div svg {
+  transition: all 0.5s;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector .sourceOptions div:hover {
+  color: #4527a4;
+}
+.wp-block-b-blocks-advanced-image .sourceSelector .sourceOptions div:hover svg {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/icon-box/editor.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************/

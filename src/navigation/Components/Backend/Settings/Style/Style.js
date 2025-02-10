@@ -14,10 +14,10 @@ const Style = (props) => {
 
 	return <>
 		<PanelBody className='bPlPanelBody' title={__('Navigation Link/Item', 'b-blocks')} initialOpen={true}>
-			<BoxControl label={<PanelRow>
+			<BoxControl label={<Flex justify='space-between'>
 				{__('Padding', 'b-blocks')}
 				<Device />
-			</PanelRow>} values={padding[device]} onChange={(val) => updateObj('styles', val, 'padding', device)} />
+			</Flex>} values={padding[device]} onChange={(val) => updateObj('styles', val, 'padding', device)} />
 
 			<br />
 			<br />

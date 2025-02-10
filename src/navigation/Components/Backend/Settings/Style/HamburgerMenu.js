@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { __experimentalBorderBoxControl as BorderBoxControl, PanelBody, RangeControl, TabPanel, } from '@wordpress/components';
+import { __experimentalBorderBoxControl as BorderBoxControl, Flex, PanelBody, RangeControl, TabPanel, } from '@wordpress/components';
 
 import { Background, BoxControl, BtnGroup, ColorControl, Device, Typography, } from '../../../../../../../bpl-tools/Components';
 
@@ -28,10 +28,10 @@ const HamburgerMenu = ({ attributes, updateObj, device }) => {
 				/>
 
 				<BoxControl
-					label={<PanelRow>
+					label={<Flex justify='space-between'>
 						{__('Padding', 'b-blocks')}
 						<Device />
-					</PanelRow>}
+					</Flex>}
 					values={button.padding[device]}
 					onChange={(val) => updateObj('hamburger', val, 'button', 'padding', device)}
 				/>
@@ -46,10 +46,10 @@ const HamburgerMenu = ({ attributes, updateObj, device }) => {
 			{name === 'container' && <>
 				<br />
 				<BoxControl
-					label={<PanelRow>
+					label={<Flex justify='space-between'>
 						{__('Padding', 'b-blocks')}
 						<Device />
-					</PanelRow>}
+					</Flex>}
 					values={container.padding[device]}
 					onChange={(val) => updateObj('hamburger', val, 'container', 'padding', device)}
 				/>
@@ -63,10 +63,10 @@ const HamburgerMenu = ({ attributes, updateObj, device }) => {
 			{name === 'items' && <>
 				<br />
 				<BoxControl
-					label={<PanelRow>
+					label={<Flex justify='space-between'>
 						{__('Padding', 'b-blocks')}
 						<Device />
-					</PanelRow>}
+					</Flex>}
 					values={items.padding[device]}
 					onChange={(val) => updateObj('hamburger', val, 'items', 'padding', device)}
 				/>

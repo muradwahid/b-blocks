@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { __experimentalBorderBoxControl as BorderBoxControl, PanelBody, RangeControl, TabPanel, } from '@wordpress/components';
+import { __experimentalBorderBoxControl as BorderBoxControl, Flex, PanelBody, RangeControl, TabPanel, } from '@wordpress/components';
 
 import { Background, BoxControl, ColorControl, Device, ShadowControl, Typography } from '../../../../../../../bpl-tools/Components';
 import { PanelRow } from '@wordpress/components';
@@ -34,10 +34,10 @@ const DropdownMenu = ({ attributes, updateObj, device }) => {
 				/>
 
 				<BoxControl
-					label={<PanelRow>
+					label={<Flex justify='space-between'>
 						{__('Padding', 'b-blocks')}
 						<Device />
-					</PanelRow>}
+					</Flex>}
 					values={padding[device]}
 					onChange={(val) => updateObj('dropdownStyles', val, 'container', 'padding', device)}
 				/>
@@ -64,10 +64,10 @@ const DropdownMenu = ({ attributes, updateObj, device }) => {
 			{tab.name === 'items' && <>
 				<br />
 				<BoxControl
-					label={<PanelRow>
+					label={<Flex justify='space-between'>
 						{__('Padding', 'b-blocks')}
 						<Device />
-					</PanelRow>}
+					</Flex>}
 					values={itemsPadding[device]}
 					onChange={(val) => updateObj('dropdownStyles', val, 'menuItems', 'padding', device)}
 				/>
