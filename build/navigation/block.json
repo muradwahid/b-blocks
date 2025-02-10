@@ -4,7 +4,7 @@
   "name": "b-blocks/navigation",
   "version": "1.0.0",
   "title": "Navigation",
-  "category": "widgets",
+  "category": "bBlocks",
   "description": "Display navigation in your website with stunning & organized appearance.",
   "keywords": [
     "navbar",
@@ -17,6 +17,189 @@
     "align": {
       "type": "string",
       "default": ""
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "orientation": "is-horizontal",
+        "preset": "preset-1",
+        "alignment": "left",
+        "verticalAlignment": "left",
+        "isWrapMultipleLine": true,
+        "isOpenOnClick": true,
+        "isMenuIcon": true
+      }
+    },
+    "hamburger": {
+      "type": "object",
+      "default": {
+        "buttonType": "icon",
+        "displayMenu": "mobile",
+        "button": {
+          "size": {
+            "desktop": 30,
+            "tablet": "",
+            "mobile": ""
+          },
+          "color": "",
+          "padding": {
+            "desktop": {
+              "top": "10px",
+              "right": "10px",
+              "bottom": "10px",
+              "left": "10px"
+            },
+            "tablet": {},
+            "mobile": {}
+          }
+        },
+        "container": {
+          "background": {
+            "color": "#fff"
+          },
+          "padding": {
+            "desktop": {
+              "top": "5px",
+              "right": "5px",
+              "bottom": "5px",
+              "left": "5px"
+            },
+            "tablet": {},
+            "mobile": {}
+          }
+        },
+        "items": {
+          "typo": {
+            "fontWeight": 600,
+            "fontVariant": "600"
+          },
+          "padding": {
+            "desktop": {
+              "top": "15px",
+              "right": "15px",
+              "bottom": "15px",
+              "left": "15px"
+            },
+            "tablet": {},
+            "mobile": {}
+          },
+          "border": {},
+          "borderRadius": {},
+          "colors": {
+            "normal": {
+              "text": "",
+              "bg": ""
+            },
+            "hover": {
+              "text": "",
+              "bg": ""
+            }
+          }
+        },
+        "closeButton": {
+          "color": "",
+          "alignment": "right"
+        }
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "typo": {
+          "fontWeight": 600
+        },
+        "padding": {
+          "desktop": {
+            "top": "20px",
+            "right": "20px",
+            "bottom": "20px",
+            "left": "20px"
+          },
+          "tablet": {},
+          "mobile": {}
+        },
+        "margin": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {}
+        },
+        "colors": {
+          "normal": {
+            "normal": "#52555d",
+            "hover": ""
+          },
+          "active": {
+            "normal": "",
+            "hover": ""
+          }
+        }
+      }
+    },
+    "dropdownStyles": {
+      "type": "object",
+      "default": {
+        "container": {
+          "width": {
+            "desktop": 200,
+            "tablet": "",
+            "mobile": ""
+          },
+          "background": {},
+          "padding": {
+            "desktop": {
+              "top": "5px",
+              "right": "5px",
+              "bottom": "5px",
+              "left": "5px"
+            },
+            "tablet": {},
+            "mobile": {}
+          },
+          "border": {},
+          "borderRadius": {},
+          "shadow": {}
+        },
+        "menuItems": {
+          "typo": {
+            "fontWeight": 600
+          },
+          "padding": {
+            "desktop": {
+              "top": "10px",
+              "right": "10px",
+              "bottom": "10px",
+              "left": "10px"
+            },
+            "tablet": {},
+            "mobile": {}
+          },
+          "colors": {
+            "transition": "",
+            "normal": {
+              "normal": "",
+              "hover": ""
+            },
+            "active": {
+              "normal": "",
+              "hover": ""
+            }
+          }
+        }
+      }
+    },
+    "caret": {
+      "type": "object",
+      "default": {
+        "size": {
+          "desktop": 15,
+          "tablet": "",
+          "mobile": ""
+        },
+        "color": {
+          "normal": "#475467",
+          "hover": "#101828"
+        }
+      }
     },
     "advanced": {
       "type": "object",
@@ -122,189 +305,6 @@
             },
             "transition": 0.3
           }
-        }
-      }
-    },
-    "layout": {
-      "type": "object",
-      "default": {
-        "orientation": "is-horizontal",
-        "preset": "preset-1",
-        "alignment": "left",
-        "verticalAlignment": "left",
-        "wrapMultipleLine": true,
-        "isOpenOnClick": true,
-        "isMenuIcon": true
-      }
-    },
-    "hamburger": {
-      "type": "object",
-      "default": {
-        "buttonType": "icon",
-        "displayMenu": "mobile",
-        "button": {
-          "size": {
-            "desktop": 30,
-            "tablet": "",
-            "mobile": ""
-          },
-          "color": "",
-          "padding": {
-            "desktop": {
-              "top": "10px",
-              "right": "10px",
-              "bottom": "10px",
-              "left": "10px"
-            },
-            "tablet": {},
-            "mobile": {}
-          }
-        },
-        "container": {
-          "background": {
-            "color": "#fff"
-          },
-          "padding": {
-            "desktop": {
-              "top": "5px",
-              "right": "5px",
-              "bottom": "5px",
-              "left": "5px"
-            },
-            "tablet": {},
-            "mobile": {}
-          }
-        },
-        "items": {
-          "typo": {
-            "fontWeight": 600,
-            "fontVariant": "600"
-          },
-          "padding": {
-            "desktop": {
-              "top": "15px",
-              "right": "15px",
-              "bottom": "15px",
-              "left": "15px"
-            },
-            "tablet": {},
-            "mobile": {}
-          },
-          "border": {},
-          "borderRadius": {},
-          "colors": {
-            "normal": {
-              "text": "",
-              "bg": ""
-            },
-            "hover": {
-              "text": "",
-              "bg": ""
-            }
-          }
-        },
-        "closeButton": {
-          "color": "",
-          "alignment": "right"
-        }
-      }
-    },
-    "navigationStyle": {
-      "type": "object",
-      "default": {
-        "typo": {
-          "fontWeight": 600
-        },
-        "padding": {
-          "desktop": {
-            "top": "20px",
-            "right": "20px",
-            "bottom": "20px",
-            "left": "20px"
-          },
-          "tablet": {},
-          "mobile": {}
-        },
-        "margin": {
-          "desktop": {},
-          "tablet": {},
-          "mobile": {}
-        },
-        "colors": {
-          "normal": {
-            "normal": "#52555d",
-            "hover": ""
-          },
-          "active": {
-            "normal": "",
-            "hover": ""
-          }
-        }
-      }
-    },
-    "dropdownMenuStyle": {
-      "type": "object",
-      "default": {
-        "container": {
-          "width": {
-            "desktop": 200,
-            "tablet": "",
-            "mobile": ""
-          },
-          "background": {},
-          "padding": {
-            "desktop": {
-              "top": "5px",
-              "right": "5px",
-              "bottom": "5px",
-              "left": "5px"
-            },
-            "tablet": {},
-            "mobile": {}
-          },
-          "border": {},
-          "borderRadius": {},
-          "shadow": {}
-        },
-        "menuItems": {
-          "typo": {
-            "fontWeight": 600
-          },
-          "padding": {
-            "desktop": {
-              "top": "10px",
-              "right": "10px",
-              "bottom": "10px",
-              "left": "10px"
-            },
-            "tablet": {},
-            "mobile": {}
-          },
-          "colors": {
-            "transition": "",
-            "normal": {
-              "normal": "",
-              "hover": ""
-            },
-            "active": {
-              "normal": "",
-              "hover": ""
-            }
-          }
-        }
-      }
-    },
-    "caret": {
-      "type": "object",
-      "default": {
-        "size": {
-          "desktop": 15,
-          "tablet": "",
-          "mobile": ""
-        },
-        "color": {
-          "normal": "#475467",
-          "hover": "#101828"
         }
       }
     }

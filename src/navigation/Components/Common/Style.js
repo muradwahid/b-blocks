@@ -2,9 +2,9 @@ import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
 import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getShadowCSS, getTypoCSS, } from "../../../../../bpl-tools/utils/getCSS";
 
 const style = (attributes, id) => {
-	const { navigationStyle, dropdownMenuStyle, caret, hamburger, advanced } = attributes;
-	const { padding, margin, typo, colors } = navigationStyle;
-	const { container, menuItems } = dropdownMenuStyle;
+	const { styles, dropdownStyles, caret, hamburger, advanced } = attributes;
+	const { padding, margin, typo, colors } = styles;
+	const { container, menuItems } = dropdownStyles;
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .bBlocksNavigation`;
 

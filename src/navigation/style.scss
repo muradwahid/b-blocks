@@ -26,12 +26,12 @@ $hAligns: left, center, right, space-between;
 				gap: 0 !important;
 
 				.wp-block-navigation-item {
+					padding: 20px;
+					white-space: nowrap;
+
 					&:focus {
 						outline: none;
 					}
-
-					padding: 20px;
-					white-space: nowrap;
 
 					.wp-block-navigation__submenu-container {
 						.wp-block-navigation-item {
