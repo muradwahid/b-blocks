@@ -6,7 +6,7 @@ import Modal from './Modal/Modal';
 import usePremiumInEditor from '../../hooks/usePremiumInEditor';
 import useTemplatesMain from './hooks/useTemplatesMain';
 import useTemplates from './hooks/useTemplates';
-import { useWPOptionQuery } from '../../../../react-utils/hooks';
+import { useWPOptionQuery } from '../../../../bpl-tools/hooks';
 
 const TemplateLibrary = () => {
 	const { isPremium } = usePremiumInEditor();

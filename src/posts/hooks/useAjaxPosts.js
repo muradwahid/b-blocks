@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useWPAjax } from '../../../../react-utils/hooks';
+import { useWPAjax } from '../../../../bpl-tools/hooks';
 import { prefix } from '../utils/data';
 
 const useAjaxPosts = (nonce, attributes, pageNumber) => {

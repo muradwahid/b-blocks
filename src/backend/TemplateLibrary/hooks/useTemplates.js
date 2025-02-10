@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useWPAjax } from '../../../../../react-utils/hooks';
+import { useWPAjax } from '../../../../../bpl-tools/hooks';
 
 const useTemplates = (nonce, type = 'patterns', category = 'all', pageNumber = 1, search = '') => {
 	const src = search.split(' ').join(',');
