@@ -21,6 +21,8 @@
 .wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .image {
   position: relative;
   max-width: 100%;
+  display: grid;
+  overflow: hidden;
 }
 .wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .image h3 {
   color: red;
@@ -29,6 +31,10 @@
   position: absolute;
   height: -moz-fit-content;
   height: fit-content;
+  padding: 10px;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .caption p {
+  margin: 0;
 }
 
 /*# sourceMappingURL=view.css.map*/

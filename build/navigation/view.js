@@ -497,14 +497,14 @@ const animationFn = (animation, id, isBackend) => {
     if (isBackend) {
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (entry.intersectionRatio >= 0.7) {
+          if (entry.intersectionRatio >= 0.6) {
             element.classList.add('aos-animate');
           } else {
             element.classList.remove('aos-animate');
           }
         });
       }, {
-        threshold: [0.7]
+        threshold: [0.6]
       });
       observer.observe(element);
     }

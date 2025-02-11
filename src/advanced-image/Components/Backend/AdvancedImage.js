@@ -17,16 +17,16 @@ const AdvancedImage = ({ attributes, setAttributes, featuredImageURL }) => {
 		<div className='image'>
 			{'custom' === sourceType ? <>
 				{source.url ? <>
-					<Image image={source} link={link} />
+					<Image image={source} link={link} isBackend={true} />
 
-					{enabled && <div className='caption'>
+					{enabled && <div className={`caption `}>
 						<RichText tagName='p' value={text} onChange={(v) => setAttributes({ caption: updateData(caption, v, 'text') })} placeholder='Add Caption...' />
 					</div>}
 				</> :
 					<MediaPlaceholder label={__('Custom Image', 'b-blocks')} onChange={({ id, url, alt, title }) => setAttributes({ image: { ...image, source: { id, url, alt, title } } })} />
 				}
 			</> : <>
-				<Image image={{ url: featuredImageURL, alt: 'Feature Image' }} link={link} />
+				<Image image={{ url: featuredImageURL, alt: 'Feature Image' }} link={link} isBackend={true} />
 
 				{!featuredImageURL && <div className='featureImageNotFound'>
 					<h3>Warning !!!</h3>

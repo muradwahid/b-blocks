@@ -1,5 +1,3 @@
-import { __ } from '@wordpress/i18n';
-
 // image source
 export const imgSrcOptions = [
     { label: 'Custom', value: 'custom' },
@@ -36,9 +34,9 @@ export const hoverEffectOptions = [
     { label: 'Blur', value: 'blur' },
 ]
 export const imgAlignOptions = [
-    { label: 'Left', value: 'start' },
-    { label: 'Center', value: 'center' },
-    { label: 'Right', value: 'end' },
+    { label: 'Left', value: 'start', icon: 'align-left' },
+    { label: 'Center', value: 'center', icon: 'align-center' },
+    { label: 'Right', value: 'end', icon: 'align-right' },
 ]
 // colors
 export const colors = [
@@ -53,7 +51,21 @@ export const colors = [
     { name: 'tomato', color: 'tomato' }
 ];
 
-export const generalStyleTabs = [
-    { name: 'general', title: __('General', 'b-blocks') },
-    { name: 'style', title: __('Style', 'b-blocks') }
-];
+export const textAlignOptions = [
+    { label: 'Left', value: 'left', icon: 'editor-alignleft' },
+    { label: 'Center', value: 'center', icon: 'editor-aligncenter' },
+    { label: 'Right', value: 'right', icon: 'editor-alignright' },
+    { label: 'Justify', value: 'justify', icon: 'editor-justify' },
+]
+
+export const hAlignOptions = [
+    { label: 'Left', value: 'left', icon: 'align-left' },
+    { label: 'Center', value: 'center', icon: 'align-center' },
+    { label: 'Right', value: 'right', icon: 'align-right' }
+]
+
+export const vAlignOptions = [
+    { label: 'Top', value: 'top' },
+    { label: 'Middle', value: 'middle' },
+    { label: 'Bottom', value: 'bottom' }
+]

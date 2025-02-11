@@ -199,7 +199,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const Image = ({
   image,
-  link
+  link,
+  isBackend = false
 }) => {
   const {
     url,
@@ -207,7 +208,8 @@ const Image = ({
     title
   } = image || {};
   return url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LinkProvider, {
-    link: link
+    link: link,
+    isBackend: isBackend
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: url,
     alt: alt || title
@@ -216,13 +218,14 @@ const Image = ({
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Image);
 const LinkProvider = ({
   link = {},
-  children
+  children,
+  isBackend
 }) => {
   const {
     url = '',
     tab = '_self'
   } = link;
-  return url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  return url && !isBackend ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: url,
     target: tab
   }, children) : children;
@@ -243,20 +246,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
-/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/advanced-image/utils/data.js");
+/* harmony import */ var _bpl_tools_Advanced_generateCSS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../bpl-tools/Advanced/generateCSS */ "../bpl-tools/Advanced/generateCSS.js");
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/data */ "./src/advanced-image/utils/data.js");
+
 
 
 
 const Style = ({
   attributes,
   id,
-  device = 'desktop'
+  isBackend = false
 }) => {
   const {
     layout,
     style,
     captionStyle,
-    image
+    image,
+    advanced
   } = attributes;
   const {
     width,
@@ -268,21 +274,16 @@ const Style = ({
   const {
     hoverEffect,
     optionType,
-    alignment,
-    border,
-    shadow
+    alignment
   } = style;
   const {
     typo,
-    textAlign,
-    horizontalAlign,
-    colors,
-    verticalAlign,
-    width: capWidth,
-    margin,
-    padding
+    desktop,
+    tablet,
+    mobile,
+    colors
   } = captionStyle;
-  const mainSl = `#${id} .${_utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix}`;
+  const mainSl = `#${id} .${_utils_data__WEBPACK_IMPORTED_MODULE_3__.prefix}`;
   const imageSl = `${mainSl} .image`;
   const captionSl = `${imageSl} .caption`;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
@@ -291,40 +292,34 @@ const Style = ({
 		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', typo)?.googleFontLink}
 		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(captionSl, typo)?.styles}
 
-		${imageSl}{
-			width : ${image.source?.url ? width[device] : '100%'};
-			height: ${isAutoHeight ? 'auto' : height[device]};
-		}
-	  
 		${mainSl}{
-			align-items:${alignment[device]};
-			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(border.normal)}
-			box-shadow: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getMultiShadowCSS)(shadow.normal)};
+			align-items:${alignment.desktop};
 		}
 
-		${mainSl}:hover{
-			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(border.hover)}
-			box-shadow: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getMultiShadowCSS)(shadow.hover)};
+		${imageSl}{
+			width : ${image.source?.url ? width.desktop : '100%'};
+			height: ${isAutoHeight ? 'auto' : height.desktop};
+			border-radius: ${optionType === 'rounded' ? '15px' : optionType === 'square' ? '0px' : optionType === 'Circle' ? '100%' : '0'};
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)("clip-path", optionType === 'Triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : optionType === 'Rhombus' ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' : optionType === 'Octagon' ? 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' : optionType === 'square' ? 'inset(0%)' : '')}
 		}
 
 		${mainSl} img{
+			${isAutoFit ? `object-fit: ${fitOptionType};` : (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('object-fit', optionType === 'Triangle' || optionType === 'Octagon' || optionType === 'Rhombus' ? 'cover' : '')}
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)("transform", hoverEffect === "zoomOut" ? 'scale(1.5)' : '')}
 			filter: ${hoverEffect === 'blur' ? 'blur(3px)' : 'blur(0px)'};
-			border-radius: ${optionType === 'rounded' ? border.normal.radius : optionType === 'square' ? '0px' : optionType === 'Circle' ? '100%' : border.normal.radius};
-			clip-path: ${optionType === 'Triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : optionType === 'Rhombus' ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' : optionType === 'Octagon' ? 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' : optionType === 'square' ? 'inset(0%)' : ''};
-			${isAutoFit ? `object-fit: ${fitOptionType};` : `object-fit: ${optionType === 'Triangle' || optionType === 'Octagon' || optionType === 'Rhombus' ? 'cover' : ''}`}
 		}
 		${mainSl}:hover img{
-			transform: ${hoverEffect === 'zoomIn' ? 'scaleX(1.3)' : hoverEffect === 'zoomOut' ? 'scaleX(0.7)' : ''};
-			filter : ${hoverEffect === 'blur' && 'blur(0px)'};
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('transform', hoverEffect === 'zoomIn' ? 'scale(1.5)' : hoverEffect === 'zoomOut' ? 'scale(1)' : '')}
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('filter', hoverEffect === 'blur' ? 'blur(0px)' : "")}
 		}
 
 		${captionSl}{
-			width: ${capWidth[device] ? `${capWidth[device]}px` : '100%'};
-			text-align:${textAlign[device]};
+			width: ${desktop.width ? desktop.width : '100%'};
+			text-align:${desktop.textAlign};
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(colors)}
-			padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(padding[device])};
-			margin: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(margin[device])};
-			${captionAlignment(verticalAlign, horizontalAlign, device)}
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(desktop.padding))}
+			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('margin', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(desktop.margin))}
+			${captionAlignment(desktop.vAlign, desktop.hAlign)}
 		}
 
 		@media only screen and (min-width:641px) and (max-width: 1024px){
@@ -338,11 +333,11 @@ const Style = ({
 			}
 
 			${captionSl}{
-				width: ${capWidth.tablet ? `${capWidth.tablet}px` : '100%'};
-				text-align:${textAlign.tablet};
-				padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(padding.tablet)};
-				margin: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(margin.tablet)};
-				${captionAlignment(verticalAlign, horizontalAlign, 'tablet')}
+				width: ${tablet.width ? tablet.width : '100%'};
+				text-align:${tablet.textAlign};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(tablet.padding))}
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('margin', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(tablet.margin))}
+				${captionAlignment(tablet.vAlign, tablet.hAlign)}
 			}
 		}
 			
@@ -357,27 +352,24 @@ const Style = ({
 			}
 
 			${captionSl}{
-				width: ${capWidth.mobile ? `${capWidth.mobile}px` : '100%'};
-				text-align:${textAlign.mobile};
-				padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(padding.mobile)};
-				margin: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(margin.mobile)};
-				${captionAlignment(verticalAlign, horizontalAlign, 'mobile')}
+				width: ${mobile.width ? mobile.width : '100%'};
+				text-align:${mobile.textAlign};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(mobile.padding))}
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.isValidCSS)('margin', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(mobile.margin))}
+				${captionAlignment(mobile.vAlign, mobile.hAlign)}
 			}
 		}
+		${(0,_bpl_tools_Advanced_generateCSS__WEBPACK_IMPORTED_MODULE_2__["default"])(id, advanced, isBackend)}
 	`
     }
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
-const captionAlignment = (verticalAlign, horizontalAlign, device) => `
-	${horizontalAlign[device] === "start" ? 'left: 0; right: auto;' : ''}
-	${horizontalAlign[device] === "center" ? 'left: 50%; right: auto; transform: translateX(-50%);' : ''}
-	${horizontalAlign[device] === "end" ? 'right: 0; left: auto;' : ''}
-	${verticalAlign[device] === "top" ? 'top: 0; bottom: auto;' : ''}
-	${verticalAlign[device] === "middle" ? 'top: 50%; bottom: auto; transform: translateY(-50%);' : ''}
-	${verticalAlign[device] === "bottom" ? 'bottom: 0; top: auto;' : ''}
-	${horizontalAlign[device] === "center" ? verticalAlign[device] === "middle" ? "top: 50%; right: auto; bottom: auto; left: 50%; transform: translate(-50%, -50%);" : "" : ""}
-`;
+const captionAlignment = (v, h) => `
+	${h === "left" ? 'left: 0; right: auto;' : h === "center" ? `left:50%;${v !== "middle" ? "transform: translateX(-50%);" : ""}` : "right:0;left:auto;"}
+	${v === "top" ? "top:0;bottom:auto;" : v === "middle" ? `top:50%;${h !== "center" ? "transform: translateY(-50%);" : ""}` : "bottom:0;top:auto;"}
+	${h === "center" && v === "middle" ? "transform:translateY(-50%) translateX(-50%);" : ""}
+	`;
 
 /***/ }),
 
@@ -452,6 +444,196 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   prefix: () => (/* binding */ prefix)
 /* harmony export */ });
 const prefix = 'bBlocksAdvancedImage';
+
+/***/ }),
+
+/***/ "../bpl-tools/Advanced/generateCSS.js":
+/*!********************************************!*\
+  !*** ../bpl-tools/Advanced/generateCSS.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   animationFn: () => (/* binding */ animationFn),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   generateCSS: () => (/* binding */ generateCSS)
+/* harmony export */ });
+/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/data */ "../bpl-tools/utils/data.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/functions */ "../bpl-tools/utils/functions.js");
+/* harmony import */ var _utils_getCSS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getCSS */ "../bpl-tools/utils/getCSS.js");
+
+
+
+const dimensionCSS = dimension => {
+  const {
+    padding,
+    margin
+  } = dimension || {};
+  const pCSS = p => (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(p));
+  const mCSS = m => (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('margin', (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(m));
+  return {
+    desktop: pCSS(padding?.desktop) + mCSS(margin?.desktop),
+    tablet: pCSS(padding?.tablet) + mCSS(margin?.tablet),
+    mobile: pCSS(padding?.mobile) + mCSS(margin?.mobile)
+  };
+};
+const borderShadowCSS = borderShadow => {
+  const {
+    normal,
+    hover
+  } = borderShadow || {};
+  const stateGenerate = state => {
+    const {
+      border,
+      radius,
+      shadow
+    } = state || {};
+    const radiusCSS = radius ? (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('border-radius', (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(radius)) : '';
+    const shadowCSS = shadow ? `box-shadow: ${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getMultiShadowCSS)(shadow)};` : '';
+    return (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBorderBoxCSS)(border) + radiusCSS + shadowCSS;
+  };
+  return {
+    normal: stateGenerate(normal),
+    hover: stateGenerate(hover)
+  };
+};
+const visibilityCSS = visibility => {
+  const {
+    zIndex,
+    overflow
+  } = visibility || {};
+  const overflowCSS = overflow ? `overflow: ${overflow};` : '';
+  const zIndexCSS = device => zIndex?.[device] ? `z-index: ${zIndex[device]};` : '';
+  return {
+    desktop: zIndexCSS('desktop') + overflowCSS,
+    tablet: zIndexCSS('tablet'),
+    mobile: zIndexCSS('mobile')
+  };
+};
+const responsiveCSS = (responsive, isBackend) => {
+  const {
+    desktop = false,
+    tablet = false,
+    mobile = false
+  } = responsive || {};
+  const css = isBackend ? 'opacity: 0.5;' : 'display: none;';
+  const resCSS = val => val ? css : '';
+  return {
+    desktop: resCSS(desktop),
+    tablet: resCSS(tablet),
+    mobile: resCSS(mobile)
+  };
+};
+const transitionCSS = (background, borderShadow, transform) => {
+  const {
+    transition: bgT = 0.4
+  } = background || {};
+  const {
+    transition: bsT = 0.4
+  } = borderShadow || {};
+  const {
+    transition: tfT = 200
+  } = transform || {};
+  return `transition: background ${bgT}s, border ${bsT}s, border-radius ${bsT}s, box-shadow ${bsT}s, transform ${tfT}ms ease-in-out;`;
+};
+
+// export const animationFn = (animation, id,isBackend) => {
+// 	const selector = isBackend?`#${id} > div`:`$#${id}`;
+// 	const element = document.querySelector(selector);
+// 	if (element && animation && animation?.type) {
+// 		element.setAttribute('data-aos', animation.type);
+// 		element.setAttribute('data-aos-duration', animation.duration || 0.4);
+// 		element.setAttribute('data-aos-delay', animation.delay || 0);
+// 	}
+// }
+const animationFn = (animation, id, isBackend) => {
+  const selector = isBackend ? `#${id} > div` : `#${id}`;
+  const element = document.querySelector(selector);
+  if (element && animation && animation.type) {
+    element.setAttribute('data-aos', animation.type);
+    element.setAttribute('data-aos-duration', animation.duration || 0.4);
+    element.setAttribute('data-aos-delay', animation.delay || 0);
+    if (!element.classList.contains('aos-init')) {
+      element.classList.add('aos-init');
+      window?.AOS?.init();
+    }
+    if (isBackend) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.6) {
+            element.classList.add('aos-animate');
+          } else {
+            element.classList.remove('aos-animate');
+          }
+        });
+      }, {
+        threshold: [0.6]
+      });
+      observer.observe(element);
+    }
+  }
+};
+const generateCSS = (id, advanced, isBackend = false) => {
+  const {
+    dimension,
+    transform,
+    background,
+    borderShadow,
+    mask,
+    animation,
+    visibility,
+    responsive,
+    css = ''
+  } = advanced || {};
+  const selector = isBackend ? `#${id} > div > div` : `#${id} > div`;
+
+  // !isBackend && animationFn(animation, id);
+  animationFn(animation, id, isBackend);
+  const dCSS = dimensionCSS(dimension).desktop + visibilityCSS(visibility).desktop + transitionCSS(background, borderShadow, transform) + (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getMaskCSS)(mask);
+  const tCSS = dimensionCSS(dimension).tablet + visibilityCSS(visibility).tablet + responsiveCSS(responsive, isBackend).tablet;
+  const mCSS = dimensionCSS(dimension).mobile + visibilityCSS(visibility).mobile + responsiveCSS(responsive, isBackend).mobile;
+  const nCSS = borderShadowCSS(borderShadow).normal;
+  const hCSS = borderShadowCSS(borderShadow).hover;
+  const resCSS = responsiveCSS(responsive, isBackend).desktop;
+  return `
+		${dCSS || nCSS ? `${selector} {
+			${dCSS}
+			${nCSS}
+		}` : ''}
+		${hCSS ? `${selector}:hover {
+			${hCSS}
+		}` : ''}
+
+		${resCSS ? `${_utils_data__WEBPACK_IMPORTED_MODULE_0__.deskBreakpoint} {
+			${selector}{
+				${resCSS}
+			}
+		}` : ''}
+
+		${tCSS ? `${_utils_data__WEBPACK_IMPORTED_MODULE_0__.tabBreakpoint} {
+			${selector}{
+				${tCSS}
+			}
+		}` : ''}
+
+		${mCSS ? `${_utils_data__WEBPACK_IMPORTED_MODULE_0__.mobileBreakpoint} {
+			${selector}{
+				${mCSS}
+			}
+		}` : ''}
+
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getAdvBGCSS)(background?.normal, selector)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getAdvBGCSS)(background?.hover, selector, true)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getOverlayCSS)(background?.overlay, selector)}
+		${(0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getOverlayCSS)(background?.hoverOverlay, selector, true)}
+		${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.isExist)(transform?.normal) ? (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getTransformCSS)(transform?.normal, selector) : ""}
+		${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.isExist)(transform?.hover) ? (0,_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getTransformCSS)(transform?.hover, selector, true) : ""}
+
+		${css}
+	`.replace(/\s+/g, ' ');
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (generateCSS);
 
 /***/ }),
 

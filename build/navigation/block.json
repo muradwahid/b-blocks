@@ -272,7 +272,7 @@
             "img": {
               "url": "",
               "desktop": {
-                "position": "center-center",
+                "position": "center center",
                 "xPosition": 0,
                 "yPosition": 0,
                 "attachment": "",
@@ -281,7 +281,7 @@
                 "customSize": "0px"
               },
               "tablet": {
-                "position": "center-center",
+                "position": "center center",
                 "xPosition": 0,
                 "yPosition": 0,
                 "attachment": "",
@@ -290,7 +290,7 @@
                 "customSize": "0px"
               },
               "mobile": {
-                "position": "center-center",
+                "position": "center center",
                 "xPosition": 0,
                 "yPosition": 0,
                 "attachment": "",

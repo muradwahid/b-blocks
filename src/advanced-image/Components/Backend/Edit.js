@@ -1,4 +1,3 @@
-
 import { withSelect } from '@wordpress/data';
 import { useBlockProps } from '@wordpress/block-editor';
 
@@ -7,6 +6,7 @@ import Settings from './Settings/Settings';
 import AdvancedImage from './AdvancedImage';
 import { imageRegularIcon, imageSolidIcon } from '../../utils/icons';
 import { prefix } from '../../utils/data';
+import { updateData } from '../../../../../bpl-tools/utils/functions';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, device, featuredImageURL } = props;
@@ -14,14 +14,16 @@ const Edit = props => {
 	const { sourceType } = image;
 
 	const id = `${prefix}-${clientId}`;
-
-	console.log(featuredImageURL)
+	const updateObj = (property, val, ...props) => {
+		setAttributes({ [property]: updateData(attributes[property], val, ...props) });
+	}
+	const isPremium = true;
 
 	return <>
-		<Settings {...{ attributes, setAttributes }} />
+		<Settings {...{ attributes, setAttributes, updateObj, isPremium }} />
 
 		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} device={device} />
+			<Style attributes={attributes} id={id} device={device} isBackend={true} />
 
 			<div>
 				{!sourceType ?
