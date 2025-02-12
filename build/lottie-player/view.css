@@ -1,16 +1,1 @@
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/lottie-player/style.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
-.wp-block-b-blocks-lottie-player * {
-  box-sizing: border-box;
-}
-.wp-block-b-blocks-lottie-player .bBlocksLottiePlayer dotlottie-player {
-  display: inline-flex;
-  max-width: 100%;
-}
-.wp-block-b-blocks-lottie-player .bBlocksLottiePlayer .caption {
-  max-width: 100%;
-  display: inline-block;
-}
-
-/*# sourceMappingURL=view.css.map*/
+.wp-block-b-blocks-lottie-player *{box-sizing:border-box}.wp-block-b-blocks-lottie-player .bBlocksLottiePlayer dotlottie-player{display:inline-flex;max-width:100%}.wp-block-b-blocks-lottie-player .bBlocksLottiePlayer .caption{display:inline-block;max-width:100%}

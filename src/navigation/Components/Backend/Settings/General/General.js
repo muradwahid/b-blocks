@@ -35,7 +35,7 @@ const General = (props) => {
 			/> */}
 
 			{layout.orientation === 'is-horizontal' && <>
-				<ToggleControl className='mt20' label={__('Allow to wrap to multiple lines', 'b-blocks')} checked={layout.isWrapMultipleLine} onChange={(val) => updateObj('layout', val, 'isWrapMultipleLine')} />
+				<ToggleControl className='mt20' label={__('Allow wrap to multiple lines', 'b-blocks')} checked={layout.isWrapMultipleLine} onChange={(val) => updateObj('layout', val, 'isWrapMultipleLine')} />
 
 				<BtnGroup className='mt20' label={__('Alignment', 'b-blocks')}
 					options={[
@@ -48,7 +48,7 @@ const General = (props) => {
 					onChange={(val) => updateObj('layout', val, 'alignment')} isIcon={true} size='small' />
 			</>}
 
-			{layout.orientation === 'is-horizontal' && <BtnGroup className='mt20' label={__('Alignment', 'b-blocks')}
+			{layout.orientation === 'is-vertical' && <BtnGroup className='mt20' label={__('Alignment', 'b-blocks')}
 				options={[
 					{ label: 'Left', value: 'left', icon: alignLeftIcon },
 					{ label: 'Center', value: 'center', icon: alignCenterIcon },

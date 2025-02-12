@@ -16,7 +16,6 @@ const Style = ({ attributes, updateObj, device }) => {
 	return (
 		<>
 			<PanelBody className='bPlPanelBody' title={__("Image", "b-blocks")} initialOpen={true}>
-				<BoxControl></BoxControl>
 				<PanelRow >
 					<Label>{__('Width', 'b-blocks')}</Label>
 					<Device />

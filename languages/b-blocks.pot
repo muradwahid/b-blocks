@@ -3,18 +3,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: B Blocks 1.9.9\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks-pro\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-10T03:26:47+00:00\n"
+"POT-Creation-Date: 2025-02-12T06:45:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
+#: D:\wp\websites\muradwahid\app\public\wp-content\plugins\b-blocks\plugin.php
 #: includes/AdminMenu.php:23
 #: includes/AdminMenu.php:24
 #: plugin.php:169
@@ -22,14 +23,17 @@ msgid "B Blocks"
 msgstr ""
 
 #. Description of the plugin
+#: D:\wp\websites\muradwahid\app\public\wp-content\plugins\b-blocks\plugin.php
 msgid "Gutenberg Blocks Collection and Page Builder."
 msgstr ""
 
 #. Author of the plugin
+#: D:\wp\websites\muradwahid\app\public\wp-content\plugins\b-blocks\plugin.php
 msgid "bPlugins"
 msgstr ""
 
 #. Author URI of the plugin
+#: D:\wp\websites\muradwahid\app\public\wp-content\plugins\b-blocks\plugin.php
 msgid "https://bplugins.com"
 msgstr ""
 

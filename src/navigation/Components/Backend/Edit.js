@@ -16,9 +16,11 @@ const Edit = (props) => {
 		<Settings {...{ attributes, setAttributes, isPremium, activeIndex, setActiveIndex, clientId }} />
 
 		<div {...useBlockProps()}>
-			<style>{style(attributes, `block-${clientId}`)}</style>
+			<style>{style(attributes, `block-${clientId}`, true)}</style>
 
-			<Navigation {...props} />
+			<div>
+				<Navigation {...props} />
+			</div>
 		</div>
 	</>
 };

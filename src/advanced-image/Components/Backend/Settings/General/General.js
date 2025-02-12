@@ -66,8 +66,6 @@ const General = ({ attributes, setAttributes, updateObj }) => {
 			/>
 			<span>{__('Width will be change while changing the Size', 'b-blocks')}</span>
 
-
-
 			<TextControl
 				className='mt20'
 				label={__('Link', 'b-blocks')}

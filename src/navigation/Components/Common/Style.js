@@ -1,7 +1,7 @@
 import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
-import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getShadowCSS, getTypoCSS, } from "../../../../../bpl-tools/utils/getCSS";
+import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, } from "../../../../../bpl-tools/utils/getCSS";
 
-const style = (attributes, id) => {
+const style = (attributes, id, isBackend = false) => {
 	const { styles, dropdownStyles, caret, hamburger, advanced } = attributes;
 	const { padding, margin, typo, colors } = styles;
 	const { container, menuItems } = dropdownStyles;
@@ -43,7 +43,7 @@ const style = (attributes, id) => {
 			padding:${getBoxCSS(container.padding.desktop)};
 			${getBorderBoxCSS(container.border)}
 			border-radius:${getBoxCSS(container.borderRadius)};
-			box-shadow:${getShadowCSS(container.shadow)};
+			box-shadow:${getMultiShadowCSS(container.shadow)};
 		}
 		${getTypoCSS(subMenuItem, menuItems.typo).styles}
 		${subMenuItem}{

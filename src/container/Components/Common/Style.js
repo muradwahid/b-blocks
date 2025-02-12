@@ -16,7 +16,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${generateCSS(id, advanced, true)}
+		${generateCSS(id, advanced, isBackend)}
 
 		${mainSl}{
 			min-height: ${0 === parseInt(minHeight) ? 'auto' : minHeight};

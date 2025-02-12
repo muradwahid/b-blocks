@@ -25,7 +25,7 @@ const Edit = props => {
 		<div className='wp-block-b-blocks-container' id={id} ref={ref}>
 			<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={id} isPremium={isPremium} />
 
-			<Style attributes={attributes} id={id} isBackend={false} />
+			<Style attributes={attributes} id={id} isBackend={true} />
 
 			<div className={prefix}>
 				{!!top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>
