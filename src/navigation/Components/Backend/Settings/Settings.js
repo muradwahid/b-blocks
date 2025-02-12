@@ -11,6 +11,7 @@ import General from './General/General';
 import Style from './Style/Style';
 import { allTabs } from '../../../../utils/options';
 import { updateData } from '../../../../../../bpl-tools/utils/functions';
+import { advancedOptionsEnabled } from '../../../utils/options';
 
 const Settings = (props) => {
 	const { attributes, setAttributes, isPremium } = props;
@@ -31,11 +32,10 @@ const Settings = (props) => {
 
 					{'style' === tab.name && <Style {...props} updateObj={updateObj} />}
 
-					{'advanced' === tab.name && <Advanced advanced={advanced} isPremium={isPremium} onChange={(advanced) => setAttributes({ advanced })} />}
+					{'advanced' === tab.name && <Advanced advanced={advanced} isPremium={isPremium} onChange={(advanced) => setAttributes({ advanced })} enabled={advancedOptionsEnabled} />}
 				</>}
 			</TabPanel>
 		</InspectorControls>
-
 
 		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link='https://bblockswp.com/#pricing'>
 			<li>

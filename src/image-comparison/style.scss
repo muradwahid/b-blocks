@@ -20,6 +20,11 @@
 				width: 100%;
 				height: auto;
 				display: block;
+				user-select: none;
+
+				&:focus {
+					outline: none;
+				}
 			}
 
 			.overlay {
@@ -53,6 +58,11 @@
 					right: auto;
 					left: 20px;
 					text-align: left;
+					user-select: none;
+
+					&:focus {
+						outline: none;
+					}
 				}
 			}
 
