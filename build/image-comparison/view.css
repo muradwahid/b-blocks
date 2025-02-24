@@ -1,1 +1,478 @@
-.wp-block-b-blocks-image-comparison *{box-sizing:border-box}.wp-block-b-blocks-image-comparison .bBlocksImageCompare,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper{background-color:#fff;display:inline-block;max-width:100%;position:relative}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider{box-sizing:border-box;margin:0;position:relative;width:100%}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider>img,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider>img{display:block;height:auto;width:100%}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .overlay,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .overlay{background-color:rgba(0,0,0,.4);bottom:20px;box-sizing:border-box;display:none;position:absolute;right:20px;text-align:right;width:250px}@media screen and (min-width:767px){.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .overlay,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .overlay{display:block}}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .resize,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .resize{height:100%;left:0;overflow:hidden;position:absolute;top:0;width:50%}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .resize>img,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .resize>img{display:block}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .resize .overlay,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .resize .overlay{left:20px;right:auto;text-align:left}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .divider,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .divider{background-color:hsla(0,0%,100%,.2);bottom:0;cursor:ew-resize;height:100%;left:50%;margin-left:-1px;position:absolute;top:0;width:2px}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .divider:before,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .divider:before{background-color:#fff;content:"";height:20px;left:-9px;margin-top:-10px;position:absolute;top:50%;transform:rotate(45deg);transition:all .1s ease-in-out;width:20px}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .divider:after,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .divider:after{background-color:#fff;content:"";height:12px;left:-5px;margin-top:-6px;position:absolute;top:50%;transform:rotate(45deg);transition:all .1s ease-in-out;width:12px}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .divider.draggable:before,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .divider.draggable:before{height:30px;left:-14px;margin-top:-15px;width:30px}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .comparison-slider .divider.draggable:after,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .comparison-slider .divider.draggable:after{background-color:#555;height:20px;left:-9px;margin-top:-10px;width:20px}.wp-block-b-blocks-image-comparison .bBlocksImageCompare .caption,.wp-block-b-blocks-image-comparison .comparison-slider-wrapper .caption{position:relative;width:100%}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/image-comparison/style.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/image-comparison/Components/Common/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* Reset and base styles */
+/* App styles */
+.wp-block-b-blocks-image-comparison * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare {
+  display: inline-block;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper {
+  position: relative;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper {
+  position: absolute;
+  inset: 0;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper > img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 250px;
+  padding: 10px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-horizontal {
+  right: 1rem;
+  text-align: right;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-horizontal.bottom {
+  bottom: 15px;
+  top: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-horizontal.top {
+  top: 15px;
+  bottom: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-horizontal.middle {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-vertical {
+  text-align: center;
+  bottom: 10px;
+  right: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-vertical.left {
+  left: 15px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-vertical.center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-vertical.right {
+  right: 15px;
+  left: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label {
+  text-align: left;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-horizontal {
+  left: 1rem;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-horizontal.bottom {
+  bottom: 15px;
+  top: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-horizontal.top {
+  top: 15px;
+  bottom: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-horizontal.middle {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-vertical {
+  text-align: center;
+  top: 10px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-vertical.left {
+  left: 15px;
+  right: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-vertical.center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-vertical.right {
+  right: 15px;
+  left: auto;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle {
+  position: absolute;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.bBlocks-slider-horizontal {
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  cursor: ew-resize;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.bBlocks-slider-vertical {
+  transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+  left: 50%;
+  cursor: ns-resize;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle::after {
+  content: "";
+  overflow: hidden;
+  height: 9999px;
+  position: inherit;
+  width: 3px;
+  background-color: #fff;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 50%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle::before {
+  content: "";
+  height: 9999px;
+  position: inherit;
+  width: 3px;
+  background-color: #fff;
+  transform: translateX(-50%);
+  bottom: 50%;
+  left: 50%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.default::after {
+  margin-top: 10px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.default::before {
+  margin-bottom: 10px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.rectangle-caret::after {
+  margin-top: 25px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.rectangle-caret::before {
+  margin-bottom: 25px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-caret::after {
+  margin-top: 20px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-caret::before {
+  margin-bottom: 20px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-big-caret::after {
+  margin-top: 35px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-big-caret::before {
+  margin-bottom: 35px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-outline::after {
+  margin-top: 18px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-outline::before {
+  margin-bottom: 18px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-outline-line-none::after {
+  display: none;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.circle-outline-line-none::before {
+  display: none;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-fill::after {
+  margin-top: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-fill::before {
+  margin-bottom: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-stroke::after {
+  margin-top: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-stroke::before {
+  margin-bottom: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-tiny-fill-big::after {
+  margin-top: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-tiny-fill-big::before {
+  margin-bottom: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-tiny-stroke-big::after {
+  margin-top: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-tiny-stroke-big::before {
+  margin-bottom: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-tiny-stroke-small::after {
+  margin-top: 30px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle.capsule-tiny-stroke-small::before {
+  margin-bottom: 30px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-default-icon {
+  height: 20px;
+  width: 20px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(45deg);
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  z-index: 999;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-rectangle-caret-icon {
+  height: 40px;
+  width: 40px;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  transform: rotateZ(45deg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  color: white;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-rectangle-caret-icon div {
+  position: absolute;
+  inset: 0;
+  transform: rotateZ(135deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-caret-icon {
+  height: 40px;
+  width: 40px;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  color: white;
+  border-radius: 50%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-caret-icon div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-big-caret-icon {
+  height: 70px;
+  width: 70px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  color: white;
+  border-radius: 50%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-big-caret-icon div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-outline-icon {
+  height: 55px;
+  width: 55px;
+  box-sizing: border-box;
+  border: 8px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  border-radius: 50%;
+  border-color: rgba(255, 255, 255, 0.3960784314);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-outline-icon div {
+  position: absolute;
+  color: #7c7c7c;
+  inset: 0;
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-outline-line-none-icon {
+  height: 55px;
+  width: 55px;
+  box-sizing: border-box;
+  border: 8px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  border-radius: 50%;
+  border-color: rgba(255, 255, 255, 0.3960784314);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-circle-outline-line-none-icon div {
+  position: absolute;
+  color: #7c7c7c;
+  inset: 0;
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-fill-icon {
+  height: 85px;
+  width: 40px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  z-index: 999;
+  border-radius: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-fill-icon div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #7c7c7c;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-stroke-icon {
+  height: 85px;
+  width: 40px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  border-radius: 40px;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-stroke-icon div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: white;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-big-icon {
+  height: 85px;
+  width: 24px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: visible;
+  background: #fff;
+  position: relative;
+  z-index: 999;
+  border-radius: 40px;
+  color: white;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-big-icon svg {
+  position: absolute;
+  height: 50px;
+  width: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-big-icon svg:first-child {
+  right: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-big-icon svg:last-child {
+  left: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-big-icon {
+  height: 85px;
+  width: 24px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: visible;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  border-radius: 40px;
+  color: white;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-big-icon svg {
+  position: absolute;
+  height: 50px;
+  width: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-big-icon svg:first-child {
+  right: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-big-icon svg:last-child {
+  left: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-small-icon {
+  height: 65px;
+  width: 18px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: visible;
+  background: #fff;
+  position: relative;
+  z-index: 999;
+  border-radius: 40px;
+  color: white;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-small-icon svg {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-small-icon svg:first-child {
+  right: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-fill-small-icon svg:last-child {
+  left: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-small-icon {
+  height: 65px;
+  width: 18px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  transform: rotateZ(0deg);
+  overflow: visible;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  z-index: 999;
+  border-radius: 40px;
+  color: white;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-small-icon svg {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-small-icon svg:first-child {
+  right: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-comparison-slider-handle .bBlocks-capsule-tiny-stroke-small-icon svg:last-child {
+  left: 100%;
+}
+.wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-caption {
+  position: relative;
+  width: 100%;
+}
+
+/*# sourceMappingURL=view.css.map*/

@@ -22,7 +22,7 @@ const style = (attributes, id, isBackend = false) => {
 	const activeMenu = `${navItem}.current-menu-item`;
 	const dropDownActiveMenu = `${subMenuItem} a[aria-current="page"]`;
 	return `
-		${generateCSS(id, advanced)}
+		${generateCSS(id, advanced, isBackend)}
 		${getTypoCSS("", typo)?.googleFontLink}
 		${getTypoCSS("", menuItems.typo)?.googleFontLink}
 		${getTypoCSS("", hamburger.items.typo)?.googleFontLink}

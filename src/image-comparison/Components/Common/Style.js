@@ -1,36 +1,58 @@
-import { getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { isExist } from '../../../../../bpl-tools/utils/functions';
+import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
-	const { alignment, width, border, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding } = attributes;
+	const { alignment, width, border, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding, styles } = attributes;
+	const { dragg } = styles
 
 	const mainSl = `#${id}`;
 	const imgCompareSl = `${mainSl} .${prefix}`;
+	const wrapperSl = `${imgCompareSl} .bBlocks-comparison-wrapper`;
+	const labelSl = `${wrapperSl} .bBlocks-label`;
+	const capSl = `${imgCompareSl} .bBlocks-caption`;
+	const sliderSl = `${wrapperSl} .bBlocks-comparison-slider-handle`;
+
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		${getTypoCSS('', labelTypo)?.googleFontLink}
 		${getTypoCSS('', capTypo)?.googleFontLink}
-		${getTypoCSS(`${imgCompareSl} .overlay`, labelTypo)?.styles}
-		${getTypoCSS(`${imgCompareSl} .caption`, capTypo)?.styles}
+		${getTypoCSS(labelSl, labelTypo)?.styles}
+		${getTypoCSS(capSl, capTypo)?.styles}
 
 		${mainSl}{
 			text-align: ${alignment};
 		}
 		${imgCompareSl}{
 			width: ${width};
-			${getBorderCSS(border)};
+			${getBorderCSS(border)}
 		}
 
-		${imgCompareSl} .overlay{
+		${labelSl}{
 			${getColorsCSS(labelColors)}
 			padding: ${getSpaceCSS(labelPadding)};
 		}
-		${imgCompareSl} .caption{
+		${capSl}{
 			${getColorsCSS(capColors)}
 			padding: ${getSpaceCSS(capPadding)};
 		}
+		${sliderSl} :where(svg){
+			${isValidCSS('color', dragg.icon.color)}
+			${isValidCSS('fill', dragg.icon.color)}
+		}
+		${sliderSl}::before{
+			content:"";
+			${isValidCSS('width', isExist(dragg.line.size) ? dragg.line.size + 'px' : '')}
+			${getBackgroundCSS(dragg.line.bg)}
+		}
+		${sliderSl}::after{
+			content:"";
+			${isValidCSS('width', isExist(dragg.line.size) ? dragg.line.size + 'px' : '')}
+			${getBackgroundCSS(dragg.line.bg)}
+		}
+		
 		`.replace(/\s+/g, ' ')
 	}} />
 }

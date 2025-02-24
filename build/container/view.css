@@ -1,1 +1,42 @@
-.wp-block-b-blocks-container *{box-sizing:border-box}.wp-block-b-blocks-container .bBlocksContainer{align-items:center;display:flex;flex-direction:column;justify-content:center;position:relative}.wp-block-b-blocks-container .bBlocksContainer .shaped{display:grid;position:absolute;width:100%;z-index:2}.wp-block-b-blocks-container .bBlocksContainer .shaped svg{height:auto}.wp-block-b-blocks-container .bBlocksContainer .topShaped{left:0;top:0}.wp-block-b-blocks-container .bBlocksContainer .bottomShaped{bottom:0;left:0}.wp-block-b-blocks-container .bBlocksContainer .bBlocksContainerContent{display:flex;flex-direction:column;max-width:100%;z-index:3}.wp-block-b-blocks-container .bBlocksContainer .bBlocksContainerContent>*{width:100%}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/container/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-container * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-container .bBlocksContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.wp-block-b-blocks-container .bBlocksContainer .shaped {
+  width: 100%;
+  display: grid;
+  position: absolute;
+  z-index: 2;
+}
+.wp-block-b-blocks-container .bBlocksContainer .shaped svg {
+  height: auto;
+}
+.wp-block-b-blocks-container .bBlocksContainer .topShaped {
+  top: 0;
+  left: 0;
+}
+.wp-block-b-blocks-container .bBlocksContainer .bottomShaped {
+  left: 0;
+  bottom: 0;
+}
+.wp-block-b-blocks-container .bBlocksContainer .bBlocksContainerContent {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 100%;
+  z-index: 3;
+}
+.wp-block-b-blocks-container .bBlocksContainer .bBlocksContainerContent > * {
+  width: 100%;
+}
+
+/*# sourceMappingURL=view.css.map*/
