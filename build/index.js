@@ -47672,6 +47672,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/data */ "./src/image-comparison/utils/data.js");
 /* harmony import */ var _Common_ImageCompareTwo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Common/ImageCompareTwo */ "./src/image-comparison/Components/Common/ImageCompareTwo.js");
 /* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _hooks_usePremiumInEditor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../hooks/usePremiumInEditor */ "./src/hooks/usePremiumInEditor.js");
+
 
 
 
@@ -47717,6 +47719,9 @@ const Edit = props => {
   const {
     autoSlide
   } = options;
+  const {
+    isPremium = false
+  } = (0,_hooks_usePremiumInEditor__WEBPACK_IMPORTED_MODULE_8__["default"])();
   const beforeLabelEl = isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     className: `bBlocks-label bBlocks-before-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
     tagName: "div",
@@ -47748,7 +47753,7 @@ const Edit = props => {
     inlineToolbar: true
   });
   const id = `${_utils_data__WEBPACK_IMPORTED_MODULE_5__.prefix}-${clientId}`;
-  const isPremium = true;
+  console.log(isPremium);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_3__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,

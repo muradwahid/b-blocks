@@ -6,6 +6,7 @@ import Style from '../Common/Style';
 import { prefix } from '../../utils/data';
 import ImageCompareTwo from '../Common/ImageCompareTwo';
 import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
@@ -16,6 +17,8 @@ const Edit = props => {
 	const { hAlign, vAlign } = label;
 	const { autoSlide } = options;
 
+	const { isPremium = false } = usePremiumInEditor();
+
 	const beforeLabelEl = isLabel && <RichText className={`bBlocks-label bBlocks-before-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'image-compare')} inlineToolbar />
 
 	const afterLabelEl = isLabel && <RichText className={`bBlocks-label bBlocks-after-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'image-compare')} inlineToolbar />
@@ -23,7 +26,7 @@ const Edit = props => {
 	const captionEl = isCap && <RichText className='bBlocks-caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'image-compare')} inlineToolbar />
 
 	const id = `${prefix}-${clientId}`;
-	const isPremium = true;
+	console.log(isPremium)
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
 
