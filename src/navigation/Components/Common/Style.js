@@ -1,5 +1,6 @@
 import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
-import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, } from "../../../../../bpl-tools/utils/getCSS";
+import { isExist } from '../../../../../bpl-tools/utils/functions';
+import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS, } from "../../../../../bpl-tools/utils/getCSS";
 
 const style = (attributes, id, isBackend = false) => {
 	const { styles, dropdownStyles, caret, hamburger, advanced } = attributes;
@@ -38,7 +39,7 @@ const style = (attributes, id, isBackend = false) => {
 			color:${colors.normal.hover};
 		}
 		${subMenuContainer}{
-			min-width:${container.width.desktop}px !important;
+			${isValidCSS('min-width', isExist(container.width.desktop) ? `${container.width.desktop}px !important` : "")}
 			${getBackgroundCSS(container.background)}
 			padding:${getBoxCSS(container.padding.desktop)};
 			${getBorderBoxCSS(container.border)}
@@ -47,35 +48,35 @@ const style = (attributes, id, isBackend = false) => {
 		}
 		${getTypoCSS(subMenuItem, menuItems.typo).styles}
 		${subMenuItem}{
-			padding:${getBoxCSS(menuItems.padding.desktop)};
-			color:${menuItems.colors.normal.normal};
+			${isValidCSS('padding', getBoxCSS(menuItems.padding.desktop))}
+			${isValidCSS('color', menuItems.colors.normal.normal)}
 			transition:all ${menuItems.colors.transition || 0.3}s;
 		}
 		${subMenuItem}:hover{
-			color:${menuItems.colors.normal.hover};
+			${isValidCSS('color', menuItems.colors.normal.hover)}
 		}
 		${subMenuIcon}{
-			Width:${caret.size.desktop}px;
-			height:${caret.size.desktop}px;
-			color:${caret.color.normal};
+			${isValidCSS('width', isExist(caret.size.desktop) ? caret.size.desktop + 'px' : '')}
+			${isValidCSS('height', isExist(caret.size.desktop) ? caret.size.desktop + 'px' : '')}
+			${isValidCSS('color', caret.color.normal)}
 			transition:all ${menuItems.colors.transition || 0.3}s ease-in-out;
 		}
 		${navItem}:hover .wp-block-navigation__submenu-icon{
 			color:${caret.color.hover} !important;
 		}
 		${activeMenu}{
-			color:${colors.active.normal};
+			${isValidCSS('color', colors.active.normal)}
 			transition:all 0.2s ease-in-out;
 		}
 		${activeMenu}:hover{
-			color:${colors.active.hover};
+			${isValidCSS('color', colors.active.hover)}
 		}
 		${dropDownActiveMenu}{
-			color:${menuItems.colors.active.normal};
+			${isValidCSS('color', menuItems.colors.active.normal)}
 			transition:all ${menuItems.colors.transition || 0.2}s ease-in-out;
 		}
 		${dropDownActiveMenu}:hover{
-			color:${menuItems.colors.active.hover};
+			${isValidCSS('color', menuItems.colors.active.hover)}
 		}
 		${hamburgerIconSl} svg{
 			height:${hamburger.button.size.desktop}px;
@@ -83,20 +84,20 @@ const style = (attributes, id, isBackend = false) => {
 			fill:${hamburger.button.color};
 		}
 		${hamburgerIconSl}{
-			padding:${getBoxCSS(hamburger.button.padding.desktop)}
+			${isValidCSS('padding', getBoxCSS(hamburger.button.padding.desktop))}
 		}
 		${hamburgerMenuContainer}{
-			padding:${getBoxCSS(hamburger.container.padding.desktop)};
+			${isValidCSS('padding', getBoxCSS(hamburger.container.padding.desktop))}
 			${getBackgroundCSS(hamburger.container.background)}
 		}
 
 		${getTypoCSS(hMenuItemSl, hamburger.items.typo).styles}
 		${hMenuItemSl}{
-			background:${hamburger.items.colors.normal.bg};
-			color:${hamburger.items.colors.normal.text};
-			padding:${getBoxCSS(hamburger.items.padding.desktop)};
+			${isValidCSS('background', hamburger.items.colors.normal.bg)}
+			${isValidCSS('color', hamburger.items.colors.normal.text)}
+			${isValidCSS('padding', getBoxCSS(hamburger.items.padding.desktop))}
 			${getBorderBoxCSS(hamburger.items.border)}
-			border-radius:${getBoxCSS(hamburger.items.borderRadius)};
+			${isValidCSS('border-radius', getBoxCSS(hamburger.items.borderRadius))}
 			transition:all 0.3s ease-in-out;
 		}
 		${hMenuItemSl}:hover{
