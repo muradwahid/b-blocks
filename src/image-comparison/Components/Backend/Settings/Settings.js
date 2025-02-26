@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel } from '@wordpress/components';
 
-import { ColorsControl, InlineDetailMediaUpload, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
-import { BorderControl, ChangeImageData, ImageEditControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { ColorsControl, InlineDetailMediaUpload, MediaEditControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../../../bpl-tools/utils/options';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
@@ -72,8 +72,8 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 		<BlockControls>
-			<ImageEditControl label={__('Edit Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-			<ImageEditControl label={__('Edit After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+			<MediaEditControl label={__('Edit Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+			<MediaEditControl label={__('Edit After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
 				{ title: __('Image Comparison in left', 'b-blocks'), align: 'left', icon: 'align-left' },

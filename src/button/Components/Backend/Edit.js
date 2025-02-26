@@ -1,20 +1,20 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Modal } from '@wordpress/components';
 
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
-import Button from '../Common/Button';
+import Button, { RenderPopup } from '../Common/Button';
 import Style from '../Common/Style';
 import BackendContent from './BackendContent';
 import Settings from './Settings/Settings';
-import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { text, animationType, animationDuration, popup = {} } = attributes;
 
 	const { isPremium } = usePremiumInEditor();
+	const [contentPopup, setContentPopup] = useState(false);
 
 	const buttonEl = useRef(null);
 
@@ -34,17 +34,17 @@ const Edit = props => {
 		}, 500);
 	}, [animationType, animationDuration]);
 
-	const id = `${prefix}-${clientId}`;
-
 	return <>
-		<Settings {...{ attributes, setAttributes, isPremium }} />
+		<Settings {...{ attributes, setAttributes, isPremium, setContentPopup }} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style {...{ attributes, id }} />
+		<div {...useBlockProps()}>
+			<Style {...{ attributes, id: `block-${clientId}` }} />
 
 			<Button {...{ attributes, isPremium, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, ref: buttonEl, isBackend: true }}>
 				<RichText className='btnText' tagName='span' value={text} onChange={val => setAttributes({ text: val })} placeholder={__('Button Text', 'b-blocks')} inlineToolbar />
 			</Button>
+
+			{contentPopup && <RenderPopup {...{ attributes, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, securityPop: true, setSecurityPass: setContentPopup }} />}
 		</div>
 	</>;
 };

@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
+import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
@@ -26,22 +26,24 @@ const Edit = props => {
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} />
 
-			{bImgURL && aImgURL ? <ImageCompare attributes={attributes} beforeLabelEl={beforeLabelEl} afterLabelEl={afterLabelEl} captionEl={captionEl} /> :
+			{bImgURL && aImgURL ?
+				<ImageCompare attributes={attributes} beforeLabelEl={beforeLabelEl} afterLabelEl={afterLabelEl} captionEl={captionEl} /> :
 				<div className='imgPlaceholder'>
 					<div className='beforeImg'>
 						{bImgURL ?
 							<img src={bImgURL} alt={bImgAlt || bImgTitle} /> :
-							<ImagePlaceholder label={__(' Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+							<MediaPlaceholder label={__(' Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
 						}
 					</div>
 
 					<div className='afterImg'>
 						{aImgURL ?
 							<img src={aImgURL} alt={aImgAlt || aImgTitle} /> :
-							<ImagePlaceholder label={__(' After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+							<MediaPlaceholder label={__(' After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 						}
 					</div>
-				</div>}
+				</div>
+			}
 		</div >
 	</>;
 };

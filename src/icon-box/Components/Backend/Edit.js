@@ -17,7 +17,10 @@ const Edit = props => {
 
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} extraCSS={generateCSS(id, attributes.advanced, true)} />
-			<IconBox attributes={attributes} />
+
+			<div>
+				<IconBox attributes={attributes} />
+			</div>
 		</div>
 	</>;
 }
