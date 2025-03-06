@@ -61,7 +61,8 @@
       "type": "object",
       "default": {
         "hAlign": "bottom",
-        "vAlign": "center"
+        "vAlign": "center",
+        "isShowHover": false
       }
     },
     "beforeLabel": {
@@ -145,15 +146,24 @@
     "styles": {
       "type": "object",
       "default": {
-        "height": "",
+        "container": {
+          "height": {
+            "desktop": "",
+            "tablet": "",
+            "mobile": ""
+          }
+        },
         "dragg": {
           "line": {
             "bg": {
               "color": "#fff"
             },
-            "size": 3
+            "size": 2
           },
           "icon": {
+            "color": ""
+          },
+          "handler": {
             "color": ""
           }
         }
@@ -164,6 +174,7 @@
       "default": {
         "defaultOffset": 0.5,
         "moveMouseOver": false,
+        "isMoveClick": false,
         "autoSlide": {
           "isAutoSlide": false,
           "speed": 5,

@@ -64,13 +64,13 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 
 
 		<BlockControls>
-			<MediaEditControl label={__('Edit Before Image:', 'image-compare')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-			<MediaEditControl label={__('Edit After Image:', 'image-compare')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+			<MediaEditControl label={__('Edit Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+			<MediaEditControl label={__('Edit After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
-				{ title: __('Image Comparison in left', 'image-compare'), align: 'left', icon: 'align-left' },
-				{ title: __('Image Comparison in center', 'image-compare'), align: 'center', icon: 'align-center' },
-				{ title: __('Image Comparison in right', 'image-compare'), align: 'right', icon: 'align-right' }
+				{ title: __('Image Comparison in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+				{ title: __('Image Comparison in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+				{ title: __('Image Comparison in right', 'b-blocks'), align: 'right', icon: 'align-right' }
 			]} />
 		</BlockControls>
 	</>;

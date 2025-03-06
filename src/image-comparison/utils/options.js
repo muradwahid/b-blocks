@@ -32,3 +32,11 @@ export const shapeOptions = [
     { label: 'Wave', value: 'wave' },
     { label: 'Zigzag', value: 'zigzag' },
 ]
+
+export const sliderHandleOptions = [
+    { title: 'Line', name: 'line' },
+    { title: 'Handler', name: 'handler' },
+    { title: 'Icon', name: 'icon' },
+]
+
+export const handlerBorder = ['rectangle-caret', 'circle-caret', 'circle-big-caret', 'capsule-stroke', 'capsule-tiny-stroke-big', 'capsule-tiny-stroke-small']

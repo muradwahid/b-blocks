@@ -47686,7 +47686,8 @@ const Edit = props => {
   const {
     attributes,
     setAttributes,
-    clientId
+    clientId,
+    device
   } = props;
   const {
     beforeImg,
@@ -47723,7 +47724,7 @@ const Edit = props => {
     isPremium = false
   } = (0,_hooks_usePremiumInEditor__WEBPACK_IMPORTED_MODULE_8__["default"])();
   const beforeLabelEl = isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    className: `bBlocks-label bBlocks-before-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
+    className: `icb-label icb-before-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
     tagName: "div",
     value: beforeLabel,
     onChange: val => setAttributes({
@@ -47733,7 +47734,7 @@ const Edit = props => {
     inlineToolbar: true
   });
   const afterLabelEl = isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    className: `bBlocks-label bBlocks-after-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
+    className: `icb-label icb-after-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
     tagName: "div",
     value: afterLabel,
     onChange: val => setAttributes({
@@ -47743,7 +47744,7 @@ const Edit = props => {
     inlineToolbar: true
   });
   const captionEl = isCap && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    className: "bBlocks-caption",
+    className: "icb-caption",
     tagName: "div",
     value: cap,
     onChange: val => setAttributes({
@@ -47753,6 +47754,7 @@ const Edit = props => {
     inlineToolbar: true
   });
   const id = `${_utils_data__WEBPACK_IMPORTED_MODULE_5__.prefix}-${clientId}`;
+  const key = `${beforeImg?.url}-${afterImg?.url}-${JSON.stringify(styles.container.height)}-${align}-${autoSlide.isMouseOver}-${device}`;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_3__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
@@ -47764,11 +47766,13 @@ const Edit = props => {
     attributes: attributes,
     id: id
   }), bImgURL && aImgURL ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_ImageCompareTwo__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    key: `${beforeImg?.url}-${afterImg?.url}-${styles.height}-${align}-${autoSlide.isMouseOver}`,
+    key: key,
     afterLabelEl,
     beforeLabelEl,
     captionEl,
-    attributes: attributes
+    device,
+    attributes: attributes,
+    isBackend: true
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "imgPlaceholder"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -47777,7 +47781,7 @@ const Edit = props => {
     src: bImgURL,
     alt: bImgAlt || bImgTitle
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_7__.MediaPlaceholder, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' Before Image:', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' Before Image:', 'b-blocks'),
     value: beforeImg,
     onChange: val => setAttributes({
       beforeImg: val
@@ -47788,7 +47792,7 @@ const Edit = props => {
     src: aImgURL,
     alt: aImgAlt || aImgTitle
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_7__.MediaPlaceholder, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' After Image:', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' After Image:', 'b-blocks'),
     value: afterImg,
     onChange: val => setAttributes({
       afterImg: val
@@ -47851,18 +47855,20 @@ const General = ({
     isCap,
     cap,
     options,
-    dragg
+    dragg,
+    styles
   } = attributes;
+  const handlerType = ["default", "rectangle-caret", "circle-caret"];
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.HelpPanel, {
     slug: "before-after-image-compare",
     docsLink: "https://bblockswp.com/docs/image-compare"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison', 'b-blocks'),
     initialOpen: true
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.BtnGroup, {
     className: "mb10",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Orientation', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Orientation', 'b-blocks'),
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.orientationOptions,
     value: orientation,
     onChange: val => updateObj('orientation', val),
@@ -47876,7 +47882,7 @@ const General = ({
     className: "mt10",
     value: beforeImg,
     onChange: val => updateObj('beforeImg', val),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Image URL', 'image-compare')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Image URL', 'b-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components_Deprecated__WEBPACK_IMPORTED_MODULE_4__.ChangeImageData, {
     className: "mt20",
     value: beforeImg,
@@ -47885,14 +47891,14 @@ const General = ({
     className: "mt10",
     value: afterImg,
     onChange: val => updateObj('afterImg', val),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Image URL', 'image-compare')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Image URL', 'b-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components_Deprecated__WEBPACK_IMPORTED_MODULE_4__.ChangeImageData, {
     className: "mt20",
     value: afterImg,
     onChange: val => updateObj('afterImg', val)
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
     className: "mt20",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Swap Images', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Swap Images', 'b-blocks'),
     checked: isSwap,
     onChange: val => setAttributes({
       isSwap: val,
@@ -47905,16 +47911,20 @@ const General = ({
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Labels', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Labels', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Labels', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Labels', 'b-blocks'),
     checked: isLabel,
     onChange: val => updateObj('isLabel', val)
-  }), isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, 'horizontal' === orientation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
+  }), isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show labels on hover', 'b-blocks'),
+    checked: label.isShowHover,
+    onChange: val => updateObj('label', val, 'isShowHover')
+  }), 'horizontal' === orientation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position', 'b-blocks'),
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.labelHAlignOptions,
     value: label.hAlign,
     onChange: val => updateObj('label', {
@@ -47926,7 +47936,7 @@ const General = ({
   }), 'vertical' === orientation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position', 'b-blocks'),
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.labelVAlignOptions,
     value: label.vAlign,
     onChange: val => updateObj('label', {
@@ -47936,50 +47946,37 @@ const General = ({
     isIcon: true,
     Component: _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.BtnGroup
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before Label', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before Label', 'b-blocks'),
     value: beforeLabel,
     onChange: val => updateObj('beforeLabel', val),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before image label', 'image-compare')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before image label', 'b-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After Label', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After Label', 'b-blocks'),
     value: afterLabel,
     onChange: val => updateObj('afterLabel', val),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After image label', 'image-compare')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After image label', 'b-blocks')
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slider Line', 'image-compare'),
-    initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
-    isPremium: isPremium,
-    setIsProModalOpen: setIsProModalOpen,
-    labelPosition: "edge",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Shape', 'image-compare'),
-    options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.shapeOptions,
-    value: dragg.shapeType,
-    onChange: val => updateObj('dragg', val, 'shapeType'),
-    Component: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-    className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Caption', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Caption', 'b-blocks'),
     checked: isCap,
     onChange: val => updateObj('isCap', val)
   }), isCap && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalInputControl, {
     className: "mt10",
     labelPosition: "edge",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption', 'b-blocks'),
     value: cap,
     onChange: val => updateObj("cap", val)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Options', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Options', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Offset', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Offset', 'b-blocks'),
     step: 0.1,
     max: 1,
     min: 0,
@@ -47989,7 +47986,14 @@ const General = ({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Mouse Over', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Click', 'b-blocks'),
+    checked: options.isMoveClick,
+    onChange: val => updateObj('options', val, 'isMoveClick'),
+    Component: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
+    isPremium: isPremium,
+    setIsProModalOpen: setIsProModalOpen,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Mouse Over', 'b-blocks'),
     checked: options.moveMouseOver,
     onChange: val => updateObj('options', val, 'moveMouseOver'),
     Component: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl
@@ -47997,14 +48001,14 @@ const General = ({
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
     className: "mt10",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide', 'b-blocks'),
     checked: options.autoSlide.isAutoSlide,
     onChange: val => updateObj('options', val, 'autoSlide', 'isAutoSlide'),
     Component: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl
   }), options.autoSlide.isAutoSlide && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide Speed', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide Speed', 'b-blocks'),
     step: 1,
     max: 20,
     maxLength: 20,
@@ -48016,19 +48020,49 @@ const General = ({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Stop Slider On Mouse Over', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Stop Slider On Mouse Over', 'b-blocks'),
     checked: options.autoSlide.isHoverStop,
     onChange: val => updateObj('options', val, 'autoSlide', 'isHoverStop'),
     Component: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Presets', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Presets', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Panel_Presets_Presets__WEBPACK_IMPORTED_MODULE_8__["default"], {
     value: dragg.handleType,
     setIsProModalOpen: setIsProModalOpen,
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.iconOptions,
-    onChange: val => updateObj("dragg", val, "handleType"),
+    onChange: val => handlerType.includes(val) ? setAttributes({
+      dragg: {
+        ...dragg,
+        handleType: val
+      },
+      styles: {
+        ...styles,
+        dragg: {
+          ...styles.dragg,
+          line: {
+            ...styles.dragg.line,
+            size: 2
+          }
+        }
+      }
+    }) : setAttributes({
+      dragg: {
+        ...dragg,
+        handleType: val
+      },
+      styles: {
+        ...styles,
+        dragg: {
+          ...styles.dragg,
+          line: {
+            ...styles.dragg.line,
+            size: 3
+          }
+        }
+      }
+    }),
     isPremium: isPremium
   })));
 };
@@ -48160,14 +48194,14 @@ const Settings = ({
     isProModalOpen: isProModalOpen,
     setIsProModalOpen: setIsProModalOpen,
     block: "Image Comparison"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the label position to suit your needs.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Shape: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the line shape for a unique and eye-catching design.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Offset: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjusts the initial position of the slider.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Mouse Over: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the slider to move when the mouse hover over it.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate automatic sliding on the compare images.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide Speed: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the speed of the auto moving slider.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Stop Slider On Mouse Over: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pause the sliding movement when the mouse is over the images.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Size: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjust the line size to your preferred thickness.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a desired color for the line.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the icon color from the options provided to match your design.', 'b-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_8__.MediaEditControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit Before Image:', 'image-compare'),
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the label position to suit your needs.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Shape: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the line shape for a unique and eye-catching design.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Offset: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjusts the initial position of the slider.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Click: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the option to move the slider when the user clicks on it.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Mouse Over: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the option to move the slider when the mouse hover over it.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate automatic sliding on the compare images.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide Speed: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the speed of the auto moving slider.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Stop Slider On Mouse Over: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pause the sliding movement when the mouse is over the images.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Size: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjust the line size to your preferred thickness.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a desired color for the line.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Handler Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a desired color for the handler.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the icon color from the options provided to match your design.', 'b-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_8__.MediaEditControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit Before Image:', 'b-blocks'),
     value: beforeImg,
     onChange: val => setAttributes({
       beforeImg: val
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_8__.MediaEditControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit After Image:', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit After Image:', 'b-blocks'),
     value: afterImg,
     onChange: val => setAttributes({
       afterImg: val
@@ -48179,15 +48213,15 @@ const Settings = ({
     }),
     describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison Alignment'),
     alignmentControls: [{
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison in left', 'image-compare'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison in left', 'b-blocks'),
       align: 'left',
       icon: 'align-left'
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison in center', 'image-compare'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison in center', 'b-blocks'),
       align: 'center',
       icon: 'align-center'
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison in right', 'image-compare'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Comparison in right', 'b-blocks'),
       align: 'right',
       icon: 'align-right'
     }]
@@ -48218,6 +48252,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
 /* harmony import */ var _bpl_tools_Components_Deprecated__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components/Deprecated */ "../bpl-tools/Components/Deprecated/index.js");
 /* harmony import */ var _bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../../bpl-tools/ProControls */ "../bpl-tools/ProControls/index.js");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
 
 
 
@@ -48229,7 +48270,8 @@ const Styles = ({
   attributes,
   isPremium,
   setIsProModalOpen,
-  updateObj
+  updateObj,
+  device
 }) => {
   const {
     styles,
@@ -48244,28 +48286,27 @@ const Styles = ({
     capPadding
   } = attributes;
   const {
-    height,
+    container,
     dragg
   } = styles;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Container", "image-compare"),
     className: "bPlPanelBody"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Width:', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Width:', 'b-blocks'),
     labelPosition: "left",
     value: width,
     onChange: val => updateObj("width", val),
     units: [(0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.pxUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.perUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.emUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.vwUnit)()]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
     className: "mt10",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Height:', 'image-compare'),
-    labelPosition: "left",
-    value: height,
-    onChange: val => updateObj("styles", val, "height"),
-    units: [(0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.pxUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.perUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.emUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.vwUnit)()]
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Height:', 'b-blocks'), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__.Device, null)),
+    value: container.height[device],
+    onChange: val => updateObj("styles", val, "container", "height", device),
+    units: [(0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.pxUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.emUnit)(), (0,_bpl_tools_utils_options__WEBPACK_IMPORTED_MODULE_3__.vwUnit)()]
   })), isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Labels', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Labels', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__.Typography, {
     value: labelTypo,
@@ -48286,7 +48327,7 @@ const Styles = ({
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components_Deprecated__WEBPACK_IMPORTED_MODULE_5__.SpaceControl, {
     className: "mt20",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Padding:', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Padding:', 'b-blocks'),
     value: labelPadding,
     onChange: val => updateObj('labelPadding', val),
     defaults: {
@@ -48295,7 +48336,7 @@ const Styles = ({
     }
   }))), isCap && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Caption', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Caption', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__.Typography, {
     value: capTypo,
@@ -48316,7 +48357,7 @@ const Styles = ({
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components_Deprecated__WEBPACK_IMPORTED_MODULE_5__.SpaceControl, {
     className: "mt20",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Padding:', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Padding:', 'b-blocks'),
     value: capPadding,
     onChange: val => updateObj('capPadding', val),
     defaults: {
@@ -48325,12 +48366,12 @@ const Styles = ({
     }
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Slider', 'image-compare'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Slider', 'b-blocks'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Size', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Size', 'b-blocks'),
     min: 1,
     max: 10,
     step: 1,
@@ -48340,7 +48381,7 @@ const Styles = ({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Color', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Color', 'b-blocks'),
     value: dragg.line.bg,
     onChange: val => updateObj('styles', val, 'dragg', 'line', 'bg'),
     isImage: false,
@@ -48348,14 +48389,28 @@ const Styles = ({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Color', 'image-compare'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Handler Color', 'b-blocks'),
+    value: dragg.handler.color,
+    onChange: val => updateObj('styles', val, 'dragg', 'handler', 'color'),
+    Component: _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__.ColorControl
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
+    isPremium: isPremium,
+    setIsProModalOpen: setIsProModalOpen,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Color', 'b-blocks'),
     value: dragg.icon.color,
     onChange: val => updateObj('styles', val, 'dragg', 'icon', 'color'),
     isImage: false,
     Component: _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__.ColorControl
   })));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Styles);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_7__.compose)((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.withSelect)(select => {
+  const {
+    getDeviceType
+  } = select('core/editor');
+  return {
+    device: getDeviceType()?.toLowerCase()
+  };
+}))(Styles));
 
 /***/ }),
 
@@ -48377,6 +48432,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useDragg */ "./src/image-comparison/Components/hooks/useDragg.js");
 /* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/icons */ "./src/image-comparison/utils/icons.js");
 /* harmony import */ var _utils_shapes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/shapes */ "./src/image-comparison/utils/shapes.js");
+/* harmony import */ var _hooks_useDeviceWidth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hooks/useDeviceWidth */ "./src/image-comparison/Components/hooks/useDeviceWidth.js");
+
 
 
 
@@ -48388,7 +48445,9 @@ const ImageCompareTwo = ({
   attributes,
   beforeLabelEl,
   afterLabelEl,
-  captionEl
+  captionEl,
+  device: backDevice,
+  isBackend = false
 }) => {
   const {
     beforeImg,
@@ -48396,10 +48455,12 @@ const ImageCompareTwo = ({
     orientation,
     styles,
     options,
-    dragg
+    dragg,
+    label
   } = attributes;
   const {
     defaultOffset,
+    isMoveClick,
     autoSlide,
     moveMouseOver
   } = options;
@@ -48410,40 +48471,36 @@ const ImageCompareTwo = ({
   } = autoSlide;
   const [position, setPosition] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(defaultOffset * 100);
   const [isDragging, setIsDragging] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [height, setHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-  const [imageHeight, setImageHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-  const [afterHeight, setAfterHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [beforeHeight, setBeforeHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+  const {
+    device: frontDevice
+  } = (0,_hooks_useDeviceWidth__WEBPACK_IMPORTED_MODULE_6__["default"])();
   const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const device = isBackend ? backDevice : frontDevice;
   const {
     handleClick
-  } = (0,_hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__["default"])(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed);
+  } = (0,_hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__["default"])(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed, isMoveClick);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    setAfterHeight(undefined); // Reset heights
-    setBeforeHeight(undefined);
-  }, [beforeImg?.url, afterImg?.url, styles.height]);
-
-  // Update height when afterHeight or beforeHeight changes
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    setImageHeight(afterHeight >= beforeHeight ? `${afterHeight}px` : `${beforeHeight}px`);
-  }, [beforeHeight, afterHeight, styles.height]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (!isNaN(parseInt(styles.height)) && parseInt(styles.height) > 0) {
-      containerRef.current.style.height = styles.height;
-      setHeight(styles.height);
-    } else {
-      setHeight(imageHeight);
-      containerRef.current.style.height = imageHeight;
-    }
-  }, [containerRef.current, imageHeight, styles.height, height]);
+    const containerHeight = styles.container.height[device];
+    let time;
+    time = setTimeout(() => {
+      if (!isNaN(parseInt(containerHeight)) && parseInt(containerHeight) > 0) {
+        containerRef.current.style.height = containerHeight;
+      } else {
+        const images = containerRef.current.querySelectorAll('img');
+        const heights = Array.from(images).map(img => img.getBoundingClientRect().height);
+        const maxHeight = Math.max(...heights);
+        // alert(maxHeight)
+        containerRef.current.style.height = `${maxHeight}px`;
+        Array.from(images).forEach(img => img.style.height = `${maxHeight}px`);
+      }
+    }, 200);
+    return () => clearTimeout(time);
+  }, [containerRef.current, beforeImg?.url, afterImg?.url, styles.container.height[device]]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: _utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: containerRef,
-    className: "bBlocks-comparison-wrapper",
-    style: {
-      height
-    },
+    className: `icb-comparison-wrapper ${label.isShowHover ? 'icb-label-hover' : ''}`,
     onMouseDown: () => setIsDragging(true),
     onTouchStart: () => setIsDragging(true),
     ...(moveMouseOver ? {
@@ -48452,43 +48509,30 @@ const ImageCompareTwo = ({
     } : {}),
     onClick: handleClick
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bBlocks-image-wrapper"
+    className: "icb-image-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    onLoad: e => setAfterHeight(e.target.getBoundingClientRect().height),
+    src: beforeImg?.url,
+    alt: beforeImg?.alt || beforeImg?.title
+  }), beforeLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "icb-image-wrapper",
     style: {
-      height
-    },
-    src: afterImg?.url,
-    alt: afterImg?.alt || afterImg?.title,
-    key: `after-${afterImg?.url}`
-  }), afterLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bBlocks-image-wrapper",
-    style: {
-      // clipPath: orientation === 'horizontal'
-      //     ? `inset(0 0 0 ${position}%)`
-      //     : `inset(${position}% 0 0 0)`,
       clipPath: (0,_utils_shapes__WEBPACK_IMPORTED_MODULE_5__.lineShapes)(position)[dragg.shapeType + orientation]
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    onLoad: e => setBeforeHeight(e.target.getBoundingClientRect().height),
-    style: {
-      height
-    },
-    src: beforeImg?.url,
-    alt: beforeImg?.alt || beforeImg?.title,
-    key: `before-${beforeImg?.url}`
-  }), beforeLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.handleType} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''}`,
+    src: afterImg?.url,
+    alt: afterImg?.alt || afterImg?.title
+  }), afterLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `icb-comparison-slider-handle icb-slider-${orientation} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''} `,
     style: {
       left: orientation === "horizontal" ? `${position}%` : "",
       top: orientation === "vertical" ? `${position}%` : ""
     }
   }, dragg.handleType === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: dragg.handleType,
-    className: "bBlocks-default-icon"
+    className: "icb-default-icon"
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: dragg.handleType,
-    className: `bBlocks-${dragg.handleType}-icon`
+    className: `icb-${dragg.handleType}-icon`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.BiCaretLeft, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.BiCaretRight, null))))), captionEl);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageCompareTwo);
@@ -48511,6 +48555,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
 /* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
 /* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/data */ "./src/image-comparison/utils/data.js");
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/options */ "./src/image-comparison/utils/options.js");
+
 
 
 
@@ -48523,6 +48569,7 @@ const Style = ({
     alignment,
     width,
     border,
+    dragg: draggHandler,
     labelTypo,
     labelColors,
     labelPadding,
@@ -48536,10 +48583,11 @@ const Style = ({
   } = styles;
   const mainSl = `#${id}`;
   const imgCompareSl = `${mainSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_3__.prefix}`;
-  const wrapperSl = `${imgCompareSl} .bBlocks-comparison-wrapper`;
-  const labelSl = `${wrapperSl} .bBlocks-label`;
-  const capSl = `${imgCompareSl} .bBlocks-caption`;
-  const sliderSl = `${wrapperSl} .bBlocks-comparison-slider-handle`;
+  const wrapperSl = `${imgCompareSl} .icb-comparison-wrapper`;
+  const labelSl = `${wrapperSl} .icb-label`;
+  const capSl = `${imgCompareSl} .icb-caption`;
+  const sliderSl = `${wrapperSl} .icb-comparison-slider-handle`;
+  const isClExist = cl => _utils_options__WEBPACK_IMPORTED_MODULE_4__.handlerBorder.includes(cl) ? true : false;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
@@ -48564,6 +48612,12 @@ const Style = ({
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getColorsCSS)(capColors)}
 			padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getSpaceCSS)(capPadding)};
 		}
+
+		${isClExist(draggHandler.handleType) ? `${sliderSl} .icb-${draggHandler.handleType}-icon{
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('border-color', dragg.handler.color)}
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('border-width', (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_1__.isExist)(dragg.line.size) ? dragg.line.size + 'px' : '')}
+			}` : ''}
+
 		${sliderSl} :where(svg){
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('color', dragg.icon.color)}
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('fill', dragg.icon.color)}
@@ -48587,6 +48641,47 @@ const Style = ({
 
 /***/ }),
 
+/***/ "./src/image-comparison/Components/hooks/useDeviceWidth.js":
+/*!*****************************************************************!*\
+  !*** ./src/image-comparison/Components/hooks/useDeviceWidth.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const useDeviceWidth = () => {
+  const [device, setDevice] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('desktop');
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    if (width > 1024) {
+      setDevice('desktop');
+    } else if (width > 640) {
+      setDevice('tablet');
+    } else {
+      setDevice('mobile');
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    handleWindowSizeChange();
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+  return {
+    device
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDeviceWidth);
+
+/***/ }),
+
 /***/ "./src/image-comparison/Components/hooks/useDragg.js":
 /*!***********************************************************!*\
   !*** ./src/image-comparison/Components/hooks/useDragg.js ***!
@@ -48601,7 +48696,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide = false, isHoverStop, speed = 50) => {
+const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide = false, isHoverStop, speed = 50, isMoveClick = false) => {
   const [mouseOver, setMouseOver] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const animationRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   const directionRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(1);
@@ -48616,7 +48711,7 @@ const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientat
     setPosition(Math.min(Math.max(newPosition, 0), 100));
   };
   const handleClick = event => {
-    if (isDragging || !containerRef.current) return;
+    if (isDragging || !containerRef.current || !isMoveClick) return;
     const rect = containerRef.current.getBoundingClientRect();
     const pos = orientation === "horizontal" ? event.clientX - rect.left : event.clientY - rect.top;
     const newPosition = pos / (orientation === "horizontal" ? rect.width : rect.height) * 100;
@@ -48850,11 +48945,13 @@ const BiCaretRight = props => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElemen
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   beforeAfterImgTab: () => (/* binding */ beforeAfterImgTab),
+/* harmony export */   handlerBorder: () => (/* binding */ handlerBorder),
 /* harmony export */   iconOptions: () => (/* binding */ iconOptions),
 /* harmony export */   labelHAlignOptions: () => (/* binding */ labelHAlignOptions),
 /* harmony export */   labelVAlignOptions: () => (/* binding */ labelVAlignOptions),
 /* harmony export */   orientationOptions: () => (/* binding */ orientationOptions),
-/* harmony export */   shapeOptions: () => (/* binding */ shapeOptions)
+/* harmony export */   shapeOptions: () => (/* binding */ shapeOptions),
+/* harmony export */   sliderHandleOptions: () => (/* binding */ sliderHandleOptions)
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -48973,6 +49070,17 @@ const shapeOptions = [{
   label: 'Zigzag',
   value: 'zigzag'
 }];
+const sliderHandleOptions = [{
+  title: 'Line',
+  name: 'line'
+}, {
+  title: 'Handler',
+  name: 'handler'
+}, {
+  title: 'Icon',
+  name: 'icon'
+}];
+const handlerBorder = ['rectangle-caret', 'circle-caret', 'circle-big-caret', 'capsule-stroke', 'capsule-tiny-stroke-big', 'capsule-tiny-stroke-small'];
 
 /***/ }),
 
@@ -48988,8 +49096,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   lineShapes: () => (/* binding */ lineShapes)
 /* harmony export */ });
 const lineShapes = position => ({
-  defaulthorizontal: `polygon(0 0, ${position}% 0, ${position}% 47%, ${position}% 100%, 0% 100%)`,
-  defaultvertical: `polygon(0 ${position}%, 100% ${position}%, 100% 100%, 0% 100%)`,
+  // defaulthorizontal: `polygon(0 0, ${position}% 0, ${position}% 47%, ${position}% 100%, 0% 100%)`,
+  defaulthorizontal: `inset(0 0 0 ${position}%)`,
+  // defaultvertical: `polygon(0 ${position}%, 100% ${position}%, 100% 100%, 0% 100%)`,
+  defaultvertical: `inset(${position}% 0 0 0)`,
   zigzaghorizontal: `polygon(0% 0%, ${position}% 0%, ${position - 6}% 9%, ${position}% 18%, ${position - 6}% 27%, ${position}% 36%, ${position - 6}% 45%, ${position}% 54%, ${position - 6}% 63%, ${position}% 72%, ${position - 6}% 81%, ${position}% 90%, ${position - 6}% 100%, 0% 100%)`,
   zigzagvertical: `polygon(0% 0%,0% ${position}%,9% ${position + 6}% ,18% ${position}%,27% ${position + 6}%,36% ${position}%,45% ${position + 6}%, 54% ${position}%,63% ${position + 6}%,72% ${position}%,  81% ${position + 6}%,90% ${position}%, 100% ${position + 6}%,100% 0% )`,
   wavehorizontal: `polygon(
@@ -99264,7 +99374,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/icon-
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/image-comparison","title":"Image Comparison","description":"Compare between two images.","category":"bBlocks","keywords":["image slider","image compare","image filter"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"alignment":{"type":"string","default":"center"},"width":{"type":"string","default":"80%"},"border":{"type":"object","default":{}},"beforeImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"afterImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"orientation":{"type":"string","default":"horizontal"},"isSwap":{"type":"boolean","default":false},"isLabel":{"type":"boolean","default":true},"label":{"type":"object","default":{"hAlign":"bottom","vAlign":"center"}},"beforeLabel":{"type":"string","selector":".beforeLabel","default":""},"afterLabel":{"type":"string","selector":".afterLabel","default":""},"labelTypo":{"type":"object","default":{"fontSize":{"desktop":15,"tablet":15,"mobile":15}}},"labelColors":{"type":"object","default":{"color":"#fff","bg":"#00000080"}},"labelPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"isCap":{"type":"boolean","default":true},"cap":{"type":"string","selector":".caption","default":""},"capAlign":{"type":"string","default":"center"},"capTypo":{"type":"object","default":{"fontSize":{"desktop":14,"tablet":14,"mobile":14}}},"capColors":{"type":"object","default":{"color":"#333","bg":"#f4f4f4"}},"capPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"dragg":{"type":"object","default":{"handleType":"default","shapeType":"default"}},"styles":{"type":"object","default":{"height":"","dragg":{"line":{"bg":{"color":"#fff"},"size":3},"icon":{"color":""}}}},"options":{"type":"object","default":{"defaultOffset":0.5,"moveMouseOver":false,"autoSlide":{"isAutoSlide":false,"speed":5,"isHoverStop":true}}}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{"preview":true}},"editorScript":"file:../index.js","style":"file:./view.css","render":"file:./render.php","viewScript":["file:./view.js","jquery"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/image-comparison","title":"Image Comparison","description":"Compare between two images.","category":"bBlocks","keywords":["image slider","image compare","image filter"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"alignment":{"type":"string","default":"center"},"width":{"type":"string","default":"80%"},"border":{"type":"object","default":{}},"beforeImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"afterImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"orientation":{"type":"string","default":"horizontal"},"isSwap":{"type":"boolean","default":false},"isLabel":{"type":"boolean","default":true},"label":{"type":"object","default":{"hAlign":"bottom","vAlign":"center","isShowHover":false}},"beforeLabel":{"type":"string","selector":".beforeLabel","default":""},"afterLabel":{"type":"string","selector":".afterLabel","default":""},"labelTypo":{"type":"object","default":{"fontSize":{"desktop":15,"tablet":15,"mobile":15}}},"labelColors":{"type":"object","default":{"color":"#fff","bg":"#00000080"}},"labelPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"isCap":{"type":"boolean","default":true},"cap":{"type":"string","selector":".caption","default":""},"capAlign":{"type":"string","default":"center"},"capTypo":{"type":"object","default":{"fontSize":{"desktop":14,"tablet":14,"mobile":14}}},"capColors":{"type":"object","default":{"color":"#333","bg":"#f4f4f4"}},"capPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"dragg":{"type":"object","default":{"handleType":"default","shapeType":"default"}},"styles":{"type":"object","default":{"container":{"height":{"desktop":"","tablet":"","mobile":""}},"dragg":{"line":{"bg":{"color":"#fff"},"size":2},"icon":{"color":""},"handler":{"color":""}}}},"options":{"type":"object","default":{"defaultOffset":0.5,"moveMouseOver":false,"isMoveClick":false,"autoSlide":{"isAutoSlide":false,"speed":5,"isHoverStop":true}}}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{"preview":true}},"editorScript":"file:../index.js","style":"file:./view.css","render":"file:./render.php","viewScript":["file:./view.js","jquery"]}');
 
 /***/ }),
 

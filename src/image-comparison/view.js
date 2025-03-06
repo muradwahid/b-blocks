@@ -11,18 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		const { isLabel, label, beforeLabel, afterLabel, isCap, cap, orientation } = attributes;
 		const { hAlign, vAlign } = label;
 
-		const beforeLabelEl = isLabel && beforeLabel && <div className={`bBlocks-label bBlocks-before-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: beforeLabel }} />
+		const beforeLabelEl = isLabel && beforeLabel && <div className={`icb-label icb-before-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: beforeLabel }} />
 
-		const afterLabelEl = isLabel && afterLabel && <div className={`bBlocks-label bBlocks-after-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: afterLabel }} />
+		const afterLabelEl = isLabel && afterLabel && <div className={`icb-label icb-after-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: afterLabel }} />
 
-		const captionEl = isCap && cap && <div className='bBlocks-caption' dangerouslySetInnerHTML={{ __html: cap }} />
+		const captionEl = isCap && cap && <div className='icb-caption' dangerouslySetInnerHTML={{ __html: cap }} />
 
 		createRoot(imageCompareEl).render(<>
 			<Style attributes={attributes} id={imageCompareEl.id} />
 
 			<ImageCompareTwo {...{ afterLabelEl, beforeLabelEl, captionEl }} attributes={attributes} />
 		</>);
-
 		imageCompareEl?.removeAttribute('data-attributes');
 	});
 });

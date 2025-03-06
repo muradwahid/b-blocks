@@ -9,7 +9,18 @@
     .bBlocksImageCompare {
         display: inline-block;
 
-        .bBlocks-comparison-wrapper {
+        &:hover {
+            .icb-comparison-wrapper.icb-label-hover {
+                .icb-image-wrapper {
+                    .icb-label {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .icb-comparison-wrapper {
             // aspect-ratio: 16/16;
             position: relative;
             width: 100%;
@@ -17,7 +28,18 @@
             overflow: hidden;
             cursor: pointer;
 
-            .bBlocks-image-wrapper {
+            &.icb-label-hover {
+                .icb-image-wrapper {
+                    .icb-label {
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: all 0.2s ease;
+                    }
+                }
+            }
+
+
+            .icb-image-wrapper {
                 position: absolute;
                 inset: 0;
 
@@ -27,15 +49,15 @@
                     object-fit: cover;
                 }
 
-                .bBlocks-label {
+                .icb-label {
                     position: absolute;
                     background-color: rgba(0, 0, 0, 0.5);
                     color: white;
                     width: 250px;
                     padding: 10px;
 
-                    &.bBlocks-after-label {
-                        &.bBlocks-horizontal {
+                    &.icb-after-label {
+                        &.icb-horizontal {
                             right: 1rem;
                             text-align: right;
 
@@ -56,9 +78,9 @@
                             }
                         }
 
-                        &.bBlocks-vertical {
+                        &.icb-vertical {
                             text-align: center;
-                            top: 10px;
+                            bottom: 10px;
                             right: auto;
 
                             &.left {
@@ -77,10 +99,10 @@
                         }
                     }
 
-                    &.bBlocks-before-label {
+                    &.icb-before-label {
                         text-align: left;
 
-                        &.bBlocks-horizontal {
+                        &.icb-horizontal {
                             left: 1rem;
 
                             &.bottom {
@@ -100,9 +122,9 @@
                             }
                         }
 
-                        &.bBlocks-vertical {
+                        &.icb-vertical {
                             text-align: center;
-                            bottom: 10px;
+                            top: 10px;
 
                             &.left {
                                 left: 15px;
@@ -124,16 +146,50 @@
                 }
             }
 
-            .bBlocks-comparison-slider-handle {
+            // .icb-comparison-slider {
+            //     position: absolute;
+            //     background-color: white;
+
+            //     &.icb-slider-horizontal {
+            //         height: 100%;
+            //         width: 2px;
+            //         cursor: ew-resize;
+            //     }
+
+            //     &.icb-slider-vertical {
+            //         width: 100%;
+            //         height: 2px;
+            //         cursor: ns-resize;
+            //     }
+
+            //     .icb-comparison-slider-handle {
+            //         position: absolute;
+            //         background-color: white;
+            //         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            //         padding: 0.5rem;
+            //         width: 20px;
+            //         height: 20px;
+            //         transform: translate(-46%, -46%) rotateZ(45deg);
+
+            //         &.icb-horizontal {
+            //             top: 50%;
+            //         }
+
+            //         &.icb-vertical {
+            //             left: 50%;
+            //         }
+            //     }
+            // }
+            .icb-comparison-slider-handle {
                 position: absolute;
 
-                &.bBlocks-slider-horizontal {
+                &.icb-slider-horizontal {
                     transform: translateX(-50%) translateY(-50%);
                     top: 50%;
                     cursor: ew-resize;
                 }
 
-                &.bBlocks-slider-vertical {
+                &.icb-slider-vertical {
                     transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
                     left: 50%;
                     cursor: ns-resize;
@@ -286,11 +342,11 @@
                     z-index: 999;
                 }
 
-                .bBlocks-default-icon {
+                .icb-default-icon {
                     @include icon-style(20px, 20px, 3px, #fff, 45deg, #fff);
                 }
 
-                .bBlocks-rectangle-caret-icon {
+                .icb-rectangle-caret-icon {
                     @include icon-style(40px, 40px, 2px, #fff, 45deg, #fff0);
                     color: white;
 
@@ -304,7 +360,7 @@
                     }
                 }
 
-                .bBlocks-circle-caret-icon {
+                .icb-circle-caret-icon {
                     @include icon-style(40px, 40px, 2px, #fff, 0deg, #fff0);
                     color: white;
                     border-radius: 50%;
@@ -318,7 +374,7 @@
                     }
                 }
 
-                .bBlocks-circle-big-caret-icon {
+                .icb-circle-big-caret-icon {
                     @include icon-style(70px, 70px, 3px, #fff, 0deg, #fff0);
                     color: white;
                     border-radius: 50%;
@@ -333,10 +389,11 @@
                     }
                 }
 
-                .bBlocks-circle-outline-icon {
-                    @include icon-style(55px, 55px, 8px, #fff, 0deg, #fff0);
+                .icb-circle-outline-icon {
+                    @include icon-style(40px, 40px, 0px, #fff0, 0deg, #fff0);
                     border-radius: 50%;
-                    border-color: #ffffff65;
+                    // border-color: #ffffff65;
+                    box-shadow: 0px 0px 0px 8px #ffffff69;
 
                     div {
                         position: absolute;
@@ -350,10 +407,11 @@
                     }
                 }
 
-                .bBlocks-circle-outline-line-none-icon {
-                    @include icon-style(55px, 55px, 8px, #fff, 0deg, #fff0);
+                .icb-circle-outline-line-none-icon {
+                    @include icon-style(40px, 40px, 0px, #fff0, 0deg, #fff0);
                     border-radius: 50%;
-                    border-color: #ffffff65;
+                    // border-color: #ffffff65;
+                    box-shadow: 0px 0px 0px 8px #ffffff69;
 
                     div {
                         position: absolute;
@@ -367,7 +425,7 @@
                     }
                 }
 
-                .bBlocks-capsule-fill-icon {
+                .icb-capsule-fill-icon {
                     @include icon-style(85px, 40px, 3px, #fff, 0deg, #fff);
                     border-radius: 40px;
 
@@ -382,7 +440,7 @@
                     }
                 }
 
-                .bBlocks-capsule-stroke-icon {
+                .icb-capsule-stroke-icon {
                     @include icon-style(85px, 40px, 3px, #fff, 0deg, #fff0);
                     border-radius: 40px;
 
@@ -397,7 +455,7 @@
                     }
                 }
 
-                .bBlocks-capsule-tiny-fill-big-icon {
+                .icb-capsule-tiny-fill-big-icon {
                     @include icon-style(85px, 24px, 3px, #fff, 0deg, #fff, false);
                     border-radius: 40px;
                     color: white;
@@ -419,7 +477,7 @@
                     }
                 }
 
-                .bBlocks-capsule-tiny-stroke-big-icon {
+                .icb-capsule-tiny-stroke-big-icon {
                     @include icon-style(85px, 24px, 3px, #fff, 0deg, #fff0, false);
                     border-radius: 40px;
                     color: white;
@@ -441,7 +499,7 @@
                     }
                 }
 
-                .bBlocks-capsule-tiny-fill-small-icon {
+                .icb-capsule-tiny-fill-small-icon {
                     @include icon-style(65px, 18px, 3px, #fff, 0deg, #fff, false);
                     border-radius: 40px;
                     color: white;
@@ -463,7 +521,7 @@
                     }
                 }
 
-                .bBlocks-capsule-tiny-stroke-small-icon {
+                .icb-capsule-tiny-stroke-small-icon {
                     @include icon-style(65px, 18px, 3px, #fff, 0deg, #fff0, false);
                     border-radius: 40px;
                     color: white;
@@ -487,7 +545,7 @@
             }
         }
 
-        .bBlocks-caption {
+        .icb-caption {
             position: relative;
             width: 100%;
         }

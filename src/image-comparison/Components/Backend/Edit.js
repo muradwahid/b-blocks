@@ -37,14 +37,14 @@ const Edit = props => {
 					<div className='beforeImg'>
 						{bImgURL ?
 							<img src={bImgURL} alt={bImgAlt || bImgTitle} /> :
-							<MediaPlaceholder label={__(' Before Image:', 'image-compare')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+							<MediaPlaceholder label={__(' Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
 						}
 					</div>
 
 					<div className='afterImg'>
 						{aImgURL ?
 							<img src={aImgURL} alt={aImgAlt || aImgTitle} /> :
-							<MediaPlaceholder label={__(' After Image:', 'image-compare')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+							<MediaPlaceholder label={__(' After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 						}
 					</div>
 				</div>

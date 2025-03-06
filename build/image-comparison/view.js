@@ -201,6 +201,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useDragg */ "./src/image-comparison/Components/hooks/useDragg.js");
 /* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/icons */ "./src/image-comparison/utils/icons.js");
 /* harmony import */ var _utils_shapes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/shapes */ "./src/image-comparison/utils/shapes.js");
+/* harmony import */ var _hooks_useDeviceWidth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hooks/useDeviceWidth */ "./src/image-comparison/Components/hooks/useDeviceWidth.js");
+
 
 
 
@@ -212,7 +214,9 @@ const ImageCompareTwo = ({
   attributes,
   beforeLabelEl,
   afterLabelEl,
-  captionEl
+  captionEl,
+  device: backDevice,
+  isBackend = false
 }) => {
   const {
     beforeImg,
@@ -220,10 +224,12 @@ const ImageCompareTwo = ({
     orientation,
     styles,
     options,
-    dragg
+    dragg,
+    label
   } = attributes;
   const {
     defaultOffset,
+    isMoveClick,
     autoSlide,
     moveMouseOver
   } = options;
@@ -234,40 +240,36 @@ const ImageCompareTwo = ({
   } = autoSlide;
   const [position, setPosition] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(defaultOffset * 100);
   const [isDragging, setIsDragging] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [height, setHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-  const [imageHeight, setImageHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-  const [afterHeight, setAfterHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [beforeHeight, setBeforeHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+  const {
+    device: frontDevice
+  } = (0,_hooks_useDeviceWidth__WEBPACK_IMPORTED_MODULE_6__["default"])();
   const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const device = isBackend ? backDevice : frontDevice;
   const {
     handleClick
-  } = (0,_hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__["default"])(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed);
+  } = (0,_hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__["default"])(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed, isMoveClick);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    setAfterHeight(undefined); // Reset heights
-    setBeforeHeight(undefined);
-  }, [beforeImg?.url, afterImg?.url, styles.height]);
-
-  // Update height when afterHeight or beforeHeight changes
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    setImageHeight(afterHeight >= beforeHeight ? `${afterHeight}px` : `${beforeHeight}px`);
-  }, [beforeHeight, afterHeight, styles.height]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (!isNaN(parseInt(styles.height)) && parseInt(styles.height) > 0) {
-      containerRef.current.style.height = styles.height;
-      setHeight(styles.height);
-    } else {
-      setHeight(imageHeight);
-      containerRef.current.style.height = imageHeight;
-    }
-  }, [containerRef.current, imageHeight, styles.height, height]);
+    const containerHeight = styles.container.height[device];
+    let time;
+    time = setTimeout(() => {
+      if (!isNaN(parseInt(containerHeight)) && parseInt(containerHeight) > 0) {
+        containerRef.current.style.height = containerHeight;
+      } else {
+        const images = containerRef.current.querySelectorAll('img');
+        const heights = Array.from(images).map(img => img.getBoundingClientRect().height);
+        const maxHeight = Math.max(...heights);
+        // alert(maxHeight)
+        containerRef.current.style.height = `${maxHeight}px`;
+        Array.from(images).forEach(img => img.style.height = `${maxHeight}px`);
+      }
+    }, 200);
+    return () => clearTimeout(time);
+  }, [containerRef.current, beforeImg?.url, afterImg?.url, styles.container.height[device]]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: _utils_data__WEBPACK_IMPORTED_MODULE_2__.prefix
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: containerRef,
-    className: "bBlocks-comparison-wrapper",
-    style: {
-      height
-    },
+    className: `icb-comparison-wrapper ${label.isShowHover ? 'icb-label-hover' : ''}`,
     onMouseDown: () => setIsDragging(true),
     onTouchStart: () => setIsDragging(true),
     ...(moveMouseOver ? {
@@ -276,43 +278,30 @@ const ImageCompareTwo = ({
     } : {}),
     onClick: handleClick
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bBlocks-image-wrapper"
+    className: "icb-image-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    onLoad: e => setAfterHeight(e.target.getBoundingClientRect().height),
+    src: beforeImg?.url,
+    alt: beforeImg?.alt || beforeImg?.title
+  }), beforeLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "icb-image-wrapper",
     style: {
-      height
-    },
-    src: afterImg?.url,
-    alt: afterImg?.alt || afterImg?.title,
-    key: `after-${afterImg?.url}`
-  }), afterLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bBlocks-image-wrapper",
-    style: {
-      // clipPath: orientation === 'horizontal'
-      //     ? `inset(0 0 0 ${position}%)`
-      //     : `inset(${position}% 0 0 0)`,
       clipPath: (0,_utils_shapes__WEBPACK_IMPORTED_MODULE_5__.lineShapes)(position)[dragg.shapeType + orientation]
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    onLoad: e => setBeforeHeight(e.target.getBoundingClientRect().height),
-    style: {
-      height
-    },
-    src: beforeImg?.url,
-    alt: beforeImg?.alt || beforeImg?.title,
-    key: `before-${beforeImg?.url}`
-  }), beforeLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.handleType} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''}`,
+    src: afterImg?.url,
+    alt: afterImg?.alt || afterImg?.title
+  }), afterLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `icb-comparison-slider-handle icb-slider-${orientation} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''} `,
     style: {
       left: orientation === "horizontal" ? `${position}%` : "",
       top: orientation === "vertical" ? `${position}%` : ""
     }
   }, dragg.handleType === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: dragg.handleType,
-    className: "bBlocks-default-icon"
+    className: "icb-default-icon"
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: dragg.handleType,
-    className: `bBlocks-${dragg.handleType}-icon`
+    className: `icb-${dragg.handleType}-icon`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.BiCaretLeft, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.BiCaretRight, null))))), captionEl);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageCompareTwo);
@@ -334,6 +323,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
 /* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
 /* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/data */ "./src/image-comparison/utils/data.js");
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/options */ "./src/image-comparison/utils/options.js");
+
 
 
 
@@ -346,6 +337,7 @@ const Style = ({
     alignment,
     width,
     border,
+    dragg: draggHandler,
     labelTypo,
     labelColors,
     labelPadding,
@@ -359,10 +351,11 @@ const Style = ({
   } = styles;
   const mainSl = `#${id}`;
   const imgCompareSl = `${mainSl} .${_utils_data__WEBPACK_IMPORTED_MODULE_3__.prefix}`;
-  const wrapperSl = `${imgCompareSl} .bBlocks-comparison-wrapper`;
-  const labelSl = `${wrapperSl} .bBlocks-label`;
-  const capSl = `${imgCompareSl} .bBlocks-caption`;
-  const sliderSl = `${wrapperSl} .bBlocks-comparison-slider-handle`;
+  const wrapperSl = `${imgCompareSl} .icb-comparison-wrapper`;
+  const labelSl = `${wrapperSl} .icb-label`;
+  const capSl = `${imgCompareSl} .icb-caption`;
+  const sliderSl = `${wrapperSl} .icb-comparison-slider-handle`;
+  const isClExist = cl => _utils_options__WEBPACK_IMPORTED_MODULE_4__.handlerBorder.includes(cl) ? true : false;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
@@ -387,6 +380,12 @@ const Style = ({
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getColorsCSS)(capColors)}
 			padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getSpaceCSS)(capPadding)};
 		}
+
+		${isClExist(draggHandler.handleType) ? `${sliderSl} .icb-${draggHandler.handleType}-icon{
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('border-color', dragg.handler.color)}
+		${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('border-width', (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_1__.isExist)(dragg.line.size) ? dragg.line.size + 'px' : '')}
+			}` : ''}
+
 		${sliderSl} :where(svg){
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('color', dragg.icon.color)}
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('fill', dragg.icon.color)}
@@ -410,6 +409,46 @@ const Style = ({
 
 /***/ }),
 
+/***/ "./src/image-comparison/Components/hooks/useDeviceWidth.js":
+/*!*****************************************************************!*\
+  !*** ./src/image-comparison/Components/hooks/useDeviceWidth.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const useDeviceWidth = () => {
+  const [device, setDevice] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('desktop');
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    if (width > 1024) {
+      setDevice('desktop');
+    } else if (width > 640) {
+      setDevice('tablet');
+    } else {
+      setDevice('mobile');
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    handleWindowSizeChange();
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+  return {
+    device
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDeviceWidth);
+
+/***/ }),
+
 /***/ "./src/image-comparison/Components/hooks/useDragg.js":
 /*!***********************************************************!*\
   !*** ./src/image-comparison/Components/hooks/useDragg.js ***!
@@ -423,7 +462,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide = false, isHoverStop, speed = 50) => {
+const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide = false, isHoverStop, speed = 50, isMoveClick = false) => {
   const [mouseOver, setMouseOver] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const animationRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   const directionRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(1);
@@ -438,7 +477,7 @@ const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientat
     setPosition(Math.min(Math.max(newPosition, 0), 100));
   };
   const handleClick = event => {
-    if (isDragging || !containerRef.current) return;
+    if (isDragging || !containerRef.current || !isMoveClick) return;
     const rect = containerRef.current.getBoundingClientRect();
     const pos = orientation === "horizontal" ? event.clientX - rect.left : event.clientY - rect.top;
     const newPosition = pos / (orientation === "horizontal" ? rect.width : rect.height) * 100;
@@ -612,6 +651,154 @@ const BiCaretRight = props => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElemen
 
 /***/ }),
 
+/***/ "./src/image-comparison/utils/options.js":
+/*!***********************************************!*\
+  !*** ./src/image-comparison/utils/options.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   beforeAfterImgTab: () => (/* binding */ beforeAfterImgTab),
+/* harmony export */   handlerBorder: () => (/* binding */ handlerBorder),
+/* harmony export */   iconOptions: () => (/* binding */ iconOptions),
+/* harmony export */   labelHAlignOptions: () => (/* binding */ labelHAlignOptions),
+/* harmony export */   labelVAlignOptions: () => (/* binding */ labelVAlignOptions),
+/* harmony export */   orientationOptions: () => (/* binding */ orientationOptions),
+/* harmony export */   shapeOptions: () => (/* binding */ shapeOptions),
+/* harmony export */   sliderHandleOptions: () => (/* binding */ sliderHandleOptions)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./icons */ "./src/image-comparison/utils/icons.js");
+
+
+const beforeAfterImgTab = [{
+  name: 'before-img',
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Before Img', 'image-compare')
+}, {
+  name: 'after-img',
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('After Img', 'image-compare')
+}];
+const orientationOptions = [{
+  label: 'Horizontal',
+  value: 'horizontal',
+  icon: 'image-flip-horizontal'
+}, {
+  label: 'Vertical',
+  value: 'vertical',
+  icon: 'image-flip-vertical'
+}];
+const labelHAlignOptions = [{
+  label: 'Top',
+  value: 'top',
+  icon: _icons__WEBPACK_IMPORTED_MODULE_1__.alignTop
+}, {
+  label: 'Middle',
+  value: 'middle',
+  icon: _icons__WEBPACK_IMPORTED_MODULE_1__.alignMiddle
+}, {
+  label: 'Bottom',
+  value: 'bottom',
+  icon: _icons__WEBPACK_IMPORTED_MODULE_1__.alignBottom
+}];
+const labelVAlignOptions = [{
+  label: 'Left',
+  value: 'left',
+  icon: 'editor-alignleft'
+}, {
+  label: 'Center',
+  value: 'center',
+  icon: 'editor-aligncenter'
+}, {
+  label: 'Right',
+  value: 'right',
+  icon: 'editor-alignright'
+}];
+const iconOptions = [{
+  label: 'Default',
+  value: 'default',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-default.png'
+}, {
+  label: 'Rectangle Stroke',
+  value: 'rectangle-caret',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-rectangle-stroke.png',
+  isPro: true
+}, {
+  label: 'Circle Small',
+  value: 'circle-caret',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-circle-small.png',
+  isPro: true
+}, {
+  label: 'Circle Big',
+  value: 'circle-big-caret',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-circle-big.png',
+  isPro: true
+}, {
+  label: 'Circle Outline',
+  value: 'circle-outline',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-circle-outline.png',
+  isPro: true
+}, {
+  label: 'Circle Outline Line None',
+  value: 'circle-outline-line-none',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-circle-outline-line-none.png',
+  isPro: true
+}, {
+  label: 'Capsule Fill',
+  value: 'capsule-fill',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-fill.png',
+  isPro: true
+}, {
+  label: 'Capsule Stroke',
+  value: 'capsule-stroke',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-stroke.png',
+  isPro: true
+}, {
+  label: 'Capsule Tiny Fill Big',
+  value: 'capsule-tiny-fill-big',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-fill-big.png',
+  isPro: true
+}, {
+  label: 'Capsule Tiny Stroke Big',
+  value: 'capsule-tiny-stroke-big',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-stroke-big.png',
+  isPro: true
+}, {
+  label: 'Capsule Tiny Fill Small',
+  value: 'capsule-tiny-fill-small',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-fill-small.png',
+  isPro: true
+}, {
+  label: 'Capsule Tiny Stroke Small',
+  value: 'capsule-tiny-stroke-small',
+  img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-stroke-small.png',
+  isPro: true
+}];
+const shapeOptions = [{
+  label: 'Default',
+  value: 'default'
+}, {
+  label: 'Wave',
+  value: 'wave'
+}, {
+  label: 'Zigzag',
+  value: 'zigzag'
+}];
+const sliderHandleOptions = [{
+  title: 'Line',
+  name: 'line'
+}, {
+  title: 'Handler',
+  name: 'handler'
+}, {
+  title: 'Icon',
+  name: 'icon'
+}];
+const handlerBorder = ['rectangle-caret', 'circle-caret', 'circle-big-caret', 'capsule-stroke', 'capsule-tiny-stroke-big', 'capsule-tiny-stroke-small'];
+
+/***/ }),
+
 /***/ "./src/image-comparison/utils/shapes.js":
 /*!**********************************************!*\
   !*** ./src/image-comparison/utils/shapes.js ***!
@@ -623,8 +810,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   lineShapes: () => (/* binding */ lineShapes)
 /* harmony export */ });
 const lineShapes = position => ({
-  defaulthorizontal: `polygon(0 0, ${position}% 0, ${position}% 47%, ${position}% 100%, 0% 100%)`,
-  defaultvertical: `polygon(0 ${position}%, 100% ${position}%, 100% 100%, 0% 100%)`,
+  // defaulthorizontal: `polygon(0 0, ${position}% 0, ${position}% 47%, ${position}% 100%, 0% 100%)`,
+  defaulthorizontal: `inset(0 0 0 ${position}%)`,
+  // defaultvertical: `polygon(0 ${position}%, 100% ${position}%, 100% 100%, 0% 100%)`,
+  defaultvertical: `inset(${position}% 0 0 0)`,
   zigzaghorizontal: `polygon(0% 0%, ${position}% 0%, ${position - 6}% 9%, ${position}% 18%, ${position - 6}% 27%, ${position}% 36%, ${position - 6}% 45%, ${position}% 54%, ${position - 6}% 63%, ${position}% 72%, ${position - 6}% 81%, ${position}% 90%, ${position - 6}% 100%, 0% 100%)`,
   zigzagvertical: `polygon(0% 0%,0% ${position}%,9% ${position + 6}% ,18% ${position}%,27% ${position + 6}%,36% ${position}%,45% ${position + 6}%, 54% ${position}%,63% ${position + 6}%,72% ${position}%,  81% ${position + 6}%,90% ${position}%, 100% ${position + 6}%,100% 0% )`,
   wavehorizontal: `polygon(
@@ -1606,6 +1795,16 @@ module.exports = window["React"];
 /***/ ((module) => {
 
 module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
@@ -2955,19 +3154,19 @@ document.addEventListener('DOMContentLoaded', () => {
       vAlign
     } = label;
     const beforeLabelEl = isLabel && beforeLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `bBlocks-label bBlocks-before-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
+      className: `icb-label icb-before-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
       dangerouslySetInnerHTML: {
         __html: beforeLabel
       }
     });
     const afterLabelEl = isLabel && afterLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `bBlocks-label bBlocks-after-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
+      className: `icb-label icb-after-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`,
       dangerouslySetInnerHTML: {
         __html: afterLabel
       }
     });
     const captionEl = isCap && cap && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "bBlocks-caption",
+      className: "icb-caption",
       dangerouslySetInnerHTML: {
         __html: cap
       }

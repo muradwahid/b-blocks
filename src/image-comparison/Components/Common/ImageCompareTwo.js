@@ -4,46 +4,42 @@ import { prefix } from '../../utils/data';
 import useDragg from '../hooks/useDragg';
 import { BiCaretLeft, BiCaretRight } from '../../utils/icons';
 import { lineShapes } from '../../utils/shapes';
-const ImageCompareTwo = ({ attributes, beforeLabelEl, afterLabelEl, captionEl }) => {
-    const { beforeImg, afterImg, orientation, styles, options, dragg } = attributes;
-    const { defaultOffset, autoSlide, moveMouseOver } = options
+import useDeviceWidth from '../hooks/useDeviceWidth';
+const ImageCompareTwo = ({ attributes, beforeLabelEl, afterLabelEl, captionEl, device: backDevice, isBackend = false }) => {
+    const { beforeImg, afterImg, orientation, styles, options, dragg, label } = attributes;
+    const { defaultOffset, isMoveClick, autoSlide, moveMouseOver } = options;
     const { isAutoSlide, isHoverStop, speed } = autoSlide;
     const [position, setPosition] = useState(defaultOffset * 100);
     const [isDragging, setIsDragging] = useState(false);
-    const [height, setHeight] = useState("");
-    const [imageHeight, setImageHeight] = useState("")
-    const [afterHeight, setAfterHeight] = useState();
-    const [beforeHeight, setBeforeHeight] = useState();
+    const { device: frontDevice } = useDeviceWidth();
     const containerRef = useRef(null);
 
-    const { handleClick } = useDragg(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed)
+    const device = isBackend ? backDevice : frontDevice;
+
+    const { handleClick } = useDragg(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed, isMoveClick)
 
     useEffect(() => {
-        setAfterHeight(undefined); // Reset heights
-        setBeforeHeight(undefined);
-    }, [beforeImg?.url, afterImg?.url, styles.height]);
-
-
-    // Update height when afterHeight or beforeHeight changes
-    useEffect(() => {
-        setImageHeight(afterHeight >= beforeHeight ? `${afterHeight}px` : `${beforeHeight}px`);
-    }, [beforeHeight, afterHeight, styles.height]);
-
-    useEffect(() => {
-        if (!isNaN(parseInt(styles.height)) && parseInt(styles.height) > 0) {
-            containerRef.current.style.height = styles.height;
-            setHeight(styles.height);
-        } else {
-            setHeight(imageHeight);
-            containerRef.current.style.height = imageHeight;
-        }
-    }, [containerRef.current, imageHeight, styles.height, height]);
+        const containerHeight = styles.container.height[device];
+        let time;
+        time = setTimeout(() => {
+            if (!isNaN(parseInt(containerHeight)) && parseInt(containerHeight) > 0) {
+                containerRef.current.style.height = containerHeight;
+            } else {
+                const images = containerRef.current.querySelectorAll('img');
+                const heights = Array.from(images).map(img => img.getBoundingClientRect().height);
+                const maxHeight = Math.max(...heights);
+                // alert(maxHeight)
+                containerRef.current.style.height = `${maxHeight}px`;
+                Array.from(images).forEach(img => img.style.height = `${maxHeight}px`);
+            }
+        }, 200);
+        return () => clearTimeout(time);
+    }, [containerRef.current, beforeImg?.url, afterImg?.url, styles.container.height[device]]);
 
     return <div className={prefix}>
         <div
             ref={containerRef}
-            className="bBlocks-comparison-wrapper"
-            style={{ height }}
+            className={`icb-comparison-wrapper ${label.isShowHover ? 'icb-label-hover' : ''}`}
             onMouseDown={() => setIsDragging(true)}
             onTouchStart={() => setIsDragging(true)}
             {...(moveMouseOver ? {
@@ -53,33 +49,30 @@ const ImageCompareTwo = ({ attributes, beforeLabelEl, afterLabelEl, captionEl })
             onClick={handleClick}
         >
             <div
-                className="bBlocks-image-wrapper"
+                className="icb-image-wrapper"
             >
-                <img onLoad={(e) => setAfterHeight(e.target.getBoundingClientRect().height)} style={{ height }} src={afterImg?.url} alt={afterImg?.alt || afterImg?.title} key={`after-${afterImg?.url}`} />
-                {afterLabelEl}
+                <img src={beforeImg?.url} alt={beforeImg?.alt || beforeImg?.title} />
+                {beforeLabelEl}
+
             </div>
             <div
-                className="bBlocks-image-wrapper"
+                className="icb-image-wrapper"
                 style={{
-                    // clipPath: orientation === 'horizontal'
-                    //     ? `inset(0 0 0 ${position}%)`
-                    //     : `inset(${position}% 0 0 0)`,
                     clipPath: lineShapes(position)[dragg.shapeType + orientation]
                 }}
             >
-                <img onLoad={(e) => setBeforeHeight(e.target.getBoundingClientRect().height)} style={{ height }} src={beforeImg?.url} alt={beforeImg?.alt || beforeImg?.title} key={`before-${beforeImg?.url}`} />
-                {beforeLabelEl}
+                <img src={afterImg?.url} alt={afterImg?.alt || afterImg?.title} />
+                {afterLabelEl}
             </div>
-
             <div
-                className={`bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.handleType} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''}`}
+                className={`icb-comparison-slider-handle icb-slider-${orientation} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''} `}
                 style={{
                     left: orientation === "horizontal" ? `${position}%` : "",
                     top: orientation === "vertical" ? `${position}%` : "",
                 }}
             >
                 {
-                    dragg.handleType === 'default' ? <div key={dragg.handleType} className="bBlocks-default-icon"></div> : <div key={dragg.handleType} className={`bBlocks-${dragg.handleType}-icon`}>
+                    dragg.handleType === 'default' ? <div key={dragg.handleType} className="icb-default-icon"></div> : <div key={dragg.handleType} className={`icb-${dragg.handleType}-icon`}>
                         <div>
                             <BiCaretLeft />
                             <BiCaretRight />
@@ -93,3 +86,4 @@ const ImageCompareTwo = ({ attributes, beforeLabelEl, afterLabelEl, captionEl })
 };
 
 export default ImageCompareTwo;
+
