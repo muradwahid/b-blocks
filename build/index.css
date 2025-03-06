@@ -761,6 +761,10 @@
   justify-content: center;
   color: #fff;
 }
+.bPlPanelBody .addItem button:hover,
+.bPlDropdownPopover .components-popover__content .addItem button:hover {
+  color: #fff;
+}
 .bPlPanelBody .addItem button:focus,
 .bPlDropdownPopover .components-popover__content .addItem button:focus {
   box-shadow: none;
@@ -3287,7 +3291,7 @@ button.swiper-pagination-bullet {
 }
 .wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-vertical {
   text-align: center;
-  bottom: 10px;
+  top: 10px;
   right: auto;
 }
 .wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-after-label.bBlocks-vertical.left {
@@ -3322,7 +3326,7 @@ button.swiper-pagination-bullet {
 }
 .wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-vertical {
   text-align: center;
-  top: 10px;
+  bottom: 10px;
 }
 .wp-block-b-blocks-image-comparison .bBlocksImageCompare .bBlocks-comparison-wrapper .bBlocks-image-wrapper .bBlocks-label.bBlocks-before-label.bBlocks-vertical.left {
   left: 15px;

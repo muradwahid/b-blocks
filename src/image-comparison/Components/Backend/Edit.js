@@ -26,7 +26,6 @@ const Edit = props => {
 	const captionEl = isCap && <RichText className='bBlocks-caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'image-compare')} inlineToolbar />
 
 	const id = `${prefix}-${clientId}`;
-	console.log(isPremium)
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
 

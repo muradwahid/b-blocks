@@ -110,15 +110,15 @@ const style = (attributes, id, isBackend = false) => {
 		}
 		@media only screen and (min-width:641px) and (max-width: 1024px){
 			${navItem}{
-				padding:${getBoxCSS(padding?.tablet)};
-				margin:${getBoxCSS(margin?.tablet)};
+				${isValidCSS('padding', getBoxCSS(padding?.tablet))}
+				${isValidCSS('margin', getBoxCSS(margin?.tablet))}
 			}
 			${subMenuContainer}{
 				min-width:${container.width.tablet}px !important;
-				padding:${getBoxCSS(container.padding.tablet)};
+				${isValidCSS('padding', getBoxCSS(container.padding.tablet))}
 			}
 			${subMenuItem}{
-				padding:${getBoxCSS(menuItems.padding.tablet)};
+				${isValidCSS('padding', getBoxCSS(menuItems.padding.tablet))}
 			}
 			${subMenuIcon}{
 				Width:${caret.size.tablet}px;
@@ -129,26 +129,26 @@ const style = (attributes, id, isBackend = false) => {
 				width:${hamburger.button.size.tablet}px;
 			}
 			${hamburgerIconSl}{
-				padding:${getBoxCSS(hamburger.button.padding.tablet)}
+				${isValidCSS('padding', getBoxCSS(hamburger.button.padding.tablet))}
 			}
 			${hamburgerMenuContainer}{
-				padding:${getBoxCSS(hamburger.container.padding.tablet)};
+				${isValidCSS('padding', getBoxCSS(hamburger.container.padding.tablet))}
 			}
 			${hMenuItemSl}{
-				padding:${getBoxCSS(hamburger.items.padding.tablet)};
+				${isValidCSS('padding', getBoxCSS(hamburger.items.padding.tablet))}
 			}
 		}
 		@media only screen and (max-width: 640px){
 			${navItem}{
-				padding:${getBoxCSS(padding?.mobile)};
-				margin:${getBoxCSS(margin?.mobile)};
+				${isValidCSS('padding', getBoxCSS(padding?.mobile))}
+				${isValidCSS('margin', getBoxCSS(margin?.mobile))}
 			}
 			${subMenuContainer}{
 				min-width:${container.width.mobile}px !important;
-				padding:${getBoxCSS(container.padding.mobile)};
+				${isValidCSS('padding', getBoxCSS(container.padding.mobile))}
 			}
 			${subMenuItem}{
-				padding:${getBoxCSS(menuItems.padding.mobile)};
+				${isValidCSS('padding', getBoxCSS(menuItems.padding.mobile))}
 			}
 			${subMenuIcon}{
 				Width:${caret.size.mobile}px;
@@ -159,15 +159,17 @@ const style = (attributes, id, isBackend = false) => {
 				width:${hamburger.button.size.mobile}px;
 			}
 			${hamburgerIconSl}{
-				padding:${getBoxCSS(hamburger.button.padding.mobile)}
+				${isValidCSS('padding', getBoxCSS(hamburger.button.padding.mobile))}
 			}
 			${hamburgerMenuContainer}{
-				padding:${getBoxCSS(hamburger.container.padding.mobile)};
+				${isValidCSS('padding', getBoxCSS(hamburger.container.padding.mobile))}
 			}
 			${hMenuItemSl}{
-				padding:${getBoxCSS(hamburger.items.padding.mobile)};
+				${isValidCSS('padding', getBoxCSS(hamburger.items.padding.mobile))}
 			}
 		}
 	`;
 };
 export default style;
+
+

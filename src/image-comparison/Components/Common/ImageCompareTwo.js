@@ -3,6 +3,7 @@ import "./style.scss";
 import { prefix } from '../../utils/data';
 import useDragg from '../hooks/useDragg';
 import { BiCaretLeft, BiCaretRight } from '../../utils/icons';
+import { lineShapes } from '../../utils/shapes';
 const ImageCompareTwo = ({ attributes, beforeLabelEl, afterLabelEl, captionEl }) => {
     const { beforeImg, afterImg, orientation, styles, options, dragg } = attributes;
     const { defaultOffset, autoSlide, moveMouseOver } = options
@@ -54,30 +55,31 @@ const ImageCompareTwo = ({ attributes, beforeLabelEl, afterLabelEl, captionEl })
             <div
                 className="bBlocks-image-wrapper"
             >
-                <img onLoad={(e) => setBeforeHeight(e.target.getBoundingClientRect().height)} style={{ height }} src={beforeImg?.url} alt={beforeImg?.alt || beforeImg?.title} key={`before-${beforeImg?.url}`} />
-                {beforeLabelEl}
+                <img onLoad={(e) => setAfterHeight(e.target.getBoundingClientRect().height)} style={{ height }} src={afterImg?.url} alt={afterImg?.alt || afterImg?.title} key={`after-${afterImg?.url}`} />
+                {afterLabelEl}
             </div>
             <div
                 className="bBlocks-image-wrapper"
                 style={{
-                    clipPath: orientation === 'horizontal'
-                        ? `inset(0 0 0 ${position}%)`
-                        : `inset(${position}% 0 0 0)`,
+                    // clipPath: orientation === 'horizontal'
+                    //     ? `inset(0 0 0 ${position}%)`
+                    //     : `inset(${position}% 0 0 0)`,
+                    clipPath: lineShapes(position)[dragg.shapeType + orientation]
                 }}
             >
-                <img onLoad={(e) => setAfterHeight(e.target.getBoundingClientRect().height)} style={{ height }} src={afterImg?.url} alt={afterImg?.alt || afterImg?.title} key={`after-${afterImg?.url}`} />
-                {afterLabelEl}
+                <img onLoad={(e) => setBeforeHeight(e.target.getBoundingClientRect().height)} style={{ height }} src={beforeImg?.url} alt={beforeImg?.alt || beforeImg?.title} key={`before-${beforeImg?.url}`} />
+                {beforeLabelEl}
             </div>
 
             <div
-                className={`bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.type}`}
+                className={`bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.handleType} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''}`}
                 style={{
                     left: orientation === "horizontal" ? `${position}%` : "",
                     top: orientation === "vertical" ? `${position}%` : "",
                 }}
             >
                 {
-                    dragg.type === 'default' ? <div key={dragg.type} className="bBlocks-default-icon"></div> : <div key={dragg.type} className={`bBlocks-${dragg.type}-icon`}>
+                    dragg.handleType === 'default' ? <div key={dragg.handleType} className="bBlocks-default-icon"></div> : <div key={dragg.handleType} className={`bBlocks-${dragg.handleType}-icon`}>
                         <div>
                             <BiCaretLeft />
                             <BiCaretRight />

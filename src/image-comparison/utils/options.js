@@ -26,3 +26,9 @@ export const iconOptions = [
     { label: 'Capsule Tiny Fill Small', value: 'capsule-tiny-fill-small', img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-fill-small.png', isPro: true },
     { label: 'Capsule Tiny Stroke Small', value: 'capsule-tiny-stroke-small', img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-stroke-small.png', isPro: true }
 ]
+
+export const shapeOptions = [
+    { label: 'Default', value: 'default' },
+    { label: 'Wave', value: 'wave' },
+    { label: 'Zigzag', value: 'zigzag' },
+]

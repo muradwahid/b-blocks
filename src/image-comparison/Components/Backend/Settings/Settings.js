@@ -8,7 +8,7 @@ import Styles from './Styles/Styles';
 import { generalStyleTabs } from '../../../../utils/options';
 import { tabController, updateData } from '../../../../../../bpl-tools/utils/functions';
 import { BBlocksAds, MediaEditControl } from '../../../../../../bpl-tools/Components';
-import { AboutProModal } from '../../../../../../bpl-tools/ProControls';
+import ProModal from '../../../../backend/ProModal/ProModal';
 
 const Settings = ({ attributes, setAttributes, isPremium }) => {
 	const { alignment, beforeImg, afterImg } = attributes;
@@ -36,9 +36,27 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 			</TabPanel>
 		</InspectorControls>
 
-		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link={`${window.origin}/wp-admin/tools.php?page=before-after-image-compare`}>
-			<li>&emsp;<strong>{__('Label Position: ', 'image-compare')}</strong>{__('Customize the label position to suit your needs.', 'image-compare')}</li>
-		</AboutProModal>
+		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Image Comparison'>
+			<li>&emsp;<strong>{__('Label Position: ', 'b-blocks')}</strong>{__('Customize the label position to suit your needs.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Line Shape: ', 'b-blocks')}</strong>{__('Customize the line shape for a unique and eye-catching design.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Default Offset: ', 'b-blocks')}</strong>{__('Adjusts the initial position of the slider.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Move Slider On Mouse Over: ', 'b-blocks')}</strong>{__('Enable the slider to move when the mouse hover over it.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Auto Slide: ', 'b-blocks')}</strong>{__('Activate automatic sliding on the compare images.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Auto Slide Speed: ', 'b-blocks')}</strong>{__('Set the speed of the auto moving slider.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Stop Slider On Mouse Over: ', 'b-blocks')}</strong>{__('Pause the sliding movement when the mouse is over the images.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Line Size: ', 'b-blocks')}</strong>{__('Adjust the line size to your preferred thickness.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Line Color: ', 'b-blocks')}</strong>{__('Choose a desired color for the line.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Icon Color: ', 'b-blocks')}</strong>{__('Select the icon color from the options provided to match your design.', 'b-blocks')}</li>
+		</ProModal>
 
 
 		<BlockControls>

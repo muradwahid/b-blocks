@@ -1,16 +1,16 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { PanelBody, ToggleControl, TabPanel, TextControl, __experimentalInputControl as InputControl, RangeControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, TabPanel, TextControl, __experimentalInputControl as InputControl, RangeControl, SelectControl } from '@wordpress/components';
 
 import { InlineDetailMediaUpload, BtnGroup, HelpPanel } from '../../../../../../../bpl-tools/Components';
 import { ChangeImageData } from '../../../../../../../bpl-tools/Components/Deprecated';
 import { tabController } from '../../../../../../../bpl-tools/utils/functions';
 import { BControlPro } from '../../../../../../../bpl-tools/ProControls';
 
-import { beforeAfterImgTab, iconOptions, labelHAlignOptions, labelVAlignOptions, orientationOptions } from '../../../../utils/options';
+import { beforeAfterImgTab, iconOptions, labelHAlignOptions, labelVAlignOptions, orientationOptions, shapeOptions } from '../../../../utils/options';
 import Presets from '../Panel/Presets/Presets';
-const General = ({ attributes, updateObj, isPremium, setIsProModalOpen }) => {
-    const { beforeImg, afterImg, orientation, isLabel, label, beforeLabel, afterLabel, isCap, cap, options, dragg } = attributes;
+const General = ({ attributes, setAttributes, updateObj, isPremium, setIsProModalOpen }) => {
+    const { beforeImg, afterImg, orientation, isSwap, isLabel, label, beforeLabel, afterLabel, isCap, cap, options, dragg } = attributes;
     return (
         <>
             <HelpPanel slug='before-after-image-compare' docsLink='https://bblockswp.com/docs/image-compare' />
@@ -32,6 +32,7 @@ const General = ({ attributes, updateObj, isPremium, setIsProModalOpen }) => {
                         <ChangeImageData className='mt20' value={afterImg} onChange={val => updateObj('afterImg', val)} />
                     </>}
                 </>}</TabPanel>
+                <ToggleControl className='mt20' label={__('Swap Images', 'image-compare')} checked={isSwap} onChange={val => setAttributes({ isSwap: val, beforeImg: { ...afterImg }, afterImg: { ...beforeImg } })} />
             </PanelBody>
 
             <PanelBody className='bPlPanelBody' title={__('Labels', 'image-compare')} initialOpen={false}>
@@ -46,6 +47,11 @@ const General = ({ attributes, updateObj, isPremium, setIsProModalOpen }) => {
 
                     <TextControl label={__('After Label', 'image-compare')} value={afterLabel} onChange={val => updateObj('afterLabel', val)} placeholder={__('After image label', 'image-compare')} />
                 </>}
+            </PanelBody>
+
+            <PanelBody className='bPlPanelBody' title={__('Slider Line', 'image-compare')} initialOpen={false}>
+
+                <BControlPro isPremium={isPremium} setIsProModalOpen={setIsProModalOpen} labelPosition='edge' label={__('Shape', 'image-compare')} options={shapeOptions} value={dragg.shapeType} onChange={val => updateObj('dragg', val, 'shapeType')} Component={SelectControl} />
             </PanelBody>
 
             <PanelBody className='bPlPanelBody' title={__('Caption', 'image-compare')} initialOpen={false}>
@@ -73,7 +79,7 @@ const General = ({ attributes, updateObj, isPremium, setIsProModalOpen }) => {
             </PanelBody>
 
             <PanelBody className='bPlPanelBody' title={__('Presets', 'image-compare')} initialOpen={false}>
-                <Presets value={dragg.type} setIsProModalOpen={setIsProModalOpen} options={iconOptions} onChange={val => updateObj("dragg", val, "type")} isPremium={isPremium} />
+                <Presets value={dragg.handleType} setIsProModalOpen={setIsProModalOpen} options={iconOptions} onChange={val => updateObj("dragg", val, "handleType")} isPremium={isPremium} />
             </PanelBody>
         </>
     );

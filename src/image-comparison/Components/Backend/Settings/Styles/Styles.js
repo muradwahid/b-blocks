@@ -41,7 +41,7 @@ const Styles = ({ attributes, isPremium, setIsProModalOpen, updateObj }) => {
                     <SpaceControl className='mt20' label={__('Padding:', 'image-compare')} value={capPadding} onChange={val => updateObj('capPadding', val)} defaults={{ vertical: '10px', horizontal: '15px' }} />
                 </PanelBody>
             </>}
-            <PanelBody className='bPlPanelBody' title={__('Slider', 'image-compare')} initialOpen={true}>
+            <PanelBody className='bPlPanelBody' title={__('Slider', 'image-compare')} initialOpen={false}>
 
                 <BControlPro isPremium={isPremium} setIsProModalOpen={setIsProModalOpen} label={__('Line Size', 'image-compare')} min={1} max={10} step={1} value={dragg.line.size} onChange={val => updateObj('styles', val, 'dragg', 'line', 'size')} Component={RangeControl} />
 

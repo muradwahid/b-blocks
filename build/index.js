@@ -37103,7 +37103,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const proBlocks = ['Posts', 'Countdown', 'Slider', 'Lottie Player', 'Button', 'Cards'];
+const proBlocks = ['Posts', 'Countdown', 'Slider', 'Lottie Player', 'Button', 'Cards', 'Image Comparison'];
 const ProModal = ({
   isProModalOpen,
   setIsProModalOpen,
@@ -47753,7 +47753,6 @@ const Edit = props => {
     inlineToolbar: true
   });
   const id = `${_utils_data__WEBPACK_IMPORTED_MODULE_5__.prefix}-${clientId}`;
-  console.log(isPremium);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_3__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
@@ -47835,6 +47834,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const General = ({
   attributes,
+  setAttributes,
   updateObj,
   isPremium,
   setIsProModalOpen
@@ -47843,6 +47843,7 @@ const General = ({
     beforeImg,
     afterImg,
     orientation,
+    isSwap,
     isLabel,
     label,
     beforeLabel,
@@ -47889,7 +47890,20 @@ const General = ({
     className: "mt20",
     value: afterImg,
     onChange: val => updateObj('afterImg', val)
-  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    className: "mt20",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Swap Images', 'image-compare'),
+    checked: isSwap,
+    onChange: val => setAttributes({
+      isSwap: val,
+      beforeImg: {
+        ...afterImg
+      },
+      afterImg: {
+        ...beforeImg
+      }
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Labels', 'image-compare'),
     initialOpen: false
@@ -47932,6 +47946,19 @@ const General = ({
     onChange: val => updateObj('afterLabel', val),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After image label', 'image-compare')
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slider Line', 'image-compare'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
+    isPremium: isPremium,
+    setIsProModalOpen: setIsProModalOpen,
+    labelPosition: "edge",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Shape', 'image-compare'),
+    options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.shapeOptions,
+    value: dragg.shapeType,
+    onChange: val => updateObj('dragg', val, 'shapeType'),
+    Component: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption', 'image-compare'),
     initialOpen: false
@@ -47998,10 +48025,10 @@ const General = ({
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Presets', 'image-compare'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Panel_Presets_Presets__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    value: dragg.type,
+    value: dragg.handleType,
     setIsProModalOpen: setIsProModalOpen,
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.iconOptions,
-    onChange: val => updateObj("dragg", val, "type"),
+    onChange: val => updateObj("dragg", val, "handleType"),
     isPremium: isPremium
   })));
 };
@@ -48080,7 +48107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../utils/options */ "./src/utils/options.js");
 /* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
 /* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
-/* harmony import */ var _bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../../bpl-tools/ProControls */ "../bpl-tools/ProControls/index.js");
+/* harmony import */ var _backend_ProModal_ProModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../backend/ProModal/ProModal */ "./src/backend/ProModal/ProModal.js");
 
 
 
@@ -48129,11 +48156,11 @@ const Settings = ({
     attributes,
     setAttributes,
     updateObj
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_9__.AboutProModal, {
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_backend_ProModal_ProModal__WEBPACK_IMPORTED_MODULE_9__["default"], {
     isProModalOpen: isProModalOpen,
     setIsProModalOpen: setIsProModalOpen,
-    link: `${window.origin}/wp-admin/tools.php?page=before-after-image-compare`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position: ', 'image-compare')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the label position to suit your needs.', 'image-compare'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_8__.MediaEditControl, {
+    block: "Image Comparison"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Label Position: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the label position to suit your needs.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Shape: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the line shape for a unique and eye-catching design.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Offset: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjusts the initial position of the slider.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move Slider On Mouse Over: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the slider to move when the mouse hover over it.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate automatic sliding on the compare images.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Slide Speed: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the speed of the auto moving slider.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Stop Slider On Mouse Over: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pause the sliding movement when the mouse is over the images.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Size: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjust the line size to your preferred thickness.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Line Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a desired color for the line.', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "\u2003", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Color: ', 'b-blocks')), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the icon color from the options provided to match your design.', 'b-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_8__.MediaEditControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit Before Image:', 'image-compare'),
     value: beforeImg,
     onChange: val => setAttributes({
@@ -48299,7 +48326,7 @@ const Styles = ({
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Slider', 'image-compare'),
-    initialOpen: true
+    initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     isPremium: isPremium,
     setIsProModalOpen: setIsProModalOpen,
@@ -48349,6 +48376,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/data */ "./src/image-comparison/utils/data.js");
 /* harmony import */ var _hooks_useDragg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useDragg */ "./src/image-comparison/Components/hooks/useDragg.js");
 /* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/icons */ "./src/image-comparison/utils/icons.js");
+/* harmony import */ var _utils_shapes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/shapes */ "./src/image-comparison/utils/shapes.js");
+
 
 
 
@@ -48425,19 +48454,6 @@ const ImageCompareTwo = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bBlocks-image-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    onLoad: e => setBeforeHeight(e.target.getBoundingClientRect().height),
-    style: {
-      height
-    },
-    src: beforeImg?.url,
-    alt: beforeImg?.alt || beforeImg?.title,
-    key: `before-${beforeImg?.url}`
-  }), beforeLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bBlocks-image-wrapper",
-    style: {
-      clipPath: orientation === 'horizontal' ? `inset(0 0 0 ${position}%)` : `inset(${position}% 0 0 0)`
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     onLoad: e => setAfterHeight(e.target.getBoundingClientRect().height),
     style: {
       height
@@ -48446,17 +48462,33 @@ const ImageCompareTwo = ({
     alt: afterImg?.alt || afterImg?.title,
     key: `after-${afterImg?.url}`
   }), afterLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.type}`,
+    className: "bBlocks-image-wrapper",
+    style: {
+      // clipPath: orientation === 'horizontal'
+      //     ? `inset(0 0 0 ${position}%)`
+      //     : `inset(${position}% 0 0 0)`,
+      clipPath: (0,_utils_shapes__WEBPACK_IMPORTED_MODULE_5__.lineShapes)(position)[dragg.shapeType + orientation]
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    onLoad: e => setBeforeHeight(e.target.getBoundingClientRect().height),
+    style: {
+      height
+    },
+    src: beforeImg?.url,
+    alt: beforeImg?.alt || beforeImg?.title,
+    key: `before-${beforeImg?.url}`
+  }), beforeLabelEl), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `bBlocks-comparison-slider-handle bBlocks-slider-${orientation} ${dragg.handleType} ${dragg.handleType} ${dragg.shapeType !== 'default' ? 'circle-outline-line-none' : ''}`,
     style: {
       left: orientation === "horizontal" ? `${position}%` : "",
       top: orientation === "vertical" ? `${position}%` : ""
     }
-  }, dragg.type === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: dragg.type,
+  }, dragg.handleType === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: dragg.handleType,
     className: "bBlocks-default-icon"
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: dragg.type,
-    className: `bBlocks-${dragg.type}-icon`
+    key: dragg.handleType,
+    className: `bBlocks-${dragg.handleType}-icon`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.BiCaretLeft, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.BiCaretRight, null))))), captionEl);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageCompareTwo);
@@ -48821,7 +48853,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   iconOptions: () => (/* binding */ iconOptions),
 /* harmony export */   labelHAlignOptions: () => (/* binding */ labelHAlignOptions),
 /* harmony export */   labelVAlignOptions: () => (/* binding */ labelVAlignOptions),
-/* harmony export */   orientationOptions: () => (/* binding */ orientationOptions)
+/* harmony export */   orientationOptions: () => (/* binding */ orientationOptions),
+/* harmony export */   shapeOptions: () => (/* binding */ shapeOptions)
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -48930,6 +48963,280 @@ const iconOptions = [{
   img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-stroke-small.png',
   isPro: true
 }];
+const shapeOptions = [{
+  label: 'Default',
+  value: 'default'
+}, {
+  label: 'Wave',
+  value: 'wave'
+}, {
+  label: 'Zigzag',
+  value: 'zigzag'
+}];
+
+/***/ }),
+
+/***/ "./src/image-comparison/utils/shapes.js":
+/*!**********************************************!*\
+  !*** ./src/image-comparison/utils/shapes.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   lineShapes: () => (/* binding */ lineShapes)
+/* harmony export */ });
+const lineShapes = position => ({
+  defaulthorizontal: `polygon(0 0, ${position}% 0, ${position}% 47%, ${position}% 100%, 0% 100%)`,
+  defaultvertical: `polygon(0 ${position}%, 100% ${position}%, 100% 100%, 0% 100%)`,
+  zigzaghorizontal: `polygon(0% 0%, ${position}% 0%, ${position - 6}% 9%, ${position}% 18%, ${position - 6}% 27%, ${position}% 36%, ${position - 6}% 45%, ${position}% 54%, ${position - 6}% 63%, ${position}% 72%, ${position - 6}% 81%, ${position}% 90%, ${position - 6}% 100%, 0% 100%)`,
+  zigzagvertical: `polygon(0% 0%,0% ${position}%,9% ${position + 6}% ,18% ${position}%,27% ${position + 6}%,36% ${position}%,45% ${position + 6}%, 54% ${position}%,63% ${position + 6}%,72% ${position}%,  81% ${position + 6}%,90% ${position}%, 100% ${position + 6}%,100% 0% )`,
+  wavehorizontal: `polygon(
+        ${position + 7.778 - 8.8}% 0%,
+        ${position + 7.5 - 8.8}% 2.383%,
+        ${position + 7.5 - 8.8}% 2.383%,
+        ${position + 7.407 - 8.8}% 3.172%,
+        ${position + 7.292 - 8.8}% 4.088%,
+        ${position + 7.15 - 8.8}% 5.118%,
+        ${position + 6.973 - 8.8}% 6.247%,
+        ${position + 6.757 - 8.8}% 7.46%,
+        ${position + 6.496 - 8.8}% 8.745%,
+        ${position + 6.184 - 8.8}% 10.085%,
+        ${position + 5.816 - 8.8}% 11.467%,
+        ${position + 5.387 - 8.8}% 12.877%,
+        ${position + 4.889 - 8.8}% 14.3%,
+        ${position + 4.889 - 8.8}% 14.3%,
+        ${position + 4.324 - 8.8}% 15.725%,
+        ${position + 3.718 - 8.8}% 17.148%,
+        ${position + 3.102 - 8.8}% 18.571%,
+        ${position + 2.508 - 8.8}% 19.994%,
+        ${position + 1.968 - 8.8}% 21.417%,
+        ${position + 1.514 - 8.8}% 22.839%,
+        ${position + 1.177 - 8.8}% 24.262%,
+        ${position + 0.989 - 8.8}% 25.685%,
+        ${position + 0.983 - 8.8}% 27.109%,
+        ${position + 1.189 - 8.8}% 28.533%,
+        ${position + 1.189 - 8.8}% 28.533%,
+        ${position + 1.624 - 8.8}% 29.959%,
+        ${position + 2.256 - 8.8}% 31.385%,
+        ${position + 3.039 - 8.8}% 32.813%,
+        ${position + 3.925 - 8.8}% 34.241%,
+        ${position + 4.867 - 8.8}% 35.671%,
+        ${position + 5.816 - 8.8}% 37.101%,
+        ${position + 6.726 - 8.8}% 38.533%,
+        ${position + 7.549 - 8.8}% 39.965%,
+        ${position + 8.238 - 8.8}% 41.399%,
+        ${position + 8.744 - 8.8}% 42.833%,
+        ${position + 8.744 - 8.8}% 42.833%,
+        ${position + 9.034 - 8.8}% 44.268%,
+        ${position + 9.119 - 8.8}% 45.702%,
+        ${position + 9.024 - 8.8}% 47.135%,
+        ${position + 8.775 - 8.8}% 48.567%,
+        ${position + 8.396 - 8.8}% 50%,
+        ${position + 7.912 - 8.8}% 51.433%,
+        ${position + 7.347 - 8.8}% 52.865%,
+        ${position + 6.728 - 8.8}% 54.298%,
+        ${position + 6.078 - 8.8}% 55.732%,
+        ${position + 5.422 - 8.8}% 57.167%,
+        ${position + 5.422 - 8.8}% 57.167%,
+        ${position + 4.785 - 8.8}% 58.601%,
+        ${position + 4.186 - 8.8}% 60.035%,
+        ${position + 3.645 - 8.8}% 61.467%,
+        ${position + 3.181 - 8.8}% 62.899%,
+        ${position + 2.813 - 8.8}% 64.329%,
+        ${position + 2.559 - 8.8}% 65.759%,
+        ${position + 2.44 - 8.8}% 67.187%,
+        ${position + 2.474 - 8.8}% 68.615%,
+        ${position + 2.68 - 8.8}% 70.041%,
+        ${position + 3.078 - 8.8}% 71.467%,
+        ${position + 3.078 - 8.8}% 71.467%,
+        ${position + 3.676 - 8.8}% 72.891%,
+        ${position + 4.443 - 8.8}% 74.315%,
+        ${position + 5.338 - 8.8}% 75.738%,
+        ${position + 6.317 - 8.8}% 77.161%,
+        ${position + 7.34 - 8.8}% 78.583%,
+        ${position + 8.365 - 8.8}% 80.006%,
+        ${position + 9.35 - 8.8}% 81.429%,
+        ${position + 10.252 - 8.8}% 82.852%,
+        ${position + 11.031 - 8.8}% 84.275%,
+        ${position + 11.644 - 8.8}% 85.7%,
+        ${position + 11.644 - 8.8}% 85.7%,
+        ${position + 12.062 - 8.8}% 87.123%,
+        ${position + 12.298 - 8.8}% 88.533%,
+        ${position + 12.378 - 8.8}% 89.915%,
+        ${position + 12.328 - 8.8}% 91.255%,
+        ${position + 12.175 - 8.8}% 92.54%,
+        ${position + 11.944 - 8.8}% 93.753%,
+        ${position + 11.66 - 8.8}% 94.882%,
+        ${position + 11.35 - 8.8}% 95.912%,
+        ${position + 11.04 - 8.8}% 96.828%,
+        ${position + 10.756 - 8.8}% 97.617%,
+        ${position + 9.889 - 8.8}% 100%,
+        0% 100%,0% 97.617%,0% 97.617%,0% 96.828%,0% 95.912%,0% 94.882%,0% 93.753%,0% 92.54%,0% 91.255%,0% 89.915%,0% 88.533%,0% 87.123%,0% 85.7%,0% 85.7%,0% 84.275%,0% 82.852%,0% 81.429%,0% 80.006%,0% 78.583%,0% 77.161%,0% 75.738%,0% 74.315%,0% 72.891%,0% 71.467%,0% 71.467%,0% 70.041%,0% 68.615%,0% 67.187%,0% 65.759%,0% 64.329%,0% 62.899%,0% 61.467%,0% 60.035%,0% 58.601%,0% 57.167%,0% 57.167%,0% 55.732%,0% 54.298%,0% 52.865%,0% 51.433%,0% 50%,0% 48.567%,0% 47.135%,0% 45.702%,0% 44.268%,0% 42.833%,0% 42.833%,0% 41.399%,0% 39.965%,0% 38.533%,0% 37.101%,0% 35.671%,0% 34.241%,0% 32.813%,0% 31.385%,0% 29.959%,0% 28.533%,0% 28.533%,0% 27.109%,0% 25.685%,0% 24.262%,0% 22.839%,0% 21.417%,0% 19.994%,0% 18.571%,0% 17.148%,0% 15.725%,0% 14.3%,0% 14.3%,0% 12.877%,0% 11.467%,0% 10.085%,0% 8.745%,0% 7.46%,0% 6.247%,0% 5.118%,0% 4.088%,0% 3.172%,0% 2.383%,0% 0%,57.778% 0% )`,
+  wavevertical: `polygon(
+        0% ${42.167 + position - 41}%,
+        2.389% ${42.45 + position - 41}%,
+        2.389% ${42.45 + position - 41}%,
+        3.175% ${42.54 + position - 41}%,
+        4.09% ${42.653 + position - 41}%,
+        5.119% ${42.795 + position - 41}%,
+        6.248% ${42.972 + position - 41}%,
+        7.463% ${43.188 + position - 41}%,
+        8.748% ${43.448 + position - 41}%,
+        10.09% ${43.76 + position - 41}%,
+        11.474% ${44.127 + position - 41}%,
+        12.886% ${44.555 + position - 41}%,
+        14.311% ${45.05 + position - 41}%,
+        14.311% ${45.05 + position - 41}%,
+        15.74% ${45.616 + position - 41}%,
+        17.168% ${46.224 + position - 41}%,
+        18.594% ${46.84 + position - 41}%,
+        20.019% ${47.435 + position - 41}%,
+        21.444% ${47.975 + position - 41}%,
+        22.87% ${48.429 + position - 41}%,
+        24.295% ${48.766 + position - 41}%,
+        25.721% ${48.952 + position - 41}%,
+        27.149% ${48.958 + position - 41}%,
+        28.578% ${48.75 + position - 41}%,
+        28.578% ${48.75 + position - 41}%,
+        30.005% ${48.31 + position - 41}%,
+        31.433% ${47.673 + position - 41}%,
+        32.863% ${46.886 + position - 41}%,
+        34.292% ${45.997 + position - 41}%,
+        35.722% ${45.052 + position - 41}%,
+        37.152% ${44.1 + position - 41}%,
+        38.582% ${43.188 + position - 41}%,
+        40.011% ${42.363 + position - 41}%,
+        41.439% ${41.674 + position - 41}%,
+        42.867% ${41.167 + position - 41}%,
+        42.867% ${41.167 + position - 41}%,
+        44.296% ${40.878 + position - 41}%,
+        45.723% ${40.793 + position - 41}%,
+        47.149% ${40.889 + position - 41}%,
+        48.575% ${41.14 + position - 41}%,
+        50% ${41.521 + position - 41}%,
+        51.425% ${42.007 + position - 41}%,
+        52.851% ${42.573 + position - 41}%,
+        54.277% ${43.193 + position - 41}%,
+        55.704% ${43.844 + position - 41}%,
+        57.133% ${44.5 + position - 41}%,
+        57.133% ${44.5 + position - 41}%,
+        58.561% ${45.137 + position - 41}%,
+        59.989% ${45.735 + position - 41}%,
+        61.418% ${46.275 + position - 41}%,
+        62.848% ${46.737 + position - 41}%,
+        64.278% ${47.104 + position - 41}%,
+        65.708% ${47.356 + position - 41}%,
+        67.137% ${47.474 + position - 41}%,
+        68.567% ${47.439 + position - 41}%,
+        69.995% ${47.232 + position - 41}%,
+        71.422% ${46.833 + position - 41}%,
+        71.422% ${46.833 + position - 41}%,
+        72.851% ${46.235 + position - 41}%,
+        74.279% ${45.469 + position - 41}%,
+        75.705% ${44.576 + position - 41}%,
+        77.13% ${43.598 + position - 41}%,
+        78.556% ${42.577 + position - 41}%,
+        79.981% ${41.555 + position - 41}%,
+        81.406% ${40.572 + position - 41}%,
+        82.832% ${39.672 + position - 41}%,
+        84.26% ${38.895 + position - 41}%,
+        85.689% ${38.283 + position - 41}%,
+        85.689% ${38.283 + position - 41}%,
+        87.114% ${37.863 + position - 41}%,
+        88.526% ${37.625 + position - 41}%,
+        89.91% ${37.542 + position - 41}%,
+        91.252% ${37.589 + position - 41}%,
+        92.538% ${37.74 + position - 41}%,
+        93.752% ${37.968 + position - 41}%,
+        94.881% ${38.247 + position - 41}%,
+        95.91% ${38.552 + position - 41}%,
+        96.825% ${38.856 + position - 41}%,
+        97.611% ${39.133 + position - 41}%,
+        100% ${40 + position - 41}%,
+        100% 100.167%,
+        97.611% 100.167%,
+        97.611% 100.167%,
+        96.825% 100.167%,
+        95.91% 100.167%,
+        94.881% 100.167%,
+        93.752% 100.167%,
+        92.538% 100.167%,
+        91.252% 100.167%,
+        89.91% 100.167%,
+        88.526% 100.167%,
+        87.114% 100.167%,
+        85.689% 100.167%,
+        85.689% 100.167%,
+        84.26% 100.167%,
+        82.832% 100.167%,
+        81.406% 100.167%,
+        79.981% 100.167%,
+        78.556% 100.167%,
+        77.13% 100.167%,
+        75.705% 100.167%,
+        74.279% 100.167%,
+        72.851% 100.167%,
+        71.422% 100.167%,
+        71.422% 100.167%,
+        69.995% 100.167%,
+        68.567% 100.167%,
+        67.137% 100.167%,
+        65.708% 100.167%,
+        64.278% 100.167%,
+        62.848% 100.167%,
+        61.418% 100.167%,
+        59.989% 100.167%,
+        58.561% 100.167%,
+        57.133% 100.167%,
+        57.133% 100.167%,
+        55.704% 100.167%,
+        54.277% 100.167%,
+        52.851% 100.167%,
+        51.425% 100.167%,
+        50% 100.167%,
+        48.575% 100.167%,
+        47.149% 100.167%,
+        45.723% 100.167%,
+        44.296% 100.167%,
+        42.867% 100.167%,
+        42.867% 100.167%,
+        41.439% 100.167%,
+        40.011% 100.167%,
+        38.582% 100.167%,
+        37.152% 100.167%,
+        35.722% 100.167%,
+        34.292% 100.167%,
+        32.863% 100.167%,
+        31.433% 100.167%,
+        30.005% 100.167%,
+        28.578% 100.167%,
+        28.578% 100.167%,
+        27.149% 100.167%,
+        25.721% 100.167%,
+        24.295% 100.167%,
+        22.87% 100.167%,
+        21.444% 100.167%,
+        20.019% 100.167%,
+        18.594% 100.167%,
+        17.168% 100.167%,
+        15.74% 100.167%,
+        14.311% 100.167%,
+        14.311% 100.167%,
+        12.886% 100.167%,
+        11.474% 100.167%,
+        10.09% 100.167%,
+        8.748% 100.167%,
+        7.463% 100.167%,
+        6.248% 100.167%,
+        5.119% 100.167%,
+        4.09% 100.167%,
+        3.175% 100.167%,
+        2.389% 100.167%,
+        0% 100.167%
+    )`
+});
 
 /***/ }),
 
@@ -52524,15 +52831,15 @@ const style = (attributes, id, isBackend = false) => {
 		}
 		@media only screen and (min-width:641px) and (max-width: 1024px){
 			${navItem}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(padding?.tablet)};
-				margin:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(margin?.tablet)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(padding?.tablet))}
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('margin', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(margin?.tablet))}
 			}
 			${subMenuContainer}{
 				min-width:${container.width.tablet}px !important;
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(container.padding.tablet)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(container.padding.tablet))}
 			}
 			${subMenuItem}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(menuItems.padding.tablet)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(menuItems.padding.tablet))}
 			}
 			${subMenuIcon}{
 				Width:${caret.size.tablet}px;
@@ -52543,26 +52850,26 @@ const style = (attributes, id, isBackend = false) => {
 				width:${hamburger.button.size.tablet}px;
 			}
 			${hamburgerIconSl}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.button.padding.tablet)}
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.button.padding.tablet))}
 			}
 			${hamburgerMenuContainer}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.container.padding.tablet)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.container.padding.tablet))}
 			}
 			${hMenuItemSl}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.items.padding.tablet)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.items.padding.tablet))}
 			}
 		}
 		@media only screen and (max-width: 640px){
 			${navItem}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(padding?.mobile)};
-				margin:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(margin?.mobile)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(padding?.mobile))}
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('margin', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(margin?.mobile))}
 			}
 			${subMenuContainer}{
 				min-width:${container.width.mobile}px !important;
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(container.padding.mobile)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(container.padding.mobile))}
 			}
 			${subMenuItem}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(menuItems.padding.mobile)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(menuItems.padding.mobile))}
 			}
 			${subMenuIcon}{
 				Width:${caret.size.mobile}px;
@@ -52573,13 +52880,13 @@ const style = (attributes, id, isBackend = false) => {
 				width:${hamburger.button.size.mobile}px;
 			}
 			${hamburgerIconSl}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.button.padding.mobile)}
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.button.padding.mobile))}
 			}
 			${hamburgerMenuContainer}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.container.padding.mobile)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.container.padding.mobile))}
 			}
 			${hMenuItemSl}{
-				padding:${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.items.padding.mobile)};
+				${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.isValidCSS)('padding', (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_2__.getBoxCSS)(hamburger.items.padding.mobile))}
 			}
 		}
 	`;
@@ -69311,7 +69618,7 @@ const ColorControl = props => {
   const {
     className = '',
     label = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color:'),
-    value,
+    value = '',
     onChange,
     defaultColor,
     disableAlpha = false
@@ -98957,7 +99264,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/icon-
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/image-comparison","title":"Image Comparison","description":"Compare between two images.","category":"bBlocks","keywords":["image slider","image compare","image filter"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"alignment":{"type":"string","default":"center"},"width":{"type":"string","default":"80%"},"border":{"type":"object","default":{}},"beforeImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"afterImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"orientation":{"type":"string","default":"horizontal"},"isSwap":{"type":"boolean","default":false},"isLabel":{"type":"boolean","default":true},"label":{"type":"object","default":{"hAlign":"bottom","vAlign":"center"}},"beforeLabel":{"type":"string","selector":".beforeLabel","default":""},"afterLabel":{"type":"string","selector":".afterLabel","default":""},"labelTypo":{"type":"object","default":{"fontSize":{"desktop":15,"tablet":15,"mobile":15}}},"labelColors":{"type":"object","default":{"color":"#fff","bg":"#00000080"}},"labelPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"isCap":{"type":"boolean","default":true},"cap":{"type":"string","selector":".caption","default":""},"capAlign":{"type":"string","default":"center"},"capTypo":{"type":"object","default":{"fontSize":{"desktop":14,"tablet":14,"mobile":14}}},"capColors":{"type":"object","default":{"color":"#333","bg":"#f4f4f4"}},"capPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"dragg":{"type":"object","default":{"type":"default"}},"styles":{"type":"object","default":{"height":"","dragg":{"line":{"bg":{"color":"#fff"},"size":3},"icon":{"color":""}}}},"options":{"type":"object","default":{"defaultOffset":0.5,"moveMouseOver":false,"autoSlide":{"isAutoSlide":false,"speed":5,"isHoverStop":true}}}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{"preview":true}},"editorScript":"file:../index.js","style":"file:./view.css","render":"file:./render.php","viewScript":["file:./view.js","jquery"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/image-comparison","title":"Image Comparison","description":"Compare between two images.","category":"bBlocks","keywords":["image slider","image compare","image filter"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"alignment":{"type":"string","default":"center"},"width":{"type":"string","default":"80%"},"border":{"type":"object","default":{}},"beforeImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"afterImg":{"type":"object","default":{"id":null,"url":"","alt":"","title":""}},"orientation":{"type":"string","default":"horizontal"},"isSwap":{"type":"boolean","default":false},"isLabel":{"type":"boolean","default":true},"label":{"type":"object","default":{"hAlign":"bottom","vAlign":"center"}},"beforeLabel":{"type":"string","selector":".beforeLabel","default":""},"afterLabel":{"type":"string","selector":".afterLabel","default":""},"labelTypo":{"type":"object","default":{"fontSize":{"desktop":15,"tablet":15,"mobile":15}}},"labelColors":{"type":"object","default":{"color":"#fff","bg":"#00000080"}},"labelPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"isCap":{"type":"boolean","default":true},"cap":{"type":"string","selector":".caption","default":""},"capAlign":{"type":"string","default":"center"},"capTypo":{"type":"object","default":{"fontSize":{"desktop":14,"tablet":14,"mobile":14}}},"capColors":{"type":"object","default":{"color":"#333","bg":"#f4f4f4"}},"capPadding":{"type":"object","default":{"vertical":"10px","horizontal":"15px"}},"dragg":{"type":"object","default":{"handleType":"default","shapeType":"default"}},"styles":{"type":"object","default":{"height":"","dragg":{"line":{"bg":{"color":"#fff"},"size":3},"icon":{"color":""}}}},"options":{"type":"object","default":{"defaultOffset":0.5,"moveMouseOver":false,"autoSlide":{"isAutoSlide":false,"speed":5,"isHoverStop":true}}}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{"preview":true}},"editorScript":"file:../index.js","style":"file:./view.css","render":"file:./render.php","viewScript":["file:./view.js","jquery"]}');
 
 /***/ }),
 
