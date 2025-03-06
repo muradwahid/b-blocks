@@ -43,7 +43,9 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 
 			<li>&emsp;<strong>{__('Default Offset: ', 'b-blocks')}</strong>{__('Adjusts the initial position of the slider.', 'b-blocks')}</li>
 
-			<li>&emsp;<strong>{__('Move Slider On Mouse Over: ', 'b-blocks')}</strong>{__('Enable the slider to move when the mouse hover over it.', 'b-blocks')}</li>
+			<li>&emsp;<strong>{__('Move Slider On Click: ', 'b-blocks')}</strong>{__('Enable the option to move the slider when the user clicks on it.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Move Slider On Mouse Over: ', 'b-blocks')}</strong>{__('Enable the option to move the slider when the mouse hover over it.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Auto Slide: ', 'b-blocks')}</strong>{__('Activate automatic sliding on the compare images.', 'b-blocks')}</li>
 
@@ -54,6 +56,8 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 			<li>&emsp;<strong>{__('Line Size: ', 'b-blocks')}</strong>{__('Adjust the line size to your preferred thickness.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Line Color: ', 'b-blocks')}</strong>{__('Choose a desired color for the line.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Handler Color: ', 'b-blocks')}</strong>{__('Choose a desired color for the handler.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Icon Color: ', 'b-blocks')}</strong>{__('Select the icon color from the options provided to match your design.', 'b-blocks')}</li>
 		</ProModal>
