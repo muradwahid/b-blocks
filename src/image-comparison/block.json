@@ -45,6 +45,10 @@
 				"title": ""
 			}
 		},
+		"orientation": {
+			"type": "string",
+			"default": "horizontal"
+		},
 		"isSwap": {
 			"type": "boolean",
 			"default": false
@@ -52,6 +56,13 @@
 		"isLabel": {
 			"type": "boolean",
 			"default": true
+		},
+		"label": {
+			"type": "object",
+			"default": {
+				"hAlign": "bottom",
+				"vAlign": "center"
+			}
 		},
 		"beforeLabel": {
 			"type": "string",
@@ -122,6 +133,41 @@
 			"default": {
 				"vertical": "10px",
 				"horizontal": "15px"
+			}
+		},
+		"dragg": {
+			"type": "object",
+			"default": {
+				"type": "default"
+			}
+		},
+		"styles": {
+			"type": "object",
+			"default": {
+				"height": "",
+				"dragg": {
+					"line": {
+						"bg": {
+							"color": "#fff"
+						},
+						"size": 3
+					},
+					"icon": {
+						"color": ""
+					}
+				}
+			}
+		},
+		"options": {
+			"type": "object",
+			"default": {
+				"defaultOffset": 0.5,
+				"moveMouseOver": false,
+				"autoSlide": {
+					"isAutoSlide": false,
+					"speed": 5,
+					"isHoverStop": true
+				}
 			}
 		}
 	},

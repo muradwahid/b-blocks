@@ -10,15 +10,17 @@ const Edit = (props) => {
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
-	const isPremium = false;
+	const isPremium = true;
 
 	return <>
 		<Settings {...{ attributes, setAttributes, isPremium, activeIndex, setActiveIndex, clientId }} />
 
 		<div {...useBlockProps()}>
-			<style>{style(attributes, `block-${clientId}`)}</style>
+			<style>{style(attributes, `block-${clientId}`, true)}</style>
 
-			<Navigation {...props} />
+			<div>
+				<Navigation {...props} />
+			</div>
 		</div>
 	</>
 };

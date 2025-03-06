@@ -1,0 +1,495 @@
+/* Reset and base styles */
+/* App styles */
+
+.wp-block-b-blocks-image-comparison {
+    * {
+        box-sizing: border-box;
+    }
+
+    .bBlocksImageCompare {
+        display: inline-block;
+
+        .bBlocks-comparison-wrapper {
+            // aspect-ratio: 16/16;
+            position: relative;
+            width: 100%;
+            user-select: none;
+            overflow: hidden;
+            cursor: pointer;
+
+            .bBlocks-image-wrapper {
+                position: absolute;
+                inset: 0;
+
+                // height: 100%;
+                &>img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+
+                .bBlocks-label {
+                    position: absolute;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    color: white;
+                    width: 250px;
+                    padding: 10px;
+
+                    &.bBlocks-after-label {
+                        &.bBlocks-horizontal {
+                            right: 1rem;
+                            text-align: right;
+
+                            &.bottom {
+                                bottom: 15px;
+                                top: auto;
+                            }
+
+                            &.top {
+                                top: 15px;
+                                bottom: auto;
+                            }
+
+                            &.middle {
+                                top: 50%;
+                                bottom: auto;
+                                transform: translateY(-50%);
+                            }
+                        }
+
+                        &.bBlocks-vertical {
+                            text-align: center;
+                            bottom: 10px;
+                            right: auto;
+
+                            &.left {
+                                left: 15px;
+                            }
+
+                            &.center {
+                                left: 50%;
+                                transform: translateX(-50%);
+                            }
+
+                            &.right {
+                                right: 15px;
+                                left: auto;
+                            }
+                        }
+                    }
+
+                    &.bBlocks-before-label {
+                        text-align: left;
+
+                        &.bBlocks-horizontal {
+                            left: 1rem;
+
+                            &.bottom {
+                                bottom: 15px;
+                                top: auto;
+                            }
+
+                            &.top {
+                                top: 15px;
+                                bottom: auto;
+                            }
+
+                            &.middle {
+                                top: 50%;
+                                bottom: auto;
+                                transform: translateY(-50%);
+                            }
+                        }
+
+                        &.bBlocks-vertical {
+                            text-align: center;
+                            top: 10px;
+
+                            &.left {
+                                left: 15px;
+                                right: auto;
+                            }
+
+                            &.center {
+                                left: 50%;
+                                transform: translateX(-50%);
+                            }
+
+                            &.right {
+                                right: 15px;
+                                left: auto;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .bBlocks-comparison-slider-handle {
+                position: absolute;
+
+                &.bBlocks-slider-horizontal {
+                    transform: translateX(-50%) translateY(-50%);
+                    top: 50%;
+                    cursor: ew-resize;
+                }
+
+                &.bBlocks-slider-vertical {
+                    transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+                    left: 50%;
+                    cursor: ns-resize;
+                }
+
+                &::after {
+                    content: "";
+                    overflow: hidden;
+                    height: 9999px;
+                    position: inherit;
+                    width: 3px;
+                    background-color: #fff;
+                    transform: translateX(-50%);
+                    left: 50%;
+                    top: 50%;
+
+                }
+
+                &::before {
+                    content: "";
+                    height: 9999px;
+                    position: inherit;
+                    width: 3px;
+                    background-color: #fff;
+                    transform: translateX(-50%);
+                    bottom: 50%;
+                    left: 50%;
+                }
+
+                &.default {
+                    &::after {
+                        margin-top: 10px;
+                    }
+
+                    &::before {
+                        margin-bottom: 10px;
+
+                    }
+                }
+
+                &.rectangle-caret {
+                    &::after {
+                        margin-top: 25px;
+                    }
+
+                    &::before {
+                        margin-bottom: 25px;
+                    }
+                }
+
+                &.circle-caret {
+                    &::after {
+                        margin-top: 20px;
+                    }
+
+                    &::before {
+                        margin-bottom: 20px;
+                    }
+                }
+
+                &.circle-big-caret {
+                    &::after {
+                        margin-top: 35px;
+                    }
+
+                    &::before {
+                        margin-bottom: 35px;
+                    }
+                }
+
+                &.circle-outline {
+                    &::after {
+                        margin-top: 18px;
+                    }
+
+                    &::before {
+                        margin-bottom: 18px;
+                    }
+                }
+
+                &.circle-outline-line-none {
+                    &::after {
+                        display: none;
+                    }
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                &.capsule-fill {
+                    &::after {
+                        margin-top: 40px;
+                    }
+
+                    &::before {
+                        margin-bottom: 40px;
+                    }
+                }
+
+                &.capsule-stroke {
+                    &::after {
+                        margin-top: 40px;
+                    }
+
+                    &::before {
+                        margin-bottom: 40px;
+                    }
+                }
+
+                &.capsule-tiny-fill-big {
+                    &::after {
+                        margin-top: 40px;
+                    }
+
+                    &::before {
+                        margin-bottom: 40px;
+                    }
+                }
+
+                &.capsule-tiny-stroke-big {
+                    &::after {
+                        margin-top: 40px;
+                    }
+
+                    &::before {
+                        margin-bottom: 40px;
+                    }
+                }
+
+                &.capsule-tiny-stroke-small {
+                    &::after {
+                        margin-top: 30px;
+                    }
+
+                    &::before {
+                        margin-bottom: 30px;
+                    }
+                }
+
+                @mixin icon-style($height, $width, $bWidth, $bColor, $rotate, $bg, $isOverflow: true) {
+                    height: $height;
+                    width: $width;
+                    box-sizing: border-box;
+                    border: $bWidth solid $bColor;
+                    transform: rotateZ($rotate);
+                    overflow: if($isOverflow, hidden, visible);
+                    background: $bg;
+                    position: relative;
+                    z-index: 999;
+                }
+
+                .bBlocks-default-icon {
+                    @include icon-style(20px, 20px, 3px, #fff, 45deg, #fff);
+                }
+
+                .bBlocks-rectangle-caret-icon {
+                    @include icon-style(40px, 40px, 2px, #fff, 45deg, #fff0);
+                    color: white;
+
+                    div {
+                        position: absolute;
+                        inset: 0;
+                        transform: rotateZ(135deg);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                .bBlocks-circle-caret-icon {
+                    @include icon-style(40px, 40px, 2px, #fff, 0deg, #fff0);
+                    color: white;
+                    border-radius: 50%;
+
+                    div {
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                .bBlocks-circle-big-caret-icon {
+                    @include icon-style(70px, 70px, 3px, #fff, 0deg, #fff0);
+                    color: white;
+                    border-radius: 50%;
+
+                    div {
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 22px;
+                    }
+                }
+
+                .bBlocks-circle-outline-icon {
+                    @include icon-style(55px, 55px, 8px, #fff, 0deg, #fff0);
+                    border-radius: 50%;
+                    border-color: #ffffff65;
+
+                    div {
+                        position: absolute;
+                        color: #7c7c7c;
+                        inset: 0;
+                        display: flex;
+                        background-color: #fff;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 22px;
+                    }
+                }
+
+                .bBlocks-circle-outline-line-none-icon {
+                    @include icon-style(55px, 55px, 8px, #fff, 0deg, #fff0);
+                    border-radius: 50%;
+                    border-color: #ffffff65;
+
+                    div {
+                        position: absolute;
+                        color: #7c7c7c;
+                        inset: 0;
+                        display: flex;
+                        background-color: #fff;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 22px;
+                    }
+                }
+
+                .bBlocks-capsule-fill-icon {
+                    @include icon-style(85px, 40px, 3px, #fff, 0deg, #fff);
+                    border-radius: 40px;
+
+                    div {
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 22px;
+                        color: #7c7c7c;
+                    }
+                }
+
+                .bBlocks-capsule-stroke-icon {
+                    @include icon-style(85px, 40px, 3px, #fff, 0deg, #fff0);
+                    border-radius: 40px;
+
+                    div {
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 22px;
+                        color: white;
+                    }
+                }
+
+                .bBlocks-capsule-tiny-fill-big-icon {
+                    @include icon-style(85px, 24px, 3px, #fff, 0deg, #fff, false);
+                    border-radius: 40px;
+                    color: white;
+
+                    svg {
+                        position: absolute;
+                        height: 50px;
+                        width: 28px;
+                        top: 50%;
+                        transform: translateY(-50%);
+
+                        &:first-child {
+                            right: 100%;
+                        }
+
+                        &:last-child {
+                            left: 100%;
+                        }
+                    }
+                }
+
+                .bBlocks-capsule-tiny-stroke-big-icon {
+                    @include icon-style(85px, 24px, 3px, #fff, 0deg, #fff0, false);
+                    border-radius: 40px;
+                    color: white;
+
+                    svg {
+                        position: absolute;
+                        height: 50px;
+                        width: 28px;
+                        top: 50%;
+                        transform: translateY(-50%);
+
+                        &:first-child {
+                            right: 100%;
+                        }
+
+                        &:last-child {
+                            left: 100%;
+                        }
+                    }
+                }
+
+                .bBlocks-capsule-tiny-fill-small-icon {
+                    @include icon-style(65px, 18px, 3px, #fff, 0deg, #fff, false);
+                    border-radius: 40px;
+                    color: white;
+
+                    svg {
+                        position: absolute;
+                        height: 18px;
+                        width: 18px;
+                        top: 50%;
+                        transform: translateY(-50%);
+
+                        &:first-child {
+                            right: 100%;
+                        }
+
+                        &:last-child {
+                            left: 100%;
+                        }
+                    }
+                }
+
+                .bBlocks-capsule-tiny-stroke-small-icon {
+                    @include icon-style(65px, 18px, 3px, #fff, 0deg, #fff0, false);
+                    border-radius: 40px;
+                    color: white;
+
+                    svg {
+                        position: absolute;
+                        height: 18px;
+                        width: 18px;
+                        top: 50%;
+                        transform: translateY(-50%);
+
+                        &:first-child {
+                            right: 100%;
+                        }
+
+                        &:last-child {
+                            left: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .bBlocks-caption {
+            position: relative;
+            width: 100%;
+        }
+    }
+}

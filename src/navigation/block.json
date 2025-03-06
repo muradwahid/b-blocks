@@ -4,7 +4,7 @@
 	"name": "b-blocks/navigation",
 	"version": "1.0.0",
 	"title": "Navigation",
-	"category": "widgets",
+	"category": "bBlocks",
 	"description": "Display navigation in your website with stunning & organized appearance.",
 	"keywords": [
 		"navbar",
@@ -18,113 +18,6 @@
 			"type": "string",
 			"default": ""
 		},
-		"advanced": {
-			"type": "object",
-			"default": {
-				"dimension": {
-					"padding": {
-						"desktop": {
-							"top": "0px",
-							"right": "0px",
-							"bottom": "0px",
-							"left": "0px"
-						},
-						"tablet": {
-							"top": "0px",
-							"right": "0px",
-							"bottom": "0px",
-							"left": "0px"
-						},
-						"mobile": {
-							"top": "0px",
-							"right": "0px",
-							"bottom": "0px",
-							"left": "0px"
-						}
-					}
-				},
-				"borderShadow": {
-					"normal": {
-						"radius": {
-							"top": "5px",
-							"right": "5px",
-							"bottom": "5px",
-							"left": "5px"
-						},
-						"shadow": [
-							{
-								"hOffset": "0px",
-								"vOffset": "0px",
-								"blur": "18px",
-								"spreed": "0px",
-								"color": "#7090b0",
-								"isInset": false
-							}
-						]
-					}
-				},
-				"background": {
-					"normal": {
-						"type": "color",
-						"color": "rgba(255, 255, 255, 1)",
-						"gradient": {
-							"type": "radial",
-							"radialType": "ellipse",
-							"colors": [
-								{
-									"color": "rgba(58, 66, 222, 1)",
-									"position": "0"
-								},
-								{
-									"color": "rgba(176, 195, 235, 1)",
-									"position": "80"
-								}
-							],
-							"centerPositions": {
-								"x": 50,
-								"y": 50
-							},
-							"angel": 90
-						},
-						"img": {
-							"url": "",
-							"desktop": {
-								"position": "center-center",
-								"xPosition": 0,
-								"yPosition": 0,
-								"attachment": "",
-								"repeat": "no-repeat",
-								"size": "",
-								"customSize": "0px"
-							},
-							"tablet": {
-								"position": "center-center",
-								"xPosition": 0,
-								"yPosition": 0,
-								"attachment": "",
-								"repeat": "no-repeat",
-								"size": "",
-								"customSize": "0px"
-							},
-							"mobile": {
-								"position": "center-center",
-								"xPosition": 0,
-								"yPosition": 0,
-								"attachment": "",
-								"repeat": "no-repeat",
-								"size": "",
-								"customSize": "0px"
-							}
-						},
-						"video": {
-							"url": "",
-							"loop": false
-						},
-						"transition": 0.3
-					}
-				}
-			}
-		},
 		"layout": {
 			"type": "object",
 			"default": {
@@ -132,7 +25,7 @@
 				"preset": "preset-1",
 				"alignment": "left",
 				"verticalAlignment": "left",
-				"wrapMultipleLine": true,
+				"isWrapMultipleLine": true,
 				"isOpenOnClick": true,
 				"isMenuIcon": true
 			}
@@ -209,7 +102,7 @@
 				}
 			}
 		},
-		"navigationStyle": {
+		"styles": {
 			"type": "object",
 			"default": {
 				"typo": {
@@ -242,7 +135,7 @@
 				}
 			}
 		},
-		"dropdownMenuStyle": {
+		"dropdownStyles": {
 			"type": "object",
 			"default": {
 				"container": {
@@ -307,6 +200,113 @@
 					"hover": "#101828"
 				}
 			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"tablet": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"mobile": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {
+							"top": "5px",
+							"right": "5px",
+							"bottom": "5px",
+							"left": "5px"
+						},
+						"shadow": [
+							{
+								"hOffset": "0px",
+								"vOffset": "0px",
+								"blur": "18px",
+								"spreed": "0px",
+								"color": "#7090b0",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "rgba(255, 255, 255, 1)",
+						"gradient": {
+							"type": "radial",
+							"radialType": "ellipse",
+							"colors": [
+								{
+									"color": "rgba(58, 66, 222, 1)",
+									"position": "0"
+								},
+								{
+									"color": "rgba(176, 195, 235, 1)",
+									"position": "80"
+								}
+							],
+							"centerPositions": {
+								"x": 50,
+								"y": 50
+							},
+							"angel": 90
+						},
+						"img": {
+							"url": "",
+							"desktop": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"tablet": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"mobile": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							}
+						},
+						"video": {
+							"url": "",
+							"loop": false
+						},
+						"transition": 0.3
+					}
+				}
+			}
 		}
 	},
 	"supports": {
@@ -319,8 +319,16 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": [
+		"file:../index.js",
+		"lodash"
+	],
 	"style": "file:./view.css",
 	"render": "file:./render.php",
-	"viewScript": "file:./view.js"
+	"viewScript": [
+		"file:./view.js",
+		"react",
+		"react-dom",
+		"lodash"
+	]
 }

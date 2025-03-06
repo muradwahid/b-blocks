@@ -1,12 +1,13 @@
-import { getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getBoxCSS, getColorsCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 
 import { prefix } from '../../utils/data';
 
-const Style = ({ attributes, id, device = 'desktop' }) => {
-	const { layout, style, captionStyle, image } = attributes;
+const Style = ({ attributes, id, isBackend = false }) => {
+	const { layout, style, captionStyle, image, advanced } = attributes;
 	const { width, height, isAutoHeight, isAutoFit, fitOptionType } = layout;
-	const { hoverEffect, optionType, alignment, border, shadow } = style;
-	const { typo, textAlign, horizontalAlign, colors, verticalAlign, width: capWidth, margin, padding } = captionStyle;
+	const { hoverEffect, optionType, alignment } = style;
+	const { typo, desktop, tablet, mobile, colors } = captionStyle;
 
 	const mainSl = `#${id} .${prefix}`;
 	const imageSl = `${mainSl} .image`;
@@ -17,46 +18,39 @@ const Style = ({ attributes, id, device = 'desktop' }) => {
 		${getTypoCSS('', typo)?.googleFontLink}
 		${getTypoCSS(captionSl, typo)?.styles}
 
-		${imageSl}{
-			width : ${image.source?.url ? width[device] : '100%'};
-			height: ${isAutoHeight ? 'auto' : height[device]};
-		}
-	  
 		${mainSl}{
-			align-items:${alignment[device]};
-			${getBorderCSS(border.normal)}
-			box-shadow: ${getMultiShadowCSS(shadow.normal)};
+			align-items:${alignment.desktop};
 		}
 
-		${mainSl}:hover{
-			${getBorderCSS(border.hover)}
-			box-shadow: ${getMultiShadowCSS(shadow.hover)};
+		${imageSl}{
+			width : ${image.source?.url ? width.desktop : '100%'};
+			height: ${isAutoHeight ? 'auto' : height.desktop};
+			border-radius: ${optionType === 'rounded' ? '15px' : optionType === 'square' ? '0px' : (optionType === 'Circle' ? '100%' : '0')};
+			${isValidCSS("clip-path", optionType === 'Triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' :
+			optionType === 'Rhombus' ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' :
+				optionType === 'Octagon' ? 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' :
+					optionType === 'square' ? 'inset(0%)' : '')}
 		}
 
 		${mainSl} img{
-			filter: ${hoverEffect === 'blur' ? 'blur(3px)' : 'blur(0px)'};
-			border-radius: ${optionType === 'rounded' ? border.normal.radius : optionType === 'square' ? '0px' : (optionType === 'Circle' ? '100%' : border.normal.radius)};
-			clip-path: ${optionType === 'Triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' :
-				optionType === 'Rhombus' ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' :
-					optionType === 'Octagon' ? 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' :
-						optionType === 'square' ? 'inset(0%)' : ''};
 			${isAutoFit ?
-				`object-fit: ${fitOptionType};` :
-				`object-fit: ${optionType === 'Triangle' || optionType === 'Octagon' || optionType === 'Rhombus' ? 'cover' : ''}`
+				`object-fit: ${fitOptionType};` : isValidCSS('object-fit', optionType === 'Triangle' || optionType === 'Octagon' || optionType === 'Rhombus' ? 'cover' : '')
 			}
+			${isValidCSS("transform", hoverEffect === "zoomOut" ? 'scale(1.5)' : '')}
+			filter: ${hoverEffect === 'blur' ? 'blur(3px)' : 'blur(0px)'};
 		}
 		${mainSl}:hover img{
-			transform: ${hoverEffect === 'zoomIn' ? 'scaleX(1.3)' : hoverEffect === 'zoomOut' ? 'scaleX(0.7)' : ''};
-			filter : ${hoverEffect === 'blur' && 'blur(0px)'};
+			${isValidCSS('transform', hoverEffect === 'zoomIn' ? 'scale(1.5)' : hoverEffect === 'zoomOut' ? 'scale(1)' : '')}
+			${isValidCSS('filter', hoverEffect === 'blur' ? 'blur(0px)' : "")}
 		}
 
 		${captionSl}{
-			width: ${capWidth[device] ? `${capWidth[device]}px` : '100%'};
-			text-align:${textAlign[device]};
+			width: ${desktop.width ? desktop.width : '100%'};
+			text-align:${desktop.textAlign};
 			${getColorsCSS(colors)}
-			padding: ${getBoxCSS(padding[device])};
-			margin: ${getBoxCSS(margin[device])};
-			${captionAlignment(verticalAlign, horizontalAlign, device)}
+			${isValidCSS('padding', getBoxCSS(desktop.padding))}
+			${isValidCSS('margin', getBoxCSS(desktop.margin))}
+			${captionAlignment(desktop.vAlign, desktop.hAlign)}
 		}
 
 		@media only screen and (min-width:641px) and (max-width: 1024px){
@@ -70,11 +64,11 @@ const Style = ({ attributes, id, device = 'desktop' }) => {
 			}
 
 			${captionSl}{
-				width: ${capWidth.tablet ? `${capWidth.tablet}px` : '100%'};
-				text-align:${textAlign.tablet};
-				padding: ${getBoxCSS(padding.tablet)};
-				margin: ${getBoxCSS(margin.tablet)};
-				${captionAlignment(verticalAlign, horizontalAlign, 'tablet')}
+				width: ${tablet.width ? tablet.width : '100%'};
+				text-align:${tablet.textAlign};
+				${isValidCSS('padding', getBoxCSS(tablet.padding))}
+				${isValidCSS('margin', getBoxCSS(tablet.margin))}
+				${captionAlignment(tablet.vAlign, tablet.hAlign)}
 			}
 		}
 			
@@ -89,23 +83,20 @@ const Style = ({ attributes, id, device = 'desktop' }) => {
 			}
 
 			${captionSl}{
-				width: ${capWidth.mobile ? `${capWidth.mobile}px` : '100%'};
-				text-align:${textAlign.mobile};
-				padding: ${getBoxCSS(padding.mobile)};
-				margin: ${getBoxCSS(margin.mobile)};
-				${captionAlignment(verticalAlign, horizontalAlign, 'mobile')}
+				width: ${mobile.width ? mobile.width : '100%'};
+				text-align:${mobile.textAlign};
+				${isValidCSS('padding', getBoxCSS(mobile.padding))}
+				${isValidCSS('margin', getBoxCSS(mobile.margin))}
+				${captionAlignment(mobile.vAlign, mobile.hAlign)}
 			}
 		}
+		${generateCSS(id, advanced, isBackend)}
 	`}} />
 }
 export default Style;
 
-const captionAlignment = (verticalAlign, horizontalAlign, device) => `
-	${horizontalAlign[device] === "start" ? 'left: 0; right: auto;' : ''}
-	${horizontalAlign[device] === "center" ? 'left: 50%; right: auto; transform: translateX(-50%);' : ''}
-	${horizontalAlign[device] === "end" ? 'right: 0; left: auto;' : ''}
-	${verticalAlign[device] === "top" ? 'top: 0; bottom: auto;' : ''}
-	${verticalAlign[device] === "middle" ? 'top: 50%; bottom: auto; transform: translateY(-50%);' : ''}
-	${verticalAlign[device] === "bottom" ? 'bottom: 0; top: auto;' : ''}
-	${horizontalAlign[device] === "center" ? verticalAlign[device] === "middle" ? "top: 50%; right: auto; bottom: auto; left: 50%; transform: translate(-50%, -50%);" : "" : ""}
-`;
+const captionAlignment = (v, h) => `
+	${h === "left" ? 'left: 0; right: auto;' : h === "center" ? `left:50%;${v !== "middle" ? "transform: translateX(-50%);" : ""}` : "right:0;left:auto;"}
+	${v === "top" ? "top:0;bottom:auto;" : v === "middle" ? `top:50%;${h !== "center" ? "transform: translateY(-50%);" : ""}` : "bottom:0;top:auto;"}
+	${(h === "center" && v === "middle") ? "transform:translateY(-50%) translateX(-50%);" : ""}
+	`;

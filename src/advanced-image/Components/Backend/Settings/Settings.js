@@ -1,35 +1,43 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from "@wordpress/data";
-import { BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 import { ToolbarButton } from '@wordpress/components';
 import { ToolbarGroup } from '@wordpress/components';
 
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
-
-import { generalStyleTabs } from '../../../utils/options';
 import General from "./General/General";
 import Style from "./Style/Style";
+import { allTabs } from '../../../../utils/options';
+import Advanced from "../../../../../../bpl-tools/Advanced"
 
-const Settings = ({ attributes, setAttributes, device }) => {
+const Settings = ({ attributes, setAttributes, updateObj, isPremium, device }) => {
 	const { image } = attributes;
 	const { sourceType, source } = image;
+	const props = { attributes, setAttributes, updateObj, isPremium, device }
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={allTabs}>
 				{tab => <>
-					{'general' === tab.name && <General attributes={attributes} setAttributes={setAttributes} device={device} />}
+					{'general' === tab.name && <General {...props} />}
 
-					{'style' === tab.name && <Style attributes={attributes} setAttributes={setAttributes} device={device} />}
+					{'style' === tab.name && <Style {...props} />}
+
+					{'advanced' === tab.name && <Advanced advanced={attributes.advanced} onChange={value => setAttributes({ advanced: value })} isPremium={isPremium} />}
+
 				</>}
 			</TabPanel>
 		</InspectorControls>
 
-
 		<BlockControls>
 			{source.url && sourceType === 'custom' && <ToolbarGroup>
-				<ToolbarButton icon='edit' iconSize='25' title={__('Edit Custom Image', 'b-blocks')} onClick={() => setAttributes({ image: updateData(image, '', 'source', 'url') })} />
+				<MediaUploadCheck>
+					<MediaUpload
+						allowedTypes={["image/*"]}
+						onSelect={({ id, url, alt, title }) => updateObj("image", { id, url, alt, title }, "source")}
+						render={({ open }) => <ToolbarButton icon='edit' iconSize='25' title={__('Edit Custom Image', 'b-blocks')} onClick={open} />}
+					/>
+				</MediaUploadCheck>
 			</ToolbarGroup>}
 		</BlockControls>
 	</>

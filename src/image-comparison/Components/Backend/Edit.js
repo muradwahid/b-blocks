@@ -1,37 +1,44 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
-
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
-import ImageCompare from '../Common/ImageCompare';
 import { prefix } from '../../utils/data';
+import ImageCompareTwo from '../Common/ImageCompareTwo';
+import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
-	const { beforeImg, afterImg, isLabel, beforeLabel, afterLabel, isCap, cap } = attributes;
+
+	const { beforeImg, afterImg, isLabel, label, beforeLabel, afterLabel, isCap, cap, orientation, styles, align, options } = attributes;
 	const { url: bImgURL, alt: bImgAlt, title: bImgTitle } = beforeImg || {};
 	const { url: aImgURL, alt: aImgAlt, title: aImgTitle } = afterImg || {};
+	const { hAlign, vAlign } = label;
+	const { autoSlide } = options;
 
-	const beforeLabelEl = isLabel && <RichText className='overlay beforeLabel' tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} inlineToolbar />
-	const afterLabelEl = isLabel && <RichText className='overlay afterLabel' tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'b-blocks')} inlineToolbar />
-	const captionEl = isCap && <RichText className='caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'b-blocks')} inlineToolbar />
+	const { isPremium = false } = usePremiumInEditor();
+
+	const beforeLabelEl = isLabel && <RichText className={`bBlocks-label bBlocks-before-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'image-compare')} inlineToolbar />
+
+	const afterLabelEl = isLabel && <RichText className={`bBlocks-label bBlocks-after-label bBlocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'image-compare')} inlineToolbar />
+
+	const captionEl = isCap && <RichText className='bBlocks-caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'image-compare')} inlineToolbar />
 
 	const id = `${prefix}-${clientId}`;
-
+	console.log(isPremium)
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} />
+		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
 
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} />
 
-			{bImgURL && aImgURL ?
-				<ImageCompare attributes={attributes} beforeLabelEl={beforeLabelEl} afterLabelEl={afterLabelEl} captionEl={captionEl} /> :
+			{(bImgURL && aImgURL) ? <ImageCompareTwo key={`${beforeImg?.url}-${afterImg?.url}-${styles.height}-${align}-${autoSlide.isMouseOver}`} {...{ afterLabelEl, beforeLabelEl, captionEl }} attributes={attributes} /> :
 				<div className='imgPlaceholder'>
 					<div className='beforeImg'>
 						{bImgURL ?
 							<img src={bImgURL} alt={bImgAlt || bImgTitle} /> :
+
 							<MediaPlaceholder label={__(' Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
 						}
 					</div>
@@ -40,6 +47,7 @@ const Edit = props => {
 						{aImgURL ?
 							<img src={aImgURL} alt={aImgAlt || aImgTitle} /> :
 							<MediaPlaceholder label={__(' After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+
 						}
 					</div>
 				</div>

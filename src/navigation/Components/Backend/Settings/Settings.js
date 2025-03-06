@@ -9,8 +9,9 @@ import Advanced from '../../../../../../bpl-tools/Advanced';
 
 import General from './General/General';
 import Style from './Style/Style';
-import { generalStyleTabs } from '../../../../utils/options';
+import { allTabs } from '../../../../utils/options';
 import { updateData } from '../../../../../../bpl-tools/utils/functions';
+import { advancedOptionsEnabled } from '../../../utils/options';
 
 const Settings = (props) => {
 	const { attributes, setAttributes, isPremium } = props;
@@ -25,17 +26,16 @@ const Settings = (props) => {
 
 	return <>
 		<InspectorControls>
-			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={allTabs} onSelect={tabController}>
 				{(tab) => <>
 					{'general' === tab.name && <General {...props} premiumProps={premiumProps} updateObj={updateObj} />}
 
 					{'style' === tab.name && <Style {...props} updateObj={updateObj} />}
 
-					{'advanced' === tab.name && <Advanced advanced={advanced} onChange={(advanced) => setAttributes({ advanced })} />}
+					{'advanced' === tab.name && <Advanced advanced={advanced} isPremium={isPremium} onChange={(advanced) => setAttributes({ advanced })} enabled={advancedOptionsEnabled} />}
 				</>}
 			</TabPanel>
 		</InspectorControls>
-
 
 		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link='https://bblockswp.com/#pricing'>
 			<li>

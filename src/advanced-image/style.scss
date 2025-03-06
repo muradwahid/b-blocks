@@ -22,6 +22,7 @@ $primaryColor: #4527a4;
 		.image {
 			position: relative;
 			max-width: 100%;
+			overflow: hidden;
 
 			h3 {
 				color: red;
@@ -31,6 +32,11 @@ $primaryColor: #4527a4;
 		.caption {
 			position: absolute;
 			height: fit-content;
+			padding: 10px;
+
+			p {
+				margin: 0;
+			}
 		}
 	}
 }

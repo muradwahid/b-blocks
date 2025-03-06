@@ -1,16 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { PanelBody, PanelRow, SelectControl, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 
-import { Label, Device } from '../../../../../../../bpl-tools/Components';
-import { updateData } from '../../../../../../../bpl-tools/utils/functions';
+import { imgSizes, imgSrcOptions, imgStyleOptions } from '../../../../utils/options';
 
-import { hoverEffectOptions, imgFitOptions, imgSizes, imgSrcOptions, imgStyleOptions } from '../../../../utils/options';
-
-const General = ({ attributes, setAttributes, device }) => {
+const General = ({ attributes, setAttributes, updateObj }) => {
 	const { image, layout, style, caption } = attributes;
 	const { sourceType, link } = image;
-	const { height, isAutoHeight, isAutoFit, fitOptionType } = layout;
-	const { hoverEffect, optionType } = style;
+	const { optionType } = style;
 	const { enabled } = caption;
 
 	return <>
@@ -20,7 +16,7 @@ const General = ({ attributes, setAttributes, device }) => {
 				labelPosition='left'
 				value={sourceType}
 				options={imgSrcOptions}
-				onChange={(v) => setAttributes({ image: updateData(image, v, 'sourceType') })}
+				onChange={(v) => updateObj('image', v, 'sourceType')}
 			/>
 
 			<SelectControl
@@ -30,7 +26,7 @@ const General = ({ attributes, setAttributes, device }) => {
 				value={optionType}
 				options={imgStyleOptions}
 				help={optionType === 'Circle' || optionType === 'Rhombus' || optionType === 'Octagon' || optionType === 'Triangle' ? `Please Use Equal 'Height' & 'Width' For Perfect ${optionType} Shape.` : ''}
-				onChange={(v) => setAttributes({ style: updateData(style, v, 'optionType') })}
+				onChange={(v) => updateObj('style', v, 'optionType')}
 			/>
 
 			<SelectControl
@@ -70,72 +66,22 @@ const General = ({ attributes, setAttributes, device }) => {
 			/>
 			<span>{__('Width will be change while changing the Size', 'b-blocks')}</span>
 
-			<PanelRow className='mt20'>
-				<Label>{__('Width', 'b-blocks')}</Label>
-				<Device />
-			</PanelRow>
-			<UnitControl
-				value={layout.width[device]}
-				onChange={(v) => setAttributes({ layout: updateData(layout, v, 'width', device) })}
-			/>
-
-			<ToggleControl
-				className='mt20'
-				checked={isAutoHeight}
-				label={__('Auto Height', 'b-blocks')}
-				onChange={(v) => setAttributes({ layout: updateData(layout, v, 'isAutoHeight') })}
-			/>
-
-			{!isAutoHeight && <>
-				<PanelRow className='mt10'>
-					<Label>{__('Height', 'b-blocks')}</Label>
-					<Device />
-				</PanelRow>
-				<UnitControl
-					value={height[device]}
-					onChange={(v) => setAttributes({ layout: updateData(layout, v, 'height', device) })}
-				/>
-			</>}
-
-			<ToggleControl
-				className='mt20'
-				checked={isAutoFit}
-				label={__('Auto Fit', 'b-blocks')}
-				onChange={(v) => setAttributes({ layout: updateData(layout, v, 'isAutoFit') })}
-			/>
-			{isAutoFit && <SelectControl
-				className='mt10'
-				label={__('Image Fit Options', 'b-blocks')}
-				labelPosition='left'
-				value={fitOptionType}
-				options={imgFitOptions}
-				onChange={(v) => setAttributes({ layout: updateData(layout, v, 'fitOptionType') })}
-			/>}
-
 			<TextControl
 				className='mt20'
 				label={__('Link', 'b-blocks')}
 				placeholder='https://example.com'
 				help='If you want to link the image, please enter the URL. If not want to link leave as blank'
 				value={link.url}
-				onChange={(v) => setAttributes({ image: updateData(image, v, 'link', 'url') })}
+				onChange={(v) => updateObj('image', v, 'link', 'url')}
 			/>
 
 			{link.url && <ToggleControl
 				className='mt20'
 				checked={link.tab === '_blank'}
 				label={__('Open in New Tab', 'b-blocks')}
-				onChange={(v) => setAttributes({ link: updateData(link, v ? '_blank' : '_self', 'tab') })}
+				onChange={(v) => updateObj('image', v ? '_blank' : '_self', 'link', 'tab')}
 			/>}
 
-			<SelectControl
-				className='mt20'
-				label={__('Hover Effect', 'b-blocks')}
-				labelPosition='left'
-				value={hoverEffect}
-				options={hoverEffectOptions}
-				onChange={(v) => setAttributes({ style: updateData(style, v, 'hoverEffect') })}
-			/>
 		</PanelBody>
 
 		{
@@ -143,7 +89,7 @@ const General = ({ attributes, setAttributes, device }) => {
 				<ToggleControl
 					checked={enabled}
 					label={__('Display Caption', 'b-blocks')}
-					onChange={(v) => setAttributes({ caption: updateData(caption, v, 'enabled') })}
+					onChange={(v) => updateObj('caption', v, 'enabled')}
 				/>
 			</PanelBody>
 		}

@@ -1,14 +1,14 @@
-const Image = ({ image, link }) => {
+const Image = ({ image, link, isBackend = false }) => {
 	const { url, alt, title } = image || {};
 
-	return url && <LinkProvider link={link}>
+	return url && <LinkProvider link={link} isBackend={isBackend}>
 		<img src={url} alt={alt || title} />
 	</LinkProvider>
 }
 export default Image;
 
-const LinkProvider = ({ link = {}, children }) => {
+const LinkProvider = ({ link = {}, children, isBackend }) => {
 	const { url = '', tab = '_self' } = link;
 
-	return url ? <a href={url} target={tab}>{children}</a> : children;
+	return (url && !isBackend) ? <a href={url} target={tab}>{children}</a> : children;
 }

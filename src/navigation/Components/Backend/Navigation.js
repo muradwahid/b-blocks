@@ -14,13 +14,13 @@ const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 		const parentBlock = select('core/block-editor').getBlockParents(clientId);
 		let isParentBlockNavigation = false;
 
-		let parentAttributes = {};
+		// let parentAttributes = {};
 
 		parentBlock.map((block) => {
 			const thisProps = select('core/block-editor').getBlock(block);
 			if (thisProps && thisProps.name == 'b-blocks/navigation') {
 				isParentBlockNavigation = true;
-				parentAttributes = { ...thisProps.attributes };
+				// parentAttributes = { ...thisProps.attributes };
 			}
 		});
 
@@ -105,13 +105,14 @@ wp.hooks.addFilter('editor.BlockEdit', 'b-blocks/navigation', withInspectorContr
 
 const Navigation = ({ attributes, clientId }) => {
 	const { layout, hamburger } = attributes;
-	const { orientation, wrapMultipleLine } = layout;
+	const { orientation, isWrapMultipleLine } = layout;
 	const { displayMenu } = hamburger;
 
 	const navRef = useRef();
 
 	const parentBlocks = select('core/block-editor').getBlocksByClientId(clientId)[0];
-	const { replaceInnerBlocks, updateBlockAttributes } = dispatch('core/block-editor');
+	// const { replaceInnerBlocks, updateBlockAttributes } = dispatch('core/block-editor');
+	const { updateBlockAttributes } = dispatch('core/block-editor');
 
 	useEffect(() => {
 		if (parentBlocks?.innerBlocks) {
@@ -128,7 +129,7 @@ const Navigation = ({ attributes, clientId }) => {
 	}, [layout.isOpenOnClick, layout.isMenuIcon, hamburger.displayMenu, hamburger.buttonType, parentBlocks]);
 	const align = layout.orientation === 'is-vertical' ? 'vertical-align-' + layout.verticalAlignment : 'horizontal-align-' + layout.alignment;
 
-	const className = `${orientation} ${displayMenu} ${wrapMultipleLine ? '' : 'no-wrap'} ${align}`;
+	const className = `${orientation} ${displayMenu} ${isWrapMultipleLine ? '' : 'no-wrap'} ${align}`;
 
 	return <div className={`bBlocksNavigation ${className}`}>
 		<InnerBlocks
