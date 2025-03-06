@@ -37827,8 +37827,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Common_Style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Common/Style */ "./src/button/Components/Common/Style.js");
 /* harmony import */ var _BackendContent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BackendContent */ "./src/button/Components/Backend/BackendContent.js");
 /* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Settings/Settings */ "./src/button/Components/Backend/Settings/Settings.js");
-/* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/data */ "./src/button/utils/data.js");
-
 
 
 
@@ -37854,6 +37852,7 @@ const Edit = props => {
   const {
     isPremium
   } = (0,_hooks_usePremiumInEditor__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  const [contentPopup, setContentPopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const buttonEl = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     window['AOS']?.init();
@@ -37867,17 +37866,16 @@ const Edit = props => {
       btnClassList.add('aos-animate');
     }, 500);
   }, [animationType, animationDuration]);
-  const id = `${_utils_data__WEBPACK_IMPORTED_MODULE_9__.prefix}-${clientId}`;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_8__["default"], {
     attributes,
     setAttributes,
-    isPremium
+    isPremium,
+    setContentPopup
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
-    id: id
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Style__WEBPACK_IMPORTED_MODULE_6__["default"], {
     attributes,
-    id
+    id: `block-${clientId}`
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes,
     isPremium,
@@ -37897,7 +37895,16 @@ const Edit = props => {
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Text', 'b-blocks'),
     inlineToolbar: true
-  }))));
+  })), contentPopup && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Button__WEBPACK_IMPORTED_MODULE_5__.RenderPopup, {
+    attributes,
+    Popup,
+    popupContent: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BackendContent__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      popup: popup,
+      setAttributes: setAttributes
+    }),
+    securityPop: true,
+    setSecurityPass: setContentPopup
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 const Popup = ({
@@ -37985,7 +37992,8 @@ __webpack_require__.r(__webpack_exports__);
 const Settings = ({
   attributes,
   setAttributes,
-  isPremium
+  isPremium,
+  setContentPopup
 }) => {
   const {
     text,
@@ -38417,7 +38425,13 @@ const Settings = ({
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enter Video URL', 'b-blocks'),
     ...premiumProps,
     Component: _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_4__.InlineMediaUpload
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Also support YouTube and Vimeo video.', 'b-blocks'))), 'document' === popType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Also support YouTube and Vimeo video.', 'b-blocks'))), 'content' === popType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
+    className: "mt20",
+    justify: "center"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: () => setContentPopup(true)
+  }, "Add/Update Content")), 'document' === popType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_ProControls__WEBPACK_IMPORTED_MODULE_6__.BControlPro, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Document:', 'b-blocks'),
     types: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
     ...contentProps,
@@ -38536,6 +38550,7 @@ const Settings = ({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   RenderPopup: () => (/* binding */ RenderPopup),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
@@ -47296,9 +47311,9 @@ const Edit = props => {
     attributes: attributes,
     id: id,
     extraCSS: (0,_bpl_tools_Advanced_generateCSS__WEBPACK_IMPORTED_MODULE_2__["default"])(id, attributes.advanced, true)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_IconBox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_IconBox__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes
-  })));
+  }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -47730,7 +47745,7 @@ const Edit = props => {
     onChange: val => setAttributes({
       beforeLabel: val
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before image label', 'image-compare'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before image label', 'b-blocks'),
     inlineToolbar: true
   });
   const afterLabelEl = isLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
@@ -47740,7 +47755,7 @@ const Edit = props => {
     onChange: val => setAttributes({
       afterLabel: val
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After image label', 'image-compare'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After image label', 'b-blocks'),
     inlineToolbar: true
   });
   const captionEl = isCap && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
@@ -47750,7 +47765,7 @@ const Edit = props => {
     onChange: val => setAttributes({
       cap: val
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption of the image comparison', 'image-compare'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Caption of the image comparison', 'b-blocks'),
     inlineToolbar: true
   });
   const id = `${_utils_data__WEBPACK_IMPORTED_MODULE_5__.prefix}-${clientId}`;

@@ -18,11 +18,11 @@ const Edit = props => {
 	const { autoSlide } = options;
 	const { isPremium = false } = usePremiumInEditor();
 
-	const beforeLabelEl = isLabel && <RichText className={`icb-label icb-before-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'image-compare')} inlineToolbar />
+	const beforeLabelEl = isLabel && <RichText className={`icb-label icb-before-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={beforeLabel} onChange={val => setAttributes({ beforeLabel: val })} placeholder={__('Before image label', 'b-blocks')} inlineToolbar />
 
-	const afterLabelEl = isLabel && <RichText className={`icb-label icb-after-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'image-compare')} inlineToolbar />
+	const afterLabelEl = isLabel && <RichText className={`icb-label icb-after-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} tagName='div' value={afterLabel} onChange={val => setAttributes({ afterLabel: val })} placeholder={__('After image label', 'b-blocks')} inlineToolbar />
 
-	const captionEl = isCap && <RichText className='icb-caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'image-compare')} inlineToolbar />
+	const captionEl = isCap && <RichText className='icb-caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'b-blocks')} inlineToolbar />
 
 
 	const id = `${prefix}-${clientId}`;
@@ -49,8 +49,7 @@ const Edit = props => {
 					</div>
 				</div>
 			}
-
-		</div>
+		</div >
 	</>;
 };
 export default Edit;

@@ -2957,6 +2957,10 @@ button.swiper-pagination-bullet {
 .btnPopupWrap .popupContent .plyr {
   display: block;
 }
+.btnPopupWrap .popupContent .plyr.plyr--youtube {
+  height: 100vh;
+  max-height: calc(100vh - 120px);
+}
 .btnPopupWrap .popupContent .plyr video {
   max-width: calc(100vw - 60px);
   height: calc(100vh - 120px);

@@ -7,6 +7,7 @@ import './Popup.scss';
 
 const Button = ({ attributes, securityPass = true, setSecurityPass, isPremium, Popup, popupContent, isBackend = false, children, onClick = () => { } }, ref) => {
 	const { actionType = 'link', iconPos = 'left' } = attributes;
+
 	return <>
 		<a ref={ref} {...btnProps(attributes, securityPass, isPremium, isBackend)} onClick={() => onClick(true)}>
 			{'right' !== iconPos && <ButtonIcon attributes={attributes} />}
@@ -21,7 +22,7 @@ const Button = ({ attributes, securityPass = true, setSecurityPass, isPremium, P
 }
 export default forwardRef(Button);
 
-const RenderPopup = ({ attributes, Popup, popupContent, securityPop, setSecurityPass }) => {
+export const RenderPopup = ({ attributes, Popup, popupContent, securityPop, setSecurityPass }) => {
 	const { actionType = 'link', popup = {} } = attributes;
 	const { caption = '' } = popup;
 
@@ -38,7 +39,7 @@ const RenderPopup = ({ attributes, Popup, popupContent, securityPop, setSecurity
 
 	return <Popup isOpen={isPopupOpen} onClose={() => {
 		setIsPopupOpen(false)
-		setSecurityPass(false)
+		setSecurityPass(false);
 	}} caption={caption}>
 		<PopupChildren popup={popup} popupContent={popupContent} />
 	</Popup>
