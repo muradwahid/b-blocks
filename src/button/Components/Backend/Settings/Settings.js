@@ -1,5 +1,5 @@
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl, SelectControl, TabPanel, TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, SelectControl, TabPanel, TextControl, TextareaControl, ToggleControl, Button, Flex } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 
@@ -13,7 +13,7 @@ import useUserRoles from '../../../../hooks/useUserRoles';
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { actionTypes, animationTypes, buttonSizes, buttonTypes, contentTypes, securities, tabs, xPositions, xyPositions } from '../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, isPremium }) => {
+const Settings = ({ attributes, setAttributes, isPremium, setContentPopup }) => {
 	const { text, actionType = 'link', security, url, tooltip, tooltipPos = 'top', target, attrs = {}, hideOn = {}, isDownload, downloadFileName = '', isUpIcon, icon, upIcon, iconPos, type, isFullWidth, size, popup = {}, animationType, animationDuration, addID, addCSS, alignment, typography, colors, hovColors, padding, border, shadow, securityPassword, securityRole } = attributes;
 	const { type: popType = 'image', content: popContent = '', caption: popCaption = '' } = popup;
 
@@ -195,6 +195,10 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 							<BControlPro label={__('Video:', 'b-blocks')} types={['video']} {...contentProps} placeholder={__('Enter Video URL', 'b-blocks')} {...premiumProps} Component={InlineMediaUpload} />
 							<span>{__('Also support YouTube and Vimeo video.', 'b-blocks')}</span>
 						</>}
+
+						{'content' === popType && <Flex className='mt20' justify='center'>
+							<Button variant='primary' onClick={() => setContentPopup(true)}>Add/Update Content</Button>
+						</Flex>}
 
 						{'document' === popType && <>
 							<BControlPro label={__('Document:', 'b-blocks')} types={['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']} {...contentProps} placeholder={__('Enter Document URL', 'b-blocks')} {...premiumProps} Component={InlineMediaUpload} />

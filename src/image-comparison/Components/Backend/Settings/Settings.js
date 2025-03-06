@@ -1,6 +1,22 @@
 import { useState } from "react"
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl, __experimentalUnitControl as UnitControl, TabPanel } from '@wordpress/components';
+
+import { ColorsControl, InlineDetailMediaUpload, MediaEditControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { pxUnit, perUnit, emUnit, vwUnit } from '../../../../../../bpl-tools/utils/options';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
+
+import { pluginSlug, imbCompareDocs } from '../../../../utils/data';
+const beforeAfterImgTab = [
+	{ name: 'before-img', title: __('Before Img', 'b-blocks') },
+	{ name: 'after-img', title: __('After Img', 'b-blocks') }
+];
+
+const Settings = ({ attributes, setAttributes }) => {
+	const { alignment, width, border, beforeImg, afterImg, isSwap, isLabel, labelTypo, labelColors, labelPadding, isCap, capTypo, capColors, capPadding } = attributes;
+=======
 import { TabPanel } from '@wordpress/components';
 
 import General from './General/General';
@@ -42,8 +58,8 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 
 
 		<BlockControls>
-			<MediaEditControl label={__('Edit Before Image:', 'image-compare')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-			<MediaEditControl label={__('Edit After Image:', 'image-compare')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+			<MediaEditControl label={__('Edit Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+			<MediaEditControl label={__('Edit After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
 			<AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
 				{ title: __('Image Comparison in left', 'image-compare'), align: 'left', icon: 'align-left' },

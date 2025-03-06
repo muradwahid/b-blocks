@@ -60,6 +60,11 @@
 		.plyr {
 			display: block;
 
+			&.plyr--youtube {
+				height: 100vh;
+				max-height: calc(100vh - 120px);
+			}
+
 			video {
 				max-width: calc(100vw - 60px);
 				height: calc(100vh - 120px);
