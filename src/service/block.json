@@ -33,6 +33,7 @@
 				},
 				"overlayColor": "#0000",
 				"position": "bottom left",
+				"repeat": "no-repeat",
 				"size": "auto"
 			}
 		},

@@ -3,6 +3,8 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { dispatch, select } from '@wordpress/data';
 
+import { prefix } from '../../utils/data';
+
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		const { name, clientId, isSelected } = props;
@@ -122,7 +124,7 @@ const Navigation = ({ attributes, clientId }) => {
 					showSubmenuIcon: layout.isMenuIcon,
 					overlayMenu: hamburger.displayMenu,
 					hasIcon: hamburger.buttonType === 'icon' ? true : false,
-					icon: hamburger.buttonType === 'icon' ? 'handle' : 'text',
+					icon: hamburger.buttonType === 'icon' ? 'handle' : 'text'
 				});
 			});
 		}
@@ -131,7 +133,7 @@ const Navigation = ({ attributes, clientId }) => {
 
 	const className = `${orientation} ${displayMenu} ${isWrapMultipleLine ? '' : 'no-wrap'} ${align}`;
 
-	return <div className={`bBlocksNavigation ${className}`}>
+	return <div className={`${prefix} ${className}`}>
 		<InnerBlocks
 			templateLock={false}
 			ref={navRef}

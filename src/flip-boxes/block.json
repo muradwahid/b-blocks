@@ -19,10 +19,20 @@
 			"type": "array",
 			"default": [
 				{
-					"frontBG": {},
-					"backBG": {},
-					"border": {},
-					"shadow": {},
+					"frontBG": {
+						"type": "solid",
+						"color": "#000000b3"
+					},
+					"backBG": {
+						"type": "solid",
+						"color": "#000000b3"
+					},
+					"border": {
+						"solid": "solid"
+					},
+					"shadow": {
+						"type": "box"
+					},
 					"isFrontUpIcon": false,
 					"frontIcon": {
 						"class": "fa fa-sync-alt",
@@ -70,10 +80,20 @@
 					}
 				},
 				{
-					"frontBG": {},
-					"backBG": {},
-					"border": {},
-					"shadow": {},
+					"frontBG": {
+						"type": "solid",
+						"color": "#000000b3"
+					},
+					"backBG": {
+						"type": "solid",
+						"color": "#000000b3"
+					},
+					"border": {
+						"solid": "solid"
+					},
+					"shadow": {
+						"type": "box"
+					},
 					"isFrontUpIcon": false,
 					"frontIcon": {
 						"class": "fa fa-sync-alt",
@@ -121,10 +141,20 @@
 					}
 				},
 				{
-					"frontBG": {},
-					"backBG": {},
-					"border": {},
-					"shadow": {},
+					"frontBG": {
+						"type": "solid",
+						"color": "#000000b3"
+					},
+					"backBG": {
+						"type": "solid",
+						"color": "#000000b3"
+					},
+					"border": {
+						"solid": "solid"
+					},
+					"shadow": {
+						"type": "box"
+					},
 					"isFrontUpIcon": false,
 					"frontIcon": {
 						"class": "fa fa-sync-alt",

@@ -4,14 +4,13 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 
 import { AboutProModal } from '../../../../../../bpl-tools/ProControls';
-import { tabController } from '../../../../../../bpl-tools/utils/functions';
 import Advanced from '../../../../../../bpl-tools/Advanced';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { updateData } from '../../../../../../bpl-tools/utils/functions';
 
+import { allTabs } from '../../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
-import { allTabs } from '../../../../utils/options';
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
-import { advancedOptionsEnabled } from '../../../utils/options';
 
 const Settings = (props) => {
 	const { attributes, setAttributes, isPremium } = props;
@@ -32,7 +31,14 @@ const Settings = (props) => {
 
 					{'style' === tab.name && <Style {...props} updateObj={updateObj} />}
 
-					{'advanced' === tab.name && <Advanced advanced={advanced} isPremium={isPremium} onChange={(advanced) => setAttributes({ advanced })} enabled={advancedOptionsEnabled} />}
+					{'advanced' === tab.name && <Advanced advanced={advanced} isPremium={isPremium} onChange={(advanced) => setAttributes({ advanced })} enabled={{
+						dimension: ['padding', 'margin'],
+						background: ['normal', 'hover', 'overlay'],
+						borderShadow: ['normal', 'hover', 'border', 'shadow'],
+						visibility: ['zIndex', 'overflow'],
+						responsive: true,
+						css: true
+					}} />}
 				</>}
 			</TabPanel>
 		</InspectorControls>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { prefix } from '../../utils/data';
 import Image from '../Common/Image';
 

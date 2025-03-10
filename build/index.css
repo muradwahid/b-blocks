@@ -761,10 +761,6 @@
   justify-content: center;
   color: #fff;
 }
-.bPlPanelBody .addItem button:hover,
-.bPlDropdownPopover .components-popover__content .addItem button:hover {
-  color: #fff;
-}
 .bPlPanelBody .addItem button:focus,
 .bPlDropdownPopover .components-popover__content .addItem button:focus {
   box-shadow: none;
