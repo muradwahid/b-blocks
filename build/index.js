@@ -49789,6 +49789,2306 @@ const galleryIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", 
 
 /***/ }),
 
+/***/ "./src/image-hotspot/Components/Backend/Edit.js":
+/*!******************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Edit.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Common_Style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Common/Style */ "./src/image-hotspot/Components/Common/Style.js");
+/* harmony import */ var _HotspotBack_HotspotBack__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HotspotBack/HotspotBack */ "./src/image-hotspot/Components/Backend/HotspotBack/HotspotBack.js");
+/* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Settings/Settings */ "./src/image-hotspot/Components/Backend/Settings/Settings.js");
+
+
+
+
+// import useAnimation from "../../../../bpl-tools/hooks/useAnimation";
+
+
+
+
+
+
+const Edit = props => {
+  const {
+    attributes,
+    setAttributes,
+    clientId,
+    isSelected,
+    device
+  } = props;
+  const {
+    image
+  } = attributes;
+  const [activeIdx, setActiveIdx] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const mainElRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  // useAnimation(mainElRef, attributes?.animation);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    attributes,
+    setAttributes,
+    activeIdx,
+    setActiveIdx
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: mainElRef,
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Style__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    attributes: attributes,
+    id: `block-${clientId}`,
+    isBackend: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_HotspotBack_HotspotBack__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    key: `${JSON.stringify(image.width)}-${device}`,
+    attributes,
+    setAttributes,
+    activeIdx,
+    setActiveIdx,
+    isSelected
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.compose)((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
+  const {
+    getDeviceType
+  } = select('core/editor');
+  return {
+    device: getDeviceType()?.toLowerCase()
+  };
+}))(Edit));
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/HotspotBack/Draggable.js":
+/*!***********************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/HotspotBack/Draggable.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "../plugin-slug/node_modules/react-inlinesvg/dist/index.mjs");
+
+
+
+const Draggable = ({
+  value,
+  onChange = () => {},
+  preset,
+  element,
+  setActiveIdx,
+  index,
+  wrapperEl,
+  align,
+  isSelected,
+  ...props
+}) => {
+  const [position, setPosition] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(value || {
+    x: 0,
+    y: 0
+  });
+  const [offset, setOffset] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    x: 0,
+    y: 0
+  });
+  const [isDragging, setIsDragging] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const circleRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const el = circleRef.current;
+    if (!el || !wrapperEl) return;
+    const getPercentagePosition = (clientX, clientY) => {
+      const rect = wrapperEl.getBoundingClientRect();
+      const x = (clientX - rect.left) / rect.width * 100;
+      const y = (clientY - rect.top) / rect.height * 100;
+      return {
+        x: Math.min(Math.max(x, 0), 100),
+        y: Math.min(Math.max(y, 0), 100)
+      };
+    };
+    const handleMouseDown = e => {
+      setIsDragging(true);
+      const percentagePos = getPercentagePosition(e.clientX, e.clientY);
+      setOffset({
+        x: percentagePos.x - position.x,
+        y: percentagePos.y - position.y
+      });
+    };
+    const handleMouseMove = e => {
+      if (isDragging) {
+        const percentagePos = getPercentagePosition(e.clientX, e.clientY);
+        setPosition({
+          x: percentagePos.x - offset.x,
+          y: percentagePos.y - offset.y
+        });
+      }
+    };
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+    wrapperEl.addEventListener("mouseup", handleMouseUp);
+    wrapperEl.addEventListener("mousemove", handleMouseMove);
+    el.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      el.removeEventListener("mousedown", handleMouseDown);
+      wrapperEl.removeEventListener("mousemove", handleMouseMove);
+      wrapperEl.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isSelected, isDragging, wrapperEl, position, element.spotOption, element.tooltipPosition, align]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setPosition(value);
+  }, [value, element.spotOption]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    onChange(position);
+  }, [position, element.spotOption]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, element.spotOption === "text" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => setActiveIdx(index),
+    onMouseDown: () => setActiveIdx(index),
+    ...props,
+    ref: circleRef,
+    style: {
+      position: "absolute",
+      left: `${element.position.x}%`,
+      top: `${element.position.y}%`,
+      cursor: "move"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `bphb-hotspot ${preset === "default" ? "circle" : preset === "themetwo" ? "two" : preset === "themethree" ? "three" : preset === "themefour" ? "fourth" : "fifth"}`
+  }, element.tooltip && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `tooltip-reader ${preset === "default" ? "one" : preset === "themetwo" ? "two" : preset === "themethree" ? "three" : preset === "themefour" ? "fourth" : "fifth"}  tooltip-${element.tooltipPosition}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bphb-tooltip-content",
+    dangerouslySetInnerHTML: {
+      __html: element.tooltip
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, element.spotText))), element.spotOption === "icon" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...props,
+    ref: circleRef,
+    onClick: () => setActiveIdx(index),
+    onMouseDown: () => setActiveIdx(index),
+    style: {
+      position: "absolute",
+      left: `${element.position.x}%`,
+      top: `${element.position.y}%`,
+      cursor: "move"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `bphb-hotspot ${preset === "default" ? "circle" : preset === "themetwo" ? "two" : preset === "themethree" ? "three" : preset === "themefour" ? "fourth" : "fifth"}`
+  }, element.tooltip && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `tooltip-reader ${preset === "default" ? "one" : preset === "themetwo" ? "two" : preset === "themethree" ? "three" : preset === "themefour" ? "fourth" : "fifth"} tooltip-${element.tooltipPosition}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bphb-tooltip-content",
+    dangerouslySetInnerHTML: {
+      __html: element.tooltip
+    }
+  })), element.icon.type === "upload" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    src: element.icon.url.upload,
+    height: "auto"
+  }), element.icon.type === "library" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "imghp-library-icon",
+    dangerouslySetInnerHTML: {
+      __html: element.icon.url.library
+    }
+  }))), element.spotOption === "image" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...props,
+    ref: circleRef,
+    onClick: () => setActiveIdx(index),
+    onMouseDown: () => setActiveIdx(index),
+    style: {
+      position: "absolute",
+      left: `${element.position.x}%`,
+      top: `${element.position.y}%`,
+      cursor: "move"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `bphb-hotspot ${preset === "default" ? "circle" : preset === "themetwo" ? "two" : preset === "themethree" ? "three" : preset === "themefour" ? "fourth" : "fifth"}`
+  }, element.tooltip && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `tooltip-reader ${preset === "default" ? "one" : preset === "themetwo" ? "two" : preset === "themethree" ? "three" : preset === "themefour" ? "fourth" : "fifth"} tooltip-${element.tooltipPosition}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bphb-tooltip-content",
+    dangerouslySetInnerHTML: {
+      __html: element.tooltip
+    }
+  })), element.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: element.image,
+    style: {
+      width: "100%",
+      height: "100%",
+      borderRadius: "inherit",
+      objectFit: "cover"
+    },
+    alt: ""
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Draggable);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/HotspotBack/HotspotBack.js":
+/*!*************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/HotspotBack/HotspotBack.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! immer */ "../plugin-slug/node_modules/immer/dist/immer.mjs");
+/* harmony import */ var _Draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Draggable */ "./src/image-hotspot/Components/Backend/HotspotBack/Draggable.js");
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/icons */ "./src/image-hotspot/utils/icons.js");
+
+
+
+
+
+const HotspotBack = ({
+  attributes,
+  setAttributes,
+  activeIdx,
+  setActiveIdx,
+  isSelected
+}) => {
+  const {
+    hotspot,
+    image,
+    preset,
+    align
+  } = attributes;
+  const hotspotRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: hotspotRef,
+    style: {
+      backgroundImage: `url(${image.url || _utils_icons__WEBPACK_IMPORTED_MODULE_2__.placeholderImg})`
+    },
+    className: "hotspot-image-wrapper"
+  }, hotspot.map((el, i) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Draggable__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    key: i,
+    activeIdx,
+    setActiveIdx,
+    preset,
+    align,
+    isSelected,
+    value: el.position,
+    wrapperEl: hotspotRef.current,
+    element: el,
+    index: i,
+    onChange: val => setAttributes({
+      hotspot: (0,immer__WEBPACK_IMPORTED_MODULE_3__.produce)(hotspot, draft => {
+        draft[i].position = val;
+      })
+    })
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HotspotBack);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/General/General.js":
+/*!**************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/General/General.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _Image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Image */ "./src/image-hotspot/Components/Backend/Settings/General/Image.js");
+/* harmony import */ var _Presets__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Presets */ "./src/image-hotspot/Components/Backend/Settings/General/Presets.js");
+/* harmony import */ var _Spots__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Spots */ "./src/image-hotspot/Components/Backend/Settings/General/Spots.js");
+/* harmony import */ var _Tooltip__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Tooltip */ "./src/image-hotspot/Components/Backend/Settings/General/Tooltip.js");
+
+
+
+
+
+
+const General = props => {
+  const {
+    attributes,
+    setAttributes,
+    activeIdx,
+    setActiveIdx
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_1__.HelpPanel, {
+    slug: "b-blocks",
+    docsLink: "https://bplugins.com/docs/image-hotspot/guides/general"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Image__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes,
+    setAttributes
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Spots__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    attributes,
+    setAttributes,
+    activeIdx,
+    setActiveIdx
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tooltip__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    attributes,
+    setAttributes
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Presets__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    attributes,
+    setAttributes
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (General);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/General/Image.js":
+/*!************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/General/Image.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../utils/icons */ "./src/image-hotspot/utils/icons.js");
+
+
+
+
+
+
+
+
+const Image = ({
+  attributes,
+  setAttributes,
+  device
+}) => {
+  const {
+    image
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    className: "bPlPanelBody",
+    initialOpen: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Image", "b-blocks")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.MediaArea, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Choose Image", "b-blocks"),
+    height: "100%",
+    width: "100%",
+    value: image?.url ? {
+      url: image.url
+    } : {
+      url: _utils_icons__WEBPACK_IMPORTED_MODULE_7__.placeholderImg
+    },
+    default: _utils_icons__WEBPACK_IMPORTED_MODULE_7__.placeholderImg,
+    onChange: value => setAttributes({
+      image: {
+        ...image,
+        url: value.url
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    className: "mt10",
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Height", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    labelPosition: "edge",
+    units: [{
+      label: "px",
+      value: "px"
+    }],
+    isUnitSelectTabbable: true,
+    value: image.height[device],
+    min: 1,
+    max: 1000,
+    onChange: value => setAttributes({
+      image: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(image, value, "height", device)
+    })
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.compose)((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
+  const {
+    getDeviceType
+  } = select("core/editor");
+  return {
+    device: getDeviceType()?.toLowerCase()
+  };
+}))(Image));
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/General/Presets.js":
+/*!**************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/General/Presets.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../utils/options */ "./src/image-hotspot/utils/options.js");
+/* harmony import */ var _utils_tooltipOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../utils/tooltipOptions */ "./src/image-hotspot/utils/tooltipOptions.js");
+
+
+
+
+
+
+const Presets = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    preset
+  } = attributes;
+  const images = [{
+    value: "default",
+    img: "https://templates.bplugins.com/wp-content/uploads/2025/03/default.png"
+  }, {
+    value: "themetwo",
+    img: "https://templates.bplugins.com/wp-content/uploads/2025/03/Screenshot-2025-03-13-160416.png"
+  }, {
+    value: "themethree",
+    img: "https://templates.bplugins.com/wp-content/uploads/2025/03/Screenshot-2025-03-13-160945.png"
+  }, {
+    value: "themefour",
+    img: "https://templates.bplugins.com/wp-content/uploads/2025/03/Screenshot-2025-03-13-161051.png"
+  }, {
+    value: "themefive",
+    img: "https://templates.bplugins.com/wp-content/uploads/2025/03/Screenshot-2025-03-13-161736.png"
+  }];
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    className: "bPlPanelBody",
+    initialOpen: false,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Presets", "b-blocks")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Templates"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "presets-container"
+  }, images.map((e, i) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: i,
+    onClick: () => {
+      const value = e.value;
+      setAttributes({
+        preset: value,
+        spots: value === "default" ? _utils_options__WEBPACK_IMPORTED_MODULE_3__.defaultTheme : value === "themetwo" ? _utils_options__WEBPACK_IMPORTED_MODULE_3__.themeTwo : value === "themethree" ? _utils_options__WEBPACK_IMPORTED_MODULE_3__.themeThree : value === "themefour" ? _utils_options__WEBPACK_IMPORTED_MODULE_3__.themeFour : _utils_options__WEBPACK_IMPORTED_MODULE_3__.themeFive,
+        tooltip: value === "default" ? _utils_tooltipOptions__WEBPACK_IMPORTED_MODULE_4__.tooltipOne : value === "themetwo" ? _utils_tooltipOptions__WEBPACK_IMPORTED_MODULE_4__.tooltipTwo : value === "themethree" ? _utils_tooltipOptions__WEBPACK_IMPORTED_MODULE_4__.tooltipThree : value === "themefour" ? _utils_tooltipOptions__WEBPACK_IMPORTED_MODULE_4__.tooltipFour : _utils_tooltipOptions__WEBPACK_IMPORTED_MODULE_4__.tooltipFive
+      });
+    },
+    className: `single-preset ${preset === e.value ? "active" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "preset-tooltip-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "preset-tooltip"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: "fa-solid fa-caret-down"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Design ", i + 1))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: e.img,
+    alt: ""
+  })))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Presets);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/General/Spots.js":
+/*!************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/General/Spots.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../utils/options */ "./src/image-hotspot/utils/options.js");
+/* harmony import */ var _Panel_SpotItemSettings_SpotItemSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Panel/SpotItemSettings/SpotItemSettings */ "./src/image-hotspot/Components/Backend/Settings/Panel/SpotItemSettings/SpotItemSettings.js");
+
+
+
+
+
+
+const Spots = ({
+  attributes,
+  setAttributes,
+  activeIdx,
+  setActiveIdx
+}) => {
+  const itemsProps = {
+    attributes,
+    setAttributes,
+    arrKey: 'hotspot',
+    activeIndex: activeIdx,
+    setActiveIndex: setActiveIdx
+  };
+  const randomId = Math.floor(Math.random() * 91);
+  const randomId2 = Math.floor(Math.random() * 91);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    className: "bPlPanelBody",
+    initialOpen: false,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Spots", "b-blocks")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.ItemsPanel, {
+    ...itemsProps,
+    newItem: (0,_utils_options__WEBPACK_IMPORTED_MODULE_4__.addNewItem)(randomId, randomId2),
+    itemLabel: "Spot",
+    design: "all",
+    ItemSettings: _Panel_SpotItemSettings_SpotItemSettings__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Spots);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/General/Tooltip.js":
+/*!**************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/General/Tooltip.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const Tooltip = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    options
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Tooltip Options", "b-blocks"),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Speed (ms)", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+    onChange: value => setAttributes({
+      options: {
+        ...options,
+        speed: value
+      }
+    }),
+    isDragEnabled: true,
+    isShiftStepEnabled: true,
+    shiftStep: 10,
+    step: 1,
+    min: 100,
+    value: Number(options.speed)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Delay (ms)", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+    onChange: value => setAttributes({
+      options: {
+        ...options,
+        delay: value
+      }
+    }),
+    isDragEnabled: true,
+    isShiftStepEnabled: true,
+    shiftStep: 10,
+    step: 1,
+    min: 100,
+    value: Number(options.delay)
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tooltip);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/Panel/SpotItemSettings/SpotItemSettings.js":
+/*!**************************************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/Panel/SpotItemSettings/SpotItemSettings.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! immer */ "../plugin-slug/node_modules/immer/dist/immer.mjs");
+/* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../utils/icons */ "./src/image-hotspot/utils/icons.js");
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../utils/options */ "./src/image-hotspot/utils/options.js");
+
+
+
+
+
+
+
+
+const SpotItemSettings = props => {
+  const {
+    attributes,
+    setAttributes,
+    arrKey,
+    index,
+    setActiveIndex
+  } = props;
+  const items = attributes[arrKey];
+  const item = items[index];
+  const updateItem = (type, val, childType = null, thirdChild = null) => {
+    const newItem = (0,immer__WEBPACK_IMPORTED_MODULE_6__.produce)(items, draft => {
+      if (null !== thirdChild) {
+        draft[index][type][childType][thirdChild] = val;
+      } else if (null !== childType) {
+        draft[index][type][childType] = val;
+      } else {
+        draft[index][type] = val;
+      }
+    });
+    setAttributes({
+      hotspot: newItem
+    });
+    setActiveIndex && setActiveIndex(index);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TabPanel, {
+    className: "bPlTabPanel small",
+    activeClass: "activeTab",
+    initialTabName: item.option,
+    tabs: [{
+      title: "Spot",
+      name: "spot"
+    }, {
+      title: "Tooltip",
+      name: "tooltip"
+    }],
+    onSelect: tabName => updateItem("option", tabName)
+  }, ({
+    name
+  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, name === "spot" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.BtnGroup, {
+    options: [{
+      label: "Text",
+      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.IoText, null),
+      value: "text"
+    }, {
+      label: "Icon",
+      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.FaStar, null),
+      value: "icon"
+    }, {
+      label: "Image",
+      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_4__.FaRegImage, null),
+      value: "image"
+    }],
+    value: item?.spotOption,
+    label: "Type",
+    onChange: value => updateItem("spotOption", value),
+    isIcon: true
+  }), item.spotOption === "text" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      margin: 0
+    }
+  }, "Text"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalInputControl, {
+    className: "bpl-bphb-hostpot-block",
+    value: item?.spotText,
+    onChange: value => updateItem("spotText", value)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Spot Link", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalInputControl, {
+    className: "bpl-bphb-hostpot-block",
+    placeholder: "https://example.com",
+    value: item?.spotLink,
+    onChange: value => updateItem("spotLink", value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+    label: "Open in new window",
+    className: "mt10",
+    checked: item.newWindow,
+    onChange: value => updateItem("newWindow", value)
+  })), item.spotOption === "icon" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.BButtonGroup, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Icon Type", "b-blocks"),
+    className: "mt10",
+    options: [{
+      label: "Library",
+      value: "library"
+    }, {
+      label: "Upload",
+      value: "upload"
+    }],
+    value: item.icon.type,
+    onChange: val => updateItem("icon", val, "type")
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mt15"
+  }, item.icon.type === "library" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.IconLibrary, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Icon Library", "b-blocks"),
+    value: item.icon.url.library,
+    onChange: val => updateItem("icon", val, "url", "library")
+  }), item.icon.type === "upload" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.MediaArea, {
+    types: ["image/svg+xml"],
+    value: {
+      url: item.icon.url.upload
+    },
+    label: "Upload SVG",
+    onChange: val => updateItem("icon", val, "url", "upload")
+  }))), item.spotOption === "image" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mt15"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.MediaArea, {
+    value: {
+      url: item.image
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Choose Image", "b-blocks"),
+    onChange: val => updateItem("image", val.url)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("X Position", "b-blocks"),
+    value: item.position.x,
+    onChange: value => updateItem("position", value, "x"),
+    min: 0,
+    max: 100
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Y Position", "b-blocks"),
+    value: item.position.y,
+    onChange: value => updateItem("position", value, "y"),
+    min: 0,
+    max: 100
+  })), name === "tooltip" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_3__.TinyEditor, {
+    value: item.tooltip,
+    onChange: value => updateItem("tooltip", value),
+    className: "mt10"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Position", "b-blocks"),
+    className: "mt10",
+    labelPosition: "edge",
+    value: item.tooltipPosition,
+    options: _utils_options__WEBPACK_IMPORTED_MODULE_5__.toolbarPositions,
+    onChange: value => updateItem("tooltipPosition", value)
+  })))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpotItemSettings);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/Settings.js":
+/*!*******************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/Settings.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _bpl_tools_Advanced__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../bpl-tools/Advanced */ "../bpl-tools/Advanced/index.js");
+/* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../utils/options */ "./src/image-hotspot/utils/options.js");
+/* harmony import */ var _General_General__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./General/General */ "./src/image-hotspot/Components/Backend/Settings/General/General.js");
+/* harmony import */ var _Style_Style__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Style/Style */ "./src/image-hotspot/Components/Backend/Settings/Style/Style.js");
+
+
+
+
+
+
+
+
+const Settings = props => {
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  const {
+    advanced
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bPlInspectorInfo"
+  }, "Need more block like this? Checkout the bundle \u27A1", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "https://wordpress.org/plugins/b-blocks",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "B Blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+    className: "bPlTabPanel",
+    activeClass: "activeTab",
+    tabs: _utils_options__WEBPACK_IMPORTED_MODULE_5__.generalStyleTabs,
+    onSelect: _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_4__.tabController
+  }, tab => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "general" === tab.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_General_General__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    ...props
+  })), "style" === tab.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Style_Style__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    attributes,
+    setAttributes
+  })), "advanced" === tab.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Advanced__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    advanced: advanced,
+    onChange: advanced => setAttributes({
+      advanced
+    })
+  }))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Settings);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/Style/SpotsStyle.js":
+/*!***************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/Style/SpotsStyle.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
+
+
+
+
+
+
+
+
+const SpotsStyle = ({
+  setAttributes,
+  attributes,
+  device
+}) => {
+  const {
+    spots
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    className: "bPlPanelBody",
+    initialOpen: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Spots", "b-blocks")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Width", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    labelPosition: "edge",
+    units: [{
+      label: "PX",
+      value: "px"
+    }],
+    isUnitSelectTabbable: true,
+    value: spots.width[device],
+    min: 1,
+    max: 700,
+    onChange: value => setAttributes({
+      spots: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(spots, value, "width", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Height", "b-blocks"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    labelPosition: "edge",
+    className: "mt10",
+    units: [{
+      label: "PX",
+      value: "px"
+    }],
+    isUnitSelectTabbable: true,
+    value: spots.height[device],
+    min: 1,
+    max: 700,
+    onChange: value => setAttributes({
+      spots: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(spots, value, "height", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Icon Size", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    labelPosition: "edge",
+    className: "mt10",
+    units: [{
+      label: "PX",
+      value: "px"
+    }],
+    isUnitSelectTabbable: true,
+    value: spots.iconSize[device],
+    min: 1,
+    max: 200,
+    onChange: value => setAttributes({
+      spots: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(spots, value, "iconSize", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.BoxControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Padding", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    className: "mt10",
+    values: spots.padding[device],
+    resetValues: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    },
+    onChange: value => setAttributes({
+      spots: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(spots, value, "padding", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalBorderBoxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Border", "b-blocks"),
+    value: spots.border,
+    onChange: value => setAttributes({
+      spots: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(spots, value, "border")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.BoxControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Border Radius", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    className: "mt10",
+    values: spots.borderRadius[device],
+    resetValues: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    onChange: value => setAttributes({
+      spots: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(spots, value, "borderRadius", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TabPanel, {
+    className: "bPlTabPanel small mt10",
+    activeClass: "activeTab",
+    tabs: [{
+      title: "Normal",
+      name: "normal"
+    }, {
+      title: "Hover",
+      name: "hover"
+    }]
+  }, ({
+    name
+  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, name === "normal" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: "Text/Icon Color",
+    value: spots.iconColor,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      spots: {
+        ...spots,
+        iconColor: value
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: "Background Color",
+    value: spots.bgColor,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      spots: {
+        ...spots,
+        bgColor: value
+      }
+    })
+  })), name === "hover" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: "Text Color",
+    value: spots.hoverColor.icon,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      spots: {
+        ...spots,
+        hoverColor: {
+          ...spots.hoverColor,
+          icon: value
+        }
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: "Background Color",
+    value: spots.hoverColor.bg,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      spots: {
+        ...spots,
+        hoverColor: {
+          ...spots.hoverColor,
+          bg: value
+        }
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: "Border Color",
+    value: spots.hoverColor.border,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      spots: {
+        ...spots,
+        hoverColor: {
+          ...spots.hoverColor,
+          border: value
+        }
+      }
+    })
+  })))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.compose)((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
+  const {
+    getDeviceType
+  } = select("core/editor");
+  return {
+    device: getDeviceType()?.toLowerCase()
+  };
+}))(SpotsStyle));
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/Style/Style.js":
+/*!**********************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/Style/Style.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SpotsStyle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpotsStyle */ "./src/image-hotspot/Components/Backend/Settings/Style/SpotsStyle.js");
+/* harmony import */ var _TooltipStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TooltipStyle */ "./src/image-hotspot/Components/Backend/Settings/Style/TooltipStyle.js");
+
+
+
+const Style = props => {
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SpotsStyle__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes,
+    setAttributes
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TooltipStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes,
+    setAttributes
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Backend/Settings/Style/TooltipStyle.js":
+/*!*****************************************************************************!*\
+  !*** ./src/image-hotspot/Components/Backend/Settings/Style/TooltipStyle.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../../bpl-tools/Components */ "../bpl-tools/Components/index.js");
+/* harmony import */ var _bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../../bpl-tools/utils/functions */ "../bpl-tools/utils/functions.js");
+
+
+
+
+
+
+
+const TooltipStyle = ({
+  setAttributes,
+  attributes,
+  device
+}) => {
+  const {
+    tooltip
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    className: "bPlPanelBody",
+    initialOpen: false,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Tooltip", "b-blocks")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Width", "b-blocks"),
+    labelPosition: "edge",
+    units: [{
+      label: "px",
+      value: "px"
+    }],
+    isUnitSelectTabbable: true,
+    value: tooltip.width,
+    min: 1,
+    max: 800,
+    onChange: value => setAttributes({
+      tooltip: {
+        ...tooltip,
+        width: value
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.BoxControl, {
+    className: "mt10",
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Padding", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    values: tooltip.padding[device],
+    resetValues: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    onChange: value => setAttributes({
+      tooltip: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(tooltip, value, "padding", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Text Color", "b-blocks"),
+    value: tooltip.textColor,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      tooltip: {
+        ...tooltip,
+        textColor: value
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Background Color", "b-blocks"),
+    value: tooltip.bgColor,
+    colors: [{
+      name: "red",
+      color: "#f00"
+    }, {
+      name: "white",
+      color: "#fff"
+    }, {
+      name: "blue",
+      color: "#00f"
+    }],
+    onChange: value => setAttributes({
+      tooltip: {
+        ...tooltip,
+        bgColor: value
+      }
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalBorderBoxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Border", "b-blocks"),
+    value: tooltip.border,
+    onChange: value => setAttributes({
+      tooltip: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(tooltip, value, "border")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.BoxControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Border Radius", "b-blocks"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.Device, null)),
+    className: "mt10",
+    values: tooltip.borderRadius[device],
+    resetValues: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    onChange: value => setAttributes({
+      tooltip: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(tooltip, value, "borderRadius", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bpl_tools_Components__WEBPACK_IMPORTED_MODULE_5__.ShadowControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Shadow", "b-blocks"),
+    value: tooltip.shadow,
+    onChange: value => {
+      setAttributes({
+        tooltip: (0,_bpl_tools_utils_functions__WEBPACK_IMPORTED_MODULE_6__.updateData)(tooltip, value, "shadow")
+      });
+    }
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.compose)((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
+  const {
+    getDeviceType
+  } = select("core/editor");
+  return {
+    device: getDeviceType()?.toLowerCase()
+  };
+}))(TooltipStyle));
+
+/***/ }),
+
+/***/ "./src/image-hotspot/Components/Common/Style.js":
+/*!******************************************************!*\
+  !*** ./src/image-hotspot/Components/Common/Style.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bpl_tools_Advanced_generateCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../bpl-tools/Advanced/generateCSS */ "../bpl-tools/Advanced/generateCSS.js");
+/* harmony import */ var _bpl_tools_utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/data */ "../bpl-tools/utils/data.js");
+/* harmony import */ var _bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../bpl-tools/utils/getCSS */ "../bpl-tools/utils/getCSS.js");
+
+
+
+
+const Style = ({
+  attributes,
+  id,
+  isBackend = false
+}) => {
+  const {
+    image,
+    options,
+    spots,
+    tooltip,
+    advanced
+  } = attributes;
+  const mainSl = `#${id}`;
+  const blockSl = `${mainSl} .hotspot-image-wrapper`;
+  const spotsSl = `${blockSl} .bphb-hotspot`;
+  const tooltipSl = `${spotsSl} .tooltip-reader`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+        ${(0,_bpl_tools_Advanced_generateCSS__WEBPACK_IMPORTED_MODULE_1__.generateCSS)(id, advanced, isBackend)}
+      ${blockSl}{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", image.width.desktop)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", image.height.desktop)}
+      }
+      ${spotsSl} .imghp-library-icon>svg{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("fill", spots.iconColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("color", spots.iconColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.iconSize.desktop)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.iconSize.desktop)}
+      }
+      ${spotsSl}{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.height.desktop)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.width.desktop)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-radius", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(spots.borderRadius.desktop))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("background-color", spots.bgColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("padding", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(spots.padding.desktop))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBorderBoxCSS)(spots.border)}
+      }
+        ${spotsSl}.three{
+          border:unset;
+        }
+        ${spotsSl}.three>span{
+          ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBorderBoxCSS)(spots.border)}
+        }
+      ${spotsSl}>span{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("color", spots.iconColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("font-size", spots.iconSize.desktop)}
+        }
+        ${spotsSl}>svg{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("color", spots.iconColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.iconSize.desktop)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.iconSize.desktop)}
+      }
+      ${spotsSl}>svg path{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("fill", spots.iconColor)}
+      }
+      ${spotsSl}:hover{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("background-color", spots.hoverColor.bg)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-color", spots.hoverColor.border)}
+      }
+      ${spotsSl}:hover>span{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("color", spots.hoverColor.icon)}
+      }
+      ${spotsSl}:hover>svg{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("color", spots.hoverColor.icon)}
+      }
+      ${spotsSl}:hover>svg path{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("fill", spots.hoverColor.icon)}
+      }
+      ${spotsSl}:where(span,img){
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("color", spots.iconColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("font-size", spots.iconSize.desktop)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBorderBoxCSS)(spots.border)}
+      }
+
+      ${tooltipSl}{
+        transition-duration: ${options.speed}ms;
+        transition-delay: ${options.delay}ms;
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBorderBoxCSS)(tooltip.border)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("box-shadow", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getMultiShadowCSS)(tooltip?.shadow || []))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", tooltip.width)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("background-color", tooltip.bgColor)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("padding", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(tooltip.padding.desktop))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-radius", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(tooltip.borderRadius.desktop))}
+      }
+      ${tooltipSl} .bphb-tooltip-content :where(h1,h2,h3,h4,h5,h6,p,span,i,em,strong,a){
+            color: ${tooltip.textColor} !important;
+            margin:0px;
+        }
+        ${blockSl}>.hotspot-image{
+          ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", image.width.desktop)};
+          ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", image.height.desktop)};
+        }
+      ${_bpl_tools_utils_data__WEBPACK_IMPORTED_MODULE_2__.tabBreakpoint} {
+      ${spotsSl} .imghp-library-icon>svg{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.iconSize.tablet)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.iconSize.tablet)}
+      }
+      ${spotsSl}{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.height.tablet)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.width.tablet)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-radius", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(spots.borderRadius.tablet))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("padding", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(spots.padding.tablet))}
+      }
+      ${spotsSl}>span{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("font-size", spots.iconSize.tablet)}
+      }
+      ${spotsSl} :where(span,img){
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("font-size", spots.iconSize.tablet)}
+      }
+
+      ${tooltipSl}{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("padding", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(tooltip.padding.tablet))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-radius", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(tooltip.borderRadius.tablet))}
+      }
+
+      ${_bpl_tools_utils_data__WEBPACK_IMPORTED_MODULE_2__.mobileBreakpoint} {
+      ${spotsSl} .imghp-library-icon>svg{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.iconSize.mobile)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.iconSize.mobile)}
+      }
+      ${spotsSl}{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("height", spots.height.mobile)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("width", spots.width.mobile)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-radius", spots.borderRadius.mobile)}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("padding", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(spots.padding.mobile))}
+      }
+      ${spotsSl}>span{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("font-size", spots.iconSize.mobile)}
+        }
+        ${spotsSl} :where(span,img){
+          ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("font-size", spots.iconSize.mobile)}
+      }
+
+      ${tooltipSl}{
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("padding", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(tooltip.padding.mobile))}
+        ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.isValidCSS)("border-radius", (0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_3__.getBoxCSS)(tooltip.borderRadius.mobile))}
+      }
+    }
+        `
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/image-hotspot/index.js":
+/*!************************************!*\
+  !*** ./src/image-hotspot/index.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./src/image-hotspot/editor.scss");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/image-hotspot/block.json");
+/* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/image-hotspot/Components/Backend/Edit.js");
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/icons */ "./src/image-hotspot/utils/icons.js");
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+  icon: _utils_icons__WEBPACK_IMPORTED_MODULE_4__.blockIcon,
+  edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"]
+});
+
+/***/ }),
+
+/***/ "./src/image-hotspot/utils/icons.js":
+/*!******************************************!*\
+  !*** ./src/image-hotspot/utils/icons.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FaRegImage: () => (/* binding */ FaRegImage),
+/* harmony export */   FaStar: () => (/* binding */ FaStar),
+/* harmony export */   HiMiniXMark: () => (/* binding */ HiMiniXMark),
+/* harmony export */   IoMdCopy: () => (/* binding */ IoMdCopy),
+/* harmony export */   IoText: () => (/* binding */ IoText),
+/* harmony export */   blockIcon: () => (/* binding */ blockIcon),
+/* harmony export */   placeholderImg: () => (/* binding */ placeholderImg)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const placeholderImg = "https://templates.bplugins.com/wp-content/uploads/2025/03/before-after-image-gray.jpg";
+const iconColor = "#4527a4";
+const blockIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  className: "bpl-hotspot-main-icon",
+  viewBox: "0 0 1000 1004.1441",
+  xmlns: "http://www.w3.org/2000/svg"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  fill: iconColor,
+  d: "m229 542.144c58 0 104-47 104-105s-46-104-104-104-104 47-104 104 47 105 104 105zm0-167c35 0 63 28 63 62s-28 63-63 63-62-28-62-63 28-62 62-62zm750-167h-147c1-7 1-14 1-21 0-80-65-145-145-145s-146 65-146 145c0 7 0 14 1 21h-522c-12 0-21 10-21 21v709c0 11 9 20 21 20h958c12 0 21-9 21-20v-709c0-11-9-21-21-21zm-291-125c57 0 104 47 104 104 0 75-71 199-104 253-34-54-105-178-105-253 0-57 47-104 105-104zm-136 167c29 106 114 234 118 241 4 5 11 9 18 9s13-4 17-9c4-7 89-135 118-241h135v547l-171-206c-8-10-24-10-32 0l-85 102-131-224c-4-7-10-11-18-11-6 1-14 4-18 10l-172 268-128-146c-4-5-11-7-18-7-6 1-12 5-16 11l-127 223v-567zm-510 667v-16l149-261 127 145c4 4 10 7 17 7 6-1 12-4 16-10l169-263 129 221c3 6 9 9 16 10 7 0 13-2 18-8l88-105 187 225v55zm708-730c0-34-28-62-62-62s-63 28-63 62 28 63 63 63 62-28 62-63zm-83 0c0-11 9-20 21-20s20 9 20 20-9 21-20 21-21-9-21-21z"
+}));
+const IoText = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: "0",
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M292.6 407.78l-120-320a22 22 0 00-41.2 0l-120 320a22 22 0 0041.2 15.44l36.16-96.42a2 2 0 011.87-1.3h122.74a2 2 0 011.87 1.3l36.16 96.42a22 22 0 0041.2-15.44zm-185.84-129l43.37-115.65a2 2 0 013.74 0l43.37 115.67a2 2 0 01-1.87 2.7h-86.74a2 2 0 01-1.87-2.7zM400.77 169.5c-41.72-.3-79.08 23.87-95 61.4a22 22 0 0040.5 17.2c8.88-20.89 29.77-34.44 53.32-34.6 32.32-.22 58.41 26.5 58.41 58.85a1.5 1.5 0 01-1.45 1.5c-21.92.61-47.92 2.07-71.12 4.8-54.75 6.44-87.43 36.29-87.43 79.85 0 23.19 8.76 44 24.67 58.68C337.6 430.93 358 438.5 380 438.5c31 0 57.69-8 77.94-23.22h.06a22 22 0 1044 .19v-143c0-56.18-45-102.56-101.23-102.97zM380 394.5c-17.53 0-38-9.43-38-36 0-10.67 3.83-18.14 12.43-24.23 8.37-5.93 21.2-10.16 36.14-11.92 21.12-2.49 44.82-3.86 65.14-4.47a2 2 0 012 2.1C455 370.1 429.46 394.5 380 394.5z"
+  }));
+};
+const FaStar = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: "0",
+    viewBox: "0 0 576 512",
+    height: "1em",
+    width: "1em",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+  }));
+};
+const FaRegImage = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: "0",
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
+  }));
+};
+const HiMiniXMark = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: "0",
+    viewBox: "0 0 20 20"
+    // ariaHidden="true"
+    ,
+    height: "1em",
+    width: "1em",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
+  }));
+};
+const IoMdCopy = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: "0",
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M296 48H176.5C154.4 48 136 65.4 136 87.5V96h-7.5C106.4 96 88 113.4 88 135.5v288c0 22.1 18.4 40.5 40.5 40.5h208c22.1 0 39.5-18.4 39.5-40.5V416h8.5c22.1 0 39.5-18.4 39.5-40.5V176L296 48zm0 44.6l83.4 83.4H296V92.6zm48 330.9c0 4.7-3.4 8.5-7.5 8.5h-208c-4.4 0-8.5-4.1-8.5-8.5v-288c0-4.1 3.8-7.5 8.5-7.5h7.5v255.5c0 22.1 10.4 32.5 32.5 32.5H344v7.5zm48-48c0 4.7-3.4 8.5-7.5 8.5h-208c-4.4 0-8.5-4.1-8.5-8.5v-288c0-4.1 3.8-7.5 8.5-7.5H264v128h128v167.5z"
+  }));
+};
+
+/***/ }),
+
+/***/ "./src/image-hotspot/utils/options.js":
+/*!********************************************!*\
+  !*** ./src/image-hotspot/utils/options.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addNewItem: () => (/* binding */ addNewItem),
+/* harmony export */   defaultTheme: () => (/* binding */ defaultTheme),
+/* harmony export */   generalStyleTabs: () => (/* binding */ generalStyleTabs),
+/* harmony export */   themeFive: () => (/* binding */ themeFive),
+/* harmony export */   themeFour: () => (/* binding */ themeFour),
+/* harmony export */   themeThree: () => (/* binding */ themeThree),
+/* harmony export */   themeTwo: () => (/* binding */ themeTwo),
+/* harmony export */   themes: () => (/* binding */ themes),
+/* harmony export */   toolbarPositions: () => (/* binding */ toolbarPositions)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+
+const addNewItem = (id, id2) => {
+  return {
+    borderColor: "",
+    bgColor: "",
+    spotsSize: "",
+    option: "spot",
+    spotOption: "text",
+    spotText: "+",
+    icon: "",
+    image: "",
+    tooltip: "<p>Tooltip contents</p>",
+    tooltipPosition: "left",
+    position: {
+      x: id,
+      y: id2
+    },
+    iconColor: "",
+    iconSize: "12px",
+    spotLink: ""
+  };
+};
+const toolbarPositions = [{
+  label: "Default",
+  value: "left"
+}, {
+  label: "Left",
+  value: "left"
+}, {
+  label: "Top",
+  value: "top"
+}, {
+  label: "Right",
+  value: "right"
+}, {
+  label: "Bottom",
+  value: "bottom"
+}, {
+  label: "Top Left",
+  value: "topleft"
+}, {
+  label: "Top Right",
+  value: "topright"
+}, {
+  label: "Bottom Left",
+  value: "bottomleft"
+}, {
+  label: "Bottom Right",
+  value: "bottomright"
+}];
+const defaultTheme = {
+  bgColor: "#8a2be2",
+  border: {
+    width: "0px"
+  },
+  height: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  width: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  padding: {
+    desktop: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    },
+    tablet: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    },
+    mobile: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    tablet: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    mobile: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    }
+  },
+  iconColor: "#fff",
+  iconSize: {
+    desktop: "12px",
+    tablet: "12px",
+    mobile: "12px"
+  },
+  hover: "normal",
+  hoverColor: {
+    icon: "#fff",
+    bg: "",
+    border: ""
+  }
+};
+const themeTwo = {
+  bgColor: "#cd7418",
+  border: {
+    width: "0px"
+  },
+  height: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  width: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  padding: {
+    desktop: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    },
+    tablet: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    },
+    mobile: {
+      left: "0px",
+      right: "0px",
+      top: "0px",
+      bottom: "0px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "5px"
+    }
+  },
+  iconColor: "#fff",
+  iconSize: {
+    desktop: "12px",
+    tablet: "12px",
+    mobile: "12px"
+  },
+  hover: "normal",
+  hoverColor: {
+    icon: "#fff",
+    bg: "",
+    border: ""
+  }
+};
+const themeThree = {
+  bgColor: "#cd18bf",
+  borderColor: "#fff",
+  border: {
+    color: "#fff",
+    style: "solid",
+    width: "1px"
+  },
+  height: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  width: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    tablet: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    mobile: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    }
+  },
+  iconColor: "#fff",
+  iconSize: {
+    desktop: "12px",
+    tablet: "12px",
+    mobile: "12px"
+  },
+  hover: "normal",
+  hoverColor: {
+    icon: "#fff",
+    bg: "",
+    border: ""
+  }
+};
+const themeFour = {
+  bgColor: "",
+  border: {
+    color: "#77cd18",
+    style: "solid",
+    width: "2px"
+  },
+  height: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  width: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    tablet: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    mobile: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    }
+  },
+  iconColor: "#77cd18",
+  iconSize: {
+    desktop: "16px",
+    tablet: "16px",
+    mobile: "16px"
+  },
+  hover: "normal",
+  hoverColor: {
+    icon: "#77cd18",
+    bg: "",
+    border: "#77cd18"
+  }
+};
+const themeFive = {
+  bgColor: "#3cbcd1a3",
+  border: {
+    width: "0px",
+    color: "transparent"
+  },
+  height: {
+    desktop: "40px",
+    tablet: "40px",
+    mobile: "40px"
+  },
+  width: {
+    desktop: "100px",
+    tablet: "100px",
+    mobile: "100px"
+  },
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    tablet: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    },
+    mobile: {
+      left: "50px",
+      right: "50px",
+      top: "50px",
+      bottom: "50px"
+    }
+  },
+  iconColor: "#fff",
+  iconSize: {
+    desktop: "25px",
+    tablet: "25px",
+    mobile: "25px"
+  },
+  hover: "normal",
+  hoverColor: {
+    icon: "#fff",
+    bg: "",
+    border: ""
+  }
+};
+const generalStyleTabs = [{
+  name: 'general',
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'b-blocks')
+}, {
+  name: 'style',
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style', 'b-blocks')
+}, {
+  name: "advanced",
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced', 'b-blocks')
+}];
+const themes = {
+  default: {
+    isPremium: false,
+    theme: ""
+  }
+};
+
+/***/ }),
+
+/***/ "./src/image-hotspot/utils/tooltipOptions.js":
+/*!***************************************************!*\
+  !*** ./src/image-hotspot/utils/tooltipOptions.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   tooltipFive: () => (/* binding */ tooltipFive),
+/* harmony export */   tooltipFour: () => (/* binding */ tooltipFour),
+/* harmony export */   tooltipOne: () => (/* binding */ tooltipOne),
+/* harmony export */   tooltipThree: () => (/* binding */ tooltipThree),
+/* harmony export */   tooltipTwo: () => (/* binding */ tooltipTwo)
+/* harmony export */ });
+const tooltipOne = {
+  width: "200px",
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    tablet: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    mobile: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    }
+  },
+  border: {},
+  bgColor: "#8a2be2",
+  boxShadow: "0px 0px 0px 0px #707070"
+};
+const tooltipTwo = {
+  width: "200px",
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    tablet: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    mobile: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    }
+  },
+  border: {},
+  textColor: "#fff",
+  bgColor: "#cd7418",
+  boxShadow: "0px 0px 0px 0px #707070"
+};
+const tooltipThree = {
+  width: "200px",
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    tablet: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    mobile: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    }
+  },
+  border: {},
+  textColor: "#fff",
+  bgColor: "#cd18bf",
+  boxShadow: "0px 0px 0px 0px #707070"
+};
+const tooltipFour = {
+  width: "200px",
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    tablet: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    mobile: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    }
+  },
+  border: {},
+  textColor: "#fff",
+  bgColor: "#77cd18",
+  boxShadow: "0px 0px 0px 0px #707070"
+};
+const tooltipFive = {
+  width: "200px",
+  padding: {
+    desktop: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    tablet: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    },
+    mobile: {
+      left: "5px",
+      right: "5px",
+      top: "5px",
+      bottom: "5px"
+    }
+  },
+  borderRadius: {
+    desktop: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    tablet: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    },
+    mobile: {
+      left: "3px",
+      right: "3px",
+      top: "3px",
+      bottom: "3px"
+    }
+  },
+  border: {},
+  textColor: "#fff",
+  bgColor: "#3cbcd1",
+  boxShadow: "0px 0px 0px 0px #707070"
+};
+
+/***/ }),
+
 /***/ "./src/info-box/Components/Backend/Edit.js":
 /*!*************************************************!*\
   !*** ./src/info-box/Components/Backend/Edit.js ***!
@@ -69501,7 +71801,7 @@ const BoxControl = props => {
     units,
     sides,
     style,
-    className,
+    className = '',
     disableUnits = false
   } = props;
   const [link, setLink] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -69582,20 +71882,95 @@ const BoxControl = props => {
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "sideLabel"
   }, val))), !sides && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `boxLinkButton ${link ? "activeLink" : ""}`,
+    className: `bplBoxControlLinkButton ${link ? "activeLink" : ""}`,
     onClick: () => setLink(!link)
   }, link ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "dashicons dashicons-admin-links"
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "dashicons dashicons-editor-unlink"
   })), isReset && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "boxLinkButton",
+    className: "bplBoxControlLinkButton",
     onClick: () => onChange(resetValues)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "dashicons dashicons-image-rotate"
   }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BoxControl);
+
+/***/ }),
+
+/***/ "../bpl-tools/Components/BplBlockPreview/BplBlockPreview.js":
+/*!******************************************************************!*\
+  !*** ../bpl-tools/Components/BplBlockPreview/BplBlockPreview.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "../bpl-tools/Components/BplBlockPreview/style.scss");
+
+
+
+
+
+
+const BplBlockPreview = ({
+  blocks,
+  clientId,
+  value,
+  minHeight = "",
+  minWidth = "200px"
+}) => {
+  const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const handleButtonClick = (blockValue, idx, content) => {
+    setActiveIndex(idx);
+    handleBlockReplace(content);
+  };
+  const handleMouseInteraction = (idx, isEnter) => {
+    setActiveIndex(isEnter ? idx : null);
+  };
+  const handleBlockReplace = blockContent => {
+    const parsedBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.parse)(blockContent);
+    wp.data.dispatch('core/block-editor').replaceBlock(clientId, parsedBlock);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bPlBlockPreviewWrapper"
+  }, blocks.map((block, idx) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: idx
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "    ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: `bPl-previewBtn ${value === block.value ? "bPl-activeBtn" : ""}`,
+    onClick: () => handleButtonClick(block.value, idx, block.content),
+    onMouseEnter: () => handleMouseInteraction(idx, true),
+    onMouseLeave: () => handleMouseInteraction(idx, false)
+  }, block.label)), activeIndex === idx && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Popover, {
+    style: {
+      cursor: "pointer"
+    },
+    onClick: () => handleButtonClick(block.value, idx, block.content)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onMouseEnter: () => handleMouseInteraction(idx, true),
+    onMouseLeave: () => handleMouseInteraction(idx, false),
+    style: {
+      minWidth,
+      minHeight
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockPreview, {
+    blocks: (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.parse)(block.content),
+    viewportWidth: 1600
+  }))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BplBlockPreview);
 
 /***/ }),
 
@@ -69754,7 +72129,7 @@ const ColorControl = props => {
     className: ""
   }, label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Dropdown, {
     className: "bPlDropdownContainer bPlColor",
-    contentClassName: "bPlDropdownPopover bPlColorPopover",
+    contentClassName: "bPlDropdownPopover",
     popoverProps: {
       placement: 'top-end'
     },
@@ -69807,7 +72182,7 @@ const HexColorControl = props => {
     className: ""
   }, label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Dropdown, {
     className: "bPlDropdownContainer bPlColor",
-    contentClassName: "bPlDropdownPopover bPlColorPopover",
+    contentClassName: "bPlDropdownPopover",
     popoverProps: {
       placement: 'top-end'
     },
@@ -71778,7 +74153,7 @@ const ItemsPanel = properties => {
       key: index,
       className: "bPlPanelBody itemPanelBody",
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(`${itemLabel} ${index + 1}:`),
-      initialOpen: 0 !== index ? false : true
+      initialOpen: activeIndex ? activeIndex === index ? true : false : 0 !== index ? false : true
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ItemSettings, {
       ...itemProps,
       index: index
@@ -71900,10 +74275,11 @@ const Sortable = props => {
   const {
     attributes,
     setAttributes,
-    arrKey
+    arrKey,
+    activeIndex
   } = props;
   const items = attributes[arrKey];
-  const [active, setActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [active, setActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(activeIndex || 0);
   const onSortEnd = ({
     oldIndex,
     newIndex
@@ -73481,7 +75857,8 @@ const TinyEditor = ({
   onChange,
   media_button = true,
   quicktags = true,
-  height = '180px'
+  height = '180px',
+  className
 }) => {
   const [randomId, setEditorId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
@@ -73566,7 +75943,9 @@ const TinyEditor = ({
       editor.setContent(value);
     }
   }, [value, randomId]);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: className
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 				#bpl-wp-${randomId}editor{
 					border:none !important;
 				}
@@ -73575,6 +75954,9 @@ const TinyEditor = ({
 					outline: none !important;
 					box-shadow:none !important;
 				}
+					#wp-bpl-wp-${randomId}editor-wrap .wp-editor-tools .wp-media-buttons{
+						width:48%;
+					}
 			`), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     style: {
       width: '100%'
@@ -78163,6 +80545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BButtonGroup: () => (/* reexport safe */ _BButtonGroup_BButtonGroup__WEBPACK_IMPORTED_MODULE_3__["default"]),
 /* harmony export */   Background: () => (/* reexport safe */ _Background_Background__WEBPACK_IMPORTED_MODULE_2__["default"]),
 /* harmony export */   BoxControl: () => (/* reexport safe */ _BoxControl_BoxControl__WEBPACK_IMPORTED_MODULE_4__["default"]),
+/* harmony export */   BplBlockPreview: () => (/* reexport safe */ _BplBlockPreview_BplBlockPreview__WEBPACK_IMPORTED_MODULE_29__["default"]),
 /* harmony export */   BtnGroup: () => (/* reexport safe */ _BtnGroup_BtnGroup__WEBPACK_IMPORTED_MODULE_5__["default"]),
 /* harmony export */   ColorControl: () => (/* reexport safe */ _ColorControl_ColorControl__WEBPACK_IMPORTED_MODULE_6__.ColorControl),
 /* harmony export */   ColorsControl: () => (/* reexport safe */ _ColorsControl_ColorsControl__WEBPACK_IMPORTED_MODULE_7__["default"]),
@@ -78221,6 +80604,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TinyEditor_TinyEditor__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./TinyEditor/TinyEditor */ "../bpl-tools/Components/TinyEditor/TinyEditor.js");
 /* harmony import */ var _Typography_Typography__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./Typography/Typography */ "../bpl-tools/Components/Typography/Typography.js");
 /* harmony import */ var _Utility_BBlocksAds__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./Utility/BBlocksAds */ "../bpl-tools/Components/Utility/BBlocksAds.js");
+/* harmony import */ var _BplBlockPreview_BplBlockPreview__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./BplBlockPreview/BplBlockPreview */ "../bpl-tools/Components/BplBlockPreview/BplBlockPreview.js");
+
 
 
 
@@ -78588,15 +80973,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   usePremium: () => (/* reexport safe */ _usePremium__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   useDeviceWidth: () => (/* reexport safe */ _useDeviceWidth__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   usePremium: () => (/* reexport safe */ _usePremium__WEBPACK_IMPORTED_MODULE_1__["default"]),
 /* harmony export */   usePremiumInEditor: () => (/* reexport safe */ _usePremiumInEditor__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   useWPAjax: () => (/* reexport safe */ _useWPAjax__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   useWPOptionQuery: () => (/* reexport safe */ _useWPOptionQuery__WEBPACK_IMPORTED_MODULE_1__["default"])
+/* harmony export */   useWPAjax: () => (/* reexport safe */ _useWPAjax__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   useWPOptionQuery: () => (/* reexport safe */ _useWPOptionQuery__WEBPACK_IMPORTED_MODULE_4__["default"])
 /* harmony export */ });
-/* harmony import */ var _useWPAjax__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useWPAjax */ "../bpl-tools/hooks/useWPAjax.js");
-/* harmony import */ var _useWPOptionQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useWPOptionQuery */ "../bpl-tools/hooks/useWPOptionQuery.js");
+/* harmony import */ var _useDeviceWidth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDeviceWidth */ "../bpl-tools/hooks/useDeviceWidth.js");
+/* harmony import */ var _usePremium__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./usePremium */ "../bpl-tools/hooks/usePremium.js");
 /* harmony import */ var _usePremiumInEditor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./usePremiumInEditor */ "../bpl-tools/hooks/usePremiumInEditor.js");
-/* harmony import */ var _usePremium__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./usePremium */ "../bpl-tools/hooks/usePremium.js");
+/* harmony import */ var _useWPAjax__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./useWPAjax */ "../bpl-tools/hooks/useWPAjax.js");
+/* harmony import */ var _useWPOptionQuery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./useWPOptionQuery */ "../bpl-tools/hooks/useWPOptionQuery.js");
+
 
 
 
@@ -78643,6 +81031,47 @@ const useAnimation = (element, animation) => {
   }, [element, type, duration, delay]);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useAnimation);
+
+/***/ }),
+
+/***/ "../bpl-tools/hooks/useDeviceWidth.js":
+/*!********************************************!*\
+  !*** ../bpl-tools/hooks/useDeviceWidth.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const useDeviceWidth = () => {
+  const [device, setDevice] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('desktop');
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    if (width > 1024) {
+      setDevice('desktop');
+    } else if (width > 640) {
+      setDevice('tablet');
+    } else {
+      setDevice('mobile');
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    handleWindowSizeChange();
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+  return {
+    device
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDeviceWidth);
 
 /***/ }),
 
@@ -80241,6 +82670,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/image-hotspot/editor.scss":
+/*!***************************************!*\
+  !*** ./src/image-hotspot/editor.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/index.scss":
 /*!************************!*\
   !*** ./src/index.scss ***!
@@ -80491,6 +82933,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ "../bpl-tools/Components/BoxControl/BoxControl.scss":
 /*!**********************************************************!*\
   !*** ../bpl-tools/Components/BoxControl/BoxControl.scss ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../bpl-tools/Components/BplBlockPreview/style.scss":
+/*!**********************************************************!*\
+  !*** ../bpl-tools/Components/BplBlockPreview/style.scss ***!
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -99404,6 +101859,17 @@ module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"b-blocks/image
 
 /***/ }),
 
+/***/ "./src/image-hotspot/block.json":
+/*!**************************************!*\
+  !*** ./src/image-hotspot/block.json ***!
+  \**************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"b-blocks/image-hotspot","version":"1.0.0","title":"Image Hotspot","category":"bBlocks","description":"Image Hotspot allows you to add interactive hotspots to your images.","keywords":["image hotspot","hotspot","image"],"textdomain":"b-blocks","attributes":{"align":{"type":"string","default":""},"image":{"type":"object","default":{"url":"","height":{"desktop":"400px","tablet":"400px","mobile":"400px"},"width":{"desktop":"100%","tablet":"100%","mobile":"100%"}}},"options":{"type":"object","default":{"speed":400,"delay":200}},"preset":{"type":"string","default":"default"},"spots":{"type":"object","default":{"bgColor":"#8a2be2","border":{},"height":{"desktop":"40px","tablet":"40px","mobile":"40px"},"width":{"desktop":"40px","tablet":"40px","mobile":"40px"},"padding":{"desktop":{"left":"0px","right":"0px","top":"0px","bottom":"0px"},"tablet":{"left":"0px","right":"0px","top":"0px","bottom":"0px"},"mobile":{"left":"0px","right":"0px","top":"0px","bottom":"0px"}},"borderRadius":{"desktop":{"left":"50px","right":"50px","top":"50px","bottom":"50px"},"tablet":{"left":"50px","right":"50px","top":"50px","bottom":"50px"},"mobile":{"left":"50px","right":"50px","top":"50px","bottom":"50px"}},"iconColor":"#fff","iconSize":{"desktop":"12px","tablet":"12px","mobile":"12px"},"hoverColor":{"icon":"#fff","bg":"","border":""}}},"tooltip":{"type":"object","default":{"width":"200px","padding":{"desktop":{"left":"5px","right":"5px","top":"5px","bottom":"5px"},"tablet":{"left":"5px","right":"5px","top":"5px","bottom":"5px"},"mobile":{"left":"5px","right":"5px","top":"5px","bottom":"5px"}},"borderRadius":{"desktop":{"left":"3px","right":"3px","top":"3px","bottom":"3px"},"tablet":{"left":"3px","right":"3px","top":"3px","bottom":"3px"},"mobile":{"left":"3px","right":"3px","top":"3px","bottom":"3px"}},"textColor":"#fff","bgColor":"#8a2be2","border":{"width":"0px"},"shadow":[{"hOffset":"0px","vOffset":"0px","blur":"0px","spreed":"0px","color":"#7090b0","isInset":false}]}},"hotspot":{"type":"array","default":[{"borderColor":"","bgColor":"","spotsSize":"","option":"spot","spotOption":"text","spotText":"+","icon":{"url":{"upload":"","library":""},"type":"library"},"image":"","tooltip":"<p>Tooltip contents</p>","tooltipPosition":"left","position":{"x":0,"y":0},"iconColor":"","iconSize":"12px","spotLink":"","newWindow":false},{"borderColor":"","bgColor":"","spotsSize":"","option":"spot","spotOption":"text","spotText":"+","icon":{"url":{"upload":"","library":""},"type":"library"},"image":"","tooltip":"<p>Tooltip contents</p>","tooltipPosition":"left","position":{"x":30,"y":40},"iconColor":"","iconSize":"12px","spotLink":"","newWindow":false}]},"advanced":{"type":"object","default":{"dimension":{"padding":{"desktop":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"tablet":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"mobile":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}},"borderShadow":{"normal":{"radius":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"shadow":[{"hOffset":"0px","vOffset":"0px","blur":"0px","spreed":"0px","color":"#7090b000","isInset":false}]}},"background":{"normal":{"type":"color","color":"rgba(255, 255, 255, 1)","gradient":{"type":"radial","radialType":"ellipse","colors":[{"color":"rgba(58, 66, 222, 1)","position":"0"},{"color":"rgba(176, 195, 235, 1)","position":"80"}],"centerPositions":{"x":50,"y":50},"angel":90},"img":{"url":"","desktop":{"position":"center-center","xPosition":0,"yPosition":0,"attachment":"","repeat":"no-repeat","size":"","customSize":"0px"},"tablet":{"position":"center-center","xPosition":0,"yPosition":0,"attachment":"","repeat":"no-repeat","size":"","customSize":"0px"},"mobile":{"position":"center-center","xPosition":0,"yPosition":0,"attachment":"","repeat":"no-repeat","size":"","customSize":"0px"}},"transition":0.3}}}}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":["file:./view.js","react","react-dom"]}');
+
+/***/ }),
+
 /***/ "./src/info-box/block.json":
 /*!*********************************!*\
   !*** ./src/info-box/block.json ***!
@@ -99744,43 +102210,45 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.scss */ "./src/index.scss");
 /* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/icons */ "./src/utils/icons.js");
-/* harmony import */ var _row__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./row */ "./src/row/index.js");
-/* harmony import */ var _column__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./column */ "./src/column/index.js");
-/* harmony import */ var _container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./container */ "./src/container/index.js");
-/* harmony import */ var _posts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./posts */ "./src/posts/index.js");
-/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./navigation */ "./src/navigation/index.js");
-/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./slider */ "./src/slider/index.js");
-/* harmony import */ var _section_heading__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./section-heading */ "./src/section-heading/index.js");
-/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./button */ "./src/button/index.js");
-/* harmony import */ var _advanced_image__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./advanced-image */ "./src/advanced-image/index.js");
-/* harmony import */ var _icon_box__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./icon-box */ "./src/icon-box/index.js");
-/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./video */ "./src/video/index.js");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services */ "./src/services/index.js");
-/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./service */ "./src/service/index.js");
-/* harmony import */ var _td_viewer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./td-viewer */ "./src/td-viewer/index.js");
-/* harmony import */ var _image_gallery__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./image-gallery */ "./src/image-gallery/index.js");
+/* harmony import */ var _advanced_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./advanced-image */ "./src/advanced-image/index.js");
+/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./alert */ "./src/alert/index.js");
+/* harmony import */ var _animated_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animated-text */ "./src/animated-text/index.js");
+/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./button */ "./src/button/index.js");
+/* harmony import */ var _button_group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./button-group */ "./src/button-group/index.js");
+/* harmony import */ var _cards__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cards */ "./src/cards/index.js");
+/* harmony import */ var _chart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./chart */ "./src/chart/index.js");
+/* harmony import */ var _column__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./column */ "./src/column/index.js");
+/* harmony import */ var _container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./container */ "./src/container/index.js");
+/* harmony import */ var _countdown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./countdown */ "./src/countdown/index.js");
+/* harmony import */ var _counters__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./counters */ "./src/counters/index.js");
+/* harmony import */ var _feature_boxes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./feature-boxes */ "./src/feature-boxes/index.js");
+/* harmony import */ var _flip_boxes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./flip-boxes */ "./src/flip-boxes/index.js");
+/* harmony import */ var _gif__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./gif */ "./src/gif/index.js");
+/* harmony import */ var _icon_box__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./icon-box */ "./src/icon-box/index.js");
 /* harmony import */ var _image_comparison__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./image-comparison */ "./src/image-comparison/index.js");
-/* harmony import */ var _flip_boxes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./flip-boxes */ "./src/flip-boxes/index.js");
-/* harmony import */ var _team_members__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./team-members */ "./src/team-members/index.js");
-/* harmony import */ var _cards__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cards */ "./src/cards/index.js");
-/* harmony import */ var _pricing_table__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./pricing-table */ "./src/pricing-table/index.js");
-/* harmony import */ var _price_lists__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./price-lists */ "./src/price-lists/index.js");
-/* harmony import */ var _feature_boxes__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./feature-boxes */ "./src/feature-boxes/index.js");
-/* harmony import */ var _info_box__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./info-box */ "./src/info-box/index.js");
-/* harmony import */ var _lottie_player__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./lottie-player */ "./src/lottie-player/index.js");
-/* harmony import */ var _chart__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./chart */ "./src/chart/index.js");
-/* harmony import */ var _button_group__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./button-group */ "./src/button-group/index.js");
-/* harmony import */ var _countdown__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./countdown */ "./src/countdown/index.js");
-/* harmony import */ var _counters__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./counters */ "./src/counters/index.js");
-/* harmony import */ var _mailto__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./mailto */ "./src/mailto/index.js");
-/* harmony import */ var _gif__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./gif */ "./src/gif/index.js");
-/* harmony import */ var _qr_code__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./qr-code */ "./src/qr-code/index.js");
-/* harmony import */ var _social_share__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./social-share */ "./src/social-share/index.js");
-/* harmony import */ var _animated_text__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./animated-text */ "./src/animated-text/index.js");
-/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./alert */ "./src/alert/index.js");
-/* harmony import */ var _shape_divider__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./shape-divider */ "./src/shape-divider/index.js");
-/* harmony import */ var _star_rating__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./star-rating */ "./src/star-rating/index.js");
-/* harmony import */ var _inline__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./inline */ "./src/inline/index.js");
+/* harmony import */ var _image_gallery__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./image-gallery */ "./src/image-gallery/index.js");
+/* harmony import */ var _image_hotspot__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./image-hotspot */ "./src/image-hotspot/index.js");
+/* harmony import */ var _info_box__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./info-box */ "./src/info-box/index.js");
+/* harmony import */ var _lottie_player__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./lottie-player */ "./src/lottie-player/index.js");
+/* harmony import */ var _mailto__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./mailto */ "./src/mailto/index.js");
+/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./navigation */ "./src/navigation/index.js");
+/* harmony import */ var _posts__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./posts */ "./src/posts/index.js");
+/* harmony import */ var _price_lists__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./price-lists */ "./src/price-lists/index.js");
+/* harmony import */ var _pricing_table__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./pricing-table */ "./src/pricing-table/index.js");
+/* harmony import */ var _qr_code__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./qr-code */ "./src/qr-code/index.js");
+/* harmony import */ var _row__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./row */ "./src/row/index.js");
+/* harmony import */ var _section_heading__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./section-heading */ "./src/section-heading/index.js");
+/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./service */ "./src/service/index.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./services */ "./src/services/index.js");
+/* harmony import */ var _shape_divider__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./shape-divider */ "./src/shape-divider/index.js");
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./slider */ "./src/slider/index.js");
+/* harmony import */ var _social_share__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./social-share */ "./src/social-share/index.js");
+/* harmony import */ var _star_rating__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./star-rating */ "./src/star-rating/index.js");
+/* harmony import */ var _td_viewer__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./td-viewer */ "./src/td-viewer/index.js");
+/* harmony import */ var _team_members__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./team-members */ "./src/team-members/index.js");
+/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./video */ "./src/video/index.js");
+/* harmony import */ var _inline__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./inline */ "./src/inline/index.js");
+
 
 
 
