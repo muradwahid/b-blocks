@@ -1,17 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import SVG from "react-inlinesvg";
-const Draggable = ({
-  value,
-  onChange = () => { },
-  preset,
-  element,
-  setActiveIdx,
-  index,
-  wrapperEl,
-  align,
-  isSelected,
-  ...props
-}) => {
+const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx, index, wrapperEl, align, isSelected, ...props }) => {
   const [position, setPosition] = useState(value || { x: 0, y: 0 });
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
