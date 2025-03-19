@@ -4,7 +4,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { columnsIcon } from './utils/icons';
+import { columnsIcon } from '../utils/blocksIcon';
 
 registerBlockType(metadata, {
 	icon: columnsIcon,

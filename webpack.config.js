@@ -16,7 +16,7 @@ const entry = {
 	...defaultEntry,
 	index: './src/index.js',
 	script: './src/script.js',
-	'admin-help': './src/admin/help.js',
+	'admin-dashboard': './src/admin/dashboard.js',
 	'template-library': './src/backend/template-library.js',
 	advanced: '../bpl-tools/Advanced/style.js'
 };

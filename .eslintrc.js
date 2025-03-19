@@ -20,7 +20,8 @@ module.exports = {
 		Swiper: 'readonly',
 		LottieInteractivity: 'readonly',
 		Plyr: 'readonly',
-		Chart: 'readonly'
+		Chart: 'readonly',
+		pluginAction: 'readonly'
 	},
 	parserOptions: {
 		ecmaFeatures: {

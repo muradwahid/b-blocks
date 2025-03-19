@@ -1,25 +1,3 @@
-const iconColor = '#4527a4';
-
-export const countdownIcon = <svg width={24} height={24} viewBox='0 0 512 512'>
-	<path fill={iconColor} d='m288 48h-64a24 24 0 0 1 0-48h64a24 24 0 0 1 0 48z' />
-	<path fill={iconColor} d='m414.392 129.608c-1.867-1.867-3.772-3.684-5.692-5.477l19.963-26.769a8 8 0 0 0 -1.63-11.195l-25.65-19.13a8 8 0 0 0 -11.2 1.631l-19.844 26.614a224.63 224.63 0 1 0 44.053 34.326zm-158.392 350.392c-105.869 0-192-86.131-192-192s86.131-192 192-192 192 86.131 192 192-86.131 192-192 192z' />
-	<path fill={iconColor} d='m408 296h-152a8 8 0 0 1 -8-8v-152a8 8 0 0 1 8-8c88.224 0 160 71.775 160 160a8 8 0 0 1 -8 8z' />
-	<circle fill={iconColor} cx={201.421} cy={145.912} r={8} />
-	<circle fill={iconColor} cx={160.185} cy={169.732} r={8} />
-	<circle fill={iconColor} cx={128.327} cy={205.129} r={8} />
-	<circle fill={iconColor} cx={108.967} cy={248.638} r={8} />
-	<circle fill={iconColor} cx={104} cy={296} r={8} />
-	<circle fill={iconColor} cx={113.912} cy={342.579} r={8} />
-	<circle fill={iconColor} cx={137.732} cy={383.815} r={8} />
-	<circle fill={iconColor} cx={173.129} cy={415.673} r={8} />
-	<circle fill={iconColor} cx={216.638} cy={435.033} r={8} />
-	<circle fill={iconColor} cx={264} cy={440} r={8} />
-	<circle fill={iconColor} cx={310.579} cy={430.088} r={8} />
-	<circle fill={iconColor} cx={351.815} cy={406.268} r={8} />
-	<circle fill={iconColor} cx={383.673} cy={370.871} r={8} />
-	<circle fill={iconColor} cx={403.033} cy={327.362} r={8} />
-</svg>;
-
 export const closeIcon = <svg className='countdownClose' xmlns='http://www.w3.org/2000/svg' width={22} height={22} viewBox='0 0 512 512'>
 	<path d='M256,31C131.7,31,31,131.7,31,256s100.7,225,225,225s225-100.7,225-225S380.3,31,256,31z M366.3,315.1 c4.3,4.3,4.3,11.2,0,15.4l-35.9,35.8c-4.3,4.3-11.2,4.3-15.4,0l-59-59.5l-59.1,59.5c-4.3,4.3-11.2,4.3-15.4,0l-35.8-35.9 c-4.3-4.3-4.3-11.2,0-15.4l59.5-59l-59.5-59.1c-4.3-4.3-4.3-11.2,0-15.4l35.9-35.9c4.3-4.3,11.2-4.3,15.4,0l59,59.6l59.1-59.5 c4.3-4.3,11.2-4.3,15.4,0l35.9,35.9c4.3,4.3,4.3,11.2,0,15.4l-59.6,59L366.3,315.1z' />
 </svg>;

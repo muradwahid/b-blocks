@@ -3,7 +3,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { imageIcon } from './utils/icons';
+import { imageIcon } from '../utils/blocksIcon';
 
 registerBlockType(metadata, {
 	icon: imageIcon,

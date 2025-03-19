@@ -3,7 +3,7 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { alertIcon } from './utils/icons';
+import { alertIcon } from '../utils/blocksIcon';
 
 registerBlockType(metadata, {
 	icon: alertIcon,

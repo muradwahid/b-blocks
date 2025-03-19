@@ -569,21 +569,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BiCaretRight: () => (/* binding */ BiCaretRight),
 /* harmony export */   alignBottom: () => (/* binding */ alignBottom),
 /* harmony export */   alignMiddle: () => (/* binding */ alignMiddle),
-/* harmony export */   alignTop: () => (/* binding */ alignTop),
-/* harmony export */   imageCompareIcon: () => (/* binding */ imageCompareIcon)
+/* harmony export */   alignTop: () => (/* binding */ alignTop)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const iconColor = '#4527a4';
-const imageCompareIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-  width: 24,
-  height: 24,
-  viewBox: "0 0 469.333 469.333"
-}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-  fill: iconColor,
-  d: "M192 42.667H85.333c-23.573 0-42.667 19.093-42.667 42.667V384c0 23.573 19.093 42.667 42.667 42.667H192v42.667h42.667V0H192v42.667zm0 320H85.333l106.667-128v128zM384 42.667H277.333v42.667H384v277.333l-106.667-128v192H384c23.573 0 42.667-19.093 42.667-42.667V85.333c0-23.573-19.094-42.666-42.667-42.666z"
-}));
 const alignTop = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
   stroke: "currentColor",
   fill: "currentColor",

@@ -3,7 +3,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { qrCodeIcon } from './utils/icons';
+import { qrCodeIcon } from '../utils/blocksIcon';
 
 registerBlockType(metadata, {
 	icon: qrCodeIcon,

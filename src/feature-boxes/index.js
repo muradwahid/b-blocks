@@ -3,7 +3,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { featureBoxIcon } from './utils/icons';
+import { featureBoxIcon } from '../utils/blocksIcon';
 
 registerBlockType(metadata, {
 	icon: featureBoxIcon,
