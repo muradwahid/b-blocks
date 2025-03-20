@@ -36,6 +36,7 @@ import './shape-divider';
 import './slider';
 import './social-share';
 import './star-rating';
+import './svg-draw';
 import './td-viewer';
 import './team-members';
 import './video';
