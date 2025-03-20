@@ -20,6 +20,7 @@ import './icon-box';
 import './image-comparison';
 import './image-gallery';
 import './image-hotspot';
+import './image-scroller';
 import './info-box';
 import './lottie-player';
 import './mailto';
