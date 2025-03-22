@@ -456,6 +456,10 @@ $secondaryColor: #ff7a00;
 								transform: translateX(20px);
 							}
 						}
+
+						input:disabled+.slider {
+							opacity: 0.5;
+						}
 					}
 				}
 			}

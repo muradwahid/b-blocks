@@ -35463,12 +35463,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/advanced-image/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/advanced-image/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.imageIcon,
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
@@ -36048,12 +36050,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/alert/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/alert/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.alertIcon,
   transforms: {
     from: [{
@@ -36596,12 +36600,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/animated-text/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/animated-text/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.animationIcon,
   transforms: {
     from: [{
@@ -37593,12 +37599,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/button-group/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/button-group/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.buttonGroupIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -38745,12 +38753,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/button/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/button/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.buttonIcon,
   // Build in Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -39805,12 +39815,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/cards/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/cards/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.cardIcon,
   transforms: {
     from: [{
@@ -40591,12 +40603,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/chart/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/chart/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.chartIcon,
   transforms: {
     from: [{
@@ -41989,6 +42003,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/container/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/container/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
@@ -41996,7 +42011,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_7__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__.containerIcon,
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__["default"],
   save: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null),
@@ -43768,6 +43784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/countdown/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/countdown/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
@@ -43775,7 +43792,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_7__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__.countdownIcon,
   transforms: {
     from: [{
@@ -44827,12 +44845,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/counters/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/counters/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.countersIcon,
   transforms: {
     from: [{
@@ -45554,12 +45574,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/feature-boxes/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/feature-boxes/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.featureBoxIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -46426,12 +46448,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/flip-boxes/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/flip-boxes/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.flipBoxIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -46666,12 +46690,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/gif/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/gif/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.gifIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -47121,12 +47147,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/icon-box/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/icon-box/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.iconBoxIcon,
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
@@ -48287,12 +48315,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/image-comparison/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/image-comparison/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.imageCompareIcon,
   transforms: {
     from: [{
@@ -49199,12 +49229,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/image-gallery/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/image-gallery/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.galleryIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -49724,12 +49756,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/info-box/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/info-box/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.infoBoxIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -50662,12 +50696,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/lottie-player/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/lottie-player/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.lottieIcon,
   transforms: {
     from: [{
@@ -51229,12 +51265,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/mailto/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/mailto/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.mailIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -52337,6 +52375,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/navigation/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/navigation/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
@@ -52344,7 +52383,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_7__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__.navigationIcon,
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__["default"],
   save: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null)
@@ -56006,12 +56046,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/posts/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/posts/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.articleIcon,
   transforms: {
     from: [{
@@ -57349,12 +57391,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/price-lists/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/price-lists/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.priceListIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -58016,12 +58060,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/pricing-table/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/pricing-table/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.pricingTableIcon,
   transforms: {
     from: [{
@@ -58275,12 +58321,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/qr-code/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/qr-code/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.qrCodeIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -58723,6 +58771,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/row/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/row/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
@@ -58730,7 +58779,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_7__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__.rowIcon,
   // Build in Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -59227,12 +59277,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/section-heading/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/section-heading/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.hIcon,
   // Build In Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -60213,6 +60265,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/services/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/services/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
@@ -60220,7 +60273,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_7__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__.servicesIcon,
   transforms: {
     from: [{
@@ -60740,6 +60794,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/shape-divider/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/shape-divider/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
@@ -60747,7 +60802,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_7__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_6__.shapeDividerIcon,
   // Build in Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -62173,12 +62229,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/slider/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/slider/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.sliderIcon,
   transforms: {
     from: [{
@@ -62920,12 +62978,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/social-share/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/social-share/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.socialShareIcon,
   transforms: {
     from: [{
@@ -63520,12 +63580,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/star-rating/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/star-rating/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.ratingIcon,
   // Build in Functions
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -63965,12 +64027,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/td-viewer/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/td-viewer/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.tDViewerIcon,
   transforms: {
     from: [{
@@ -65302,12 +65366,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/team-members/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/team-members/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.teamMembersIcon,
   transforms: {
     from: [{
@@ -66040,6 +66106,24 @@ const rowDocs = `${docsURL}row-block/`;
 const servicesDocs = `${docsURL}services-section-block/`;
 const socialShareDocs = `${docsURL}social-share-block/`;
 const teamMembersDocs = `${docsURL}team-block/`;
+
+/***/ }),
+
+/***/ "./src/utils/functions.js":
+/*!********************************!*\
+  !*** ./src/utils/functions.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isBlockEnabled: () => (/* binding */ isBlockEnabled)
+/* harmony export */ });
+const isBlockEnabled = name => {
+  const disabledBlocks = bBlocksDisabledBlocks || [];
+  return !disabledBlocks.includes(name);
+};
 
 /***/ }),
 
@@ -66986,12 +67070,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/video/block.json");
 /* harmony import */ var _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Backend/Edit */ "./src/video/Components/Backend/Edit.js");
 /* harmony import */ var _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/blocksIcon */ "./src/utils/blocksIcon.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/functions */ "./src/utils/functions.js");
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+
+(0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.isBlockEnabled)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name) && (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_blocksIcon__WEBPACK_IMPORTED_MODULE_4__.videoIcon,
   transforms: {
     from: [{

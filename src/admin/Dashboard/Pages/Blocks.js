@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 
-import { useWPAjax } from '../../../../../bpl-tools/hooks';
+import { useWPAjax, useWPOptionQuery } from '../../../../../bpl-tools/hooks';
 
 import Layout from '../Layout/Layout';
 import { closeIcon, demoIcon, docsIcon, searchIcon } from '../utils/icons';
@@ -11,54 +11,59 @@ const dataFetched = new CustomEvent('dataFetched');
 
 const Blocks = () => {
 	const [isSaving, setIsSaving] = useState(false);
-	const [disableBlockName, setDisableBlockName] = useState({});
+	const [disableBlockName, setDisableBlockName] = useState([]);
 	const [searchTerm, setSearchTerm] = useState(''); // State to store the search term
-	const { blocksName = [] } = disableBlockName || {};
-	const { data, saveData, isLoading } = useWPAjax('bBlocksDisabledBlocks', { nonce: pluginAction?.nonce }, true);
+	// const { blocksName = [] } = disableBlockName || {};
+	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
+	const { data = null, refetch, saveData, isLoading, error } = useWPAjax('bBlocksDisabledBlocks', { _wpnonce: bBlocksUtils?.nonce }, true);
+
+	useEffect(() => {
+		refetch()
+	}, [bBlocksUtils]);
 
 	useEffect(() => {
 		if (!isLoading && data) {
-			const initialBlocksName = data.blocksName || blocks.map((block) => block.name);
-			setDisableBlockName({ ...data, blocksName: initialBlocksName });
+			setDisableBlockName(data || []);
 			window.dispatchEvent(dataFetched);
 		}
-	}, [data, isLoading]);
+	}, [data, isLoading, error]);
 
 	const handleCheckboxChange = (blockName, isChecked) => {
 		const updatedBlocksName = isChecked
-			? blocksName.filter((name) => name !== blockName)
-			: [...blocksName, blockName];
+			? disableBlockName.filter((name) => name !== blockName)
+			: [...disableBlockName, blockName];
 
-		setDisableBlockName({ ...disableBlockName, blocksName: updatedBlocksName });
+		setDisableBlockName(updatedBlocksName);
 		setIsSaving(true);
 
 		try {
-			saveData({ data: JSON.stringify({ ...disableBlockName, blocksName: updatedBlocksName }) })
+			saveData({ data: JSON.stringify(updatedBlocksName) });
 		} finally {
 			setTimeout(() => setIsSaving(false), 1000); // Add a delay for better UX
 		}
 	};
 
 	const handleActivateAll = () => {
-		const updatedBlocksName = [];
-		setDisableBlockName({ ...disableBlockName, blocksName: updatedBlocksName });
+		setDisableBlockName([]);
 		setIsSaving(true);
 
-		saveData({ data: JSON.stringify({ ...disableBlockName, blocksName: updatedBlocksName }) })
-			.finally(() => {
-				setTimeout(() => setIsSaving(false), 1000); // Add a delay for better UX
-			});
+		try {
+			saveData({ data: JSON.stringify([]) });
+		} finally {
+			setTimeout(() => setIsSaving(false), 1000); // Add a delay for better UX
+		}
 	};
 
 	const handleDeactivateAll = () => {
 		const updatedBlocksName = blocks.map((block) => block.name);
-		setDisableBlockName({ ...disableBlockName, blocksName: updatedBlocksName });
+		setDisableBlockName(updatedBlocksName);
 		setIsSaving(true);
 
-		saveData({ data: JSON.stringify({ ...disableBlockName, blocksName: updatedBlocksName }) })
-			.finally(() => {
-				setTimeout(() => setIsSaving(false), 1000); // Add a delay for better UX
-			});
+		try {
+			saveData({ data: JSON.stringify(updatedBlocksName) });
+		} finally {
+			setTimeout(() => setIsSaving(false), 1000); // Add a delay for better UX
+		}
 	};
 
 	// Filter blocks based on the search term
@@ -99,7 +104,7 @@ const Blocks = () => {
 						{searchedBlocks.map(block => {
 							const { name, title, icon, demo, docs } = block;
 
-							return <div key={name} className={`block ${blocksName.includes(name) ? 'disabled' : ''}`}>
+							return <div key={name} className={`block ${disableBlockName.includes(name) ? 'disabled' : ''}`}>
 								<div className='icon'>{icon}</div>
 
 								<div className='name'>{title}</div>
@@ -113,7 +118,7 @@ const Blocks = () => {
 								</a>}
 
 								<label className='toggleSwitch'>
-									<input type='checkbox' checked={!blocksName.includes(name)} onChange={(e) => handleCheckboxChange(name, e.target.checked)} />
+									<input type='checkbox' checked={!disableBlockName.includes(name)} onChange={(e) => handleCheckboxChange(name, e.target.checked)} disabled={isSaving} />
 									<span className='slider'></span>
 								</label>
 							</div>

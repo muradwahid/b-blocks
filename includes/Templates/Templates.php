@@ -15,8 +15,8 @@ class Templates {
 	}
 
 	public function bblocks_templates_main(){
-		$nonce = $_POST['_wpnonce'] ?? null;
-		
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
+
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
@@ -28,17 +28,17 @@ class Templates {
 	}
 
 	public function bblocks_templates(){
-		$nonce = $_POST['_wpnonce'] ?? null;
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
 
-		$type = $_POST['type'] ?? 'patterns';
-		$category = $_POST['category'] ?? 'all';
-		$pageNumber = $_POST['pageNumber'] ?? 1;
-		$start = $pageNumber - 1;
-		$search = $_POST['search'] ?? '';
+		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) ) ?? 'patterns';
+        $category = sanitize_text_field( wp_unslash( $_POST['category'] ) ) ?? 'all';
+        $pageNumber = absint( wp_unslash( $_POST['pageNumber'] ) ) ?? 1;
+        $start = $pageNumber - 1;
+        $search = sanitize_text_field( wp_unslash( $_POST['search'] ) ) ?? '';
 
 		$typeFilter = 'patterns' === $type ? 'blocks': '';
 
@@ -53,14 +53,14 @@ class Templates {
 	}
 
 	public function bblocks_template_import(){
-		$nonce = $_POST['_wpnonce'] ?? null;
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
 		
 		try {
-			$data = Image::instance()->maybe_import_images( $_POST['original_content'] ?? '' );
+			$data = Image::instance()->maybe_import_images( wp_unslash( $_POST['original_content'] ) ?? '' );
 			wp_send_json_success( $data );
 		} catch ( \Throwable $th ) {
 			wp_send_json_error( $th->getMessage() );

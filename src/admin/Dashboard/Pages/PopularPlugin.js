@@ -1,10 +1,13 @@
 
 import { useState, useEffect } from 'react';
 
+import { useWPOptionQuery } from '../../../../../bpl-tools/hooks';
+
 import Layout from '../Layout/Layout';
 import { loadingIcon } from '../utils/icons';
 
 const PopularPlugin = () => {
+	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
 	const [installedPlugins, setInstalledPlugins] = useState([]);
 	const [pluginSlug, setPluginSlug] = useState(null);
 	const [popularPlugins, setPopularPlugins] = useState([]);
@@ -14,7 +17,7 @@ const PopularPlugin = () => {
 		const fetchPopularPlugins = async () => {
 			try {
 				setLoading(true);
-				const res = await fetch(`${pluginAction.ajaxUrl}?action=get_popular_plugins&nonce=${pluginAction.nonce}`);
+				const res = await fetch(`${pluginAction.ajaxUrl}?action=get_popular_plugins&nonce=${bBlocksUtils?.nonce}`);
 				const response = await res.json();
 
 				const allowedPlugins = ['html5-audio-player', 'html5-video-player', 'pdf-poster', '3d-viewer'];
@@ -36,7 +39,7 @@ const PopularPlugin = () => {
 		const fetchActivePlugins = async () => {
 			try {
 				const res = await fetch(
-					`${pluginAction.ajaxUrl}?action=get_active_plugins&nonce=${pluginAction.nonce}`
+					`${pluginAction.ajaxUrl}?action=get_active_plugins&nonce=${bBlocksUtils?.nonce}`
 				);
 				const response = await res.json();
 				if (response.success) {
@@ -59,7 +62,7 @@ const PopularPlugin = () => {
 		setPluginSlug(pluginName); // Set the loading state to the plugin name
 
 		try {
-			const res = await fetch(`${pluginAction.ajaxUrl}?action=activated_block&plugin_name=${pluginName}&nonce=${pluginAction.nonce}`);
+			const res = await fetch(`${pluginAction.ajaxUrl}?action=activated_block&plugin_name=${pluginName}&nonce=${bBlocksUtils?.nonce}`);
 			const responseText = await res.text();
 
 			const jsonStart = responseText.indexOf('{');

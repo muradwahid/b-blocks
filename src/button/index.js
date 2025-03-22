@@ -4,8 +4,9 @@ import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
 import { buttonIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: buttonIcon,
 
 	// Build in Functions

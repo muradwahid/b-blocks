@@ -100,7 +100,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	}
 
 	// Require files
-	require_once B_BLOCKS_DIR_PATH . 'includes/AdminMenu.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/Dashboard.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/EnqueueScripts.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Utils.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/GetCSS.php';
@@ -131,16 +131,31 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
+			$disabledBlocks = get_option( 'bBlocksDisabledBlocks', [] );
+			$disabledBlockNames = array_map( function( $block ) {
+				return str_replace( 'b-blocks/', '', $block );
+			}, $disabledBlocks);
+
 			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
 
-			foreach ( $blocks as $block ) {
-				register_block_type( __DIR__ . "/build/$block/block.json" );
+			$enabledBlockNames = array_diff( $blocks, $disabledBlockNames );
+
+			// echo('<pre>');
+			// print_r( $enabledBlocks );
+			// echo('</pre>');
+
+			foreach ( $enabledBlockNames as $block ) {
+				// echo('<pre>');
+				// print_r( $block );
+				// echo('</pre>');
+
+				register_block_type( __DIR__ . "/build/$block" );
 				wp_deregister_script("b-blocks-$block-editor-script");
 			}
 		}
 
 		function bBlocksPipeChecker(){
-			$nonce = $_POST['_wpnonce'] ?? null;
+			$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
 
 			if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 				wp_send_json_error( 'Invalid Request' );

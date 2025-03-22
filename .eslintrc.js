@@ -21,7 +21,8 @@ module.exports = {
 		LottieInteractivity: 'readonly',
 		Plyr: 'readonly',
 		Chart: 'readonly',
-		pluginAction: 'readonly'
+		pluginAction: 'readonly',
+		bBlocksDisabledBlocks: 'readonly'
 	},
 	parserOptions: {
 		ecmaFeatures: {
