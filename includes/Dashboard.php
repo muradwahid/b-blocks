@@ -186,7 +186,9 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 		}
 	
 		function dashboardPage(){ ?>
-			<div id='bBlocksDashboard'></div>
+			<div id='bBlocksDashboard' data-info=<?php echo esc_attr( wp_json_encode([
+				'version' => B_BLOCKS_VERSION
+			]) ); ?>></div>
 		<?php }
 	}
 	new BBlocksDashboard();

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.9.9
+ * Version: 2.0.0
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.9' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.0' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -38,7 +38,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 
 			if ( ! isset( $b_blocks_fs ) ) {
 				// Include Freemius SDK.
-				require_once dirname(__FILE__) . '/freemius/start.php';
+				require_once dirname( __FILE__ ) . '/freemius/start.php';
 
 				$b_blocks_fs = fs_dynamic_init( array(
 					'id'					=> '12845',
@@ -132,25 +132,23 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 
 		function onInit(){
 			$disabledBlocks = get_option( 'bBlocksDisabledBlocks', [] );
-			$disabledBlockNames = array_map( function( $block ) {
-				return str_replace( 'b-blocks/', '', $block );
-			}, $disabledBlocks);
+			$disabledBlocks = is_array( $disabledBlocks ) ? $disabledBlocks : [];
+
+			// Add dependent blocks
+			if ( in_array( 'b-blocks/row', $disabledBlocks ) && !in_array( 'b-blocks/column', $disabledBlocks ) ) {
+				$disabledBlocks[] = 'b-blocks/column';
+			}
+			if ( in_array( 'b-blocks/services', $disabledBlocks ) && !in_array( 'b-blocks/service', $disabledBlocks ) ) {
+				$disabledBlocks[] = 'b-blocks/service';
+			}
 
 			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
 
-			$enabledBlockNames = array_diff( $blocks, $disabledBlockNames );
-
-			// echo('<pre>');
-			// print_r( $enabledBlocks );
-			// echo('</pre>');
-
-			foreach ( $enabledBlockNames as $block ) {
-				// echo('<pre>');
-				// print_r( $block );
-				// echo('</pre>');
-
-				register_block_type( __DIR__ . "/build/$block" );
-				wp_deregister_script("b-blocks-$block-editor-script");
+			foreach ( $blocks as $block ) {
+				if( !in_array( "b-blocks/$block", $disabledBlocks ) ){
+					register_block_type( __DIR__ . "/build/$block" );
+					wp_deregister_script("b-blocks-$block-editor-script");
+				}
 			}
 		}
 

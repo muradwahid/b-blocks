@@ -9,7 +9,7 @@ import blocks from '../utils/blocks';
 
 const dataFetched = new CustomEvent('dataFetched');
 
-const Blocks = () => {
+const Blocks = ({ info }) => {
 	const [isSaving, setIsSaving] = useState(false);
 	const [disableBlockName, setDisableBlockName] = useState([]);
 	const [searchTerm, setSearchTerm] = useState(''); // State to store the search term
@@ -29,9 +29,9 @@ const Blocks = () => {
 	}, [data, isLoading, error]);
 
 	const handleCheckboxChange = (blockName, isChecked) => {
-		const updatedBlocksName = isChecked
-			? disableBlockName.filter((name) => name !== blockName)
-			: [...disableBlockName, blockName];
+		const updatedBlocksName = isChecked ?
+			disableBlockName.filter((name) => name !== blockName) :
+			[...disableBlockName, blockName];
 
 		setDisableBlockName(updatedBlocksName);
 		setIsSaving(true);
@@ -71,61 +71,59 @@ const Blocks = () => {
 		block?.title?.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 
-	return (
-		<Layout>
-			{isSaving && <div className='bBlocksSavingNotice'>Saving changes...</div>}
+	return <Layout info={info}>
+		{isSaving && <div className='bBlocksSavingNotice'>Saving changes...</div>}
 
-			<div className='blocksPage'>
-				<div className='blocksTop'>
-					<h2>All Blocks</h2>
+		<div className='blocksPage'>
+			<div className='blocksTop'>
+				<h2>All Blocks</h2>
 
-					<div className='bBlocksDashboardSearch'>
-						{searchIcon}
+				<div className='bBlocksDashboardSearch'>
+					{searchIcon}
 
-						<input type='text' placeholder='Search blocks...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className='search-input' />
+					<input type='text' placeholder='Search blocks...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className='search-input' />
 
-						{searchTerm && <span onClick={() => setSearchTerm('')}>{closeIcon}</span>}
-					</div>
-
-					<button className='bBlocksDashboardBtn actionBtn activeAllBtn' onClick={handleActivateAll}>
-						Activate All
-					</button>
-
-					<button className='bBlocksDashboardBtn actionBtn secondary' onClick={handleDeactivateAll}>
-						Deactivate All
-					</button>
+					{searchTerm && <span onClick={() => setSearchTerm('')}>{closeIcon}</span>}
 				</div>
 
-				{searchedBlocks.length === 0 ?
-					<h3 className='noBlocksFound'>
-						No blocks found matching your search...
-					</h3> :
-					<div className='blocks'>
-						{searchedBlocks.map(block => {
-							const { name, title, icon, demo, docs } = block;
+				<button className='bBlocksDashboardBtn actionBtn activeAllBtn' onClick={handleActivateAll}>
+					Activate All
+				</button>
 
-							return <div key={name} className={`block ${disableBlockName.includes(name) ? 'disabled' : ''}`}>
-								<div className='icon'>{icon}</div>
-
-								<div className='name'>{title}</div>
-
-								{demo && <a className='actionBtn' href={demo} target='_blank' rel='noopener noreferrer'>
-									{demoIcon}
-								</a>}
-
-								{docs && <a className='actionBtn' href={docs} target='_blank' rel='noopener noreferrer'>
-									{docsIcon}
-								</a>}
-
-								<label className='toggleSwitch'>
-									<input type='checkbox' checked={!disableBlockName.includes(name)} onChange={(e) => handleCheckboxChange(name, e.target.checked)} disabled={isSaving} />
-									<span className='slider'></span>
-								</label>
-							</div>
-						})}
-					</div>}
+				<button className='bBlocksDashboardBtn actionBtn secondary' onClick={handleDeactivateAll}>
+					Deactivate All
+				</button>
 			</div>
-		</Layout>
-	);
+
+			{searchedBlocks.length === 0 ?
+				<h3 className='noBlocksFound'>
+					No blocks found matching your search...
+				</h3> :
+				<div className='blocks'>
+					{searchedBlocks.map(block => {
+						const { name, title, icon, demo, docs } = block;
+
+						return <div key={name} className={`block ${disableBlockName.includes(name) ? 'disabled' : ''}`}>
+							<div className='icon'>{icon}</div>
+
+							<div className='name'>{title}</div>
+
+							{demo && <a className='actionBtn' href={demo} target='_blank' rel='noopener noreferrer'>
+								{demoIcon}
+							</a>}
+
+							{docs && <a className='actionBtn' href={docs} target='_blank' rel='noopener noreferrer'>
+								{docsIcon}
+							</a>}
+
+							<label className='toggleSwitch'>
+								<input type='checkbox' checked={!disableBlockName.includes(name)} onChange={(e) => handleCheckboxChange(name, e.target.checked)} disabled={isSaving} />
+								<span className='slider'></span>
+							</label>
+						</div>
+					})}
+				</div>}
+		</div>
+	</Layout>
 };
 export default Blocks;

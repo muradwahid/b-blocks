@@ -6,7 +6,7 @@ import { useWPOptionQuery } from '../../../../../bpl-tools/hooks';
 import Layout from '../Layout/Layout';
 import { loadingIcon } from '../utils/icons';
 
-const PopularPlugin = () => {
+const PopularPlugin = ({ info }) => {
 	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
 	const [installedPlugins, setInstalledPlugins] = useState([]);
 	const [pluginSlug, setPluginSlug] = useState(null);
@@ -83,7 +83,7 @@ const PopularPlugin = () => {
 		}
 	};
 
-	return <Layout>
+	return <Layout info={info}>
 		<div className='popularPluginsPage'>
 			<div className='popularPluginsTop'>
 				<h2>Most Popular Plugin</h2>

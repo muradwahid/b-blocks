@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, gutenberg page builder, gutenberg blocks, page builder for wordpress, page builder for gutenberg
 Requires at least: 6.5+
 Tested up to: 6.7.2
-Stable tag: 1.9.9
+Stable tag: 2.0.0
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -241,6 +241,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 2.0.0 - 23 Mar 2025 =
+* Add Advanced Image and Navigation Block.
+* New Dashboard.
 
 = 1.9.9 - 27 Jan 2025 =
 * Update SDK.

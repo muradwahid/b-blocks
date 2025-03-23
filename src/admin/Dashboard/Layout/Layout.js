@@ -1,16 +1,16 @@
 import Content from '../Parts/Content';
 import Header from '../Parts/Header';
 
-const Layout = ({ children }) => {
+const Layout = ({ info, children }) => {
 	const navigation = [
 		{ name: 'Welcome', href: '/welcome' },
 		{ name: 'Blocks', href: '/blocks' },
-		{ name: 'In Dev', href: '/inDev' },
-		{ name: 'Popular Plugin', href: '/popularPlugin' }
+		{ name: 'In Dev', href: '/inDev' }
+		// { name: 'Popular Plugin', href: '/popularPlugin' }
 	]
 
 	return <>
-		<Header navigation={navigation} />
+		<Header info={info} navigation={navigation} />
 		<Content>{children}</Content>
 	</>
 }

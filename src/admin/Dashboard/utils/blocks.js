@@ -178,7 +178,7 @@ export default [
 	},
 	{
 		name: `${pluginSlug}/countdown`,
-		title: 'CountDown',
+		title: 'Countdown Timer',
 		icon: countdownIcon,
 		demo: `${demoLink}/countdown/`,
 		docs: `${docsURL}/countdown-block/`

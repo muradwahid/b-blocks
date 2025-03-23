@@ -4,7 +4,7 @@ import Layout from '../Layout/Layout';
 import { changelogs, helpItems } from '../utils/data';
 import { minus, plus } from '../utils/icons';
 
-const Welcome = () => {
+const Welcome = ({ info }) => {
 	const [isChangeLog, setIsChangeLog] = useState(false);
 
 	const handleCreateNewPage = (e) => {
@@ -19,7 +19,7 @@ const Welcome = () => {
 	};
 
 	return <>
-		<Layout>
+		<Layout info={info}>
 			<div className='welcomePage'>
 				<div className='welcomeLeft'>
 					<div className='welcomeLeftBody'>
@@ -77,13 +77,15 @@ const Welcome = () => {
 			</div>
 
 			{isChangeLog && changelogs.map((log, index) => {
-				const { date, list } = log;
+				const { version, list } = log;
 
 				return <div key={index} className='item'>
-					<span className='date'>{date}</span>
+					<span className='version'>{version}</span>
 
 					<ul className='list'>
-						{list.map((item, token) => { return <li key={token}>{item?.title}</li> })}
+						{list.map((item, index) => <li key={index}>
+							{item}
+						</li>)}
 					</ul>
 				</div>
 			})}

@@ -5,8 +5,9 @@ import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
 import { columnsIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled('b-blocks/row') && registerBlockType(metadata, {
 	icon: columnsIcon,
 
 	// Build in Functions

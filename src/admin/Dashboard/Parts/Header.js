@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ navigation }) => {
+const Header = ({ info, navigation }) => {
 	return <div className='bPlDashboardHeader'>
 		<div className='pluginInfo'>
 			<div className='name'>
@@ -8,7 +8,7 @@ const Header = ({ navigation }) => {
 				<h1> B Blocks </h1>
 			</div>
 
-			<div className='version'> v1.9.6 </div>
+			<div className='version'> v{info?.version} </div>
 		</div>
 
 		<div className='navLinks'>

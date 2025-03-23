@@ -1,8 +1,37 @@
 export const changelogs = [
 	{
-		date: '1.9.6 - 22 Oct 2024',
+		version: '2.0.0 - 23 Mar 2025',
 		list: [
-			{ title: 'Add Container and Icon Box block' },
+			'Add Advanced Image and Navigation Block.',
+			'New Dashboard.'
+		]
+	},
+
+	{
+		version: '1.9.9 - 27 Jan 2025',
+		list: [
+			'Update SDK.'
+		]
+	},
+
+	{
+		version: '1.9.8 - 23 Nov 2024',
+		list: [
+			'Fix Templates issue.',
+			'Fix 3D Viewer zoom issue.'
+		]
+	},
+	{
+		version: '1.9.7 - 20 Nov 2024',
+		list: [
+			'Improve templates library',
+			'Update Container Block'
+		]
+	},
+	{
+		version: '1.9.6 - 22 Oct 2024',
+		list: [
+			'Add Container and Icon Box block'
 		]
 	}
 ]
