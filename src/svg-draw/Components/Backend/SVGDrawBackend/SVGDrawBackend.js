@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import anime from "animejs";
 import React, { useEffect, useRef, useState } from "react";
 import SVG from "react-inlinesvg";

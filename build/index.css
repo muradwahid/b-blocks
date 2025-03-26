@@ -3117,6 +3117,190 @@ button.swiper-pagination-bullet {
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/counters/editor.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************/
 
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/data-table/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-data-table * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-data-table .bpdt-data-table-addRow {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-top: 0px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.wp-block-b-blocks-data-table .bpdt-data-table-addRow:hover {
+  background-color: #e5e5e5;
+}
+.wp-block-b-blocks-data-table .bpdt-data-table-addRow button {
+  border: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 5px 3px rgba(204, 204, 204, 0.5490196078);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.table-header-panel-wrapper .bpdt-addItems {
+  display: "flex";
+  justify-content: "center";
+  margin-top: "5px";
+}
+.table-header-panel-wrapper .table-body-removeRow {
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+}
+.table-header-panel-wrapper .table-body-removeRow .remove-row {
+  border: none;
+  padding: 7px 20px;
+  background: #bd434f;
+  color: white;
+  transition: background 0.2s ease-in-out;
+  cursor: pointer;
+}
+.table-header-panel-wrapper .table-body-removeRow .remove-row:hover {
+  background: #bb2d3b;
+}
+.table-header-panel-wrapper .table-body-removeRow .add-col {
+  border: none;
+  padding: 7px 20px;
+  background: #3858e9;
+  color: white;
+  cursor: pointer;
+}
+.table-header-panel-wrapper .table-body-removeRow .add-col .addButton {
+  color: white;
+}
+
+.panel-header-title .panel-header-single-icon {
+  border-left: 1px solid #ccc;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.panel-header-title .panel-header-single-icon:hover {
+  background-color: #ccc;
+}
+
+.tablePanelStyle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/data-table/Components/Backend/Settings/General/BodySettings/style.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+.table-body-panel-wrapper {
+  .panel-body-main-container {
+    margin-bottom: 10px;
+
+    .panel-body-title-container {
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      height: 40px;
+      margin: 0px;
+
+      .panel-body-title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        p {
+          cursor: pointer;
+          margin: 0px;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          padding-left: 5px;
+          transition: background-color 0.2s ease-in-out;
+          overflow: hidden;
+
+          div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &:hover {
+            background-color: #ccc;
+          }
+
+        }
+
+        .panel-body-single-icon {
+          border-left: 1px solid #ccc;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 35px;
+          cursor: pointer;
+          font-size: 17px;
+
+          &:hover {
+            background-color: #ccc;
+          }
+        }
+      }
+    }
+
+    .table-body-control-body-wrapper {
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-top: 0px;
+    }
+  }
+
+  .remove-row {
+    border: none;
+    padding: 7px 15px;
+    background: #bd434f;
+    color: white;
+    transition: background .2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background: #bb2d3b;
+    }
+  }
+
+  .add-col {
+    border: none;
+    padding: 7px 15px;
+    background: #3858e9;
+    color: white;
+    cursor: pointer;
+
+    .addButton {
+      color: white;
+    }
+  }
+}
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/feature-boxes/editor.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************/

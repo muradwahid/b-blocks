@@ -2,7 +2,7 @@ import React from "react";
 import { arrows as arrowIcons } from "../../utils/arrows";
 import Ticker from "./Ticker";
 
-const ContentTicker = ({ attributes, el }) => {
+const ContentTicker = ({ attributes }) => {
   const { animation, arrows, badge } = attributes;
   return (
     <div className="cttk-ticker-wrapper">
