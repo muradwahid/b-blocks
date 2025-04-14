@@ -1,19 +1,24 @@
 export const changelogs = [
 	{
+		version: '2.0.1 - 23 Mar 2025',
+		list: [
+			`Sanitize input field.`,
+			`Fix RichText issue.`
+		]
+	},
+	{
 		version: '2.0.0 - 23 Mar 2025',
 		list: [
 			'Add Advanced Image and Navigation Block.',
 			'New Dashboard.'
 		]
 	},
-
 	{
 		version: '1.9.9 - 27 Jan 2025',
 		list: [
 			'Update SDK.'
 		]
 	},
-
 	{
 		version: '1.9.8 - 23 Nov 2024',
 		list: [

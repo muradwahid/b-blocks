@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 import Style from './Components/Common/Style';
 import Service from './Components/Common/Service';
+import { sanitizeHTML, sanitizeURL } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const serviceEls = document.querySelectorAll('.wp-block-b-blocks-service');
@@ -15,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Service attributes={attributes}>
 				{isTitle && title && <>
 					{'title' === linkIn && link ?
-						<a href={link}><h3 className='title' dangerouslySetInnerHTML={{ __html: title }} /></a> :
-						<h3 className='title' dangerouslySetInnerHTML={{ __html: title }} />}
+						<a href={sanitizeURL(link)}><h3 className='title' dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} /></a> :
+						<h3 className='title' dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} />}
 				</>}
 
-				{isDesc && desc && <p className='description' dangerouslySetInnerHTML={{ __html: desc }} />}
+				{isDesc && desc && <p className='description' dangerouslySetInnerHTML={{ __html: sanitizeHTML(desc) }} />}
 			</Service>
 		</>);
 

@@ -6,6 +6,7 @@ import usePremium from '../hooks/usePremium';
 import Button from './Components/Common/Button';
 import Style from './Components/Common/Style';
 import Popup from './Components/Frontend/Popup';
+import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const buttonEls = document.querySelectorAll('.wp-block-b-blocks-button');
@@ -64,7 +65,7 @@ const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 				}
 			}
 		}} >
-			{text && <span className='btnText' dangerouslySetInnerHTML={{ __html: text }} />}
+			{text && <span className='btnText' dangerouslySetInnerHTML={{ __html: sanitizeHTML(text) }} />}
 		</Button>
 
 		{securityPop && <SecurityPopup attributes={attributes} info={info} setSecurityPop={setSecurityPop} setSecurityPass={setSecurityPass} />}

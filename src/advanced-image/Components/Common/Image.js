@@ -1,3 +1,5 @@
+import { sanitizeURL } from '../../../utils/functions';
+
 const Image = ({ image, link, isBackend = false }) => {
 	const { url, alt, title } = image || {};
 
@@ -10,5 +12,5 @@ export default Image;
 const LinkProvider = ({ link = {}, children, isBackend }) => {
 	const { url = '', tab = '_self' } = link;
 
-	return (url && !isBackend) ? <a href={url} target={tab}>{children}</a> : children;
+	return (url && !isBackend) ? <a href={sanitizeURL(url)} target={tab}>{children}</a> : children;
 }

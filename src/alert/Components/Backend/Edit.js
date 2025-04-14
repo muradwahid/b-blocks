@@ -15,13 +15,11 @@ const Edit = props => {
 
 	useEffect(() => tabController(), [isSelected]);
 
-	const id = `${prefix}-${clientId}`;
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<div className={prefix}>
 				<div className='alert'>

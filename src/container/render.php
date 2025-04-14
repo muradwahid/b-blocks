@@ -14,8 +14,10 @@ $mainSl = "#$id .$prefix";
 $cSl = "$mainSl .$prefix" . "Content";
 
 $bBlocksContainerCSS = "
-	$mainSl{
+	#$id{
 		min-height: " . Utils::valForZero( $wrapper['minHeight'] ) . ";
+	}
+	$mainSl{
 		align-items: $horizontalAlign;
 		justify-content: $verticalAlign;
 	}

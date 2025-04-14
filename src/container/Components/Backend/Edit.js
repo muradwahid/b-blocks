@@ -19,10 +19,10 @@ const Edit = props => {
 	const ref = useRef();
 	useAnimation(ref.current, advanced?.animation);
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	return <div {...useBlockProps()}>
-		<div className='wp-block-b-blocks-container' id={id} ref={ref}>
+		<div ref={ref}>
 			<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={id} isPremium={isPremium} />
 
 			<Style attributes={attributes} id={id} isBackend={true} />

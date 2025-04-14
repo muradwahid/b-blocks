@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
 import PriceFeatures from '../Common/PriceFeatures';
+import { sanitizeURL } from '../../../utils/functions';
 
 const PriceTable = ({ priceTable, index, className, activeIndex, setActiveIndex, updatePriceTable }) => {
 	const { name, price, priceCurrency, period, link, linkLabel, features } = priceTable;
@@ -38,7 +39,7 @@ const PriceTable = ({ priceTable, index, className, activeIndex, setActiveIndex,
 			{!isStandard && !isUltimate ? <div className='priceAmountWrap'>{priceAmountEl}</div> : ''}
 			{!isBasic && <br />}
 
-			{linkLabel && <RichText className='priceLink' tagName='a' value={linkLabel} href={link} onChange={val => updatePriceTable('linkLabel', val)} placeholder={__('Link Label', 'b-blocks')} inlineToolbar />}
+			{linkLabel && <RichText className='priceLink' tagName='a' value={linkLabel} href={sanitizeURL(link)} onChange={val => updatePriceTable('linkLabel', val)} placeholder={__('Link Label', 'b-blocks')} inlineToolbar />}
 		</div>
 	</div>;
 }

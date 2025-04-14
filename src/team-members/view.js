@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './style.scss';
 import Style from './Components/Common/Style';
 import { prefix } from './utils/data';
+import { sanitizeHTML, sanitizeURL } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const teamEls = document.querySelectorAll('.wp-block-b-blocks-team-members');
@@ -22,17 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
 						{photo?.url && <img className='memberPhoto' src={photo.url} alt={photo?.alt} />}
 
 						<div className='memberDetails'>
-							{name && <h4 className='memberName' dangerouslySetInnerHTML={{ __html: name }} />}
-							{isTitle && title && <p className='memberTitle' dangerouslySetInnerHTML={{ __html: title }} />}
+							{name && <h4 className='memberName' dangerouslySetInnerHTML={{ __html: sanitizeHTML(name) }} />}
+							{isTitle && title && <p className='memberTitle' dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} />}
 							{isSep && <span className='memberSeparator' />}
-							{isBio && bio && <p className='memberBio' dangerouslySetInnerHTML={{ __html: bio }} />}
+							{isBio && bio && <p className='memberBio' dangerouslySetInnerHTML={{ __html: sanitizeHTML(bio) }} />}
 
 							{isSocial && <ul className='memberSocial'>
 								{social?.map((socialItem, socialIndex) => {
 									const { link, icon } = socialItem;
 
 									return <li key={socialIndex} className={`icon icon-${index}-${socialIndex}`}>
-										<a href={link} target={isLinkNewTab ? '_blank' : '_self'} rel="noreferrer">
+										<a href={sanitizeURL(link)} target={isLinkNewTab ? '_blank' : '_self'} rel="noreferrer">
 											<i className={icon?.class} />
 										</a>
 									</li>;

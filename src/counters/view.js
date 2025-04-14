@@ -6,6 +6,7 @@ import Style from './Components/Common/Style';
 import Counter from './Components/Common/Counter';
 import { performCounter } from './utils/functions';
 import { prefix } from './utils/data';
+import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const countersEls = document.querySelectorAll('.wp-block-b-blocks-counters');
@@ -40,7 +41,7 @@ const Counters = ({ attributes, countersEl }) => {
 			{counters?.map((counter, index) => {
 				const { text } = counter.label;
 
-				const labelEl = isLabel && text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: text }} />
+				const labelEl = isLabel && text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: sanitizeHTML(text) }} />
 
 				return <Counter key={index} attributes={attributes} counter={counter} index={index} labelEl={labelEl} />;
 			})}

@@ -6,6 +6,7 @@ import Style from './Components/Common/Style';
 import DotLottiePlayer from './Components/Common/DotLottiePlayer';
 import { toggleAttr } from './utils/functions';
 import { prefix } from './utils/data';
+import { sanitizeURL } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const playerEls = document.querySelectorAll('.wp-block-b-blocks-lottie-player');
@@ -57,7 +58,7 @@ const RenderLottiePlayer = ({ attributes, id }) => {
 
 	return <div className={prefix}>
 		{link ?
-			<a href={link} target={isLinkInNewTab ? '_blank' : '_self'} rel='noreferrer'>
+			<a href={sanitizeURL(link)} target={isLinkInNewTab ? '_blank' : '_self'} rel='noreferrer'>
 				<DotLottiePlayer ref={lottieEl} attributes={attributes} />
 			</a> :
 			<DotLottiePlayer ref={lottieEl} attributes={attributes} />}

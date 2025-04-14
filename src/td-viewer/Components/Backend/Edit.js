@@ -8,7 +8,6 @@ import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import TDViewer from '../Common/TDViewer';
 import { toggleAttr } from '../../utils/functions';
-import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected } = props;
@@ -32,13 +31,11 @@ const Edit = props => {
 		tdViewerRef.current.appendChild(reInitModel);
 	}, [sourceType, model, modelLink, isTouchMove, isZoom, loadingType]);
 
-	const id = `${prefix}-${clientId}`;
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			{'upload' === sourceType && !model.url ? <p className='noModel'>{__('Please, upload Model or enter Model Link first!', '3d-viewer-block')}</p> : ''}
 

@@ -9,12 +9,12 @@ const Edit = props => {
 
 	const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${dimension}x${dimension}&color=${color.replace('#', '')}&bgcolor=${bgColor.replace('#', '')}&ecc=L&qzone=1&data=${url || 'http://bplugins.com'}`;
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				#${id} .${prefix}{

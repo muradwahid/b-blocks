@@ -19,7 +19,7 @@ const Edit = props => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [rendered, setRendered] = useState(true);
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	useEffect(() => {
 		setRendered(!rendered);
@@ -71,9 +71,9 @@ const Edit = props => {
 	const SliderEl = () => <Slider attributes={attributes} initialSlide={activeIndex} isBackend={true} />
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} activeIndex={activeIndex} isPremium={isPremium} setActiveIndex={setActiveIndex} id={id} />
+		<Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} activeIndex={activeIndex} isPremium={isPremium} setActiveIndex={setActiveIndex} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={id} />
 
 			<SliderEl />

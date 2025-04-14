@@ -1,11 +1,14 @@
 $primaryColor: #4527a4;
 
 .wp-block-b-blocks-container {
+	display: grid;
+
 	* {
 		box-sizing: border-box;
 	}
 
 	.bBlocksContainer {
+		min-height: 100%;
 		position: relative;
 		display: flex;
 		flex-direction: column;

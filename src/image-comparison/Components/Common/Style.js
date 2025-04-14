@@ -1,5 +1,5 @@
-import { isExist } from '../../../../../bpl-tools/utils/functions';
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { isExist } from '../../../../../bpl-tools/utils/common';
 
 import { prefix } from '../../utils/data';
 import { handlerBorder } from '../../utils/options';

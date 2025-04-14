@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { prefix } from '../../utils/data';
 import PriceFeatures from '../Common/PriceFeatures';
+import { sanitizeHTML, sanitizeURL } from '../../../utils/functions';
 
 const PricingTable = ({ attributes, id, isBasic, isStandard, isUltimate }) => {
 	const { pricingTables, columns } = attributes;
@@ -36,11 +37,11 @@ const PricingTable = ({ attributes, id, isBasic, isStandard, isUltimate }) => {
 		}, []);
 
 		const priceAmountEl = <span className='priceAmount'>{priceCurrency}{price}</span>;
-		const pricePeriodEl = <span className='pricePeriod' dangerouslySetInnerHTML={{ __html: period }} />;
+		const pricePeriodEl = <span className='pricePeriod' dangerouslySetInnerHTML={{ __html: sanitizeHTML(period) }} />;
 
 		return <div key={index} id={`priceItem-${index}`}>
 			<div className='priceItem' ref={priceTableEl}>
-				<h3 className='priceName' dangerouslySetInnerHTML={{ __html: name }} />
+				<h3 className='priceName' dangerouslySetInnerHTML={{ __html: sanitizeHTML(name) }} />
 
 				{isStandard || isUltimate ? <div className='priceAmountWrap' ref={priceAmountWrapEl}>{priceAmountEl}{period ? ` / ` : ''}{pricePeriodEl}</div> : ''}
 
@@ -49,7 +50,7 @@ const PricingTable = ({ attributes, id, isBasic, isStandard, isUltimate }) => {
 				{!isStandard && !isUltimate ? <div className='priceAmountWrap'>{priceAmountEl}</div> : ''}
 				{!isBasic && <br />}
 
-				{linkLabel && <a className='priceLink' href={link} dangerouslySetInnerHTML={{ __html: linkLabel }} />}
+				{linkLabel && <a className='priceLink' href={sanitizeURL(link)} dangerouslySetInnerHTML={{ __html: sanitizeHTML(linkLabel) }} />}
 			</div>
 		</div>;
 	}

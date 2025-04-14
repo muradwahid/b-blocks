@@ -5,6 +5,7 @@ import Style from './Components/Common/Style';
 import Countdown from './Components/Common/Countdown';
 import { isMobile, isTablet } from './utils/functions';
 import { closeIcon } from './utils/icons';
+import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const countdownEls = document.querySelectorAll('.wp-block-b-blocks-countdown');
@@ -42,6 +43,6 @@ const Box = (props) => {
 
 	return is && <div className={`countdownItem ${boxClass}`}>
 		<span className='digit'>{digit}</span>
-		{(isLabels && label) && <label className='label' dangerouslySetInnerHTML={{ __html: label }} />}
+		{(isLabels && label) && <label className='label' dangerouslySetInnerHTML={{ __html: sanitizeHTML(label) }} />}
 	</div>;
 };

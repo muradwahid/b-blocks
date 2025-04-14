@@ -7,6 +7,7 @@ import { tabController } from '../../../../../bpl-tools/utils/functions';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import { prefix } from '../../utils/data';
+import { sanitizeURL } from '../../../utils/functions';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected } = props;
@@ -14,17 +15,15 @@ const Edit = props => {
 
 	useEffect(() => tabController(), [isSelected]);
 
-	const id = `${prefix}-${clientId}`;
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<div className={prefix}>
 				<div className='bBlocksBtn firstBtn'>
-					<RichText className={`btnOne btn-${btnType}`} tagName='a' href={btnOneLink} value={btnOne} onChange={val => setAttributes({ btnOne: val })} placeholder={__('First Button', 'b-blocks')} inlineToolbar />
+					<RichText className={`btnOne btn-${btnType}`} tagName='a' href={sanitizeURL(btnOneLink)} value={btnOne} onChange={val => setAttributes({ btnOne: val })} placeholder={__('First Button', 'b-blocks')} inlineToolbar />
 
 					{isSep && <div className='btnSeparator'>
 						{'text' === sepType ? <span>{sepText}</span> : 'icon' === sepType && sepIcon?.class ? <i className={sepIcon?.class}></i> : ''}
@@ -32,7 +31,7 @@ const Edit = props => {
 				</div>
 
 				<div className='bBlocksBtn secondBtn'>
-					<RichText className={`btnTwo btn-${btnType}`} tagName='a' href={btnTwoLink} value={btnTwo} onChange={val => setAttributes({ btnTwo: val })} placeholder={__('Second Button', 'b-blocks')} inlineToolbar />
+					<RichText className={`btnTwo btn-${btnType}`} tagName='a' href={sanitizeURL(btnTwoLink)} value={btnTwo} onChange={val => setAttributes({ btnTwo: val })} placeholder={__('Second Button', 'b-blocks')} inlineToolbar />
 				</div>
 			</div>
 		</div>

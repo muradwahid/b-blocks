@@ -21,8 +21,6 @@ const Edit = props => {
 
 	useEffect(() => tabController(), [isSelected]);
 
-	const id = `${rowPrefix}-${clientId}`;
-
 	const updateColumns = type => {
 		const newColumns = type === 'add' ? columns + 1 : columns - 1;
 		const columnFixedWidth = 6 === newColumns ? 16.66 : toFixed(100 / newColumns);
@@ -54,8 +52,8 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} isBackend={true} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
 			{!columns ? <div className='columnLayoutContainer'>
 				<h3><Dashicon icon='layout' /> {__('Select a column layout', 'b-blocks')}</h3>

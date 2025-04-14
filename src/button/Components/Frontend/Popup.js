@@ -1,3 +1,5 @@
+import { sanitizeHTML } from '../../../utils/functions';
+
 const Popup = ({ isOpen, onClose, caption, children }) => {
 	if (!isOpen) {
 		return null;
@@ -13,7 +15,7 @@ const Popup = ({ isOpen, onClose, caption, children }) => {
 		<div className='popupContent' onClick={e => e.stopPropagation()}>
 			{children}
 
-			{caption && <p className='popupCaption' dangerouslySetInnerHTML={{ __html: caption }} />}
+			{caption && <p className='popupCaption' dangerouslySetInnerHTML={{ __html: sanitizeHTML(caption) }} />}
 		</div>
 	</div>;
 };

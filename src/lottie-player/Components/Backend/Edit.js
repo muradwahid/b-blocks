@@ -25,7 +25,7 @@ const Edit = props => {
 		});
 	}
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	// Set or Remove attributes
 	const lottieWrapper = document.querySelector(`#${id} .${prefix} .lottieHolder`);
@@ -64,7 +64,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} fileFrameSize={fileFrameSize} isPremium={isPremium} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={id} />
 
 			<div className={prefix}>
