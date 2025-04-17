@@ -14,6 +14,7 @@ import './content-ticker';
 import './countdown';
 import './counters';
 import './data-table';
+import './dual-color-heading';
 import './feature-boxes';
 import './flip-boxes';
 import './gif';

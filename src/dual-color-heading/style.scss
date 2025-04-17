@@ -1,0 +1,35 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-dual-color-heading {
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .icon {
+    font-style: inherit;
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .dch-dual-color-container {
+    padding: 10px;
+    .dch-dual-color-title {
+      margin: 10px 0;
+    }
+    .dch-separator-wrapper {
+      display: flex;
+      width: 100%;
+      .dch-separator-icon {
+        display: flex;
+      }
+    }
+    .dch-dual-color-icon-svg{
+      display:flex
+    }
+  }
+}
