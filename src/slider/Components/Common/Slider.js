@@ -1,8 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, EffectFade, EffectCube, EffectCreative, EffectCoverflow, EffectFlip, EffectCards } from 'swiper/modules';
 
+import { sanitizeHTML, sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
-import { sanitizeHTML, sanitizeURL } from '../../../utils/functions';
 
 const Slider = ({ attributes, initialSlide = 0, isBackend = false }) => {
 	const { slides = [], columns, columnGap, isLoop, isTouchMove, speed, isAutoplay, autoplayOptions, freeModeOptions = {}, effect, keyboardOptions = {}, isMousewheel = false, isPage, isPageClickable, isPageDynamic, isPrevNext, isTitle, isDesc, isBtn } = attributes;

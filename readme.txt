@@ -1,9 +1,9 @@
 === B Blocks - The ultimate block collection ===
-Contributors: bplugins, abuhayat, charlescormier
+Contributors: bplugins, abuhayat, charlescormier, muradwahid, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, gutenberg page builder, gutenberg blocks, page builder for wordpress, page builder for gutenberg
 Requires at least: 6.5+
-Tested up to: 6.7.2
+Tested up to: 6.8
 Stable tag: 2.0.1
 Requires PHP: 7.1
 License: GPLv3 or later

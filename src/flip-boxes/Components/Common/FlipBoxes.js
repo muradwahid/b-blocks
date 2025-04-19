@@ -1,4 +1,5 @@
-import { sanitizeURL } from '../../../utils/functions';
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
 
 const FlipBoxes = ({ attributes, isBackend = false, custom }) => {

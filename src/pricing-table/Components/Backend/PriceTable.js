@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import PriceFeatures from '../Common/PriceFeatures';
-import { sanitizeURL } from '../../../utils/functions';
 
 const PriceTable = ({ priceTable, index, className, activeIndex, setActiveIndex, updatePriceTable }) => {
 	const { name, price, priceCurrency, period, link, linkLabel, features } = priceTable;

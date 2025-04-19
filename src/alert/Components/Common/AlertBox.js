@@ -1,4 +1,5 @@
-import { sanitizeHTML } from '../../../utils/functions';
+import { sanitizeHTML } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
 
 const AlertBox = ({ attributes, alertEl = null }) => {

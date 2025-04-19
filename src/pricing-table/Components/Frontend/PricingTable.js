@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { prefix } from '../../utils/data';
+
+import { sanitizeHTML, sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import PriceFeatures from '../Common/PriceFeatures';
-import { sanitizeHTML, sanitizeURL } from '../../../utils/functions';
+import { prefix } from '../../utils/data';
 
 const PricingTable = ({ attributes, id, isBasic, isStandard, isUltimate }) => {
 	const { pricingTables, columns } = attributes;

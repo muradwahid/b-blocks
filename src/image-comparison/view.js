@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import ImageCompareTwo from './Components/Common/ImageCompareTwo';
-import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const imageCompareEls = document.querySelectorAll('.wp-block-b-blocks-image-comparison');

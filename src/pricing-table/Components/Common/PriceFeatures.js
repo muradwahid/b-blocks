@@ -1,4 +1,5 @@
-import { sanitizeHTML } from '../../../utils/functions';
+import { sanitizeHTML } from '../../../../../bpl-tools/utils/common';
+
 import { enabledIcon, disabledIcon } from '../../utils/icons';
 
 const PriceFeatures = ({ features }) => {

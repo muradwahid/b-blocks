@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML, sanitizeURL } from '../../../bpl-tools/utils/common';
+
 import Style from './Components/Common/Style';
 import Service from './Components/Common/Service';
-import { sanitizeHTML, sanitizeURL } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const serviceEls = document.querySelectorAll('.wp-block-b-blocks-service');

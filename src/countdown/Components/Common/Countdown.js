@@ -1,7 +1,8 @@
+import { sanitizeHTML, sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import CountdownBoxes from './CountdownBoxes';
 import useCountdown from '../../hook/useCountdown';
 import { prefix } from '../../utils/data';
-import { sanitizeHTML, sanitizeURL } from '../../../utils/functions';
 
 const Countdown = ({ attributes, Box, closeEl, isBackend = false, custom = {}, children }) => {
 	const { destDate, isResponsive, isExpired, prefixText, suffixButtonText, suffixButtonUrl, addID, addClass, isDismiss } = attributes;

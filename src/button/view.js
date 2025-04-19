@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import usePremium from '../hooks/usePremium';
 import Button from './Components/Common/Button';
 import Style from './Components/Common/Style';
 import Popup from './Components/Frontend/Popup';
-import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const buttonEls = document.querySelectorAll('.wp-block-b-blocks-button');

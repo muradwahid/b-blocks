@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import Counter from './Components/Common/Counter';
 import { performCounter } from './utils/functions';
 import { prefix } from './utils/data';
-import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const countersEls = document.querySelectorAll('.wp-block-b-blocks-counters');

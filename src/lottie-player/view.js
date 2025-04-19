@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeURL } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import DotLottiePlayer from './Components/Common/DotLottiePlayer';
 import { toggleAttr } from './utils/functions';
 import { prefix } from './utils/data';
-import { sanitizeURL } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const playerEls = document.querySelectorAll('.wp-block-b-blocks-lottie-player');

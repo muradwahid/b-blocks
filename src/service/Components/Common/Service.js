@@ -1,6 +1,7 @@
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import { longArrowToRightIcon } from '../../../services/utils/icons';
 import { childPrefix } from '../../../services/utils/data';
-import { sanitizeURL } from '../../../utils/functions';
 
 const Service = ({ attributes, children }) => {
 	const { title, isIcon, isUpIcon, icon, upIcon, isLink, link, linkIn } = attributes;

@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML, sanitizeURL } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import { prefix } from './utils/data';
-import { sanitizeHTML, sanitizeURL } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const teamEls = document.querySelectorAll('.wp-block-b-blocks-team-members');

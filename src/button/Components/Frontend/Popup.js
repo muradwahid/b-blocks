@@ -1,4 +1,4 @@
-import { sanitizeHTML } from '../../../utils/functions';
+import { sanitizeHTML } from '../../../../../bpl-tools/utils/common';
 
 const Popup = ({ isOpen, onClose, caption, children }) => {
 	if (!isOpen) {

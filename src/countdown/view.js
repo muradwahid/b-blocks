@@ -1,11 +1,12 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import Countdown from './Components/Common/Countdown';
 import { isMobile, isTablet } from './utils/functions';
 import { closeIcon } from './utils/icons';
-import { sanitizeHTML } from '../utils/functions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const countdownEls = document.querySelectorAll('.wp-block-b-blocks-countdown');

@@ -3,11 +3,11 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import { tabController } from '../../../../../bpl-tools/utils/functions';
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import { prefix } from '../../utils/data';
-import { sanitizeURL } from '../../../utils/functions';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected } = props;

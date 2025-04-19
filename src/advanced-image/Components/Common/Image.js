@@ -1,4 +1,4 @@
-import { sanitizeURL } from '../../../utils/functions';
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
 
 const Image = ({ image, link, isBackend = false }) => {
 	const { url, alt, title } = image || {};
