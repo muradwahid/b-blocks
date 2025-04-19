@@ -26,7 +26,6 @@ const Style = ({ attributes, id }) => {
 			${getTypoCSS("", heading.typography)?.googleFontLink}
 			${getTypoCSS("", subHeading.typography)?.googleFontLink}
 			${blockSl}{
-				display:grid;
 				${justifyItems("desktop")};
 			}
 			${getTypoCSS(titleSl, heading.typography).styles}
@@ -40,16 +39,16 @@ const Style = ({ attributes, id }) => {
 						: "flex-end"
 				};
 				margin: ${getBoxCSS(separator.margin)};
-	  	}
+	}
 
-	  ${["left", "right"]
+	${["left", "right"]
 					.map(
 						(side) => `${mainSl} .separator-${side}{
 					width:${separator[side].width};
 					height:${separator[side].height};
 					background:${separator[side].color};
 					border-radius: ${getBoxCSS(separator[side].bRadius)};
-	  		}`
+	}`
 					)
 					.join("")}
 
@@ -60,9 +59,6 @@ const Style = ({ attributes, id }) => {
 			}
 			${separatorIcon} svg path{
 				fill: ${separator.iconColor};
-			}
-			${iconSl}{
-				margin:10px 0px;
 			}
 			${iconSl}>svg{
 				height:${icon.size}px;

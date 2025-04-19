@@ -4,7 +4,7 @@
   "name": "b-blocks/image-scroller",
   "version": "1.0.0",
   "title": "Image Scroller",
-  "category": "widgets",
+  "category": "bBlocks",
   "description": "A dynamic image scroller that smoothly scrolls images on hover, featuring customizable speed, easing, and options for vertical or horizontal scrolling.",
   "keywords": ["scroll", "image", "image scroller"],
   "textdomain": "b-blocks",

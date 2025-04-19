@@ -9,6 +9,7 @@ const DualColorHeading = ({ attributes }) => {
     attributes;
   const headingRef = useRef(null);
   // useAnimation(headingRef.current, advanced?.animation);
+  console.log(icon.icon.upload);
   return (
     <div className="dch-dual-color-container" ref={headingRef}>
       {sortElements.map((el) => {
@@ -75,7 +76,7 @@ const DualColorHeading = ({ attributes }) => {
                   {icon.iconType === "upload" && (
                     <span className="dch-dual-color-icon-svg">
                       <SVG
-                        src={icon.icon?.upload || oktaIconSvg}
+                        src={icon.icon?.upload.url || oktaIconSvg}
                       />
                     </span>
                   )}

@@ -4,7 +4,7 @@
   "name": "b-blocks/data-table",
   "description": "Data Table allows you to create and manage tables on your website.",
   "title": "Data Table",
-  "category": "widgets",
+  "category": "bBlocks",
   "keywords": ["data table", "table", "data"],
   "textdomain": "b-blocks",
   "attributes": {

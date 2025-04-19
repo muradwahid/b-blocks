@@ -4,7 +4,7 @@
   "name": "b-blocks/content-ticker",
   "version": "1.0.0",
   "title": "Content Ticker",
-  "category": "widgets",
+  "category": "bBlocks",
   "description": "Content Ticker will let you showcase your trending news.",
   "keywords": ["content", "ticker", "content-ticker"],
   "textdomain": "b-blocks",

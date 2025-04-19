@@ -4,8 +4,8 @@
   "name": "b-blocks/svg-draw",
   "version": "1.0.0",
   "title": "SVG Draw",
-  "category": "widgets",
-  "description": "Short description of the block",
+  "category": "bBlocks",
+  "description": "Add animated SVG drawings to your content with customizable paths, timing, and effects.",
   "keywords": ["svg", "draw", "icon", "draw svg", "animated icon"],
   "textdomain": "b-blocks",
   "attributes": {
