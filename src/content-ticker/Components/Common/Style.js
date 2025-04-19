@@ -1,5 +1,5 @@
 import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
-import { isExist } from '../../../../../bpl-tools/utils/functions';
+import { isExist } from '../../../../../bpl-tools/utils/common';
 import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getTypoCSS, isValidCSS } from "../../../../../bpl-tools/utils/getCSS";
 import { getBorderRadiusCSS } from "../../utils/functions";
 
@@ -14,7 +14,7 @@ const Style = ({ attributes, id }) => {
   const nextBtn = `${wrapper} #cttk-nextBtn`;
   const prevBtn = `${wrapper} #cttk-prevBtn`;
   const btnNormal = (device) => `
-          ${isValidCSS('height', isExist(arrows.size[device]) ? arrows.size[device] + "px" : "")}
+        ${isValidCSS('height', isExist(arrows.size[device]) ? arrows.size[device] + "px" : "")}
         ${isValidCSS('width', isExist(arrows.size[device]) ? arrows.size[device] + "px" : "")}
         ${isValidCSS('font-size', isExist(arrows.size[device]) ? arrows.size[device] + "px" : "")}
         ${isValidCSS('padding', getBoxCSS(arrows.padding[device]))}
@@ -41,10 +41,10 @@ const Style = ({ attributes, id }) => {
         ${isValidCSS('width', badge.width.desktop)}
         ${isValidCSS('height', badge.height.desktop)}
         ${isValidCSS('color', badge.color.text)}
-        ${isValidCSS('padding', badge.padding.desktop)}
-        ${isValidCSS('margin', badge.margin.desktop)}
+        ${isValidCSS('padding', getBoxCSS(badge.padding.desktop))}
+        ${isValidCSS('margin', getBoxCSS(badge.margin.desktop))}
         ${getBorderBoxCSS(badge.border)}
-        ${getBorderRadiusCSS(badge.bRadius.desktop)}
+        ${isValidCSS('border-radius', getBoxCSS(badge.bRadius.desktop))}
         ${getBackgroundCSS(badge.color.bg)}
       }
       ${content}{

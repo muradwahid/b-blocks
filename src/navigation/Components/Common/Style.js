@@ -1,5 +1,5 @@
 import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
-import { isExist } from '../../../../../bpl-tools/utils/functions';
+import { isExist } from '../../../../../bpl-tools/utils/common';
 import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS, } from "../../../../../bpl-tools/utils/getCSS";
 
 const style = (attributes, id, isBackend = false) => {
