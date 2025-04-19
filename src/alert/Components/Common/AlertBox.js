@@ -1,3 +1,5 @@
+import { sanitizeHTML } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
 
 const AlertBox = ({ attributes, alertEl = null }) => {
@@ -7,7 +9,7 @@ const AlertBox = ({ attributes, alertEl = null }) => {
 		<div className='alert'>
 			{icon?.class && <i className={`alertIcon ${icon?.class}`}></i>}
 
-			{message && <span className='alertMessage' dangerouslySetInnerHTML={{ __html: message }} />}
+			{message && <span className='alertMessage' dangerouslySetInnerHTML={{ __html: sanitizeHTML(message) }} />}
 
 			{isDismiss && <i className='alertClose fa fa-times-circle' onClick={() => {
 				if (alertEl) {

@@ -24,7 +24,7 @@ const Edit = props => {
 		setAttributes({ products: newProducts });
 	}
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	const mainSl = `#${id}`;
 	const priceListsSl = `${mainSl} .${prefix}`;
@@ -33,7 +33,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} updateProduct={updateProduct} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				${getTypoCSS('', nameTypo)?.googleFontLink}

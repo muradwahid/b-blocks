@@ -1,3 +1,5 @@
+import { sanitizeHTML, sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import CountdownBoxes from './CountdownBoxes';
 import useCountdown from '../../hook/useCountdown';
 import { prefix } from '../../utils/data';
@@ -10,13 +12,13 @@ const Countdown = ({ attributes, Box, closeEl, isBackend = false, custom = {}, c
 
 	return <div className={`${prefix} ${addClass}`} id={addID}>
 		{isExpired && expired ? children : <>
-			{prefixText && <p className='prefixText' dangerouslySetInnerHTML={{ __html: prefixText }} />}
+			{prefixText && <p className='prefixText' dangerouslySetInnerHTML={{ __html: sanitizeHTML(prefixText) }} />}
 
 			<div className={`countdownItems ${isResponsive ? `${prefix}Responsive` : ''}`}>
 				<CountdownBoxes attributes={attributes} Box={Box} isBackend={isBackend} custom={custom} />
 			</div>
 
-			{suffixButtonText && <a className='suffixButton' href={suffixButtonUrl}>{suffixButtonText}</a>}
+			{suffixButtonText && <a className='suffixButton' href={sanitizeURL(suffixButtonUrl)}>{suffixButtonText}</a>}
 		</>}
 
 		{isDismiss && closeEl}

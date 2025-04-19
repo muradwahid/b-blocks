@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeURL } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import DotLottiePlayer from './Components/Common/DotLottiePlayer';
@@ -57,7 +59,7 @@ const RenderLottiePlayer = ({ attributes, id }) => {
 
 	return <div className={prefix}>
 		{link ?
-			<a href={link} target={isLinkInNewTab ? '_blank' : '_self'} rel='noreferrer'>
+			<a href={sanitizeURL(link)} target={isLinkInNewTab ? '_blank' : '_self'} rel='noreferrer'>
 				<DotLottiePlayer ref={lottieEl} attributes={attributes} />
 			</a> :
 			<DotLottiePlayer ref={lottieEl} attributes={attributes} />}

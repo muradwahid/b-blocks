@@ -9,13 +9,13 @@ import { prefix } from '../../utils/data';
 const Edit = props => {
 	const { attributes: { mailtoAlign, btn, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder, icon, iconPosition }, setAttributes, clientId } = props;
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 	const mailtoSl = `#${id} .${prefix}`;
 
 	return <>
 		<Settings settings={props} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				${getTypoCSS('', btnTypo)?.googleFontLink}

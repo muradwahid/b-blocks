@@ -68,39 +68,35 @@ registerBlockType('b-blocks/accordion', {
 		}
 
 		const accordionItem = value => {
-			return (
-				value && 0 !== value.length && value.sort((a, b) => a.index - b.index).map(acc => {
-					const { index, title, description } = acc;
-					const active = index == 0 ? true : false;
+			return value && 0 !== value.length && value.sort((a, b) => a.index - b.index).map(acc => {
+				const { index, title, description } = acc;
+				const active = index == 0 ? true : false;
 
-					return (
-						<div key={acc.index} className='b_blocks_acc_item'>
-							<a data-toggle='collapse' href={`#accCollapse-${clientId}-${index}`} aria-expanded='true' aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
+				return <div key={acc.index} className='b_blocks_acc_item'>
+					<a data-toggle='collapse' href={`#accCollapse-${clientId}-${index}`} aria-expanded='true' aria-controls={`accCollapse-${index}`} style={titleLinkStyle} onMouseEnter={headingHov} onMouseLeave={headingHovLeave}>
 
-								<Button icon='no-alt' className='b_blocks_remove_acc_btn' onClick={() => {
-									const newAcc = accordions.filter(item => item.index != index).map(i => {
-										if (i.index > index) i.index -= 1;
-										return i;
-									});
-									setAttributes({ accordions: newAcc });
-								}} style={accRemoveStyle} />
+						<Button icon='no-alt' className='b_blocks_remove_acc_btn' onClick={() => {
+							const newAcc = accordions.filter(item => item.index != index).map(i => {
+								if (i.index > index) i.index -= 1;
+								return i;
+							});
+							setAttributes({ accordions: newAcc });
+						}} style={accRemoveStyle} />
 
-								<RichText tagName='h3' placeholder={__('Enter the Title', 'b-blocks')} value={title} onChange={cng => {
-									const newObj = Object.assign({}, acc, { title: cng });
-									setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
-								}} inlineToolbar style={titleStyle} />
-							</a>
+						<RichText tagName='h3' placeholder={__('Enter the Title', 'b-blocks')} value={title} onChange={cng => {
+							const newObj = Object.assign({}, acc, { title: cng });
+							setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
+						}} inlineToolbar style={titleStyle} />
+					</a>
 
-							<div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle}>
-								<RichText tagName='p' placeholder={__('Enter the description', 'b-blocks')} value={description} onChange={cng => {
-									const newObj = Object.assign({}, acc, { description: cng });
-									setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
-								}} inlineToolbar style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
-							</div>
-						</div>
-					);
-				})
-			);
+					<div id={`accCollapse-${clientId}-${index}`} className={`collapse ${active ? 'show' : ''}`} data-parent={`#bBlocksAccordion-${clientId}`} style={contentStyle}>
+						<RichText tagName='p' placeholder={__('Enter the description', 'b-blocks')} value={description} onChange={cng => {
+							const newObj = Object.assign({}, acc, { description: cng });
+							setAttributes({ accordions: [...accordions.filter(item => item.index != index), newObj] });
+						}} inlineToolbar style={{ margin: 0, padding: `${contentPTB}px ${contentPLR}px` }} />
+					</div>
+				</div>
+			})
 		}
 
 		return <>

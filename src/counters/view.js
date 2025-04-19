@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import Counter from './Components/Common/Counter';
@@ -40,7 +42,7 @@ const Counters = ({ attributes, countersEl }) => {
 			{counters?.map((counter, index) => {
 				const { text } = counter.label;
 
-				const labelEl = isLabel && text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: text }} />
+				const labelEl = isLabel && text && <p className='counterLabel' dangerouslySetInnerHTML={{ __html: sanitizeHTML(text) }} />
 
 				return <Counter key={index} attributes={attributes} counter={counter} index={index} labelEl={labelEl} />;
 			})}

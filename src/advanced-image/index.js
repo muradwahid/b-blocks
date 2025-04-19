@@ -3,9 +3,10 @@ import { registerBlockType } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { blockIcon } from './utils/icons';
+import { imageIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
-    icon: blockIcon,
-    edit: Edit
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
+	icon: imageIcon,
+	edit: Edit
 });

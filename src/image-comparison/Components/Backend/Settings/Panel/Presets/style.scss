@@ -1,49 +1,51 @@
 .icb-preset-items-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
 
-    .icb-preset-item {
-        width: 70px;
-        height: 60px;
-        border: 2px solid #fff0;
-        cursor: pointer;
-        position: relative;
+	.icb-preset-item {
+		width: 70px;
+		height: 60px;
+		border: 2px solid #fff0;
+		cursor: pointer;
+		position: relative;
 
-        &.active {
-            border-color: #e709b4;
-            border-radius: 5px;
-            box-shadow: 0px 0px 3px 1px #e709b482;
-        }
+		&.active {
+			border-color: #e709b4;
+			border-radius: 5px;
+			box-shadow: 0px 0px 3px 1px #e709b482;
+		}
 
-        img {
-            height: 100%;
-            width: 100%;
-        }
-        .icb-preset-badge {
-            position: absolute;
-            font-size: 12px;
-            background-color: #4527a4;
-            color: #fff;
-            top: 50%;
-            left: 50%;
-            transform: translateY(-50%) translateX(-50%);
-            line-height: 1.5;
-            padding: 0px 6px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 2px 1px #4527a4de;
-            transition: all 0.2s ease;
-            display: none;
-            visibility: hidden;
-        }
-        &.icb-premium{
-            &:hover{
-                .icb-preset-badge {
-                    display: block;
-                    visibility: visible;
-                }
-            }
-        }
+		img {
+			height: 100%;
+			width: 100%;
+		}
 
-    }
+		.icb-preset-badge {
+			position: absolute;
+			font-size: 12px;
+			background-color: #4527a4;
+			color: #fff;
+			top: 50%;
+			left: 50%;
+			transform: translateY(-50%) translateX(-50%);
+			line-height: 1.5;
+			padding: 0px 6px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 2px 1px #4527a4de;
+			transition: all 0.2s ease;
+			display: none;
+			visibility: hidden;
+		}
+
+		&.icb-premium {
+			&:hover {
+				.icb-preset-badge {
+					display: block;
+					visibility: visible;
+				}
+			}
+		}
+
+	}
 }

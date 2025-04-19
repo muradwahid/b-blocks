@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, RangeControl,  ToolbarGroup, ToolbarButton, Dashicon,   ToggleControl, TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, ToolbarGroup, ToolbarButton, Dashicon, ToggleControl, TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, Background, ColorControl, Device,  HelpPanel, Typography, ItemsPanel } from '../../../../../../bpl-tools/Components';
+import { Label, Background, ColorControl, Device, HelpPanel, Typography, ItemsPanel } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
 import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
@@ -36,7 +36,7 @@ const defaultChildPositions = [
 	}
 ];
 
-const Settings = ({ attributes, setAttributes, clientId, activeIndex, setActiveIndex, isPremium,  device }) => {
+const Settings = ({ attributes, setAttributes, clientId, activeIndex, setActiveIndex, isPremium, device }) => {
 	const { slides = [], columns, columnGap, sliderWidth, sliderHeight, isLoop, isTouchMove, speed, isAutoplay, autoplayOptions = {}, freeModeOptions = {}, effect, keyboardOptions = {}, isMousewheel = false, isPage, pageOnDevice = {}, isPageClickable, isPageDynamic, isPrevNext, prevNextOnDevice = {}, sliderBG = {}, sliderPadding = {}, pageColor, pageWidth, pageHeight, pageBorder, prevNextColor, sliderAlign, isTitle, titleTypo, isDesc, descTypo, isBtn, linkTarget, btnTypo, btnPadding, btnBorder } = attributes;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
@@ -92,7 +92,7 @@ const Settings = ({ attributes, setAttributes, clientId, activeIndex, setActiveI
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
 							<Device />
 						</PanelRow>
-						<RangeControl value={columns[device]} onChange={val => { setAttributes({ columns: { ...columns, [device]: val } }) }} min={1} max={6} step={1} beforeIcon='grid-view' />
+						<RangeControl value={columns[device]} onChange={val => setAttributes({ columns: { ...columns, [device]: val } })} min={1} max={6} step={1} beforeIcon='grid-view' />
 
 						<Label>{__('Column Gap:', 'b-blocks')}</Label>
 						<RangeControl value={columnGap} onChange={val => setAttributes({ columnGap: val })} min={0} max={250} step={1} beforeIcon='arrow-right-alt' />

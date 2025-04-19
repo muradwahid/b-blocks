@@ -1,5 +1,0 @@
-const iconColor = '#4527a4';
-
-export const columnsIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 24 24'>
-	<path fill={iconColor} d='M4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,18 C22,19.1045695 21.1045695,20 20,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 Z M16,6 L16,18 L20,18 L20,6 L16,6 Z M4,6 L4,18 L8,18 L8,6 L4,6 Z M10,6 L10,18 L14,18 L14,6 L10,6 Z'></path>
-</svg>;

@@ -31,9 +31,9 @@ const Edit = props => {
 	const colWidthHold = useRef(width);
 	const nextColWidthHold = useRef(nextWidth);
 
-	const id = `${colPrefix}-${clientId}`;
+	const id = `block-${clientId}`;
 	// const columnEl = document.querySelector(`#${id}`);
-	// const nextColumnEl = document.querySelector(`#${rowPrefix}-${nextClientId}`);
+	// const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
 	const columnEl = document.querySelector(`#block-${clientId}`);
 	const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
 
@@ -166,9 +166,9 @@ const Edit = props => {
 	return <>
 		<Settings {...props} {...{ attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH }} />
 
-		<div {...useBlockProps()} >
+		<div {...useBlockProps()}>
 			<div className={'wp-block-b-blocks-column'} id={id}>
-				<Style attributes={attributes} id={`block-${clientId}`} />
+				<Style attributes={attributes} id={id} />
 
 				<ResizableBox
 					className={isResizing ? `${colPrefix}Resizing` : ''}
@@ -206,7 +206,7 @@ export default compose(
 		const { getBlocks, getBlockParents, getBlockIndex, getBlockAttributes, getPreviousBlockClientId, getNextBlockClientId } = select('core/block-editor');
 
 		const parentBlockId = getBlockParents(clientId)[0];
-		const parentBlockEl = document.querySelector(`#${rowPrefix}-${parentBlockId}`);
+		const parentBlockEl = document.querySelector(`#block-${parentBlockId}`);
 		const parentWidth = parentBlockEl ? getComputedStyle(parentBlockEl.querySelector(`.${rowPrefix}`), null).getPropertyValue('width') : '0px';
 
 		const nextClientId = getNextBlockClientId(clientId);

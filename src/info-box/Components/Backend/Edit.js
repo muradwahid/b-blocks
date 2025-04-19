@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getIconCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
 
 import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';
@@ -9,7 +10,7 @@ import { prefix } from '../../utils/data';
 const Edit = props => {
 	const { attributes: { infoBoxAlign, textAlign, width, background, padding, border, shadow, isIcon, icon, iconMargin, title, titleTypo, titleColor, titleMargin, isDesc, desc, descTypo, descColor, descMargin, isBtn, btn, btnLink, isLinkNewTab, btnTypo, btnColors, btnHovColors, btnPadding, btnBorder }, setAttributes, clientId } = props;
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	const mainSl = `#${id}`;
 	const infoBoxSl = `${mainSl} .${prefix}`;
@@ -17,7 +18,7 @@ const Edit = props => {
 	return <>
 		<Settings settings={props} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				${getTypoCSS('', titleTypo)?.googleFontLink}
@@ -69,7 +70,7 @@ const Edit = props => {
 
 				{isDesc && <RichText className='infoBoxDescription' tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Info box description', 'b-blocks')} inlineToolbar />}
 
-				{isBtn && <RichText className='infoBoxButton' tagName='a' value={btn} href={btnLink} target={isLinkNewTab ? '_blank' : ''} rel='noreferrer noopener' onChange={val => setAttributes({ btn: val })} placeholder={__('Click Me', 'b-blocks')} inlineToolbar />}
+				{isBtn && <RichText className='infoBoxButton' tagName='a' value={btn} href={sanitizeURL(btnLink)} target={isLinkNewTab ? '_blank' : ''} rel='noreferrer noopener' onChange={val => setAttributes({ btn: val })} placeholder={__('Click Me', 'b-blocks')} inlineToolbar />}
 			</div>
 		</div>
 	</>;

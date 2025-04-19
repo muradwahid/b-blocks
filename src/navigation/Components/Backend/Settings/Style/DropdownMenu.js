@@ -10,7 +10,7 @@ const DropdownMenu = ({ attributes, updateObj, device }) => {
 	const { width, background, padding, border, borderRadius, shadow } = container || {}
 	const { padding: itemsPadding, typo, colors } = menuItems;
 
-	return <PanelBody className='bPlPanelBody' title={__('Dropdown Menu', 'b-blocks')} initialOpen={false}>
+	return <PanelBody className='bPlPanelBody' title={__('Dropdown / Sub Menus', 'b-blocks')} initialOpen={false}>
 		<TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={[
 			{ title: 'Container', name: 'container' },
 			{ title: 'Items', name: 'items' },

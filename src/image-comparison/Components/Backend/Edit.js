@@ -3,7 +3,6 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
-import { prefix } from '../../utils/data';
 import ImageCompareTwo from '../Common/ImageCompareTwo';
 import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
@@ -24,14 +23,12 @@ const Edit = props => {
 
 	const captionEl = isCap && <RichText className='icb-caption' tagName='div' value={cap} onChange={val => setAttributes({ cap: val })} placeholder={__('Caption of the image comparison', 'b-blocks')} inlineToolbar />
 
-
-	const id = `${prefix}-${clientId}`;
 	const key = `${beforeImg?.url}-${afterImg?.url}-${JSON.stringify(styles.container.height)}-${align}-${autoSlide.isMouseOver}-${device}`;
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 			{(bImgURL && aImgURL) ? <ImageCompareTwo key={key} {...{ afterLabelEl, beforeLabelEl, captionEl, device }} attributes={attributes} isBackend={true} /> :
 				<div className='imgPlaceholder'>
 					<div className='beforeImg'>

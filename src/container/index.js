@@ -4,9 +4,10 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { containerIcon } from './utils/icons';
+import { containerIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: containerIcon,
 	edit: Edit,
 	save: () => <InnerBlocks.Content />,

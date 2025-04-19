@@ -27,12 +27,12 @@ const Edit = props => {
 		setAttributes({ cards: newCard });
 	}
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} updateCard={updateCard} isPremium={isPremium} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={id} />
 
 			<div className={`${prefix} ${layout || 'vertical'} columns-${columns?.desktop} columns-tablet-${columns?.tablet} columns-mobile-${columns?.mobile}`}>

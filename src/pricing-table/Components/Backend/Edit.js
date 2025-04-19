@@ -15,8 +15,6 @@ const Edit = props => {
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
-	const id = `${prefix}-${clientId}`;
-
 	const updatePriceTable = (type, val, otherIndex = false, otherType = false) => {
 		const newPricingTable = produce(pricingTables, draft => {
 			if (false !== otherIndex && otherType) {
@@ -34,8 +32,8 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} updatePriceTable={updatePriceTable} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
-		<div {...blockProps} className={`${className} ${!isStandard && !isUltimate ? 'is-style-basic' : ''}`} id={id}>
-			<Style attributes={attributes} id={id} isStandard={isStandard} />
+		<div {...blockProps} className={`${className} ${!isStandard && !isUltimate ? 'is-style-basic' : ''}`}>
+			<Style attributes={attributes} id={`block-${clientId}`} isStandard={isStandard} />
 
 			<div className={`${prefix} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{pricingTables?.map((priceTable, index) => <PriceTable key={index} {...{ priceTable, index, className, activeIndex, setActiveIndex, updatePriceTable }} />)}

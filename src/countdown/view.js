@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import Countdown from './Components/Common/Countdown';
@@ -42,6 +44,6 @@ const Box = (props) => {
 
 	return is && <div className={`countdownItem ${boxClass}`}>
 		<span className='digit'>{digit}</span>
-		{(isLabels && label) && <label className='label' dangerouslySetInnerHTML={{ __html: label }} />}
+		{(isLabels && label) && <label className='label' dangerouslySetInnerHTML={{ __html: sanitizeHTML(label) }} />}
 	</div>;
 };

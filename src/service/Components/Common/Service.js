@@ -1,3 +1,5 @@
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import { longArrowToRightIcon } from '../../../services/utils/icons';
 import { childPrefix } from '../../../services/utils/data';
 
@@ -5,7 +7,7 @@ const Service = ({ attributes, children }) => {
 	const { title, isIcon, isUpIcon, icon, upIcon, isLink, link, linkIn } = attributes;
 
 	return <div className={childPrefix}>
-		{'service' === linkIn && <a className='serviceLink' href={link}></a>}
+		{'service' === linkIn && <a className='serviceLink' href={sanitizeURL(link)}></a>}
 
 		<div className='bgLayer'></div>
 
@@ -16,7 +18,7 @@ const Service = ({ attributes, children }) => {
 		{children}
 
 		{isLink && 'button' === linkIn && <div className='link'>
-			{link ? <a href={link}>{longArrowToRightIcon(title)}</a> : <a>{longArrowToRightIcon(title)}</a>}
+			{link ? <a href={sanitizeURL(link)}>{longArrowToRightIcon(title)}</a> : <a>{longArrowToRightIcon(title)}</a>}
 		</div>}
 	</div>
 }

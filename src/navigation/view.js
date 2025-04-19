@@ -1,4 +1,4 @@
-import style from './Components/Common/Style';
+import style from './Components/Common/style';
 import './style.scss';
 
 document.addEventListener('DOMContentLoaded', () => {

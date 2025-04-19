@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML, sanitizeURL } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import { prefix } from './utils/data';
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					// Components
 					const CardTitle = () => isTitle && <LinkProvider enabled={linkElement === 'title'} url={link} target={linkTarget}>
-						<h3 className='cardTitle' dangerouslySetInnerHTML={{ __html: title }} />
+						<h3 className='cardTitle' dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} />
 					</LinkProvider>
 
 					const CardImage = () => img?.url && <LinkProvider enabled={linkElement === 'image'} url={link} target={linkTarget}>
@@ -37,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
 								{'top' === imgPos && <CardImage />}
 
 								<div className='cardDetails'>
-									{isCat && <h6 className='cardCategory' dangerouslySetInnerHTML={{ __html: cat }} />}
+									{isCat && <h6 className='cardCategory' dangerouslySetInnerHTML={{ __html: sanitizeHTML(cat) }} />}
 
 									{'content' === titlePos && <CardTitle />}
 
-									{isDesc && <p className='cardDescription' dangerouslySetInnerHTML={{ __html: desc }} />}
+									{isDesc && <p className='cardDescription' dangerouslySetInnerHTML={{ __html: sanitizeHTML(desc) }} />}
 								</div>
 
 								{'bottom' === imgPos && <CardImage />}
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const LinkProvider = ({ enabled, url, target, children }) => {
 	if (enabled && url) {
-		return <a className='cardLink' href={url} target={target}>{children}</a>
+		return <a className='cardLink' href={sanitizeURL(url)} target={target}>{children}</a>
 	} else {
 		return children;
 	}

@@ -97,6 +97,10 @@ $hAligns: left, center, right, space-between;
 					justify-content: flex-start;
 					align-items: flex-start;
 
+					>ul {
+						width: 100%;
+					}
+
 					.wp-block-navigation-item {
 						padding: 15px;
 						border-bottom: 1px solid #1a1a1a;

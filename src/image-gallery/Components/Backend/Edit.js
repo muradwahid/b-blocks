@@ -25,7 +25,7 @@ const Edit = props => {
 		return newValue;
 	}
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	const mainSl = `#${id}`;
 	const imgLinkSl = `${mainSl} .imgGalleryWrapper .imgGalleryImgLink`;
@@ -34,7 +34,7 @@ const Edit = props => {
 	return <>
 		<Settings settings={props} filterImages={filterImages} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				${getTypoCSS('', capTitleTypo)?.googleFontLink}

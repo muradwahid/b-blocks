@@ -7,7 +7,6 @@ import { BorderControl } from '../../../../../../bpl-tools/Components/Deprecated
 import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 
 import { getPosByPos } from '../../../utils/functions';
-import { prefix } from '../../../utils/data';
 
 const ItemSettings = ({ attributes, setAttributes, clientId, arrKey, index, setActiveIndex = false, premiumProps }) => {
 	const items = attributes[arrKey];
@@ -33,7 +32,7 @@ const ItemSettings = ({ attributes, setAttributes, clientId, arrKey, index, setA
 				setAttributes({
 					slides: produce(items, draft => {
 						draft[index]['position'] = val;
-						draft[index]['childPositions'] = getPosByPos(`${prefix}-${clientId}`, index, val);
+						draft[index]['childPositions'] = getPosByPos(`block-${clientId}`, index, val);
 					})
 				})
 			}} />
