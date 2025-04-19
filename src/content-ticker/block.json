@@ -1,0 +1,262 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "b-blocks/content-ticker",
+  "version": "1.0.0",
+  "title": "Content Ticker",
+  "category": "bBlocks",
+  "description": "Content Ticker will let you showcase your trending news.",
+  "keywords": ["content", "ticker", "content-ticker"],
+  "textdomain": "b-blocks",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": ""
+    },
+    "advanced": {
+      "type": "object",
+      "default": {
+        "dimension": {
+          "padding": {
+            "desktop": {
+              "top": "0px",
+              "right": "0px",
+              "bottom": "0px",
+              "left": "0px"
+            },
+            "tablet": {
+              "top": "0px",
+              "right": "0px",
+              "bottom": "0px",
+              "left": "0px"
+            },
+            "mobile": {
+              "top": "0px",
+              "right": "0px",
+              "bottom": "0px",
+              "left": "0px"
+            }
+          }
+        },
+        "borderShadow": {
+          "normal": {
+            "radius": {
+              "top": "0px",
+              "right": "0px",
+              "bottom": "0px",
+              "left": "0px"
+            },
+            "shadow": [
+              {
+                "hOffset": "0px",
+                "vOffset": "0px",
+                "blur": "0px",
+                "spreed": "0px",
+                "color": "#7090b000",
+                "isInset": false
+              }
+            ]
+          }
+        },
+        "background": {
+          "normal": {
+            "type": "color",
+            "color": "rgba(255, 255, 255, 1)",
+            "gradient": {
+              "type": "radial",
+              "radialType": "ellipse",
+              "colors": [
+                {
+                  "color": "rgba(58, 66, 222, 1)",
+                  "position": "0"
+                },
+                {
+                  "color": "rgba(176, 195, 235, 1)",
+                  "position": "80"
+                }
+              ],
+              "centerPositions": {
+                "x": 50,
+                "y": 50
+              },
+              "angel": 90
+            },
+            "img": {
+              "url": "",
+              "desktop": {
+                "position": "center-center",
+                "xPosition": 0,
+                "yPosition": 0,
+                "attachment": "",
+                "repeat": "no-repeat",
+                "size": "",
+                "customSize": "0px"
+              },
+              "tablet": {
+                "position": "center-center",
+                "xPosition": 0,
+                "yPosition": 0,
+                "attachment": "",
+                "repeat": "no-repeat",
+                "size": "",
+                "customSize": "0px"
+              },
+              "mobile": {
+                "position": "center-center",
+                "xPosition": 0,
+                "yPosition": 0,
+                "attachment": "",
+                "repeat": "no-repeat",
+                "size": "",
+                "customSize": "0px"
+              }
+            },
+            "transition": 0.3
+          }
+        }
+      }
+    },
+    "badge": {
+      "type": "object",
+      "default": {
+        "text": "Trending Now",
+        "width": { "desktop": "130px", "tablet": "130px", "mobile": "130px" },
+        "height": { "desktop": "", "tablet": "", "mobile": "" },
+        "color": { "bg": { "color": "#595959" }, "text": "" },
+        "typography": {
+          "fontSize": 16,
+          "fontWeight": 400
+        },
+        "padding": {
+          "desktop": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "tablet": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "mobile": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        },
+        "margin": {
+          "desktop": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "tablet": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "mobile": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        },
+        "border": {},
+        "bRadius": { "desktop": {}, "tablet": {}, "mobile": {} }
+      }
+    },
+    "content": {
+      "type": "array",
+      "default": [
+        {
+          "text": "Ticker custom content",
+          "link": "#",
+          "toggle": false
+        }
+      ]
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "bg": "",
+        "color": { "normal": "#222222", "hover": "#2D82C9" },
+        "typography": {
+          "fontSize": 16,
+          "fontWeight": 400
+        },
+        "padding": {
+          "desktop": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "mobile": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          },
+          "tablet": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        },
+        "bRadius": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        }
+      }
+    },
+    "animation": {
+      "type": "object",
+      "default": {
+        "effect": "slide",
+        "sliderSpeed": 2000,
+        "isAutoplay": true,
+        "autoPlaySpeed": 2000,
+        "isPauseOnHover": true,
+        "isLoop": true,
+        "isGrabCursor": true,
+        "isArrows": true,
+        "direction": "right"
+      }
+    },
+    "arrows": {
+      "type": "object",
+      "default": {
+        "left": { "url": "" },
+        "right": { "url": "" },
+        "icon": "style1",
+        "size": { "desktop": 22, "tablet": 22, "mobile": 22 },
+        "alignLeft": { "desktop": 25, "tablet": 25, "mobile": 25 },
+        "alignRight": { "desktop": 5, "tablet": 5, "mobile": 5 },
+        "normal": { "bg": "", "color": "", "border": {}, "borderRadius": {} },
+        "hover": { "bg": "", "color": "", "border": {}, "borderRadius": {} },
+        "padding": { "desktop": {}, "tablet": {}, "mobile": {} }
+      }
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./view.css",
+  "render": "file:./render.php",
+  "viewScript": ["file:./view.js", "react", "react-dom"]
+}

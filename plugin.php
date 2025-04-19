@@ -131,6 +131,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
+
 			$disabledBlocks = get_option( 'bBlocksDisabledBlocks', [] );
 			$disabledBlocks = is_array( $disabledBlocks ) ? $disabledBlocks : [];
 
