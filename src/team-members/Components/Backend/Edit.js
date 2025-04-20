@@ -36,13 +36,11 @@ const Edit = props => {
 		setActiveIndex(index);
 	}
 
-	const id = `${prefix}-${clientId}`;
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} updateMember={updateMember} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<div className={`${prefix} ${layout || 'vertical'} columns-${desktop} columns-tablet-${tablet} columns-mobile-${mobile}`}>
 				{members.map((item, index) => {
@@ -68,7 +66,7 @@ const Edit = props => {
 									const { icon } = socialItem;
 
 									return <li key={socialIndex} onClick={() => setSelectedSocial(socialIndex)} className={`icon icon-${index}-${socialIndex} ${isSelected && index === activeIndex && socialIndex === selectedSocial ? 'isSelected' : null}`}>
-										<a href={'#'}><i className={icon?.class} /></a>
+										<a href='#'><i className={icon?.class} /></a>
 									</li>;
 								})}
 							</ul>}

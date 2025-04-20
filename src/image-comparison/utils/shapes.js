@@ -1,8 +1,8 @@
 export const lineShapes = (position) => ({
     // defaulthorizontal: `polygon(0 0, ${position}% 0, ${position}% 47%, ${position}% 100%, 0% 100%)`,
-    defaulthorizontal: `inset(0 0 0 ${position}%)`,
+    defaulthorizontal:`inset(0 0 0 ${position}%)`,
     // defaultvertical: `polygon(0 ${position}%, 100% ${position}%, 100% 100%, 0% 100%)`,
-    defaultvertical: `inset(${position}% 0 0 0)`,
+    defaultvertical:`inset(${position}% 0 0 0)`,
     zigzaghorizontal: `polygon(0% 0%, ${position}% 0%, ${position - 6
         }% 9%, ${position}% 18%, ${position - 6}% 27%, ${position}% 36%, ${position - 6
         }% 45%, ${position}% 54%, ${position - 6}% 63%, ${position}% 72%, ${position - 6

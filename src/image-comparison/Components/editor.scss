@@ -1,0 +1,12 @@
+$primaryColor: #4527a4;
+
+.wp-block-icb-image-compare {
+	.imgPlaceholder {
+		display: flex;
+		justify-content: center;
+
+		>div {
+			width: 400px;
+		}
+	}
+}

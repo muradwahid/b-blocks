@@ -11,7 +11,7 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { textAlign, title, titleTypo, titleColor, titleMargin, isSep, separator, sepMargin, isDesc, desc, descTypo, descColor, descMargin } = attributes;
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	const headingSl = `#${id} .${prefix}`;
 	const titleSl = `${headingSl} .sectionHeadingTitle`;
@@ -20,7 +20,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				${getTypoCSS('', titleTypo)?.googleFontLink}

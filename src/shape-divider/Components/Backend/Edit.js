@@ -4,7 +4,6 @@ import { Button } from '@wordpress/components';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import Shape from '../Common/Shape';
-import { prefix } from '../../utils/data';
 
 const innerBlocksTemplate = [
 	['core/heading', { content: 'Creative Shape Divider', textAlign: "center", style: { typography: { fontSize: "52px" } }, textColor: 'white' }],
@@ -48,13 +47,11 @@ const innerBlocksTemplate = [
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 
-	const id = `${prefix}-${clientId}`
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<Shape attributes={attributes} />
 

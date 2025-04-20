@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import usePremium from '../hooks/usePremium';
 import Button from './Components/Common/Button';
@@ -64,7 +66,7 @@ const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 				}
 			}
 		}} >
-			{text && <span className='btnText' dangerouslySetInnerHTML={{ __html: text }} />}
+			{text && <span className='btnText' dangerouslySetInnerHTML={{ __html: sanitizeHTML(text) }} />}
 		</Button>
 
 		{securityPop && <SecurityPopup attributes={attributes} info={info} setSecurityPop={setSecurityPop} setSecurityPass={setSecurityPass} />}

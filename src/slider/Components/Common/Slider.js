@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, EffectFade, EffectCube, EffectCreative, EffectCoverflow, EffectFlip, EffectCards } from 'swiper/modules';
 
+import { sanitizeHTML, sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
 
 const Slider = ({ attributes, initialSlide = 0, isBackend = false }) => {
@@ -51,11 +53,11 @@ const Slider = ({ attributes, initialSlide = 0, isBackend = false }) => {
 
 			return <SwiperSlide key={index} className={`slide-${index}`}>
 				<div className={`slideContent ${position?.split(' ')?.join('-') || 'center-center'}`}>
-					{isTitle && title && <h2 className='slideTitle' dangerouslySetInnerHTML={{ __html: title }} />}
+					{isTitle && title && <h2 className='slideTitle' dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} />}
 
-					{isDesc && description && <p className='slideDesc' dangerouslySetInnerHTML={{ __html: description }} />}
+					{isDesc && description && <p className='slideDesc' dangerouslySetInnerHTML={{ __html: sanitizeHTML(description) }} />}
 
-					{isBtn && btnText && <a href={isBackend ? '#' : btnLink} className='slideBtn' dangerouslySetInnerHTML={{ __html: btnText }} />}
+					{isBtn && btnText && <a href={isBackend ? '#' : sanitizeURL(btnLink)} className='slideBtn' dangerouslySetInnerHTML={{ __html: sanitizeHTML(btnText) }} />}
 				</div>
 			</SwiperSlide>
 		})}

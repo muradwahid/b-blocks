@@ -1,3 +1,4 @@
+import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 import { getBoxCSS, getColorsCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 
@@ -53,7 +54,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 			${captionAlignment(desktop.vAlign, desktop.hAlign)}
 		}
 
-		@media only screen and (min-width:641px) and (max-width: 1024px){
+		${tabBreakpoint}{
 			${mainSl}{
 				align-items:${alignment.tablet};
 			}
@@ -72,7 +73,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 			}
 		}
 			
-		@media only screen and (max-width:640px){
+		${mobileBreakpoint}{
 			${mainSl}{
 				align-items:${alignment.mobile};
 			}
@@ -99,4 +100,4 @@ const captionAlignment = (v, h) => `
 	${h === "left" ? 'left: 0; right: auto;' : h === "center" ? `left:50%;${v !== "middle" ? "transform: translateX(-50%);" : ""}` : "right:0;left:auto;"}
 	${v === "top" ? "top:0;bottom:auto;" : v === "middle" ? `top:50%;${h !== "center" ? "transform: translateY(-50%);" : ""}` : "bottom:0;top:auto;"}
 	${(h === "center" && v === "middle") ? "transform:translateY(-50%) translateX(-50%);" : ""}
-	`;
+`;

@@ -11,7 +11,7 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { loop, animateIn, inEffect, inSequence, outEffect, outSequence, content } = attributes;
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	useEffect(() => {
 		$(`#${id} .content`).textillate(textillateConfig(attributes));
@@ -20,7 +20,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={id} />
 
 			<div className={prefix}>

@@ -1,63 +1,23 @@
-import { useEffect, useRef } from 'react';
-const $ = jQuery;
+import React from "react";
+import { useDeviceWidth } from "../../../../../bpl-tools/hooks";
+import ImageCompareTwo from "../themes/Default/ImageCompareTwo";
+import ImageCompareSlider from '../themes/Sliders/SliderOne/ImageCompareSlider';
 
-import { drags } from '../../utils/functions';
-import { prefix } from '../../utils/data';
+export const ImageCompare = ({ attributes, afterLabelEl, beforeLabelEl, captionEl, isBackend = false, backDevice = "desktop", activeIndex, setActiveIndex = () => { } }) => {
+  const { beforeImg, afterImg, orientation, styles, options, dragg, label, align, theme, slider, sliderOptions } = attributes;
+  const { device: frontDevice } = useDeviceWidth();
+  const device = isBackend ? backDevice : frontDevice;
 
-const ImageCompare = ({ attributes, beforeLabelEl, afterLabelEl, captionEl }) => {
-	const { beforeImg, afterImg } = attributes;
+  const key = `${beforeImg?.url}-${afterImg?.url}-${JSON.stringify(styles.container.height)}-${align}-${options.autoSlide.isMouseOver}-${device}`;
+  return (
+    <>
+      {
+        theme === "default" && <ImageCompareTwo key={key} {...{ beforeLabelEl, afterLabelEl, captionEl, beforeImg, afterImg, orientation, options, dragg, label, device }} height={styles.container.height[device]} />
+      }
+      {
+        theme === "slider" && <ImageCompareSlider key={`${slider.length}-${JSON.stringify(sliderOptions)}`} {...{ attributes, device, activeIndex, setActiveIndex }} />
+      }
 
-	const imgCompareRef = useRef(null);
-	const dividerRef = useRef(null);
-	const resizeRef = useRef(null);
-	const beforeImgRef = useRef(null);
-
-	const setImgWidth = width => {
-		beforeImgRef.current.style.width = width;
-		beforeImgRef.current.style.minWidth = width;
-	}
-
-	// Image Slider Scripts
-	useEffect(() => {
-		const compareEl = imgCompareRef.current
-
-		const handleResize = () => {
-			const imgCompareWidth = compareEl?.clientWidth;
-
-			if (imgCompareWidth) {
-				setImgWidth(`${imgCompareWidth}px`);
-				drags($(dividerRef.current), $(resizeRef.current), $(compareEl));
-			}
-		};
-
-		const observer = new ResizeObserver(handleResize);
-
-		if (compareEl) {
-			observer.observe(compareEl);
-		}
-
-		window.addEventListener('resize', handleResize);
-
-		return () => {
-			observer.disconnect();
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
-	return <div className={prefix} ref={imgCompareRef}>
-		<div className='comparison-slider'>
-			{afterLabelEl}
-			<img className='afterImg' src={afterImg?.url} alt={afterImg?.alt} />
-
-			<div className='resize' ref={resizeRef}>
-				{beforeLabelEl}
-				<img className='beforeImg' src={beforeImg?.url} alt={beforeImg?.alt} ref={beforeImgRef} />
-			</div>
-
-			<div className='divider' ref={dividerRef}></div>
-		</div>
-
-		{captionEl}
-	</div>
+    </>
+  );
 }
-export default ImageCompare;

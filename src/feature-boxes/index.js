@@ -3,9 +3,10 @@ import { registerBlockType } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { featureBoxIcon } from './utils/icons';
+import { featureBoxIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: featureBoxIcon,
 
 	// Build In Functions

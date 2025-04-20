@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useBlockProps } from '@wordpress/block-editor';
 
 import Settings from './Settings/Settings';
-import style from '../Common/Style';
+import style from '../Common/style';
 import Navigation from './Navigation';
 
 const Edit = (props) => {

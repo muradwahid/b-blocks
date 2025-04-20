@@ -1,9 +1,3 @@
-const iconColor = '#4527a4';
-
-export const containerIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 16 16' fill={iconColor}>
-	<path fill={iconColor} d='M2 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2M0 2a2 2 0 0 1 3.937-.5h8.126A2 2 0 1 1 14.5 3.937v8.126a2 2 0 1 1-2.437 2.437H3.937A2 2 0 1 1 1.5 12.063V3.937A2 2 0 0 1 0 2m2.5 1.937v8.126c.703.18 1.256.734 1.437 1.437h8.126a2 2 0 0 1 1.437-1.437V3.937A2 2 0 0 1 12.063 2.5H3.937A2 2 0 0 1 2.5 3.937M14 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2M2 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2' />
-</svg>;
-
 export const OceanWave = () => {
 	return <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 1000 100' preserveAspectRatio='none'>
 		<path fill='currentColor' d='M0 97.79S101.82-.97 283.17 5.23c203.09 0 290.46 94.4 716.83 94.4V0H0v97.79Z' />

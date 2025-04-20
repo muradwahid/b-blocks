@@ -11,7 +11,6 @@ import Loading from './Loading';
 import NoPosts from './NoPosts';
 import { filterNaN, filterObject, filterPassword, wordCount } from '../../utils/functions';
 import Posts from './Posts';
-import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected, totalPosts, posts, taxOfPostType } = props;
@@ -21,7 +20,7 @@ const Edit = props => {
 
 	useEffect(() => tabController(), [isSelected]);
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} posts={posts} taxOfPostType={taxOfPostType} />
@@ -30,7 +29,7 @@ const Edit = props => {
 			<Loading /> :
 
 			posts?.length ?
-				<div {...blockProps} id={id}>
+				<div {...blockProps}>
 					<Posts posts={posts} totalPosts={totalPosts} attributes={attributes} setAttributes={setAttributes} id={id} isPremium={isPremium} />
 				</div> :
 

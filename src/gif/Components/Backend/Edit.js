@@ -17,7 +17,7 @@ const Edit = props => {
 	const [search, setSearch] = useState('');
 	const [gifData, setGifData] = useState([]);
 
-	const id = `${prefix}-${clientId}`;
+	const id = `block-${clientId}`;
 
 	// Gif scripts for modal
 	const GIFAPI = 'dM3iQq13qK0Mls9ygR2zjxxPDQVlw1Ql';
@@ -81,7 +81,7 @@ const Edit = props => {
 		</BlockControls>
 
 
-		<div {...useBlockProps()} id={id}>
+		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				#${id} .${prefix}{

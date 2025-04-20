@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 1.9.9
+ * Version: 2.0.1
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.9.9' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.1' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -38,7 +38,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 
 			if ( ! isset( $b_blocks_fs ) ) {
 				// Include Freemius SDK.
-				require_once dirname(__FILE__) . '/freemius/start.php';
+				require_once dirname( __FILE__ ) . '/freemius/start.php';
 
 				$b_blocks_fs = fs_dynamic_init( array(
 					'id'					=> '12845',
@@ -100,7 +100,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	}
 
 	// Require files
-	require_once B_BLOCKS_DIR_PATH . 'includes/AdminMenu.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/Dashboard.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/EnqueueScripts.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Utils.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/GetCSS.php';
@@ -131,16 +131,30 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 		}
 
 		function onInit(){
-			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'content-ticker', 'data-table', 'dual-color-heading','feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'image-hotspot', 'image-scroller', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'svg-draw', 'td-viewer', 'team-members', 'video' ];
+
+			$disabledBlocks = get_option( 'bBlocksDisabledBlocks', [] );
+			$disabledBlocks = is_array( $disabledBlocks ) ? $disabledBlocks : [];
+
+			// Add dependent blocks
+			if ( in_array( 'b-blocks/row', $disabledBlocks ) && !in_array( 'b-blocks/column', $disabledBlocks ) ) {
+				$disabledBlocks[] = 'b-blocks/column';
+			}
+			if ( in_array( 'b-blocks/services', $disabledBlocks ) && !in_array( 'b-blocks/service', $disabledBlocks ) ) {
+				$disabledBlocks[] = 'b-blocks/service';
+			}
+
+			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container','content-ticker', 'countdown', 'counters', 'data-table', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'image-hotspot', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
 
 			foreach ( $blocks as $block ) {
-				register_block_type( __DIR__ . "/build/$block/block.json" );
-				wp_deregister_script("b-blocks-$block-editor-script");
+				if( !in_array( "b-blocks/$block", $disabledBlocks ) ){
+					register_block_type( __DIR__ . "/build/$block" );
+					wp_deregister_script("b-blocks-$block-editor-script");
+				}
 			}
 		}
 
 		function bBlocksPipeChecker(){
-			$nonce = $_POST['_wpnonce'] ?? null;
+			$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
 
 			if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 				wp_send_json_error( 'Invalid Request' );

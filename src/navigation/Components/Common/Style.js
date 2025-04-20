@@ -1,13 +1,15 @@
-import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 import { isExist } from '../../../../../bpl-tools/utils/common';
-import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS, } from "../../../../../bpl-tools/utils/getCSS";
+import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS, } from '../../../../../bpl-tools/utils/getCSS';
+
+import { prefix } from '../../utils/data';
 
 const style = (attributes, id, isBackend = false) => {
 	const { styles, dropdownStyles, caret, hamburger, advanced } = attributes;
 	const { padding, margin, typo, colors } = styles;
 	const { container, menuItems } = dropdownStyles;
 	const mainSl = `#${id}`;
-	const blockSl = `${mainSl} .bBlocksNavigation`;
+	const blockSl = `${mainSl} .${prefix}`;
 
 	const navWrapper = `${blockSl} .wp-block-navigation`;
 	const navItemsContainer = ` ${navWrapper} .wp-block-navigation__container`;
@@ -21,12 +23,12 @@ const style = (attributes, id, isBackend = false) => {
 	const hMenuItemSl = `${hMenuItemsContainer} .wp-block-navigation-item .wp-block-navigation-item__content`;
 	const hCloseBtnSl = `${hamburgerMenuContainer} .components-button.wp-block-navigation__responsive-container-close`;
 	const activeMenu = `${navItem}.current-menu-item`;
-	const dropDownActiveMenu = `${subMenuItem} a[aria-current="page"]`;
+	const dropDownActiveMenu = `${subMenuItem} a[aria-current='page']`;
 	return `
 		${generateCSS(id, advanced, isBackend)}
-		${getTypoCSS("", typo)?.googleFontLink}
-		${getTypoCSS("", menuItems.typo)?.googleFontLink}
-		${getTypoCSS("", hamburger.items.typo)?.googleFontLink}
+		${getTypoCSS('', typo)?.googleFontLink}
+		${getTypoCSS('', menuItems.typo)?.googleFontLink}
+		${getTypoCSS('', hamburger.items.typo)?.googleFontLink}
 
 		${getTypoCSS(navItem, typo)?.styles}
 		${navItem}{
@@ -36,10 +38,10 @@ const style = (attributes, id, isBackend = false) => {
 			transition:all 0.3s ease-in-out;
 		}
 		${navItem}:hover{
-			color:${colors.normal.hover};
+			color: ${colors.normal.hover};
 		}
 		${subMenuContainer}{
-			${isValidCSS('min-width', isExist(container.width.desktop) ? `${container.width.desktop}px !important` : "")}
+			${isValidCSS('min-width', isExist(container.width.desktop) ? `${container.width.desktop}px !important` : '')}
 			${getBackgroundCSS(container.background)}
 			padding:${getBoxCSS(container.padding.desktop)};
 			${getBorderBoxCSS(container.border)}
@@ -56,13 +58,13 @@ const style = (attributes, id, isBackend = false) => {
 			${isValidCSS('color', menuItems.colors.normal.hover)}
 		}
 		${subMenuIcon}{
-			${isValidCSS('width', isExist(caret.size.desktop) ? caret.size.desktop + 'px' : '')}
-			${isValidCSS('height', isExist(caret.size.desktop) ? caret.size.desktop + 'px' : '')}
+			${isValidCSS('width', isExist(caret.size.desktop) ? caret.size.desktop + 'px !important' : '')}
+			${isValidCSS('height', isExist(caret.size.desktop) ? caret.size.desktop + 'px !important' : '')}
 			${isValidCSS('color', caret.color.normal)}
-			transition:all ${menuItems.colors.transition || 0.3}s ease-in-out;
+			transition: all ${menuItems.colors.transition || 0.3}s ease-in-out;
 		}
 		${navItem}:hover .wp-block-navigation__submenu-icon{
-			color:${caret.color.hover} !important;
+			color: ${caret.color.hover} !important;
 		}
 		${activeMenu}{
 			${isValidCSS('color', colors.active.normal)}
@@ -79,9 +81,9 @@ const style = (attributes, id, isBackend = false) => {
 			${isValidCSS('color', menuItems.colors.active.hover)}
 		}
 		${hamburgerIconSl} svg{
-			height:${hamburger.button.size.desktop}px;
-			width:${hamburger.button.size.desktop}px;
-			fill:${hamburger.button.color};
+			height: ${hamburger.button.size.desktop}px;
+			width: ${hamburger.button.size.desktop}px;
+			fill: ${hamburger.button.color};
 		}
 		${hamburgerIconSl}{
 			${isValidCSS('padding', getBoxCSS(hamburger.button.padding.desktop))}
@@ -98,7 +100,7 @@ const style = (attributes, id, isBackend = false) => {
 			${isValidCSS('padding', getBoxCSS(hamburger.items.padding.desktop))}
 			${getBorderBoxCSS(hamburger.items.border)}
 			${isValidCSS('border-radius', getBoxCSS(hamburger.items.borderRadius))}
-			transition:all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
 		}
 		${hMenuItemSl}:hover{
 			background:${hamburger.items.colors.hover.bg} !important;
@@ -106,7 +108,7 @@ const style = (attributes, id, isBackend = false) => {
 		}
 		${hCloseBtnSl}{
 			color:${hamburger.closeButton?.color};
-			${hamburger.closeButton.alignment === "right" ? "right:0;" : hamburger.closeButton.alignment === "left" ? "left:0px;" : "left:50%;"}
+			${hamburger.closeButton.alignment === 'right' ? 'right:0;' : hamburger.closeButton.alignment === 'left' ? 'left:0px;' : 'left:50%;'}
 		}
 		@media only screen and (min-width:641px) and (max-width: 1024px){
 			${navItem}{
@@ -121,8 +123,8 @@ const style = (attributes, id, isBackend = false) => {
 				${isValidCSS('padding', getBoxCSS(menuItems.padding.tablet))}
 			}
 			${subMenuIcon}{
-				Width:${caret.size.tablet}px;
-				height:${caret.size.tablet}px;
+				${isValidCSS('width', isExist(caret.size.tablet) ? caret.size.tablet + 'px !important' : '')}
+				${isValidCSS('height', isExist(caret.size.tablet) ? caret.size.tablet + 'px !important' : '')}
 			}
 			${hamburgerIconSl} svg{
 				height:${hamburger.button.size.tablet}px;
@@ -151,8 +153,8 @@ const style = (attributes, id, isBackend = false) => {
 				${isValidCSS('padding', getBoxCSS(menuItems.padding.mobile))}
 			}
 			${subMenuIcon}{
-				Width:${caret.size.mobile}px;
-				height:${caret.size.mobile}px;
+				${isValidCSS('width', isExist(caret.size.mobile) ? caret.size.mobile + 'px !important' : '')}
+				${isValidCSS('height', isExist(caret.size.mobile) ? caret.size.mobile + 'px !important' : '')}
 			}
 			${hamburgerIconSl} svg{
 				height:${hamburger.button.size.mobile}px;

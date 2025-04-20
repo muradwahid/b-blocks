@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide = false, isHoverStop, speed = 50, isMoveClick = false) => {
+const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide = false,isHoverStop ,speed=50,isMoveClick=false) => {
     const [mouseOver, setMouseOver] = useState(true);
     const animationRef = useRef();
     const directionRef = useRef(1);
@@ -50,7 +50,7 @@ const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientat
             lastTime = time;
             setPosition((prev) => {
                 // let next = prev + directionRef.current * speedRef.current * delta;
-                let next = prev + directionRef.current * (speed * 10) * delta;
+                let next = prev + directionRef.current * (speed*10) * delta;
                 if (next >= 100) { directionRef.current = -1; next = 100; }
                 if (next <= 0) { directionRef.current = 1; next = 0; }
                 return next;
@@ -60,7 +60,7 @@ const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientat
 
         animationRef.current = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(animationRef.current);
-    }, [isAutoSlide, mouseOver, isDragging, isHoverStop, speed]);
+    }, [isAutoSlide, mouseOver, isDragging,isHoverStop,speed]);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -72,7 +72,7 @@ const useDragg = (isDragging, containerRef, setPosition, setIsDragging, orientat
             containerRef?.current?.removeEventListener("mouseenter", handleMouseEnter);
             containerRef?.current?.removeEventListener("mouseleave", handleMouseLeave);
         };
-    }, [containerRef.current, isHoverStop]);
+    }, [containerRef.current,isHoverStop]);
 
     return { handleClick };
 };

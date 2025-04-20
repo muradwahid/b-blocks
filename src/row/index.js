@@ -4,9 +4,10 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { rowIcon } from './utils/icons';
+import { rowIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: rowIcon,
 
 	// Build in Functions

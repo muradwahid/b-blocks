@@ -18,8 +18,10 @@ const Style = ({ attributes, id, isBackend = false }) => {
 		__html: `
 		${generateCSS(id, advanced, isBackend)}
 
-		${mainSl}{
+		#${id}{
 			min-height: ${0 === parseInt(minHeight) ? 'auto' : minHeight};
+		}
+		${mainSl}{
 			align-items: ${horizontalAlign};
 			justify-content: ${verticalAlign};
 		}

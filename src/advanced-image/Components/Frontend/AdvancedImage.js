@@ -1,4 +1,5 @@
-import React from 'react'
+import { sanitizeHTML } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
 import Image from '../Common/Image';
 
@@ -14,7 +15,7 @@ const AdvancedImage = ({ attributes, featuredImageURL }) => {
 					<Image image={source} link={link} />
 
 					{enabled && <div className='caption'>
-						<p dangerouslySetInnerHTML={{ __html: text }} />
+						<p dangerouslySetInnerHTML={{ __html: sanitizeHTML(text) }} />
 					</div>}
 				</>}
 			</> :

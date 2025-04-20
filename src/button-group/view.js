@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
+import { sanitizeHTML, sanitizeURL } from '../../../bpl-tools/utils/common';
+
 import './style.scss';
 import Style from './Components/Common/Style';
 import { prefix } from './utils/data';
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			<div className={prefix}>
 				<div className='bBlocksBtn firstBtn'>
-					<a className={`btnOne btn-${btnType}`} href={btnOneLink} dangerouslySetInnerHTML={{ __html: btnOne }} />
+					<a className={`btnOne btn-${btnType}`} href={sanitizeURL(btnOneLink)} dangerouslySetInnerHTML={{ __html: sanitizeHTML(btnOne) }} />
 
 					{isSep && <div className='btnSeparator'>
 						{'text' === sepType ? <span>{sepText}</span> : 'icon' === sepType && sepIcon?.class ? <i className={sepIcon?.class}></i> : ''}
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				</div>
 
 				<div className='bBlocksBtn secondBtn'>
-					<a className={`btnTwo btn-${btnType}`} href={btnTwoLink} dangerouslySetInnerHTML={{ __html: btnTwo }} />
+					<a className={`btnTwo btn-${btnType}`} href={sanitizeURL(btnTwoLink)} dangerouslySetInnerHTML={{ __html: sanitizeHTML(btnTwo) }} />
 				</div>
 			</div>
 		</>);

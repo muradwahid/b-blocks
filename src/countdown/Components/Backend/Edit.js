@@ -8,7 +8,6 @@ import Style from '../Common/Style';
 import Countdown from '../Common/Countdown';
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { closeIcon } from '../../utils/icons';
-import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
@@ -22,13 +21,11 @@ const Edit = props => {
 		});
 	}, [destDate]); // Set Initial Date
 
-	const id = `${prefix}-${clientId}`;
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<Countdown attributes={attributes} Box={Box} closeEl={<Tooltip text='Hide will only work in frontend' placement='top' position='top'>{closeIcon}</Tooltip>} isBackend={true} custom={{ setAttributes }}>
 				<div className='countdownExpired'>

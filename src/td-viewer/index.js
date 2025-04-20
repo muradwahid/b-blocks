@@ -3,9 +3,10 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { tDViewerIcon } from './utils/icons';
+import { tDViewerIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: tDViewerIcon,
 
 	transforms: {

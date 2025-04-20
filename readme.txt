@@ -1,10 +1,10 @@
 === B Blocks - The ultimate block collection ===
-Contributors: bplugins, abuhayat, charlescormier
+Contributors: bplugins, abuhayat, charlescormier, muradwahid, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, gutenberg page builder, gutenberg blocks, page builder for wordpress, page builder for gutenberg
 Requires at least: 6.5+
-Tested up to: 6.7.2
-Stable tag: 1.9.9
+Tested up to: 6.8
+Stable tag: 2.0.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -38,31 +38,41 @@ With B Blocks, designing a professional and visually stunning WordPress website 
 
 
 ### Block Lists
-- **Row**: Implement row and column layout.
+- **Row Columns**: Design your page/sections with amazing layouts using Row Columns.
+
+- **Container**: A versatile block for grouping and styling multiple blocks.
 
 - **Posts**: Display posts in grid and masonry layouts. Define post number, categories, control margin, determine post excerpts, and do many more.
+
+- **Navigation**: Display navigation in your website with stunning & organized appearance.
 
 - **Slider**: Design an image and content slider with change style slider indicators.
 
 - **Section Heading**: Section Heading with a heading, separator, and description, show hide controls for separator and description.
 
-- **Video**: A Simple, accessible, Easy to Use & fully Customizable video player.
+- **Button**: Implement multi-functional button like go to a link, open a popup with various content types etc.
 
-- **Services**: Services section for web page.
+- **Advanced Image**: Display a image or current post feature image with advanced features.
 
-- **3D Viewer**: Display interactive 3D models on the web.
+- **Icon Box**: Add icons in your page. Pick icons from popular libraries(Font Awesome, Bootstrap)
+
+- **Video**: Display your video with awesome skin/design appearance.
+
+- **Services**: Showcase your services in better ways to attract your visitors.
+
+- **3D Viewer**: Display interactive 3D models into your website.
 
 - **Image Gallery**: Display beautiful images as a gallery to present your photos in a stunning, attractive way.
 
-- **Image Comparison**: Compare two images to see their difference.
+- **Image Comparison**: Compare two images to show your previous and next work.
 
 - **Flip Boxes**: Highlight your content inside your site in a great way.
 
-- **Team Members**: Present your employees/team members to your clients in a beautiful way.
+- **Team Members**: Present your team members to your clients in a beautiful way.
 
 - **Cards**: Design a card that includes an image, heading, description heading, description, and footer with custom typography.
 
-- **Pricing Table**: Create and display a professional-looking pricing table in WordPress’s block editor. This is a block plugin and it will only work with the Gutenberg editor.
+- **Pricing Table**: Create and display a professional-looking pricing table.
 
 - **Price Lists**: Display the Price lists section with an image, title, description, price and a separator.
 
@@ -70,31 +80,31 @@ With B Blocks, designing a professional and visually stunning WordPress website 
 
 - **Info Box**: Show information on your website for the users in an attractive way.
 
-- **Lottie Player**: Display animated lottie lottie files/images.
+- **Lottie Player**: Embed any LottieFiles animations, .json or .dotlottie files
 
 - **Chart**: Represent your data by symbols, such as bars, lines, or pie charts.
 
-- **Button Group**: Displaying multiple buttons. So that, your visitors can click on the buttons to visit different pages or find out more about your offers.
+- **Button Group**: Displaying dual buttons to make different actions in one button group.
 
-- **Countdown**: Displaying the timer for an event, that will happen in your business.
+- **Countdown**: Display events date into a timer, make urgency to your customers.
 
-- **Counters**: Display Number as animated counter(start to end).
+- **Counter**: Display number as animated counter(start to end).
 
 - **Mail To**: Mail to your mail address with a single click, mail on G-mail, Outlook, Yahoo also the default app.
 
-- **GIF Image**: Embed gif image to your posts and pages.
+- **GIF Image**: Embed GIF image to your posts and pages.
 
 - **QR Code**: Just input a URL then it will automatically show a QR code.
 
 - **Social Share**: Share your website/website-page link to social networks and mobile messengers.
 
-- **Animated Text**: Apply animation on any text.
+- **Animated Text**: Make your website content/text as stunning animations.
 
 - **Alert**: Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
 
-- **Shape Divider**: Create unique and visually appealing dividers.
+- **Shape Divider**: Add shape into your section to make a divider of shape.
 
-- **Star Rating**: Gutenberg editing with easy-to-use, responsive star-rating more.
+- **Star Rating**: Display your customer review ratings in your web pages.
 
 
 ### How to use B Blocks
@@ -241,6 +251,14 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 2.0.1 - 14 Apr 2025 =
+* Sanitize input field.
+* Fix RichText issue.
+
+= 2.0.0 - 23 Mar 2025 =
+* Add Advanced Image and Navigation Block.
+* New Dashboard.
 
 = 1.9.9 - 27 Jan 2025 =
 * Update SDK.

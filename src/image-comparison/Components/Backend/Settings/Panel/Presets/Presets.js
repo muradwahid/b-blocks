@@ -1,4 +1,3 @@
-import React from 'react';
 import './style.scss'
 import { Tooltip } from '@wordpress/components';
 const Presets = ({ value, options, onChange, isPremium = false,setIsProModalOpen }) => {

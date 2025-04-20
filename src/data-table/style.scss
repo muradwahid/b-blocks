@@ -1,6 +1,6 @@
 $primaryColor: #4527a4;
 
-.wp-block-b-blocks-data-table{
+.wp-block-b-blocks-data-table {
   * {
     box-sizing: border-box;
   }
@@ -8,7 +8,7 @@ $primaryColor: #4527a4;
     border-collapse: separate;
     // border-spacing: 0;
     table-layout: auto;
-    width: 100%;	
+    width: 100%;
     // border: 1px solid #ddd;
     background: #ccc;
     .table-header {
@@ -43,15 +43,16 @@ $primaryColor: #4527a4;
             margin: 0px;
           }
         }
-        .removeColumn{
+        .removeColumn {
           position: relative;
           border: 2px solid #c93636;
-          .bpdt-bodydeleteIcon{
+          .bpdt-bodydeleteIcon {
             position: absolute;
             top: 5px;
             right: 5px;
             color: #c93636;
             cursor: pointer;
+            pointer-events: unset;
           }
         }
       }

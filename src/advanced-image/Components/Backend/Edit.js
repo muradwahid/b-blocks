@@ -5,7 +5,6 @@ import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 import AdvancedImage from './AdvancedImage';
 import { imageRegularIcon, imageSolidIcon } from '../../utils/icons';
-import { prefix } from '../../utils/data';
 import { updateData } from '../../../../../bpl-tools/utils/functions';
 
 const Edit = props => {
@@ -13,7 +12,6 @@ const Edit = props => {
 	const { image } = attributes;
 	const { sourceType } = image;
 
-	const id = `${prefix}-${clientId}`;
 	const updateObj = (property, val, ...props) => {
 		setAttributes({ [property]: updateData(attributes[property], val, ...props) });
 	}
@@ -22,8 +20,8 @@ const Edit = props => {
 	return <>
 		<Settings {...{ attributes, setAttributes, updateObj, isPremium }} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} device={device} isBackend={true} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} device={device} isBackend={true} />
 
 			<div>
 				{!sourceType ?

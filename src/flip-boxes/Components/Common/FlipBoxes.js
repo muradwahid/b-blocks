@@ -1,3 +1,5 @@
+import { sanitizeURL } from '../../../../../bpl-tools/utils/common';
+
 import { prefix } from '../../utils/data';
 
 const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
@@ -28,7 +30,7 @@ const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
 
 						{backTitle && <h3 className='flipTitle flipBackTitle'>{backTitle}</h3>}
 
-						{isBtn && btn && <a href={btnLink} className='flipBtn' target={isLinkNewTab ? '_blank' : '_self'} rel='noreferrer noopener'>{btn}</a>}
+						{isBtn && btn && <a href={sanitizeURL(btnLink)} className='flipBtn' target={isLinkNewTab ? '_blank' : '_self'} rel='noreferrer noopener'>{btn}</a>}
 					</div>
 				</div>
 			</div>;

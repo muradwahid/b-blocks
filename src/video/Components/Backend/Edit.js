@@ -4,22 +4,19 @@ import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
-import { prefix } from '../../utils/data';
 import Video from '../Common/Video';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { source } = attributes;
 
-	const id = `${prefix}-${clientId}`;
-
 	const VideoEl = () => <Video attributes={attributes} />
 
 	return source ? <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
-		<div {...useBlockProps()} id={id}>
-			<Style attributes={attributes} id={id} />
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<VideoEl />
 		</div>

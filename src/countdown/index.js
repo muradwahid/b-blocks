@@ -4,9 +4,10 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { countdownIcon } from './utils/icons';
+import { countdownIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: countdownIcon,
 
 	transforms: {

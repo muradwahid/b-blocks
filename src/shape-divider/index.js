@@ -4,10 +4,11 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { blockIcon } from './utils/icons';
+import { shapeDividerIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
-	icon: blockIcon,
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
+	icon: shapeDividerIcon,
 
 	// Build in Functions
 	edit: Edit,
