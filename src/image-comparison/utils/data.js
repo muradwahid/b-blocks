@@ -1,1 +1,1 @@
-export const prefix = 'icbImageCompare';
+export const prefix = 'b-blocks-ImageCompare';

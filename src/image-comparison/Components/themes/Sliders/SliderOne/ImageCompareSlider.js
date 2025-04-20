@@ -50,16 +50,16 @@ const ImageCompareSlider = ({ attributes, device, setActiveIndex }) => {
   };
 
   return (
-    <Slider {...settings} className="icb-image-compare-slider-wrapper" ref={sliderRef}>
+    <Slider {...settings} className="b-blocks-image-compare-slider-wrapper" ref={sliderRef}>
       {
         slider.map((slide, i) => {
           const { beforeImg, afterImg, caption } = slide;
 
-          const beforeLabelEl = isLabel && beforeImg.beforeLabel && <div className={`icb-label icb-before-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: beforeImg.beforeLabel }} />
+          const beforeLabelEl = isLabel && beforeImg.beforeLabel && <div className={`b-blocks-label b-blocks-before-label b-blocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: beforeImg.beforeLabel }} />
 
-          const afterLabelEl = isLabel && afterImg.afterLabel && <div className={`icb-label icb-after-label icb-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: afterImg.afterLabel }} />
+          const afterLabelEl = isLabel && afterImg.afterLabel && <div className={`b-blocks-label b-blocks-after-label b-blocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: afterImg.afterLabel }} />
 
-          const captionEl = isCap && caption && <div className='icb-caption' dangerouslySetInnerHTML={{ __html: caption }} />
+          const captionEl = isCap && caption && <div className='b-blocks-caption' dangerouslySetInnerHTML={{ __html: caption }} />
 
           const props = { beforeLabelEl, afterLabelEl, captionEl, orientation, options, dragg, label }
 
