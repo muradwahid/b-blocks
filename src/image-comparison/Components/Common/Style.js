@@ -6,21 +6,21 @@ import { handlerBorder } from '../../utils/options';
 
 const Style = ({ attributes, id }) => {
 	const { alignment, width, border, dragg: draggHandler, labelTypo, labelColors, labelPadding, capTypo, capColors, capPadding, styles, theme, sliderStyle } = attributes;
-	const { dragg } = styles
+	const { dragg } = styles;
 
 	const { pagination, navigation } = sliderStyle;
 	const { icon, container } = navigation;
 
 	const mainSl = `#${id}`;
 	const imgCompareSl = `${mainSl} .${prefix}`;
-	const wrapperSl = `${imgCompareSl} .icb-comparison-wrapper`;
-	const labelSl = `${wrapperSl} .icb-label`;
-	const capSl = `${imgCompareSl} .icb-caption`;
-	const sliderSl = `${wrapperSl} .icb-comparison-slider-handle`;
+	const wrapperSl = `${imgCompareSl} .b-blocks-comparison-wrapper`;
+	const labelSl = `${wrapperSl} .b-blocks-label`;
+	const capSl = `${imgCompareSl} .b-blocks-caption`;
+	const sliderSl = `${wrapperSl} .b-blocks-comparison-slider-handle`;
 
 
 	//slider selectors
-	const sliderContainerSl = `${mainSl} .icb-image-compare-slider-wrapper`;
+	const sliderContainerSl = `${mainSl} .b-blocks-image-compare-slider-wrapper`;
 	const navigationSl = `${sliderContainerSl} .slick-arrow`;
 	const paginationSl = `${sliderContainerSl} .slick-dots`;
 
@@ -49,10 +49,10 @@ const Style = ({ attributes, id }) => {
 			padding: ${getSpaceCSS(capPadding)};
 		}
 
-		${isClExist(draggHandler.handleType) ? `${sliderSl} .icb-${draggHandler.handleType}-icon{
+		${isClExist(draggHandler.handleType) ? `${sliderSl} .b-blocks-${draggHandler.handleType}-icon{
 		${isValidCSS('border-color', dragg.handler.color)}
 		${isValidCSS('border-width', isExist(dragg.line.size) ? dragg.line.size + 'px' : '')}
-			}` : `${sliderSl} .icb-${draggHandler.handleType}-icon{
+			}` : `${sliderSl} .b-blocks-${draggHandler.handleType}-icon{
 				${isValidCSS('background-color', dragg.handler.color)}
 				${isValidCSS('border-color', dragg.handler.color)}
 			}`}
