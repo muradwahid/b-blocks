@@ -79,12 +79,8 @@ const BodySettings = ({ attributes, setAttributes, firstIdx }) => {
           })}
         </div>
         <Flex justify='space-between'>
-          {bodyItem.length > 0 && (
-            <button className="remove-row" onClick={() => removeItem(firstIdx)} >  Remove Row </button>
-          )}
-          {headingClSpan > bodyClSpan && (
-            <button className="add-col" onClick={() => handleAddColumn(firstIdx)} > Add Column </button>
-          )}
+          {(bodyItem && bodyItem.length > 0) && <button className="remove-row" onClick={() => removeItem(firstIdx)} >  Remove Row </button>}
+          {headingClSpan > bodyClSpan && <button className="add-col" onClick={() => handleAddColumn(firstIdx)} > Add Column </button>}
         </Flex>
       </div>
     </PanelBody>

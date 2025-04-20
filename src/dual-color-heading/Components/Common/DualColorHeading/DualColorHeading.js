@@ -9,7 +9,6 @@ const DualColorHeading = ({ attributes }) => {
     attributes;
   const headingRef = useRef(null);
   // useAnimation(headingRef.current, advanced?.animation);
-  console.log(icon.icon.upload);
   return (
     <div className="dch-dual-color-container" ref={headingRef}>
       {sortElements.map((el) => {

@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { sliderArrows } from './arrows';
 import { alignBottom, alignMiddle, alignTop } from './icons';
 
 export const beforeAfterImgTab = [
@@ -11,6 +12,11 @@ export const orientationOptions = [{ label: 'Horizontal', value: 'horizontal', i
 export const labelHAlignOptions = [{ label: 'Top', value: 'top', icon: alignTop }, { label: 'Middle', value: 'middle', icon: alignMiddle }, { label: 'Bottom', value: 'bottom', icon: alignBottom }];
 
 export const labelVAlignOptions = [{ label: 'Left', value: 'left', icon: 'editor-alignleft' }, { label: 'Center', value: 'center', icon: 'editor-aligncenter' }, { label: 'Right', value: 'right', icon: 'editor-alignright' }];
+
+export const generalStyleTabs = [
+	{ name: 'general', title: __('General', 'textdomain') },
+	{ name: 'style', title: __('Style', 'textdomain') },
+];
 
 export const iconOptions = [
 	{ label: 'Default', value: 'default', img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-default.png' },
@@ -27,6 +33,7 @@ export const iconOptions = [
 	{ label: 'Capsule Tiny Stroke Small', value: 'capsule-tiny-stroke-small', img: 'https://templates.bplugins.com/wp-content/uploads/2025/02/beaf-preset-capsule-tiny-stroke-small.png', isPro: true }
 ]
 
+
 export const shapeOptions = [
 	{ label: 'Default', value: 'default' },
 	{ label: 'Wave', value: 'wave' },
@@ -39,4 +46,42 @@ export const sliderHandleOptions = [
 	{ title: 'Icon', name: 'icon' },
 ]
 
-export const handlerBorder = ['rectangle-caret', 'circle-caret', 'circle-big-caret', 'capsule-stroke', 'capsule-tiny-stroke-big', 'capsule-tiny-stroke-small']
+export const handlerBorder = ['rectangle-caret', 'circle-caret', 'circle-big-caret', 'capsule-stroke', 'capsule-tiny-stroke-big', 'capsule-tiny-stroke-small'];
+
+export const arrowStyles = [
+	{
+		label: __("Style 1", "b-blocks"),
+		value: "style1",
+		icon: sliderArrows["style1"].right,
+	},
+	{
+		label: __("Style 2", "b-blocks"),
+		value: "style2",
+		icon: sliderArrows["style2"].right,
+	},
+	{
+		label: __("Style 3", "b-blocks"),
+		value: "style3",
+		icon: sliderArrows["style3"].right,
+	},
+	{
+		label: __("Style 4", "b-blocks"),
+		value: "style4",
+		icon: sliderArrows["style4"].right,
+	},
+	{
+		label: __("Style 5", "b-blocks"),
+		value: "style5",
+		icon: sliderArrows["style5"].right,
+	},
+	{
+		label: __("Style 6", "b-blocks"),
+		value: "style6",
+		icon: sliderArrows["style6"].right,
+	},
+];
+
+export const sliderStyleTab = [
+	{ name: 'navigation', title: __('Navigation', 'textdomain') },
+	{ name: 'pagination', title: __('Pagination', 'textdomain') },
+];

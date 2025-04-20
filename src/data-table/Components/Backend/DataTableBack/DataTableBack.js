@@ -14,20 +14,10 @@ const DataTableBack = ({ attributes, setAttributes, setFirstIdx, setHeadingIdx }
   const tdRef = useRef(null);
   const addRow = [];
   headings.forEach(() => {
-    addRow.push({
-      clSpan: 1,
-      contentType: "edit",
-      rowSpan: 1,
-      icon: "",
-      text: `Content ${addRow.length + 1}`,
-      link: "",
-      toggle: false,
-    });
+    addRow.push({ clSpan: 1, contentType: "edit", rowSpan: 1, icon: "", text: `Content ${addRow.length + 1}`, link: "", toggle: false });
   });
   const handleAddRow = () => {
-    setAttributes({
-      bodyItems: [...bodyItems, addRow],
-    });
+    setAttributes({ bodyItems: [...bodyItems, addRow] });
   };
 
   const handleColumnToggle = (index) => {
@@ -44,9 +34,7 @@ const DataTableBack = ({ attributes, setAttributes, setFirstIdx, setHeadingIdx }
       });
       return newRow;
     });
-    setAttributes({
-      bodyItems: updateToggle,
-    });
+    setAttributes({ bodyItems: updateToggle });
   };
   const updateColumnContent = (content, firstIdx, lastIdx) => {
     const updatedBodyItems = produce(bodyItems, (draft) => {
@@ -126,21 +114,7 @@ const DataTableBack = ({ attributes, setAttributes, setFirstIdx, setHeadingIdx }
                   return (
                     <>
                       {item.contentType === "edit" && (
-                        <td
-                          className={`${headingsClSpan < columnSpan &&
-                            bodyItems[i].length - 1 === index
-                            ? "removeColumn"
-                            : ""
-                            }`}
-                          key={index}
-                          colSpan={item.clSpan}
-                          rowSpan={item.rowSpan}
-                          onClick={() => {
-                            if (!item.toggle) {
-                              handleColumnToggle(index, i);
-                            }
-                          }}
-                        >
+                        <td className={`${headingsClSpan < columnSpan && bodyItems[i].length - 1 === index ? "removeColumn" : ""}`} key={index} colSpan={item.clSpan} rowSpan={item.rowSpan} onClick={() => { if (!item.toggle) { handleColumnToggle(index, i); } }}  >
                           <RichText
                             tagName="span"
                             allowedFormats={[
