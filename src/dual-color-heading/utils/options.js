@@ -47,8 +47,19 @@ export const aligns = [
   },
 ];
 
+export const leftRightOptions = [
+  {
+    title: __("Left", "b-blocks"),
+    name: "left",
+  },
+  {
+    title: __("Right", "b-blocks"),
+    name: "right",
+  },
+]
+
 export const generalStyleTabs = [
   { name: "general", title: __("General", "b-blocks") },
-	{ name: "style", title: __("Style", "b-blocks") },
-	{name:"advanced", title: __("Advanced", "b-blocks") }
+  { name: "style", title: __("Style", "b-blocks") },
+  { name: "advanced", title: __("Advanced", "b-blocks") }
 ];

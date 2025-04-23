@@ -40,6 +40,7 @@ import './slider';
 import './social-share';
 import './star-rating';
 import './svg-draw';
+import './table-of-content';
 import './td-viewer';
 import './team-members';
 import './video';

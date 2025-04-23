@@ -1,20 +1,7 @@
 import React from "react";
 
 export const Tab = (props) => {
-  const {
-    options,
-    onChange = () => {},
-    value,
-    paddingY = 4,
-    paddingX = 0,
-    borderColor = "#4527a4",
-    hoverColor = "#fff",
-    hoverBg = "#774cff",
-    activeBg = "#4527a4",
-    activeColor = "#fff",
-    style,
-    className,
-  } = props;
+  const { options, onChange = () => {}, value, paddingY = 4, paddingX = 0, borderColor = "#4527a4", hoverColor = "#fff", hoverBg = "#774cff", activeBg = "#4527a4", activeColor = "#fff", style, className } = props;
   const defaultTabs = options ?? [
     { label: "Tab 1", value: "tab1" },
     { label: "Tab 2", value: "tab2" },
@@ -57,19 +44,9 @@ export const Tab = (props) => {
           }
         `}
       </style>
-      <div
-        style={style}
-        id={`bpl-tab-${id}`}
-        className={`bpl-tab ${className}`}
-      >
+      <div style={style} id={`bpl-tab-${id}`} className={`bpl-tab ${className}`}>
         {defaultTabs?.map((tab, i) => (
-          <div
-            key={i}
-            onClick={() => onChange(tab.value)}
-            className={`dynamic-${id} single-bpl-tab ${
-              value === tab.value ? "isActive" : "single-bpl-tab-hover"
-            }`}
-          >
+          <div key={i} onClick={() => onChange(tab.value)} className={`dynamic-${id} single-bpl-tab ${value === tab.value ? "isActive" : "single-bpl-tab-hover"}`}>
             <p>{tab.label}</p>
           </div>
         ))}

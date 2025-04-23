@@ -9,12 +9,12 @@ $primaryColor: #4527a4;
   .svdr-icon-draw-wrapper {
     height: inherit;
     width: inherit;
-		display: flex;
-    .svdr-svg-wrapper{
+    display: flex;
+    .svdr-svg-wrapper {
       display: flex;
-      svg{
-        height: inherit;
-        width: inherit;
+      svg {
+        height: 100%;
+        width: 100%;
       }
     }
   }

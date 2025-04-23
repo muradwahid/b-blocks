@@ -1,7 +1,7 @@
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 import { getBoxCSS, getTypoCSS } from "../../../../../bpl-tools/utils/getCSS";
 
-const Style = ({ attributes, id }) => {
+const Style = ({ attributes, id, isBackend = false }) => {
 	const { heading, alignment, icon, subHeading, separator, advanced } = attributes;
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .dch-dual-color-container`;
@@ -22,7 +22,7 @@ const Style = ({ attributes, id }) => {
 	return (
 		<style>
 			{`
-			${generateCSS(id, advanced)}
+			${generateCSS(id, advanced, isBackend)}
 			${getTypoCSS("", heading.typography)?.googleFontLink}
 			${getTypoCSS("", subHeading.typography)?.googleFontLink}
 			${blockSl}{
