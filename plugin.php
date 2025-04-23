@@ -143,7 +143,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				$disabledBlocks[] = 'b-blocks/service';
 			}
 
-			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container','content-ticker', 'countdown', 'counters', 'data-table', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'image-hotspot', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
+			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container','content-ticker', 'countdown', 'counters', 'data-table', 'dual-color-heading', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'image-hotspot', 'image-scroller', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'svg-draw', 'team-members', 'table-of-content', 'video' ];
 
 			foreach ( $blocks as $block ) {
 				if( !in_array( "b-blocks/$block", $disabledBlocks ) ){

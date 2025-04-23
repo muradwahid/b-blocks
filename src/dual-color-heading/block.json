@@ -77,9 +77,9 @@
         },
         "margin": {
           "top": "14px",
-          "right": "14px",
+          "right": "0px",
           "bottom": "14px",
-          "left": "14px"
+          "left": "0px"
         }
       }
     },
@@ -228,7 +228,7 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./view.css",
+  "style": ["file:./view.css", "aos"],
   "render": "file:./render.php",
-  "viewScript": ["file:./view.js", "react", "react-dom"]
+  "viewScript": ["file:./view.js", "aos"]
 }

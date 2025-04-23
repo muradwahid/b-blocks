@@ -176,5 +176,5 @@
   "editorStyle": "file:./index.css",
   "style": "file:./view.css",
   "render": "file:./render.php",
-  "viewScript": ["file:./view.js", "react", "react-dom"]
+  "viewScript": "file:./view.js"
 }
