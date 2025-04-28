@@ -25,6 +25,7 @@ import './image-hotspot';
 import './image-scroller';
 import './info-box';
 import './lottie-player';
+import './logo-slider';
 import './mailto';
 import './navigation';
 import './posts';

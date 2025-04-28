@@ -1,0 +1,341 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "b-blocks/logo-slider",
+    "version": "1.0.0",
+    "title": "Logo Slider",
+    "category": "bBlocks",
+    "description": "Logo sliders are often used on websites and blogs to showcase a company's clients, partners, or sponsors.",
+    "keywords": [
+        "slider",
+        "logo",
+        "carousel",
+        "logo slider"
+    ],
+    "textdomain": "b-blocks",
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": ""
+        },
+        "options": {
+            "type": "object",
+            "default": {
+                "autoplay": true,
+                "direction": "rightToLeft",
+                "speed": 1,
+                "delay": 1,
+                "loop": true,
+                "logoView": {
+                    "desktop": 4,
+                    "tablet": 3,
+                    "mobile": 2
+                },
+                "space": {
+                    "desktop": 30,
+                    "tablet": 25,
+                    "mobile": 15
+                },
+                "navigation": true,
+                "pagination": true,
+                "dynamicPagination": false,
+                "isCaptionVisible": false
+            }
+        },
+        "sliderStyles": {
+            "type": "object",
+            "default": {
+                "logo": {
+                    "hover": "none",
+                    "border": {
+                        "color": "#000",
+                        "width": "0px",
+                        "style": "none"
+                    },
+                    "radius": {},
+                    "height": "130px",
+                    "width": "100%",
+                    "logoFitOption": "cover"
+                },
+                "caption": {
+                    "hover": "visible",
+                    "color": {
+                        "text": "#fff",
+                        "bg": "#000"
+                    }
+                }
+            }
+        },
+        "logo": {
+            "type": "array",
+            "default": []
+        },
+        "advanced": {
+            "type": "object",
+            "default": {
+                "dimension": {
+                    "padding": {
+                        "desktop": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        },
+                        "tablet": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        },
+                        "mobile": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        }
+                    }
+                },
+                "transform": {
+                    "normal": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "hover": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "transition": 200
+                },
+                "borderShadow": {
+                    "normal": {
+                        "radius": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        },
+                        "shadow": [
+                            {
+                                "hOffset": "0px",
+                                "vOffset": "0px",
+                                "blur": "0px",
+                                "spreed": "0px",
+                                "color": "#7090b0",
+                                "isInset": false
+                            }
+                        ]
+                    }
+                },
+                "background": {
+                    "normal": {
+                        "type": "color",
+                        "color": "",
+                        "gradient": {
+                            "type": "radial",
+                            "radialType": "ellipse",
+                            "colors": [
+                                {
+                                    "color": "rgba(58, 66, 222, 1)",
+                                    "position": "0"
+                                },
+                                {
+                                    "color": "rgba(176, 195, 235, 1)",
+                                    "position": "80"
+                                }
+                            ],
+                            "centerPositions": {
+                                "x": 50,
+                                "y": 50
+                            },
+                            "angel": 90
+                        },
+                        "img": {
+                            "url": "",
+                            "desktop": {
+                                "position": "center center",
+                                "xPosition": 0,
+                                "yPosition": 0,
+                                "attachment": "",
+                                "repeat": "no-repeat",
+                                "size": "",
+                                "customSize": "0px"
+                            },
+                            "tablet": {
+                                "position": "center center",
+                                "xPosition": 0,
+                                "yPosition": 0,
+                                "attachment": "",
+                                "repeat": "no-repeat",
+                                "size": "",
+                                "customSize": "0px"
+                            },
+                            "mobile": {
+                                "position": "center center",
+                                "xPosition": 0,
+                                "yPosition": 0,
+                                "attachment": "",
+                                "repeat": "no-repeat",
+                                "size": "",
+                                "customSize": "0px"
+                            }
+                        },
+                        "video": {
+                            "url": "",
+                            "loop": false
+                        },
+                        "transition": 0.3
+                    }
+                }
+            }
+        }
+    },
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "example": {
+        "attributes": {}
+    },
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": [
+        "file:./view.css",
+        "aos"
+    ],
+    "render": "file:./render.php",
+    "viewScript": [
+        "file:./view.js",
+        "aos"
+    ]
+}
