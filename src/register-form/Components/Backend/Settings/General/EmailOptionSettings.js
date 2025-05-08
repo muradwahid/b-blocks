@@ -1,9 +1,8 @@
 import { PanelBody, SelectControl, TabPanel, TextControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import React, { Fragment } from "react";
-import { Label } from "../../../../../../../bpl-tools/Components";
+import { Label, TinyEditor } from "../../../../../../../bpl-tools/Components";
 import { tabController } from "../../../../../../../bpl-tools/utils/functions";
-import TinyEditor from "../../Panel/TinyEditor/TinyEditor";
 
 const EmailOptionSettings = ({ attributes, updateObj }) => {
     const { emailOptions } = attributes;
@@ -18,8 +17,7 @@ const EmailOptionSettings = ({ attributes, updateObj }) => {
 
                     <Label>{__("Email Message", "b-blocks")}</Label>
                     <TinyEditor value={emailOptions[tab.name].mail.message} onChange={(value) => updateObj('emailOptions', value, tab.name, 'mail', 'message')} />
-
-                    <SelectControl label={__("Email Content Type", "b-blocks")} labelPosition='edge' options={[{ label: "HTML", value: "html" }, { label: "Plain", value: "plain" },]} value={emailOptions[tab.name].messageType} onChange={(value) => updateObj('emailOptions', value, tab.name, 'messageType')} />
+                    <SelectControl className='mt10' label={__("Email Content Type", "b-blocks")} labelPosition='edge' options={[{ label: "HTML", value: "html" }, { label: "Plain", value: "plain" },]} value={emailOptions[tab.name].messageType} onChange={(value) => updateObj('emailOptions', value, tab.name, 'messageType')} />
                 </Fragment>}
             </>}
         </TabPanel>

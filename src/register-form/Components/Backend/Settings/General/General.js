@@ -9,27 +9,25 @@ import TermsConditionSettings from './TermsConditionSettings';
 import ValidationSettings from './ValidationSettings';
 const General = (props) => {
 
-    return (
-        <>
-            <HelpPanel slug="b-blocks" docsLink="https://bplugins.com/docs/content-slider-block/guides/general" />
+    return <>
+        <HelpPanel slug="b-blocks" docsLink="https://bplugins.com/docs/content-slider-block/guides/general" />
 
-            <FormHeader {...props} />
+        <FormHeader {...props} />
 
-            <FormFieldSettings {...props} />
+        <FormFieldSettings {...props} />
 
-            <ButtonContent {...props} />
+        <ButtonContent {...props} />
 
-            <SocialSignUp {...props} />
+        <SocialSignUp {...props} />
 
-            <FormOptionSettings {...props} />
+        <FormOptionSettings {...props} />
 
-            <EmailOptionSettings {...props} />
+        <EmailOptionSettings {...props} />
 
-            <TermsConditionSettings {...props} />
+        <TermsConditionSettings {...props} />
 
-            <ValidationSettings {...props} />
-        </>
-    );
+        <ValidationSettings {...props} />
+    </>
 }
 export default General;
 

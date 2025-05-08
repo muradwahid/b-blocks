@@ -64,14 +64,14 @@ export const containerStyleOptions = [
 ]
 
 export const headerStyleOptions = [
-    { title: __("Header Content",'b-blocks'), name: "headercontent" },
+    { title: __("Header Content", 'b-blocks'), name: "header" },
     { title: __("Logo", 'b-blocks'), name: "logo" },
     { title: __("Image", 'b-blocks'), name: "image" },
 ]
 
 export const headerTitleSubOptions = [
     { title: __("Title",'b-blocks'), name: "title" },
-    { title: __("Subtitle",'b-blocks'), name: "subtitle" },
+    { title: __("Subtitle", 'b-blocks'), name: "subTitle" },
 ]
 
 export const justifyContent = [

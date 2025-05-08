@@ -1,4 +1,4 @@
-import { Flex, PanelBody } from "@wordpress/components";
+import { Flex, PanelBody, __experimentalBorderBoxControl as BorderBoxControl } from "@wordpress/components";
 import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import React from "react";
@@ -7,23 +7,26 @@ import { BorderControl } from "../../../../../../../bpl-tools/Components/Depreca
 
 const FormLabelStyles = ({ attributes, updateObj, device }) => {
     const { formLabel } = attributes;
-    return (
-        <PanelBody className="bPlPanelBody" title={__("Form Labels", "register-form")} initialOpen={false} >
+    return <PanelBody className="bPlPanelBody" title={__("Form Labels", 'b-blocks')} initialOpen={false} >
 
-            <BoxControl className='mt10' label={<Flex>{__("Margin", "register-form")} <Device /></Flex>} values={formLabel.margin[device]} onChange={(value) => updateObj('formLabel', value, "margin", device)} />
+        <BoxControl className='mt10' label={<Flex>{__("Margin", 'b-blocks')} <Device /></Flex>} values={formLabel.margin[device]} onChange={(value) => updateObj('formLabel', value, "margin", device)} />
 
-            <BoxControl className='mt10' label={<Flex>{__("Padding", "register-form")} <Device /></Flex>} values={formLabel.padding[device]} onChange={(value) => updateObj('formLabel', value, "padding", device)} />
+        <BoxControl className='mt10' label={<Flex>{__("Padding", 'b-blocks')} <Device /></Flex>} values={formLabel.padding[device]} onChange={(value) => updateObj('formLabel', value, "padding", device)} />
 
-            <Typography label={__("Typography", "register-form")} value={formLabel.typography} onChange={(value) => updateObj('formLabel', value, "typography")} />
+        <Typography label={__("Typography", 'b-blocks')} value={formLabel.typography} onChange={(value) => updateObj('formLabel', value, "typography")} />
 
-            <ColorControl label={__("Color", "register-form")} value={formLabel.color.text} onChange={(value) => updateObj('formLabel', value, "color", "text")} />
+        <ColorControl label={__("Color", 'b-blocks')} value={formLabel.color.text} onChange={(value) => updateObj('formLabel', value, "color", "text")} />
 
-            <ColorControl label={__("Background", "register-form")} value={formLabel.color.bg} onChange={(value) => updateObj('formLabel', value, "color", "bg")} />
+        <ColorControl label={__("Background", 'b-blocks')} value={formLabel.color.bg} onChange={(value) => updateObj('formLabel', value, "color", "bg")} />
 
-            <BorderControl label={__("Border", "register-form")} value={formLabel.border} onChange={(value) => updateObj('formLabel', value, "border")} />
+        <BorderBoxControl label={__("Border", 'b-blocks')} value={formLabel.border} onChange={(value) => updateObj('formLabel', value, "border")}/>
 
-        </PanelBody>
-    );
+        <BoxControl label={__("Border Radius",'b-blocks')} values={formLabel.radius} onChange={value=>updateObj('formLabel',value,'radius')} />
+
+
+        <BorderControl label={__("Border", 'b-blocks')} value={formLabel.border} onChange={(value) => updateObj('formLabel', value, "border")} />
+
+    </PanelBody>
 };
 export default withSelect((select) => {
     const { getDeviceType } = select("core/editor");

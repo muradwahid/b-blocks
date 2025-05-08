@@ -47,3 +47,5 @@ export const generateUserName = (email) => {
   const usernameMatch = email.match(usernameRegex)[0];
   return usernameMatch;
 };
+
+export const headingPosition = (val) => (val === 'column' || val === 'column-reverse') ? true : false;

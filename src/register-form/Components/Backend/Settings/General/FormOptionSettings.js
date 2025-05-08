@@ -19,21 +19,19 @@ const FormOptionSettings = ({ attributes, setAttributes, updateObj }) => {
 
             });
     }, []);
-    return (
-        <PanelBody className="bPlPanelBody" title={__("Register Form Options", "b-blocks")} initialOpen={false}>
-            <ToggleControl label={__("Redirect", "b-blocks")} checked={formOptions.isRedirect} value={formOptions.isRedirect} onChange={(val) => setAttributes({ formOptions: updateData(formOptions, val, "isRedirect") })} />
+    return <PanelBody className="bPlPanelBody" title={__("Register Form Options", "b-blocks")} initialOpen={false}>
+        <ToggleControl label={__("Redirect", "b-blocks")} checked={formOptions.isRedirect} value={formOptions.isRedirect} onChange={(val) => setAttributes({ formOptions: updateData(formOptions, val, "isRedirect") })} />
 
-            {formOptions.isRedirect && (
-                <Fragment>
-                    {!formOptions.redirectPrevious && <TextControl label={__("Custom Redirect URL", "b-blocks")} value={formOptions.customUrl} placeholder={location} onChange={(value) => updateObj('formOptions', value, 'customUrl')} />}
+        {formOptions.isRedirect && (
+            <Fragment>
+                {!formOptions.redirectPrevious && <TextControl className='mt10' label={__("Custom Redirect URL", "b-blocks")} value={formOptions.customUrl} placeholder={location} onChange={(value) => updateObj('formOptions', value, 'customUrl')} />}
 
-                    <ToggleControl label={__("Redirect to Previous Page", "b-blocks")} checked={formOptions.redirectPrevious} value={formOptions.redirectPrevious} onChange={(value) => updateObj('formOptions', value, 'redirectPrevious')} />
-                </Fragment>
-            )}
-            <hr />
-            <SelectControl label={__("New User Role", "b-blocks")} value={formOptions.userRole} onChange={(value) => updateObj('formOptions', value, 'userRole')} options={roles} />
-        </PanelBody>
-    );
+                <ToggleControl className='mt10' label={__("Redirect to Previous Page", "b-blocks")} checked={formOptions.redirectPrevious} value={formOptions.redirectPrevious} onChange={(value) => updateObj('formOptions', value, 'redirectPrevious')} />
+            </Fragment>
+        )}
+        <hr />
+        <SelectControl className='mt10' label={__("New User Role", "b-blocks")} value={formOptions.userRole} onChange={(value) => updateObj('formOptions', value, 'userRole')} options={roles} />
+    </PanelBody>
 };
 
 export default FormOptionSettings;
