@@ -30,9 +30,7 @@ const PasswordStrengthStyles = ({ attributes, updateObj, device }) => {
 
                     <BoxControl label={__("Border Radius", 'b-blocks')} values={password[tab.name].radius} onChange={(value) => updateObj('password', value, [tab.name], 'radius')} />
                 </>}
-                {
-                    tab.name === 'passStrengthTxt' && <Typography className='mt10' label={__("Typography", 'b-blocks')} value={password.passStrengthTxt.typography} onChange={(value) => updateObj('password', value, 'passStrengthTxt', 'typography')} />
-                }
+                { tab.name === 'passStrengthTxt' && <Typography className='mt10' label={__("Typography", 'b-blocks')} value={password.passStrengthTxt.typography} onChange={(value) => updateObj('password', value, 'passStrengthTxt', 'typography')} />}
             </>}
         </TabPanel>
 

@@ -18,6 +18,7 @@ import './dual-color-heading';
 import './feature-boxes';
 import './flip-boxes';
 import './gif';
+import './html';
 import './icon-box';
 import './image-comparison';
 import './image-gallery';
