@@ -6,10 +6,10 @@ import "./editor.scss";
 import { blockIcon } from "./utils/icons";
 
 registerBlockType(metadata, {
-  // icon: {
-  //   src: "list-view",
-  //   foreground: "#4527a4",
-  // },
-  icon:blockIcon,
-  edit: Edit,
+    // icon: {
+    //   src: "list-view",
+    //   foreground: "#4527a4",
+    // },
+    icon: blockIcon,
+    edit: Edit,
 });

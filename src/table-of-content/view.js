@@ -9,12 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	tableOfContentEls.forEach(tableOfContentEl => {
 		const attributes = JSON.parse(tableOfContentEl.dataset.attributes);
 
-		createRoot(tableOfContentEl).render(
-			<>
-				<style dangerouslySetInnerHTML={{ __html: `${generateCSS(tableOfContentEl.id, attributes.advanced, false)}` }}></style>
-				<TableOfContent attributes={attributes} id={tableOfContentEl.id} />
-			</>
-		);
+		createRoot(tableOfContentEl).render(<>
+			<style dangerouslySetInnerHTML={{ __html: `${generateCSS(tableOfContentEl.id, attributes.advanced, false)}` }}></style>
+			<TableOfContent attributes={attributes} id={tableOfContentEl.id} />
+		</>);
 
 		tableOfContentEl?.removeAttribute('data-attributes');
 	});
