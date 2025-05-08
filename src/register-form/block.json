@@ -920,13 +920,8 @@
         "file:./index.js",
         "wp-util"
     ],
-    "editorStyle": "file:./index.css",
+    "editorStyle": "file:../index.css",
     "style": "file:./view.css",
     "render": "file:./render.php",
-    "viewScript": [
-        "file:./view.js",
-        "react",
-        "react-dom",
-        "wp-util"
-    ]
+    "viewScript": [ "file:./view.js", "wp-util"  ]
 }
