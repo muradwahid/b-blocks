@@ -17,6 +17,7 @@ import './data-table';
 import './dual-color-heading';
 import './feature-boxes';
 import './flip-boxes';
+import './facebook-embed';
 import './gif';
 import './html';
 import './icon-box';

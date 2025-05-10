@@ -5,7 +5,7 @@ import HTMLBlock from './Components/Frontend/HTMLBlock';
 import './style.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const htmlblockEls = document.querySelectorAll('.wp-block-b-blocks-html-block');
+	const htmlblockEls = document.querySelectorAll('.wp-block-b-blocks-html');
 	htmlblockEls.forEach(htmlblockEl => {
 		const attributes = JSON.parse(htmlblockEl.dataset.attributes);
 
