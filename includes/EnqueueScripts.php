@@ -42,6 +42,7 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_register_script( 'fancybox', B_BLOCKS_ASSETS . 'js/fancybox.min.js', [], '4.0', true ); // Image Gallery
 			wp_register_script( 'mailtoui', B_BLOCKS_ASSETS . 'js/mailtoui-min.js', [], '1.0.3', true ); // Mailto
 			wp_register_script( 'facebookEmbbed', B_BLOCKS_ASSETS . 'js/facebook-embbed.js', [], B_BLOCKS_VERSION, true ); // Facebook Embbed
+			wp_register_script( 'facebookPage', B_BLOCKS_ASSETS . 'js/facebook-page.js', [], B_BLOCKS_VERSION, true ); // Facebook Page
 			
 			wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS . 'css/font-awesome.min.css', [], '6.4.2' ); // Icon
 			wp_register_style( 'swiper', B_BLOCKS_ASSETS . 'css/swiper.min.css', [], '8.0.7' ); // Slider

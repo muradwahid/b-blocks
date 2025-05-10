@@ -18,6 +18,7 @@ import './dual-color-heading';
 import './feature-boxes';
 import './flip-boxes';
 import './facebook-embed';
+import './facebook-page';
 import './gif';
 import './html';
 import './icon-box';

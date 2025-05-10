@@ -147,7 +147,7 @@
         "attributes": {}
     },
     "editorScript": [
-        "file:./index.js",
+        "file:../index.js",
         "facebookEmbbed"
     ],
     "style": "file:./view.css",
