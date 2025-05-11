@@ -29,6 +29,7 @@ import './image-scroller';
 import './info-box';
 import './logo-slider';
 import './lottie-player';
+import './login-form';
 import './mailto';
 import './navigation';
 import './posts';

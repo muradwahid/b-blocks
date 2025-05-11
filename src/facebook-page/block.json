@@ -4,7 +4,7 @@
 	"name": "b-blocks/facebook-page",
 	"version": "1.0.0",
 	"title": "Facebook Page",
-	"category": "widgets",
+	"category": "bBlocks",
 	"description": "The Facebook Page Block allows you to embed your Social Media on your WordPress website.",
 	"keywords": ["facebook", "page", "embed"],
 	"textdomain": "b-blocks",
