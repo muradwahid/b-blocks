@@ -296,11 +296,8 @@
     "example": {
         "attributes": {}
     },
-    "editorScript": "file:../index.js",
+    "editorScript": ["file:../index.js","aos"],
     "style": "file:./view.css",
     "render": "file:./render.php",
-    "viewScript": [
-        "file:./view.js",
-        "wp-util"
-    ]
+    "viewScript": [ "file:./view.js", "wp-util","aos" ]
 }

@@ -110,8 +110,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
                 ${button.alignment.mobile === "justify" ? `width:100%`:'width:auto'};
             }
         }
-	`,
-            }}
-        />
+	`}}
+/>
 };
 export default Style;
