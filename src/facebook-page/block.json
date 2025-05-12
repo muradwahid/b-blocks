@@ -1,154 +1,164 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "b-blocks/facebook-page",
-	"version": "1.0.0",
-	"title": "Facebook Page",
-	"category": "bBlocks",
-	"description": "The Facebook Page Block allows you to embed your Social Media on your WordPress website.",
-	"keywords": ["facebook", "page", "embed"],
-	"textdomain": "b-blocks",
-	"attributes": {
-    "align": {
-      "type": "string",
-      "default": ""
-    },
-    "facebook": {
-      "type": "object",
-      "default": {
-        "appId": "",
-        "link": "https://www.facebook.com/bPluginsLLC",
-        "layout": [
-          "timeline"
-        ],
-        "smallHeader": false,
-        "coverPhoto": true,
-        "profilePhotos": true,
-        "ctaButton": true,
-        "width": 340,
-        "height": 500
-      }
-    },    
-    "advanced": {
-      "type": "object",
-      "default": {
-        "dimension": {
-          "padding": {
-            "desktop": {
-              "top": "0px",
-              "right": "0px",
-              "bottom": "0px",
-              "left": "0px"
-            },
-            "tablet": {
-              "top": "0px",
-              "right": "0px",
-              "bottom": "0px",
-              "left": "0px"
-            },
-            "mobile": {
-              "top": "0px",
-              "right": "0px",
-              "bottom": "0px",
-              "left": "0px"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "b-blocks/facebook-page",
+    "version": "1.0.0",
+    "title": "Facebook Page",
+    "category": "bBlocks",
+    "description": "The Facebook Page Block allows you to embed your Social Media on your WordPress website.",
+    "keywords": [
+        "facebook",
+        "page",
+        "embed"
+    ],
+    "textdomain": "b-blocks",
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": ""
+        },
+        "facebook": {
+            "type": "object",
+            "default": {
+                "appId": "",
+                "link": "https://www.facebook.com/bPluginsLLC",
+                "layout": [
+                    "timeline"
+                ],
+                "smallHeader": false,
+                "coverPhoto": true,
+                "profilePhotos": true,
+                "ctaButton": true,
+                "width": 340,
+                "height": 500
             }
-          }
         },
-        "borderShadow": {
-          "normal": {
-            "radius": {
-              "top": "0px",
-              "right": "0px",
-              "bottom": "0px",
-              "left": "0px"
-            },
-            "shadow": [
-              {
-                "hOffset": "0px",
-                "vOffset": "0px",
-                "blur": "0px",
-                "spreed": "0px",
-                "color": "#7090b0",
-                "isInset": false
-              }
-            ]
-          }
-        },
-        "background": {
-          "normal": {
-            "type": "color",
-            "color": "",
-            "gradient": {
-              "type": "radial",
-              "radialType": "ellipse",
-              "colors": [
-                {
-                  "color": "rgba(58, 66, 222, 1)",
-                  "position": "0"
+        "advanced": {
+            "type": "object",
+            "default": {
+                "dimension": {
+                    "padding": {
+                        "desktop": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        },
+                        "tablet": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        },
+                        "mobile": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        }
+                    }
                 },
-                {
-                  "color": "rgba(176, 195, 235, 1)",
-                  "position": "80"
+                "borderShadow": {
+                    "normal": {
+                        "radius": {
+                            "top": "0px",
+                            "right": "0px",
+                            "bottom": "0px",
+                            "left": "0px"
+                        },
+                        "shadow": [
+                            {
+                                "hOffset": "0px",
+                                "vOffset": "0px",
+                                "blur": "0px",
+                                "spreed": "0px",
+                                "color": "#7090b0",
+                                "isInset": false
+                            }
+                        ]
+                    }
+                },
+                "background": {
+                    "normal": {
+                        "type": "color",
+                        "color": "",
+                        "gradient": {
+                            "type": "radial",
+                            "radialType": "ellipse",
+                            "colors": [
+                                {
+                                    "color": "rgba(58, 66, 222, 1)",
+                                    "position": "0"
+                                },
+                                {
+                                    "color": "rgba(176, 195, 235, 1)",
+                                    "position": "80"
+                                }
+                            ],
+                            "centerPositions": {
+                                "x": 50,
+                                "y": 50
+                            },
+                            "angel": 90
+                        },
+                        "img": {
+                            "url": "",
+                            "desktop": {
+                                "position": "center center",
+                                "xPosition": 0,
+                                "yPosition": 0,
+                                "attachment": "",
+                                "repeat": "no-repeat",
+                                "size": "",
+                                "customSize": "0px"
+                            },
+                            "tablet": {
+                                "position": "center center",
+                                "xPosition": 0,
+                                "yPosition": 0,
+                                "attachment": "",
+                                "repeat": "no-repeat",
+                                "size": "",
+                                "customSize": "0px"
+                            },
+                            "mobile": {
+                                "position": "center center",
+                                "xPosition": 0,
+                                "yPosition": 0,
+                                "attachment": "",
+                                "repeat": "no-repeat",
+                                "size": "",
+                                "customSize": "0px"
+                            }
+                        },
+                        "video": {
+                            "url": "",
+                            "loop": false
+                        },
+                        "transition": 0.3
+                    }
                 }
-              ],
-              "centerPositions": {
-                "x": 50,
-                "y": 50
-              },
-              "angel": 90
-            },
-            "img": {
-              "url": "",
-              "desktop": {
-                "position": "center center",
-                "xPosition": 0,
-                "yPosition": 0,
-                "attachment": "",
-                "repeat": "no-repeat",
-                "size": "",
-                "customSize": "0px"
-              },
-              "tablet": {
-                "position": "center center",
-                "xPosition": 0,
-                "yPosition": 0,
-                "attachment": "",
-                "repeat": "no-repeat",
-                "size": "",
-                "customSize": "0px"
-              },
-              "mobile": {
-                "position": "center center",
-                "xPosition": 0,
-                "yPosition": 0,
-                "attachment": "",
-                "repeat": "no-repeat",
-                "size": "",
-                "customSize": "0px"
-              }
-            },
-            "video": {
-              "url": "",
-              "loop": false
-            },
-            "transition": 0.3
-          }
+            }
         }
-      }
-    }
-  },
-	"supports": {
-		"align": [
-			"wide",
-			"full"
-		],
-		"html": false
-	},
-	"example": {
-		"attributes": {}
-	},
-	"editorScript": ["file:../index.js", "facebookPage"],
-	"style": "file:./style-view.css",
-	"render": "file:./render.php",
-	"viewScript": ["file:./view.js", "facebookPage"]
+    },
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "example": {
+        "attributes": {}
+    },
+    "editorScript": [
+        "file:../index.js",
+        "facebookPage"
+    ],
+    "style": "file:./style-view.css",
+    "render": "file:./render.php",
+    "viewScript": [
+        "file:./view.js",
+        "facebookPage"
+    ]
 }

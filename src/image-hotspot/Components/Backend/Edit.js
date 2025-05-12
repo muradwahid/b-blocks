@@ -5,10 +5,10 @@ import { useRef, useState } from "react";
 
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import Style from "../Common/Style";
 import HotspotBack from "./HotspotBack/HotspotBack";
 import Settings from "./Settings/Settings";
-import { updateData } from '../../../../../bpl-tools/utils/functions';
 
 const Edit = (props) => {
     const { attributes, setAttributes, clientId, isSelected, device } = props;
@@ -16,11 +16,8 @@ const Edit = (props) => {
     const [activeIdx, setActiveIdx] = useState(0);
     const mainElRef = useRef(null);
     // useAnimation(mainElRef, attributes?.animation);
-    const updateObj = (object, val, ...props) => {
-        setAttributes({ [object]: updateData(attributes[object], val, ...props) });
-    }
-    return (
-        <>
+    const updateObj = updateAttributes(attributes, setAttributes);
+    return <>
             <Settings {...{ attributes, setAttributes, activeIdx, setActiveIdx, updateObj }} />
 
             <div ref={mainElRef} {...useBlockProps()}>
@@ -31,8 +28,7 @@ const Edit = (props) => {
 
                 </div>
             </div>
-        </>
-    );
+        </> 
 };
 export default compose(
     withSelect((select) => {

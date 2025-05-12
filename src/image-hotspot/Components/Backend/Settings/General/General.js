@@ -7,14 +7,12 @@ import Tooltip from "./Tooltip";
 const General = (props) => {
     const { attributes, setAttributes, activeIdx, setActiveIdx, updateObj } = props;
 
-    return (
-        <>
+    return  <>
             <HelpPanel slug="b-blocks" docsLink="https://bplugins.com/docs/image-hotspot/guides/general" />
             <Image {...{ attributes, setAttributes, updateObj }} />
             <Spots {...{ attributes, setAttributes, activeIdx, setActiveIdx, updateObj }} />
             <Tooltip {...{ attributes, setAttributes, updateObj }} />
             <Presets {...{ attributes, setAttributes, updateObj }} />
-        </>
-    );
+        </> 
 };
 export default General;

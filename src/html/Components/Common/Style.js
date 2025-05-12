@@ -3,14 +3,12 @@ const Style = ({ attributes, id, isBackend = false }) => {
     const { advanced } = attributes;
     // const mainSl = `#${id}`;
 
-    return (
-        <style
+    return  <style
             dangerouslySetInnerHTML={{
                 __html: `
 		${generateCSS(id, advanced, isBackend)}
 	`,
             }}
-        />
-    );
+        /> 
 }
 export default Style;

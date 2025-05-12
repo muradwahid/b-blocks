@@ -25,8 +25,7 @@ const SpotItemSettings = (props) => {
         setAttributes({ hotspot: newItem });
         setActiveIndex && setActiveIndex(index);
     }
-    return (
-        <>
+    return  <>
             <TabPanel className='bPlTabPanel small' activeClass='activeTab' initialTabName={item.option} tabs={[{ title: "Spot", name: "spot" },
                 { title: "Tooltip", name: "tooltip" },]} onSelect={(tabName) => updateItem("option", tabName)} >
                 {({name}) => <>
@@ -161,8 +160,7 @@ const SpotItemSettings = (props) => {
                     }
                 </>}
                 </TabPanel>
-        </>
-    );
+        </> 
 };
 
 export default SpotItemSettings;

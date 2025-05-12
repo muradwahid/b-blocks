@@ -8,8 +8,7 @@ const Edit = props => {
     const { attributes, setAttributes, clientId } = props;
     const { htmlCode } = attributes;
 
-    return (
-        <>
+    return  <>
             <Settings {...{ attributes, setAttributes }} />
 
             <div {...useBlockProps()} id={`html-block-${clientId}`}>
@@ -24,7 +23,6 @@ const Edit = props => {
                     </div>
                 )}
             </div>
-        </>
-    );
+        </> 
 }
 export default Edit;

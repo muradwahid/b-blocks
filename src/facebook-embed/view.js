@@ -6,7 +6,6 @@ import "./style.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
     const fbEmbedEls = document.querySelectorAll(".wp-block-b-blocks-facebook-embed");
-
     fbEmbedEls.forEach((fbEmbedEl) => {
         const attributes = JSON.parse(fbEmbedEl.dataset.attributes);
 

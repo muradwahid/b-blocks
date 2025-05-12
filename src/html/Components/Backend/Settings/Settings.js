@@ -12,8 +12,7 @@ const Settings = (props) => {
     const { attributes, setAttributes } = props;
     const { advanced } = attributes;
 
-    return (
-        <>
+    return <>
             <InspectorControls>
                 <div className="bPlInspectorInfo">
                     <BBlocksAds />
@@ -37,7 +36,6 @@ const Settings = (props) => {
                     )}
                 </TabPanel>
             </InspectorControls>
-        </>
-    );
+        </> 
 };
 export default Settings;
