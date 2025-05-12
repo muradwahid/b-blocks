@@ -9,8 +9,7 @@ const Facebook = ({ attributes}) => {
             appId: '7318392321575160',
         });
     }, []);
-    return (
-        <div>
+    return <div>
             <div
                 className="fb-page"
                 data-href={facebook.link}
@@ -22,8 +21,7 @@ const Facebook = ({ attributes}) => {
                 data-show-facepile={facebook.profilePhotos}
                 data-hide-cta={facebook.ctaButton}
             ></div>
-        </div>
-    );
+        </div> 
 };
 
 export default Facebook;

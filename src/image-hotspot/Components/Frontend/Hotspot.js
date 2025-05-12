@@ -3,8 +3,7 @@ import { placeholderImg } from '../../utils/icons';
 
 const Hotspot = ({ attributes }) => {
     const { hotspot, image, preset } = attributes;
-    return (
-        <div>
+    return   <div>
             <div
                 style={{
                     background: `url(${image.url || placeholderImg})`,
@@ -191,7 +190,6 @@ const Hotspot = ({ attributes }) => {
                     </>
                 ))}
             </div>
-        </div>
-    );
+        </div> 
 };
 export default Hotspot;

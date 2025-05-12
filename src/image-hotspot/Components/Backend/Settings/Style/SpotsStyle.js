@@ -7,8 +7,7 @@ import { BoxControl, ColorControl, Device } from "../../../../../../../bpl-tools
 import { normalHoverTabs } from '../../../../../../../bpl-tools/utils/options';
 const SpotsStyle = ({ attributes, device, updateObj }) => {
     const { spots } = attributes;
-    return (
-        <PanelBody className="bPlPanelBody" initialOpen={true} title={__("Spots", "b-blocks")} >
+    return  <PanelBody className="bPlPanelBody" initialOpen={true} title={__("Spots", "b-blocks")} >
             <UnitControl label={<Flex>{__("Width", "b-blocks")} <Device /></Flex>} labelPosition='edge' units={[{ label: "PX", value: "px" }]} isUnitSelectTabbable value={spots.width[device]} min={1} max={700} onChange={(value) => updateObj('spots', value, device)} />
 
             <UnitControl label={<Flex>{__("Height", "b-blocks")}<Device /></Flex>} labelPosition='edge' className='mt10' units={[{ label: "PX", value: "px" }]} isUnitSelectTabbable value={spots.height[device]} min={1} max={700} onChange={(value) => updateObj('spots', value, 'height', device)} />
@@ -41,8 +40,7 @@ const SpotsStyle = ({ attributes, device, updateObj }) => {
                     }
                 </Fragment>}
             </TabPanel>
-        </PanelBody>
-    );
+        </PanelBody> 
 };
 
 export default compose(

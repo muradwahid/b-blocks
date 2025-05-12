@@ -8,8 +8,7 @@ import { normalHoverTabs } from '../../../../../../utils/options';
 const ArrowStyles = ({ attributes, device, updateObj }) => {
     const { arrows } = attributes;
 
-    return (
-        <PanelBody className='bPlPanelBody' title={__('Arrows', 'b-blocks')} initialOpen={false} >
+    return  <PanelBody className='bPlPanelBody' title={__('Arrows', 'b-blocks')} initialOpen={false} >
 
             <RangeControl className='mt10' label={<Flex>{__('Arrows Size', 'b-blocks')} <Device /></Flex>} value={arrows.size[device]} onChange={(value) => updateObj('arrows', value, 'size', device)} />
 
@@ -33,8 +32,7 @@ const ArrowStyles = ({ attributes, device, updateObj }) => {
                 }
             </TabPanel>
 
-        </PanelBody>
-    );
+        </PanelBody> 
 };
 
 export default withSelect((select) => {

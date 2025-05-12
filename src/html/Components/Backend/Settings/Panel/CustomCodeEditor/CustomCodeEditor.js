@@ -20,8 +20,7 @@ export const CustomCodeEditor = (props) => {
         [onChange, timeout]
     );
 
-    return (
-        <div>
+    return  <div>
             <AceEditor
                 mode="html"
                 theme="monokai"
@@ -45,7 +44,6 @@ export const CustomCodeEditor = (props) => {
                     tabSize: 2,
                 }}
             />
-        </div>
-    );
+        </div> 
 };
 

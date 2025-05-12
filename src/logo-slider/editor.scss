@@ -1,66 +1,73 @@
 $primaryColor: #4527a4;
 
 .wp-block-b-blocks-logo-slider {
-  .logo-slider-main-wrapper {
-    .swiper {
-      .swiper-wrapper {
-        .swiper-slide {
-          .logo-slider-wrapper{
-            .slider-logo-wrapper {
-              .logo-slider-block-delete-btn {
-                position: absolute;
-                top: 2px;
-                right: 2px;
-                color: #f81313;
-                transition: all 0.3s;
-                opacity: 0;
-                z-index: 999999;
-              }
-              .logo-slider-block-delete-btn:hover {
-                color: #f05353;
-                cursor: pointer;
-              }
-              .logo-replace-wrapper {
-                position: absolute;
-                top: 0;
-                left: 0;
-                padding: 8px 8px;
-                border-right: 1px solid gray;
-                border-bottom: 1px solid gray;
-                background-color: #00000017;
-                backdrop-filter: blur(5px);
-                display: flex;
-                opacity: 0;
-                transition: all 0.3s;
-                z-index: 999;
-                cursor: pointer;
-                .losl-replace-plus-icon {
-                  pointer-events: all;
+    .logo-slider-main-wrapper {
+        .swiper {
+            .swiper-wrapper {
+                .swiper-slide {
+                    .logo-slider-wrapper {
+                        .slider-logo-wrapper {
+                            .logo-slider-block-delete-btn {
+                                position: absolute;
+                                top: 2px;
+                                right: 2px;
+                                color: #f81313;
+                                transition: all 0.3s;
+                                opacity: 0;
+                                z-index: 999999;
+                            }
+
+                            .logo-slider-block-delete-btn:hover {
+                                color: #f05353;
+                                cursor: pointer;
+                            }
+
+                            .logo-replace-wrapper {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                padding: 8px 8px;
+                                border-right: 1px solid gray;
+                                border-bottom: 1px solid gray;
+                                background-color: #00000017;
+                                backdrop-filter: blur(5px);
+                                display: flex;
+                                opacity: 0;
+                                transition: all 0.3s;
+                                z-index: 999;
+                                cursor: pointer;
+
+                                .losl-replace-plus-icon {
+                                    pointer-events: all;
+                                }
+
+                                &>svg {
+                                    width: 15px;
+                                    fill: #fff;
+                                    transition: all 0.1s;
+                                }
+
+                                &:hover {
+                                    &>svg {
+                                        transform: scale(1.8);
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                .logo-replace-wrapper {
+                                    opacity: 1;
+                                }
+
+                                .logo-slider-block-delete-btn {
+                                    opacity: 1;
+                                    pointer-events: all;
+                                }
+                            }
+                        }
+                    }
                 }
-                & > svg {
-                  width: 15px;
-                  fill: #fff;
-                  transition: all 0.1s;
-                }
-                &:hover {
-                  & > svg {
-                    transform: scale(1.8);
-                  }
-                }
-              }
-              &:hover {
-              .logo-replace-wrapper {
-                opacity: 1;
-              }
-              .logo-slider-block-delete-btn {
-                opacity: 1;
-                pointer-events: all;
-              }
             }
-            }
-          }
         }
-      }
     }
-  }
 }

@@ -10,21 +10,11 @@ const Spots = ({ attributes, setAttributes, activeIdx, setActiveIdx }) => {
     const randomId = Math.floor(Math.random() * 91);
     const randomId2 = Math.floor(Math.random() * 91);
 
-    return (
-        <PanelBody
-            className="bPlPanelBody"
-            initialOpen={false}
-            title={__("Spots", "b-blocks")}
-        >
-            <ItemsPanel
-                {...itemsProps}
-                newItem={addNewItem(randomId, randomId2)}
-                itemLabel="Spot"
-                design="all"
-                ItemSettings={SpotItemSettings}
-            />
-        </PanelBody>
-    );
+    return <PanelBody className="bPlPanelBody" initialOpen={false} title={__("Spots", "b-blocks")} >
+
+        <ItemsPanel {...itemsProps} newItem={addNewItem(randomId, randomId2)} itemLabel="Spot" design="all" ItemSettings={SpotItemSettings} />
+        
+    </PanelBody>
 };
 
 export default Spots;
