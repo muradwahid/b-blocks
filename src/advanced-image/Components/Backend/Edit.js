@@ -5,17 +5,17 @@ import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 import AdvancedImage from './AdvancedImage';
 import { imageRegularIcon, imageSolidIcon } from '../../utils/icons';
-import { updateData } from '../../../../../bpl-tools/utils/functions';
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, device, featuredImageURL } = props;
 	const { image } = attributes;
 	const { sourceType } = image;
 
-	const updateObj = (property, val, ...props) => {
-		setAttributes({ [property]: updateData(attributes[property], val, ...props) });
-	}
-	const isPremium = true;
+	const { isPremium = false } = usePremiumInEditor();
+
+	const updateObj = updateAttributes(attributes, setAttributes);
 
 	return <>
 		<Settings {...{ attributes, setAttributes, updateObj, isPremium }} />

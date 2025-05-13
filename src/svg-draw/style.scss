@@ -1,21 +1,24 @@
 $primaryColor: #4527a4;
 
 .wp-block-b-blocks-svg-draw {
-  box-sizing: border-box;
-
-  * {
     box-sizing: border-box;
-  }
-  .svdr-icon-draw-wrapper {
-    height: inherit;
-    width: inherit;
-    display: flex;
-    .svdr-svg-wrapper {
-      display: flex;
-      svg {
-        height: 100%;
-        width: 100%;
-      }
+
+    * {
+        box-sizing: border-box;
     }
-  }
+
+    .svdr-icon-draw-wrapper {
+        height: inherit;
+        width: inherit;
+        display: flex;
+
+        .svdr-svg-wrapper {
+            display: flex;
+
+            svg {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
 }

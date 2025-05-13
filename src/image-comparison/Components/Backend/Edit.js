@@ -6,7 +6,7 @@ import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
-import { usePremiumInEditor } from '../../../../../bpl-tools/hooks';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { ImageCompare } from '../Common/ImageCompare';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
@@ -32,7 +32,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} {...{ attributes, setAttributes, isPremium, activeIndex, setActiveIndex }} />
 
-		<div {...useBlockProps()}>
+		<div {...useBlockProps({ draggable: false })}>
 			<Style attributes={attributes} id={`block-${clientId}`} />
 			{(() => {
 				switch (theme) {

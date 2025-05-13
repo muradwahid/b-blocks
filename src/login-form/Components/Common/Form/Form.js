@@ -5,8 +5,7 @@ import { IoIosEye, IoIosEyeOff } from "../../../utils/icons";
 import ResetForm from "./ResetForm";
 // const Toaster = {}
 const Form = ({ attributes, nonce }) => {
-    const { formInput, labels, button, additional, errorMessage, messages } =
-        attributes;
+    const { formInput, labels, button, additional, errorMessage, messages } = attributes;
     const [showPass, setShowPass] = useState(false);
     const [errorUserName, setErrorUserName] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
@@ -175,7 +174,7 @@ const Form = ({ attributes, nonce }) => {
                         <div className="login-submitBtn">
                             <button
                                 type="submit"
-                                disabled={btnDisabled}
+                                // disabled={btnDisabled}
                                 className={`submitBtn ${button.animation} ${btnDisabled && "btnDisabled"
                                     }`}
                             >

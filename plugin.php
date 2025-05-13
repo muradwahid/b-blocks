@@ -107,6 +107,8 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ajax.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/posts/Posts.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Templates/Templates.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/RegisterForm.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/LoginForm.php';
 
 	class BBlocks{
 		protected static $_instance = null;

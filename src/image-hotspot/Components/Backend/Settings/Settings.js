@@ -9,7 +9,7 @@ import General from "./General/General";
 import Style from "./Style/Style";
 
 const Settings = (props) => {
-    const { attributes, setAttributes, } = props;
+    const { attributes, setAttributes, isPremium } = props;
     const { advanced } = attributes;
 
     return <>
@@ -29,7 +29,7 @@ const Settings = (props) => {
                             <Style {...{ attributes, setAttributes }} />
                         </>}
                         {"advanced" === tab.name && <>
-                            <Advanced advanced={advanced} onChange={(advanced) => setAttributes({ advanced })} />
+                        <Advanced advanced={advanced} onChange={(advanced) => setAttributes({ advanced })} isPremium={isPremium} />
                         </>}
                     </> }
             </TabPanel>

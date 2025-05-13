@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
-import React, { Fragment, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import SVG from "react-inlinesvg";
 import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
-import { useWPAjax } from "../../../../../../bpl-tools/hooks";
 import emailIcon from "../../../assets/icon/envelope-solid.svg";
 import passIcon from "../../../assets/icon/lock-solid.svg";
 import userIcon from "../../../assets/icon/user-solid.svg";
@@ -15,7 +14,8 @@ import { handleRegisterForm } from "./validateRegisterForm";
 
 const RegisterForm = ({ attributes, nonce, isBackend }) => {
     // eslint-disable-next-line no-unused-vars
-    const { data, saveData, isLoading, error, refetch } = useWPAjax("rgfrApiKey", { nonce }, true);
+    // const { data, saveData, isLoading, error, refetch } = useWPAjax("rgfrApiKey", { nonce }, true);
+    const data = { clientId: "AIzaSyD7JHM5Td_bkw1ipDZlgNIJDK5LeJdd1gQ", appId: "7318392321575160"};
     const { formHeader, formFields, button, termsConditions, validation, socialSignUp, weakPassword, emailOptions, formOptions } = attributes;
     const [showPass, setShowPass] = useState(true);
     const [errorMessage, setErrorMessage] = useState({});
@@ -95,8 +95,7 @@ const RegisterForm = ({ attributes, nonce, isBackend }) => {
         return template.replace("[username]", username).replace("[username]", email).replace("[password]", password).replace("[firstname]", firstName).replace("[lastname]", lastName).replace("[website]", website);
     };
 
-    return (
-        <Fragment>
+    return  <>
             <div className="rgfr-register-form-main-wrapper">
                 <div className="rgfr-register-form">
                     <FormImg attributes={attributes} />
@@ -263,13 +262,12 @@ const RegisterForm = ({ attributes, nonce, isBackend }) => {
 
                     {/* {formHeader.image.url.desktop && (
             <div className="rgfr-register-image-wrapper">
-              <img src={formHeader.image.url.desktop} alt="" />
+            <img src={formHeader.image.url.desktop} alt="" />
             </div>
           )} */}
                 </div>
             </div>
-        </Fragment>
-    );
+        </> 
 };
 
 export default RegisterForm;

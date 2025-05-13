@@ -5,7 +5,7 @@ import { tabController } from "../../../../../../bpl-tools/utils/functions";
 import { generalStyleTabs } from "../../../utils/options";
 import General from "./General/General";
 
-const Settings = ({ attributes, updateObj }) => {
+const Settings = ({ attributes, updateObj, isPremium }) => {
     const { advanced } = attributes;
     return <InspectorControls>
         <div className="bPlInspectorInfo">
@@ -19,7 +19,7 @@ const Settings = ({ attributes, updateObj }) => {
             {(tab) => <>
                 {"general" === tab.name && <General {...{ attributes, updateObj }} />}
 
-                {"advanced" === tab.name && <Advanced advanced={advanced} onChange={(value) => updateObj('advanced', value)} />}
+                {"advanced" === tab.name && <Advanced advanced={advanced} onChange={(value) => updateObj('advanced', value)} isPremium={isPremium} />}
             </>
             }
         </TabPanel>

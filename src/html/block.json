@@ -6,10 +6,19 @@
     "title": "HTML",
     "category": "bBlocks",
     "description": "Use the HTML block to add and preview HTML code in your posts or pages, enhancing your website's content and functionality.",
-    "keywords": [ "html", "custom code", "js", "css" ],
+    "keywords": [
+        "html",
+        "custom code",
+        "js",
+        "css"
+    ],
     "textdomain": "b-blocks",
     "attributes": {
         "align": {
+            "type": "string",
+            "default": ""
+        },
+        "htmlCode": {
             "type": "string",
             "default": ""
         },
@@ -117,12 +126,147 @@
                         },
                         "transition": 0.3
                     }
+                },
+                "transform": {
+                    "normal": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "hover": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "transition": 200
                 }
             }
-        },
-        "htmlCode": {
-            "type": "string",
-            "default": ""
         }
     },
     "supports": {
@@ -135,7 +279,10 @@
     "example": {
         "attributes": {}
     },
-    "editorScript": "file:../index.js",
+    "editorScript": [
+        "file:../index.js",
+        "aos"
+    ],
     "style": "file:./view.css",
     "render": "file:./render.php",
     "viewScript": "file:./view.js"

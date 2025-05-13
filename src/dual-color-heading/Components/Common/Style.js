@@ -19,8 +19,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 				: "center"
 		}`;
 
-	return (
-		<style>
+	return  <style>
 			{`
 			${generateCSS(id, advanced, isBackend)}
 			${getTypoCSS("", heading.typography)?.googleFontLink}
@@ -117,7 +116,6 @@ const Style = ({ attributes, id, isBackend = false }) => {
 				}
 			}
 	`}
-		</style>
-	);
+		</style> 
 }
 export default Style;

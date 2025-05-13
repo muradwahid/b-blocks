@@ -10,7 +10,7 @@ import { generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 
 const Settings = (props) => {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, isPremium } = props;
 	const { advanced } = attributes;
 
 	return <>
@@ -26,7 +26,7 @@ const Settings = (props) => {
 
 
 				{'advanced' === tab.name && <>
-					<Advanced advanced={advanced} onChange={(value) => setAttributes({advanced:value})} />
+					<Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} isPremium={isPremium} />
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>

@@ -6,6 +6,7 @@ import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import RegisterForm from "../Common/RegisterForm/RegisterForm";
 import Style from "../Common/Style";
 import Settings from "./Settings/Settings";
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = (props) => {
     const { attributes, setAttributes, clientId } = props;
@@ -15,9 +16,10 @@ const Edit = (props) => {
     useAnimation(wrapperRef.current, advanced.animation);
     const updateObj = updateAttributes(attributes, setAttributes);
 
-    return (
-        <>
-            <Settings {...{ attributes, setAttributes, updateObj }} />
+    const { isPremium = false } = usePremiumInEditor();
+
+    return  <>
+            <Settings {...{ attributes, setAttributes, updateObj, isPremium }} />
 
             <div {...useBlockProps()} id={id}>
                 <Style attributes={attributes} id={id} isBackend={true} />
@@ -25,7 +27,6 @@ const Edit = (props) => {
                     <RegisterForm attributes={attributes} isLoaderShow={true} isBackend={true} nonce={window.wpApiSettings.nonce} />
                 </div>
             </div>
-        </>
-    );
+        </> 
 };
 export default Edit;

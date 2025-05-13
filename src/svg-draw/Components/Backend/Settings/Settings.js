@@ -10,42 +10,32 @@ import General from "./General/General";
 import Style from "./Style/Style";
 
 const Settings = (props) => {
-  const { attributes, setAttributes } = props;
-  const { advanced } = attributes;
+    const { attributes, setAttributes, isPremium } = props;
+    const { advanced } = attributes;
 
-  return (
-    <>
-      <InspectorControls>
-        <div className="bPlInspectorInfo">
-          <BBlocksAds />
-        </div>
+    return <>
+        <InspectorControls>
+            <div className="bPlInspectorInfo">
+                <BBlocksAds />
+            </div>
 
-        <TabPanel className="bPlTabPanel" activeClass="activeTab" tabs={generalStyleTabs} onSelect={tabController}  >
-          {(tab) => (
-            <>
-              {"general" === tab.name && (
-                <>
-                  <General {...{ attributes, setAttributes }} />
-                </>
-              )}
+            <TabPanel className="bPlTabPanel" activeClass="activeTab" tabs={generalStyleTabs} onSelect={tabController}  >
+                {(tab) => <>
+                    {"general" === tab.name && <>
+                        <General {...{ attributes, setAttributes }} />
+                    </>}
 
-              {"style" === tab.name && (
-                <>
-                  <Style {...{ attributes, setAttributes }} />
-                </>
-              )}
-              {
-                "advanced" === tab.name && (
-                  <>
-                    <Advanced advanced={advanced} onChange={value => setAttributes({ advanced: value })} />
-                  </>
-                )
-              }
-            </>
-          )}
-        </TabPanel>
-      </InspectorControls>
+                    {"style" === tab.name && <>
+                        <Style {...{ attributes, setAttributes }} />
+                    </>}
+                    {
+                        "advanced" === tab.name && <>
+                            <Advanced advanced={advanced} onChange={value => setAttributes({ advanced: value })} isPremium={isPremium} />
+                        </>
+                    }
+                </>}
+                </TabPanel>
+        </InspectorControls>
     </>
-  );
 };
 export default Settings;

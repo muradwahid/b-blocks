@@ -4,12 +4,14 @@ import React from "react";
 import ContentTicker from "../Common/ContentTicker";
 import Style from "../Common/Style";
 import Settings from "./Settings/Settings";
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = (props) => {
     const { attributes, setAttributes, clientId, selectBlock } = props;
 
+    const { isPremium = false } = usePremiumInEditor();
     return <>
-        <Settings {...{ attributes, setAttributes }} />
+        <Settings {...{ attributes, setAttributes, isPremium }} />
         <div {...useBlockProps()} onClick={() => selectBlock(clientId)}>
             <Style attributes={attributes} id={`block-${clientId}`} />
             <ContentTicker {...{ attributes }} />
