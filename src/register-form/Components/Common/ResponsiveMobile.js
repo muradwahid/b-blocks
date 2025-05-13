@@ -22,8 +22,7 @@ const ResponsiveMobile = ({ attributes, id }) => {
     const buttonWrapper = `${formEl} .rgfr-registerFormBtn-wrapper`;
     const signUpButton = `${buttonWrapper} .rgfr-register-loader-wrapper`;
     const signinButton = `${buttonWrapper} .rgfr-signInBtn-wrapper`;
-    return (
-        <style
+    return  <style
             dangerouslySetInnerHTML={{
                 __html: `
 		${mobileBreakpoint}{
@@ -163,8 +162,7 @@ const ResponsiveMobile = ({ attributes, id }) => {
         }
 			`,
             }}
-        ></style>
-    );
+        ></style> 
 };
 
 export default ResponsiveMobile;

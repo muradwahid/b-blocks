@@ -9,11 +9,9 @@ import General from "./General/General";
 import Style from "./Style/Style";
 
 const Settings = (props) => {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, isPremium } = props;
     const { advanced } = attributes;
-    return (
-        <>
-            <InspectorControls>
+    return  <InspectorControls>
                 <div className="bPlInspectorInfo">
                     Need more block like this? Checkout the bundle ➡
                     <a href="https://wordpress.org/plugins/b-blocks" target="_blank" rel="noopener noreferrer">  B Blocks  </a>
@@ -25,11 +23,9 @@ const Settings = (props) => {
 
                         {"style" === tab.name && <Style {...props} />}
 
-                        {"advanced" === tab.name && <Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} />}
+                        {"advanced" === tab.name && <Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} isPremium={isPremium} />}
                     </>}
                 </TabPanel>
-            </InspectorControls>
-        </>
-    );
+            </InspectorControls> 
 };
 export default Settings;

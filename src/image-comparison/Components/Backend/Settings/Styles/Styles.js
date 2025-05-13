@@ -15,8 +15,7 @@ const Styles = ({ attributes, isPremium, setIsProModalOpen, updateObj, device })
     const { container, dragg } = styles;
     const { height } = sliderOptions;
     const { pagination, navigation } = sliderStyle;
-    return (
-        <>
+    return  <>
             <PanelBody title={__("Container", "image-compare")} className='bPlPanelBody'>
                 <UnitControl label={__('Width:', 'image-compare')} labelPosition='left' value={width} onChange={val => updateObj("width", val)} units={[pxUnit(), perUnit(), emUnit(), vwUnit()]} />
 
@@ -90,8 +89,7 @@ const Styles = ({ attributes, isPremium, setIsProModalOpen, updateObj, device })
                 </TabPanel>
             </PanelBody>}
 
-        </>
-    );
+        </> 
 };
 export default compose(
     withSelect((select) => {

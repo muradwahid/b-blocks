@@ -23,8 +23,7 @@ const ResponsiveTablet = ({ attributes, id }) => {
     const buttonWrapper = `${formEl} .rgfr-registerFormBtn-wrapper`;
     const signUpButton = `${buttonWrapper} .rgfr-register-loader-wrapper`;
     const signinButton = `${buttonWrapper} .rgfr-signInBtn-wrapper`;
-    return (
-        <style>
+    return   <style>
             {`
         ${tabBreakpoint}{
         ${mainWrapper}{
@@ -169,8 +168,7 @@ const ResponsiveTablet = ({ attributes, id }) => {
         }
         ` .replace(/\s+/g, " ")
                 .trim()}
-        </style>
-    );
+        </style> 
 };
 
 export default ResponsiveTablet;

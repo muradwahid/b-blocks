@@ -22,8 +22,10 @@
             "default": {
                 "alignment": "center",
                 "type": "post",
-                "url": { "post": "https://www.facebook.com/photo/?fbid=1113142977483877&set=a.520898976708283",
-                    "video": "https://www.facebook.com/bPluginsLLC/videos/281067148325015" },
+                "url": {
+                    "post": "https://www.facebook.com/photo/?fbid=1113142977483877&set=a.520898976708283",
+                    "video": "https://www.facebook.com/bPluginsLLC/videos/281067148325015"
+                },
                 "fullScreen": false,
                 "autoPlay": false,
                 "height": "100%",
@@ -132,6 +134,61 @@
                         },
                         "transition": 0.3
                     }
+                },
+                "transform": {
+                    "normal": {
+                        "rotate": {
+                            "desktop": { "z": "", "y": "", "x": "" },
+                            "tablet": { "z": "", "y": "", "x": "" },
+                            "mobile": { "z": "", "y": "", "x": "" },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": { "x": "", "y": "" },
+                            "tablet": { "x": "", "y": "" },
+                            "mobile": { "x": "", "y": "" }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": { "x": "", "y": "", "scale": "" },
+                            "tablet": { "x": "", "y": "", "scale": "" },
+                            "mobile": { "x": "", "y": "", "scale": "" }
+                        },
+                        "skew": {
+                            "desktop": { "x": "", "y": "" },
+                            "tablet": { "x": "", "y": "" },
+                            "mobile": { "x": "", "y": "" }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "hover": {
+                        "rotate": {
+                            "desktop": { "z": "", "y": "", "x": "" },
+                            "tablet": { "z": "", "y": "", "x": "" },
+                            "mobile": { "z": "", "y": "", "x": "" },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": { "x": "", "y": "" },
+                            "tablet": { "x": "", "y": "" },
+                            "mobile": { "x": "", "y": "" }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": { "x": "", "y": "", "scale": "" },
+                            "tablet": { "x": "", "y": "", "scale": "" },
+                            "mobile": { "x": "", "y": "", "scale": "" }
+                        },
+                        "skew": {
+                            "desktop": { "x": "", "y": "" },
+                            "tablet": { "x": "", "y": "" },
+                            "mobile": { "x": "", "y": "" }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "transition": 200
                 }
             }
         }
@@ -148,7 +205,8 @@
     },
     "editorScript": [
         "file:../index.js",
-        "facebookEmbbed"
+        "facebookEmbbed",
+        "aos"
     ],
     "style": "file:./view.css",
     "render": "file:./render.php",

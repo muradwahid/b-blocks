@@ -4,14 +4,12 @@ import BodySettings from "./BodySettings/BodySettings";
 import Header from './Header';
 
 const General = (props) => {
-  const { attributes, setAttributes, firstIdx } = props;
-  return (
-    <>
-      <HelpPanel slug="b-blocks" docsLink="https://bplugins.com/docs/data-table/guides/general" />
-      <Header {...props} />
+    const { attributes, setAttributes, firstIdx } = props;
+    return <>
+        <HelpPanel slug="b-blocks" docsLink="https://bplugins.com/docs/data-table/guides/general" />
+        <Header {...props} />
 
-      <BodySettings firstIdx={firstIdx} attributes={attributes} setAttributes={setAttributes} />
+        <BodySettings firstIdx={firstIdx} attributes={attributes} setAttributes={setAttributes} />
     </>
-  );
 };
 export default General;

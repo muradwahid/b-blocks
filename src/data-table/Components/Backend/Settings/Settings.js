@@ -35,7 +35,7 @@ const Settings = (props) => {
                     {"style" === tab.name && <Style {...props} updateObj={updateObj} />}
 
                     {"advanced" === tab.name && <>
-                        <Advanced advanced={attributes.advanced} onChange={advanced => setAttributes({ advanced })} enabled={enabled} />
+                        <Advanced advanced={attributes.advanced} onChange={advanced => setAttributes({ advanced })} enabled={enabled} isPremium={props.isPremium} />
                     </>}
                 </>}
             </TabPanel>

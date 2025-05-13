@@ -10,7 +10,7 @@ import General from './General/General';
 import Style from './Style/Style';
 
 const Settings = (props) => {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes,isPremium } = props;
 	const { advanced } = attributes;
 
 	const defEnabled = {
@@ -41,7 +41,7 @@ const Settings = (props) => {
 					<Style {...props} />
 				</>}
 				{'advanced' === tab.name && <>
-					<Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} enabled={defEnabled} />
+					<Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} enabled={defEnabled} isPremium={isPremium} />
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>

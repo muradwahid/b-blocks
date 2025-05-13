@@ -29,7 +29,7 @@ const Settings = (props) => {
                             <Style {...props} />
                         </> }
                     {
-                        "advanced" === tab.name && <Advanced advanced={advanced} onChange={advanced => setAttributes({ advanced })} />
+                        "advanced" === tab.name && <Advanced advanced={advanced} onChange={advanced => setAttributes({ advanced })} isPremium={props.isPremium} />
                     }
                 </>}
             </TabPanel>

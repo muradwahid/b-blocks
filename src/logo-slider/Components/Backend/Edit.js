@@ -6,6 +6,7 @@ import Style from "../Common/Style";
 import ContentBlockControl from "./Settings/General/ContentBlockControl";
 import Settings from "./Settings/Settings";
 import SliderBackend from "./SliderBackend/SliderBackend";
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = (props) => {
     const { attributes, setAttributes, clientId, selectBlock } = props;
@@ -13,8 +14,10 @@ const Edit = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const updateObj = updateAttributes(attributes, setAttributes);
 
+    const { isPremium = false } = usePremiumInEditor();
+
     return <>
-        <Settings {...{ attributes, setAttributes, updateObj, activeIndex, setActiveIndex }} />
+        <Settings {...{ attributes, setAttributes, updateObj, activeIndex, setActiveIndex, isPremium }} />
         <ContentBlockControl {...{ setAttributes, attributes, activeIndex, setActiveIndex, updateObj }} />
 
         <div {...useBlockProps()} onClick={() => selectBlock(clientId)}>

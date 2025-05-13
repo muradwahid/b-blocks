@@ -6,14 +6,17 @@ import { updateData } from "../../../../../bpl-tools/utils/functions";
 import ImageScroller from "../Common/ImageScroller";
 import Style from "../Common/Style";
 import Settings from "./Settings/Settings";
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = (props) => {
     const { attributes, setAttributes, clientId, device } = props;
 
     const { image } = attributes;
 
+    const { isPremium = false } = usePremiumInEditor();
+
     return <>
-        <Settings {...{ attributes, setAttributes }} />
+        <Settings {...{ attributes, setAttributes, isPremium }} />
 
         <div {...useBlockProps()}>
             <Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />

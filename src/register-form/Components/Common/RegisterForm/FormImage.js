@@ -7,10 +7,8 @@ const FormImg = ({ attributes }) => {
     const img = formHeader.image.img;
     const url = img?.url;
     const alt = img?.alt || img?.title;
-    return url ? (
-        <div className="rgfr-register-image-wrapper">
+    return url ?  <div className="rgfr-register-image-wrapper">
             <img src={url} alt={alt} />
-        </div>
-    ) : null;
+        </div>  : null;
 }
 export default FormImg

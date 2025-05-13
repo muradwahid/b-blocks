@@ -321,7 +321,8 @@
 	},
 	"editorScript": [
 		"file:../index.js",
-		"lodash"
+		"lodash",
+		"aos"
 	],
 	"style": "file:./view.css",
 	"render": "file:./render.php",

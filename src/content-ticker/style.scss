@@ -6,7 +6,6 @@ $primaryColor: #4527a4;
 }
 
 .wp-block-b-blocks-content-ticker {
-    background-color: red;
 
     * {
         box-sizing: border-box;
@@ -83,6 +82,7 @@ $primaryColor: #4527a4;
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
+                pointer-events:unset;
             }
 
             #cttk-nextBtn {
@@ -91,6 +91,7 @@ $primaryColor: #4527a4;
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
+                pointer-events: unset;
             }
 
             // }
@@ -110,7 +111,7 @@ $primaryColor: #4527a4;
             }
 
             // .custom-prev-btn:focus,.custom-next-btn:focus{
-            //   outline: none;
+            //  outline: none;
             // }
             // }
         }

@@ -529,9 +529,18 @@
                     "weak": "Weak Password",
                     "medium": "Medium Password",
                     "strong": "Strong Password",
-                    "desktop": {"margin":{},"padding":{}},
-                    "tablet": {"margin": {},"padding":{}},
-                    "mobile": {"margin": {},"padding":{}},
+                    "desktop": {
+                        "margin": {},
+                        "padding": {}
+                    },
+                    "tablet": {
+                        "margin": {},
+                        "padding": {}
+                    },
+                    "mobile": {
+                        "margin": {},
+                        "padding": {}
+                    },
                     "typography": {}
                 },
                 "colors": {
@@ -676,7 +685,7 @@
             "type": "object",
             "default": {
                 "isRedirect": true,
-                "customUrl": "http://localhost/login",
+                "customUrl": "",
                 "redirectPrevious": false,
                 "userRole": "subscriber"
             }
@@ -902,6 +911,145 @@
                         },
                         "transition": 0.3
                     }
+                },
+                "transform": {
+                    "normal": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "hover": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "transition": 200
                 }
             }
         }
@@ -918,9 +1066,13 @@
     },
     "editorScript": [
         "file:../index.js",
-        "wp-util"
+        "wp-util",
+        "aos"
     ],
     "style": "file:./view.css",
     "render": "file:./render.php",
-    "viewScript": [ "file:./view.js", "wp-util"  ]
+    "viewScript": [
+        "file:./view.js",
+        "wp-util"
+    ]
 }

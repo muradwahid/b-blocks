@@ -10,7 +10,7 @@ const Style = ({ attributes, device, updateObj }) => {
 
     return <>
         <PanelBody className='bPlPanelBody' title={__("General Style", "b-blocks")} initialOpen={true}>
-            <UnitControl label={<Flex>{__("Width", "b-blocks")} <Device /></Flex>} onChange={(value) => updateObj('table', value, "width", device)} isUnitSelectTabbable value={table.width[device]} min={0} max={table.width[device].includes("%") ? 100 : 1200} />
+            <UnitControl label={<Flex>{__("Width", "b-blocks")} <Device /></Flex>} labelPosition='edge' onChange={(value) => updateObj('table', value, "width", device)} isUnitSelectTabbable value={table.width[device]} min={0} max={table.width[device].includes("%") ? 100 : 1200} />
 
             <BtnGroup label={__("Alignment", "b-blocks")} options={alignmentOptions} value={table.alignment} onChange={(val) => updateObj('table', val, "alignment")} isIcon={true} />
 

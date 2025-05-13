@@ -27,8 +27,7 @@ const General = ({ attributes, setAttributes, updateObj, isPremium, setIsProModa
         caption: "Before After Image Caption"
     }
 
-    return (
-        <>
+    return  <>
             <HelpPanel slug='before-after-image-compare' docsLink='https://bblockswp.com/docs/image-compare' />
 
             <PanelBody className='bPlPanelBody' title={__('Image Comparison', 'image-compare')} initialOpen={true}>
@@ -110,8 +109,7 @@ const General = ({ attributes, setAttributes, updateObj, isPremium, setIsProModa
             <PanelBody className='bPlPanelBody' title={__('Presets', 'image-compare')} initialOpen={false}>
                 <Presets value={dragg.handleType} setIsProModalOpen={setIsProModalOpen} options={iconOptions} onChange={val => handlerType.includes(val) ? setAttributes({ dragg: { ...dragg, handleType: val }, styles: { ...styles, dragg: { ...styles.dragg, line: { ...styles.dragg.line, size: 2 } } } }) : setAttributes({ dragg: { ...dragg, handleType: val }, styles: { ...styles, dragg: { ...styles.dragg, line: { ...styles.dragg.line, size: 3 } } } })} isPremium={isPremium} />
             </PanelBody>
-        </>
-    );
+        </> 
 };
 
 export default General;

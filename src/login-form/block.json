@@ -58,7 +58,7 @@
                 },
                 "bgColor": "",
                 "border": {},
-                "radius":{},
+                "radius": {},
                 "icon": {
                     "show": true,
                     "color": "#000",
@@ -101,7 +101,7 @@
                     },
                     "border": {},
                     "radius": {},
-                    "shadow":[]
+                    "shadow": []
                 },
                 "hover": {
                     "colors": {
@@ -156,7 +156,7 @@
                         },
                         "text": "#e36565"
                     },
-                    "border": { },
+                    "border": {},
                     "radius": {},
                     "padding": {
                         "top": "10px",
@@ -282,6 +282,145 @@
                         },
                         "transition": 0.3
                     }
+                },
+                "transform": {
+                    "normal": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "hover": {
+                        "rotate": {
+                            "desktop": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "tablet": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "mobile": {
+                                "z": "",
+                                "y": "",
+                                "x": ""
+                            },
+                            "threeDRotate": false
+                        },
+                        "offset": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "scale": {
+                            "isProportion": true,
+                            "desktop": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": "",
+                                "scale": ""
+                            }
+                        },
+                        "skew": {
+                            "desktop": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "tablet": {
+                                "x": "",
+                                "y": ""
+                            },
+                            "mobile": {
+                                "x": "",
+                                "y": ""
+                            }
+                        },
+                        "flipX": false,
+                        "flipY": false
+                    },
+                    "transition": 200
                 }
             }
         }
@@ -296,8 +435,16 @@
     "example": {
         "attributes": {}
     },
-    "editorScript": ["file:../index.js","aos"],
+    "editorScript": [
+        "file:../index.js",
+        "aos",
+        "wp-util"
+    ],
     "style": "file:./view.css",
     "render": "file:./render.php",
-    "viewScript": [ "file:./view.js", "wp-util","aos" ]
+    "viewScript": [
+        "file:./view.js",
+        "wp-util",
+        "aos"
+    ]
 }

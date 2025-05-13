@@ -12,37 +12,35 @@ import TimelineSettings from "./TimelineSettings";
 
 
 const Style = ({ attributes, setAttributes, device }) => {
-  const { theme, sticky } = attributes;
-  return (
-    <>
-      {
-        sticky.toggle && <PanelBody className="bPlPanelBody" title={__("Container", "b-blocks")}>
-          <UnitControl
-            value={sticky.width[device]}
-            label={<Flex>{__("Width", "b-blocks")} <Device /></Flex>}
-            onChange={(val) =>
-              setAttributes({
-                sticky: updateData(sticky, val, "width", device),
-              })
+    const { theme, sticky } = attributes;
+    return <>
+            {
+                sticky.toggle && <PanelBody className="bPlPanelBody" title={__("Container", "b-blocks")}>
+                    <UnitControl
+                        value={sticky.width[device]}
+                        label={<Flex>{__("Width", "b-blocks")} <Device /></Flex>}
+                        onChange={(val) =>
+                            setAttributes({
+                                sticky: updateData(sticky, val, "width", device),
+                            })
+                        }
+                    />
+                </PanelBody>
             }
-          />
-        </PanelBody>
-      }
 
-      {/* <BoxStyle attributes={attributes} setAttributes={setAttributes} /> */}
-      {theme === "default" && <DefaultHeaderStyle attributes={attributes} setAttributes={setAttributes} />}
-      {"slide" === theme && <SlideSettings attributes={attributes} setAttributes={setAttributes} />}
-      {"timeline" === theme && <TimelineSettings attributes={attributes} setAttributes={setAttributes} />}
-      {"list" === theme && <ListSettings attributes={attributes} setAttributes={setAttributes} />}
-    </>
-  );
+            {/* <BoxStyle attributes={attributes} setAttributes={setAttributes} /> */}
+            {theme === "default" && <DefaultHeaderStyle attributes={attributes} setAttributes={setAttributes} />}
+            {"slide" === theme && <SlideSettings attributes={attributes} setAttributes={setAttributes} />}
+            {"timeline" === theme && <TimelineSettings attributes={attributes} setAttributes={setAttributes} />}
+            {"list" === theme && <ListSettings attributes={attributes} setAttributes={setAttributes} />}
+        </> 
 };
 export default compose(
-  withSelect((select) => {
-    const { getDeviceType } = select('core/editor');
+    withSelect((select) => {
+        const { getDeviceType } = select('core/editor');
 
-    return {
-      device: getDeviceType()?.toLowerCase(),
-    };
-  })
+        return {
+            device: getDeviceType()?.toLowerCase(),
+        };
+    })
 )(Style);
