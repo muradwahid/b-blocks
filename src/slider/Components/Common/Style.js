@@ -65,7 +65,7 @@ const Style = ({ attributes, id }) => {
 			color: ${prevNextColor};
 		}
 
-		@media (max-width: 768px) {
+		@media only screen and (max-width: 1024px) {
 			${sliderSl} .swiper-pagination{
 				display: ${!pageOnDevice?.tablet ? 'none' : 'block'};
 			}
@@ -73,7 +73,7 @@ const Style = ({ attributes, id }) => {
 				display: ${!prevNextOnDevice?.tablet ? 'none' : 'flex'};
 			}
 		}
-		@media (max-width: 576px) { 
+		@media only screen and (max-width: 640px) { 
 			${sliderSl} .swiper-pagination{
 				display: ${!pageOnDevice?.mobile ? 'none' : 'block'};
 			}

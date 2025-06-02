@@ -31,7 +31,7 @@ const Style = ({ attributes, id }) => {
 			padding: ${getSpaceCSS(paginationPadding)};
 			margin: 0 calc( ${paginationSpacing} / 2 );
 		}
-		@media (max-width: 576px) {
+		@media only screen and (max-width: 640px) {
 			${paginationSl} .${prefix}PagePrev,
 			${paginationSl} .${prefix}PageNumber,
 			${paginationSl} .${prefix}PageNext{

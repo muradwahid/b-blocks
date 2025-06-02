@@ -1,6 +1,6 @@
 export const lowerCase = (word) => word.charAt(0).toLowerCase() + word.slice(1);
 
-export const mobileDevice = window.matchMedia("(max-width:767px)").matches;
+export const mobileDevice = window.matchMedia("(max-width:640px)").matches;
 export const tabletDevice = window.matchMedia("(max-width:1024px)").matches;
 export const desktopDevice = window.matchMedia("(min-width:1025px)").matches;
 

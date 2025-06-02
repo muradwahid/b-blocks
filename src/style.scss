@@ -60,7 +60,7 @@ body {
 	}
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
 	@for $i from 1 through 12 {
 		.columns-tablet-#{$i} {
 			grid-template-columns: repeat(#{$i}, 1fr);
@@ -72,7 +72,7 @@ body {
 	}
 }
 
-@media (max-width: 576px) {
+@media only screen and (max-width: 640px) {
 	@for $i from 1 through 12 {
 		.columns-mobile-#{$i} {
 			grid-template-columns: repeat(#{$i}, 1fr);

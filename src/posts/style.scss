@@ -92,7 +92,7 @@ $prefix: 'bBlocksPosts';
 			grid-template-columns: 1fr 1fr;
 			grid-gap: 15px 15px;
 
-			@media (max-width: 768px) {
+			@media only screen and (max-width: 1024px) {
 				grid-template-columns: 1fr;
 
 				.swiper-slide:last-child {
@@ -245,7 +245,7 @@ $prefix: 'bBlocksPosts';
 			grid-row: span 1;
 		}
 
-		@media (max-width: 992px) {
+		@media only screen and (max-width: 1024px) {
 			grid-template-columns: repeat(2, 1fr);
 
 			.#{$prefix}Article:nth-child(3n + 1) {
@@ -260,7 +260,7 @@ $prefix: 'bBlocksPosts';
 			}
 		}
 
-		@media (max-width: 576px) {
+		@media only screen and (max-width: 640px) {
 			grid-template-columns: repeat(1, 1fr);
 
 			.#{$prefix}Article:nth-child(2n + 1),
@@ -324,7 +324,7 @@ $prefix: 'bBlocksPosts';
 		box-sizing: border-box;
 	}
 
-	@media (max-width: 576px) {
+	@media only screen and (max-width: 640px) {
 
 		.swiper-button-prev,
 		.swiper-rtl .swiper-button-next {
@@ -486,7 +486,7 @@ $prefix: 'bBlocksPosts';
 			height: 100% !important;
 		}
 
-		@media (max-width: 576px) {
+		@media only screen and (max-width: 640px) {
 			grid-template-columns: 1fr !important;
 			height: auto !important;
 			align-self: stretch !important;

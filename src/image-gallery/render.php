@@ -54,8 +54,8 @@ extract( $attributes );
 					href='#'
 					data-fancybox='imgGalleryPreviewBtn'
 					data-src='<?php echo esc_url( $imgUrl ); ?>'
-					data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 992w'
-					data-sizes='( max-width: 576px ) 576px, 992px'
+					data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 1024w'
+					data-sizes='( max-width: 640px ) 640px, 1024px'
 					data-caption='<?php echo wp_kses_post( $image['caption'] ); ?>'
 				<?php } ?>>
 
@@ -71,8 +71,8 @@ extract( $attributes );
 								<button class='imgGalleryPreviewBtn'
 									data-fancybox='imgGalleryPreviewBtn'
 									data-src='<?php echo esc_url( $imgUrl ); ?>'
-									data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 992w'
-									data-sizes='( max-width: 576px ) 576px, 992px'
+									data-srcset='<?php echo esc_url( $imgUrlLarge ); ?> 576w, <?php echo esc_url( $imgUrl ); ?> 1024w'
+									data-sizes='( max-width: 640px ) 640px, 1024px'
 									data-caption='<?php echo wp_kses_post( $image['caption'] ); ?>'>
 									<i class='fa fa-eye'></i><?php echo esc_html__( 'Preview', 'b-blocks' ); ?>
 								</button>

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-19T04:48:40+00:00\n"
+"POT-Creation-Date: 2025-05-26T09:02:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: b-blocks\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: plugin.php
 #: includes/Dashboard.php:170
 #: includes/Dashboard.php:171
-#: plugin.php:182
+#: plugin.php:183
 msgid "B Blocks"
 msgstr ""
 
@@ -83,6 +83,8 @@ msgid "advanced"
 msgstr ""
 
 #: build/advanced-image/block.json
+#: build/image-hotspot/block.json
+#: build/image-scroller/block.json
 msgctxt "block keyword"
 msgid "image"
 msgstr ""
@@ -299,6 +301,31 @@ msgctxt "block keyword"
 msgid "container-block"
 msgstr ""
 
+#: build/content-ticker/block.json
+msgctxt "block title"
+msgid "Content Ticker"
+msgstr ""
+
+#: build/content-ticker/block.json
+msgctxt "block description"
+msgid "Content Ticker will let you showcase your trending news."
+msgstr ""
+
+#: build/content-ticker/block.json
+msgctxt "block keyword"
+msgid "content"
+msgstr ""
+
+#: build/content-ticker/block.json
+msgctxt "block keyword"
+msgid "ticker"
+msgstr ""
+
+#: build/content-ticker/block.json
+msgctxt "block keyword"
+msgid "content-ticker"
+msgstr ""
+
 #: build/countdown/block.json
 msgctxt "block title"
 msgid "Countdown"
@@ -347,6 +374,62 @@ msgstr ""
 #: build/counters/block.json
 msgctxt "block keyword"
 msgid "at a glance"
+msgstr ""
+
+#: build/data-table/block.json
+msgctxt "block description"
+msgid "Data Table allows you to create and manage tables on your website."
+msgstr ""
+
+#: build/data-table/block.json
+msgctxt "block title"
+msgid "Data Table"
+msgstr ""
+
+#: build/data-table/block.json
+msgctxt "block keyword"
+msgid "data table"
+msgstr ""
+
+#: build/data-table/block.json
+#: build/pricing-table/block.json
+msgctxt "block keyword"
+msgid "table"
+msgstr ""
+
+#: build/data-table/block.json
+msgctxt "block keyword"
+msgid "data"
+msgstr ""
+
+#: build/dual-color-heading/block.json
+msgctxt "block title"
+msgid "Dual Color Heading"
+msgstr ""
+
+#: build/dual-color-heading/block.json
+msgctxt "block description"
+msgid "Highlight content heading with different colors."
+msgstr ""
+
+#: build/dual-color-heading/block.json
+msgctxt "block keyword"
+msgid "dual"
+msgstr ""
+
+#: build/dual-color-heading/block.json
+msgctxt "block keyword"
+msgid "color"
+msgstr ""
+
+#: build/dual-color-heading/block.json
+msgctxt "block keyword"
+msgid "heading"
+msgstr ""
+
+#: build/dual-color-heading/block.json
+msgctxt "block keyword"
+msgid "dual-color-heading"
 msgstr ""
 
 #: build/feature-boxes/block.json
@@ -435,6 +518,7 @@ msgid "Display awesome icon in a box."
 msgstr ""
 
 #: build/icon-box/block.json
+#: build/svg-draw/block.json
 msgctxt "block keyword"
 msgid "icon"
 msgstr ""
@@ -503,6 +587,46 @@ msgstr ""
 #: build/image-gallery/block.json
 msgctxt "block keyword"
 msgid "gallery"
+msgstr ""
+
+#: build/image-hotspot/block.json
+msgctxt "block title"
+msgid "Image Hotspot"
+msgstr ""
+
+#: build/image-hotspot/block.json
+msgctxt "block description"
+msgid "Image Hotspot allows you to add interactive hotspots to your images."
+msgstr ""
+
+#: build/image-hotspot/block.json
+msgctxt "block keyword"
+msgid "image hotspot"
+msgstr ""
+
+#: build/image-hotspot/block.json
+msgctxt "block keyword"
+msgid "hotspot"
+msgstr ""
+
+#: build/image-scroller/block.json
+msgctxt "block title"
+msgid "Image Scroller"
+msgstr ""
+
+#: build/image-scroller/block.json
+msgctxt "block description"
+msgid "A dynamic image scroller that smoothly scrolls images on hover, featuring customizable speed, easing, and options for vertical or horizontal scrolling."
+msgstr ""
+
+#: build/image-scroller/block.json
+msgctxt "block keyword"
+msgid "scroll"
+msgstr ""
+
+#: build/image-scroller/block.json
+msgctxt "block keyword"
+msgid "image scroller"
 msgstr ""
 
 #: build/info-box/block.json
@@ -678,11 +802,6 @@ msgstr ""
 #: build/pricing-table/block.json
 msgctxt "block keyword"
 msgid "price list"
-msgstr ""
-
-#: build/pricing-table/block.json
-msgctxt "block keyword"
-msgid "table"
 msgstr ""
 
 #: build/pricing-table/block.json
@@ -883,6 +1002,36 @@ msgstr ""
 #: build/social-share/block.json
 msgctxt "block keyword"
 msgid "page share"
+msgstr ""
+
+#: build/svg-draw/block.json
+msgctxt "block title"
+msgid "SVG Draw"
+msgstr ""
+
+#: build/svg-draw/block.json
+msgctxt "block description"
+msgid "Add animated SVG drawings to your content with customizable paths, timing, and effects."
+msgstr ""
+
+#: build/svg-draw/block.json
+msgctxt "block keyword"
+msgid "svg"
+msgstr ""
+
+#: build/svg-draw/block.json
+msgctxt "block keyword"
+msgid "draw"
+msgstr ""
+
+#: build/svg-draw/block.json
+msgctxt "block keyword"
+msgid "draw svg"
+msgstr ""
+
+#: build/svg-draw/block.json
+msgctxt "block keyword"
+msgid "animated icon"
 msgstr ""
 
 #: build/td-viewer/block.json

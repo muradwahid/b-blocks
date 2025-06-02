@@ -30,12 +30,12 @@ const Style = ({ attributes, id }) => {
 		${alertSl} .alertClose{
 			color: ${colors?.color};
 		}
-		@media (max-width: 768px) {
+		@media only screen and (max-width: 1024px) {
 			${alertSl} .alertIcon{
 				font-size: ${typography?.fontSize?.tablet};
 			}
 		}
-		@media (max-width: 576px) {
+		@media only screen and (max-width: 640px) {
 			${alertSl} .alertIcon{
 				font-size: ${typography?.fontSize?.mobile};
 			}c

@@ -8,5 +8,5 @@ export const getHours = time => Math.floor((time % daySeconds) / hourSeconds);
 export const getMinutes = time => Math.floor((time % hourSeconds) / minuteSeconds);
 export const getSeconds = time => Math.floor(time % minuteSeconds);
 export const getTwoFixed = value => value < 10 ? ('0' + value).slice(-2) : value;
-export const isMobile = window.matchMedia('(max-width: 576px)');
-export const isTablet = window.matchMedia('(max-width: 768px)');
+export const isMobile = window.matchMedia('(max-width: 640px)');
+export const isTablet = window.matchMedia('(max-width: 1024px)');

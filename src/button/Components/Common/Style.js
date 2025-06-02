@@ -15,15 +15,13 @@ const Style = ({ attributes, id }) => {
 		${mainSl}{
 			text-align: ${alignment};
 		}
-		@media only screen and (min-width: 769px) {
-			${btnSl}:not(.btnEditor){
-				display: ${hideOn?.desktop ? 'none' : 'inline-flex'};
-			}
-			${btnSl}.btnEditor{
-				opacity: ${hideOn?.desktop ? 0.8 : 1};
-			}
+		${btnSl}:not(.btnEditor){
+			display: ${hideOn?.desktop ? 'none' : 'inline-flex'};
 		}
-		@media only screen and (max-width: 768px) and (min-width: 577px) {
+		${btnSl}.btnEditor{
+			opacity: ${hideOn?.desktop ? 0.8 : 1};
+		}
+		@media only screen and (max-width: 1024px) {
 			${btnSl}:not(.btnEditor){
 				display: ${hideOn?.tablet ? 'none' : 'inline-flex'};
 			}
@@ -31,7 +29,7 @@ const Style = ({ attributes, id }) => {
 				opacity: ${hideOn?.tablet ? 0.8 : 1};
 			}
 		}
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: 640px) {
 			${btnSl}:not(.btnEditor){
 				display: ${hideOn?.mobile ? 'none' : 'inline-flex'};
 			}

@@ -167,10 +167,10 @@ class GetCSS{
 			'googleFontLink' => !$isUploadFont || $isEmptyFamily ? '' : "@import url( $link );",
 			'styles' => preg_replace( '/\s+/', ' ', trim( "
 				$selector{ $styles }
-				@media (max-width: 768px) {
+				@media only screen and (max-width: 1024px) {
 					$selector{ font-size: $tabletFontSize" . "px; }
 				}
-				@media (max-width: 576px) {
+				@media only screen and (max-width: 640px) {
 					$selector{ font-size: $mobileFontSize" . "px; }
 				}
 			" ) )

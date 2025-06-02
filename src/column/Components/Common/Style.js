@@ -11,13 +11,13 @@ const Style = ({ attributes, id }) => {
 		${mainSl}{
 			width: ${width.mobile}%;
 		}
-		@media (min-width: 576px) {
+		@media only screen and (min-width: 641px) {
 			${mainSl}{
 				width: ${width.tablet}%;
 			}
 		}
 
-		@media (min-width: 768px) {
+		@media only screen and (min-width: 1025px) {
 			${mainSl}{
 				width: ${width.desktop}%;
 			}

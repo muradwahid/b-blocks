@@ -117,7 +117,7 @@ $secondaryColor: #8344c5;
 			}
 		}
 
-		@media (max-width: 767px) {
+		@media only screen and (max-width: 1024px) {
 			@for $i from 1 through 9 {
 				&.columns-tablet-#{$i} {
 					a.imgGalleryImgLink {
@@ -127,7 +127,7 @@ $secondaryColor: #8344c5;
 			}
 		}
 
-		@media (max-width: 575px) {
+		@media only screen and (max-width: 640px) {
 			@for $i from 1 through 9 {
 				&.columns-mobile-#{$i} {
 					a.imgGalleryImgLink {

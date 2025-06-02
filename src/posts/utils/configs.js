@@ -21,10 +21,10 @@ export const sliderConfig = (attributes) => {
 		direction: 'horizontal',
 		slidesPerView: columns?.mobile,
 		breakpoints: {
-			// when window width is >= 576px
-			576: { slidesPerView: columns?.tablet },
-			// when window width is >= 768px
-			768: { slidesPerView: columns?.desktop },
+			// when window width is >= 641px
+			641: { slidesPerView: columns?.tablet },
+			// when window width is >= 1025px
+			1025: { slidesPerView: columns?.desktop },
 		},
 		spaceBetween: columnGap,
 		loop: sliderIsLoop,
