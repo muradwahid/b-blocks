@@ -69,6 +69,7 @@ class Posts{
 			$postType,
 			$fImgSize,
 			$metaDateFormat,
+			$isExcerptFromContent || 'true' === $isExcerptFromContent,
 			$excerptLength
 		);
 

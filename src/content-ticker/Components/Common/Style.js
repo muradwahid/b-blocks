@@ -1,5 +1,5 @@
 import generateCSS from "../../../../../bpl-tools/Advanced/generateCSS";
-import { isExist } from '../../../../../bpl-tools/utils/functions';
+import { isExist } from '../../../../../bpl-tools/utils/common';
 import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getTypoCSS, isValidCSS } from "../../../../../bpl-tools/utils/getCSS";
 import { getBorderRadiusCSS } from "../../utils/functions";
 

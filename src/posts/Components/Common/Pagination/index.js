@@ -37,7 +37,7 @@ const Pagination = ({ attributes, totalCount, onChange }) => {
 			}
 
 			return <li key={index}
-				className={`${prefix}PageNumber ${pageNumber === currentPage ? '${prefix}PageActive' : ''}`}
+				className={`${prefix}PageNumber ${pageNumber === currentPage ? `${prefix}PageActive` : ''}`}
 				onClick={() => setPageNumber(pageNumber)}
 			> {pageNumber}</li>;
 		})}
