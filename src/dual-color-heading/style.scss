@@ -1,37 +1,41 @@
 $primaryColor: #4527a4;
 
 .wp-block-b-blocks-dual-color-heading {
-  box-sizing: border-box;
-
-  * {
     box-sizing: border-box;
-  }
 
-  .icon {
-    font-style: inherit;
-  }
+    * {
+        box-sizing: border-box;
+    }
 
-  img {
-    width: 100%;
-    max-width: 100%;
-  }
+    .icon {
+        font-style: inherit;
+    }
 
-  .dch-dual-color-container {
-    display: grid;
-    padding: 10px;
-    .dch-dual-color-title {
-      margin: 10px 0;
+    img {
+        width: 100%;
+        max-width: 100%;
     }
-    .dch-separator-wrapper {
-      display: flex;
-      width: -webkit-fill-available;
-      .dch-separator-icon {
-        display: flex;
-      }
+
+    .dch-dual-color-container {
+        display: grid;
+        padding: 10px;
+
+        .dch-dual-color-title {
+            margin: 10px 0;
+        }
+
+        .dch-separator-wrapper {
+            display: flex;
+            width: -webkit-fill-available;
+
+            .dch-separator-icon {
+                display: flex;
+            }
+        }
+
+        .dch-dual-color-icon-svg {
+            display: flex;
+            margin: 10px 0px;
+        }
     }
-    .dch-dual-color-icon-svg {
-      display: flex;
-      margin: 10px 0px;
-    }
-  }
 }

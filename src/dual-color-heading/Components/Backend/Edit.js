@@ -1,17 +1,21 @@
 import { useBlockProps } from '@wordpress/block-editor';
-import Settings from './Settings/Settings';
-import Style from '../Common/Style';
 import DualColorHeading from '../Common/DualColorHeading/DualColorHeading';
+import Style from '../Common/Style';
+import Settings from './Settings/Settings';
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
-
+	const updateObj = updateAttributes(attributes, setAttributes)
+	const { isPremium = false } = usePremiumInEditor();
 	return <>
-		<Settings {...{ attributes, setAttributes }} />
+		<Settings {...{ attributes, setAttributes, updateObj, isPremium }}  />
 
 		<div {...useBlockProps()}>
-			<Style attributes={attributes} id={`block-${clientId}`} />
+			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 			<DualColorHeading attributes={attributes} />
+
 		</div>
 	</>;
 }

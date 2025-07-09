@@ -4,29 +4,22 @@ import { useState } from 'react';
 import Style from '../Common/Style';
 import DataTableBack from './DataTableBack/DataTableBack';
 import Settings from './Settings/Settings';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
-  const { attributes, setAttributes, clientId } = props;
-  const [firstIdx, setFirstIdx] = useState(0);
-  const [headingIdx, setHeadingIdx] = useState(0);
+    const { attributes, setAttributes, clientId } = props;
+    const [firstIdx, setFirstIdx] = useState(0);
+    const [headingIdx, setHeadingIdx] = useState(0);
 
-  return (
-    <>
-      <Settings
-        {...{
-          attributes,
-          setAttributes,
-          firstIdx,
-          headingIdx,
-          setHeadingIdx
-        }}
-      />
+    const { isPremium = false } = usePremiumInEditor();
 
-      <div {...useBlockProps()}>
-        <Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
-        <DataTableBack {...{ attributes, setAttributes, setFirstIdx, setHeadingIdx }} />
-      </div>
-    </>
-  );
+    return  <>
+            <Settings {...{ attributes, setAttributes, firstIdx, headingIdx, setHeadingIdx,isPremium }} />
+
+            <div {...useBlockProps()}>
+                <Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
+                <DataTableBack {...{ attributes, setAttributes, setFirstIdx, setHeadingIdx }} />
+            </div>
+        </> 
 }
 export default Edit;

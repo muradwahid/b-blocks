@@ -1,0 +1,21 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-facebook-embed {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+	.b-blocks-facebookEmbed-wrapper{
+		display: flex;
+		&.left{
+			justify-content: left;
+		}
+		&.center{
+			justify-content: center;
+		}
+		&.right{
+			justify-content: right;
+		}
+	}
+}

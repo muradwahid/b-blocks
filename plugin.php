@@ -107,6 +107,8 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ajax.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/posts/Posts.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Templates/Templates.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/RegisterForm.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/LoginForm.php';
 
 	class BBlocks{
 		protected static $_instance = null;
@@ -143,7 +145,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				$disabledBlocks[] = 'b-blocks/service';
 			}
 
-			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container', 'countdown', 'counters', 'feature-boxes', 'flip-boxes', 'gif', 'icon-box', 'image-comparison', 'image-gallery', 'info-box', 'lottie-player', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'team-members', 'video' ];
+			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container','content-ticker', 'countdown', 'counters', 'data-table', 'dual-color-heading', 'feature-boxes', 'flip-boxes', 'facebook-embed', 'facebook-page', 'gif', 'html', 'icon-box', 'image-comparison', 'image-gallery', 'image-hotspot', 'image-scroller', 'info-box', 'lottie-player', 'logo-slider', 'login-form', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'register-form', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'svg-draw', 'team-members', 'table-of-content', 'video' ];
 
 			foreach ( $blocks as $block ) {
 				if( !in_array( "b-blocks/$block", $disabledBlocks ) ){
