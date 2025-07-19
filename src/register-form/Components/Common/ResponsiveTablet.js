@@ -1,4 +1,3 @@
-import React from "react";
 import { getBoxCSS, isValidCSS } from "../../../../../bpl-tools/utils/getCSS";
 import { btnAlign, getBoxCss, headingPosition } from "../../utils/functions";
 import { tabBreakpoint } from '../../../../../bpl-tools/utils/data';
@@ -23,8 +22,8 @@ const ResponsiveTablet = ({ attributes, id }) => {
     const buttonWrapper = `${formEl} .rgfr-registerFormBtn-wrapper`;
     const signUpButton = `${buttonWrapper} .rgfr-register-loader-wrapper`;
     const signinButton = `${buttonWrapper} .rgfr-signInBtn-wrapper`;
-    return   <style>
-            {`
+    return <style>
+        {`
         ${tabBreakpoint}{
         ${mainWrapper}{
             justify-content:${general.containerBox.alignment.tablet};
@@ -87,14 +86,14 @@ const ResponsiveTablet = ({ attributes, id }) => {
             margin:${getBoxCss(formFields.input.margin.tablet)};
         }
         ${formFields.fields
-                        .map(
-                            (val, i) =>
-                                inputField +
-                                `.rgfr-width-${i + 1}{
+                .map(
+                    (val, i) =>
+                        inputField +
+                        `.rgfr-width-${i + 1}{
         width:${val.width.tablet};
         }`
-                        )
-                        .join(" ")}
+                )
+                .join(" ")}
         ${labelEl}{
             margin:${getBoxCss(formLabel.margin.tablet)};
             padding:${getBoxCss(formLabel.padding.tablet)};
@@ -121,7 +120,7 @@ const ResponsiveTablet = ({ attributes, id }) => {
         ${inputField} .passLength, .rgfr-passStrengthTextWrapper{
             ${isValidCSS('width', password.container.tablet.width)}
             ${isValidCSS('height', password.container.tablet.height)}
-            ${isValidCSS('margin', getBoxCss(password.container.tablet.margin)) }
+            ${isValidCSS('margin', getBoxCss(password.container.tablet.margin))}
             ${isValidCSS('padding', getBoxCss(password.container.tablet.padding))}
         }
         ${inputField} .passLength .rgfr-strengthMeter{
@@ -155,7 +154,7 @@ const ResponsiveTablet = ({ attributes, id }) => {
             padding:${getBoxCss(button.signup.tablet.padding)};
         }
         ${signinButton}{
-            ${isValidCSS('flex-direction',button.signin.tablet.displayAs)}
+            ${isValidCSS('flex-direction', button.signin.tablet.displayAs)}
             ${button.signin.tablet.displayAs === "row" ? `justify-content:${button.signin.tablet.justify}` : `align-items:${button.signin.tablet.alignment}`};
             ${isValidCSS('width', button.signin.tablet.containerWidth)}
         }
@@ -167,8 +166,8 @@ const ResponsiveTablet = ({ attributes, id }) => {
         }
         }
         ` .replace(/\s+/g, " ")
-                .trim()}
-        </style> 
+            .trim()}
+    </style>
 };
 
 export default ResponsiveTablet;

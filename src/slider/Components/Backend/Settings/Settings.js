@@ -8,6 +8,7 @@ import { Label, Background, ColorControl, Device, HelpPanel, Typography, ItemsPa
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
 import { pxUnit, perUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 
@@ -52,8 +53,8 @@ const Settings = ({ attributes, setAttributes, clientId, activeIndex, setActiveI
 		descColor: '#fff',
 		btnText: `Button ${slides.length + 1}`,
 		btnLink: '#',
-		btnColors: { color: '#fff', bg: '#4527a4' },
-		btnHovColors: { color: '#fff', bg: '#8344c5' }
+		btnColors: { color: '#fff', bg: primaryColor },
+		btnHovColors: { color: '#fff', bg: secondaryColor }
 	}
 
 	const addSlide = () => {

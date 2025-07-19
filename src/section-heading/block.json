@@ -27,16 +27,16 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 25,
-					"tablet": 22,
-					"mobile": 20
+					"desktop": "25px",
+					"tablet": "22px",
+					"mobile": "20px"
 				},
 				"fontWeight": 600
 			}
 		},
 		"titleColor": {
 			"type": "string",
-			"default": "#4527a4"
+			"default": ""
 		},
 		"titleMargin": {
 			"type": "object",
@@ -54,7 +54,7 @@
 			"default": {
 				"width": "150px",
 				"height": "3px",
-				"color": "#8344c5"
+				"color": "#0c0d3c1a"
 			}
 		},
 		"sepMargin": {
@@ -76,15 +76,13 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 15,
-					"tablet": 15,
-					"mobile": 15
+					"desktop": "15px"
 				}
 			}
 		},
 		"descColor": {
 			"type": "string",
-			"default": "#333"
+			"default": ""
 		},
 		"descMargin": {
 			"type": "object",

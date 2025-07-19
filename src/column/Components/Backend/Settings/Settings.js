@@ -9,7 +9,9 @@ import { BorderControl, ShadowControl, SpaceControl } from '../../../../../../bp
 import { overflows } from '../../../../row/utils/options';
 
 const Settings = props => {
-	const { attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH, device } = props;
+	const { attributes, setAttributes,
+		// nextClientId,
+		columns, updateColumns, updateColumnWidth, MINWIDTH, device } = props;
 	const { width, overflow, background, padding, border, shadow } = attributes;
 
 	const maxColWidth = 100 - (columns - 1) * MINWIDTH;
@@ -21,7 +23,14 @@ const Settings = props => {
 					<Label className='mb5'>{__('Width (%):', 'b-blocks')}</Label>
 					<Device />
 				</PanelRow>
-				<RangeControl value={width[device]} onChange={val => updateColumnWidth(device, val)} min={MINWIDTH} max={'desktop' === device ? maxColWidth : 100} step={0.01} disabled={'desktop' === device && !nextClientId ? true : false} />
+				<RangeControl
+					value={width[device]}
+					onChange={val => updateColumnWidth(device, val)}
+					min={MINWIDTH}
+					max={'desktop' === device ? maxColWidth : 100}
+					step={0.01}
+				// disabled={'desktop' === device && !nextClientId ? true : false}
+				/>
 			</PanelBody>
 
 
@@ -31,9 +40,9 @@ const Settings = props => {
 					<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 				</PanelRow>
 
-				<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#fff' }} />
+				<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} />
 
-				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '10px' }} />
+				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} />
 
 				<BorderControl className='mt20' label={__('Border', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} />
 

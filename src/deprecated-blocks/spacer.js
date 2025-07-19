@@ -4,6 +4,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, ResizableBox } from '@wordpress/components';
 
 import { Label } from '../../../bpl-tools/Components';
+import { primaryColor } from '../../../bpl-tools/utils/data';
 
 // Icon
 import { rectangleIcon } from '../utils/icons';
@@ -42,7 +43,7 @@ registerBlockType('b-blocks/spacer', {
 
 
 			<div className='b_blocks_spacer'>
-				<div style={{ height: `${height}px`, color: '#4527a4', backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
+				<div style={{ height: `${height}px`, color: primaryColor, backgroundColor: `${isSelected ? '#edf3ff' : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
 					{__(`SPACER ---- This content ${isSelected ? '& background color' : ''}`, 'b-blocks')}
 
 					<ResizableBox size={{ height }} enable={{ bottom: true }} onResizeStop={(event, direction, elt, delta) => {

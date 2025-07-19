@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.1' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.2' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -88,7 +88,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				$new = '';
 				foreach( $style as $property => $value ){
 					if( $value == '' ){
-						$new .= $property;
+						$new .= "$property ;";
 					}else {
 						$new .= " $property: $value;";
 					}
@@ -145,7 +145,57 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				$disabledBlocks[] = 'b-blocks/service';
 			}
 
-			$blocks = [ 'alert', 'animated-text', 'advanced-image', 'button', 'button-group', 'cards', 'chart', 'column', 'container','content-ticker', 'countdown', 'counters', 'data-table', 'dual-color-heading', 'feature-boxes', 'flip-boxes', 'facebook-embed', 'facebook-page', 'gif', 'html', 'icon-box', 'image-comparison', 'image-gallery', 'image-hotspot', 'image-scroller', 'info-box', 'lottie-player', 'logo-slider', 'login-form', 'mailto', 'navigation', 'posts', 'price-lists', 'pricing-table', 'qr-code', 'row', 'register-form', 'section-heading', 'service', 'services', 'shape-divider', 'slider', 'social-share', 'star-rating', 'td-viewer', 'svg-draw', 'team-members', 'table-of-content', 'video' ];
+			$blocks = [
+				'alert',
+				'advanced-image',
+				'animated-text',
+				'button',
+				'button-group',
+				'cards',
+				'chart',
+				'column',
+				'container',
+				// 'content-ticker',
+				'countdown',
+				'counters',
+				// 'data-table',
+				// 'dual-color-heading',
+				// 'facebook-embed',
+				// 'facebook-page',
+				'feature-boxes',
+				'flip-boxes',
+				'gif',
+				// 'html',
+				'icon-box',
+				'image-comparison',
+				'image-gallery',
+				// 'image-hotspot',
+				// 'image-scroller',
+				'info-box',
+				// 'login-form',
+				// 'logo-slider',
+				'lottie-player',
+				'mailto',
+				'navigation',
+				'posts',
+				'price-lists',
+				'pricing-table',
+				'qr-code',
+				// 'register-form',
+				'row',
+				'section-heading',
+				'service',
+				'services',
+				'shape-divider',
+				'slider',
+				'social-share',
+				'star-rating',
+				// 'svg-draw',
+				// 'table-of-content',
+				'td-viewer',
+				'team-members',
+				'video'
+			];
 
 			foreach ( $blocks as $block ) {
 				if( !in_array( "b-blocks/$block", $disabledBlocks ) ){

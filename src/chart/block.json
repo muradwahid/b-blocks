@@ -102,7 +102,7 @@
 		},
 		"width": {
 			"type": "string",
-			"default": "80%"
+			"default": "100%"
 		},
 		"height": {
 			"type": "string",
@@ -156,7 +156,7 @@
 		},
 		"titleColor": {
 			"type": "string",
-			"default": "#4527a4"
+			"default": "#146EF5"
 		},
 		"isSubtitle": {
 			"type": "boolean",
@@ -172,7 +172,7 @@
 		},
 		"subtitleColor": {
 			"type": "string",
-			"default": "#8344c5"
+			"default": "#FF7A00"
 		},
 		"isDownload": {
 			"type": "boolean",

@@ -1,9 +1,11 @@
-$primaryColor: #4527a4;
+$primaryColor: #146EF5;
+$primaryColor200: #b6d2fc;
+$primaryColor300: #85b4fa;
 
 .wp-block-b-blocks-row {
 	.columnLayoutContainer {
 		text-align: center;
-		background-color: #4527a411;
+		background-color: $primaryColor200;
 		padding: 20px;
 
 		h3 {
@@ -17,7 +19,7 @@ $primaryColor: #4527a4;
 				width: 24px;
 				height: 22px;
 				font-size: 24px;
-				color: #4527a4;
+				color: $primaryColor;
 			}
 		}
 	}
@@ -45,7 +47,7 @@ $primaryColor: #4527a4;
 
 			i {
 				height: 100%;
-				background-color: #4527a422;
+				background-color: $primaryColor300;
 				display: inline-block;
 				border-radius: 2px;
 				transition: all 0.3s ease;
@@ -57,8 +59,8 @@ $primaryColor: #4527a4;
 
 			&:hover {
 				i {
-					background-color: #4527a411;
-					box-shadow: 0 0 2px 0 #4527a4;
+					background-color: $primaryColor200;
+					box-shadow: 0 0 2px 0 $primaryColor;
 				}
 			}
 		}

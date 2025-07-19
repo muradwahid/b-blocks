@@ -5,6 +5,7 @@ import { InspectorControls, ColorPalette, InnerBlocks, RichText, BlockControls, 
 import { PanelBody, FontSizePicker, RangeControl, TabPanel, SelectControl } from '@wordpress/components';
 
 import { Label, BtnGroup } from '../../../bpl-tools/Components';
+import { primaryColor, secondaryColor } from '../../../bpl-tools/utils/data';
 
 import { collapseIcon } from '../utils/icons';
 import { normalHoverTabs, fontSizes, colors, aligns, fontWeights, textTransforms } from '../utils/options';
@@ -34,9 +35,9 @@ registerBlockType('b-blocks/collapse', {
 		collBtnPLR: { type: 'number', default: 30 },
 		collBtnRadius: { type: 'number', default: 3 },
 		collBtnColor: { type: 'string', default: '#fff' },
-		collBtnBGColor: { type: 'string', default: '#4527a4' },
+		collBtnBGColor: { type: 'string', default: primaryColor },
 		collBtnHovColor: { type: 'string', default: '#fff' },
-		collBtnHovBGColor: { type: 'string', default: '#8344c5' },
+		collBtnHovBGColor: { type: 'string', default: secondaryColor },
 
 		contentPTB: { type: 'number', default: 10 },
 		contentPLR: { type: 'number', default: 15 },
@@ -49,7 +50,7 @@ registerBlockType('b-blocks/collapse', {
 		// Styles
 		const collBtnStyle = { fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px 0`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor };
 
-		const contentStyle = { border: '1px solid #4527a4', borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
+		const contentStyle = { border: `1px solid ${primaryColor}`, borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
 
 		// Functions
 		useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]);
@@ -160,7 +161,7 @@ registerBlockType('b-blocks/collapse', {
 		// Styles
 		const collBtnStyle = { fontSize: `${collBtnFontSize}px`, textTransform: collBtnTransform, fontWeight: collBtnFontWeight, padding: `${collBtnPTB}px ${collBtnPLR}px`, borderRadius: `${collBtnRadius}px`, color: collBtnColor, backgroundColor: collBtnBGColor };
 
-		const contentStyle = { border: '1px solid #4527a4', borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
+		const contentStyle = { border: `1px solid ${primaryColor}`, borderRadius: '5px', marginTop: '12px', padding: `${contentPTB}px ${contentPLR}px` };
 
 		// Functions
 		const collBtnHov = e => {

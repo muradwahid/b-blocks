@@ -1,7 +1,6 @@
 import { PanelBody, RangeControl, SelectControl, ToggleControl } from '@wordpress/components';
 import { withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import React from 'react';
 
 const SliderSettings = ({ attributes, updateObj, device }) => {
     const { options } = attributes;

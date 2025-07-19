@@ -1,6 +1,6 @@
 import { PanelBody, SelectControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import React from "react";
+
 import { ColorControl } from "../../../../../../../bpl-tools/Components";
 
 function LogoCaption({ attributes, updateObj }) {

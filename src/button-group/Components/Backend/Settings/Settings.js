@@ -5,6 +5,7 @@ import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experiment
 import { Label, ColorControl, BtnGroup, ColorsControl, IconControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug } from '../../../../utils/data';
 const sepTypes = [
@@ -32,16 +33,16 @@ const Settings = ({ attributes, setAttributes }) => {
 					<BtnGroup value={btnType} onChange={val => {
 						setAttributes({ btnType: val });
 						'fill' === val && setAttributes({
-							btnOneColors: { ...btnOneColors, color: '#fff', bg: '#4527a4', styles: 'color: #fff; background: #4527a4;' },
+							btnOneColors: { ...btnOneColors, color: '#fff', bg: primaryColor, styles: `color: #fff; background: ${primaryColor};` },
 							btnOneBorder: { ...btnOneBorder, width: '0px', color: '#0000', styles: '' },
-							btnTwoColors: { ...btnTwoColors, color: '#fff', bg: '#8344c5', styles: 'color: #fff; background: #8344c5;' },
+							btnTwoColors: { ...btnTwoColors, color: '#fff', bg: secondaryColor, styles: `color: #fff; background: ${secondaryColor};` },
 							btnTwoBorder: { ...btnTwoBorder, width: '0px', color: '#0000', styles: '' }
 						});
 						'outline' === val && setAttributes({
-							btnOneColors: { ...btnOneColors, color: '#4527a4', bg: '#0000', styles: 'color: #4527a4; background: #0000;' },
-							btnOneBorder: { ...btnOneBorder, width: '3px', color: '#4527a4', styles: 'border: 3px solid #4527a4;' },
-							btnTwoColors: { ...btnTwoColors, color: '#8344c5', bg: '#0000', styles: 'color: #8344c5; background: #0000;' },
-							btnTwoBorder: { ...btnTwoBorder, width: '3px', color: '#8344c5', styles: 'border: 3px solid #8344c5;' }
+							btnOneColors: { ...btnOneColors, color: primaryColor, bg: '#0000', styles: `color: ${primaryColor}; background: #0000;` },
+							btnOneBorder: { ...btnOneBorder, width: '3px', color: primaryColor, styles: `border: 3px solid ${primaryColor};` },
+							btnTwoColors: { ...btnTwoColors, color: secondaryColor, bg: '#0000', styles: `color: ${secondaryColor}; background: #0000;` },
+							btnTwoBorder: { ...btnTwoBorder, width: '3px', color: secondaryColor, styles: `border: 3px solid ${secondaryColor};` }
 						});
 					}} options={[
 						{ label: __('Fill', 'b-blocks'), value: 'fill', icon: 'FILL' },
@@ -64,9 +65,9 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<BorderControl label={__('Border', 'b-blocks')} value={btnOneBorder} onChange={val => setAttributes({ btnOneBorder: val })} defaults={{ radius: '50px' }} />
 
-						<ColorsControl value={btnOneColors} onChange={val => setAttributes({ btnOneColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<ColorsControl value={btnOneColors} onChange={val => setAttributes({ btnOneColors: val })} defaults={{ color: '#fff', bg: primaryColor }} />
 
-						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnOneHovColors} onChange={val => setAttributes({ btnOneHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnOneHovColors} onChange={val => setAttributes({ btnOneHovColors: val })} defaults={{ color: '#fff', bg: secondaryColor }} />
 					</>}
 
 					{'btn-two' == tab.name && <>
@@ -77,9 +78,9 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<BorderControl label={__('Border', 'b-blocks')} value={btnTwoBorder} onChange={val => setAttributes({ btnTwoBorder: val })} defaults={{ radius: '50px' }} />
 
-						<ColorsControl value={btnTwoColors} onChange={val => setAttributes({ btnTwoColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+						<ColorsControl value={btnTwoColors} onChange={val => setAttributes({ btnTwoColors: val })} defaults={{ color: '#fff', bg: secondaryColor }} />
 
-						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnTwoHovColors} onChange={val => setAttributes({ btnTwoHovColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnTwoHovColors} onChange={val => setAttributes({ btnTwoHovColors: val })} defaults={{ color: '#fff', bg: primaryColor }} />
 					</>}
 				</>}
 				</TabPanel>

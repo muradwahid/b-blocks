@@ -40,7 +40,11 @@ if( !function_exists( 'bBlocksImageGalleryStyle' ) ) {
 
 extract( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?> id='<?php echo esc_attr( $id ); ?>'>
+<div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
+	<?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?>
+	id='<?php echo esc_attr( $id ); ?>'
+>
 	<style><?php echo esc_html( bBlocksImageGalleryStyle( $attributes, $id ) ); ?></style>
 
 	<div class='imgGalleryWrapper columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>

@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	const dualColorHeadingEls = document.querySelectorAll('.wp-block-b-blocks-dual-color-heading');
 	dualColorHeadingEls.forEach(dualColorHeadingEl => {
 		const attributes = JSON.parse(dualColorHeadingEl.dataset.attributes);
-		createRoot(dualColorHeadingEl).render(
-			<>
-				<Style attributes={attributes} id={dualColorHeadingEl.id} />
-				<DualColorHeading attributes={attributes} />
-			</>
-		);
+
+		createRoot(dualColorHeadingEl).render(<>
+			<Style attributes={attributes} id={dualColorHeadingEl.id} />
+
+			<DualColorHeading attributes={attributes} />
+		</>);
 
 		dualColorHeadingEl?.removeAttribute('data-attributes');
 	});

@@ -5,6 +5,7 @@ import { RichText, InspectorControls, ColorPalette, InnerBlocks, BlockControls, 
 import { PanelBody, FontSizePicker, Button, ToggleControl, RangeControl, TabPanel, TextControl, SelectControl } from '@wordpress/components';
 
 import { Label, BtnGroup } from '../../../bpl-tools/Components';
+import { primaryColor, secondaryColor } from '../../../bpl-tools/utils/data';
 
 import { modalIcon } from '../utils/icons';
 import { normalHoverTabs, fontSizes, hTags, colors, aligns, fontWeights, textTransforms } from '../utils/options';
@@ -47,9 +48,9 @@ registerBlockType('b-blocks/modal', {
 		modalBtnPLR: { type: 'number', default: 30 },
 		modalBtnRadius: { type: 'number', default: 3 },
 		modalBtnColor: { type: 'string', default: '#fff' },
-		modalBtnBGColor: { type: 'string', default: '#4527a4' },
+		modalBtnBGColor: { type: 'string', default: primaryColor },
 		modalBtnHovColor: { type: 'string', default: '#fff' },
-		modalBtnHovBGColor: { type: 'string', default: '#8344c5' },
+		modalBtnHovBGColor: { type: 'string', default: secondaryColor },
 
 		modalHead: { type: 'boolean', default: true },
 		modalHeadClose: { type: 'boolean', default: true },
@@ -60,7 +61,7 @@ registerBlockType('b-blocks/modal', {
 		heading: { type: 'string', source: 'html', selector: '.b_blocks_modal_heading' },
 		headingTag: { type: 'string', default: 'h2' },
 		headingFontSize: { type: 'number', default: 25 },
-		headingColor: { type: 'string', default: '#4527a4' },
+		headingColor: { type: 'string', default: primaryColor },
 
 		footerTextShow: { type: 'boolean', default: true },
 		footerText: { type: 'string', source: 'html', selector: '.b_blocks_modal_footer_text' },

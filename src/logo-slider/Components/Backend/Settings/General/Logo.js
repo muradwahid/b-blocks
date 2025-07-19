@@ -1,6 +1,6 @@
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import React from 'react';
+
 import { ItemsPanel } from '../../../../../../../bpl-tools/Components';
 import ItemSettings from './ItemSettings';
 

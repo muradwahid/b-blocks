@@ -1,5 +1,25 @@
-$primaryColor: #4527a4;
-$secondaryColor: #8344c5;
+$primaryColor: #146EF5;
+$primaryColor100: #e7f0fe;
+$primaryColor200: #b6d2fc;
+$primaryColor300: #85b4fa;
+$primaryColor400: #5495f8;
+$primaryColor500: #2377f6;
+$primaryColor600: #095edc;
+$primaryColor700: #0749ab;
+$primaryColor800: #05347a;
+$primaryColor900: #031f49;
+$primaryColor1000: #010a18;
+$secondaryColor: #FF7A00;
+$titleColor: #070127;
+$contentColor: #485781;
+
+$gradient: linear-gradient(135deg, #0040E3, #18D4FD);
+
+// For Modal
+.interface-navigable-region.interface-interface-skeleton__sidebar,
+.interface-navigable-region.interface-interface-skeleton__secondary-sidebar {
+	z-index: auto;
+}
 
 // Block inserter style
 .bBlocksRow,

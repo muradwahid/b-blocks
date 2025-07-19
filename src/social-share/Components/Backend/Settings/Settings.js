@@ -7,6 +7,7 @@ import { Label, Background, IconControl, InlineDetailMediaUpload, HelpPanel } fr
 import { BorderControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { gradient, primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, socialShareDocs } from '../../../../utils/data';
 import { compareAndReturn } from '../../../utils/functions';
@@ -127,7 +128,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						<Label>{__('Icon:', 'b-blocks')}</Label>
 						<InlineDetailMediaUpload className='mt10' value={upIcon} onChange={val => updateSocial('upIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
 					</> :
-						<IconControl label={__('Icon:', 'b-blocks')} value={icon} onChange={val => updateSocial('icon', val)} defaults={{ class: 'fab fa-facebook-f', color: '#4527a4' }} isSize={false} />}
+						<IconControl label={__('Icon:', 'b-blocks')} value={icon} onChange={val => updateSocial('icon', val)} defaults={{ class: 'fab fa-facebook-f', color: primaryColor }} isSize={false} />}
 
 					<PanelRow className='itemAction mt20 mb15'>
 						{1 < socials?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeSocial} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
@@ -152,12 +153,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 								background: { type: 'solid', color: '#0000' },
 								border: { width: '0', color: '#0000' }
 							}),
-							updateAllSocial('icon', '#4527a4', 'color')
+							updateAllSocial('icon', primaryColor, 'color')
 						);
 
 						'theme1' === val && (
 							setAttributes({
-								background: { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' },
+								background: { type: 'gradient', gradient },
 								border: { width: '0', color: '#0000' }
 							}),
 							updateAllSocial('icon', '#fff', 'color')
@@ -166,9 +167,9 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex }) =>
 						'theme2' === val && (
 							setAttributes({
 								background: { type: 'solid', color: '#0000' },
-								border: { width: '2px', color: '#4527a4' }
+								border: { width: '2px', color: primaryColor }
 							}),
-							updateAllSocial('icon', '#4527a4', 'color')
+							updateAllSocial('icon', primaryColor, 'color')
 						);
 					}} options={themes} />
 				</PanelRow>

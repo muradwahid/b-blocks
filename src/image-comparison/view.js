@@ -1,9 +1,8 @@
 import { createRoot } from 'react-dom/client';
 
-
+import './style.scss';
 import { ImageCompare } from './Components/Common/ImageCompare';
 import Style from './Components/Common/Style';
-import './style.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const imageCompareEls = document.querySelectorAll('.wp-block-b-blocks-image-comparison');

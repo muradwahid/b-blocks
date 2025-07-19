@@ -36,9 +36,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 22,
-					"tablet": 20,
-					"mobile": 18
+					"desktop": "22px",
+					"tablet": "20px",
+					"mobile": "18px"
 				},
 				"fontWeight": 600
 			}
@@ -47,14 +47,14 @@
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#4527a4"
+				"bg": "#146EF5"
 			}
 		},
 		"btnHovColors": {
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#8344c5"
+				"bg": "#FF7A00"
 			}
 		},
 		"btnPadding": {

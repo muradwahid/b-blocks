@@ -35,7 +35,7 @@
                 "color": "#484848",
                 "typography": {
                     "fontSize": {
-                        "desktop": 16
+                        "desktop": "16px"
                     }
                 }
             }
@@ -54,7 +54,9 @@
                 },
                 "color": "",
                 "typography": {
-                    "fontSize": 16
+                    "fontSize": {
+                        "desktop": "16px"
+                    }
                 },
                 "bgColor": "",
                 "border": {},
@@ -73,7 +75,9 @@
                 "username": "Username or Email is required!",
                 "password": "Password is required!",
                 "typography": {
-                    "fontSize": 12
+                    "fontSize": {
+                        "desktop": "12px"
+                    }
                 },
                 "color": "#ff0000"
             }
@@ -89,7 +93,9 @@
                 },
                 "typography": {
                     "fontSize": {
-                        "desktop": 15
+                        "desktop": {
+                            "desktop": "15px"
+                        }
                     }
                 },
                 "normal": {
@@ -145,7 +151,9 @@
                 },
                 "typography": {
                     "fontSize": {
-                        "desktop": 14
+                        "desktop": {
+                            "desktop": "14px"
+                        }
                     }
                 },
                 "position": "",

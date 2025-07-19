@@ -1,14 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { withSelect } from "@wordpress/data";
+import { withSelect } from '@wordpress/data';
 import { BlockControls, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 import { ToolbarButton } from '@wordpress/components';
 import { ToolbarGroup } from '@wordpress/components';
 
-import General from "./General/General";
-import Style from "./Style/Style";
+import General from './General/General';
+import Style from './Style/Style';
 import { allTabs } from '../../../../utils/options';
-import Advanced from "../../../../../../bpl-tools/Advanced"
+import Advanced from '../../../../../../bpl-tools/Advanced'
 
 const Settings = ({ attributes, setAttributes, updateObj, isPremium, device }) => {
 	const { image } = attributes;
@@ -33,8 +33,8 @@ const Settings = ({ attributes, setAttributes, updateObj, isPremium, device }) =
 			{source.url && sourceType === 'custom' && <ToolbarGroup>
 				<MediaUploadCheck>
 					<MediaUpload
-						allowedTypes={["image/*"]}
-						onSelect={({ id, url, alt, title }) => updateObj("image", { id, url, alt, title }, "source")}
+						allowedTypes={['image/*']}
+						onSelect={({ id, url, alt, title }) => updateObj('image', { id, url, alt, title }, 'source')}
 						render={({ open }) => <ToolbarButton icon='edit' iconSize='25' title={__('Edit Custom Image', 'b-blocks')} onClick={open} />}
 					/>
 				</MediaUploadCheck>

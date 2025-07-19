@@ -13,7 +13,7 @@
 	"attributes": {
 		"align": {
 			"type": "string",
-			"default": ""
+			"default": "wide"
 		},
 		"members": {
 			"type": "array",
@@ -70,7 +70,7 @@
 						"type": "object",
 						"default": {
 							"color": "#fff",
-							"bg": "#4527a4"
+							"bg": "#146EF5"
 						}
 					}
 				},
@@ -126,7 +126,7 @@
 						"type": "object",
 						"default": {
 							"color": "#fff",
-							"bg": "#4527a4"
+							"bg": "#146EF5"
 						}
 					}
 				},
@@ -182,7 +182,7 @@
 						"type": "object",
 						"default": {
 							"color": "#fff",
-							"bg": "#4527a4"
+							"bg": "#146EF5"
 						}
 					}
 				}
@@ -242,9 +242,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 20,
-					"tablet": 18,
-					"mobile": 16
+					"desktop": "20px",
+					"tablet": "18px",
+					"mobile": "16px"
 				},
 				"fontWeight": 600
 			}
@@ -264,9 +264,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 16,
-					"tablet": 16,
-					"mobile": 16
+					"desktop": "16px"
 				}
 			}
 		},
@@ -296,9 +294,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 15,
-					"tablet": 15,
-					"mobile": 15
+					"desktop": "15px"
 				}
 			}
 		},

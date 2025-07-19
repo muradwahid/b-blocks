@@ -9,6 +9,7 @@ import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated'
 import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug } from '../../../../utils/data';
@@ -141,15 +142,15 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 
 						<ColorControl label={__('Background Color:', 'b-blocks')} value={controlsBG} onChange={val => setAttributes({ controlsBG: val })} defaultColor='#0000' />
 
-						<ColorControl label={__('Icons Color:', 'b-blocks')} value={controlsIconColor} onChange={val => setAttributes({ controlsIconColor: val })} defaultColor='#4527a4' />
+						<ColorControl label={__('Icons Color:', 'b-blocks')} value={controlsIconColor} onChange={val => setAttributes({ controlsIconColor: val })} defaultColor={primaryColor} />
 
-						<ColorControl label={__('Icons Hover Color:', 'b-blocks')} value={controlsIconHoverColor} onChange={val => setAttributes({ controlsIconHoverColor: val })} defaultColor='#8344c5' />
+						<ColorControl label={__('Icons Hover Color:', 'b-blocks')} value={controlsIconHoverColor} onChange={val => setAttributes({ controlsIconHoverColor: val })} defaultColor={secondaryColor} />
 
-						<ColorControl label={__('Icons Active Color:', 'b-blocks')} value={controlsIconActiveColor} onChange={val => setAttributes({ controlsIconActiveColor: val })} defaultColor='#8344c5' />
+						<ColorControl label={__('Icons Active Color:', 'b-blocks')} value={controlsIconActiveColor} onChange={val => setAttributes({ controlsIconActiveColor: val })} defaultColor={secondaryColor} />
 
-						<ColorControl label={__('Track Color:', 'b-blocks')} value={controlsTrackColor} onChange={val => setAttributes({ controlsTrackColor: val })} defaultColor='#8344c5' />
+						<ColorControl label={__('Track Color:', 'b-blocks')} value={controlsTrackColor} onChange={val => setAttributes({ controlsTrackColor: val })} defaultColor={secondaryColor} />
 
-						<ColorControl label={__('Thumb Color:', 'b-blocks')} value={controlsThumbColor} onChange={val => setAttributes({ controlsThumbColor: val })} defaultColor='#4527a4' />
+						<ColorControl label={__('Thumb Color:', 'b-blocks')} value={controlsThumbColor} onChange={val => setAttributes({ controlsThumbColor: val })} defaultColor={primaryColor} />
 					</PanelBody>}
 
 

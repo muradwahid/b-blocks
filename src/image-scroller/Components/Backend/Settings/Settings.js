@@ -1,34 +1,35 @@
-import { InspectorControls } from "@wordpress/block-editor";
-import { TabPanel } from "@wordpress/components";
+import { InspectorControls } from '@wordpress/block-editor';
+import { TabPanel } from '@wordpress/components';
 
-import Advanced from "../../../../../../bpl-tools/Advanced";
-import { tabController } from "../../../../../../bpl-tools/utils/functions";
+import Advanced from '../../../../../../bpl-tools/Advanced';
+import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
-import { BBlocksAds } from "../../../../../../bpl-tools/Components";
-import { generalStyleTabs } from "../../../utils/options";
-import General from "./General/General";
+import { BBlocksAds } from '../../../../../../bpl-tools/Components';
+import { generalStyleTabs } from '../../../utils/options';
+import General from './General/General';
 
 const Settings = (props) => {
-    const { attributes, setAttributes, isPremium } = props;
-    const { advanced } = attributes;
-    return <>
-        <InspectorControls>
-            <div className="bPlInspectorInfo">
-                <BBlocksAds />
-            </div>
+	const { attributes, setAttributes, isPremium } = props;
+	const { advanced } = attributes;
 
-            <TabPanel className="bPlTabPanel" activeClass="activeTab" tabs={generalStyleTabs} onSelect={tabController} >
-                {(tab) => <>
-                    {"general" === tab.name && <>
-                        <General {...props} />
-                    </>}
+	return <>
+		<InspectorControls>
+			<div className='bPlInspectorInfo'>
+				<BBlocksAds />
+			</div>
 
-                    {"style" === tab.name && <>
-                        <Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} isPremium={isPremium} />
-                    </>}
-                </>}
-            </TabPanel>
-        </InspectorControls>
-    </>
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController} >
+				{(tab) => <>
+					{'general' === tab.name && <>
+						<General {...props} />
+					</>}
+
+					{'style' === tab.name && <>
+						<Advanced advanced={advanced} onChange={(value) => setAttributes({ advanced: value })} isPremium={isPremium} />
+					</>}
+				</>}
+			</TabPanel>
+		</InspectorControls>
+	</>
 };
 export default Settings;

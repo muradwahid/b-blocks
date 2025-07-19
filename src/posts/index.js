@@ -3,11 +3,11 @@ import { registerBlockType, createBlock } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { articleIcon } from '../utils/blocksIcon';
+import { postsIcon } from '../utils/blocksIcon';
 import { isBlockEnabled } from '../utils/functions';
 
 isBlockEnabled(metadata.name) && registerBlockType(metadata, {
-	icon: articleIcon,
+	icon: postsIcon,
 
 	transforms: {
 		from: [

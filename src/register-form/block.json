@@ -135,9 +135,7 @@
                         "typography": {
                             "fontWeight": 700,
                             "fontSize": {
-                                "desktop": 26,
-                                "tablet": 26,
-                                "mobile": 26
+                                "desktop": "26px"
                             }
                         }
                     },
@@ -603,7 +601,7 @@
                     "normal": {
                         "color": "#fff",
                         "bg": {
-                            "color": "#4527a4"
+                            "color": "#146EF5"
                         },
                         "border": {},
                         "radius": {}
@@ -611,7 +609,7 @@
                     "hover": {
                         "color": "#fff",
                         "bg": {
-                            "color": "#4527a4"
+                            "color": "#146EF5"
                         },
                         "border": {},
                         "radius": {}
@@ -661,9 +659,7 @@
                     },
                     "typography": {
                         "fontSize": {
-                            "desktop": 16,
-                            "tablet": 16,
-                            "mobile": 16
+                            "desktop": "16px"
                         }
                     },
                     "normal": {
@@ -742,7 +738,9 @@
                     "checkbox": ""
                 },
                 "typography": {
-                    "fontSize": 15
+                    "fontSize": {
+                        "desktop": "15px"
+                    }
                 }
             }
         },
@@ -769,9 +767,7 @@
                     "styles": {
                         "typo": {
                             "fontSize": {
-                                "desktop": 11,
-                                "tablet": 11,
-                                "mobile": 11
+                                "desktop": "11px"
                             }
                         },
                         "color": "",
@@ -784,9 +780,7 @@
                         "isShow": false,
                         "typo": {
                             "fontSize": {
-                                "desktop": 14,
-                                "tablet": 14,
-                                "mobile": 14
+                                "desktop": "14px"
                             }
                         },
                         "color": {

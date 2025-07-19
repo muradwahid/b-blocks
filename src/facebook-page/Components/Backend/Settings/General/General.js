@@ -1,6 +1,5 @@
 import { PanelBody, RangeControl, TextControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import React from "react";
 
 import { HelpPanel, Label, SelectTokenField } from "../../../../../../../bpl-tools/Components";
 

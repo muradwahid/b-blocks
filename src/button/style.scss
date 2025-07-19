@@ -1,5 +1,6 @@
-@import url("plyr-react/plyr.css");
-$primaryColor: #4527a4;
+@import url('plyr-react/plyr.css');
+
+$primaryColor: #146EF5;
 
 // Dashicon
 .dashicons {
@@ -57,7 +58,7 @@ $primaryColor: #4527a4;
 	}
 
 	[tooltip]::before {
-		content: "";
+		content: '';
 		border: 5px solid transparent;
 		/* opinion 4 */
 		z-index: 1001;
@@ -97,51 +98,51 @@ $primaryColor: #4527a4;
 	}
 
 	/* Don't show empty tooltips */
-	[tooltip=""]::before,
-	[tooltip=""]::after {
+	[tooltip='']::before,
+	[tooltip='']::after {
 		display: none !important;
 	}
 
 	/* TOOLTIP POSITION: TOP */
 	[tooltip]:not([tooltip-pos])::before,
-	[tooltip][tooltip-pos^="top"]::before {
+	[tooltip][tooltip-pos^='top']::before {
 		bottom: 100%;
 		border-bottom-width: 0;
 		border-top-color: #333;
 	}
 
 	[tooltip]:not([tooltip-pos])::after,
-	[tooltip][tooltip-pos^="top"]::after {
+	[tooltip][tooltip-pos^='top']::after {
 		bottom: calc(100% + 5px);
 	}
 
 	[tooltip]:not([tooltip-pos])::before,
 	[tooltip]:not([tooltip-pos])::after,
-	[tooltip][tooltip-pos^="top"]::before,
-	[tooltip][tooltip-pos^="top"]::after {
+	[tooltip][tooltip-pos^='top']::before,
+	[tooltip][tooltip-pos^='top']::after {
 		left: 50%;
 		transform: translate(-50%, -0.5em);
 	}
 
 	/* TOOLTIP POSITION: BOTTOM */
-	[tooltip][tooltip-pos^="bottom"]::before {
+	[tooltip][tooltip-pos^='bottom']::before {
 		top: 100%;
 		border-top-width: 0;
 		border-bottom-color: #333;
 	}
 
-	[tooltip][tooltip-pos^="bottom"]::after {
+	[tooltip][tooltip-pos^='bottom']::after {
 		top: calc(100% + 5px);
 	}
 
-	[tooltip][tooltip-pos^="bottom"]::before,
-	[tooltip][tooltip-pos^="bottom"]::after {
+	[tooltip][tooltip-pos^='bottom']::before,
+	[tooltip][tooltip-pos^='bottom']::after {
 		left: 50%;
 		transform: translate(-50%, 0.5em);
 	}
 
 	/* TOOLTIP POSITION: LEFT */
-	[tooltip][tooltip-pos^="left"]::before {
+	[tooltip][tooltip-pos^='left']::before {
 		top: 50%;
 		border-right-width: 0;
 		border-left-color: #333;
@@ -149,14 +150,14 @@ $primaryColor: #4527a4;
 		transform: translate(-0.5em, -50%);
 	}
 
-	[tooltip][tooltip-pos^="left"]::after {
+	[tooltip][tooltip-pos^='left']::after {
 		top: 50%;
 		right: calc(100% + 5px);
 		transform: translate(-0.5em, -50%);
 	}
 
 	/* TOOLTIP POSITION: RIGHT */
-	[tooltip][tooltip-pos^="right"]::before {
+	[tooltip][tooltip-pos^='right']::before {
 		top: 50%;
 		border-left-width: 0;
 		border-right-color: #333;
@@ -164,7 +165,7 @@ $primaryColor: #4527a4;
 		transform: translate(0.5em, -50%);
 	}
 
-	[tooltip][tooltip-pos^="right"]::after {
+	[tooltip][tooltip-pos^='right']::after {
 		top: 50%;
 		left: calc(100% + 5px);
 		transform: translate(0.5em, -50%);
@@ -188,17 +189,17 @@ $primaryColor: #4527a4;
 	/* FX All The Things */
 	[tooltip]:not([tooltip-pos]):hover::before,
 	[tooltip]:not([tooltip-pos]):hover::after,
-	[tooltip][tooltip-pos^="top"]:hover::before,
-	[tooltip][tooltip-pos^="top"]:hover::after,
-	[tooltip][tooltip-pos^="bottom"]:hover::before,
-	[tooltip][tooltip-pos^="bottom"]:hover::after {
+	[tooltip][tooltip-pos^='top']:hover::before,
+	[tooltip][tooltip-pos^='top']:hover::after,
+	[tooltip][tooltip-pos^='bottom']:hover::before,
+	[tooltip][tooltip-pos^='bottom']:hover::after {
 		animation: bntTooltipsVertical 300ms ease-out forwards;
 	}
 
-	[tooltip][tooltip-pos^="left"]:hover::before,
-	[tooltip][tooltip-pos^="left"]:hover::after,
-	[tooltip][tooltip-pos^="right"]:hover::before,
-	[tooltip][tooltip-pos^="right"]:hover::after {
+	[tooltip][tooltip-pos^='left']:hover::before,
+	[tooltip][tooltip-pos^='left']:hover::after,
+	[tooltip][tooltip-pos^='right']:hover::before,
+	[tooltip][tooltip-pos^='right']:hover::after {
 		animation: btnTooltipsHorizontal 300ms ease-out forwards;
 	}
 
@@ -253,7 +254,7 @@ $primaryColor: #4527a4;
 			text-shadow: none;
 			cursor: pointer;
 			color: #fff;
-			background-color: #4527a4;
+			background-color: $primaryColor;
 			background-image: none;
 			border: 0;
 			border-radius: 0;
@@ -300,7 +301,7 @@ $primaryColor: #4527a4;
 			text-shadow: none;
 			cursor: pointer;
 			color: #fff;
-			background-color: #4527a4;
+			background-color: $primaryColor;
 			background-image: none;
 			border: 0;
 			border-radius: 0;
@@ -326,7 +327,7 @@ $primaryColor: #4527a4;
 			margin: 0px 0px 15px 0px;
 		}
 
-		input[type="text"] {
+		input[type='text'] {
 			font-family: brandon-grotesque, Helvetica, Arial, sans-serif;
 			font-weight: 400;
 			font-size: 16px;
@@ -354,7 +355,7 @@ $primaryColor: #4527a4;
 			text-align: left;
 
 			&:before {
-				content: "*";
+				content: '*';
 				color: red;
 			}
 		}

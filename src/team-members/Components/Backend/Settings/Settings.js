@@ -8,6 +8,7 @@ import { Label, Background, ColorControl, Device, BtnGroup, ColorsControl, Inlin
 import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, teamMembersDocs } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
@@ -29,7 +30,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 	const { members = [], columns, columnGap, rowGap, layout, theme, isLinkNewTab, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin } = attributes;
 
 	const addMember = () => {
-		const { background = { color: '#0000' }, border = { radius: '3px' }, shadow = {}, photoBorder = { radius: '50%' }, nameColor = '#333', titleColor = '#333', separator = { width: '20%', height: '3px', style: 'solid', color: '#777' }, bioColor = '#333', socialIconColors = { color: '#fff', bg: '#4527a4' } } = members[0] || {};
+		const { background = { color: '#0000' }, border = { radius: '3px' }, shadow = {}, photoBorder = { radius: '50%' }, nameColor = '#333', titleColor = '#333', separator = { width: '20%', height: '3px', style: 'solid', color: '#777' }, bioColor = '#333', socialIconColors = { color: '#fff', bg: primaryColor } } = members[0] || {};
 
 		setAttributes({
 			members: [...members, {
@@ -58,7 +59,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 	const updateAllMembers = (params) => {
 		const newMembers = produce(members, draft => {
-			draft.map((__, index) => {
+			draft.map((_, index) => {
 				for (const param of params) {
 					const type = param[0];
 					const value = param[1];
@@ -119,7 +120,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 							<ColorControl label={__('Bio Color:', 'b-blocks')} value={bioColor} onChange={val => updateMember(activeIndex, 'bioColor', val)} defaultColor='#333' />
 
-							<ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={socialIconColors} onChange={val => updateMember(activeIndex, 'socialIconColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
+							<ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={socialIconColors} onChange={val => updateMember(activeIndex, 'socialIconColors', val)} defaults={{ color: '#fff', bg: primaryColor }} />
 
 							<PanelRow className='itemAction mt20 mb15'>
 								{1 < members?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeMember}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
@@ -224,7 +225,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 										['titleColor', '#333'],
 										['separator', { ...separator, color: '#777' }],
 										['bioColor', '#333'],
-										['socialIconColors', { ...socialIconColors, color: '#fff', bg: '#4527a4' }]
+										['socialIconColors', { ...socialIconColors, color: '#fff', bg: primaryColor }]
 									];
 									const theme1Params = [
 										['background', { ...background, color: '#0000' }],
@@ -233,9 +234,9 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 										['photoBorder', { ...photoBorder, width: '10px', color: '#e8edfb', radius: '50%' }],
 										['nameColor', '#333'],
 										['titleColor', '#7a7a7a'],
-										['separator', { ...separator, color: '#4527a4' }],
+										['separator', { ...separator, color: primaryColor }],
 										['bioColor', '#7a7a7a'],
-										['socialIconColors', { ...socialIconColors, color: '#fff', bg: '#4527a4' }]
+										['socialIconColors', { ...socialIconColors, color: '#fff', bg: primaryColor }]
 									];
 									const theme2Params = [
 										['background', { ...background, color: '#0000' }],
@@ -246,7 +247,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 										['titleColor', '#7a7a7a'],
 										['separator', { ...separator, color: '#999' }],
 										['bioColor', '#7a7a7a'],
-										['socialIconColors', { ...socialIconColors, color: '#4527a4', bg: '#0000' }]
+										['socialIconColors', { ...socialIconColors, color: primaryColor, bg: '#0000' }]
 									];
 									const theme3Params = [
 										['background', { ...background, color: '#f2f3f7' }],
@@ -260,7 +261,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 										['socialIconColors', { ...socialIconColors, color: '#677592', bg: '#0000' }]
 									];
 									const theme4Params = [
-										['background', { ...background, color: '#4527a4' }],
+										['background', { ...background, color: primaryColor }],
 										['border', { ...border, radius: '0px' }],
 										['shadow', [{ hOffset: '', vOffset: '', blur: '0px', color: '#7090b0' }]],
 										['photoBorder', { ...photoBorder, width: '0px', color: '#0000', radius: '0px' }],
@@ -268,7 +269,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 										['titleColor', '#fff'],
 										['separator', { ...separator, color: '#777' }],
 										['bioColor', '#fff'],
-										['socialIconColors', { ...socialIconColors, color: '#4527a4', bg: '#fff' }]
+										['socialIconColors', { ...socialIconColors, color: primaryColor, bg: '#fff' }]
 									];
 
 									'default' === val && updateAllMembers(defaultParams);

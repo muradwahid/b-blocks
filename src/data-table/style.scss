@@ -1,75 +1,73 @@
-$primaryColor: #4527a4;
-
 .wp-block-b-blocks-data-table {
-    * {
-        box-sizing: border-box;
-    }
+	* {
+		box-sizing: border-box;
+	}
 
-    .bpdt-table-wrapper {
-        border-collapse: separate;
-        // border-spacing: 0;
-        table-layout: auto;
-        width: 100%;
-        // border: 1px solid #ddd;
-        background: #ccc;
+	.bpdt-table-wrapper {
+		border-collapse: separate;
+		// border-spacing: 0;
+		table-layout: auto;
+		width: 100%;
+		// border: 1px solid #ddd;
+		background: #ccc;
 
-        .table-header {
-            text-align: left;
+		.table-header {
+			text-align: left;
 
-            // border-collapse: collapse;
-            th {
-                // border-collapse: collapse;
-                background: blue;
-                color: white;
-                position: relative;
+			// border-collapse: collapse;
+			th {
+				// border-collapse: collapse;
+				background: blue;
+				color: white;
+				position: relative;
 
-                .table-header-sortIcon {
-                    position: absolute;
-                    top: 50%;
-                    right: 10px;
-                    transform: translateY(-50%);
-                    display: flex;
-                    flex-direction: column;
+				.table-header-sortIcon {
+					position: absolute;
+					top: 50%;
+					right: 10px;
+					transform: translateY(-50%);
+					display: flex;
+					flex-direction: column;
 
-                    svg {
-                        pointer-events: unset !important;
-                    }
+					svg {
+						pointer-events: unset !important;
+					}
 
-                    svg:first-child {
-                        margin-bottom: -4px;
-                    }
+					svg:first-child {
+						margin-bottom: -4px;
+					}
 
-                    svg:last-child {
-                        margin-top: -4px;
-                    }
-                }
-            }
-        }
+					svg:last-child {
+						margin-top: -4px;
+					}
+				}
+			}
+		}
 
-        .bpdt-table-body {
-            tr {
-                td {
-                    padding: 12px 10px;
+		.bpdt-table-body {
+			tr {
+				td {
+					padding: 12px 10px;
 
-                    p {
-                        margin: 0px;
-                    }
-                }
+					p {
+						margin: 0px;
+					}
+				}
 
-                .removeColumn {
-                    position: relative;
-                    border: 2px solid #c93636;
+				.removeColumn {
+					position: relative;
+					border: 2px solid #c93636;
 
-                    .bpdt-bodydeleteIcon {
-                        position: absolute;
-                        top: 5px;
-                        right: 5px;
-                        color: #c93636;
-                        cursor: pointer;
-                        pointer-events: unset;
-                    }
-                }
-            }
-        }
-    }
+					.bpdt-bodydeleteIcon {
+						position: absolute;
+						top: 5px;
+						right: 5px;
+						color: #c93636;
+						cursor: pointer;
+						pointer-events: unset;
+					}
+				}
+			}
+		}
+	}
 }

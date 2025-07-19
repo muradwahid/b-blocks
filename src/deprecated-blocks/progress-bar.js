@@ -4,6 +4,7 @@ import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 
 import { Label, ColorControl } from '../../../bpl-tools/Components';
+import { secondaryColor } from '../../../bpl-tools/utils/data';
 
 import { progressIcon } from '../utils/icons';
 import { colors } from '../utils/options';
@@ -26,7 +27,7 @@ registerBlockType('b-blocks/progress-bar', {
 		progressBG: { type: 'string', default: '#e9ecef' },
 		progressHeight: { type: 'number', default: 15 },
 
-		progressBarBG: { type: 'string', default: '#8344c5' },
+		progressBarBG: { type: 'string', default: secondaryColor },
 		isLabel: { type: 'boolean', default: true },
 		progressBarWidth: { type: 'number', default: 75 },
 		progressBarStriped: { type: 'boolean', default: true },

@@ -1,4 +1,3 @@
-import React from "react";
 import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getTypoCSS, isValidCSS } from "../../../../../bpl-tools/utils/getCSS";
 import { btnAlign } from "../../utils/functions";
 
@@ -20,7 +19,7 @@ const StyleThree = ({ attributes, id }) => {
     return <style
         dangerouslySetInnerHTML={{
             __html: `
-				${getTypoCSS( `${inputField} .rgfr-passStrengthTextWrapper span`, password.passStrengthTxt.typography ).styles }
+				${getTypoCSS(`${inputField} .rgfr-passStrengthTextWrapper span`, password.passStrengthTxt.typography).styles}
         ${inputField} .rgfr-passStrengthTextWrapper span{
         ${isValidCSS('margin', getBoxCSS(password.passStrengthTxt.desktop.margin))}
         ${isValidCSS('padding', getBoxCSS(password.passStrengthTxt.desktop.padding))}

@@ -58,9 +58,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 22,
-					"tablet": 20,
-					"mobile": 18
+					"desktop": "22px",
+					"tablet": "20px",
+					"mobile": "18px"
 				}
 			}
 		},

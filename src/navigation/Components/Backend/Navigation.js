@@ -86,7 +86,10 @@ const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 
 			if (inspector) {
 				setTimeout(() => {
-					inspector.querySelector('.block-editor-block-card').style.display = 'block';
+					const blockCardEl = inspector.querySelector('.block-editor-block-card');
+					if(blockCardEl){
+						blockCardEl.style.display = 'block';
+					}
 
 					let nodes = inspector.children;
 					for (let i = 0; i <= nodes.length - 1; i++) {

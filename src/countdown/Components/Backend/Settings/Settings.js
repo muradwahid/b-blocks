@@ -8,6 +8,7 @@ import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bp
 import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
 import { pxUnit, perUnit, emUnit, remUnit } from '../../../../../../bpl-tools/utils/options';
+import { gradient, primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug, countdownDocs } from '../../../../utils/data';
@@ -15,7 +16,7 @@ import { generalStyleTabs, flexPos } from '../../../../utils/options';
 import { flexDirections, layouts, sepTypes } from '../../../utils/options';
 
 const Settings = ({ attributes, setAttributes, isPremium }) => {
-	const { destDate, layout, isResponsive, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, isExpired = false, hideOn0 = false, hideOnMobile = false, hideOnTablet = false, prefixSuffixDirection = 'row', prefixText = '', suffixButtonText = '', suffixButtonUrl = '#', addID = '', addClass = '', addCSS = '', width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isDaysSingleStyle = false, daysBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, daysDigitColor = '#fff', daysLabelColor = '#fff', isHoursSingleStyle = false, hoursBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, hoursDigitColor = '#fff', hoursLabelColor = '#fff', isMinutesSingleStyle = false, minutesBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, minutesDigitColor = '#fff', minutesLabelColor = '#fff', isSecondsSingleStyle = false, secondsBG = { type: 'gradient', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }, secondsDigitColor = '#fff', secondsLabelColor = '#fff', isSep, sepType, sepSize, sepColor, prefixTextTypo = { fontSize: { desktop: 15 } }, prefixTextColor = '#222', suffixButtonTypo = { fontSize: { desktop: 16 } }, suffixButtonColors = { color: '#fff', bg: '#222' }, suffixButtonPadding = { vertical: '14px', horizontal: '28px' }, isDismiss = false, dismissColor = '#333' } = attributes;
+	const { destDate, layout, isResponsive, boxIsInline, boxPosition, isLabels, isDays, isHours, isMinutes, isSeconds, isExpired = false, hideOn0 = false, hideOnMobile = false, hideOnTablet = false, prefixSuffixDirection = 'row', prefixText = '', suffixButtonText = '', suffixButtonUrl = '#', addID = '', addClass = '', addCSS = '', width, background, padding, shadow, alignment, boxBG, boxWidth, boxHeight, boxSpace, boxBorder, boxShadow, digitTypo, digitColor, labelTypo, labelColor, isDaysSingleStyle = false, daysBG = { type: 'gradient', gradient }, daysDigitColor = '#fff', daysLabelColor = '#fff', isHoursSingleStyle = false, hoursBG = { type: 'gradient',  gradient }, hoursDigitColor = '#fff', hoursLabelColor = '#fff', isMinutesSingleStyle = false, minutesBG = { type: 'gradient',  gradient }, minutesDigitColor = '#fff', minutesLabelColor = '#fff', isSecondsSingleStyle = false, secondsBG = { type: 'gradient',  gradient }, secondsDigitColor = '#fff', secondsLabelColor = '#fff', isSep, sepType, sepSize, sepColor, prefixTextTypo = { fontSize: { desktop: 15 } }, prefixTextColor = '#222', suffixButtonTypo = { fontSize: { desktop: 16 } }, suffixButtonColors = { color: '#fff', bg: '#222' }, suffixButtonPadding = { vertical: '14px', horizontal: '28px' }, isDismiss = false, dismissColor = '#333' } = attributes;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
@@ -46,18 +47,18 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 									boxIsInline: false,
 									background: { type: 'solid', color: '#0000' },
 									shadow: { hOffset: '0px', vOffset: '0px', color: '#0000' },
-									boxBG: { type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' },
+									boxBG: { type: 'gradient', color: primaryColor,  gradient },
 									boxSpace: '30px',
 									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%' },
 									digitColor: '#fff',
 									labelColor: '#fff',
 									isSep: false,
-									sepColor: '#4527a4'
+									sepColor: primaryColor
 								});
 								'layout1' === val && setAttributes({
 									boxIsInline: false,
-									background: { type: 'gradient', gradient: 'linear-gradient(180deg, #4527a4, #8344c5)' },
-									shadow: { hOffset: '5px', vOffset: '5px', color: '#4527a4' },
+									background: { type: 'gradient', gradient },
+									shadow: { hOffset: '5px', vOffset: '5px', color: primaryColor },
 									boxBG: { type: 'solid', color: '#0000' },
 									boxSpace: '0px',
 									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%' },
@@ -72,23 +73,23 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 									shadow: { hOffset: '0px', vOffset: '0px', color: '#0000' },
 									boxBG: { type: 'solid', color: '#0000' },
 									boxSpace: '30px',
-									boxBorder: { width: '2px', type: 'solid', color: '#4527a4', radius: '5%' },
-									digitColor: '#4527a4',
-									labelColor: '#4527a4',
+									boxBorder: { width: '2px', type: 'solid', color: primaryColor, radius: '5%' },
+									digitColor: primaryColor,
+									labelColor: primaryColor,
 									isSep: true,
-									sepColor: '#4527a4'
+									sepColor: primaryColor
 								});
 								'layout3' === val && setAttributes({
 									boxIsInline: true,
 									background: { type: 'solid', color: '#0000' },
-									shadow: { hOffset: '0px', vOffset: '8px', blur: '15px', color: '#4527a4' },
+									shadow: { hOffset: '0px', vOffset: '8px', blur: '15px', color: primaryColor },
 									boxBG: { type: 'solid', color: '#0000' },
 									boxSpace: '30px',
 									boxBorder: { width: '0px', type: 'solid', color: '#0000', radius: '5%' },
-									digitColor: '#4527a4',
-									labelColor: '#4527a4',
+									digitColor: primaryColor,
+									labelColor: primaryColor,
 									isSep: true,
-									sepColor: '#4527a4'
+									sepColor: primaryColor
 								});
 							}} options={layouts} />
 						</PanelRow>
@@ -163,7 +164,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 							<SelectControl value={boxPosition} onChange={val => setAttributes({ boxPosition: val })} options={flexPos} />
 						</PanelRow>}
 
-						<Background label={__('Background:', 'b-blocks')} value={boxBG} onChange={val => setAttributes({ boxBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} />
+						<Background label={__('Background:', 'b-blocks')} value={boxBG} onChange={val => setAttributes({ boxBG: val })} defaults={{ type: 'gradient', color: primaryColor, gradient }} />
 
 						<UnitControl className='mt20' label={__('Width:', 'b-blocks')} labelPosition='left' value={boxWidth} onChange={val => setAttributes({ boxWidth: val })} units={[pxUnit(170), emUnit(10.5), remUnit(10.5)]} isResetValueOnUnitChange={true} />
 
@@ -202,7 +203,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						</PanelRow>
 
 						{isDaysSingleStyle && <>
-							<BControlPro label={__('Box Background:', 'b-blocks')} value={daysBG} onChange={val => setAttributes({ daysBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
+							<BControlPro label={__('Box Background:', 'b-blocks')} value={daysBG} onChange={val => setAttributes({ daysBG: val })} defaults={{ type: 'gradient', color: primaryColor, gradient }} {...premiumProps} Component={Background} />
 
 							<BControlPro label={__('Digit Color:', 'b-blocks')} value={daysDigitColor} onChange={val => setAttributes({ daysDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
@@ -223,7 +224,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						</PanelRow>
 
 						{isHoursSingleStyle && <>
-							<BControlPro label={__('Box Background:', 'b-blocks')} value={hoursBG} onChange={val => setAttributes({ hoursBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
+							<BControlPro label={__('Box Background:', 'b-blocks')} value={hoursBG} onChange={val => setAttributes({ hoursBG: val })} defaults={{ type: 'gradient', color: primaryColor, gradient }} {...premiumProps} Component={Background} />
 
 							<BControlPro label={__('Digit Color:', 'b-blocks')} value={hoursDigitColor} onChange={val => setAttributes({ hoursDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
@@ -244,7 +245,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						</PanelRow>
 
 						{isMinutesSingleStyle && <>
-							<BControlPro label={__('Box Background:', 'b-blocks')} value={minutesBG} onChange={val => setAttributes({ minutesBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
+							<BControlPro label={__('Box Background:', 'b-blocks')} value={minutesBG} onChange={val => setAttributes({ minutesBG: val })} defaults={{ type: 'gradient', color: primaryColor, gradient }} {...premiumProps} Component={Background} />
 
 							<BControlPro label={__('Digit Color:', 'b-blocks')} value={minutesDigitColor} onChange={val => setAttributes({ minutesDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
@@ -265,7 +266,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 						</PanelRow>
 
 						{isSecondsSingleStyle && <>
-							<BControlPro label={__('Box Background:', 'b-blocks')} value={secondsBG} onChange={val => setAttributes({ secondsBG: val })} defaults={{ type: 'gradient', color: '#4527a4', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' }} {...premiumProps} Component={Background} />
+							<BControlPro label={__('Box Background:', 'b-blocks')} value={secondsBG} onChange={val => setAttributes({ secondsBG: val })} defaults={{ type: 'gradient', color: primaryColor, gradient }} {...premiumProps} Component={Background} />
 
 							<BControlPro label={__('Digit Color:', 'b-blocks')} value={secondsDigitColor} onChange={val => setAttributes({ secondsDigitColor: val })} defaultColor='#fff' {...premiumProps} Component={ColorControl} />
 
@@ -286,7 +287,7 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
 							<Label>{__('Size:', 'b-blocks')}</Label>
 							<RangeControl value={sepSize} onChange={val => setAttributes({ sepSize: val })} min={0} max={160} step={1} allowReset={true} resetFallbackValue={48} initialPosition={48} />
 
-							<ColorControl label={__('Color:', 'b-blocks')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor='#4527a4' />
+							<ColorControl label={__('Color:', 'b-blocks')} value={sepColor} onChange={val => setAttributes({ sepColor: val })} defaultColor={primaryColor} />
 						</>}
 					</PanelBody>
 

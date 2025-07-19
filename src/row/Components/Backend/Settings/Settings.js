@@ -56,9 +56,9 @@ const Settings = ({ attributes, setAttributes }) => {
 				<SelectControl value={overflow} onChange={val => setAttributes({ overflow: val })} options={overflows} />
 			</PanelRow>
 
-			<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} defaults={{ color: '#f5f5f5' }} />
+			<Background className='mt20' label={__('Background:', 'b-blocks')} value={background} onChange={val => setAttributes({ background: val })} />
 
-			<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '50px', horizontal: '0px' }} />
+			<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} />
 
 			<BorderControl label={__('Border', 'b-blocks')} value={border} onChange={val => setAttributes({ border: val })} />
 

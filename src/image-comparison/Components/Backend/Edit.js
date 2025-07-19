@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 
-import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { ImageCompare } from '../Common/ImageCompare';
@@ -64,12 +63,10 @@ const Edit = props => {
 	</>;
 };
 
-export default compose(
-	withSelect((select) => {
-		const { getDeviceType } = select('core/editor');
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
 
-		return {
-			device: getDeviceType()?.toLowerCase(),
-		};
-	})
-)(Edit);
+	return {
+		device: getDeviceType()?.toLowerCase(),
+	};
+})(Edit);

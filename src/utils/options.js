@@ -26,8 +26,8 @@ export const fontSizes = [
 export const colors = [
 	{ name: 'Black', color: '#000' },
 	{ name: 'White', color: '#fff' },
-	{ name: 'Purple Heart', color: '#4527a4' },
-	{ name: 'Dark Orchid', color: '#8344c5' }
+	{ name: 'Primary', color: '#146EF5' },
+	{ name: 'Secondary', color: '#FF7A00' }
 ];
 
 export const hTags = [

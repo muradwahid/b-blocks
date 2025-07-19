@@ -42,7 +42,9 @@
 		"textTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "16px"
+				"fontSize": {
+					"desktop": "16px"
+				}
 			}
 		},
 		"textColor": {

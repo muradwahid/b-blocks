@@ -6,11 +6,11 @@ import { Label, Device, BtnGroup, ColorsControl, HelpPanel, SelectPureControl } 
 import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro, BtnGroupPro } from '../../../../../../bpl-tools/ProControls';
 import { pxUnit, emUnit, vhUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor, secondaryColor, titleColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug } from '../../../../utils/data';
 import { layouts, effects, tickerDirections, postsOrdersBy, postsOrders, subLayouts, contentHeights } from '../../../utils/options';
 import { omit, filterSelected, strToIntArr } from '../../../utils/functions';
-
 
 const TickerOptions = ({ attributes, setAttributes, premiumProps }) => {
 	const { tickerDirection, tickerSpeed, tickerInterval, tickerHeight, tickerVisible, tickerIsMousePause } = attributes;
@@ -89,9 +89,9 @@ const Pagination = ({ attributes, setAttributes, premiumProps }) => {
 
 		<BControlPro className='mt20' label={__('Next Label:', 'b-blocks')} value={paginationNextLabel} onChange={val => setAttributes({ paginationNextLabel: val })} {...premiumProps} Component={TextControl} />
 
-		<BControlPro label={__('Colors:', 'b-blocks')} value={paginationColors} onChange={val => setAttributes({ paginationColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} {...premiumProps} Component={ColorsControl} />
+		<BControlPro label={__('Colors:', 'b-blocks')} value={paginationColors} onChange={val => setAttributes({ paginationColors: val })} defaults={{ color: '#fff', bg: primaryColor }} {...premiumProps} Component={ColorsControl} />
 
-		<BControlPro label={__('Active & Hover Colors:', 'b-blocks')} value={paginationHovColors} onChange={val => setAttributes({ paginationHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} {...premiumProps} Component={ColorsControl} />
+		<BControlPro label={__('Active & Hover Colors:', 'b-blocks')} value={paginationHovColors} onChange={val => setAttributes({ paginationHovColors: val })} defaults={{ color: '#fff', bg: titleColor }} {...premiumProps} Component={ColorsControl} />
 
 		<BControlPro className='mt20' label={__('Padding:', 'b-blocks')} value={paginationPadding} onChange={val => setAttributes({ paginationPadding: val })} defaults={{ vertical: '8px', horizontal: '15px' }} {...premiumProps} Component={SpaceControl} />
 
@@ -131,28 +131,28 @@ const General = ({ attributes, setAttributes, premiumProps, postTypes, currentPo
 				<SelectControlPro value={subLayout} onChange={val => {
 					setAttributes({ subLayout: val });
 					'default' === val || 'title-meta' === val || 'left-image' === val || 'right-image' === val ? setAttributes({
-						contentBG: { color: '#f4f2fc', styles: `background-color: #f4f2fc;` },
-						titleColor: '#4527a4',
+						contentBG: { color: '' },
+						titleColor: primaryColor,
 						metaCategoryIn: 'image',
-						metaTextColor: '#333',
-						metaLinkColor: '#8344c5',
-						metaIconColor: '#4527a4',
-						excerptColor: '#333'
+						metaTextColor: '',
+						metaLinkColor: secondaryColor,
+						metaIconColor: primaryColor,
+						excerptColor: ''
 					}) : 'overlay-content' === val || 'overlay-content-hover' === val || 'overlay-box' === val || 'overlay-content-box' === val ? setAttributes({
-						contentBG: { color: '#000000b3', styles: `background-color: #000000b3;` },
-						titleColor: '#ccc0f0',
+						contentBG: { color: '#000000b3' },
+						titleColor: '#e7f0fe',
 						metaCategoryIn: 'content',
 						metaTextColor: '#fff',
-						metaLinkColor: '#e0d0f0',
-						metaIconColor: '#ccc0f0',
+						metaLinkColor: '#b6d2fc',
+						metaIconColor: '#e7f0fe',
 						excerptColor: '#fff'
 					}) : 'overlay-half-content' === val ? setAttributes({
-						contentBG: { type: 'gradient', gradient: 'linear-gradient(0deg, #000000bf 0%, #0000 100%)', styles: `background-image: linear-gradient(0deg, #000000bf 0%, #0000 100%);` },
+						contentBG: { type: 'gradient', gradient: 'linear-gradient(0deg, #000000bf 0%, #0000 100%)' },
 						titleColor: '#fff',
 						metaCategoryIn: 'content',
 						metaTextColor: '#fff',
-						metaLinkColor: '#e0d0f0',
-						metaIconColor: '#ccc0f0',
+						metaLinkColor: '#b6d2fc',
+						metaIconColor: '#e7f0fe',
 						excerptColor: '#fff'
 					}) : '';
 

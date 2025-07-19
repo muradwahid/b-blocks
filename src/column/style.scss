@@ -1,5 +1,6 @@
 .wp-block-b-blocks-column {
 	box-sizing: border-box;
+	flex-shrink: 0;
 
 	.bBlocksColumn {
 		overflow: hidden;

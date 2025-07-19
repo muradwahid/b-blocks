@@ -1,19 +1,24 @@
-$primaryColor: #4527a4;
+$primaryColor: #146EF5;
+
 .tbcn-iconPicker-main-wrapper {
   position: relative;
+
   .tbcn-iconPicker-wrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .tbcn-iconPicker {
       display: flex;
       height: 27px;
       width: 57px;
       border: 1px solid #ccc;
+
       .single-icon-admin-panel {
         &.selectIcon {
           background: $primaryColor;
+
           svg {
             fill: #fff;
             height: 15px;
@@ -22,6 +27,7 @@ $primaryColor: #4527a4;
       }
     }
   }
+
   .tbcn-iconPicker-popover-icons {
     position: absolute;
     display: flex;
@@ -36,6 +42,7 @@ $primaryColor: #4527a4;
     background: #fff;
     z-index: 9999;
     right: 0px;
+
     .tbcn-single-icon-picker-admin {
       display: flex;
       align-self: center;
@@ -44,9 +51,11 @@ $primaryColor: #4527a4;
       cursor: pointer;
       position: relative;
       transition: all 0.2s ease-in-out;
-      &>svg{
+
+      &>svg {
         height: 15px;
       }
+
       .tbcn-icon-picker-tooltip-container {
         position: absolute;
         top: -25px;
@@ -54,17 +63,20 @@ $primaryColor: #4527a4;
         transform: translateX(-50%);
         display: none;
         transition: display 0.3s ease-in-out;
+
         .tbcn-icon-picker-tooltip {
           position: relative;
           background: #0c0d0e;
           border-radius: 4px;
           margin: 0;
+
           span {
             color: #e6e8ea;
             font-size: x-small;
             text-wrap: nowrap;
             margin: 0 6px;
           }
+
           svg {
             position: absolute;
             left: 50%;
@@ -73,12 +85,14 @@ $primaryColor: #4527a4;
           }
         }
       }
+
       &:hover {
         .tbcn-icon-picker-tooltip-container {
           display: block;
         }
       }
     }
+
     .selectIcon {
       background: $primaryColor;
       fill: #fff;

@@ -1,3 +1,4 @@
+import { primaryColor, secondaryColor } from '../../../../../bpl-tools/utils/data';
 import { getBackgroundCSS, getBorderCSS, getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { prefix } from '../../utils/data';
@@ -112,10 +113,10 @@ const Style = ({ attributes, id }) => {
 					color: ${descColor || '#fff'};
 				}
 				${slideSl} .slideBtn{
-					${getColorsCSS(btnColors) || 'color: #fff; background: #4527a4;'}
+					${getColorsCSS(btnColors) || `color: #fff; background: ${primaryColor};`}
 				}
 				${slideSl} .slideBtn:hover{
-					${getColorsCSS(btnHovColors) || 'color: #fff; background: #8344c5;'}
+					${getColorsCSS(btnHovColors) || `color: #fff; background: ${secondaryColor};`}
 				}
 				${childElPositionCSS}
 			`;

@@ -1,52 +1,50 @@
-$primaryColor: #4527a4;
-
 .wp-block-b-blocks-image-scroller {
-    box-sizing: border-box;
+	box-sizing: border-box;
 
-    * {
-        box-sizing: border-box;
-    }
+	* {
+		box-sizing: border-box;
+	}
 
-    img {
-        width: 100%;
-        max-width: 100%;
-    }
+	img {
+		width: 100%;
+		max-width: 100%;
+	}
 
-    .b-blocks-image-scroller-wrapper {
-        overflow: hidden;
-        transform: translateY(0);
-        position: relative;
+	.b-blocks-image-scroller-wrapper {
+		overflow: hidden;
+		transform: translateY(0);
+		position: relative;
 
-        .b-blocks-image-scroller {
-            will-change: transform;
-        }
+		.b-blocks-image-scroller {
+			will-change: transform;
+		}
 
-        &.vertical {
-            .b-blocks-image-scroller {
-                width: 100%;
-                max-width: 100%;
-            }
+		&.vertical {
+			.b-blocks-image-scroller {
+				width: 100%;
+				max-width: 100%;
+			}
 
-            &.scrollable {
-                overflow-y: auto;
-                overflow-x: hidden;
-            }
-        }
+			&.scrollable {
+				overflow-y: auto;
+				overflow-x: hidden;
+			}
+		}
 
-        &.horizontal {
-            max-width: unset;
-            max-height: 100%;
+		&.horizontal {
+			max-width: unset;
+			max-height: 100%;
 
-            .b-blocks-image-scroller {
-                max-width: unset !important;
-                width: unset !important;
-                max-height: 100%;
-            }
+			.b-blocks-image-scroller {
+				max-width: unset !important;
+				width: unset !important;
+				max-height: 100%;
+			}
 
-            &.scrollable {
-                overflow-x: auto;
-                overflow-y: hidden;
-            }
-        }
-    }
+			&.scrollable {
+				overflow-x: auto;
+				overflow-y: hidden;
+			}
+		}
+	}
 }

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import { useState } from "react";
+
 const ResetForm = ({ setFormType, nonce, attributes }) => {
     const [formMessage, setFormMessage] = useState("");
     const [isLoading, setIsLoading] = useState(null);

@@ -1,5 +1,3 @@
-$primaryColor: #4527a4;
-
 .wp-block-b-blocks-star-rating {
 	* {
 		box-sizing: border-box;
@@ -37,6 +35,7 @@ $primaryColor: #4527a4;
 				.starFill {
 					width: 0px;
 					overflow: hidden;
+					display: inline-grid;
 
 					svg {
 						width: 20px;

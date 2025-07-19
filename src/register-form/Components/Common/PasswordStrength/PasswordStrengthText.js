@@ -1,4 +1,3 @@
-import React from 'react';
 import { passwordLength } from "../../hooks/usePassStrengthMeter";
 
 const PasswordStrengthText = ({ password, attributes }) => {
@@ -48,7 +47,7 @@ const PasswordStrengthText = ({ password, attributes }) => {
         }
     }
     // console.log(handleStrengthText(lengthPass)?.length)
-    return  handleDefaultEl(lengthPass)?.type === "span" && handleStrengthText(lengthPass)?.length &&
+    return handleDefaultEl(lengthPass)?.type === "span" && handleStrengthText(lengthPass)?.length &&
         <div className="rgfr-passStrengthTextWrapper">
             {
                 formFields.passStrengthText === "custom" &&
@@ -57,7 +56,7 @@ const PasswordStrengthText = ({ password, attributes }) => {
             {
                 formFields.passStrengthText === "default" && handleDefaultEl(lengthPass)
             }
-        </div> 
+        </div>
 };
 
 export default PasswordStrengthText;

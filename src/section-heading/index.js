@@ -3,11 +3,11 @@ import { registerBlockType } from '@wordpress/blocks';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { hIcon } from '../utils/blocksIcon';
+import { sectionHeadingIcon } from '../utils/blocksIcon';
 import { isBlockEnabled } from '../utils/functions';
 
 isBlockEnabled(metadata.name) && registerBlockType(metadata, {
-	icon: hIcon,
+	icon: sectionHeadingIcon,
 
 	// Build In Functions
 	edit: Edit,

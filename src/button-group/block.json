@@ -31,9 +31,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 16,
-					"tablet": 16,
-					"mobile": 16
+					"desktop": "16px"
 				}
 			}
 		},
@@ -63,14 +61,14 @@
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#4527a4"
+				"bg": "#146EF5"
 			}
 		},
 		"btnOneHovColors": {
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#8344c5"
+				"bg": "#070127"
 			}
 		},
 		"btnTwo": {
@@ -92,14 +90,14 @@
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#8344c5"
+				"bg": "#FF7A00"
 			}
 		},
 		"btnTwoHovColors": {
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#4527a4"
+				"bg": "#070127"
 			}
 		},
 		"isSep": {
@@ -118,9 +116,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 15,
-					"tablet": 15,
-					"mobile": 15
+					"desktop": "15px"
 				}
 			}
 		},

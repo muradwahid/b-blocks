@@ -7,6 +7,7 @@ import { Label, ColorControl, Device, HelpPanel } from '../../../../../../bpl-to
 import { SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, pricingTableDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
@@ -23,7 +24,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 				period: 'Month',
 				link: '#',
 				linkLabel: 'Enroll Now',
-				color: '#4527a4',
+				color: primaryColor,
 				features: [
 					{
 						isEnable: true,
@@ -137,7 +138,7 @@ const Settings = ({ attributes, setAttributes, updatePriceTable, activeIndex, se
 							<Label>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={link} onChange={val => updatePriceTable('link', val)} />
 
-							<ColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor='#4527a4' />
+							<ColorControl label={__('Color:', 'b-blocks')} value={color} onChange={val => updatePriceTable('color', val)} defaultColor={primaryColor} />
 
 							<PanelRow className='itemAction mt20 mb15'>
 								{1 < pricingTables?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removePricingTable} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}

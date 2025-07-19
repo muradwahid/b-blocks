@@ -63,7 +63,11 @@ if( !function_exists( 'bBlocksFeatureBoxesStyle' ) ) {
 
 extract( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?> id='<?php echo esc_attr( $id ); ?>'>
+<div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
+	<?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?>
+	id='<?php echo esc_attr( $id ); ?>'
+>
 	<style><?php echo esc_html( bBlocksFeatureBoxesStyle( $attributes, $id, $prefix ) ); ?></style>
 
 	<div class='<?php echo esc_attr( $prefix ); ?> columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>

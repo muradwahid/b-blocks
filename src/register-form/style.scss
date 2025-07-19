@@ -1,4 +1,4 @@
-$primaryColor: #4527a4;
+$primaryColor: #146EF5;
 $red: #f5222d;
 $orange: #fa8c16;
 $yellow: #fadb14;
@@ -113,6 +113,7 @@ $green: #7cb305;
 
                                 .rgfr-passStrengthTextWrapper {
                                     display: flex;
+
                                     .veryWeak-text {
                                         color: $red;
                                     }
@@ -184,7 +185,7 @@ $green: #7cb305;
                                 display: flex;
 
                                 .rgfr-signupBtn {
-                                    background-color: #4527a4;
+                                    background-color: $primaryColor;
                                     color: white;
                                     border: none;
                                     font-size: 15px;

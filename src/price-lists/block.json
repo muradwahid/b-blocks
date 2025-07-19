@@ -13,7 +13,7 @@
 	"attributes": {
 		"align": {
 			"type": "string",
-			"default": ""
+			"default": "wide"
 		},
 		"products": {
 			"type": "array",
@@ -34,7 +34,7 @@
 					"desc": "This content area describes product 1 descriptions or details.",
 					"descColor": "#333",
 					"price": "$99.99",
-					"priceColor": "#4527a4",
+					"priceColor": "#146EF5",
 					"separator": {
 						"width": "40%",
 						"height": "1px",
@@ -57,7 +57,7 @@
 					"desc": "This content area describes product 2 descriptions or details.",
 					"descColor": "#333",
 					"price": "$99.99",
-					"priceColor": "#4527a4",
+					"priceColor": "#146EF5",
 					"separator": {
 						"width": "40%",
 						"height": "1px",
@@ -80,7 +80,7 @@
 					"desc": "This content area describes product 3 descriptions or details.",
 					"descColor": "#333",
 					"price": "$99.99",
-					"priceColor": "#4527a4",
+					"priceColor": "#146EF5",
 					"separator": {
 						"width": "40%",
 						"height": "1px",
@@ -131,9 +131,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 18,
-					"tablet": 17,
-					"mobile": 16
+					"desktop": "18px",
+					"tablet": "17px",
+					"mobile": "16px"
 				},
 				"fontWeight": 600
 			}
@@ -153,9 +153,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 15,
-					"tablet": 15,
-					"mobile": 15
+					"desktop": "15px"
 				},
 				"fontStyle": "italic"
 			}
@@ -171,9 +169,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 24,
-					"tablet": 22,
-					"mobile": 20
+					"desktop": "24px",
+					"tablet": "22px",
+					"mobile": "20px"
 				},
 				"fontStyle": "italic"
 			}

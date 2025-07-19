@@ -4,6 +4,7 @@ import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-edit
 import { PanelBody, SelectControl, RangeControl, FontSizePicker, ToggleControl } from '@wordpress/components';
 
 import { Label, BtnGroup } from '../../../bpl-tools/Components';
+import { primaryColor, secondaryColor } from '../../../bpl-tools/utils/data';
 
 import { noteIcon } from '../utils/icons';
 import { hTags, fontSizes, borderStyles, colors } from '../utils/options';
@@ -32,13 +33,13 @@ registerBlockType('b-blocks/note', {
 		head: { type: 'string', source: 'html', selector: '.b_blocks_note_head' },
 		headTag: { type: 'string', default: 'h2' },
 		headFontSize: { type: 'number', default: 25 },
-		headColor: { type: 'string', default: '#4527a4' },
+		headColor: { type: 'string', default: primaryColor },
 		headPB: { type: 'number', default: 5 },
 		headMB: { type: 'number', default: 5 },
 
 		sepThick: { type: 'number', default: 2 },
 		sepStyle: { type: 'string', default: 'solid' },
-		sepColor: { type: 'string', default: '#8344c5' },
+		sepColor: { type: 'string', default: secondaryColor },
 
 		content: { type: 'string', source: 'html', selector: '.b_blocks_note_content' },
 		contentFontSize: { type: 'number', default: 15 },

@@ -5,9 +5,8 @@ import Style from './Components/Common/Style';
 import Hotspot from './Components/Frontend/Hotspot';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const hotspotEls = document.querySelectorAll(
-		".wp-block-b-blocks-image-hotspot"
-	);
+	const hotspotEls = document.querySelectorAll('.wp-block-b-blocks-image-hotspot');
+
 	hotspotEls.forEach(hotspotEl => {
 		const attributes = JSON.parse(hotspotEl.dataset.attributes);
 

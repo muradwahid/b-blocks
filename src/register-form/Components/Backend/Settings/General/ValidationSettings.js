@@ -1,6 +1,5 @@
 import { PanelBody, TextControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import React from "react";
 
 const ValidationSettings = ({ attributes, updateObj }) => {
     const { validation } = attributes;

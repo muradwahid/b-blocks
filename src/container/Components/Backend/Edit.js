@@ -11,21 +11,22 @@ import SVGShape from '../Common/SVGShape';
 import { prefix } from '../../utils/data';
 
 const Edit = props => {
-	const { attributes, setAttributes, clientId, innerBlocks, device } = props;
+	const { attributes, setAttributes, innerBlocks, device } = props;
 	const { shape, advanced } = attributes;
 	const { top, bottom } = shape;
 
+	const blockProps = useBlockProps();
+
 	const { isPremium = false } = usePremiumInEditor();
+
 	const ref = useRef();
 	useAnimation(ref.current, advanced?.animation);
 
-	const id = `block-${clientId}`;
+	return <div {...blockProps}>
+		<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={blockProps.id} isPremium={isPremium} />
 
-	return <div {...useBlockProps()}>
 		<div ref={ref}>
-			<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={id} isPremium={isPremium} />
-
-			<Style attributes={attributes} id={id} isBackend={true} />
+			<Style attributes={attributes} id={blockProps.id} isBackend={true} />
 
 			<div className={prefix}>
 				{!!top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>

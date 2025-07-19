@@ -1,8 +1,9 @@
 <?php
 extract($attributes);
-    $id = wp_unique_id('bBlocksLoginForm-');
+	$id = wp_unique_id('bBlocksLoginForm-');
 ?>
 <div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
 	<?php echo get_block_wrapper_attributes(); ?>
 	id='<?php echo esc_attr($id); ?>'
 	data-nonce="<?php echo esc_attr(wp_create_nonce('wp_ajax')) ?>"

@@ -1,6 +1,6 @@
 import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import React from 'react';
+
 import { MediaArea } from '../../../../../../../bpl-tools/Components';
 import { updateData } from '../../../../../../../bpl-tools/utils/functions';
 

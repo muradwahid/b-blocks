@@ -167,36 +167,36 @@ const Edit = props => {
 		<Settings {...props} {...{ attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH }} />
 
 		<div {...useBlockProps()}>
-			<div className={'wp-block-b-blocks-column'} id={id}>
-				<Style attributes={attributes} id={id} />
+			{/* <div className={'wp-block-b-blocks-column'} id={id}> */}
+			<Style {...{ attributes, id, columns, columnGap }} />
 
-				<ResizableBox
-					className={isResizing ? `${colPrefix}Resizing` : ''}
-					enable={{
-						top: false,
-						right: nextClientId ? true : false,
-						bottom: false,
-						left: false,
-						topRight: false,
-						bottomRight: false,
-						bottomLeft: false,
-						topLeft: false,
-					}}
-					onResize={(event, direction, elt, delta) => onResize(event, direction, elt, delta)}
-					onResizeStop={(event, direction, elt, delta) => onResizeStop(event, direction, elt, delta)}
-					onResizeStart={(event, direction, elt) => onResizeStartEvent(event, direction, elt)}
-					size={{ width: 'auto', height: '100%' }}
-					style={{ transition: 'all .2s ease' }}
-					minWidth={(rowWidth / MINWIDTH) - getInt(columnGap || '0px')}
-				>
-					<div className={colPrefix} style={innerBlocks?.length === 0 ? { padding: '10px', background: '#fff' } : {}}>
-						<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender className='columnEmpty' /> : <InnerBlocks.DefaultBlockAppender />} />
-					</div>
-				</ResizableBox>
+			<ResizableBox
+				className={isResizing ? `${colPrefix}Resizing` : ''}
+				enable={{
+					top: false,
+					right: nextClientId ? true : false,
+					bottom: false,
+					left: false,
+					topRight: false,
+					bottomRight: false,
+					bottomLeft: false,
+					topLeft: false,
+				}}
+				onResize={(event, direction, elt, delta) => onResize(event, direction, elt, delta)}
+				onResizeStop={(event, direction, elt, delta) => onResizeStop(event, direction, elt, delta)}
+				onResizeStart={(event, direction, elt) => onResizeStartEvent(event, direction, elt)}
+				size={{ width: 'auto', height: '100%' }}
+				style={{ transition: 'all .2s ease' }}
+				minWidth={(rowWidth / MINWIDTH) - getInt(columnGap || '0px')}
+			>
+				<div className={colPrefix} style={innerBlocks?.length === 0 ? { padding: '10px', background: '#fff' } : {}}>
+					<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender className='columnEmpty' /> : <InnerBlocks.DefaultBlockAppender />} />
+				</div>
+			</ResizableBox>
 
-				<span className='widthPlaceholder'>{isSelected && toFixed(width?.desktop)}</span>
-				{/* <span className='widthPlaceholder'>{isResizing ? toFixed(colWidthHold?.current?.desktop) : isSelected && toFixed(width?.desktop)}</span> */}
-			</div>
+			<span className='widthPlaceholder'>{isSelected && toFixed(width?.desktop)}</span>
+			{/* <span className='widthPlaceholder'>{isResizing ? toFixed(colWidthHold?.current?.desktop) : isSelected && toFixed(width?.desktop)}</span> */}
+			{/* </div> */}
 		</div>
 	</>;
 };

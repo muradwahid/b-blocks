@@ -5,6 +5,7 @@ import { PanelBody, TextControl, ToggleControl, __experimentalUnitControl as Uni
 import { Label, Background, ColorControl, IconControl, InlineDetailMediaUpload, HelpPanel } from '../../../../../../bpl-tools/Components';
 import { BorderControl, } from '../../../../../../bpl-tools/Components/Deprecated';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, servicesDocs } from '../../../../utils/data';
 
@@ -50,7 +51,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
 				<ColorControl label={__('Background Color:', 'b-blocks')} value={linkBGColor} onChange={val => setAttributes({ linkBGColor: val })} defaultColor={'#d2d2d2'} />
 
-				<ColorControl label={__('Background Hover Color:', 'b-blocks')} value={linkBGHovColor} onChange={val => setAttributes({ linkBGHovColor: val })} defaultColor={'#4527a4'} />
+				<ColorControl label={__('Background Hover Color:', 'b-blocks')} value={linkBGHovColor} onChange={val => setAttributes({ linkBGHovColor: val })} defaultColor={primaryColor} />
 			</>}
 		</PanelBody>}
 	</InspectorControls>;

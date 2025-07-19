@@ -39,8 +39,14 @@ if( !function_exists( 'bBlocksSectionHeadingStyle' ) ) {
 
 extract( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?> id='<?php echo esc_attr( $id ); ?>'>
-	<style><?php echo esc_html( bBlocksSectionHeadingStyle( $attributes, $id, $prefix ) ); ?></style>
+<div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
+	<?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?>
+	id='<?php echo esc_attr( $id ); ?>'
+>
+	<style>
+		<?php echo esc_html( bBlocksSectionHeadingStyle( $attributes, $id, $prefix ) ); ?>
+	</style>
 
 	<div class='bBlocksSectionHeading'>
 		<h2 class='sectionHeadingTitle'><?php echo wp_kses_post( $title ); ?></h2>

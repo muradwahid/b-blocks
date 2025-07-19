@@ -1,5 +1,8 @@
 import gulp from 'gulp';
+import { deleteAsync } from 'del';
 import fsDeploy from 'gulp-freemius-deploy';
+
+gulp.task('clean', async () => await deleteAsync(['b-blocks.zip', 'languages/*']));
 
 fsDeploy(gulp, {
 	developer_id: 17369,

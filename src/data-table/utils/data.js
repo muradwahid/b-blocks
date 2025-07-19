@@ -1,1 +1,1 @@
-export const placeholderImg = "https://templates.bplugins.com/wp-content/uploads/2025/03/before-after-image-gray.jpg";
+export const placeholderImg = 'https://templates.bplugins.com/wp-content/uploads/2025/03/before-after-image-gray.jpg';

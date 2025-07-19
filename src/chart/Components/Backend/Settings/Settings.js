@@ -5,6 +5,7 @@ import { PanelBody, PanelRow, TextControl, ToggleControl, RangeControl, SelectCo
 import { Label, Background, ColorControl, HelpPanel } from '../../../../../../bpl-tools/Components';
 import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor, primaryColor300, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, chartDocs } from '../../../../utils/data';
 import { prefix } from '../../../utils/data';
@@ -60,8 +61,8 @@ const Settings = ({ attributes, setAttributes }) => {
 			newDatasets.push({
 				label: data.datasets[i].label,
 				data: [...data.datasets[i].data, Math.ceil(Math.random() * 20)],
-				backgroundColor: [...data.datasets[i].backgroundColor, '#4527a433'],
-				borderColor: [...data.datasets[i].borderColor, '#4527a4'],
+				backgroundColor: [...data.datasets[i].backgroundColor, primaryColor300],
+				borderColor: [...data.datasets[i].borderColor, primaryColor],
 				tension: data.datasets[i].tension,
 				borderWidth: data.datasets[i].borderWidth,
 				hoverBorderWidth: data.datasets[i].hoverBorderWidth,
@@ -271,7 +272,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<Label>{__('Title Font Size:', 'b-blocks')}</Label>
 					<RangeControl value={titleFontSize} onChange={val => setAttributes({ titleFontSize: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={22} initialPosition={22} />
 
-					<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
+					<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor={primaryColor} />
 				</>}
 
 				<ToggleControl className='mt20' label={__('Show Subtitle', 'b-blocks')} checked={isSubtitle} onChange={val => setAttributes({ isSubtitle: val })} />
@@ -284,7 +285,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					<Label>{__('Subtitle Font Size:', 'b-blocks')}</Label>
 					<RangeControl value={subtitleFontSize} onChange={val => setAttributes({ subtitleFontSize: val })} min={0} max={80} step={1} allowReset={true} resetFallbackValue={13} initialPosition={13} />
 
-					<ColorControl label={__('Subtitle Color:', 'b-blocks')} value={subtitleColor} onChange={val => setAttributes({ subtitleColor: val })} defaultColor='#8344c5' />
+					<ColorControl label={__('Subtitle Color:', 'b-blocks')} value={subtitleColor} onChange={val => setAttributes({ subtitleColor: val })} defaultColor={secondaryColor} />
 				</>}
 			</PanelBody>
 

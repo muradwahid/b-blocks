@@ -1,38 +1,3 @@
-const iconColor = "#4527a4";
-
-export const blockIcon = (
-    <svg
-        version="1.0"
-        color={iconColor}
-        xmlns="http://www.w3.org/2000/svg"
-        width="64.000000pt"
-        height="64.000000pt"
-        viewBox="0 0 64.000000 64.000000"
-        preserveAspectRatio="xMidYMid meet"
-    >
-        <g
-            transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-            fill="currentColor"
-            stroke="none"
-        >
-            <path
-                d="M257 520 c-37 -29 -52 -81 -37 -126 13 -39 60 -74 100 -74 40 0 87
-35 100 74 24 73 -27 146 -100 146 -22 0 -48 -8 -63 -20z"
-            />
-            <path
-                d="M246 295 c-45 -16 -90 -56 -106 -96 -10 -24 -10 -33 4 -54 15 -24 22
--25 104 -25 l88 0 63 64 c40 40 61 69 56 76 -13 21 -88 50 -130 49 -22 0 -57
--6 -79 -14z"
-            />
-            <path d="M515 220 c20 -22 31 -20 22 5 -4 8 -14 15 -23 15 -16 0 -16 -2 1 -20z" />
-            <path
-                d="M431 166 c-89 -95 -53 -124 38 -32 46 47 52 57 41 70 -7 9 -16 16
--20 16 -4 0 -30 -24 -59 -54z"
-            />
-        </g>
-    </svg>
-);
-
 export const leftIcon = (
     <svg
         stroke="currentColor"

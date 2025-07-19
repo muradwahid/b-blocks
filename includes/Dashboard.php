@@ -108,8 +108,10 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 				// Display notice with activation button
 				?>
 				<div class="notice notice-success is-dismissible bBlocksAdminNotice">
-					<!-- translators: %s: Plugin name -->
-                    <p><?php printf( esc_html__('%s plugin was successfully installed.', 'b-blocks'), esc_html( $cleaned_string ) ); ?></p>
+					<p><?php
+						// translators: %s: Plugin name
+						printf( esc_html__('%s plugin was successfully installed.', 'b-blocks'), esc_html( $cleaned_string ) );
+					?></p>
 	
 					<p>
 						<a href="<?php echo esc_url($activation_url); ?>" class="button button-primary">

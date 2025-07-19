@@ -1,12 +1,13 @@
+import { useState } from 'react';
+import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, RangeControl, SelectControl, TabPanel, TextControl, TextareaControl, ToggleControl, Button, Flex } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
 
 import { BtnGroup, ColorsControl, HelpPanel, IconControl, InlineDetailMediaUpload, InlineMediaUpload, Label, ShadowControl, Typography } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { buttonDocs, pluginSlug } from '../../../../utils/data';
 import useUserRoles from '../../../../hooks/useUserRoles';
@@ -54,10 +55,10 @@ const Settings = ({ attributes, setAttributes, isPremium, setContentPopup }) => 
 
 						<BControlPro className='mt20' label={__('Security:', 'b-blocks')} labelPosition='left' value={security} onChange={val => setAttributes({ security: val })} options={securities} {...premiumProps} Component={SelectControl} />
 
-						{security == "login" && <>
+						{security == 'login' && <>
 							<BControlPro className='mt20' label={__('Set User Role:', 'b-blocks')} labelPosition='left' value={securityRole} onChange={val => setAttributes({ securityRole: val })} options={[{ label: 'Default', value: 'default' }, ...roles]} {...premiumProps} Component={SelectControl} />
 						</>}
-						{security == "password" && <>
+						{security == 'password' && <>
 							<BControlPro className='mt20' label={__('Set Password:', 'b-blocks')} value={securityPassword} onChange={val => setAttributes({ securityPassword: val })} {...premiumProps} Component={TextControl} />
 						</>}
 
@@ -219,9 +220,9 @@ const Settings = ({ attributes, setAttributes, isPremium, setContentPopup }) => 
 					<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')}>
 						<Typography value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 }, textDecoration: 'none' }} />
 
-						<ColorsControl value={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+						<ColorsControl value={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#fff', bg: primaryColor }} />
 
-						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={hovColors} onChange={val => setAttributes({ hovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={hovColors} onChange={val => setAttributes({ hovColors: val })} defaults={{ color: '#fff', bg: secondaryColor }} />
 
 						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '20px' }} />
 

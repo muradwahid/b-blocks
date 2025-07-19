@@ -1,7 +1,6 @@
+import { __ } from '@wordpress/i18n';
 import { __experimentalBorderBoxControl as BorderControl, PanelBody, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { __ } from '@wordpress/i18n';
-import React from 'react';
 import { BoxControl } from "../../../../../../../bpl-tools/Components";
 import { objectFitOptions } from '../../../../utils/options';
 import LogoCaption from './LogoCaption';

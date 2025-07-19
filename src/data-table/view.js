@@ -5,9 +5,7 @@ import DataTable from './Components/Frontend/DataTable';
 import './style.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const dataTableEls = document.querySelectorAll(
-		".wp-block-b-blocks-data-table"
-	);
+	const dataTableEls = document.querySelectorAll('.wp-block-b-blocks-data-table');
 	dataTableEls.forEach(dataTableEl => {
 		const attributes = JSON.parse(dataTableEl.dataset.attributes);
 

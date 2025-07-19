@@ -42,7 +42,7 @@ if( !class_exists( 'LGFRLoginForm' ) ){
 
 		$nonce = sanitize_text_field($_POST['nonce']);
 		$user_email = sanitize_text_field($_POST['email']);
-		$user =  get_user_by('email', $user_email);
+		$user = get_user_by('email', $user_email);
 		$user_login = isset($user->data->user_login) ? $user->data->user_login : false;
 
 
@@ -58,11 +58,11 @@ if( !class_exists( 'LGFRLoginForm' ) ){
 		}
 
 
-		$message = __('Someone requested that the password be reset for the following account:') . "\r\n\r\n";
+		$message = __('Someone requested that the password be reset for the following account:', 'b-blocks') . "\r\n\r\n";
 		$message .= network_home_url( '/' ) . "\r\n\r\n";
-		$message .= sprintf(__('Username:', 'login-form-block').' %s', $user_login) . "\r\n\r\n";
-		$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
-		$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
+		$message .= sprintf(__('Username:', 'b-blocks').' %s', $user_login) . "\r\n\r\n";
+		$message .= __('If this was a mistake, just ignore this email and nothing will happen.', 'b-blocks') . "\r\n\r\n";
+		$message .= __('To reset your password, visit the following address:', 'b-blocks') . "\r\n\r\n";
 		$message .= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
 
 		if ( is_multisite() ){
@@ -73,14 +73,14 @@ if( !class_exists( 'LGFRLoginForm' ) ){
 				$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 			}
 
-		$title = sprintf('[%s]'. __(' Password Reset', 'login-form'), $blogname );
+		$title = sprintf('[%s]'. __(' Password Reset', 'b-blocks'), $blogname );
 
 		$title = apply_filters('retrieve_password_title', $title);
 		$message = apply_filters('retrieve_password_message', $message, $key);
 
 		if ( $message && !wp_mail($user_email, $title, $message) ){
 				wp_send_json_error([
-					'message' => __('The e-mail could not be sent.', 'login-form') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function...', 'login-form')
+					'message' => __('The e-mail could not be sent.', 'b-blocks') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function...', 'b-blocks')
 				]);
 		}
 		

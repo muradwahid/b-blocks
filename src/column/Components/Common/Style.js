@@ -1,25 +1,27 @@
+import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../bpl-tools/utils/getCSS';
 import { colPrefix } from '../../../row/utils/data';
 
-const Style = ({ attributes, id }) => {
+const Style = ({ attributes, id, columns, columnGap }) => {
 	const { width, overflow, background, padding, border, shadow } = attributes;
 
-	const mainSl = `#${id}`;
+	const mainSl = `#${id}`;	
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		${mainSl}{
-			width: ${width.mobile}%;
+			flex-basis: calc(${width.desktop}% - (${columnGap} * (${columns} - 1) / ${columns}));
 		}
-		@media only screen and (min-width: 641px) {
+
+		${tabBreakpoint} {
 			${mainSl}{
-				width: ${width.tablet}%;
+				flex-basis: calc(${width.tablet}% - (${columnGap} * (${columns} - 1) / ${columns}));
 			}
 		}
 
-		@media only screen and (min-width: 1025px) {
+		${mobileBreakpoint} {
 			${mainSl}{
-				width: ${width.desktop}%;
+				flex-basis: calc(${width.mobile}% - (${columnGap} * (${columns} - 1) / ${columns}));
 			}
 		}
 

@@ -9,6 +9,7 @@ import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bp
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
 import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, countersDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
@@ -20,7 +21,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 	const addCounter = () => {
 		setAttributes({
 			counters: [...counters, {
-				background: { color: '#4527a4' },
+				background: { color: primaryColor },
 				icon: { class: 'fa fa-award', fontSize: 50, color: '#fff' },
 				number: { start: 0, end: 300, prefix: '', suffix: '', color: '#fff' },
 				label: { text: 'Awards', color: '#fff' }
@@ -31,7 +32,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 	const updateAllCounters = (params) => {
 		const newCounters = produce(counters, draft => {
-			draft.map((__, index) => {
+			draft.map((_, index) => {
 				for (const param of params) {
 					const type = param[0];
 					const value = param[1];
@@ -132,7 +133,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 									background: { ...background, type: 'solid', color: '#0000' },
 									padding: { ...padding, vertical: '20px', horizontal: '0px' },
 									counterHeight: '175px',
-									counterBorder: { ...counterBorder, width: '2px', color: '#4527a4', radius: '5px' },
+									counterBorder: { ...counterBorder, width: '2px', color: primaryColor, radius: '5px' },
 									iconPosition: 'label',
 									iconSize: labelTypo?.fontSize
 								});
@@ -149,22 +150,22 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 									const { background, icon, number, label } = member;
 
 									const defaultParams = [
-										['background', { ...background, type: 'solid', color: '#4527a4' }],
+										['background', { ...background, type: 'solid', color: primaryColor }],
 										['icon', { ...icon, color: '#fff' }],
 										['number', { ...number, color: '#fff' }],
 										['label', { ...label, color: '#fff' }]
 									];
 									const theme1Params = [
-										['background', { ...background, type: 'solid', color: '#4527a4' }],
+										['background', { ...background, type: 'solid', color: primaryColor }],
 										['icon', { ...icon, color: '#fff' }],
 										['number', { ...number, color: '#fff' }],
 										['label', { ...label, color: '#fff' }]
 									];
 									const theme2Params = [
 										['background', { ...background, type: 'solid', color: '#0000' }],
-										['icon', { ...icon, color: '#4527a4' }],
-										['number', { ...number, color: '#4527a4' }],
-										['label', { ...label, color: '#4527a4' }]
+										['icon', { ...icon, color: primaryColor }],
+										['number', { ...number, color: primaryColor }],
+										['label', { ...label, color: primaryColor }]
 									];
 									const theme3Params = [
 										['background', { ...background, type: 'solid', color: '#0000' }],

@@ -4,6 +4,7 @@ import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-edit
 import { PanelBody, FontSizePicker } from '@wordpress/components';
 
 import { Label, BtnGroup } from '../../../bpl-tools/Components';
+import { primaryColor } from '../../../bpl-tools/utils/data';
 
 import { toTopIcon } from '../utils/icons';
 import { fontSizes, aligns, colors } from '../utils/options';
@@ -26,7 +27,7 @@ registerBlockType('b-blocks/to-top', {
 		label: { type: 'string', default: 'Go to top', source: 'html', selector: '.b_blocks_to_top_link' },
 		contentAlign: { type: 'string', default: 'right' },
 		fontSize: { type: 'number', default: 15 },
-		color: { type: 'string', default: '#4527a4' },
+		color: { type: 'string', default: primaryColor },
 	},
 
 	// Build In Functions

@@ -141,9 +141,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 16,
-					"tablet": 16,
-					"mobile": 16
+					"desktop": "16px"
 				},
 				"fontWeight": 600,
 				"textDecoration": "none"
@@ -153,14 +151,14 @@
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#4527a4"
+				"bg": "#146EF5"
 			}
 		},
 		"hovColors": {
 			"type": "object",
 			"default": {
 				"color": "#fff",
-				"bg": "#8344c5"
+				"bg": "#FF7A00"
 			}
 		},
 		"padding": {

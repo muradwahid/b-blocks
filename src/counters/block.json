@@ -13,14 +13,14 @@
 	"attributes": {
 		"align": {
 			"type": "string",
-			"default": ""
+			"default": "wide"
 		},
 		"counters": {
 			"type": "array",
 			"default": [
 				{
 					"background": {
-						"color": "#4527a4"
+						"color": "#146EF5"
 					},
 					"icon": {
 						"class": "fa fa-puzzle-piece",
@@ -41,7 +41,7 @@
 				},
 				{
 					"background": {
-						"color": "#4527a4"
+						"color": "#146EF5"
 					},
 					"icon": {
 						"class": "fa fa-thumbs-up",
@@ -62,7 +62,7 @@
 				},
 				{
 					"background": {
-						"color": "#4527a4"
+						"color": "#146EF5"
 					},
 					"icon": {
 						"class": "fa fa-award",
@@ -154,9 +154,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 48,
-					"tablet": 40,
-					"mobile": 32
+					"desktop": "48px",
+					"tablet": "40px",
+					"mobile": "32px"
 				}
 			}
 		},
@@ -168,9 +168,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 22,
-					"tablet": 20,
-					"mobile": 18
+					"desktop": "22px",
+					"tablet": "20px",
+					"mobile": "18px"
 				}
 			}
 		},

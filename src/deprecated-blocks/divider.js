@@ -4,6 +4,7 @@ import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 
 import { Label, BtnGroup } from '../../../bpl-tools/Components';
+import { secondaryColor } from '../../../bpl-tools/utils/data';
 
 import { minusIcon } from '../utils/icons';
 import { aligns, borderStyles, colors, sizeTypes } from '../utils/options';
@@ -28,7 +29,7 @@ registerBlockType('b-blocks/divider', {
 		divideWidthType: { type: 'string', default: 'px' },
 		divideThick: { type: 'number', default: 3 },
 		divideStyle: { type: 'string', default: 'solid' },
-		divideColor: { type: 'string', default: '#8344c5' },
+		divideColor: { type: 'string', default: secondaryColor },
 		divideMT: { type: 'number', default: 10 },
 		divideMB: { type: 'number', default: 15 },
 	},

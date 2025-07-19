@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 	const { text, actionType, security = 'none', target, url, securityRole } = attributes;
 	const buttonEl = useRef(null);
-	const [securityPass, setSecurityPass] = useState(false);
+	const [securityPass, setSecurityPass] = useState('none' === security);
 	const [securityPop, setSecurityPop] = useState(false);
 
 	const { isPremium } = usePremium(nonce);
@@ -50,14 +50,14 @@ const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 					setSecurityPass(true);
 				} else {
 					window.open(url, target);
-					setSecurityPass(false)
+					setSecurityPass(false);
 				}
 			} else {
 				if (security == 'login') {
 					if (info.userRoles[0] === securityRole || securityRole === 'default') {
 						setSecurityPass(true);
 					} else {
-						setSecurityPop(val)
+						setSecurityPop(val);
 					}
 				} else if (security == 'password') {
 					setSecurityPop(val)

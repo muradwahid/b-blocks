@@ -62,8 +62,14 @@ extract( $attributes );
 
 $btnTab = $isLinkNewTab ? '_blank' : '';
 ?>
-<div <?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?> id='<?php echo esc_attr( $id ); ?>'>
-	<style><?php echo esc_html( bBlocksInfoBoxStyle( $attributes, $id, $prefix ) ); ?></style>
+<div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
+	<?php echo get_block_wrapper_attributes( [ 'class' => $planClass ] ); ?>
+	id='<?php echo esc_attr( $id ); ?>'
+>
+	<style>
+		<?php echo esc_html( bBlocksInfoBoxStyle( $attributes, $id, $prefix ) ); ?>
+	</style>
 
 	<div class='bBlocksInfoBox'>
 		<?php echo $isIcon && $icon['class'] ? "<div class='infoBoxIcon'><i class='". esc_html( $icon['class'] ) ."'></i></div>" : ''; ?>

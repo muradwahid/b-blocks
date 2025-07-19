@@ -1,7 +1,7 @@
 import { Flex, PanelBody, __experimentalBorderBoxControl as BorderBoxControl } from "@wordpress/components";
 import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
-import React from "react";
+
 import { BoxControl, ColorControl, Device, Typography } from "../../../../../../../bpl-tools/Components";
 import { BorderControl } from "../../../../../../../bpl-tools/Components/Deprecated";
 
@@ -19,9 +19,9 @@ const FormLabelStyles = ({ attributes, updateObj, device }) => {
 
         <ColorControl label={__("Background", 'b-blocks')} value={formLabel.color.bg} onChange={(value) => updateObj('formLabel', value, "color", "bg")} />
 
-        <BorderBoxControl label={__("Border", 'b-blocks')} value={formLabel.border} onChange={(value) => updateObj('formLabel', value, "border")}/>
+        <BorderBoxControl label={__("Border", 'b-blocks')} value={formLabel.border} onChange={(value) => updateObj('formLabel', value, "border")} />
 
-        <BoxControl label={__("Border Radius",'b-blocks')} values={formLabel.radius} onChange={value=>updateObj('formLabel',value,'radius')} />
+        <BoxControl label={__("Border Radius", 'b-blocks')} values={formLabel.radius} onChange={value => updateObj('formLabel', value, 'radius')} />
 
 
         <BorderControl label={__("Border", 'b-blocks')} value={formLabel.border} onChange={(value) => updateObj('formLabel', value, "border")} />

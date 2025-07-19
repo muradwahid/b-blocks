@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-$primaryColor: #4527a4;
+
+$primaryColor: #146EF5;
 
 .interface-interface-skeleton__header {
 	z-index: 100;
@@ -339,7 +340,7 @@ $primaryColor: #4527a4;
 	width: 24px !important;
 	height: 24px !important;
 	margin: 0 !important;
-	color: #4527a4 !important;
+	color: $primaryColor !important;
 
 	* {
 		stroke-width: 3px !important;

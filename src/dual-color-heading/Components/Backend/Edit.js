@@ -10,7 +10,7 @@ const Edit = props => {
 	const updateObj = updateAttributes(attributes, setAttributes)
 	const { isPremium = false } = usePremiumInEditor();
 	return <>
-		<Settings {...{ attributes, setAttributes, updateObj, isPremium }}  />
+		<Settings {...{ attributes, setAttributes, updateObj, isPremium }} />
 
 		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />

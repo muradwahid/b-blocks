@@ -2,7 +2,7 @@ import { Button, Flex, __experimentalInputControl as InputControl, PanelBody, Se
 import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import { produce } from "immer";
-import React, { Fragment } from "react";
+
 import { BButtonGroup, Device, IconLibrary, MediaArea } from "../../../../../../../bpl-tools/Components";
 import { updateData } from "../../../../../../../bpl-tools/utils/functions";
 import emailIcon from "../../../../assets/icon/envelope-solid.svg";
@@ -11,6 +11,7 @@ import userIcon from "../../../../assets/icon/user-solid.svg";
 import { addInputFieldOptions, inputFieldOptions } from "../../../../utils/options";
 import { PanelRepeater } from "../../Panel/PanelRepeater/PanelRepeater";
 import WeakPassword from "./WeakPassword";
+
 const FormFieldSettings = ({ attributes, setAttributes, updateObj, device }) => {
     const { formFields, password } = attributes;
     const handleIcon = (type) => {
@@ -56,7 +57,7 @@ const FormFieldSettings = ({ attributes, setAttributes, updateObj, device }) => 
         setAttributes({ formFields: { ...formFields, fields: fieldsData } });
     };
 
-    return <Fragment>
+    return <>
         <PanelBody className="bPlPanelBody" title={__("Form Fields", "b-blocks")} initialOpen={false} >
             <p>Fields</p>
             {formFields.fields.map((val, i) => (
@@ -103,11 +104,11 @@ const FormFieldSettings = ({ attributes, setAttributes, updateObj, device }) => 
 
             <ToggleControl className='mt10' label={__("Show Password Strength Text", "b-blocks")} value={formFields.showPassStrengthText} checked={formFields.showPassStrengthText} onChange={(value) => setAttributes({ formFields: updateData(formFields, value, "showPassStrengthText"), })} />
 
-            {formFields.showPassStrengthText && <Fragment>
+            {formFields.showPassStrengthText && <>
 
                 <SelectControl label={__("Password Strength Text", "b-blocks")} labelPosition='edge' options={[{ label: "Default", value: "default" }, { label: "Custom", value: "custom" },]} value={formFields.passStrengthText} onChange={(value) => setAttributes({ formFields: updateData(formFields, value, "passStrengthText"), })} />
 
-                {formFields.passStrengthText === "custom" && <Fragment>
+                {formFields.passStrengthText === "custom" && <>
                     <InputControl label={__("Very Weak Password", "b-blocks")} value={password.passStrengthTxt.veryWeak} onChange={(value) => setAttributes({ password: updateData(password, value, "passStrengthTxt", "veryWeak"), })} />
 
                     <InputControl className='mt10' label={__("Weak Password", "b-blocks")} value={password.passStrengthTxt.weak} onChange={(value) => setAttributes({ password: updateData(password, value, "passStrengthTxt", "weak"), })} />
@@ -115,11 +116,11 @@ const FormFieldSettings = ({ attributes, setAttributes, updateObj, device }) => 
                     <InputControl className='mt10' label={__("Medium Password", "b-blocks")} value={password.passStrengthTxt.medium} onChange={(value) => setAttributes({ password: updateData(password, value, "passStrengthTxt", "medium"), })} />
 
                     <InputControl className='mt10' label={__("Strong Password", "b-blocks")} value={password.passStrengthTxt.strong} onChange={(value) => setAttributes({ password: updateData(password, value, "passStrengthTxt", "strong"), })} />
-                </Fragment>}
-            </Fragment>}
+                </>}
+            </>}
             <WeakPassword {...{ attributes, updateObj }} />
         </PanelBody>
-    </Fragment>
+    </>
 };
 export default withSelect((select) => {
     const { getDeviceType } = select("core/editor");

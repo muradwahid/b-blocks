@@ -5,7 +5,9 @@ import { useWPAjax, useWPOptionQuery } from '../../../../../bpl-tools/hooks';
 
 import Layout from '../Layout/Layout';
 import { closeIcon, demoIcon, docsIcon, searchIcon } from '../utils/icons';
-import blocks from '../utils/blocks';
+import allBlocks from '../utils/blocks';
+
+const blocks = allBlocks.filter(b => 'published' === b.status);
 
 const dataFetched = new CustomEvent('dataFetched');
 

@@ -1,93 +1,93 @@
 .table-body-panel-wrapper {
-  .panel-body-main-container {
-    margin-bottom: 10px;
+	.panel-body-main-container {
+		margin-bottom: 10px;
 
-    .panel-body-title-container {
-      border: 1px solid #ccc;
-      display: flex;
-      align-items: center;
-      height: 40px;
-      margin: 0px;
+		.panel-body-title-container {
+			border: 1px solid #ccc;
+			display: flex;
+			align-items: center;
+			height: 40px;
+			margin: 0px;
 
-      .panel-body-title {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+			.panel-body-title {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 
-        p {
-          cursor: pointer;
-          margin: 0px;
-          height: 100%;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          padding-left: 5px;
-          transition: background-color 0.2s ease-in-out;
-          overflow: hidden;
+				p {
+					cursor: pointer;
+					margin: 0px;
+					height: 100%;
+					width: 100%;
+					display: flex;
+					align-items: center;
+					padding-left: 5px;
+					transition: background-color 0.2s ease-in-out;
+					overflow: hidden;
 
-          div {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
+					div {
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
 
-          &:hover {
-            background-color: #ccc;
-          }
+					&:hover {
+						background-color: #ccc;
+					}
 
-        }
+				}
 
-        .panel-body-single-icon {
-          border-left: 1px solid #ccc;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 35px;
-          cursor: pointer;
-          font-size: 17px;
+				.panel-body-single-icon {
+					border-left: 1px solid #ccc;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 35px;
+					cursor: pointer;
+					font-size: 17px;
 
-          &:hover {
-            background-color: #ccc;
-          }
-        }
-      }
-    }
+					&:hover {
+						background-color: #ccc;
+					}
+				}
+			}
+		}
 
-    .table-body-control-body-wrapper {
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-top: 0px;
-    }
-  }
+		.table-body-control-body-wrapper {
+			padding: 13px;
+			border: 1px solid #ccc;
+			border-top: 0px;
+		}
+	}
 
-  .remove-row {
-    border: none;
-    padding: 7px 15px;
-    background: #bd434f;
-    color: white;
-    transition: background .2s ease-in-out;
-    cursor: pointer;
+	.remove-row {
+		border: none;
+		padding: 7px 15px;
+		background: #bd434f;
+		color: white;
+		transition: background .2s ease-in-out;
+		cursor: pointer;
 
-    &:hover {
-      background: #bb2d3b;
-    }
-  }
+		&:hover {
+			background: #bb2d3b;
+		}
+	}
 
-  .add-col {
-    border: none;
-    padding: 7px 15px;
-    background: #3858e9;
-    color: white;
-    cursor: pointer;
+	.add-col {
+		border: none;
+		padding: 7px 15px;
+		background: #3858e9;
+		color: white;
+		cursor: pointer;
 
-    .addButton {
-      color: white;
-    }
-  }
+		.addButton {
+			color: white;
+		}
+	}
 }

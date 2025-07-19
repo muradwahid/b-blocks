@@ -59,9 +59,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 18,
-					"tablet": 17,
-					"mobile": 16
+					"desktop": "18px",
+					"tablet": "17px",
+					"mobile": "16px"
 				}
 			}
 		},
@@ -69,9 +69,7 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 15,
-					"tablet": 15,
-					"mobile": 15
+					"desktop": "15px"
 				}
 			}
 		}

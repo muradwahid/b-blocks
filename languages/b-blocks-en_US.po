@@ -2,27 +2,23 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: B Blocks 2.0.1\n"
+"Project-Id-Version: B Blocks 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/b-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2025-07-09T09:29:37+00:00\n"
-=======
-"POT-Creation-Date: 2025-04-19T06:40:30+00:00\n"
->>>>>>> development
+"POT-Creation-Date: 2025-07-17T12:40:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: b-blocks\n"
 
 #. Plugin Name of the plugin
 #: plugin.php
-#: includes/Dashboard.php:170
-#: includes/Dashboard.php:171
-#: plugin.php:183
+#: includes/Dashboard.php:172
+#: includes/Dashboard.php:173
+#: plugin.php:235
 msgid "B Blocks"
 msgstr ""
 
@@ -41,21 +37,75 @@ msgstr ""
 msgid "https://bplugins.com"
 msgstr ""
 
-#: build/image-gallery/render.php:77
+#: build/image-gallery/render.php:81
 msgid "Preview"
 msgstr ""
 
-#: includes/Dashboard.php:112
+#: includes/blocks/LoginForm.php:61
+msgid "Someone requested that the password be reset for the following account:"
+msgstr ""
+
+#: includes/blocks/LoginForm.php:63
+msgid "Username:"
+msgstr ""
+
+#: includes/blocks/LoginForm.php:64
+msgid "If this was a mistake, just ignore this email and nothing will happen."
+msgstr ""
+
+#: includes/blocks/LoginForm.php:65
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#: includes/blocks/LoginForm.php:76
+msgid " Password Reset"
+msgstr ""
+
+#: includes/blocks/LoginForm.php:83
+msgid "The e-mail could not be sent."
+msgstr ""
+
+#: includes/blocks/LoginForm.php:83
+msgid "Possible reason: your host may have disabled the mail() function..."
+msgstr ""
+
+#. translators: %s: Plugin name
+#: includes/Dashboard.php:113
+#, php-format
 msgid "%s plugin was successfully installed."
 msgstr ""
 
-#: includes/Dashboard.php:116
+#: includes/Dashboard.php:118
 msgid "Activate Plugin"
 msgstr ""
 
-#: includes/Dashboard.php:180
-#: includes/Dashboard.php:181
+#: includes/Dashboard.php:182
+#: includes/Dashboard.php:183
 msgid "Dashboard"
+msgstr ""
+
+#: build/image-comparison/view.js:2
+msgid "Style 1"
+msgstr ""
+
+#: build/image-comparison/view.js:2
+msgid "Style 2"
+msgstr ""
+
+#: build/image-comparison/view.js:2
+msgid "Style 3"
+msgstr ""
+
+#: build/image-comparison/view.js:2
+msgid "Style 4"
+msgstr ""
+
+#: build/image-comparison/view.js:2
+msgid "Style 5"
+msgstr ""
+
+#: build/image-comparison/view.js:2
+msgid "Style 6"
 msgstr ""
 
 #: build/template-library.js:1
@@ -316,6 +366,7 @@ msgid "Content Ticker will let you showcase your trending news."
 msgstr ""
 
 #: build/content-ticker/block.json
+#: build/table-of-content/block.json
 msgctxt "block keyword"
 msgid "content"
 msgstr ""
@@ -397,6 +448,7 @@ msgstr ""
 
 #: build/data-table/block.json
 #: build/pricing-table/block.json
+#: build/table-of-content/block.json
 msgctxt "block keyword"
 msgid "table"
 msgstr ""
@@ -427,6 +479,7 @@ msgid "color"
 msgstr ""
 
 #: build/dual-color-heading/block.json
+#: build/table-of-content/block.json
 msgctxt "block keyword"
 msgid "heading"
 msgstr ""
@@ -434,6 +487,48 @@ msgstr ""
 #: build/dual-color-heading/block.json
 msgctxt "block keyword"
 msgid "dual-color-heading"
+msgstr ""
+
+#: build/facebook-embed/block.json
+msgctxt "block title"
+msgid "Facebook Embed"
+msgstr ""
+
+#: build/facebook-embed/block.json
+msgctxt "block description"
+msgid "Facebook Embed  allows you to facebook posts, videos on your website or blog."
+msgstr ""
+
+#: build/facebook-embed/block.json
+#: build/facebook-page/block.json
+msgctxt "block keyword"
+msgid "facebook"
+msgstr ""
+
+#: build/facebook-embed/block.json
+#: build/facebook-page/block.json
+msgctxt "block keyword"
+msgid "embed"
+msgstr ""
+
+#: build/facebook-embed/block.json
+msgctxt "block keyword"
+msgid "post"
+msgstr ""
+
+#: build/facebook-page/block.json
+msgctxt "block title"
+msgid "Facebook Page"
+msgstr ""
+
+#: build/facebook-page/block.json
+msgctxt "block description"
+msgid "The Facebook Page Block allows you to embed your Social Media on your WordPress website."
+msgstr ""
+
+#: build/facebook-page/block.json
+msgctxt "block keyword"
+msgid "page"
 msgstr ""
 
 #: build/feature-boxes/block.json
@@ -511,6 +606,36 @@ msgctxt "block keyword"
 msgid "animated image"
 msgstr ""
 
+#: build/html/block.json
+msgctxt "block title"
+msgid "HTML"
+msgstr ""
+
+#: build/html/block.json
+msgctxt "block description"
+msgid "Use the HTML block to add and preview HTML code in your posts or pages, enhancing your website's content and functionality."
+msgstr ""
+
+#: build/html/block.json
+msgctxt "block keyword"
+msgid "html"
+msgstr ""
+
+#: build/html/block.json
+msgctxt "block keyword"
+msgid "custom code"
+msgstr ""
+
+#: build/html/block.json
+msgctxt "block keyword"
+msgid "js"
+msgstr ""
+
+#: build/html/block.json
+msgctxt "block keyword"
+msgid "css"
+msgstr ""
+
 #: build/icon-box/block.json
 msgctxt "block title"
 msgid "Icon Box"
@@ -553,9 +678,8 @@ msgid "Compare between two images."
 msgstr ""
 
 #: build/image-comparison/block.json
-#: build/slider/block.json
 msgctxt "block keyword"
-msgid "image slider"
+msgid "image comparison"
 msgstr ""
 
 #: build/image-comparison/block.json
@@ -566,6 +690,31 @@ msgstr ""
 #: build/image-comparison/block.json
 msgctxt "block keyword"
 msgid "image filter"
+msgstr ""
+
+#: build/image-comparison/block.json
+msgctxt "block keyword"
+msgid "visual comparison"
+msgstr ""
+
+#: build/image-comparison/block.json
+msgctxt "block keyword"
+msgid "before and after image"
+msgstr ""
+
+#: build/image-comparison/block.json
+msgctxt "block keyword"
+msgid "beaf"
+msgstr ""
+
+#: build/image-comparison/block.json
+msgctxt "block keyword"
+msgid "before after"
+msgstr ""
+
+#: build/image-comparison/block.json
+msgctxt "block keyword"
+msgid "before after image"
 msgstr ""
 
 #: build/image-gallery/block.json
@@ -658,6 +807,62 @@ msgctxt "block keyword"
 msgid "message"
 msgstr ""
 
+#: build/login-form/block.json
+msgctxt "block title"
+msgid "Login Form"
+msgstr ""
+
+#: build/login-form/block.json
+msgctxt "block description"
+msgid "Login form easily customize your login page."
+msgstr ""
+
+#: build/login-form/block.json
+msgctxt "block keyword"
+msgid "login"
+msgstr ""
+
+#: build/login-form/block.json
+#: build/register-form/block.json
+msgctxt "block keyword"
+msgid "form"
+msgstr ""
+
+#: build/login-form/block.json
+msgctxt "block keyword"
+msgid "login form"
+msgstr ""
+
+#: build/logo-slider/block.json
+msgctxt "block title"
+msgid "Logo Slider"
+msgstr ""
+
+#: build/logo-slider/block.json
+msgctxt "block description"
+msgid "Logo sliders are often used on websites and blogs to showcase a company's clients, partners, or sponsors."
+msgstr ""
+
+#: build/logo-slider/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr ""
+
+#: build/logo-slider/block.json
+msgctxt "block keyword"
+msgid "logo"
+msgstr ""
+
+#: build/logo-slider/block.json
+msgctxt "block keyword"
+msgid "carousel"
+msgstr ""
+
+#: build/logo-slider/block.json
+msgctxt "block keyword"
+msgid "logo slider"
+msgstr ""
+
 #: build/lottie-player/block.json
 msgctxt "block title"
 msgid "Lottie Player"
@@ -710,7 +915,7 @@ msgstr ""
 
 #: build/navigation/block.json
 msgctxt "block title"
-msgid "Navigation"
+msgid "B Blocks Navigation"
 msgstr ""
 
 #: build/navigation/block.json
@@ -848,6 +1053,26 @@ msgctxt "block keyword"
 msgid "Code"
 msgstr ""
 
+#: build/register-form/block.json
+msgctxt "block title"
+msgid "Register Form"
+msgstr ""
+
+#: build/register-form/block.json
+msgctxt "block description"
+msgid "Register more users and improve engagement in WordPress."
+msgstr ""
+
+#: build/register-form/block.json
+msgctxt "block keyword"
+msgid "register"
+msgstr ""
+
+#: build/register-form/block.json
+msgctxt "block keyword"
+msgid "register form"
+msgstr ""
+
 #: build/row/block.json
 msgctxt "block title"
 msgid "Row"
@@ -980,6 +1205,11 @@ msgstr ""
 
 #: build/slider/block.json
 msgctxt "block keyword"
+msgid "image slider"
+msgstr ""
+
+#: build/slider/block.json
+msgctxt "block keyword"
 msgid "image carousel"
 msgstr ""
 
@@ -1036,6 +1266,21 @@ msgstr ""
 #: build/svg-draw/block.json
 msgctxt "block keyword"
 msgid "animated icon"
+msgstr ""
+
+#: build/table-of-content/block.json
+msgctxt "block title"
+msgid "Table of Contents"
+msgstr ""
+
+#: build/table-of-content/block.json
+msgctxt "block description"
+msgid "The Table of Contents block automatically generates a table of contents for your WordPress post or page."
+msgstr ""
+
+#: build/table-of-content/block.json
+msgctxt "block keyword"
+msgid "table of contents"
 msgstr ""
 
 #: build/td-viewer/block.json

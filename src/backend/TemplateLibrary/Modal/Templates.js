@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BlockPreview } from '@wordpress/block-editor';
 import { parse } from '@wordpress/blocks';
 import { Spinner } from '@wordpress/components';
@@ -8,6 +8,18 @@ import { siteURL } from '../../../utils/data';
 
 const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, templatesLoading, children }) => {
 	const [isLoading, setIsLoading] = useState(false);
+
+	const [isTempLoading, setIsTempLoading] = useState(false);
+
+	useEffect(() => {
+		if (templatesLoading) {
+			setTimeout(() => {
+				setIsTempLoading(true);
+			}, 1000);
+		} else {
+			setIsTempLoading(false);
+		}
+	}, [templatesLoading]);
 
 	return <div className='modalBodyTemplates'>
 		{templates?.length ? <>
@@ -87,7 +99,7 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 			</div>
 			{children}
 		</> : <>
-			{mainLoading || templatesLoading ? <div className='bPlPlaceCenter'>
+			{mainLoading || isTempLoading ? <div className='bPlPlaceCenter'>
 				<Spinner className='bPlSpinner' />
 			</div> : <div className='bPlPlaceCenter modalBodyTemplateNotFound'>No Templates Found!!</div>}
 		</>}

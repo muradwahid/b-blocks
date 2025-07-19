@@ -1,19 +1,16 @@
-import React from "react";
-import { getMultiShadowCSS, isValidCSS } from "../../../../../../bpl-tools/utils/getCSS";
+import { getMultiShadowCSS, isValidCSS } from '../../../../../../bpl-tools/utils/getCSS';
 
 const TimelineStyle = ({ attributes, id }) => {
-  const { sticky, slideTitle, slideList, boxList } = attributes;
-  const blockSl = `#${id}`;
-  const timelineSl = `${blockSl} .tbcn-timeline-container`;
-  const titleContainer = `${timelineSl} .tbcn-timeline-title-container`;
-  const timelineTitle = `${titleContainer} .tbcn-timeline-title`;
-  const timelineItems = `${timelineSl} .tbcn-timeline-list-items`;
-  const timelineItem = `${timelineItems} .tbcn-timeline-list`;
+	const { sticky, slideTitle, slideList, boxList } = attributes;
+	const blockSl = `#${id}`;
+	const timelineSl = `${blockSl} .tbcn-timeline-container`;
+	const titleContainer = `${timelineSl} .tbcn-timeline-title-container`;
+	const timelineTitle = `${titleContainer} .tbcn-timeline-title`;
+	const timelineItems = `${timelineSl} .tbcn-timeline-list-items`;
+	const timelineItem = `${timelineItems} .tbcn-timeline-list`;
 
-  return (
-    <>
-      <style>
-        {`
+	return <style>
+		{`
 ${timelineItems} {
   border-left: 2px dashed ${boxList.treeColor};
 }
@@ -53,26 +50,26 @@ ${timelineItem}>a:hover::before {
   background-color:${boxList.hTxtColor};
 }
 ${timelineSl}.sticky {
-${isValidCSS("width", sticky.width.desktop)}
+${isValidCSS('width', sticky.width.desktop)}
   z-index: ${sticky.zIndex.desktop} !important;
 
   position:fixed;
 }
-${["left", "right"]
-            .map(
-              (val) => `${timelineSl}.sticky.${val}{
+${['left', 'right']
+				.map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop};
 }`
-            )
-            .join("")}
-${["top", "bottom"]
-            .map(
-              (val) => `${timelineSl}.sticky.${val}{
+				)
+				.join('')}
+${['top', 'bottom']
+				.map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop}
 }`
-            )
-            .join("")}
-${sticky.verticalAlign === "center" ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
+				)
+				.join('')}
+${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
 
 @media screen and (min-width: 1024px) {
@@ -91,23 +88,23 @@ ${timelineItem}>a {
 }
 ${timelineSl}.sticky {
   z-index: ${sticky.zIndex.desktop} !important;
-  position:${sticky.device.includes("Desktop") ? "fixed" : "initial"};
+  position:${sticky.device.includes('Desktop') ? 'fixed' : 'initial'};
 }
-${["left", "right"]
-            .map(
-              (val) => `${timelineSl}.sticky.${val}{
+${['left', 'right']
+				.map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop};
 }`
-            )
-            .join("")}
-${["top", "bottom"]
-            .map(
-              (val) => `${timelineSl}.sticky.${val}{
+				)
+				.join('')}
+${['top', 'bottom']
+				.map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop}
 }`
-            )
-            .join("")}
-${sticky.verticalAlign === "center" ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}  
+				)
+				.join('')}
+${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}  
 }
 @media only screen and (min-width:641px) and (max-width: 1024px) {
 ${timelineTitle} {
@@ -121,25 +118,25 @@ ${timelineItem}>a {
   font-size:${slideList.fontSize.tablet}
 }
 ${timelineSl}.sticky {
-${isValidCSS("width", sticky.width.tablet)}
+${isValidCSS('width', sticky.width.tablet)}
   z-index: ${sticky.zIndex.tablet} !important;
-  position:${sticky.device.includes("Tablet") ? "fixed" : "initial"};
+  position:${sticky.device.includes('Tablet') ? 'fixed' : 'initial'};
 }
 
-${["left", "right"].map(
-              (val) => `${timelineSl}.sticky.${val}{
+${['left', 'right'].map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].tablet};
 }`
-            )}
+				)}
 
-${["top", "bottom"]
-            .map(
-              (val) => `${timelineSl}.sticky.${val}{
+${['top', 'bottom']
+				.map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].tablet}
 }`
-            )
-            .join("")}
-${sticky.verticalAlign === "center" ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
+				)
+				.join('')}
+${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
 }
 @media only screen and (max-width: 640px) {
@@ -155,29 +152,27 @@ ${timelineItem}>a {
   font-size:${slideList.fontSize.mobile}
 }
 ${timelineSl}.sticky {
-${isValidCSS("width", sticky.width.mobile)}
+${isValidCSS('width', sticky.width.mobile)}
   z-index: ${sticky.zIndex.mobile} !important;
-  position:${sticky.device.includes("Mobile") ? "fixed" : "initial"};
+  position:${sticky.device.includes('Mobile') ? 'fixed' : 'initial'};
 }
 
-${["top", "bottom"]
-            .map(
-              (val) => `${timelineSl}.sticky.${val}{
+${['top', 'bottom']
+				.map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].mobile}
 }`
-            )
-            .join("")}
-${sticky.verticalAlign === "center" ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
-${["left", "right"].map(
-              (val) => `${timelineSl}.sticky.${val}{
+				)
+				.join('')}
+${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
+${['left', 'right'].map(
+					(val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].mobile};
 }`
-            )}
+				)}
 }
 `}
-      </style>
-    </>
-  );
+	</style>
 };
 
 export default TimelineStyle;

@@ -5,6 +5,7 @@ import { produce } from 'immer';
 import { Label, Background, ColorControl, ColorsControl } from '../../../../../../bpl-tools/Components';
 import { BorderControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro } from '../../../../../../bpl-tools/ProControls';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { getPosByPos } from '../../../utils/functions';
 
@@ -61,9 +62,9 @@ const ItemSettings = ({ attributes, setAttributes, clientId, arrKey, index, setA
 			<TextControl value={btnLink} onChange={val => updateSlide(index, 'btnLink', val)} placeholder={__('Button link', 'b-blocks')} />
 		</PanelRow>
 
-		<ColorsControl label={__('Button Colors:', 'b-blocks')} value={btnColors} onChange={val => updateSlide(index, 'btnColors', val)} defaults={{ color: '#fff', bg: '#4527a4' }} />
+		<ColorsControl label={__('Button Colors:', 'b-blocks')} value={btnColors} onChange={val => updateSlide(index, 'btnColors', val)} defaults={{ color: '#fff', bg: primaryColor }} />
 
-		<ColorsControl label={__('Button Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateSlide(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: '#8344c5' }} />
+		<ColorsControl label={__('Button Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateSlide(index, 'btnHovColors', val)} defaults={{ color: '#fff', bg: secondaryColor }} />
 	</>
 }
 export default ItemSettings;

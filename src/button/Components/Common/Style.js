@@ -1,4 +1,6 @@
+import { primaryColor, secondaryColor } from '../../../../../bpl-tools/utils/data';
 import { getBorderCSS, getColorsCSS, getMultiShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
@@ -38,14 +40,14 @@ const Style = ({ attributes, id }) => {
 			}
 		}
 		${btnSl}{
-			${getColorsCSS(colors) || 'color: #fff; background-color: #4527a4;'}
+			${getColorsCSS(colors) || `color: #fff; background-color: ${primaryColor};`}
 			width: ${isFullWidth ? '100%' : 'auto'};
 			padding: ${getSpaceCSS(padding) || '10px 20px'};
 			${getBorderCSS(border) || 'border-radius: 5px;'}
 			box-shadow: ${getMultiShadowCSS(shadow?.shadow || shadow) || 'none'};
 		}
 		${btnSl}:hover{
-			${getColorsCSS(hovColors) || 'color: #fff; background-color: #8344c5;'}
+			${getColorsCSS(hovColors) || `color: #fff; background-color: ${secondaryColor};`}
 		}
 		${addCSS}
 		`.replace(/\s+/g, ' ')

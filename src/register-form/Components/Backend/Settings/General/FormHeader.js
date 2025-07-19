@@ -1,7 +1,7 @@
 import { Flex, PanelBody, TextControl, TextareaControl } from "@wordpress/components";
 import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
-import React from "react";
+
 import { BtnGroup, Device, Label, MediaArea } from "../../../../../../../bpl-tools/Components";
 
 import { imagePositionOptions, logoPositionOptions } from '../../../../utils/options';
@@ -29,7 +29,7 @@ const FormHeader = ({ attributes, device, updateObj }) => {
             <Label className="mt0 mb0">{__("Logo Position", "b-blocks")}</Label>
             <Device />
         </Flex>
-        <BtnGroup labelPosition="top" options={logoPositionOptions} value={formHeader.header.logo.position[device]} onChange={(value) => updateObj('formHeader', value, 'header', 'logo', 'position',device)} isIcon={true} size='default' />
+        <BtnGroup labelPosition="top" options={logoPositionOptions} value={formHeader.header.logo.position[device]} onChange={(value) => updateObj('formHeader', value, 'header', 'logo', 'position', device)} isIcon={true} size='default' />
         <hr />
 
         <TextControl label={__("Form Title", "b-blocks")} value={formHeader.header.title.text} onChange={(value) => updateObj('formHeader', value, 'header', 'title', 'text')} placeholder="Create a New Account" />

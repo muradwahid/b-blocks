@@ -7,6 +7,7 @@ import { Label, Background, ColorControl, Device, InlineDetailMediaUpload, Separ
 import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
+import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
@@ -25,7 +26,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 				desc: `This content area describes product ${products.length + 1} descriptions or details.`,
 				descColor: '#333',
 				price: '$99.99',
-				priceColor: '#4527a4',
+				priceColor: primaryColor,
 				separator: { width: '40%', height: '1px', color: '#bbb' }
 			}]
 		});
@@ -71,7 +72,7 @@ const Settings = ({ attributes, setAttributes, updateProduct, activeIndex, setAc
 
 					<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateProduct('descColor', val)} defaultColor='#333' />
 
-					<ColorControl label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct('priceColor', val)} defaultColor='#4527a4' />
+					<ColorControl label={__('Price Color:', 'b-blocks')} value={priceColor} onChange={val => updateProduct('priceColor', val)} defaultColor={primaryColor} />
 
 					<SeparatorControl value={separator} onChange={val => updateProduct('separator', val)} defaults={{ width: '40%', height: '1px', color: '#bbb' }} />
 

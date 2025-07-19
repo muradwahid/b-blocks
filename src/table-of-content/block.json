@@ -200,14 +200,7 @@
                     "mobile": "15px"
                 },
                 "fontSize": {
-                    "desktop": "16px",
-                    "tablet": "16px",
-                    "mobile": "16px"
-                },
-                "fontUnit": {
-                    "desktop": "px",
-                    "tablet": "px",
-                    "mobile": "px"
+                    "desktop": "16px"
                 }
             }
         },

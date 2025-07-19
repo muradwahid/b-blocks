@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 // Components
-import { getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getSeparatorCSS, getSpaceCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';
@@ -29,10 +29,10 @@ const Edit = props => {
 				${getTypoCSS(descSl, descTypo)?.styles}
 
 				${headingSl}{
-					text-align: ${textAlign};
+					${isValidCSS('text-align', textAlign)}
 				}
 				${titleSl}{
-					color: ${titleColor};
+					${isValidCSS('color', titleColor)}
 					margin: ${getSpaceCSS(titleMargin)};
 				}
 				${headingSl} .sectionHeadingSeparator{
@@ -40,7 +40,7 @@ const Edit = props => {
 					margin: ${getSpaceCSS(sepMargin)};
 				}
 				${descSl}{
-					color: ${descColor};
+					${isValidCSS('color', descColor)}
 					margin: ${getSpaceCSS(descMargin)};
 				}
 			`}} />

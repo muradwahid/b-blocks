@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { IoIosEye, IoIosEyeOff } from "../../utils/icons";
 import { IoIosEye, IoIosEyeOff } from "../../../utils/icons";
@@ -102,102 +102,102 @@ const Form = ({ attributes, nonce }) => {
         }
     };
 
-    return  <>
-            {formType === "resetform" && (
-                <ResetForm
-                    setFormType={setFormType}
-                    nonce={nonce}
-                    attributes={attributes}
-                />
-            )}
-            {formType === "loginform" && (
-                <div className="login-form-main-wrapper">
-                    <form onSubmit={handleLoginForm} className="login-form-wrapper">
-                        <div className="form-field">
-                            {labels.show && (
-                                <label className="form-label" htmlFor="username">
-                                    {labels.username}
-                                </label>
-                            )}
+    return <>
+        {formType === "resetform" && (
+            <ResetForm
+                setFormType={setFormType}
+                nonce={nonce}
+                attributes={attributes}
+            />
+        )}
+        {formType === "loginform" && (
+            <div className="login-form-main-wrapper">
+                <form onSubmit={handleLoginForm} className="login-form-wrapper">
+                    <div className="form-field">
+                        {labels.show && (
+                            <label className="form-label" htmlFor="username">
+                                {labels.username}
+                            </label>
+                        )}
+                        <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            placeholder={formInput.username}
+                        />
+                        {errorUserName && (
+                            <span className="loginForm-errorMessage">
+                                {errorMessage.username}
+                            </span>
+                        )}
+                    </div>
+                    <div className="form-field">
+                        {labels.show && (
+                            <label className="form-label" htmlFor="password">
+                                {labels.password}
+                            </label>
+                        )}
+                        <div className="password-inputField">
                             <input
-                                type="text"
-                                name="username"
-                                id="username"
-                                placeholder={formInput.username}
-                            />
-                            {errorUserName && (
-                                <span className="loginForm-errorMessage">
-                                    {errorMessage.username}
-                                </span>
-                            )}
-                        </div>
-                        <div className="form-field">
-                            {labels.show && (
-                                <label className="form-label" htmlFor="password">
-                                    {labels.password}
-                                </label>
-                            )}
-                            <div className="password-inputField">
-                                <input
-                                    type={
-                                        formInput.icon.show
-                                            ? showPass
-                                                ? "text"
-                                                : "password"
+                                type={
+                                    formInput.icon.show
+                                        ? showPass
+                                            ? "text"
                                             : "password"
-                                    }
-                                    name="password"
-                                    id="password"
-                                    placeholder={formInput.password}
-                                />
-                                {formInput.icon.show && (
-                                    <span
-                                        onClick={() => setShowPass(!showPass)}
-                                        className="passwordEyeIcon"
-                                    >
-                                        {showPass ? <IoIosEye /> : <IoIosEyeOff />}
-                                    </span>
-                                )}
-                            </div>
-                            {errorPassword && (
-                                <span className="loginForm-errorMessage">
-                                    {errorMessage.password}
+                                        : "password"
+                                }
+                                name="password"
+                                id="password"
+                                placeholder={formInput.password}
+                            />
+                            {formInput.icon.show && (
+                                <span
+                                    onClick={() => setShowPass(!showPass)}
+                                    className="passwordEyeIcon"
+                                >
+                                    {showPass ? <IoIosEye /> : <IoIosEyeOff />}
                                 </span>
                             )}
                         </div>
-                        {additional.remember && (
-                            <div className="login-checkbox form-label">
-                                <input type="checkbox" name="remember" id="checkbox" />
-                                <label htmlFor="checkbox">Remember Me</label>
-                            </div>
+                        {errorPassword && (
+                            <span className="loginForm-errorMessage">
+                                {errorMessage.password}
+                            </span>
                         )}
-                        <div className="login-submitBtn">
-                            <button
-                                type="submit"
-                                // disabled={btnDisabled}
-                                className={`submitBtn ${button.animation} ${btnDisabled && "btnDisabled"
-                                    }`}
-                            >
-                                {button.text}
-                            </button>
-                        </div>
-                        {additional.lostPass && (
-                            <div className="login-lostPassword">
-                                <a onClick={() => setFormType("resetform")}>
-                                    {additional.lostPassText}
-                                </a>
-                            </div>
-                        )}
-                    </form>
-                    {messages.type === "normal" && formErrorMessage.length > 0 && (
-                        <div className="form-error-message">
-                            <span>{formErrorMessage}</span>
+                    </div>
+                    {additional.remember && (
+                        <div className="login-checkbox form-label">
+                            <input type="checkbox" name="remember" id="checkbox" />
+                            <label htmlFor="checkbox">Remember Me</label>
                         </div>
                     )}
-                    <Toaster />
-                </div>
-            )}
-        </> 
+                    <div className="login-submitBtn">
+                        <button
+                            type="submit"
+                            // disabled={btnDisabled}
+                            className={`submitBtn ${button.animation} ${btnDisabled && "btnDisabled"
+                                }`}
+                        >
+                            {button.text}
+                        </button>
+                    </div>
+                    {additional.lostPass && (
+                        <div className="login-lostPassword">
+                            <a onClick={() => setFormType("resetform")}>
+                                {additional.lostPassText}
+                            </a>
+                        </div>
+                    )}
+                </form>
+                {messages.type === "normal" && formErrorMessage.length > 0 && (
+                    <div className="form-error-message">
+                        <span>{formErrorMessage}</span>
+                    </div>
+                )}
+                <Toaster />
+            </div>
+        )}
+    </>
 };
 
 export default Form;

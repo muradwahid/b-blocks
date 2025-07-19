@@ -63,8 +63,14 @@ if( !function_exists( 'bBlocksShapePath' ) ){
 
 extract( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes( [ 'class' => "$planClass align$align" ] ); ?> id='<?php echo esc_attr( $id ); ?>'>
-	<style><?php echo esc_html( bBlocksShapeDividerStyle( $attributes, $id, $prefix ) ); ?></style>
+<div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
+	<?php echo get_block_wrapper_attributes( [ 'class' => "$planClass align$align" ] ); ?>
+	id='<?php echo esc_attr( $id ); ?>'
+>
+	<style>
+		<?php echo esc_html( bBlocksShapeDividerStyle( $attributes, $id, $prefix ) ); ?>
+	</style>
 
 	<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
 		<?php echo wp_kses( bBlocksShapePath( $shape ), ['path' => [ 'd' => [], 'opacity' => [] ] ] ); ?>

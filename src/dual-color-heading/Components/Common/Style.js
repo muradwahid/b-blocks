@@ -19,7 +19,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 				: "center"
 		}`;
 
-	return  <style>
+	return <style>
 			{`
 			${generateCSS(id, advanced, isBackend)}
 			${getTypoCSS("", heading.typography)?.googleFontLink}

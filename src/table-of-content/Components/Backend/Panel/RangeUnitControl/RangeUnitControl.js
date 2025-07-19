@@ -1,5 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import { RangeControl } from "@wordpress/components";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+
 const RangeUnitControl = ({ label, units, className, style, value = "0px", onChange = () => { }, ...props }) => {
     const unitRef = useRef();
     const [toggle, setToggle] = useState(false);
@@ -44,9 +45,8 @@ const RangeUnitControl = ({ label, units, className, style, value = "0px", onCha
     // const button = `${unitContainer} .unitControlBtn`;
     // const unitWrapper = `${rangeWrapper} .unitListWrapper`;
     // const unitList = `${rangeWrapper} .unitList`;
-    return (
-        <Fragment>
-            <style>{`
+    return <>
+        <style>{`
         .labelWrapper {
             display: flex;
             justify-content: space-between;
@@ -104,42 +104,39 @@ const RangeUnitControl = ({ label, units, className, style, value = "0px", onCha
             background-color: #3858e9;
             color: aliceblue;
           }
-
-
       `}</style>
-            <div id={`unitId-${id}`} className={`unitRangeWrapper ${className}`} style={style}>
-                <div className="labelWrapper">
-                    <label htmlFor="">{label}</label>
+        <div id={`unitId-${id}`} className={`unitRangeWrapper ${className}`} style={style}>
+            <div className="labelWrapper">
+                <label htmlFor="">{label}</label>
+            </div>
+            <div className="rangeControlWrapper">
+                <div style={{ width: "100%" }}>
+                    <RangeControl value={Number(number)} onChange={(val) => setCurrentNumber(val)} {...props} />
                 </div>
-                <div className="rangeControlWrapper">
-                    <div style={{ width: "100%" }}>
-                        <RangeControl value={Number(number)} onChange={(val) => setCurrentNumber(val)} {...props} />
-                    </div>
-                    <div ref={unitRef} className="unitControlWrapper">
-                        <button onClick={() => setToggle(!toggle)} className="unitControlBtn">
-                            {unit}
-                        </button>
-                        {toggle && (
-                            <div className="unitListWrapper">
-                                {defaultUnits?.map((val, i) => (
-                                    <p
-                                        key={i}
-                                        onClick={() => {
-                                            setCurrentUnit(val.value);
-                                            setToggle(false);
-                                        }}
-                                        className={`unitList ${val.value === currentUnit ? "hoverBgColor" : ""} `}
-                                    >
-                                        {val.label}
-                                    </p>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                <div ref={unitRef} className="unitControlWrapper">
+                    <button onClick={() => setToggle(!toggle)} className="unitControlBtn">
+                        {unit}
+                    </button>
+                    {toggle && (
+                        <div className="unitListWrapper">
+                            {defaultUnits?.map((val, i) => (
+                                <p
+                                    key={i}
+                                    onClick={() => {
+                                        setCurrentUnit(val.value);
+                                        setToggle(false);
+                                    }}
+                                    className={`unitList ${val.value === currentUnit ? "hoverBgColor" : ""} `}
+                                >
+                                    {val.label}
+                                </p>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
-        </Fragment>
-    );
+        </div>
+    </>
 };
 
 export default RangeUnitControl;

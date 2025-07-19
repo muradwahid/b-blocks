@@ -4,6 +4,7 @@ import { PanelRow, PanelBody, TextControl, SelectControl } from '@wordpress/comp
 
 import { Label, BtnGroup, ColorsControl, IconControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, mailToDocs } from '../../../../utils/data';
 const mailtoStyles = [
@@ -31,13 +32,13 @@ const Settings = ({ settings }) => {
 						setAttributes({ style: val });
 
 						'default' === val && setAttributes({
-							btnColors: { color: '#fff', bg: '#4527a4', styles: 'color: #fff; background: #4527a4;' },
-							btnHovColors: { color: '#fff', bg: '#8344c5', styles: 'color: #fff; background: #8344c5;' },
+							btnColors: { color: '#fff', bg: primaryColor, styles: `color: #fff; background: ${primaryColor};` },
+							btnHovColors: { color: '#fff', bg: secondaryColor, styles: `color: #fff; background: ${secondaryColor};` },
 							iconPosition: 'left'
 						});
 						'style1' === val && setAttributes({
-							btnColors: { color: '#fff', bg: '#4527a4', styles: 'color: #fff; background: #4527a4;' },
-							btnHovColors: { color: '#fff', bg: '#8344c5', styles: 'color: #fff; background: #8344c5;' },
+							btnColors: { color: '#fff', bg: primaryColor, styles: `color: #fff; background: ${primaryColor};` },
+							btnHovColors: { color: '#fff', bg: secondaryColor, styles: `color: #fff; background: ${secondaryColor};` },
 							iconPosition: 'right'
 						});
 						'style2' === val && setAttributes({
@@ -58,9 +59,9 @@ const Settings = ({ settings }) => {
 			<PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')} initialOpen={false}>
 				<Typography value={btnTypo} onChange={val => setAttributes({ btnTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 }, fontWeight: 600 }} />
 
-				<ColorsControl value={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: '#4527a4' }} />
+				<ColorsControl value={btnColors} onChange={val => setAttributes({ btnColors: val })} defaults={{ color: '#fff', bg: primaryColor }} />
 
-				<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: '#8344c5' }} />
+				<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => setAttributes({ btnHovColors: val })} defaults={{ color: '#fff', bg: secondaryColor }} />
 
 				<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={btnPadding} onChange={val => setAttributes({ btnPadding: val })} defaults={{ vertical: '18px', horizontal: '45px' }} />
 

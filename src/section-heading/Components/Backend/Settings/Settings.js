@@ -4,6 +4,7 @@ import { PanelBody, ToggleControl } from '@wordpress/components';
 
 import { ColorControl, HelpPanel, SeparatorControl, Typography } from '../../../../../../bpl-tools/Components';
 import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug } from '../../../../utils/data';
 
@@ -18,7 +19,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			<PanelBody className='bPlPanelBody' title={__('Title Settings', 'b-blocks')}>
 				<Typography value={titleTypo} onChange={val => setAttributes({ titleTypo: val })} defaults={{ fontSize: { desktop: 25, tablet: 22, mobile: 20 }, fontWeight: 600 }} />
 
-				<ColorControl label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor='#4527a4' />
+				<ColorControl label={__('Color:', 'b-blocks')} value={titleColor} onChange={val => setAttributes({ titleColor: val })} defaultColor={primaryColor} />
 
 				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={titleMargin} onChange={val => setAttributes({ titleMargin: val })} defaults={{ side: 4, bottom: '10px' }} />
 			</PanelBody>
@@ -27,7 +28,7 @@ const Settings = ({ attributes, setAttributes }) => {
 			<PanelBody className='bPlPanelBody' title={__('Separator Settings', 'b-blocks')} initialOpen={false}>
 				<ToggleControl label={__('Show Separator', 'b-blocks')} checked={isSep} onChange={val => setAttributes({ isSep: val })} />
 
-				<SeparatorControl value={separator} onChange={val => setAttributes({ separator: val })} defaults={{ width: '150px', height: '3px', color: '#8344c5' }} />
+				<SeparatorControl value={separator} onChange={val => setAttributes({ separator: val })} defaults={{ width: '150px', height: '3px', color: secondaryColor }} />
 
 				<SpaceControl className='mt20' label={__('Margin:', 'b-blocks')} value={sepMargin} onChange={val => setAttributes({ sepMargin: val })} defaults={{ side: 4, bottom: '5px' }} />
 			</PanelBody>

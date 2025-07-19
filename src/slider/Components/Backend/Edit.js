@@ -40,7 +40,7 @@ const Edit = props => {
 	}
 
 	$(document).ready(function () {
-		slides?.length && slides.map((__, index) => {
+		slides?.length && slides.map((_, index) => {
 			const contentEl = document.querySelector(`#${id} .${prefix} .slide-${index}:not(.swiper-slide-duplicate) .slideContent`);
 			const contentChildEls = contentEl?.children || [];
 

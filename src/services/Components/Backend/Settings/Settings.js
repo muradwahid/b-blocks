@@ -10,6 +10,7 @@ import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/optio
 
 import { pluginSlug, servicesDocs } from '../../../../utils/data';
 import { layouts, linkPosition } from '../../../utils/options';
+import { gradient } from '../../../../../../bpl-tools/utils/data';
 
 const Settings = ({ attributes, setAttributes, clientId, device }) => {
 	const { layout, columns, columnGap, rowGap, background, textAlign, itemHeight, itemPadding, itemBorder, itemShadow, iconPadding, iconMargin, titleTypo, titleMargin, descTypo } = attributes;
@@ -50,7 +51,7 @@ const Settings = ({ attributes, setAttributes, clientId, device }) => {
 
 							'default' === val && dispatch('core/block-editor').updateBlockAttributes(block.clientId, {
 								hoverBG: { ...hoverBG, type: 'image', image: { url: 'https://i.imgur.com/i6qCSdM.png' }, overlayColor: '#0000', position: 'bottom left', size: 'auto' },
-								icon: { ...icon, colorType: 'solid', gradient: 'linear-gradient(135deg, #4527a4, #8344c5)' },
+								icon: { ...icon, colorType: 'solid', gradient },
 								iconBorder: { ...iconBorder, width: '0px', color: '#0000', side: 'all' },
 								titleColor: '#222',
 								descColor: '#333',

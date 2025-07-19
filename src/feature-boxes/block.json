@@ -13,7 +13,7 @@
 	"attributes": {
 		"align": {
 			"type": "string",
-			"default": ""
+			"default": "wide"
 		},
 		"features": {
 			"type": "array",
@@ -147,9 +147,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 20,
-					"tablet": 18,
-					"mobile": 16
+					"desktop": "20px",
+					"tablet": "18px",
+					"mobile": "16px"
 				},
 				"fontWeight": 600
 			}
@@ -180,9 +180,9 @@
 			"type": "object",
 			"default": {
 				"fontSize": {
-					"desktop": 15,
-					"tablet": 15,
-					"mobile": 15
+					"desktop": "15px",
+					"tablet": "15px",
+					"mobile": "15px"
 				}
 			}
 		}

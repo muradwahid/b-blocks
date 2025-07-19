@@ -5,6 +5,7 @@ import { RichText, InspectorControls, ColorPalette } from '@wordpress/block-edit
 import { PanelBody, FontSizePicker, Button, RangeControl, TabPanel } from '@wordpress/components';
 
 import { Label, BtnGroup } from '../../../bpl-tools/Components';
+import { primaryColor } from '../../../bpl-tools/utils/data';
 
 import { accordionIcon } from '../utils/icons';
 import { normalHoverTabs, fontSizes, colors, aligns, textTransforms } from '../utils/options';
@@ -32,10 +33,10 @@ registerBlockType('b-blocks/accordion', {
 		headingTransform: { type: 'string', default: 'uppercase' },
 		headingPTB: { type: 'number', default: 12 },
 		headingPLR: { type: 'number', default: 30 },
-		headingColor: { type: 'string', default: '#4527a4' },
+		headingColor: { type: 'string', default: primaryColor },
 		headingBGColor: { type: 'string', default: '#f1f1f1' },
 		headingHovColor: { type: 'string', default: '#fff' },
-		headingHovBGColor: { type: 'string', default: '#4527a4' },
+		headingHovBGColor: { type: 'string', default: primaryColor },
 
 		contentAlign: { type: 'string', default: 'left' },
 		contentPTB: { type: 'number', default: 15 },
@@ -52,11 +53,11 @@ registerBlockType('b-blocks/accordion', {
 		// Styles
 		const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, position: 'relative', display: 'block', textDecoration: 'none' };
 
-		const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: '1px solid #4527a4', borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
+		const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: `1px solid ${primaryColor}`, borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
 
-		const accRemoveStyle = { position: 'absolute', right: '1px', top: '1px', padding: 0, minWidth: '20px', height: '20px', backgroundColor: '#fff', color: '#4527a4' };
+		const accRemoveStyle = { position: 'absolute', right: '1px', top: '1px', padding: 0, minWidth: '20px', height: '20px', backgroundColor: '#fff', color: primaryColor };
 
-		const contentStyle = { textAlign: contentAlign, border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
+		const contentStyle = { textAlign: contentAlign, border: `1px solid ${primaryColor}`, borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
 		const headingHov = e => {
 			e.target.style.color = headingHovColor;
@@ -180,9 +181,9 @@ registerBlockType('b-blocks/accordion', {
 		// Styles
 		const titleLinkStyle = { color: headingColor, backgroundColor: headingBGColor, display: 'block', textDecoration: 'none' };
 
-		const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: '1px solid #4527a4', borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
+		const titleStyle = { textAlign: headingAlign, fontSize: `${headingFontSize}px`, textTransform: headingTransform, padding: `${headingPTB}px ${headingPLR}px`, border: `1px solid ${primaryColor}`, borderRadius: '3px 3px 0 0', margin: 0, transition: 'all .3s ease' };
 
-		const contentStyle = { textAlign: contentAlign, border: '1px solid #4527a4', borderTop: 'none', borderRadius: '0 0 5px 5px' };
+		const contentStyle = { textAlign: contentAlign, border: `1px solid ${primaryColor}`, borderTop: 'none', borderRadius: '0 0 5px 5px' };
 
 		// Functions
 		const headingHov = e => {

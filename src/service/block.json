@@ -117,7 +117,7 @@
 		},
 		"linkBGHovColor": {
 			"type": "string",
-			"default": "#4527a4"
+			"default": "#146EF5"
 		}
 	},
 	"supports": {

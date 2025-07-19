@@ -1,4 +1,3 @@
-import React from "react";
 import { getBackgroundCSS, getBorderBoxCSS, getBorderCSS, getBoxCSS, getTypoCSS, isValidCSS } from "../../../../../bpl-tools/utils/getCSS";
 
 const StyleTwo = ({ attributes, id }) => {

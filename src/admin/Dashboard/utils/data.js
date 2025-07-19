@@ -1,6 +1,13 @@
 export const changelogs = [
 	{
-		version: '2.0.1 - 23 Mar 2025',
+		version: '2.0.2 - 17 Jul 2025',
+		list: [
+			`Fix Column Issue.`,
+			`Change the theme color.`
+		]
+	},
+	{
+		version: '2.0.1 - 14 Apr 2025',
 		list: [
 			`Sanitize input field.`,
 			`Fix RichText issue.`

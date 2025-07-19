@@ -33,14 +33,14 @@
 		"background": {
 			"type": "object",
 			"default": {
-				"color": "#0000"
+				"color": ""
 			}
 		},
 		"padding": {
 			"type": "object",
 			"default": {
-				"vertical": "0px",
-				"horizontal": "0px"
+				"vertical": "",
+				"horizontal": ""
 			}
 		},
 		"border": {
