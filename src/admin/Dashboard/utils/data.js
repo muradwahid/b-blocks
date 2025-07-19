@@ -1,5 +1,12 @@
 export const changelogs = [
 	{
+		version: '2.0.3 - 19 Jul 2025',
+		list: [
+			`Fix Typography issue.`,
+			`Update SDK.`
+		]
+	},
+	{
 		version: '2.0.2 - 17 Jul 2025',
 		list: [
 			`Fix Column Issue.`,

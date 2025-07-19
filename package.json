@@ -18,7 +18,7 @@
 		"i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"zip": "zip -r b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
-		"bundle": "gulp clean && npm run lint && npm run build && npm run i18n && npm run plugin-zip && npm run zip"
+		"bundle": "gulp clean && npm run lint && npm run build && npm run i18n && npm run zip"
 	},
 	"dependencies": {
 		"@gsap/react": "^2.1.1",

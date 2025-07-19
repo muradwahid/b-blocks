@@ -2,7 +2,14 @@
 namespace BBlocks\Inc;
 
 class GetCSS{
-	static function getBackgroundCSS($bg, $isSolid = true, $isGradient = true, $isImage = true) {
+	static function isValidCSS($property, $value) {
+		if ( empty( $value ) && $value !== '0' && $value !== 0 ) {
+			return '';
+		}
+		return "$property: $value;";
+	}
+
+	static function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = true ) {
 		extract( $bg );
 		$type = $type ?? 'solid';
 		$color = $color ?? '';
@@ -14,15 +21,22 @@ class GetCSS{
 		$size = $size ?? '';
 		$overlayColor = $overlayColor ?? '';
 
-		$gradientCSS = $isGradient ? "background: $gradient;" : '';
+		if ( 'gradient' === $type && $isGradient ) {
+			$styles = self::isValidCSS('background', $gradient);
+		} elseif ( 'image' === $type && $isImage ) {
+			$imgUrl = $image['url'] ?? '';
+			$styles = "background: url($imgUrl);"
+				. self::isValidCSS('background-color', $overlayColor)
+				. self::isValidCSS('background-position', $position)
+				. self::isValidCSS('background-size', $size)
+				. self::isValidCSS('background-repeat', $repeat)
+				. self::isValidCSS('background-attachment', $attachment)
+				. self::isValidCSS('background-repeat', $repeat)
+				. "background-blend-mode: overlay;";
+		} else {
+			$styles = $isSolid ? self::isValidCSS('background', $color) : '';
+		}
 
-		$imgUrl = $image['url'] ?? '';
-		$imageCSS = $isImage ? "background: url($imgUrl); background-color: $overlayColor; background-position: $position; background-size: $size; background-repeat: $repeat; background-attachment: $attachment; background-blend-mode: overlay;" : '';
-
-		$solidCSS = $isSolid ? "background: $color;" : '';
-	
-		$styles = 'gradient' === $type ? $gradientCSS : ( 'image' === $type ? $imageCSS : $solidCSS );
-	
 		return $styles;
 	}
 
@@ -53,17 +67,16 @@ class GetCSS{
 
 	static function getColorsCSS( $colors ) {
 		extract( $colors );
-		$color = $color ?? '#333';
+		$color = $color ?? '';
 		$bgType = $bgType ?? 'solid';
-		$bg = $bg ?? '#0000';
+		$bg = $bg ?? '';
 		$gradient = $gradient ?? 'linear-gradient(135deg, #0040E3, #18D4FD)';
 
-		$background = $bgType === 'gradient' ? $gradient : $bg;
-	
-		$styles = '';
-		$styles .= $color ? "color: $color;" : '';
-		$styles .= ( $gradient || $bg ) ? "background: $background;" : '';
-	
+		$background = ( $bgType === 'gradient' ) ? $gradient : $bg;
+
+		$styles = self::isValidCSS('color', $color);
+		$styles .= ($gradient || $bg) ? self::isValidCSS('background', $background) : '';
+
 		return $styles;
 	}
 
@@ -88,9 +101,14 @@ class GetCSS{
 		$width = $width ?? '50%';
 		$height = $height ?? '2px';
 		$style = $style ?? 'solid';
-		$color = $color ?? '#bbb';
+		$color = $color ?? '#85b4fa';
 
-		return "width: $width;" . (('0' === preg_replace('/[^\d]/', '', $height)) ? '' : "border-top: $height $style $color;");
+		$styles = self::isValidCSS( 'width', $width );
+		if ( preg_replace('/[^\d]/', '', $height) !== '0' ) {
+			$styles .= "border-top: $height $style $color;";
+		}
+
+		return $styles;
 	}
 
 	static function getSpaceCSS( $space ) {
@@ -124,10 +142,22 @@ class GetCSS{
 	
 		return $styles ?: 'none';
 	}
-	
 
-	static function generateCss( $value, $cssProperty ) {
-		return !$value ? '' : "$cssProperty: $value;";
+	static function checkUnit( $size ) {
+		$value = (string)$size;
+		$units = ['px', 'em', 'rem', '%', 'vh', 'vw'];
+
+		foreach ( $units as $unit ) {
+			if ( substr( $value, -strlen( $unit ) ) === $unit ) {
+				return $value;
+			}
+		}
+
+		if ( is_numeric( $size ) ) {
+			return $value . 'px';
+		}
+
+		return '';
 	}
 
 	static function getTypoCSS( $selector, $typo, $isFamily = true ) {
@@ -135,45 +165,57 @@ class GetCSS{
 		$fontFamily = $fontFamily ?? 'Default';
 		$fontCategory = $fontCategory ?? 'sans-serif';
 		$fontVariant = $fontVariant ?? 400;
-		$fontWeight = $fontWeight ?? 400;
+		$fontWeight = $fontWeight ?? '';
 		$isUploadFont = $isUploadFont ?? true;
-		$fontSize = $fontSize ?? [ 'desktop' => 15, 'tablet' => 15, 'mobile' => 15 ];
-		$fontStyle = $fontStyle ?? 'normal';
-		$textTransform = $textTransform ?? 'none';
-		$textDecoration = $textDecoration ?? 'auto';
-		$lineHeight = $lineHeight ?? '135%';
-		$letterSpace = $letterSpace ?? '0px';
+		$fontSize = $fontSize ?? [ 'desktop' => null, 'tablet' => null, 'mobile' => null ];
+		$fontStyle = $fontStyle ?? '';
+		$textTransform = $textTransform ?? '';
+		$textDecoration = $textDecoration ?? '';
+		$lineHeight = $lineHeight ?? '';
+		$letterSpace = $letterSpace ?? '';
 
 		$isEmptyFamily = !$isFamily || !$fontFamily || 'Default' === $fontFamily;
 		$desktopFontSize = $fontSize['desktop'] ?? $fontSize;
 		$tabletFontSize = $fontSize['tablet'] ?? $desktopFontSize;
 		$mobileFontSize = $fontSize['mobile'] ?? $tabletFontSize;
 
-		$styles = ( $isEmptyFamily ? '' : "font-family: $fontFamily, $fontCategory;" )
-			. self::generateCss( $fontWeight, 'font-weight' )
-			. 'font-size: '. $desktopFontSize .'px;'
-			. self::generateCss( $fontStyle, 'font-style' )
-			. self::generateCss( $textTransform, 'text-transform' )
-			. self::generateCss( $textDecoration, 'text-decoration' )
-			. self::generateCss( $lineHeight, 'line-height' )
-			. self::generateCss( $letterSpace, 'letter-spacing' );
+		$tabBreakpoint = '@media only screen and (max-width: 1024px)';
+		$mobileBreakpoint = '@media only screen and (max-width: 640px)';
+
+		$styles = 
+			($isEmptyFamily ? '' : "font-family: '$fontFamily', $fontCategory;") .
+			self::isValidCSS('font-weight', $fontWeight) .
+			self::isValidCSS('font-size', self::checkUnit($desktopFontSize)) .
+			self::isValidCSS('font-style', $fontStyle) .
+			self::isValidCSS('text-transform', $textTransform) .
+			self::isValidCSS('text-decoration', $textDecoration) .
+			self::isValidCSS('line-height', $lineHeight) .
+			self::isValidCSS('letter-spacing', $letterSpace);
 
 		// Google font link
-		$linkQuery = ( !$fontVariant || 400 === $fontVariant ) ? '' : ( '400i' === $fontVariant ? ':ital@1' : ( false !== strpos( $fontVariant, '00i' ) ? ': ital, wght@1, '. str_replace( '00i', '00', $fontVariant ) .' ' : ": wght@$fontVariant " ) );
+		if (!$fontVariant || $fontVariant === 400) {
+			$linkQuery = '';
+		} elseif ($fontVariant === '400i') {
+			$linkQuery = ':ital@1';
+		} elseif (strpos($fontVariant, '00i') !== false) {
+			$linkQuery = ':ital,wght@1,' . str_replace('00i', '00', $fontVariant);
+		} else {
+			$linkQuery = ":wght@$fontVariant";
+		}
 
-		$link = $isEmptyFamily ? '' : 'https://fonts.googleapis.com/css2?family='. str_replace( ' ', '+', $fontFamily ) ."$linkQuery&display=swap";
+		$link = $isEmptyFamily ? '' : 'https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontFamily) . $linkQuery . '&display=swap';
 
 		return [
-			'googleFontLink' => !$isUploadFont || $isEmptyFamily ? '' : "@import url( $link );",
-			'styles' => preg_replace( '/\s+/', ' ', trim( "
-				$selector{ $styles }
-				@media only screen and (max-width: 1024px) {
-					$selector{ font-size: $tabletFontSize" . "px; }
+			'googleFontLink' => (!$isUploadFont || $isEmptyFamily) ? '' : "@import url($link);",
+			'styles' => preg_replace('/\s+/', ' ', trim("
+				$selector { $styles }
+				$tabBreakpoint {
+					$selector { " . self::isValidCSS('font-size', self::checkUnit($tabletFontSize)) . " }
 				}
-				@media only screen and (max-width: 640px) {
-					$selector{ font-size: $mobileFontSize" . "px; }
+				$mobileBreakpoint {
+					$selector { " . self::isValidCSS('font-size', self::checkUnit($mobileFontSize)) . " }
 				}
-			" ) )
+			"))
 		];
 	}
 }
