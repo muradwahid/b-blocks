@@ -1,15 +1,15 @@
-import gulp from 'gulp';
 import { deleteAsync } from 'del';
+import gulp from 'gulp';
 import fsDeploy from 'gulp-freemius-deploy';
 
-gulp.task('clean', async () => await deleteAsync(['b-blocks.zip', 'languages/*']));
+gulp.task('clean', async () => await deleteAsync(['b-blocks.zip', 'build/*', 'languages/*']));
 
 fsDeploy(gulp, {
-	developer_id: 17369,
-	plugin_id: 12845,
-	public_key: 'pk_07bd754f0bd3ca5ab633d7547e273',
-	secret_key: 'sk_Y~R_&Lj}ys12Lg<$aWPzLYN4ewFPT',
+	developer_id: process.env.DEV_ID,
+	plugin_id: process.env.P_ID,
+	public_key: process.env.PK,
+	secret_key: process.env.SK,
 	zip_name: 'b-blocks.zip',
-	zip_path: 'bundled/',
-	add_contributor: false,
+	zip_path: '/',
+	add_contributor: false
 });

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 	const { text, actionType, security = 'none', target, url, securityRole } = attributes;
 	const buttonEl = useRef(null);
-	const [securityPass, setSecurityPass] = useState('none' === security);
+	const [securityPass, setSecurityPass] = useState(false);
 	const [securityPop, setSecurityPop] = useState(false);
 
 	const { isPremium } = usePremium(nonce);
@@ -44,7 +44,7 @@ const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 	}, []);
 
 	return <>
-		<Button attributes={attributes} securityPass={securityPass} setSecurityPass={setSecurityPass} securityPop={securityPop} isPremium={isPremium} Popup={securityPass ? Popup : null} popupContent={popupContent} ref={buttonEl} onClick={val => {
+		<Button attributes={attributes} security={security} securityPass={securityPass} setSecurityPass={setSecurityPass} securityPop={securityPop} isPremium={isPremium} Popup={securityPass ? Popup : null} popupContent={popupContent} ref={buttonEl} onClick={val => {
 			if ('none' === security) {
 				if (actionType === 'popup') {
 					setSecurityPass(true);

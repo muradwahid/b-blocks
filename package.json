@@ -1,39 +1,41 @@
 {
-	"name": "b-blocks",
-	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "Wasek Bellah",
-	"license": "ISC",
-	"scripts": {
-		"packages-update": "wp-scripts packages-update",
-		"lint": "eslint src",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"format": "wp-scripts format",
-		"start": "wp-scripts start --webpack-copy-php",
-		"build": "wp-scripts build --webpack-copy-php",
-		"i18n-pot": "wp i18n make-pot . languages/b-blocks.pot --exclude=\"src\" && cp ./languages/b-blocks.pot ./languages/b-blocks-en_US.po",
-		"i18n-json": "wp i18n make-json languages/ --no-purge",
-		"i18n-mo": "wp i18n make-mo languages/",
-		"i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"zip": "zip -r b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
-		"bundle": "gulp clean && npm run lint && npm run build && npm run i18n && npm run zip"
-	},
-	"dependencies": {
-		"@gsap/react": "^2.1.1",
-		"@tinymce/tinymce-react": "^6.0.0",
-		"immer": "^10.1.1"
-	},
-	"devDependencies": {
-		"@wordpress/block-editor": "^14.0.0",
-		"@wordpress/blocks": "^13.5.0",
-		"@wordpress/components": "^28.5.0",
-		"@wordpress/compose": "^7.5.0",
-		"@wordpress/data": "^10.5.0",
-		"@wordpress/i18n": "^5.5.0",
-		"@wordpress/scripts": "^27.9.0",
-		"css-loader": "^7.1.2",
-		"eslint-webpack-plugin": "^4.2.0"
-	}
+  "name": "b-blocks",
+  "version": "0.1.0",
+  "description": "Example block scaffolded with Create Block tool.",
+  "author": "Wasek Bellah",
+  "license": "ISC",
+  "scripts": {
+    "packages-update": "wp-scripts packages-update",
+    "lint": "eslint src",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "format": "wp-scripts format",
+    "start": "wp-scripts start --webpack-copy-php",
+    "build": "wp-scripts build --webpack-copy-php",
+    "i18n-pot": "wp i18n make-pot . languages/b-blocks.pot --exclude=\"src\" && copy languages\\b-blocks.pot languages\\b-blocks-en_US.po",
+    "i18n-json": "wp i18n make-json languages/ --no-purge",
+    "i18n-mo": "wp i18n make-mo languages/",
+    "i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "mac-zip": "zip -r b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
+    "zip": "tar.exe acvf b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
+    "bundle": "gulp clean && npm run lint && npm run build && npm run i18n && npm run zip",
+    "fs-deploy": "gulp freemius-deploy"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "@tinymce/tinymce-react": "^6.0.0",
+    "immer": "^10.1.1"
+  },
+  "devDependencies": {
+    "@wordpress/block-editor": "^14.0.0",
+    "@wordpress/blocks": "^13.5.0",
+    "@wordpress/components": "^28.5.0",
+    "@wordpress/compose": "^7.5.0",
+    "@wordpress/data": "^10.5.0",
+    "@wordpress/i18n": "^5.5.0",
+    "@wordpress/scripts": "^27.9.0",
+    "css-loader": "^7.1.2",
+    "eslint-webpack-plugin": "^4.2.0"
+  }
 }

@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { Modal } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { useEffect, useRef, useState } from 'react';
 
 import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Button, { RenderPopup } from '../Common/Button';
@@ -40,7 +40,7 @@ const Edit = props => {
 		<div {...useBlockProps()}>
 			<Style {...{ attributes, id: `block-${clientId}` }} />
 
-			<Button {...{ attributes, isPremium, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, ref: buttonEl, isBackend: true }}>
+			<Button {...{ attributes, security: 'none', isPremium, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, ref: buttonEl, isBackend: true }}>
 				<RichText className='btnText' tagName='span' value={text} onChange={val => setAttributes({ text: val })} placeholder={__('Button Text', 'b-blocks')} inlineToolbar />
 			</Button>
 
