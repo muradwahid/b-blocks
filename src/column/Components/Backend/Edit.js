@@ -9,7 +9,7 @@ const { replaceInnerBlocks } = dispatch('core/block-editor');
 import { tabController } from '../../../../../bpl-tools/utils/functions';
 
 import Settings from './Settings/Settings';
-import Style from '../Common/Style';
+import { style } from '../Common/Style';
 import { calcPercentage, getInt, toFixed } from '../../../row/utils/functions';
 import { rowPrefix, colPrefix } from '../../../row/utils/data';
 
@@ -168,7 +168,7 @@ const Edit = props => {
 
 		<div {...useBlockProps()}>
 			{/* <div className={'wp-block-b-blocks-column'} id={id}> */}
-			<Style {...{ attributes, id, columns, columnGap }} />
+			<style dangerouslySetInnerHTML={{ __html: style(attributes, id, columns, columnGap,true )}}/>
 
 			<ResizableBox
 				className={isResizing ? `${colPrefix}Resizing` : ''}

@@ -14,8 +14,6 @@ $planClass = Utils::isPro() ? 'pro' : 'free';
 	data-columns='<?php echo esc_attr( $block->context['b-blocks/rowColumns'] ); ?>'
 	data-column-gap='<?php echo esc_attr( $block->context['b-blocks/rowColumnGap'] ); ?>'
 >
-	
-	<div class='<?php echo esc_attr( $prefix ); ?>Style'></div>
 
 	<div class='<?php echo esc_attr( $prefix ); ?>'>
 		<?php echo wp_kses( $content, Utils::allowedInnerHTML() ); ?>

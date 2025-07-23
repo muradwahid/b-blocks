@@ -1,32 +1,28 @@
-import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../bpl-tools/utils/getCSS';
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
+import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
-import { rowPrefix } from '../../utils/data';
-
-const Style = ({ attributes, id, isBackend = false }) => {
-	const {columnGap, height, columnPositionY, columnPositionX, overflow, background, padding, border, shadow } = attributes;
-
-	const rowSl = `#${id} .${rowPrefix}`;
+export const style = (attributes, id, isBackend = false ) => {
+	const { columns, columnGap, height, columnPositionY, columnPositionX, overflow, background, padding, border, shadow, advanced } = attributes;
+	const rowSl = isBackend ? `#${id} > div > div` : `#${id} > div`;
 
 	const blockListLayout = `${rowSl} >.block-editor-inner-blocks >.block-editor-block-list__layout`;
 
 	const selector = isBackend ? blockListLayout : rowSl;
 
-	return <style dangerouslySetInnerHTML={{
-		__html: `
-		${selector}{
-			gap: ${columnGap};
-			overflow: ${overflow};
+	return `
+		${rowSl}{
+			${isValidCSS('overflow', overflow)}
+			${isValidCSS('padding', getSpaceCSS(padding))}
+			${isValidCSS('box-shadow', getShadowCSS(shadow))}
 			${getBackgroundCSS(background)}
-			padding: ${getSpaceCSS(padding)};
 			${getBorderCSS(border)}
-			box-shadow: ${getShadowCSS(shadow)};
 		}
 		${selector}{
-			min-height: ${height};
-			align-items: ${columnPositionY};
-			justify-content: ${columnPositionX};
+			${isValidCSS('gap', columnGap)}
+			${isValidCSS('min-height', height)}
+			${isValidCSS('align-items', columnPositionY)}
+			${isValidCSS('align-content', columnPositionX)}
 		}
-		`.replace(/\s+/g, ' ')
-	}} />
+		${columns > 0 ? generateCSS(id, advanced, isBackend) : ""}
+	`.replace(/\s+/g, ' ')
 }
-export default Style;

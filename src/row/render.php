@@ -13,8 +13,6 @@ extract( $attributes );
 	id='<?php echo esc_attr( $id ); ?>'
 	data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'
 >
-	<div class='<?php echo esc_attr( $prefix ); ?>Style'></div>
-
 	<div class='<?php echo esc_attr( $prefix ); ?>'>
 		<?php echo wp_kses( $content, Utils::allowedInnerHTML() ); ?>
 	</div>

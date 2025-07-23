@@ -1,5 +1,11 @@
 export const changelogs = [
 	{
+		version: '2.0.5 - 23 Jul 2025',
+		list: [
+			`added advanced styles to the row and column block.`
+		]
+	},
+	{
 		version: '2.0.4 - 21 Jul 2025',
 		list: [
 			`Fix Button Block popup issue.`

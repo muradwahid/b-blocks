@@ -1,14 +1,15 @@
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 import { getBackgroundCSS, getBorderCSS, getShadowCSS, getSpaceCSS } from '../../../../../bpl-tools/utils/getCSS';
-import { colPrefix } from '../../../row/utils/data';
 
-const Style = ({ attributes, id, columns, columnGap }) => {
-	const { width, overflow, background, padding, border, shadow } = attributes;
+export const style = (attributes, id, columns, columnGap, isBackend = false ) => {
+	const { width, overflow, background, padding, border, shadow, advanced } = attributes;
 
-	const mainSl = `#${id}`;	
+	const mainSl = `#${id}`;
+	
+	const colSl = isBackend ? `${mainSl} > div > div:first-child` : `${mainSl} > div`; 
 
-	return <style dangerouslySetInnerHTML={{
-		__html: `
+	return `
 		${mainSl}{
 			flex-basis: calc(${width.desktop}% - (${columnGap} * (${columns} - 1) / ${columns}));
 		}
@@ -25,14 +26,13 @@ const Style = ({ attributes, id, columns, columnGap }) => {
 			}
 		}
 
-		#${id} .${colPrefix}{
+		${colSl}{
 			overflow: ${overflow};
 			${getBackgroundCSS(background)}
 			padding: ${getSpaceCSS(padding)};
 			${getBorderCSS(border)}
 			box-shadow: ${getShadowCSS(shadow)};
 		}
+		${generateCSS(id, advanced, isBackend)}
 		`.replace(/\s+/g, ' ')
-	}} />
 }
-export default Style;

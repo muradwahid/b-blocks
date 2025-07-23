@@ -1,17 +1,17 @@
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { Button, Dashicon } from '@wordpress/components';
+import { compose } from '@wordpress/compose';
+import { withDispatch, withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { useEffect } from 'react';
-import { compose } from '@wordpress/compose';
-import { withSelect, withDispatch } from '@wordpress/data';
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-import { Button, Dashicon } from '@wordpress/components';
 
 import { tabController } from '../../../../../bpl-tools/utils/functions';
 
-import Settings from './Settings/Settings';
-import Style from '../Common/Style';
+import { rowPrefix } from '../../utils/data';
 import { toFixed, updateChildWidth } from '../../utils/functions';
 import { colOptions } from '../../utils/options';
-import { rowPrefix } from '../../utils/data';
+import { style } from '../Common/Style';
+import Settings from './Settings/Settings';
 
 let defaultLayout = { desktop: [33.33, 33.33, 33.34], tablet: [50, 50, 50], mobile: [100, 100, 100] };
 
@@ -53,7 +53,7 @@ const Edit = props => {
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div {...useBlockProps()}>
-			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
+			<style dangerouslySetInnerHTML={{ __html: style(attributes, `block-${clientId}`, true) }} />
 
 			{!columns ? <div className='columnLayoutContainer'>
 				<h3><Dashicon icon='layout' /> {__('Select a column layout', 'b-blocks')}</h3>
@@ -66,9 +66,13 @@ const Edit = props => {
 						{data.layout.desktop.map((d, dIndex) => <i key={dIndex} style={{ width: d + '%' }} />)}
 					</Button>)}
 				</div>
-			</div> : <div className={`${rowPrefix} has-${columns}-columns ${!isSelected ? 'notSelected' : ''}`}>
-				<InnerBlocks allowedBlocks={['b-blocks/column']} template={generateTemplate(columns)} renderAppender={() => columns < 6 && isSelected ? <InnerBlocks.DefaultBlockAppender /> : null} />
-			</div>}
+			</div> :
+				<div>
+					<div className={`${rowPrefix} has-${columns}-columns ${!isSelected ? 'notSelected' : ''}`}>
+						<InnerBlocks allowedBlocks={['b-blocks/column']} template={generateTemplate(columns)} renderAppender={() => columns < 6 && isSelected ? <InnerBlocks.DefaultBlockAppender /> : null} />
+					</div>
+				</div>
+			}
 		</div>
 	</>;
 };
