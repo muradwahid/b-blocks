@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { sanitizeHTML } from '../../../bpl-tools/utils/common';
+import { sanitizeHTML, sanitizeURL } from '../../../bpl-tools/utils/common';
 
 import './style.scss';
 import usePremium from '../hooks/usePremium';
@@ -49,7 +49,7 @@ const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 				if (actionType === 'popup') {
 					setSecurityPass(true);
 				} else {
-					window.open(url, target);
+					window.open(sanitizeURL(url), target);
 					setSecurityPass(false);
 				}
 			} else {
@@ -85,7 +85,7 @@ const SecurityPopup = ({ attributes, info, setSecurityPass, setSecurityPop }) =>
 			if (actionType === 'popup') {
 				setSecurityPass(true);
 			} else {
-				window.open(url, target);
+				window.open(sanitizeURL(url), target);
 				setSecurityPass(false)
 			}
 			setPassErrorMsg('Correct Password');
@@ -115,7 +115,7 @@ const SecurityPopup = ({ attributes, info, setSecurityPass, setSecurityPop }) =>
 					if (actionType === 'popup') {
 						setSecurityPass(true);
 					} else {
-						window.open(url, target);
+						window.open(sanitizeURL(url), target);
 						setSecurityPass(false)
 					}
 					setSecurityPop(false)

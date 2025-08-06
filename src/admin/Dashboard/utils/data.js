@@ -1,5 +1,13 @@
 export const changelogs = [
 	{
+		version: '2.0.6 - 6 Aug 2025',
+		list: [
+			'Fixed issues in the Button Block',
+			'Added advanced width and height controls.',
+			'Fixed animation duration and delay settings.'
+		]
+	},
+	{
 		version: '2.0.5 - 23 Jul 2025',
 		list: [
 			`added advanced styles to the row and column block.`

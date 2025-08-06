@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -359,6 +359,11 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 2.0.6 - 6 Aug 2025 =
+* Fixed issues in the Button Block.
+* Added advanced width and height controls.
+* Fixed animation duration and delay settings.
 
 = 2.0.5 - 23 Jul 2025 =
 * added advanced styles to the row and column block.

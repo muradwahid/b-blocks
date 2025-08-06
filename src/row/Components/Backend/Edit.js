@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 import { tabController } from '../../../../../bpl-tools/utils/functions';
 
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { rowPrefix } from '../../utils/data';
 import { toFixed, updateChildWidth } from '../../utils/functions';
 import { colOptions } from '../../utils/options';
@@ -18,6 +19,8 @@ let defaultLayout = { desktop: [33.33, 33.33, 33.34], tablet: [50, 50, 50], mobi
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected, innerBlocks } = props;
 	const { columns } = attributes;
+
+	const { isPremium } = usePremiumInEditor();
 
 	useEffect(() => tabController(), [isSelected]);
 
@@ -50,7 +53,7 @@ const Edit = props => {
 	}
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} />
+		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
 
 		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{ __html: style(attributes, `block-${clientId}`, true) }} />

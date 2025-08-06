@@ -34,3 +34,15 @@ export const shapeTabs = [
 	{ name: 'top', title: __('Top', 'b-blocks') },
 	{ name: 'bottom', title: __('Bottom', 'b-blocks') }
 ];
+
+export const enabledAdvOptions = {
+	dimension: ['padding', 'margin', 'width', 'minWidth', 'maxWidth'],
+	transform: true,
+	background: ['normal', 'hover', 'overlay'],
+	borderShadow: ['normal', 'hover', 'border', 'shadow'],
+	mask: true,
+	animation: true,
+	visibility: ['zIndex', 'overflow'],
+	responsive: true,
+	css: true
+}

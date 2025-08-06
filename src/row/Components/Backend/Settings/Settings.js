@@ -10,9 +10,10 @@ import { pluginSlug, rowDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
 
 import General from './General/General';
+import { enabledAdvOptions } from '../../../utils/options';
 
 const Settings = (props) => {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes,isPremium } = props;
     const { advanced } = attributes;
 
     return <InspectorControls>
@@ -29,7 +30,7 @@ const Settings = (props) => {
                 </>} */}
 
                 {'style' === tab.name && <>
-                    <Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} />
+                    <Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} enabled={enabledAdvOptions} isPremium={isPremium} />
                 </>}
             </>}
         </TabPanel>

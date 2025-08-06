@@ -10,6 +10,7 @@ import ProModal from '../../../../backend/ProModal/ProModal';
 import Content from './General/Content';
 import Wrapper from './General/Wrapper';
 import Shape from './General/Shape';
+import { enabledAdvOptions } from '../../../utils/options';
 
 const Settings = (props) => {
 	const { attributes, setAttributes, id, isPremium } = props;
@@ -34,7 +35,7 @@ const Settings = (props) => {
 
 
 				{'style' === tab.name && <>
-					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} id={id} isPremium={isPremium} />
+					<Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} id={id} isPremium={isPremium} enabled={enabledAdvOptions} />
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>

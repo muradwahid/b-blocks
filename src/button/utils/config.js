@@ -1,9 +1,10 @@
+import { sanitizeURL } from '../../../../bpl-tools/utils/common';
 import { prefix } from './data';
 
 export const btnProps = (attributes, security = 'none', securityPass, isPremium, isBackend = false) => {
 	const { actionType = 'link', url, tooltip, tooltipPos = 'top', target, attrs = { rel: 'noreferrer', referrerpolicy: 'no-referrer' }, isDownload, downloadFileName = '', animationType, animationDuration, addID } = attributes;
 
-	const hrefProps = (url && (securityPass || 'none' === security)) ? { href: url } : {};
+	const hrefProps = (url && (securityPass || 'none' === security)) ? { href: sanitizeURL(url) } : {};
 	const downloadProps = (isDownload) ? { download: isPremium ? downloadFileName : '' } : {};
 	const proAttrs = isPremium ? attrs : {};
 	const linkProps = 'popup' === actionType || isBackend ? {} : { ...hrefProps, target, ...proAttrs, ...downloadProps };
