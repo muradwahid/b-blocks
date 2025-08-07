@@ -23,7 +23,7 @@ const Edit = props => {
 		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={`block-${clientId}`} device={device} isBackend={true} />
 
-			<div>
+			<div className='bblocks-advanced-image'>
 				{!sourceType ?
 					<div className='sourceSelector'>
 						<h4>Choose Your Image Source</h4>

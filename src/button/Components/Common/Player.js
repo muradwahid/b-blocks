@@ -10,6 +10,10 @@ const Player = ({ popup }) => {
 				provider: content.includes('youtube') ? 'youtube' : content.includes('vimeo') ? 'vimeo' : 'html5'
 			}
 		]
-	}} />
+	}}
+		// options={{
+		// 	autoplay: true
+		// }} // Add an options for autoplay muted also notify button-block
+	/>
 };
 export default Player;
