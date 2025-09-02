@@ -47,6 +47,10 @@
 			"type": "string",
 			"default": "bottom"
 		},
+		"isShapeSplite":{
+			"type": "boolean",
+			"default": false
+		},
 		"shapeHeight": {
 			"type": "object",
 			"default": {

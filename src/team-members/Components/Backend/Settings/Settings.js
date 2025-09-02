@@ -1,18 +1,18 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button, SelectControl } from '@wordpress/components';
+import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, SelectControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, ColorControl, Device, BtnGroup, ColorsControl, InlineDetailMediaUpload, ShadowControl, SeparatorControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
-import { BorderControl, ChangeImageData, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
-import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { Label, Device, BtnGroup, Typography, HelpPanel, ItemsPanel } from '../../../../../../bpl-tools/Components';
+import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
 import { pluginSlug, teamMembersDocs } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
 import { aligns, generalStyleTabs } from '../../../../utils/options';
+import ItemSettings from './ItemSettings';
 
 const themes = [
 	{ label: __('Default', 'b-blocks'), value: 'default' },
@@ -26,35 +26,30 @@ const layouts = [
 	{ label: __('Horizontal', 'b-blocks'), value: 'horizontal', icon: horizontalLineIcon },
 ]
 
-const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setActiveIndex, device }) => {
+const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setActiveIndex, isPremium, device }) => {
 	const { members = [], columns, columnGap, rowGap, layout, theme, isLinkNewTab, textAlign, padding, photoWidth, photoMargin, nameTypo, nameMargin, isTitle, titleTypo, titleMargin, isSep, sepMargin, isBio, bioTypo, bioMargin, isSocial, socialSize, socialIconMargin } = attributes;
 
 	const addMember = () => {
-		const { background = { color: '#0000' }, border = { radius: '3px' }, shadow = {}, photoBorder = { radius: '50%' }, nameColor = '#333', titleColor = '#333', separator = { width: '20%', height: '3px', style: 'solid', color: '#777' }, bioColor = '#333', socialIconColors = { color: '#fff', bg: primaryColor } } = members[0] || {};
-
-		setAttributes({
-			members: [...members, {
-				background,
-				border,
-				shadow,
-				photo: { id: null, url: '', alt: '', title: '' },
-				photoBorder,
-				name: 'John Smith',
-				nameColor,
-				title: 'Manager',
-				titleColor,
-				separator,
-				bio: 'I am a self-motivated and self-taught professional who likes to solve problems.',
-				bioColor,
-				social: [
-					{ link: '#', icon: { class: 'fab fa-facebook-f', fontSize: 22, color: '#fff' } },
-					{ link: '#', icon: { class: 'fab fa-twitter', fontSize: 22, color: '#fff' } },
-					{ link: '#', icon: { class: 'fab fa-linkedin-in', fontSize: 22, color: '#fff' } }
-				],
-				socialIconColors
-			}]
-		});
-		setActiveIndex(members.length);
+		return {
+			background:{ color: '#0000' },
+			border:{ radius: '3px' },
+			shadow:[],
+			photo: { id: null, url: '', alt: '', title: '' },
+			photoBorder:{ radius: '50%' },
+			name: 'John Smith',
+			nameColor:'#333',
+			title: 'Manager',
+			titleColor:'#333',
+			separator:{ width: '20%', height: '3px', style: 'solid', color: '#777' },
+			bio: 'I am a self-motivated and self-taught professional who likes to solve problems.',
+			bioColor:'#333',
+			social: [
+				{ link: '#', icon: { class: 'fab fa-facebook-f', fontSize: 22, color: '#fff' } },
+				{ link: '#', icon: { class: 'fab fa-twitter', fontSize: 22, color: '#fff' } },
+				{ link: '#', icon: { class: 'fab fa-linkedin-in', fontSize: 22, color: '#fff' } }
+			],
+			socialIconColors:{ color: '#fff', bg: primaryColor }
+		}
 	}
 
 	const updateAllMembers = (params) => {
@@ -71,67 +66,28 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 		setAttributes({ members: newMembers });
 	}
 
-	const duplicateMember = e => {
-		e.preventDefault();
-
-		setAttributes({ members: [...members.slice(0, activeIndex), { ...members[activeIndex] }, ...members.slice(activeIndex)] });
-
-		setActiveIndex(activeIndex + 1);
-	}
-
-	const removeMember = e => {
-		e.preventDefault();
-
-		setAttributes({ members: [...members.slice(0, activeIndex), ...members.slice(activeIndex + 1)] });
-
-		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
-	}
-
-	const { background = {}, border = {}, shadow = {}, photo, photoBorder = {}, nameColor = '', titleColor = '', separator = {}, bioColor = '', socialIconColors = {} } = members[activeIndex] || {};
-
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 				{'general' === tab.name && <>
 					<HelpPanel slug={pluginSlug} docsLink={teamMembersDocs} />
 
+					<PanelBody className='bPlPanelBody' title={__('Add or Remove Members', 'b-blocks')}>
 
-					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Members', 'b-blocks')}>
-						{null !== activeIndex && <>
-							<h3 className='bplItemTitle'>{__(`Member ${activeIndex + 1}:`, 'b-blocks')}</h3>
+						<ItemsPanel
+							attributes={attributes}
+							setAttributes={setAttributes}
+							activeIndex={activeIndex}
+							setActiveIndex={setActiveIndex}
+							updateMember={updateMember}
+							arrKey='members'
+							ItemSettings={ItemSettings}
+							itemLabel='Team Member'
+							newItem={addMember()}
+							design={isPremium ? 'sortable' : 'single'}
+						/>
+						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 
-							<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateMember(activeIndex, 'background', val)} />
-
-							<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateMember(activeIndex, 'border', val)} defaults={{ radius: '3px' }} />
-
-							<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => updateMember(activeIndex, 'shadow', val)} />
-
-							<Label>{__('Photo:', 'b-blocks')}</Label>
-							<InlineDetailMediaUpload value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
-							<ChangeImageData className='mt20' value={photo} onChange={val => updateMember(activeIndex, 'photo', val)} />
-
-							<BorderControl label={__('Photo Border:', 'b-blocks')} value={photoBorder} onChange={val => updateMember(activeIndex, 'photoBorder', val)} defaults={{ radius: '50%' }} />
-
-							<ColorControl label={__('Name Color:', 'b-blocks')} value={nameColor} onChange={val => updateMember(activeIndex, 'nameColor', val)} defaultColor='#333' />
-
-							<ColorControl label={__('Designation/Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateMember(activeIndex, 'titleColor', val)} defaultColor='#333' />
-
-							<SeparatorControl value={separator} onChange={val => updateMember(activeIndex, 'separator', val)} defaults={{ width: '20%', height: '3px', color: '#777' }} />
-
-							<ColorControl label={__('Bio Color:', 'b-blocks')} value={bioColor} onChange={val => updateMember(activeIndex, 'bioColor', val)} defaultColor='#333' />
-
-							<ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={socialIconColors} onChange={val => updateMember(activeIndex, 'socialIconColors', val)} defaults={{ color: '#fff', bg: primaryColor }} />
-
-							<PanelRow className='itemAction mt20 mb15'>
-								{1 < members?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeMember}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
-
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateMember}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-							</PanelRow>
-						</>}
-
-						<div className='addItem'>
-							<Button label={__('Add New Member', 'b-blocks')} onClick={addMember}><Dashicon icon='plus' />{__('Add New Member', 'b-blocks')}</Button>
-						</div>
 					</PanelBody>
 
 
@@ -353,7 +309,11 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Member', 'b-blocks')} onClick={addMember}><Dashicon icon='plus' /></ToolbarButton>
+				<ToolbarButton label={__('Add New Member', 'b-blocks')} onClick={()=>{
+					const addNewMember = [...members,addMember()];
+					setAttributes({members:addNewMember});
+					setActiveIndex(members.length);
+				}}><Dashicon icon='plus' /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

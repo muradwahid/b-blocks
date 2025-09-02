@@ -1,11 +1,11 @@
+import { MediaUpload, useBlockProps } from '@wordpress/block-editor';
+import { Button, Dashicon, Placeholder, withNotices } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, MediaUpload } from '@wordpress/block-editor';
-import { withNotices, Button, Placeholder } from '@wordpress/components';
 
 import { getBorderCSS, getShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
-import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';
+import Settings from './Settings/Settings';
 
 const Edit = props => {
 	const { attributes: { images, columns, imgPadding, imgBorder, imgShadow, isCap, capAlign, capColor, capTitleTypo, capDescTypo }, setAttributes, clientId, isSelected, noticeUI } = props;
@@ -16,13 +16,14 @@ const Edit = props => {
 
 	// Filter Image properties
 	const filterImages = value => {
-		const newValue = [];
-		for (let i = 0; i < value.length; i++) {
-			const val = value[i];
-
-			newValue.push({ id: val.id, url: val.url, alt: val.alt, name: val.name, title: val.title, sizes: val.sizes, caption: val.caption, description: val.description, link: val.link })
+		if (value || 0 !== value.length) {
+			const newValue = value.map(val => {
+				return { id: val?.id, url: val?.url, alt: val?.alt, name: val?.name, title: val?.title, sizes: val?.sizes, caption: val?.caption, description: val?.description, link: val?.link }
+			});
+			return newValue;
 		}
-		return newValue;
+
+		return []
 	}
 
 	const id = `block-${clientId}`;
@@ -67,7 +68,7 @@ const Edit = props => {
 					<MediaUpload
 						allowedTypes={['image']}
 						accept='image/*'
-						multiple
+						multiple={true}
 						value={Array.isArray(images) ? images.map(({ id }) => id) : images.id}
 						onSelect={val => setAttributes({ images: filterImages(val) })}
 						render={({ open }) => <Button className='components-button is-primary' label={__('Media Library', 'b-blocks')} onClick={open}>{__('Media Library', 'b-blocks')}</Button>}
@@ -76,8 +77,25 @@ const Edit = props => {
 			</> :
 
 				<div className={`imgGalleryWrapper columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
-					{images.map(img => (
+					{images.length > 0 ? images.map((img, index) => (
 						<a key={img.id} className='imgGalleryImgLink'>
+							<MediaUpload
+								allowedTypes={['image']}
+								accept='image/*'
+								value={img.id}
+								onSelect={newImg => {
+									const copyImages = structuredClone(images);
+									copyImages[index] = newImg;
+									setAttributes({ images: filterImages(copyImages) });
+								}}
+								render={({ open }) => <Dashicon className='imgGalleryEditButton' icon='plus-alt' onClick={open} />}
+							/>
+
+							<Dashicon className='imgGalleryImgDeleteButton' onClick={() => {
+								const updatedImages = images.filter((_, i) => index !== i);
+								setAttributes({ images: filterImages(updatedImages) });
+							}} icon='trash' />
+
 							<img src={img.url} alt={img.alt || img.title} className='imgGalleryImg' />
 
 							{(isCap && img.caption) && <div className={`imgGalleryImgCaption`}>
@@ -87,7 +105,7 @@ const Edit = props => {
 								</div>
 							</div>}
 						</a>
-					))}
+					)) : null}
 				</div>
 			}
 

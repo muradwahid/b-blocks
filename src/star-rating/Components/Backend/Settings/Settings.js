@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TabPanel, TextControl, SelectControl, RangeControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { ColorControl, BtnGroup, ShadowControl, Typography } from '../../../../../../bpl-tools/Components'
+import { ColorControl, BtnGroup, ShadowControl, Typography, BoxControl } from '../../../../../../bpl-tools/Components'
 import { emUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { generalStyleTabs } from '../../../../utils/options';
@@ -21,7 +21,7 @@ const iconAlignments = [
 
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { ratingScale, rating, iconStyle, prefix, gap, alignment, textTypo, textColor, textShadow } = attributes;
+	const { ratingScale, rating, iconStyle, prefix, gap, alignment, margin, textTypo, textColor, textShadow } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -42,6 +42,8 @@ const Settings = ({ attributes, setAttributes }) => {
 
 					{tab.name === 'style' && <>
 						<PanelBody className='bPlPanelBody' title={__('Star Rating', 'b-blocks')}>
+							<BoxControl label={__('Margin','b-blocks')} values={margin} onChange={val=>setAttributes({margin:val})} />
+
 							<BtnGroup label={__('Alignment', 'b-blocks')} value={alignment} onChange={val => setAttributes({ alignment: val })} options={iconAlignments} isIcon={true} />
 						</PanelBody>
 

@@ -1,7 +1,8 @@
 import Plyr from 'plyr-react';
 
 const Player = ({ popup }) => {
-	const { type = 'video', content = '' } = popup;
+	const { type = 'video', content = '',videoOptions } = popup;
+	const { autoplay }= videoOptions;
 
 	return <Plyr source={{
 		type, sources: [
@@ -11,9 +12,9 @@ const Player = ({ popup }) => {
 			}
 		]
 	}}
-		// options={{
-		// 	autoplay: true
-		// }} // Add an options for autoplay muted also notify button-block
+		options={{
+			autoplay
+		}} // Add an options for autoplay muted also notify button-block
 	/>
 };
 export default Player;

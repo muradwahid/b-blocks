@@ -3,15 +3,15 @@ import { isValidCSS } from "../../../../../../bpl-tools/utils/getCSS";
 const Style = ({ attributes, id }) => {
   const { header, boxList, markup, sticky } = attributes;
   const blockWrapper = `#${id}`;
-  const accordion = `${blockWrapper} .tbcn-accordion`;
-  const titleWrapper = `${accordion} .tbcn-accordion-title`;
+  const accordion = `${blockWrapper} .bblocks-tbcn-accordion`;
+  const titleWrapper = `${accordion} .bblocks-tbcn-accordion-title`;
   // eslint-disable-next-line no-unused-vars
-  const title = `${titleWrapper} .tbcn-content-table-title`;
-  const panelWrapper = `${accordion} .tbcn-panel`;
-  const panelLists = `${panelWrapper} .tbcn-panel-table-container-order-list`;
-  const panelItem = `${panelLists} .tbcn-panel-table-list-items`;
+  const title = `${titleWrapper} .bblocks-tbcn-content-table-title`;
+  const panelWrapper = `${accordion} .bblocks-tbcn-panel`;
+  const panelLists = `${panelWrapper} .bblocks-tbcn-panel-table-container-order-list`;
+  const panelItem = `${panelLists} .bblocks-tbcn-panel-table-list-items`;
 
-  const listSl = `${blockWrapper} ol>li>a.tbcn-table-content-anchor-list`;
+  const listSl = `${blockWrapper} ol>li>a.bblocks-tbcn-table-content-anchor-list`;
   return (
     <>
       <style>

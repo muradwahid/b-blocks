@@ -8,9 +8,10 @@ import { emUnit, pxUnit, vhUnit } from '../../../../../../bpl-tools/utils/option
 
 import { generalStyleTabs } from '../../../../utils/options';
 import { shapes } from '../../../utils/options';
+import { ToggleControl } from '@wordpress/components';
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { height, shape, shapePosition, shapeWidth, shapeHeight, shapeColor, background, padding } = attributes;
+	const { height, shape, shapePosition, isShapeSplite, shapeWidth, shapeHeight, shapeColor, background, padding } = attributes;
 
 	return <InspectorControls>
 		<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>{tab => <>
@@ -31,6 +32,8 @@ const Settings = ({ attributes, setAttributes }) => {
 
 						<SelectControl value={shapePosition} options={[{ label: __('Top', 'b-blocks'), value: 'top' }, { label: __('Bottom', 'b-blocks'), value: 'bottom' },]} onChange={newPosition => setAttributes({ shapePosition: newPosition })} />
 					</PanelRow>
+
+					<ToggleControl className='mt10' label={__('Shape Splite','b-blocks')} checked={isShapeSplite} value={isShapeSplite} onChange={val=>setAttributes({isShapeSplite:val})} />
 
 					<Label>{__('Width:', 'b-blocks')}</Label>
 					<RangeControl value={shapeWidth} onChange={val => setAttributes({ shapeWidth: val })} min={100} max={300} />

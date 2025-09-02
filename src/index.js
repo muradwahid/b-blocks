@@ -47,7 +47,7 @@ import './slider';
 import './social-share';
 import './star-rating';
 // import './svg-draw';
-// import './table-of-content';
+import './table-of-content';
 import './team-members';
 import './video';
 

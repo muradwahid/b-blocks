@@ -11,16 +11,16 @@ const TimelineFront = ({ attributes, id }) => {
     useHeading(tagName, headings)
     return <>
         <TimelineStyle attributes={attributes} id={id} />
-        <div onClick={() => setRendered(!rendered)} className={`tbcn-timeline-container ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}  `}>
-            <div className="tbcn-timeline-title-container">
-                <DynamicTag className="tbcn-timeline-title" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+        <div onClick={() => setRendered(!rendered)} className={`bblocks-tbcn-timeline-container ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}  `}>
+            <div className="bblocks-tbcn-timeline-title-container">
+                <DynamicTag className="bblocks-tbcn-timeline-title" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
             </div>
             <>
                 {headings?.length > 0 ? (
-                    <ul className="tbcn-timeline-list-items">
+                    <ul className="bblocks-tbcn-timeline-list-items">
                         {Array.from(headings).map((headingElement, idx) => (
                             <>
-                                <li className="tbcn-timeline-list" key={idx}>
+                                <li className="bblocks-tbcn-timeline-list" key={idx}>
                                     <a onClick={() => setContentsAttr(idx)} className={`${idx === Number(contentsAttr) ? "item-active" : ""}`} href={`#${headingElement.id}`}>
                                         {headingElement.contents}
                                     </a>

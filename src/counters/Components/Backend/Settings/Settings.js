@@ -1,13 +1,12 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Button, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, __experimentalUnitControl as UnitControl, Dashicon, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { produce } from 'immer';
 
-import { Label, Background, ColorControl, Device, HelpPanel, IconControl, Typography } from '../../../../../../bpl-tools/Components';
+import { Label, Background, Device, HelpPanel, Typography, ItemsPanel } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
-import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
@@ -15,20 +14,19 @@ import { pluginSlug, countersDocs } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
 import { themes, iconPositions, sepChars } from '../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCounter, device }) => {
+import ItemSettings from './ItemSettings';
+
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPremium, device }) => {
 	const { counters = [], theme, columns, columnGap, rowGap, duration, separator, background, padding, counterWidth, counterHeight, textAlign, isIcon, iconSize, iconPosition, numberTypo, isLabel, labelTypo, counterPadding, counterBorder, counterShadow } = attributes;
 
-	const addCounter = () => {
-		setAttributes({
-			counters: [...counters, {
-				background: { color: primaryColor },
-				icon: { class: 'fa fa-award', fontSize: 50, color: '#fff' },
-				number: { start: 0, end: 300, prefix: '', suffix: '', color: '#fff' },
-				label: { text: 'Awards', color: '#fff' }
-			}]
-		});
-		setActiveIndex(counters.length);
+	const addCounter = {
+		background: { color: primaryColor },
+		icon: { class: 'fa fa-award', fontSize: 50, color: '#fff' },
+		number: { start: 0, end: 300, prefix: '', suffix: '', color: '#fff' },
+		label: { text: 'Awards', color: '#fff' }
 	}
+
+
 
 	const updateAllCounters = (params) => {
 		const newCounters = produce(counters, draft => {
@@ -44,23 +42,6 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 		setAttributes({ counters: newCounters });
 	}
 
-	const duplicateCounter = e => {
-		e.preventDefault();
-
-		setAttributes({ counters: [...counters.slice(0, activeIndex), { ...counters[activeIndex] }, ...counters.slice(activeIndex)] });
-
-		setActiveIndex(activeIndex + 1);
-	}
-
-	const removeCounter = e => {
-		e.preventDefault();
-
-		setAttributes({ counters: [...counters.slice(0, activeIndex), ...counters.slice(activeIndex + 1)] });
-
-		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
-	}
-
-	const { background: singleBG = {}, icon = {}, number = {}, label = {} } = counters[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
@@ -70,41 +51,18 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 
 					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove counters', 'b-blocks')}>
-						{null !== activeIndex && <>
-							<h3 className='bplItemTitle'>{__(`Counter No ${activeIndex + 1}:`, 'b-blocks')}</h3>
-
-							<Background label={__('Background:', 'b-blocks')} value={singleBG} onChange={val => updateCounter('background', val)} defaults={{ color: '#0000' }} />
-
-							<IconControl label={__('Icon:', 'b-blocks')} value={icon} onChange={val => updateCounter('icon', val)} defaults={{ class: 'fa fa-award', fontSize: 50, color: '#fff' }} isSize={false} />
-
-							<NumberControl label={__('Start Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.start} onChange={val => updateCounter('number', parseFloat(val), 'start')} />
-
-							<NumberControl label={__('End Number:', 'b-blocks')} labelPosition='left' className='mt20' value={number.end} onChange={val => updateCounter('number', parseFloat(val), 'end')} />
-
-							<PanelRow>
-								<Label className=''>{__('Prefix:', 'b-blocks')}</Label>
-								<TextControl value={number.prefix} onChange={val => updateCounter('number', val, 'prefix')} />
-							</PanelRow>
-
-							<PanelRow>
-								<Label className=''>{__('Suffix:', 'b-blocks')}</Label>
-								<TextControl value={number.suffix} onChange={val => updateCounter('number', val, 'suffix')} />
-							</PanelRow>
-
-							<ColorControl label={__('Number Color:', 'b-blocks')} value={number.color} onChange={val => updateCounter('number', val, 'color')} defaultColor='#fff' />
-
-							<ColorControl label={__('Label Color:', 'b-blocks')} value={label.color} onChange={val => updateCounter('label', val, 'color')} defaultColor='#fff' />
-
-							<PanelRow className='itemAction mt20 mb15'>
-								{1 < counters?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCounter} ><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
-
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateCounter} >{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-							</PanelRow>
-						</>}
-
-						<div className='addItem'>
-							<Button label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' />{__('Add New Counter', 'b-blocks')}</Button>
-						</div>
+						<ItemsPanel
+							attributes={attributes}
+							setAttributes={setAttributes}
+							activeIndex={activeIndex}
+							setActiveIndex={setActiveIndex}
+							arrKey='counters'
+							ItemSettings={ItemSettings}
+							itemLabel='Counter'
+							newItem={addCounter}
+							design={isPremium ? 'sortable' : 'single'}
+						/>
+						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 					</PanelBody>
 
 

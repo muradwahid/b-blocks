@@ -1,0 +1,164 @@
+/* Ripple Effects */
+// --b-blocks-effect-ripple-size
+// --b-blocks-effect-ripple-background
+// --b-blocks-effect-ripple-border-color
+// --b-blocks-effect-ripple-duration
+// --b-blocks-effect-ripple-slow-duration
+// --b-blocks-effect-ripple-border-width
+
+.b-blocks-effect-wrapper {
+  .b-blocks-ripple-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--b-blocks-effect-ripple-background, #7d7dff33);
+    border: var(--b-blocks-effect-ripple-border-width, 2px) solid
+      var(--b-blocks-effect-ripple-border-color, #7d7dff80);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: rippleExpand var(--b-blocks-effect-ripple-duration, 1s)
+      cubic-bezier(0, 0, 0.2, 1) forwards;
+  }
+  .b-blocks-ripple-fast {
+    animation: rippleExpand var(--b-blocks-effect-ripple-duration, 0.8s)
+      cubic-bezier(0, 0, 0.2, 1) forwards;
+    border-color: var(--b-blocks-effect-ripple-border-color, #ff6b6b80);
+    background: var(--b-blocks-effect-ripple-background, #ff6b6b1a);
+  }
+  .b-blocks-ripple-slow {
+    animation: rippleExpand var(--b-blocks-effect-ripple-slow-duration, 1.2s)
+      cubic-bezier(0, 0, 0.2, 1) forwards;
+    border-color: var(--b-blocks-effect-ripple-border-color, #6b6bff80);
+    background: var(--b-blocks-effect-ripple-background, #6b6bff1a);
+  }
+  .b-blocks- {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid transparent;
+  }
+  .b-blocks-wave-1 {
+    width: 20px;
+    height: 20px;
+    border-color: var(--b-blocks-effect-ripple-border-color, #61dbfbcc);
+    animation: waveExpand var(--b-blocks-effect-ripple-duration, 1.5s)
+      cubic-bezier(0, 0, 0.2, 1) forwards;
+  }
+  .b-blocks-wave-2 {
+    width: 10px;
+    height: 10px;
+    border-color: var(--b-blocks-effect-ripple-border-color, #82e6b4cc);
+    animation: waveExpand var(--b-blocks-effect-ripple-duration, 1.5s)
+      cubic-bezier(0, 0, 0.2, 1) 0.2s forwards;
+  }
+  .b-blocks-wave-3 {
+    width: 5px;
+    height: 5px;
+    border-color: var(--b-blocks-effect-ripple-border-color, #ffca69cc);
+    animation: waveExpand var(--b-blocks-effect-ripple-duration, 1.5s)
+      cubic-bezier(0, 0, 0.2, 1) 0.4s forwards;
+  }
+  .b-blocks-ripple-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    // background: rgba(#3b82f6, 0.8);
+    background: var(--b-blocks-effect-ripple-background, #3b83f6cc);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseExpand var(--b-blocks-effect-ripple-duration, 1s)
+      cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    // box-shadow: 0 0 20px 5px rgba(#3b82f6, 0.5);
+    border: var(--b-blocks-effect-ripple-border-width, 0px) solid
+      var(--b-blocks-effect-ripple-border-color, #3b83f6cc);
+  }
+  .b-blocks-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border: var(--b-blocks-effect-ripple-border-width, 5px) solid
+      var(--b-blocks-effect-ripple-border-color, #84fab0);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: rippleWaveEnhanced var(--b-blocks-effect-ripple-duration, 2s)
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    filter: drop-shadow(0 0 25px currentColor);
+  }
+}
+
+@keyframes rippleExpand {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+  }
+
+  100% {
+    width: var(--b-blocks-effect-ripple-size, 100px);
+    height: var(--b-blocks-effect-ripple-size, 100px);
+    opacity: 0;
+  }
+}
+
+@keyframes waveExpand {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    border-width: 3px;
+  }
+
+  100% {
+    width: var(--b-blocks-effect-ripple-wave-size, 150px);
+    height: var(--b-blocks-effect-ripple-wave-size, 150px);
+    opacity: 0;
+    border-width: var(--b-blocks-effect-ripple-border-width, 1px);
+  }
+}
+
+@keyframes pulseExpand {
+  0% {
+    width: 5px;
+    height: 5px;
+    opacity: 1;
+    // box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.8);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    width: var(--b-blocks-effect-ripple-size, 100px);
+    height: var(--b-blocks-effect-ripple-size, 100px);
+    opacity: 0;
+    // box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes rippleWaveEnhanced {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    border-width: 3px;
+  }
+  50% {
+    opacity: 0.8;
+    border-width: 1.5px;
+    filter: drop-shadow(0 0 35px currentColor);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+    border-width: 1px;
+    filter: drop-shadow(0 0 60px currentColor);
+  }
+}

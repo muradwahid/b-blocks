@@ -114,7 +114,10 @@
 				"type": "image",
 				"content": "",
 				"caption": "",
-				"width": ""
+				"width": "",
+				"videoOptions": {
+					"autoplay": false
+				}
 			}
 		},
 		"animationType": {
@@ -177,6 +180,14 @@
 		"shadow": {
 			"type": "array",
 			"default": []
+		},
+		"buttonHover": {
+			"type": "object",
+			"default": {
+				"padding": {},
+				"shadow": [],
+				"border": {}
+			}
 		}
 	},
 	"supports": {

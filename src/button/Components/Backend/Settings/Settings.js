@@ -6,8 +6,9 @@ import { PanelBody, PanelRow, RangeControl, SelectControl, TabPanel, TextControl
 import { BtnGroup, ColorsControl, HelpPanel, IconControl, InlineDetailMediaUpload, InlineMediaUpload, Label, ShadowControl, Typography } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
-import { tabController } from '../../../../../../bpl-tools/utils/functions';
+import { tabController, updateData } from '../../../../../../bpl-tools/utils/functions';
 import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
+import { normalHoverTabs } from '../../../../../../bpl-tools/utils/options';
 
 import { buttonDocs, pluginSlug } from '../../../../utils/data';
 import useUserRoles from '../../../../hooks/useUserRoles';
@@ -15,8 +16,8 @@ import ProModal from '../../../../backend/ProModal/ProModal';
 import { actionTypes, animationTypes, buttonSizes, buttonTypes, contentTypes, securities, tabs, xPositions, xyPositions } from '../../../utils/options';
 
 const Settings = ({ attributes, setAttributes, isPremium, setContentPopup }) => {
-	const { text, actionType = 'link', security, url, tooltip, tooltipPos = 'top', target, attrs = {}, hideOn = {}, isDownload, downloadFileName = '', isUpIcon, icon, upIcon, iconPos, type, isFullWidth, size, popup = {}, animationType, animationDuration, addID, addCSS, alignment, typography, colors, hovColors, padding, border, shadow, securityPassword, securityRole } = attributes;
-	const { type: popType = 'image', content: popContent = '', caption: popCaption = '' } = popup;
+	const { text, actionType = 'link', security, url, tooltip, tooltipPos = 'top', target, attrs = {}, hideOn = {}, isDownload, downloadFileName = '', isUpIcon, icon, upIcon, iconPos, type, isFullWidth, size, popup = {}, animationType, animationDuration, addID, addCSS, alignment, typography, colors, hovColors, padding, border, shadow, securityPassword, securityRole, buttonHover } = attributes;
+	const { type: popType = 'image', content: popContent = '', caption: popCaption = '', videoOptions } = popup;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
@@ -195,6 +196,8 @@ const Settings = ({ attributes, setAttributes, isPremium, setContentPopup }) => 
 						{'video' === popType && <>
 							<BControlPro label={__('Video:', 'b-blocks')} types={['video']} {...contentProps} placeholder={__('Enter Video URL', 'b-blocks')} {...premiumProps} Component={InlineMediaUpload} />
 							<span>{__('Also support YouTube and Vimeo video.', 'b-blocks')}</span>
+
+							<ToggleControl className='mt20' label={__('Autoplay Video', 'b-blocks')} checked={videoOptions?.autoplay} value={videoOptions?.autoplay} onChange={val => setAttributes({ popup: updateData(popup, val, 'videoOptions', 'autoplay') })} />
 						</>}
 
 						{'content' === popType && <Flex className='mt20' justify='center'>
@@ -220,15 +223,30 @@ const Settings = ({ attributes, setAttributes, isPremium, setContentPopup }) => 
 					<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')}>
 						<Typography value={typography} onChange={val => setAttributes({ typography: val })} defaults={{ fontSize: { desktop: 18, tablet: 17, mobile: 16 }, textDecoration: 'none' }} />
 
-						<ColorsControl value={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#fff', bg: primaryColor }} />
+						<TabPanel className='bPlTabPanel mini' activeClass='activeTab' tabs={normalHoverTabs} onSelect={tabController}>
+							{tab => <>
+								{'normal' === tab.name && <>
+									<ColorsControl value={colors} onChange={val => setAttributes({ colors: val })} defaults={{ color: '#fff', bg: primaryColor }} />
 
-						<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={hovColors} onChange={val => setAttributes({ hovColors: val })} defaults={{ color: '#fff', bg: secondaryColor }} />
+									<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '20px' }} />
 
-						<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={padding} onChange={val => setAttributes({ padding: val })} defaults={{ vertical: '10px', horizontal: '20px' }} />
+									<BorderControl className='mt20' value={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
 
-						<BorderControl className='mt20' value={border} onChange={val => setAttributes({ border: val })} defaults={{ radius: '5px' }} />
+									<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => setAttributes({ shadow: val })} />
+								</>}
+								{'hover' === tab.name && <>
 
-						<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow?.shadow || shadow} onChange={val => setAttributes({ shadow: val })} />
+									<ColorsControl label={__('Colors:', 'b-blocks')} value={hovColors} onChange={val => setAttributes({ hovColors: val })} defaults={{ color: '#fff', bg: secondaryColor }} />
+
+									<SpaceControl className='mt20' label={__('Padding:', 'b-blocks')} value={buttonHover?.padding || {}} onChange={val => setAttributes({ buttonHover:{...buttonHover,padding:val} })} />
+
+									<BorderControl className='mt20' value={buttonHover?.border} onChange={val => setAttributes({ buttonHover:{ border: val }})} defaults={{ radius: '5px' }} />
+
+									<ShadowControl label={__('Shadow:', 'b-blocks')} value={buttonHover?.shadow || []} onChange={val => setAttributes({buttonHover:{...buttonHover,shadow: val} })} />
+								</>}
+							</>}
+						</TabPanel>
+
 					</PanelBody>
 				</>}
 			</>}</TabPanel>

@@ -1,0 +1,39 @@
+$duration: var(--b-blocks-simple-transition-duration, 0.8s);
+$timingFunction: var(--b-blocks-simple-timing-function, ease-out);
+$size: var(--b-blocks-simple-size, 40px);
+$color: var(--b-blocks-simple-color, #ff6b6b);
+
+.b-blocks-effect-wrapper {
+  .spark-simple-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .spark-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: $size;
+      height: 2px;
+      background: $color;
+      transform-origin: left;
+      animation: sparkGrow $duration $timingFunction forwards;
+    }
+  }
+}
+
+@keyframes sparkGrow {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    width: $size;
+    opacity: 0;
+  }
+}

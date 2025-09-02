@@ -67,10 +67,21 @@
 						}
 					],
 					"socialIconColors": {
-						"type": "object",
-						"default": {
-							"color": "#fff",
-							"bg": "#146EF5"
+						"color": "#fff",
+						"bg": "#146EF5"
+					},
+					"iconStyle": {
+						"hover": {
+							"socialIconColors": {
+								"color": "#fff",
+								"bg": "#146EF5"
+							},
+							"border": {},
+							"shadow": {}
+						},
+						"normal": {
+							"border": {},
+							"shadow": []
 						}
 					}
 				},
@@ -123,10 +134,21 @@
 						}
 					],
 					"socialIconColors": {
-						"type": "object",
-						"default": {
-							"color": "#fff",
-							"bg": "#146EF5"
+						"color": "#fff",
+						"bg": "#146EF5"
+					},
+					"iconStyle": {
+						"hover": {
+							"socialIconColors": {
+								"color": "#fff",
+								"bg": "#146EF5"
+							},
+							"border": {},
+							"shadow": {}
+						},
+						"normal": {
+							"border": {},
+							"shadow": []
 						}
 					}
 				},
@@ -179,10 +201,21 @@
 						}
 					],
 					"socialIconColors": {
-						"type": "object",
-						"default": {
-							"color": "#fff",
-							"bg": "#146EF5"
+						"color": "#fff",
+						"bg": "#146EF5"
+					},
+					"iconStyle": {
+						"hover": {
+							"socialIconColors": {
+								"color": "#fff",
+								"bg": "#146EF5"
+							},
+							"border": {},
+							"shadow": {}
+						},
+						"normal": {
+							"border": {},
+							"shadow": []
 						}
 					}
 				}

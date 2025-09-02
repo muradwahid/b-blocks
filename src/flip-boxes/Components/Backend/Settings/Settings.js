@@ -2,90 +2,55 @@
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
-import { produce } from 'immer';
+import { PanelBody, TabPanel, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 
-import { Label, Background, ColorControl, Device, ColorsControl, IconControl, Typography, InlineDetailMediaUpload, HelpPanel } from '../../../../../../bpl-tools/Components';
-import { BorderControl, SpaceControl, ShadowControl } from '../../../../../../bpl-tools/Components/Deprecated';
-import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
+import { Label, Device, Typography, HelpPanel, ItemsPanel } from '../../../../../../bpl-tools/Components';
+import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { generalStyleTabs } from '../../../../utils/options';
 
 import { pluginSlug } from '../../../../utils/data';
-const frontBackTab = [
-	{ name: 'front', title: __('Front', 'b-blocks') },
-	{ name: 'back', title: __('Back', 'b-blocks') }
-];
+import ItemSettings from './ItemSettings';
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, device }) => {
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPremium, device }) => {
 	const { boxes = [], columns, columnGap, rowGap, boxHeight, textAlign, boxPadding, isIcon, iconMargin, titleTypo, titleMargin, isDesc, descTypo, isBtn, isLinkNewTab, btnTypo, btnPadding } = attributes;
 
-	const addFlipBox = () => {
-		setAttributes({
-			boxes: [...boxes, {
-				frontBG: {},
-				backBG: {},
-				border: {},
-				shadow: {},
-				frontIcon: {
-					class: 'fa fa-sync-alt',
-					fontSize: 70,
-					color: '#fff'
-				},
-				backIcon: {
-					class: 'fa-brands fa-wordpress',
-					fontSize: 70,
-					color: '#fff'
-				},
-				frontTitle: `Front Title ${boxes.length + 1}`,
-				frontTitleColor: '#fff',
-				backTitle: `Back Title ${boxes.length + 1}`,
-				backTitleColor: '#fff',
-				desc: `This content area describes flip box ${boxes.length + 1} descriptions/details.`,
-				descColor: '#fff',
-				btn: `Button ${boxes.length + 1}`,
-				btnLink: '#',
-				btnBorder: {
-					radius: '3px'
-				},
-				btnColors: {
-					color: '#fff',
-					bg: '#ff4500'
-				},
-				btnHovColors: {
-					color: '#fff',
-					bg: '#ff7500'
-				}
-			}]
-		});
-		setActiveIndex(boxes.length);
+	const addFlipBox = {
+		frontBG: {},
+		backBG: {},
+		border: {},
+		shadow: {},
+		frontIcon: {
+			class: 'fa fa-sync-alt',
+			fontSize: 70,
+			color: '#fff'
+		},
+		backIcon: {
+			class: 'fa-brands fa-wordpress',
+			fontSize: 70,
+			color: '#fff'
+		},
+		frontTitle: `Front Title ${boxes.length + 1}`,
+		frontTitleColor: '#fff',
+		backTitle: `Back Title ${boxes.length + 1}`,
+		backTitleColor: '#fff',
+		desc: `This content area describes flip box ${boxes.length + 1} descriptions/details.`,
+		descColor: '#fff',
+		btn: `Button ${boxes.length + 1}`,
+		btnLink: '#',
+		btnBorder: {
+			radius: '3px'
+		},
+		btnColors: {
+			color: '#fff',
+			bg: '#ff4500'
+		},
+		btnHovColors: {
+			color: '#fff',
+			bg: '#ff7500'
+		}
 	}
-
-	const updateFlipBox = (type, val) => {
-		const newBoxes = produce(boxes, draft => {
-			draft[activeIndex][type] = val;
-		});
-		setAttributes({ boxes: newBoxes });
-	}
-
-	const duplicateFlipBox = e => {
-		e.preventDefault();
-
-		setAttributes({ boxes: [...boxes.slice(0, activeIndex), { ...boxes[activeIndex] }, ...boxes.slice(activeIndex)] });
-
-		setActiveIndex(activeIndex + 1);
-	}
-
-	const removeFlipBox = e => {
-		e.preventDefault();
-
-		setAttributes({ boxes: [...boxes.slice(0, activeIndex), ...boxes.slice(activeIndex + 1)] });
-
-		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
-	}
-
-	const { frontBG = {}, backBG = {}, border = {}, shadow = {}, isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, frontIconWidth = '70px', isBackUpIcon = false, backIcon = {}, upBackIcon = {}, backIconWidth = '70px', frontTitle = '', frontTitleColor = '', backTitle = '', backTitleColor = '', desc = '', descColor = '', btn = '', btnLink = '', btnBorder = {}, btnColors = {}, btnHovColors = {} } = boxes[activeIndex] || {};
 
 	return <>
 		<InspectorControls>
@@ -95,98 +60,22 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, devi
 
 
 					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Boxes', 'b-blocks')}>
-						{null !== activeIndex && <>
-							<h3 className='bplItemTitle'>{__(`Flip Box No ${activeIndex + 1}:`, 'b-blocks')}</h3>
 
-							<PanelBody className='bPlPanelBody' title={__('Box Settings', 'b-blocks')}>
-								<BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateFlipBox('border', val)} />
 
-								<ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => updateFlipBox('shadow', val)} />
-							</PanelBody>
+						<ItemsPanel
+							attributes={attributes}
+							setAttributes={setAttributes}
+							activeIndex={activeIndex}
+							setActiveIndex={setActiveIndex}
+							arrKey='boxes'
+							ItemSettings={ItemSettings}
+							itemLabel='Flip Box'
+							newItem={addFlipBox}
+							// design={isPremium ? 'sortable' : 'single'}
+							design={isPremium ? 'sortable' : 'single'}
+						/>
+						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 
-							<TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={frontBackTab}>{tab => <>
-								{'front' == tab.name && <>
-									<PanelBody className='bPlPanelBody' title={__('Front Box', 'b-blocks')}>
-										<Background label={__('Background:', 'b-blocks')} value={frontBG} onChange={val => updateFlipBox('frontBG', val)} />
-									</PanelBody>
-
-									{isIcon && <PanelBody className='bPlPanelBody' title={__('Front Icon', 'b-blocks')} initialOpen={false}>
-										<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isFrontUpIcon} onChange={val => updateFlipBox('isFrontUpIcon', val)} />
-
-										{isFrontUpIcon ? <>
-											<Label>{__('Icon:', 'b-blocks')}</Label>
-											<InlineDetailMediaUpload value={upFrontIcon} onChange={val => updateFlipBox('upFrontIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
-
-											<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={frontIconWidth} onChange={val => updateFlipBox('frontIconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
-
-										</> : <IconControl value={frontIcon} onChange={val => updateFlipBox('frontIcon', val)} defaults={{ class: 'fa fa-sync-alt', fontSize: 70, color: '#fff' }} />}
-									</PanelBody>}
-
-									<PanelBody className='bPlPanelBody' title={__('Front Title', 'b-blocks')} initialOpen={false}>
-										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
-										<TextControl value={frontTitle} onChange={val => updateFlipBox('frontTitle', val)} />
-
-										<ColorControl label={__('Color:', 'b-blocks')} value={frontTitleColor} onChange={val => updateFlipBox('frontTitleColor', val)} defaultColor='#fff' />
-									</PanelBody>
-
-									<PanelBody className='bPlPanelBody' title={__('Description', 'b-blocks')} initialOpen={false}>
-										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
-										<TextareaControl value={desc} onChange={val => updateFlipBox('desc', val)} />
-
-										<ColorControl label={__('Color:', 'b-blocks')} value={descColor} onChange={val => updateFlipBox('descColor', val)} defaultColor='#fff' />
-									</PanelBody>
-								</>}
-
-								{'back' == tab.name && <>
-									<PanelBody className='bPlPanelBody' title={__('Back Box', 'b-blocks')}>
-										<Background label={__('Background:', 'b-blocks')} value={backBG} onChange={val => updateFlipBox('backBG', val)} />
-									</PanelBody>
-
-									{isIcon && <PanelBody className='bPlPanelBody' title={__('Back Icon', 'b-blocks')} initialOpen={false}>
-										<ToggleControl label={__('Upload Icon?', 'b-blocks')} checked={isBackUpIcon} onChange={val => updateFlipBox('isBackUpIcon', val)} />
-
-										{isBackUpIcon ? <>
-											<Label>{__('Icon:', 'b-blocks')}</Label>
-											<InlineDetailMediaUpload value={upBackIcon} onChange={val => updateFlipBox('upBackIcon', val)} placeholder={__('Enter Icon URL', 'b-blocks')} />
-
-											<UnitControl className='mt20' label={__('Icon Width:', 'b-blocks')} labelPosition='left' value={backIconWidth} onChange={val => updateFlipBox('backIconWidth', val)} units={[pxUnit(), perUnit(), emUnit()]} />
-
-										</> : <IconControl value={backIcon} onChange={val => updateFlipBox('backIcon', val)} defaults={{ class: 'fa fa-wordpress', fontSize: 70, color: '#fff' }} />}
-									</PanelBody>}
-
-									<PanelBody className='bPlPanelBody' title={__('Back Title', 'b-blocks')} initialOpen={false}>
-										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
-										<TextControl value={backTitle} onChange={val => updateFlipBox('backTitle', val)} />
-
-										<ColorControl label={__('Color:', 'b-blocks')} value={backTitleColor} onChange={val => updateFlipBox('backTitleColor', val)} defaultColor='#fff' />
-									</PanelBody>
-
-									<PanelBody className='bPlPanelBody' title={__('Button', 'b-blocks')} initialOpen={false}>
-										<Label className='mb5'>{__('Text:', 'b-blocks')}</Label>
-										<TextControl value={btn} onChange={val => updateFlipBox('btn', val)} />
-
-										<Label>{__('Link:', 'b-blocks')}</Label>
-										<TextControl value={btnLink} onChange={val => updateFlipBox('btnLink', val)} />
-
-										<BorderControl label={__('Border:', 'b-blocks')} value={btnBorder} onChange={val => updateFlipBox('btnBorder', val)} defaults={{ radius: '3px' }} />
-
-										<ColorsControl value={btnColors} onChange={val => updateFlipBox('btnColors', val)} defaults={{ color: '#fff', bg: '#ff4500' }} />
-
-										<ColorsControl label={__('Hover Colors:', 'b-blocks')} value={btnHovColors} onChange={val => updateFlipBox('btnHovColors', val)} defaults={{ color: '#fff', bg: '#ff7500' }} />
-									</PanelBody>
-								</>}
-							</>}</TabPanel>
-
-							<PanelRow className='itemAction mt20 mb15'>
-								{1 < boxes?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeFlipBox}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
-
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateFlipBox}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-							</PanelRow>
-						</>}
-
-						<div className='addItem'>
-							<Button label={__('Add New Flip Box', 'b-blocks')} onClick={addFlipBox}><Dashicon icon='plus' />{__('Add New Flip Box', 'b-blocks')}</Button>
-						</div>
 					</PanelBody>
 
 

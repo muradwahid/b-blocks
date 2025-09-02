@@ -2,9 +2,9 @@ import { prefix } from '../../utils/data';
 
 const IconBox = ({ attributes }) => {
 	const { icon, animation } = attributes;
-	const { type } = animation;
+	const { type, hover } = animation;
 
-	return <div className={`${prefix} b-blocks-icon-box-animation ${type} infinite`} dangerouslySetInnerHTML={{ __html: icon.svg }} />
+	return <div className={`${prefix} b-blocks-icon-box-animation ${type} ${hover.type}`} dangerouslySetInnerHTML={{ __html: icon.svg }} />
 
 }
 export default IconBox;

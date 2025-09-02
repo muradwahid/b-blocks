@@ -129,6 +129,14 @@
 			"type": "string",
 			"default": "250px"
 		},
+		"imgWidth":{
+			"type": "string",
+			"default": "90%"
+		},
+		"imgAlign": {
+			"type": "object",
+			"default": "center"
+		},
 		"isCat": {
 			"type": "boolean",
 			"default": true

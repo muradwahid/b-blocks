@@ -1,10 +1,10 @@
-=== B Blocks - The ultimate block collection ===
+=== B Blocks – Essential Gutenberg Blocks & Patterns Collection ===
 Contributors: bplugins, abuhayat, charlescormier, muradwahid, adnankhan7792, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.7
+Stable tag: 2.0.10
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -359,6 +359,24 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog ==
+
+= 2.0.10 - 1 Sep 2025 =
+* Add hover shadow and border-color options for the Button block.
+* Fixed icon box hover color.
+* Fixed Cursor canvas pointer-event
+* Fixed add gradient color
+
+= 2.0.9 - 30 Aug 2025 =
+* Added Table of Content block.
+* Added icon hover option in Team Members.
+* Added margin for star rating.
+
+= 2.0.8 - 25 Aug 2025 =
+* Added cursor shape and click effects.
+* Fixed Flipbox title margin and added ItemsPanel.
+* Fixed typography controls in Section Heading.
+* Added image remove/replace option in Image Gallery.
+* Added autoplay option to Button block.
 
 = 2.0.6 - 6 Aug 2025 =
 * Fixed issues in the Button Block.

@@ -16,38 +16,38 @@ const IconPicker = ({ icons, label, default: defaultIcon, renderFunction, value 
             document.removeEventListener("mousedown", handle);
         };
     });
-    return  <div className="tbcn-iconPicker-main-wrapper">
-            <div className="tbcn-iconPicker-wrapper" >
-                <p style={{ width: "50%", margin: "0" }}>{label}</p>
-                <div className="tbcn-iconPicker" >
-                    <div onClick={() => renderFunction(defaultIcon)} className="single-icon-admin-panel">
-                        <IconBan />
-                    </div>
-                    <div ref={btnRef} onClick={() => setPopoverVisible(!popoverVisible)} className="single-icon-admin-panel selectIcon">
-                        {icons.map(({ value: val, icon }) => val === value && icon)}
-                    </div>
+    return <div className="bblocks-tbcn-iconPicker-main-wrapper">
+        <div className="bblocks-tbcn-iconPicker-wrapper" >
+            <p style={{ width: "50%", margin: "0" }}>{label}</p>
+            <div className="bblocks-tbcn-iconPicker" >
+                <div onClick={() => renderFunction(defaultIcon)} className="single-icon-admin-panel">
+                    <IconBan />
+                </div>
+                <div ref={btnRef} onClick={() => setPopoverVisible(!popoverVisible)} className="single-icon-admin-panel selectIcon">
+                    {icons.map(({ value: val, icon }) => val === value && icon)}
                 </div>
             </div>
-            {popoverVisible && (
-                // <Popover ref={iconComp} className="tbcn-popover-icon-picker-admin">
-                <div ref={iconCompRef} className="tbcn-iconPicker-popover-icons" >
-                    {icons &&
-                        icons.map((icon, idx) => (
-                            <div onClick={() => renderFunction(icon.value)} key={idx} className={`tbcn-single-icon-picker-admin ${icon.value === value ? "selectIcon" : ""}`}>
-                                <div className="tbcn-icon-picker-tooltip-container">
-                                    <div className="tbcn-icon-picker-tooltip">
-                                        <span>{icon.label}</span>
-                                        <CaretDown />
-                                    </div>
+        </div>
+        {popoverVisible && (
+            // <Popover ref={iconComp} className="bblocks-tbcn-popover-icon-picker-admin">
+            <div ref={iconCompRef} className="bblocks-tbcn-iconPicker-popover-icons" >
+                {icons &&
+                    icons.map((icon, idx) => (
+                        <div onClick={() => renderFunction(icon.value)} key={idx} className={`bblocks-tbcn-single-icon-picker-admin ${icon.value === value ? "selectIcon" : ""}`}>
+                            <div className="bblocks-tbcn-icon-picker-tooltip-container">
+                                <div className="bblocks-tbcn-icon-picker-tooltip">
+                                    <span>{icon.label}</span>
+                                    <CaretDown />
                                 </div>
-                                {icon.icon}
-                                {/* <i className={`${icon.value}`}></i> */}
                             </div>
-                        ))}
-                </div>
-                // </Popover>
-            )}
-        </div> 
+                            {icon.icon}
+                            {/* <i className={`${icon.value}`}></i> */}
+                        </div>
+                    ))}
+            </div>
+            // </Popover>
+        )}
+    </div>
 };
 
 export default IconPicker;

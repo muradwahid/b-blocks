@@ -5,8 +5,9 @@ const Layout = ({ info, children }) => {
 	const navigation = [
 		{ name: 'Welcome', href: '/welcome' },
 		{ name: 'Blocks', href: '/blocks' },
-		{ name: 'In Dev', href: '/inDev' }
-		// { name: 'Popular Plugin', href: '/popularPlugin' }
+		{ name: 'Custom Cursor and Click Effects', href: '/cursor' },
+		{ name: 'In Dev', href: '/inDev' },
+		// { name: 'Our Other Popular Plugins', href: '/popularPlugin' }
 	]
 
 	return <>

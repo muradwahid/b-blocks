@@ -18,7 +18,9 @@ const entry = {
 	script: './src/script.js',
 	'admin-dashboard': './src/admin/dashboard.js',
 	'template-library': './src/backend/template-library.js',
-	advanced: '../bpl-tools/Advanced/style.js'
+	advanced: '../bpl-tools/Advanced/style.js',
+	'cursor/cursor': "./src/customCursor/customCursor.js",
+	'cursor/settings': "./src/customCursor/Settings.js"
 };
 
 module.exports = {

@@ -54,7 +54,7 @@ const Style = ({ attributes, id }) => {
 		}
 
 		${members.map((item, index) => {
-			const { background, border, shadow, photoBorder, nameColor, titleColor, separator, bioColor, socialIconColors } = item;
+			const { background, border, shadow, photoBorder, nameColor, titleColor, separator, bioColor, socialIconColors, iconStyle } = item;
 
 			const memberSl = `${mainSl} #teamMember-${index}`;
 			const memberDetailsSl = `${memberSl} .memberDetails`;
@@ -86,6 +86,14 @@ const Style = ({ attributes, id }) => {
 				}
 				${memberSocialSl} li a{
 					${getColorsCSS(socialIconColors)}
+					${getBorderCSS(iconStyle.normal.border)}
+					${getMultiShadowCSS(iconStyle.normal.shadow)}
+					transition:all 0.2s ease-in-out;
+				}
+				${memberSocialSl} li a:hover{
+					${getColorsCSS(iconStyle.hover.socialIconColors)}
+					${getBorderCSS(iconStyle.hover.border)}
+					${getMultiShadowCSS(iconStyle.hover.shadow)}
 				}
 				${memberSocialSl} li.isSelected{
 					border: 2px solid ${socialIconColors?.bg};

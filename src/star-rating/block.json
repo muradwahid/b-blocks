@@ -39,6 +39,15 @@
 			"type": "string",
 			"default": "center"
 		},
+		"margin":{
+			"type":"object",
+			"default":{
+				"top":"",
+				"right":"",
+				"bottom":"",
+				"left":""
+			}
+		},
 		"textTypo": {
 			"type": "object",
 			"default": {

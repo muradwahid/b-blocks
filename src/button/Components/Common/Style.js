@@ -1,10 +1,11 @@
+import { isExist } from '../../../../../bpl-tools/utils/common';
 import { primaryColor, secondaryColor } from '../../../../../bpl-tools/utils/data';
 import { getBorderCSS, getColorsCSS, getMultiShadowCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
-	const { hideOn = { desktop: false, tablet: false, mobile: false }, isFullWidth, addCSS, alignment, typography, colors, hovColors, padding, border, shadow } = attributes;
+	const { hideOn = { desktop: false, tablet: false, mobile: false }, isFullWidth, addCSS, alignment, typography, colors, hovColors, padding, border, shadow, buttonHover } = attributes;
 
 	const mainSl = `#${id}`;
 	const btnSl = `${mainSl} .${prefix}`;
@@ -48,6 +49,9 @@ const Style = ({ attributes, id }) => {
 		}
 		${btnSl}:hover{
 			${getColorsCSS(hovColors) || `color: #fff; background-color: ${secondaryColor};`}
+			${isExist(buttonHover?.shadow)? `box-shadow: ${getMultiShadowCSS(buttonHover?.shadow) };` : ''}
+			${isExist(buttonHover?.border)? getBorderCSS(buttonHover?.border) : ''}
+			${isExist(buttonHover?.padding) ? `padding: ${getSpaceCSS(buttonHover?.padding)}`:''  }
 		}
 		${addCSS}
 		`.replace(/\s+/g, ' ')

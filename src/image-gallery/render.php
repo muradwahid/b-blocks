@@ -53,7 +53,7 @@ extract( $attributes );
 			$imgUrlLarge = !empty( $image['sizes']['large']['url'] ) ? $image['sizes']['large']['url'] : $imgUrl;
 			$imgAlt = $image['alt'] ? $image['alt'] : $image['title']; ?>
 			
-			<a class='imgGalleryImgLink' 
+			<a class='imgGalleryImgLink'
 				<?php if( $isCap ){}else{ ?>
 					href='#'
 					data-fancybox='imgGalleryPreviewBtn'
@@ -65,7 +65,7 @@ extract( $attributes );
 
 				<img src='<?php echo esc_url( $imgUrl ); ?>' alt='<?php echo esc_html( $imgAlt ); ?>' class='imgGalleryImg' />
 
-				<?php if( $isCap && ( !empty( $imgAlt ) || $isPreview ) ){ ?>
+				<?php if( $isCap &&  $isPreview ){ ?>
 					<div class='imgGalleryImgCaption'>
 						<div class='captionContent'>
 							<?php echo !empty( $imgAlt ) ? "<h4>". wp_kses_post( $image['caption'] ) ."</h4>" : '' ; ?>

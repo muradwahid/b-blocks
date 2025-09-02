@@ -2,11 +2,11 @@ import { isValidCSS } from "../../../../../../bpl-tools/utils/getCSS";
 const ListStyle = ({ attributes, id }) => {
     const { sticky, slideTitle, slideList, boxList } = attributes;
     const blockWrapper = `#${id}`;
-    const listBlWrapper = `${blockWrapper} .tbcn-list-container`;
-    const titleWrapper = `${listBlWrapper} .tbcn-list-title`;
-    const title = `${titleWrapper} .tbcn-list-title-heading`;
-    const listItems = `${listBlWrapper} .tbcn-list-items`;
-    const list = `${listItems} .tbcn-list-item`;
+    const listBlWrapper = `${blockWrapper} .bblocks-tbcn-list-container`;
+    const titleWrapper = `${listBlWrapper} .bblocks-tbcn-list-title`;
+    const title = `${titleWrapper} .bblocks-tbcn-list-title-heading`;
+    const listItems = `${listBlWrapper} .bblocks-tbcn-list-items`;
+    const list = `${listItems} .bblocks-tbcn-list-item`;
 
     return (
         <style>
@@ -44,20 +44,20 @@ const ListStyle = ({ attributes, id }) => {
     }
 
     ${["left", "right"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].desktop};
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
 
     ${["top", "bottom"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].desktop}
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
     ${sticky.verticalAlign === "center" ? `${listBlWrapper}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
     @media screen and (min-width: 1024px) {
@@ -78,20 +78,20 @@ const ListStyle = ({ attributes, id }) => {
     }
 
     ${["left", "right"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].desktop};
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
 
     ${["top", "bottom"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].desktop}
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
 
     ${sticky.verticalAlign === "center" ? `${listBlWrapper}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
@@ -114,19 +114,19 @@ const ListStyle = ({ attributes, id }) => {
     position:${sticky?.device.includes("Tablet") ? "fixed" : "initial"};
     }
     ${["left", "right"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].tablet};
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
     ${["top", "bottom"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].tablet}
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
 
     ${sticky.verticalAlign === "center" ? `${listBlWrapper}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
@@ -149,19 +149,19 @@ const ListStyle = ({ attributes, id }) => {
     }
 
     ${["left", "right"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].mobile};
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
     ${["top", "bottom"]
-                        .map(
-                            (val) => `${listBlWrapper}.sticky.${val}{
+                    .map(
+                        (val) => `${listBlWrapper}.sticky.${val}{
     ${val}:${sticky[val].mobile}
     }`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
 
     ${sticky.verticalAlign === "center" ? `${listBlWrapper}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
     }

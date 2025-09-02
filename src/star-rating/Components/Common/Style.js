@@ -1,10 +1,10 @@
-import { getMultiShadowCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import { getArrFromNum } from '../../utils/functions';
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
-	const { rating, gap, alignment, textTypo, textColor, textShadow } = attributes;
+	const { rating, gap, alignment, margin, textTypo, textColor, textShadow } = attributes;
 
 	const ratingSl = `#${id} .${prefix}`;
 	const starSl = `${ratingSl} .stars .star`;
@@ -21,6 +21,7 @@ const Style = ({ attributes, id }) => {
 			justify-content: ${alignment};
 			gap: ${gap};
 			color: ${textColor};
+			${isValidCSS('margin',getBoxCSS(margin))}
 		}
 
 		${ratingSl} .ratingPrefix{

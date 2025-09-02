@@ -22,28 +22,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					// Components
 					const CardTitle = () => isTitle && <LinkProvider enabled={linkElement === 'title'} url={link} target={linkTarget}>
-						<h3 className='cardTitle' dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} />
+						<h3 className={`${prefix}-cardTitle`} dangerouslySetInnerHTML={{ __html: sanitizeHTML(title) }} />
 					</LinkProvider>
 
 					const CardImage = () => img?.url && <LinkProvider enabled={linkElement === 'image'} url={link} target={linkTarget}>
-						<figure className='cardImage'>
+						<figure className={`${prefix}-cardImage`}>
 							<img src={img.url} alt={img?.alt || img?.title} />
 
 							{'image' === titlePos && <CardTitle />}
 						</figure>
 					</LinkProvider>;
 
-					return <div key={index} id={`card-${index}`}>
+					return <div key={index} id={`${prefix}-card-${index}`}>
 						<LinkProvider enabled={linkElement === 'card'} url={link} target={linkTarget}>
-							<div className={`card ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
+							<div className={`${prefix}-card ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
 								{'top' === imgPos && <CardImage />}
 
 								<div className='cardDetails'>
-									{isCat && <h6 className='cardCategory' dangerouslySetInnerHTML={{ __html: sanitizeHTML(cat) }} />}
+									{isCat && <h6 className={`${prefix}-cardCategory`} dangerouslySetInnerHTML={{ __html: sanitizeHTML(cat) }} />}
 
 									{'content' === titlePos && <CardTitle />}
 
-									{isDesc && <p className='cardDescription' dangerouslySetInnerHTML={{ __html: sanitizeHTML(desc) }} />}
+									{isDesc && <p className={`${prefix}-cardDescription`} dangerouslySetInnerHTML={{ __html: sanitizeHTML(desc) }} />}
 								</div>
 
 								{'bottom' === imgPos && <CardImage />}

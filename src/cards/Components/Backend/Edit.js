@@ -40,30 +40,30 @@ const Edit = props => {
 					const { img, cat, title, desc } = item;
 
 					// Components
-					const CardTitle = () => isTitle && <RichText className='cardTitle' tagName='h3' value={title} onChange={val => updateCard('title', val)} placeholder={__('Card title', 'b-blocks')} inlineToolbar />
+					const CardTitle = isTitle && <RichText className={`${prefix}-cardTitle`}tagName='h3' value={title} onChange={val => updateCard('title', val)} placeholder={__('Card title', 'b-blocks')} inlineToolbar />
 
-					const CardImage = () => img?.url ? <>
-						<figure className='cardImage'>
-							<img className={img?.id ? `wp-image-${img.id}` : null} src={img.url} alt={img?.alt || img?.title} />
+					const CardImage = img?.url ? <>
+						<figure className={`${prefix}-cardImage`}>
+							<img className={`${prefix}-wp-image`} src={img.url} alt={img?.alt || img?.title} />
 
-							{'image' === titlePos && <CardTitle />}
+							{'image' === titlePos && CardTitle}
 						</figure>
 						{isBlobURL(img.url) && <Spinner />}
 					</> : <ImagePlaceholder label={__(' Card Image:', 'b-blocks')} value={img} onChange={val => updateCard('img', val)} />;
 
-					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`card-${index}`}>
-						<div className={`card ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
-							{'top' === imgPos && <CardImage />}
+					return <div key={index} onClick={() => setActiveIndex(index)} className={`${index === activeIndex ? 'bPlNowEditing' : ''}`} id={`${prefix}-card-${index}`}>
+						<div className={`${prefix}-card ${'bottom' === imgPos ? 'bottomImg' : 'topImg'}`}>
+							{'top' === imgPos && CardImage}
 
 							<div className='cardDetails'>
-								{isCat && <RichText className='cardCategory' tagName='h6' value={cat} onChange={val => updateCard('cat', val)} placeholder={__('Card category', 'b-blocks')} inlineToolbar />}
+								{isCat && <RichText className={`${prefix}-cardCategory`} tagName='h6' value={cat} onChange={val => updateCard('cat', val)} placeholder={__('Card category', 'b-blocks')} inlineToolbar />}
 
-								{'content' === titlePos && <CardTitle />}
+								{'content' === titlePos && CardTitle}
 
-								{isDesc && <RichText className='cardDescription' tagName='p' value={desc} onChange={val => updateCard('desc', val)} placeholder={__('Description of the card', 'b-blocks')} inlineToolbar />}
+								{isDesc && <RichText className={`${prefix}-cardDescription`} tagName='p' value={desc} onChange={val => updateCard('desc', val)} placeholder={__('Description of the card', 'b-blocks')} inlineToolbar />}
 							</div>
 
-							{'bottom' === imgPos && <CardImage />}
+							{'bottom' === imgPos && CardImage}
 						</div>
 					</div>;
 				})}

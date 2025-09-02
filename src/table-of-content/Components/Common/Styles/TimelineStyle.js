@@ -1,16 +1,16 @@
 import { getMultiShadowCSS, isValidCSS } from '../../../../../../bpl-tools/utils/getCSS';
 
 const TimelineStyle = ({ attributes, id }) => {
-	const { sticky, slideTitle, slideList, boxList } = attributes;
-	const blockSl = `#${id}`;
-	const timelineSl = `${blockSl} .tbcn-timeline-container`;
-	const titleContainer = `${timelineSl} .tbcn-timeline-title-container`;
-	const timelineTitle = `${titleContainer} .tbcn-timeline-title`;
-	const timelineItems = `${timelineSl} .tbcn-timeline-list-items`;
-	const timelineItem = `${timelineItems} .tbcn-timeline-list`;
+  const { sticky, slideTitle, slideList, boxList } = attributes;
+  const blockSl = `#${id}`;
+  const timelineSl = `${blockSl} .bblocks-tbcn-timeline-container`;
+  const titleContainer = `${timelineSl} .bblocks-tbcn-timeline-title-container`;
+  const timelineTitle = `${titleContainer} .bblocks-tbcn-timeline-title`;
+  const timelineItems = `${timelineSl} .bblocks-tbcn-timeline-list-items`;
+  const timelineItem = `${timelineItems} .bblocks-tbcn-timeline-list`;
 
-	return <style>
-		{`
+  return <style>
+    {`
 ${timelineItems} {
   border-left: 2px dashed ${boxList.treeColor};
 }
@@ -56,19 +56,19 @@ ${isValidCSS('width', sticky.width.desktop)}
   position:fixed;
 }
 ${['left', 'right']
-				.map(
-					(val) => `${timelineSl}.sticky.${val}{
+        .map(
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop};
 }`
-				)
-				.join('')}
+        )
+        .join('')}
 ${['top', 'bottom']
-				.map(
-					(val) => `${timelineSl}.sticky.${val}{
+        .map(
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop}
 }`
-				)
-				.join('')}
+        )
+        .join('')}
 ${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
 
@@ -91,19 +91,19 @@ ${timelineSl}.sticky {
   position:${sticky.device.includes('Desktop') ? 'fixed' : 'initial'};
 }
 ${['left', 'right']
-				.map(
-					(val) => `${timelineSl}.sticky.${val}{
+        .map(
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop};
 }`
-				)
-				.join('')}
+        )
+        .join('')}
 ${['top', 'bottom']
-				.map(
-					(val) => `${timelineSl}.sticky.${val}{
+        .map(
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].desktop}
 }`
-				)
-				.join('')}
+        )
+        .join('')}
 ${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}  
 }
 @media only screen and (min-width:641px) and (max-width: 1024px) {
@@ -124,18 +124,18 @@ ${isValidCSS('width', sticky.width.tablet)}
 }
 
 ${['left', 'right'].map(
-					(val) => `${timelineSl}.sticky.${val}{
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].tablet};
 }`
-				)}
+        )}
 
 ${['top', 'bottom']
-				.map(
-					(val) => `${timelineSl}.sticky.${val}{
+        .map(
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].tablet}
 }`
-				)
-				.join('')}
+        )
+        .join('')}
 ${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 
 }
@@ -158,21 +158,21 @@ ${isValidCSS('width', sticky.width.mobile)}
 }
 
 ${['top', 'bottom']
-				.map(
-					(val) => `${timelineSl}.sticky.${val}{
+        .map(
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].mobile}
 }`
-				)
-				.join('')}
+        )
+        .join('')}
 ${sticky.verticalAlign === 'center' ? `${timelineSl}.sticky.center{top:50%;  transform: translateY(-50%)}` : null}
 ${['left', 'right'].map(
-					(val) => `${timelineSl}.sticky.${val}{
+          (val) => `${timelineSl}.sticky.${val}{
 ${val}:${sticky[val].mobile};
 }`
-				)}
+        )}
 }
 `}
-	</style>
+  </style>
 };
 
 export default TimelineStyle;

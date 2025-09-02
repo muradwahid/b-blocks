@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
-import { TabPanel, PanelBody, PanelRow, TextControl, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
+import { TabPanel, PanelBody, PanelRow, RangeControl, ToggleControl, __experimentalUnitControl as UnitControl, Dashicon, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 
-import { Label, Background, ColorControl, Device, BtnGroup, HelpPanel, InlineDetailMediaUpload, Typography } from '../../../../../../bpl-tools/Components';
-import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
+import { Label, Device, BtnGroup, HelpPanel, Typography, ItemsPanel } from '../../../../../../bpl-tools/Components';
+import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { BControlPro, SelectControlPro } from '../../../../../../bpl-tools/ProControls';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
-import { gearIcon } from '../../../../../../bpl-tools/utils/icons';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
@@ -16,55 +15,58 @@ import { pluginSlug } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
 import { generalStyleTabs } from '../../../../utils/options';
 
-const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, updateCard, isPremium, device }) => {
-	const { cards = [], columns, columnGap, rowGap, layout, link = {}, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo } = attributes;
-	const { target: linkTarget = '_self', element: linkElement = 'card' } = link;
+import { verticalAlignments } from '../../../utils/options';
 
+import ItemSettings from './ItemSettings';
+
+const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPremium, device }) => {
+	const { cards = [], columns, columnGap, rowGap, layout, link = {}, textAlign, padding, imgPos, imgHeight, isCat, catTypo, catMargin, isTitle, titlePos, titleTypo, titleMargin, isDesc, descTypo, imgWidth, imgAlign } = attributes;
+	const { target: linkTarget = '_self', element: linkElement = 'card' } = link;
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
-	const addCard = () => {
-		setAttributes({
-			cards: [...cards, {
-				background: { color: '#0000' },
+	// const addCard = () => {
+	// 	setAttributes({
+	// 		cards: [...cards, {
+	// 			background: { color: '#0000' },
 
-				img: { id: null, url: '', alt: '', title: '' },
-				imgBorder: { radius: '5px' },
+	// 			img: { id: null, url: '', alt: '', title: '' },
+	// 			imgBorder: { radius: '5px' },
 
-				cat: `Category ${cards.length + 1}`,
-				catColor: '#0dcaf0',
+	// 			cat: `Category ${cards.length + 1}`,
+	// 			catColor: '#0dcaf0',
 
-				title: `Card Title ${cards.length + 1}`,
-				titleColor: '#ff7500',
+	// 			title: `Card Title ${cards.length + 1}`,
+	// 			titleColor: '#ff7500',
 
-				desc: `This content area describes card ${cards.length + 1} descriptions/details.`,
-				descColor: '#333'
-			}]
-		});
-		setActiveIndex(cards.length);
+	// 			desc: `This content area describes card ${cards.length + 1} descriptions/details.`,
+	// 			descColor: '#333'
+	// 		}]
+	// 	});
+	// 	setActiveIndex(cards.length);
+	// }
+
+
+	const addCard = {
+		background: { color: '#0000' },
+
+		img: { id: null, url: '', alt: '', title: '' },
+		imgBorder: { radius: '5px' },
+
+		cat: `Category ${cards.length + 1}`,
+		catColor: '#0dcaf0',
+
+		title: `Card Title ${cards.length + 1}`,
+		titleColor: '#ff7500',
+
+		desc: `This content area describes card ${cards.length + 1} descriptions/details.`,
+		descColor: '#333'
 	}
 
-	const duplicateCard = e => {
-		e.preventDefault();
-
-		setAttributes({ cards: [...cards.slice(0, activeIndex), { ...cards[activeIndex] }, ...cards.slice(activeIndex)] });
-
-		setActiveIndex(activeIndex + 1);
-	}
-
-	const removeCard = e => {
-		e.preventDefault();
-
-		setAttributes({ cards: [...cards.slice(0, activeIndex), ...cards.slice(activeIndex + 1)] });
-
-		setActiveIndex(0 === activeIndex ? 0 : activeIndex - 1);
-	}
 
 	const premiumProps = {
 		isPremium,
 		setIsProModalOpen
 	};
-
-	const { background = {}, img = {}, imgBorder = {}, catColor = '', titleColor = '', descColor = '', link: cardLink = '' } = cards[activeIndex] || [{}];
 
 	return <>
 		<InspectorControls>
@@ -73,36 +75,21 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 					<HelpPanel slug={pluginSlug} />
 
 
-					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove Cards', 'b-blocks')}>
-						{null !== activeIndex && <>
-							<h3 className='bplItemTitle'>{__(`Card No ${activeIndex + 1}:`, 'b-blocks')}</h3>
+					<PanelBody className='bPlPanelBody' title={__('Add or Remove Cards', 'b-blocks')}>
+						<ItemsPanel
+							attributes={attributes}
+							setAttributes={setAttributes}
+							activeIndex={activeIndex}
+							setActiveIndex={setActiveIndex}
+							arrKey='cards'
+							title='title'
+							ItemSettings={ItemSettings}
+							itemLabel='Card'
+							newItem={addCard}
+							design={isPremium ? 'sortable':'single'}
+						/>
+						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 
-							<Background label={__('Background:', 'b-blocks')} value={background} onChange={val => updateCard('background', val)} />
-
-							<Label>{__('Image:', 'b-blocks')}</Label>
-							<InlineDetailMediaUpload value={img} onChange={val => updateCard('img', val)} placeholder={__('Enter Image URL', 'b-blocks')} />
-
-							<BorderControl label={__('Image Border:', 'b-blocks')} value={imgBorder} onChange={val => updateCard('imgBorder', val)} defaults={{ radius: '5px' }} />
-
-							<ColorControl label={__('Category Color:', 'b-blocks')} value={catColor} onChange={val => updateCard('catColor', val)} defaultColor='#0dcaf0' />
-
-							<ColorControl label={__('Title Color:', 'b-blocks')} value={titleColor} onChange={val => updateCard('titleColor', val)} defaultColor='#ff7500' />
-
-							<ColorControl label={__('Description Color:', 'b-blocks')} value={descColor} onChange={val => updateCard('descColor', val)} defaultColor='#333' />
-
-							<TextControl className='mt10' label={__('Link:', 'b-blocks')} value={cardLink} onChange={val => updateCard('link', val)} />
-							<span>{__('Insert the link if you want; otherwise, leave it blank.', 'b-blocks')}</span>
-
-							<PanelRow className='itemAction mt20 mb15'>
-								{1 < cards?.length && <Button className='removeItem' label={__('Remove', 'b-blocks')} onClick={removeCard}><Dashicon icon='no' />{__('Remove', 'b-blocks')}</Button>}
-
-								<Button className='duplicateItem' label={__('Duplicate', 'b-blocks')} onClick={duplicateCard}>{gearIcon}{__('Duplicate', 'b-blocks')}</Button>
-							</PanelRow>
-						</>}
-
-						<div className='addItem'>
-							<Button label={__('Add New Card', 'b-blocks')} onClick={addCard}><Dashicon icon='plus' />{__('Add New Card', 'b-blocks')}</Button>
-						</div>
 					</PanelBody>
 
 
@@ -114,12 +101,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 								layout: val,
 								columns: { ...columns, ['desktop']: 'vertical' === val ? 3 : 2 },
 								textAlign: 'vertical' === val ? 'center' : 'left',
-								imgHeight: 'vertical' === val ? '250px' : '200px'
+								imgHeight: 'vertical' === val ? '250px' : '200px',
+								imgWidth: 'vertical' === val ? '90%' : '50%'
 							})} options={[
 								{ label: 'Vertical', value: 'vertical', icon: verticalLineIcon },
 								{ label: 'Horizontal', value: 'horizontal', icon: horizontalLineIcon }
 							]} isIcon={true} />
 						</PanelRow>
+						<small>{__('Some options will be change when you change the layout.', 'b-blocks')}</small>
 
 						<PanelRow className='mt20'>
 							<Label className='mb5'>{__('Columns:', 'b-blocks')}</Label>
@@ -182,6 +171,10 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, upda
 
 					<PanelBody className='bPlPanelBody' title={__('Image', 'b-blocks')} initialOpen={false}>
 						<UnitControl label={__('Height:', 'b-blocks')} labelPosition='left' value={imgHeight} onChange={val => setAttributes({ imgHeight: val })} units={[pxUnit(), perUnit(), emUnit()]} />
+
+						<UnitControl className='mt10' label={__('Width:', 'b-blocks')} labelPosition='left' value={imgWidth} onChange={val => setAttributes({ imgWidth: val })} units={[pxUnit(), perUnit(), emUnit()]} />
+
+						{layout === 'vertical' && <BtnGroup className='mt20' label={__('Alignment', 'b-blocks')} value={imgAlign} onChange={val => setAttributes({ imgAlign: val })} options={verticalAlignments} isIcon={true} />}
 					</PanelBody>
 
 

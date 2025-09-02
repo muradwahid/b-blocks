@@ -4,7 +4,12 @@
 	"title": "Icon Box",
 	"description": "Display awesome icon in a box.",
 	"category": "bBlocks",
-	"keywords": ["icon", "box", "library", "icon library"],
+	"keywords": [
+		"icon",
+		"box",
+		"library",
+		"icon library"
+	],
 	"textdomain": "b-blocks",
 	"attributes": {
 		"align": {
@@ -26,6 +31,12 @@
 				"size": "30px",
 				"shadow": {
 					"type": "text"
+				},
+				"hover": {
+					"color": "",
+					"shadow": {
+						"type": "text"
+					}
 				}
 			}
 		},
@@ -33,8 +44,17 @@
 			"type": "object",
 			"default": {
 				"type": "none",
-				"duration": 1,
-				"delay": 0
+				"duration": 1000,
+				"delay": 0,
+				"iteration": "infinite",
+				"iterationCount": 1,
+				"hover": {
+					"type": "none",
+					"duration": 1000,
+					"delay": 0,
+					"iteration": "initial",
+					"iterationCount": 1
+				}
 			}
 		},
 		"advanced": {
@@ -65,7 +85,10 @@
 		}
 	},
 	"supports": {
-		"align": ["wide", "full"],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false
 	},
 	"example": {

@@ -1,5 +1,31 @@
 export const changelogs = [
 	{
+		version: '2.0.10 - 1 Sep 2025',
+		list: [
+			'Add hover shadow and border-color options for the Button block.',
+			'Fixed icon box hover color.',
+			'Fixed Cursor canvas pointer-event'
+		]
+	},
+	{
+		version: '2.0.9 - 30 Aug 2025',
+		list: [
+			'Added Table of Content block',
+			'Added icon hover option in Team Members.',
+			'Added margin for star rating.'
+		]
+	},
+	{
+		version: '2.0.8 - 25 Aug 2025',
+		list: [
+			'Added cursor shape and click effects.',
+			'Fixed Flipbox title margin and added ItemsPanel.',
+			'Fixed typography controls in Section Heading.',
+			'Added image remove/replace option in Image Gallery.',
+			'Added autoplay option to Button block.'
+		]
+	},
+	{
 		version: '2.0.6 - 6 Aug 2025',
 		list: [
 			'Fixed issues in the Button Block',

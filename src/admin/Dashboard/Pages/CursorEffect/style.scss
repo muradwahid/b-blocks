@@ -1,0 +1,217 @@
+$primaryColor: #146ef5;
+
+@mixin bpl-admin-btn {
+  padding: 12px 25px;
+  border-radius: 6px;
+  background: #146ef5;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 100%;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+  }
+
+  &:hover {
+    &::before {
+      background: #070127;
+      right: 0;
+    }
+  }
+
+  svg {
+    font-size: 22px;
+  }
+}
+
+.b-blocks-custom-cursor-container {
+  // width: 70%;
+  margin: 0 auto;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+
+  .custom-cursor-title {
+    color: #fff;
+    text-align: center;
+    background: $primaryColor;
+    padding: 10px 0;
+    // padding: 10px;
+    margin: 0px;
+  }
+
+
+  .custom-cursor-content-wrapper {
+    display: flex;
+    gap: 26px;
+    height: 100%;
+    flex: 1 1 auto;
+
+    .custom-cursor-settings-container {
+      flex: 2;
+      border: none;
+      // border-right: 3px solid $primaryColor;
+      // padding:10px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      // box-shadow: 0px 0px 10px 2px $primaryColor45;
+      box-shadow: 0px 0px 20px 0px rgba(19, 45, 73, 0.06);
+
+      .custom-cursor-settings {
+        padding: 15px;
+        padding-top: 7px;
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 60px);
+        justify-content: space-between;
+
+        .custom-cursor-dashboard-button {
+          // margin-bottom: 15px;
+          justify-content: center;
+          text-align: center;
+
+          &.btnSaving {
+            background: #0021b5;
+          }
+        }
+
+        .whiteSpaceNoWrap {
+          white-space: nowrap;
+        }
+      }
+
+      .bPlTabPanel {
+
+        .components-base-control__label,
+        .components-input-control__label {
+          font-size: 13px;
+          font-weight: 400;
+          text-transform: unset;
+        }
+      }
+    }
+
+    .custom-cursor-playground-container {
+      flex: 5;
+      display: flex;
+      flex-direction: column;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0px 0px 20px 0px rgba(19, 45, 73, 0.06);
+
+      .custom-cursor-playground {
+        background: #fff;
+        position: relative;
+        height: fit-content;
+        display: flex;
+        flex: 1 1 auto;
+        background: url("https://bblockswp.com/wp-content/themes/b-technologies/assets/images/shape/shape-6.jpg") no-repeat center center / cover;
+        // cursor: url($cursorImg), auto;
+
+        .custom-cursor-playground-contents-wrapper {
+          flex: 1 1 auto;
+          padding: 15px 20px;
+          padding-bottom: 20px;
+          display: grid;
+          align-content: space-between;
+
+          .custom-cursor-playground-contents-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-top: 0px;
+            color: #070127;
+            // text-align: center;
+            // text-transform: uppercase;
+            // text-shadow: -5px 0px 5px rgba(20, 110, 245, 0.24);
+          }
+
+          .custom-cursor-playground-contents-description {
+            font-size: 16px;
+            margin-top: 20px !important;
+            line-height: 1.5 !important;
+            color: #485781;
+
+            .cursorPlaygroundLink {
+              color: #146ef5;
+              font-weight: 600;
+            }
+          }
+
+          .custom-cursor-playground-contents-button-wrapper {
+            margin-top: 50px;
+            display: flex;
+            justify-content: start;
+            gap: 20px;
+            &>a{
+              text-decoration: none
+            }
+            .bPlDashboardPrimaryBtn {
+              @include bpl-admin-btn;
+            }
+
+            .bPlDashboardSecondBtn {
+              @include bpl-admin-btn;
+              background: #ff7a00;
+            }
+          }
+
+          .custom-cursor-playground-contents-features {
+            // margin-top: 150px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+
+            .customCursorPlaygroundCard {
+              background-color: #fff;
+              box-shadow: 0px 10px 10px 0px rgba(19, 45, 73, 0.06);
+              padding: 30px 15px;
+              flex: 1 1 200px;
+              width: 100%;
+              // display: grid;
+              // justify-items: center;
+              // text-align: center;
+              text-align: center;
+              border-radius: 10px;
+              transition: all 0.3s ease-in-out;
+
+              &:hover {
+                box-shadow: 0px 10px 10px 0px rgba(19, 45, 73, 0.2);
+                transform: translateY(-5px);
+                cursor: pointer;
+
+              }
+
+              &>svg {
+                height: 45px;
+                width: 45px;
+              }
+
+              .customCursorPlaygroundCardTitle {
+                margin: 15px 0 !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

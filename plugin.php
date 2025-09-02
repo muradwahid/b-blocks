@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.7
+ * Version: 2.0.10
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.7' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.10' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -108,6 +108,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/posts/Posts.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Templates/Templates.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/LoginForm.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/cursor.php';
 
 	class BBlocks{
 		protected static $_instance = null;
@@ -190,7 +191,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				'social-share',
 				'star-rating',
 				// 'svg-draw',
-				// 'table-of-content',
+				'table-of-content',
 				'td-viewer',
 				'team-members',
 				'video'

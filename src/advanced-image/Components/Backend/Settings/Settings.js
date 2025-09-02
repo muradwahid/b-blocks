@@ -9,6 +9,17 @@ import General from './General/General';
 import Style from './Style/Style';
 import { allTabs } from '../../../../utils/options';
 import Advanced from '../../../../../../bpl-tools/Advanced'
+const defEnabled = {
+	dimension: ['padding', 'margin', 'width','minHeight', 'maxHeight'],
+	transform: true,
+	background: ['normal', 'hover', 'overlay'],
+	borderShadow: ['normal', 'hover', 'border', 'shadow'],
+	mask: true,
+	animation: true,
+	visibility: ['zIndex', 'overflow'],
+	responsive: true,
+	css: true
+}
 
 const Settings = ({ attributes, setAttributes, updateObj, isPremium, device }) => {
 	const { image } = attributes;
@@ -23,7 +34,7 @@ const Settings = ({ attributes, setAttributes, updateObj, isPremium, device }) =
 
 					{'style' === tab.name && <Style {...props} />}
 
-					{'advanced' === tab.name && <Advanced advanced={attributes.advanced} onChange={value => setAttributes({ advanced: value })} isPremium={isPremium} />}
+					{'advanced' === tab.name && <Advanced advanced={attributes.advanced} onChange={value => setAttributes({ advanced: value })} isPremium={isPremium} enabled={defEnabled} />}
 
 				</>}
 			</TabPanel>

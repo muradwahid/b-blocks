@@ -4,7 +4,7 @@ import { TabPanel } from '@wordpress/components';
 import Advanced from '../../../../../../bpl-tools/Advanced';
 import { HelpPanel } from '../../../../../../bpl-tools/Components';
 
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
+import { updateAttributes } from '../../../../../../bpl-tools/utils/functions';
 import { pluginSlug } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
 import General from './General/General';
@@ -12,9 +12,7 @@ import General from './General/General';
 const Settings = (props) => {
 	const { attributes, setAttributes } = props;
 	const { advanced } = attributes;
-	const updateObj = (property, val, ...props) => {
-		setAttributes({ [property]: updateData(attributes[property], val, ...props) });
-	}
+	const updateObj = updateAttributes(attributes,setAttributes);
 
 	return <InspectorControls>
 		<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>

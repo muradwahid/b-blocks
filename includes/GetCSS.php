@@ -183,7 +183,7 @@ class GetCSS{
 		$mobileBreakpoint = '@media only screen and (max-width: 640px)';
 
 		$styles = 
-			($isEmptyFamily ? '' : "font-family: '$fontFamily', $fontCategory;") .
+			($isEmptyFamily ? '' : "font-family: $fontFamily, $fontCategory;") .
 			self::isValidCSS('font-weight', $fontWeight) .
 			self::isValidCSS('font-size', self::checkUnit($desktopFontSize)) .
 			self::isValidCSS('font-style', $fontStyle) .

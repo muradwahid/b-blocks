@@ -1,15 +1,15 @@
-$primaryColor: #146EF5;
+$primaryColor: #146ef5;
 
-.tbcn-iconPicker-main-wrapper {
+.bblocks-tbcn-iconPicker-main-wrapper {
   position: relative;
 
-  .tbcn-iconPicker-wrapper {
+  .bblocks-tbcn-iconPicker-wrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .tbcn-iconPicker {
+    .bblocks-tbcn-iconPicker {
       display: flex;
       height: 27px;
       width: 57px;
@@ -28,7 +28,7 @@ $primaryColor: #146EF5;
     }
   }
 
-  .tbcn-iconPicker-popover-icons {
+  .bblocks-tbcn-iconPicker-popover-icons {
     position: absolute;
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@ $primaryColor: #146EF5;
     z-index: 9999;
     right: 0px;
 
-    .tbcn-single-icon-picker-admin {
+    .bblocks-tbcn-single-icon-picker-admin {
       display: flex;
       align-self: center;
       border: 1px solid #ccc;
@@ -52,11 +52,11 @@ $primaryColor: #146EF5;
       position: relative;
       transition: all 0.2s ease-in-out;
 
-      &>svg {
+      & > svg {
         height: 15px;
       }
 
-      .tbcn-icon-picker-tooltip-container {
+      .bblocks-tbcn-icon-picker-tooltip-container {
         position: absolute;
         top: -25px;
         left: 50%;
@@ -64,7 +64,7 @@ $primaryColor: #146EF5;
         display: none;
         transition: display 0.3s ease-in-out;
 
-        .tbcn-icon-picker-tooltip {
+        .bblocks-tbcn-icon-picker-tooltip {
           position: relative;
           background: #0c0d0e;
           border-radius: 4px;
@@ -87,7 +87,7 @@ $primaryColor: #146EF5;
       }
 
       &:hover {
-        .tbcn-icon-picker-tooltip-container {
+        .bblocks-tbcn-icon-picker-tooltip-container {
           display: block;
         }
       }

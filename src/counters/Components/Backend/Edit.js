@@ -8,12 +8,15 @@ import Style from '../Common/Style';
 import Counter from '../Common/Counter';
 import { performCounter } from '../../utils/functions';
 import { prefix } from '../../utils/data';
+import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { counters = [], columns, duration, separator = {}, isLabel } = attributes;
 
 	const [activeIndex, setActiveIndex] = useState(0);
+
+	const { isPremium } = usePremiumInEditor();
 
 	useEffect(() => {
 		const counterEl = document.querySelectorAll(`.${prefix} .counterNumber .number`);
@@ -33,7 +36,7 @@ const Edit = props => {
 	}
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} updateCounter={updateCounter} />
+		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} isPremium={isPremium} />
 
 		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={`block-${clientId}`} />

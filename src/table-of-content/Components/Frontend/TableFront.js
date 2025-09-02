@@ -19,47 +19,47 @@ const TableFront = ({ attributes, id }) => {
         setAccordionHeight(accordionPanel?.current?.scrollHeight + "px");
     }, []);
     return <>
-            <Style toggle={toggle} attributes={attributes} id={id} />
-            <div ref={accordion} className={`tbcn-accordion ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}`}>
-                <div ref={titleRef} onClick={() => setToggle(!toggle)} className="tbcn-accordion-title">
-                    <DynamicTag className="tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
-                    {/* {minimize.toggle && <>{!toggle ? <i style={{ color: header.iconColor }} className={minimize.collapseIcon}></i> : <i style={{ color: header.iconColor }} className={minimize.expandIcon}></i>}</>} */}
-                    {minimize.toggle && <>{!toggle ? collapseIcons.map(({ value: val, icon }) => val === minimize.collapseIcon && icon) : expandIcons.map(({ value: val, icon }) => val === minimize.expandIcon && icon)}</>}
-                </div>
-                <div
-                    ref={accordionPanel}
-                    style={{
-                        height: toggle ? (minimize.toggle ? "0px" : accordionHeight) : accordionHeight,
-                    }}
-                    className="tbcn-panel"
-                >
-                    {headings?.length > 0 ? (
-                        <ol className="tbcn-panel-table-container-order-list">
-                            {headings.map(
-                                (headingElement, idx) =>
-                                    headingElement.contents.length > 0 && (
-                                        <>
-                                            <li className="tbcn-panel-table-list-items" onClick={() => setContentsAttr(idx)} key={idx}>
-                                                {markup.view !== "decimal" && (
-                                                    <span>
-                                                        {bullets.map(({ value: val, icon }) => val === markup.icon && icon)}
-                                                        {/* <i style={{ fontSize: "10px" }} className={`${markup.icon}`}></i> */}
-                                                    </span>
-                                                )}
-                                                <a className={`tbcn-table-content-anchor-list ${idx === contentsAttr ? "item-active" : ""}`} href={`#${headingElement.id}`}>
-                                                    {headingElement.contents}
-                                                </a>
-                                            </li>
-                                        </>
-                                    )
-                            )}
-                        </ol>
-                    ) : (
-                        <NoHeading />
-                    )}
-                </div>
+        <Style toggle={toggle} attributes={attributes} id={id} />
+        <div ref={accordion} className={`bblocks-tbcn-accordion ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}`}>
+            <div ref={titleRef} onClick={() => setToggle(!toggle)} className="bblocks-tbcn-accordion-title">
+                <DynamicTag className="bblocks-tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+                {/* {minimize.toggle && <>{!toggle ? <i style={{ color: header.iconColor }} className={minimize.collapseIcon}></i> : <i style={{ color: header.iconColor }} className={minimize.expandIcon}></i>}</>} */}
+                {minimize.toggle && <>{!toggle ? collapseIcons.map(({ value: val, icon }) => val === minimize.collapseIcon && icon) : expandIcons.map(({ value: val, icon }) => val === minimize.expandIcon && icon)}</>}
             </div>
-        </> 
+            <div
+                ref={accordionPanel}
+                style={{
+                    height: toggle ? (minimize.toggle ? "0px" : accordionHeight) : accordionHeight,
+                }}
+                className="bblocks-tbcn-panel"
+            >
+                {headings?.length > 0 ? (
+                    <ol className="bblocks-tbcn-panel-table-container-order-list">
+                        {headings.map(
+                            (headingElement, idx) =>
+                                headingElement.contents.length > 0 && (
+                                    <>
+                                        <li className="bblocks-tbcn-panel-table-list-items" onClick={() => setContentsAttr(idx)} key={idx}>
+                                            {markup.view !== "decimal" && (
+                                                <span>
+                                                    {bullets.map(({ value: val, icon }) => val === markup.icon && icon)}
+                                                    {/* <i style={{ fontSize: "10px" }} className={`${markup.icon}`}></i> */}
+                                                </span>
+                                            )}
+                                            <a className={`bblocks-tbcn-table-content-anchor-list ${idx === contentsAttr ? "item-active" : ""}`} href={`#${headingElement.id}`}>
+                                                {headingElement.contents}
+                                            </a>
+                                        </li>
+                                    </>
+                                )
+                        )}
+                    </ol>
+                ) : (
+                    <NoHeading />
+                )}
+            </div>
+        </div>
+    </>
 };
 
 export default TableFront;
