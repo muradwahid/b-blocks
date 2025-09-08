@@ -11,6 +11,7 @@ import { updateData } from '../../../../../../bpl-tools/utils/functions';
 import { allTabs } from '../../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
+import { pricingPage } from '../../../../utils/data';
 
 const Settings = (props) => {
 	const { attributes, setAttributes, isPremium } = props;
@@ -43,7 +44,7 @@ const Settings = (props) => {
 			</TabPanel>
 		</InspectorControls>
 
-		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link='https://bblockswp.com/#pricing'>
+		<AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link={pricingPage}>
 			<li>
 				&emsp;<strong>{__('Feature: ', 'b-blocks')}</strong>
 				{__('Feature details.', 'b-blocks')}

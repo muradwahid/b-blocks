@@ -19,3 +19,6 @@ export const rowDocs = `${docsURL}row-block/`;
 export const servicesDocs = `${docsURL}services-section-block/`;
 export const socialShareDocs = `${docsURL}social-share-block/`;
 export const teamMembersDocs = `${docsURL}team-block/`;
+
+
+export const pricingPage= `${location.origin}/wp-admin/tools.php?page=b-blocks#/pricing`

@@ -22,7 +22,7 @@ import './counters';
 import './feature-boxes';
 import './flip-boxes';
 import './gif';
-// import './html';
+import './html';
 import './icon-box';
 import './image-comparison';
 import './image-gallery';

@@ -10,7 +10,7 @@ import { tabController } from '../../../../../../bpl-tools/utils/functions';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
-import { pluginSlug, countersDocs } from '../../../../utils/data';
+import { pluginSlug, countersDocs, pricingPage } from '../../../../utils/data';
 import { generalStyleTabs } from '../../../../utils/options';
 import { themes, iconPositions, sepChars } from '../../../utils/options';
 
@@ -62,7 +62,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 							newItem={addCounter}
 							design={isPremium ? 'sortable' : 'single'}
 						/>
-						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
+						{!isPremium && <small> <b><a href={pricingPage} target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 					</PanelBody>
 
 

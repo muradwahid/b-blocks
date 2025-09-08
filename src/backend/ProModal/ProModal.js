@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { Modal } from '@wordpress/components';
 
 import './ProModal.scss';
-import { siteURL } from '../../utils/data';
+import { pricingPage } from '../../utils/data';
 
 const proBlocks = ['Posts', 'Countdown', 'Slider', 'Lottie Player', 'Button', 'Cards', 'Image Comparison'];
 
@@ -24,7 +24,7 @@ const ProModal = ({ isProModalOpen, setIsProModalOpen, block, children }) => {
 }
 export default ProModal;
 
-const UpgradeBtn = () => <a className='upgradeNow' href={`${siteURL}#pricing`} target='_blank' rel='noreferrer'>{__('Upgrade Now', 'advanced-post-block')}</a>
+const UpgradeBtn = () => <a className='upgradeNow' href={pricingPage} target='_blank' rel='noreferrer'>{__('Upgrade Now', 'advanced-post-block')}</a>
 
 const Title = () => <>
 	{__('Upgrade to B Blocks Pro for advanced features', 'b-blocks')}

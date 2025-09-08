@@ -4,7 +4,7 @@ import { parse } from '@wordpress/blocks';
 import { Spinner } from '@wordpress/components';
 
 import { externalIcon } from '../utils/icons';
-import { siteURL } from '../../../utils/data';
+import { pricingPage } from '../../../utils/data';
 
 const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, templatesLoading, children }) => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +67,7 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 								});
 						}
 					} : {
-						href: `${siteURL}#pricing`,
+						href:pricingPage,
 						target: '_blank',
 						rel: 'noreferrer'
 					};

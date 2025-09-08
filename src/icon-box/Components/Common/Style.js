@@ -28,15 +28,15 @@ const Style = ({ attributes, id, extraCSS = '' }) => {
 
 			${mainSl}:hover> svg {
 				${isValidCSS('fill', icon?.hover?.color)}
-				${isValidCSS('filter', isExist(icon?.hover?.shadow)? `drop-shadow(${getShadowCSS(icon?.hover?.shadow, 'text')})`:'')}
+				${isValidCSS('filter', isExist(icon?.hover?.shadow) ? `drop-shadow(${getShadowCSS(icon?.hover?.shadow, 'text')})` : '')}
 			}
 
 			${mainSl}.${type} {
 				animation: ${animationFunc('n', type, duration, delay, iteration === 'number' ? iterationCount : iteration)}
 			}
 				
-			${mainSl}.${hover.type}:hover{
-				animation: ${animationFunc('h', hover.type, hover.duration, hover.delay, hover.iteration === 'number' ? hover.iterationCount : hover.iteration)}
+			${mainSl}.${hover?.type}:hover{
+				animation: ${animationFunc('h', hover?.type, hover?.duration, hover?.delay, hover?.iteration === 'number' ? hover?.iterationCount : hover?.iteration)}
 			}
 `.replace(/\s+/g, ' ')
 	}} />;

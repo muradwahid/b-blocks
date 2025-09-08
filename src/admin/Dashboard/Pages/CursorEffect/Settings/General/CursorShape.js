@@ -14,7 +14,7 @@ const CursorShape = ({ bBlocksCursor, setBBlocksCursor, isPremium, isProModalOpe
         {
           tab => <>
             {tab.name == 'type' && <>
-              <ToggleControl className="mt10" defaultValue={true} label={__("Enable Default Cursor", "advanced-scrollbar")} checked={enableCursor} onChange={value => setBBlocksCursor({ ...bBlocksCursor, enableCursor: value })} />
+              <ToggleControl className="mt10" defaultValue={true} label={__("Enable Default Cursor", 'b-blocks')} checked={enableCursor} onChange={value => setBBlocksCursor({ ...bBlocksCursor, enableCursor: value })} />
               <ShapeType value={bBlocksCursor?.shape || {}} onChange={value => setBBlocksCursor({ ...bBlocksCursor, shape: value })}  {...{ isProModalOpen, setIsProModalOpen, isPremium }} />
             </>}
             {tab.name == 'style' && <ShapeStyle value={bBlocksCursor?.shape || {}} onChange={value => setBBlocksCursor({ ...bBlocksCursor, shape: value })} />}

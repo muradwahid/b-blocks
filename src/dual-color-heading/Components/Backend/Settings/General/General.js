@@ -45,7 +45,9 @@ const General = (props) => {
 
 					{separator.iconType === "upload" && <>
 						<Label>Icon</Label>
-						<MediaArea types="image/svg+xml" value={{ url: separator.icon.upload }} default={svgIcon} label={__("Choose SVG", "b-blocks")} className="dual-color-heading-icon" onChange={(value) => updateObj('separator', value, 'icon', 'upload')} />
+						<MediaArea
+						//  types="image/svg+xml" 
+						value={{ url: separator.icon.upload }} default={svgIcon} label={__("Choose SVG", "b-blocks")} className="dual-color-heading-icon" onChange={(value) => updateObj('separator', value, 'icon', 'upload')} />
 					</>}
 				</>}
 			</>}
@@ -68,7 +70,9 @@ const General = (props) => {
 					{icon.iconType === "upload" && (
 						<>
 							<Label>{__("Icon", "b-blocks")}</Label>
-							<MediaArea types="image/svg+xml" default={oktaIconSvg} value={icon.icon.upload} label={__("Choose SVG", "b-blocks")} onChange={(value) => setAttributes({ icon: updateData(icon, value, "icon", "upload"), })} />
+							<MediaArea 
+							// types="image/svg+xml"
+							default={oktaIconSvg} value={icon.icon.upload} label={__("Choose SVG", "b-blocks")} onChange={(value) => setAttributes({ icon: updateData(icon, value, "icon", "upload"), })} />
 						</>
 					)}
 				</>

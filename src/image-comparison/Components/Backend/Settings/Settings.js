@@ -95,42 +95,42 @@ const Settings = ({ attributes, setAttributes, isPremium, activeIndex, setActive
         </InspectorControls>
 
         <ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Image Comparison'>
-            <li>&emsp;<strong>{__('Theme: ', 'image-compare')}</strong>{__('Create stunning before & after image comparisons in both single view and slider formats.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Theme: ', 'b-blocks')}</strong>{__('Create stunning before & after image comparisons in both single view and slider formats.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Label Position: ', 'image-compare')}</strong>{__('Customize the label position to suit your needs.', 'image-compare')}</li>
-            {/* <li>&emsp;<strong>{__('Line Shape: ', 'image-compare')}</strong>{__('Customize the line shape for a unique and eye-catching design.', 'image-compare')}</li> */}
+            <li>&emsp;<strong>{__('Label Position: ', 'b-blocks')}</strong>{__('Customize the label position to suit your needs.', 'b-blocks')}</li>
+            {/* <li>&emsp;<strong>{__('Line Shape: ', 'b-blocks')}</strong>{__('Customize the line shape for a unique and eye-catching design.', 'b-blocks')}</li> */}
 
-            <li>&emsp;<strong>{__('Default Offset: ', 'image-compare')}</strong>{__('Adjusts the initial position of the slider.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Default Offset: ', 'b-blocks')}</strong>{__('Adjusts the initial position of the slider.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Move Slider On Click: ', 'image-compare')}</strong>{__('Enable the option to move the slider when the user clicks on it.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Move Slider On Click: ', 'b-blocks')}</strong>{__('Enable the option to move the slider when the user clicks on it.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Move Slider On Mouse Over: ', 'image-compare')}</strong>{__('Enable the option to move the slider when the mouse hover over it.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Move Slider On Mouse Over: ', 'b-blocks')}</strong>{__('Enable the option to move the slider when the mouse hover over it.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Auto Slide: ', 'image-compare')}</strong>{__('Activate automatic sliding on the compare images.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Auto Slide: ', 'b-blocks')}</strong>{__('Activate automatic sliding on the compare images.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Auto Slide Speed: ', 'image-compare')}</strong>{__('Set the speed of the auto moving slider.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Auto Slide Speed: ', 'b-blocks')}</strong>{__('Set the speed of the auto moving slider.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Stop Slider On Mouse Over: ', 'image-compare')}</strong>{__('Pause the sliding movement when the mouse is over the images.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Stop Slider On Mouse Over: ', 'b-blocks')}</strong>{__('Pause the sliding movement when the mouse is over the images.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Line Size: ', 'image-compare')}</strong>{__('Adjust the line size to your preferred thickness.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Line Size: ', 'b-blocks')}</strong>{__('Adjust the line size to your preferred thickness.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Line Color: ', 'image-compare')}</strong>{__('Choose a desired color for the line.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Line Color: ', 'b-blocks')}</strong>{__('Choose a desired color for the line.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Handler Color: ', 'image-compare')}</strong>{__('Choose a desired color for the handler.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Handler Color: ', 'b-blocks')}</strong>{__('Choose a desired color for the handler.', 'b-blocks')}</li>
 
-            <li>&emsp;<strong>{__('Icon Color: ', 'image-compare')}</strong>{__('Select the icon color from the options provided to match your design.', 'image-compare')}</li>
+            <li>&emsp;<strong>{__('Icon Color: ', 'b-blocks')}</strong>{__('Select the icon color from the options provided to match your design.', 'b-blocks')}</li>
         </ProModal>
 
 
         {
             theme === "default" && <BlockControls>
-                <MediaEditControl label={__('Edit Before Image:', 'image-compare')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
-                <MediaEditControl label={__('Edit After Image:', 'image-compare')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
+                <MediaEditControl label={__('Edit Before Image:', 'b-blocks')} value={beforeImg} onChange={val => setAttributes({ beforeImg: val })} />
+                <MediaEditControl label={__('Edit After Image:', 'b-blocks')} value={afterImg} onChange={val => setAttributes({ afterImg: val })} />
 
                 <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Image Comparison Alignment')} alignmentControls={[
-                    { title: __('Image Comparison in left', 'image-compare'), align: 'left', icon: 'align-left' },
-                    { title: __('Image Comparison in center', 'image-compare'), align: 'center', icon: 'align-center' },
-                    { title: __('Image Comparison in right', 'image-compare'), align: 'right', icon: 'align-right' }
+                    { title: __('Image Comparison in left', 'b-blocks'), align: 'left', icon: 'align-left' },
+                    { title: __('Image Comparison in center', 'b-blocks'), align: 'center', icon: 'align-center' },
+                    { title: __('Image Comparison in right', 'b-blocks'), align: 'right', icon: 'align-right' }
                 ]} />
             </BlockControls>
         }

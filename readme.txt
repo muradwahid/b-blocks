@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.10
+Stable tag: 2.0.11
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -15,7 +15,7 @@ B Blocks enhances the Gutenberg editor with over 30 custom blocks for layout, co
 **B Blocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 30+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
 
 
-[**B Blocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/#pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
+[**B Blocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
 
 [**B Blocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, B Blocks extends the capabilities of core blocks by adding 30+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
 
@@ -40,7 +40,7 @@ Whether you're building a landing page, blog layout, portfolio, or full website,
 
 ## Pro Features – Unlock Advanced Block Controls
 
-Upgrade to [**B Blocks Pro**](https://bblockswp.com/#pricing) to supercharge specific blocks with advanced layout settings, styling controls, device visibility options, and interactive enhancements. These premium features are perfect for building more dynamic, flexible, and professional-looking pages using the Gutenberg editor.
+Upgrade to [**B Blocks Pro**](https://bblockswp.com/pricing) to supercharge specific blocks with advanced layout settings, styling controls, device visibility options, and interactive enhancements. These premium features are perfect for building more dynamic, flexible, and professional-looking pages using the Gutenberg editor.
 
 ### Posts Block
 Enhance your content display with rich layout options and advanced filtering:
@@ -124,7 +124,7 @@ Bring engaging animations to your site with interactive Lottie files:
 - **Interactivity Rules**: Define when and where the animation should play.
 - **Caption & Styling**: Add and style a caption with full typography, spacing, and color controls.
 
-[**Try the Pro Version**](https://bblockswp.com/#pricing) – Unlock all premium features today!
+[**Try the Pro Version**](https://bblockswp.com/pricing) – Unlock all premium features today!
 
 
 ## Available Blocks
@@ -205,7 +205,7 @@ B Blocks adds over 30+ custom blocks to your Gutenberg block editor, designed to
 3. Add blocks to your page or post and configure settings from the right-hand panel.
 4. Save and publish your design.
 
-[**Live Demo**](https://bblockswp.com/#demos) | [**Try The Pro**](https://bblockswp.com/#pricing)
+[**Live Demo**](https://bblockswp.com/demos) | [**Try The Pro**](https://bblockswp.com/pricing)
 
 
 ## Compatibility
@@ -360,11 +360,16 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 2.0.11 - 7 Sep 2025 =
+* Added HTML Block.
+* Added Pricing page in the Dashboard.
+* More icon added on icon library
+
 = 2.0.10 - 1 Sep 2025 =
 * Add hover shadow and border-color options for the Button block.
 * Fixed icon box hover color.
 * Fixed Cursor canvas pointer-event
-* Fixed add gradient color
+* Fixed advanced gradient color
 
 = 2.0.9 - 30 Aug 2025 =
 * Added Table of Content block.

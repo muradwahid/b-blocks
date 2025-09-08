@@ -34,9 +34,7 @@
 				},
 				"hover": {
 					"color": "",
-					"shadow": {
-						"type": "text"
-					}
+					"shadow": {}
 				}
 			}
 		},

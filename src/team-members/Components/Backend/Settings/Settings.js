@@ -9,7 +9,7 @@ import { SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated'
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 import { primaryColor } from '../../../../../../bpl-tools/utils/data';
 
-import { pluginSlug, teamMembersDocs } from '../../../../utils/data';
+import { pluginSlug, pricingPage, teamMembersDocs } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
 import { aligns, generalStyleTabs } from '../../../../utils/options';
 import ItemSettings from './ItemSettings';
@@ -86,7 +86,7 @@ const Settings = ({ attributes, setAttributes, updateMember, activeIndex, setAct
 							newItem={addMember()}
 							design={isPremium ? 'sortable' : 'single'}
 						/>
-						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
+						{!isPremium && <small> <b><a href={pricingPage} target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 
 					</PanelBody>
 

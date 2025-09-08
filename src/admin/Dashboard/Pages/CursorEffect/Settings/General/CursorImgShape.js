@@ -7,13 +7,13 @@ const CursorImgShape = ({ bBlocksCursor, setBBlocksCursor, dirUrl, isPremium, is
   return (
     <div className='mt20'>
 
-
       {/* <BControlPro isPremium={isPremium} setIsProModalOpen={setIsProModalOpen} labelPosition='edge' label={__('Theme', 'image-compare')} value={theme} options={[{ label: "Default", value: "default" }, { label: "Slider", value: "slider" }]} onChange={(val) => setAttributes({ theme: val })} Component={SelectControl} /> */}
 
       <Flex justify='center'>
         <RadioControlPro
-          label={__("Select Cursor Image", "advanced-scrollbar")}
-          help="Select any option for showing cursor"
+          label={__("Select Cursor", 'b-blocks')}
+          help=""
+          className="bBlocks-radioPremium-control"
           selected={bBlocksCursor?.shape?.customImg?.img}
           options={[
             { label: <img src={dirUrl + "assets/cursorImg/cursor1.png"}></img>, value: `${dirUrl}assets/cursorImg/cursor1.png` },

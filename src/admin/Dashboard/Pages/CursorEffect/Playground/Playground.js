@@ -9,6 +9,7 @@ import useCursorVisibility from "../../../../../customCursor/hooks/useCursorVisi
 import Card from './Card';
 import { cardOptions } from './options';
 import { isSet } from '../../../../../customCursor/utils/common';
+import { pricingPage } from '../../../../../utils/data';
 // import CursorEffects from '../../../../src/settings/options/CursorEffects';
 const Playground = ({ info }) => {
   const { nonce } = info;
@@ -57,7 +58,7 @@ const Playground = ({ info }) => {
 
           <div className='custom-cursor-playground-contents-button-wrapper'>
             <a href={`https://bblockswp.com/#demos`} target='_blank' rel="noreferrer" className='bPlDashboardPrimaryBtn'>See Demo</a>
-            <a href={`https://bblockswp.com/#pricing`} target='_blank' rel="noreferrer" className='bPlDashboardSecondBtn'>Buy Now</a>
+            <a href={pricingPage} target='_blank' rel="noreferrer" className='bPlDashboardSecondBtn'>Buy Now</a>
           </div>
         </div>
 

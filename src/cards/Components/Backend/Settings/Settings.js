@@ -11,7 +11,7 @@ import { tabController } from '../../../../../../bpl-tools/utils/functions';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 
 import ProModal from '../../../../backend/ProModal/ProModal';
-import { pluginSlug } from '../../../../utils/data';
+import { pluginSlug, pricingPage } from '../../../../utils/data';
 import { horizontalLineIcon, verticalLineIcon } from '../../../../utils/icons';
 import { generalStyleTabs } from '../../../../utils/options';
 
@@ -88,7 +88,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 							newItem={addCard}
 							design={isPremium ? 'sortable':'single'}
 						/>
-						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
+						{!isPremium && <small> <b><a href={pricingPage} target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 
 					</PanelBody>
 

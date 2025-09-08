@@ -1,10 +1,18 @@
 export const changelogs = [
 	{
+		version: '2.0.11 - 7 Sep 2025',
+		list: [
+			'Added HTML Block.',
+			'Added Pricing page in the Dashboard.'
+		]
+	},
+	{
 		version: '2.0.10 - 1 Sep 2025',
 		list: [
 			'Add hover shadow and border-color options for the Button block.',
 			'Fixed icon box hover color.',
-			'Fixed Cursor canvas pointer-event'
+			'Fixed Cursor canvas pointer-event',
+			'Fixed advanced gradient color'
 		]
 	},
 	{
@@ -121,3 +129,90 @@ export const helpItems = [
 		linkText: 'Rate the Plugin'
 	}
 ];
+
+
+export const pricingInfo = {
+	cycles: [
+		{
+			cycle: 'monthly',
+			label: 'Monthly',
+			isDefault: false
+		},
+		{
+			cycle: 'annual',
+			label: 'Yearly',
+			isDefault: true
+		},
+		{
+			cycle: 'lifetime',
+			label: 'Lifetime',
+			isDefault: false
+		}
+	],
+	plans: [
+		{
+			name: 'Single Site',
+			quantity: 1,
+			prices: {
+				monthly: '4.99',
+				annual: '49.99',
+				lifetime: '99.99'
+			},
+			pricePrefix: '',
+			priceSuffix: '',
+			isFeatured: false,
+			note: ''
+		},
+		{
+			name: '3 Sites',
+			quantity: 3,
+			prices: {
+				monthly: '8.99',
+				annual: '83.99',
+				lifetime: '259.99'
+			},
+			pricePrefix: '',
+			priceSuffix: '',
+			isFeatured: true,
+			note: ''
+		},
+		{
+			name: 'Unlimited Sites',
+			quantity: 'null',
+			prices: {
+				monthly: '33.99',
+				annual: '323.88',
+				lifetime: '979.99'
+			},
+			pricePrefix: '',
+			priceSuffix: '',
+			isFeatured: false,
+			note: ''
+		}
+	],
+	features: [
+		'200+ Pre-designed Patterns',
+		'10+ Dynamic Blocks',
+		'4+ Layout & container',
+		'8+ Media & visual blocks',
+		'3+ Content & Typography',
+		'4+ Cards & Pricing',
+		'4+ Interactive & Controls',
+		'2+ Data & Lists',
+		'2+ Social & Sharing',
+		'2+ Icons & small UI'
+	],
+	button: {
+		label: 'Buy Now ➜'
+	},
+	featured: {
+		text: 'Best Value'
+	}
+}
+
+
+export const freemius = {
+	product_id: '12845',
+	plan_id: '21619',
+	public_key: 'pk_d6426b344df4918bc066a7a0b4719',
+}

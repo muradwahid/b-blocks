@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
 export const cursorStyleTabs = [
-  { name: 'shape', title: __('Cursor Shape', 'b-blocks') },
+  { name: 'shape', title: __('Cursor', 'b-blocks') },
   { name: 'effect', title: __('Click Effect', 'b-blocks') }
 ];
 
 export const cursorShapeTabs = [
-  { name: 'shape', title: __('Cursor Shape', 'b-blocks') },
+  { name: 'shape', title: __('Cursor', 'b-blocks') },
   { name: 'style', title: __('Shape Style', 'b-blocks') }
 ];
 
@@ -17,9 +17,9 @@ export const cursorEffectTabs = [
 // export const 
 
 export const cursorSourceOptions = (isPremium) => [
-  { label: __('Cursor Only', 'b-blocks'), value: 'cursor', default: true },
-  { label: __('Cursor Shape', 'b-blocks'), value: 'shape' },
-  { label: __(`Pre Defined Image ${isPremium ? '' : '(Pro)'}`, 'b-blocks'), value: 'predefined' },
+  { label: __('Default', 'b-blocks'), value: 'cursor', default: true },
+  { label: __('Customizable Shape', 'b-blocks'), value: 'shape' },
+  { label: __(`Most Popular ${isPremium ? '' : '(Pro)'}`, 'b-blocks'), value: 'predefined' },
   { label: __(`Custom Url ${isPremium ? '' : '(Pro)'}`, 'b-blocks'), value: 'customUrl' },
 ]
 

@@ -55,10 +55,14 @@ const Settings = ({ info, isProModalOpen, setIsProModalOpen, isPremium }) => {
           {tab => <>
 
             {tab.name == "shape" && <>
-              <SelectControl className="mt10" label={__("Select Cursor Source", "advanced-scrollbar")} labelPosition="edge" options={cursorSourceOptions(isPremium)} value={bBlocksCursor?.source} onChange={value => setBBlocksCursor({ ...bBlocksCursor, source: value })} />
+              <SelectControl className="mt10" label={__("Select Cursor Source", 'b-blocks')} labelPosition="edge" options={cursorSourceOptions(isPremium)} value={bBlocksCursor?.source} onChange={value => setBBlocksCursor({ ...bBlocksCursor, source: value })} />
               {bBlocksCursor?.source === "shape" && <CursorShape {...{ bBlocksCursor, setBBlocksCursor, isPremium, isProModalOpen, setIsProModalOpen }} />}
               {bBlocksCursor?.source === "predefined" && <CursorImgShape {...{ bBlocksCursor, setBBlocksCursor, dirUrl, isPremium, isProModalOpen, setIsProModalOpen }} />}
-              {bBlocksCursor?.source === "customUrl" && <BControlPro label={__("Choose Cursor Image", "advanced-scrollbar")} value={bBlocksCursor?.shape?.customImg?.url} onChange={value => setBBlocksCursor({ ...bBlocksCursor, shape: { ...bBlocksCursor?.shape, customImg: { ...bBlocksCursor?.shape?.customImg, url: value } } })} Component={InlineMediaUpload} isPremium={isPremium} setIsProModalOpen={setIsProModalOpen} />}
+              {bBlocksCursor?.source === "customUrl" && <>
+                <BControlPro label={__("Choose Cursor Image", 'b-blocks')} value={bBlocksCursor?.shape?.customImg?.url} onChange={value => setBBlocksCursor({ ...bBlocksCursor, shape: { ...bBlocksCursor?.shape, customImg: { ...bBlocksCursor?.shape?.customImg, url: value } } })} Component={InlineMediaUpload} isPremium={isPremium} setIsProModalOpen={setIsProModalOpen} />
+
+                <span className='mt10'> <small><i>Provide a cursor image in PNG format by either entering a direct URL to the file or selecting an existing file from the media library. The image must be a PNG between 10px and 128px, with a transparent background being preferred.</i></small></span>
+              </>}
 
             </>}
             {tab.name == "effect" && <CursorEffect {...{ bBlocksCursor, setBBlocksCursor, isPremium, isProModalOpen, setIsProModalOpen }} />}

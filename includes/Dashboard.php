@@ -183,7 +183,8 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 			<div id='bBlocksDashboard' data-info=<?php echo esc_attr( wp_json_encode([
 				'version' => B_BLOCKS_VERSION,
 				'nonce' => wp_create_nonce( 'wp_ajax' ),
-				'dirUrl' => B_BLOCKS_DIR_URL
+				'dirUrl' => B_BLOCKS_DIR_URL,
+				'isPremium' => Utils::isPro()
 			]) ); ?>></div>
 		<?php }
 	}

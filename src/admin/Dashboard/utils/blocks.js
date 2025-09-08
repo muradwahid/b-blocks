@@ -174,7 +174,7 @@ export default [
 		icon: htmlIcon,
 		demo: ``,
 		docs: ``,
-		status: 'inDev'
+		status: 'published'
 	},
 	{
 		name: `${pluginSlug}/icon-box`,
@@ -366,7 +366,7 @@ export default [
 		icon: tableOfContentIcon,
 		demo: ``,
 		docs: ``,
-		status: 'inDev'
+		status: 'published'
 	},
 	{
 		name: `${pluginSlug}/team-members`,

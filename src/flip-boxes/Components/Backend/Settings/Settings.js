@@ -10,7 +10,7 @@ import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/optio
 
 import { generalStyleTabs } from '../../../../utils/options';
 
-import { pluginSlug } from '../../../../utils/data';
+import { pluginSlug, pricingPage } from '../../../../utils/data';
 import ItemSettings from './ItemSettings';
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPremium, device }) => {
@@ -74,7 +74,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 							// design={isPremium ? 'sortable' : 'single'}
 							design={isPremium ? 'sortable' : 'single'}
 						/>
-						{!isPremium && <small> <b><a href="https://bblockswp.com/#pricing" target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
+						{!isPremium && <small> <b><a href={pricingPage} target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 
 					</PanelBody>
 
