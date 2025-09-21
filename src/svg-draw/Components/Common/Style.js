@@ -13,7 +13,6 @@ const Style = ({ attributes, id, isBackend = false }) => {
 	return <style
 		dangerouslySetInnerHTML={{
 			__html: `
-			${generateCSS(`${id} .svdr-icon-draw-wrapper`, advanced, isBackend)}
 			${blockSl}{
 				${isValidCSS('justify-content', align)}
 			}
@@ -37,6 +36,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 				${isValidCSS('stroke', hover.strokeColor)}
 				filter:drop-shadow(${getShadowCSS(hover.shadow, 'text')});
 			}
+			${generateCSS(id, advanced, isBackend)}
 	`,
 		}}
 	/>

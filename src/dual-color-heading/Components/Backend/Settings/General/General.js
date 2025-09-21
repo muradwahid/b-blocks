@@ -1,6 +1,6 @@
 import { __experimentalInputControl as InputControl, PanelBody, PanelRow, SelectControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import { BButtonGroup, HelpPanel, IconLibrary, Label, MediaArea, SortableControl, TinyEditor } from "../../../../../../../bpl-tools/Components";
+import { BButtonGroup, IconLibrary, Label, MediaArea, SortableControl, TinyEditor } from "../../../../../../../bpl-tools/Components";
 
 import { updateData } from '../../../../../../../bpl-tools/utils/functions';
 import svgIcon from "../../../../../../assets/icons/christmas-star-icon.svg";
@@ -10,10 +10,7 @@ import { htmlTags } from "../../../../utils/options";
 const General = (props) => {
 	const { attributes, setAttributes, updateObj } = props;
 	const { sortElements, heading, icon, separator, subHeading } = attributes;
-
 	return <>
-		<HelpPanel slug="b-blocks" docsLink="https://bplugins.com/docs/content-slider-block/guides/general" />
-
 		<PanelBody className="bPlPanelBody" initialOpen={true} title={__("Elements", "b-blocks")} >
 			<SortableControl label={__("Sort Elements:")} value={sortElements} onChange={(val) => updateObj('sortElements', val)} />
 		</PanelBody>
@@ -39,15 +36,15 @@ const General = (props) => {
 				</PanelRow>
 
 				{separator.type === "icon" && <>
-					<BButtonGroup options={[{ label: "Library", value: "library" }, { label: "Upload", value: "upload" },]} value={separator.iconType} label={__("Icon Type", "b-blocks")} onChange={(value) => updateObj('separator', value, 'iconType')} />
+					<BButtonGroup className='mt10' options={[{ label: "Library", value: "library" }, { label: "Upload", value: "upload" },]} value={separator.iconType} label={__("Icon Type", "b-blocks")} onChange={(value) => updateObj('separator', value, 'iconType')} />
 
 					{separator.iconType === "library" && <IconLibrary label={__("Icon Library", "b-blocks")} value={separator.icon.library} onChange={(value) => updateObj('separator', value, 'icon', 'library')} />}
 
 					{separator.iconType === "upload" && <>
 						<Label>Icon</Label>
 						<MediaArea
-						//  types="image/svg+xml" 
-						value={{ url: separator.icon.upload }} default={svgIcon} label={__("Choose SVG", "b-blocks")} className="dual-color-heading-icon" onChange={(value) => updateObj('separator', value, 'icon', 'upload')} />
+						types={['image/*']}
+						value={{url:separator.icon.upload}} default={svgIcon} label={__("Choose Icon", "b-blocks")} className="dual-color-heading-icon" onChange={(value) => updateObj('separator', value?.url, 'icon', 'upload')} />
 					</>}
 				</>}
 			</>}
@@ -70,9 +67,9 @@ const General = (props) => {
 					{icon.iconType === "upload" && (
 						<>
 							<Label>{__("Icon", "b-blocks")}</Label>
-							<MediaArea 
+							<MediaArea
 							// types="image/svg+xml"
-							default={oktaIconSvg} value={icon.icon.upload} label={__("Choose SVG", "b-blocks")} onChange={(value) => setAttributes({ icon: updateData(icon, value, "icon", "upload"), })} />
+							default={oktaIconSvg} value={icon.icon.upload} label={__("Choose Icon", "b-blocks")} onChange={(value) => setAttributes({ icon: updateData(icon, value, "icon", "upload"), })} />
 						</>
 					)}
 				</>

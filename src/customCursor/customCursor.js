@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorData = JSON.parse(cursorEl.dataset.cursor);
     const root = createRoot(cursorEl);
     root.render(<CustomCursor cursorInfo={cursorData} />);
+    cursorEl.removeAttribute('data-cursor')
 
   } else {
     // Check if we're in the top-level window (not in an iframe)

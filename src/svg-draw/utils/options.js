@@ -10,6 +10,8 @@ export const normalHoverTabs = [
 	{ name: 'hover', title: __('Hover', 'b-blocks') },
 ];
 
+export const proEasings = ['easeInSine','easeInExpo','easeInCirc','easeInBack','easeInElastic','easeOutQuad','easeOutCubic','easeOutQuart','easeOutQuint','easeOutSine','easeOutExpo','easeOutCirc','easeOutBack','easeOutElastic','easeInOutQuad','easeInOutCubic','easeInOutQuart','easeInOutQuint','easeInOutSine','easeInOutExpo','easeInOutCirc','easeInCubic','easeInQuart','easeInQuint']
+
 export const easingOptions = [
 	{ label: 'Linear', value: 'linear' },
 	{ label: 'EaseInOutElastic', value: 'easeInOutElastic' },

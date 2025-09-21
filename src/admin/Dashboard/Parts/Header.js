@@ -4,7 +4,7 @@ const Header = ({ info, navigation }) => {
 	return <div className='bPlDashboardHeader'>
 		<div className='pluginInfo'>
 			<div className='name'>
-				<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='B Blocks Logo' />
+				<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='B Blocks Logo' />
 				<h1> B Blocks </h1>
 			</div>
 

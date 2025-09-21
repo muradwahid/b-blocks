@@ -59,7 +59,7 @@ const Style = ({ attributes, setAttributes, updateObj, device, gradients }) => {
 			<ColorControl color={subHeading.color} value={subHeading.color} label={__("Color", "dual-color-heading")} onChange={(value) => updateObj('subHeading', value, 'color')} />
 		</PanelBody>
 
-		<PanelBody className="bPlPanelBody" initialOpen={false} title={__("Separator", "dual-color-heading")} >
+		{separator.show && <PanelBody className="bPlPanelBody" initialOpen={false} title={__("Separator", "dual-color-heading")} >
 			<PanelRow>
 				<Label className="">{__("Alignment:", "dual-color-heading")}</Label>
 				<BtnGroup value={separator.alignment} onChange={(value) => updateObj('separator', value, 'alignment')} options={aligns} isIcon={true} />
@@ -90,7 +90,7 @@ const Style = ({ attributes, setAttributes, updateObj, device, gradients }) => {
 
 				<ColorControl label="Icon Color" color={separator.iconColor} value={separator.iconColor} onChange={(value) => updateObj('separator', value, 'iconColor')} />
 			</>}
-		</PanelBody>
+		</PanelBody>}
 
 		{icon.show && <PanelBody className="bPlPanelBody" initialOpen={false} title={__("Icon Style", "dual-color-heading")} >
 			<RangeControl label={__("Icon Size", "dual-color-heading")} value={icon.size} min={10} max={550} onChange={(value) => updateObj('icon', value, 'size')} />

@@ -30,7 +30,7 @@ const Welcome = ({ info }) => {
 						<img className='banner' src='https://ps.w.org/b-blocks/assets/banner-772x250.png?rev=3176079' alt='B Blocks Banner' />
 
 						<div className='intro'>
-							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='B Blocks Logo' />
+							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='B Blocks Logo' />
 
 							<div className='nameAuthor'>
 								<h3>B Blocks - The ultimate block collection</h3>

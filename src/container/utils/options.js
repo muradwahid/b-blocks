@@ -36,7 +36,7 @@ export const shapeTabs = [
 ];
 
 export const enabledAdvOptions = {
-	dimension: ['padding', 'margin', 'width', 'minWidth', 'maxWidth'],
+	dimension: ['padding', 'margin', 'width', 'minWidth', 'maxWidth','minHeight','height'],
 	transform: true,
 	background: ['normal', 'hover', 'overlay'],
 	borderShadow: ['normal', 'hover', 'border', 'shadow'],

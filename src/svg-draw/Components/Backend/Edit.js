@@ -9,12 +9,15 @@ const Edit = (props) => {
 	const id = `svg-draw-${clientId}`;
 
 	const { isPremium = false } = usePremiumInEditor();
+
 	return <>
 		<Settings {...{ attributes, setAttributes, isPremium }} />
 
 		<div {...useBlockProps()} id={id}>
 			<Style attributes={attributes} id={id} isBackend={true} />
-			<SVGDrawBackend attributes={attributes} />
+			<div>
+				<SVGDrawBackend attributes={attributes} />
+			</div>
 		</div>
 	</>
 };

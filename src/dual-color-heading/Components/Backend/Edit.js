@@ -14,7 +14,9 @@ const Edit = props => {
 
 		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
-			<DualColorHeading attributes={attributes} />
+			<div>
+				<DualColorHeading attributes={attributes} />
+			</div>
 
 		</div>
 	</>;

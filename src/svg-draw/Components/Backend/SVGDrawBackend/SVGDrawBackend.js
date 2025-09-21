@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
-import SVG from 'react-inlinesvg';
+// import SVG from 'react-inlinesvg';
 
-import defaultSvg from '../../../../../assets/icons/cloud-solid.svg';
+import { cloudIcon } from '../../../utils/icons';
 
 const SVGDrawBackend = ({ attributes }) => {
 	const { icon, options, style } = attributes;
@@ -53,8 +53,10 @@ const SVGDrawBackend = ({ attributes }) => {
 				<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} dangerouslySetInnerHTML={{ __html: icon.library }} ></div>
 			)}
 		{type.svgType === 'icon' && type.iconType === 'upload' && (
-			<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} >
-				<SVG src={icon.upload || defaultSvg} height='auto' />
+			<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} 
+			dangerouslySetInnerHTML={{ __html: icon.upload || cloudIcon }} 
+			>
+				{/* <SVG src={icon.upload || defaultSvg} height='auto' /> */}
 			</div>
 		)}
 		{type.svgType === 'custom' && (

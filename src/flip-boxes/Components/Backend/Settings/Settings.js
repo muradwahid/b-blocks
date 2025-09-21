@@ -68,6 +68,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 							activeIndex={activeIndex}
 							setActiveIndex={setActiveIndex}
 							arrKey='boxes'
+							minItem={1}
 							ItemSettings={ItemSettings}
 							itemLabel='Flip Box'
 							newItem={addFlipBox}

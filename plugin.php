@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.11
+ * Version: 2.0.13
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -25,7 +25,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 	} );
 }else{
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.11' );
+	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.13' );
 	define( 'B_BLOCKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'B_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 	define( 'B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/' );
@@ -123,6 +123,8 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 
 			add_filter( 'upload_mimes', [$this, 'uploadMimes'] );
 			add_filter( 'wp_check_filetype_and_ext', [$this, 'wpCheckFiletypeAndExt'], 10, 5 );
+
+			add_action('wp_ajax_b-blocks-enable-svg-mime-type', [$this, 'enableSvgMimeType']);
 		}
 
 		public static function instance(){
@@ -145,6 +147,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				$disabledBlocks[] = 'b-blocks/service';
 			}
 
+
 			$blocks = [
 				'alert',
 				'advanced-image',
@@ -159,7 +162,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				'countdown',
 				'counters',
 				// 'data-table',
-				// 'dual-color-heading',
+				'dual-color-heading',
 				// 'facebook-embed',
 				// 'facebook-page',
 				'feature-boxes',
@@ -190,7 +193,7 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 				'slider',
 				'social-share',
 				'star-rating',
-				// 'svg-draw',
+				'svg-draw',
 				'table-of-content',
 				'td-viewer',
 				'team-members',
@@ -242,6 +245,9 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 			$mimes['gltf'] = 'model/gltf-binary'; // 3D Viewer
 			$mimes['json'] = 'application/json'; // Lottie Player
 			$mimes['lottie'] = 'application/json'; // Lottie Player
+			if(get_transient('b-blocks-enable-svg-mime-type') === 'true'){
+				$mimes['svg'] = 'image/svg+xml';
+			}
 			return $mimes;
 		}
 		function wpCheckFiletypeAndExt( $data, $file, $filename, $mimes, $real_mime=null ){
@@ -267,6 +273,16 @@ if ( function_exists( 'b_blocks_fs' ) ) {
 			}else {
 				return $data;
 			}
+		}
+
+		public function enableSvgMimeType(){
+			if(!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'wp_ajax' )){
+				wp_send_json_error();
+			}
+
+			set_transient('b-blocks-enable-svg-mime-type', 'true', 80);
+
+			wp_send_json_success();
 		}
 	}
 	BBlocks::instance();

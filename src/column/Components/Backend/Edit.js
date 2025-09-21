@@ -1,41 +1,45 @@
-import { useState, useEffect, useRef } from 'react';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
-import { compose } from '@wordpress/compose';
-import { withSelect, dispatch, withDispatch } from '@wordpress/data';
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { ResizableBox } from '@wordpress/components';
+import { compose } from '@wordpress/compose';
+import { dispatch, withDispatch, withSelect } from '@wordpress/data';
+import { useEffect, useRef, useState } from 'react';
 const { replaceInnerBlocks } = dispatch('core/block-editor');
 
 import { tabController } from '../../../../../bpl-tools/utils/functions';
 
-import Settings from './Settings/Settings';
-import { style } from '../Common/Style';
+import {
+	// rowPrefix,
+	colPrefix
+} from '../../../row/utils/data';
 import { calcPercentage, getInt, toFixed } from '../../../row/utils/functions';
-import { rowPrefix, colPrefix } from '../../../row/utils/data';
+import { style } from '../Common/Style';
+import Settings from './Settings/Settings';
 
 // const initialWidth = { mobile: 100, tablet: 50, desktop: 33.33 }
-const MINWIDTH = 10;
+const MINWIDTH = 5;
 
 const Edit = props => {
-	const { attributes, context, setAttributes, clientId, isSelected, toggleSelection, parentBlockId, rowWidth, parentInnerBlocks, currentIndex, innerBlocks, nextClientId, nextWidth, updateAttributes } = props;
+	const { attributes, context, setAttributes, clientId, isSelected, toggleSelection, parentBlockId, rowWidth, parentInnerBlocks, currentIndex, innerBlocks, prevWidth, nextClientId, nextWidth, updateAttributes } = props;
 	const { width } = attributes;
 	const columns = context['b-blocks/rowColumns'];
 	const columnGap = context['b-blocks/rowColumnGap'];
 
 	useEffect(() => tabController(), [isSelected]);
-
 	// const [colWidth, setColWidth] = useState(initialWidth);
 	// const [nextColWidth, setNextColWidth] = useState(nextWidth);
 	const [isResizing, setIsResizing] = useState(false);
 
 	const colWidthHold = useRef(width);
 	const nextColWidthHold = useRef(nextWidth);
+	const prevColWidthHold = useRef(prevWidth);
 
 	const id = `block-${clientId}`;
 	// const columnEl = document.querySelector(`#${id}`);
 	// const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
 	const columnEl = document.querySelector(`#block-${clientId}`);
 	const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
+	// const prevColumnEl = document.querySelector(`#block-${prevClientId}`);
 
 	// Initial things
 	useEffect(() => {
@@ -45,6 +49,8 @@ const Edit = props => {
 		// setColWidth({ ...width });
 		colWidthHold.current = { ...width }
 		nextColWidthHold.current = { ...nextWidth }
+		prevColWidthHold.current = { ...prevWidth }
+
 	}, [isSelected, columnEl, rowWidth]);
 
 
@@ -168,7 +174,7 @@ const Edit = props => {
 
 		<div {...useBlockProps()}>
 			{/* <div className={'wp-block-b-blocks-column'} id={id}> */}
-			<style dangerouslySetInnerHTML={{ __html: style(attributes, id, columns, columnGap,true )}}/>
+			<style dangerouslySetInnerHTML={{ __html: style(attributes, id, columns, columnGap, true) }} />
 
 			<ResizableBox
 				className={isResizing ? `${colPrefix}Resizing` : ''}
@@ -207,7 +213,8 @@ export default compose(
 
 		const parentBlockId = getBlockParents(clientId)[0];
 		const parentBlockEl = document.querySelector(`#block-${parentBlockId}`);
-		const parentWidth = parentBlockEl ? getComputedStyle(parentBlockEl.querySelector(`.${rowPrefix}`), null).getPropertyValue('width') : '0px';
+		const parentWidth = parentBlockEl ? "100%" : '0px';
+		// const parentWidth = parentBlockEl ? getComputedStyle(parentBlockEl.querySelector(`.${rowPrefix}`), null).getPropertyValue('width') : '0px';
 
 		const nextClientId = getNextBlockClientId(clientId);
 		const prevClientId = getPreviousBlockClientId(clientId);

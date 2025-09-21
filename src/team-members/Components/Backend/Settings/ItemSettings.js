@@ -39,19 +39,19 @@ const ItemSettings = ({ attributes, index, updateMember }) => {
                         tab.name==='normal' && <>
                             <ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={socialIconColors} onChange={val => updateMember(index, 'socialIconColors', val)} defaults={{ color: '#fff', bg: primaryColor }} />
 
-                            <BorderControl label={__('Icon Border','b-blocks')} value={iconStyle.normal.border} onChange={val=>updateMember(index, 'iconStyle', val, 'normal', 'border' )}/>
+                            <BorderControl label={__('Icon Border','b-blocks')} value={iconStyle?.normal?.border} onChange={val=>updateMember(index, 'iconStyle', val, 'normal', 'border' )}/>
 
-                            <ShadowControl  label={__('Icon Shadow','b-blocks')} value={iconStyle.normal.border} onChange={val=>updateMember(index, 'iconStyle', val, 'normal', 'shadow' )} />
+                            <ShadowControl  label={__('Icon Shadow','b-blocks')} value={iconStyle?.normal?.shadow} onChange={val=>updateMember(index, 'iconStyle', val, 'normal', 'shadow' )} />
 
                         </>
                     }
                     {
                         tab.name==='hover' && <>
-                            <ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={iconStyle.hover.socialIconColors} onChange={val => updateMember(index,'iconStyle', val, 'hover', 'socialIconColors')}  />
+                            <ColorsControl label={__('Social Icon Colors:', 'b-blocks')} value={iconStyle?.hover?.socialIconColors} onChange={val => updateMember(index,'iconStyle', val, 'hover', 'socialIconColors')}  />
 
-                            <BorderControl label={__('Icon Border','b-blocks')} value={iconStyle.hover.border} onChange={val=>updateMember(index, 'iconStyle', val, 'hover', 'border' )}/>
+                            <BorderControl label={__('Icon Border','b-blocks')} value={iconStyle?.hover?.border} onChange={val=>updateMember(index, 'iconStyle', val, 'hover', 'border' )}/>
 
-                            <ShadowControl  label={__('Icon Shadow','b-blocks')} value={iconStyle.hover.border} onChange={val=>updateMember(index, 'iconStyle', val, 'hover', 'shadow' )} />
+                            <ShadowControl  label={__('Icon Shadow','b-blocks')} value={iconStyle?.hover?.border} onChange={val=>updateMember(index, 'iconStyle', val, 'hover', 'shadow' )} />
                         </>
                     }
                 </>
