@@ -38,5 +38,210 @@
 				margin: 0;
 			}
 		}
+
+	}
+
+
+	@keyframes nBounce {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+
+		50% {
+			transform: translateY(-25%);
+		}
+	}
+
+	@keyframes nPulse {
+
+		0%,
+		100% {
+			transform: scale(1);
+		}
+
+		50% {
+			transform: scale(1.1);
+		}
+	}
+
+	@keyframes nSpin {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes nShake {
+
+		0%,
+		100% {
+			transform: translateX(0);
+		}
+
+		25% {
+			transform: translateX(-10px);
+		}
+
+		75% {
+			transform: translateX(10px);
+		}
+	}
+
+	@keyframes nWiggle {
+
+		0%,
+		100% {
+			transform: rotate(0deg);
+		}
+
+		25% {
+			transform: rotate(-10deg);
+		}
+
+		75% {
+			transform: rotate(10deg);
+		}
+	}
+
+	@keyframes nPing {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		75%,
+		100% {
+			transform: scale(2);
+			opacity: 0;
+		}
+	}
+
+	@keyframes nFloat {
+
+		0%,
+		100% {
+			transform: translateY(0) rotate(0deg);
+		}
+
+		25% {
+			transform: translateY(-6px) rotate(2deg);
+		}
+
+		75% {
+			transform: translateY(6px) rotate(-2deg);
+		}
+	}
+
+
+	//=======================================================//
+	//==== Hover Animation //=====
+	//=======================================================//
+
+
+	@keyframes hBounce {
+
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+
+		50% {
+			transform: translateY(-25%);
+		}
+	}
+
+	@keyframes hPulse {
+
+		0%,
+		100% {
+			transform: scale(1);
+		}
+
+		50% {
+			transform: scale(1.1);
+		}
+	}
+
+	@keyframes hSpin {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes hShake {
+
+		0%,
+		100% {
+			transform: translateX(0);
+		}
+
+		25% {
+			transform: translateX(-10px);
+		}
+
+		75% {
+			transform: translateX(10px);
+		}
+	}
+
+	@keyframes hWiggle {
+
+		0%,
+		100% {
+			transform: rotate(0deg);
+		}
+
+		25% {
+			transform: rotate(-10deg);
+		}
+
+		75% {
+			transform: rotate(10deg);
+		}
+	}
+
+	@keyframes hPing {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		75%,
+		100% {
+			transform: scale(2);
+			opacity: 0;
+		}
+	}
+
+	@keyframes hFloat {
+
+		0%,
+		100% {
+			transform: translateY(0) rotate(0deg);
+		}
+
+		25% {
+			transform: translateY(-6px) rotate(2deg);
+		}
+
+		75% {
+			transform: translateY(6px) rotate(-2deg);
+		}
+	}
+
+		/* Pause animation on reduced motion preference */
+	@media (prefers-reduced-motion: reduce) {
+		.wp-block-b-blocks-advanced-image {
+			animation: none !important;
+			transition: none !important;
+		}
 	}
 }

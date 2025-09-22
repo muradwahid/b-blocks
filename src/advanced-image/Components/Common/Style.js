@@ -7,12 +7,15 @@ import { prefix } from '../../utils/data';
 const Style = ({ attributes, id, isBackend = false }) => {
 	const { layout, style, captionStyle, image, advanced } = attributes;
 	const { width, height, isAutoHeight, isAutoFit, fitOptionType } = layout;
-	const { hoverEffect, optionType, alignment } = style;
+	const { hoverEffect, optionType, alignment,  normalEffect="", effectOptions={} } = style;
+	const { normal={}, hover={} } = effectOptions;
 	const { typo, desktop, tablet, mobile, colors } = captionStyle;
 
 	const mainSl = `#${id} .${prefix}`;
 	const imageSl = `${mainSl} .image`;
 	const captionSl = `${imageSl} .caption`;
+
+	const animationFunc = (prefix, t, d, dl, i) => `${t} ${d}ms ${t == prefix + 'Spin' ? 'linear' : t === prefix + 'Ping' ? 'cubic-bezier(0, 0, 0.2, 1)' : 'ease-in-out'} ${dl}ms ${i};`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
@@ -43,6 +46,14 @@ const Style = ({ attributes, id, isBackend = false }) => {
 		${mainSl}:hover img{
 			${isValidCSS('transform', hoverEffect === 'zoomIn' ? 'scale(1.5)' : hoverEffect === 'zoomOut' ? 'scale(1)' : '')}
 			${isValidCSS('filter', hoverEffect === 'blur' ? 'blur(0px)' : "")}
+		}
+
+		${imageSl}{
+			animation:${animationFunc('n', normalEffect, normal?.duration, normal?.delay, normal?.iteration === 'number' ? normal?.iterationCount : normal?.iteration)}
+		}
+
+		${imageSl}:hover{
+			animation:${animationFunc('h', hoverEffect, hover?.duration, hover?.delay, hover?.iteration === 'number' ? hover?.iterationCount : hover?.iteration)}
 		}
 
 		${captionSl}{

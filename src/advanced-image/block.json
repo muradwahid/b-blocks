@@ -52,6 +52,21 @@
 			"type": "object",
 			"default": {
 				"hoverEffect": "none",
+				"normalEffect": "none",
+				"effectOptions": {
+					"normal": {
+						"duration": 1000,
+						"delay": 0,
+						"iteration": "initial",
+						"iterationCount": 1
+					},
+					"hover": {
+						"duration": 1000,
+						"delay": 0,
+						"iteration": "initial",
+						"iterationCount": 1
+					}
+				},
 				"optionType": "rounded",
 				"alignment": {
 					"desktop": "start",

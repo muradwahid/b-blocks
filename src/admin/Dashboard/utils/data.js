@@ -1,5 +1,11 @@
 export const changelogs = [
     {
+        version: '2.0.14 - 22 Sep 2025',
+        list: [
+            'Add Animation options for the Advanced Image block.',
+        ]
+    },
+    {
         version: '2.0.13 - 21 Sep 2025',
         list: [
             'Added SVG Draw block.',
