@@ -4,11 +4,12 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { placeholderImg } from '../../../utils/data';
 const SliderFront = ({ attributes }) => {
     const { options, logo, sliderStyles } = attributes;
     const { caption } = sliderStyles;
 
-    return <div className="logo-slider-main-wrapper">
+    return <div className="b-blocks-logo-slider-main-wrapper">
         <Swiper
             effect={options.effect}
             // install Swiper modules
@@ -18,7 +19,7 @@ const SliderFront = ({ attributes }) => {
             autoplay={
                 options.autoplay
                     ? {
-                        delay: options.delay * 1000,
+                        delay: options.delay,
                         reverseDirection:
                             options.direction === "rightToLeft" ? false : true,
                     }
@@ -27,7 +28,7 @@ const SliderFront = ({ attributes }) => {
             navigation={options.navigation ? { clickable: true } : false}
             draggable={false}
             loop={Boolean(options.loop)}
-            speed={options.speed * 1000}
+            speed={options.speed}
             autoHeight={true}
             pagination={
                 options.pagination
@@ -52,10 +53,10 @@ const SliderFront = ({ attributes }) => {
             {logo &&
                 logo.map((img) =>
                     <SwiperSlide key={img?.id}>
-                        <div className='logo-slider-wrapper'>
-                            <div className="slider-logo-wrapper">
-                                <img className={`losl-logo ${sliderStyles.logo.hover} `} src={img?.url} alt={img?.alt} />
-                                <div className={`logo-slider-block-caption  ${caption.hover === "hover" ? "caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} dangerouslySetInnerHTML={{ __html: img?.caption }} />
+                        <div className='b-blocks-logo-slider-wrapper'>
+                            <div className="b-blocks-slider-logo-wrapper">
+                                <img className={`b-blocks-losl-logo ${sliderStyles.logo.hover} `} src={img?.url || placeholderImg} alt={img?.alt} />
+                                {img?.url && <div className={`b-blocks-logo-slider-block-caption  ${caption.hover === "hover" ? "b-blocks-caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} dangerouslySetInnerHTML={{ __html: img?.caption }} />}
                             </div>
                         </div>
                     </SwiperSlide>)}

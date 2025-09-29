@@ -22,3 +22,8 @@ export const teamMembersDocs = `${docsURL}team-block/`;
 
 
 export const pricingPage= `${location.origin}/wp-admin/admin.php?page=b-blocks#/pricing`
+
+
+export const placeholderImg = 'https://templates.bplugins.com/wp-content/uploads/2025/09/placeholder-image.png';
+
+export const premiumBlocks = ['b-blocks/logo-slider']

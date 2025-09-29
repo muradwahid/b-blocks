@@ -1,11 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { __experimentalBorderBoxControl as BorderControl, PanelBody, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { __experimentalBorderBoxControl as BorderControl, PanelBody, SelectControl, __experimentalUnitControl as UnitControl, Flex } from '@wordpress/components';
 
-import { BoxControl } from "../../../../../../../bpl-tools/Components";
+import { BoxControl, Device } from "../../../../../../../bpl-tools/Components";
 import { objectFitOptions } from '../../../../utils/options';
 import LogoCaption from './LogoCaption';
+import { RangeControl } from '@wordpress/components';
+import { withSelect } from '@wordpress/data';
 
-function LogoStyle({ attributes, setAttributes, updateObj }) {
+function LogoStyle({ attributes, setAttributes, updateObj, device }) {
     const { sliderStyles, options } = attributes;
     return <>
         <PanelBody className="bPlPanelBody" title={__("Logo Style", "b-blocks")} initialOpen={true}>
@@ -13,6 +15,8 @@ function LogoStyle({ attributes, setAttributes, updateObj }) {
             <UnitControl className='mt10' labelPosition='edge' label={__("Height", "b-blocks")} value={sliderStyles.logo.height} onChange={value => updateObj('sliderStyles', value, "logo", "height")} max={sliderStyles.logo.height.includes("%") ? 100 : 1000} min={0} />
 
             <UnitControl className='mt10' labelPosition='edge' label={__("Width", "b-blocks")} value={sliderStyles.logo.width} onChange={(value) => updateObj('sliderStyles', value, 'logo', 'width')} max={sliderStyles.logo.width.includes("%") ? 100 : 1000} min={0} />
+
+            <RangeControl className='mt10' label={<Flex>Column Gap <Device/></Flex>} value={options.space[device]} onChange={(value) => updateObj('options', value, 'space', device)} step={1} min={1} max={200} />
 
             <SelectControl className='mt10' labelPosition='edge' label={__("Logo Fit Options", "b-blocks")} value={sliderStyles.logo.logoFitOption} options={objectFitOptions} onChange={(value) => updateObj('sliderStyles', value, 'logo', 'logoFitOption')} />
 
@@ -29,4 +33,10 @@ function LogoStyle({ attributes, setAttributes, updateObj }) {
     </>
 }
 
-export default LogoStyle;
+export default withSelect((select) => {
+    const { getDeviceType } = select("core/editor");
+
+    return {
+        device: getDeviceType()?.toLowerCase(),
+    };
+})(LogoStyle);

@@ -30,7 +30,7 @@ import './image-gallery';
 // import './image-scroller';
 import './info-box';
 // import './login-form';
-// import './logo-slider';
+import './logo-slider';
 import './lottie-player';
 import './mailto';
 import './navigation';

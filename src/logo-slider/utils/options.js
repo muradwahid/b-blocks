@@ -1,13 +1,13 @@
 import { __ } from '@wordpress/i18n';
 
 export const objectFitOptions = [
-    { label: "contain", value: "contain" },
-    { label: "cover", value: "cover" },
-    { label: "fill", value: "fill" },
-    { label: "none", value: "none" },
-    { label: "scale-down", value: "scale-down" },
-    { label: "initial", value: "initial" },
-    { label: "inherit", value: "inherit" },
+    { label: "Default", value: "" },
+    { label: "Contain", value: "contain" },
+    { label: "Cover", value: "cover" },
+    { label: "Fill", value: "fill" },
+    { label: "Scale Down", value: "scale-down" },
+    { label: "Initial", value: "initial" },
+    { label: "Inherit", value: "inherit" },
 ];
 
 export const generalStyleTabs = [

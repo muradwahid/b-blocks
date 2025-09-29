@@ -1,5 +1,12 @@
 export const changelogs = [
     {
+        version: '2.0.15 - 29 Sep 2025',
+        list: [
+            'Added Logo Slider block.',
+            'Fixed icon box extra space issue.',
+        ]
+    },
+    {
         version: '2.0.14 - 22 Sep 2025',
         list: [
             'Add Animation options for the Advanced Image block.',

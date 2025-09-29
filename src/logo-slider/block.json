@@ -23,8 +23,8 @@
             "default": {
                 "autoplay": true,
                 "direction": "rightToLeft",
-                "speed": 1,
-                "delay": 1,
+                "speed": 1000,
+                "delay": 1000,
                 "loop": true,
                 "logoView": {
                     "desktop": 4,
@@ -76,22 +76,22 @@
                 "dimension": {
                     "padding": {
                         "desktop": {
-                            "top": "0px",
-                            "right": "0px",
-                            "bottom": "0px",
-                            "left": "0px"
+                            "top": "",
+                            "right": "",
+                            "bottom": "",
+                            "left": ""
                         },
                         "tablet": {
-                            "top": "0px",
-                            "right": "0px",
-                            "bottom": "0px",
-                            "left": "0px"
+                            "top": "",
+                            "right": "",
+                            "bottom": "",
+                            "left": ""
                         },
                         "mobile": {
-                            "top": "0px",
-                            "right": "0px",
-                            "bottom": "0px",
-                            "left": "0px"
+                            "top": "",
+                            "right": "",
+                            "bottom": "",
+                            "left": ""
                         }
                     }
                 },

@@ -5,10 +5,10 @@ const Style = ({ attributes, id, isBackend = false }) => {
     const { sliderStyles, advanced } = attributes;
     const { caption } = sliderStyles;
     const mainSl = `#${id}`;
-    const blockSl = `${mainSl} .logo-slider-main-wrapper`;
-    const slideSl = `${blockSl} .logo-slider-wrapper`;
-    const imgSl = `${slideSl} .losl-logo`;
-    const captionSl = `${slideSl} .logo-slider-block-caption`;
+    const blockSl = `${mainSl} .b-blocks-logo-slider-main-wrapper`;
+    const slideSl = `${blockSl} .b-blocks-logo-slider-wrapper`;
+    const imgSl = `${slideSl} .b-blocks-losl-logo`;
+    const captionSl = `${slideSl} .b-blocks-logo-slider-block-caption`;
     return <style dangerouslySetInnerHTML={{
         __html: `
         ${slideSl}{

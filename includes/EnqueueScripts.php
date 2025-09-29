@@ -24,6 +24,8 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_localize_script( 'b-blocks-index-script', 'bBlocksDisabledBlocks', $disabledBlocks );
 
 			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );
+
+			wp_add_inline_script('b-blocks-index-script',"const bBlocksPremiumChecker=". wp_json_encode(BBlocks\Inc\Utils::isPro()) , 'before');
 		}
 
 		function enqueueBockAssets(){

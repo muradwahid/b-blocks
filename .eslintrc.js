@@ -22,7 +22,8 @@ module.exports = {
 		Plyr: 'readonly',
 		Chart: 'readonly',
 		pluginAction: 'readonly',
-		bBlocksDisabledBlocks: 'readonly'
+		bBlocksDisabledBlocks: 'readonly',
+		bBlocksPremiumChecker: 'readonly'
 	},
 	parserOptions: {
 		ecmaFeatures: {

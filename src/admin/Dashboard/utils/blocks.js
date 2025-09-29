@@ -238,7 +238,8 @@ export default [
         icon: logoSliderIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published',
+        isPremium: true
     },
     {
         name: `${pluginSlug}/lottie-player`,
@@ -358,7 +359,7 @@ export default [
         icon: svgDrawIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published'
     },
     {
         name: `${pluginSlug}/table-of-content`,

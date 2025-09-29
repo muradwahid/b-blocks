@@ -7,11 +7,12 @@ import "swiper/css/scrollbar";
 import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BsPlus, FaTrash } from "../../../utils/icons";
+import { placeholderImg } from '../../../../utils/data';
 
 const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex }) => {
     const { options, logo, sliderStyles } = attributes;
     const { caption } = sliderStyles;
-    return <div className="logo-slider-main-wrapper">
+    return <div className="b-blocks-logo-slider-main-wrapper">
         <Swiper
             effect={options.effect}
             // install Swiper modules
@@ -21,7 +22,7 @@ const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex 
             autoplay={
                 options.autoplay
                     ? {
-                        delay: options.delay * 1000,
+                        delay: options.delay,
                         reverseDirection:
                             options.direction === "rightToLeft" ? false : true,
                     }
@@ -31,7 +32,7 @@ const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex 
             draggable={false}
             // loop={options.loop ? false : true}
             loop={Boolean(options.loop)}
-            speed={options.speed * 1000}
+            speed={options.speed}
             autoHeight={true}
             pagination={options.pagination ? { clickable: true, dynamicBullets: options.dynamicPagination } : false}
             breakpoints={{
@@ -53,27 +54,27 @@ const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex 
                 logo.map((img, idx) => <>
 
                     <SwiperSlide key={img?.id}>
-                        <div className='logo-slider-wrapper' style={{ border: `${activeIndex === idx ? "2px solid #007CBA" : "none"}`, borderRadius: `${activeIndex === idx ? "4px" : "none"}` }}>
-                            <div className="slider-logo-wrapper" onClick={() => setActiveIndex(idx)}>
-                                <FaTrash onClick={() => setAttributes({ logo: logo.filter((val, i) => i !== idx) })} className="logo-slider-block-delete-btn" />
+                        <div className='b-blocks-logo-slider-wrapper' style={{ border: `${activeIndex === idx ? "2px solid #007CBA" : "none"}`, borderRadius: `${activeIndex === idx ? "4px" : "none"}` }}>
+                            <div className="b-blocks-slider-logo-wrapper" onClick={() => setActiveIndex(idx)}>
+                                <FaTrash onClick={() => setAttributes({ logo: logo.filter((val, i) => i !== idx) })} className="b-blocks-logo-slider-block-delete-btn" />
                                 <MediaUploadCheck>
                                     <MediaUpload
                                         // gallery={true}
                                         allowedTypes={["image/*"]}
                                         value={logo[idx]?.id ? [logo[idx]?.id] : []}
                                         onSelect={(value) => setAttributes(logo.splice(idx, 1, value))}
-                                        render={({ open }) => <div onClick={open} className="logo-replace-wrapper" >
-                                            <BsPlus className='losl-replace-plus-icon' />
+                                        render={({ open }) => <div onClick={open} className="b-blocks-b-blocks-losl-replace-plus-icon" >
+                                            <BsPlus className='b-blocks-losl-replace-plus-icon' />
                                         </div>}
                                         multiple={false}
                                     />
                                 </MediaUploadCheck>
-                                <img className={`losl-logo ${sliderStyles.logo.hover} `} src={img?.url} alt={img?.alt} />
-                                <div className={`logo-slider-block-caption  ${caption.hover === "hover" ? "caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} >
+                                <img className={`b-blocks-losl-logo ${sliderStyles.logo.hover} `} src={img?.url || placeholderImg} alt={img?.alt} />
+                                {img?.url && <div className={`b-blocks-logo-slider-block-caption  ${caption.hover === "hover" ? "b-blocks-caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} >
 
                                     <RichText tagName="span" value={img?.caption} allowedFormats={["core/bold", "core/italic", "core/link",]} placeholder="Write caption..." onChange={(value) => setAttributes({ logo: logo?.map((val, i) => i === idx ? { ...val, caption: value } : val) })}
                                     />
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </SwiperSlide>

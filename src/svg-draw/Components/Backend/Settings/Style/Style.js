@@ -19,7 +19,7 @@ const Style = (props) => {
 
 			<BtnGroup label={__('Alignment', 'b-blocks')} className='mt10' options={[{ label: 'Left', value: 'left', icon: <AiOutlineAlignLeft /> }, { label: 'Center', value: 'center', icon: <AiOutlineAlignCenter />, }, { label: 'Right', value: 'right', icon: <AiOutlineAlignRight /> },]} value={style.align} onChange={(value) => setAttributes({ style: updateData(style, value, 'align') })} isIcon={true} />
 
-			<RangeControl label={__('Path Thickness', 'b-blocks')} className='mt10' value={style.strokeWidth} onChange={(value) => setAttributes({ style: updateData(style, value, 'strokeWidth') })} />
+			<RangeControl label={__('Path Thickness', 'b-blocks')} className='mt10' value={style.strokeWidth} onChange={(value) => setAttributes({ style: updateData(style, value, 'strokeWidth') })} step={0.1} min={0} max={100} />
 
 			<TabPanel className='bPlTabPanel mini' activeClass='activeTab' tabs={normalHoverTabs} onSelect={tabController} >
 				{(tab) => (

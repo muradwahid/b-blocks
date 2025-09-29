@@ -12,6 +12,7 @@ const blocks = allBlocks.filter(b => 'published' === b.status);
 const dataFetched = new CustomEvent('dataFetched');
 
 const Blocks = ({ info }) => {
+	const { isPremium } = info;
 	const [isSaving, setIsSaving] = useState(false);
 	const [disableBlockName, setDisableBlockName] = useState([]);
 	const [searchTerm, setSearchTerm] = useState(''); // State to store the search term
@@ -104,8 +105,10 @@ const Blocks = ({ info }) => {
 				<div className='blocks'>
 					{searchedBlocks.map(block => {
 						const { name, title, icon, demo, docs } = block;
+						const isBlockPremium = !isPremium && block.isPremium;
+						const disabledBlock = isBlockPremium ? false : !disableBlockName.includes(name)
 
-						return <div key={name} className={`block ${disableBlockName.includes(name) ? 'disabled' : ''}`}>
+						return <div key={name} className={`block ${!disabledBlock ? 'disabled' : ''}`}>
 							<div className='icon'>{icon}</div>
 
 							<div className='name'>{title}</div>
@@ -117,9 +120,10 @@ const Blocks = ({ info }) => {
 							{docs && <a className='actionBtn' href={docs} target='_blank' rel='noopener noreferrer'>
 								{docsIcon}
 							</a>}
+							{isBlockPremium && <p className='bBlocksProBadge'>Pro</p>}
 
 							<label className='toggleSwitch'>
-								<input type='checkbox' checked={!disableBlockName.includes(name)} onChange={(e) => handleCheckboxChange(name, e.target.checked)} disabled={isSaving} />
+								<input type='checkbox' checked={disabledBlock} {...(isBlockPremium ? {} : { onChange: (e) => handleCheckboxChange(name, e.target.checked) })} disabled={isSaving} />
 								<span className='slider'></span>
 							</label>
 						</div>
