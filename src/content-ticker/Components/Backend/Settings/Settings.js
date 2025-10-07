@@ -8,7 +8,7 @@ import General from './General/General';
 import Style from './Style/Style';
 
 const Settings = (props) => {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, isPremium } = props;
 	const { advanced } = attributes;
 
 	const updateObj = updateAttributes(attributes, setAttributes);
@@ -25,7 +25,7 @@ const Settings = (props) => {
 
 				{'style' === tab.name && <Style {...props} updateObj={updateObj} />}
 
-				{'advanced' === tab.name && <Advanced advanced={advanced} onChange={(advanced) => setAttributes({ advanced })} isPremium={props.isPremium} />}
+				{'advanced' === tab.name && <Advanced advanced={advanced} onChange={(advanced) => setAttributes({ advanced })} isPremium={isPremium} />}
 			</>}
 		</TabPanel>
 	</InspectorControls>

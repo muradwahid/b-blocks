@@ -6,6 +6,7 @@ import { useWPAjax, useWPOptionQuery } from '../../../../../bpl-tools/hooks';
 import Layout from '../Layout/Layout';
 import { closeIcon, demoIcon, docsIcon, searchIcon } from '../utils/icons';
 import allBlocks from '../utils/blocks';
+import ProModal from '../Parts/ProModal';
 
 const blocks = allBlocks.filter(b => 'published' === b.status);
 
@@ -75,6 +76,7 @@ const Blocks = ({ info }) => {
 	);
 
 	return <Layout info={info}>
+		{!isPremium &&<ProModal/>}
 		{isSaving && <div className='bBlocksSavingNotice'>Saving changes...</div>}
 
 		<div className='blocksPage'>
@@ -122,7 +124,7 @@ const Blocks = ({ info }) => {
 							</a>}
 							{isBlockPremium && <p className='bBlocksProBadge'>Pro</p>}
 
-							<label className='toggleSwitch'>
+							<label className='toggleSwitch' {...((isBlockPremium) ? { htmlFor: 'b-blocks-admin-pro-modal-toggle' } : {})}>
 								<input type='checkbox' checked={disabledBlock} {...(isBlockPremium ? {} : { onChange: (e) => handleCheckboxChange(name, e.target.checked) })} disabled={isSaving} />
 								<span className='slider'></span>
 							</label>

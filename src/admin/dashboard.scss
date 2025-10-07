@@ -365,9 +365,14 @@ $secondaryColor: #ff7a00;
 					position: relative;
 
 					&.disabled {
-						.icon,.name,.actionBtn,.toggleSwitch{
+
+						.icon,
+						.name,
+						.actionBtn,
+						.toggleSwitch {
 							opacity: 0.5;
 						}
+
 						// opacity: 0.5;
 					}
 
@@ -650,6 +655,71 @@ $secondaryColor: #ff7a00;
 				list-style: disc;
 				color: #888;
 				margin-left: 15px;
+			}
+		}
+	}
+
+	#b-blocks-admin-pro-modal-toggle{
+		display: none;
+	}
+	#b-blocks-admin-pro-modal-toggle:checked~.b-blocks-admin-proModal-wrapper {
+		display: flex;
+	}
+	// Pro Modal
+	.b-blocks-admin-proModal-wrapper {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
+		z-index: 9999;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		display: none;
+		.b-blocks-promodal-content-wrapper {
+			background-color: #fff;
+			width: 500px;
+			padding:30px 20px;
+			border-radius: 10px;
+			position: relative;
+
+			.b-blocks-promodal-content {
+				text-align: center;
+
+				.b-blocks-promodal-crounIcon {
+					height: 80px;
+					width: 80px;
+				}
+
+				.b-blocks-promodal-title {
+					font-size: 26px;
+					color: #4e4e4e;
+					margin: 0;
+					margin-top: 20px;
+				}
+
+				.b-blocks-promodal-description {
+					font-size: 16px;
+					color: #010f3c;
+					margin: 20px 0;
+				}
+			}
+
+			.b-blocks-promodal-close {
+				font-size: 22px;
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				cursor: pointer;
+				line-height: 1.2;
+				border-radius: 25px;
+				height: 30px;
+				width: 30px;
+				text-align: center;
+				transition: background 0.2s ease;
+
+				&:hover {
+					background: #eaeaea;
+				}
 			}
 		}
 	}

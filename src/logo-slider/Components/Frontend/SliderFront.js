@@ -8,8 +8,12 @@ import { placeholderImg } from '../../../utils/data';
 const SliderFront = ({ attributes }) => {
     const { options, logo, sliderStyles } = attributes;
     const { caption } = sliderStyles;
+    const styles = {
+        ...(options.pagination && { '--b-blocks-logo-slider-slide-margin': '20px' }),
+            '--swiper-wrapper-transition-timing-function': options?.easing,
+    };
 
-    return <div className="b-blocks-logo-slider-main-wrapper">
+    return <div className="b-blocks-logo-slider-main-wrapper" style={styles}>
         <Swiper
             effect={options.effect}
             // install Swiper modules
@@ -49,17 +53,21 @@ const SliderFront = ({ attributes }) => {
                     spaceBetween: options.space.mobile,
                 },
             }}
+            // loopAdditionalSlides={logo?.length}
         >
             {logo &&
-                logo.map((img) =>
-                    <SwiperSlide key={img?.id}>
-                        <div className='b-blocks-logo-slider-wrapper'>
+                logo.map((img) => {
+                    const AnchorEl = img?.anchor ? 'a' : 'div'
+                    return <SwiperSlide key={img?.id}>
+                        <AnchorEl {...(img?.anchor ? { href: img?.anchor, target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                        <div className='b-blocks-logo-slider-wrapper' >
                             <div className="b-blocks-slider-logo-wrapper">
                                 <img className={`b-blocks-losl-logo ${sliderStyles.logo.hover} `} src={img?.url || placeholderImg} alt={img?.alt} />
                                 {img?.url && <div className={`b-blocks-logo-slider-block-caption  ${caption.hover === "hover" ? "b-blocks-caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} dangerouslySetInnerHTML={{ __html: img?.caption }} />}
                             </div>
                         </div>
-                    </SwiperSlide>)}
+                        </AnchorEl>
+                    </SwiperSlide>})}
         </Swiper>
     </div>
 };

@@ -156,23 +156,14 @@ export const imageHotspotIcon = <svg {...svgProps} viewBox='0 0 1000 1004.1441'>
 	<path d='m229 542.144c58 0 104-47 104-105s-46-104-104-104-104 47-104 104 47 105 104 105zm0-167c35 0 63 28 63 62s-28 63-63 63-62-28-62-63 28-62 62-62zm750-167h-147c1-7 1-14 1-21 0-80-65-145-145-145s-146 65-146 145c0 7 0 14 1 21h-522c-12 0-21 10-21 21v709c0 11 9 20 21 20h958c12 0 21-9 21-20v-709c0-11-9-21-21-21zm-291-125c57 0 104 47 104 104 0 75-71 199-104 253-34-54-105-178-105-253 0-57 47-104 105-104zm-136 167c29 106 114 234 118 241 4 5 11 9 18 9s13-4 17-9c4-7 89-135 118-241h135v547l-171-206c-8-10-24-10-32 0l-85 102-131-224c-4-7-10-11-18-11-6 1-14 4-18 10l-172 268-128-146c-4-5-11-7-18-7-6 1-12 5-16 11l-127 223v-567zm-510 667v-16l149-261 127 145c4 4 10 7 17 7 6-1 12-4 16-10l169-263 129 221c3 6 9 9 16 10 7 0 13-2 18-8l88-105 187 225v55zm708-730c0-34-28-62-62-62s-63 28-63 62 28 63 63 63 62-28 62-63zm-83 0c0-11 9-20 21-20s20 9 20 20-9 21-20 21-21-9-21-21z' />
 </svg>
 
-export const imageScrollerIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' fill='#fff'>
-	<rect width='145.733341' height='148.727861' rx='31' ry='31' transform='translate(80.93856 66.149181)' stroke='#146EF5' />
-	<ellipse rx='13' ry='13' transform='translate(181.754087 122.573953)' stroke={primaryColor} />
-	<path d='M226.6719,190.948841l-29.94521-29.945207-56.895893,53.873407' transform='translate(.000001 0.000002)' stroke={primaryColor} />
-	<path d='M175.765045,179.968932l-43.919637-42.921463L82.21681,178.970757' transform='translate(.000002 0.000001)' stroke={primaryColor} />
-
-	<line x1='-26.046247' y1='33.074591' x2='26.046246' y2='-33.07459' transform='translate(125.953754 34.074591)' stroke={primaryColor} />
-	<line x1='-26.357866' y1='-33.07459' x2='26.357866' y2='33.074591' transform='translate(178.357866 34.074591)' stroke={primaryColor} />
-
-	<line x1='-36.664049' y1='-25.1899' x2='36.66405' y2='25.1899' transform='translate(263.33595 115.323211)' stroke={primaryColor} />
-	<line x1='36.66405' y1='-23.713614' x2='-36.664049' y2='23.713614' transform='translate(263.33595 164.226726)' stroke={primaryColor} />
-
-	<line x1='-28.8533' y1='40.440012' x2='28.8533' y2='-40.440011' transform='translate(178.8533 253.317054)' stroke={primaryColor} />
-	<line x1='-25.54716' y1='-40.440011' x2='25.547159' y2='40.440011' transform='translate(124.452841 253.317054)' stroke={primaryColor} />
-
-	<line x1='40.46928' y1='25.446435' x2='-40.46928' y2='-25.446435' transform='translate(40.46928 162.493905)' stroke={primaryColor} />
-	<line x1='40.46928' y1='-26.4516' x2='-40.46928' y2='26.4516' transform='translate(40.46928 110.59587)' stroke={primaryColor} />
+export const imageScrollerIcon = <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style={{ enableBackground: "new 0 0 512 512" }} xmlSpace="preserve" >
+	<g id="Scroll">
+		<circle style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} cx={256} cy={256} r={120} />
+		<path style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M176,83.431l51.716-51.716c15.621-15.621,40.948-15.621,56.569,0L336,83.431" />
+		<path style={{ fill: "none", stroke:primaryColor,strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M176,428.569l51.716,51.716c15.621,15.621,40.948,15.621,56.569,0L336,428.569" />
+		<path style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M83.431,336l-51.716-51.716c-15.621-15.621-15.621-40.948,0-56.569L83.431,176" />
+		<path style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d=" M428.569,336l51.716-51.716c15.621-15.621,15.621-40.948,0-56.569L428.569,176" />
+	</g>
 </svg>
 
 export const infoBoxIcon = <svg {...svgProps} viewBox='0 0 23.625 23.625'>

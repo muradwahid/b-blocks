@@ -2,7 +2,7 @@
   "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 2,
-  "editor.fontFamily": "Cascadia Mono, Source Code Pro, Fira Code, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "Cascadia Code",
   "editor.fontSize": 17,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": true,

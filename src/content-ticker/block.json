@@ -6,11 +6,7 @@
 	"title": "Content Ticker",
 	"category": "bBlocks",
 	"description": "Content Ticker will let you showcase your trending news.",
-	"keywords": [
-		"content",
-		"ticker",
-		"content-ticker"
-	],
+	"keywords": [ "content", "ticker", "content-ticker" ],
 	"textdomain": "b-blocks",
 	"attributes": {
 		"align": {
@@ -21,16 +17,9 @@
 			"type": "object",
 			"default": {
 				"text": "Trending Now",
-				"width": {
-					"desktop": "130px",
-					"tablet": "130px",
-					"mobile": "130px"
-				},
-				"height": {
-					"desktop": "",
-					"tablet": "",
-					"mobile": ""
-				},
+                "desktop":{"width":"130px","height":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""},"bRadius":{}},
+                "tablet":{"width":"","height":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""},"bRadius":{}},
+                "mobile":{"width":"","height":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""},"bRadius":{}},
 				"color": {
 					"bg": {
 						"color": "#595959"
@@ -43,52 +32,7 @@
 					},
 					"fontWeight": 400
 				},
-				"padding": {
-					"desktop": {
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					},
-					"tablet": {
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					},
-					"mobile": {
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}
-				},
-				"margin": {
-					"desktop": {
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					},
-					"tablet": {
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					},
-					"mobile": {
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}
-				},
-				"border": {},
-				"bRadius": {
-					"desktop": {},
-					"tablet": {},
-					"mobile": {}
-				}
+				"border": {}
 			}
 		},
 		"content": {
@@ -143,7 +87,7 @@
 				}
 			}
 		},
-		"animation": {
+		"options": {
 			"type": "object",
 			"default": {
 				"effect": "slide",
@@ -154,7 +98,8 @@
 				"isLoop": true,
 				"isGrabCursor": true,
 				"isArrows": true,
-				"direction": "right"
+				"direction": "right",
+				"easing":""
 			}
 		},
 		"arrows": {
@@ -167,21 +112,9 @@
 					"url": ""
 				},
 				"icon": "style1",
-				"size": {
-					"desktop": 22,
-					"tablet": 22,
-					"mobile": 22
-				},
-				"alignLeft": {
-					"desktop": 25,
-					"tablet": 25,
-					"mobile": 25
-				},
-				"alignRight": {
-					"desktop": 5,
-					"tablet": 5,
-					"mobile": 5
-				},
+                "desktop":{"size":22,"alignLeft":25,"alignRight":5,"padding":{"top":"","right":"","bottom":"","left":""}},
+                "tablet":{"size":22,"alignLeft":25,"alignRight":5,"padding":{"top":"","right":"","bottom":"","left":""}},
+                "mobile":{"size":22,"alignLeft":25,"alignRight":5,"padding":{"top":"","right":"","bottom":"","left":""}},
 				"normal": {
 					"bg": "",
 					"color": "",
@@ -193,11 +126,6 @@
 					"color": "",
 					"border": {},
 					"borderRadius": {}
-				},
-				"padding": {
-					"desktop": {},
-					"tablet": {},
-					"mobile": {}
 				}
 			}
 		},

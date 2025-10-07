@@ -2,6 +2,7 @@ import { PanelBody, RangeControl, SelectControl, ToggleControl, Flex } from '@wo
 import { withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { Device } from '../../../../../../../bpl-tools/Components';
+import { easingOptions } from '../../../../utils/options';
 
 const SliderSettings = ({ attributes, updateObj, device }) => {
     const { options } = attributes;
@@ -10,6 +11,8 @@ const SliderSettings = ({ attributes, updateObj, device }) => {
         <ToggleControl label={__('Enable Autoplay', 'b-blocks')} checked={options.autoplay} value={options.autoplay} onChange={(value) => updateObj('options', value, 'autoplay')} />
 
         <SelectControl className='mt10' label={__('Slide Direction', 'b-blocks')} labelPosition='edge' value={options.direction} options={[{ value: 'rightToLeft', label: 'Right to Left' }, { value: 'leftToRight', label: 'Left to Right' },]} onChange={(value) => updateObj('options', value, 'direction')} />
+        
+        <SelectControl className='mt10' label={__('Easing','b-blocks')} labelPosition='edge' value={options.easing} options={easingOptions} onChange={(value) => updateObj('options', value, 'easing')}/>
 
         <ToggleControl className='mt10 mb10' label={__('Show Navigation', 'b-blocks')} checked={options.navigation} onChange={(value) => updateObj('options', value, 'navigation')} />
 

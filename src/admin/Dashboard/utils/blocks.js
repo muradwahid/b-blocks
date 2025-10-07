@@ -94,7 +94,8 @@ export default [
         icon: contentTickerIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published',
+        isPremium: true
     },
     {
         name: `${pluginSlug}/countdown`,

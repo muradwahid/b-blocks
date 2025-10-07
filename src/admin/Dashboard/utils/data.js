@@ -1,5 +1,13 @@
 export const changelogs = [
     {
+        version: '2.0.16 - 7 Oct 2025',
+        list: [
+            'Added Content ticker block.',
+            'Fixed logo slider issues.',
+            'Add easing option for the logo slider block.'
+        ]
+    },
+    {
         version: '2.0.15 - 29 Sep 2025',
         list: [
             'Added Logo Slider block.',

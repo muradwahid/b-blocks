@@ -9,7 +9,7 @@ import General from "./General/General";
 import Style from "./Style/Style";
 
 const Settings = (props) => {
-    const { attributes, setAttributes, updateObj, activeIndex, setActiveIndex } = props;
+    const { attributes, setAttributes, updateObj, activeIndex, setActiveIndex, isPremium } = props;
 
     return <>
         <InspectorControls>
@@ -29,7 +29,7 @@ const Settings = (props) => {
                     </>}
 
                     {"advanced" === tab.name && <>
-                        <Advanced advanced={attributes.advanced} onChange={val => setAttributes({ advanced: val })} isPremium={props.isPremium} />
+                        <Advanced advanced={attributes.advanced} onChange={val => setAttributes({ advanced: val })} isPremium={isPremium} />
                     </>}
                 </>}
             </TabPanel>

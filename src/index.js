@@ -12,7 +12,7 @@ import './button';
 import './button-group';
 import './cards';
 import './chart';
-// import './content-ticker';
+import './content-ticker';
 import './countdown';
 import './counters';
 // import './data-table';

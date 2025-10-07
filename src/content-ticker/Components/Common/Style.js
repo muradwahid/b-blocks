@@ -14,10 +14,10 @@ const Style = ({ attributes, id }) => {
 	const nextBtn = `${wrapper} #cttk-nextBtn`;
 	const prevBtn = `${wrapper} #cttk-prevBtn`;
 	const btnNormal = (device) => `
-		${isValidCSS('height', isExist(arrows.size[device]) ? arrows.size[device] + 'px' : '')}
-		${isValidCSS('width', isExist(arrows.size[device]) ? arrows.size[device] + 'px' : '')}
-		${isValidCSS('font-size', isExist(arrows.size[device]) ? arrows.size[device] + 'px' : '')}
-		${isValidCSS('padding', getBoxCSS(arrows.padding[device]))}
+		${isValidCSS('height', isExist(arrows[device].size) ? arrows[device].size + 'px' : '')}
+		${isValidCSS('width', isExist(arrows[device].size) ? arrows[device].size + 'px' : '')}
+		${isValidCSS('font-size', isExist(arrows[device].size) ? arrows[device].size + 'px' : '')}
+		${isValidCSS('padding', getBoxCSS(arrows[device].padding))}
 		${isValidCSS('color', arrows.normal.color)}
 		${isValidCSS('fill', arrows.normal.color)}
 		${isValidCSS('background', arrows.normal.bg)}
@@ -37,20 +37,20 @@ const Style = ({ attributes, id }) => {
 		${getTypoCSS(`${content} a.cttk-ticker-link`, style.typography)?.googleFontLink}
 		${getTypoCSS(badgeSl, badge.typography)?.styles}
 		${badgeSl}{
-			${isValidCSS('width', badge.width.desktop)}
-			${isValidCSS('height', badge.height.desktop)}
+			${isValidCSS('width', badge.desktop.width)}
+			${isValidCSS('height', badge.desktop.height)}
 			${isValidCSS('color', badge.color.text)}
-			${isValidCSS('padding', getBoxCSS(badge.padding.desktop))}
-			${isValidCSS('margin', getBoxCSS(badge.margin.desktop))}
+			${isValidCSS('padding', getBoxCSS(badge.desktop.padding))}
+			${isValidCSS('margin', getBoxCSS(badge.desktop.margin))}
 			${getBorderBoxCSS(badge.border)}
-			${isValidCSS('border-radius', getBoxCSS(badge.bRadius.desktop))}
+			${isValidCSS('border-radius', getBoxCSS(badge.desktop.bRadius))}
 			${getBackgroundCSS(badge.color.bg)}
 		}
 		${content}{
 			${isValidCSS('background-color', style.bg)}
 			${isValidCSS('padding', getBoxCSS(style.padding.desktop))}
 			${getBorderRadiusCSS(style.bRadius)}
-			width:calc(100% - ${badge.width.desktop});
+			width:calc(100% - ${isExist(badge.desktop.width) ? badge.desktop.width : '0px'});
 		}
 		${content} a.cttk-ticker-link{
 			${isValidCSS('color', style.color.normal)}
@@ -61,14 +61,14 @@ const Style = ({ attributes, id }) => {
 		}
 		${nextBtn}{
 			${btnNormal('desktop')}
-			right:${arrows.alignLeft.desktop}px;
+			right:${arrows.desktop.alignLeft}px;
 		}
 		${nextBtn}:hover{
 			${btnHover}
 		}
 		${prevBtn}{
 			${btnNormal('desktop')}
-			right:${arrows.alignRight.desktop}px;
+			right:${arrows.desktop.alignRight}px;
 		}
 		${prevBtn}:hover{
 			${btnHover}
@@ -78,45 +78,45 @@ const Style = ({ attributes, id }) => {
 
 		@media only screen and (min-width:641px) and (max-width: 1024px){
 			${badgeSl}{
-				${isValidCSS('width', badge.width.tablet)}
-				${isValidCSS('height', badge.height.tablet)}
-				${isValidCSS('padding', getBoxCSS(badge.padding.tablet))}
-				${isValidCSS('margin', getBoxCSS(badge.margin.tablet))}
-				${getBorderRadiusCSS(badge.bRadius.tablet)}
+				${isValidCSS('width', badge.tablet.width)}
+				${isValidCSS('height', badge.tablet.height)}
+				${isValidCSS('padding', getBoxCSS(badge.tablet.padding))}
+				${isValidCSS('margin', getBoxCSS(badge.tablet.margin))}
+				${getBorderRadiusCSS(badge.tablet.bRadius)}
 			}
 			${content}{
 				${isValidCSS('padding', getBoxCSS(style.padding.tablet))}
-				width:calc(100% - ${badge.width.tablet});
+				width:calc(100% - ${isExist(badge.tablet.width) ? badge.tablet.width : '0px'});
 			}
 			${nextBtn}{
 				${btnNormal('tablet')}
-				right:${arrows.alignLeft.tablet}px;
+				right:${arrows.tablet.alignLeft}px;
 			}
 			${prevBtn}{
 				${btnNormal('tablet')}
-				right:${arrows.alignRight.tablet}px;
+				right:${arrows.tablet.alignRight}px;
 			}
 		}
 
 		@media only screen and (max-width: 640px){
 			${badgeSl}{
-				${isValidCSS('width', badge.width.mobile)}
-				${isValidCSS('height', badge.height.mobile)}
-				${isValidCSS('padding', getBoxCSS(badge.padding.mobile))}
-				${isValidCSS('margin', getBoxCSS(badge.margin.mobile))}
-				${getBorderRadiusCSS(badge.bRadius.mobile)}
+				${isValidCSS('width', badge.mobile.width)}
+				${isValidCSS('height', badge.mobile.height)}
+				${isValidCSS('padding', getBoxCSS(badge.mobile.padding))}
+				${isValidCSS('margin', getBoxCSS(badge.mobile.margin))}
+				${getBorderRadiusCSS(badge.mobile.bRadius)}
 			}
 			${content}{
 				${isValidCSS('padding', getBoxCSS(style.padding.mobile))}
-				width:calc(100% - ${badge.width.mobile});
+				width:calc(100% - ${isExist(badge.mobile.width) ? badge.mobile.width : '0px'});
 			}
 			${nextBtn}{
 			${btnNormal('mobile')}
-				right:${arrows.alignLeft.mobile}px;
+				right:${arrows.mobile.alignLeft}px;
 			}
 			${prevBtn}{
 			${btnNormal('mobile')}
-				right:${arrows.alignRight.mobile}px;
+				right:${arrows.mobile.alignRight}px;
 			}
 		}
 	`}</style>

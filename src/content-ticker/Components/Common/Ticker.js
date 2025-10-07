@@ -7,31 +7,37 @@ import { A11y, Autoplay, EffectFade, Navigation, Pagination, Scrollbar } from 's
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Ticker = ({ attributes }) => {
-	const { content, animation } = attributes;
+	const { content, options } = attributes;
+
+	const styles = {
+			'--swiper-wrapper-transition-timing-function': options?.easing
+	};
+
 	const Slider = () => <Swiper
+		style={styles}
 		modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade]}
 		slidesPerView={1}
-		loop={animation.isLoop}
+		loop={options.isLoop}
 		loopAddBlankSlides={true}
 		autoplay={
-			animation.isAutoplay
+			options.isAutoplay
 				? {
-					delay: animation.autoPlaySpeed,
+					delay: options.autoPlaySpeed,
 					reverseDirection:
-						animation.effect === 'slide'
-							? animation.direction === 'right'
+						options.effect === 'slide'
+							? options.direction === 'right'
 								? false
 								: true
 							: true,
-					pauseOnMouseEnter: animation.isPauseOnHover,
+					pauseOnMouseEnter: options.isPauseOnHover,
 				}
 				: false
 		}
-		{...(animation.effect === 'fade' ? { effect: 'fade' } : {})}
-		speed={animation.sliderSpeed}
-		grabCursor={animation.isGrabCursor}
+		{...(options.effect === 'fade' ? { effect: 'fade' } : {})}
+		speed={options.sliderSpeed}
+		grabCursor={options.isGrabCursor}
 		navigation={
-			animation.isArrows
+			options.isArrows
 				? {
 					prevEl: '.custom-prev-btn',
 					nextEl: '.custom-next-btn',

@@ -1,3 +1,5 @@
+$slideMargin:var(--b-blocks-logo-slider-slide-margin, 0px);
+
 .wp-block-b-blocks-logo-slider {
     box-sizing: border-box;
 
@@ -14,7 +16,7 @@
 
                 .swiper-slide {
                     height: 100% !important;
-                    margin-bottom: 20px;
+                    margin-bottom: $slideMargin;
                     justify-content: center;
 
                     .b-blocks-logo-slider-wrapper {

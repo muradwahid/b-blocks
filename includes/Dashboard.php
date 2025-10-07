@@ -120,7 +120,7 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 				wp_send_json_error( 'Invalid Request' );
 			}
 
-			$data = json_decode( stripslashes( $_POST['data'] ), associative: true );
+			$data = json_decode( stripslashes( $_POST['data'] ), true );
 			$db_data = get_option( 'bBlocksDisabledBlocks', [] );
 
 			if( !isset( $data ) && $db_data ){

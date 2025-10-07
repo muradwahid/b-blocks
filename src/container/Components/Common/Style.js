@@ -13,7 +13,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 
 	const mainSl = `#${id} .${prefix}`;
 	const contentSl = isBackend ? `${mainSl} .${prefix}Content >.block-editor-inner-blocks >.block-editor-block-list__layout` : `${mainSl} .${prefix}Content`;
-	const advSl = isBackend ? `${id} .bBlocksContainer .bBlocksContainerContent` : id;
+	const advSl = isBackend ? `${id}>div>.bBlocksContainer>.bBlocksContainerContent` : id;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `

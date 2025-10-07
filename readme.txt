@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.15
+Stable tag: 2.0.16
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -362,6 +362,11 @@ Please report security bugs found in the source code of the B Blocks plugin thro
 
 
 == Changelog ==
+
+= 2.0.16 - 7 Oct 2025 =
+* Added Content ticker block.
+* Fixed logo slider issues.
+* Add easing option for the logo slider block.
 
 = 2.0.15 - 29 Sep 2025 =
 * Added Logo Slider block.

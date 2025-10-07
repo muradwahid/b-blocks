@@ -10,13 +10,13 @@ const ArrowStyles = ({ attributes, device, updateObj }) => {
 
 	return <PanelBody className='bPlPanelBody' title={__('Arrows', 'b-blocks')} initialOpen={false} >
 
-		<RangeControl className='mt10' label={<Flex>{__('Arrows Size', 'b-blocks')} <Device /></Flex>} value={arrows.size[device]} onChange={(value) => updateObj('arrows', value, 'size', device)} />
+		<RangeControl className='mt10' label={<Flex>{__('Arrows Size', 'b-blocks')} <Device /></Flex>} value={arrows[device].size} onChange={(value) => updateObj('arrows', value, device, 'size')} />
 
-		<RangeControl className='mt10' label={<Flex>{__('Align Left Arrow', 'b-blocks')} <Device /></Flex>} value={arrows.alignLeft[device]} onChange={(value) => updateObj('arrows', value, 'alignLeft', device)} min={-50} max={200} />
+		<RangeControl className='mt10' label={<Flex>{__('Align Left Arrow', 'b-blocks')} <Device /></Flex>} value={arrows[device].alignLeft} onChange={(value) => updateObj('arrows', value, device, 'alignLeft')} min={-50} max={200} />
 
-		<RangeControl className='mt10' label={<Flex>{__('Align Right Arrow', 'b-blocks')} <Device /></Flex>} value={arrows.alignRight[device]} onChange={(value) => updateObj('arrows', value, 'alignRight', device)} min={-50} max={200} />
+		<RangeControl className='mt10' label={<Flex>{__('Align Right Arrow', 'b-blocks')} <Device /></Flex>} value={arrows[device].alignRight} onChange={(value) => updateObj('arrows', value, device, 'alignRight')} min={-50} max={200} />
 
-		<BoxControl label={<Flex>{__('Padding', 'b-blocks')} <Device /></Flex>} values={arrows.padding[device]} onChange={(value) => updateObj('arrows', value, 'padding', device)} />
+		<BoxControl label={<Flex>{__('Padding', 'b-blocks')} <Device /></Flex>} values={arrows[device].padding} onChange={(value) => updateObj('arrows', value, 'padding', device)} />
 
 		<TabPanel className='bPlTabPanel small mt10' activeClass='activeTab' tabs={normalHoverTabs} onSelect={tabController}>
 			{

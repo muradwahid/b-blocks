@@ -8,9 +8,9 @@ const BadgeStyle = ({ attributes, updateObj, device }) => {
 
 	return <PanelBody className='bPlPanelBody' title={__('Badge Style', 'b-blocks')} initialOpen={true}>
 
-		<UnitControl label={<Flex>{__('Width', 'b-blocks')} <Device /></Flex>} labelPosition='edge' value={badge.width[device]} onChange={(value) => updateObj('badge', value, 'width', device)} />
+		<UnitControl label={<Flex>{__('Width', 'b-blocks')} <Device /></Flex>} labelPosition='edge' value={badge[device].width} onChange={(value) => updateObj('badge', value, device, 'width')} />
 
-		<UnitControl className='mt10' label={<Flex>{__('Height', 'b-blocks')} <Device /></Flex>} value={badge.height[device]} labelPosition='edge' onChange={(value) => updateObj('badge', value, 'height', device)} />
+		<UnitControl className='mt10' label={<Flex>{__('Height', 'b-blocks')} <Device /></Flex>} value={badge[device].height} labelPosition='edge' onChange={(value) => updateObj('badge', value, device, 'height')} />
 
 		<Background label={__('Background', 'b-blocks')} value={badge.color.bg} onChange={(value) => updateObj('badge', value, 'color', 'bg')} defaults={{ color: '#0e0e0e' }} />
 
@@ -18,13 +18,13 @@ const BadgeStyle = ({ attributes, updateObj, device }) => {
 
 		<Typography label={__('Typography', 'b-blocks')} value={badge.typography} onChange={(value) => updateObj('badge', value, 'typography')} />
 
-		<BoxControl className='mt10' label={<Flex>{__('Padding', 'b-blocks')} <Device /></Flex>} values={badge.padding[device]} onChange={(value) => updateObj('badge', value, 'padding', device)} />
+		<BoxControl className='mt10' label={<Flex>{__('Padding', 'b-blocks')} <Device /></Flex>} values={badge[device].padding} onChange={(value) => updateObj('badge', value, device, 'padding')} />
 
-		<BoxControl className='mt10' label={<Flex>{__('Margin', 'b-blocks')} <Device /></Flex>} values={badge.margin[device]} onChange={(value) => updateObj('badge', value, 'margin', device)} />
+		<BoxControl className='mt10' label={<Flex>{__('Margin', 'b-blocks')} <Device /></Flex>} values={badge[device].margin} onChange={(value) => updateObj('badge', value, device, 'margin')} />
 
 		<BorderBoxControl className='mt10' label={__('Border', 'b-blocks')} value={badge.border} onChange={(value) => updateObj('badge', value, 'border')} />
 
-		<BoxControl className='mt10' label={<Flex>{__('Border Radius', 'b-blocks')} <Device /></Flex>} values={badge.bRadius[device]} onChange={(value) => updateObj('badge', value, 'bRadius', device)} />
+		<BoxControl className='mt10' label={<Flex>{__('Border Radius', 'b-blocks')} <Device /></Flex>} values={badge[device].bRadius} onChange={(value) => updateObj('badge', value, device, 'bRadius')} />
 	</PanelBody>
 };
 

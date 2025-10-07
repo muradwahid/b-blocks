@@ -39,7 +39,8 @@
                 "navigation": true,
                 "pagination": true,
                 "dynamicPagination": false,
-                "isCaptionVisible": false
+                "isCaptionVisible": false,
+                "easing":""
             }
         },
         "sliderStyles": {

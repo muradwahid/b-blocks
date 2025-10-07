@@ -16,6 +16,7 @@ const ItemSettings = ({ attributes, setAttributes, index }) => {
         <MediaArea width="100%" height="100%" label={__('Choose Logo', 'b-blocks')} value={item?.url ? item : {url:placeholderImg}} onChange={value => updateObj('logo', value, index)} />
         <TextControl className='mt10' label={__('Alt', 'b-blocks')} value={item?.alt} onChange={value => updateObj('logo', value, index, 'alt')} />
         <TextControl label={__('Caption', 'b-blocks')} value={item?.caption} onChange={value => updateObj('logo', value, index, 'caption')} />
+        <TextControl label={__('Link', 'b-blocks')} type="url" value={item?.anchor} onChange={value => updateObj('logo', value, index, 'anchor')} />
     </>
 };
 
