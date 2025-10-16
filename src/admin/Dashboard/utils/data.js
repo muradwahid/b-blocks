@@ -1,5 +1,14 @@
 export const changelogs = [
     {
+        version: '2.0.17 - 7 Oct 2025',
+        list: [
+            'Added option pause on hover for logo slider.',
+            'Added Image Hotspot block.',
+            'Fixed slider width issue.',
+            'Fixed logo slider radius.'
+        ]
+    },
+    {
         version: '2.0.16 - 7 Oct 2025',
         list: [
             'Added Content ticker block.',

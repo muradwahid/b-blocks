@@ -1,20 +1,26 @@
 import SVG from 'react-inlinesvg';
-import { placeholderImg } from '../../utils/icons';
+import { placeholderImg } from '../../../utils/data';
+
 
 const Hotspot = ({ attributes }) => {
 	const { hotspot, image, preset } = attributes;
-	return <div>
+	return <>
 		<div
-			style={{
-				background: `url(${image.url || placeholderImg})`,
-				backgroundRepeat: 'no-repeat',
-				backgroundPosition: 'center',
-				backgroundSize: 'cover',
-				backgroundAttachment: 'local',
-			}}
-			className='hotspot-image-wrapper'
+			// style={{
+			// 	background: `url(${image.url || placeholderImg})`,
+			// 	backgroundRepeat: 'no-repeat',
+			// 	backgroundPosition: 'center',
+			// 	backgroundSize: 'cover',
+			// 	backgroundAttachment: 'local',
+			// }}
+			className='b-blocks-hotspot-image-wrapper'
 		>
-			{hotspot.map((element) => (
+			<img
+				src={image?.url || placeholderImg}
+				alt={image?.alt || 'Hotspot Image'}
+				className='b-blocks-hotspot-image'
+			/>
+			{hotspot.map((element, i) => (
 				<>
 					{element.spotOption === 'text' && (
 						<a
@@ -24,13 +30,15 @@ const Hotspot = ({ attributes }) => {
 							<div
 								style={{
 									position: 'absolute',
-									left: `${element.position.x}%`,
-									top: `${element.position.y}%`,
+									// left: `${element.position.x}%`,
+									// top: `${element.position.y}%`,
 									cursor: 'pointer',
 								}}
+								className='b-blocks-bphb-hotspot-container'
+								id={`b-blocks-bphb-hotspot-container-${i}`}
 							>
 								<div
-									className={`bphb-hotspot ${preset === 'default'
+									className={`b-blocks-bphb-hotspot ${preset === 'default'
 										? 'circle'
 										: preset === 'themetwo'
 											? 'two'
@@ -43,7 +51,7 @@ const Hotspot = ({ attributes }) => {
 								>
 									{element.tooltip && (
 										<div
-											className={`tooltip-reader ${preset === 'default'
+											className={`b-blocks-tooltip-reader ${preset === 'default'
 												? 'one'
 												: preset === 'themetwo'
 													? 'two'
@@ -52,15 +60,16 @@ const Hotspot = ({ attributes }) => {
 														: preset === 'themefour'
 															? 'fourth'
 															: 'fifth'
-												} tooltip-${element.tooltipPosition}`}
+												} b-blocks-tooltip-${element.tooltipPosition}`}
 										>
 											<div
-												className='bphb-tooltip-content'
+												className='b-blocks-bphb-tooltip-content'
 												dangerouslySetInnerHTML={{ __html: element.tooltip }}
 											></div>
 										</div>
 									)}
 									<span
+										className='b-blocks-imghp-text-icon'
 										dangerouslySetInnerHTML={{ __html: element.spotText }}
 									></span>
 								</div>
@@ -75,13 +84,15 @@ const Hotspot = ({ attributes }) => {
 							<div
 								style={{
 									position: 'absolute',
-									left: `${element.position.x}%`,
-									top: `${element.position.y}%`,
+									// left: `${element.position.x}%`,
+									// top: `${element.position.y}%`,
 									cursor: 'pointer',
 								}}
+								className='b-blocks-bphb-hotspot-container'
+								id={`b-blocks-bphb-hotspot-container-${i}`}
 							>
 								<div
-									className={`bphb-hotspot ${preset === 'default'
+									className={`b-blocks-bphb-hotspot ${preset === 'default'
 										? 'circle'
 										: preset === 'themetwo'
 											? 'two'
@@ -94,7 +105,7 @@ const Hotspot = ({ attributes }) => {
 								>
 									{element.tooltip && (
 										<div
-											className={`tooltip-reader ${preset === 'default'
+											className={`b-blocks-tooltip-reader ${preset === 'default'
 												? 'one'
 												: preset === 'themetwo'
 													? 'two'
@@ -103,7 +114,7 @@ const Hotspot = ({ attributes }) => {
 														: preset === 'themefour'
 															? 'fourth'
 															: 'fifth'
-												} tooltip-${element.tooltipPosition}`}
+												} b-blocks-tooltip-${element.tooltipPosition}`}
 										>
 											<div
 												className='bphb-tooltip-content'
@@ -112,11 +123,11 @@ const Hotspot = ({ attributes }) => {
 										</div>
 									)}
 									{element.icon.type === 'upload' && (
-										<SVG src={element.icon.url.upload} height='auto' />
+										element.icon.type === 'upload' && <span className='b-blocks-imghp-upload-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.upload }}></span>
 									)}
 									{element.icon.type === 'library' && (
 										<span
-											className='imghp-library-icon'
+											className='b-blocks-imghp-library-icon'
 											dangerouslySetInnerHTML={{
 												__html: element.icon.url.library,
 											}}
@@ -135,13 +146,15 @@ const Hotspot = ({ attributes }) => {
 							<div
 								style={{
 									position: 'absolute',
-									left: `${element.position.x}%`,
-									top: `${element.position.y}%`,
+									// left: `${element.position.x}%`,
+									// top: `${element.position.y}%`,
 									cursor: 'pointer',
 								}}
+								className='b-blocks-bphb-hotspot-container'
+								id={`b-blocks-bphb-hotspot-container-${i}`}
 							>
 								<div
-									className={`bphb-hotspot ${preset === 'default'
+									className={`b-blocks-bphb-hotspot ${preset === 'default'
 										? 'circle'
 										: preset === 'themetwo'
 											? 'two'
@@ -154,7 +167,7 @@ const Hotspot = ({ attributes }) => {
 								>
 									{element.tooltip && (
 										<div
-											className={`tooltip-reader ${preset === 'default'
+											className={`b-blocks-tooltip-reader ${preset === 'default'
 												? 'one'
 												: preset === 'themetwo'
 													? 'two'
@@ -163,10 +176,10 @@ const Hotspot = ({ attributes }) => {
 														: preset === 'themefour'
 															? 'fourth'
 															: 'fifth'
-												} tooltip-${element.tooltipPosition}`}
+												} b-blocks-tooltip-${element.tooltipPosition}`}
 										>
 											<div
-												className='bphb-tooltip-content'
+												className='b-blocks-bphb-tooltip-content'
 												dangerouslySetInnerHTML={{ __html: element.tooltip }}
 											></div>
 										</div>
@@ -190,6 +203,6 @@ const Hotspot = ({ attributes }) => {
 				</>
 			))}
 		</div>
-	</div>
+	</>
 };
 export default Hotspot;

@@ -31,6 +31,7 @@ const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex 
                         delay: options.delay,
                         reverseDirection:
                             options.direction === 'rightToLeft' ? false : true,
+                        pauseOnMouseEnter: options?.isPauseOnHover
                     }
                     : false
             }

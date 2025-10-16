@@ -1,5 +1,13 @@
 $primaryColor: #146EF5;
 
+.wp-block-b-blocks-image-hotspot {
+	.b-blocks-hotspot-image-wrapper {
+		.b-blocks-bphb-hotspot-container {
+			cursor: move;
+		}
+	}
+}
+
 .tox-statusbar__text-container.tox-statusbar__text-container-3-cols.tox-statusbar__text-container--flex-start {
 	display: none;
 }

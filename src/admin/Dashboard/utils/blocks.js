@@ -207,7 +207,8 @@ export default [
         icon: imageHotspotIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published',
+        isPremium: true
     },
     {
         name: `${pluginSlug}/image-scroller`,

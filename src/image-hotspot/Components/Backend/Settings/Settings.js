@@ -11,7 +11,7 @@ import Style from './Style/Style';
 const Settings = (props) => {
 	const { attributes, setAttributes, isPremium } = props;
 	const { advanced } = attributes;
-
+	
 	return <InspectorControls>
 		<div className='bPlInspectorInfo'>
 			Need more block like this? Checkout the bundle ➡
@@ -25,7 +25,7 @@ const Settings = (props) => {
 				</>}
 
 				{'style' === tab.name && <>
-					<Style {...{ attributes, setAttributes }} />
+					<Style {...props} />
 				</>}
 				{'advanced' === tab.name && <>
 					<Advanced advanced={advanced} onChange={(advanced) => setAttributes({ advanced })} isPremium={isPremium} />

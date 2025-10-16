@@ -26,6 +26,7 @@ const SliderFront = ({ attributes }) => {
                         delay: options.delay,
                         reverseDirection:
                             options.direction === "rightToLeft" ? false : true,
+                        pauseOnMouseEnter: options?.isPauseOnHover
                     }
                     : false
             }

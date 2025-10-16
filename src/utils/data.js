@@ -21,9 +21,9 @@ export const socialShareDocs = `${docsURL}social-share-block/`;
 export const teamMembersDocs = `${docsURL}team-block/`;
 
 
-export const pricingPage= `${location.origin}/wp-admin/admin.php?page=b-blocks#/pricing`
+export const pricingPage = `${location.origin}/wp-admin/admin.php?page=b-blocks#/pricing`
 
 
-export const placeholderImg = 'https://templates.bplugins.com/wp-content/uploads/2025/09/placeholder-image.png';
+export const placeholderImg = 'https://templates.bplugins.com/wp-content/uploads/2025/10/placeholder.png';
 
-export const premiumBlocks = ['b-blocks/logo-slider', 'b-blocks/content-ticker'];
+export const premiumBlocks = ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot'];

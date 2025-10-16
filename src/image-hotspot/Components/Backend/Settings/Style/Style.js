@@ -1,13 +1,12 @@
+import ImageStyle from './ImageStyle';
 import SpotsStyle from './SpotsStyle';
 import TooltipStyle from './TooltipStyle';
 
 const Style = (props) => {
-	const { attributes, setAttributes, updateObj } = props;
-
 	return <>
-		{/* <ImageStyle {...{ attributes, setAttributes }} /> */}
-		<SpotsStyle {...{ attributes, setAttributes, updateObj }} />
-		<TooltipStyle {...{ attributes, setAttributes, updateObj }} />
+		<ImageStyle {...props} />
+		<SpotsStyle {...props} />
+		<TooltipStyle {...props} />
 	</>
 };
 export default Style;

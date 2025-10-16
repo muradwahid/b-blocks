@@ -208,7 +208,7 @@ $secondaryColor: #ff7a00;
 						display: flex;
 						align-items: center;
 						gap: 15px;
-
+						margin-top: 25px;
 						img {
 							width: 60px;
 							height: 60px;
@@ -393,12 +393,25 @@ $secondaryColor: #ff7a00;
 					}
 
 					.name {
+						display: flex;
+						flex-direction: column;
 						font-size: 17px;
 						font-weight: 500;
 						text-transform: capitalize;
 						flex-grow: 1;
 						color: #3b3b3b;
 						margin-right: auto;
+
+						>a {
+							font-size: 12px;
+							margin-top: 5px;
+							color: #717171;
+							cursor: pointer;
+							&:hover{
+								color: #146ef5;
+								text-decoration: underline;
+							}
+						}
 					}
 
 					.actionBtn {
@@ -659,12 +672,14 @@ $secondaryColor: #ff7a00;
 		}
 	}
 
-	#b-blocks-admin-pro-modal-toggle{
+	#b-blocks-admin-pro-modal-toggle {
 		display: none;
 	}
+
 	#b-blocks-admin-pro-modal-toggle:checked~.b-blocks-admin-proModal-wrapper {
 		display: flex;
 	}
+
 	// Pro Modal
 	.b-blocks-admin-proModal-wrapper {
 		position: fixed;
@@ -675,10 +690,11 @@ $secondaryColor: #ff7a00;
 		justify-content: center;
 		align-items: center;
 		display: none;
+
 		.b-blocks-promodal-content-wrapper {
 			background-color: #fff;
 			width: 500px;
-			padding:30px 20px;
+			padding: 30px 20px;
 			border-radius: 10px;
 			position: relative;
 

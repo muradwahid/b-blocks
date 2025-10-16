@@ -15,29 +15,32 @@
 		max-width: 100%;
 	}
 
-	.hotspot-image {
+	.b-blocks-hotspot-image {
 		border-radius: inherit;
-		object-fit: cover;
+		// object-fit: cover;
+		user-select: none;
 	}
 
-	.hotspot-image-wrapper {
+	.b-blocks-hotspot-image-wrapper {
 		background-repeat: no-repeat !important;
 		background-position: center center;
 		background-size: cover;
 		background-attachment: local;
 		height: 100%;
 		width: 100%;
-
-		.bphb-hotspot {
+		.b-blocks-bphb-hotspot-container{
+			position: absolute;
+		}
+		.b-blocks-bphb-hotspot {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			color: white;
-			animation: circle 2s infinite;
+			animation: hotsPotCircle 2s infinite;
 			position: relative;
 			transition: all 0.2s ease-in-out;
 
-			@keyframes circle {
+			@keyframes hotsPotCircle {
 				0% {
 					box-shadow: 0px 0px 0px 0px #00000027;
 				}
@@ -64,11 +67,11 @@
 				border-radius: inherit;
 			}
 
-			.imghp-library-icon {
+			.b-blocks-imghp-library-icon {
 				display: flex;
 			}
 
-			.tooltip-reader {
+			.b-blocks-tooltip-reader {
 				position: absolute;
 				word-wrap: break-word;
 				transition-timing-function: ease-in-out;
@@ -77,95 +80,95 @@
 		}
 	}
 
-	.tooltip-top {
+	.b-blocks-tooltip-top {
 		visibility: hidden;
 		opacity: 0;
 		bottom: 120%;
 	}
 
-	.tooltip-left {
+	.b-blocks-tooltip-left {
 		visibility: hidden;
 		opacity: 0;
 		right: 120%;
 	}
 
-	.tooltip-right {
+	.b-blocks-tooltip-right {
 		visibility: hidden;
 		opacity: 0;
 		left: 120%;
 	}
 
-	.tooltip-bottom {
+	.b-blocks-tooltip-bottom {
 		visibility: hidden;
 		opacity: 0;
 		top: 120%;
 	}
 
-	.tooltip-topleft {
+	.b-blocks-tooltip-topleft {
 		visibility: hidden;
 		opacity: 0;
 		bottom: 110%;
 		right: 95%;
 	}
 
-	.tooltip-topright {
+	.b-blocks-tooltip-topright {
 		visibility: hidden;
 		opacity: 0;
 		bottom: 110%;
 		left: 95%;
 	}
 
-	.tooltip-bottomleft {
+	.b-blocks-tooltip-bottomleft {
 		visibility: hidden;
 		opacity: 0;
 		top: 110%;
 		right: 95%;
 	}
 
-	.tooltip-bottomright {
+	.b-blocks-tooltip-bottomright {
 		visibility: hidden;
 		opacity: 0;
 		top: 110%;
 		left: 95%;
 	}
 
-	.bphb-hotspot:hover {
-		.tooltip-top {
+	.b-blocks-bphb-hotspot:hover {
+		.b-blocks-tooltip-top {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-left {
+		.b-blocks-tooltip-left {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-right {
+		.b-blocks-tooltip-right {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-bottom {
+		.b-blocks-tooltip-bottom {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-topleft {
+		.b-blocks-tooltip-topleft {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-topright {
+		.b-blocks-tooltip-topright {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-bottomleft {
+		.b-blocks-tooltip-bottomleft {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		.tooltip-bottomright {
+		.b-blocks-tooltip-bottomright {
 			visibility: visible;
 			opacity: 1;
 		}

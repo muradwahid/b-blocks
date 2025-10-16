@@ -1,5 +1,3 @@
-
-
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 
@@ -11,14 +9,12 @@ const Style = ({ attributes, id, isBackend = false }) => {
 	const { minHeight } = wrapper;
 	const { isFullWidth, width, height, verticalAlign, horizontalAlign } = content;
 
-	const mainSl = `#${id} .${prefix}`;
+	const mainSl = `#${id}>.${prefix}`;
 	const contentSl = isBackend ? `${mainSl} .${prefix}Content >.block-editor-inner-blocks >.block-editor-block-list__layout` : `${mainSl} .${prefix}Content`;
 	const advSl = isBackend ? `${id}>div>.bBlocksContainer>.bBlocksContainerContent` : id;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		${generateCSS(advSl, advanced, isBackend)}
-
 		#${id}{
 			min-height: ${0 === parseInt(minHeight) ? 'auto' : minHeight};
 		}
@@ -42,6 +38,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 			}
 		}
 		${shapeCSS(shape, id)}
+		${generateCSS(advSl, advanced, isBackend)}
 	`.replace(/\s+/g, ' ')
 	}} />
 }

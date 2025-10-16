@@ -12,6 +12,8 @@ const SliderSettings = ({ attributes, updateObj, device }) => {
 
         <SelectControl className='mt10' label={__('Slide Direction', 'b-blocks')} labelPosition='edge' value={options.direction} options={[{ value: 'rightToLeft', label: 'Right to Left' }, { value: 'leftToRight', label: 'Left to Right' },]} onChange={(value) => updateObj('options', value, 'direction')} />
         
+        {options.autoplay && <ToggleControl label={__('Pause On Hover', 'b-blocks')} checked={options?.isPauseOnHover} value={options?.isPauseOnHover} onChange={(value) => updateObj('options', value, 'isPauseOnHover')} />}
+
         <SelectControl className='mt10' label={__('Easing','b-blocks')} labelPosition='edge' value={options.easing} options={easingOptions} onChange={(value) => updateObj('options', value, 'easing')}/>
 
         <ToggleControl className='mt10 mb10' label={__('Show Navigation', 'b-blocks')} checked={options.navigation} onChange={(value) => updateObj('options', value, 'navigation')} />

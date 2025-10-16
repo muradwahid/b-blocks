@@ -18,6 +18,8 @@ function LogoStyle({ attributes, setAttributes, updateObj, device }) {
 
             <RangeControl className='mt10' label={<Flex>Column Gap <Device /></Flex>} value={options.space[device]} onChange={(value) => updateObj('options', value, 'space', device)} step={1} min={1} max={200} />
 
+            <BoxControl label={__('Padding', 'b-blocks')} values={sliderStyles?.logo?.padding} onChange={value => updateObj('sliderStyles', value, 'logo', 'padding')} />
+
             <SelectControl className='mt10' labelPosition='edge' label={__("Logo Fit Options", "b-blocks")} value={sliderStyles.logo.logoFitOption} options={objectFitOptions} onChange={(value) => updateObj('sliderStyles', value, 'logo', 'logoFitOption')} />
 
             <SelectControl className='mt10' labelPosition='edge' label={__("Logo Hover Style", "b-blocks")} value={sliderStyles.logo.hover} options={[{ value: "", label: "None" }, { value: "logo-grayScale", label: "GrayScale" }, { value: "zoomIn", label: "Zoom In" }, { value: "zoomOut", label: "Zoom Out" }]} onChange={(value) => updateObj('sliderStyles', value, 'logo', 'hover')} />

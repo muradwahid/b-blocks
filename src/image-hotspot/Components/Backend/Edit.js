@@ -21,13 +21,13 @@ const Edit = (props) => {
 
 	const updateObj = updateAttributes(attributes, setAttributes);
 	return <>
-		<Settings {...{ attributes, setAttributes, activeIdx, setActiveIdx, updateObj, isPremium }} />
+		<Settings {...{ attributes, setAttributes, activeIdx, setActiveIdx, updateObj, isPremium, device}} />
 
 		<div ref={mainElRef} {...useBlockProps()} onDragStart={(event) => event.stopPropagation()} draggable={false}>
 			<div>
 				<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
-
-				<HotspotBack key={`${JSON.stringify(image.width)}-${device}`} {...{ attributes, setAttributes, activeIdx, setActiveIdx, isSelected }} />
+		
+				<HotspotBack key={`${JSON.stringify(image.width)}-${device}`} {...{ attributes, setAttributes, activeIdx, setActiveIdx, isSelected,device }} />
 
 			</div>
 		</div>

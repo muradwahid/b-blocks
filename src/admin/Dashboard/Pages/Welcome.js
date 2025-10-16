@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Layout from '../Layout/Layout';
 import { changelogs, helpItems } from '../utils/data';
 import { minus, plus } from '../utils/icons';
+import VideoPlayer from '../Parts/VideoPlayer';
 
 const Welcome = ({ info }) => {
 	const [isChangeLog, setIsChangeLog] = useState(false);
@@ -27,7 +28,7 @@ const Welcome = ({ info }) => {
 
 						<p>Power Up Your Gutenberg Editor Website Building Experience With bBlocks.</p>
 
-						<img className='banner' src='https://ps.w.org/b-blocks/assets/banner-772x250.png?rev=3176079' alt='B Blocks Banner' />
+						<VideoPlayer src='https://www.youtube.com/watch?v=Ml4UehEwI-s' height='550px' />
 
 						<div className='intro'>
 							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='B Blocks Logo' />

@@ -5,11 +5,25 @@ import { produce } from 'immer';
 import { BButtonGroup, BtnGroup, IconLibrary, Label, MediaArea, TinyEditor } from '../../../../../../../../bpl-tools/Components';
 import { FaRegImage, FaStar, IoText } from '../../../../../utils/icons';
 import { toolbarPositions } from '../../../../../utils/options';
+import { useWPAjax, useWPOptionQuery } from '../../../../../../../../bpl-tools/hooks';
+import { SVGSanitizer } from '../../../../../../../../bpl-tools/utils/common';
 
 const SpotItemSettings = (props) => {
 	const { attributes, setAttributes, arrKey, index, setActiveIndex } = props;
 	const items = attributes[arrKey];
 	const item = items[index]
+
+		const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
+	
+		const { refetch, } = useWPAjax('b-blocks-enable-svg-mime-type', { _wpnonce: bBlocksUtils?.nonce }, false)
+	
+	
+		const enableSVGUpload = async () => {
+			await refetch();
+		}
+	
+		const svgSanitizer = new SVGSanitizer();
+
 
 	const updateItem = (type, val, childType = null, thirdChild = null) => {
 		const newItem = produce(items, draft => {
@@ -25,6 +39,7 @@ const SpotItemSettings = (props) => {
 		setAttributes({ hotspot: newItem });
 		setActiveIndex && setActiveIndex(index);
 	}
+
 	return <>
 		<TabPanel className='bPlTabPanel small' activeClass='activeTab' initialTabName={item.option} tabs={[{ title: 'Spot', name: 'spot' },
 		{ title: 'Tooltip', name: 'tooltip' },]} onSelect={(tabName) => updateItem('option', tabName)} >
@@ -95,32 +110,36 @@ const SpotItemSettings = (props) => {
 										/>
 									)}
 									{item.icon.type === 'upload' && (
-										<MediaArea
-											types={['image/svg+xml']}
-											value={{ url: item.icon.url.upload }}
-											label='Upload SVG'
-											onChange={(val) =>
-												updateItem('icon', val, 'url', 'upload')
+									<MediaArea
+										onClick={enableSVGUpload}
+										types={['image/svg+xml']}
+										value={{ url: item.icon.url.upload }}
+										label='Upload SVG'
+										onChange={async (val) => { 
+											const svgStr = val?.url ? await svgSanitizer.sanitizeFile(val?.url) : '';
+											updateItem('icon', svgStr, 'url', 'upload')
 											}
-										/>
+										}
+										isSvgEnabled={true}
+									/>
+									
 									)}
 								</div>
 							</>
 						)}
 						{item.spotOption === 'image' && (
 							<div className='mt15'>
-								<MediaArea
-									value={{ url: item.image }}
-									label={__('Choose Image', 'b-blocks')}
-									onChange={(val) => updateItem('image', val.url)}
-								/>
+								<MediaArea value={{ url: item.image }} label={__('Choose Image', 'b-blocks')} onChange={(val) => updateItem('image', val.url)} />
 							</div>
 						)}
 						<hr />
+						{/* <UnitControl label={<Flex>{__('X Position', 'b-blocks')} <Device /></Flex>} labelPosition='edge' max={100} units={perUnit()} value={item.position[device].x} onChange={(value) => updateItem('position', value, device, 'x')} />
+					
+					<UnitControl label={<Flex>{__('Y Position', 'b-blocks')} <Device /></Flex>} labelPosition='edge' min="" max={100} units={perUnit()} value={item.position[device].y} onChange={(value) => updateItem('position', value, device, 'y')} /> */}
 
 						<RangeControl
 							label={__('X Position', 'b-blocks')}
-							value={item.position.x}
+							value={item.position.desktop.x}
 							onChange={(value) =>
 								updateItem('position', value, 'x')
 							}
@@ -129,7 +148,7 @@ const SpotItemSettings = (props) => {
 						/>
 						<RangeControl
 							label={__('Y Position', 'b-blocks')}
-							value={item.position.y}
+							value={item.position.desktop.y}
 							onChange={(value) =>
 								updateItem('position', value, 'y')
 							}

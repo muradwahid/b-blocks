@@ -7,6 +7,7 @@ import Layout from '../Layout/Layout';
 import { closeIcon, demoIcon, docsIcon, searchIcon } from '../utils/icons';
 import allBlocks from '../utils/blocks';
 import ProModal from '../Parts/ProModal';
+import { pricingPage } from '../../../utils/data';
 
 const blocks = allBlocks.filter(b => 'published' === b.status);
 
@@ -113,7 +114,7 @@ const Blocks = ({ info }) => {
 						return <div key={name} className={`block ${!disabledBlock ? 'disabled' : ''}`}>
 							<div className='icon'>{icon}</div>
 
-							<div className='name'>{title}</div>
+							<div className='name'>{title}{isBlockPremium && <a href={pricingPage} target='_blank' rel='noopener noreferrer'>Get Pro</a>} </div>
 
 							{demo && <a className='actionBtn' href={demo} target='_blank' rel='noopener noreferrer'>
 								{demoIcon}

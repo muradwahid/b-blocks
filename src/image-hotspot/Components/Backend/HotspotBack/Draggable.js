@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import SVG from 'react-inlinesvg';
 const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx, index, wrapperEl, align, isSelected, ...props }) => {
 	const [position, setPosition] = useState(value || { x: 0, y: 0 });
 	const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -68,13 +67,13 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 				ref={circleRef}
 				style={{
 					position: 'absolute',
-					left: `${element.position.x}%`,
-					top: `${element.position.y}%`,
 					cursor: 'move',
 				}}
+				className='b-blocks-bphb-hotspot-container'
+				id={`b-blocks-bphb-hotspot-container-${index}`}
 			>
 				<div
-					className={`bphb-hotspot ${preset === 'default'
+					className={`b-blocks-bphb-hotspot ${preset === 'default'
 						? 'circle'
 						: preset === 'themetwo'
 							? 'two'
@@ -87,7 +86,7 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 				>
 					{element.tooltip && (
 						<div
-							className={`tooltip-reader ${preset === 'default'
+							className={`b-blocks-tooltip-reader ${preset === 'default'
 								? 'one'
 								: preset === 'themetwo'
 									? 'two'
@@ -96,16 +95,16 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 										: preset === 'themefour'
 											? 'fourth'
 											: 'fifth'
-								} tooltip-${element.tooltipPosition}`}
+								} b-blocks-tooltip-${element.tooltipPosition}`}
 						>
 							<div
-								className='bphb-tooltip-content'
+								className='b-blocks-bphb-tooltip-content'
 								dangerouslySetInnerHTML={{ __html: element.tooltip }}
 							></div>
 						</div>
 					)}
 
-					<span>{element.spotText}</span>
+					<span className='b-blocks-imghp-text-icon'>{element.spotText}</span>
 				</div>
 			</div>
 		)}
@@ -117,13 +116,13 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 				onMouseDown={() => setActiveIdx(index)}
 				style={{
 					position: 'absolute',
-					left: `${element.position.x}%`,
-					top: `${element.position.y}%`,
 					cursor: 'move',
 				}}
+				className='b-blocks-bphb-hotspot-container'
+				id={`b-blocks-bphb-hotspot-container-${index}`}
 			>
 				<div
-					className={`bphb-hotspot ${preset === 'default'
+					className={`b-blocks-bphb-hotspot ${preset === 'default'
 						? 'circle'
 						: preset === 'themetwo'
 							? 'two'
@@ -136,7 +135,7 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 				>
 					{element.tooltip && (
 						<div
-							className={`tooltip-reader ${preset === 'default'
+							className={`b-blocks-tooltip-reader ${preset === 'default'
 								? 'one'
 								: preset === 'themetwo'
 									? 'two'
@@ -145,19 +144,20 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 										: preset === 'themefour'
 											? 'fourth'
 											: 'fifth'
-								} tooltip-${element.tooltipPosition}`}
+								} b-blocks-tooltip-${element.tooltipPosition}`}
 						>
 							<div
-								className='bphb-tooltip-content'
+								className='b-blocks-bphb-tooltip-content'
 								dangerouslySetInnerHTML={{ __html: element.tooltip }}
 							></div>
 						</div>
 					)}
 					{
-						element.icon.type === 'upload' && <SVG src={element.icon.url.upload} height='auto' />
+						// element.icon.type === 'upload' && <SVG src={element.icon.url.upload} height='auto' />
+						element.icon.type === 'upload' && <span className='b-blocks-imghp-upload-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.upload }}></span>
 					}
 					{
-						element.icon.type === 'library' && <span className='imghp-library-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.library }} ></span>
+						element.icon.type === 'library' && <span className='b-blocks-imghp-library-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.library }} ></span>
 					}
 
 				</div>
@@ -171,13 +171,13 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 				onMouseDown={() => setActiveIdx(index)}
 				style={{
 					position: 'absolute',
-					left: `${element.position.x}%`,
-					top: `${element.position.y}%`,
 					cursor: 'move',
 				}}
+				className='b-blocks-bphb-hotspot-container'
+				id={`b-blocks-bphb-hotspot-container-${index}`}
 			>
 				<div
-					className={`bphb-hotspot ${preset === 'default'
+					className={`b-blocks-bphb-hotspot ${preset === 'default'
 						? 'circle'
 						: preset === 'themetwo'
 							? 'two'
@@ -190,7 +190,7 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 				>
 					{element.tooltip && (
 						<div
-							className={`tooltip-reader ${preset === 'default'
+							className={`b-blocks-tooltip-reader ${preset === 'default'
 								? 'one'
 								: preset === 'themetwo'
 									? 'two'
@@ -199,10 +199,10 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 										: preset === 'themefour'
 											? 'fourth'
 											: 'fifth'
-								} tooltip-${element.tooltipPosition}`}
+								} b-blocks-tooltip-${element.tooltipPosition}`}
 						>
 							<div
-								className='bphb-tooltip-content'
+								className='b-blocks-bphb-tooltip-content'
 								dangerouslySetInnerHTML={{ __html: element.tooltip }}
 							></div>
 						</div>

@@ -26,7 +26,7 @@ const Edit = (props) => {
         <div {...useBlockProps()} onClick={() => selectBlock(clientId)}>
             <Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
-            {logo.length > 0 ? <SliderBackend key={`${device}-${JSON.stringify(logo?.length)}-${JSON.stringify(options)}-${JSON.stringify(options?.logoView)}`} {...{ attributes, setAttributes, activeIndex, setActiveIndex }} /> : <div className="b-blocks-logo-slider-media-upload-placeholder">
+            {logo.length > 0 ? <div><SliderBackend key={`${device}-${JSON.stringify(logo?.length)}-${JSON.stringify(options)}-${JSON.stringify(options?.logoView)}`} {...{ attributes, setAttributes, activeIndex, setActiveIndex }} /></div> : <div className="b-blocks-logo-slider-media-upload-placeholder">
                 <MediaUploadCheck>
                     <h4 className='b-blocks-logo-slider-media-upload-title'>Upload Logo(s)</h4>
                     <MediaUpload allowedTypes={["image"]} multiple={true} gallery={true} value={logo.map((img) => img.id)} onSelect={media =>setAttributes({ logo: media })} render={({ open }) => (

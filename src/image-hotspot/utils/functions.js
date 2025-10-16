@@ -1,0 +1,1 @@
+export const isPoint = (v) => v && Number.isFinite(v.x) && Number.isFinite(v.y);

@@ -4,18 +4,20 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.16
+Stable tag: 2.0.17
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-B Blocks enhances the Gutenberg editor with over 30 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
+B Blocks enhances the Gutenberg editor with over 40 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
 
 == Description ==
-**B Blocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 30+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
+**B Blocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 40+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
 
 
 [**B Blocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
+
+https://www.youtube.com/watch?v=Ml4UehEwI-s
 
 [**B Blocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, B Blocks extends the capabilities of core blocks by adding 30+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
 
@@ -23,7 +25,7 @@ Whether you're building a landing page, blog layout, portfolio, or full website,
 
 
 ## Key Features – Free Version
-- **30+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
+- **40+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
 
 - **Advanced Block Customization**: Adjust typography, spacing, color, and visibility. Fine-tune every block to match your brand identity.
 
@@ -362,6 +364,12 @@ Please report security bugs found in the source code of the B Blocks plugin thro
 
 
 == Changelog ==
+
+= 2.0.17 - 16 Oct 2025 =
+* Added option pause on hover for logo slider.
+* Added Image Hotspot block.
+* Fixed slider width issue.
+* Fixed logo slider radius.
 
 = 2.0.16 - 7 Oct 2025 =
 * Added Content ticker block.

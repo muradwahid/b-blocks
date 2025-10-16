@@ -6,7 +6,10 @@
   "editor.fontSize": 17,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": true,
+  	"editor.indentSize": 4,
+	"editor.tabSize": 4,
   "editor.wordWrap": "on",
+  "editor.autoIndentOnPasteWithinString": true,
   "files.autoSave": "afterDelay",
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
@@ -146,6 +149,5 @@
   // "prettier.singleQuote": true,
   // "prettier.tabWidth": 4,
   // "prettier.useTabs": true,
-  "editor.indentSize": 4,
   "kiroAgent.configureMCP": "Disabled"
 }

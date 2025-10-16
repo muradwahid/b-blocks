@@ -1,7 +1,7 @@
-import { __ } from "@wordpress/i18n";
-import { Flex, PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl, ToggleControl, TabPanel, RangeControl } from "@wordpress/components";
+import { __ } from '@wordpress/i18n';
+import { Flex, PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl, ToggleControl, TabPanel, RangeControl } from '@wordpress/components';
 
-import { BoxControl, ColorsControl, Label, Typography, Device, BtnGroup } from "../../../../../../../bpl-tools/Components";
+import { BoxControl, ColorsControl, Label, Typography, Device, BtnGroup } from '../../../../../../../bpl-tools/Components';
 import { animationOptions, hAlignOptions, hAnimationOptions, hoverEffectOptions, imgAlignOptions, imgFitOptions, iterationOptions, textAlignOptions, vAlignOptions } from '../../../../utils/options';
 import { normalHoverTabs } from '../../../../../utils/options';
 
@@ -9,15 +9,15 @@ import { normalHoverTabs } from '../../../../../utils/options';
 const Style = ({ attributes, updateObj, device }) => {
 	const { image, layout, style, captionStyle, caption } = attributes;
 	const { height, isAutoHeight, isAutoFit, fitOptionType } = layout;
-	const { alignment, hoverEffect, normalEffect="", effectOptions={} } = style
+	const { alignment, hoverEffect, normalEffect = '', effectOptions = {} } = style
 	const { textAlign, hAlign, vAlign, margin, padding, width } = captionStyle[device];
 	const { sourceType } = image;
 	const { typo, colors } = captionStyle;
-	const { normal={}, hover={} } = effectOptions;
+	const { normal = {}, hover = {} } = effectOptions;
 
 	return (
 		<>
-			<PanelBody className='bPlPanelBody' title={__("Image", "b-blocks")} initialOpen={true}>
+			<PanelBody className='bPlPanelBody' title={__('Image', 'b-blocks')} initialOpen={true}>
 				<PanelRow >
 					<Label>{__('Width', 'b-blocks')}</Label>
 					<Device />
@@ -49,14 +49,14 @@ const Style = ({ attributes, updateObj, device }) => {
 					<Label className=''>{__('Alignment', 'b-blocks')}</Label>
 					<Device />
 				</PanelRow>
-				<BtnGroup value={alignment[device]} onChange={val => updateObj('style', val, 'alignment', device)} options={imgAlignOptions} isIcon={true} size="default" />
+				<BtnGroup value={alignment[device]} onChange={val => updateObj('style', val, 'alignment', device)} options={imgAlignOptions} isIcon={true} size='default' />
 				<ToggleControl
 					className='mt20'
 					checked={isAutoFit}
 					label={__('Auto Fit', 'b-blocks')}
 					onChange={(v) => updateObj('layout', v, 'isAutoFit')}
 				/>
-				{isAutoFit && <BtnGroup label={__('Image Fit', 'b-blocks')} value={fitOptionType} onChange={v => updateObj('layout', v, 'fitOptionType')} options={imgFitOptions} size="small" />}
+				{isAutoFit && <BtnGroup label={__('Image Fit', 'b-blocks')} value={fitOptionType} onChange={v => updateObj('layout', v, 'fitOptionType')} options={imgFitOptions} size='small' />}
 				<SelectControl
 					className='mt20'
 					label={__('Hover Effect', 'b-blocks')}
@@ -67,17 +67,17 @@ const Style = ({ attributes, updateObj, device }) => {
 				/>
 
 			</PanelBody>
-			{caption.enabled && sourceType === "custom" && (
+			{caption.enabled && sourceType === 'custom' && (
 				<PanelBody
 					className='bPlPanelBody'
-					title={__("Caption", "b-blocks")}
+					title={__('Caption', 'b-blocks')}
 					initialOpen={false}
 				>
 					<ColorsControl
 						label={__('Colors', 'b-blocks')}
 						value={colors}
 						onChange={(val) => updateObj('captionStyle', val, 'colors')}
-						defaults={{ color: "black", bg: "#EEEEEE" }}
+						defaults={{ color: 'black', bg: '#EEEEEE' }}
 					/>
 
 					<UnitControl
@@ -120,9 +120,9 @@ const Style = ({ attributes, updateObj, device }) => {
 						<Device />
 					</PanelRow>
 					<BoxControl
-						label=""
+						label=''
 						values={margin}
-						onChange={val => updateObj('captionStyle', val, device, "margin")}
+						onChange={val => updateObj('captionStyle', val, device, 'margin')}
 					></BoxControl>
 
 					<PanelRow>
@@ -130,27 +130,27 @@ const Style = ({ attributes, updateObj, device }) => {
 						<Device />
 					</PanelRow>
 					<BoxControl
-						label=""
+						label=''
 						values={padding}
-						onChange={val => updateObj('captionStyle', val, device, "padding")}
+						onChange={val => updateObj('captionStyle', val, device, 'padding')}
 					></BoxControl>
 
 				</PanelBody>
 			)}
 
-			<PanelBody className='bPlPanelBody' title={__("Animation", "b-blocks")} initialOpen={true}>
-				
+			<PanelBody className='bPlPanelBody' title={__('Animation', 'b-blocks')} initialOpen={true}>
+
 				<TabPanel className='bPlTabPanel mini mt10' activeClass='activeTab' tabs={normalHoverTabs}>
 					{
 						tab => <>
 							{tab.name === 'normal' && <>
 								<SelectControl className='mt10' labelPosition='edge' label={__('Animation Type', 'b-blocks')} options={animationOptions} value={normalEffect} onChange={val => updateObj('style', val, 'normalEffect')} />
 
-								<SelectControl className='mt10' labelPosition='edge' label={__('Animation Iteration', 'b-blocks')} options={iterationOptions} value={normal?.iteration} onChange={val => updateObj('style', val,'effectOptions', 'normal', 'iteration')} />
+								<SelectControl className='mt10' labelPosition='edge' label={__('Animation Iteration', 'b-blocks')} options={iterationOptions} value={normal?.iteration} onChange={val => updateObj('style', val, 'effectOptions', 'normal', 'iteration')} />
 
-								{normal?.iteration == 'number' && <RangeControl className='mt10' label={__('Iteration Count', 'b-blocks')} min={0} max={10} step={1} value={normal?.iterationCount} onChange={val => updateObj('style', val,'effectOptions', 'normal', 'iterationCount')} />}
+								{normal?.iteration == 'number' && <RangeControl className='mt10' label={__('Iteration Count', 'b-blocks')} min={0} max={10} step={1} value={normal?.iterationCount} onChange={val => updateObj('style', val, 'effectOptions', 'normal', 'iterationCount')} />}
 
-								<RangeControl className='mt10' label={__('Duration (ms)', 'b-blocks')} min={0} max={20000} step={50} value={normal?.duration} onChange={val => updateObj('style', val,'effectOptions', 'normal', 'duration')} />
+								<RangeControl className='mt10' label={__('Duration (ms)', 'b-blocks')} min={0} max={20000} step={50} value={normal?.duration} onChange={val => updateObj('style', val, 'effectOptions', 'normal', 'duration')} />
 
 								<RangeControl className='mt10' label={__('Delay (ms)', 'b-blocks')} min={0} max={20000} step={50} value={normal?.delay} onChange={val => updateObj('style', val, 'effectOptions', 'normal', 'delay')} />
 							</>}
