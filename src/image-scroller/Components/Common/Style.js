@@ -18,11 +18,11 @@ const Style = ({ attributes, id, isBackend = false }) => {
 			transition: transform ${duration}ms ${easing};
 		}
 		${tabBreakpoint}{
-			${isValidCSS("height", image.height.tablet)
-			}
+			${isValidCSS("height", image.height.tablet)}
+		}
 		${mobileBreakpoint}{
-			${isValidCSS("height", image.height.mobile)
-			}
+			${isValidCSS("height", image.height.mobile)}
+		}
 		${generateCSS(id, advanced, isBackend)}
 		`
 	}} />;

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.17
+ * Version: 2.0.18
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -27,7 +27,7 @@ if (function_exists('b_blocks_fs')) {
 	});
 } else {
 	// Constant
-	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.17');
+	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.18');
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/');
@@ -49,7 +49,7 @@ if (function_exists('b_blocks_fs')) {
 					'premium_slug' => 'b-blocks-pro',
 					'type' => 'plugin',
 					'public_key' => 'pk_d6426b344df4918bc066a7a0b4719',
-					'is_premium' => false,
+					'is_premium' => true,
 					'premium_suffix' => 'Pro',
 					// If your plugin is a serviceware, set this option to false.
 					'has_premium_version' => true,
@@ -199,7 +199,7 @@ if (function_exists('b_blocks_fs')) {
 				'image-comparison',
 				'image-gallery',
 				'image-hotspot',
-				// 'image-scroller',
+				'image-scroller',
 				'info-box',
 				// 'login-form',
 				'logo-slider',

@@ -7,6 +7,7 @@ import usePremiumInEditor from '../../hooks/usePremiumInEditor';
 import useTemplatesMain from './hooks/useTemplatesMain';
 import useTemplates from './hooks/useTemplates';
 import { useWPOptionQuery } from '../../../../bpl-tools/hooks';
+import { pluginIcon } from '../../utils/icons';
 
 const TemplateLibrary = () => {
 	const { isPremium } = usePremiumInEditor();
@@ -28,7 +29,8 @@ const TemplateLibrary = () => {
 
 	return <>
 		<button className='templateLibraryButton' onClick={() => setShow(true)}>
-			<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='B Blocks' />
+			{/* <img src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='B Blocks' /> */}
+			{pluginIcon}
 			{__('Template Library', 'b-blocks')}
 		</button>
 

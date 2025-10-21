@@ -1,6 +1,12 @@
 export const changelogs = [
     {
-        version: '2.0.17 - 7 Oct 2025',
+        version: '2.0.18 - 21 Oct 2025',
+        list: [
+            'Added Image Scroller Block.'
+        ]
+    },
+    {
+        version: '2.0.17 - 16 Oct 2025',
         list: [
             'Added option pause on hover for logo slider.',
             'Added Image Hotspot block.',

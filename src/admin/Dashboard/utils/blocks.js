@@ -216,7 +216,7 @@ export default [
         icon: imageScrollerIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published'
     },
     {
         name: `${pluginSlug}/info-box`,

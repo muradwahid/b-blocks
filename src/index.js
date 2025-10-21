@@ -27,7 +27,7 @@ import './icon-box';
 import './image-comparison';
 import './image-gallery';
 import './image-hotspot';
-// import './image-scroller';
+import './image-scroller';
 import './info-box';
 // import './login-form';
 import './logo-slider';
