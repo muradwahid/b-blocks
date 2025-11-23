@@ -1,5 +1,5 @@
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
-import { getBackgroundCSS, getBorderBoxCSS, getBorderCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getBackgroundCSS, getBorderBoxCSS, getBorderCSS, getBoxCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import ResponsiveMobile from './ResponsiveMobile';
 import ResponsiveTablet from './ResponsiveTablet';
@@ -50,7 +50,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 		${isValidCSS('padding', getBoxCSS(general.formWrapper.padding.desktop))}
 		${getBorderCSS(general.formWrapper.border)}
 		${getBackgroundCSS(general.formWrapper.bg)};
-		${isValidCSS('box-shadow', getMultiShadowCSS(general.formWrapper.shadow))}
+
 	}
 	${formEl}{
 		${isValidCSS('width', general.form.width.desktop)}
@@ -58,7 +58,6 @@ const Style = ({ attributes, id, isBackend = false }) => {
 		${isValidCSS('padding', getBoxCSS(general.form.padding.desktop))}
 		${getBorderCSS(general.form.border)}
 		${getBackgroundCSS(general.form.bg)}
-		${isValidCSS('box-shadow', getMultiShadowCSS(general.form.shadow))}
 	}
 	
 	${formImage}{
@@ -88,7 +87,6 @@ const Style = ({ attributes, id, isBackend = false }) => {
 		${isValidCSS('padding', getBoxCSS(formHeader.header.logo.padding.desktop))}
 		${getBorderBoxCSS(formHeader.header.logo.border)}
 		${isValidCSS('border-radius', getBoxCSS(formHeader.header.logo.radius))}
-		${isValidCSS('box-shadow', getMultiShadowCSS(formHeader.header.logo.shadow))}
 	}
 	${headingWrapper}{
 		${isValidCSS('width', headingPosition(formHeader.header.logo.position.desktop) ? '100%' : `calc(100% - ${formHeader.header.logo.width.desktop} + ${formHeader.header.logo.url.url ? '0px' : formHeader.header.logo.width.desktop})`)}

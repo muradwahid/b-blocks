@@ -28,10 +28,11 @@ const Welcome = ({ info }) => {
 
 						<p>Power Up Your Gutenberg Editor Website Building Experience With bBlocks.</p>
 
-						<VideoPlayer src='https://www.youtube.com/watch?v=Ml4UehEwI-s' height='550px' />
+						<VideoPlayer src='https://www.youtube.com/watch?v=rdPWz1Ekkro' height='550px' />
 
 						<div className='intro'>
-							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='B Blocks Logo' />
+							{/* ?rev=3385620 */}
+							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='B Blocks Logo' />
 
 							<div className='nameAuthor'>
 								<h3>B Blocks - The ultimate block collection</h3>

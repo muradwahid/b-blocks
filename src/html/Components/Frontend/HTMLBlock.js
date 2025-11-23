@@ -1,6 +1,9 @@
+import { useRunJs } from '../hooks/useRunJs';
+
 const HTMLBlock = ({ attributes }) => {
 	const { htmlCode } = attributes;
-
-	return <div dangerouslySetInnerHTML={{ __html: htmlCode }}></div>;
+	useRunJs(htmlCode,10)
+	return <div dangerouslySetInnerHTML={{ __html: htmlCode }}>
+	</div>;
 }
 export default HTMLBlock;

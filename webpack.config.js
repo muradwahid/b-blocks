@@ -19,8 +19,9 @@ const entry = {
 	'admin-dashboard': './src/admin/dashboard.js',
 	'template-library': './src/backend/template-library.js',
 	advanced: '../bpl-tools/Advanced/style.js',
-	'cursor/cursor': "./src/customCursor/customCursor.js",
-	'cursor/settings': "./src/customCursor/Settings.js"
+	'cursor/cursor': './src/customCursor/customCursor.js',
+	'cursor/settings': './src/customCursor/Settings.js',
+	'b-blocks-ai/content-generate-ai':'./src/backend/ContentGenerateApi/ContentGenerateApi.js'
 };
 
 module.exports = {

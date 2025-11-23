@@ -17,6 +17,7 @@ import './countdown';
 import './counters';
 // import './data-table';
 import './dual-color-heading';
+import './emoji-stack-separator'
 // import './facebook-embed';
 // import './facebook-page';
 import './feature-boxes';
@@ -34,6 +35,7 @@ import './logo-slider';
 import './lottie-player';
 import './mailto';
 import './navigation';
+import './news-ticker';
 import './posts';
 import './price-lists';
 import './pricing-table';

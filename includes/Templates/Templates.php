@@ -40,11 +40,14 @@ class Templates {
         $start = $pageNumber - 1;
         $search = sanitize_text_field( wp_unslash( $_POST['search'] ) ) ?? '';
 
-		$typeFilter = 'patterns' === $type ? 'blocks': '';
+		$typeFilter = 'patterns' === $type ? 'patterns': 'pages';
 
 		try {
-			$response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=$start&end=$pageNumber&category=$category&keywords=$search" );
+			$response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/blocks?type=$typeFilter&start=$start&end=$pageNumber&category=$category&keywords=$search" );
 
+			// old
+			// $response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=$start&end=$pageNumber&category=$category&keywords=$search" );
+			
 			$body = json_decode( wp_remote_retrieve_body( $response ) );
 			wp_send_json_success( $body );
 		} catch (\Throwable $th) {

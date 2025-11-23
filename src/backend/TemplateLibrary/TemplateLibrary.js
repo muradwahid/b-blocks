@@ -13,7 +13,7 @@ const TemplateLibrary = () => {
 	const { isPremium } = usePremiumInEditor();
 
 	const [show, setShow] = useState(false);
-	const [type, setType] = useState('patterns');
+	const [type, setType] = useState('pages');
 	const [category, setCategory] = useState('all');
 	const [pageNumber, setPageNumber] = useState(1);
 	const [search, setSearch] = useState('');

@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/emoji-stack-separator",
+	"version": "0.1.0",
+	"title": "Emoji Stack Separator",
+	"category": "bBlocks",
+		"textdomain": "b-blocks",
+	"description": "A full-width emoji stack separator with customizable emoji and height",
+	"example": {
+		"attributes": {
+			"emoji": "🤗",
+			"height": 192,
+			"align": "full",
+			"emojiSize": "medium",
+			"density": "normal",
+			"animationStyle": "none"
+		}
+	},
+	"attributes": {
+		"emoji": {
+			"type": "string",
+			"default": "🤗"
+		},
+		"height": {
+			"type": "string",
+			"default": "192px"
+		},
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"emojiSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"density": {
+			"type": "string",
+			"default": "normal"
+		},
+		"animationStyle": {
+			"type": "string",
+			"default": "none"
+		},
+		"margin":{
+			"type":"object"	,
+			"default":{}
+		},
+		"padding":{
+			"type":"object"	,
+			"default":{}
+		},
+		"background": {
+			"type": "object",
+			"default": {}
+		},
+		"border": {
+			"type": "object",
+			"default": {}
+		},
+		"borderRadius": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

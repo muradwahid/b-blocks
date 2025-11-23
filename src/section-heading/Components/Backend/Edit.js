@@ -46,11 +46,15 @@ const Edit = props => {
 			`}} />
 
 			<div className={prefix}>
-				<RichText className='sectionHeadingTitle' tagName='h2' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Section heading title', 'b-blocks')} inlineToolbar />
+				<RichText className='sectionHeadingTitle' tagName='h2' value={title} onChange={val => setAttributes({ title: val })} placeholder={__('Section heading title', 'b-blocks')}
+					// inlineToolbar
+				/>
 
 				{isSep && <span className='sectionHeadingSeparator'></span>}
 
-				{isDesc && <RichText className='sectionHeadingDescription' tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Section heading description', 'b-blocks')} inlineToolbar />}
+				{isDesc && <RichText className='sectionHeadingDescription' tagName='p' value={desc} onChange={val => setAttributes({ desc: val })} placeholder={__('Section heading description', 'b-blocks')}
+					// inlineToolbar
+				/>}
 			</div>
 		</div>
 	</>;

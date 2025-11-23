@@ -27,6 +27,10 @@
 			"type": "string",
 			"default": "solid"
 		},
+		"iconColor":{
+			"type":"string",
+			"default":"#f0ad4e"
+		},
 		"prefix": {
 			"type": "string",
 			"default": ""

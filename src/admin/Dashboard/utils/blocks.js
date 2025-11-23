@@ -1,4 +1,4 @@
-import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, loginFormIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, registerFormIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, videoIcon } from '../../../utils/blocksIcon';
+import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, loginFormIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, videoIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -125,6 +125,14 @@ export default [
         name: `${pluginSlug}/dual-color-heading`,
         title: 'Dual Color Heading',
         icon: dualColorHeadingIcon,
+        demo: ``,
+        docs: ``,
+        status: 'published'
+    },
+    {
+        name: `${pluginSlug}/emoji-stack-separator`,
+        title: 'Emoji Stack Separator',
+        icon: emojiStack,
         demo: ``,
         docs: ``,
         status: 'published'
@@ -268,6 +276,14 @@ export default [
         status: 'published'
     },
     {
+        name: `${pluginSlug}/news-ticker`,
+        title: 'News Ticker',
+        icon: newsTicker,
+        demo: ``,
+        docs: ``,
+        status: 'published'
+    },
+    {
         name: `${pluginSlug}/posts`,
         title: 'Posts',
         icon: postsIcon,
@@ -299,14 +315,14 @@ export default [
         docs: `${docsURL}/qr-code-block/`,
         status: 'published'
     },
-    {
-        name: `${pluginSlug}/register-form`,
-        title: 'Register Form',
-        icon: registerFormIcon,
-        demo: ``,
-        docs: ``,
-        status: 'inDev'
-    },
+    // {
+    //     name: `${pluginSlug}/register-form`,
+    //     title: 'Register Form',
+    //     icon: registerFormIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'inDev'
+    // },
     {
         name: `${pluginSlug}/section-heading`,
         title: 'Section Heading',

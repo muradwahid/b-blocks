@@ -75,3 +75,16 @@ export const verticalLineIcon = <svg xmlns='http://www.w3.org/2000/svg' width={2
 export const horizontalLineIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 357 357'>
 	<path d='M357,204H0v-51h357V204z' />
 </svg>;
+
+
+export const AiIcon = (props) => <svg className='bBlocksSvgAiIcon' enableBackground="new 0 0 32 32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<defs>
+		<linearGradient id="bBlocksAiIconGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+			<stop offset="0%" stopColor="#146ef5" />
+			<stop offset="100%" stopColor="#ff7a00" />
+		</linearGradient>
+	</defs>
+	<path fill="url(#bBlocksAiIconGradient)" d="m13.294 7.436.803 2.23c.892 2.475 2.841 4.424 5.316 5.316l2.23.803c.201.073.201.358 0 .43l-2.23.803c-2.475.892-4.424 2.841-5.316 5.316l-.803 2.23c-.073.201-.358.201-.43 0l-.803-2.23c-.892-2.475-2.841-4.424-5.316-5.316l-2.23-.803c-.201-.073-.201-.358 0-.43l2.23-.803c2.475-.892 4.424-2.841 5.316-5.316l.803-2.23c.072-.202.357-.202.43 0z" />
+	<path className='bBlocksSvgAiIconPathFirst' fill="url(#bBlocksAiIconGradient)" d="m23.332 2.077.407 1.129c.452 1.253 1.439 2.24 2.692 2.692l1.129.407c.102.037.102.181 0 .218l-1.129.407c-1.253.452-2.24 1.439-2.692 2.692l-.407 1.129c-.037.102-.181.102-.218 0l-.407-1.129c-.452-1.253-1.439-2.24-2.692-2.692l-1.129-.407c-.102-.037-.102-.181 0-.218l1.129-.407c1.253-.452 2.24-1.439 2.692-2.692l.407-1.129c.037-.103.182-.103.218 0z" />
+	<path className='bBlocksSvgAiIconPathSecond' fill="url(#bBlocksAiIconGradient)" d="m23.332 21.25.407 1.129c.452 1.253 1.439 2.24 2.692 2.692l1.129.407c.102.037.102.181 0 .218l-1.129.407c-1.253.452-2.24 1.439-2.692 2.692l-.407 1.129c-.037.102-.181.102-.218 0l-.407-1.129c-.452-1.253-1.439-2.24-2.692-2.692l-1.129-.407c-.102-.037-.102-.181 0-.218l1.129-.407c1.253-.452 2.24-1.439 2.692-2.692l.407-1.129c.037-.102.182-.102.218 0z" />
+	</svg>

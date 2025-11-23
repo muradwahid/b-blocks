@@ -6,7 +6,7 @@ import { Spinner } from '@wordpress/components';
 import { externalIcon } from '../utils/icons';
 import { pricingPage } from '../../../utils/data';
 
-const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, templatesLoading, children }) => {
+const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, templatesLoading, type, children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [isTempLoading, setIsTempLoading] = useState(false);
@@ -25,9 +25,9 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 		{templates?.length ? <>
 			<div className='grid columns-3 columns-tablet-1 columns-mobile-1'>
 				{templates.map((item, index) => {
-					const { ID, original_content, category } = item;
-					const isPro = category.includes('pro');
-
+					const { ID, original_content, category } = type === 'patterns' ? item : item.category[0] ==='landing-page' ? item : {};
+					const isPro = category?.includes('pro');
+					
 					const hasAccess = isPremium || !isPro;
 
 					const linkProps = hasAccess ? {
@@ -71,6 +71,8 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 						target: '_blank',
 						rel: 'noreferrer'
 					};
+
+
 
 					return <div className='modalBodyTemplateItem' key={index}>
 						<div className='modalBodyTemplateItemPreviewWrap'>

@@ -1,0 +1,99 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-telex-news-ticker {
+	overflow: hidden;
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-ticker-wrapper {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 50px;
+}
+
+.news-ticker-label {
+	background: rgba(0, 0, 0, 0.2);
+	padding: 0 20px;
+	font-weight: 600;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	white-space: nowrap;
+	flex-shrink: 0;
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+
+.news-ticker-content {
+	flex: 1;
+	overflow: hidden;
+	position: relative;
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+
+.news-ticker-items {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	animation: ticker-scroll var(--ticker-speed, 50s) linear infinite;
+	padding-left: 100%;
+}
+
+.news-ticker-items:hover {
+	animation-play-state: paused;
+}
+
+.news-ticker-item {
+	padding: 0 40px;
+	position: relative;
+	transition: opacity 0.3s ease;
+}
+
+.news-ticker-item::after {
+	content: '•';
+	position: absolute;
+	right: 15px;
+	opacity: 0.5;
+	font-size: 18px;
+}
+
+.news-ticker-item:last-child::after {
+	display: none;
+}
+
+.news-ticker-item a {
+	color: inherit;
+	text-decoration: none;
+	transition: opacity 0.3s ease;
+}
+
+.news-ticker-item a:hover {
+	opacity: 0.8;
+}
+
+.news-ticker-item.no-click {
+	cursor: default;
+}
+
+.news-ticker-item.no-click a {
+	pointer-events: none;
+}
+
+@keyframes ticker-scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}

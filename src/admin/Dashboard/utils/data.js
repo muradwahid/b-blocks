@@ -1,5 +1,19 @@
 export const changelogs = [
     {
+        version: '2.0.20 - 23 Nov 2025',
+        list: [
+            'Added News Ticker Block.',
+            'Added Emoji Stack Separator.',
+        ]
+    },
+    {
+        version: '2.0.19 - 30 Oct 2025',
+        list: [
+            'Added Ai Content Generator tool.',
+            'Added color option for star rating.',
+        ]
+    },
+    {
         version: '2.0.18 - 21 Oct 2025',
         list: [
             'Added Image Scroller Block.'

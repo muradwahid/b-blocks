@@ -18,7 +18,7 @@ const Sidebar = ({ main, mainLoading, setTemplates, type, category, setCategory,
 	const { 'patterns-category': patternsCats = [], 'pages-category': pagesCats = [] } = main || {};
 
 	const cats = 'pages' === type ? pagesCats : patternsCats;
-	const categories = [{ label: 'All', name: 'all' }, ...cats?.filter(c => 'pro' !== c.name)];
+	const categories = [{ label: 'All', name: 'all' }, ...cats?.filter(c => 'pro' !== c.name && 'landing-page' !== c.name)];
 
 	return (
 		<aside className='modalBodySidebar'>

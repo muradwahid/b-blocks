@@ -6,6 +6,8 @@ const CursorIcon = (props) => (
     style={{
       enableBackground: "new 0 0 297 297",
     }}
+    height='20px'
+    width='20px'
     viewBox="0 0 297 297"
     {...props}
   >

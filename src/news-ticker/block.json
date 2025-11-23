@@ -1,0 +1,70 @@
+
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/news-ticker",
+	"version": "0.1.0",
+	"title": "News Ticker",
+	"category": "bBlocks",
+	"textdomain": "b-blocks",
+	"description": "Display a scrolling news ticker with posts from any post type",
+	"example": {},
+	"attributes": {
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"selectedCategories": {
+			"type": "array",
+			"default": []
+		},
+		"selectedPosts": {
+			"type": "array",
+			"default": []
+		},
+		"selectAllCategories": {
+			"type": "boolean",
+			"default": false
+		},
+		"speed": {
+			"type": "number",
+			"default": 50
+		},
+		"enableClick": {
+			"type": "boolean",
+			"default": true
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#667eea"
+		},
+		"fontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"fontFamily": {
+			"type": "string",
+			"default": ""
+		},
+		"headingText": {
+			"type": "string",
+			"default": "News:"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -51,7 +51,6 @@ const Blocks = ({ info }) => {
 	const handleActivateAll = () => {
 		setDisableBlockName([]);
 		setIsSaving(true);
-
 		try {
 			saveData({ data: JSON.stringify([]) });
 		} finally {

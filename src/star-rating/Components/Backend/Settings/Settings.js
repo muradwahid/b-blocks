@@ -21,7 +21,7 @@ const iconAlignments = [
 
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { ratingScale, rating, iconStyle, prefix, gap, alignment, margin, textTypo, textColor, textShadow } = attributes;
+	const { ratingScale, rating, iconStyle, prefix, gap, alignment, margin, textTypo, textColor, textShadow, iconColor ='#f0ad4e' } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -45,6 +45,8 @@ const Settings = ({ attributes, setAttributes }) => {
 							<BoxControl label={__('Margin','b-blocks')} values={margin} onChange={val=>setAttributes({margin:val})} />
 
 							<BtnGroup label={__('Alignment', 'b-blocks')} value={alignment} onChange={val => setAttributes({ alignment: val })} options={iconAlignments} isIcon={true} />
+
+							<ColorControl label={__('Icon Color', 'b-blocks')} value={iconColor} onChange={val => setAttributes({ iconColor:val})} />
 						</PanelBody>
 
 

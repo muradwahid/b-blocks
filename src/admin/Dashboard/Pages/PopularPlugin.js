@@ -12,7 +12,6 @@ const PopularPlugin = ({ info }) => {
  const [loading, setLoading] = useState(false);
 
  useEffect(() => {
-  console.log(" ajax url : ",pluginAction.ajaxUrl);
   const fetchPopularPlugins = async () => {
    try {
     setLoading(true);

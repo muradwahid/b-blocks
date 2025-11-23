@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.18
+Stable tag: 2.0.20
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -201,7 +201,9 @@ B Blocks adds over 30+ custom blocks to your Gutenberg block editor, designed to
 34. **Navigation**: Add a custom navigation menu inside your page layout for a better user experience and in-page linking.
 
 
-## How to Use
+## How to Use B Blocks- Quick Start Guide
+Getting started is easy!
+https://www.youtube.com/watch?v=rdPWz1Ekkro
 1. Install and activate the **B Blocks** – Page Builder for Gutenberg plugin.
 2. In the **Gutenberg editor**, find your blocks under the "**B Blocks**" category.
 3. Add blocks to your page or post and configure settings from the right-hand panel.
@@ -364,6 +366,14 @@ Please report security bugs found in the source code of the B Blocks plugin thro
 
 
 == Changelog ==
+
+= 2.0.20 - 23 Nov 2025 =
+* Added News Ticker Block.
+* Added Emoji Stack Separator.
+
+= 2.0.19 - 30 Oct 2025 =
+* Added Ai Content Generator tool.
+* Added color option for star rating.
 
 = 2.0.18 - 21 Oct 2025 =
 * Added Image Scroller Block.

@@ -22,7 +22,7 @@ export const teamMembersDocs = `${docsURL}team-block/`;
 
 
 export const pricingPage = `${location.origin}/wp-admin/admin.php?page=b-blocks#/pricing`
-
+export const apiSettingsPage = `${location.origin}/wp-admin/admin.php?page=b-blocks#/settings`
 
 export const placeholderImg = 'https://templates.bplugins.com/wp-content/uploads/2025/10/placeholder.png';
 

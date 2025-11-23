@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.18
+ * Version: 2.0.20
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -27,7 +27,7 @@ if (function_exists('b_blocks_fs')) {
 	});
 } else {
 	// Constant
-	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.18');
+	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.20');
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/');
@@ -117,6 +117,8 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/Templates/Templates.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/LoginForm.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/cursor.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/Ai.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/ApiKeys.php';
 
 	class BBlocks
 	{
@@ -147,7 +149,7 @@ if (function_exists('b_blocks_fs')) {
 
 		function bBlocksPipeChecker()
 		{
-			$nonce = sanitize_text_field(wp_unslash($_POST['_wpnonce'])) ?? null;
+			$nonce = sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? null ));
 
 			if (!wp_verify_nonce($nonce, 'wp_ajax')) {
 				wp_send_json_error('Invalid Request');
@@ -189,6 +191,7 @@ if (function_exists('b_blocks_fs')) {
 				'counters',
 				// 'data-table',
 				'dual-color-heading',
+				'emoji-stack-separator',
 				// 'facebook-embed',
 				// 'facebook-page',
 				'feature-boxes',
@@ -206,6 +209,7 @@ if (function_exists('b_blocks_fs')) {
 				'lottie-player',
 				'mailto',
 				'navigation',
+				'news-ticker',
 				'posts',
 				'price-lists',
 				'pricing-table',
@@ -297,7 +301,7 @@ if (function_exists('b_blocks_fs')) {
 
 		public function enableSvgMimeType()
 		{
-			if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'wp_ajax')) {
+			if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? null)), 'wp_ajax')) {
 				wp_send_json_error();
 			}
 

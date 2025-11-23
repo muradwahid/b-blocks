@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
-import { compose } from "@wordpress/compose";
-import { withDispatch, withSelect, useSelect } from "@wordpress/data";
-import { PluginSidebar, PluginSidebarMoreMenuItem } from "@wordpress/editor";
-import { registerPlugin } from "@wordpress/plugins";
+import { useEffect, useState } from 'react';
+import { compose } from '@wordpress/compose';
+import { withDispatch, withSelect, useSelect } from '@wordpress/data';
+import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor';
+import { registerPlugin } from '@wordpress/plugins';
 // const { registerPlugin } = wp.plugins;
-import { Flex, PanelBody } from "@wordpress/components";
-import { __ } from "@wordpress/i18n";
+import { Flex, PanelBody } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
-import { debounce } from "../../../bpl-tools/utils/functions";
+import { debounce } from '../../../bpl-tools/utils/functions';
 
-import OptionSettings from "./settings/OptionSettings";
-import { pluginIcon } from "./utils/icons";
+import OptionSettings from './settings/OptionSettings';
+import { pluginIcon } from './utils/icons';
 
-import "./editor.scss";
-import { Button } from "@wordpress/components";
+import './editor.scss';
+import { Button } from '@wordpress/components';
 import usePremiumInEditor from '../hooks/usePremiumInEditor';
-// const customEvent = new CustomEvent("dataFetched2");
+// const customEvent = new CustomEvent('dataFetched2');
 const Settings = props => {
   const { postMeta, setPostMeta } = props;
 
@@ -26,13 +26,13 @@ const Settings = props => {
   const isPublishingPost = useSelect((select) => select('core/editor').isPublishingPost(), []);
 
 
-  const [csbAvScrData, setCsbAvScrData] = useState(JSON.parse(postMeta?.bBlocksCursorData || "{}"));
+  const [csbAvScrData, setCsbAvScrData] = useState(JSON.parse(postMeta?.bBlocksCursorData || '{}'));
 
   useEffect(() => {
     debounce(() => {
       if (csbAvScrData) {
         // setPostMeta({ bBlocksCursorData: JSON.stringify(csbAvScrData) });
-        document.dispatchEvent(new CustomEvent("bBlocksCursorCustomEventOnCursor", {
+        document.dispatchEvent(new CustomEvent('bBlocksCursorCustomEventOnCursor', {
           detail: {
             data: csbAvScrData
           }
@@ -56,12 +56,12 @@ const Settings = props => {
 
   return <>
     <div>
-      <PluginSidebarMoreMenuItem target="b-blocks-custom-cursor">B Blocks</PluginSidebarMoreMenuItem>
-      <PluginSidebar name="b-blocks-custom-cursor" title={__("B Blocks - Cursor and Click effect settings.", "b-blocks")}>
-        <PanelBody className="bPlPanelBody" title={__("Cursor", "b-blocks")} initialOpen={true}>
+      <PluginSidebarMoreMenuItem target='b-blocks-custom-cursor'>B Blocks</PluginSidebarMoreMenuItem>
+      <PluginSidebar name='b-blocks-custom-cursor' title={__('B Blocks - Cursor and Click effect settings.', 'b-blocks')}>
+        <PanelBody className='bPlPanelBody' title={__('Cursor', 'b-blocks')} initialOpen={true}>
           <OptionSettings {...{ csbAvScrData, setCsbAvScrData, isPremium }} />
 
-          <Flex className="mt-5" justify="end" width="100%"><Button className="settings-custom-cursor-button" type="button" variant="primary" onClick={handlePublish} disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</Button></Flex>
+          <Flex className='mt-5' justify='end' width='100%'><Button className='settings-custom-cursor-button' type='button' variant='primary' onClick={handlePublish} disabled={isSaving}>{isSaving ? 'Saving...' : 'Save'}</Button></Flex>
         </PanelBody>
       </PluginSidebar>
     </div>
@@ -84,7 +84,7 @@ const EnhancedSettings = compose([
   })
 ])(Settings);
 
-registerPlugin("b-blocks-custom-cursor", {
+registerPlugin('b-blocks-custom-cursor', {
   icon: pluginIcon,
   render: EnhancedSettings,
 });
