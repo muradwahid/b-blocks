@@ -113,7 +113,7 @@ const Blocks = ({ info }) => {
 						return <div key={name} className={`block ${!disabledBlock ? 'disabled' : ''}`}>
 							<div className='icon'>{icon}</div>
 
-							<div className='name'>{title}{isBlockPremium && <a href={pricingPage} target='_blank' rel='noopener noreferrer'>Get Pro</a>} </div>
+							<div className='name'><p className='blockTitle'>{title}</p>{isBlockPremium && <a href={pricingPage} target='_blank' rel='noopener noreferrer'>Get Pro</a>} </div>
 
 							{demo && <a className='actionBtn' href={demo} target='_blank' rel='noopener noreferrer'>
 								{demoIcon}

@@ -11,7 +11,6 @@ const allFormats = [
 	{ type: 'b-blocks/text-underline', icon: underlineIcon, title: __('B Text Underline', 'b-blocks'), tagName: 'span', className: 'bBlocksTextUnderline' },
 	{ type: 'b-blocks/text-overline', icon: overlineIcon, title: __('B Text Overline', 'b-blocks'), tagName: 'span', className: 'bBlocksTextOverline' },
 ];
-
 allFormats.forEach(format => {
 	const { type, icon, title, tagName, className } = format;
 

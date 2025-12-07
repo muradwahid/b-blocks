@@ -16,12 +16,15 @@ class Templates {
 
 	public function bblocks_templates_main(){
 		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
+		$type = sanitize_text_field( $_POST['type'] ?? 'patterns');
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
-		
-		$response =  wp_remote_get('https://templates.bplugins.com/wp-json/gutenberg-templates/v1/taxonomy/taxonomies/plugin,type,patterns-category');
+
+		$typeFilter = 'patterns' === $type ? 'patterns-category': 'pages-category';
+		// $response =  wp_remote_get('https://templates.bplugins.com/wp-json/gutenberg-templates/v1/taxonomy/taxonomies/plugin,type,'.$typeFilter.'-category');
+		$response =  wp_remote_get("https://templates.bplugins.com/wp-json/gutenberg-templates/v1/taxonomy/taxonomies/plugin,type,{$typeFilter}");
 
 		$body = json_decode( wp_remote_retrieve_body( $response ) );
 		wp_send_json_success( $body );
@@ -35,7 +38,7 @@ class Templates {
 		}
 
 		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) ) ?? 'patterns';
-        $category = sanitize_text_field( wp_unslash( $_POST['category'] ) ) ?? 'all';
+        $category = sanitize_text_field( wp_unslash( $_POST['category'] ?? 'all' ) );
         $pageNumber = absint( wp_unslash( $_POST['pageNumber'] ) ) ?? 1;
         $start = $pageNumber - 1;
         $search = sanitize_text_field( wp_unslash( $_POST['search'] ) ) ?? '';
@@ -43,10 +46,10 @@ class Templates {
 		$typeFilter = 'patterns' === $type ? 'patterns': 'pages';
 
 		try {
-			$response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/blocks?type=$typeFilter&start=$start&end=$pageNumber&category=$category&keywords=$search" );
-
+			$response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/blocks?type=$typeFilter&start=$start&end=$pageNumber&category=$category&keywords=$search&fields=ID,category,keywords,original_content,thumbnail,title,type,url" );
+			
 			// old
-			// $response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=$start&end=$pageNumber&category=$category&keywords=$search" );
+			// $response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=$start&end=$pageNumber&category=$category&keywords=$search&fields=ID,category,keywords,original_content,thumbnail,title,type,url" );
 			
 			$body = json_decode( wp_remote_retrieve_body( $response ) );
 			wp_send_json_success( $body );

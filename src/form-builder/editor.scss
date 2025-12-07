@@ -1,0 +1,94 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-form-builder {
+  .b-blocks-b-form-preselectFormSkeleton-wrapper {
+    background-color: #ffffff;
+    width: 100%;
+
+    .b-blocks-b-form-skeleton-wrapper {
+      background-color: #ffffff;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+      .b-blocks-b-form-skeleton {
+        width: 250px;
+        display: grid;
+        gap: 15px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 146px;
+
+        .b-blocks-b-form-skeleton-field {
+          height: 20px;
+          width: 100%;
+          border-radius: 38px;
+          background-color: #e7e7e7;
+          animation: fieldColor 5s linear infinite;
+        }
+
+        .b-blocks-b-form-skeleton-button-wrapper {
+          display: flex;
+          justify-content: space-between;
+
+          &>:first-child {
+            height: 20px;
+            width: 40px;
+            border-radius: 6px;
+            background-color: #e7e7e7;
+            animation: fieldColor 5s linear infinite;
+          }
+
+          &>:nth-child(2) {
+            height: 20px;
+            width: 100px;
+            border-radius: 38px;
+            background-color: #e7e7e7;
+            justify-content: space-between;
+            animation: fieldColor 5s linear infinite;
+          }
+        }
+
+        @keyframes fieldColor {
+          0% {
+            background-color: #dddddd;
+          }
+
+          50% {
+            background-color: #e7e7e7;
+          }
+
+          100% {
+            background-color: #dddddd;
+          }
+        }
+      }
+
+      .b-blocks-b-form-skeleton-form-title {
+        font-size: 16px;
+        margin-top: 7px;
+        margin-left: 7px;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  .b-blocks-b-form-container {
+    .b-blocks-b-form-child-field-wrapper {
+      .block-editor-inner-blocks {
+        .block-editor-block-list__layout{
+          .block-list-appender{
+            position:unset;
+            .block-editor-default-block-appender{
+              left:0;
+              right:unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}

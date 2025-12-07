@@ -1,5 +1,19 @@
 export const changelogs = [
     {
+        version: '2.0.22 - 4 Dec 2025',
+        list: [
+            'Added Testimonials Block.',
+            'Fixed Slider fade effect autoplay issue.',
+        ]
+    },
+    {
+        version: '2.0.21 - 2 Dec 2025',
+        list: [
+            'Added Accordion Block.',
+            'Added Skill Bar Block.',
+        ]
+    },
+    {
         version: '2.0.20 - 23 Nov 2025',
         list: [
             'Added News Ticker Block.',

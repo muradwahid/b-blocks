@@ -1,0 +1,33 @@
+
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.skill-bar-block {
+	.b-blocks-skill-bar-skill-item {
+		cursor: pointer;
+		
+		&.is-selected {
+			outline: 2px solid #007cba;
+			outline-offset: 2px;
+		}
+	}
+
+	.b-blocks-skill-bar-skill-bar-fill {
+		width: var(--b-blocks-skill-bar-skill-percentage, 75%) !important;
+	}
+
+	.b-blocks-skill-bar-skill-circular-progress {
+		stroke-dashoffset: calc(282.6 * (1 - var(--b-blocks-skill-bar-skill-percentage, 75) / 100)) !important;
+	}
+
+	.b-blocks-skill-bar-skill-bar-actions {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px dashed #ccc;
+		text-align: center;
+	}
+}
+	

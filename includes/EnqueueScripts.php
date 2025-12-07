@@ -25,7 +25,7 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 
 			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );
 
-			wp_add_inline_script('b-blocks-index-script',"const bBlocksPremiumChecker=". wp_json_encode(BBlocks\Inc\Utils::isPro()) , 'before');
+			wp_add_inline_script('b-blocks-index-script',"const bBlocksPremiumChecker=". wp_json_encode(BBlocks\Inc\Utils::isPro()).';', 'before');
 		}
 
 		function enqueueBockAssets(){
@@ -43,6 +43,9 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_register_script( 'mailtoui', B_BLOCKS_ASSETS . 'js/mailtoui-min.js', [], '1.0.3', true ); // Mailto
 			wp_register_script( 'facebookEmbbed', B_BLOCKS_ASSETS . 'js/facebook-embbed.js', [], B_BLOCKS_VERSION, true ); // Facebook Embbed
 			wp_register_script( 'facebookPage', B_BLOCKS_ASSETS . 'js/facebook-page.js', [], B_BLOCKS_VERSION, true ); // Facebook Page
+
+			//Accordion
+			wp_register_script('zebra_accordion', B_BLOCKS_ASSETS . 'js/zebra_accordion.min.js', ['jquery'], B_BLOCKS_VERSION, true);
 			
 			wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS . 'css/font-awesome.min.css', [], '6.4.2' ); // Icon
 			wp_register_style( 'swiper', B_BLOCKS_ASSETS . 'css/swiper.min.css', [], '8.0.7' ); // Slider
@@ -56,6 +59,8 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 
 		function enqueueScripts(){
 			wp_enqueue_script( 'b-blocks-advanced-script', B_BLOCKS_BUILD . 'advanced.js', [], B_BLOCKS_VERSION, true );
+			wp_enqueue_script( 'b-blocks-script', B_BLOCKS_BUILD . 'script.js', [], B_BLOCKS_VERSION, true );
+			wp_add_inline_script('b-blocks-script',"const bBlocksPremiumChecker=". wp_json_encode(BBlocks\Inc\Utils::isPro()) , 'before');
 		}
 
 		function scriptLoaderTag( $tag, $handle, $src ){

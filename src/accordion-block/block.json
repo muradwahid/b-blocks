@@ -1,0 +1,87 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "b-blocks/accordion-block",
+	"version": "0.1.0",
+	"title": "Accordion Block",
+	"category": "bBlocks",
+	"description": "A customizable accordion block with multiple themes and templates",
+	"keywords": [
+		"accordion",
+		"accordions",
+		"accordion block",
+		"accordion blocks"
+	],
+	"textdomain": "b-blocks",
+	"example": {
+		"attributes": {
+			"theme": "modern",
+			"items": [
+				{
+					"title": "What is an accordion?",
+					"content": "An accordion is a vertically stacked list of items that can be expanded or collapsed to reveal content.",
+					"isOpen": true
+				},
+				{
+					"title": "Why use accordions?",
+					"content": "Accordions help organize content in a compact, user-friendly way, making it easy to navigate through multiple sections.",
+					"isOpen": false
+				}
+			]
+		}
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"title": "Accordion Item 1",
+					"content": "Add your content here. Click to edit this accordion item.",
+					"isOpen": false
+				}
+			]
+		},
+		"theme": {
+			"type": "string",
+			"default": "modern"
+		},
+		"template": {
+			"type": "string",
+			"default": "none"
+		},
+		"customStyles": {
+			"type": "object",
+			"default": {
+				"headerBgColor": "#f8f9fa",
+				"headerTextColor": "#212529",
+				"contentBgColor": "#ffffff",
+				"contentTextColor": "#495057",
+				"borderColor": "#dee2e6",
+				"borderWidth": 1,
+				"borderRadius": 8,
+				"headerPadding": 16,
+				"contentPadding": 16,
+				"headerFontSize": 18,
+				"contentFontSize": 16,
+				"iconColor": "#212529",
+				"animationSpeed": 300
+			}
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"render": "file:./render.php",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js"
+}

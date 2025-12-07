@@ -364,11 +364,18 @@ $secondaryColor: #ff7a00;
 					opacity: 1;
 					transition: opacity 0.3s ease;
 					position: relative;
-
+					.blockTitle{
+						margin:0px !important;
+						font-size: 17px;
+						font-weight: 500;
+						text-transform: capitalize;
+						flex-grow: 1;
+						color: #3b3b3b;
+					}
 					&.disabled {
 
 						.icon,
-						.name,
+						.blockTitle,
 						.actionBtn,
 						.toggleSwitch {
 							opacity: 0.5;
@@ -406,11 +413,10 @@ $secondaryColor: #ff7a00;
 						>a {
 							font-size: 12px;
 							margin-top: 5px;
-							color: #717171;
+							color: #146ef5;
 							cursor: pointer;
 
 							&:hover {
-								color: #146ef5;
 								text-decoration: underline;
 							}
 						}

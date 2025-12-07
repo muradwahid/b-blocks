@@ -15,13 +15,14 @@ import './chart';
 import './content-ticker';
 import './countdown';
 import './counters';
-// import './data-table';
+import './data-table';
 import './dual-color-heading';
 import './emoji-stack-separator'
 // import './facebook-embed';
 // import './facebook-page';
 import './feature-boxes';
 import './flip-boxes';
+import './form-builder';
 import './gif';
 import './html';
 import './icon-box';
@@ -30,6 +31,7 @@ import './image-gallery';
 import './image-hotspot';
 import './image-scroller';
 import './info-box';
+import './input-field';
 // import './login-form';
 import './logo-slider';
 import './lottie-player';
@@ -42,6 +44,7 @@ import './pricing-table';
 import './qr-code';
 // import './register-form';
 import './section-heading';
+import './skill-bar';
 import './service';
 import './services';
 import './shape-divider';
@@ -51,10 +54,11 @@ import './star-rating';
 import './svg-draw';
 import './table-of-content';
 import './team-members';
+import './testimonials';
+import './accordion-block';
 import './video';
 
 import './inline';
-
 // import './blocks/section.js';
 // import './blocks/modal.js';
 // import './blocks/tabs.js';
@@ -70,3 +74,4 @@ import './inline';
 
 // Update Block Category Icon
 wp.blocks.updateCategory('bBlocks', { icon: pluginIcon });
+

@@ -37,9 +37,10 @@ const Modal = (props) => {
 					<TabPanel
 						className='bPlTabPanel bPlAutoTab'
 						activeClass='activeTab'
+						initialTabName='patterns'
 						tabs={[
-							// { name: 'pages', title: __('Pages', 'b-blocks') },
-							{ name: 'patterns', title: __('Patterns', 'b-blocks') }
+							{ name: 'patterns', title: __('Patterns', 'b-blocks') },
+							{ name: 'pages', title: __('Pages', 'b-blocks') }
 						]}
 						onSelect={tabName => {
 							setType(tabName);

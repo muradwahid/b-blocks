@@ -1,4 +1,4 @@
-import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, loginFormIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, videoIcon } from '../../../utils/blocksIcon';
+import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, videoIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -54,6 +54,14 @@ export default [
         icon: animationIcon,
         demo: `${demoLink}/animated-text/`,
         docs: `${docsURL}/animated-text-block/`,
+        status: 'published'
+    },
+    {
+        name: `${pluginSlug}/accordion-block`,
+        title: 'Accordion Block',
+        icon: telexAccordionIcon,
+        // demo: `${demoLink}/animated-text/`,
+        // docs: `${docsURL}/animated-text-block/`,
         status: 'published'
     },
     {
@@ -234,14 +242,14 @@ export default [
         docs: ``,
         status: 'published'
     },
-    {
-        name: `${pluginSlug}/login-form`,
-        title: 'Login Form',
-        icon: loginFormIcon,
-        demo: ``,
-        docs: ``,
-        status: 'inDev'
-    },
+    // {
+    //     name: `${pluginSlug}/login-form`,
+    //     title: 'Login Form',
+    //     icon: loginFormIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'inDev'
+    // },
     {
         name: `${pluginSlug}/logo-slider`,
         title: 'Logo Slider',
@@ -380,6 +388,14 @@ export default [
         status: 'published'
     },
     {
+        name: `${pluginSlug}/skill-bar`,
+        title: 'Skill Bar',
+        icon: skillBarIcon,
+        demo: ``,
+        docs: ``,
+        status: 'published'
+    },
+    {
         name: `${pluginSlug}/table-of-content`,
         title: 'Table Of Content',
         icon: tableOfContentIcon,
@@ -393,6 +409,14 @@ export default [
         icon: teamMembersIcon,
         demo: `${demoLink}/team-members/`,
         docs: `${docsURL}/team-block/`,
+        status: 'published'
+    },
+    {
+        name: `${pluginSlug}/testimonials`,
+        title: 'Testimonials',
+        icon: testimonialsIcon,
+        // demo: `${demoLink}/testimonials/`,
+        // docs: `${docsURL}/testimonials-block/`,
         status: 'published'
     },
     {

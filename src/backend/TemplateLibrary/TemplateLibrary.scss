@@ -239,6 +239,10 @@ $primaryColor: #146EF5;
 								justify-content: center;
 								border: 1px solid #ccc;
 								border-radius: 5px;
+								.modalBodyTemplateItemPreviewImg{
+									width: 100%;
+									object-fit: cover;
+								}
 							}
 
 							.modalBodyTemplateItemButton {
@@ -304,6 +308,33 @@ $primaryColor: #146EF5;
 								opacity: 1;
 							}
 						}
+					}
+
+					.modalBodyTemplateItem.isPages{
+						height: 550px;
+						overflow: hidden;
+						&:hover{
+						.modalBodyTemplateItemPreviewWrap {
+								.modalBodyTemplateItemPreview {
+									.modalBodyTemplateItemPreviewImg {
+										transform: translateY(calc(550px - 100%));
+									}
+								}
+							}
+						}
+
+						.modalBodyTemplateItemPreviewWrap{
+							height: 100%;
+							.modalBodyTemplateItemPreview{
+								height: 100%;
+								.modalBodyTemplateItemPreviewImg{
+									width: 100%;
+									object-fit: cover;
+									transition: all 2s ease-in;
+								}
+							}
+						}
+
 					}
 
 					.modalBodyTemplateLoadMore {

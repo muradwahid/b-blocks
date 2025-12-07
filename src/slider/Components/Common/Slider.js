@@ -5,9 +5,11 @@ import { sanitizeHTML, sanitizeURL } from '../../../../../bpl-tools/utils/common
 
 import { prefix } from '../../utils/data';
 
+import 'swiper/css/bundle';
+
 const Slider = ({ attributes, initialSlide = 0, isBackend = false }) => {
 	const { slides = [], columns, columnGap, isLoop, isTouchMove, speed, isAutoplay, autoplayOptions, freeModeOptions = {}, effect, keyboardOptions = {}, isMousewheel = false, isPage, isPageClickable, isPageDynamic, isPrevNext, isTitle, isDesc, isBtn } = attributes;
-
+	
 	return <Swiper
 		className={prefix}
 		direction='horizontal'
@@ -17,10 +19,10 @@ const Slider = ({ attributes, initialSlide = 0, isBackend = false }) => {
 		spaceBetween={columnGap}
 		modules={[Autoplay, Navigation, Pagination, EffectFade, EffectCube, EffectCreative, EffectCoverflow, EffectFlip, EffectCards]}
 		loop={isLoop}
-		allowTouchMove={isBackend ? false : isTouchMove}
-		grabCursor={isBackend ? false : isTouchMove}
+		allowTouchMove={isTouchMove}
+		grabCursor={isTouchMove}
 		speed={speed * 1000}
-		autoplay={isAutoplay && !isBackend ? { ...autoplayOptions, delay: autoplayOptions.delay * 1000 } : false}
+		autoplay={isAutoplay ? { ...autoplayOptions, delay: autoplayOptions.delay * 1000 } : false}
 		freeMode={freeModeOptions}
 		effect={effect}
 		fadeEffect={{ crossFade: false }}

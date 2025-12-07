@@ -1,0 +1,84 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/skill-bar",
+	"version": "0.1.0",
+	"title": "Skill Bar",
+	"category": "bBlocks",
+	"icon": "chart-bar",
+	"textdomain": "b-blocks",
+	"description": "Display skills with customizable progress bars, multiple themes and templates.",
+	"attributes": {
+		"skills": {
+			"type": "array",
+			"default": [
+				{
+					"title": "JavaScript",
+					"percentage": 90,
+					"color": "#f7df1e"
+				},
+				{
+					"title": "React",
+					"percentage": 85,
+					"color": "#61dafb"
+				},
+				{
+					"title": "WordPress",
+					"percentage": 95,
+					"color": "#21759b"
+				}
+			]
+		},
+		"theme": {
+			"type": "string",
+			"default": "modern"
+		},
+		"template": {
+			"type": "string",
+			"default": "standard"
+		},
+		"columns": {
+			"type": "number",
+			"default": 2
+		},
+		"customBackgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"customTitleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"customPercentageColor": {
+			"type": "string",
+			"default": ""
+		},
+		"customBarBackgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"customBarProgressColor": {
+			"type": "string",
+			"default": ""
+		},
+		"customBarRemainingColor": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -6,7 +6,7 @@ import { Spinner } from '@wordpress/components';
 import { externalIcon } from '../utils/icons';
 import { pricingPage } from '../../../utils/data';
 
-const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, templatesLoading, type, children }) => {
+const Templates = ({ nonce, isPremium, type, setShow, mainLoading, templates, templatesLoading, children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [isTempLoading, setIsTempLoading] = useState(false);
@@ -20,12 +20,12 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 			setIsTempLoading(false);
 		}
 	}, [templatesLoading]);
-
 	return <div className='modalBodyTemplates'>
 		{templates?.length ? <>
 			<div className='grid columns-3 columns-tablet-1 columns-mobile-1'>
 				{templates.map((item, index) => {
-					const { ID, original_content, category } = type === 'patterns' ? item : item.category[0] ==='landing-page' ? item : {};
+					// const { ID, original_content, category } = type === 'patterns' ? item : item.category[0] ==='landing-page' ? item : {};
+					const { ID, original_content, category, thumbnail } = item;
 					const isPro = category?.includes('pro');
 					
 					const hasAccess = isPremium || !isPro;
@@ -74,10 +74,11 @@ const Templates = ({ nonce, isPremium, setShow, mainLoading, templates, template
 
 
 
-					return <div className='modalBodyTemplateItem' key={index}>
+					return <div className={`modalBodyTemplateItem ${type === 'pages'?'isPages':''}`} key={index}>
 						<div className='modalBodyTemplateItemPreviewWrap'>
 							<div className='modalBodyTemplateItemPreview'>
-								<BlockPreview blocks={parse(original_content)} viewportWidth={1600} />
+								{thumbnail && <img src={thumbnail} alt={item.name} className='modalBodyTemplateItemPreviewImg' />}
+								{!thumbnail && <BlockPreview blocks={parse(original_content)} viewportWidth={1600} />}
 							</div>
 
 							<div className='modalBodyTemplateItemButton'>

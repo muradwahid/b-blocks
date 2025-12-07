@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.20
+ * Version: 2.0.22
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -27,7 +27,7 @@ if (function_exists('b_blocks_fs')) {
 	});
 } else {
 	// Constant
-	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.20');
+	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.22');
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/');
@@ -49,7 +49,7 @@ if (function_exists('b_blocks_fs')) {
 					'premium_slug' => 'b-blocks-pro',
 					'type' => 'plugin',
 					'public_key' => 'pk_d6426b344df4918bc066a7a0b4719',
-					'is_premium' => true,
+					'is_premium' => false,
 					'premium_suffix' => 'Pro',
 					// If your plugin is a serviceware, set this option to false.
 					'has_premium_version' => true,
@@ -119,6 +119,7 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/cursor.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ai.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/ApiKeys.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/form/FormHandler.php';
 
 	class BBlocks
 	{
@@ -137,6 +138,21 @@ if (function_exists('b_blocks_fs')) {
 			add_filter('wp_check_filetype_and_ext', [$this, 'wpCheckFiletypeAndExt'], 10, 5);
 
 			add_action('wp_ajax_b-blocks-enable-svg-mime-type', [$this, 'enableSvgMimeType']);
+			add_filter( 'plugin_row_meta', [$this, 'pluginRowMeta'], 10, 2 );
+		}
+
+
+
+		function pluginRowMeta( $plugin_meta, $plugin_file ) {
+			if ( strpos( $plugin_file, 'b-blocks' ) !== false && time() < strtotime( '2025-12-06' ) ) {
+				$new_links = array(
+					'deal' => "<a href='https://bblockswp.com/pricing/?from=plugins.php' target='_blank' style='font-weight: 600; color: #ff7a00;'>🎉 Black Friday Sale - Get up to 40% OFF Now!</a>"
+				);
+				
+				$plugin_meta = array_merge( $plugin_meta, $new_links );
+			}
+
+			return $plugin_meta;
 		}
 
 		public static function instance()
@@ -189,7 +205,7 @@ if (function_exists('b_blocks_fs')) {
 				'content-ticker',
 				'countdown',
 				'counters',
-				// 'data-table',
+				'data-table',
 				'dual-color-heading',
 				'emoji-stack-separator',
 				// 'facebook-embed',
@@ -197,6 +213,7 @@ if (function_exists('b_blocks_fs')) {
 				'feature-boxes',
 				'flip-boxes',
 				'gif',
+				'form-builder',
 				'html',
 				'icon-box',
 				'image-comparison',
@@ -204,6 +221,7 @@ if (function_exists('b_blocks_fs')) {
 				'image-hotspot',
 				'image-scroller',
 				'info-box',
+				'input-field',
 				// 'login-form',
 				'logo-slider',
 				'lottie-player',
@@ -217,6 +235,7 @@ if (function_exists('b_blocks_fs')) {
 				// 'register-form',
 				'row',
 				'section-heading',
+				'skill-bar',
 				'service',
 				'services',
 				'shape-divider',
@@ -227,6 +246,8 @@ if (function_exists('b_blocks_fs')) {
 				'table-of-content',
 				'td-viewer',
 				'team-members',
+				'testimonials',
+				'accordion-block',
 				'video'
 			];
 

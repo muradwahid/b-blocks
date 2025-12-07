@@ -4,28 +4,28 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.8
-Stable tag: 2.0.20
+Stable tag: 2.0.22
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-B Blocks enhances the Gutenberg editor with over 40 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
+B Blocks enhances the Gutenberg editor with over 50 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
 
 == Description ==
-**B Blocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 40+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
+**B Blocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 50+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
 
 
 [**B Blocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
 
 https://www.youtube.com/watch?v=Ml4UehEwI-s
 
-[**B Blocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, B Blocks extends the capabilities of core blocks by adding 30+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
+[**B Blocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, B Blocks extends the capabilities of core blocks by adding 50+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
 
 Whether you're building a landing page, blog layout, portfolio, or full website, B Blocks helps you design faster using customizable blocks, reusable patterns, and layout-ready components. It’s an ideal page builder for Gutenberg users who want more control while keeping their sites fast and efficient.
 
 
 ## Key Features – Free Version
-- **40+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
+- **50+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
 
 - **Advanced Block Customization**: Adjust typography, spacing, color, and visibility. Fine-tune every block to match your brand identity.
 
@@ -130,7 +130,7 @@ Bring engaging animations to your site with interactive Lottie files:
 
 
 ## Available Blocks
-B Blocks adds over 30+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
+B Blocks adds over 50+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
 
 1. **Row Columns**: Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
 
@@ -209,7 +209,7 @@ https://www.youtube.com/watch?v=rdPWz1Ekkro
 3. Add blocks to your page or post and configure settings from the right-hand panel.
 4. Save and publish your design.
 
-[**Live Demo**](https://bblockswp.com/demos) | [**Try The Pro**](https://bblockswp.com/pricing)
+[**Live Demo**](https://bblockswp.com/#demos) | [**Try The Pro**](https://bblockswp.com/pricing)
 
 
 ## Compatibility
@@ -367,9 +367,17 @@ Please report security bugs found in the source code of the B Blocks plugin thro
 
 == Changelog ==
 
+= 2.0.22 - 4 Dec 2025 =
+* Added Testimonials Block.
+* Fixed Slider fade effect autoplay issue.
+
+= 2.0.21 - 2 Dec 2025 =
+* Added Accordion Block.
+* Added Skill Bar Block.
+
 = 2.0.20 - 23 Nov 2025 =
 * Added News Ticker Block.
-* Added Emoji Stack Separator.
+* Added Emoji Stack Separator Block.
 
 = 2.0.19 - 30 Oct 2025 =
 * Added Ai Content Generator tool.

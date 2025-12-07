@@ -51,7 +51,7 @@ const Settings = props => {
   const handlePublish = async () => {
     setIsSaving(true);
     setPostMeta({ bBlocksCursorData: JSON.stringify(csbAvScrData) });
-    await wp.data.dispatch('core/editor').savePost();
+   await wp.data.dispatch('core/editor').savePost();
   };
 
   return <>
