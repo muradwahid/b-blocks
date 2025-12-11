@@ -23,7 +23,8 @@ module.exports = {
 		Chart: 'readonly',
 		pluginAction: 'readonly',
 		bBlocksDisabledBlocks: 'readonly',
-		bBlocksPremiumChecker: 'readonly'
+		bBlocksPremiumChecker: 'readonly',
+		bBlocksNonce: 'readonly'
 	},
 	parserOptions: {
 		ecmaFeatures: {

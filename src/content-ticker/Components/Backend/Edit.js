@@ -4,12 +4,11 @@ import { withDispatch } from '@wordpress/data';
 import ContentTicker from '../Common/ContentTicker';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = (props) => {
 	const { attributes, setAttributes, clientId, selectBlock } = props;
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 	return <>
 		<Settings {...{ attributes, setAttributes, isPremium }} />
 		<div {...useBlockProps()} onClick={() => selectBlock(clientId)}>

@@ -5,8 +5,8 @@ const Header = ({ info, navigation }) => {
 		<div className='pluginInfo'>
 			<div className='name'>
 				{/* ?rev=3385620 */}
-				<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='B Blocks Logo' />
-				<h1> B Blocks </h1>
+				<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='bBlocks Logo' />
+				<h1> bBlocks </h1>
 			</div>
 
 			<div className='version'> v{info?.version} </div>

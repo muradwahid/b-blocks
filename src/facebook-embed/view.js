@@ -8,15 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const fbEmbedEls = document.querySelectorAll(".wp-block-b-blocks-facebook-embed");
     fbEmbedEls.forEach((fbEmbedEl) => {
         const attributes = JSON.parse(fbEmbedEl.dataset.attributes);
-
+        const facebookKey = fbEmbedEl.dataset.facebookkey;
+        if (!facebookKey) return;
         createRoot(fbEmbedEl).render(
             <>
                 <Style attributes={attributes} id={fbEmbedEl.id} />
 
-                <Facebook attributes={attributes} />
+                <Facebook attributes={attributes} facebookKey={facebookKey} />
             </>
         );
-
+        
         fbEmbedEl?.removeAttribute("data-attributes");
+        fbEmbedEl?.removeAttribute("data-facebookkey");
     });
 });

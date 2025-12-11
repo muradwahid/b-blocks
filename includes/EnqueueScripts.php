@@ -25,7 +25,7 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 
 			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );
 
-			wp_add_inline_script('b-blocks-index-script',"const bBlocksPremiumChecker=". wp_json_encode(BBlocks\Inc\Utils::isPro()).';', 'before');
+			wp_add_inline_script('b-blocks-index-script', 'const bBlocksPremiumChecker = ' . wp_json_encode( BBlocks\Inc\Utils::isPro() ) . '; ' . 'const bBlocksNonce = "' . wp_create_nonce('wp_ajax') . '";', 'before' );
 		}
 
 		function enqueueBockAssets(){

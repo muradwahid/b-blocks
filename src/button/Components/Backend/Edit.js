@@ -3,7 +3,6 @@ import { Modal } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useEffect, useRef, useState } from 'react';
 
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Button, { RenderPopup } from '../Common/Button';
 import Style from '../Common/Style';
 import BackendContent from './BackendContent';
@@ -12,11 +11,11 @@ import Settings from './Settings/Settings';
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { text, animationType, animationDuration, popup = {} } = attributes;
-
-	const { isPremium } = usePremiumInEditor();
 	const [contentPopup, setContentPopup] = useState(false);
 
 	const buttonEl = useRef(null);
+
+	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => {
 		window['AOS']?.init();

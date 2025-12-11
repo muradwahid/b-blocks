@@ -161,8 +161,8 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 			</svg>";
 	
 			add_menu_page(
-				__( 'B Blocks', 'b-blocks' ),
-				__( 'B Blocks', 'b-blocks' ),
+				__( 'bBlocks', 'b-blocks' ),
+				__( 'bBlocks', 'b-blocks' ),
 				'manage_options',
 				'b-blocks',
 				'',

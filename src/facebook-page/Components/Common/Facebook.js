@@ -1,17 +1,19 @@
 import { useEffect } from "react";
 
-const Facebook = ({ attributes }) => {
+const Facebook = ({ attributes, facebookKey }) => {
     const { facebook } = attributes;
 
     useEffect(() => {
         window?.FB?.init({
             xfbml: true,
             version: "v21.0",
-            appId: '7318392321575160',
-        });
-    }, []);
+            appId: facebookKey,
 
-    return <div>
+        });
+    }, [facebookKey]);
+    return <div className={`bBlocks-fbPage-wrapper ${facebook.align}`}>
+
+        <div>
         <div
             className="fb-page"
             data-href={facebook.link}
@@ -23,6 +25,8 @@ const Facebook = ({ attributes }) => {
             data-show-facepile={facebook.profilePhotos}
             data-hide-cta={facebook.ctaButton}
         ></div>
+        </div>
+
     </div>
 };
 

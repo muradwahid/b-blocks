@@ -5,7 +5,6 @@ import { useState } from "react";
 import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 
 import { withSelect } from '@wordpress/data';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { ImageCompare } from '../Common/ImageCompare';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
@@ -18,7 +17,7 @@ const Edit = props => {
 	const { url: aImgURL, alt: aImgAlt, title: aImgTitle } = afterImg || {};
 	const { hAlign, vAlign } = label;
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	const [activeIndex, setActiveIndex] = useState(0);
 

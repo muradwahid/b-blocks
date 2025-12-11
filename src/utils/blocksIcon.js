@@ -158,11 +158,11 @@ export const imageHotspotIcon = <svg {...svgProps} viewBox='0 0 1000 1004.1441'>
 
 export const imageScrollerIcon = <svg  {...svgProps} version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style={{ enableBackground: "new 0 0 512 512" }} xmlSpace="preserve" >
 	<g id="Scroll">
-		<circle style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} cx={256} cy={256} r={120} />
-		<path style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M176,83.431l51.716-51.716c15.621-15.621,40.948-15.621,56.569,0L336,83.431" />
-		<path style={{ fill: "none", stroke:primaryColor,strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M176,428.569l51.716,51.716c15.621,15.621,40.948,15.621,56.569,0L336,428.569" />
-		<path style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M83.431,336l-51.716-51.716c-15.621-15.621-15.621-40.948,0-56.569L83.431,176" />
-		<path style={{ fill: "none",stroke:primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d=" M428.569,336l51.716-51.716c15.621-15.621,15.621-40.948,0-56.569L428.569,176" />
+		<circle style={{ fill: "none", stroke: primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} cx={256} cy={256} r={120} />
+		<path style={{ fill: "none", stroke: primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M176,83.431l51.716-51.716c15.621-15.621,40.948-15.621,56.569,0L336,83.431" />
+		<path style={{ fill: "none", stroke: primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M176,428.569l51.716,51.716c15.621,15.621,40.948,15.621,56.569,0L336,428.569" />
+		<path style={{ fill: "none", stroke: primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d="M83.431,336l-51.716-51.716c-15.621-15.621-15.621-40.948,0-56.569L83.431,176" />
+		<path style={{ fill: "none", stroke: primaryColor, strokeWidth: 40, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10 }} d=" M428.569,336l51.716-51.716c15.621-15.621,15.621-40.948,0-56.569L428.569,176" />
 	</g>
 </svg>
 
@@ -344,3 +344,5 @@ export const skillBarIcon = <svg {...svgProps} height="30" viewBox="0 0 24 24" w
 
 export const testimonialsIcon = <svg {...svgProps} width="30" height="30" viewBox="0 0 20 20">
 	<rect x="0" fill="none" width="20" height="20" /><g><path d="M4 3h12c.55 0 1.02.2 1.41.59S18 4.45 18 5v7c0 .55-.2 1.02-.59 1.41S16.55 14 16 14h-1l-5 5v-5H4c-.55 0-1.02-.2-1.41-.59S2 12.55 2 12V5c0-.55.2-1.02.59-1.41S3.45 3 4 3zm11 2H4v1h11V5zm1 3H4v1h12V8zm-3 3H4v1h9v-1z" /></g></svg>;
+
+export const formBuilderIcon = <svg {...svgProps} viewBox="0 0 102.05 102.05"><path d="m76.97 21.58-19.76 19.76-2.67 7.74 7.75-2.66 19.76-19.76z" /><rect height="5.28" rx="2.12" width="20.83" x="22.51" y="72.13" /><path d="m81.58 15.87h5.17v7.19h-5.17z" transform="matrix(.707 -.707 .707 .707 10.89 65.21)" /><g><path d="m76.18 43.76a2 2 0 0 0 -2 2v42h-61.49v-66h51.11a2 2 0 0 0 0-4h-53.11a2 2 0 0 0 -2 2v70a2 2 0 0 0 2 2h65.49a2 2 0 0 0 2-2v-44a2 2 0 0 0 -2-2z" /><path d="m24.63 68.13a6.13 6.13 0 0 0 -6.12 6.12v1a6.13 6.13 0 0 0 6.12 6.12h16.59a6.13 6.13 0 0 0 6.12-6.12v-1a6.13 6.13 0 0 0 -6.12-6.12zm18.71 6.12v1a2.12 2.12 0 0 1 -2.12 2.12h-16.59a2.12 2.12 0 0 1 -2.12-2.12v-1a2.12 2.12 0 0 1 2.12-2.12h16.59a2.12 2.12 0 0 1 2.12 2.12z" /><path d="m53 33.73a2 2 0 1 0 0-4h-32.49a2 2 0 0 0 -2 2v10.1a2 2 0 0 0 2 2h25.22a2 2 0 1 0 0-4h-23.22v-6.1z" /><path d="m68.35 60.82v-5.33a2 2 0 0 0 -4 0v3.33h-41.84v-6.1h20.65a2 2 0 0 0 0-4h-22.65a2 2 0 0 0 -2 2v10.1a2 2 0 0 0 2 2h45.84a2 2 0 0 0 2-2z" /><path d="m92.78 18.76-7.92-7.91a2 2 0 0 0 -2.82 0l-28 28a2.11 2.11 0 0 0 -.47.77l-4.14 12.04a2 2 0 0 0 .48 2.06 2 2 0 0 0 1.41.59 2.06 2.06 0 0 0 .68-.11l12-4.15a1.9 1.9 0 0 0 .76-.48l28-28a2 2 0 0 0 .02-2.81zm-30.49 27.66-7.75 2.66 2.67-7.74 19.79-19.76 5.08 5.08zm22.59-22.59-5.08-5.08 3.65-3.66 5.08 5.09z" /></g></svg>

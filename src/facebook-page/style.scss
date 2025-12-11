@@ -1,0 +1,18 @@
+
+.wp-block-b-blocks-facebook-page{
+    .bBlocks-fbPage-wrapper{
+        display: flex;
+        
+            &.left {
+                justify-content: left;
+            }
+        
+            &.center {
+                justify-content: center;
+            }
+        
+            &.right {
+                justify-content: right;
+            }
+    }
+}

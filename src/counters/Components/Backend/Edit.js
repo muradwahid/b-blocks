@@ -8,7 +8,6 @@ import Style from '../Common/Style';
 import Counter from '../Common/Counter';
 import { performCounter } from '../../utils/functions';
 import { prefix } from '../../utils/data';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
@@ -16,7 +15,7 @@ const Edit = props => {
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
-	const { isPremium } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => {
 		const counterEl = document.querySelectorAll(`.${prefix} .counterNumber .number`);

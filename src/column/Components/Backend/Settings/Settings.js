@@ -7,7 +7,6 @@ import { TabPanel, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { generalStyleTabs } from '../../../../utils/options';
 import General from './General/General';
 import Advanced from '../../../../../../bpl-tools/Advanced';
-import usePremiumInEditor from '../../../../hooks/usePremiumInEditor';
 
 const enabledAdvOptions = {
 	dimension: ['padding', 'margin', 'height', 'minHeight', 'maxHeight'],
@@ -28,7 +27,7 @@ const Settings = props => {
 
 	const { advanced } = attributes;
 
-	const { isPremium } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	return <>
 		<InspectorControls>

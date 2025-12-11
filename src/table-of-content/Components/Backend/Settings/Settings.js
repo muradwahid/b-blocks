@@ -4,7 +4,7 @@ import { TabPanel } from '@wordpress/components';
 import Advanced from '../../../../../../bpl-tools/Advanced';
 import { tabController } from '../../../../../../bpl-tools/utils/functions';
 
-import { BBlocksAds } from '../../../../../../bpl-tools/Components';
+// import { BBlocksAds } from '../../../../../../bpl-tools/Components';
 import { generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
@@ -26,9 +26,9 @@ const Settings = (props) => {
 
 	return <>
 		<InspectorControls>
-			<div className='bPlInspectorInfo'>
+			{/* <div className='bPlInspectorInfo'>
 				<BBlocksAds />
-			</div>
+			</div> */}
 
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>{tab => <>
 				{'general' === tab.name && <>

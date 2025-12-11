@@ -7,14 +7,13 @@ const $ = jQuery;
 import Settings from './Settings/Settings';
 import Slider from '../Common/Slider';
 import Style from '../Common/Style';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isEditorSidebarOpened } = props;
 	const { slides = [], columns, columnGap, isLoop, speed, freeModeOptions, effect, keyboardOptions, isMousewheel, isPage, isPageClickable, isPageDynamic, isPrevNext, isTitle, isDesc, isBtn } = attributes;
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [rendered, setRendered] = useState(true);

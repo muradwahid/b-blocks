@@ -6,7 +6,7 @@ import Layout from '../../Layout/Layout';
 import { Button } from '../../../../../../bpl-tools/Components';
 import { useWPAjax } from '../../../../../../bpl-tools/hooks';
 
-import { OpenAiIcon } from '../../utils/icons';
+import { apiKeyData } from '../../utils/data';
 
 const Settings = ({ info }) => {
     const {nonce} = info
@@ -21,32 +21,29 @@ const Settings = ({ info }) => {
             setApiData(data);
         }
     }, [isLoading,data,error])
-    const api = ['openAi']
-
     return <Layout info={info}>
         <div className='bBlocksSettingPage'>
             <h2 className='bBlocksHeading'>API Integrations</h2>
             <div className='bBlocksApiCartContainer'>
                 {
-                    api.map((key, index) => <div key={index} className='bBlocksApiCart'>
+                    apiKeyData.map((item) => <div key={item.name} className='bBlocksApiCart'>
+                        <div>
                         <div className='bBlocksApiHeading'>
-                            <OpenAiIcon className="cartIcon" />
-                            <h4>Open Ai</h4>
+                                {item.icon}
+                            <h4>{item.label}</h4>
                         </div>
                         <div className='bBlocksApiField'>
-                            <h4>Api Key</h4>
+                            <h4>{item.inputLabel}</h4>
                             <TextControl
-                                value={apiData[key]?.key} onChange={value => setApiData({ ...apiData, [key]: { key: value } })}
+                                value={apiData[item.name]?.key ?? ''} onChange={value => setApiData({ ...apiData, [item.name]: { key: value } })}
                                 type='text'
                             />
                         </div>
-                        <div className='bBlocksApiInfo'>
-                            <p>Enter your Api Key. get it from <a target='_blank' rel='noreferrer' href='https://platform.openai.com/account/api-keys'>Open Ai Platform</a></p>
-                            <p><strong>Note:</strong> You need to add credits to your account after getting the API key.</p>
+                        <div className='bBlocksApiInfo' dangerouslySetInnerHTML={{__html:item.infoEl}}/>
                         </div>
                         <div className='bBlocksApiFooter'>
-                            <p><strong>Api key status: </strong>{error?.[key] ? <span style={{color:'red'}}>✗ {error?.[key]?.message}</span> : data?.[key]?.key ? <span style={{color:"green"}} >✓ Valid Key</span>:''} </p>
-                            <Button type='button' size='small' onClick={() => handleApiData(key,apiData[key])}>{isLoading ? 'Saving...' : 'Save'}</Button>
+                            <p><strong>{item.inputLabel} status: </strong>{error?.[item.name] ? <span style={{color:'red'}}>✗ {error?.[item.name]?.message}</span> : data?.[item.name]?.key ? <span style={{color:"green"}} >✓ Valid Key</span>:''} </p>
+                            <Button type='button' size='small' onClick={() => handleApiData(item.name,apiData[item.name])}>{isLoading ? 'Saving...' : 'Save'}</Button>
                         </div>
                     </div>)
                 }

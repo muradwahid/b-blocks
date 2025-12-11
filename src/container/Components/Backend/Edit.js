@@ -4,7 +4,6 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 import useAnimation from '../../../../../bpl-tools/hooks/useAnimation';
 
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import SVGShape from '../Common/SVGShape';
@@ -17,10 +16,10 @@ const Edit = props => {
 
 	const blockProps = useBlockProps();
 
-	const { isPremium = false } = usePremiumInEditor();
-
 	const ref = useRef();
 	useAnimation(ref.current, advanced?.animation);
+
+	const isPremium = bBlocksPremiumChecker;
 
 	return <div {...blockProps}>
 		<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={blockProps.id} isPremium={isPremium} />

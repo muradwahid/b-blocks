@@ -8,7 +8,6 @@ import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import Style from '../Common/Style';
 import HotspotBack from './HotspotBack/HotspotBack';
 import Settings from './Settings/Settings';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = (props) => {
 	const { attributes, setAttributes, clientId, isSelected, device } = props;
@@ -17,7 +16,7 @@ const Edit = (props) => {
 	const mainElRef = useRef(null);
 	// useAnimation(mainElRef, attributes?.animation);
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	const updateObj = updateAttributes(attributes, setAttributes);
 	return <>

@@ -11,7 +11,6 @@ import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import { prefix } from '../../utils/data';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected } = props;
@@ -21,7 +20,7 @@ const Edit = props => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [selectedSocial, setSelectedSocial] = useState(null);
 
-	const { isPremium } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => { setActiveIndex(!isSelected || !members.length ? null : 0); }, [isSelected]); // Set default activeIndex
 	useEffect(() => { !isSelected && setSelectedSocial(null); }, [isSelected]); // Selected Social

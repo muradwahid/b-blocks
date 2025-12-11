@@ -1,13 +1,16 @@
-import { __ } from '@word press/i18n';
+import { __ } from '@wordpress/i18n';
 import { __experimentalInputControl as InputControl, __experimentalNumberControl as NumberControl, PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 
 import { BtnGroup } from '../../../../../../../bpl-tools/Components';
 import { embedAlignOptions, typeOptions } from '../../../../utils/options';
+import { Notice } from '@wordpress/components';
 
-const General = ({ attributes, updateObj }) => {
+const General = ({ attributes, updateObj, facebookKey }) => {
     const { facebook } = attributes;
     return <PanelBody className='bPlPanelBody' title={__('Embed', 'b-blocks')} initialOpen={true}>
-
+        {!facebookKey && <Notice className='mb10' status='warning' isDismissible={false}>
+            Set your Facebook App ID in the <a href={`${location.origin}/wp-admin/admin.php?page=b-blocks#/settings`} target="_blank" rel="noopener noreferrer"><em>Settings</em></a> to use this block.
+        </Notice>}
         <SelectControl label={__('Type', 'b-blocks')} labelPosition='edge' value={facebook.type} onChange={(value) => updateObj('facebook', value, 'type')} options={typeOptions} />
 
         <InputControl className='mt10' label={__('URL', 'b-blocks')} labelPosition='edge' value={facebook.url[facebook.type]} onChange={(value) => updateObj('facebook', value, 'url', facebook.type)} />

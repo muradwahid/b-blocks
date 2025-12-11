@@ -6,14 +6,13 @@ import { Tooltip } from '@wordpress/components';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import Countdown from '../Common/Countdown';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { closeIcon } from '../../utils/icons';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { destDate } = attributes;
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => {
 		'' === destDate && setAttributes({

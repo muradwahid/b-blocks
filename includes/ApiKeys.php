@@ -3,6 +3,7 @@ namespace BBlocks\Inc;
 class BBlocksApiKeys{
 	function __construct(){
 		add_action( 'wp_ajax_bblocks_api_keys', [$this, 'bBlocksApiKeys'] );
+		add_action( 'wp_ajax_nopriv_bblocks_api_keys', [$this, 'bBlocksApiKeys'] );
 	}
 
     function bBlocksTestApiKeys($key,$value){

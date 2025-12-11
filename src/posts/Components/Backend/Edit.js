@@ -5,7 +5,6 @@ const { dateI18n } = wp.date;
 
 import { tabController } from '../../../../../bpl-tools/utils/functions';
 
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';
 import Loading from './Loading';
 import NoPosts from './NoPosts';
@@ -16,9 +15,10 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected, totalPosts, posts, taxOfPostType } = props;
 	const blockProps = useBlockProps();
 
-	const { isPremium } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => tabController(), [isSelected]);
+	useEffect(() => setAttributes({ paginationCurrentPage: 1 }), []);
 
 	const id = `block-${clientId}`;
 
@@ -36,7 +36,7 @@ const Edit = props => {
 				<NoPosts />}
 	</>
 }
-export default withSelect((select, { attributes, setAttributes }) => {
+export default withSelect((select, { attributes }) => {
 	const { getUsers, getEntityRecords, getTaxonomies, getMedia, getComments } = select('core');
 
 	const { postType, selectedTaxonomies = {}, selectedCategories = [], selectedTags = [], isPostsPerPageAll, postsPerPage, postsOrderBy, postsOrder, postsOffset = 0, postsInclude = [], postsExclude = [], isExcludeCurrent, isPagination, paginationCurrentPage, fImgSize = 'full', metaDateFormat = 'M j, Y' } = attributes;
@@ -70,7 +70,7 @@ export default withSelect((select, { attributes, setAttributes }) => {
 	const allPosts = filterPassword(getEntityRecords('postType', postType, { ...query, per_page: -1 }), 'false');
 
 	// Pagination Scripts
-	useEffect(() => setAttributes({ paginationCurrentPage: 1 }), []);
+	// useEffect(() => setAttributes({ paginationCurrentPage: 1 }), []);
 	const paginationShowStart = postsPerPage * (paginationCurrentPage - 1);
 	const paginationShowEnd = paginationShowStart + postsPerPage;
 	const paginationPosts = allPosts?.slice(paginationShowStart, paginationShowEnd);

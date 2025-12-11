@@ -30,7 +30,7 @@ const Modal = (props) => {
 		<div ref={contentRef} style={{ marginTop: show ? '0' : '50px', transition: 'margin 0.5s ease-out' }} className='modalContainer'>
 			<header className='modalHeader'>
 				<div className='modalHeaderLogo'>
-					<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='B Blocks' /> B Blocks
+					<img src='https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=3342212' alt='bBlocks' /> bBlocks
 				</div>
 
 				<div className='modalHeaderTypes'>

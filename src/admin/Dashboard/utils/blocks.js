@@ -1,4 +1,4 @@
-import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, videoIcon } from '../../../utils/blocksIcon';
+import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, videoIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -151,7 +151,7 @@ export default [
         icon: facebookEmbedIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published'
     },
     {
         name: `${pluginSlug}/facebook-page`,
@@ -159,7 +159,7 @@ export default [
         icon: facebookPageIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published'
     },
     {
         name: `${pluginSlug}/feature-boxes`,
@@ -176,6 +176,14 @@ export default [
         demo: `${demoLink}/flip-boxes/`,
         docs: ``,
         status: 'published'
+    },
+    {
+        name: `${pluginSlug}/form-builder`,
+        title: 'Form Builder',
+        icon: formBuilderIcon,
+        demo: ``,
+        docs: ``,
+        status: 'inDev'
     },
     {
         name: `${pluginSlug}/gif`,
@@ -277,7 +285,7 @@ export default [
     },
     {
         name: `${pluginSlug}/navigation`,
-        title: 'B Blocks Navigation',
+        title: 'bBlocks Navigation',
         icon: navigationIcon,
         demo: ``,
         docs: ``,

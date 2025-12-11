@@ -4,14 +4,13 @@ import { useState } from 'react';
 import Style from '../Common/Style';
 import DataTableBack from './DataTableBack/DataTableBack';
 import Settings from './Settings/Settings';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const [firstIdx, setFirstIdx] = useState(0);
 	const [headingIdx, setHeadingIdx] = useState(0);
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	return <>
 		<Settings {...{ attributes, setAttributes, firstIdx, headingIdx, setHeadingIdx, isPremium }} />

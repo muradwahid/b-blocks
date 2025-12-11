@@ -1,6 +1,5 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { generateCSS } from '../../../../../bpl-tools/Advanced/generateCSS';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import SmoothScroll from '../Common/SmoothScroll';
 import { useHeadingDetect } from '../hooks/useHeadingDetect';
 import Settings from './Settings/Settings';
@@ -15,7 +14,7 @@ const Edit = props => {
     const { theme, advanced } = attributes;
     const { headingContent, headingTags } = useHeadingDetect();
 
-    const { isPremium = false } = usePremiumInEditor();
+    const isPremium = bBlocksPremiumChecker;
 
     const id = `block-${clientId}`;
 

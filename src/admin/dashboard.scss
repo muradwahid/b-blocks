@@ -538,6 +538,8 @@ $secondaryColor: #ff7a00;
 
 				.bBlocksApiCart {
 					width: 100%;
+					display: grid;
+					align-content: space-between;
 					margin-top: 20px;
 					padding: 20px;
 					background-color: #fff;
@@ -551,6 +553,7 @@ $secondaryColor: #ff7a00;
 
 					.bBlocksApiHeading {
 						display: flex;
+						align-items: center;
 						gap: 10px;
 
 						&>h4 {

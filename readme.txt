@@ -1,27 +1,27 @@
-=== B Blocks – Essential Gutenberg Blocks & Patterns Collection ===
+=== bBlocks – Essential Gutenberg Blocks & Patterns Collection ===
 Contributors: bplugins, abuhayat, charlescormier, muradwahid, adnankhan7792, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
-Tested up to: 6.8
-Stable tag: 2.0.22
-Requires PHP: 7.1
+Tested up to: 6.9
+Stable tag: 2.0.23
+Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-B Blocks enhances the Gutenberg editor with over 50 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
+bBlocks enhances the Gutenberg editor with over 50 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
 
 == Description ==
-**B Blocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 50+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
+**bBlocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 50+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
 
 
-[**B Blocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
+[**bBlocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
 
 https://www.youtube.com/watch?v=Ml4UehEwI-s
 
-[**B Blocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, B Blocks extends the capabilities of core blocks by adding 50+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
+[**bBlocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, bBlocks extends the capabilities of core blocks by adding 50+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
 
-Whether you're building a landing page, blog layout, portfolio, or full website, B Blocks helps you design faster using customizable blocks, reusable patterns, and layout-ready components. It’s an ideal page builder for Gutenberg users who want more control while keeping their sites fast and efficient.
+Whether you're building a landing page, blog layout, portfolio, or full website, bBlocks helps you design faster using customizable blocks, reusable patterns, and layout-ready components. It’s an ideal page builder for Gutenberg users who want more control while keeping their sites fast and efficient.
 
 
 ## Key Features – Free Version
@@ -42,7 +42,7 @@ Whether you're building a landing page, blog layout, portfolio, or full website,
 
 ## Pro Features – Unlock Advanced Block Controls
 
-Upgrade to [**B Blocks Pro**](https://bblockswp.com/pricing) to supercharge specific blocks with advanced layout settings, styling controls, device visibility options, and interactive enhancements. These premium features are perfect for building more dynamic, flexible, and professional-looking pages using the Gutenberg editor.
+Upgrade to [**bBlocks Pro**](https://bblockswp.com/pricing) to supercharge specific blocks with advanced layout settings, styling controls, device visibility options, and interactive enhancements. These premium features are perfect for building more dynamic, flexible, and professional-looking pages using the Gutenberg editor.
 
 ### Posts Block
 Enhance your content display with rich layout options and advanced filtering:
@@ -130,7 +130,7 @@ Bring engaging animations to your site with interactive Lottie files:
 
 
 ## Available Blocks
-B Blocks adds over 50+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
+bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
 
 1. **Row Columns**: Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
 
@@ -142,70 +142,100 @@ B Blocks adds over 50+ custom blocks to your Gutenberg block editor, designed to
 
 5. **Advanced Image**: Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
 
-6. **Video**: Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
+6. **Accordion Block**: Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
 
-7. **GIF Image**: Upload and showcase animated GIFs to add dynamic visuals to your content.
+7. **Video**: Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
 
-8. **Image Gallery**: Display a collection of images in a stylish, responsive gallery layout. Great for portfolios or product showcases.
+8. **GIF Image**: Upload and showcase animated GIFs to add dynamic visuals to your content.
 
-9. **Image Comparison**: Visually compare two images with a draggable slider. Perfect for before/after effects.
+9. **Image Gallery**: Display a collection of images in a stylish, responsive gallery layout. Great for portfolios or product showcases.
 
-10. **Lottie Player**: Embed lightweight, interactive animations using Lottie JSON files. Supports autoplay, hover triggers, and speed control.
+10. **Image Comparison**: Visually compare two images with a draggable slider. Perfect for before/after effects.
 
-11. **3D Viewer**: Display 3D model files directly on your page with rotation, zoom, and full interaction support.
+11. **Lottie Player**: Embed lightweight, interactive animations using Lottie JSON files. Supports autoplay, hover triggers, and speed control.
 
-12. **Slider**: Create responsive image or content sliders with pagination, navigation, and animation effects.
+12. **3D Viewer**: Display 3D model files directly on your page with rotation, zoom, and full interaction support.
 
-13. **Flip Boxes**: Add interactive flip cards with front and back content, ideal for showcasing features or team members with engaging motion.
+13. **Slider**: Create responsive image or content sliders with pagination, navigation, and animation effects.
 
-14. **Countdown**: Display a live countdown timer for events, sales, or launches with custom styling and behavior options.
+14. **Flip Boxes**: Add interactive flip cards with front and back content, ideal for showcasing features or team members with engaging motion.
 
-15. **Counter**: Show animated numeric counters to highlight statistics, milestones, or achievements.
+15. **Countdown**: Display a live countdown timer for events, sales, or launches with custom styling and behavior options.
 
-16. **Alert**: Display styled notification boxes to inform, warn, or alert users. Supports different message types and icons.
+16. **Counter**: Show animated numeric counters to highlight statistics, milestones, or achievements.
 
-17. **Button**: Add multi-functional buttons like go to a link, open a popup with various content types, etc.
+17. **Alert**: Display styled notification boxes to inform, warn, or alert users. Supports different message types and icons.
 
-18. **Button Group**: Place two or more action buttons side by side. Useful for calls-to-action like “Learn More” and “Buy Now”.
+18. **Button**: Add multi-functional buttons like go to a link, open a popup with various content types, etc.
 
-19. **Animated Text**: Make text stand out with typing effects, text shuffles, and other animated styles.
+19. **Button Group**: Place two or more action buttons side by side. Useful for calls-to-action like “Learn More” and “Buy Now”.
 
-20. **Icon Box**: Combine icons with titles and descriptions in customizable layouts. Choose from Font Awesome, Bootstrap, or custom icons.
+20. **Animated Text**: Make text stand out with typing effects, text shuffles, and other animated styles.
 
-21. **Feature Boxes**: Highlight features or services using an icon/image, title, separator, and supporting text.
+21. **Icon Box**: Combine icons with titles and descriptions in customizable layouts. Choose from Font Awesome, Bootstrap, or custom icons.
 
-22. **Info Box**: Share additional information or tips inside a clean, styled content block.
+22. **Feature Boxes**: Highlight features or services using an icon/image, title, separator, and supporting text.
 
-23. **Pricing Table**: Build pricing plans with features, pricing, and call-to-action buttons, perfect for product or service pages.
+23. **Info Box**: Share additional information or tips inside a clean, styled content block.
 
-24. **Price Lists**: Display menu items or pricing options with images, titles, descriptions, and prices.
+24. **Pricing Table**: Build pricing plans with features, pricing, and call-to-action buttons, perfect for product or service pages.
 
-25. **Posts**: Display your latest posts or custom post types in grid or masonry layouts with filtering, pagination, and excerpt controls.
+25. **Price Lists**: Display menu items or pricing options with images, titles, descriptions, and prices.
 
-26. **Chart**: Visualize data using bar, line, or pie charts. Fully responsive and customizable for infographics or analytics.
+26. **Posts**: Display your latest posts or custom post types in grid or masonry layouts with filtering, pagination, and excerpt controls.
 
-27. **QR Code**: Generate a QR code from any URL or text input. Useful for offline promotions and instant access links.
+27. **Chart**: Visualize data using bar, line, or pie charts. Fully responsive and customizable for infographics or analytics.
 
-28. **Mail To**: Add a one-click email action that opens the user’s mail app (Gmail, Outlook, Yahoo, etc.) prefilled with your address.
+28. **QR Code**: Generate a QR code from any URL or text input. Useful for offline promotions and instant access links.
 
-29. **Social Share**: Enable sharing of your content across social media platforms and messaging apps with styled buttons.
+29. **Mail To**: Add a one-click email action that opens the user’s mail app (Gmail, Outlook, Yahoo, etc.) prefilled with your address.
 
-30. **Star Rating**: Display customer reviews or feedback with an interactive star rating block.
+30. **Social Share**: Enable sharing of your content across social media platforms and messaging apps with styled buttons.
 
-31. **Services**: Present your service offerings in a structured layout with icon, title, and description.
+31. **Star Rating**: Display customer reviews or feedback with an interactive star rating block.
 
-32. **Team Members**: Introduce your team with member profiles including photo, name, title, bio, and social links.
+32. **Services**: Present your service offerings in a structured layout with icon, title, and description.
 
-33. **Cards**: Create content cards that combine an image, heading, description, and footer, perfect for features or blog highlights.
+33. **Team Members**: Introduce your team with member profiles including photo, name, title, bio, and social links.
 
-34. **Navigation**: Add a custom navigation menu inside your page layout for a better user experience and in-page linking.
+34. **Cards**: Create content cards that combine an image, heading, description, and footer, perfect for features or blog highlights.
+
+35. **bBlocks Navigation**: Add a custom navigation menu inside your page layout for a better user experience and in-page linking.
+
+36. **Facebook Page**: Display your Facebook page feed in a styled block.
+
+37. **Facebook Embed**: Embed any Facebook post or video in your content.
+
+38. **Logo Slider**: Create a responsive logo slider for your brand or partner logos.
+
+39. **Image Hotspot**: Add interactive hotspots to your images with custom tooltips and links.
+
+40. **Content Ticker**: Display a scrolling list of content items with custom styling and behavior options.
+
+41. **Dual Color Heading**: Add a styled heading with a dual-color gradient effect.
+
+42. **Emoji Stack Separator**: Add a styled separator with a stack of emojis.
+
+43. **HTML**: Add custom HTML code to your page or post.
+
+44. **Image Scroller**: Create a responsive image scroller with custom styling and behavior options.
+
+45. **News Ticker**: Display a scrolling list of news items with custom styling and behavior options.
+
+46. **Svg Draw**: Add a styled SVG draw animation to your page or post.
+
+47. **Skill Bar**: Add a styled skill bar with custom styling and behavior options.
+
+48. **Table Of Content**: Add a styled table of contents with custom styling and behavior options.
+
+49. **Testimonials**: Display a scrolling list of testimonials with custom styling and behavior options.
 
 
-## How to Use B Blocks- Quick Start Guide
+## How to Use bBlocks- Quick Start Guide
 Getting started is easy!
 https://www.youtube.com/watch?v=rdPWz1Ekkro
-1. Install and activate the **B Blocks** – Page Builder for Gutenberg plugin.
-2. In the **Gutenberg editor**, find your blocks under the "**B Blocks**" category.
+1. Install and activate the **bBlocks** – Page Builder for Gutenberg plugin.
+2. In the **Gutenberg editor**, find your blocks under the "**bBlocks**" category.
 3. Add blocks to your page or post and configure settings from the right-hand panel.
 4. Save and publish your design.
 
@@ -213,7 +243,7 @@ https://www.youtube.com/watch?v=rdPWz1Ekkro
 
 
 ## Compatibility
-B Blocks works seamlessly with:
+bBlocks works seamlessly with:
 
 - All modern WordPress themes that support Gutenberg
 - Full Site Editing (FSE) themes
@@ -239,7 +269,7 @@ B Blocks works seamlessly with:
 
 #### ⭐⭐⭐⭐⭐ [Easy, time saving](https://wordpress.org/support/topic/easy-time-saving/)
 
-❛❛***I recently started using the B Blocks plugin and it has made a huge difference in the quality and functionality of my WordPress websites. The Ultimate Block Collection is truly a timesaver and – it includes a wide range of blocks that have helped me create more interesting dynamic pages.***❜❜
+❛❛***I recently started using the bBlocks plugin and it has made a huge difference in the quality and functionality of my WordPress websites. The Ultimate Block Collection is truly a timesaver and – it includes a wide range of blocks that have helped me create more interesting dynamic pages.***❜❜
 
 ***-[cjvalotta](https://wordpress.org/support/users/cjvalotta/)***
 
@@ -251,7 +281,7 @@ B Blocks works seamlessly with:
 ***-[jiggyjaeg](https://profiles.wordpress.org/jiggyjaeg/)***
 
 
-#### ⭐⭐⭐⭐⭐ [B Blocks from bPlugins is amazing.](https://wordpress.org/support/topic/b-blocks-from-bplugins-is-amazing/)
+#### ⭐⭐⭐⭐⭐ [bBlocks from bPlugins is amazing.](https://wordpress.org/support/topic/b-blocks-from-bplugins-is-amazing/)
 
 ❛❛***I just wanted to say that if you are looking for the best block plug-in collection then you need not look any further. This is the ultimate block collection. Highly recommended.***❜❜
 
@@ -287,22 +317,22 @@ B Blocks works seamlessly with:
 
 ### Automatic installation
 1. Go to the Plugin menu and click on the **Add New** Button
-2. Search for **B Blocks**
-3. Install and activate the B Blocks plugin from there
+2. Search for **bBlocks**
+3. Install and activate the bBlocks plugin from there
 
 ### Download & Upload:
-1. Download the **b Blocks** plugin (*.zip file*)
+1. Download the **bBlocks** plugin (*.zip file*)
 2. In your admin area, go to the Plugins menu and click on **Add New**
 3. Click on **Upload Plugin** and choose the **`b-blocks.zip`** file and click on **Install Now**
 4. Activate the plugin and Enjoy!
 
 ### Manually:
-1. Download and upload the **B Blocks** plugin to the **`/wp-content/plugins/`** directory
+1. Download and upload the **bBlocks** plugin to the **`/wp-content/plugins/`** directory
 2. Activate the plugin through the Plugins menu in WordPress
 
 ### Use Block:
 1. Go to the WordPress Block/Gutenberg Editor
-2. Add one or more blocks from the block category called **B Blocks** in the Gutenberg editor
+2. Add one or more blocks from the block category called **bBlocks** in the Gutenberg editor
 3. Enjoy!
 
 
@@ -312,9 +342,9 @@ B Blocks works seamlessly with:
 
 You can install it as other regular WordPress plugins. No different way. Please see on installation tab.
 
-= Is B Blocks free? =
+= Is bBlocks free? =
 
-Yes, B Blocks is a free Gutenberg block plugin.
+Yes, bBlocks is a free Gutenberg block plugin.
 
 = Can I change block settings? =
 
@@ -329,7 +359,7 @@ You can use unlimited times as you want.
 You can post your questions on the [support forum here](https://wordpress.org/support/plugin/b-blocks/)
 
 = Where do I report security bugs found in this plugin? =
-Please report security bugs found in the source code of the B Blocks plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fbc32-7c9b-43f0-8095-b109c089829f). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+Please report security bugs found in the source code of the bBlocks plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fbc32-7c9b-43f0-8095-b109c089829f). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 
 == Screenshots ==
@@ -366,6 +396,10 @@ Please report security bugs found in the source code of the B Blocks plugin thro
 
 
 == Changelog ==
+
+= 2.0.23 - 10 Dec 2025 =
+* Added Facebook Page Block.
+* Added Facebook Embed Block.
 
 = 2.0.22 - 4 Dec 2025 =
 * Added Testimonials Block.

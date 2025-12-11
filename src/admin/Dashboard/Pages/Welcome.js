@@ -32,10 +32,10 @@ const Welcome = ({ info }) => {
 
 						<div className='intro'>
 							{/* ?rev=3385620 */}
-							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='B Blocks Logo' />
+							<img className='logo' src='https://ps.w.org/b-blocks/assets/icon-128x128.png' alt='bBlocks Logo' />
 
 							<div className='nameAuthor'>
-								<h3>B Blocks - The ultimate block collection</h3>
+								<h3>bBlocks - The ultimate block collection</h3>
 								<span>by</span>
 								<a href='https://bplugins.com' target='_blank' rel='noopener noreferrer'>
 									bPlugins

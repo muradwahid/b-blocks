@@ -182,7 +182,7 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
                                 <div className='bBlocksContentGenerateAiHeader'>
                                     
                                     {pluginIcon}
-                                    <h2>B Blocks Ai Content Generator</h2>
+                                    <h2>bBlocks Ai Content Generator</h2>
                                 </div>
                                 {apiKeys?.openAi?.key ? '' : <div className='bBlocksContentGenerateWarning'>
                                     <p>Please add your OpenAi Api Key. <a href={apiSettingsPage} target='_blank' rel='noreferrer'>Go to Settings</a></p>

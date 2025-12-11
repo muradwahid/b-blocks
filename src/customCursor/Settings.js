@@ -56,8 +56,8 @@ const Settings = props => {
 
   return <>
     <div>
-      <PluginSidebarMoreMenuItem target='b-blocks-custom-cursor'>B Blocks</PluginSidebarMoreMenuItem>
-      <PluginSidebar name='b-blocks-custom-cursor' title={__('B Blocks - Cursor and Click effect settings.', 'b-blocks')}>
+      <PluginSidebarMoreMenuItem target='b-blocks-custom-cursor'>bBlocks</PluginSidebarMoreMenuItem>
+      <PluginSidebar name='b-blocks-custom-cursor' title={__('bBlocks - Cursor and Click effect settings.', 'b-blocks')}>
         <PanelBody className='bPlPanelBody' title={__('Cursor', 'b-blocks')} initialOpen={true}>
           <OptionSettings {...{ csbAvScrData, setCsbAvScrData, isPremium }} />
 

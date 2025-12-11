@@ -13,6 +13,7 @@ import { pricingPage } from '../../../../utils/data';
 const CursorEffect = ({ info }) => {
     const [isProModalOpen, setIsProModalOpen] = useState(false);
     const { isPremium } = usePremiumInEditor();
+    
 
     return <Layout info={info} >
         <div className='b-blocks-custom-cursor-container'>

@@ -53,8 +53,8 @@ const Playground = ({ info }) => {
     <div className='custom-cursor-playground' ref={dashboardRef} style={cursorCssVar} >
       <div className='custom-cursor-playground-contents-wrapper'>
         <div>
-          <h2 className='custom-cursor-playground-contents-title'>B Blocks – The ultimate block collection<br/> and Gutenberg page builder.</h2>
-          <p className='custom-cursor-playground-contents-description'><a href='https://bblockswp.com' target='_blank' rel="noreferrer" className='cursorPlaygroundLink'>B Blocks</a> is a Gutenberg addon that powers up your Block editor. It can be used as a WordPress page-building tool, which contains a variety of beautiful blocks. It is optimized for performance and provides you with maximum options to achieve your design goals.</p>
+          <h2 className='custom-cursor-playground-contents-title'>bBlocks – The ultimate block collection<br/> and Gutenberg page builder.</h2>
+          <p className='custom-cursor-playground-contents-description'><a href='https://bblockswp.com' target='_blank' rel="noreferrer" className='cursorPlaygroundLink'>bBlocks</a> is a Gutenberg addon that powers up your Block editor. It can be used as a WordPress page-building tool, which contains a variety of beautiful blocks. It is optimized for performance and provides you with maximum options to achieve your design goals.</p>
 
           <div className='custom-cursor-playground-contents-button-wrapper'>
             <a href={`https://bblockswp.com/#demos`} target='_blank' rel="noreferrer" className='bPlDashboardPrimaryBtn'>See Demo</a>

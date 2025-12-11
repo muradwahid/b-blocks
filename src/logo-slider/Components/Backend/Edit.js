@@ -6,7 +6,6 @@ import Style from "../Common/Style";
 import ContentBlockControl from "./Settings/General/ContentBlockControl";
 import Settings from "./Settings/Settings";
 import SliderBackend from "./SliderBackend/SliderBackend";
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
 import { Button } from '../../../../../bpl-tools/Components';
@@ -17,7 +16,7 @@ const Edit = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const updateObj = updateAttributes(attributes, setAttributes);
 
-    const { isPremium = false } = usePremiumInEditor();
+    const isPremium = bBlocksPremiumChecker;
 
     return <>
         <Settings {...{ attributes, setAttributes, updateObj, activeIndex, setActiveIndex, isPremium }} />

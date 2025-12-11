@@ -27,6 +27,6 @@ export default ProModal;
 const UpgradeBtn = () => <a className='upgradeNow' href={pricingPage} target='_blank' rel='noreferrer'>{__('Upgrade Now', 'advanced-post-block')}</a>
 
 const Title = () => <>
-	{__('Upgrade to B Blocks Pro for advanced features', 'b-blocks')}
+	{__('Upgrade to bBlocks Pro for advanced features', 'b-blocks')}
 	<UpgradeBtn />
 </>

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useBlockProps } from '@wordpress/block-editor';
 
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import DotLottiePlayer from '../Common/DotLottiePlayer';
@@ -12,7 +11,7 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, background, isCap = false, caption = '' } = attributes;
 
-	const { isPremium = false } = usePremiumInEditor();
+		const isPremium = bBlocksPremiumChecker;
 
 	const lottieEl = useRef(null);
 	const [fileFrameSize, setFileFrameSize] = useState(0);

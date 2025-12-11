@@ -1,4 +1,13 @@
+import { FaFacebook, OpenAiIcon } from './icons';
+
 export const changelogs = [
+    {
+        version: '2.0.23 - 10 Dec 2025',
+        list: [
+            'Added Facebook Page Block.',
+            'Added Facebook Embed Block.',
+        ]
+    },
     {
         version: '2.0.22 - 4 Dec 2025',
         list: [
@@ -296,3 +305,11 @@ export const freemius = {
     plan_id: '21619',
     public_key: 'pk_d6426b344df4918bc066a7a0b4719',
 }
+
+
+export const apiKeyData = [
+    {
+        name: 'openAi', label: 'Open Ai', icon: <OpenAiIcon className="cartIcon" />,inputLabel: 'Api Key',infoEl: `<p>Enter your Api Key. get it from <a target='_blank' rel='noreferrer' href='https://platform.openai.com/account/api-keys'>Open Ai Platform</a></p>
+            <p><strong>Note:</strong> You need to add credits to your account after getting the API key.</p>`},
+    { name: 'facebook', label: 'Facebook', icon: <FaFacebook className="cartIcon" />, inputLabel: 'App ID', infoEl: `<p>Enter your App ID. get it from <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Facebook Platform</a></p>`}
+]

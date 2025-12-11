@@ -20,7 +20,8 @@
     "mac-zip": "zip -r b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
     "zip": "tar.exe acvf b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
     "bundle": "gulp clean && npm run lint && npm run build && npm run i18n && npm run zip",
-    "fs-deploy": "gulp freemius-deploy"
+    "fs-deploy": "gulp freemius-deploy",
+    "remove-ds":"find . -name \".DS_Store\" -delete"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",

@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 
 import { tabController } from '../../../../../bpl-tools/utils/functions';
 
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import { rowPrefix } from '../../utils/data';
 import { toFixed, updateChildWidth } from '../../utils/functions';
 import { colOptions } from '../../utils/options';
@@ -20,7 +19,7 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId, isSelected, innerBlocks } = props;
 	const { columns } = attributes;
 
-	const { isPremium } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => tabController(), [isSelected]);
 

@@ -15,7 +15,7 @@ class Templates {
 	}
 
 	public function bblocks_templates_main(){
-		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ?? null ) );
 		$type = sanitize_text_field( $_POST['type'] ?? 'patterns');
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
@@ -31,7 +31,7 @@ class Templates {
 	}
 
 	public function bblocks_templates(){
-		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ?? null ) );
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );

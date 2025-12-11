@@ -6,14 +6,13 @@ import Settings from './Settings/Settings';
 import AdvancedImage from './AdvancedImage';
 import { imageRegularIcon, imageSolidIcon } from '../../utils/icons';
 import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, device, featuredImageURL } = props;
 	const { image } = attributes;
 	const { sourceType } = image;
 
-	const { isPremium = false } = usePremiumInEditor();
+	const isPremium = bBlocksPremiumChecker;
 
 	const updateObj = updateAttributes(attributes, setAttributes);
 

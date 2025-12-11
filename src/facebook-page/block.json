@@ -30,7 +30,8 @@
                 "profilePhotos": true,
                 "ctaButton": true,
                 "width": 340,
-                "height": 500
+                "height": 500,
+                "align":"center"
             }
         },
         "advanced": {
@@ -295,7 +296,7 @@
         "facebookPage",
         "aos"
     ],
-    "style": "file:./style-view.css",
+    "style": "file:./view.css",
     "render": "file:./render.php",
     "viewScript": [
         "file:./view.js",

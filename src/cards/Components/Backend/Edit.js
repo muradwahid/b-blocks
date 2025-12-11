@@ -7,7 +7,6 @@ import { produce } from 'immer';
 
 import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
 
-import usePremiumInEditor from '../../../hooks/usePremiumInEditor';
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import { prefix } from '../../utils/data';
@@ -16,9 +15,9 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { cards = [], columns, layout, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
 
-	const { isPremium = false } = usePremiumInEditor();
-
 	const [activeIndex, setActiveIndex] = useState(0);
+
+	const isPremium = bBlocksPremiumChecker;
 
 	const updateCard = (type, val) => {
 		const newCard = produce(cards, draft => {

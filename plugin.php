@@ -2,7 +2,7 @@
 /**
  * Plugin Name: B Blocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.22
+ * Version: 2.0.23
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -27,7 +27,7 @@ if (function_exists('b_blocks_fs')) {
 	});
 } else {
 	// Constant
-	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.22');
+	define('B_BLOCKS_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.23');
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/');
@@ -49,7 +49,7 @@ if (function_exists('b_blocks_fs')) {
 					'premium_slug' => 'b-blocks-pro',
 					'type' => 'plugin',
 					'public_key' => 'pk_d6426b344df4918bc066a7a0b4719',
-					'is_premium' => false,
+					'is_premium' => true,
 					'premium_suffix' => 'Pro',
 					// If your plugin is a serviceware, set this option to false.
 					'has_premium_version' => true,
@@ -205,15 +205,15 @@ if (function_exists('b_blocks_fs')) {
 				'content-ticker',
 				'countdown',
 				'counters',
-				'data-table',
+				// 'data-table',
 				'dual-color-heading',
 				'emoji-stack-separator',
-				// 'facebook-embed',
-				// 'facebook-page',
+				'facebook-embed',
+				'facebook-page',
 				'feature-boxes',
 				'flip-boxes',
 				'gif',
-				'form-builder',
+				// 'form-builder',
 				'html',
 				'icon-box',
 				'image-comparison',
@@ -222,7 +222,6 @@ if (function_exists('b_blocks_fs')) {
 				'image-scroller',
 				'info-box',
 				'input-field',
-				// 'login-form',
 				'logo-slider',
 				'lottie-player',
 				'mailto',
@@ -232,7 +231,6 @@ if (function_exists('b_blocks_fs')) {
 				'price-lists',
 				'pricing-table',
 				'qr-code',
-				// 'register-form',
 				'row',
 				'section-heading',
 				'skill-bar',
@@ -277,7 +275,7 @@ if (function_exists('b_blocks_fs')) {
 			return array_merge([
 				[
 					'slug' => 'bBlocks',
-					'title' => __('B Blocks', 'b-blocks'),
+					'title' => __('bBlocks', 'b-blocks'),
 				]
 			], $categories);
 		} // Register categories
