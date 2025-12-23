@@ -11,7 +11,7 @@ const BForm = ({ children, attributes, isFrontend = false }) => {
 
 	const [showSuccessMessage, setShowSuccessMessage] = React.useState(false);
 	const [showErrorMessage, setShowErrorMessage] = React.useState(false);
-	const { data, saveData: submit, error, isLoading, isError } = useWPAjax('b_form_submit', { _nonce: 'testNonce' }, false)
+	const { data, saveData: submit, error, isLoading, isError } = useWPAjax('b_form_submit', { _nonce: bBlocksNonce }, false)
 	const formRef = useRef('');
 
 		useErrorMessages(error, isError, formRef, form.formType);

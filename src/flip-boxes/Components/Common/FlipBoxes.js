@@ -4,7 +4,7 @@ import { prefix } from '../../utils/data';
 
 const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
 	const { boxes, columns, isIcon, isDesc, isBtn, isLinkNewTab } = attributes;
-
+	
 	return <div className={`${prefix} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 		{boxes.map((item, index) => {
 			const { isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, isBackUpIcon = false, backIcon = {}, upBackIcon = {}, frontTitle, backTitle, desc, btn, btnLink } = item;

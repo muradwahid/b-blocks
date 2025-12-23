@@ -209,7 +209,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Card', 'b-blocks')} onClick={addCard}><Dashicon icon='plus' /></ToolbarButton>
+				<ToolbarButton label={__('Add New Card', 'b-blocks')} onClick={() => setAttributes({ cards:[...cards,addCard] })}><Dashicon icon='plus' /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

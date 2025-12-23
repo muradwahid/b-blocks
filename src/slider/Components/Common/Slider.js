@@ -48,7 +48,7 @@ const Slider = ({ attributes, initialSlide = 0, isBackend = false }) => {
 		allowSlidePrev={true}
 		allowSlideNext={true}
 		autoHeight={false}
-		notificationClass={null}
+		// notificationClass={null}
 	>
 		{slides?.map((slide, index) => {
 			const { position, title, description, btnText, btnLink } = slide;

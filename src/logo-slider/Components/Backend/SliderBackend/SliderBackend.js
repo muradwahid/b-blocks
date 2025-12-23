@@ -58,8 +58,7 @@ const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex 
             }}
         >
             {logo &&
-                logo.map((img, idx) => <>
-                    <SwiperSlide key={img?.id}>
+                logo.map((img, idx) =>   <SwiperSlide key={idx}>
                         <div style={{ border: `${activeIndex === idx ? '2px solid #007CBA' : 'none'}`, borderRadius: `${activeIndex === idx ? '4px' : 'none'}` }}>
                             <div className='b-blocks-logo-slider-wrapper' >
                                 <div className='b-blocks-slider-logo-wrapper' onClick={() => setActiveIndex(idx)}>
@@ -85,8 +84,7 @@ const SliderBackend = ({ attributes, setAttributes, activeIndex, setActiveIndex 
                                 </div>
                             </div>
                         </div>
-                    </SwiperSlide>
-                </>)}
+                    </SwiperSlide>)}
         </Swiper>
     </div>;
 };

@@ -179,11 +179,11 @@ export default [
     },
     {
         name: `${pluginSlug}/form-builder`,
-        title: 'Form Builder',
+        title: 'Form',
         icon: formBuilderIcon,
         demo: ``,
         docs: ``,
-        status: 'inDev'
+        status: 'published'
     },
     {
         name: `${pluginSlug}/gif`,

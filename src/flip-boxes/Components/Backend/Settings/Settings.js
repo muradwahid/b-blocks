@@ -17,8 +17,14 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 	const { boxes = [], columns, columnGap, rowGap, boxHeight, textAlign, boxPadding, isIcon, iconMargin, titleTypo, titleMargin, isDesc, descTypo, isBtn, isLinkNewTab, btnTypo, btnPadding } = attributes;
 
 	const addFlipBox = {
-		frontBG: {},
-		backBG: {},
+		frontBG: {
+			type: "solid",
+			color: "#000000b3"
+		},
+		backBG: {
+			type: "solid",
+			color: "#000000b3"
+		},
 		border: {},
 		shadow: {},
 		frontIcon: {
@@ -72,6 +78,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 							ItemSettings={ItemSettings}
 							itemLabel='Flip Box'
 							newItem={addFlipBox}
+							title='frontTitle'
 							// design={isPremium ? 'sortable' : 'single'}
 							design={isPremium ? 'sortable' : 'single'}
 						/>
@@ -142,7 +149,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Box', 'b-blocks')} onClick={addFlipBox}><Dashicon icon='plus' /></ToolbarButton>
+				<ToolbarButton label={__('Add New Box', 'b-blocks')} onClick={()=>setAttributes({boxes:[...boxes,addFlipBox]})}><Dashicon icon='plus' /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

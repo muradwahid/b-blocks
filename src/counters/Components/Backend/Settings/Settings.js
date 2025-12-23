@@ -210,7 +210,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 
 		<BlockControls>
 			<ToolbarGroup className='bPlToolbar'>
-				<ToolbarButton label={__('Add New Counter', 'b-blocks')} onClick={addCounter}><Dashicon icon='plus' /></ToolbarButton>
+				<ToolbarButton label={__('Add New Counter', 'b-blocks')} onClick={() => setAttributes({counters:[...counters,addCounter]})}><Dashicon icon='plus' /></ToolbarButton>
 			</ToolbarGroup>
 
 			<AlignmentToolbar value={textAlign} onChange={val => setAttributes({ textAlign: val })} />

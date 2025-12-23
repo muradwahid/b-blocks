@@ -2,6 +2,19 @@ import { FaFacebook, OpenAiIcon } from './icons';
 
 export const changelogs = [
     {
+        version: '2.0.24 - 19 Dec 2025',
+        list: [
+            'Added Form Block.'
+        ]
+    },
+    {
+        version: '2.0.23 - 10 Dec 2025',
+        list: [
+            'Added Facebook Page Block.',
+            'Added Facebook Embed Block.',
+        ]
+    },
+    {
         version: '2.0.23 - 10 Dec 2025',
         list: [
             'Added Facebook Page Block.',

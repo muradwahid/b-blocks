@@ -13,9 +13,9 @@ const CursorShape = (props) => {
   return <>
     <SelectControlPro className='mt10' label={__('Cursor Shape', 'b-blocks')} labelPosition='edge' value={value?.type || ""} onChange={(val) => onChange(updateData(value, val, 'type'))} options={cursorOptions} isPremium={isPremium} proValues={cursorProOptions} setIsProModalOpen={setIsProModalOpen} />
     {value?.type === "follow" && <>
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.follow?.duration >= 0 ? value?.follow?.duration : 0.6} defaultValue={0.6} resetFallbackValue={0.6} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'follow', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.follow?.duration >= 0 ? value?.follow?.duration : 0.6} resetFallbackValue={0.6} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'follow', 'duration'))} />
 
-      <RangeControl label={__('Inner Cursor Duration', 'b-blocks')} value={value?.follow?.innerDuration >= 0 ? value?.follow?.innerDuration : 0.1} defaultValue={0.1} resetFallbackValue={0.1} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'follow', 'innerDuration'))} />
+      <RangeControl label={__('Inner Cursor Duration', 'b-blocks')} value={value?.follow?.innerDuration >= 0 ? value?.follow?.innerDuration : 0.1} resetFallbackValue={0.1} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'follow', 'innerDuration'))} />
     </>}
 
     {
@@ -26,14 +26,14 @@ const CursorShape = (props) => {
     }
 
     {value?.type === "dot" && <>
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.dot?.duration >= 0 ? value?.dot?.duration : 0.1} defaultValue={0.1} resetFallbackValue={0.1} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'dot', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.dot?.duration >= 0 ? value?.dot?.duration : 0.1} resetFallbackValue={0.1} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'dot', 'duration'))} />
     </>}
 
     {
       value?.type === "elastic" && <>
-        <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.elastic?.duration >= 0 ? value?.elastic?.duration : 0.5} defaultValue={0.5} resetFallbackValue={0.5} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'elastic', 'duration'))} />
+        <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.elastic?.duration >= 0 ? value?.elastic?.duration : 0.5} resetFallbackValue={0.5} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'elastic', 'duration'))} />
 
-        <RangeControl label={__('Inner Cursor Duration', 'b-blocks')} value={value?.elastic?.innerDuration >= 0 ? value?.elastic?.innerDuration : 0.1} defaultValue={0.1} resetFallbackValue={0.1} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'elastic', 'innerDuration'))} />
+        <RangeControl label={__('Inner Cursor Duration', 'b-blocks')} value={value?.elastic?.innerDuration >= 0 ? value?.elastic?.innerDuration : 0.1} resetFallbackValue={0.1} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'elastic', 'innerDuration'))} />
       </>
     }
 
@@ -48,16 +48,16 @@ const CursorShape = (props) => {
 
     {value?.type === "glow" && <>
 
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={Number(value?.glow?.duration) >= 0 ? value?.glow?.duration : 0.5} defaultValue={0.5} resetFallbackValue={0.5} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'glow', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={Number(value?.glow?.duration) >= 0 ? value?.glow?.duration : 0.5} resetFallbackValue={0.5} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'glow', 'duration'))} />
 
-      <RangeControl label={__('Pulse Speed', 'b-blocks')} value={Number(value?.glow?.pulseSpeed) >= 0 ? value?.glow?.pulseSpeed : 1.5} defaultValue={1.5} resetFallbackValue={1.5} min={0} max={10} step={0.1} onChange={(val) => onChange(updateData(value, val, 'glow', 'pulseSpeed'))} />
+      <RangeControl label={__('Pulse Speed', 'b-blocks')} value={Number(value?.glow?.pulseSpeed) >= 0 ? value?.glow?.pulseSpeed : 1.5} resetFallbackValue={1.5} min={0} max={10} step={0.1} onChange={(val) => onChange(updateData(value, val, 'glow', 'pulseSpeed'))} />
 
     </>}
 
     {value?.type === "gradient" && <>
       <RangeControl label={__('Cursor Duration', 'b-blocks')} value={parseInt(value?.gradient?.duration) >= 0 ? value?.gradient?.duration : 0.5} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'gradient', 'duration'))} />
 
-      <RangeControl label={__('Rotation Speed', 'b-blocks')} value={value?.gradient?.rotationSpeed >= 0 ? value?.gradient?.rotationSpeed : 60} defaultValue={60} resetFallbackValue={60} min={0} max={60} step={1} onChange={(val) => onChange(updateData(value, val, 'gradient', 'rotationSpeed'))} />
+      <RangeControl label={__('Rotation Speed', 'b-blocks')} value={value?.gradient?.rotationSpeed >= 0 ? value?.gradient?.rotationSpeed : 60} resetFallbackValue={60} min={0} max={60} step={1} onChange={(val) => onChange(updateData(value, val, 'gradient', 'rotationSpeed'))} />
     </>}
 
     {value?.type === "image" && <MediaArea height='100%' width='100%' value={value?.image?.img} onChange={(val) => onChange(updateData(value, val, 'image', 'img'))} />}
@@ -67,11 +67,11 @@ const CursorShape = (props) => {
     </>}
 
     {value?.type === "neon" && <>
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.neon?.duration >= 0 ? value?.neon?.duration : 0.2} defaultValue={0.2} resetFallbackValue={0.2} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'neon', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.neon?.duration >= 0 ? value?.neon?.duration : 0.2} resetFallbackValue={0.2} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'neon', 'duration'))} />
     </>}
 
     {value?.type === "pixelated" && <>
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.pixelated?.duration >= 0 ? value?.pixelated?.duration : 0.15} defaultValue={0.15} resetFallbackValue={0.15} min={0} max={5} step={0.05} onChange={(val) => onChange(updateData(value, val, 'pixelated', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.pixelated?.duration >= 0 ? value?.pixelated?.duration : 0.15} resetFallbackValue={0.15} min={0} max={5} step={0.05} onChange={(val) => onChange(updateData(value, val, 'pixelated', 'duration'))} />
     </>}
 
     {value?.type === 'ribbon' && <>
@@ -99,19 +99,19 @@ const CursorShape = (props) => {
     </>}
 
     {value?.type === "ring" && <>
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.ring?.duration >= 0 ? value?.ring?.duration : 0.2} defaultValue={0.2} resetFallbackValue={0.2} min={0} max={5} step={0.05} onChange={(val) => onChange(updateData(value, val, 'ring', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.ring?.duration >= 0 ? value?.ring?.duration : 0.2} resetFallbackValue={0.2} min={0} max={5} step={0.05} onChange={(val) => onChange(updateData(value, val, 'ring', 'duration'))} />
     </>}
 
     {value?.type === "sketch" && <>
-      <RangeControl label={__('Trail Width', 'b-blocks')} value={value?.sketch?.trailWidth >= 0 ? value?.sketch?.trailWidth : 3} defaultValue={3} resetFallbackValue={3} min={0} max={10} step={1} onChange={(val) => onChange(updateData(value, val, 'sketch', 'trailWidth'))} />
+      <RangeControl label={__('Trail Width', 'b-blocks')} value={value?.sketch?.trailWidth >= 0 ? value?.sketch?.trailWidth : 3} resetFallbackValue={3} min={0} max={10} step={1} onChange={(val) => onChange(updateData(value, val, 'sketch', 'trailWidth'))} />
 
-      <RangeControl label={__('Trail Length', 'b-blocks')} value={value?.sketch?.trailLength >= 0 ? value?.sketch?.trailLength : 50} defaultValue={50} resetFallbackValue={50} min={0} max={400} step={1} onChange={(val) => onChange(updateData(value, val, 'sketch', 'trailLength'))} />
+      <RangeControl label={__('Trail Length', 'b-blocks')} value={value?.sketch?.trailLength >= 0 ? value?.sketch?.trailLength : 50} resetFallbackValue={50} min={0} max={400} step={1} onChange={(val) => onChange(updateData(value, val, 'sketch', 'trailLength'))} />
     </>}
 
     {value?.type === "text" && <>
       <TextControl label={__('Cursor Custom Text', 'b-blocks')} value={value?.text?.cursorText} onChange={(val) => onChange(updateData(value, val, 'text', 'cursorText'))} />
 
-      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.text?.duration >= 0 ? value?.text?.duration : 0.2} defaultValue={0.2} resetFallbackValue={0.2} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'text', 'duration'))} />
+      <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.text?.duration >= 0 ? value?.text?.duration : 0.2} resetFallbackValue={0.2} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'text', 'duration'))} />
     </>}
 
   </>
@@ -122,7 +122,7 @@ export default CursorShape;
 
 const GlitchCursorOptions = ({ value = {}, onChange, speed, blendMode }) => {
   return <>
-    <RangeControl label={__('Cursor Tail', 'b-blocks')} value={Number(value?.tailLength) >= 0 ? Number(value?.tailLength) : 8} defaultValue={8} min={0} max={50} step={1} onChange={(val) => onChange(updateData(value, val, 'tailLength'))} resetFallbackValue={8} />
+    <RangeControl label={__('Cursor Tail', 'b-blocks')} value={Number(value?.tailLength) >= 0 ? Number(value?.tailLength) : 8} min={0} max={50} step={1} onChange={(val) => onChange(updateData(value, val, 'tailLength'))} resetFallbackValue={8} />
 
     {/* <SelectControl className='mt10' label={__('Cursor Intensity', 'b-blocks')} labelPosition='edge' value={value?.intensity || intensity} onChange={(val) => onChange(updateData(value, val, 'intensity'))} options={glitchIntensityOptions} /> */}
 

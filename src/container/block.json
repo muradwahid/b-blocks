@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/container",
 	"title": "Container",
 	"description": "A versatile block for grouping and styling multiple blocks.",

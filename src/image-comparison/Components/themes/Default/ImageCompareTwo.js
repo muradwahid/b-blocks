@@ -13,27 +13,47 @@ const ImageCompareTwo = ({ beforeLabelEl, height, afterLabelEl, beforeImg, after
 	const containerRef = useRef(null);
 
 	const { handleClick } = useDragg(isDragging, containerRef, setPosition, setIsDragging, orientation, isAutoSlide, isHoverStop, speed, isMoveClick)
+
+
+	const applyHeight = () => {
+		const container = containerRef.current;
+		if (!container) return;
+
+		const images = Array.from(container.querySelectorAll("img"));
+		if (!images.length) return;
+
+		const parsedHeight = parseInt(height, 10);
+		const hasFixedHeight = !isNaN(parsedHeight) && parsedHeight > 0;
+
+		let finalHeight;
+
+		if (hasFixedHeight) {
+			finalHeight = parsedHeight;
+		} else {
+			const heights = images
+				.map(img => img.getBoundingClientRect().height)
+				.filter(h => h > 0);
+
+			if (!heights.length) return;
+
+			finalHeight = Math.max(...heights);
+		}
+
+		container.style.height = `${finalHeight}px`;
+		images.forEach(img => {
+			img.style.height = `${finalHeight}px`;
+		});
+	};
+
 	useEffect(() => {
-		// const containerHeight = styles.container.height[device];
-		// const containerHeight = height[device];
-		let time;
-		time = setTimeout(() => {
-			if (!isNaN(parseInt(height)) && parseInt(height) > 0) {
-				containerRef.current.style.height = height;
-				const images = containerRef.current.querySelectorAll('img');
-				Array.from(images).forEach(img => img.style.height = `${height}`);
-			} else {
-				const images = containerRef.current.querySelectorAll('img');
-				const heights = Array.from(images).map(img => img.getBoundingClientRect().height);
-				const maxHeight = Math.max(...heights);
-				// console.log(maxHeight);
-				// alert(maxHeight)
-				containerRef.current.style.height = `${maxHeight}px`;
-				Array.from(images).forEach(img => img.style.height = `${maxHeight}px`);
-			}
-		}, 200);
-		return () => clearTimeout(time);
-	}, [containerRef.current, beforeImg?.url, afterImg?.url, height]);
+		const container = containerRef.current;
+		if (!container) return;
+
+		const observer = new ResizeObserver(applyHeight);
+		observer.observe(container);
+
+		return () => observer.disconnect();
+	}, []);
 
 	return <div {...props} className={prefix}>
 		<div
@@ -50,7 +70,7 @@ const ImageCompareTwo = ({ beforeLabelEl, height, afterLabelEl, beforeImg, after
 			<div
 				className="b-blocks-image-wrapper"
 			>
-				<img src={beforeImg?.url} alt={beforeImg?.alt || beforeImg?.title} />
+				<img src={beforeImg?.url} alt={beforeImg?.alt || beforeImg?.title} onLoad={applyHeight} />
 				{beforeLabelEl}
 
 			</div>
@@ -60,7 +80,7 @@ const ImageCompareTwo = ({ beforeLabelEl, height, afterLabelEl, beforeImg, after
 					clipPath: lineShapes(position)[dragg.shapeType + orientation]
 				}}
 			>
-				<img src={afterImg?.url} alt={afterImg?.alt || afterImg?.title} />
+				<img src={afterImg?.url} alt={afterImg?.alt || afterImg?.title} onLoad={applyHeight} />
 				{afterLabelEl}
 			</div>
 			<div

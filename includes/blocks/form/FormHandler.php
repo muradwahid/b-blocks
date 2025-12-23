@@ -10,8 +10,11 @@ class BBlocksFormHandler{
 	function b_form_submit(){
 
     // verify nonce
-    
+		if(!isset($_POST['_nonce']) || !wp_verify_nonce($_POST['_nonce'], 'wp_ajax')){
+			wp_send_json_error([ 'message' => __( 'Something went wrong.', 'b-blocks' ) ]);
+		}
     // sanitize field data and validate and create wp user_error
+
     // $userEmail = $this->sanitize_array($_POST['userEmail']) ?? null;
 		// $adminEmail = $this->sanitize_array($_POST['adminEmail']) ?? null;
 

@@ -1,6 +1,6 @@
 <?php
 $id = wp_unique_id( 'bBlocksVideo-' );
-$planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
+$planClass = sanitize_html_class(BBlocks\Inc\Utils::isPro() ? 'pro' : 'free');
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

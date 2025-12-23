@@ -40,8 +40,7 @@ const RenderVideo = ({ attributes }) => {
 
 	return <div className={prefix}>
 		<div className='videoWrapper'>
-			{/* eslint-disable-next-line react/no-unknown-property */}
-			<video controls playsinline data-poster={poster} preload='metadata' ref={videoEl}>
+			<video controls playsInline data-poster={poster} preload='metadata' ref={videoEl}>
 				Your browser does not support the video tag.
 				<source src={source} type='video/mp4' />
 			</video>

@@ -1,5 +1,6 @@
 import SVG from 'react-inlinesvg';
 import { placeholderImg } from '../../../utils/data';
+import { Fragment } from 'react';
 
 
 const Hotspot = ({ attributes }) => {
@@ -20,8 +21,7 @@ const Hotspot = ({ attributes }) => {
 				alt={image?.alt || 'Hotspot Image'}
 				className='b-blocks-hotspot-image'
 			/>
-			{hotspot.map((element, i) => (
-				<>
+			{hotspot.map((element, i) => <Fragment key={i}>
 					{element.spotOption === 'text' && (
 						<a
 							{...(element.spotLink ? { href: element.spotLink } : {})}
@@ -200,8 +200,7 @@ const Hotspot = ({ attributes }) => {
 							</div>
 						</a>
 					)}
-				</>
-			))}
+				</Fragment> )}
 		</div>
 	</>
 };

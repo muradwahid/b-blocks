@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/testimonials",
 	"title": "Testimonials",
 	"description": "Boost your website's credibility with b testimonials block, effortlessly showcasing customer ratings and reviews.",

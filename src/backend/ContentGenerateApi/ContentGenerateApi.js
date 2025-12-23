@@ -5,7 +5,7 @@ import { TextareaControl, Flex, ToolbarGroup, ToolbarButton, Popover } from '@wo
 import { __ } from '@wordpress/i18n';
 import { BlockControls } from '@wordpress/block-editor';
 
-import { Button } from '../../../../bpl-tools/Components';
+import Button  from '../../../../bpl-tools/Components/Button/Button';
 import { useWPAjax } from '../../../../bpl-tools/hooks';
 
 import {useOutsideDetect} from '../../../../bpl-tools/hooks/useOutsideDetect';
@@ -47,8 +47,6 @@ const getSelectedRichText = (props) => {
 const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         const { clientId, isSelected } = props;
-
-
 
         const [isModalOpen, setIsModalOpen] = useState(false);
         const [prompt, setPrompt] = useState('');

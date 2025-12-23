@@ -4,7 +4,7 @@ import { produce } from 'immer';
 import Draggable from './Draggable';
 import { placeholderImg } from '../../../../utils/data';
 
-const HotspotBack = ({ attributes, setAttributes, activeIdx, setActiveIdx, isSelected }) => {
+const HotspotBack = ({ attributes, setAttributes, setActiveIdx, isSelected }) => {
 	const { hotspot, image, preset, align } = attributes;
 	const [wrapperEl, setWrapperEl] = useState(null);
 	const setWrapperRef = useCallback(node => setWrapperEl(node), []);
@@ -14,7 +14,7 @@ const HotspotBack = ({ attributes, setAttributes, activeIdx, setActiveIdx, isSel
 		{hotspot.map((el, i) =>
 			<Draggable
 				key={i}
-				{...{ activeIdx, setActiveIdx, preset, align, isSelected }}
+				{...{setActiveIdx, preset, align, isSelected }}
 				value={el.position.desktop}
 				wrapperEl={wrapperEl}
 				element={el}

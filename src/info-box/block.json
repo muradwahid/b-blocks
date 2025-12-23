@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/info-box",
 	"title": "Info Box",
 	"description": "Display information in box style.",

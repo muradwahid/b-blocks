@@ -49,7 +49,7 @@ const TableContents = ({ attributes, setAttributes, id }) => {
                 <DynamicTag className="bblocks-tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
                 {/* {minimize.toggle && <>{toggle ? <i style={{ color: header.iconColor }} className={minimize.collapseIcon}></i> : <i style={{ color: header.iconColor }} className={minimize.expandIcon}></i>}</>} */}
 
-                {minimize.toggle && <>{toggle ? collapseIcons.map(({ value: val, icon }) => val === minimize.collapseIcon && icon) : expandIcons.map(({ value: val, icon }) => val === minimize.expandIcon && icon)}</>}
+                {minimize.toggle && <>{toggle ? collapseIcons.map(({ value: val, icon }, idx) => val === minimize.collapseIcon && <span key={`expand-${idx}`}>{icon}</span>) : expandIcons.map(({ value: val, icon }, idx) => val === minimize.expandIcon && <span key={`expand-${idx}`}>{icon}</span>)}</>}
             </div>
             <div ref={accordionPanel} className="bblocks-tbcn-panel" >
                 {content?.length > 1 ? (
@@ -57,9 +57,7 @@ const TableContents = ({ attributes, setAttributes, id }) => {
                         {Array.from(content).map(
                             (headingElement, idx) =>
                                 headingElement.className !== "bblocks-tbcn-content-table-title" &&
-                                headingElement.textContent.length > 1 && (
-                                    <>
-                                        <li className="bblocks-tbcn-panel-table-list-items" onClick={() => setContentsAttr(idx)} key={idx}>
+                                headingElement.textContent.length > 1 &&  <li className="bblocks-tbcn-panel-table-list-items" onClick={() => setContentsAttr(idx)} key={JSON.stringify(headingElement.textContent)+1}>
                                             {markup.view !== "decimal" && <span>
                                                 {bullets.map(({ value: val, icon }) => val === markup.icon && icon)}
                                                 {/* <i style={{ fontSize: "10px" }} className={`${markup.icon}`}></i> */}
@@ -68,8 +66,7 @@ const TableContents = ({ attributes, setAttributes, id }) => {
                                                 {headingElement.textContent}
                                             </a>
                                         </li>
-                                    </>
-                                )
+                                
                         )}
                     </ol>
                 ) : (

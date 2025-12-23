@@ -3,6 +3,7 @@ import EmailOptionSettings from './EmailOptionSettings';
 import FormOptions from "./FormOptions";
 import FormOptionSettings from './FormOptionSettings';
 import MessageOptions from "./MessageOptions";
+import SignOut from './SignOut';
 import TermsConditionSettings from './TermsConditionSettings';
 const General = (props) => {
     const { attributes } = props;
@@ -22,6 +23,7 @@ const General = (props) => {
         
         <MessageOptions {...props} />
 
+        {formType !== 'contact' && <SignOut {...props} />}
    
     </>
 }

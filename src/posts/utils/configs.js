@@ -47,7 +47,7 @@ export const sliderConfig = (attributes) => {
 		allowSlideNext: true,
 		allowSlidePrev: true,
 		autoHeight: false, // Frontend
-		notificationClass: null,
+		// notificationClass: null,
 
 		// Controllers
 		pagination: {

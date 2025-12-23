@@ -22,7 +22,7 @@ import './facebook-embed';
 import './facebook-page';
 import './feature-boxes';
 import './flip-boxes';
-// import './form-builder';
+import './form-builder';
 import './gif';
 import './html';
 import './icon-box';

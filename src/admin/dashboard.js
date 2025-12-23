@@ -5,12 +5,15 @@ import Dashboard from './Dashboard/Dashboard';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const dashboardEl = document.querySelector('#bBlocksDashboard');
+	if (!dashboardEl) return;
 
-	const info = JSON.parse(dashboardEl.dataset.info);
-
-	if (dashboardEl) {
-		createRoot(dashboardEl).render(<Dashboard info={info} />);
-
-		dashboardEl.removeAttribute('data-info');
+	let info;
+	try {
+		info = JSON.parse(dashboardEl.dataset.info);
+	} catch (e) {
+		// eslint-disable-next-line no-console
+		console.error(e);
 	}
+	createRoot(dashboardEl).render(<Dashboard info={info} />);
+	dashboardEl.removeAttribute('data-info');
 });

@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/button",
 	"title": "Button",
 	"description": "Implement multi-functional button.",

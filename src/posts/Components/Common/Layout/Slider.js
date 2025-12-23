@@ -47,7 +47,7 @@ const Slider = ({ posts, attributes, id }) => {
 		allowSlideNext={true}
 		allowSlidePrev={true}
 		autoHeight={false} // Frontend
-		notificationClass={null}
+		// notificationClass={null}
 	>
 		{posts.map(post => <SwiperSlide key={post.id}>
 			<SubLayout post={post} attributes={attributes} />

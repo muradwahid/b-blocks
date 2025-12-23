@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/lottie-player",
 	"title": "Lottie Player",
 	"description": "Lottie player for display lottie files.",

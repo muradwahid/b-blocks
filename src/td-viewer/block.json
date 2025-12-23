@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/td-viewer",
 	"title": "3D Viewer",
 	"description": "Display interactive 3D models on the web",

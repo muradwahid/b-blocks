@@ -1,23 +1,27 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/mode-html";
+import "ace-builds/src-noconflict/snippets/html";
+import "ace-builds/src-noconflict/snippets/html";
 
 export const CustomCodeEditor = (props) => {
 	const { value, onChange, height = "300px", width = "100%"} = props;
 	const id = Math.floor(Math.random() * 99999999);
 
-	let timeout;
+	const timeoutRef = useRef(null);
+
 	const debouncedOnChange = useCallback(
 		(newVal) => {
-			clearTimeout(timeout);
-			timeout = setTimeout(() => {
+			clearTimeout(timeoutRef.current);
+			timeoutRef.current = setTimeout(() => {
 				onChange(newVal);
 			}, 600);
 		},
-		[onChange, timeout]
+		[onChange]
 	);
 
 	return <div>
@@ -35,7 +39,8 @@ export const CustomCodeEditor = (props) => {
 				showGutter={true}
 				highlightActiveLine={true}
 				value={value}
-				setOptions={{
+			setOptions={{
+				useWorker: false,
 					enableBasicAutocompletion: true,
 					enableLiveAutocompletion: false,
 					enableSnippets: true,

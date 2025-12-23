@@ -19,8 +19,7 @@ const Style = ({ attributes, setAttributes, updateObj, device, gradients }) => {
 
 		<PanelBody className="bPlPanelBody" initialOpen={false} title={__("Heading", "dual-color-heading")} >
 			<Typography className="mb10" value={heading.typography} onChange={(value) => updateObj('heading', value, 'typography')} />
-			{["first", "last"].map((part) => (
-				<>
+			{["first", "last"].map((part,idx) =><div key={idx}>
 					<PanelRow className="mt20">
 
 						<BtnGroup label={__(`${part[0].toUpperCase() + part.substring(1)} Color Type:`, "dual-color-heading")} value={heading[part].colorType} onChange={(val) => setAttributes({ heading: { ...heading, [part]: { ...heading[part], colorType: val }, }, })} options={bgTypes} size="small" />
@@ -48,8 +47,8 @@ const Style = ({ attributes, setAttributes, updateObj, device, gradients }) => {
 							defaultColor={"first" === part ? primaryColor : ""}
 						/>
 					)}
-				</>
-			))}
+				</div>
+			)}
 		</PanelBody>
 
 		<PanelBody className="bPlPanelBody" initialOpen={false} title={__("Sub Heading", "dual-color-heading")} >

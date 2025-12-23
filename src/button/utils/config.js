@@ -4,9 +4,13 @@ import { prefix } from './data';
 export const btnProps = (attributes, security = 'none', securityPass, isPremium, isBackend = false) => {
 	const { actionType = 'link', url, tooltip, tooltipPos = 'top', target, attrs = { rel: 'noreferrer', referrerpolicy: 'no-referrer' }, isDownload, downloadFileName = '', animationType, animationDuration, addID } = attributes;
 
+	const referrerPolicy = attrs?.referrerpolicy || 'no-referrer';
+	const rel = attrs?.rel || 'noreferrer';
+
+
 	const hrefProps = (url && (securityPass || 'none' === security)) ? { href: sanitizeURL(url) } : {};
 	const downloadProps = (isDownload) ? { download: isPremium ? downloadFileName : '' } : {};
-	const proAttrs = isPremium ? attrs : {};
+	const proAttrs = isPremium ? {referrerPolicy,rel} : {};
 	const linkProps = 'popup' === actionType || isBackend ? {} : { ...hrefProps, target, ...proAttrs, ...downloadProps };
 	const tooltipProps = { tooltip, 'tooltip-pos': isPremium ? tooltipPos : 'top' }
 	const animationProps = {

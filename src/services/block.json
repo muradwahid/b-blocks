@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "b-blocks/services",
 	"title": "Services",
 	"description": "Services section for web page.",
