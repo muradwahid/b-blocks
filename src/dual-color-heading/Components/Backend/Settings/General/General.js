@@ -1,4 +1,4 @@
-import { __experimentalInputControl as InputControl, PanelBody, PanelRow, SelectControl, ToggleControl } from "@wordpress/components";
+import { Flex, __experimentalInputControl as InputControl, PanelBody, PanelRow, SelectControl, ToggleControl,  __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { BButtonGroup, IconLibrary, Label, MediaArea, SortableControl, TinyEditor } from "../../../../../../../bpl-tools/Components";
 
@@ -6,10 +6,12 @@ import { updateData } from '../../../../../../../bpl-tools/utils/functions';
 import svgIcon from "../../../../../../assets/icons/christmas-star-icon.svg";
 import oktaIconSvg from "../../../../../../assets/icons/okta-icon.svg";
 import { htmlTags } from "../../../../utils/options";
+import { CenterIcon, JustifyIcon, LeftIcon, RightIcon } from '../../../../utils/icon';
 
 const General = (props) => {
 	const { attributes, setAttributes, updateObj } = props;
 	const { sortElements, heading, icon, separator, subHeading } = attributes;
+
 	return <>
 		<PanelBody className="bPlPanelBody" initialOpen={true} title={__("Elements", "b-blocks")} >
 			<SortableControl label={__("Sort Elements:")} value={sortElements} onChange={(val) => updateObj('sortElements', val)} />
@@ -22,8 +24,19 @@ const General = (props) => {
 			</PanelRow>
 
 			{["first", "last"].map((part) => (
-				<InputControl key={part} className="mt20" label={__(`${part} Part`, "b-blocks")} value={heading[part].text} onChange={(value) => setAttributes({ heading: { ...heading, [part]: { ...heading[part], text: value }, }, })} />
+				<InputControl key={part} className="mt20" label={__(`${part==='first'?'First':'Last'} Part`, "b-blocks")} value={heading[part].text} onChange={(value) => setAttributes({ heading: { ...heading, [part]: { ...heading[part], text: value }, }, })} />
 			))}
+
+		<Flex className="mt10">
+			<Label className='flex1 mb0'>{__('Alignment', 'b-blocks')}</Label>
+			<ToggleGroupControl className='flex1' __next40pxDefaultSize __nextHasNoMarginBottom isBlock value={heading?.align} onChange={(val) => updateObj('heading', val, 'align')} isDeselectable >
+					<ToggleGroupControlOptionIcon label="Left" value="left" icon={LeftIcon} />
+					<ToggleGroupControlOptionIcon label="Center" value="center" icon={CenterIcon} />
+					<ToggleGroupControlOptionIcon label="Right" value="right" icon={RightIcon} />
+					<ToggleGroupControlOptionIcon label="Justify" value="justify" icon={JustifyIcon} />
+			</ToggleGroupControl>
+		</Flex>
+
 		</PanelBody>
 
 		<PanelBody className="bPlPanelBody" initialOpen={false} title={__("Separator", "b-blocks")} >

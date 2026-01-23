@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.9
-Stable tag: 2.0.24
+Stable tag: 2.0.27
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -132,105 +132,111 @@ Bring engaging animations to your site with interactive Lottie files:
 ## Available Blocks
 bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
 
-1. **Row Columns**: Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
+- [**Row Columns**](https://bblockswp.com/demo/row/): Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
 
-2. **Container**: Group multiple blocks into a single styled section. Add background color, borders, padding, and other visual adjustments.
+- **Container**: Group multiple blocks into a single styled section. Add background color, borders, padding, and other visual adjustments.
 
-3. **Section Heading**: Add a styled section title with optional separator and description. Easily toggle the visibility of each element.
+- [**Section Heading**](https://bblockswp.com/demo/section-heading/): Add a styled section title with optional separator and description. Easily toggle the visibility of each element.
 
-4. **Shape Divider**: Add decorative shape dividers between sections for smooth visual transitions.
+- **Shape Divider**: Add decorative shape dividers between sections for smooth visual transitions.
 
-5. **Advanced Image**: Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
+- **Advanced Image**: Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
 
-6. **Accordion Block**: Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
+- **Accordion Block**: Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
 
-7. **Video**: Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
+- **Video**: Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
 
-8. **GIF Image**: Upload and showcase animated GIFs to add dynamic visuals to your content.
+- [**GIF Image**](https://bblockswp.com/demo/gif-image/): Upload and showcase animated GIFs to add dynamic visuals to your content.
 
-9. **Image Gallery**: Display a collection of images in a stylish, responsive gallery layout. Great for portfolios or product showcases.
+- [**Image Gallery**](https://bblockswp.com/demo/image-gallery/): Display a collection of images in a stylish, responsive gallery layout. Great for portfolios or product showcases.
 
-10. **Image Comparison**: Visually compare two images with a draggable slider. Perfect for before/after effects.
+- [**Image Comparison**](https://bblockswp.com/demo/image-comparison/): Visually compare two images with a draggable slider. Perfect for before/after effects.
 
-11. **Lottie Player**: Embed lightweight, interactive animations using Lottie JSON files. Supports autoplay, hover triggers, and speed control.
+- [**Lottie Player**](https://bblockswp.com/demo/lottie-player/): Embed lightweight, interactive animations using Lottie JSON files. Supports autoplay, hover triggers, and speed control.
 
-12. **3D Viewer**: Display 3D model files directly on your page with rotation, zoom, and full interaction support.
+- **List**: Display a list of items with custom markers, icons, and styles.
 
-13. **Slider**: Create responsive image or content sliders with pagination, navigation, and animation effects.
+- [**3D Viewer**](https://bblockswp.com/demo/3d-viewer/): Display 3D model files directly on your page with rotation, zoom, and full interaction support.
 
-14. **Flip Boxes**: Add interactive flip cards with front and back content, ideal for showcasing features or team members with engaging motion.
+- [**Slider**](https://bblockswp.com/demo/slider/): Create responsive image or content sliders with pagination, navigation, and animation effects.
 
-15. **Form**:Create Beautiful and Professional Login and Register Forms.
+- [**Flip Boxes**](https://bblockswp.com/demo/flip-boxes/): Add interactive flip cards with front and back content, ideal for showcasing features or team members with engaging motion.
 
-16. **Countdown**: Display a live countdown timer for events, sales, or launches with custom styling and behavior options.
+- **Form**:Create Beautiful and Professional Login and Register Forms.
 
-17. **Counter**: Show animated numeric counters to highlight statistics, milestones, or achievements.
+- [**Countdown**](https://bblockswp.com/demo/countdown/): Display a live countdown timer for events, sales, or launches with custom styling and behavior options.
 
-18. **Alert**: Display styled notification boxes to inform, warn, or alert users. Supports different message types and icons.
+- [**Counters**](https://bblockswp.com/demo/counters/): Show animated numeric counters to highlight statistics, milestones, or achievements.
 
-19. **Button**: Add multi-functional buttons like go to a link, open a popup with various content types, etc.
+- [**Alert**](https://bblockswp.com/demo/alert/): Display styled notification boxes to inform, warn, or alert users. Supports different message types and icons.
 
-20. **Button Group**: Place two or more action buttons side by side. Useful for calls-to-action like “Learn More” and “Buy Now”.
+- [**Button**](https://bblockswp.com/demo/button/): Add multi-functional buttons like go to a link, open a popup with various content types, etc.
 
-21. **Animated Text**: Make text stand out with typing effects, text shuffles, and other animated styles.
+- [**Button Group**](https://bblockswp.com/demo/button-group/): Place two or more action buttons side by side. Useful for calls-to-action like “Learn More” and “Buy Now”.
 
-22. **Icon Box**: Combine icons with titles and descriptions in customizable layouts. Choose from Font Awesome, Bootstrap, or custom icons.
+- [**Animated Text**](https://bblockswp.com/demo/animated-text/): Make text stand out with typing effects, text shuffles, and other animated styles.
 
-23. **Feature Boxes**: Highlight features or services using an icon/image, title, separator, and supporting text.
+- **Icon Box**: Combine icons with titles and descriptions in customizable layouts. Choose from Font Awesome, Bootstrap, or custom icons.
 
-24. **Info Box**: Share additional information or tips inside a clean, styled content block.
+- [**Feature Boxes**](https://bblockswp.com/demo/feature-boxes/): Highlight features or services using an icon/image, title, separator, and supporting text.
 
-25. **Pricing Table**: Build pricing plans with features, pricing, and call-to-action buttons, perfect for product or service pages.
+- [**Info Box**](https://bblockswp.com/demo/info-box/): Share additional information or tips inside a clean, styled content block.
 
-26. **Price Lists**: Display menu items or pricing options with images, titles, descriptions, and prices.
+- [**Pricing Table**](https://bblockswp.com/demo/pricing-table/): Build pricing plans with features, pricing, and call-to-action buttons, perfect for product or service pages.
 
-27. **Posts**: Display your latest posts or custom post types in grid or masonry layouts with filtering, pagination, and excerpt controls.
+- [**Price Lists**](https://bblockswp.com/demo/price-lists/): Display menu items or pricing options with images, titles, descriptions, and prices.
 
-28. **Chart**: Visualize data using bar, line, or pie charts. Fully responsive and customizable for infographics or analytics.
+- [**Posts**](https://bblockswp.com/demo/posts/): Display your latest posts or custom post types in grid or masonry layouts with filtering, pagination, and excerpt controls.
 
-29. **QR Code**: Generate a QR code from any URL or text input. Useful for offline promotions and instant access links.
+- [**Chart**](https://bblockswp.com/demo/chart/): Visualize data using bar, line, or pie charts. Fully responsive and customizable for infographics or analytics.
 
-30. **Mail To**: Add a one-click email action that opens the user’s mail app (Gmail, Outlook, Yahoo, etc.) prefilled with your address.
+- [**QR Code**](https://bblockswp.com/demo/qr-code/): Generate a QR code from any URL or text input. Useful for offline promotions and instant access links.
 
-31. **Social Share**: Enable sharing of your content across social media platforms and messaging apps with styled buttons.
+- [**Mail To**](https://bblockswp.com/demo/mail-to/): Add a one-click email action that opens the user’s mail app (Gmail, Outlook, Yahoo, etc.) prefilled with your address.
 
-32. **Star Rating**: Display customer reviews or feedback with an interactive star rating block.
+- [**Social Share**](https://bblockswp.com/demo/social-share/): Enable sharing of your content across social media platforms and messaging apps with styled buttons.
 
-33. **Services**: Present your service offerings in a structured layout with icon, title, and description.
+- **Star Rating**: Display customer reviews or feedback with an interactive star rating block.
 
-34. **Team Members**: Introduce your team with member profiles including photo, name, title, bio, and social links.
+- [**Services**](https://bblockswp.com/demo/services-section/): Present your service offerings in a structured layout with icon, title, and description.
 
-35. **Cards**: Create content cards that combine an image, heading, description, and footer, perfect for features or blog highlights.
+- [**Team Members**](https://bblockswp.com/demo/team-members/): Introduce your team with member profiles including photo, name, title, bio, and social links.
 
-36. **bBlocks Navigation**: Add a custom navigation menu inside your page layout for a better user experience and in-page linking.
+- [**Cards**](https://bblockswp.com/demo/cards/): Create content cards that combine an image, heading, description, and footer, perfect for features or blog highlights.
 
-37. **Facebook Page**: Display your Facebook page feed in a styled block.
+- **bBlocks Navigation**: Add a custom navigation menu inside your page layout for a better user experience and in-page linking.
 
-38. **Facebook Embed**: Embed any Facebook post or video in your content.
+- **Facebook Page**: Display your Facebook page feed in a styled block.
 
-39. **Logo Slider**: Create a responsive logo slider for your brand or partner logos.
+- **Facebook Embed**: Embed any Facebook post or video in your content.
 
-40. **Image Hotspot**: Add interactive hotspots to your images with custom tooltips and links.
+- **Logo Slider**: Create a responsive logo slider for your brand or partner logos.
 
-41. **Content Ticker**: Display a scrolling list of content items with custom styling and behavior options.
+- **Image Hotspot**: Add interactive hotspots to your images with custom tooltips and links.
 
-42. **Dual Color Heading**: Add a styled heading with a dual-color gradient effect.
+- **Content Ticker**: Display a scrolling list of content items with custom styling and behavior options.
 
-43. **Emoji Stack Separator**: Add a styled separator with a stack of emojis.
+- **Dual Color Heading**: Add a styled heading with a dual-color gradient effect.
 
-44. **HTML**: Add custom HTML code to your page or post.
+- **Emoji Stack Separator**: Add a styled separator with a stack of emojis.
 
-45. **Image Scroller**: Create a responsive image scroller with custom styling and behavior options.
+- **HTML**: Add custom HTML code to your page or post.
 
-46. **News Ticker**: Display a scrolling list of news items with custom styling and behavior options.
+- **Image Scroller**: Create a responsive image scroller with custom styling and behavior options.
 
-47. **Svg Draw**: Add a styled SVG draw animation to your page or post.
+- **News Ticker**: Display a scrolling list of news items with custom styling and behavior options.
 
-48. **Skill Bar**: Add a styled skill bar with custom styling and behavior options.
+- **Svg Draw**: Add a styled SVG draw animation to your page or post.
 
-49. **Table Of Content**: Add a styled table of contents with custom styling and behavior options.
+- **Skill Bar**: Add a styled skill bar with custom styling and behavior options.
 
-50. **Testimonials**: Display a scrolling list of testimonials with custom styling and behavior options.
+- **Table Of Content**: Add a styled table of contents with custom styling and behavior options.
+
+- **Testimonials**: Display a scrolling list of testimonials with custom styling and behavior options.
+
+- **Scroll To Top**: Enhance user experience with a fully customizable Scroll To Top button for smooth navigation.
+
+- **Text Path**: Craft eye-catching text paths with interactive visual effects.
 
 
 ## How to Use bBlocks- Quick Start Guide
@@ -398,6 +404,19 @@ Please report security bugs found in the source code of the bBlocks plugin throu
 
 
 == Changelog ==
+
+= 2.0.27 - 23 Jan 2026 =
+* Added Text Path Block.
+
+= 2.0.26 - 17 Jan 2026 =
+* Added Scroll To Top Block.
+* Fixed Accordion Block issues.
+* Fixed Container issues.
+* Added Dual Color Heading alignment option.
+
+= 2.0.25 - 25 Dec 2025 =
+* Added List Block.
+* Fixed Template Library issues.
 
 = 2.0.24 - 19 Dec 2025 =
 * Added Form Block.

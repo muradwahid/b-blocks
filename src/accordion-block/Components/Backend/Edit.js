@@ -216,6 +216,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 '--accordion-animation-speed': `${customStyles.animationSpeed}ms`
             };
         };
+    
 	return        <>
                 <InspectorControls>
                     <PanelBody title={__('Accordion Items', 'accordion-block')} initialOpen={true}>
@@ -389,8 +390,8 @@ const Edit = ({ attributes, setAttributes }) => {
                                     </Button>
                                 </div>
                                 {openItems[index] && (
-                                    <div className="accordion-content">
-                                        <RichText
+                                    <div className="accordion-content" style={{maxHeight:'unset'}}>
+                                        <RichText   
                                             tagName="div"
                                             value={item.content}
                                             onChange={(value) => updateItem(index, 'content', value)}

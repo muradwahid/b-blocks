@@ -23,7 +23,7 @@ const Settings = (props) => {
             {(tab) => <>
                 {'general' === tab.name && <>
                     <General {...props} />
-                </>}
+                </>} 
 
                 {/* {'style' === tab.name && <>
                     <Style {...props} />

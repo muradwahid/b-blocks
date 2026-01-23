@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { Label } from '../../../../../../../bpl-tools/Components';
 import { emUnit, pxUnit, vhUnit } from '../../../../../../../bpl-tools/utils/options';
 import { positionsX, positionsY } from '../../../../utils/options';
+// import Layout from './Layout';
 
 const heightTypes = [
     { label: __('Auto', 'b-blocks'), value: 'auto' },
@@ -15,6 +16,7 @@ const General = (props) => {
     const { attributes, setAttributes } = props;
     const { columnGap, heightType, height, columnPositionY, columnPositionX } = attributes;
     return <>
+        {/* <Layout {...props} /> */}
         <PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
             <UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit()]} />
 

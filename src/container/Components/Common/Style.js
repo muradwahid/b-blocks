@@ -9,10 +9,10 @@ const Style = ({ attributes, id, isBackend = false }) => {
 	const { minHeight } = wrapper;
 	const { isFullWidth, width, height, verticalAlign, horizontalAlign } = content;
 
-	const mainSl = `#${id}>.${prefix}`;
-	const contentSl = isBackend ? `${mainSl} .${prefix}Content >.block-editor-inner-blocks >.block-editor-block-list__layout` : `${mainSl} .${prefix}Content`;
-	const advSl = isBackend ? `${id}>div>.bBlocksContainer>.bBlocksContainerContent` : id;
-
+	const mainSl = `#${id} .${prefix}`;
+	// const contentSl = isBackend ? `${mainSl} .${prefix}Content >.block-editor-inner-blocks >.block-editor-block-list__layout` : `${mainSl} .${prefix}Content`;
+	const contentSl = `${mainSl} .${prefix}Content`;
+	// const advSl = isBackend ? `${id}>div>.bBlocksContainer>.bBlocksContainerContent` : id;
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		#${id}{
@@ -38,7 +38,7 @@ const Style = ({ attributes, id, isBackend = false }) => {
 			}
 		}
 		${shapeCSS(shape, id)}
-		${generateCSS(advSl, advanced, isBackend)}
+		${generateCSS(id, advanced, isBackend,false)}
 	`.replace(/\s+/g, ' ')
 	}} />
 }

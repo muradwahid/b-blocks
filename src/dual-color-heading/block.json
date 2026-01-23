@@ -60,7 +60,8 @@
 					"textDecoration": "auto",
 					"lineHeight": "135%",
 					"letterSpace": "0px"
-				}
+				},
+				"align":""
 			}
 		},
 		"separator": {

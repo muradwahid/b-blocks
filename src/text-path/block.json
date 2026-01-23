@@ -1,0 +1,86 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/text-path",
+	"version": "1.0.0",
+	"title": "Text Path",
+	"category": "widgets",
+	"description": "Craft eye-catching text paths with interactive visual effects.",
+	"keywords": [
+		"path",
+		"text path",
+		"text on path",
+		"svg",
+		"svg path",
+		"text on svg path"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "object",
+			"default": {
+				"type": "wave",
+				"iconType": "library",
+				"library":"",
+				"upload":"",
+				"title": "Add Your Text Here"
+			}
+		},
+		"styles": {
+			"type": "object",
+			"default": {
+				"container":{
+					"desktop":{"alignment": "flex-start"},
+					"tablet":{"alignment": ""},
+					"mobile":{"alignment": ""}
+				},
+				"path": {
+					"color": "#000",
+					"thickness": 1,
+					"staringPoint": 0,
+					"rotate": 0,
+					"size":"250px"
+				},
+				"title": {
+					"typo": {"fontSize": { "desktop": "16px"}},
+					"normal": {
+						"color": "",
+						"textShadow": [],
+						"textStroke": {
+							"isStroke": false,
+							"size": 0,
+							"color": ""
+						}},
+					"hover": {
+						"color": "",
+						"textShadow": [],
+						"textStroke": {
+							"isStroke": false,
+							"size": 0,
+							"color": ""
+						}},
+						"transition":0.2
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

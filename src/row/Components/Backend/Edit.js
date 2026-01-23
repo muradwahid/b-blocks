@@ -5,7 +5,7 @@ import { withDispatch, withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { useEffect } from 'react';
 
-import { tabController } from '../../../../../bpl-tools/utils/functions';
+import { tabController, updateAttributes } from '../../../../../bpl-tools/utils/functions';
 
 import { rowPrefix } from '../../utils/data';
 import { toFixed, updateChildWidth } from '../../utils/functions';
@@ -16,7 +16,7 @@ import Settings from './Settings/Settings';
 let defaultLayout = { desktop: [33.33, 33.33, 33.34], tablet: [50, 50, 50], mobile: [100, 100, 100] };
 
 const Edit = props => {
-	const { attributes, setAttributes, clientId, isSelected, innerBlocks } = props;
+	const { attributes, setAttributes, clientId, isSelected, innerBlocks, device } = props;
 	const { columns } = attributes;
 
 	const isPremium = bBlocksPremiumChecker;
@@ -51,8 +51,10 @@ const Edit = props => {
 		});
 	}
 
+	const updateObj = updateAttributes(attributes, setAttributes);
+
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} />
+		<Settings attributes={attributes} setAttributes={setAttributes} isPremium={isPremium} updateObj={updateObj} device={device} />
 
 		<div {...useBlockProps()}>
 			<style dangerouslySetInnerHTML={{ __html: style(attributes, `block-${clientId}`, true) }} />
@@ -82,9 +84,11 @@ export default compose(
 	withSelect((select, props) => {
 		const { clientId } = props;
 		const { getBlocks } = select('core/block-editor');
+		const { getDeviceType } = select('core/editor');
 
 		return {
-			innerBlocks: getBlocks(clientId)
+			innerBlocks: getBlocks(clientId),
+			device: getDeviceType()?.toLowerCase(),
 		};
 	}),
 

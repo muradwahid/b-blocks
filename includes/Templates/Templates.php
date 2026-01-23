@@ -37,7 +37,7 @@ class Templates {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
-		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) ) ?? 'patterns';
+		$type = sanitize_text_field( wp_unslash( $_POST['type'] ?? 'patterns') ) ;
         $category = sanitize_text_field( wp_unslash( $_POST['category'] ?? 'all' ) );
         $pageNumber = absint( wp_unslash( $_POST['pageNumber'] ) ) ?? 1;
         $start = $pageNumber - 1;

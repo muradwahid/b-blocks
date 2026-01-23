@@ -1,0 +1,17 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-text-path {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+.b-blocks-text-path-container{
+	display: flex;
+	.b-blocks-text-path-svg{
+		pointer-events: auto;
+		overflow: visible;
+	}
+}
+}

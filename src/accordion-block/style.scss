@@ -25,6 +25,7 @@
 		font-family: inherit;
 		transition: all 0.3s ease;
 		padding: 0;
+		outline: none;
 	}
 
 	.accordion-title {
@@ -57,7 +58,7 @@
 		}
 
 		.accordion-content {
-			max-height: 2000px;
+			// max-height: 2000px;
 		}
 	}
 
@@ -88,6 +89,7 @@
 		color: #ffffff;
 		border-radius: 12px;
 		width: 100%;
+		outline: none;
 
 		&:hover {
 			background: linear-gradient(135deg, #5568d3 0%, #6a4293 100%);
@@ -135,6 +137,7 @@
 		background: #f8f9fa;
 		color: #212529;
 		border-bottom: 2px solid #dee2e6;
+		outline: none;
 
 		&:hover {
 			background: #e9ecef;
@@ -182,6 +185,7 @@
 		padding: 16px 0;
 		background: transparent;
 		color: #212529;
+		outline: none;
 
 		&:hover {
 			color: #0d6efd;
@@ -225,6 +229,7 @@
 		background: var(--accordion-header-bg, #f8f9fa);
 		color: var(--accordion-header-text, #212529);
 		border-radius: var(--accordion-border-radius, 8px);
+		outline: none;
 
 		&:hover {
 			opacity: 0.9;

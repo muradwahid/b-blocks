@@ -2,6 +2,28 @@ import { FaFacebook, OpenAiIcon } from './icons';
 
 export const changelogs = [
     {
+        version: '2.0.27 - 23 Jan 2026',
+        list: [
+            'Added Text Path Block.',
+        ]
+    },
+    {
+        version: '2.0.26 - 15 Jan 2026',
+        list: [
+            'Added Scroll To Top Block.',
+            'Fixed Accordion Block issues.',
+            'Fixed Container issues.',
+            'Added Dual Color Heading alignment option.'
+        ]
+    },
+    {
+        version: '2.0.25 - 25 Dec 2025',
+        list: [
+            'Added List Block.',
+            'Fixed Template Library issues.'
+        ]
+    },
+    {
         version: '2.0.24 - 19 Dec 2025',
         list: [
             'Added Form Block.'

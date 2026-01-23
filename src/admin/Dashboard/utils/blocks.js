@@ -1,4 +1,4 @@
-import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, videoIcon } from '../../../utils/blocksIcon';
+import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, videoIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -276,6 +276,14 @@ export default [
         status: 'published'
     },
     {
+        name: `${pluginSlug}/list`,
+        title: 'List',
+        icon: listIcon,
+        demo: ``,
+        docs: ``,
+        status: 'published'
+    },
+    {
         name: `${pluginSlug}/mailto`,
         title: 'Mail To',
         icon: mailIcon,
@@ -372,6 +380,14 @@ export default [
         status: 'published'
     },
     {
+        name: `${pluginSlug}/scroll-to-top`,
+        title: 'Scroll To Top',
+        icon: scrollToTopIcon,
+        demo: ``,
+        docs: ``,
+        status: 'published'
+    },
+    {
         name: `${pluginSlug}/social-share`,
         title: 'Social Share',
         icon: socialShareIcon,
@@ -431,6 +447,14 @@ export default [
         name: `${pluginSlug}/video`,
         title: 'Video',
         icon: videoIcon,
+        demo: ``,
+        docs: ``,
+        status: 'published'
+    },
+    {
+        name: `${pluginSlug}/text-path`,
+        title: 'Text Path',
+        icon: textPathIcon,
         demo: ``,
         docs: ``,
         status: 'published'

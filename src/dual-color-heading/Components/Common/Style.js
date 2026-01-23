@@ -51,6 +51,11 @@ const Style = ({ attributes, id, isBackend = false }) => {
             }`
             ).join("")}
 
+			${titleSl}{
+				${isValidCSS('width', heading?.align ? '100%' : '')}
+				${isValidCSS('text-align', heading?.align)}
+			}
+
 			${separatorIcon}> svg{
                 ${isValidCSS('height', isExist(separator.iconSize) ? separator.iconSize + 'px' : '')}
                 ${isValidCSS('width', isExist(separator.iconSize) ? separator.iconSize + 'px' : '')}
