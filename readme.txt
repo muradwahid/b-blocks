@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.9
-Stable tag: 2.0.27
+Stable tag: 2.0.29
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -134,17 +134,17 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - [**Row Columns**](https://bblockswp.com/demo/row/): Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
 
-- **Container**: Group multiple blocks into a single styled section. Add background color, borders, padding, and other visual adjustments.
+- [**Container**](https://bblockswp.com/demo/bblock-container/): Group multiple blocks into a single styled section. Add background color, borders, padding, and other visual adjustments.
 
 - [**Section Heading**](https://bblockswp.com/demo/section-heading/): Add a styled section title with optional separator and description. Easily toggle the visibility of each element.
 
-- **Shape Divider**: Add decorative shape dividers between sections for smooth visual transitions.
+- [**Shape Divider**](https://bblockswp.com/demo/4411/): Add decorative shape dividers between sections for smooth visual transitions.
 
-- **Advanced Image**: Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
+- [**Advanced Image**](https://bblockswp.com/demo/bblocks-advance-image/): Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
 
-- **Accordion Block**: Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
+- [**Accordion Block**](https://bblockswp.com/demo/accordion-block/): Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
 
-- **Video**: Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
+- [**Video**](https://bblockswp.com/demo/bblock-video/): Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
 
 - [**GIF Image**](https://bblockswp.com/demo/gif-image/): Upload and showcase animated GIFs to add dynamic visuals to your content.
 
@@ -154,7 +154,7 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - [**Lottie Player**](https://bblockswp.com/demo/lottie-player/): Embed lightweight, interactive animations using Lottie JSON files. Supports autoplay, hover triggers, and speed control.
 
-- **List**: Display a list of items with custom markers, icons, and styles.
+- [**List**](https://bblockswp.com/demo/bblocks-list/): Display a list of items with custom markers, icons, and styles.
 
 - [**3D Viewer**](https://bblockswp.com/demo/3d-viewer/): Display 3D model files directly on your page with rotation, zoom, and full interaction support.
 
@@ -162,7 +162,7 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - [**Flip Boxes**](https://bblockswp.com/demo/flip-boxes/): Add interactive flip cards with front and back content, ideal for showcasing features or team members with engaging motion.
 
-- **Form**:Create Beautiful and Professional Login and Register Forms.
+- [**Form**](https://bblockswp.com/demo/bblocks-form/):Create Beautiful and Professional Login and Register Forms.
 
 - [**Countdown**](https://bblockswp.com/demo/countdown/): Display a live countdown timer for events, sales, or launches with custom styling and behavior options.
 
@@ -237,6 +237,8 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 - **Scroll To Top**: Enhance user experience with a fully customizable Scroll To Top button for smooth navigation.
 
 - **Text Path**: Craft eye-catching text paths with interactive visual effects.
+
+- **Toggle Content**: A clean toggle switch lets users click to switch between two content sections below the heading.
 
 
 ## How to Use bBlocks- Quick Start Guide
@@ -404,6 +406,12 @@ Please report security bugs found in the source code of the bBlocks plugin throu
 
 
 == Changelog ==
+
+= 2.0.29 - 30 Jan 2026 =
+* Added Toggle Content Block.
+
+= 2.0.28 - 24 Jan 2026 =
+* Fixed Button Block player autoplay issue.
 
 = 2.0.27 - 23 Jan 2026 =
 * Added Text Path Block.

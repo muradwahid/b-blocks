@@ -2,6 +2,18 @@ import { FaFacebook, OpenAiIcon } from './icons';
 
 export const changelogs = [
     {
+        version: '2.0.29 - 30 Jan 2026',
+        list: [
+            'Added Toggle Content Block.',
+        ]
+    },
+    {
+        version: '2.0.28 - 24 Jan 2026',
+        list: [
+            'Fixed Button Block player autoplay issue.',
+        ]
+    },
+    {
         version: '2.0.27 - 23 Jan 2026',
         list: [
             'Added Text Path Block.',

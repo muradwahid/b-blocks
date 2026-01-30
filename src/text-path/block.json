@@ -4,7 +4,7 @@
 	"name": "b-blocks/text-path",
 	"version": "1.0.0",
 	"title": "Text Path",
-	"category": "widgets",
+	"category": "bBlocks",
 	"description": "Craft eye-catching text paths with interactive visual effects.",
 	"keywords": [
 		"path",
@@ -25,28 +25,38 @@
 			"default": {
 				"type": "wave",
 				"iconType": "library",
-				"library":"",
-				"upload":"",
+				"library": "",
+				"upload": "",
 				"title": "Add Your Text Here"
 			}
 		},
 		"styles": {
 			"type": "object",
 			"default": {
-				"container":{
-					"desktop":{"alignment": "flex-start"},
-					"tablet":{"alignment": ""},
-					"mobile":{"alignment": ""}
+				"container": {
+					"desktop": {
+						"alignment": "flex-start"
+					},
+					"tablet": {
+						"alignment": ""
+					},
+					"mobile": {
+						"alignment": ""
+					}
 				},
 				"path": {
 					"color": "#000",
 					"thickness": 1,
 					"staringPoint": 0,
 					"rotate": 0,
-					"size":"250px"
+					"size": "250px"
 				},
 				"title": {
-					"typo": {"fontSize": { "desktop": "16px"}},
+					"typo": {
+						"fontSize": {
+							"desktop": "16px"
+						}
+					},
 					"normal": {
 						"color": "",
 						"textShadow": [],
@@ -54,7 +64,8 @@
 							"isStroke": false,
 							"size": 0,
 							"color": ""
-						}},
+						}
+					},
 					"hover": {
 						"color": "",
 						"textShadow": [],
@@ -62,8 +73,9 @@
 							"isStroke": false,
 							"size": 0,
 							"color": ""
-						}},
-						"transition":0.2
+						}
+					},
+					"transition": 0.2
 				}
 			}
 		}
@@ -78,8 +90,10 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
+	"editorScript": [
+		"file:../index.js",
+		"aos"
+	],
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

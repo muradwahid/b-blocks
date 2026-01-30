@@ -9,7 +9,7 @@ const Layout = ({ info, children }) => {
 		{ name: 'Custom Cursor and Click Effects', href: '/cursor' },
 		{ name: 'Settings', href: '/settings' },
 		!isPremium && { name: 'Pricing', href: '/pricing' },
-		{ name: 'In Dev', href: '/inDev' },
+		// { name: 'In Dev', href: '/inDev' },
 		// { name: 'Our Other Popular Plugins', href: '/popularPlugin' }
 	].filter(Boolean);
 

@@ -228,7 +228,7 @@
 				"autoPlay": true,
 				"mouseWheel": false,
 				"navigation": true,
-				"infinite":true
+				"infinite": true
 			}
 		}
 	},
@@ -250,12 +250,10 @@
 		}
 	},
 	"editorScript": [
-		"file:./index.js"
+		"file:../index.js",
+		"aos"
 	],
-	"editorStyle": "file:./index.css",
-	"style": [
-		"file:./view.css"
-	],
+	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": [
 		"file:./view.js",

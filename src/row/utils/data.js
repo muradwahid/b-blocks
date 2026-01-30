@@ -10,30 +10,33 @@ export const layout = {
             "justify": "",
             "alignItems": "",
             "wrap": "wrap",
+            "alignContent": "",
             "gridJustify": "",
             "gridAlignItems": "",
             "gridColumns": "",
             "gridRows": ""
-				},
+        },
         "tablet": {
             "direction": "",
             "justify": "",
             "alignItems": "",
             "wrap": "",
+            "alignContent": "",
             "gridJustify": "",
             "gridAlignItems": "",
             "gridColumns": "",
             "gridRows": ""
-				},
+        },
         "mobile": {
             "direction": "",
             "justify": "",
             "alignItems": "",
             "wrap": "",
+            "alignContent": "",
             "gridJustify": "",
             "gridAlignItems": "",
             "gridColumns": "",
             "gridRows": ""
-				}
+        }
     }
-};
+}

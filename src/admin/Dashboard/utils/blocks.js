@@ -1,4 +1,4 @@
-import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, videoIcon } from '../../../utils/blocksIcon';
+import { alertIcon, animationIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon, videoIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -439,6 +439,14 @@ export default [
         name: `${pluginSlug}/testimonials`,
         title: 'Testimonials',
         icon: testimonialsIcon,
+        // demo: `${demoLink}/testimonials/`,
+        // docs: `${docsURL}/testimonials-block/`,
+        status: 'published'
+    },
+    {
+        name: `${pluginSlug}/toggle-content`,
+        title: 'Toggle Content',
+        icon: toggleContentIcon,
         // demo: `${demoLink}/testimonials/`,
         // docs: `${docsURL}/testimonials-block/`,
         status: 'published'

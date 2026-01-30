@@ -1,0 +1,187 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/toggle-content",
+	"title": "Toggle Content",
+	"category": "bBlocks",
+	"description": "A clean toggle switch lets users click to switch between two content sections below the heading.",
+	"keywords": [
+		"toggle content",
+		"toggle switch",
+		"toggle content switch",
+		"toggle content switcher",
+		"toggle content switcher block",
+		"toggle"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"toggle": {
+			"type": "object",
+			"default": {
+				"contentType": "primary",
+				"switchType": "rounded"
+			}
+		},
+		"label": {
+			"type": "object",
+			"default": {
+				"left": "First",
+				"right": "Second"
+			}
+		},
+		"styles": {
+			"type": "object",
+			"default": {
+				"header": {
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"headingGap": "10px"
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"headingGap": ""
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"headingGap": ""
+					},
+					"normal": {
+						"bg": "",
+						"border": {},
+						"desktop": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"tablet": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"mobile": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
+					},
+					"hover": {
+						"bg": "",
+						"border": {},
+						"desktop": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"tablet": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"mobile": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"transition":0.3
+					}
+				},
+				"toggle": {
+					"direction": "row",
+					"width": "",
+					"height": "",
+					"desktop": {
+						"align": "center"
+					},
+					"tablet": {
+						"align": ""
+					},
+					"mobile": {
+						"align": ""
+					},
+					"active": {
+						"color": {},
+						"bg": {}
+					},
+					"inactive": {
+						"color": {},
+						"bg": {}
+					}
+				},
+				"label": {
+					"gap": "",
+					"typo":{"fontSize":{"desktop":"","tablet":"","mobile":""}},
+					"active": {
+						"first": {
+							"color": ""
+						},
+						"second": {
+							"color": ""
+						}
+					},
+					"inactive": {
+						"first": {
+							"color": ""
+						},
+						"second": {
+							"color": ""
+						}
+					}
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": [
+		"file:../index.js",
+		"aos"
+	],
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

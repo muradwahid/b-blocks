@@ -55,6 +55,7 @@ import './svg-draw';
 import './table-of-content';
 import './team-members';
 import './testimonials';
+import './toggle-content'
 import './accordion-block';
 import './video';
 import './text-path';

@@ -1,8 +1,8 @@
 import Plyr from 'plyr-react';
 
 const Player = ({ popup }) => {
-	const { type = 'video', content = '',videoOptions } = popup;
-	const { autoplay }= videoOptions;
+	const { type = 'video', content = '', videoOptions = { } } = popup;
+	const { autoplay = false }= videoOptions || {};
 
 	return <Plyr source={{
 		type, sources: [
