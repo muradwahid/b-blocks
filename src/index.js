@@ -8,6 +8,8 @@ import './td-viewer';
 import './advanced-image';
 import './alert';
 import './animated-text';
+import './advanced-tabs';
+import './breadcrumb';
 import './button';
 import './button-group';
 import './cards';

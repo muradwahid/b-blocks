@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const { cards = [], columns, layout, link = {}, imgPos, isCat, isTitle, titlePos, isDesc } = attributes;
 		const { target: linkTarget = '_self', element: linkElement = 'card' } = link;
 
+
 		createRoot(cardEl).render(<>
 			<Style attributes={attributes} id={cardEl.id} />
 

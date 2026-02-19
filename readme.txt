@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.9
-Stable tag: 2.0.29
+Stable tag: 2.0.30
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -144,6 +144,10 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - [**Accordion Block**](https://bblockswp.com/demo/accordion-block/): Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
 
+- **Advanced Tabs**: Add multiple tabs with custom titles and content. Perfect for creating tabbed content sections.
+
+- **Breadcrumb**: Add a breadcrumb navigation to your site to help users navigate back to previous pages.
+
 - [**Video**](https://bblockswp.com/demo/bblock-video/): Embed self-hosted or external video content in a beautifully designed video player with optional poster image and controls.
 
 - [**GIF Image**](https://bblockswp.com/demo/gif-image/): Upload and showcase animated GIFs to add dynamic visuals to your content.
@@ -206,27 +210,27 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - **bBlocks Navigation**: Add a custom navigation menu inside your page layout for a better user experience and in-page linking.
 
-- **Facebook Page**: Display your Facebook page feed in a styled block.
+- [**Facebook Page**](https://bblockswp.com/demo/bblocks-facebook-page/): Display your Facebook page feed in a styled block.
 
-- **Facebook Embed**: Embed any Facebook post or video in your content.
+- [**Facebook Embed**](https://bblockswp.com/demo/bblocks-facebook-embed/): Embed any Facebook post or video in your content.
 
-- **Logo Slider**: Create a responsive logo slider for your brand or partner logos.
+- [**Logo Slider**](https://bblockswp.com/demo/bblocks-logo-slider/): Create a responsive logo slider for your brand or partner logos.
 
-- **Image Hotspot**: Add interactive hotspots to your images with custom tooltips and links.
+- [**Image Hotspot**](https://bblockswp.com/demo/bblocks-image-hotspot/): Add interactive hotspots to your images with custom tooltips and links.
 
-- **Content Ticker**: Display a scrolling list of content items with custom styling and behavior options.
+- [**Content Ticker**](https://bblockswp.com/demo/bblocks-content-ticker/): Display a scrolling list of content items with custom styling and behavior options.
 
-- **Dual Color Heading**: Add a styled heading with a dual-color gradient effect.
+- [**Dual Color Heading**](https://bblockswp.com/demo/bblocks-dual-color-heading/): Add a styled heading with a dual-color gradient effect.
 
-- **Emoji Stack Separator**: Add a styled separator with a stack of emojis.
+- [**Emoji Stack Separator**](https://bblockswp.com/demo/bblocks-emoji-stack-separator/): Add a styled separator with a stack of emojis.
 
 - **HTML**: Add custom HTML code to your page or post.
 
-- **Image Scroller**: Create a responsive image scroller with custom styling and behavior options.
+- [**Image Scroller**](https://bblockswp.com/demo/bblocks-image-scroller/): Create a responsive image scroller with custom styling and behavior options.
 
-- **News Ticker**: Display a scrolling list of news items with custom styling and behavior options.
+- [**News Ticker**](https://bblockswp.com/demo/bblocks-news-ticker/): Display a scrolling list of news items with custom styling and behavior options.
 
-- **Svg Draw**: Add a styled SVG draw animation to your page or post.
+- [**Svg Draw**](https://bblockswp.com/demo/bblocks-svg-draw/): Add a styled SVG draw animation to your page or post.
 
 - **Skill Bar**: Add a styled skill bar with custom styling and behavior options.
 
@@ -406,6 +410,11 @@ Please report security bugs found in the source code of the bBlocks plugin throu
 
 
 == Changelog ==
+
+= 2.0.30 - 19 Feb 2026 =
+* Added Advanced Tabs Block.
+* Added Breadcrumb Block.
+* Fixed Cards frontend issues.
 
 = 2.0.29 - 30 Jan 2026 =
 * Added Toggle Content Block.
