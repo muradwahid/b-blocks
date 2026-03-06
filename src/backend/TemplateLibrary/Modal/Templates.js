@@ -6,10 +6,12 @@ import { Spinner } from '@wordpress/components';
 import { externalIcon } from '../utils/icons';
 import { pricingPage } from '../../../utils/data';
 
-const Templates = ({ nonce, isPremium, type, setShow, mainLoading, templates, templatesLoading, children }) => {
+const Templates = ({ isPremium, type, setShow, mainLoading, templates, templatesLoading, children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [isTempLoading, setIsTempLoading] = useState(false);
+
+	const nonce = window.bBlocksCursorDataConfig?.nonce
 
 	useEffect(() => {
 		if (templatesLoading) {

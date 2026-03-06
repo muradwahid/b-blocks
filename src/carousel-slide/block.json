@@ -1,0 +1,76 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/carousel-slide",
+	"title": "Carousel Slide",
+	"category": "bBlocks",
+	"description": "Individual slide for a carousel. Add images, text, buttons, videos — anything you need.",
+	"keywords": [
+		"slide",
+		"carousel-slide",
+		"slide-block",
+		"carousel-item"
+	],
+	"parent": ["b-blocks/carousel"],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "object",
+			"default": {
+				"type": "flex",
+				"padding":{},
+				"desktop": {
+					"direction": "column",
+					"justify": "",
+					"alignItems": "",
+					"wrap": "wrap",
+					"alignContent": "",
+					"gridJustify": "",
+					"gridAlignItems": "",
+					"gridColumns": "",
+					"gridRows": ""
+				},
+				"tablet": {
+					"direction": "",
+					"justify": "",
+					"alignItems": "",
+					"wrap": "",
+					"alignContent": "",
+					"gridJustify": "",
+					"gridAlignItems": "",
+					"gridColumns": "",
+					"gridRows": ""
+				},
+				"mobile": {
+					"direction": "",
+					"justify": "",
+					"alignItems": "",
+					"wrap": "",
+					"alignContent": "",
+					"gridJustify": "",
+					"gridAlignItems": "",
+					"gridColumns": "",
+					"gridRows": ""
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

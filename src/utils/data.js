@@ -26,4 +26,4 @@ export const apiSettingsPage = `${location.origin}/wp-admin/admin.php?page=b-blo
 
 export const placeholderImg = 'https://templates.bplugins.com/wp-content/uploads/2025/10/placeholder.png';
 
-export const premiumBlocks = ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot'];
+export const premiumBlocks = ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards'];

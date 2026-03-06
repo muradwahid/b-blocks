@@ -10,9 +10,9 @@ import { useEffect, useState } from 'react';
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const [facebookKey, setFacebookKey] = useState('');
-	const { data, isLoading } = useWPAjax('bblocks_api_keys', { _wpnonce: bBlocksNonce }, true);
+	const nonce = window.bBlocksCursorDataConfig?.nonce
+	const { data, isLoading } = useWPAjax('bblocks_api_keys', { _wpnonce: nonce }, true);
 	const isPremium = bBlocksPremiumChecker;
-
 
 	useEffect(() => { 
 		setFacebookKey(data?.facebook?.key)

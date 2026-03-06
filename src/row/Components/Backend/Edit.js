@@ -67,13 +67,13 @@ const Edit = props => {
 						setAttributes({ columns: data.columns });
 						defaultLayout = data.layout;
 					}}>
-						{data.layout.desktop.map((d, dIndex) => <i key={dIndex} style={{ width: d + '%' }} />)}
+						{data.layout?.[device]?.map((d, dIndex) => <i key={dIndex} style={{ width: d + '%' }} />)}
 					</Button>)}
 				</div>
 			</div> :
 				<div>
 					<div className={`${rowPrefix} has-${columns}-columns ${!isSelected ? 'notSelected' : ''}`}>
-						<InnerBlocks allowedBlocks={['b-blocks/column']} template={generateTemplate(columns)} renderAppender={() => columns < 6 && isSelected ? <InnerBlocks.DefaultBlockAppender /> : null} />
+						<InnerBlocks allowedBlocks={['b-blocks/column']} template={generateTemplate(columns)} renderAppender={() => columns < 12 && isSelected ? <InnerBlocks.DefaultBlockAppender /> : null} />
 					</div>
 				</div>
 			}

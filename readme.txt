@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.5+
 Tested up to: 6.9
-Stable tag: 2.0.30
+Stable tag: 2.0.34
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -144,7 +144,7 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - [**Accordion Block**](https://bblockswp.com/demo/accordion-block/): Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
 
-- **Advanced Tabs**: Add multiple tabs with custom titles and content. Perfect for creating tabbed content sections.
+- [**Advanced Tabs**](https://bblockswp.com/demo/advanced-tabs/): Add multiple tabs with custom titles and content. Perfect for creating tabbed content sections.
 
 - **Breadcrumb**: Add a breadcrumb navigation to your site to help users navigate back to previous pages.
 
@@ -165,6 +165,8 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 - [**Slider**](https://bblockswp.com/demo/slider/): Create responsive image or content sliders with pagination, navigation, and animation effects.
 
 - [**Flip Boxes**](https://bblockswp.com/demo/flip-boxes/): Add interactive flip cards with front and back content, ideal for showcasing features or team members with engaging motion.
+
+- [**Carousel**](https://bblockswp.com/demo/carousel/): Modern carousel for showcasing content. Supports unlimited slides with complete block flexibility inside.
 
 - [**Form**](https://bblockswp.com/demo/bblocks-form/):Create Beautiful and Professional Login and Register Forms.
 
@@ -232,17 +234,19 @@ bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to 
 
 - [**Svg Draw**](https://bblockswp.com/demo/bblocks-svg-draw/): Add a styled SVG draw animation to your page or post.
 
-- **Skill Bar**: Add a styled skill bar with custom styling and behavior options.
+- [**Stacked Cards**](https://bblockswp.com/demo/stacked-cards/): Create interactive stacked card layouts that stay sticky while scrolling. The Stacked Cards block helps you present content in a layered, engaging format that enhances the user experience as visitors navigate your page.
 
-- **Table Of Content**: Add a styled table of contents with custom styling and behavior options.
+- [**Skill Bar**](https://bblockswp.com/demo/bblocks-skill-bar/): Add a styled skill bar with custom styling and behavior options.
 
-- **Testimonials**: Display a scrolling list of testimonials with custom styling and behavior options.
+- [**Table Of Content**](https://bblockswp.com/demo/bblocks-table-of-content/): Add a styled table of contents with custom styling and behavior options.
+
+- [**Testimonials**](https://bblockswp.com/demo/bblocks-testimonial/): Display a scrolling list of testimonials with custom styling and behavior options.
 
 - **Scroll To Top**: Enhance user experience with a fully customizable Scroll To Top button for smooth navigation.
 
-- **Text Path**: Craft eye-catching text paths with interactive visual effects.
+- [**Text Path**](https://bblockswp.com/demo/bblocks-text-path/): Craft eye-catching text paths with interactive visual effects.
 
-- **Toggle Content**: A clean toggle switch lets users click to switch between two content sections below the heading.
+- [**Toggle Content**](https://bblockswp.com/demo/bblocks-toggle-content/): A clean toggle switch lets users click to switch between two content sections below the heading.
 
 
 ## How to Use bBlocks- Quick Start Guide
@@ -410,6 +414,18 @@ Please report security bugs found in the source code of the bBlocks plugin throu
 
 
 == Changelog ==
+
+= 2.0.34 - 6 Mar 2026 =
+* Added Stacked Cards Block.
+
+= 2.0.33 - 3 Mar 2026 =
+* Fixed Carousel Block issues.
+
+= 2.0.32 - 2 Mar 2026 =
+* Added Full Flexbox controls for Row block.
+
+= 2.0.31 - 28 Feb 2026 =
+* Added Carousel Block.
 
 = 2.0.30 - 19 Feb 2026 =
 * Added Advanced Tabs Block.

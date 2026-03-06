@@ -55,10 +55,11 @@ export const addInputFieldOptions = {
 };
 export const userRoleOptions = [
 	{ label: "Default", value: "default" },
+	{ label: "Administrator", value: "administrator" },
 	{ label: "Editor", value: "editor" },
 	{ label: "Author", value: "author" },
 	{ label: "Contributor", value: "contributor" },
-	{ label: "Subscriber", value: "subscriber" },
+	{ label: "Subscriber", value: "subscriber" }
 ];
 
 

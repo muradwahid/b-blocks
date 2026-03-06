@@ -164,3 +164,12 @@ body {
 .bBlocksTextOverline {
 	text-decoration: overline;
 }
+
+.wp-block-b-blocks-column,
+.bBlocksColumn,
+.wp-block-b-blocks-carousel,
+.bBlocks-carousel-wrapper,
+.wp-block-b-blocks-carousel .swiper {
+	min-width: 0;
+	width: 100%;
+}

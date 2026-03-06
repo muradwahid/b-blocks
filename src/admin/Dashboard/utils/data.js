@@ -2,6 +2,38 @@ import { FaFacebook, OpenAiIcon } from './icons';
 
 export const changelogs = [
     {
+        version: '2.0.34 - 6 Mar 2026',
+        list: [
+            'Added Stacked Cards Block.'
+        ]
+    },
+    {
+        version: '2.0.33 - 3 Mar 2026',
+        list: [
+            'Fixed Carousel Block issues.'
+        ]
+    },
+    {
+        version: '2.0.32 - 2 Mar 2026',
+        list: [
+            'Added Full Flexbox controls for Row block.'
+        ]
+    },
+    {
+        version: '2.0.31 - 28 Feb 2026',
+        list: [
+            'Added Carousel Block.'
+        ]
+    },
+    {
+        version: '2.0.30 - 19 Feb 2026',
+        list: [
+            'Added Advanced Tabs Block',
+            'Added Breadcrumb Block',
+            'Fixed Cards frontend issues.',
+        ]
+    },
+    {
         version: '2.0.29 - 30 Jan 2026',
         list: [
             'Added Toggle Content Block.',

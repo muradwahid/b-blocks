@@ -1,4 +1,4 @@
-import { advancedTabsIcon, alertIcon, animationIcon, breadcrumbIcon, buttonGroupIcon, buttonIcon, cardIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon, videoIcon } from '../../../utils/blocksIcon';
+import { advancedTabsIcon, alertIcon, animationIcon, breadcrumbIcon, buttonGroupIcon, buttonIcon, cardIcon, carouselBlockIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dataTableIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon, videoIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -131,6 +131,14 @@ export default [
         icon: countersIcon,
         demo: `${demoLink}/counters/`,
         docs: `${docsURL}/counters-block/`,
+        status: 'published'
+    },
+    {
+        name: `${pluginSlug}/carousel`,
+        title: 'Carousel',
+        icon: carouselBlockIcon,
+        // demo: `${demoLink}/counters/`,
+        // docs: `${docsURL}/counters-block/`,
         status: 'published'
     },
     {
@@ -414,6 +422,15 @@ export default [
         demo: ``,
         docs: ``,
         status: 'published'
+    },
+    {
+        name: `${pluginSlug}/stacked-cards`,
+        title: 'Stacked Cards',
+        icon: stackedCardIcon,
+        demo: ``,
+        docs: ``,
+        status: 'published',
+        isPremium: true
     },
     {
         name: `${pluginSlug}/svg-draw`,

@@ -14,14 +14,17 @@ class BBlocksApiKeys{
 
     function bBlocksApiKeys(){
         $nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce']?? null ) ) ;
-        if (!current_user_can('manage_options')) {
-            wp_send_json_error( 'Unauthorized' );
-        }
+
         if( !wp_verify_nonce( $nonce, 'wp_ajax' ) ){
-            wp_send_json_error( 'Invalid Request' );
+            wp_send_json_error( ['message'=>'Invalid Request'] );
         }
-        $key = $_POST['key'];
-        $value = $_POST['value'];
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error( ['message'=>'Unauthorized'] );
+        }
+
+        $key   = sanitize_text_field(wp_unslash($_POST['key'] ?? ''));
+        $value = sanitize_text_field(wp_unslash($_POST['value'] ?? ''));
         $apiKeys = get_option('bBlocksApiKeys',[]);
         $error = $this->bBlocksTestApiKeys($key,$value);
         

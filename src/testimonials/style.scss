@@ -41,8 +41,40 @@ html {
 
 	.btbTestimonialsDir {
 
+		/*
+		*
+		*column set
+		*/
+		@for $i from 1 through 12 {
+			.columns-#{$i} {
+				grid-template-columns: repeat(#{$i}, 1fr);
+			}
+		}
+
+		@media (max-width: 768px) {
+			@for $i from 1 through 12 {
+				.columns-tablet-#{$i} {
+					grid-template-columns: repeat(#{$i}, 1fr);
+				}
+			}
+		}
+
+		@media (max-width: 576px) {
+			@for $i from 1 through 12 {
+				.columns-mobile-#{$i} {
+					grid-template-columns: repeat(#{$i}, 1fr);
+				}
+			}
+		}
+
 		.layoutSection {
 			display: grid;
+
+			.swiper {
+				.swiper-scrollbar {
+					display: none !important;
+				}
+			}
 
 			.single {
 
@@ -413,34 +445,6 @@ html {
 					padding-top: 50px;
 				}
 			}
-		}
-	}
-}
-
-
-
-/*
-*
-*column set
-*/
-@for $i from 1 through 12 {
-	.columns-#{$i} {
-		grid-template-columns: repeat(#{$i}, 1fr);
-	}
-}
-
-@media (max-width: 768px) {
-	@for $i from 1 through 12 {
-		.columns-tablet-#{$i} {
-			grid-template-columns: repeat(#{$i}, 1fr);
-		}
-	}
-}
-
-@media (max-width: 576px) {
-	@for $i from 1 through 12 {
-		.columns-mobile-#{$i} {
-			grid-template-columns: repeat(#{$i}, 1fr);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useWPAjax } from "../../../../../bpl-tools/hooks";
 import { useErrorMessages } from '../hooks/useErrorMessages';
 import { LoadingIcon } from '../../utils/icons';
@@ -9,12 +9,13 @@ const BForm = ({ children, attributes, isFrontend = false }) => {
 	const isShowSuccessMsg = !isFrontend && message.isShowDemoSuccess;
 	const isShowErrorMsg = !isFrontend && message.isShowDemoError;
 
-	const [showSuccessMessage, setShowSuccessMessage] = React.useState(false);
-	const [showErrorMessage, setShowErrorMessage] = React.useState(false);
-	const { data, saveData: submit, error, isLoading, isError } = useWPAjax('b_form_submit', { _nonce: bBlocksNonce }, false)
-	const formRef = useRef('');
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const [showErrorMessage, setShowErrorMessage] = useState(false);
+	const nonce = window.bBlocksCursorDataConfig?.nonce
+	const { data, saveData: submit, error, isLoading, isError } = useWPAjax('b_form_submit', { _nonce: nonce }, false);
 
-		useErrorMessages(error, isError, formRef, form.formType);
+	const formRef = useRef('');
+	useErrorMessages(error, isError, formRef, form.formType);
 
 	useEffect(() => {
 		if (error && error?.message?.includes('Something went wrong')) {

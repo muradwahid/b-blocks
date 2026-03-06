@@ -40,7 +40,7 @@ const Edit = props => {
 			<Style {...{ attributes, id: `block-${clientId}` }} />
 
 			<Button {...{ attributes, security: 'none', isPremium, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, ref: buttonEl, isBackend: true }}>
-				<RichText className='btnText' tagName='span' value={text} onChange={val => setAttributes({ text: val })} placeholder={__('Button Text', 'b-blocks')} inlineToolbar />
+				<RichText className='btnText' tagName='span' value={text} onChange={val => setAttributes({ text: val })} placeholder={__('Button Text', 'b-blocks')} />
 			</Button>
 
 			{contentPopup && <RenderPopup {...{ attributes, Popup, popupContent: <BackendContent popup={popup} setAttributes={setAttributes} />, securityPop: true, setSecurityPass: setContentPopup }} />}

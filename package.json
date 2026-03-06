@@ -1,6 +1,6 @@
 {
   "name": "b-blocks",
-  "version": "2.0.30",
+  "version": "2.0.34",
   "description": "Example block scaffolded with Create Block tool.",
   "author": "Wasek Bellah",
   "license": "ISC",
@@ -11,7 +11,7 @@
     "lint:js": "wp-scripts lint-js",
     "format": "wp-scripts format",
     "start": "wp-scripts start --webpack-copy-php",
-    "build": "wp-scripts build --webpack-copy-php",
+    "build": "wp-scripts build --webpack-copy-php && find . -name \".DS_Store\" -delete",
     "i18n-pot": "wp i18n make-pot . languages/b-blocks.pot --exclude=\"src\" && copy languages\\b-blocks.pot languages\\b-blocks-en_US.po",
     "i18n-json": "wp i18n make-json languages/ --no-purge",
     "i18n-mo": "wp i18n make-mo languages/",

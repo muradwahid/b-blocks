@@ -6,7 +6,7 @@ import Blocks from './Pages/Blocks';
 // import InDev from './Pages/InDev';
 import CursorEffect from './Pages/CursorEffect/CursorEffect';
 // import PopularPlugin from './Pages/PopularPlugin';
-import Pricing from '../../../../bpl-tools/Admin/Pricing/Pricing';
+import Pricing from '../../../../bpl-tools/LagacyAdmin/Pricing/Pricing';
 import Layout from './Layout/Layout';
 import { freemius, pricingInfo } from './utils/data';
 import Settings from './Pages/Settings/Settings';

@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		countdownEl?.removeAttribute('data-attributes');
 		countdownEl?.removeAttribute('data-content');
+		countdownEl?.removeAttribute('data-nonce');
 	});
 });
 

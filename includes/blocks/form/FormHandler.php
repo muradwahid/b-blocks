@@ -73,7 +73,7 @@ class BBlocksFormHandler{
 
 	function register_user($payload){
 
-		if ( ! get_option( 'users_can_register' ) ) {
+		if ( !get_option( 'users_can_register' ) ) {
 			wp_send_json_error([
 				'message' => __( 'User registration is turned off. Turn it on to allow user registration.', 'b-blocks' )
 			]);
@@ -101,7 +101,27 @@ class BBlocksFormHandler{
 				'message' => $error
 			]);
 		}
-	
+	// ====================== ROLE FIX START ======================
+    $requested_role = sanitize_text_field(
+        $block_data['attributes']['formOptions']['userRole'] ?? 'subscriber'
+    );
+
+    $safe_role = 'subscriber';
+
+    $post_id = intval($payload['current_post_id'] ?? 0);
+    if ($post_id) {
+        $post_author_id = (int) get_post_field('post_author', $post_id);
+
+        if (user_can($post_author_id, 'promote_users') || user_can($post_author_id, 'manage_options')) {
+            $allowed_roles = ['subscriber', 'contributor', 'author', 'editor'];
+
+            if (in_array($requested_role, $allowed_roles, true) && 
+                array_key_exists($requested_role, wp_roles()->roles)) {
+                $safe_role = $requested_role;
+            }
+        }
+    }
+    // ====================== ROLE FIX END ======================
 
     $user_id = wp_create_user( $payload['username'], $payload['password'], $payload['email'] );
     
@@ -109,15 +129,18 @@ class BBlocksFormHandler{
       wp_send_json_error($user_id->get_error_message());
     }
 
-		$role = ( $block_data['attributes']['formOptions']['userRole'] ?? '' );		
-		if (
-			! empty( $role ) &&
-			strtolower( $role ) !== 'default' &&
-			array_key_exists( $role, wp_roles()->roles )
-		) {
-			$user = new \WP_User( $user_id );
-			$user->set_role( $role );
-		}
+	$user = new \WP_User($user_id);
+    $user->set_role($safe_role);
+
+		// $role = ( $block_data['attributes']['formOptions']['userRole'] ?? '' );		
+		// if (
+		// 	! empty( $role ) &&
+		// 	strtolower( $role ) !== 'default' &&
+		// 	array_key_exists( $role, wp_roles()->roles )
+		// ) {
+		// 	$user = new \WP_User( $user_id );
+		// 	$user->set_role( $role );
+		// }
 
 
     if( $user_id ){ // sent mail after create account

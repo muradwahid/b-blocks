@@ -18,10 +18,10 @@ const TemplateLibrary = () => {
 	const [templates, setTemplates] = useState([]);
 
 	// const { data = {} } = useWPOptionQuery('bBlocksUtils');
+	const nonce = window.bBlocksCursorDataConfig?.nonce
 
-	const { main, isLoading: mainLoading } = useTemplatesMain(bBlocksNonce, type);
-	const { templates: fTemplates, totalCount, refetchTemplates, isLoading: templatesLoading } = useTemplates(bBlocksNonce, type, category, pageNumber, search);
-
+	const { main, isLoading: mainLoading } = useTemplatesMain(nonce, type);
+	const { templates: fTemplates, totalCount, refetchTemplates, isLoading: templatesLoading } = useTemplates(nonce, type, category, pageNumber, search);
 
 	const isPremium = bBlocksPremiumChecker;
 
@@ -36,7 +36,7 @@ const TemplateLibrary = () => {
 			{__('Template Library', 'b-blocks')}
 		</button>
 
-		<Modal {...{ nonce: bBlocksNonce, isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, templatesLoading, type, refetchTemplates,setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
+		<Modal {...{ isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, templatesLoading, type, refetchTemplates,setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
 	</>;
 };
 export default TemplateLibrary;

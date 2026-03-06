@@ -43,7 +43,7 @@ export const safeJsonParse = (raw, defaultValue = {}) => {
     return JSON.parse(text);
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error('Invalid JSON for bBlocksInputField:', e, text);
+    console.error('Invalid JSON:', e, text);
     return defaultValue;
   }
 }

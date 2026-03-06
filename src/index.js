@@ -17,6 +17,8 @@ import './chart';
 import './content-ticker';
 import './countdown';
 import './counters';
+import './carousel';
+import './carousel-slide';
 // import './data-table';
 import './dual-color-heading';
 import './emoji-stack-separator'
@@ -53,6 +55,7 @@ import './slider';
 import './scroll-to-top';
 import './social-share';
 import './star-rating';
+import './stacked-cards';
 import './svg-draw';
 import './table-of-content';
 import './team-members';

@@ -1,23 +1,23 @@
-import { PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+// import { PanelBody, PanelRow, SelectControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+// import { __ } from '@wordpress/i18n';
 
-import { Label } from '../../../../../../../bpl-tools/Components';
-import { emUnit, pxUnit, vhUnit } from '../../../../../../../bpl-tools/utils/options';
-import { positionsX, positionsY } from '../../../../utils/options';
+// import { Label } from '../../../../../../../bpl-tools/Components';
+// import { emUnit, pxUnit, vhUnit } from '../../../../../../../bpl-tools/utils/options';
+// import { positionsX, positionsY } from '../../../../utils/options';
 import Layout from './Layout';
 
-const heightTypes = [
-    { label: __('Auto', 'b-blocks'), value: 'auto' },
-    { label: __('Window Height (100%)', 'b-blocks'), value: 'window' },
-    { label: __('Custom', 'b-blocks'), value: 'custom' }
-];
+// const heightTypes = [
+//     { label: __('Auto', 'b-blocks'), value: 'auto' },
+//     { label: __('Window Height (100%)', 'b-blocks'), value: 'window' },
+//     { label: __('Custom', 'b-blocks'), value: 'custom' }
+// ];
 
 const General = (props) => {
-    const { attributes, setAttributes } = props;
-    const { columnGap, heightType, height, columnPositionY, columnPositionX } = attributes;
+    // const { attributes, setAttributes } = props;
+    // const { columnGap, heightType, height, columnPositionY, columnPositionX } = attributes;
     return <>
         <Layout {...props} />
-        <PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
+        {/* <PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')}>
             <UnitControl label={__('Column Gap:', 'b-blocks')} labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit()]} />
 
             <PanelRow className='mt20'>
@@ -38,7 +38,7 @@ const General = (props) => {
                 <Label className=''>{__('Columns Horizontal Position:', 'b-blocks')}</Label>
                 <SelectControl value={columnPositionX} onChange={val => setAttributes({ columnPositionX: val })} options={positionsX} />
             </PanelRow>
-        </PanelBody>
+        </PanelBody> */}
     </>
 };
 

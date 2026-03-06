@@ -15,9 +15,9 @@ export const updateChildWidth = (parentId, newDesktopWidth) => {
 		const prevWidth = getBlockAttributes(clientId)?.width;
 
 		updateBlockAttributes(clientId, { width: { ...prevWidth, desktop: newDesktopWidth } });
-		const blockEl = document.querySelector(`#block-${clientId}`);
-		if (blockEl) {
-			blockEl.style.width = newDesktopWidth + '%';
-		}
+		// const blockEl = document.querySelector(`#block-${clientId}`);
+		// if (blockEl) {
+		// 	blockEl.style.width = newDesktopWidth + '%';
+		// }
 	});
 }

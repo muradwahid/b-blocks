@@ -1,20 +1,19 @@
 import { PanelBody, SelectControl, TextControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import { useEffect, useState } from "react";
 import { updateData } from "../../../../../../../bpl-tools/utils/functions";
-import { useWPAjax } from "../../../../../../../bpl-tools/hooks";
+import { userRoleOptions } from '../../../../utils/options';
 
 const FormOptionSettings = ({ attributes, setAttributes, updateObj }) => {
     const { formOptions, form } = attributes;
     const { formType } = form;
-    const [roles, setRoles] = useState([]);
-    const { data = [], isLoading } = useWPAjax('b-blocks-get_admin_roles', { _nonce: window.wpApiSettings?.nonce });
+    // const [roles, setRoles] = useState([]);
+    // const { data = [], isLoading } = useWPAjax('b-blocks-get_admin_roles', { _nonce: window.wpApiSettings?.nonce });
 
-    useEffect(() => {
-        if (!isLoading) {
-            setRoles(data?.map((item) => ({ label: item.charAt(0).toUpperCase() + item.slice(1), value: item })))
-        }
-    }, [data, isLoading])
+    // useEffect(() => {
+    //     if (!isLoading) {
+    //         setRoles(data?.map((item) => ({ label: item.charAt(0).toUpperCase() + item.slice(1), value: item })))
+    //     }
+    // }, [data, isLoading])
 
 
     return <PanelBody className="bPlPanelBody" title={__("Form Options", "b-blocks")} initialOpen={false}>
@@ -28,7 +27,7 @@ const FormOptionSettings = ({ attributes, setAttributes, updateObj }) => {
         {
             formType === 'register' && <>
                 <hr />
-                <SelectControl className='mt10' label={__("New User Role", "b-blocks")} value={formOptions.userRole} onChange={(value) => updateObj('formOptions', value, 'userRole')} options={roles} />
+                <SelectControl className='mt10' label={__("New User Role", "b-blocks")} value={formOptions.userRole} onChange={(value) => updateObj('formOptions', value, 'userRole')} options={userRoleOptions} />
             </>
         }
     </PanelBody>
