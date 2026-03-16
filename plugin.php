@@ -8,7 +8,7 @@
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: b-blocks
- * @fs_premium_only /includes/posts/Ajax.php
+ * @fs_premium_only /includes/posts/Ajax.php, /includes/LicenseActivation.php
  */
 
 // ABS PATH
@@ -30,6 +30,7 @@ if (function_exists('b_blocks_fs')) {
 	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && ( 'localhost' === $_SERVER['HTTP_HOST'] || 'murdwahid.local' === $_SERVER['HTTP_HOST'] ) ? time() : '2.0.34' );
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
+	define('B_BLOCKS_HAS_PRO', 'b-blocks-pro/plugin.php' === plugin_basename(__FILE__));
 	define('B_BLOCKS_BUILD', B_BLOCKS_DIR_URL . 'build/');
 	define('B_BLOCKS_ASSETS', B_BLOCKS_DIR_URL . 'assets/');
 
@@ -49,7 +50,7 @@ if (function_exists('b_blocks_fs')) {
 					'premium_slug' => 'b-blocks-pro',
 					'type' => 'plugin',
 					'public_key' => 'pk_d6426b344df4918bc066a7a0b4719',
-					'is_premium' => true,
+					'is_premium' => false,
 					'premium_suffix' => 'Pro',
 					// If your plugin is a serviceware, set this option to false.
 					'has_premium_version' => true,
@@ -120,6 +121,13 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ai.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/ApiKeys.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/form/FormHandler.php';
+
+	// License Activation
+	if (file_exists(B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php') && B_BLOCKS_HAS_PRO ) {
+		require_once B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php';
+	}
+	
+
 
 	class BBlocks
 	{

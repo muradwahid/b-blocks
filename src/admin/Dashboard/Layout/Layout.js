@@ -1,21 +1,53 @@
-import Content from '../Parts/Content';
-import Header from '../Parts/Header';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 
-const Layout = ({ info, children }) => {
-	const { isPremium } = info;
-	const navigation = [
-		{ name: 'Welcome', href: '/welcome' },
-		{ name: 'Blocks', href: '/blocks' },
-		{ name: 'Custom Cursor and Click Effects', href: '/cursor' },
-		{ name: 'Settings', href: '/settings' },
-		!isPremium && { name: 'Pricing', href: '/pricing' },
-		// { name: 'In Dev', href: '/inDev' },
-		// { name: 'Our Other Popular Plugins', href: '/popularPlugin' }
-	].filter(Boolean);
+// import Header from '../../../bpl-tools/Admin/Header/Header';
+import Header from '../../../../../bpl-tools/Admin/Header';
 
-	return <>
-		<Header info={info} navigation={navigation} />
-		<Content>{children}</Content>
-	</>
-}
+const navigation = [
+	{ name: 'Welcome', href: '/welcome' },
+	{ name: 'Blocks', href: '/blocks' },
+	{ name: 'Cursor and Click Effects', href: '/cursor' },
+	{ name: 'Settings', href: '/settings' },
+	{ name: 'Pricing', href: '/pricing' },
+	{ name: "Feature Comparison", href: "/feature-comparison" },
+	{ name: 'Activation', href: '/activation' }
+];
+
+const Layout = (props) => {
+	const { isPremium, hasPro } = props;
+
+	const location = useLocation();
+
+	return (
+		<div className="bPlDashboard">
+			<Header {...props}>
+				<nav className="bPlDashboardNav">
+					{navigation
+						?.filter((item) => item.href !== "/activation" || hasPro) // Hide activation link for non-pro users
+						?.filter(
+							(item) =>
+								!isPremium ||
+								!["/purchase", "/pricing", "/feature-comparison"].includes(
+									item.href,
+								),
+						) // Hide link for premium users
+						?.map((item, index) => (
+							<Link
+								key={index}
+								to={item.href}
+								className={`navLink ${location.pathname === item.href ? "active" : ""
+									}`}
+							>
+								{item.name}
+							</Link>
+						))}
+				</nav>
+			</Header>
+
+			<main className="bPlDashboardMain">
+				<Outlet />
+			</main>
+		</div>
+	);
+};
 export default Layout;

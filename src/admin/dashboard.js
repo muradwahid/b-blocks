@@ -1,7 +1,10 @@
 import { createRoot } from 'react-dom/client';
 
-import './dashboard.scss';
+// import './dashboard.scss';
 import Dashboard from './Dashboard/Dashboard';
+import { dashboardInfo } from './Dashboard/utils/data';
+
+import './style.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const dashboardEl = document.querySelector('#bBlocksDashboard');
@@ -14,6 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		// eslint-disable-next-line no-console
 		console.error(e);
 	}
-	createRoot(dashboardEl).render(<Dashboard info={info} />);
+	createRoot(dashboardEl).render(<Dashboard {...dashboardInfo(info)} />);
 	dashboardEl.removeAttribute('data-info');
 });

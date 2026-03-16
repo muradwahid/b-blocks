@@ -1,9 +1,10 @@
-$primaryColor: #146ef5;
+$primaryColor: var(--bpl-dashboard-primary-color,#146ef5);
+$secondaryColor: var(--bpl-dashboard-secondary-color,#000);
 
 @mixin bpl-admin-btn {
-  padding: 12px 25px;
-  border-radius: 6px;
-  background: #146ef5;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background: $primaryColor;
   color: #fff;
   border: none;
   font-size: 16px;
@@ -30,7 +31,7 @@ $primaryColor: #146ef5;
 
   &:hover {
     &::before {
-      background: #070127;
+      background: $secondaryColor;
       right: 0;
     }
   }
@@ -42,10 +43,18 @@ $primaryColor: #146ef5;
 
 .b-blocks-custom-cursor-container {
   // width: 70%;
-  margin: 0 auto;
+  // margin: 0 auto;
   min-height: 600px;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  width: 100%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // padding: 56px 32px !important;
+    margin: 0 auto !important;
 
   .custom-cursor-title {
     color: #fff;
@@ -82,11 +91,14 @@ $primaryColor: #146ef5;
         flex-direction: column;
         height: calc(100% - 60px);
         justify-content: space-between;
-
+        .components-tab-panel__tabs-item{
+              padding: 3px 16px !important;
+        }
         .custom-cursor-dashboard-button {
           // margin-bottom: 15px;
           justify-content: center;
           text-align: center;
+          background-color: var(--bpl-dashboard-secondary-color,#000);
 
           &.btnSaving {
             background: #0021b5;
@@ -174,7 +186,10 @@ $primaryColor: #146ef5;
 
             .bPlDashboardSecondBtn {
               @include bpl-admin-btn;
-              background: #ff7a00;
+              background: $secondaryColor;
+              &::before {
+                background: $primaryColor !important;
+              }
             }
           }
 

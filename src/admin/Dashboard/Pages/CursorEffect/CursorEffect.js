@@ -15,8 +15,7 @@ const CursorEffect = ({ info }) => {
     const { isPremium } = usePremiumInEditor();
     
 
-    return <Layout info={info} >
-        <div className='b-blocks-custom-cursor-container'>
+    return  <div className='b-blocks-custom-cursor-container'>
             <AboutProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} link={pricingPage}>
                 <li>&emsp;<strong>{__('Select Cursor Source: ', 'b-blocks')}</strong>{__('Choose a predefined or custom cursor style from available options.', 'b-blocks')}</li>
 
@@ -36,7 +35,6 @@ const CursorEffect = ({ info }) => {
                 <Playground info={info} />
             </div>
         </div>
-    </Layout>
 };
 
 export default CursorEffect;

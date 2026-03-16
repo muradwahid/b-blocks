@@ -76,6 +76,6 @@ extract( $attributes );
 		<?php echo wp_kses( bBlocksShapePath( $shape ), ['path' => [ 'd' => [], 'opacity' => [] ] ] ); ?>
 	</svg>
 	<div class='shapeContent'> 
-		<?php echo wp_kses_post( $content ); ?>
+		<?php echo wp_kses( $content, wp_parse_args( wp_kses_allowed_html('post'), ['style'=>[]] ) ); ?>
 	</div>
 </div>

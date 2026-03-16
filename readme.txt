@@ -9,23 +9,23 @@ Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-bBlocks enhances the Gutenberg editor with over 50 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
+bBlocks enhances the Gutenberg editor with over 60 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
 
 == Description ==
-**bBlocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 50+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
+**bBlocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 60+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
 
 
 [**bBlocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
 
 https://www.youtube.com/watch?v=Ml4UehEwI-s
 
-[**bBlocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, bBlocks extends the capabilities of core blocks by adding 50+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
+[**bBlocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, bBlocks extends the capabilities of core blocks by adding 60+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
 
 Whether you're building a landing page, blog layout, portfolio, or full website, bBlocks helps you design faster using customizable blocks, reusable patterns, and layout-ready components. It’s an ideal page builder for Gutenberg users who want more control while keeping their sites fast and efficient.
 
 
 ## Key Features – Free Version
-- **50+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
+- **60+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
 
 - **Advanced Block Customization**: Adjust typography, spacing, color, and visibility. Fine-tune every block to match your brand identity.
 
@@ -130,17 +130,17 @@ Bring engaging animations to your site with interactive Lottie files:
 
 
 ## Available Blocks
-bBlocks adds over 50+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
+bBlocks adds over 60+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
 
-- [**Row Columns**](https://bblockswp.com/demo/row/): Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
+- [**Row Columns**](https://bblockswp.com/blocks/row-columns/): Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
 
-- [**Container**](https://bblockswp.com/demo/bblock-container/): Group multiple blocks into a single styled section. Add background color, borders, padding, and other visual adjustments.
+- [**Container**](https://bblockswp.com/blocks/container/): Group multiple blocks into a single styled section. Add background color, borders, padding, and other visual adjustments.
 
-- [**Section Heading**](https://bblockswp.com/demo/section-heading/): Add a styled section title with optional separator and description. Easily toggle the visibility of each element.
+- [**Section Heading**](https://bblockswp.com/blocks/section-heading/): Add a styled section title with optional separator and description. Easily toggle the visibility of each element.
 
-- [**Shape Divider**](https://bblockswp.com/demo/4411/): Add decorative shape dividers between sections for smooth visual transitions.
+- [**Shape Divider**](https://bblockswp.com/blocks/shape-divider/): Add decorative shape dividers between sections for smooth visual transitions.
 
-- [**Advanced Image**](https://bblockswp.com/demo/bblocks-advance-image/): Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
+- [**Advanced Image**](https://bblockswp.com/blocks/advanced-image/): Display a custom image or dynamic post featured image with advanced styling options like hover effects, borders, and overlays.
 
 - [**Accordion Block**](https://bblockswp.com/demo/accordion-block/): Create collapsible sections with custom titles and content. Perfect for FAQs, accordions, or collapsible content.
 

@@ -188,7 +188,9 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 				'version' => B_BLOCKS_VERSION,
 				'nonce' => wp_create_nonce( 'wp_ajax' ),
 				'dirUrl' => B_BLOCKS_DIR_URL,
-				'isPremium' => Utils::isPro()
+				'isPremium' => Utils::isPro(),
+				'hasPro' => B_BLOCKS_HAS_PRO,
+				'licenseActiveNonce' => wp_create_nonce("bBlocksLicenseActivation")
 			]) ); ?>></div>
 		<?php }
 	}

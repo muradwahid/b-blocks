@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Layout from '../Layout/Layout';
-import { changelogs, helpItems } from '../utils/data';
+import { changelogs, helpItems } from '../utils/data2';
 import { minus, plus } from '../utils/icons';
 import VideoPlayer from '../Parts/VideoPlayer';
 
