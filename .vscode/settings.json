@@ -6,8 +6,8 @@
   "editor.fontSize": 17,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": true,
-  	"editor.indentSize": 4,
-	"editor.tabSize": 4,
+  "editor.indentSize": 4,
+  "editor.tabSize": 4,
   "editor.wordWrap": "on",
   "editor.autoIndentOnPasteWithinString": true,
   "files.autoSave": "afterDelay",
@@ -131,7 +131,8 @@
     "Zend OPcache",
     "zip",
     "zlib",
-    "wordpress"
+    "wordpress",
+    "wp-cli"
   ],
   "liveServer.settings.donotVerifyTags": true,
   "tabnine.experimentalAutoImports": true,

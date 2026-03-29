@@ -7,8 +7,9 @@ import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
 import { skillBarIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType( metadata, {
+isBlockEnabled(metadata.name) &&registerBlockType( metadata, {
 	icon: skillBarIcon,
 	edit: Edit,
 	save,

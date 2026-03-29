@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TextControl } from '@wordpress/components';
 
-import Layout from '../../Layout/Layout';
-
 import { Button } from '../../../../../../bpl-tools/Components';
 import { useWPAjax } from '../../../../../../bpl-tools/hooks';
 

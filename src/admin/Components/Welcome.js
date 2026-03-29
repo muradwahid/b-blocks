@@ -5,7 +5,7 @@ import Card from '../../../../bpl-tools/Admin/Blocks/Card';
 import { overviewBlocks } from '../Dashboard/utils/blocks';
 
 const Welcome = (props) => {
-    const { isPremium,allBlocks, disabledBlocks, status, onChange } = props;
+    const { disabledBlocks, status, onChange, isPremium } = props;
     return <Overview {...props}>
         <Card allBlocks={overviewBlocks} disabledBlocks={disabledBlocks} status={status} onChange={onChange} />
         <div style={{
@@ -14,7 +14,7 @@ const Welcome = (props) => {
             gap: '32px'
         }}>
             <ChangeLog {...props} />
-            <ProAds {...props} />
+            {!isPremium && <ProAds {...props} />}
         </div>
     </Overview>
 };

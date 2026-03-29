@@ -5,8 +5,9 @@ import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { carouselBlockIcon } from '../utils/blocksIcon';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled('b-blocks/carousel') && registerBlockType(metadata, {
 	icon: carouselBlockIcon,
 	edit: Edit,
 	save: InnerBlocks.Content

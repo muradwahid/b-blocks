@@ -127,11 +127,14 @@ namespace BBlocks\Inc;
 				$newPrompt = "You are a professional content writer.\n" .
 				"Topic: $prompt\n" .
 				"Tone: professional, informative, and persuasive.\n" .
+				"Target Audience: Web Readers\n".
 				"Length: approximately 150-200 words, formatted with headings and bullet points.\n" .
-				"Format the content with proper headings, paragraphs, and bullet points where appropriate.\n" .
-				"The content should be engaging, well-structured, and optimized for web reading.\n" .
-				"\n" .
-				"Output only the content (no meta text or explanations).";
+				"Constraints & Requirements:\n".
+				"- Length: 150-200 words.\n".
+				"- Optimization: Content must be engaging, well-structured, and optimized for online readability (scannable content).\n".
+				"Output Instructions:\n".
+				"- Provide only the generated content.\n".
+				"- Do not include any meta-text, introductions, or post-generation explanations.\n";
 
 			$response = wp_remote_post( 'https://api.openai.com/v1/chat/completions', [
 				'timeout' => 30,

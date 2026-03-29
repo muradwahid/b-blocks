@@ -7,11 +7,12 @@ import Edit from './Components/Backend/Edit';
 import { carouselBlockIcon } from '../utils/blocksIcon';
 import { InnerBlocks } from '@wordpress/block-editor';
 // import Deprecated1 from './deprecated/deprecated1';
+import { isBlockEnabled } from '../utils/functions';
 
-registerBlockType(metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: carouselBlockIcon,
 	edit: Edit,
-	save:InnerBlocks.Content
+	save: InnerBlocks.Content
 	// save,
 	// deprecated: [
 	// 	{

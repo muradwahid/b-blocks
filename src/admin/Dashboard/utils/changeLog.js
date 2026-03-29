@@ -1,29 +1,36 @@
 export const changeLog = [
     {
+        version: '2.0.35 - 29 Mar 2026',
+        list: [
+            'Added: New Dashboard.'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.0.34 - 6 Mar 2026',
         list: [
-            'Added Stacked Cards Block.'
+            'Added: Stacked Cards Block.'
         ],
         type: 'new'
     },
     {
         version: '2.0.33 - 3 Mar 2026',
         list: [
-            'Fixed Carousel Block issues.'
+            'Fixed: Carousel Block issues.'
         ],
         type: 'fix'
     },
     {
         version: '2.0.32 - 2 Mar 2026',
         list: [
-            'Added Full Flexbox controls for Row block.'
+            'Added: Full Flexbox controls for Row block.'
         ],
         type: 'update'
     },
     {
         version: '2.0.31 - 28 Feb 2026',
         list: [
-            'Added Carousel Block.'
+            'Added: Carousel Block.'
         ],
         type: 'new'
     },

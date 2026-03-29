@@ -8,7 +8,7 @@ export const pricingPage = `${origin}/wp-admin/tools.php?page=b-blocks#/pricing`
 
 
 export const dashboardInfo = (info) => {
-    const { version, isPremium, hasPro, nonce, licenseActiveNonce } = info;
+    const { version, isPremium, hasPro, licenseActiveNonce } = info;
 
     const proSuffix = isPremium ? ' Pro' : '';
 
@@ -112,9 +112,8 @@ export const demoInfo = {
     ]
 }
 
-
 export const pricingInfo = {
-    logo: `https://ps.w.org/${slug}/assets/icon-256x256.png?rev=3471261`, // Optional
+    logo: `https://ps.w.org/${slug}/assets/icon-128x128.png?rev=3471261`, // Optional
     pluginId: 12845,
     planId: 21619,
     licenses: [

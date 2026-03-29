@@ -1,7 +1,8 @@
-import React from 'react';
-import { Button } from '../../../../../bpl-tools/Components';
-import { CrownIcon } from '../utils/icons';
-import { pricingPage } from '../../../utils/data';
+import { Button } from '../../../../bpl-tools/Components';
+import { CrownIcon } from '../Dashboard/utils/icons';
+import { pricingPage } from '../../utils/data';
+
+import './proModal.scss';
 
 const ProModal = () => {
   return <>

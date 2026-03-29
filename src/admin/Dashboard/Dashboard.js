@@ -10,11 +10,7 @@ import { Toaster } from 'react-hot-toast';
 // import Layout from './Layout/Layout';
 // import { freemius, pricingInfo } from './utils/data2';
 // import Settings from './Pages/Settings/Settings';
-
-import Overview from '../../../../bpl-tools/Admin/Overview';
 import Layout from './Layout/Layout';
-import ChangeLog from '../../../../bpl-tools/Admin/ChangeLog';
-import ProAds from '../../../../bpl-tools/Admin/ProAds';
 import Pricing from '../../../../bpl-tools/Admin/Pricing';
 import FeatureCompare from '../../../../bpl-tools/Admin/FeatureCompare';
 import Activation from '../../../../bpl-tools/Admin/Activation';
@@ -28,13 +24,13 @@ import CursorEffect from './Pages/CursorEffect/CursorEffect';
 import { useEffect, useState } from 'react';
 import { useWPAjax, useWPOptionQuery } from '../../../../bpl-tools/hooks';
 import blocks from './utils/blocks';
+import ProModal from '../Components/ProModal';
 
 const dataFetched = new CustomEvent('dataFetched');
 
 const Dashboard = (props) => {
-	const { freemius, info, hasPro } = props
+	const { freemius, info, hasPro, isPremium } = props
 	// const { isPremium } = info;
-
 	const [disableBlockName, setDisableBlockName] = useState([]);
 	const [status, setStatus] = useState('');
 	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
@@ -62,7 +58,7 @@ const Dashboard = (props) => {
 			setStatus('error');
 		}
 
-		const time = setTimeout(() => setStatus(''), 1000);
+		const time = setTimeout(() => setStatus(''), 300);
 		return () => clearTimeout(time);
 	};
 
@@ -71,21 +67,26 @@ const Dashboard = (props) => {
 
 		<Routes>
 			<Route path='/' element={<Layout {...props} />}>
-				<Route path='*' element={<Navigate to='/welcome' replace />} />
-				<Route path='/welcome' element={<Welcome {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />} />
-				<Route path='/blocks' element={<Blocks {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />} />
-				<Route path='/cursor' element={<CursorEffect info={info} />} />
-				<Route path='/settings' element={<Settings info={info} />} />
-				<Route
+				<Route index element={<Navigate to='welcome' replace />} />
+				<Route path='welcome' element={<Welcome {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />} />
+				<Route path='blocks' element={<>
+					<Blocks {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />
+					{!isPremium && <ProModal />}
+				</>} />
+				<Route path='cursor' element={<CursorEffect info={info} />} />
+				<Route path='settings' element={<Settings info={info} />} />
+				{!isPremium && <Route
 					path="feature-comparison"
 					element={<FeatureCompare plans={["free", "pro"]} {...props} />}
-				/>
-				<Route path='/pricing' element={<Pricing pricingInfo={pricingInfo} freemius={freemius} />} />
+				/>}
+				{!isPremium && <Route path='pricing' element={<Pricing pricingInfo={pricingInfo} freemius={freemius} />} />}
 
-				{hasPro && <Route path='/activation' element={<Activation {...props} />} />}
+				{
+					hasPro &&
+					<Route path='activation' element={<Activation {...props} />} />}
 
-				<Route path='/our-plugins' element={<OurPlugins {...props} />} />
-				<Route path='*' element={<Navigate to='/welcome' replace />} />
+				<Route path='our-plugins' element={<OurPlugins {...props} />} />
+				{/* <Route path='*' element={<Navigate to='welcome' replace />} /> */}
 			</Route>
 			{/* <Route path='/welcome' element={<Welcome info={info} />} />
 		<Route path='/blocks' element={<Blocks info={info} />} />
