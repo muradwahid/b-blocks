@@ -36,7 +36,7 @@ const TemplateLibrary = () => {
 			{__('Template Library', 'b-blocks')}
 		</button>
 
-		<Modal {...{ isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, templatesLoading, type, refetchTemplates,setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
+		<Modal {...{ isPremium, show, setShow, main, mainLoading, templates, setTemplates, totalCount, templatesLoading, type, refetchTemplates, setType, category, setCategory, pageNumber, setPageNumber, search, setSearch }} />
 	</>;
 };
 export default TemplateLibrary;

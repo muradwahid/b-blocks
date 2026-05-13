@@ -1,26 +1,51 @@
-import { useEffect } from "react";
 const Facebook = ({ attributes, facebookKey }) => {
     const { facebook } = attributes;
+    const videoSrc = `https://www.facebook.com/plugins/video.php?` +
+        `href=${encodeURIComponent(facebook.url?.video || "")}` +
+        `&width=${facebook.width || "500"}` +
+        `&show_text=${facebook.fullPost}` +
+        `&show_captions=${facebook.caption}` +
+        `&autoplay=${facebook.autoPlay}` +
+        `&appId=${facebookKey}`;
+    const postSrc = `https://www.facebook.com/plugins/post.php?` +
+        `href=${encodeURIComponent(facebook.url?.post || "")}` +
+        `&width=${facebook.width || "500"}` +
+        `&show_text=${facebook.fullPost}` +
+        `&appId=${facebookKey}`;
 
-    // Event Key
-    useEffect(() => {
-        window.FB.init({
-            xfbml: true,
-            version: "v21.0",
-            appId: facebookKey,
-        });
-    }, [facebookKey]);
-    return <div className={`b-blocks-facebookEmbed-wrapper ${facebook.alignment}`}>
-            {facebook.type === "video" && <div className="fb-video" data-href={facebook.url.video} data-width={facebook.width} data-show-text={facebook.fullPost} data-show-captions={facebook.caption} data-autoplay={facebook.autoPlay} data-allowfullscreen={facebook.fullScreen}></div>}
-            {facebook.type === "post" && <div className="fb-post" data-href={facebook.url.post} data-width={facebook.width} data-show-text={facebook.fullPost}></div>}
-            {/* <script
-        async
-        defer
-        crossOrigin="anonymous"
-        src={`https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=${facebook.appId}`}
-        nonce="CAr8Z5Od"
-      ></script> */}
+    return (
+        <div className={`b-blocks-facebookEmbed-wrapper ${facebook.alignment}`}>
+            {facebook.type === "video" && (
+                <div className="fb-video-container">
+                    <iframe
+                        src={videoSrc}
+                        width={facebook.width || "500"}
+                        height="auto"
+                        style={{ border: 'none', overflow: 'hidden', width: '100%', minHeight: '315px' }}
+                        scrolling="no"
+                        frameBorder="0"
+                        allowFullScreen={facebook.fullScreen}
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    ></iframe>
+                </div>
+            )}
+            {facebook.type === "post" && (
+                <div className="fb-post-container">
+                    <iframe
+                        src={postSrc}
+                        width={facebook.width || "500"}
+                        height="auto"
+                        style={{ border: 'none', overflow: 'hidden', width: '100%', minHeight: '500px' }}
+                        scrolling="no"
+                        frameBorder="0"
+                        allowFullScreen={true}
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    ></iframe>
+                </div>
+            )}
+
         </div>
+    );
 };
 
 export default Facebook;

@@ -25,7 +25,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const customStyles = {};
 	if (isCustomizable && customBackgroundColor) {
-		customStyles.backgroundColor = customBackgroundColor;
+		customStyles.background = customBackgroundColor;
 	}
 
 	const titleStyles = {};
@@ -86,9 +86,9 @@ export default function Edit({ attributes, setAttributes }) {
 			width: `${skill.percentage}%`,
 		};
 		if (isCustomizable && customBarProgressColor) {
-			barFillStyle.backgroundColor = customBarProgressColor;
+			barFillStyle.background = customBarProgressColor;
 		} else {
-			barFillStyle.backgroundColor = skill.color;
+			barFillStyle.background = skill.color;
 		}
 
 		const circularStroke = isCustomizable && customBarProgressColor ? customBarProgressColor : skill.color;

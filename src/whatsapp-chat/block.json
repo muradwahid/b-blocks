@@ -1,0 +1,210 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/whatsapp-chat",
+	"version": "0.1.0",
+	"title": "WhatsApp Chat",
+	"category": "bBlocks",
+	"description": "Add a fully customizable WhatsApp Chat button to turn visitor hesitation into customer confidence.",
+	"example": {
+		"attributes": {
+			"phoneNumber": "",
+			"buttonText": "Chat on WhatsApp",
+			"prefillMessage": "Hi! I have a question about your product.",
+			"showIcon": true,
+			"showStatusDot": true,
+			"buttonSize": "medium",
+			"borderRadius": 50,
+			"backgroundColor": "#25D366",
+			"textColor": "#ffffff",
+			"hoverAnimation": true,
+			"tooltipText": "We typically reply within minutes",
+			"openInNewTab": true,
+			"fullWidth": false,
+			"alignment": "center"
+		}
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"phoneNumber": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Chat on WhatsApp"
+		},
+		"prefillMessage": {
+			"type": "string",
+			"default": ""
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"showStatusDot": {
+			"type": "boolean",
+			"default": true
+		},
+		"tooltipText": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#25D366"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"hoverAnimation": {
+			"type": "boolean",
+			"default": true
+		},
+		"openInNewTab": {
+			"type": "boolean",
+			"default": true
+		},
+		"fullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"iconPosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"shadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"pulseAnimation": {
+			"type": "boolean",
+			"default": false
+		},
+		"styles": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"padding": {
+						"type": "object",
+						"default": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"margin": {
+						"type": "object",
+						"default": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"tablet": {
+					"padding": {
+						"type": "object",
+						"default": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"margin": {
+						"type": "object",
+						"default": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}},
+				"mobile": {
+					"padding": {
+						"type": "object",
+						"default": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"margin": {
+						"type": "object",
+						"default": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}},
+				"typo": { "fontSize":{"desktop":"","tablet":"","mobile":""} },
+				"pulseColor": "#25d36680",
+				"normal": {
+					"bg": {"color":"#25D366"},
+					"color": "#ffffff",
+					"border": {},
+					"radius": {"top":"50px","right":"50px","bottom":"50px","left":"50px"},
+					"shadow": {}
+				},
+				"hover": {
+					"bg": {},
+					"color": "",
+					"border": {},
+					"radius": {"top": "50px","right": "50px","bottom": "50px","left": "50px"},
+					"shadow": {},
+					"transition": 0.3
+				},
+				"icon":{
+					"size":"16px",
+					"normal":{
+						"color":"#ffffff"
+					},
+					"hover":{
+						"color":"#ffffff"
+					}
+				},
+				"status":{
+					"size":"10px",
+					"color":{"color":"#4cff50"},
+					"position":{
+						"x":"",
+						"y":""
+					}
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"textdomain": "b-blocks",
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

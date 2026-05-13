@@ -6,9 +6,10 @@ import { Label, SelectTokenField } from '../../../../../../../bpl-tools/Componen
 import { bullets } from '../../../../utils/commonOptions';
 import { htmlTags, markups } from '../../../../utils/options';
 import IconPicker from '../../Panel/IconPicker/IconPicker';
+import { ToggleControl } from '@wordpress/components';
 
 const TableContentSettings = ({ attributes, setAttributes }) => {
-    const { title, theme, markup, tagName } = attributes;
+    const { title, theme, markup, tagName, isNested=false } = attributes;
 
     const updateTitle = (key, value) => {
         const newTitle = produce(title, draft => {
@@ -28,7 +29,9 @@ const TableContentSettings = ({ attributes, setAttributes }) => {
 
         <Label>{__('Anchors By Tags', 'b-blocks')}</Label>
         <SelectTokenField options={tagOptions} value={tagName} onChange={(value) => setAttributes({ tagName: value })} />
-
+        <br />
+        <ToggleControl help="Headings are displayed in a hierarchical structure." label={__('Enable Nesting','b-blocks')} checked={isNested} onChange={(value) => setAttributes({ isNested: value })} />
+        
         {/* <PanelRow className='mt20'>
         <Label className=''>Theme</Label>
         <SelectControl value={theme} onChange={(value) => setAttributes({ theme: value })} options={themes} />

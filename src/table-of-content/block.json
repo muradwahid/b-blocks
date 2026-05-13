@@ -17,6 +17,10 @@
             "type": "string",
             "default": ""
         },
+        "isNested":{
+            "type":"boolean",
+            "default":false
+        },
         "rendered": {
             "type": "boolean",
             "default": true

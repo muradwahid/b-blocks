@@ -1,4 +1,5 @@
 import { isExist } from '../../../../../bpl-tools/utils/common';
+import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 const style = (attributes, id) => {
@@ -25,8 +26,8 @@ const style = (attributes, id) => {
 
 	const contentSl = `${blockSl} .b-blocks-advanced-tabs-contents`;
 
-	const row = tabs.desktop.direction === 'row-reverse' || tabs.desktop.direction === 'row';
-	const column = tabs.desktop.direction === 'column' || tabs.desktop.direction === 'column-reverse';
+	const row = (device='desktop') => tabs?.[device].direction === 'row-reverse' || tabs?.[device].direction === 'row';
+	const column = (device = 'desktop') => tabs?.[device].direction === 'column' || tabs?.[device].direction === 'column-reverse';
 
 	const buttonStyles = (active = 'normal', hover = 'normal', device = 'desktop') => `
 					${isValidCSS('margin', getBoxCSS(tabStyle[active][hover][device].margin))}
@@ -60,8 +61,8 @@ const style = (attributes, id) => {
 			}
 
 			${buttonListsSl}{
-				${isValidCSS('justify-content', column ? tabs.desktop.columnJustify : tabs.desktop.rowJustify)}
-				${isValidCSS('flex-direction', row ? 'column' : '')}
+				${isValidCSS('justify-content', column('desktop') ? tabs.desktop.columnJustify : tabs.desktop.rowJustify)}
+				${isValidCSS('flex-direction', row('desktop') ? 'column' : '')}
 				${isValidCSS('gap', tabStyle.desktop.gap)}
 				${isValidCSS('padding', getBoxCSS(tabContainer.desktop.padding))}
 				${isValidCSS('margin', getBoxCSS(tabContainer.desktop.margin))}
@@ -73,8 +74,8 @@ const style = (attributes, id) => {
 			}
 
 			${buttonSl}{
-				${isValidCSS('width', column && tabs.desktop.columnJustify === 'stretch' ? '100%' : '')}
-				${isValidCSS('height', row && tabs.desktop.rowJustify === 'stretch' ? '100%' : '')}
+				${isValidCSS('width', column('desktop') && tabs.desktop.columnJustify === 'stretch' ? '100%' : '')}
+				${isValidCSS('height', row('desktop') && tabs.desktop.rowJustify === 'stretch' ? '100%' : '')}
 				${isValidCSS('justify-content', tabs.desktop.contentAlign)}
 				${isValidCSS('flex-direction', icon.desktop.position)}
 				${buttonStyles('normal', 'normal')}
@@ -174,6 +175,124 @@ const style = (attributes, id) => {
 
 			${contentSl}{
 				${layoutVal.includes(tabs?.desktop?.direction) && isValidCSS('max-width', content.desktop.width)}
+			}
+
+			${tabBreakpoint}{
+				${tabsWrapperSl}{
+					${isValidCSS('flex-direction', tabs?.tablet?.direction)}
+				}
+					${buttonListsSl}{
+					${isValidCSS('justify-content', column('tablet') ? tabs?.tablet?.columnJustify : tabs?.tablet?.rowJustify)}
+					${isValidCSS('flex-direction', row('tablet') ? 'column' : '')}
+					${isValidCSS('gap', tabStyle?.tablet?.gap)}
+					${isValidCSS('padding', getBoxCSS(tabContainer?.tablet?.padding))}
+					${isValidCSS('margin', getBoxCSS(tabContainer?.tablet?.margin))}
+					${isValidCSS('border-radius', getBoxCSS(tabContainer?.tablet?.radius))}
+					${layoutVal.includes(tabs?.tablet?.direction) ? isValidCSS('width', tabStyle?.tablet?.width) : ''}
+					${columnVal.includes(tabs?.tablet?.direction) ? isValidCSS('flex-wrap', tabs?.tablet?.wrap) : ''}
+				}
+
+				${buttonSl}{
+					${isValidCSS('width', column('tablet') && tabs?.tablet.columnJustify === 'stretch' ? '100%' : '')}
+					${isValidCSS('height', row('tablet') && tabs?.tablet.rowJustify === 'stretch' ? '100%' : '')}
+					${isValidCSS('justify-content', tabs?.tablet.contentAlign)}
+					${isValidCSS('flex-direction', icon?.tablet.position)}
+					${buttonStyles('normal', 'normal','tablet')}
+				}
+				${normalButtonSl}:hover{
+					${buttonStyles('normal', 'hover','tablet')}
+				}
+				
+				${activeButtonSl}{
+					${buttonStyles('active', 'normal', 'tablet')}
+				}
+				${activeButtonSl}:hover{
+					${buttonStyles('active', 'hover', 'tablet')}
+				}
+
+				${titleContainerSl}{
+					${isValidCSS('text-align', tabs?.tablet.contentAlign)}
+				}
+
+				${buttonSl}:hover .b-blocks-advanced-tabs-button-icon{
+					${iconStyles('normal', 'hover','tablet')}
+				}
+
+				${iconSl}>svg{
+					${isValidCSS('height', icon?.tablet.size)}
+					${isValidCSS('width', icon?.tablet.size)}
+				}
+
+				${activeButtonSl} .b-blocks-advanced-tabs-button-icon{
+					${iconStyles('active', 'normal','tablet')}
+				}
+
+				${activeButtonSl}:hover .b-blocks-advanced-tabs-button-icon{
+						${iconStyles('active', 'hover','tablet')}
+				}
+
+				${contentSl}{
+					${layoutVal.includes(tabs?.tablet?.direction) && isValidCSS('max-width', content?.tablet.width)}
+				}
+			}
+
+			${mobileBreakpoint}{
+				${tabsWrapperSl}{
+					${isValidCSS('flex-direction', tabs?.tablet?.direction)}
+				}
+					${buttonListsSl}{
+					${isValidCSS('justify-content', column('tablet') ? tabs?.tablet?.columnJustify : tabs?.tablet?.rowJustify)}
+					${isValidCSS('flex-direction', row('tablet') ? 'column' : '')}
+					${isValidCSS('gap', tabStyle?.tablet?.gap)}
+					${isValidCSS('padding', getBoxCSS(tabContainer?.tablet?.padding))}
+					${isValidCSS('margin', getBoxCSS(tabContainer?.tablet?.margin))}
+					${isValidCSS('border-radius', getBoxCSS(tabContainer?.tablet?.radius))}
+					${layoutVal.includes(tabs?.tablet?.direction) ? isValidCSS('width', tabStyle?.tablet?.width) : ''}
+					${columnVal.includes(tabs?.tablet?.direction) ? isValidCSS('flex-wrap', tabs?.tablet?.wrap) : ''}
+				}
+
+				${buttonSl}{
+					${isValidCSS('width', column('tablet') && tabs?.tablet.columnJustify === 'stretch' ? '100%' : '')}
+					${isValidCSS('height', row('tablet') && tabs?.tablet.rowJustify === 'stretch' ? '100%' : '')}
+					${isValidCSS('justify-content', tabs?.tablet.contentAlign)}
+					${isValidCSS('flex-direction', icon?.tablet.position)}
+					${buttonStyles('normal', 'normal', 'tablet')}
+				}
+				${normalButtonSl}:hover{
+					${buttonStyles('normal', 'hover', 'tablet')}
+				}
+				
+				${activeButtonSl}{
+					${buttonStyles('active', 'normal', 'tablet')}
+				}
+				${activeButtonSl}:hover{
+					${buttonStyles('active', 'hover', 'tablet')}
+				}
+
+				${titleContainerSl}{
+					${isValidCSS('text-align', tabs?.tablet.contentAlign)}
+				}
+
+				${buttonSl}:hover .b-blocks-advanced-tabs-button-icon{
+					${iconStyles('normal', 'hover', 'tablet')}
+				}
+
+				${iconSl}>svg{
+					${isValidCSS('height', icon?.tablet.size)}
+					${isValidCSS('width', icon?.tablet.size)}
+				}
+
+				${activeButtonSl} .b-blocks-advanced-tabs-button-icon{
+					${iconStyles('active', 'normal', 'tablet')}
+				}
+
+				${activeButtonSl}:hover .b-blocks-advanced-tabs-button-icon{
+						${iconStyles('active', 'hover', 'tablet')}
+				}
+
+				${contentSl}{
+					${layoutVal.includes(tabs?.tablet?.direction) && isValidCSS('max-width', content?.tablet.width)}
+				}
 			}
 
 	`;

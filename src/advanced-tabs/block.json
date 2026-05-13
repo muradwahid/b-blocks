@@ -642,6 +642,7 @@
 		"file:../index.js",
 		"lodash"
 	],
+	"render": "file:./render.php",
 	"viewScript": "file:./view.js",
 	"style": "file:./view.css"
 }

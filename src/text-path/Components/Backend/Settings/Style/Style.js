@@ -2,8 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { useState } from 'react';
 import { ColorControl, ShadowControl, Typography } from '../../../../../../../bpl-tools/Components';
-import { ToggleControl } from '@wordpress/components';
-import { RangeControl } from '@wordpress/components';
+import { ToggleControl, RangeControl } from '@wordpress/components';
 
 
 const Style = props => {
@@ -29,13 +28,13 @@ const Style = props => {
 			<ToggleControl label={__('Show Stroke', 'b-blocks')} checked={title[normal]?.textStroke?.isStroke} value={title[normal]?.textStroke?.isStroke} onChange={(val) => updateObj('styles', val, 'title', normal, 'textStroke', 'isStroke')} />
 			{
 				title[normal]?.textStroke?.isStroke && <>
-					<RangeControl className='mt10' label={__('Stroke Size', 'b-blocks')} value={title[normal]?.textStroke?.size} min={0} max={10} onChange={(val) => updateObj('styles', val, 'title', normal, 'textStroke', 'size')} />
+					<RangeControl step={0.1} className='mt10' label={__('Stroke Size', 'b-blocks')} value={title[normal]?.textStroke?.size} min={0} max={10} onChange={(val) => updateObj('styles', val, 'title', normal, 'textStroke', 'size')} />
 
 					<ColorControl label={__('Stroke Color', 'b-blocks')} value={title[normal]?.textStroke?.color} onChange={(val) => updateObj('styles', val, 'title', normal, 'textStroke', 'color')} />
 				</>
 			}
 			{
-				normal === 'hover' && <RangeControl className='mt10' label={__('Transition', 'b-blocks')} min={0} max={5} step={0.01} value={title.transition} onChange={(val) => updateObj('styles', val, 'title', 'transition')} />
+				normal === 'hover' && <RangeControl  className='mt10' label={__('Transition', 'b-blocks')} min={0} max={5} step={0.01} value={title.transition} onChange={(val) => updateObj('styles', val, 'title', 'transition')} />
 			}
 		</PanelBody>
 
@@ -45,11 +44,11 @@ const Style = props => {
 
 			<UnitControl label={__('Size', 'b-blocks')} value={path.size} onChange={(val) => updateObj('styles', val, 'path', 'size')} />
 
-			<RangeControl className='mt10' label={__('Thickness', 'b-blocks')} value={path.thickness} min={0} max={20} onChange={(val) => updateObj('styles', val, 'path', 'thickness')} />
+			<RangeControl className='mt10' label={__('Thickness', 'b-blocks')} value={path.thickness} step={0.1} min={0} max={20} onChange={(val) => updateObj('styles', val, 'path', 'thickness')} />
 
-			<RangeControl label={__('Starting Point', 'b-blocks')} value={path.staringPoint} min={0} max={2000} onChange={(val) => updateObj('styles', val, 'path', 'staringPoint')} />
+			<RangeControl label={__('Starting Point', 'b-blocks')} value={path.staringPoint} step={0.1} min={0} max={2000} onChange={(val) => updateObj('styles', val, 'path', 'staringPoint')} />
 
-			<RangeControl label={__('Rotate', 'b-blocks')} value={path.rotate} min={0} max={360} onChange={(val) => updateObj('styles', val, 'path', 'rotate')} />
+			<RangeControl label={__('Rotate', 'b-blocks')} value={path.rotate} step={0.1} min={0} max={360} onChange={(val) => updateObj('styles', val, 'path', 'rotate')} />
 
 		</PanelBody>
 	</>

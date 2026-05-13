@@ -2,6 +2,7 @@
 $id = wp_unique_id( 'bBlocksFacebookPage-' );
 $api_keys   = get_option( 'bBlocksApiKeys', [] );
 ?>
+<div id="fb-root"></div>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
 	<?php echo get_block_wrapper_attributes(); ?>

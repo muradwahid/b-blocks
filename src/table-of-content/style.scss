@@ -35,8 +35,7 @@ html {
         transform: rotateZ(180deg);
       }
 
-      .bblocks-tbcn-content-table-title {
-      }
+      .bblocks-tbcn-content-table-title {}
     }
 
     .bblocks-tbcn-panel {
@@ -44,30 +43,48 @@ html {
       height: 100%;
       overflow: hidden;
 
-      .bblocks-tbcn-panel-table-container-order-list {
-        margin: 0;
-        padding-top: 10px;
-        padding-bottom: 10px;
+      & :where(ol) {
+        list-style: none !important;
+      }
+
+      .bblocks-tbcn-panel-table-container-order-list.bblocks-tbcn-nested-list {
+        margin: 0 !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+      }
+
+      .bblocks-tbcn-panel-table-container-order-list,
+      .bblocks-tbcn-nested-list {
+        list-style: none !important;
 
         .bblocks-tbcn-panel-table-list-items {
           &::marker {
             font-size: 40px;
           }
 
-          & > span {
-            display: flex;
-          }
-
-          .bblocks-tbcn-table-content-anchor-list {
-            margin-left: 5px;
-
-            &:focus {
-              border: none;
-              box-shadow: unset;
-              outline: none;
+          .bblocks-tbcn-list-item-content {
+            &>span {
+              display: flex;
             }
+
+            .bblocks-tbcn-table-content-anchor-list {
+              margin-left: 5px;
+
+              &:focus {
+                border: none;
+                box-shadow: unset;
+                outline: none;
+              }
+            }
+
           }
+
         }
+      }
+
+      .bblocks-tbcn-nested-list {
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
     }
   }
@@ -168,8 +185,7 @@ html {
 
   .bblocks-tbcn-timeline-container {
     .bblocks-tbcn-timeline-title-container {
-      .bblocks-tbcn-timeline-title {
-      }
+      .bblocks-tbcn-timeline-title {}
     }
 
     .bblocks-tbcn-timeline-list-items {
@@ -179,7 +195,7 @@ html {
       margin-left: 10px;
 
       .bblocks-tbcn-timeline-list {
-        & > a {
+        &>a {
           transition: color 0.2s ease-in-out;
 
           &:focus {
@@ -215,7 +231,7 @@ html {
         margin-left: 10px;
         position: relative;
 
-        & > a {
+        &>a {
           padding-left: 30px;
           transition: all 0.3s ease-in-out;
           text-decoration: none;

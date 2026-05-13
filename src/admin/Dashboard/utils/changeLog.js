@@ -1,5 +1,44 @@
 export const changeLog = [
     {
+        version: '2.0.40 - 29 Apr 2026',
+        list: [
+            'Added: WhatsApp Chat Block.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.0.39 - 27 Apr 2026',
+        list: [
+            'Added: Nested option for Table of Content Block.'
+        ],
+        type: 'update'
+    },
+    {
+        version: '2.0.38 - 21 Apr 2026',
+        list: [
+            'Fixed: Text Path Block issues.',
+            'Fixed: Accordion Block border width.',
+            'Fixed: Breadcrumb Block typography issues.',
+            'Fixed: Facebook Page Block SDK.',
+            'Fixed: Facebook Embed Block SDK.'
+        ],
+        type: 'fix'
+    },
+    {
+        version: '2.0.37 - 15 Apr 2026',
+        list: [
+            'Fixed: Advanced Styles issue for Table of content block.'
+        ],
+        type: 'fix'
+    },
+    {
+        version: '2.0.36 - 01 Apr 2026',
+        list: [
+            'Improved: Advanced Tabs Block Migrate frontend dynamic content.'
+        ],
+        type: 'update'
+    },
+    {
         version: '2.0.35 - 29 Mar 2026',
         list: [
             'Added: New Dashboard.'

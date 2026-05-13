@@ -11,7 +11,7 @@ const Style = ({ attributes, id }) => {
   const panelLists = `${panelWrapper} .bblocks-tbcn-panel-table-container-order-list`;
   const panelItem = `${panelLists} .bblocks-tbcn-panel-table-list-items`;
 
-  const listSl = `${blockWrapper} ol>li>a.bblocks-tbcn-table-content-anchor-list`;
+  const listSl = `${blockWrapper} ol li a.bblocks-tbcn-table-content-anchor-list`;
   return (
     <>
       <style>
@@ -19,6 +19,9 @@ const Style = ({ attributes, id }) => {
         ${listSl}:hover{
           color:${boxList.hTxtColor} !important; 
           text-decoration:${boxList.hTxtDecoration ? "underline" : "none"} !important;
+        }
+        ${panelWrapper} :where(ol){
+          list-style:none !important;
         }
         ${listSl}{
           color:${boxList.nTxtColor} !important;
@@ -37,7 +40,11 @@ const Style = ({ attributes, id }) => {
           }`
             )
             .join("")}
-
+        ${panelLists} .bblocks-tbcn-list-item-content{
+          display:flex;
+          align-items:center;
+          gap:5px;
+        }
       ${["top", "bottom"]
             .map(
               (val) => `${accordion}.sticky.${val}{
@@ -50,7 +57,7 @@ const Style = ({ attributes, id }) => {
             ? `
           
         ${panelLists}{
-          list-style-type:decimal;
+          list-style-type:none;
           margin:0px;
           margin-left:${boxList.padding.desktop?.left};
         }
@@ -58,17 +65,19 @@ const Style = ({ attributes, id }) => {
           color:${markup.color};
           font-size:${markup.markupSize.desktop};
         }
+        ${panelItem} .bblocks-tbcn-list-item-content>span{
+          color:${markup.color};
+          font-size:${markup.markupSize.desktop};
+        }
+        ${panelItem} .bblocks-tbcn-list-item-content{
+          gap:0px;
+        }
         `
             : `
         ${panelLists}{
           list-style-type:none;
         }
-        ${panelLists}>li{
-          display:flex;
-          align-items:center;
-          gap:5px;
-        }
-        ${panelItem}>span>svg{
+        ${panelItem} .bblocks-tbcn-list-item-content>span>svg{
           color:${markup.color};
           fill:${markup.color};
           height:${markup.markupSize.desktop} !important;
@@ -136,12 +145,10 @@ const Style = ({ attributes, id }) => {
             ? `
           
         ${panelLists}{
-          list-style-type:decimal;
-          margin:0px;
+
           margin-left:${boxList.padding.desktop?.left};
         }
         ${panelItem}::marker{
-          color:${markup.color};
           font-size:${markup.markupSize.desktop};
         }
         `
@@ -149,12 +156,8 @@ const Style = ({ attributes, id }) => {
         ${panelLists}{
           list-style-type:none;
         }
-        ${panelLists}>li{
-          display:flex;
-          align-items:center;
-          gap:5px;
-        }
-        ${panelItem}>span>svg{
+
+        ${panelItem} .bblocks-tbcn-list-item-content>span>svg{
           color:${markup.color};
           fill:${markup.color};
           height:${markup.markupSize.desktop} !important;
@@ -199,24 +202,15 @@ const Style = ({ attributes, id }) => {
             ? `
           
         ${panelLists}{
-          list-style-type:decimal;
-          margin:0px;
           margin-left:${boxList.padding.tablet?.left};
         }
         ${panelItem}::marker{
-          color:${markup.color};
-          fill:${markup.color};
           font-size:${markup.markupSize.tablet};
         }
         `
             : `
         ${panelLists}{
           list-style-type:none;
-        }
-        ${panelLists}>li{
-          display:flex;
-          align-items:center;
-          gap:5px;
         }
         ${panelItem}>span>svg{
           color:${markup.color};
@@ -263,12 +257,9 @@ const Style = ({ attributes, id }) => {
       ${markup.view === "decimal"
             ? `
         ${panelLists}{
-          list-style-type:decimal;
-          margin:0px;
           margin-left:${boxList.padding.mobile?.left};
         }
         ${panelItem}::marker{
-          color:${markup.color};
           font-size:${markup.markupSize.mobile};
         }
         `
@@ -276,12 +267,7 @@ const Style = ({ attributes, id }) => {
         ${panelLists}{
           list-style-type:none;
         }
-        ${panelLists}>li{
-          display:flex;
-          align-items:center;
-          gap:5px;
-        }
-        ${panelItem}>span>svg{
+        ${panelItem} .bblocks-tbcn-list-item-content>span>svg{
           color:${markup.color};
           fill:${markup.color};
           height:${markup.markupSize.mobile} !important;

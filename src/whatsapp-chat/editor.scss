@@ -1,0 +1,16 @@
+/**
+ * Editor-only styles for the WhatsApp Chat Block.
+ */
+
+.wp-block-b-blocks-whatsapp-chat {
+	.bBlocks-whatsapp-block-btn {
+		pointer-events: none;
+	}
+
+	.bBlocks-whatsapp-block-color-label {
+		font-weight: 600;
+		font-size: 11px;
+		text-transform: uppercase;
+		margin-bottom: 6px;
+	}
+}

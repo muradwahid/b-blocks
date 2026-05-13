@@ -2,22 +2,36 @@ import { useEffect, useRef } from 'react';
 import BForm from './BForm';
 
 const Frontend = ({ attributes, templateContent }) => {
-  const ref = useRef(null);
+  const wrapperRef = useRef(null);
+
+  // useEffect(() => {
+  //   const el = ref.current;
+  //   if (!el || !templateContent) return;
+
+  //   el.replaceChildren(templateContent.cloneNode(true));
+
+  //   el.dispatchEvent(new CustomEvent('bblocks:inputField:loaded', {
+  //     bubbles: true
+  //   }));
+  // }, [templateContent]);
+
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el || !templateContent) return;
+      if (!wrapperRef.current || !templateContent) return;
+      if (templateContent.dataset.moved === '1') {
 
-    el.replaceChildren(templateContent.cloneNode(true));
-
-    el.dispatchEvent(new CustomEvent('bblocks:inputField:loaded', {
-      bubbles: true
-    }));
-  }, [templateContent]);
+        return;
+      }
+  
+      const slideNodes = Array.from(templateContent.children);
+      wrapperRef.current.append(...slideNodes);
+      templateContent.dataset.moved = '1';
+  
+    }, [wrapperRef.current, templateContent]);
 
   return (
     <BForm attributes={attributes} isFrontend={true}>
-      <div className="b-blocks-b-form-child-field-wrapper" ref={ref} />
+      <div className="b-blocks-b-form-child-field-wrapper" ref={wrapperRef} />
     </BForm>
   );
 };

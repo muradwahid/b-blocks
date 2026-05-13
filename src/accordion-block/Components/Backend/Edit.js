@@ -139,280 +139,280 @@ const THEME_COLORS = [
 
 const Edit = ({ attributes, setAttributes }) => {
 
-        const { items, theme, template, customStyles } = attributes;
-        const [openItems, setOpenItems] = useState(items.map((item, index) => index === 0));
-    
-        const blockProps = useBlockProps({
-            className: `accordion-block accordion-theme-${theme}`
-        });
-    
-        const toggleItem = (index) => {
-            const newOpenItems = [...openItems];
-            newOpenItems[index] = !newOpenItems[index];
-            setOpenItems(newOpenItems);
-        };
-    
-        const addItem = () => {
-            const newItems = [
-                ...items,
-                {
-                    title: __('New Accordion Item', 'accordion-block'),
-                    content: __('Add your content here.', 'accordion-block'),
-                    isOpen: false
-                }
-            ];
-            setAttributes({ items: newItems });
-            setOpenItems([...openItems, false]);
-        };
-    
-        const removeItem = (index) => {
-            const newItems = items.filter((_, i) => i !== index);
-            setAttributes({ items: newItems });
-            const newOpenItems = openItems.filter((_, i) => i !== index);
-            setOpenItems(newOpenItems);
-        };
-    
-        const updateItem = (index, field, value) => {
-            const newItems = [...items];
-            newItems[index] = { ...newItems[index], [field]: value };
-            setAttributes({ items: newItems });
-        };
-    
-        const applyTemplate = (templateKey) => {
-            if (templateKey !== 'none' && TEMPLATES[templateKey]) {
-                setAttributes({
-                    template: templateKey,
-                    items: TEMPLATES[templateKey].items
-                });
-                setOpenItems(TEMPLATES[templateKey].items.map(() => false));
+    const { items, theme, template, customStyles } = attributes;
+    const [openItems, setOpenItems] = useState(items.map((item, index) => index === 0));
+
+    const blockProps = useBlockProps({
+        className: `accordion-block accordion-theme-${theme}`
+    });
+
+    const toggleItem = (index) => {
+        const newOpenItems = [...openItems];
+        newOpenItems[index] = !newOpenItems[index];
+        setOpenItems(newOpenItems);
+    };
+
+    const addItem = () => {
+        const newItems = [
+            ...items,
+            {
+                title: __('New Accordion Item', 'accordion-block'),
+                content: __('Add your content here.', 'accordion-block'),
+                isOpen: false
             }
-        };
-    
-        const updateCustomStyle = (key, value) => {
+        ];
+        setAttributes({ items: newItems });
+        setOpenItems([...openItems, false]);
+    };
+
+    const removeItem = (index) => {
+        const newItems = items.filter((_, i) => i !== index);
+        setAttributes({ items: newItems });
+        const newOpenItems = openItems.filter((_, i) => i !== index);
+        setOpenItems(newOpenItems);
+    };
+
+    const updateItem = (index, field, value) => {
+        const newItems = [...items];
+        newItems[index] = { ...newItems[index], [field]: value };
+        setAttributes({ items: newItems });
+    };
+
+    const applyTemplate = (templateKey) => {
+        if (templateKey !== 'none' && TEMPLATES[templateKey]) {
             setAttributes({
-                customStyles: {
-                    ...customStyles,
-                    [key]: value
-                }
+                template: templateKey,
+                items: TEMPLATES[templateKey].items
             });
+            setOpenItems(TEMPLATES[templateKey].items.map(() => false));
+        }
+    };
+
+    const updateCustomStyle = (key, value) => {
+        setAttributes({
+            customStyles: {
+                ...customStyles,
+                [key]: value
+            }
+        });
+    };
+
+    const getInlineStyles = () => {
+        if (theme !== 'custom') return {};
+
+        return {
+            '--bBlocks-accordion-header-bg': customStyles.headerBgColor,
+            '--bBlocks-accordion-header-text': customStyles.headerTextColor,
+            '--bBlocks-accordion-content-bg': customStyles.contentBgColor,
+            '--bBlocks-accordion-content-text': customStyles.contentTextColor,
+            '--bBlocks-accordion-border-color': customStyles.borderColor,
+            '--bBlocks-accordion-borderWidth': `${customStyles.borderWidth}px`,
+            '--bBlocks-accordion-borderRadius': `${customStyles.borderRadius}px`,
+            '--bBlocks-accordion-headerPadding': `${customStyles.headerPadding}px`,
+            '--bBlocks-accordion-content-padding': `${customStyles.contentPadding}px`,
+            '--bBlocks-accordion-header-font-size': `${customStyles.headerFontSize}px`,
+            '--bBlocks-accordion-content-font-size': `${customStyles.contentFontSize}px`,
+            '--bBlocks-accordion-icon-color': customStyles.iconColor,
+            '--bBlocks-accordion-animation-speed': `${customStyles.animationSpeed}ms`
         };
-    
-        const getInlineStyles = () => {
-            if (theme !== 'custom') return {};
-    
-            return {
-                '--accordion-header-bg': customStyles.headerBgColor,
-                '--accordion-header-text': customStyles.headerTextColor,
-                '--accordion-content-bg': customStyles.contentBgColor,
-                '--accordion-content-text': customStyles.contentTextColor,
-                '--accordion-border-color': customStyles.borderColor,
-                '--accordion-border-width': `${customStyles.borderWidth}px`,
-                '--accordion-border-radius': `${customStyles.borderRadius}px`,
-                '--accordion-header-padding': `${customStyles.headerPadding}px`,
-                '--accordion-content-padding': `${customStyles.contentPadding}px`,
-                '--accordion-header-font-size': `${customStyles.headerFontSize}px`,
-                '--accordion-content-font-size': `${customStyles.contentFontSize}px`,
-                '--accordion-icon-color': customStyles.iconColor,
-                '--accordion-animation-speed': `${customStyles.animationSpeed}ms`
-            };
-        };
-    
-	return        <>
-                <InspectorControls>
-                    <PanelBody title={__('Accordion Items', 'accordion-block')} initialOpen={true}>
-                        <Button
-                            variant="primary"
-                            onClick={addItem}
-                            style={{ width: '100%' }}
-                        >
-                            {__('Add Item', 'accordion-block')}
-                        </Button>
-                    </PanelBody>
-    
-                    <PanelBody title={__('Theme Settings', 'accordion-block')} initialOpen={false}>
-                        <SelectControl
-                            label={__('Theme', 'accordion-block')}
-                            value={theme}
-                            options={[
-                                { label: __('Modern', 'accordion-block'), value: 'modern' },
-                                { label: __('Classic', 'accordion-block'), value: 'classic' },
-                                { label: __('Minimal', 'accordion-block'), value: 'minimal' },
-                                { label: __('Custom', 'accordion-block'), value: 'custom' }
-                            ]}
-                            onChange={(value) => setAttributes({ theme: value })}
+    };
+
+    return <>
+        <InspectorControls>
+            <PanelBody title={__('Accordion Items', 'accordion-block')} initialOpen={true}>
+                <Button
+                    variant="primary"
+                    onClick={addItem}
+                    style={{ width: '100%' }}
+                >
+                    {__('Add Item', 'accordion-block')}
+                </Button>
+            </PanelBody>
+
+            <PanelBody title={__('Theme Settings', 'accordion-block')} initialOpen={false}>
+                <SelectControl
+                    label={__('Theme', 'accordion-block')}
+                    value={theme}
+                    options={[
+                        { label: __('Modern', 'accordion-block'), value: 'modern' },
+                        { label: __('Classic', 'accordion-block'), value: 'classic' },
+                        { label: __('Minimal', 'accordion-block'), value: 'minimal' },
+                        { label: __('Custom', 'accordion-block'), value: 'custom' }
+                    ]}
+                    onChange={(value) => setAttributes({ theme: value })}
+                />
+            </PanelBody>
+
+            <PanelBody title={__('Templates', 'accordion-block')} initialOpen={false}>
+                <SelectControl
+                    label={__('Apply Template', 'accordion-block')}
+                    value={template}
+                    options={Object.keys(TEMPLATES).map(key => ({
+                        label: TEMPLATES[key].label,
+                        value: key
+                    }))}
+                    onChange={applyTemplate}
+                    help={__('Select a pre-built template to get started quickly', 'accordion-block')}
+                />
+            </PanelBody>
+
+            {theme === 'custom' && (
+                <>
+                    <PanelBody title={__('Header Styles', 'accordion-block')} initialOpen={false}>
+                        <p><strong>{__('Background Color', 'accordion-block')}</strong></p>
+                        <ColorPalette
+                            colors={THEME_COLORS}
+                            value={customStyles.headerBgColor}
+                            onChange={(value) => updateCustomStyle('headerBgColor', value || '#f8f9fa')}
+                        />
+                        <p><strong>{__('Text Color', 'accordion-block')}</strong></p>
+                        <ColorPalette
+                            colors={THEME_COLORS}
+                            value={customStyles.headerTextColor}
+                            onChange={(value) => updateCustomStyle('headerTextColor', value || '#212529')}
+                        />
+                        <RangeControl
+                            label={__('Font Size', 'accordion-block')}
+                            value={customStyles.headerFontSize}
+                            onChange={(value) => updateCustomStyle('headerFontSize', value)}
+                            min={12}
+                            max={32}
+                        />
+                        <RangeControl
+                            label={__('Padding', 'accordion-block')}
+                            value={customStyles.headerPadding}
+                            onChange={(value) => updateCustomStyle('headerPadding', value)}
+                            min={8}
+                            max={40}
                         />
                     </PanelBody>
-    
-                    <PanelBody title={__('Templates', 'accordion-block')} initialOpen={false}>
-                        <SelectControl
-                            label={__('Apply Template', 'accordion-block')}
-                            value={template}
-                            options={Object.keys(TEMPLATES).map(key => ({
-                                label: TEMPLATES[key].label,
-                                value: key
-                            }))}
-                            onChange={applyTemplate}
-                            help={__('Select a pre-built template to get started quickly', 'accordion-block')}
+
+                    <PanelBody title={__('Content Styles', 'accordion-block')} initialOpen={false}>
+                        <p><strong>{__('Background Color', 'accordion-block')}</strong></p>
+                        <ColorPalette
+                            colors={THEME_COLORS}
+                            value={customStyles.contentBgColor}
+                            onChange={(value) => updateCustomStyle('contentBgColor', value || '#ffffff')}
+                        />
+                        <p><strong>{__('Text Color', 'accordion-block')}</strong></p>
+                        <ColorPalette
+                            colors={THEME_COLORS}
+                            value={customStyles.contentTextColor}
+                            onChange={(value) => updateCustomStyle('contentTextColor', value || '#495057')}
+                        />
+                        <RangeControl
+                            label={__('Font Size', 'accordion-block')}
+                            value={customStyles.contentFontSize}
+                            onChange={(value) => updateCustomStyle('contentFontSize', value)}
+                            min={12}
+                            max={24}
+                        />
+                        <RangeControl
+                            label={__('Padding', 'accordion-block')}
+                            value={customStyles.contentPadding}
+                            onChange={(value) => updateCustomStyle('contentPadding', value)}
+                            min={8}
+                            max={40}
                         />
                     </PanelBody>
-    
-                    {theme === 'custom' && (
-                        <>
-                            <PanelBody title={__('Header Styles', 'accordion-block')} initialOpen={false}>
-                                <p><strong>{__('Background Color', 'accordion-block')}</strong></p>
-                                <ColorPalette
-                                    colors={THEME_COLORS}
-                                    value={customStyles.headerBgColor}
-                                    onChange={(value) => updateCustomStyle('headerBgColor', value || '#f8f9fa')}
+
+                    <PanelBody title={__('Border & Spacing', 'accordion-block')} initialOpen={false}>
+                        <p><strong>{__('Border Color', 'accordion-block')}</strong></p>
+                        <ColorPalette
+                            colors={THEME_COLORS}
+                            value={customStyles.borderColor}
+                            onChange={(value) => updateCustomStyle('borderColor', value || '#dee2e6')}
+                        />
+                        <RangeControl
+                            label={__('Border Width', 'accordion-block')}
+                            value={customStyles.borderWidth}
+                            onChange={(value) => updateCustomStyle('borderWidth', value)}
+                            min={0}
+                            max={5}
+                        />
+                        <RangeControl
+                            label={__('Border Radius', 'accordion-block')}
+                            value={customStyles.borderRadius}
+                            onChange={(value) => updateCustomStyle('borderRadius', value)}
+                            min={0}
+                            max={30}
+                        />
+                    </PanelBody>
+
+                    <PanelBody title={__('Icon & Animation', 'accordion-block')} initialOpen={false}>
+                        <p><strong>{__('Icon Color', 'accordion-block')}</strong></p>
+                        <ColorPalette
+                            colors={THEME_COLORS}
+                            value={customStyles.iconColor}
+                            onChange={(value) => updateCustomStyle('iconColor', value || '#212529')}
+                        />
+                        <RangeControl
+                            label={__('Animation Speed (ms)', 'accordion-block')}
+                            value={customStyles.animationSpeed}
+                            onChange={(value) => updateCustomStyle('animationSpeed', value)}
+                            min={100}
+                            max={1000}
+                            step={50}
+                        />
+                    </PanelBody>
+                </>
+            )}
+        </InspectorControls>
+
+        <div {...blockProps} style={getInlineStyles()}>
+            <div className="accordion-items">
+                {items.map((item, index) => (
+                    <div key={index} className={`accordion-item ${openItems[index] ? 'is-open' : ''}`}>
+                        <div className="accordion-header">
+                            <button
+                                className="accordion-toggle"
+                                onClick={() => toggleItem(index)}
+                                type="button"
+                            >
+                                <RichText
+                                    tagName="span"
+                                    value={item.title}
+                                    onChange={(value) => updateItem(index, 'title', value)}
+                                    placeholder={__('Accordion title...', 'accordion-block')}
+                                    className="accordion-title"
                                 />
-                                <p><strong>{__('Text Color', 'accordion-block')}</strong></p>
-                                <ColorPalette
-                                    colors={THEME_COLORS}
-                                    value={customStyles.headerTextColor}
-                                    onChange={(value) => updateCustomStyle('headerTextColor', value || '#212529')}
-                                />
-                                <RangeControl
-                                    label={__('Font Size', 'accordion-block')}
-                                    value={customStyles.headerFontSize}
-                                    onChange={(value) => updateCustomStyle('headerFontSize', value)}
-                                    min={12}
-                                    max={32}
-                                />
-                                <RangeControl
-                                    label={__('Padding', 'accordion-block')}
-                                    value={customStyles.headerPadding}
-                                    onChange={(value) => updateCustomStyle('headerPadding', value)}
-                                    min={8}
-                                    max={40}
-                                />
-                            </PanelBody>
-    
-                            <PanelBody title={__('Content Styles', 'accordion-block')} initialOpen={false}>
-                                <p><strong>{__('Background Color', 'accordion-block')}</strong></p>
-                                <ColorPalette
-                                    colors={THEME_COLORS}
-                                    value={customStyles.contentBgColor}
-                                    onChange={(value) => updateCustomStyle('contentBgColor', value || '#ffffff')}
-                                />
-                                <p><strong>{__('Text Color', 'accordion-block')}</strong></p>
-                                <ColorPalette
-                                    colors={THEME_COLORS}
-                                    value={customStyles.contentTextColor}
-                                    onChange={(value) => updateCustomStyle('contentTextColor', value || '#495057')}
-                                />
-                                <RangeControl
-                                    label={__('Font Size', 'accordion-block')}
-                                    value={customStyles.contentFontSize}
-                                    onChange={(value) => updateCustomStyle('contentFontSize', value)}
-                                    min={12}
-                                    max={24}
-                                />
-                                <RangeControl
-                                    label={__('Padding', 'accordion-block')}
-                                    value={customStyles.contentPadding}
-                                    onChange={(value) => updateCustomStyle('contentPadding', value)}
-                                    min={8}
-                                    max={40}
-                                />
-                            </PanelBody>
-    
-                            <PanelBody title={__('Border & Spacing', 'accordion-block')} initialOpen={false}>
-                                <p><strong>{__('Border Color', 'accordion-block')}</strong></p>
-                                <ColorPalette
-                                    colors={THEME_COLORS}
-                                    value={customStyles.borderColor}
-                                    onChange={(value) => updateCustomStyle('borderColor', value || '#dee2e6')}
-                                />
-                                <RangeControl
-                                    label={__('Border Width', 'accordion-block')}
-                                    value={customStyles.borderWidth}
-                                    onChange={(value) => updateCustomStyle('borderWidth', value)}
-                                    min={0}
-                                    max={5}
-                                />
-                                <RangeControl
-                                    label={__('Border Radius', 'accordion-block')}
-                                    value={customStyles.borderRadius}
-                                    onChange={(value) => updateCustomStyle('borderRadius', value)}
-                                    min={0}
-                                    max={30}
-                                />
-                            </PanelBody>
-    
-                            <PanelBody title={__('Icon & Animation', 'accordion-block')} initialOpen={false}>
-                                <p><strong>{__('Icon Color', 'accordion-block')}</strong></p>
-                                <ColorPalette
-                                    colors={THEME_COLORS}
-                                    value={customStyles.iconColor}
-                                    onChange={(value) => updateCustomStyle('iconColor', value || '#212529')}
-                                />
-                                <RangeControl
-                                    label={__('Animation Speed (ms)', 'accordion-block')}
-                                    value={customStyles.animationSpeed}
-                                    onChange={(value) => updateCustomStyle('animationSpeed', value)}
-                                    min={100}
-                                    max={1000}
-                                    step={50}
-                                />
-                            </PanelBody>
-                        </>
-                    )}
-                </InspectorControls>
-    
-                <div {...blockProps} style={getInlineStyles()}>
-                    <div className="accordion-items">
-                        {items.map((item, index) => (
-                            <div key={index} className={`accordion-item ${openItems[index] ? 'is-open' : ''}`}>
-                                <div className="accordion-header">
-                                    <button
-                                        className="accordion-toggle"
-                                        onClick={() => toggleItem(index)}
-                                        type="button"
-                                    >
-                                        <RichText
-                                            tagName="span"
-                                            value={item.title}
-                                            onChange={(value) => updateItem(index, 'title', value)}
-                                            placeholder={__('Accordion title...', 'accordion-block')}
-                                            className="accordion-title"
-                                        />
-                                        <span className="accordion-icon">
-                                            {openItems[index] ? '−' : '+'}
-                                        </span>
-                                    </button>
-                                    <Button
-                                        isDestructive
-                                        isSmall
-                                        onClick={() => removeItem(index)}
-                                        className="accordion-remove"
-                                    >
-                                        {__('Remove Item', 'accordion-block')}
-                                    </Button>
-                                </div>
-                                {openItems[index] && (
-                                    <div className="accordion-content" style={{maxHeight:'unset'}}>
-                                        <RichText   
-                                            tagName="div"
-                                            value={item.content}
-                                            onChange={(value) => updateItem(index, 'content', value)}
-                                            placeholder={__('Accordion content...', 'accordion-block')}
-                                            className="accordion-text"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    {items.length === 0 && (
-                        <div className="accordion-empty">
-                            <p>{__('No accordion items yet. Click "Add Item" to get started.', 'accordion-block')}</p>
-                            <Button variant="primary" onClick={addItem}>
-                                {__('Add Item', 'accordion-block')}
+                                <span className="accordion-icon">
+                                    {openItems[index] ? '−' : '+'}
+                                </span>
+                            </button>
+                            <Button
+                                isDestructive
+                                isSmall
+                                onClick={() => removeItem(index)}
+                                className="accordion-remove"
+                            >
+                                {__('Remove Item', 'accordion-block')}
                             </Button>
                         </div>
-                    )}
+                        {openItems[index] && (
+                            <div className="accordion-content" style={{ maxHeight: 'unset' }}>
+                                <RichText
+                                    tagName="div"
+                                    value={item.content}
+                                    onChange={(value) => updateItem(index, 'content', value)}
+                                    placeholder={__('Accordion content...', 'accordion-block')}
+                                    className="accordion-text"
+                                />
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+            {items.length === 0 && (
+                <div className="accordion-empty">
+                    <p>{__('No accordion items yet. Click "Add Item" to get started.', 'accordion-block')}</p>
+                    <Button variant="primary" onClick={addItem}>
+                        {__('Add Item', 'accordion-block')}
+                    </Button>
                 </div>
-            </>
+            )}
+        </div>
+    </>
 }
 
 export default Edit;

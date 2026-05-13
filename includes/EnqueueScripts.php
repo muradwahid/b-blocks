@@ -41,8 +41,8 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_register_script( 'aos', B_BLOCKS_ASSETS . 'js/aos.js', [], '3.0.0', true ); // Button
 			wp_register_script( 'fancybox', B_BLOCKS_ASSETS . 'js/fancybox.min.js', [], '4.0', true ); // Image Gallery
 			wp_register_script( 'mailtoui', B_BLOCKS_ASSETS . 'js/mailtoui-min.js', [], '1.0.3', true ); // Mailto
-			wp_register_script( 'facebookEmbbed', B_BLOCKS_ASSETS . 'js/facebook-embbed.js', [], B_BLOCKS_VERSION, true ); // Facebook Embbed
-			wp_register_script( 'facebookPage', B_BLOCKS_ASSETS . 'js/facebook-page.js', [], B_BLOCKS_VERSION, true ); // Facebook Page
+			// wp_register_script( 'facebookEmbbed', B_BLOCKS_ASSETS . 'js/facebook-embbed.js', [], B_BLOCKS_VERSION, true ); // Facebook Embbed
+			// wp_register_script( 'facebookPage', B_BLOCKS_ASSETS . 'js/facebook-page.js', [], B_BLOCKS_VERSION, true ); // Facebook Page
 
 			//Accordion
 			wp_register_script('zebra_accordion', B_BLOCKS_ASSETS . 'js/zebra_accordion.min.js', ['jquery'], B_BLOCKS_VERSION, true);

@@ -8,22 +8,22 @@ const FrontEnd = ({ attributes }) => {
         if (theme !== 'custom') return {};
 
         return {
-            '--accordion-header-bg': customStyles.headerBgColor,
-            '--accordion-header-text': customStyles.headerTextColor,
-            '--accordion-content-bg': customStyles.contentBgColor,
-            '--accordion-content-text': customStyles.contentTextColor,
-            '--accordion-border-color': customStyles.borderColor,
-            '--accordion-border-width': `${customStyles.borderWidth}px`,
-            '--accordion-border-radius': `${customStyles.borderRadius}px`,
-            '--accordion-header-padding': `${customStyles.headerPadding}px`,
-            '--accordion-content-padding': `${customStyles.contentPadding}px`,
-            '--accordion-header-font-size': `${customStyles.headerFontSize}px`,
-            '--accordion-content-font-size': `${customStyles.contentFontSize}px`,
-            '--accordion-icon-color': customStyles.iconColor,
-            '--accordion-animation-speed': `${customStyles.animationSpeed}ms`
+            '--bBlocks-accordion-header-bg': customStyles.headerBgColor,
+            '--bBlocks-accordion-header-text': customStyles.headerTextColor,
+            '--bBlocks-accordion-content-bg': customStyles.contentBgColor,
+            '--bBlocks-accordion-content-text': customStyles.contentTextColor,
+            '--bBlocks-accordion-border-color': customStyles.borderColor,
+            '--bBlocks-accordion-borderWidth': `${customStyles.borderWidth}px`,
+            '--bBlocks-accordion-borderRadius': `${customStyles.borderRadius}px`,
+            '--bBlocks-accordion-headerPadding': `${customStyles.headerPadding}px`,
+            '--bBlocks-accordion-content-padding': `${customStyles.contentPadding}px`,
+            '--bBlocks-accordion-header-font-size': `${customStyles.headerFontSize}px`,
+            '--bBlocks-accordion-content-font-size': `${customStyles.contentFontSize}px`,
+            '--bBlocks-accordion-icon-color': customStyles.iconColor,
+            '--bBlocks-accordion-animation-speed': `${customStyles.animationSpeed}ms`
         };
     };
-    
+
     useEffect(() => {
         const root = accordionRef.current;
         if (!root) return;
@@ -117,31 +117,31 @@ const FrontEnd = ({ attributes }) => {
         className: `accordion-block accordion-theme-${theme}`,
         style: getInlineStyles()
     }}>
-            <div className="accordion-items">
-                {items.map((item, index) => (
-                    <div key={index} className="accordion-item" data-accordion-item>
-                        <button
-                            className="accordion-header"
-                            data-accordion-toggle
-                            type="button"
-                            aria-expanded="false"
-                        >
-                            <span
-                                dangerouslySetInnerHTML={{ __html: item.title }}
-                                className="accordion-title"
+        <div className="accordion-items">
+            {items.map((item, index) => (
+                <div key={index} className="accordion-item" data-accordion-item>
+                    <button
+                        className="accordion-header"
+                        data-accordion-toggle
+                        type="button"
+                        aria-expanded="false"
+                    >
+                        <span
+                            dangerouslySetInnerHTML={{ __html: item.title }}
+                            className="accordion-title"
+                        />
+                        <span className="accordion-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div className="accordion-content" data-accordion-content>
+                        <div className="accordion-text">
+                            <div
+                                dangerouslySetInnerHTML={{ __html: item.content }}
                             />
-                            <span className="accordion-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div className="accordion-content" data-accordion-content>
-                            <div className="accordion-text">
-                                <div
-                                    dangerouslySetInnerHTML={{ __html: item.content }}
-                                />
-                            </div>
                         </div>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
+        </div>
     </div>;
 };
 

@@ -4,7 +4,6 @@ import Style from './Components/Common/Style';
 import Frontend from './Components/Frontend/Frontend';
 
 document.addEventListener('DOMContentLoaded', () => {
-
 	document.querySelectorAll('.wp-block-b-blocks-form-builder').forEach(bFormEl => {
 		let attributes = {};
 		try {
@@ -17,18 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.warn('B Form: Invalid attributes JSON', e);
 		}
 
-		const templateEl = bFormEl.querySelector('template#bFormPhpGetContent');
+		const templateEl = bFormEl.querySelector('div#bFormPhpGetContent');
 		if (!templateEl) return;
 
-		bFormEl.innerHTML = '';
+		// bFormEl.innerHTML = '';
 		createRoot(bFormEl).render(
 			<>
 				<Style attributes={attributes} id={bFormEl.id} />
-				<Frontend attributes={attributes} templateContent={templateEl.content} />
+				<Frontend attributes={attributes} templateContent={templateEl} />
 			</>
 		);
+		if (bFormEl.hasAttribute('data-attributes')) {
+			bFormEl.removeAttribute('data-attributes');
+		}
 
-		bFormEl.removeAttribute('data-attributes');
-		bFormEl.removeAttribute('data-content');
 	});
 });

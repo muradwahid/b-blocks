@@ -219,16 +219,16 @@
 /* Custom Theme */
 .accordion-theme-custom {
 	.accordion-item {
-		background: var(--accordion-content-bg, #ffffff);
-		border: var(--accordion-border-width, 1px) solid var(--accordion-border-color, #dee2e6);
-		border-radius: var(--accordion-border-radius, 8px);
+		background: var(--bBlocks-accordion-content-bg, #ffffff);
+		border: var(--bBlocks-accordion-borderWidth, 1px) solid var(--bBlocks-accordion-border-color, #dee2e6);
+		border-radius: var(--bBlocks-accordion-borderRadius, 8px);
 	}
 
 	.accordion-header {
-		padding: var(--accordion-header-padding, 16px);
-		background: var(--accordion-header-bg, #f8f9fa);
-		color: var(--accordion-header-text, #212529);
-		border-radius: var(--accordion-border-radius, 8px);
+		padding: var(--bBlocks-accordion-headerPadding, 16px);
+		background: var(--bBlocks-accordion-header-bg, #f8f9fa);
+		color: var(--bBlocks-accordion-header-text, #212529);
+		border-radius: var(--bBlocks-accordion-borderRadius, 8px);
 		outline: none;
 
 		&:hover {
@@ -237,25 +237,25 @@
 	}
 
 	.accordion-title {
-		font-size: var(--accordion-header-font-size, 18px);
+		font-size: var(--bBlocks-accordion-header-font-size, 18px);
 	}
 
 	.accordion-icon {
-		color: var(--accordion-icon-color, #212529);
+		color: var(--bBlocks-accordion-icon-color, #212529);
 	}
 
 	.accordion-content {
 		padding: 0;
-		transition: max-height var(--accordion-animation-speed, 300ms) ease, padding var(--accordion-animation-speed, 300ms) ease;
+		transition: max-height var(--bBlocks-accordion-animation-speed, 300ms) ease, padding var(--bBlocks-accordion-animation-speed, 300ms) ease;
 	}
 
 	.accordion-item.is-open .accordion-content {
-		padding: var(--accordion-content-padding, 16px);
+		padding: var(--bBlocks-accordion-content-padding, 16px);
 	}
 
 	.accordion-text {
-		color: var(--accordion-content-text, #495057);
-		font-size: var(--accordion-content-font-size, 16px);
+		color: var(--bBlocks-accordion-content-text, #495057);
+		font-size: var(--bBlocks-accordion-content-font-size, 16px);
 	}
 }
 

@@ -1,4 +1,4 @@
-import { advancedTabsIcon, alertIcon, animationIcon, breadcrumbIcon, buttonGroupIcon, buttonIcon, cardIcon, carouselBlockIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon, videoIcon } from '../../../utils/blocksIcon';
+import { advancedTabsIcon, alertIcon, animationIcon, breadcrumbIcon, buttonGroupIcon, buttonIcon, cardIcon, carouselBlockIcon, chartIcon, containerIcon, contentTickerIcon, countdownIcon, countersIcon, dualColorHeadingIcon, emojiStack, facebookEmbedIcon, facebookPageIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, htmlIcon, iconBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, navigationIcon, newsTicker, postsIcon, priceListIcon, pricingTableIcon, qrCodeIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon, videoIcon, whatsappChatIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -485,6 +485,15 @@ export default [
     {
         title: 'Social Blocks',
         children: [
+            {
+                name: `${pluginSlug}/whatsapp-chat`,
+                title: 'WhatsApp Chat',
+                icon: whatsappChatIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
             {
                 name: `${pluginSlug}/facebook-embed`,
                 title: 'Facebook Embed',

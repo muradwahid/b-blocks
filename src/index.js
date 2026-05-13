@@ -54,6 +54,7 @@ import './shape-divider';
 import './slider';
 import './scroll-to-top';
 import './social-share';
+import './whatsapp-chat';
 import './star-rating';
 import './stacked-cards';
 import './svg-draw';

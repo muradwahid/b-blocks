@@ -24,7 +24,7 @@ const Style = ({ attributes, id }) => {
 		${isValidCSS('box-shadow', getMultiShadowCSS(crumbs[type].shadow))}
 	`;
 
-
+	// console.log(crumbs.typo)
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		${getTypoCSS('', crumbs.typo).googleFontLink}
