@@ -1,0 +1,137 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/review-box",
+	"title": "Review Box",
+	"description": "Add a structured product or service review with scored criteria, pros/cons, summary, CTA button, and optional JSON-LD Review schema for Google rich results.",
+	"category": "bBlocks",
+	"keywords": [
+		"review",
+		"schema",
+		"rating",
+		"pros and cons",
+		"affiliate",
+		"product"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"productName": {
+			"type": "string",
+			"default": "Product Name"
+		},
+		"reviewAuthor": {
+			"type": "string",
+			"default": ""
+		},
+		"reviewDate": {
+			"type": "string",
+			"default": ""
+		},
+		"reviewSummary": {
+			"type": "string",
+			"default": ""
+		},
+		"overallRating": {
+			"type": "number",
+			"default": 0
+		},
+		"ratingMode": {
+			"type": "string",
+			"default": "auto"
+		},
+		"maxRating": {
+			"type": "number",
+			"default": 5
+		},
+		"criteria": {
+			"type": "array",
+			"default": [
+				{ "label": "Quality", "score": 5 },
+				{ "label": "Value", "score": 4 },
+				{ "label": "Performance", "score": 4 }
+			]
+		},
+		"pros": {
+			"type": "array",
+			"default": [ "Pro item" ]
+		},
+		"cons": {
+			"type": "array",
+			"default": [ "Con item" ]
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Check Price"
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"ctaNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"ctaNofollow": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSchema": {
+			"type": "boolean",
+			"default": true
+		},
+		"productImage": {
+			"type": "object",
+			"default": {
+				"url": "",
+				"alt": "",
+				"id": 0
+			}
+		},
+		"styles": {
+			"type": "object",
+			"default": {
+				"backgroundColor": "",
+				"accentColor": "#2271b1",
+				"textColor": "",
+				"borderRadius": "8px",
+				"padding": "24px",
+				"ratingColor": "#f5a623"
+			}
+		},
+		"showProsConsColumns": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCriteria": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

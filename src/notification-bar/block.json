@@ -1,0 +1,119 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/notification-bar",
+	"title": "Notification Bar",
+	"description": "Sticky, full-width announcement bar pinned to the top or bottom of the viewport. Supports a CTA button, persistent dismissal via localStorage, and full color/typography controls.",
+	"category": "bBlocks",
+	"keywords": [
+		"notification bar",
+		"announcement bar",
+		"promo bar",
+		"sticky banner",
+		"top bar"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"position": {
+			"type": "string",
+			"default": "top"
+		},
+		"isSticky": {
+			"type": "boolean",
+			"default": true
+		},
+		"message": {
+			"type": "string",
+			"default": "Welcome! Free shipping on orders over $50."
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Shop Now"
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonOpenNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"isDismissible": {
+			"type": "boolean",
+			"default": true
+		},
+		"dismissStorageKey": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#1a1a2e"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBgColor": {
+			"type": "string",
+			"default": "#e94560"
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"paddingVertical": {
+			"type": "number",
+			"default": 12
+		},
+		"paddingHorizontal": {
+			"type": "number",
+			"default": 20
+		},
+		"fontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"zIndex": {
+			"type": "number",
+			"default": 9999
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

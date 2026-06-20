@@ -1,0 +1,205 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-best-sellers",
+	"version": "1.0.0",
+	"title": "Woo Best Sellers",
+	"category": "bBlocks",
+	"description": "Preset-driven WooCommerce showcase — Best Selling, Top Rated, Newest, On Sale, or Featured products with an optional rank badge and AJAX add-to-cart.",
+	"keywords": [
+		"woocommerce",
+		"best sellers",
+		"top rated",
+		"popular products",
+		"featured",
+		"on sale",
+		"ecommerce",
+		"rank"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"preset": {
+			"type": "string",
+			"default": "best_selling"
+		},
+		"productCount": {
+			"type": "integer",
+			"default": 4
+		},
+		"categoryId": {
+			"type": "integer",
+			"default": 0
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 4,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"columnGap": {
+			"type": "integer",
+			"default": 20
+		},
+		"rowGap": {
+			"type": "integer",
+			"default": 20
+		},
+		"showRankBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"rankBadgeBG": {
+			"type": "string",
+			"default": "#1a1a2e"
+		},
+		"rankBadgeColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"showImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "3/4"
+		},
+		"imageFit": {
+			"type": "string",
+			"default": "cover"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"showPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSaleBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"saleBadgeLabel": {
+			"type": "string",
+			"default": "Sale"
+		},
+		"showAddToCart": {
+			"type": "boolean",
+			"default": true
+		},
+		"addToCartLabel": {
+			"type": "string",
+			"default": "Add to Cart"
+		},
+		"contentAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"cardBG": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardPadding": {
+			"type": "integer",
+			"default": 16
+		},
+		"cardBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "none"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "17px",
+				"tablet": "16px",
+				"mobile": "15px"
+			}
+		},
+		"priceColor": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"regularPriceColor": {
+			"type": "string",
+			"default": "#999999"
+		},
+		"ratingColor": {
+			"type": "string",
+			"default": "#f5a623"
+		},
+		"badgeBG": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"badgeTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnBG": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"btnHovColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnHovBG": {
+			"type": "string",
+			"default": "#070127"
+		},
+		"btnRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"noProductsMessage": {
+			"type": "string",
+			"default": "No products found."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

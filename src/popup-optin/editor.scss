@@ -1,0 +1,47 @@
+/**
+ * Popup Optin — editor-only styles.
+ *
+ * In the editor the popup is rendered inline (not as a fixed overlay) so the
+ * editor can see and edit it. A hint banner explains the runtime behavior.
+ */
+
+.wp-block-b-blocks-popup-optin {
+	&.bb-po-editor {
+		position: relative;
+		display: block;
+		padding: 0;
+		inset: auto;
+
+		.bb-po-editor-hint {
+			margin: 0 0 12px;
+			padding: 8px 12px;
+			font-size: 12px;
+			line-height: 1.5;
+			color: #555;
+			background: #f0f4ff;
+			border: 1px dashed #c3d2ff;
+			border-radius: 6px;
+		}
+
+		.bb-po-overlay {
+			display: none;
+		}
+
+		.bb-po-card {
+			position: relative;
+			opacity: 1;
+			transform: none;
+			margin: 0 auto;
+			box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+		}
+
+		.bb-po-close {
+			cursor: default;
+		}
+
+		.bb-po-submit,
+		.bb-po-dismiss {
+			cursor: default;
+		}
+	}
+}

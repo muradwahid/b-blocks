@@ -76,17 +76,17 @@ extract( $attributes );
 
 			<div class='feature' id='feature-<?php echo esc_attr( $index ); ?>'>
 				<div class='featureIcon'>
-					<?php echo $isUpIcon ?
+					<?php echo $isUpIcon ? // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline constructed with esc_url/esc_attr below.
 					( $upIcon['url'] ? "<img src='". esc_url( $upIcon['url'] ) ."' alt='". esc_attr( $upIcon['alt'] ) ."' />" : '' ) :
 					( $icon['class'] ? "<i class='". esc_attr( $icon['class'] ) ."'></i>" : '' ); ?>
 				</div>
 
 				<div class='featureDetails'>
-					<?php echo $isTitle && $title ? "<h4 class='featureTitle'>". wp_kses_post( $title ) ."</h4>" : ''; ?>
+					<?php echo $isTitle && $title ? "<h4 class='featureTitle'>". wp_kses_post( $title ) ."</h4>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static wrapper tags with wp_kses_post-escaped content. ?>
 
-					<?php echo $isSep ? "<span class='featureSeparator'></span>" : ''; ?>
+					<?php echo $isSep ? "<span class='featureSeparator'></span>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup, no user input. ?>
 
-					<?php echo $isDesc && $desc ? "<p class='featureDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
+					<?php echo $isDesc && $desc ? "<p class='featureDescription'>". wp_kses_post( $desc ) ."</p>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static wrapper tags with wp_kses_post-escaped content. ?>
 				</div>
 			</div>
 		<?php } ?>

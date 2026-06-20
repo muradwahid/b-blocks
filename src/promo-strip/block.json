@@ -1,0 +1,195 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/promo-strip",
+	"title": "Promo Strip",
+	"description": "A full-width promotional strip fusing a headline, a live countdown timer, and a CTA button — the classic time-limited \"flash sale\" urgency banner.",
+	"category": "bBlocks",
+	"keywords": [
+		"promo strip",
+		"sale banner",
+		"countdown banner",
+		"flash sale",
+		"urgency timer"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"headlineText": {
+			"type": "string",
+			"default": "Limited Time Offer"
+		},
+		"headlineTag": {
+			"type": "string",
+			"default": "p"
+		},
+		"subText": {
+			"type": "string",
+			"default": ""
+		},
+		"destDate": {
+			"type": "string",
+			"default": ""
+		},
+		"showDays": {
+			"type": "boolean",
+			"default": true
+		},
+		"showHours": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMinutes": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSeconds": {
+			"type": "boolean",
+			"default": true
+		},
+		"daysLabel": {
+			"type": "string",
+			"default": "Days"
+		},
+		"hoursLabel": {
+			"type": "string",
+			"default": "Hours"
+		},
+		"minutesLabel": {
+			"type": "string",
+			"default": "Minutes"
+		},
+		"secondsLabel": {
+			"type": "string",
+			"default": "Seconds"
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": "Shop Now"
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"layout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#1a1a2e"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"timerDigitColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"timerLabelColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"timerSeparatorColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBg": {
+			"type": "string",
+			"default": "#e63946"
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonHoverBg": {
+			"type": "string",
+			"default": "#c1121f"
+		},
+		"buttonHoverTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBorderRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"buttonPaddingV": {
+			"type": "integer",
+			"default": 10
+		},
+		"buttonPaddingH": {
+			"type": "integer",
+			"default": 24
+		},
+		"fontSize": {
+			"type": "integer",
+			"default": 16
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"timerDigitSize": {
+			"type": "integer",
+			"default": 32
+		},
+		"timerLabelSize": {
+			"type": "integer",
+			"default": 12
+		},
+		"paddingV": {
+			"type": "integer",
+			"default": 16
+		},
+		"paddingH": {
+			"type": "integer",
+			"default": 24
+		},
+		"contentMaxWidth": {
+			"type": "integer",
+			"default": 1200
+		},
+		"onExpire": {
+			"type": "string",
+			"default": "hide"
+		},
+		"expiredMessage": {
+			"type": "string",
+			"default": "This offer has ended."
+		},
+		"zIndex": {
+			"type": "integer",
+			"default": 10
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

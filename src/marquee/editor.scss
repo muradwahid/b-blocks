@@ -1,0 +1,78 @@
+/**
+ * Marquee — editor-only styles.
+ */
+
+.wp-block-b-blocks-marquee {
+	// In the editor the track is rendered static and allowed to overflow-scroll
+	// so the editor never animates.
+	.bb-mq-track--static {
+		max-width: 100%;
+		flex-wrap: wrap;
+		row-gap: 8px;
+	}
+
+	// Repeater UI in the inspector.
+	.bb-mq-repeater {
+		&__row {
+			padding: 12px;
+			margin-bottom: 12px;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			background: #fff;
+		}
+
+		&__row-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 8px;
+		}
+
+		&__row-title {
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #555;
+		}
+
+		&__row-actions {
+			display: flex;
+			gap: 2px;
+		}
+
+		&__type {
+			display: flex;
+			gap: 4px;
+		}
+
+		&__media-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+		}
+
+		&__thumb {
+			display: block;
+			max-width: 100%;
+			max-height: 64px;
+			width: auto;
+			height: auto;
+			object-fit: contain;
+			padding: 6px;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			background:
+				linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+				linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+				linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+				linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+			background-size: 16px 16px;
+			background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+		}
+	}
+
+	.bb-mq-add-item {
+		width: 100%;
+		justify-content: center;
+	}
+}

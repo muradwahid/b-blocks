@@ -1,0 +1,110 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/timeline",
+	"version": "1.0.0",
+	"title": "Timeline",
+	"category": "bBlocks",
+	"description": "A vertical timeline block for events, history, and roadmaps with auto-alternating left/right layout.",
+	"keywords": [
+		"timeline",
+		"history",
+		"roadmap",
+		"events",
+		"milestones"
+	],
+	"textdomain": "b-blocks",
+	"example": {
+		"attributes": {
+			"layout": "alternating",
+			"variant": "modern",
+			"items": [
+				{
+					"date": "2022",
+					"title": "Foundation",
+					"description": "The company was founded with a clear vision for the future.",
+					"icon": "",
+					"accentColor": "#0d6efd"
+				},
+				{
+					"date": "2023",
+					"title": "Growth",
+					"description": "Expanded the team and launched our first major product.",
+					"icon": "",
+					"accentColor": "#198754"
+				},
+				{
+					"date": "2024",
+					"title": "Innovation",
+					"description": "Introduced new features and won industry recognition.",
+					"icon": "",
+					"accentColor": "#fd7e14"
+				}
+			]
+		}
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"date": "2022",
+					"title": "Timeline Item 1",
+					"description": "Add a short description for this milestone.",
+					"icon": "",
+					"accentColor": "#0d6efd"
+				},
+				{
+					"date": "2023",
+					"title": "Timeline Item 2",
+					"description": "Add a short description for this milestone.",
+					"icon": "",
+					"accentColor": "#198754"
+				},
+				{
+					"date": "2024",
+					"title": "Timeline Item 3",
+					"description": "Add a short description for this milestone.",
+					"icon": "",
+					"accentColor": "#fd7e14"
+				}
+			]
+		},
+		"layout": {
+			"type": "string",
+			"default": "alternating"
+		},
+		"variant": {
+			"type": "string",
+			"default": "modern"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"lineColor": {
+			"type": "string",
+			"default": "#dee2e6"
+		},
+		"showIcons": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"render": "file:./render.php",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js"
+}

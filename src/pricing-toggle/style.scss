@@ -1,0 +1,122 @@
+// Pricing Toggle — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+
+.wp-block-b-blocks-pricing-toggle,
+.bb-pt-wrap {
+	--bb-pt-track-w: 52px;
+	--bb-pt-track-h: 28px;
+	--bb-pt-knob-size: 20px;
+	--bb-pt-knob-gap: 4px;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	display: flex;
+	width: 100%;
+
+	&.bb-pt-align-left {
+		justify-content: flex-start;
+	}
+
+	&.bb-pt-align-center {
+		justify-content: center;
+	}
+
+	&.bb-pt-align-right {
+		justify-content: flex-end;
+	}
+
+	.bb-pt-row {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--bb-pt-gap, 12px);
+		flex-wrap: wrap;
+		justify-content: center;
+		max-width: 100%;
+	}
+
+	.bb-pt-label {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--bb-pt-label-color, inherit);
+		font-size: var(--bb-pt-font-size, 16px);
+		font-weight: var(--bb-pt-font-weight, 500);
+		line-height: 1.3;
+		transition: color 0.2s ease;
+
+		&.is-active {
+			color: var(--bb-pt-active-label-color, #2563eb);
+		}
+	}
+
+	.bb-pt-badge {
+		display: inline-block;
+		padding: 2px 10px;
+		background-color: var(--bb-pt-badge-bg, #16a34a);
+		color: var(--bb-pt-badge-color, #ffffff);
+		border-radius: var(--bb-pt-badge-radius, 20px);
+		font-size: 0.75em;
+		font-weight: 600;
+		line-height: 1.5;
+		white-space: nowrap;
+	}
+
+	.bb-pt-switch {
+		position: relative;
+		flex: 0 0 auto;
+		display: inline-block;
+		width: var(--bb-pt-track-w, 52px);
+		height: var(--bb-pt-track-h, 28px);
+		padding: 0;
+		background-color: var(--bb-pt-track-bg, #e2e8f0);
+		border: none;
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background-color 0.25s ease;
+
+		&:focus-visible {
+			outline: 3px solid var(--bb-pt-track-active-bg, #2563eb);
+			outline-offset: 3px;
+		}
+	}
+
+	.bb-pt-knob {
+		position: absolute;
+		top: 50%;
+		left: var(--bb-pt-knob-gap, 4px);
+		width: var(--bb-pt-knob-size, 20px);
+		height: var(--bb-pt-knob-size, 20px);
+		background-color: var(--bb-pt-knob, #ffffff);
+		border-radius: 50%;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+		transform: translate(var(--bb-pt-knob-x, 0), -50%);
+		transition: transform 0.25s ease;
+	}
+
+	// Active / annual state.
+	&.is-annual .bb-pt-switch {
+		background-color: var(--bb-pt-track-active-bg, #2563eb);
+	}
+
+	&.is-annual .bb-pt-knob {
+		--bb-pt-knob-x: calc(var(--bb-pt-track-w) - var(--bb-pt-knob-size) - (var(--bb-pt-knob-gap) * 2));
+	}
+
+	// Mobile-first: keep the row centered and prevent awkward overflow.
+	@media (max-width: 480px) {
+		.bb-pt-row {
+			gap: calc(var(--bb-pt-gap, 12px) * 0.75);
+		}
+	}
+
+	// Respect prefers-reduced-motion — no knob slide, no color fade.
+	@media (prefers-reduced-motion: reduce) {
+		.bb-pt-switch,
+		.bb-pt-knob,
+		.bb-pt-label {
+			transition: none;
+		}
+	}
+}

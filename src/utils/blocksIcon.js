@@ -23,6 +23,15 @@ export const imageIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<path d='M7 10h-4.083l1.271-1.396.812.396.676-.862 1.324 1.862zm.88 3h-7.88v-8h9.204c.739 1.612 2.024 1.696 3.796 2.509v4.648c-1.638-.182-3.985-.26-5.12.843zm.12-6h-6v4h6v-4zm9.17-1.833c-.806-1.165-5.031-1.924-6.742-2.167-.169.727.111 1.643.859 2.076.729.422 2.847 1.078 3.473 1.702.812.808 2.026 4.668.028 7.282-2.076-.589-4.24-.527-5.415-.048-1.153.47-1.013 1.908.189 2.045 3.42.39 7.587 1.161 10.322 4.943 0 0 1.821-1.885 4.115-4.426-3.668-3.053-4.198-7.606-6.829-11.407zm-13.92 2.833c-.138 0-.25.112-.25.25s.112.25.25.25c.139 0 .25-.112.25-.25s-.111-.25-.25-.25z' />
 </svg>
 
+export const anchorNavIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='4' width='20' height='6' rx='2' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<rect x='4.5' y='6.4' width='4' height='1.6' rx='0.8' fill={primaryColor} />
+	<rect x='10' y='6.4' width='4' height='1.6' rx='0.8' fill={primaryColor300} opacity='0.55' />
+	<rect x='15.5' y='6.4' width='4' height='1.6' rx='0.8' fill={primaryColor300} opacity='0.55' />
+	<path d='M6.5 11.5v3.2m0 0l-1.4-1.4m1.4 1.4l1.4-1.4' stroke={primaryColor} strokeWidth='1.3' strokeLinecap='round' strokeLinejoin='round' />
+	<rect x='10.5' y='17' width='3' height='3' rx='0.6' fill='none' stroke='currentColor' strokeWidth='1.3' opacity='0.45' />
+</svg>
+
 export const alertIcon = <svg {...svgProps} viewBox='0 0 20 20'>
 	<path fillRule='evenodd' d='M9.938 4.016a.146.146 0 00-.054.057L3.027 15.74a.176.176 0 00-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 00.066-.017.163.163 0 00.055-.06.176.176 0 00-.003-.183L10.12 4.073a.146.146 0 00-.054-.057.13.13 0 00-.063-.016.13.13 0 00-.064.016zm1.043-.45a1.13 1.13 0 00-1.96 0L2.166 15.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L10.982 3.566z' />
 	<rect width='2' height='2' x='9.002' y='13' rx='1' />
@@ -263,6 +272,12 @@ export const sliderIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<path d='m21 24h-18c-1.654 0-3-1.346-3-3v-18c0-1.654 1.346-3 3-3h18c1.654 0 3 1.346 3 3v18c0 1.654-1.346 3-3 3zm-18-22c-.552 0-1 .449-1 1v18c0 .551.448 1 1 1h18c.552 0 1-.449 1-1v-18c0-.551-.448-1-1-1z' />
 </svg>
 
+export const imageSliderIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M5 6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5Zm0-2h14a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z' />
+	<path d='M8.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm9.5 5-3.5-4.5-2.5 3-1.5-1.8L6 16h12Z' />
+	<path d='M1 9a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1Zm22 0a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1Z' />
+</svg>
+
 export const socialShareIcon = <svg {...svgProps} viewBox='0 0 490 490'>
 	<path d='M245,490c135.31,0,245-109.69,245-245C490,109.69,380.31,0,245,0S0,109.69,0,245C0,380.31,109.69,490,245,490z M245,30.625 c118.207,0,214.375,96.168,214.375,214.375S363.207,459.375,245,459.375S30.625,363.207,30.625,245S126.793,30.625,245,30.625z' />
 	<path d='M137.499,304.69c15.674,0,29.948-6.083,40.611-16l78.128,36.678c-0.583,3.341-0.904,6.771-0.904,10.276 c0,32.913,26.782,59.695,59.695,59.695c32.913,0,59.695-26.782,59.695-59.695c0-32.913-26.782-59.695-59.695-59.695 c-18.454,0-34.978,8.422-45.937,21.621l-74.543-34.995c1.717-5.561,2.646-11.464,2.646-17.581c0-4.942-0.615-9.741-1.753-14.337 l75.93-35.646c10.906,11.704,26.437,19.043,43.657,19.043c32.913,0,59.695-26.782,59.695-59.695 c0-32.913-26.782-59.695-59.695-59.695c-32.913,0-59.695,26.782-59.695,59.695c0,4.681,0.559,9.232,1.583,13.606l-76.295,35.817 c-10.876-11.376-26.181-18.484-43.123-18.484c-32.913,0-59.695,26.782-59.695,59.695S104.586,304.69,137.499,304.69z M315.028,306.574c16.03,0,29.07,13.04,29.07,29.07c0,16.03-13.04,29.07-29.07,29.07c-16.03,0-29.07-13.04-29.07-29.07 C285.958,319.614,298.998,306.574,315.028,306.574z M315.028,125.291c16.03,0,29.07,13.039,29.07,29.07 c0,16.03-13.04,29.07-29.07,29.07c-16.03,0-29.07-13.04-29.07-29.07C285.958,138.331,298.998,125.291,315.028,125.291z M137.499,215.925c16.03,0,29.07,13.04,29.07,29.07s-13.039,29.07-29.07,29.07s-29.07-13.04-29.07-29.07 S121.468,215.925,137.499,215.925z' />
@@ -343,6 +358,16 @@ export const accordionIcon = <svg {...svgProps} width={24} height={24} viewBox='
 
 export const skillBarIcon = <svg {...svgProps} height="30" viewBox="0 0 24 24" width="30"><g id="Layer_2" data-name="Layer 2"><rect height="11.5" rx="1.25" width="5.5" x="1.25" y="10.25" /><rect height="15.5" rx="1.25" width="5.5" x="9.25" y="6.25" /><rect height="19.5" rx="1.25" width="5.5" x="17.25" y="2.25" /></g></svg>
 
+export const progressBarIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 10a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4zm2 0v4h14v-4H5z' />
+	<rect x='5' y='10' width='9' height='4' rx='0.5' />
+</svg>
+
+export const progressCircleIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path fill='none' stroke='currentColor' strokeWidth='2.5' d='M12 3a9 9 0 1 1-9 9' strokeLinecap='round' />
+	<circle cx='12' cy='12' r='9' fill='none' stroke='currentColor' strokeOpacity='0.2' strokeWidth='2.5' />
+</svg>
+
 export const testimonialsIcon = <svg {...svgProps} width="30" height="30" viewBox="0 0 20 20">
 	<rect x="0" fill="none" width="20" height="20" /><g><path d="M4 3h12c.55 0 1.02.2 1.41.59S18 4.45 18 5v7c0 .55-.2 1.02-.59 1.41S16.55 14 16 14h-1l-5 5v-5H4c-.55 0-1.02-.2-1.41-.59S2 12.55 2 12V5c0-.55.2-1.02.59-1.41S3.45 3 4 3zm11 2H4v1h11V5zm1 3H4v1h12V8zm-3 3H4v1h9v-1z" /></g></svg>;
 
@@ -350,7 +375,56 @@ export const formBuilderIcon = <svg {...svgProps} viewBox="0 0 102.05 102.05"><p
 
 export const listIcon = <svg {...svgProps} viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"></path></svg>
 
+export const iconListIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<circle cx='5' cy='6.5' r='2.2' fill={primaryColor} />
+	<path d='M4.1 6.7l0.7 0.7 1.5-1.6-0.6-0.6-0.9 1-0.2-0.2-0.5 0.7z' fill='#ffffff' />
+	<rect x='9.2' y='5.6' width='11' height='1.8' rx='0.6' opacity='0.85' />
+	<rect x='9.2' y='8.4' width='7' height='1.2' rx='0.4' opacity='0.45' />
+	<circle cx='5' cy='12.5' r='2.2' fill={primaryColor} />
+	<path d='M4.1 12.7l0.7 0.7 1.5-1.6-0.6-0.6-0.9 1-0.2-0.2-0.5 0.7z' fill='#ffffff' />
+	<rect x='9.2' y='11.6' width='11' height='1.8' rx='0.6' opacity='0.85' />
+	<rect x='9.2' y='14.4' width='8' height='1.2' rx='0.4' opacity='0.45' />
+	<circle cx='5' cy='18.5' r='2.2' fill={primaryColor} />
+	<path d='M4.1 18.7l0.7 0.7 1.5-1.6-0.6-0.6-0.9 1-0.2-0.2-0.5 0.7z' fill='#ffffff' />
+	<rect x='9.2' y='17.6' width='11' height='1.8' rx='0.6' opacity='0.85' />
+	<rect x='9.2' y='20.4' width='6' height='1.2' rx='0.4' opacity='0.45' />
+</svg>
+
+export const iconIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<circle cx='12' cy='12' r='10' fill={primaryColor} opacity='0.12' />
+	<path d='M12 5.5l1.85 3.76 4.15.6-3 2.93.71 4.13L12 15.5l-3.71 1.92.71-4.13-3-2.93 4.15-.6z' fill={primaryColor} />
+</svg>
+
+export const keyTakeawaysIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='3' width='18' height='18' rx='2.5' fill={primaryColor} opacity='0.12' />
+	<rect x='3' y='3' width='18' height='5' rx='2.5' fill={primaryColor} />
+	<circle cx='6.5' cy='12.5' r='1.8' fill={primaryColor} />
+	<path d='M5.7 12.6l0.6 0.7 1.4-1.5-0.6-0.5-0.8 0.9-0.2-0.2-0.4 0.6z' fill='#ffffff' />
+	<rect x='9.6' y='11.6' width='8.8' height='1.8' rx='0.6' fill={primaryColor} opacity='0.7' />
+	<circle cx='6.5' cy='17' r='1.8' fill={primaryColor} />
+	<path d='M5.7 17.1l0.6 0.7 1.4-1.5-0.6-0.5-0.8 0.9-0.2-0.2-0.4 0.6z' fill='#ffffff' />
+	<rect x='9.6' y='16.1' width='6.5' height='1.8' rx='0.6' fill={primaryColor} opacity='0.7' />
+</svg>
+
+export const interactiveChecklistIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='3' width='18' height='18' rx='2.5' fill={primaryColor} opacity='0.12' />
+	<rect x='4.5' y='6' width='4' height='4' rx='1' fill={primaryColor} />
+	<path d='M5.2 8l0.7 0.8 1.6-1.7-0.7-0.6-0.9 1-0.3-0.3z' fill='#ffffff' />
+	<rect x='10.5' y='7' width='8' height='2' rx='1' fill={primaryColor} opacity='0.7' />
+	<rect x='4.5' y='14' width='4' height='4' rx='1' fill={primaryColor} />
+	<path d='M5.2 16l0.7 0.8 1.6-1.7-0.7-0.6-0.9 1-0.3-0.3z' fill='#ffffff' />
+	<rect x='10.5' y='15' width='8' height='2' rx='1' fill={primaryColor} opacity='0.7' />
+</svg>
+
 export const scrollToTopIcon = <svg {...svgProps} viewBox="0 0 640 640"><path d="M342.6 105.4C330.1 92.9 309.8 92.9 297.3 105.4L137.3 265.4C124.8 277.9 124.8 298.2 137.3 310.7C149.8 323.2 170.1 323.2 182.6 310.7L320 173.3L457.4 310.6C469.9 323.1 490.2 323.1 502.7 310.6C515.2 298.1 515.2 277.8 502.7 265.3L342.7 105.3zM502.6 457.4L342.6 297.4C330.1 284.9 309.8 284.9 297.3 297.4L137.3 457.4C124.8 469.9 124.8 490.2 137.3 502.7C149.8 515.2 170.1 515.2 182.6 502.7L320 365.3L457.4 502.6C469.9 515.1 490.2 515.1 502.7 502.6C515.2 490.1 515.2 469.8 502.7 457.3z" /></svg>;
+
+export const readingProgressIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='4' width='20' height='3' rx='1' fill='#e0e0e0' />
+	<rect x='2' y='4' width='12' height='3' rx='1' fill={primaryColor} />
+	<rect x='4' y='11' width='16' height='1.6' rx='0.8' opacity='0.55' />
+	<rect x='4' y='14.5' width='14' height='1.6' rx='0.8' opacity='0.45' />
+	<rect x='4' y='18' width='10' height='1.6' rx='0.8' opacity='0.35' />
+</svg>;
 
 
 export const textPathIcon = <svg {...svgProps} viewBox="0 0 512.006 512.006" ><g><path d="m324.174 93.201 3.882 14.489c2.144 8.002 10.366 12.75 18.371 10.607 8.002-2.144 12.75-10.369 10.606-18.371l-7.765-28.978c-2.145-8.002-10.368-12.751-18.371-10.607l-289.777 77.646c-3.843 1.03-7.119 3.544-9.108 6.989s-2.528 7.54-1.499 11.382l7.765 28.978c2.134 7.963 10.33 12.761 18.371 10.606 8.002-2.144 12.75-10.369 10.606-18.371l-3.882-14.489 86.934-23.294 54.352 202.844-14.489 3.883c-8.002 2.144-12.75 10.369-10.606 18.371s10.368 12.751 18.371 10.606l115.911-31.058c8.002-2.144 12.751-10.369 10.606-18.371-2.151-8.029-10.393-12.744-18.371-10.607l-14.489 3.882-54.352-202.843z" /><path d="m461.803 367.785c-24.295-13.74-52.521-17.328-79.448-10.113l-228.143 60.595c-48.557 13.01-100.51-8.021-126.341-51.145-4.258-7.107-13.47-9.417-20.576-5.16-7.107 4.257-9.417 13.469-5.16 20.576 16.119 26.909 40.008 47.354 69.084 59.125 17.287 6.998 35.384 10.518 53.583 10.517 12.411 0 24.872-1.638 37.144-4.927l228.143-60.595c39.675-10.628 81.164 12.838 92.497 52.311 2.286 7.963 10.594 12.565 18.557 10.278 7.962-2.286 12.564-10.594 10.278-18.557-7.703-26.826-25.324-49.166-49.618-62.905z" /></g></svg>
@@ -368,6 +442,358 @@ export const carouselBlockIcon = <svg {...svgProps} viewBox="42.5 101.81 427 308
 
 export const stackedCardIcon = <svg {...svgProps} width="1em" height="1em" viewBox="0 0 32 32" size="24"><path fillRule="evenodd" d="M1.6 10.1a.033.033 0 0 0-.033.033v16.534c0 .018.015.033.033.033h24a.033.033 0 0 0 .033-.033V10.133a.033.033 0 0 0-.033-.033zm-1.033.033c0-.57.462-1.033 1.033-1.033h24c.57 0 1.033.463 1.033 1.033v16.534c0 .57-.462 1.033-1.033 1.033h-24c-.57 0-1.033-.463-1.033-1.033z" clipRule="evenodd"></path><path fillRule="evenodd" d="M2.167 7.467a.5.5 0 0 1 .5-.5h24c1.16 0 2.1.94 2.1 2.1v17.066a.5.5 0 1 1-1 0V9.067a1.1 1.1 0 0 0-1.1-1.1h-24a.5.5 0 0 1-.5-.5" clipRule="evenodd"></path><path fillRule="evenodd" d="M3.767 5.333a.5.5 0 0 1 .5-.5H27.2a3.7 3.7 0 0 1 3.7 3.7v16a.5.5 0 1 1-1 0v-16a2.7 2.7 0 0 0-2.7-2.7H4.267a.5.5 0 0 1-.5-.5" clipRule="evenodd"></path></svg>
 
+export const modalPopupIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5zm2 0v10h12V5H6z' />
+	<path d='M8 8h8v1.5H8V8zm0 3h5v1.5H8V11z' />
+	<path d='M15.3 14.2l-1.1-1.1 2.3-2.3 1.1 1.1-2.3 2.3zm3.1-3.1L17.3 10l1.1-1.1 1.1 1.1-1.1 1.1z' />
+	<path d='M3 19h18v1.5H3V19z' opacity='0.6' />
+</svg>
+
+export const callToActionIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-5l-3 3v-3H5a2 2 0 0 1-2-2V5zm2 0v9h6v1.6l1.6-1.6H19V5H5z' />
+	<path d='M8 8h8v1.5H8V8zm0 3h5v1.5H8V11z' />
+	<path d='M15.5 17.5h3a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1.5a1 1 0 0 1 1-1z' />
+</svg>
+
+export const reviewBoxIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm0 2h16v12H4V6z' />
+	<path d='M12 7.5l1.2 2.45 2.7.4-1.95 1.9.46 2.7L12 13.7l-2.41 1.25.46-2.7-1.95-1.9 2.7-.4L12 7.5z' />
+	<path d='M5 16.5h4v1H5v-1zm6 0h8v1h-8v-1z' opacity='0.55' />
+</svg>
+
+export const testimonialCardIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3v3l4-3h9a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm0 2h16v9h-9.66L8 16.76V15H4V6z' />
+	<path d='M7.2 8.6l1.05 2.1 2.32.34-1.68 1.63.4 2.31-2.09-1.1-2.08 1.1.4-2.31L3.83 11l2.32-.34L7.2 8.6z' opacity='0.85' />
+	<path d='M14 8h4v1.4h-4V8zm0 2.8h4v1.4h-4v-1.4z' opacity='0.55' />
+</svg>
+
+export const testimonialSliderIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2v3l4-3h4a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4zm0 2h12v7h-4.66L9 15.76V14H4V7z' />
+	<path d='M7 9.4l.72 1.46 1.6.23-1.16 1.13.27 1.6L7 13.06l-1.43.76.27-1.6-1.16-1.13 1.6-.23L7 9.4z' opacity='0.85' />
+	<path d='M20 8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-1.5l-2 1.5V19H19V9h-1V8h2z' opacity='0.45' />
+</svg>
+
+export const offCanvasIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H3zm0 2h18v12H3V6z' />
+	<path d='M3 4h9v16H3V4z' opacity='0.85' />
+	<path d='M5.5 8h4v1.5h-4V8zm0 3h4v1.5h-4V11zm0 3h4v1.5h-4V14z' fill='#ffffff' />
+</svg>
+
+export const faqBlockIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4zm0 2h16v14H4V5z' />
+	<path d='M6.5 7h11v1.6h-11V7zm0 4.2h11v1.6h-11v-1.6zm0 4.2h7v1.6h-7v-1.6z' />
+	<path d='M16.6 14.5h2a1 1 0 0 1 1 1V17a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1.5a1 1 0 0 1 1-1z' opacity='0.55' />
+</svg>
+
+export const howtoSchemaIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<circle cx='5' cy='6' r='2' />
+	<circle cx='5' cy='12' r='2' />
+	<circle cx='5' cy='18' r='2' />
+	<path d='M9 5.2h11v1.6H9V5.2zm0 6h11v1.6H9v-1.6zm0 6h11v1.6H9v-1.6z' />
+	<path d='M5 8v2' stroke='currentColor' strokeWidth='1' opacity='0.5' />
+	<path d='M5 14v2' stroke='currentColor' strokeWidth='1' opacity='0.5' />
+</svg>
+
+export const imageBoxIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='4' width='18' height='16' rx='2' ry='2' fill='none' stroke='currentColor' strokeWidth='1.6' />
+	<path d='M3.6 16.5L8 12.2l3.4 3.3 3.6-3.6 5.4 5.1' fill='none' stroke='currentColor' strokeWidth='1.4' strokeLinecap='round' strokeLinejoin='round' opacity='0.85' />
+	<circle cx='8.4' cy='9.2' r='1.6' fill='currentColor' opacity='0.75' />
+	<rect x='3' y='14' width='18' height='6' rx='0' ry='0' fill='currentColor' opacity='0.18' />
+	<rect x='5.4' y='16.3' width='8' height='1.3' rx='0.6' fill='currentColor' opacity='0.85' />
+	<rect x='5.4' y='18.2' width='5.5' height='0.9' rx='0.45' fill='currentColor' opacity='0.55' />
+</svg>
+
+export const imageMaskIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<defs>
+		<clipPath id='bbImageMaskHex'>
+			<path d='M12 3 L19 7 L19 15 L12 19 L5 15 L5 7 Z' />
+		</clipPath>
+	</defs>
+	<rect x='3' y='3' width='18' height='18' rx='2' fill='currentColor' opacity='0.14' />
+	<g clipPath='url(#bbImageMaskHex)'>
+		<rect x='5' y='3' width='14' height='16' fill={primaryColor} opacity='0.85' />
+		<circle cx='10' cy='9' r='2' fill='#fff' opacity='0.9' />
+		<path d='M5 16 L9 12 L12 14.5 L15 11.5 L19 15 L19 19 L5 19 Z' fill='#fff' opacity='0.55' />
+	</g>
+	<path d='M12 3 L19 7 L19 15 L12 19 L5 15 L5 7 Z' fill='none' stroke='currentColor' strokeWidth='1.4' strokeLinejoin='round' />
+</svg>
+
+export const imageAccordionIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='4' width='13' height='16' rx='1.4' fill={primaryColor} opacity='0.85' />
+	<rect x='16.5' y='4' width='2.6' height='16' rx='0.8' fill={primaryColor} opacity='0.5' />
+	<rect x='20.4' y='4' width='2.6' height='16' rx='0.8' fill={primaryColor300} opacity='0.5' />
+	<circle cx='6.5' cy='9' r='1.8' fill='#fff' opacity='0.9' />
+	<path d='M2.5 18 L6 14 L9 16.5 L12 13.5 L15.5 17 L15.5 18.6 Q15.5 20 14.1 20 L3.9 20 Q2.5 20 2.5 18.6 Z' fill='#fff' opacity='0.6' />
+	<rect x='4.5' y='16.4' width='7' height='1.4' rx='0.7' fill='#fff' opacity='0.85' />
+</svg>
+
+export const portfolioGalleryIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='3' width='6.5' height='5' rx='1' fill={primaryColor} opacity='0.85' />
+	<rect x='10' y='3' width='6.5' height='5' rx='1' fill={primaryColor} opacity='0.6' />
+	<rect x='17.5' y='3' width='4' height='5' rx='1' fill={primaryColor} opacity='0.45' />
+	<rect x='2.5' y='9' width='4' height='6' rx='1' fill={primaryColor} opacity='0.55' />
+	<rect x='7.5' y='9' width='9' height='6' rx='1' fill={primaryColor} />
+	<rect x='17.5' y='9' width='4' height='6' rx='1' fill={primaryColor} opacity='0.7' />
+	<rect x='2' y='17' width='3.5' height='1.8' rx='0.9' fill={primaryColor} opacity='0.85' />
+	<rect x='6.5' y='17' width='3.5' height='1.8' rx='0.9' fill={primaryColor} opacity='0.45' />
+	<rect x='11' y='17' width='3.5' height='1.8' rx='0.9' fill={primaryColor} opacity='0.45' />
+	<path d='M16 17.3l1.4 1.4-1.4 1.4M19 17.3l1.4 1.4-1.4 1.4' fill='none' stroke={primaryColor} strokeWidth='1.2' strokeLinecap='round' opacity='0.55' />
+</svg>
+
+export const processStepsIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<circle cx='4.5' cy='12' r='2.5' />
+	<circle cx='12' cy='12' r='2.5' />
+	<circle cx='19.5' cy='12' r='2.5' opacity='0.55' />
+	<path d='M7.2 12h1.6v.6H7.2V12zm0-.6h1.6V12H7.2v-.6z' fill='none' stroke='currentColor' strokeWidth='1.2' strokeLinecap='round' strokeDasharray='1.6 1.4' />
+	<path d='M7 12h2.5' fill='none' stroke='currentColor' strokeWidth='1.2' strokeLinecap='round' />
+	<path d='M14.5 12H17' fill='none' stroke='currentColor' strokeWidth='1.2' strokeLinecap='round' strokeDasharray='1.6 1.4' opacity='0.7' />
+	<text x='4.5' y='13.2' textAnchor='middle' fontSize='3.2' fontWeight='700' fill='#ffffff'>1</text>
+	<text x='12' y='13.2' textAnchor='middle' fontSize='3.2' fontWeight='700' fill='#ffffff'>2</text>
+	<text x='19.5' y='13.2' textAnchor='middle' fontSize='3.2' fontWeight='700' fill='#ffffff' opacity='0.85'>3</text>
+</svg>
+
+export const notificationBarIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M2 4a1.5 1.5 0 0 1 1.5-1.5h17A1.5 1.5 0 0 1 22 4v3a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 7V4zm1.6.1V6.9h16.8V4.1H3.6z' />
+	<path d='M5 5.2h7v1.6H5V5.2z' opacity='0.85' />
+	<path d='M16.4 4.6h2a.8.8 0 0 1 .8.8v.2a.8.8 0 0 1-.8.8h-2a.8.8 0 0 1-.8-.8v-.2a.8.8 0 0 1 .8-.8z' opacity='0.55' />
+	<path d='M3 11.5h18v1.2H3v-1.2zm0 3h12v1.2H3v-1.2zm0 3h18v1.2H3v-1.2z' opacity='0.4' />
+</svg>
+
+export const promoStripIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='1.5' y='6' width='21' height='12' rx='1.5' fill={primaryColor} opacity='0.9' />
+	<rect x='3.5' y='9.4' width='5.4' height='2.2' rx='0.5' fill='#fff' opacity='0.95' />
+	<rect x='3.5' y='12.6' width='3.6' height='1.6' rx='0.4' fill='#fff' opacity='0.6' />
+	<rect x='10.4' y='9.2' width='2.6' height='5.6' rx='0.6' fill='#fff' opacity='0.9' />
+	<rect x='13.4' y='9.2' width='2.6' height='5.6' rx='0.6' fill='#fff' opacity='0.9' />
+	<rect x='17.3' y='9.6' width='3.9' height='4.8' rx='1' fill={primaryColor300} />
+</svg>
+
+export const urgencyTimerIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<circle cx='12' cy='13' r='8' fill={primaryColor} opacity='0.9' />
+	<path d='M12 8.2v4.8l3.2 1.9' fill='none' stroke='#fff' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
+	<rect x='9.6' y='2.4' width='4.8' height='1.8' rx='0.6' fill={primaryColor300} />
+	<rect x='11.1' y='3.4' width='1.8' height='2' rx='0.4' fill={primaryColor300} />
+	<path d='M18.6 5.4l1.6 1.6' fill='none' stroke={primaryColor300} strokeWidth='1.6' strokeLinecap='round' />
+</svg>
+
+export const audioPlayerIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='7' width='20' height='10' rx='3' fill={primaryColor} opacity='0.9' />
+	<circle cx='7.5' cy='12' r='2.6' fill='#fff' />
+	<path d='M6.6 10.7v2.6l2.3-1.3z' fill={primaryColor} />
+	<rect x='12' y='9.3' width='1.4' height='5.4' rx='0.7' fill='#fff' opacity='0.95' />
+	<rect x='14.4' y='10.6' width='1.4' height='2.8' rx='0.7' fill='#fff' opacity='0.85' />
+	<rect x='16.8' y='8.6' width='1.4' height='6.8' rx='0.7' fill='#fff' opacity='0.95' />
+	<rect x='19.2' y='10.2' width='1.4' height='3.6' rx='0.7' fill='#fff' opacity='0.8' />
+</svg>
+
+export const cookieConsentBarIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='1.5' y='15' width='21' height='6.5' rx='1.5' fill={primaryColor} opacity='0.9' />
+	<circle cx='6' cy='8.5' r='5.2' fill={primaryColor300} />
+	<circle cx='4.6' cy='7' r='0.9' fill='#fff' opacity='0.95' />
+	<circle cx='7.4' cy='6.4' r='0.7' fill='#fff' opacity='0.8' />
+	<circle cx='6.6' cy='9.6' r='0.8' fill='#fff' opacity='0.85' />
+	<circle cx='4.4' cy='10' r='0.6' fill='#fff' opacity='0.7' />
+	<rect x='12.5' y='16.7' width='4.4' height='3.1' rx='0.8' fill='#fff' opacity='0.95' />
+	<rect x='17.6' y='16.7' width='3.6' height='3.1' rx='0.8' fill='#fff' opacity='0.55' />
+</svg>
+
+export const logoGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='3' width='8.5' height='6' rx='1.2' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='3' width='8.5' height='6' rx='1.2' fill={primaryColor} opacity='0.55' />
+	<rect x='2.5' y='11' width='8.5' height='6' rx='1.2' fill={primaryColor} opacity='0.55' />
+	<rect x='13' y='11' width='8.5' height='6' rx='1.2' fill={primaryColor} opacity='0.85' />
+	<circle cx='6.75' cy='6' r='1.4' fill='#fff' opacity='0.9' />
+	<rect x='15.4' y='5.4' width='3.8' height='1.2' rx='0.6' fill='#fff' opacity='0.9' />
+	<rect x='4.6' y='13.4' width='4.3' height='1.2' rx='0.6' fill='#fff' opacity='0.9' />
+	<circle cx='17.25' cy='14' r='1.4' fill='#fff' opacity='0.9' />
+	<rect x='6' y='20' width='12' height='1.4' rx='0.7' fill={primaryColor300} opacity='0.6' />
+</svg>
+
+export const marqueeIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='1.5' y='6' width='21' height='12' rx='2' fill={primaryColor} opacity='0.12' />
+	<rect x='3' y='9' width='4.5' height='6' rx='1' fill={primaryColor} opacity='0.85' />
+	<rect x='9' y='9' width='4.5' height='6' rx='1' fill={primaryColor} opacity='0.6' />
+	<rect x='15' y='9' width='4.5' height='6' rx='1' fill={primaryColor300} opacity='0.7' />
+	<path d='M22 10.5l1.6 1.5-1.6 1.5V10.5z' fill={primaryColor} />
+	<path d='M2 10.5L0.4 12 2 13.5V10.5z' fill={primaryColor} opacity='0.5' />
+</svg>
+
+export const postTimelineIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='4.4' y='2' width='1.6' height='20' rx='0.8' fill={primaryColor300} opacity='0.6' />
+	<circle cx='5.2' cy='6' r='2.4' fill={primaryColor} />
+	<circle cx='5.2' cy='12' r='2.4' fill={primaryColor} opacity='0.85' />
+	<circle cx='5.2' cy='18' r='2.4' fill={primaryColor} opacity='0.7' />
+	<rect x='10' y='4' width='11.5' height='4' rx='1.2' fill={primaryColor} opacity='0.85' />
+	<rect x='10' y='10' width='11.5' height='4' rx='1.2' fill={primaryColor} opacity='0.6' />
+	<rect x='10' y='16' width='8.5' height='4' rx='1.2' fill={primaryColor} opacity='0.45' />
+	<rect x='11.4' y='5.3' width='6.5' height='1.4' rx='0.7' fill='#fff' opacity='0.9' />
+	<rect x='11.4' y='11.3' width='6.5' height='1.4' rx='0.7' fill='#fff' opacity='0.9' />
+	<rect x='11.4' y='17.3' width='4.5' height='1.4' rx='0.7' fill='#fff' opacity='0.9' />
+</svg>
+
+export const postCarouselIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='6' y='4' width='12' height='16' rx='1.6' fill={primaryColor} />
+	<rect x='7.4' y='5.4' width='9.2' height='5' rx='0.8' fill='#fff' opacity='0.9' />
+	<rect x='7.4' y='11.4' width='9.2' height='1.5' rx='0.75' fill='#fff' opacity='0.85' />
+	<rect x='7.4' y='13.8' width='7' height='1.3' rx='0.65' fill='#fff' opacity='0.6' />
+	<rect x='7.4' y='16.2' width='4.5' height='1.8' rx='0.9' fill='#fff' opacity='0.45' />
+	<rect x='1.5' y='6.5' width='3.2' height='11' rx='1.2' fill={primaryColor300} opacity='0.5' />
+	<rect x='19.3' y='6.5' width='3.2' height='11' rx='1.2' fill={primaryColor300} opacity='0.5' />
+	<circle cx='9.4' cy='21.6' r='0.9' fill={primaryColor} />
+	<circle cx='12' cy='21.6' r='0.9' fill={primaryColor} opacity='0.5' />
+	<circle cx='14.6' cy='21.6' r='0.9' fill={primaryColor} opacity='0.5' />
+</svg>
+
+export const postFilterGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='2.6' width='5.6' height='2.4' rx='1.2' fill={primaryColor} />
+	<rect x='9.2' y='2.6' width='5.6' height='2.4' rx='1.2' fill={primaryColor300} opacity='0.55' />
+	<rect x='16.4' y='2.6' width='5.6' height='2.4' rx='1.2' fill={primaryColor300} opacity='0.55' />
+	<rect x='2' y='7.4' width='9' height='6.6' rx='1.2' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='7.4' width='9' height='6.6' rx='1.2' fill={primaryColor300} opacity='0.6' />
+	<rect x='2' y='15.6' width='9' height='6' rx='1.2' fill={primaryColor300} opacity='0.6' />
+	<rect x='13' y='15.6' width='9' height='6' rx='1.2' fill={primaryColor} opacity='0.85' />
+</svg>
+
+export const postMasonryGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='2.5' width='9' height='8.5' rx='1.2' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='2.5' width='9' height='5' rx='1.2' fill={primaryColor300} opacity='0.6' />
+	<rect x='2' y='13' width='9' height='5' rx='1.2' fill={primaryColor300} opacity='0.6' />
+	<rect x='13' y='9.5' width='9' height='8.5' rx='1.2' fill={primaryColor} opacity='0.85' />
+	<rect x='2' y='20' width='9' height='1.6' rx='0.8' fill={primaryColor300} opacity='0.55' />
+	<rect x='13' y='20' width='9' height='1.6' rx='0.8' fill={primaryColor300} opacity='0.55' />
+</svg>
+
+export const postNavigationIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='1.5' y='6' width='9.6' height='12' rx='1.6' fill={primaryColor} opacity='0.85' />
+	<rect x='12.9' y='6' width='9.6' height='12' rx='1.6' fill={primaryColor300} opacity='0.6' />
+	<path d='M7.6 9.4l-2.6 2.6 2.6 2.6' fill='none' stroke='#fff' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
+	<path d='M16.4 9.4l2.6 2.6-2.6 2.6' fill='none' stroke='#fff' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
+</svg>
+
+export const expandContentIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm0 2h16v12H4V6z' />
+	<path d='M6 8h12v1.4H6V8zm0 3h12v1.4H6V11zm0 3h7v1.4H6V14z' opacity='0.7' />
+	<path d='M13 14h5v1.4h-5V14z' opacity='0.25' />
+	<path d='M12 21l-3.5-3.5h7L12 21z' />
+</svg>
+
+export const codeHighlightIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4zm2 0v3h14V4H5zm0 5v11h14V9H5z' />
+	<circle cx='6.5' cy='5.5' r='0.7' opacity='0.6' />
+	<circle cx='8.7' cy='5.5' r='0.7' opacity='0.6' />
+	<circle cx='10.9' cy='5.5' r='0.7' opacity='0.6' />
+	<path d='M9.4 12.4l-2.6 2.6 2.6 2.6 1-1-1.6-1.6 1.6-1.6-1-1zm5.2 0l-1 1 1.6 1.6-1.6 1.6 1 1 2.6-2.6-2.6-2.6zm-2.1-0.4l-1.5 6.1 1.1 0.3 1.5-6.1-1.1-0.3z' /></svg>
+
+export const videoPopupIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm2 0v11h14V5H5z' />
+	<path d='M10.5 8.2v4.6L14.4 10.5l-3.9-2.3z' />
+	<path d='M7 20.5h10v1.4H7v-1.4z' opacity='0.55' />
+	<circle cx='12' cy='10.5' r='4.2' fill='none' stroke='currentColor' strokeWidth='1' opacity='0.3' /></svg>
+
+export const clickToShareIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 4h11a2 2 0 0 1 2 2v6h-1.5V6a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v9c0 .28.22.5.5.5h6v1.5H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z' />
+	<path d='M6 8.5h7v1.4H6V8.5zm0 2.7h5v1.4H6v-1.4z' opacity='0.55' />
+	<path d='M18.4 14.6a2 2 0 0 0-1.5.66l-2.46-1.23a2.05 2.05 0 0 0 0-1.06l2.46-1.23a2 2 0 1 0-.62-1.25l-2.46 1.23a2 2 0 1 0 0 2.58l2.46 1.23a2 2 0 1 0 2.12-1.93zm0-5.6a.6.6 0 1 1 0 1.2.6.6 0 0 1 0-1.2zm-5.4 3.5a.6.6 0 1 1 0 1.2.6.6 0 0 1 0-1.2zm5.4 3.5a.6.6 0 1 1 0 1.2.6.6 0 0 1 0-1.2z' /></svg>
+
+export const couponCodeIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 7.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2V10a2 2 0 0 0 0 4v2.5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V14a2 2 0 0 0 0-4V7.5zm2 0V10a3.5 3.5 0 0 1 0 4v2.5h14V14a3.5 3.5 0 0 1 0-4V7.5H5z' />
+	<path d='M11 7.8h1.2v8.4H11V7.8z' opacity='0.55' strokeDasharray='2 2' />
+	<circle cx='8.5' cy='12' r='1' />
+	<path d='M14.4 9.6l1 1-4.6 4.6-1-1 4.6-4.6z' opacity='0.85' />
+	<circle cx='15' cy='14.5' r='1' /></svg>
+
+export const googleMapIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.55 7 12 7.3 12.27a.3.3 0 0 0 .4 0C12.5 21.5 19.5 15.05 19.5 9.5 19.5 5.36 16.14 2 12 2zm0 18.06c-1.62-1.6-6-6.27-6-10.56A6 6 0 0 1 12 3.5a6 6 0 0 1 6 6c0 4.29-4.38 8.95-6 10.56z' />
+	<circle cx='12' cy='9.5' r='2.5' />
+	<path d='M5.6 14.4l-2.4 5.6h17.6l-2.4-5.6-1.4.6 1.8 4H4.6l1.8-4-1.4-.6z' opacity='0.35' /></svg>
+
+export const businessHoursIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z' />
+	<path d='M12.75 6.5h-1.5v6.06l4.22 2.44.75-1.3-3.47-2V6.5z' />
+	<path d='M5 4l-1.41 1.41 2.83 2.83L7.83 6.83 5 4zm14 0l-2.83 2.83 1.41 1.42 2.83-2.83L19 4z' opacity='0.45' />
+</svg>
+
+export const authorBoxIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4zm2 0v16h14V4H5z' />
+	<path d='M9 10.5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0zm2.5-4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z' opacity='0.85' />
+	<path d='M7 17.5c.6-1.6 2.2-2.5 4.5-2.5s3.9.9 4.5 2.5c.1.3-.1.5-.4.5H7.4c-.3 0-.5-.2-.4-.5z' opacity='0.6' />
+	<path d='M16.5 7.5h2v1.5h-2zM16.5 10.5h2V12h-2z' opacity='0.45' />
+</svg>
+
+export const contactCardIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm2 0v14h14V5H5z' />
+	<circle cx='8.5' cy='9.5' r='2.2' opacity='0.85' />
+	<path d='M5.5 15.2c.5-1.6 1.9-2.4 3-2.4s2.5.8 3 2.4c.1.3-.1.5-.4.5H5.9c-.3 0-.5-.2-.4-.5z' opacity='0.6' />
+	<rect x='13' y='8' width='6' height='1.6' rx='0.5' opacity='0.6' />
+	<rect x='13' y='11' width='5' height='1.6' rx='0.5' opacity='0.45' />
+	<rect x='13' y='14' width='4' height='1.6' rx='0.5' opacity='0.35' />
+</svg>
+
+export const blockquoteIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 5a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H5v12h1a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1V5z' opacity='0.85' />
+	<path d='M8 8h12v1.6H8V8zm0 3.4h12V13H8v-1.6zm0 3.4h8v1.6H8V14.8z' opacity='0.55' />
+	<path d='M9.5 7.2C8.67 7.2 8 7.87 8 8.7v1.5c0 .83.67 1.5 1.5 1.5h.8c0 .83-.6 1.5-1.43 1.5V14.4c1.66 0 3-1.34 3-3V8.7c0-.83-.67-1.5-1.37-1.5H9.5zm5 0c-.83 0-1.5.67-1.5 1.5v1.5c0 .83.67 1.5 1.5 1.5h.8c0 .83-.6 1.5-1.43 1.5V14.4c1.66 0 3-1.34 3-3V8.7c0-.83-.67-1.5-1.37-1.5H14.5z' />
+</svg>
+
+export const calloutIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8.6L5 20.2A1 1 0 0 1 3.4 19.4V5z' opacity='0.18' fill={primaryColor} />
+	<path d='M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8.6L5 20.2A1 1 0 0 1 3.4 19.4V5zm2 0v13.2L8.1 16.3a1 1 0 0 1 .7-.3H18V5H6z' />
+	<rect x='4' y='4' width='2' height='14' rx='1' fill={primaryColor} />
+	<circle cx='12' cy='8.4' r='1.2' fill={primaryColor} />
+	<rect x='10.8' y='10.4' width='2.4' height='4.4' rx='1' fill={primaryColor} opacity='0.85' />
+</svg>
+
+export const comparisonTableIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4zm2 0v3h14V4H5zm0 5v3h6V9H5zm8 0v3h6V9h-6zm-8 5v3h6v-3H5zm8 0v3h6v-3h-6zm-8 5v1h6v-1H5zm8 0v1h6v-1h-6z' />
+	<path d='M13 4h6v3h-6V4z' opacity='0.55' />
+	<path d='M7.4 10.6l1.1 1.1 2.1-2.1-0.7-0.7-1.4 1.4-0.4-0.4-0.7 0.7z' fill='#16a34a' />
+	<path d='M14.6 15.6l1.4-1.4 1.4 1.4 0.7-0.7-1.4-1.4 1.4-1.4-0.7-0.7-1.4 1.4-1.4-1.4-0.7 0.7 1.4 1.4-1.4 1.4 0.7 0.7z' fill='#dc2626' />
+</svg>
+
+export const contentFilterIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 .8 1.6l-6.3 8.4a1 1 0 0 0-.2.6V20a1 1 0 0 1-1.45.9l-3-1.5A1 1 0 0 1 9.4 18.5v-4a1 1 0 0 0-.2-.6L2.9 5.5A1 1 0 0 1 3 5z' />
+	<rect x='14' y='3' width='2' height='2' rx='1' fill={primaryColor} opacity='0.85' />
+	<rect x='17.5' y='3' width='2' height='2' rx='1' fill={primaryColor} opacity='0.65' />
+	<rect x='21' y='3' width='2' height='2' rx='1' fill={primaryColor} opacity='0.45' />
+</svg>
+
+export const contentFilterItemIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='4' width='18' height='16' rx='2' ry='2' fill='none' stroke='currentColor' strokeWidth='1.6' strokeDasharray='3 2' />
+	<rect x='6' y='7' width='6' height='2' rx='1' fill={primaryColor} opacity='0.85' />
+	<rect x='6' y='11' width='12' height='1.4' rx='0.7' opacity='0.6' />
+	<rect x='6' y='14' width='10' height='1.4' rx='0.7' opacity='0.45' />
+	<rect x='6' y='17' width='8' height='1.4' rx='0.7' opacity='0.3' />
+</svg>
+
+export const dividerIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='4' width='18' height='2' rx='1' opacity='0.35' fill={primaryColor} />
+	<rect x='3' y='11' width='7' height='2' rx='1' fill={primaryColor} />
+	<rect x='14' y='11' width='7' height='2' rx='1' fill={primaryColor} />
+	<circle cx='12' cy='12' r='2.2' fill={primaryColor} />
+	<rect x='3' y='18' width='18' height='2' rx='1' opacity='0.35' fill={primaryColor} />
+</svg>
+
+export const typingHeadlineIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='5' width='18' height='14' rx='2' fill='none' stroke='currentColor' strokeWidth='1.5' opacity='0.35' />
+	<path d='M6 9.2h5.4v1.4H9.4v5.2H8V10.6H6V9.2z' fill={primaryColor} />
+	<rect x='12.4' y='9.2' width='5.2' height='1.6' rx='0.4' fill={primaryColor} opacity='0.85' />
+	<rect x='12.4' y='11.6' width='4' height='1.6' rx='0.4' fill={primaryColor} opacity='0.65' />
+	<rect x='12.4' y='14' width='3' height='1.6' rx='0.4' fill={primaryColor} opacity='0.45' />
+	<rect x='15.7' y='14' width='0.9' height='1.8' fill={primaryColor}>
+		<animate attributeName='opacity' values='1;0;1' dur='0.8s' repeatCount='indefinite' />
+	</rect>
+</svg>
+
+export const heroSectionIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='3' width='20' height='18' rx='2' fill='none' stroke='currentColor' strokeWidth='1.6' />
+	<rect x='2.8' y='3.8' width='18.4' height='16.4' rx='1.4' fill={primaryColor} opacity='0.12' />
+	<rect x='8' y='8' width='8' height='1.6' rx='0.4' fill={primaryColor} opacity='0.55' />
+	<rect x='5' y='10.6' width='14' height='2.6' rx='0.5' fill={primaryColor} />
+	<rect x='6.5' y='14.2' width='11' height='1.4' rx='0.4' fill={primaryColor} opacity='0.5' />
+	<rect x='8' y='17' width='3.8' height='2.2' rx='0.8' fill={primaryColor} />
+	<rect x='12.3' y='17' width='3.8' height='2.2' rx='0.8' fill='none' stroke={primaryColor} strokeWidth='1.2' />
+</svg>
+
 export const whatsappChatIcon = <svg
 	{...svgProps}
 	width="20"
@@ -376,4 +802,257 @@ export const whatsappChatIcon = <svg
 	fill="currentColor"
 >
 	<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+</svg>
+export const floatingCtaIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='2' width='20' height='20' rx='3' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<rect x='12' y='13' width='9' height='5.5' rx='2.75' fill={primaryColor} />
+	<circle cx='15' cy='15.75' r='0.9' fill='#fff' />
+	<rect x='17' y='15.1' width='3' height='1.3' rx='0.65' fill='#fff' />
+	<path d='M5.5 6h7M5.5 9h9' stroke={primaryColor300} strokeWidth='1.4' strokeLinecap='round' opacity='0.55' />
+</svg>
+
+export const pricingToggleIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='8' width='20' height='8' rx='4' fill='none' stroke='currentColor' strokeWidth='1.6' opacity='0.45' />
+	<circle cx='16' cy='12' r='2.6' fill={primaryColor} />
+	<rect x='4' y='3.4' width='6.5' height='1.6' rx='0.6' fill={primaryColor} opacity='0.5' />
+	<rect x='13.5' y='3.4' width='6.5' height='1.6' rx='0.6' fill={primaryColor} />
+	<path d='M5.4 19.2h2.2l.9 1.6h-1l-.3-.6h-1.1l-.3.6h-1l.9-1.6z' fill={primaryColor} opacity='0.55' />
+	<rect x='11' y='19.2' width='8.6' height='1.5' rx='0.5' fill={primaryColor} opacity='0.4' />
+</svg>
+
+export const newsletterOptinIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='5' width='20' height='14' rx='2.5' fill='none' stroke='currentColor' strokeWidth='1.6' opacity='0.5' />
+	<path d='M3 7l9 6 9-6' fill='none' stroke={primaryColor} strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+	<rect x='6.5' y='15.4' width='11' height='1.4' rx='0.7' fill={primaryColor} opacity='0.45' />
+</svg>
+
+export const popupOptinIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='3' width='20' height='18' rx='2' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.35' />
+	<rect x='5' y='6' width='14' height='12' rx='2' fill={primaryColor300} opacity='0.9' />
+	<rect x='7.5' y='8.6' width='9' height='1.6' rx='0.8' fill='#fff' opacity='0.95' />
+	<rect x='7.5' y='11.4' width='9' height='2.6' rx='1' fill='#fff' opacity='0.6' />
+	<rect x='10.5' y='15' width='3' height='1.6' rx='0.8' fill='#fff' opacity='0.95' />
+	<path d='M16.4 5.2l1.2 1.2-1.2 1.2' fill='none' stroke={primaryColor} strokeWidth='1.4' strokeLinecap='round' strokeLinejoin='round' />
+</svg>
+
+export const mediaTextSectionIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='4' width='20' height='16' rx='2' fill='none' stroke='currentColor' strokeWidth='1.6' opacity='0.5' />
+	<rect x='3.5' y='5.5' width='8' height='13' rx='1' fill={primaryColor} opacity='0.85' />
+	<path d='M5 13l1.8-2.2 1.4 1.7 1.6-2.4L11 13z' fill='#fff' opacity='0.9' />
+	<circle cx='6.4' cy='8.6' r='1' fill='#fff' opacity='0.9' />
+	<rect x='13.5' y='7' width='7' height='1.6' rx='0.8' fill={primaryColor} opacity='0.5' />
+	<rect x='13.5' y='10.4' width='7' height='1.4' rx='0.7' fill={primaryColor} opacity='0.35' />
+	<rect x='13.5' y='13.4' width='5' height='1.4' rx='0.7' fill={primaryColor} opacity='0.35' />
+</svg>
+
+export const stickySidebarIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='4' width='20' height='16' rx='2' fill='none' stroke='currentColor' strokeWidth='1.6' opacity='0.5' />
+	<rect x='3.5' y='5.5' width='9.5' height='13' rx='1' fill={primaryColor300} opacity='0.45' />
+	<rect x='5' y='7.5' width='6.5' height='1.4' rx='0.7' fill='#fff' opacity='0.9' />
+	<rect x='5' y='10.2' width='6.5' height='1.4' rx='0.7' fill='#fff' opacity='0.6' />
+	<rect x='5' y='12.9' width='4.5' height='1.4' rx='0.7' fill='#fff' opacity='0.6' />
+	<rect x='14.5' y='5.5' width='6' height='8' rx='1' fill={primaryColor} opacity='0.95' />
+	<path d='M15.6 8.2h3.8M15.6 10.4h3.8M15.6 12.6h2.4' stroke='#fff' strokeWidth='1.1' strokeLinecap='round' opacity='0.95' />
+	<path d='M16.4 15.8l1.1-1.2 1.1 1.2' fill='none' stroke={primaryColor} strokeWidth='1.3' strokeLinecap='round' strokeLinejoin='round' />
+</svg>
+
+export const featureTabsIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='4' width='20' height='16' rx='2' fill='none' stroke='currentColor' strokeWidth='1.6' opacity='0.5' />
+	<rect x='3.5' y='5.5' width='6.5' height='2.4' rx='1' fill={primaryColor} opacity='0.9' />
+	<rect x='3.5' y='9' width='6.5' height='2.4' rx='1' fill={primaryColor} opacity='0.4' />
+	<rect x='3.5' y='12.5' width='6.5' height='2.4' rx='1' fill={primaryColor} opacity='0.4' />
+	<rect x='3.5' y='16' width='6.5' height='2.4' rx='1' fill={primaryColor} opacity='0.4' />
+	<rect x='12' y='5.5' width='8.5' height='13' rx='1.5' fill={primaryColor300} opacity='0.85' />
+	<path d='M13.6 14.5l2-2.4 1.5 1.8 1.7-2.6 2 3.2z' fill='#fff' opacity='0.95' />
+	<circle cx='14.6' cy='9' r='1.1' fill='#fff' opacity='0.95' />
+</svg>
+
+export const statCardsIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='4' width='8.5' height='16' rx='1.4' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='4' width='8.5' height='16' rx='1.4' fill={primaryColor} opacity='0.55' />
+	<rect x='4.3' y='7' width='4.2' height='2.6' rx='0.6' fill='#fff' opacity='0.95' />
+	<rect x='4.3' y='11.2' width='5' height='1.1' rx='0.55' fill='#fff' opacity='0.8' />
+	<rect x='14.8' y='7' width='4.2' height='2.6' rx='0.6' fill='#fff' opacity='0.95' />
+	<rect x='14.8' y='11.2' width='5' height='1.1' rx='0.55' fill='#fff' opacity='0.8' />
+</svg>;
+
+export const articleCardIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='5' width='19' height='14' rx='2' fill={primaryColor} opacity='0.12' />
+	<rect x='2.5' y='5' width='8.5' height='14' rx='2' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='7.4' width='6.6' height='1.7' rx='0.85' fill={primaryColor} opacity='0.75' />
+	<rect x='13' y='10.6' width='6.6' height='1.4' rx='0.7' fill={primaryColor} opacity='0.45' />
+	<rect x='13' y='13.2' width='5' height='1.4' rx='0.7' fill={primaryColor} opacity='0.45' />
+	<rect x='13' y='16' width='3.6' height='1.8' rx='0.9' fill={primaryColor} opacity='0.85' />
+</svg>;
+
+export const fileDownloadCardIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M6 2.5h7l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-14a2 2 0 0 1 2-2z' fill={primaryColor} opacity='0.85' />
+	<path d='M13 2.5l5 5h-4a1 1 0 0 1-1-1z' fill='#fff' opacity='0.55' />
+	<path d='M11 9.5v4m0 0l-2-2m2 2l2-2' fill='none' stroke='#fff' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
+	<rect x='7.5' y='16' width='7' height='1.6' rx='0.8' fill='#fff' opacity='0.9' />
+</svg>;
+
+export const pdfEmbedIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='3.5' width='18' height='17' rx='2' fill={primaryColor} opacity='0.85' />
+	<rect x='5.5' y='6' width='13' height='9.5' rx='1' fill='#fff' opacity='0.95' />
+	<path d='M7.5 8.5h3M7.5 10.5h6M7.5 12.5h6' stroke={primaryColor} strokeWidth='1' strokeLinecap='round' opacity='0.6' />
+	<rect x='8.5' y='16.5' width='7' height='2.6' rx='1.3' fill='#fff' opacity='0.9' />
+	<text x='12' y='18.55' textAnchor='middle' fontSize='1.9' fontWeight='700' fill={primaryColor}>PDF</text>
+</svg>;
+
+export const taxonomyGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='3' width='8.5' height='8.5' rx='1.4' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='3' width='8.5' height='8.5' rx='1.4' fill={primaryColor} opacity='0.55' />
+	<rect x='2.5' y='12.5' width='8.5' height='8.5' rx='1.4' fill={primaryColor} opacity='0.55' />
+	<rect x='13' y='12.5' width='8.5' height='8.5' rx='1.4' fill={primaryColor} opacity='0.85' />
+	<rect x='4.3' y='8.6' width='4.9' height='1.3' rx='0.65' fill='#fff' opacity='0.9' />
+	<rect x='14.8' y='18.1' width='4.9' height='1.3' rx='0.65' fill='#fff' opacity='0.9' />
+</svg>;
+
+export const milestoneTimelineIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='11' width='20' height='2' rx='1' fill={primaryColor} opacity='0.45' />
+	<circle cx='5' cy='12' r='2.6' fill={primaryColor} />
+	<circle cx='12' cy='12' r='2.6' fill={primaryColor} />
+	<circle cx='19' cy='12' r='2.6' fill={primaryColor} />
+	<rect x='2.4' y='4' width='5.2' height='3.4' rx='0.8' fill={primaryColor} opacity='0.7' />
+	<rect x='9.4' y='16.6' width='5.2' height='3.4' rx='0.8' fill={primaryColor} opacity='0.7' />
+	<rect x='16.4' y='4' width='5.2' height='3.4' rx='0.8' fill={primaryColor} opacity='0.7' />
+</svg>;
+
+export const testimonialsGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='3.5' width='8.5' height='8' rx='1.4' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='3.5' width='8.5' height='8' rx='1.4' fill={primaryColor} opacity='0.55' />
+	<rect x='2.5' y='13' width='8.5' height='8' rx='1.4' fill={primaryColor} opacity='0.55' />
+	<rect x='13' y='13' width='8.5' height='8' rx='1.4' fill={primaryColor} opacity='0.85' />
+	<circle cx='5.4' cy='6.2' r='1.1' fill='#fff' opacity='0.95' />
+	<rect x='7.4' y='5.6' width='3' height='1.1' rx='0.55' fill='#fff' opacity='0.9' />
+	<rect x='4.3' y='8.6' width='5.2' height='1.1' rx='0.55' fill='#fff' opacity='0.7' />
+	<circle cx='15.9' cy='6.2' r='1.1' fill='#fff' opacity='0.95' />
+	<rect x='17.9' y='5.6' width='3' height='1.1' rx='0.55' fill='#fff' opacity='0.9' />
+	<rect x='14.8' y='8.6' width='5.2' height='1.1' rx='0.55' fill='#fff' opacity='0.7' />
+	<circle cx='5.4' cy='15.7' r='1.1' fill='#fff' opacity='0.95' />
+	<rect x='7.4' y='15.1' width='3' height='1.1' rx='0.55' fill='#fff' opacity='0.9' />
+	<rect x='4.3' y='18.1' width='5.2' height='1.1' rx='0.55' fill='#fff' opacity='0.7' />
+	<circle cx='15.9' cy='15.7' r='1.1' fill='#fff' opacity='0.95' />
+	<rect x='17.9' y='15.1' width='3' height='1.1' rx='0.55' fill='#fff' opacity='0.9' />
+	<rect x='14.8' y='18.1' width='5.2' height='1.1' rx='0.55' fill='#fff' opacity='0.7' />
+</svg>
+
+export const socialShareBarIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='2' width='20' height='20' rx='3' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<rect x='4' y='5' width='4.5' height='4.5' rx='1.2' fill={primaryColor} />
+	<rect x='4' y='10.5' width='4.5' height='4.5' rx='1.2' fill={primaryColor} opacity='0.7' />
+	<rect x='4' y='16' width='4.5' height='4.5' rx='1.2' fill={primaryColor} opacity='0.45' />
+	<path d='M11 7.25h7M11 12.75h6M11 18.25h5' stroke={primaryColor300} strokeWidth='1.4' strokeLinecap='round' opacity='0.55' />
+</svg>
+
+export const searchBarIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2' y='6' width='20' height='12' rx='3' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<circle cx='9' cy='12' r='3' fill='none' stroke={primaryColor} strokeWidth='1.6' />
+	<path d='M11.3 14.3l2.4 2.4' stroke={primaryColor} strokeWidth='1.6' strokeLinecap='round' />
+	<path d='M16 10.5h4M16 13.5h3' stroke={primaryColor300} strokeWidth='1.4' strokeLinecap='round' opacity='0.55' />
+</svg>
+
+export const eventCardIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='5' width='18' height='16' rx='2.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<path d='M3 9h18' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<path d='M8 3v3M16 3v3' stroke={primaryColor} strokeWidth='1.6' strokeLinecap='round' />
+	<rect x='6' y='12' width='5' height='5' rx='1' fill={primaryColor} />
+	<path d='M13 13h5M13 16h3' stroke={primaryColor300} strokeWidth='1.4' strokeLinecap='round' opacity='0.6' />
+</svg>
+
+export const scrollRevealIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='4' y='3' width='16' height='18' rx='2.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.4' />
+	<rect x='7' y='14' width='10' height='4' rx='1' fill={primaryColor} opacity='0.35' />
+	<rect x='7' y='8' width='10' height='4' rx='1' fill={primaryColor} />
+	<path d='M12 4.5v3.5M12 8l-2-2M12 8l2-2' stroke={primaryColor300} strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
+</svg>
+
+export const parallaxSectionIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='4' width='18' height='16' rx='2.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.5' />
+	<path d='M3 15l4-4 3 3 4-5 4 4 3-2v6.5A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z' fill={primaryColor} opacity='0.55' />
+	<circle cx='8.5' cy='8.5' r='1.6' fill={primaryColor300} />
+	<path d='M4 12h2M18 12h2' stroke={primaryColor} strokeWidth='1.6' strokeLinecap='round' />
+</svg>
+
+export const wooAddToCartIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 4h2l1.2 9.2a1.6 1.6 0 0 0 1.6 1.4h8.1a1.6 1.6 0 0 0 1.55-1.18L20 7H6' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' opacity='0.55' />
+	<circle cx='9' cy='19' r='1.4' fill={primaryColor} />
+	<circle cx='17' cy='19' r='1.4' fill={primaryColor} />
+	<path d='M13 4.5v4M11 6.5h4' stroke={primaryColor} strokeWidth='1.6' strokeLinecap='round' />
+</svg>
+
+export const wooMiniCartIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3 4h2l1.2 9.2a1.6 1.6 0 0 0 1.6 1.4h7.8a1.6 1.6 0 0 0 1.55-1.18L19 8H6.2' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' opacity='0.55' />
+	<circle cx='9' cy='19' r='1.4' fill={primaryColor} />
+	<circle cx='16' cy='19' r='1.4' fill={primaryColor} />
+	<circle cx='18' cy='5.5' r='3' fill={primaryColor} />
+	<path d='M16.7 5.5h2.6M18 4.2v2.6' stroke='#ffffff' strokeWidth='1.2' strokeLinecap='round' />
+</svg>
+
+export const wooProductGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='3' width='8' height='8' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<rect x='13' y='3' width='8' height='8' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<rect x='3' y='13' width='8' height='8' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='13' width='8' height='8' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<path d='M15.4 5.6h3.2M15.4 7.6h2.2' stroke={primaryColor300} strokeWidth='1.2' strokeLinecap='round' />
+	<path d='M5.4 15.6h3.2M5.4 17.6h2.2' stroke='#ffffff' strokeWidth='1.2' strokeLinecap='round' opacity='0.9' />
+</svg>
+
+export const wooBestSellersIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3.5' y='4' width='17' height='13' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<rect x='6' y='10' width='2.4' height='4' rx='0.5' fill={primaryColor} opacity='0.85' />
+	<rect x='10.8' y='7.5' width='2.4' height='6.5' rx='0.5' fill={primaryColor} opacity='0.85' />
+	<rect x='15.6' y='9' width='2.4' height='5' rx='0.5' fill={primaryColor300} opacity='0.85' />
+	<path d='M12 18.2l1.05 2.13 2.35.34-1.7 1.66.4 2.34' fill='none' stroke='currentColor' strokeWidth='0' />
+	<path d='M12 17.4l0.95 1.92 2.12.31-1.53 1.5.36 2.11L12 22.25l-1.9 1-.36-2.11-1.53-1.5 2.12-.31z' fill={primaryColor} />
+</svg>
+
+export const wooCategoryGridIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='3' y='3' width='8' height='8' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='3' width='8' height='8' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<rect x='3' y='13' width='8' height='8' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<rect x='13' y='13' width='8' height='8' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<circle cx='6' cy='6' r='1.3' fill='#ffffff' opacity='0.95' />
+	<circle cx='16' cy='16' r='1.3' fill='#ffffff' opacity='0.95' />
+	<path d='M15.4 5.6h4M15.4 7.6h2.4' stroke={primaryColor300} strokeWidth='1.2' strokeLinecap='round' />
+	<path d='M5.4 15.6h4M5.4 17.6h2.4' stroke={primaryColor300} strokeWidth='1.2' strokeLinecap='round' />
+</svg>
+
+export const wooProductFilterIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3.5 5.5h17l-6.4 7.4v5.1l-4.2 2v-7.1L3.5 5.5Z' fill={primaryColor} opacity='0.85' stroke='none' />
+	<path d='M3.5 5.5h17l-6.4 7.4v5.1l-4.2 2v-7.1L3.5 5.5Z' fill='none' stroke='currentColor' strokeWidth='1.3' strokeLinejoin='round' opacity='0.45' />
+	<circle cx='18.5' cy='6.5' r='2.4' fill='#ffffff' stroke={primaryColor300} strokeWidth='1.2' />
+	<path d='M17.4 6.5l0.9 0.9 1.7-1.8' fill='none' stroke={primaryColor} strokeWidth='1.2' strokeLinecap='round' strokeLinejoin='round' />
+</svg>
+
+export const wooFeaturedProductIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='5' width='9' height='14' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<path d='M14.5 7.5h6M14.5 11h6M14.5 14.5h4' stroke='currentColor' strokeWidth='1.4' strokeLinecap='round' opacity='0.5' />
+	<path d='M5 7.6l0.9 1.9 2 0.3-1.45 1.45 0.35 2.05L5 12.3l-1.8 1 0.35-2.05L2.1 9.8l2-0.3z' fill='#ffffff' opacity='0.9' />
+</svg>
+
+export const wooProductReviewsIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M3.5 4.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H8l-3.5 3v-3H3.5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z' fill={primaryColor} opacity='0.85' />
+	<path d='M12 6.4l1.13 2.29 2.52.37-1.82 1.78.43 2.51L12 12.16l-2.26 1.19.43-2.51-1.82-1.78 2.52-.37z' fill='#ffffff' opacity='0.95' />
+</svg>
+
+export const wooSaleBadgeIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M12 2.5l2.1 1.5 2.55-0.3 0.85 2.45 2.45 0.85-0.3 2.55L21.5 12l-1.5 2.1 0.3 2.55-2.45 0.85-0.85 2.45-2.55-0.3L12 21.5l-2.1-1.5-2.55 0.3-0.85-2.45-2.45-0.85 0.3-2.55L2.5 12l1.5-2.1-0.3-2.55 2.45-0.85 0.85-2.45 2.55 0.3z' fill={primaryColor} opacity='0.9' />
+	<path d='M9.2 9.2l5.6 5.6M9.4 9.4a0.9 0.9 0 1 0-1.3 0 0.9 0.9 0 0 0 1.3 0zM15.9 15.9a0.9 0.9 0 1 0-1.3 0 0.9 0.9 0 0 0 1.3 0z' stroke='#ffffff' strokeWidth='1.3' strokeLinecap='round' fill='none' />
+</svg>
+
+export const wooSingleProductIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='4.5' width='8' height='15' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<rect x='3.6' y='5.6' width='5.8' height='6' rx='1' fill='#ffffff' opacity='0.9' />
+	<path d='M4 14h5M4 16h3.5' stroke='#ffffff' strokeWidth='1' strokeLinecap='round' opacity='0.85' />
+	<path d='M13.5 6.5h6M13.5 9.5h6M13.5 12.5h4.5' stroke='currentColor' strokeWidth='1.4' strokeLinecap='round' opacity='0.5' />
+	<rect x='13.5' y='15.5' width='6' height='3.4' rx='1.5' fill={primaryColor} opacity='0.9' />
+</svg>
+
+export const wooProductCarouselIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='8.5' y='5' width='7' height='14' rx='1.5' fill={primaryColor} opacity='0.9' />
+	<rect x='2.5' y='7' width='5' height='10' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<rect x='16.5' y='7' width='5' height='10' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
+	<path d='M10.4 15.4h3.2M10.4 17h2' stroke='#ffffff' strokeWidth='1.2' strokeLinecap='round' opacity='0.9' />
 </svg>

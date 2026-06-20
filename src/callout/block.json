@@ -1,0 +1,141 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/callout",
+	"version": "2.0.65",
+	"title": "Callout",
+	"category": "bBlocks",
+	"description": "Inline editorial Note / Tip / Warning / Danger / Success box you drop inside post content. Five semantic types with default colors and icons, three layouts (left accent bar, filled, outlined), accessible <aside role=\"note\"> markup, and InnerBlocks so the body can hold paragraphs, lists, code, or any block.",
+	"keywords": [
+		"callout",
+		"note",
+		"tip",
+		"warning",
+		"info",
+		"notice",
+		"alert",
+		"docs",
+		"admonition"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"calloutType": {
+			"type": "string",
+			"default": "note"
+		},
+		"layout": {
+			"type": "string",
+			"default": "accent-bar"
+		},
+		"title": {
+			"type": "string",
+			"default": "Note"
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h4"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fa-solid fa-circle-info"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 20
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"bodyColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accentBarWidth": {
+			"type": "number",
+			"default": 4
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"paddingTop": {
+			"type": "number",
+			"default": 16
+		},
+		"paddingRight": {
+			"type": "number",
+			"default": 20
+		},
+		"paddingBottom": {
+			"type": "number",
+			"default": 16
+		},
+		"paddingLeft": {
+			"type": "number",
+			"default": 20
+		},
+		"titleFontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"bodyFontSize": {
+			"type": "number",
+			"default": 15
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

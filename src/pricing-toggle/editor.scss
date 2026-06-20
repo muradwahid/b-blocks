@@ -1,0 +1,8 @@
+// Editor-only adjustments for the Pricing Toggle block.
+// The active track/knob state is driven by the `.is-annual` wrapper class
+// (added in Edit.js when the default period is annual), so the canvas preview
+// matches the frontend render exactly. The in-canvas switch is non-functional
+// (tabIndex -1) — the period is changed via the Default Period control or by
+// clicking the switch, which flips the `defaultPeriod` attribute.
+
+@import './style.scss';

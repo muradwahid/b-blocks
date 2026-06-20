@@ -1,0 +1,77 @@
+/*
+ * Reading Progress Block — frontend + editor shared styles.
+ *
+ * The marker element rendered server-side is invisible on the frontend
+ * (the bar lives inside a scope wrapper appended to <body>).
+ */
+
+/* Hide the marker on the frontend — it is only used to carry the
+ * per-instance config + style block to view.js. */
+.wp-block-b-blocks-reading-progress.bb-rp-marker {
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+/* Fallback defaults for the CSS custom properties.  The per-instance
+ * <style> block emitted by render.php overrides each of these. */
+.bb-rp-bar {
+	--bb-rp-color: #0073aa;
+	--bb-rp-bg: #e0e0e0;
+	--bb-rp-height: 4px;
+	--bb-rp-radius: 0px;
+	--bb-rp-duration: 0ms;
+	--bb-rp-zindex: 9999;
+
+	position: fixed;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: var(--bb-rp-height);
+	background-color: var(--bb-rp-bg);
+	border-radius: var(--bb-rp-radius);
+	overflow: hidden;
+	z-index: var(--bb-rp-zindex);
+	pointer-events: none;
+	box-sizing: border-box;
+
+	&.bb-rp-pos--top {
+		top: 0;
+		bottom: auto;
+	}
+
+	&.bb-rp-pos--bottom {
+		bottom: 0;
+		top: auto;
+	}
+
+	.bb-rp-bar__fill {
+		position: absolute;
+		inset: 0;
+		background-color: var(--bb-rp-color);
+		transform: scaleX(0);
+		transform-origin: left center;
+		border-radius: inherit;
+		will-change: transform;
+	}
+}
+
+/* Hide on small viewports when the editor opted in. */
+@media (max-width: 767px) {
+	.bb-rp-bar.bb-rp-hide-mobile,
+	.wp-block-b-blocks-reading-progress.bb-rp-hide-mobile {
+		display: none !important;
+	}
+}
+
+/* Honor prefers-reduced-motion globally — defensive in case view.js could
+ * not strip the inline transition (e.g. CSP-blocked inline style writes). */
+@media (prefers-reduced-motion: reduce) {
+	.bb-rp-bar .bb-rp-bar__fill {
+		transition: none !important;
+	}
+}

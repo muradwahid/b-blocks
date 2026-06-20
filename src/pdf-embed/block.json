@@ -1,0 +1,125 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/pdf-embed",
+	"version": "1.0.0",
+	"title": "PDF Embed",
+	"category": "bBlocks",
+	"description": "Embed a PDF document inline using a native browser viewer — no external library. Pick a PDF from the media library, control the responsive height, and add an optional download button. Includes an accessible fallback download link for unsupported browsers.",
+	"keywords": [
+		"pdf",
+		"document",
+		"embed",
+		"viewer",
+		"iframe",
+		"download",
+		"file"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"pdfId": {
+			"type": "number",
+			"default": 0
+		},
+		"pdfUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"pdfName": {
+			"type": "string",
+			"default": ""
+		},
+		"height": {
+			"type": "object",
+			"default": {
+				"desktop": "600px",
+				"tablet": "500px",
+				"mobile": "400px"
+			}
+		},
+		"width": {
+			"type": "string",
+			"default": "100%"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"showDownload": {
+			"type": "boolean",
+			"default": true
+		},
+		"downloadLabel": {
+			"type": "string",
+			"default": "Download PDF"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e0e0e0"
+		},
+		"shadow": {
+			"type": "string",
+			"default": "none"
+		},
+		"fallbackText": {
+			"type": "string",
+			"default": "Your browser does not support embedded PDFs. Please download the file to view it."
+		},
+		"noindex": {
+			"type": "boolean",
+			"default": false
+		},
+		"addID": {
+			"type": "string",
+			"default": ""
+		},
+		"addClass": {
+			"type": "string",
+			"default": ""
+		},
+		"addCSS": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

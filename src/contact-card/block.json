@@ -1,0 +1,231 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/contact-card",
+	"version": "2.0.67.1",
+	"title": "Contact Card",
+	"category": "bBlocks",
+	"description": "Display a styled contact card (logo, address, phone, email, website, directions) with optional LocalBusiness JSON-LD schema for Google rich results.",
+	"keywords": [
+		"contact",
+		"contact card",
+		"contact info",
+		"local business",
+		"schema",
+		"json-ld",
+		"address",
+		"phone",
+		"email"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"businessName": {
+			"type": "string",
+			"default": "Your Business Name"
+		},
+		"businessType": {
+			"type": "string",
+			"default": "LocalBusiness"
+		},
+		"tagline": {
+			"type": "string",
+			"default": ""
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"logoId": {
+			"type": "integer",
+			"default": 0
+		},
+		"logoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"logoAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"phone": {
+			"type": "string",
+			"default": ""
+		},
+		"email": {
+			"type": "string",
+			"default": ""
+		},
+		"website": {
+			"type": "string",
+			"default": ""
+		},
+		"addressStreet": {
+			"type": "string",
+			"default": ""
+		},
+		"addressCity": {
+			"type": "string",
+			"default": ""
+		},
+		"addressState": {
+			"type": "string",
+			"default": ""
+		},
+		"addressPostal": {
+			"type": "string",
+			"default": ""
+		},
+		"addressCountry": {
+			"type": "string",
+			"default": "US"
+		},
+		"mapUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"showDirectionsBtn": {
+			"type": "boolean",
+			"default": true
+		},
+		"directionsLabel": {
+			"type": "string",
+			"default": "Get Directions"
+		},
+		"layout": {
+			"type": "string",
+			"default": "card"
+		},
+		"theme": {
+			"type": "string",
+			"default": "classic"
+		},
+		"showSchema": {
+			"type": "boolean",
+			"default": true
+		},
+		"showLogo": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTagline": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAddress": {
+			"type": "boolean",
+			"default": true
+		},
+		"showPhone": {
+			"type": "boolean",
+			"default": true
+		},
+		"showEmail": {
+			"type": "boolean",
+			"default": true
+		},
+		"showWebsite": {
+			"type": "boolean",
+			"default": true
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"nameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"linkColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 12
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": 32,
+				"right": 32,
+				"bottom": 32,
+				"left": 32
+			}
+		},
+		"logoSize": {
+			"type": "integer",
+			"default": 80
+		},
+		"logoShape": {
+			"type": "string",
+			"default": "rounded"
+		},
+		"nameFontSize": {
+			"type": "integer",
+			"default": 22
+		},
+		"nameFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"labelFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"rowIconSize": {
+			"type": "integer",
+			"default": 16
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

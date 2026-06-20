@@ -1,0 +1,234 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-featured-product",
+	"version": "1.0.0",
+	"title": "Woo Featured Product",
+	"category": "bBlocks",
+	"description": "Spotlight a single WooCommerce product in a hero-style buy box with image, title, price, rating, short description, and AJAX add-to-cart.",
+	"keywords": [
+		"woocommerce",
+		"featured product",
+		"hero product",
+		"single product",
+		"add to cart",
+		"buy box",
+		"spotlight",
+		"shop",
+		"ecommerce"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"productId": {
+			"type": "integer",
+			"default": 0
+		},
+		"layout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"imagePosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"imageSplit": {
+			"type": "integer",
+			"default": 50
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "1/1"
+		},
+		"imageFit": {
+			"type": "string",
+			"default": "cover"
+		},
+		"imageBorderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"showImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"showBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"saleBadgeLabel": {
+			"type": "string",
+			"default": "Sale"
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showShortDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAddToCart": {
+			"type": "boolean",
+			"default": true
+		},
+		"addToCartLabel": {
+			"type": "string",
+			"default": "Add to Cart"
+		},
+		"viewProductLabel": {
+			"type": "string",
+			"default": "View Product"
+		},
+		"contentAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"contentVerticalAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"gap": {
+			"type": "integer",
+			"default": 32
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"blockAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"blockPaddingVertical": {
+			"type": "integer",
+			"default": 40
+		},
+		"blockPaddingHorizontal": {
+			"type": "integer",
+			"default": 40
+		},
+		"blockBG": {
+			"type": "string",
+			"default": ""
+		},
+		"blockBorderRadius": {
+			"type": "integer",
+			"default": 0
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "28px",
+				"tablet": "24px",
+				"mobile": "20px"
+			}
+		},
+		"titleFontWeight": {
+			"type": "integer",
+			"default": 700
+		},
+		"priceColor": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"regularPriceColor": {
+			"type": "string",
+			"default": "#999999"
+		},
+		"ratingColor": {
+			"type": "string",
+			"default": "#f5a623"
+		},
+		"descriptionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"descriptionFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "15px",
+				"tablet": "14px",
+				"mobile": "14px"
+			}
+		},
+		"badgeBG": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"badgeTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnBG": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"btnHovColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnHovBG": {
+			"type": "string",
+			"default": "#070127"
+		},
+		"btnRadius": {
+			"type": "integer",
+			"default": 6
+		},
+		"btnFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "16px",
+				"tablet": "15px",
+				"mobile": "14px"
+			}
+		},
+		"btnFontWeight": {
+			"type": "integer",
+			"default": 600
+		},
+		"btnPaddingVertical": {
+			"type": "integer",
+			"default": 12
+		},
+		"btnPaddingHorizontal": {
+			"type": "integer",
+			"default": 28
+		},
+		"mobileMirror": {
+			"type": "boolean",
+			"default": false
+		},
+		"noProductMessage": {
+			"type": "string",
+			"default": "Please select a product."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

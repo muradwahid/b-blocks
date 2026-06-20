@@ -1,0 +1,364 @@
+/**
+ * Post Masonry Grid — frontend + editor shared styles. Mobile-first.
+ *
+ * Layout is a pure-CSS multi-column masonry (`column-count`); cards use
+ * `break-inside: avoid` so they never split across columns. Per-instance custom
+ * properties are set inline in render.php under the wrapper id, so the values
+ * below are only fallbacks.
+ *
+ * Color-contrast notes (WCAG 2.1 AA, normal text needs >= 4.5:1):
+ *   - Default accent #2563eb on #ffffff => 4.7:1 (PASS) — badge, read-more,
+ *     active filter pill, load-more button.
+ *   - Inactive filter pill text #374151 on #f3f4f6 => 9.5:1 (PASS).
+ */
+
+.bb-pmg {
+	--bb-pmg-cols: 1;
+	--bb-pmg-gap: 24px;
+	--bb-pmg-card-bg: #ffffff;
+	--bb-pmg-card-radius: 8px;
+	--bb-pmg-card-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+	--bb-pmg-aspect: 16 / 9;
+	--bb-pmg-accent: #2563eb;
+	--bb-pmg-title-color: inherit;
+	--bb-pmg-title-size: 18px;
+	--bb-pmg-title-weight: 600;
+	--bb-pmg-meta-color: inherit;
+	--bb-pmg-meta-size: 13px;
+	--bb-pmg-excerpt-color: inherit;
+	--bb-pmg-excerpt-size: 14px;
+	--bb-pmg-overlay: rgba(0, 0, 0, 0.45);
+	--bb-pmg-filter-gap: 8px;
+	--bb-pmg-filter-justify: flex-start;
+	--bb-pmg-pill-radius: 9999px;
+	--bb-pmg-filter-active-bg: #2563eb;
+	--bb-pmg-filter-active-text: #ffffff;
+	--bb-pmg-filter-inactive-bg: #f3f4f6;
+	--bb-pmg-filter-inactive-text: #374151;
+	--bb-pmg-loadmore-bg: #2563eb;
+	--bb-pmg-loadmore-text: #ffffff;
+	--bb-pmg-loadmore-radius: 6px;
+
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// --- Filter pill bar ---
+	.bb-pmg-filter {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bb-pmg-filter-gap);
+		justify-content: var(--bb-pmg-filter-justify);
+		margin-bottom: 20px;
+	}
+
+	.bb-pmg-filter-btn {
+		appearance: none;
+		border: 1px solid transparent;
+		background: var(--bb-pmg-filter-inactive-bg);
+		color: var(--bb-pmg-filter-inactive-text);
+		font-size: 14px;
+		line-height: 1.2;
+		padding: 8px 16px;
+		border-radius: var(--bb-pmg-pill-radius);
+		cursor: pointer;
+		transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--bb-pmg-accent);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pmg-accent);
+			outline-offset: 2px;
+		}
+
+		&.is-active {
+			background: var(--bb-pmg-filter-active-bg);
+			color: var(--bb-pmg-filter-active-text);
+			border-color: var(--bb-pmg-filter-active-bg);
+		}
+	}
+
+	// --- Status / live region ---
+	.bb-pmg-status {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// --- Masonry grid (CSS multi-column) ---
+	.bb-pmg-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		column-count: var(--bb-pmg-cols);
+		column-gap: var(--bb-pmg-gap);
+	}
+
+	.bb-pmg-card {
+		break-inside: avoid;
+		margin: 0 0 var(--bb-pmg-gap);
+		list-style: none;
+
+		&.is-hidden {
+			display: none;
+		}
+	}
+
+	.bb-pmg-article {
+		display: flex;
+		flex-direction: column;
+		background: var(--bb-pmg-card-bg);
+		border-radius: var(--bb-pmg-card-radius);
+		box-shadow: var(--bb-pmg-card-shadow);
+		overflow: hidden;
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+		height: 100%;
+
+		&:hover {
+			box-shadow: 0 10px 28px rgba(15, 23, 42, 0.16);
+			transform: translateY(-2px);
+		}
+	}
+
+	.bb-pmg-image-link,
+	.bb-pmg-overlay-link {
+		display: block;
+		line-height: 0;
+	}
+
+	.bb-pmg-image {
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--bb-pmg-aspect);
+		object-fit: cover;
+		display: block;
+	}
+
+	.bb-pmg-card-body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 16px;
+	}
+
+	.bb-pmg-badge {
+		align-self: flex-start;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 5px 10px;
+		border-radius: 999px;
+		background: var(--bb-pmg-accent);
+		color: #ffffff;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 0.9;
+		}
+	}
+
+	.bb-pmg-title {
+		margin: 0;
+		font-size: var(--bb-pmg-title-size);
+		font-weight: var(--bb-pmg-title-weight);
+		line-height: 1.35;
+		color: var(--bb-pmg-title-color);
+
+		.bb-pmg-title-link {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.bb-pmg-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px;
+		font-size: var(--bb-pmg-meta-size);
+		color: var(--bb-pmg-meta-color, #6b7280);
+	}
+
+	.bb-pmg-excerpt {
+		margin: 0;
+		font-size: var(--bb-pmg-excerpt-size);
+		line-height: 1.6;
+		color: var(--bb-pmg-excerpt-color);
+	}
+
+	.bb-pmg-readmore {
+		align-self: flex-start;
+		margin-top: 2px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1;
+		color: var(--bb-pmg-accent);
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pmg-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	// --- Image overlay card style ---
+	&.bb-pmg--image-overlay {
+		.bb-pmg-article {
+			position: relative;
+		}
+
+		.bb-pmg-overlay-link {
+			position: relative;
+			display: block;
+			min-height: 240px;
+
+			&:focus-visible {
+				outline: 2px solid var(--bb-pmg-accent);
+				outline-offset: 2px;
+			}
+		}
+
+		.bb-pmg-image {
+			aspect-ratio: auto;
+			height: 100%;
+			position: absolute;
+			inset: 0;
+		}
+
+		.bb-pmg-overlay-scrim {
+			position: absolute;
+			inset: 0;
+			background: var(--bb-pmg-overlay);
+		}
+
+		.bb-pmg-card-body {
+			position: absolute;
+			inset: auto 0 0 0;
+			z-index: 1;
+		}
+
+		.bb-pmg-title,
+		.bb-pmg-meta {
+			color: #ffffff;
+		}
+	}
+
+	// --- Empty state ---
+	.bb-pmg-empty {
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	// --- Load More ---
+	.bb-pmg-loadmore-wrap {
+		display: flex;
+		justify-content: center;
+		margin-top: 28px;
+	}
+
+	.bb-pmg-load-more {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		appearance: none;
+		border: none;
+		background: var(--bb-pmg-loadmore-bg);
+		color: var(--bb-pmg-loadmore-text);
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 12px 24px;
+		border-radius: var(--bb-pmg-loadmore-radius);
+		cursor: pointer;
+		transition: opacity 0.15s ease;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 0.9;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pmg-loadmore-bg);
+			outline-offset: 2px;
+		}
+
+		.bb-pmg-spinner {
+			display: none;
+			width: 14px;
+			height: 14px;
+			border: 2px solid currentColor;
+			border-right-color: transparent;
+			border-radius: 50%;
+			animation: bb-pmg-spin 0.6s linear infinite;
+		}
+
+		&.is-loading .bb-pmg-spinner {
+			display: inline-block;
+		}
+	}
+
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+}
+
+@keyframes bb-pmg-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-pmg {
+		.bb-pmg-article {
+			transition: none;
+
+			&:hover {
+				transform: none;
+			}
+		}
+
+		.bb-pmg-load-more .bb-pmg-spinner {
+			animation: none;
+		}
+	}
+}

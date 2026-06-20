@@ -1,0 +1,43 @@
+// Typing Headline Block — editor-only styles.
+
+.wp-block-b-blocks-typing-headline {
+	// Repeater UI styling
+	.bb-th-repeater {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		&__row {
+			padding: 10px;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			background: #fafafa;
+		}
+
+		&__row-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+			margin-bottom: 8px;
+		}
+
+		&__row-title {
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: #555;
+		}
+
+		&__row-actions {
+			display: flex;
+			gap: 2px;
+		}
+	}
+
+	.bb-th-add-word {
+		margin-top: 12px;
+		width: 100%;
+		justify-content: center;
+	}
+}

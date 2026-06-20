@@ -1,0 +1,86 @@
+.wp-block-b-blocks-image-slider {
+	.bb-is-editor-empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		padding: 48px 24px;
+		text-align: center;
+		background: #f3f4f6;
+		border: 1px dashed #c3c4c7;
+		border-radius: 8px;
+	}
+
+	.bb-is-editor-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: 12px;
+	}
+
+	.bb-is-editor-item {
+		position: relative;
+		border-radius: 6px;
+		overflow: hidden;
+		background: #f0f0f1;
+	}
+
+	.bb-is-editor-item img {
+		display: block;
+		width: 100%;
+		height: 120px;
+		object-fit: cover;
+	}
+
+	.bb-is-editor-item .bb-is-editor-index {
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		background: rgba(0, 0, 0, 0.6);
+		color: #fff;
+		font-size: 12px;
+		line-height: 1;
+		padding: 4px 6px;
+		border-radius: 4px;
+	}
+
+	.bb-is-editor-actions {
+		position: absolute;
+		top: 6px;
+		right: 6px;
+		display: flex;
+		gap: 4px;
+		opacity: 0;
+		transition: opacity 0.15s ease;
+	}
+
+	.bb-is-editor-item:hover .bb-is-editor-actions {
+		opacity: 1;
+	}
+
+	.bb-is-editor-actions .components-button.is-small {
+		background: rgba(0, 0, 0, 0.6);
+		color: #fff;
+		min-width: 26px;
+		height: 26px;
+		padding: 0;
+		border-radius: 4px;
+	}
+
+	.bb-is-editor-actions .components-button.is-small:disabled {
+		opacity: 0.4;
+	}
+
+	.bb-is-editor-item .bb-is-editor-fields {
+		padding: 8px;
+		background: #fff;
+	}
+
+	.bb-is-editor-item .bb-is-editor-fields .components-base-control {
+		margin-bottom: 6px;
+	}
+
+	.bb-is-editor-add {
+		margin-top: 12px;
+	}
+}

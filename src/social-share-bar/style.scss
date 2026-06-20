@@ -1,0 +1,115 @@
+/**
+ * Shared frontend + editor styles for the Social Share Bar block.
+ *
+ * Per-instance colors, sizing, and positioning are injected inline (render.php
+ * on the frontend, Style.js in the editor). This file holds structural,
+ * visibility, motion, and accessibility rules.
+ */
+
+.wp-block-b-blocks-social-share-bar {
+	&.bb-ssb {
+		line-height: 1;
+	}
+
+	.bb-ssb-list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.bb-ssb-item {
+		margin: 0;
+		padding: 0;
+	}
+
+	.bb-ssb-btn {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+		box-sizing: border-box;
+		appearance: none;
+
+		svg {
+			display: inline-flex;
+			flex-shrink: 0;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	}
+
+	// Screen-reader-only utility (matches WP core .screen-reader-text).
+	.screen-reader-text {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		width: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		position: absolute !important;
+		word-wrap: normal !important;
+	}
+
+	// Pre-reveal state: kept in the DOM (no height in layout via fixed pos),
+	// but visually hidden and inaccessible to pointers / AT.
+	&.bb-ssb--hidden {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	&.bb-ssb--visible {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	// Fade animation.
+	&.bb-ssb-anim-fade {
+		transition: opacity var(--bb-ssb-anim-duration, 300ms) ease,
+			visibility var(--bb-ssb-anim-duration, 300ms) ease;
+	}
+
+	// Slide animation: enters from the anchored edge.
+	&.bb-ssb-anim-slide {
+		transition: opacity var(--bb-ssb-anim-duration, 300ms) ease,
+			transform var(--bb-ssb-anim-duration, 300ms) ease,
+			visibility var(--bb-ssb-anim-duration, 300ms) ease;
+	}
+
+	&.bb-ssb-anim-slide.bb-ssb-side-left.bb-ssb--hidden {
+		transform: translateY(calc(-50% + var(--bb-ssb-offset, 0px))) translateX(-110%);
+	}
+
+	&.bb-ssb-anim-slide.bb-ssb-side-right.bb-ssb--hidden {
+		transform: translateY(calc(-50% + var(--bb-ssb-offset, 0px))) translateX(110%);
+	}
+
+	// Reduced motion: never animate.
+	&.bb-ssb-reduced-motion {
+		transition: none !important;
+	}
+}
+
+// On small viewports the strip can crowd content; shrink the buttons slightly.
+@media (max-width: 600px) {
+	.wp-block-b-blocks-social-share-bar.bb-ssb {
+		.bb-ssb-btn {
+			transform: none;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-social-share-bar {
+		&.bb-ssb-anim-fade,
+		&.bb-ssb-anim-slide {
+			transition: none !important;
+		}
+
+		.bb-ssb-btn:hover {
+			transform: none;
+		}
+	}
+}

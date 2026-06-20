@@ -1,0 +1,45 @@
+// Code Highlight Block — editor-only styles.
+// Only rules that should not ship to the frontend belong here.
+
+.wp-block-b-blocks-code-highlight {
+	// Make the textarea inside the editor visually echo the frontend
+	// `<pre>`. Background/colors inherit from the per-theme variables in
+	// style.scss so dark and light editor previews match production.
+	.bb-ch-editor-input {
+		display: block;
+		width: 100%;
+		min-height: 160px;
+		padding: 14px 16px;
+		margin: 0;
+		background: var(--bb-ch-bg, #282c34);
+		color: var(--bb-ch-text, #abb2bf);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			"Liberation Mono", "Courier New", monospace;
+		font-size: var(--bb-ch-font-size, 14px);
+		line-height: 1.55;
+		tab-size: var(--bb-ch-tab-size, 2);
+		-moz-tab-size: var(--bb-ch-tab-size, 2);
+		border: 0;
+		border-radius: 0;
+		outline: none;
+		resize: vertical;
+		white-space: pre;
+		overflow: auto;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-ch-focus-ring, #4f9dff);
+			outline-offset: -2px;
+		}
+	}
+
+	.bb-ch-editor-placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 160px;
+		padding: 16px;
+		color: var(--bb-ch-gutter-text, #6e7781);
+		font-style: italic;
+		text-align: center;
+	}
+}

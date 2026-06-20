@@ -1,0 +1,131 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-add-to-cart",
+	"version": "1.0.0",
+	"title": "Woo Add to Cart",
+	"category": "bBlocks",
+	"description": "Standalone WooCommerce Add to Cart button for a single product, with optional quantity stepper and AJAX add-to-cart, usable on any page or post.",
+	"keywords": [
+		"woocommerce",
+		"add to cart",
+		"buy now",
+		"product",
+		"cart",
+		"shop",
+		"ecommerce",
+		"checkout"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"productId": {
+			"type": "integer",
+			"default": 0
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": "Add to Cart"
+		},
+		"addedLabel": {
+			"type": "string",
+			"default": "Added!"
+		},
+		"showQuantity": {
+			"type": "boolean",
+			"default": false
+		},
+		"quantityDefault": {
+			"type": "integer",
+			"default": 1
+		},
+		"redirectToCart": {
+			"type": "boolean",
+			"default": false
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"isFullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"btnColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnBG": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"btnHovColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnHovBG": {
+			"type": "string",
+			"default": "#070127"
+		},
+		"fontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "16px",
+				"tablet": "15px",
+				"mobile": "14px"
+			}
+		},
+		"fontWeight": {
+			"type": "integer",
+			"default": 600
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"vertical": "12px",
+				"horizontal": "24px"
+			}
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": "6px"
+		},
+		"borderWidth": {
+			"type": "string",
+			"default": "0px"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"qtyBtnColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"qtyBtnBG": {
+			"type": "string",
+			"default": "#f0f0f0"
+		},
+		"qtyInputBorderColor": {
+			"type": "string",
+			"default": "#dddddd"
+		},
+		"qtyBorderRadius": {
+			"type": "string",
+			"default": "4px"
+		}
+	},
+	"supports": {
+		"html": false,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

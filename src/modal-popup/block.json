@@ -1,0 +1,162 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/modal-popup",
+	"title": "Modal Popup",
+	"description": "Open an accessible overlay dialog from a button, image, text link, or icon trigger. Compose any blocks inside.",
+	"category": "bBlocks",
+	"keywords": [
+		"modal",
+		"popup",
+		"dialog",
+		"lightbox",
+		"overlay"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"triggerType": {
+			"type": "string",
+			"default": "button"
+		},
+		"triggerLabel": {
+			"type": "string",
+			"default": "Open"
+		},
+		"triggerIcon": {
+			"type": "object",
+			"default": {
+				"class": "fa-solid fa-circle-info",
+				"fontSize": 24,
+				"color": "#0073aa"
+			}
+		},
+		"triggerImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"triggerImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"triggerImageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"triggerAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"triggerBtnColors": {
+			"type": "object",
+			"default": {
+				"bg": "#0073aa",
+				"color": "#ffffff",
+				"hoverBg": "#005177",
+				"hoverColor": "#ffffff"
+			}
+		},
+		"triggerBtnPadding": {
+			"type": "object",
+			"default": {
+				"vertical": "10px",
+				"horizontal": "20px"
+			}
+		},
+		"triggerBtnBorderRadius": {
+			"type": "string",
+			"default": "4px"
+		},
+		"triggerTypography": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": "16px",
+					"tablet": "15px",
+					"mobile": "14px"
+				}
+			}
+		},
+		"modalSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"modalBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.6)"
+		},
+		"modalPadding": {
+			"type": "object",
+			"default": {
+				"vertical": "30px",
+				"horizontal": "30px"
+			}
+		},
+		"modalBorderRadius": {
+			"type": "string",
+			"default": "8px"
+		},
+		"showCloseButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"closeOnOverlayClick": {
+			"type": "boolean",
+			"default": true
+		},
+		"closeOnEscape": {
+			"type": "boolean",
+			"default": true
+		},
+		"animation": {
+			"type": "string",
+			"default": "fade"
+		},
+		"modalTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"modalTitleTypography": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": "22px",
+					"tablet": "20px",
+					"mobile": "18px"
+				},
+				"fontWeight": 600
+			}
+		},
+		"modalTitleColor": {
+			"type": "string",
+			"default": "#111111"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

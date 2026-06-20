@@ -1,0 +1,163 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/marquee",
+	"version": "1.0.0",
+	"title": "Marquee",
+	"category": "bBlocks",
+	"description": "A continuously auto-scrolling horizontal strip of logos, text badges, or mixed items that loops seamlessly for instant social proof.",
+	"keywords": [
+		"marquee",
+		"scroller",
+		"ticker",
+		"logos",
+		"infinite scroll",
+		"social proof",
+		"as seen in"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "_key": "mq-default-1", "type": "text", "imageId": 0, "imageUrl": "", "imageAlt": "", "text": "Free shipping", "linkUrl": "", "linkNewTab": false },
+				{ "_key": "mq-default-2", "type": "text", "imageId": 0, "imageUrl": "", "imageAlt": "", "text": "No contracts", "linkUrl": "", "linkNewTab": false },
+				{ "_key": "mq-default-3", "type": "text", "imageId": 0, "imageUrl": "", "imageAlt": "", "text": "24/7 support", "linkUrl": "", "linkNewTab": false }
+			]
+		},
+		"itemType": {
+			"type": "string",
+			"default": "mixed"
+		},
+		"direction": {
+			"type": "string",
+			"default": "left"
+		},
+		"speed": {
+			"type": "number",
+			"default": 40
+		},
+		"gap": {
+			"type": "number",
+			"default": 48
+		},
+		"pauseOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"fadeEdges": {
+			"type": "boolean",
+			"default": true
+		},
+		"fadeWidth": {
+			"type": "number",
+			"default": 80
+		},
+		"duplicateCount": {
+			"type": "number",
+			"default": 2
+		},
+		"stripPaddingTop": {
+			"type": "number",
+			"default": 20
+		},
+		"stripPaddingBottom": {
+			"type": "number",
+			"default": 20
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"imageHeight": {
+			"type": "number",
+			"default": 40
+		},
+		"imageGrayscale": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageGrayscaleHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"textFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"textFontWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeBackground": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"badgePaddingV": {
+			"type": "number",
+			"default": 6
+		},
+		"badgePaddingH": {
+			"type": "number",
+			"default": 12
+		},
+		"separatorIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"separatorColor": {
+			"type": "string",
+			"default": ""
+		},
+		"separatorSize": {
+			"type": "number",
+			"default": 8
+		},
+		"labelText": {
+			"type": "string",
+			"default": ""
+		},
+		"labelFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"labelFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"labelColor": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

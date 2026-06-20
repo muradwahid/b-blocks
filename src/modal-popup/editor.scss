@@ -1,0 +1,42 @@
+// Editor-only style adjustments for the Modal Popup block.
+
+.wp-block-b-blocks-modal-popup {
+	.modalEditorPreviewWrapper {
+		border: 1px dashed #d2d6dc;
+		border-radius: 6px;
+		padding: 16px;
+		margin-top: 12px;
+		background: #fafafa;
+
+		.modalEditorPreviewHeader {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 12px;
+			padding-bottom: 8px;
+			border-bottom: 1px solid #e6e6e6;
+			gap: 8px;
+
+			.modalEditorPreviewLabel {
+				font-size: 12px;
+				font-weight: 600;
+				color: #555;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
+		}
+
+		.modalEditorPreviewBody {
+			background: #ffffff;
+			border-radius: 4px;
+			padding: 16px;
+			min-height: 80px;
+		}
+	}
+
+	.modalTrigger {
+		// Prevent clicks from firing inside the editor preview.
+		pointer-events: none;
+		user-select: none;
+	}
+}

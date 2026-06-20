@@ -83,7 +83,8 @@ $item_style = sprintf(
 $item_class = $enable_click ? 'news-ticker-item' : 'news-ticker-item no-click';
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>>
+
 	<div class="news-ticker-wrapper">
 		<div class="news-ticker-label" style="background-color: rgba(0, 0, 0, 0.2); color: <?php echo esc_attr( $text_color ); ?>;">
 			<?php echo esc_html( $heading_text ); ?>

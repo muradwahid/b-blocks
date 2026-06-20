@@ -1,0 +1,191 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/icon-list",
+	"version": "2.0.68",
+	"title": "Icon List",
+	"category": "bBlocks",
+	"description": "Typed feature checklist with icon presets (check / cross / arrow / star), responsive multi-column grid, optional per-item description and per-item link. Distinct from the general-purpose List block — built specifically for landing-page benefit lists and pricing feature lists.",
+	"keywords": [
+		"icon list",
+		"feature list",
+		"checklist",
+		"checkmark",
+		"check list",
+		"benefits",
+		"pricing features",
+		"feature checklist",
+		"tick list"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "il-default-1",
+					"text": "Free SSL Certificate",
+					"description": "",
+					"iconPreset": "",
+					"iconClass": "",
+					"iconColor": "",
+					"iconBg": "",
+					"showIcon": true,
+					"link": "",
+					"linkNewTab": false
+				},
+				{
+					"_key": "il-default-2",
+					"text": "24/7 Expert Support",
+					"description": "",
+					"iconPreset": "",
+					"iconClass": "",
+					"iconColor": "",
+					"iconBg": "",
+					"showIcon": true,
+					"link": "",
+					"linkNewTab": false
+				},
+				{
+					"_key": "il-default-3",
+					"text": "Unlimited Bandwidth",
+					"description": "",
+					"iconPreset": "",
+					"iconClass": "",
+					"iconColor": "",
+					"iconBg": "",
+					"showIcon": true,
+					"link": "",
+					"linkNewTab": false
+				}
+			]
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": "Feature list"
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 1,
+				"tablet": 1,
+				"mobile": 1
+			}
+		},
+		"columnGap": {
+			"type": "object",
+			"default": {
+				"desktop": "24px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"rowGap": {
+			"type": "object",
+			"default": {
+				"desktop": "12px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"iconPreset": {
+			"type": "string",
+			"default": "check"
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fa-solid fa-check"
+		},
+		"iconSize": {
+			"type": "object",
+			"default": {
+				"desktop": "18px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#22c55e"
+		},
+		"iconBg": {
+			"type": "string",
+			"default": ""
+		},
+		"iconRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"iconPadding": {
+			"type": "number",
+			"default": 4
+		},
+		"iconGap": {
+			"type": "number",
+			"default": 10
+		},
+		"iconAlign": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"textSize": {
+			"type": "object",
+			"default": {
+				"desktop": "16px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": false
+		},
+		"descriptionSize": {
+			"type": "object",
+			"default": {
+				"desktop": "13px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"descriptionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

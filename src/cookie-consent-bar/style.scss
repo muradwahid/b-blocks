@@ -1,0 +1,200 @@
+// Cookie Consent Bar — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+
+.wp-block-b-blocks-cookie-consent-bar,
+.bb-ccb {
+	* {
+		box-sizing: border-box;
+	}
+
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: var(--bb-ccb-z, 9999);
+	width: 100%;
+	background-color: var(--bb-ccb-bg, #1a1a1a);
+	color: var(--bb-ccb-color, #ffffff);
+	padding: var(--bb-ccb-pad-y, 16px) var(--bb-ccb-pad-x, 24px);
+
+	&.bb-ccb-pos-bottom {
+		bottom: 0;
+		transform: translateY(100%);
+	}
+
+	&.bb-ccb-pos-top {
+		top: 0;
+		transform: translateY(-100%);
+	}
+
+	transition: transform var(--bb-ccb-anim, 300ms) ease;
+
+	&[hidden] {
+		display: none;
+	}
+
+	// Slide into view once view.js adds this class.
+	&.bb-ccb--shown {
+		transform: translateY(0);
+	}
+
+	// Slide back out before removal.
+	&.bb-ccb--hiding.bb-ccb-pos-bottom {
+		transform: translateY(100%);
+	}
+
+	&.bb-ccb--hiding.bb-ccb-pos-top {
+		transform: translateY(-100%);
+	}
+
+	.bb-ccb-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 12px 20px;
+		width: 100%;
+		max-width: var(--bb-ccb-max-w, none);
+		margin-inline: auto;
+	}
+
+	// --- Message ---
+	.bb-ccb-message {
+		flex: 1 1 auto;
+		min-width: 0;
+		color: var(--bb-ccb-color, #ffffff);
+		font-size: var(--bb-ccb-font-size, 14px);
+		font-weight: var(--bb-ccb-font-weight, 400);
+		line-height: 1.5;
+
+		p {
+			margin: 0;
+			color: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			line-height: inherit;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: none;
+			}
+		}
+
+		strong,
+		b { font-weight: 700; }
+
+		em,
+		i { font-style: italic; }
+	}
+
+	// --- Actions ---
+	.bb-ccb-actions {
+		flex: 0 0 auto;
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--bb-ccb-btn-gap, 8px);
+	}
+
+	.bb-ccb-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--bb-ccb-btn-pad-y, 8px) var(--bb-ccb-btn-pad-x, 20px);
+		border: 1px solid transparent;
+		border-radius: var(--bb-ccb-btn-radius, 4px);
+		font: inherit;
+		font-size: var(--bb-ccb-btn-font-size, 14px);
+		font-weight: var(--bb-ccb-btn-font-weight, 600);
+		line-height: 1.2;
+		text-align: center;
+		text-decoration: none;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+
+		&:active {
+			transform: translateY(1px);
+		}
+	}
+
+	.bb-ccb-accept {
+		background-color: var(--bb-ccb-accept-bg, #ffffff);
+		color: var(--bb-ccb-accept-text, #1a1a1a);
+
+		&:hover,
+		&:focus {
+			background-color: var(--bb-ccb-accept-hover-bg, #e6e6e6);
+			color: var(--bb-ccb-accept-hover-text, #1a1a1a);
+		}
+	}
+
+	.bb-ccb-decline {
+		background-color: var(--bb-ccb-decline-bg, transparent);
+		color: var(--bb-ccb-decline-text, #ffffff);
+		border-color: currentColor;
+
+		&:hover,
+		&:focus {
+			background-color: var(--bb-ccb-decline-hover-bg, rgba(255, 255, 255, 0.1));
+			color: var(--bb-ccb-decline-hover-text, #ffffff);
+		}
+	}
+
+	// --- Alignment of the message text ---
+	&.bb-ccb-align-left .bb-ccb-message { text-align: left; }
+	&.bb-ccb-align-center .bb-ccb-message { text-align: center; }
+	&.bb-ccb-align-right .bb-ccb-message { text-align: right; }
+
+	// --- Stacked layout: message above buttons, full-width column. ---
+	&.bb-ccb-layout-stacked .bb-ccb-inner {
+		flex-direction: column;
+	}
+
+	&.bb-ccb-layout-stacked .bb-ccb-message {
+		flex: 0 0 auto;
+		width: 100%;
+	}
+
+	&.bb-ccb-align-left.bb-ccb-layout-stacked .bb-ccb-inner { align-items: flex-start; }
+	&.bb-ccb-align-right.bb-ccb-layout-stacked .bb-ccb-inner { align-items: flex-end; }
+
+	// Mobile-first: collapse to a centered column on narrow screens.
+	@media (max-width: 600px) {
+		.bb-ccb-inner {
+			flex-direction: column;
+			align-items: stretch;
+			text-align: center;
+		}
+
+		.bb-ccb-message {
+			text-align: center;
+		}
+
+		.bb-ccb-actions {
+			justify-content: center;
+		}
+
+		.bb-ccb-button {
+			flex: 1 1 auto;
+		}
+	}
+
+	// Respect prefers-reduced-motion — disable the slide transition.
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		.bb-ccb-button {
+			transition: none;
+		}
+	}
+}

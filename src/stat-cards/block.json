@@ -1,0 +1,184 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/stat-cards",
+	"version": "1.0.0",
+	"title": "Stat Cards",
+	"category": "bBlocks",
+	"description": "Display a static, responsive grid of impact stat cards — a big number with prefix/suffix, label, optional trend badge, description, and per-card link. No JavaScript.",
+	"keywords": [
+		"stats",
+		"statistics",
+		"kpi",
+		"numbers",
+		"metrics",
+		"counter",
+		"impact"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "_key": "sc-default-1", "icon": "fa-solid fa-users", "number": "500", "prefix": "", "suffix": "+", "label": "Customers", "description": "", "trendValue": "12%", "trendDirection": "up", "trendColor": "", "linkUrl": "", "linkTarget": false },
+				{ "_key": "sc-default-2", "icon": "fa-solid fa-face-smile", "number": "98", "prefix": "", "suffix": "%", "label": "Satisfaction", "description": "", "trendValue": "", "trendDirection": "neutral", "trendColor": "", "linkUrl": "", "linkTarget": false },
+				{ "_key": "sc-default-3", "icon": "fa-solid fa-star", "number": "4.9", "prefix": "", "suffix": "", "label": "Average Rating", "description": "", "trendValue": "", "trendDirection": "up", "trendColor": "", "linkUrl": "", "linkTarget": false }
+			]
+		},
+		"columnsDesktop": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"columnGap": {
+			"type": "number",
+			"default": 24
+		},
+		"rowGap": {
+			"type": "number",
+			"default": 24
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "flat"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 32
+		},
+		"numberSizeDesktop": {
+			"type": "number",
+			"default": 48
+		},
+		"numberSizeTablet": {
+			"type": "number",
+			"default": 40
+		},
+		"numberSizeMobile": {
+			"type": "number",
+			"default": 32
+		},
+		"numberWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"labelSize": {
+			"type": "number",
+			"default": 16
+		},
+		"labelWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"descriptionSize": {
+			"type": "number",
+			"default": 14
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTrend": {
+			"type": "boolean",
+			"default": true
+		},
+		"cardBackground": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorder": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"accentWidth": {
+			"type": "number",
+			"default": 4
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 12
+		},
+		"cardPaddingV": {
+			"type": "number",
+			"default": 28
+		},
+		"cardPaddingH": {
+			"type": "number",
+			"default": 24
+		},
+		"shadowPreset": {
+			"type": "string",
+			"default": "none"
+		},
+		"numberColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"labelColor": {
+			"type": "string",
+			"default": "#374151"
+		},
+		"descriptionColor": {
+			"type": "string",
+			"default": "#6B7280"
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"blockAlign": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

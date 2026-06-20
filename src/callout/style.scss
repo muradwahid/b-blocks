@@ -1,0 +1,211 @@
+// Callout Block — frontend + editor shared styles.
+// Mobile-first responsive. Default palettes for the five types meet WCAG
+// 2.1 AA (≥ 4.5:1 body text contrast, ≥ 3:1 large/title text contrast) on
+// their default tinted background.
+
+.wp-block-b-blocks-callout {
+	// ---------- Default CSS custom properties ----------
+	// render.php overrides these per instance via the inline style attribute;
+	// listing them here keeps the editor preview readable even when a token
+	// is missing (e.g. legacy block instances saved before a new field was
+	// added).
+	--bb-co-accent: #0ea5e9;
+	--bb-co-bg: #f0f9ff;
+	--bb-co-title-color: #075985;
+	--bb-co-body-color: #0c4a6e;
+	--bb-co-icon-color: var(--bb-co-accent);
+	--bb-co-accent-width: 4px;
+	--bb-co-radius: 6px;
+	--bb-co-pad-top: 16px;
+	--bb-co-pad-right: 20px;
+	--bb-co-pad-bottom: 16px;
+	--bb-co-pad-left: 20px;
+	--bb-co-title-size: 15px;
+	--bb-co-title-weight: 600;
+	--bb-co-body-size: 15px;
+	--bb-co-icon-size: 20px;
+
+	display: block;
+	margin: 0 0 1.25em;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// ---------- Root <aside> wrapper ----------
+	.bb-co {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		padding: var(--bb-co-pad-top) var(--bb-co-pad-right) var(--bb-co-pad-bottom) var(--bb-co-pad-left);
+		background: var(--bb-co-bg);
+		color: var(--bb-co-body-color);
+		border-radius: var(--bb-co-radius);
+		position: relative;
+		font-size: var(--bb-co-body-size);
+		line-height: 1.55;
+	}
+
+	// ---------- Icon column ----------
+	.bb-co__icon {
+		flex: 0 0 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--bb-co-icon-size);
+		height: var(--bb-co-icon-size);
+		font-size: var(--bb-co-icon-size);
+		color: var(--bb-co-icon-color);
+		line-height: 1;
+		// Nudge the icon down slightly to align with the cap-height of the
+		// first line of body text without overshooting on multi-line titles.
+		margin-top: 2px;
+
+		i,
+		svg {
+			display: inline-block;
+			font-size: inherit;
+			width: 1em;
+			height: 1em;
+			line-height: 1;
+		}
+	}
+
+	// ---------- Body column ----------
+	.bb-co__body {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.bb-co__title {
+		margin: 0 0 6px;
+		padding: 0;
+		font-size: var(--bb-co-title-size);
+		font-weight: var(--bb-co-title-weight);
+		line-height: 1.3;
+		color: var(--bb-co-title-color);
+	}
+
+	.bb-co__content {
+		font-size: var(--bb-co-body-size);
+		color: var(--bb-co-body-color);
+
+		> * {
+			margin-top: 0;
+		}
+		> * + * {
+			margin-top: 0.6em;
+		}
+
+		// Inherit color/font-size for paragraphs and lists rendered inside
+		// InnerBlocks so the body styling stays consistent.
+		p,
+		ul,
+		ol,
+		dl {
+			color: inherit;
+			font-size: inherit;
+			margin: 0;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+			text-underline-offset: 2px;
+		}
+
+		strong,
+		b {
+			font-weight: 700;
+		}
+
+		code {
+			padding: 0.1em 0.35em;
+			border-radius: 3px;
+			background: rgba(0, 0, 0, 0.07);
+			font-size: 0.95em;
+		}
+	}
+
+	// ---------- Layouts ----------
+
+	// Accent-bar (default): colored left vertical bar + tinted background.
+	&.bb-co-style--accent-bar .bb-co {
+		border-left: var(--bb-co-accent-width) solid var(--bb-co-accent);
+		padding-left: calc(var(--bb-co-pad-left) + var(--bb-co-accent-width));
+	}
+
+	// Filled: solid accent background + light text for contrast. The body
+	// color is forced to white because the per-type defaults assume the
+	// tinted background. Editors can still override with bodyColor.
+	&.bb-co-style--filled .bb-co {
+		background: var(--bb-co-accent);
+		color: #ffffff;
+
+		.bb-co__title,
+		.bb-co__content {
+			color: #ffffff;
+		}
+
+		.bb-co__icon {
+			color: #ffffff;
+		}
+
+		.bb-co__content {
+			code {
+				background: rgba(255, 255, 255, 0.18);
+				color: inherit;
+			}
+		}
+	}
+
+	// Outlined: transparent background, 1px colored border all around.
+	&.bb-co-style--outlined .bb-co {
+		background: transparent;
+		border: 1px solid var(--bb-co-accent);
+	}
+
+	// ---------- Alignment ----------
+	// When centered or right-aligned the icon stays at the top of the box
+	// but the text re-flows. For center alignment we drop the icon column
+	// and stack so the heading reads naturally.
+	&.bb-co-align--center .bb-co {
+		text-align: center;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+
+		.bb-co__icon {
+			margin-top: 0;
+		}
+	}
+
+	&.bb-co-align--right .bb-co {
+		text-align: right;
+		flex-direction: row-reverse;
+	}
+
+	// ---------- Icon hidden ----------
+	&.no-icon .bb-co__icon {
+		display: none;
+	}
+
+	// ---------- Compact viewports ----------
+	@media (max-width: 480px) {
+		.bb-co {
+			padding: 12px 14px;
+			gap: 10px;
+		}
+		&.bb-co-style--accent-bar .bb-co {
+			padding-left: calc(14px + var(--bb-co-accent-width));
+		}
+	}
+
+	// ---------- Reduced motion ----------
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			transition: none !important;
+			animation: none !important;
+		}
+	}
+}

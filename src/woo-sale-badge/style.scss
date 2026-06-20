@@ -1,0 +1,119 @@
+/**
+ * Woo Sale Badge — frontend + editor shared styles. Mobile-first.
+ *
+ * Color-contrast notes (WCAG 2.1 AA, normal text needs >= 4.5:1):
+ *   - Default badge #ffffff on #e44d3a => ~4.0:1 (PASS for >= 18.66px bold /
+ *     large or UI text, >= 3:1). Pick a darker red for small body-size badges.
+ *   - Default sale price #e44d3a on white => 4.0:1 (large text PASS).
+ * Per-instance custom properties are set inline in render.php under the wrapper
+ * id, so the values below are only fallbacks.
+ */
+
+.bb-wsb {
+	--bb-wsb-align: flex-start;
+	--bb-wsb-max-width: none;
+	--bb-wsb-badge-bg: #e44d3a;
+	--bb-wsb-badge-text: #ffffff;
+	--bb-wsb-badge-size: 13px;
+	--bb-wsb-badge-weight: 700;
+	--bb-wsb-badge-pad-v: 4px;
+	--bb-wsb-badge-pad-h: 10px;
+	--bb-wsb-sale-color: #e44d3a;
+	--bb-wsb-regular-color: #999999;
+	--bb-wsb-price-size: 16px;
+	--bb-wsb-price-weight: 700;
+	--bb-wsb-price-gap: 8px;
+	--bb-wsb-badge-price-gap: 10px;
+
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: var(--bb-wsb-align);
+	max-width: var(--bb-wsb-max-width);
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-wsb-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--bb-wsb-badge-price-gap);
+	}
+
+	// Badge above / below the price → stack the inner row vertically.
+	&.bb-wsb--badge-above .bb-wsb-inner,
+	&.bb-wsb--badge-below .bb-wsb-inner {
+		flex-direction: column;
+		align-items: var(--bb-wsb-align);
+	}
+
+	&.bb-wsb--badge-below .bb-wsb-inner {
+		flex-direction: column-reverse;
+	}
+
+	.bb-wsb-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--bb-wsb-badge-pad-v) var(--bb-wsb-badge-pad-h);
+		font-size: var(--bb-wsb-badge-size);
+		font-weight: var(--bb-wsb-badge-weight);
+		line-height: 1.3;
+		color: var(--bb-wsb-badge-text);
+		background: var(--bb-wsb-badge-bg);
+		white-space: nowrap;
+
+		&--pill {
+			border-radius: 999px;
+		}
+
+		&--square {
+			border-radius: 3px;
+		}
+
+		&--circle {
+			border-radius: 50%;
+			aspect-ratio: 1 / 1;
+			padding: var(--bb-wsb-badge-pad-v);
+		}
+	}
+
+	.bb-wsb-price {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--bb-wsb-price-gap);
+		font-size: var(--bb-wsb-price-size);
+		font-weight: var(--bb-wsb-price-weight);
+		line-height: 1.3;
+		color: var(--bb-wsb-sale-color);
+
+		del {
+			color: var(--bb-wsb-regular-color);
+			font-weight: 400;
+			text-decoration: line-through;
+		}
+
+		ins {
+			text-decoration: none;
+			color: var(--bb-wsb-sale-color);
+			font-weight: var(--bb-wsb-price-weight);
+		}
+
+		.amount {
+			font-weight: inherit;
+		}
+	}
+
+	.bb-wsb-empty {
+		margin: 0;
+		padding: 12px 16px;
+		text-align: center;
+		color: #6b7280;
+		font-style: italic;
+	}
+}

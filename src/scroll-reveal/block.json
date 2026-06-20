@@ -1,0 +1,64 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/scroll-reveal",
+	"title": "Scroll Reveal",
+	"description": "A wrapper that reveals any inner blocks with a fade + slide entrance animation as they scroll into view. Powered by IntersectionObserver, dependency-free, and fully respects prefers-reduced-motion.",
+	"category": "bBlocks",
+	"keywords": [
+		"scroll",
+		"reveal",
+		"animation",
+		"fade",
+		"on scroll",
+		"motion",
+		"entrance"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"animation": {
+			"type": "string",
+			"default": "fade-up"
+		},
+		"duration": {
+			"type": "integer",
+			"default": 600
+		},
+		"delay": {
+			"type": "integer",
+			"default": 0
+		},
+		"easing": {
+			"type": "string",
+			"default": "ease-out"
+		},
+		"translateDistance": {
+			"type": "integer",
+			"default": 40
+		},
+		"triggerThreshold": {
+			"type": "number",
+			"default": 0.15
+		},
+		"once": {
+			"type": "boolean",
+			"default": true
+		},
+		"previewInEditor": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

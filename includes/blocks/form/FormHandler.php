@@ -10,7 +10,7 @@ class BBlocksFormHandler{
 	function b_form_submit(){
 
     // verify nonce
-		if(!isset($_POST['_nonce']) || !wp_verify_nonce($_POST['_nonce'], 'wp_ajax')){
+		if ( ! isset( $_POST['_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_nonce'] ) ), 'wp_ajax' ) ) {
 			wp_send_json_error([ 'message' => __( 'Something went wrong.', 'b-blocks' ) ]);
 		}
     // sanitize field data and validate and create wp user_error
@@ -30,7 +30,7 @@ class BBlocksFormHandler{
 			'rememberme' => sanitize_text_field($_POST['rememberme'] ?? ''),
 		];
 
-		$form_type = sanitize_text_field($_POST['type']);
+		$form_type = sanitize_text_field( $_POST['type'] ?? '' );
 
 		if($form_type === 'register'){
 			return $this->register_user($payload);
@@ -175,7 +175,7 @@ class BBlocksFormHandler{
 		// $this->send_user_email($user_mail, $payload);
 		// $this->send_admin_email($admin_mail, $payload);
 
-		wp_send_json_success(['message' => 'User registered successfully']);
+		wp_send_json_success( [ 'message' => __( 'User registered successfully.', 'b-blocks' ) ] );
 		
 	}
 
@@ -217,19 +217,19 @@ class BBlocksFormHandler{
 
 	private function validate_registration_data( $payload, $passwordRequirements ) {
 		if ( empty( $payload['username'] ) || ! validate_username( $payload['username'] ) ) {
-			return 'Invalid username.';
+			return __( 'Invalid username.', 'b-blocks' );
 		} elseif ( username_exists( $payload['username'] ) ) {
-			return 'Username already exists.';
+			return __( 'Username already exists.', 'b-blocks' );
 		}
 
 		if ( empty( $payload['email'] ) || ! is_email( $payload['email'] ) ) {
-			return 'Invalid email address.';
+			return __( 'Invalid email address.', 'b-blocks' );
 		} elseif ( email_exists( $payload['email'] ) ) {
-			return 'Email already exists.';
+			return __( 'Email already exists.', 'b-blocks' );
 		}
 
 		if ( empty( $payload['password'] ) ) {
-			return 'Password is required.';
+			return __( 'Password is required.', 'b-blocks' );
 		}
 
 		if($passwordRequirements['isWeek']){
@@ -238,27 +238,28 @@ class BBlocksFormHandler{
 
 		if($passwordRequirements['isLowerCase']){
 			if ( empty( $payload['password'] ) || ! preg_match( '/[a-z]/', $payload['password'] ) ) {
-				return 'Password must contain at least one lowercase letter.';
+				return __( 'Password must contain at least one lowercase letter.', 'b-blocks' );
 			}
 		}
 		if($passwordRequirements['isNumber']){
 			if ( empty( $payload['password'] ) || ! preg_match( '/[0-9]/', $payload['password'] ) ) {
-				return 'Password must contain at least one number.';
+				return __( 'Password must contain at least one number.', 'b-blocks' );
 			}
 		}
 		if($passwordRequirements['isSpecialChar']){
 			if ( empty( $payload['password'] ) || ! preg_match( '/[^a-zA-Z0-9]/', $payload['password'] ) ) {
-				return 'Password must contain at least one special character.';
+				return __( 'Password must contain at least one special character.', 'b-blocks' );
 			}
 		}
 		if($passwordRequirements['isUpperCase']){
 			if ( empty( $payload['password'] ) || ! preg_match( '/[A-Z]/', $payload['password'] ) ) {
-				return 'Password must contain at least one uppercase letter.';
+				return __( 'Password must contain at least one uppercase letter.', 'b-blocks' );
 			}
 		}
 		if($passwordRequirements['minLength']){
 			if ( empty( $payload['password'] ) || strlen( $payload['password'] ) < $passwordRequirements['minLength'] ) {
-				return 'Password must be at least ' . $passwordRequirements['minLength'] . ' characters.';
+				/* translators: %d: minimum password length. */
+				return sprintf( __( 'Password must be at least %d characters.', 'b-blocks' ), (int) $passwordRequirements['minLength'] );
 			}
 		}
 

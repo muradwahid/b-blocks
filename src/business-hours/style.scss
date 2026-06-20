@@ -1,0 +1,251 @@
+// Frontend + editor shared styles for the Business Hours block.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+// Per-instance values (colors, padding, radius, alt rows, separators,
+// today highlight) are injected via the inline <style> tag in render.php
+// — these are the defaults / fallbacks only.
+
+.wp-block-b-blocks-business-hours {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-bh-wrapper {
+		display: block;
+		width: 100%;
+		background: transparent;
+	}
+
+	.bb-bh-title {
+		margin: 0 0 12px;
+		padding: 0;
+		font-size: 1.25rem;
+		line-height: 1.3;
+	}
+
+	.bb-bh-badges {
+		margin: 0 0 12px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-items: center;
+	}
+
+	.bb-bh-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 4px 12px;
+		border-radius: 999px;
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: #ffffff;
+
+		&[hidden] {
+			display: none;
+		}
+
+		.bb-bh-dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: currentColor;
+			opacity: 0.85;
+			flex: 0 0 auto;
+		}
+	}
+
+	.bb-bh-list {
+		margin: 0;
+		padding: 0;
+	}
+
+	.bb-bh-row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		gap: 12px;
+		padding: 10px 12px;
+		min-height: 36px;
+		line-height: 1.4;
+	}
+
+	.bb-bh-day,
+	.bb-bh-time {
+		margin: 0;
+		padding: 0;
+		font-size: 14px;
+	}
+
+	.bb-bh-day {
+		font-weight: 500;
+	}
+
+	@media (max-width: 480px) {
+		.bb-bh-row {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 2px;
+		}
+
+		.bb-bh-time {
+			font-size: 13px;
+		}
+	}
+
+	// ============================================================
+	// View style presets — each preset overrides the base look.
+	// Color / padding inspector controls still cascade on top.
+	// ============================================================
+
+	// --- minimal: borderless, airy, divider only between rows -----------
+	&.bb-bh-view--minimal {
+		.bb-bh-wrapper {
+			background: transparent !important;
+			border: 0;
+			padding: 8px 0;
+			box-shadow: none;
+		}
+		.bb-bh-title {
+			font-weight: 500;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+			font-size: 13px;
+			opacity: 0.7;
+		}
+		.bb-bh-row {
+			padding: 12px 0 !important;
+			background: transparent !important;
+			border-top: 1px dashed currentColor;
+			border-bottom: 0;
+			opacity: 0.9;
+		}
+		.bb-bh-row.is-today {
+			opacity: 1;
+		}
+	}
+
+	// --- card: elevated card with soft shadow ---------------------------
+	&.bb-bh-view--card {
+		.bb-bh-wrapper {
+			border-radius: 16px !important;
+			box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.18);
+			overflow: hidden;
+		}
+		.bb-bh-title {
+			padding: 16px 20px;
+			margin: 0;
+			background: rgba(0, 0, 0, 0.03);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+		}
+		.bb-bh-list { padding: 4px 8px 8px; }
+		.bb-bh-row {
+			border-radius: 8px;
+			margin: 2px 0;
+		}
+		.bb-bh-row.is-today {
+			box-shadow: inset 3px 0 0 currentColor;
+		}
+	}
+
+	// --- split: two-column with colored day column ---------------------
+	&.bb-bh-view--split {
+		.bb-bh-row {
+			padding: 0 !important;
+			border-top: 1px solid rgba(0, 0, 0, 0.06);
+			background: transparent !important;
+		}
+		.bb-bh-row:first-child { border-top: 0; }
+		.bb-bh-day {
+			flex: 0 0 40%;
+			padding: 12px 16px;
+			background: rgba(0, 0, 0, 0.04);
+			font-weight: 600;
+		}
+		.bb-bh-time {
+			flex: 1 1 auto;
+			padding: 12px 16px;
+			text-align: right;
+		}
+		@media (max-width: 480px) {
+			.bb-bh-day,
+			.bb-bh-time {
+				flex: 1 1 100%;
+				text-align: left;
+			}
+		}
+	}
+
+	// --- dark: high-contrast dark panel --------------------------------
+	&.bb-bh-view--dark {
+		.bb-bh-wrapper {
+			background: #0f172a !important;
+			color: #e2e8f0;
+			border-radius: 12px;
+			border: 1px solid #1e293b;
+		}
+		.bb-bh-title,
+		.bb-bh-day,
+		.bb-bh-time {
+			color: #e2e8f0 !important;
+		}
+		.bb-bh-row {
+			background: transparent !important;
+			border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+		}
+		.bb-bh-row:first-child { border-top: 0 !important; }
+		.bb-bh-row.is-today {
+			background: rgba(59, 130, 246, 0.12) !important;
+			border-radius: 6px;
+		}
+		.bb-bh-row.is-today .bb-bh-day,
+		.bb-bh-row.is-today .bb-bh-time {
+			color: #93c5fd !important;
+		}
+	}
+
+	// --- timeline: vertical dot + line per day -------------------------
+	&.bb-bh-view--timeline {
+		.bb-bh-list {
+			position: relative;
+			padding-left: 24px;
+		}
+		.bb-bh-list::before {
+			content: '';
+			position: absolute;
+			top: 16px;
+			bottom: 16px;
+			left: 7px;
+			width: 2px;
+			background: currentColor;
+			opacity: 0.15;
+		}
+		.bb-bh-row {
+			position: relative;
+			background: transparent !important;
+			border: 0 !important;
+			padding: 10px 12px !important;
+		}
+		.bb-bh-row::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: -22px;
+			width: 12px;
+			height: 12px;
+			margin-top: -6px;
+			border-radius: 50%;
+			background: currentColor;
+			opacity: 0.25;
+			box-shadow: 0 0 0 3px var(--bb-bh-bg, #ffffff);
+		}
+		.bb-bh-row.is-today::before {
+			opacity: 1;
+			transform: scale(1.25);
+		}
+		.bb-bh-row.is-today {
+			font-weight: 600;
+		}
+	}
+}

@@ -1,0 +1,23 @@
+// Scroll Reveal — editor-only styles.
+//
+// In the editor the content always renders fully visible and editable; the
+// entrance animation never runs here. When "Show pre-animation state" is on,
+// Edit.js applies a dimmed/offset inline style to `.bb-sr-inner` so the author
+// can preview the starting position without losing the ability to edit.
+
+.wp-block-b-blocks-scroll-reveal {
+	&.bb-scroll-reveal {
+		.bb-sr-inner {
+			min-height: 24px;
+			transition: opacity 0.2s ease, transform 0.2s ease;
+
+			> *:first-child {
+				margin-top: 0;
+			}
+
+			> *:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

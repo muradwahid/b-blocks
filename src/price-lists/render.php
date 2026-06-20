@@ -86,7 +86,7 @@ extract( $attributes );
 					<span class='productPrice'><?php echo wp_kses_post( $price ); ?></span>
 				</div>
 
-				<?php echo $isSep ? "<span class='productSeparator'></span>" : ''; ?>
+				<?php echo $isSep ? "<span class='productSeparator'></span>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup, no user input. ?>
 			</div>
 		<?php } ?>
 	</div>

@@ -8,10 +8,11 @@ if (is_user_logged_in()){
 }else {
   $id = wp_unique_id( 'bBlocksBForm-' );
  ?>
- <div <?php echo get_block_wrapper_attributes(); ?> id='<?php echo esc_attr( $id ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
+ <div <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>
+ <?php echo get_block_wrapper_attributes(); ?> id='<?php echo esc_attr( $id ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 
  <div id='bFormPhpGetContent'>
-   <?php echo $content; ?>
+   <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- InnerBlocks pre-rendered content, escaped by core block pipeline. ?>
  </div>
 </div>
 <?php

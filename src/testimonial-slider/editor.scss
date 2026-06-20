@@ -1,0 +1,58 @@
+// Editor-only styles for the Testimonial Slider block.
+// The canvas preview renders the slides as a static grid (no motion) so the
+// editor stays usable; the live carousel is a frontend-only concern.
+
+.wp-block-b-blocks-testimonial-slider {
+	.bb-ts-editor-empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		padding: 48px 24px;
+		text-align: center;
+		background: #f3f4f6;
+		border: 1px dashed #c3c4c7;
+		border-radius: 8px;
+	}
+
+	.bb-ts-editor-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: var(--bb-ts-gap, 24px);
+	}
+
+	.bb-ts-editor-hint {
+		margin: 0 0 12px;
+		font-size: 12px;
+		color: #6b7280;
+	}
+
+	.bb-ts-item-panel {
+		border-top: 1px solid #e0e0e0;
+		padding-top: 12px;
+		margin-bottom: 8px;
+	}
+
+	.bb-ts-item-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 8px;
+	}
+
+	.bb-ts-item-avatar-row {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 10px;
+	}
+
+	.bb-ts-item-avatar-row img {
+		width: 44px;
+		height: 44px;
+		object-fit: cover;
+		border-radius: 6px;
+		display: block;
+	}
+}

@@ -1,0 +1,123 @@
+// Icon Block — frontend + editor shared styles.
+// Mobile-first. WCAG 2.1 AA friendly defaults. CSS-only hover.
+
+.wp-block-b-blocks-icon {
+	--bb-icon-size: 48px;
+	--bb-icon-color: inherit;
+	--bb-icon-rotate: 0deg;
+	--bb-icon-bg: transparent;
+	--bb-icon-bg-size: 80px;
+	--bb-icon-bg-padding: 16px;
+	--bb-icon-bg-radius: 0;
+	--bb-icon-border-width: 0;
+	--bb-icon-border-color: transparent;
+	--bb-icon-shadow: none;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	display: flex;
+
+	// --- Alignment of the icon within the block ------------------------
+	&.bb-icon-align--left {
+		justify-content: flex-start;
+	}
+
+	&.bb-icon-align--center {
+		justify-content: center;
+	}
+
+	&.bb-icon-align--right {
+		justify-content: flex-end;
+	}
+
+	// --- The inner box (icon cell or background badge) -----------------
+	// Shadow always applies so the control is usable without a bg shape.
+	.bb-icon-inner {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		color: var(--bb-icon-color);
+		max-width: 100%;
+		box-shadow: var(--bb-icon-shadow);
+
+		> i {
+			font-size: var(--bb-icon-size);
+			line-height: 1;
+			color: inherit;
+			transform: rotate(var(--bb-icon-rotate));
+		}
+	}
+
+	// --- Background badge container ------------------------------------
+	&.has-icon-bg .bb-icon-inner {
+		width: var(--bb-icon-bg-size);
+		height: var(--bb-icon-bg-size);
+		padding: var(--bb-icon-bg-padding);
+		background: var(--bb-icon-bg);
+		border-radius: var(--bb-icon-bg-radius);
+		border: var(--bb-icon-border-width) solid var(--bb-icon-border-color);
+	}
+
+	// Square shape: explicitly zero radius (border-radius var already 0,
+	// but kept for clarity / override safety).
+	&.bb-icon--shape-square .bb-icon-inner {
+		border-radius: 0;
+	}
+
+	&.bb-icon--shape-circle .bb-icon-inner {
+		border-radius: 50%;
+	}
+
+	// --- Max-width constraint on the wrapper ---------------------------
+	&.has-max-width {
+		max-width: var(--bb-icon-max-width);
+		margin-inline: 0;
+
+		&.bb-icon-align--center {
+			margin-inline: auto;
+		}
+
+		&.bb-icon-align--right {
+			margin-inline: auto 0;
+		}
+	}
+
+	// --- Link wrapper --------------------------------------------------
+	.bb-icon-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: inherit;
+		text-decoration: none;
+		max-width: 100%;
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 3px;
+			border-radius: 4px;
+		}
+	}
+
+	// --- CSS-only hover / focus transitions ----------------------------
+	&.has-hover {
+		.bb-icon-inner {
+			transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+		}
+
+		.bb-icon-link:hover .bb-icon-inner,
+		.bb-icon-link:focus-visible .bb-icon-inner,
+		&:hover .bb-icon-inner {
+			color: var(--bb-icon-hover-color, var(--bb-icon-color));
+			background: var(--bb-icon-hover-bg, var(--bb-icon-bg));
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&.has-hover .bb-icon-inner {
+			transition: none;
+		}
+	}
+}

@@ -74,7 +74,7 @@ namespace BBlocks\Inc;
 
 		public function handle_open_ai_generation() {
 			// Verify nonce
-			if ( ! wp_verify_nonce( $_POST['nonce'], 'wp_ajax' ) ) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) ), 'wp_ajax' ) ) {
 				wp_send_json_error( [ 'message' => 'Security check failed' ] );
 				return;
 			}
@@ -85,7 +85,7 @@ namespace BBlocks\Inc;
 				return;
 			}
 
-			$prompt = sanitize_text_field( $_POST['prompt'] );
+			$prompt = sanitize_text_field( wp_unslash( $_POST['prompt'] ?? '' ) );
 			
 			if ( empty( $prompt ) ) {
 				wp_send_json_error( [ 'message' => 'Prompt is required' ] );
@@ -109,8 +109,8 @@ namespace BBlocks\Inc;
 
 		private function call_ai_service( $prompt ) {
 			$api_data = get_option( 'bBlocksApiKeys', [] );
-			$openAi = $api_data['openAi'];
-			$api_key = $openAi['key'];
+			$openAi   = isset( $api_data['openAi'] ) && is_array( $api_data['openAi'] ) ? $api_data['openAi'] : [];
+			$api_key  = $openAi['key'] ?? '';
 			
 			// Check if API key is set
 			if ( empty( $api_key ) ) {
@@ -194,4 +194,3 @@ namespace BBlocks\Inc;
 	}
 	new BBlocksAi();
 }
-?>

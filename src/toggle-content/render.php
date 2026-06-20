@@ -45,8 +45,8 @@ $panel_b_html = isset($inner_blocks[1]) ? render_block($inner_blocks[1]) : '';
 		</div>
 
 		<div class="b-blocks-toggle-content__content">
-				<?php echo $panel_a_html; ?>
-				<?php echo $panel_b_html; ?>
+				<?php echo $panel_a_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output is escaped by core. ?>
+				<?php echo $panel_b_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output is escaped by core. ?>
 		</div>
 	</div>
 </div>

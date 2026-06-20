@@ -1,0 +1,40 @@
+// Editor-only adjustments for the File Download Card block.
+
+@import './style.scss';
+
+.wp-block-b-blocks-file-download-card {
+	.bb-fdc-card {
+		min-height: 40px;
+	}
+
+	// Placeholder shown when no file is selected yet.
+	.bb-fdc-placeholder {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 20px 24px;
+		border: 1px dashed #c7c7c7;
+		border-radius: 8px;
+		background-color: #f8f9fa;
+		color: #6b7280;
+		font-size: 13px;
+	}
+
+	.bb-fdc-placeholder-icon {
+		flex: 0 0 auto;
+		width: 40px;
+		height: 40px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 8px;
+		background-color: #e5e7eb;
+		color: #9ca3af;
+		font-weight: 700;
+		font-size: 12px;
+	}
+
+	svg {
+		pointer-events: none;
+	}
+}

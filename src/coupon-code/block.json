@@ -1,0 +1,138 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/coupon-code",
+	"version": "2.0.54",
+	"title": "Coupon Code",
+	"category": "bBlocks",
+	"description": "Display a styled coupon or deal card with click-to-copy, optional code reveal, affiliate URL handoff, expiry label, and full WCAG 2.1 AA accessibility.",
+	"keywords": [
+		"coupon",
+		"code",
+		"deal",
+		"affiliate",
+		"promo",
+		"discount",
+		"offer"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"couponCode": {
+			"type": "string",
+			"default": "SAVE20"
+		},
+		"couponType": {
+			"type": "string",
+			"default": "coupon"
+		},
+		"title": {
+			"type": "string",
+			"default": "Special Offer"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"discountLabel": {
+			"type": "string",
+			"default": "20% OFF"
+		},
+		"affiliateUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": "Copy Code"
+		},
+		"copiedLabel": {
+			"type": "string",
+			"default": "Copied!"
+		},
+		"dealButtonLabel": {
+			"type": "string",
+			"default": "Get This Deal"
+		},
+		"revealMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"revealButtonLabel": {
+			"type": "string",
+			"default": "Reveal Code"
+		},
+		"expiryText": {
+			"type": "string",
+			"default": ""
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"openInNewTab": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNofollow": {
+			"type": "boolean",
+			"default": true
+		},
+		"colors": {
+			"type": "object",
+			"default": {
+				"bg": "#f9f9f9",
+				"text": "#333333",
+				"codeBg": "#ffffff",
+				"codeText": "#333333",
+				"buttonBg": "#0073aa",
+				"buttonText": "#ffffff",
+				"discountBg": "#0073aa",
+				"discountText": "#ffffff"
+			}
+		},
+		"border": {
+			"type": "object",
+			"default": {
+				"width": "1px",
+				"color": "#dddddd",
+				"radius": "8px"
+			}
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "20px",
+				"right": "24px",
+				"bottom": "20px",
+				"left": "24px"
+			}
+		},
+		"codeFontSize": {
+			"type": "string",
+			"default": "20px"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

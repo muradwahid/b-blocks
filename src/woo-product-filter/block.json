@@ -1,0 +1,155 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-product-filter",
+	"version": "1.0.0",
+	"title": "Woo Product Filter",
+	"category": "bBlocks",
+	"description": "A WooCommerce product filter panel that lets shoppers narrow a product listing by category, price range, rating, sale status, and sort order using native WooCommerce URL query parameters. Works without JavaScript (GET-based navigation) and composes with the bBlocks Woo Product Grid and the WooCommerce shop archive.",
+	"keywords": [
+		"woocommerce",
+		"product filter",
+		"filter",
+		"price filter",
+		"category filter",
+		"rating filter",
+		"on sale",
+		"sort",
+		"shop",
+		"ecommerce"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"showCategoryFilter": {
+			"type": "boolean",
+			"default": true
+		},
+		"categoryDepth": {
+			"type": "integer",
+			"default": 0
+		},
+		"showPriceFilter": {
+			"type": "boolean",
+			"default": true
+		},
+		"priceMin": {
+			"type": "integer",
+			"default": 0
+		},
+		"priceMax": {
+			"type": "integer",
+			"default": 500
+		},
+		"showRatingFilter": {
+			"type": "boolean",
+			"default": true
+		},
+		"showOnSaleFilter": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSortControl": {
+			"type": "boolean",
+			"default": true
+		},
+		"filterLayout": {
+			"type": "string",
+			"default": "vertical"
+		},
+		"showApplyButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"applyButtonLabel": {
+			"type": "string",
+			"default": "Apply Filters"
+		},
+		"clearButtonLabel": {
+			"type": "string",
+			"default": "Clear All"
+		},
+		"filterHeadingTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"padding": {
+			"type": "integer",
+			"default": 20
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"headingColor": {
+			"type": "string",
+			"default": ""
+		},
+		"headingFontSize": {
+			"type": "string",
+			"default": "14px"
+		},
+		"labelFontSize": {
+			"type": "string",
+			"default": "14px"
+		},
+		"applyBtnColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"applyBtnBG": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"applyBtnRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"noWooMessage": {
+			"type": "string",
+			"default": "WooCommerce is required for this block."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

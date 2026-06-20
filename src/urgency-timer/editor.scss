@@ -1,0 +1,28 @@
+// Editor-only adjustments for the Urgency Timer block.
+// The timer renders a static preview in the canvas; live ticking is frontend-only.
+
+@import './style.scss';
+
+.wp-block-b-blocks-urgency-timer {
+	// Always show the expired-message preview area in the editor only when toggled.
+	.bb-ut-expired[hidden] {
+		display: none;
+	}
+
+	// Editor hint shown when the timer would otherwise look idle.
+	.bb-ut-editor-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		padding: 4px 10px;
+		font-size: 11px;
+		font-weight: 600;
+		color: #555;
+		background: #f0f0f1;
+		border: 1px dashed #c3c4c7;
+		border-radius: 4px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+}

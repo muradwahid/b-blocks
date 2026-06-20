@@ -1,0 +1,192 @@
+/**
+ * Woo Add to Cart — frontend + editor shared styles. Mobile-first.
+ * Per-instance values come from CSS custom properties emitted in render.php.
+ */
+
+.bb-atc {
+	--bb-atc-color: #ffffff;
+	--bb-atc-bg: #146ef5;
+	--bb-atc-hov-color: #ffffff;
+	--bb-atc-hov-bg: #070127;
+	--bb-atc-fs: 14px;
+	--bb-atc-fw: 600;
+	--bb-atc-pad-v: 12px;
+	--bb-atc-pad-h: 24px;
+	--bb-atc-radius: 6px;
+	--bb-atc-border: none;
+	--bb-atc-qty-color: #333333;
+	--bb-atc-qty-bg: #f0f0f0;
+	--bb-atc-qty-input-border: #dddddd;
+	--bb-atc-qty-radius: 4px;
+
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-atc-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px;
+	}
+
+	&.bb-atc--align-center .bb-atc-inner {
+		justify-content: center;
+	}
+
+	&.bb-atc--align-right .bb-atc-inner {
+		justify-content: flex-end;
+	}
+
+	/* Add to cart button */
+	.bb-atc-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		margin: 0;
+		font-family: inherit;
+		font-size: var(--bb-atc-fs);
+		font-weight: var(--bb-atc-fw);
+		line-height: 1.2;
+		color: var(--bb-atc-color);
+		background-color: var(--bb-atc-bg);
+		border: var(--bb-atc-border);
+		border-radius: var(--bb-atc-radius);
+		padding: var(--bb-atc-pad-v) var(--bb-atc-pad-h);
+		cursor: pointer;
+		text-decoration: none;
+		transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+	}
+
+	.bb-atc-btn:hover,
+	.bb-atc-btn:focus-visible {
+		color: var(--bb-atc-hov-color);
+		background-color: var(--bb-atc-hov-bg);
+	}
+
+	.bb-atc-btn:focus-visible {
+		outline: 2px solid var(--bb-atc-hov-bg);
+		outline-offset: 2px;
+	}
+
+	.bb-atc-btn.is-loading {
+		opacity: 0.65;
+		cursor: progress;
+	}
+
+	.bb-atc-btn.is-added {
+		color: var(--bb-atc-hov-color);
+		background-color: var(--bb-atc-hov-bg);
+	}
+
+	.bb-atc-btn.is-error {
+		background-color: #b91c1c;
+		color: #ffffff;
+	}
+
+	.bb-atc-btn[disabled],
+	.bb-atc-btn[aria-disabled="true"] {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	&.bb-atc--full .bb-atc-inner {
+		width: 100%;
+	}
+
+	&.bb-atc--full .bb-atc-btn {
+		flex: 1 1 auto;
+		width: 100%;
+	}
+
+	/* Quantity stepper */
+	.bb-atc-qty {
+		display: inline-flex;
+		align-items: stretch;
+		border: 1px solid var(--bb-atc-qty-input-border);
+		border-radius: var(--bb-atc-qty-radius);
+		overflow: hidden;
+	}
+
+	.bb-atc-qty-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 36px;
+		padding: 0 8px;
+		margin: 0;
+		font-size: 16px;
+		line-height: 1;
+		color: var(--bb-atc-qty-color);
+		background-color: var(--bb-atc-qty-bg);
+		border: none;
+		cursor: pointer;
+		transition: filter 0.15s ease;
+	}
+
+	.bb-atc-qty-btn:hover,
+	.bb-atc-qty-btn:focus-visible {
+		filter: brightness(0.94);
+	}
+
+	.bb-atc-qty-btn:focus-visible {
+		outline: 2px solid var(--bb-atc-bg);
+		outline-offset: -2px;
+	}
+
+	.bb-atc-qty-input {
+		width: 52px;
+		min-width: 44px;
+		text-align: center;
+		font-size: var(--bb-atc-fs);
+		color: var(--bb-atc-qty-color);
+		background: #ffffff;
+		border: none;
+		border-left: 1px solid var(--bb-atc-qty-input-border);
+		border-right: 1px solid var(--bb-atc-qty-input-border);
+		padding: 8px 4px;
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+
+	.bb-atc-qty-input::-webkit-outer-spin-button,
+	.bb-atc-qty-input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.bb-atc-notice {
+		margin: 0;
+		padding: 12px 16px;
+		font-size: 14px;
+		color: #555;
+		background: #f6f7f7;
+		border: 1px dashed #ccd0d4;
+		border-radius: 4px;
+	}
+
+	.bb-atc-status.screen-reader-text,
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-atc .bb-atc-btn,
+	.bb-atc .bb-atc-qty-btn {
+		transition: none;
+	}
+}

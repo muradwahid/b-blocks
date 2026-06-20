@@ -1,0 +1,259 @@
+/**
+ * Post Timeline — frontend + editor shared styles. Mobile-first.
+ *
+ * The vertical spine is an absolutely-positioned line. On mobile and for the
+ * left/right layouts the spine sits on the left edge; for the alternating
+ * layout on wide viewports it runs down the centre and cards flank it.
+ * DOM order is always title -> meta -> excerpt -> read more regardless of the
+ * visual side, so keyboard / screen-reader order stays logical.
+ */
+
+.bb-pt {
+	--bb-pt-max-width: 900px;
+	--bb-pt-line-color: #e2e8f0;
+	--bb-pt-line-width: 2px;
+	--bb-pt-dot-size: 14px;
+	--bb-pt-dot-color: #6366f1;
+	--bb-pt-badge-bg: #6366f1;
+	--bb-pt-badge-color: #ffffff;
+	--bb-pt-card-bg: #ffffff;
+	--bb-pt-card-radius: 8px;
+	--bb-pt-card-padding: 20px;
+	--bb-pt-card-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+	--bb-pt-title-color: inherit;
+	--bb-pt-title-size: 20px;
+	--bb-pt-title-weight: 600;
+	--bb-pt-meta-color: inherit;
+	--bb-pt-meta-size: 13px;
+	--bb-pt-excerpt-color: inherit;
+	--bb-pt-excerpt-size: 15px;
+	--bb-pt-aspect: 16/9;
+
+	box-sizing: border-box;
+	width: 100%;
+	max-width: var(--bb-pt-max-width);
+	margin-inline: auto;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-pt-list {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+		padding-inline-start: 0;
+		margin: 0;
+	}
+
+	// Decorative vertical spine — default position: left gutter.
+	.bb-pt-spine {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: calc(var(--bb-pt-dot-size) / 2);
+		width: var(--bb-pt-line-width);
+		background: var(--bb-pt-line-color);
+		transform: translateX(-50%);
+	}
+
+	.bb-pt-item {
+		position: relative;
+		padding-inline-start: calc(var(--bb-pt-dot-size) + 24px);
+	}
+
+	.bb-pt-dot {
+		position: absolute;
+		top: 6px;
+		left: calc(var(--bb-pt-dot-size) / 2);
+		width: var(--bb-pt-dot-size);
+		height: var(--bb-pt-dot-size);
+		border-radius: 50%;
+		background: var(--bb-pt-dot-color);
+		transform: translateX(-50%);
+		box-shadow: 0 0 0 4px var(--bb-pt-card-bg);
+	}
+
+	.bb-pt-badge {
+		display: inline-flex;
+		margin-bottom: 10px;
+
+		.bb-pt-badge-time {
+			display: inline-block;
+			padding: 4px 12px;
+			font-size: var(--bb-pt-meta-size);
+			font-weight: 600;
+			line-height: 1.4;
+			color: var(--bb-pt-badge-color);
+			background: var(--bb-pt-badge-bg);
+			border-radius: 999px;
+		}
+	}
+
+	.bb-pt-card {
+		overflow: hidden;
+		background: var(--bb-pt-card-bg);
+		border-radius: var(--bb-pt-card-radius);
+		box-shadow: var(--bb-pt-card-shadow);
+	}
+
+	.bb-pt-image-link {
+		display: block;
+		line-height: 0;
+	}
+
+	.bb-pt-image {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--bb-pt-aspect);
+		object-fit: cover;
+	}
+
+	.bb-pt-card-body {
+		padding: var(--bb-pt-card-padding);
+	}
+
+	.bb-pt-title {
+		margin: 0 0 8px;
+		font-size: var(--bb-pt-title-size);
+		font-weight: var(--bb-pt-title-weight);
+		line-height: 1.3;
+		color: var(--bb-pt-title-color);
+
+		.bb-pt-title-link {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.bb-pt-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 14px;
+		margin-bottom: 10px;
+		font-size: var(--bb-pt-meta-size);
+		color: var(--bb-pt-meta-color);
+
+		.bb-pt-meta-item a {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.bb-pt-excerpt {
+		margin: 0 0 12px;
+		font-size: var(--bb-pt-excerpt-size);
+		line-height: 1.6;
+		color: var(--bb-pt-excerpt-color);
+	}
+
+	.bb-pt-readmore {
+		display: inline-flex;
+		align-items: center;
+		font-size: var(--bb-pt-meta-size);
+		font-weight: 600;
+		color: var(--bb-pt-dot-color);
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+
+	.bb-pt-empty {
+		padding: 24px;
+		text-align: center;
+		color: #64748b;
+	}
+
+	// Entrance animation (toggled by view.js via .is-visible).
+	.bb-pt-item {
+		opacity: 0;
+		transform: translateY(20px);
+		transition: opacity 0.4s ease, transform 0.4s ease;
+
+		&.is-visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
+
+// --- Alternating layout: spine in the centre on wider viewports. ---
+@media (min-width: 782px) {
+	.bb-pt--layout-alternating {
+		.bb-pt-spine {
+			left: 50%;
+		}
+
+		.bb-pt-item {
+			width: 50%;
+			padding-inline-start: 0;
+		}
+
+		.bb-pt-item--left {
+			align-self: flex-start;
+			padding-inline-end: 36px;
+			text-align: start;
+
+			.bb-pt-dot {
+				left: auto;
+				right: -7px;
+				transform: translateX(50%);
+			}
+		}
+
+		.bb-pt-item--right {
+			align-self: flex-end;
+			padding-inline-start: 36px;
+
+			.bb-pt-dot {
+				left: -7px;
+				transform: translateX(-50%);
+			}
+		}
+	}
+}
+
+// Reduced-motion: show items immediately, no transition.
+@media (prefers-reduced-motion: reduce) {
+	.bb-pt .bb-pt-item {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+.bb-pt.bb-pt--no-motion .bb-pt-item {
+	opacity: 1;
+	transform: none;
+	transition: none;
+}
+
+// Visually-hidden helper (in case the theme lacks .screen-reader-text).
+.bb-pt .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

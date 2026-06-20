@@ -1,0 +1,40 @@
+// Editor-only adjustments for the Promo Strip block.
+// The strip renders in-flow in the canvas; controls are visual-only previews.
+
+@import './style.scss';
+
+.wp-block-b-blocks-promo-strip {
+	// The CTA in the editor is a visual preview — disable interaction so it
+	// doesn't navigate while editing.
+	.bb-ps-button {
+		pointer-events: none;
+		user-select: none;
+	}
+
+	// Keep the RichText headline editable and full-width.
+	.bb-ps-headline {
+		outline: none;
+
+		&:empty::before {
+			content: attr(data-placeholder);
+			opacity: 0.6;
+		}
+	}
+
+	// Hint shown when no end date is set in the editor.
+	.bb-ps-editor-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		padding: 4px 10px;
+		font-size: 11px;
+		font-weight: 600;
+		color: #555;
+		background: #f0f0f1;
+		border: 1px dashed #c3c4c7;
+		border-radius: 4px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+}

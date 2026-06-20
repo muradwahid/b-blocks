@@ -1,0 +1,20 @@
+.wp-block-b-blocks-newsletter-optin {
+	// Keep the editor canvas representation close to the frontend.
+	.bb-no-headline,
+	.bb-no-subtext {
+		// Allow RichText placeholders to size correctly inside the canvas.
+		&:focus {
+			outline: none;
+		}
+	}
+
+	// In the editor we never run the AJAX submit, so the button is inert.
+	.bb-no-button {
+		pointer-events: none;
+	}
+
+	// Always show fields in the editor regardless of layout for editing clarity.
+	.bb-no-input {
+		pointer-events: none;
+	}
+}

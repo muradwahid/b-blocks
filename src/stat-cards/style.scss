@@ -1,0 +1,195 @@
+/**
+ * Stat Cards — frontend + editor shared styles. Mobile-first.
+ *
+ * All instance-specific values arrive as CSS custom properties set inline by
+ * render.php (frontend) and Edit.js (editor), scoped under the wrapper id.
+ *
+ * The block is entirely static: there are no animations or transitions beyond
+ * a subtle link hover, so there is nothing to disable under
+ * prefers-reduced-motion.
+ */
+
+.bb-sc {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// Grid container — mobile first.
+	.bb-sc-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--bb-sc-cols-mobile, 1), minmax(0, 1fr));
+		column-gap: var(--bb-sc-col-gap, 24px);
+		row-gap: var(--bb-sc-row-gap, 24px);
+		margin: 0 auto;
+		max-width: var(--bb-sc-max-width, 100%);
+		padding: 0;
+	}
+
+	// Justify the grid block itself when a max-width is set.
+	&.bb-sc--block-center .bb-sc-grid { margin-inline: auto; }
+	&.bb-sc--block-right .bb-sc-grid { margin-inline-start: auto; margin-inline-end: 0; }
+	&.bb-sc--block-left .bb-sc-grid { margin-inline-start: 0; margin-inline-end: auto; }
+
+	// Card.
+	.bb-sc-item {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: var(--bb-sc-items-align, center);
+		gap: 8px;
+		width: 100%;
+		padding: var(--bb-sc-pad-v, 28px) var(--bb-sc-pad-h, 24px);
+		border-radius: var(--bb-sc-radius, 12px);
+		text-align: var(--bb-sc-text-align, center);
+		background-color: var(--bb-sc-card-bg, transparent);
+		box-shadow: var(--bb-sc-shadow, none);
+	}
+
+	// --- Style: outlined ---
+	&.bb-sc--outlined.bb-sc--has-border .bb-sc-item {
+		border: var(--bb-sc-border-width, 1px) solid var(--bb-sc-card-border, #e2e8f0);
+	}
+	&.bb-sc--outlined .bb-sc-item:hover,
+	&.bb-sc--outlined .bb-sc-item:focus-within {
+		border-color: var(--bb-sc-accent, #146EF5);
+	}
+
+	// --- Style: accent-top ---
+	&.bb-sc--accent-top.bb-sc--has-border .bb-sc-item {
+		border: var(--bb-sc-border-width, 1px) solid var(--bb-sc-card-border, #e2e8f0);
+	}
+	&.bb-sc--accent-top .bb-sc-item {
+		border-top: var(--bb-sc-accent-width, 4px) solid var(--bb-sc-accent, #146EF5);
+	}
+
+	// Icon.
+	.bb-sc-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: var(--bb-sc-icon-size, 32px);
+		line-height: 1;
+		color: var(--bb-sc-icon-color, #146EF5);
+
+		i {
+			font-size: inherit;
+			line-height: 1;
+		}
+	}
+
+	// Link wrapper — number + label.
+	.bb-sc-link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-sc-accent, #146EF5);
+			outline-offset: 3px;
+			border-radius: 4px;
+		}
+
+		&:hover .bb-sc-value,
+		&:hover .bb-sc-prefix,
+		&:hover .bb-sc-suffix {
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+	}
+
+	// Number (dd when unlinked, span when inside <a>).
+	.bb-sc-number {
+		margin: 0;
+		display: flex;
+		align-items: baseline;
+		justify-content: var(--bb-sc-items-align, center);
+		flex-wrap: wrap;
+		gap: 1px;
+		font-size: var(--bb-sc-number-size-mobile, 32px);
+		font-weight: var(--bb-sc-number-weight, 700);
+		line-height: 1.1;
+		color: var(--bb-sc-number-color, #111827);
+	}
+
+	.bb-sc-link .bb-sc-number {
+		display: flex;
+	}
+
+	.bb-sc-prefix,
+	.bb-sc-suffix {
+		font-size: 0.7em;
+		font-weight: inherit;
+	}
+
+	// Label (dt when unlinked, span when inside <a>).
+	.bb-sc-label {
+		margin: 0;
+		display: block;
+		font-size: var(--bb-sc-label-size, 16px);
+		font-weight: var(--bb-sc-label-weight, 400);
+		line-height: 1.3;
+		color: var(--bb-sc-label-color, #374151);
+	}
+
+	// Trend badge.
+	.bb-sc-trend {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 3px 8px;
+		border-radius: 999px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.2;
+
+		&--up { background-color: #dcfce7; color: #166534; }
+		&--down { background-color: #fee2e2; color: #991b1b; }
+		&--neutral { background-color: #f1f5f9; color: #475569; }
+	}
+
+	.bb-sc-trend-icon {
+		width: 1em;
+		height: 1em;
+		flex: 0 0 auto;
+	}
+
+	// Description.
+	.bb-sc-desc {
+		margin: 0;
+		font-size: var(--bb-sc-desc-size, 14px);
+		line-height: 1.5;
+		color: var(--bb-sc-desc-color, #6B7280);
+		max-width: 32ch;
+	}
+
+	// Editor empty-state notice.
+	.bb-sc-empty {
+		margin: 0 auto;
+		max-width: var(--bb-sc-max-width, 100%);
+		text-align: center;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 13px;
+	}
+
+	// Tablet.
+	@media (min-width: 600px) {
+		.bb-sc-grid {
+			grid-template-columns: repeat(var(--bb-sc-cols-tablet, 2), minmax(0, 1fr));
+		}
+		.bb-sc-number {
+			font-size: var(--bb-sc-number-size-tablet, 40px);
+		}
+	}
+
+	// Desktop.
+	@media (min-width: 1024px) {
+		.bb-sc-grid {
+			grid-template-columns: repeat(var(--bb-sc-cols-desktop, 3), minmax(0, 1fr));
+		}
+		.bb-sc-number {
+			font-size: var(--bb-sc-number-size-desktop, 48px);
+		}
+	}
+}

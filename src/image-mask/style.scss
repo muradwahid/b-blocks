@@ -1,0 +1,107 @@
+/**
+ * Image Mask — frontend + shared styles (mobile-first).
+ *
+ * CSS custom properties are emitted on the wrapper by render.php:
+ *   --bb-im-width, --bb-im-height, --bb-im-duration, --bb-im-shadow,
+ *   --bb-im-bg, --bb-im-figure-margin
+ *
+ * view.js overrides --bb-im-transition to 0ms when the visitor has
+ * prefers-reduced-motion: reduce so hover effects snap instantly.
+ */
+
+.bb-im-block {
+	--bb-im-transition: var(--bb-im-duration, 300ms);
+
+	.bb-im-figure {
+		margin: var(--bb-im-figure-margin, 0 auto);
+		max-width: var(--bb-im-width, 300px);
+		width: 100%;
+		padding: 0;
+	}
+
+	.bb-im-link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 4px;
+		}
+	}
+
+	.bb-im-mask {
+		display: block;
+		width: var(--bb-im-width, 300px);
+		max-width: 100%;
+		height: var(--bb-im-height, auto);
+		background: var(--bb-im-bg, transparent);
+		filter: var(--bb-im-shadow, none);
+		overflow: hidden;
+	}
+
+	.bb-im-img {
+		display: block;
+		width: 100%;
+		height: var(--bb-im-height, auto);
+		object-fit: cover;
+		transition: transform var(--bb-im-transition, 300ms) ease;
+		will-change: transform;
+	}
+
+	.bb-im-caption {
+		margin-top: 10px;
+		text-align: center;
+		line-height: 1.5;
+		font-size: 14px;
+	}
+
+	.bb-im-empty {
+		margin: 0;
+		padding: 16px;
+		text-align: center;
+		color: #6b7280;
+		border: 1px dashed #cbd5e1;
+		border-radius: 6px;
+	}
+}
+
+/* Alignment of the whole figure block. */
+.bb-im-block.bb-im-align-left .bb-im-figure { margin-left: 0; margin-right: auto; }
+.bb-im-block.bb-im-align-center .bb-im-figure { margin-left: auto; margin-right: auto; }
+.bb-im-block.bb-im-align-right .bb-im-figure { margin-left: auto; margin-right: 0; }
+
+/* Hover effects (CSS-only). */
+.bb-im-block.bb-im-hover-zoom {
+	.bb-im-mask:hover .bb-im-img,
+	.bb-im-link:hover .bb-im-img,
+	.bb-im-link:focus-visible .bb-im-img {
+		transform: scale(1.08);
+	}
+}
+
+.bb-im-block.bb-im-hover-tilt {
+	.bb-im-mask { perspective: 800px; }
+
+	.bb-im-mask:hover .bb-im-img,
+	.bb-im-link:hover .bb-im-img,
+	.bb-im-link:focus-visible .bb-im-img {
+		transform: rotateY(6deg) rotateX(-3deg);
+	}
+}
+
+/* Honor reduced-motion at the CSS level too (belt-and-suspenders with view.js). */
+@media (prefers-reduced-motion: reduce) {
+	.bb-im-block .bb-im-img {
+		transition-duration: 0ms !important;
+	}
+
+	.bb-im-block.bb-im-hover-zoom,
+	.bb-im-block.bb-im-hover-tilt {
+		.bb-im-mask:hover .bb-im-img,
+		.bb-im-link:hover .bb-im-img,
+		.bb-im-link:focus-visible .bb-im-img {
+			transform: none;
+		}
+	}
+}

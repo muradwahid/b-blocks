@@ -1,0 +1,317 @@
+/**
+ * Post Filter Grid — frontend + editor shared styles. Mobile-first.
+ *
+ * Color-contrast notes (WCAG 2.1 AA, normal text needs >= 4.5:1):
+ *   - Default accent #146EF5 on accent text #ffffff => 4.64:1 (PASS) — used on
+ *     the active filter pill, the category badge, and the Read More button.
+ *   - Inactive filter pill text #1f2937 on #f3f4f6 => 12.6:1 (PASS).
+ *   - Meta text #6b7280 on card bg #ffffff => 4.83:1 (PASS).
+ * Per-instance custom properties are set inline in render.php under the
+ * wrapper id, so the values below are only fallbacks.
+ */
+
+.bb-pfg {
+	--bb-pfg-cols: 1;
+	--bb-pfg-col-gap: 24px;
+	--bb-pfg-row-gap: 24px;
+	--bb-pfg-card-bg: #ffffff;
+	--bb-pfg-card-radius: 8px;
+	--bb-pfg-card-border: 1px solid #e5e7eb;
+	--bb-pfg-card-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+	--bb-pfg-img-radius: 8px;
+	--bb-pfg-aspect: 16/9;
+	--bb-pfg-accent: #146ef5;
+	--bb-pfg-accent-text: #ffffff;
+	--bb-pfg-title-color: inherit;
+	--bb-pfg-title-size: 16px;
+	--bb-pfg-title-clamp: none;
+	--bb-pfg-excerpt-color: inherit;
+	--bb-pfg-meta-color: inherit;
+
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// --- Filter pill bar ---
+	.bb-pfg-filter {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 20px;
+	}
+
+	.bb-pfg-filter-btn {
+		appearance: none;
+		border: 1px solid #e5e7eb;
+		background: #f3f4f6;
+		color: #1f2937;
+		font-size: 14px;
+		line-height: 1.2;
+		padding: 8px 16px;
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--bb-pfg-accent);
+			color: var(--bb-pfg-accent);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pfg-accent);
+			outline-offset: 2px;
+		}
+
+		&.is-active {
+			background: var(--bb-pfg-accent);
+			border-color: var(--bb-pfg-accent);
+			color: var(--bb-pfg-accent-text);
+		}
+	}
+
+	// --- Status / live region ---
+	.bb-pfg-status {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// --- Grid ---
+	.bb-pfg-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--bb-pfg-cols), minmax(0, 1fr));
+		column-gap: var(--bb-pfg-col-gap);
+		row-gap: var(--bb-pfg-row-gap);
+		transition: opacity 0.15s ease;
+
+		&.is-loading {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+	}
+
+	// --- Masonry via CSS multi-column (no JS engine) ---
+	&.bb-pfg--layout-masonry .bb-pfg-grid {
+		display: block;
+		column-count: var(--bb-pfg-cols);
+		column-gap: var(--bb-pfg-col-gap);
+
+		.bb-pfg-card {
+			break-inside: avoid;
+			margin-bottom: var(--bb-pfg-row-gap);
+		}
+	}
+
+	// --- Card ---
+	.bb-pfg-card {
+		display: flex;
+		flex-direction: column;
+		background: var(--bb-pfg-card-bg);
+		border: var(--bb-pfg-card-border);
+		border-radius: var(--bb-pfg-card-radius);
+		box-shadow: var(--bb-pfg-card-shadow);
+		overflow: hidden;
+	}
+
+	&.bb-pfg--flat .bb-pfg-card {
+		border: none;
+		box-shadow: none;
+	}
+
+	.bb-pfg-image-link {
+		display: block;
+		line-height: 0;
+	}
+
+	.bb-pfg-image {
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--bb-pfg-aspect);
+		object-fit: cover;
+		border-radius: var(--bb-pfg-img-radius);
+		display: block;
+	}
+
+	.bb-pfg-card-body {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 16px;
+	}
+
+	.bb-pfg-badge {
+		align-self: flex-start;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 5px 10px;
+		border-radius: 999px;
+		background: var(--bb-pfg-accent);
+		color: var(--bb-pfg-accent-text);
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 0.9;
+		}
+	}
+
+	.bb-pfg-title {
+		margin: 0;
+		font-size: var(--bb-pfg-title-size);
+		line-height: 1.35;
+		color: var(--bb-pfg-title-color);
+
+		@supports (-webkit-line-clamp: 1) {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: var(--bb-pfg-title-clamp);
+			overflow: hidden;
+		}
+
+		.bb-pfg-title-link {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.bb-pfg-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		color: var(--bb-pfg-meta-color, #6b7280);
+	}
+
+	.bb-pfg-excerpt {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.6;
+		color: var(--bb-pfg-excerpt-color);
+	}
+
+	.bb-pfg-readmore {
+		align-self: flex-start;
+		margin-top: 2px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 9px 16px;
+		border-radius: 6px;
+		background: var(--bb-pfg-accent);
+		color: var(--bb-pfg-accent-text);
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 0.92;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pfg-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	.bb-pfg-empty {
+		grid-column: 1 / -1;
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+	}
+
+	// --- Load More ---
+	.bb-pfg-loadmore-wrap {
+		display: flex;
+		justify-content: center;
+		margin-top: 28px;
+	}
+
+	.bb-pfg-load-more {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		appearance: none;
+		border: 1px solid var(--bb-pfg-accent);
+		background: transparent;
+		color: var(--bb-pfg-accent);
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 11px 24px;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.15s ease, color 0.15s ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bb-pfg-accent);
+			color: var(--bb-pfg-accent-text);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pfg-accent);
+			outline-offset: 2px;
+		}
+
+		.bb-pfg-spinner {
+			display: none;
+			width: 14px;
+			height: 14px;
+			border: 2px solid currentColor;
+			border-right-color: transparent;
+			border-radius: 50%;
+			animation: bb-pfg-spin 0.6s linear infinite;
+		}
+
+		&.is-loading .bb-pfg-spinner {
+			display: inline-block;
+		}
+	}
+
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+}
+
+@keyframes bb-pfg-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-pfg .bb-pfg-load-more .bb-pfg-spinner {
+		animation: none;
+	}
+
+	.bb-pfg .bb-pfg-grid {
+		transition: none;
+	}
+}

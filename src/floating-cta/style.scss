@@ -1,0 +1,98 @@
+/**
+ * Shared frontend + editor styles for the Floating CTA block.
+ *
+ * Per-instance colors, spacing, and positioning are injected inline by
+ * Components/Common/Style.js. This file holds structural and motion rules.
+ */
+
+.wp-block-b-blocks-floating-cta {
+	line-height: 1;
+
+	.bb-fc-wrap {
+		position: relative;
+	}
+
+	.bb-fc-btn {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+		box-sizing: border-box;
+
+		.bb-fc-icon {
+			display: inline-flex;
+			flex-shrink: 0;
+		}
+
+		.bb-fc-label {
+			white-space: nowrap;
+		}
+
+		&.has-shadow {
+			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+		}
+
+		&:hover {
+			transform: translateY(-1px);
+		}
+	}
+
+	// Pre-reveal: kept in the DOM but inaccessible to pointers.
+	.bb-fc-wrap.is-hidden {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	.bb-fc-wrap.is-visible {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	// Fade animation.
+	.bb-fc-wrap.bb-fc-anim-fade {
+		transition: opacity var(--bb-fc-anim-duration, 300ms) ease,
+			visibility var(--bb-fc-anim-duration, 300ms) ease;
+	}
+
+	// Slide animation: bottom corners slide up, top corners slide down.
+	.bb-fc-wrap.bb-fc-anim-slide {
+		transition: opacity var(--bb-fc-anim-duration, 300ms) ease,
+			transform var(--bb-fc-anim-duration, 300ms) ease,
+			visibility var(--bb-fc-anim-duration, 300ms) ease;
+
+		&.is-hidden {
+			transform: translateY(24px);
+		}
+
+		&.is-visible {
+			transform: translateY(0);
+		}
+	}
+
+	// Top-anchored slide enters from above.
+	.bb-fc-wrap.bb-fc-anim-slide.bb-fc-pos-top {
+		&.is-hidden {
+			transform: translateY(-24px);
+		}
+	}
+}
+
+// Honor reduced-motion: instant visibility, no transform.
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-floating-cta {
+		.bb-fc-wrap,
+		.bb-fc-btn {
+			transition: none !important;
+		}
+
+		.bb-fc-wrap.bb-fc-anim-slide {
+			&.is-hidden,
+			&.is-visible {
+				transform: none;
+			}
+		}
+
+		.bb-fc-btn:hover {
+			transform: none;
+		}
+	}
+}

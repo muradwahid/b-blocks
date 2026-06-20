@@ -1,0 +1,71 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/reading-progress",
+	"version": "2.0.63",
+	"title": "Reading Progress",
+	"category": "bBlocks",
+	"description": "A thin scroll-driven progress bar pinned to the top or bottom of the viewport so readers can see how far through your article they are.",
+	"keywords": [
+		"reading progress",
+		"scroll indicator",
+		"progress bar",
+		"reading bar",
+		"scroll progress"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"position": {
+			"type": "string",
+			"default": "top"
+		},
+		"height": {
+			"type": "number",
+			"default": 4
+		},
+		"foregroundColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#e0e0e0"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"zIndex": {
+			"type": "number",
+			"default": 9999
+		},
+		"scrollTarget": {
+			"type": "string",
+			"default": "page"
+		},
+		"contentSelector": {
+			"type": "string",
+			"default": ""
+		},
+		"hideOnMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"customClassName": true,
+		"reusable": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

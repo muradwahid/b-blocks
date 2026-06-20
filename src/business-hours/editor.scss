@@ -1,0 +1,61 @@
+// Editor-only style adjustments for the Business Hours block.
+
+.wp-block-b-blocks-business-hours {
+	.bb-bh-editor-wrapper {
+		display: block;
+		width: 100%;
+	}
+
+	.bb-bh-editor-day-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+		align-items: end;
+		padding: 8px 0;
+		border-bottom: 1px solid #e5e7eb;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		.bb-bh-editor-day-row__name {
+			grid-column: 1 / -1;
+		}
+
+		.bb-bh-editor-day-row__times {
+			grid-column: 1 / -1;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 8px;
+		}
+
+		.bb-bh-editor-day-row__toggle {
+			grid-column: 1 / -1;
+		}
+	}
+
+	.bb-bh-editor-meta {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		padding: 4px 10px;
+		background: #1e1e1e;
+		color: #ffffff;
+		border-radius: 999px;
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bb-bh-editor-notice {
+		margin: 8px 0;
+		padding: 8px 12px;
+		background: #fff8e5;
+		border-left: 3px solid #dba617;
+		color: #50575e;
+		font-size: 13px;
+		line-height: 1.4;
+		border-radius: 2px;
+	}
+}

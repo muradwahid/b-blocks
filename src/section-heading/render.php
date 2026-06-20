@@ -50,7 +50,7 @@ extract( $attributes );
 
 	<div class='bBlocksSectionHeading'>
 		<h2 class='sectionHeadingTitle'><?php echo wp_kses_post( $title ); ?></h2>
-		<?php echo $isSep ? "<span class='sectionHeadingSeparator'></span>" : ''; ?>
-		<?php echo $isDesc ? "<p class='sectionHeadingDescription'>". wp_kses_post( $desc ) ."</p>" : ''; ?>
+		<?php echo $isSep ? "<span class='sectionHeadingSeparator'></span>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup, no user input. ?>
+		<?php echo $isDesc ? "<p class='sectionHeadingDescription'>". wp_kses_post( $desc ) ."</p>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static wrapper tags with wp_kses_post-escaped content. ?>
 	</div>
 </div>

@@ -1,0 +1,26 @@
+/**
+ * Taxonomy Grid — editor-only styles.
+ *
+ * The grid is rendered by ServerSideRender in the editor, so the actual card
+ * markup and CSS variables come from the frontend stylesheet. These rules only
+ * dress the loading / empty placeholders shown while the preview resolves.
+ */
+
+.wp-block-b-blocks-taxonomy-grid {
+	.bb-tg-ssr-loading,
+	.bb-tg-ssr-empty {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 24px;
+		text-align: center;
+		color: #64748b;
+		border: 1px dashed #cbd5e1;
+		border-radius: 8px;
+
+		.components-spinner {
+			margin: 0;
+		}
+	}
+}

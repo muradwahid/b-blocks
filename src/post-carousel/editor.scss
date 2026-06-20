@@ -1,0 +1,46 @@
+/**
+ * Post Carousel — editor-only styles.
+ *
+ * In the editor the carousel is rendered statically by ServerSideRender (Swiper
+ * is not booted), so slides are laid out as a simple horizontal preview row and
+ * arrows are hidden to avoid implying interactivity that does not exist there.
+ */
+
+.wp-block-b-blocks-post-carousel {
+	.bb-pc-arrow {
+		display: none;
+	}
+
+	.bb-pc-swiper {
+		overflow: hidden;
+	}
+
+	.swiper-wrapper {
+		display: flex;
+		gap: var(--bb-pc-gap, 24px);
+		transform: none !important;
+	}
+
+	.bb-pc-slide {
+		flex: 0 0 auto;
+		width: calc((100% - (var(--bb-pc-gap, 24px) * 2)) / 3);
+		max-width: 360px;
+	}
+
+	.bb-pc-pagination {
+		opacity: 0.5;
+	}
+
+	.bb-pc-ssr-loading,
+	.bb-pc-ssr-empty {
+		padding: 24px;
+		text-align: center;
+		color: #64748b;
+		border: 1px dashed #cbd5e1;
+		border-radius: 8px;
+
+		.components-spinner {
+			margin-right: 8px;
+		}
+	}
+}

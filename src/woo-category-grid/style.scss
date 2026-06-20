@@ -1,0 +1,298 @@
+/**
+ * Woo Category Grid — frontend + editor shared styles.
+ *
+ * Mobile-first. All per-instance values (columns, colors, sizes, transition)
+ * come from CSS custom properties emitted inline by render.php and scoped under
+ * a unique wrapper id, so these rules stay generic and instance-agnostic.
+ */
+
+.bb-wcg {
+	--bb-wcg-cols-desktop: 4;
+	--bb-wcg-cols-tablet: 2;
+	--bb-wcg-cols-mobile: 1;
+	--bb-wcg-col-gap: 20px;
+	--bb-wcg-row-gap: 20px;
+	--bb-wcg-max-width: 100%;
+	--bb-wcg-margin: 0 auto;
+	--bb-wcg-aspect: 1/1;
+	--bb-wcg-fallback: #7c3aed;
+	--bb-wcg-overlay: rgba(0, 0, 0, 0.4);
+	--bb-wcg-accent: #7c3aed;
+	--bb-wcg-card-bg: #ffffff;
+	--bb-wcg-card-radius: 8px;
+	--bb-wcg-pad-v: 16px;
+	--bb-wcg-pad-h: 16px;
+	--bb-wcg-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	--bb-wcg-border-width: 0px;
+	--bb-wcg-border-color: #e5e7eb;
+	--bb-wcg-name-color: #ffffff;
+	--bb-wcg-name-size: 18px;
+	--bb-wcg-name-weight: 600;
+	--bb-wcg-count-color: #ffffff;
+	--bb-wcg-count-bg: #7c3aed;
+	--bb-wcg-count-size: 12px;
+	--bb-wcg-cta-color: #ffffff;
+	--bb-wcg-cta-size: 13px;
+	--bb-wcg-transition: 300ms;
+
+	box-sizing: border-box;
+
+	&.bb-wcg--has-max-width {
+		max-width: var(--bb-wcg-max-width);
+		margin: var(--bb-wcg-margin);
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// --- WooCommerce-missing / empty notices --------------------------------
+	.bb-wcg-notice {
+		padding: 16px 20px;
+		border: 1px solid #fcd34d;
+		border-radius: 8px;
+		background-color: #fffbeb;
+		color: #92400e;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.bb-wcg-empty {
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+		border: 1px dashed #d1d5db;
+		border-radius: 8px;
+	}
+
+	// --- Grid wrapper -------------------------------------------------------
+	.bb-wcg-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(var(--bb-wcg-cols-mobile), minmax(0, 1fr));
+		column-gap: var(--bb-wcg-col-gap);
+		row-gap: var(--bb-wcg-row-gap);
+	}
+
+	.bb-wcg-item {
+		margin: 0;
+		padding: 0;
+	}
+
+	// --- Card link ----------------------------------------------------------
+	.bb-wcg-card {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		height: 100%;
+		text-decoration: none;
+		color: var(--bb-wcg-name-color);
+		background-color: var(--bb-wcg-card-bg);
+		border-radius: var(--bb-wcg-card-radius);
+		border: var(--bb-wcg-border-width) solid transparent;
+		box-shadow: var(--bb-wcg-shadow);
+		transition: transform var(--bb-wcg-transition) ease,
+			box-shadow var(--bb-wcg-transition) ease;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-wcg-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	&.bb-wcg--has-border .bb-wcg-card {
+		border-color: var(--bb-wcg-border-color);
+	}
+
+	// --- Media area ---------------------------------------------------------
+	.bb-wcg-media {
+		position: relative;
+		display: block;
+		width: 100%;
+		aspect-ratio: var(--bb-wcg-aspect);
+		overflow: hidden;
+		background-color: var(--bb-wcg-fallback);
+	}
+
+	.bb-wcg-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform var(--bb-wcg-transition) ease,
+			filter var(--bb-wcg-transition) ease;
+	}
+
+	.bb-wcg-fallback {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--bb-wcg-fallback);
+		background-image: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.12),
+			rgba(0, 0, 0, 0.12)
+		);
+	}
+
+	.bb-wcg-fallback-icon {
+		font-size: clamp(28px, 8vw, 48px);
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.92);
+	}
+
+	.bb-wcg-overlay {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background-color: var(--bb-wcg-overlay);
+		transition: background-color var(--bb-wcg-transition) ease,
+			opacity var(--bb-wcg-transition) ease;
+	}
+
+	// --- Text body ----------------------------------------------------------
+	.bb-wcg-body {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		padding: var(--bb-wcg-pad-v) var(--bb-wcg-pad-h);
+	}
+
+	.bb-wcg-body--overlay {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.bb-wcg-name {
+		display: block;
+		font-size: var(--bb-wcg-name-size);
+		font-weight: var(--bb-wcg-name-weight);
+		line-height: 1.3;
+		color: var(--bb-wcg-name-color);
+	}
+
+	.bb-wcg-count {
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		font-size: var(--bb-wcg-count-size);
+		font-weight: 600;
+		line-height: 1;
+		color: var(--bb-wcg-count-color);
+		background-color: var(--bb-wcg-count-bg);
+		padding: 4px 8px;
+		border-radius: 999px;
+	}
+
+	.bb-wcg-cta {
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		font-size: var(--bb-wcg-cta-size);
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--bb-wcg-cta-color);
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: -2px;
+			height: 2px;
+			background-color: var(--bb-wcg-accent);
+			transform: scaleX(0);
+			transform-origin: left center;
+			transition: transform var(--bb-wcg-transition) ease;
+		}
+	}
+
+	.bb-wcg-card:hover .bb-wcg-cta::after,
+	.bb-wcg-card:focus-visible .bb-wcg-cta::after {
+		transform: scaleX(1);
+	}
+
+	// --- "below" and "plain" card colors override overlay defaults ----------
+	&.bb-wcg--below,
+	&.bb-wcg--plain {
+		.bb-wcg-name {
+			color: var(--bb-wcg-name-color);
+		}
+
+		.bb-wcg-body {
+			text-align: left;
+		}
+	}
+
+	// --- Hover effects (CSS only) -------------------------------------------
+	&.bb-wcg--hover-zoom .bb-wcg-card:hover .bb-wcg-image,
+	&.bb-wcg--hover-zoom .bb-wcg-card:focus-visible .bb-wcg-image {
+		transform: scale(1.08);
+	}
+
+	&.bb-wcg--hover-lift .bb-wcg-card:hover,
+	&.bb-wcg--hover-lift .bb-wcg-card:focus-visible {
+		transform: translateY(-6px);
+		box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+	}
+
+	&.bb-wcg--hover-darken .bb-wcg-card:hover .bb-wcg-overlay,
+	&.bb-wcg--hover-darken .bb-wcg-card:focus-visible .bb-wcg-overlay {
+		background-color: var(--bb-wcg-overlay);
+		opacity: 1;
+		filter: brightness(0.55);
+	}
+
+	// --- Responsive breakpoints ---------------------------------------------
+	@media (min-width: 600px) {
+		.bb-wcg-grid {
+			grid-template-columns: repeat(var(--bb-wcg-cols-tablet), minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.bb-wcg-grid {
+			grid-template-columns: repeat(var(--bb-wcg-cols-desktop), minmax(0, 1fr));
+		}
+	}
+
+	// --- Reduced motion -----------------------------------------------------
+	@media (prefers-reduced-motion: reduce) {
+		.bb-wcg-card,
+		.bb-wcg-image,
+		.bb-wcg-overlay,
+		.bb-wcg-cta::after {
+			transition-duration: 0ms !important;
+		}
+	}
+}
+
+// Visually hidden text for screen readers (only define if theme lacks it).
+.bb-wcg .screen-reader-text {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

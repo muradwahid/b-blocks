@@ -1,0 +1,247 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/post-carousel",
+	"version": "1.0.0",
+	"title": "Post Carousel",
+	"category": "bBlocks",
+	"description": "Display WordPress posts in a responsive, swipeable carousel with autoplay, arrows, and dot navigation.",
+	"keywords": [
+		"post carousel",
+		"posts",
+		"carousel",
+		"slider",
+		"blog",
+		"swiper",
+		"related posts"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"postsPerPage": {
+			"type": "integer",
+			"default": 6
+		},
+		"selectedCategories": {
+			"type": "array",
+			"default": []
+		},
+		"selectedTags": {
+			"type": "array",
+			"default": []
+		},
+		"postsOrderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"postsOrder": {
+			"type": "string",
+			"default": "desc"
+		},
+		"isExcludeCurrent": {
+			"type": "boolean",
+			"default": true
+		},
+		"slidesPerView": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"slideGap": {
+			"type": "integer",
+			"default": 24
+		},
+		"isLoop": {
+			"type": "boolean",
+			"default": true
+		},
+		"isAutoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplayDelay": {
+			"type": "integer",
+			"default": 3000
+		},
+		"autoplayPauseOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"transitionSpeed": {
+			"type": "integer",
+			"default": 500
+		},
+		"isArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"isDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"arrowBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"arrowBorderRadius": {
+			"type": "integer",
+			"default": 50
+		},
+		"dotColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"dotInactiveColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"isFeaturedImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageAspectRatio": {
+			"type": "string",
+			"default": "16/9"
+		},
+		"imageBorderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"isCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"isTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"titleLines": {
+			"type": "integer",
+			"default": 2
+		},
+		"isExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"excerptLength": {
+			"type": "integer",
+			"default": 20
+		},
+		"isMeta": {
+			"type": "boolean",
+			"default": true
+		},
+		"isReadMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"readMoreLabel": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderRadius": {
+			"type": "integer",
+			"default": 12
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"cardShadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"excerptColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"categoryBadgeBg": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"categoryBadgeColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"readMoreBg": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"readMoreColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"readMoreBorderRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": 18,
+				"tablet": 17,
+				"mobile": 16
+			}
+		},
+		"excerptFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"metaFontSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"noPostsMessage": {
+			"type": "string",
+			"default": "No posts found."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

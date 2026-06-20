@@ -1,0 +1,42 @@
+// Editor-only style adjustments for the Author Box block.
+
+.wp-block-b-blocks-author-box {
+	.bb-ab-editor-meta {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 12px;
+		padding: 4px 10px;
+		background: #1e1e1e;
+		color: #ffffff;
+		border-radius: 999px;
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bb-ab-editor-placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 80px;
+		padding: 20px;
+		background: #f3f4f6;
+		border: 1px dashed #c5c7ca;
+		border-radius: 6px;
+		color: #4b5563;
+		font-size: 13px;
+		text-align: center;
+	}
+
+	.bb-ab-editor-help {
+		margin-top: 8px;
+		padding: 8px 12px;
+		background: #f0f6fc;
+		border-left: 3px solid #0073aa;
+		color: #1e1e1e;
+		font-size: 12px;
+		line-height: 1.4;
+		border-radius: 2px;
+	}
+}

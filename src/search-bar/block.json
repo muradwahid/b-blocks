@@ -1,0 +1,134 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/search-bar",
+	"title": "Search Bar",
+	"description": "A styled search form with optional live REST-powered suggestions, degrading gracefully to a standard WordPress search when JavaScript is unavailable.",
+	"category": "bBlocks",
+	"keywords": [
+		"search",
+		"search bar",
+		"live search",
+		"autocomplete",
+		"search form"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Search…"
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": "Search"
+		},
+		"buttonStyle": {
+			"type": "string",
+			"default": "text"
+		},
+		"searchPostTypes": {
+			"type": "array",
+			"default": ["post", "page"]
+		},
+		"liveSearch": {
+			"type": "boolean",
+			"default": true
+		},
+		"maxSuggestions": {
+			"type": "integer",
+			"default": 5
+		},
+		"showPostType": {
+			"type": "boolean",
+			"default": false
+		},
+		"width": {
+			"type": "string",
+			"default": "100%"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"inputBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"inputTextColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"buttonBgColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBorderRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"inputPadding": {
+			"type": "object",
+			"default": {
+				"top": "10px",
+				"right": "14px",
+				"bottom": "10px",
+				"left": "14px"
+			}
+		},
+		"fontSize": {
+			"type": "string",
+			"default": "16px"
+		},
+		"dropdownBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"dropdownTextColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"dropdownHoverBgColor": {
+			"type": "string",
+			"default": "#f0f0f0"
+		},
+		"noResultsText": {
+			"type": "string",
+			"default": "No results found."
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"placeholder": "Search…",
+			"buttonLabel": "Search"
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": ["file:./view.css", "fontAwesome"],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

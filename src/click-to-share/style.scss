@@ -1,0 +1,396 @@
+// Click to Share Block — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA color contrast verified for the
+// default palette (#1a1a1a on #f0f7ff ≈ 13:1; #ffffff on #0575e6 ≈ 4.6:1).
+
+.wp-block-b-blocks-click-to-share {
+	--bb-cts-bg: #f0f7ff;
+	--bb-cts-text: #1a1a1a;
+	--bb-cts-quote-icon: #0575e6;
+	--bb-cts-border: #0575e6;
+	--bb-cts-border-width: 4px;
+	--bb-cts-radius: 6px;
+	--bb-cts-btn-bg: #0575e6;
+	--bb-cts-btn-text: #ffffff;
+	--bb-cts-btn-radius: 4px;
+	--bb-cts-pad-top: 20px;
+	--bb-cts-pad-right: 24px;
+	--bb-cts-pad-bottom: 20px;
+	--bb-cts-pad-left: 24px;
+	--bb-cts-font-size: 18px;
+	--bb-cts-font-weight: 600;
+
+	display: block;
+	margin: 0 0 1.25em;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// ----- Card ---------------------------------------------------------
+	.bb-cts-card {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		margin: 0;
+		padding: var(--bb-cts-pad-top) var(--bb-cts-pad-right) var(--bb-cts-pad-bottom) var(--bb-cts-pad-left);
+		background: var(--bb-cts-bg);
+		border-radius: var(--bb-cts-radius);
+		color: var(--bb-cts-text);
+	}
+
+	// ----- Layout: card (default) — left accent border -----------------
+	&.bb-cts-layout--card .bb-cts-card {
+		border-left: var(--bb-cts-border-width) solid var(--bb-cts-border);
+	}
+
+	// ----- Layout: inline — compact, no accent border ------------------
+	&.bb-cts-layout--inline .bb-cts-card {
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 12px;
+		padding-block: calc(var(--bb-cts-pad-top) * 0.75);
+	}
+
+	&.bb-cts-layout--inline .bb-cts-quote {
+		flex: 1 1 260px;
+		min-width: 0;
+	}
+
+	&.bb-cts-layout--inline .bb-cts-actions {
+		flex: 0 0 auto;
+	}
+
+	// ----- Quotation-mark icon -----------------------------------------
+	.bb-cts-quote-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		color: var(--bb-cts-quote-icon);
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	// ----- Quote --------------------------------------------------------
+	.bb-cts-quote {
+		margin: 0;
+		padding: 0;
+		font-size: var(--bb-cts-font-size);
+		font-weight: var(--bb-cts-font-weight);
+		line-height: 1.5;
+		color: var(--bb-cts-text);
+		quotes: none;
+
+		// Strip default browser quotes so the quotation-mark icon is the
+		// only "quotation marker" — avoids double-quote noise.
+		&::before,
+		&::after {
+			content: none;
+		}
+	}
+
+	.bb-cts-quote-text {
+		margin: 0;
+		padding: 0;
+
+		// Allow inline formatting (italic, link) without breaking layout.
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		em, i {
+			font-style: italic;
+		}
+
+		strong, b {
+			font-weight: 700;
+		}
+	}
+
+	.bb-cts-cite {
+		margin-top: 8px;
+		font-size: 0.85em;
+		font-weight: 400;
+		font-style: italic;
+		opacity: 0.75;
+	}
+
+	// ----- Alignment ---------------------------------------------------
+	&.bb-cts-align--left .bb-cts-card { text-align: left; }
+	&.bb-cts-align--center .bb-cts-card { text-align: center; align-items: center; }
+	&.bb-cts-align--right .bb-cts-card { text-align: right; align-items: flex-end; }
+
+	&.bb-cts-align--center .bb-cts-actions { justify-content: center; }
+	&.bb-cts-align--right .bb-cts-actions { justify-content: flex-end; }
+
+	// ----- Actions row -------------------------------------------------
+	.bb-cts-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-items: stretch;
+		margin-top: 4px;
+	}
+
+	// ----- Buttons (anchors + the copy button share .bb-cts-btn) ------
+	.bb-cts-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		min-height: 40px;
+		padding: 8px 14px;
+		font: inherit;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.2;
+		text-decoration: none;
+		cursor: pointer;
+		border-radius: var(--bb-cts-btn-radius);
+		transition: filter 120ms ease, background-color 120ms ease, color 120ms ease;
+		background: var(--bb-cts-btn-bg);
+		color: var(--bb-cts-btn-text);
+		border: 1px solid var(--bb-cts-btn-bg);
+
+		&:hover {
+			filter: brightness(1.08);
+			text-decoration: none;
+			color: var(--bb-cts-btn-text);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-cts-btn-bg);
+			outline-offset: 2px;
+			text-decoration: none;
+		}
+
+		.bb-cts-btn__icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 16px;
+			line-height: 1;
+		}
+
+		.bb-cts-btn__text {
+			display: inline-flex;
+			align-items: center;
+		}
+
+		&.is-copied {
+			background: #2ea043;
+			border-color: #2ea043;
+			color: #ffffff;
+		}
+	}
+
+	// Outline variant: transparent fill, colored border + text.
+	&.bb-cts-btn--outline .bb-cts-btn {
+		background: transparent;
+		color: var(--bb-cts-btn-bg);
+		border-color: var(--bb-cts-btn-bg);
+
+		&:hover {
+			background: var(--bb-cts-btn-bg);
+			color: var(--bb-cts-btn-text);
+		}
+
+		&.is-copied {
+			background: #2ea043;
+			border-color: #2ea043;
+			color: #ffffff;
+		}
+	}
+
+	// ----- Screen-reader-only utility ---------------------------------
+	.bb-cts-live,
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// ----- Mobile tweaks ----------------------------------------------
+	@media (max-width: 480px) {
+		.bb-cts-card {
+			padding: 16px;
+			gap: 12px;
+		}
+
+		&.bb-cts-layout--inline .bb-cts-card {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.bb-cts-btn {
+			min-height: 44px;
+			padding: 8px 12px;
+		}
+	}
+
+	// ============================================================
+	// View style presets — each preset overrides the base look.
+	// ============================================================
+
+	// --- minimal: no background, no border, just a centered divider -----
+	&.bb-cts-view--minimal {
+		.bb-cts-card {
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+			padding: 24px 0;
+			position: relative;
+		}
+		.bb-cts-card::before,
+		.bb-cts-card::after {
+			content: '';
+			display: block;
+			width: 60px;
+			height: 2px;
+			background: var(--bb-cts-border);
+			opacity: 0.5;
+		}
+		.bb-cts-card::before { margin: 0 0 16px; }
+		.bb-cts-card::after  { margin: 16px 0 0; }
+		&.bb-cts-align--center .bb-cts-card::before,
+		&.bb-cts-align--center .bb-cts-card::after {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.bb-cts-quote-icon { display: none; }
+		.bb-cts-quote {
+			font-style: italic;
+			font-size: calc(var(--bb-cts-font-size, 18px) * 1.1);
+		}
+	}
+
+	// --- card: soft shadow, rounded, no accent border ------------------
+	&.bb-cts-view--card {
+		.bb-cts-card {
+			background: var(--bb-cts-bg);
+			border: 0;
+			border-radius: 16px;
+			padding: 32px;
+			box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.18);
+		}
+		.bb-cts-quote-icon {
+			color: var(--bb-cts-quote-icon);
+			opacity: 0.85;
+		}
+		.bb-cts-btn {
+			border-radius: 999px;
+		}
+	}
+
+	// --- highlight: solid accent background, inverted text -------------
+	&.bb-cts-view--highlight {
+		.bb-cts-card {
+			background: var(--bb-cts-border);
+			color: #ffffff;
+			border: 0;
+			border-radius: 12px;
+			padding: 32px;
+		}
+		.bb-cts-quote,
+		.bb-cts-cite {
+			color: #ffffff;
+		}
+		.bb-cts-quote-icon {
+			color: #ffffff;
+			opacity: 0.7;
+		}
+		// Invert buttons to look good on the accent background.
+		.bb-cts-btn {
+			background: #ffffff;
+			color: var(--bb-cts-border);
+		}
+		.bb-cts-btn:hover,
+		.bb-cts-btn:focus-visible {
+			background: rgba(255, 255, 255, 0.85);
+			color: var(--bb-cts-border);
+		}
+	}
+
+	// --- quote-marks: big decorative ❝ marks framing the text ----------
+	&.bb-cts-view--quote-marks {
+		.bb-cts-card {
+			background: transparent;
+			border: 0;
+			padding: 16px 8px;
+			position: relative;
+			text-align: center;
+			align-items: center;
+		}
+		.bb-cts-quote-icon { display: none; }
+		.bb-cts-quote {
+			position: relative;
+			display: inline-block;
+			padding: 0 36px;
+			font-size: calc(var(--bb-cts-font-size, 18px) * 1.2);
+			font-style: italic;
+		}
+		.bb-cts-quote::before,
+		.bb-cts-quote::after {
+			position: absolute;
+			font-family: Georgia, 'Times New Roman', serif;
+			font-size: 4em;
+			line-height: 1;
+			color: var(--bb-cts-quote-icon);
+			opacity: 0.4;
+		}
+		.bb-cts-quote::before { content: '\201C'; left: -8px; top: -20px; }
+		.bb-cts-quote::after  { content: '\201D'; right: -8px; bottom: -40px; }
+		.bb-cts-actions { justify-content: center; }
+	}
+
+	// --- tweet: looks like a social-platform card ----------------------
+	&.bb-cts-view--tweet {
+		.bb-cts-card {
+			background: #ffffff;
+			border: 1px solid #cfd9de;
+			border-radius: 16px;
+			padding: 16px 20px;
+			color: #0f1419;
+			position: relative;
+		}
+		.bb-cts-card::before {
+			content: '';
+			display: block;
+			width: 28px;
+			height: 28px;
+			margin: 0 0 12px;
+			background-color: var(--bb-cts-border);
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/></svg>") center/contain no-repeat;
+		}
+		.bb-cts-quote-icon { display: none; }
+		.bb-cts-quote {
+			font-size: calc(var(--bb-cts-font-size, 18px) * 1.05);
+			line-height: 1.45;
+			color: #0f1419;
+		}
+		.bb-cts-cite { color: #536471; }
+		.bb-cts-actions { margin-top: 14px; }
+		.bb-cts-btn {
+			background: transparent;
+			color: var(--bb-cts-border);
+			border: 1px solid #cfd9de;
+		}
+		.bb-cts-btn:hover,
+		.bb-cts-btn:focus-visible {
+			background: rgba(29, 155, 240, 0.1);
+			color: var(--bb-cts-border);
+		}
+	}
+}

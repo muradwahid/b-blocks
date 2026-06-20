@@ -1,0 +1,26 @@
+/**
+ * Woo Product Grid — editor-only styles.
+ *
+ * The block renders server-side via ServerSideRender, so the editor preview
+ * mirrors the frontend. These rules only style the SSR loading / empty states
+ * and keep the preview non-interactive.
+ */
+
+.wp-block-b-blocks-woo-product-grid {
+	.bb-wpg-ssr-loading,
+	.bb-wpg-ssr-empty {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0;
+		padding: 24px;
+		color: #6b7280;
+		font-style: italic;
+	}
+
+	// The add-to-cart buttons are non-interactive in the editor preview
+	// (wrapped in <Disabled>); show them in their resting state.
+	.bb-wpg-grid {
+		pointer-events: none;
+	}
+}

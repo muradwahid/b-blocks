@@ -1,0 +1,206 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/post-navigation",
+	"version": "1.0.0",
+	"title": "Post Navigation",
+	"category": "bBlocks",
+	"description": "Styled previous/next post navigation with thumbnails, category labels, and titles for single-post templates.",
+	"keywords": [
+		"post navigation",
+		"prev next",
+		"adjacent post",
+		"previous post",
+		"next post",
+		"single post"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "arrow"
+		},
+		"showPrev": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNext": {
+			"type": "boolean",
+			"default": true
+		},
+		"showThumbnail": {
+			"type": "boolean",
+			"default": true
+		},
+		"thumbnailSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"thumbnailHeight": {
+			"type": "integer",
+			"default": 160
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": true
+		},
+		"prevLabel": {
+			"type": "string",
+			"default": "Previous Post"
+		},
+		"nextLabel": {
+			"type": "string",
+			"default": "Next Post"
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": false
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": false
+		},
+		"showArrowIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowIcon": {
+			"type": "string",
+			"default": "chevron"
+		},
+		"sameCategory": {
+			"type": "boolean",
+			"default": false
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "p"
+		},
+		"titleLines": {
+			"type": "integer",
+			"default": 2
+		},
+		"alignment": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"gap": {
+			"type": "integer",
+			"default": 24
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"blockAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardPaddingV": {
+			"type": "integer",
+			"default": 20
+		},
+		"cardPaddingH": {
+			"type": "integer",
+			"default": 20
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "none"
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": ""
+		},
+		"overlayOpacity": {
+			"type": "integer",
+			"default": 30
+		},
+		"labelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"labelSize": {
+			"type": "integer",
+			"default": 12
+		},
+		"labelWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"titleWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaSize": {
+			"type": "integer",
+			"default": 12
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"hoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"hoverTitleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"transitionDuration": {
+			"type": "integer",
+			"default": 200
+		},
+		"noPostsText": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

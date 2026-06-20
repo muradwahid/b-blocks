@@ -1,0 +1,291 @@
+/**
+ * Image Accordion — frontend + editor shared styles. Mobile-first.
+ *
+ * Instance-specific values arrive as CSS custom properties set inline by
+ * render.php (frontend) and Edit.js (editor), scoped under the wrapper id.
+ *
+ * Mobile-first: the default (small-screen) layout is a vertical stack where
+ * every panel's overlay is always readable. At the configured breakpoint the
+ * horizontal expanding strip takes over (handled with a container-level media
+ * query fed by --bb-ia-breakpoint via a hard 768px fallback query below).
+ */
+
+.bb-ia {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: var(--bb-ia-max-width, 100%);
+	margin-inline: auto;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// --- Strip container: vertical stack by default (mobile-first). ---
+	.bb-ia-strip {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-ia-gap, 4px);
+		width: 100%;
+		border-radius: var(--bb-ia-radius, 8px);
+		overflow: hidden;
+	}
+
+	// --- Single panel. ---
+	.bb-ia-panel {
+		position: relative;
+		display: flex;
+		min-height: var(--bb-ia-collapsed-w, 80px);
+		border-radius: var(--bb-ia-radius, 8px);
+		overflow: hidden;
+		flex: 1 1 auto;
+	}
+
+	// Background + trigger surface.
+	.bb-ia-panel-bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #1a1a1a;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		border: 0;
+		cursor: pointer;
+		appearance: none;
+
+		&:focus-visible {
+			outline: 2px solid #fff;
+			outline-offset: -4px;
+			box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.5);
+		}
+	}
+
+	// Decorative overlay tint.
+	.bb-ia-overlay {
+		position: absolute;
+		inset: 0;
+		background: var(--bb-ia-overlay, rgba(0, 0, 0, 0.45));
+		pointer-events: none;
+	}
+
+	// Overlay content block.
+	.bb-ia-content {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+		padding: 20px;
+		pointer-events: none; // let clicks reach the trigger surface…
+
+		a {
+			pointer-events: auto; // …except real links/buttons.
+		}
+	}
+
+	// Overlay vertical alignment.
+	&.bb-ia--overlay-bottom .bb-ia-content {
+		margin-top: auto;
+		justify-content: flex-end;
+	}
+	&.bb-ia--overlay-top .bb-ia-content {
+		margin-bottom: auto;
+		justify-content: flex-start;
+	}
+	&.bb-ia--overlay-center .bb-ia-content {
+		margin: auto 0;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+	}
+
+	.bb-ia-title {
+		margin: 0;
+		color: var(--bb-ia-title-color, #fff);
+		font-size: var(--bb-ia-title-size-m, 16px);
+		font-weight: var(--bb-ia-title-weight, 700);
+		line-height: 1.25;
+	}
+
+	.bb-ia-desc {
+		margin: 0;
+		color: var(--bb-ia-desc-color, rgba(255, 255, 255, 0.85));
+		font-size: var(--bb-ia-desc-size-m, 14px);
+		line-height: 1.5;
+	}
+
+	.bb-ia-btn {
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		gap: 6px;
+		margin-top: 4px;
+		padding: var(--bb-ia-btn-pv, 10px) var(--bb-ia-btn-ph, 22px);
+		background: var(--bb-ia-btn-bg, #fff);
+		color: var(--bb-ia-btn-color, #111);
+		font-size: var(--bb-ia-btn-size, 14px);
+		font-weight: 600;
+		line-height: 1.2;
+		text-decoration: none;
+		border: 0;
+		border-radius: var(--bb-ia-btn-radius, 4px);
+		cursor: pointer;
+		transition: background-color var(--bb-ia-duration, 400ms) ease,
+			color var(--bb-ia-duration, 400ms) ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bb-ia-btn-bg-hover, #f0f0f0);
+			color: var(--bb-ia-btn-color-hover, #111);
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	}
+
+	&.bb-ia--overlay-center .bb-ia-btn {
+		align-self: center;
+	}
+
+	// Editor placeholder.
+	.bb-ia-placeholder {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 13px;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		pointer-events: none;
+	}
+
+	.bb-ia-empty {
+		margin: 0;
+		padding: 32px;
+		text-align: center;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 13px;
+		border: 1px dashed rgba(0, 0, 0, 0.18);
+		border-radius: var(--bb-ia-radius, 8px);
+	}
+
+	// --- Horizontal expanding strip (desktop / above breakpoint). ---
+	// The breakpoint is author-configurable (480–1024); 768px is the default
+	// fallback used by this media query. view.js additionally tap-toggles
+	// below the exact configured breakpoint.
+	@media (min-width: 768px) {
+		&.bb-ia--horizontal {
+			.bb-ia-strip {
+				flex-direction: row;
+				height: var(--bb-ia-min-height, 480px);
+			}
+
+			.bb-ia-panel {
+				min-height: 0;
+				height: 100%;
+				flex: 1 1 0;
+				min-width: var(--bb-ia-collapsed-w, 80px);
+				transition: flex-grow var(--bb-ia-duration, 400ms) ease,
+					flex-basis var(--bb-ia-duration, 400ms) ease;
+			}
+
+			// Collapsed siblings shrink; active panel grows.
+			.bb-ia-panel.is-collapsed {
+				flex-grow: 0;
+				flex-basis: var(--bb-ia-collapsed-w, 80px);
+			}
+			.bb-ia-panel.is-active {
+				flex-grow: 5;
+			}
+
+			// Hide overlay text on collapsed panels (fades out).
+			.bb-ia-panel.is-collapsed .bb-ia-content {
+				opacity: 0;
+				transition: opacity calc(var(--bb-ia-duration, 400ms) / 2) ease;
+			}
+			.bb-ia-panel.is-active .bb-ia-content {
+				opacity: 1;
+				transition: opacity var(--bb-ia-duration, 400ms) ease;
+			}
+		}
+
+		// Responsive type at desktop.
+		.bb-ia-title {
+			font-size: var(--bb-ia-title-size-d, 22px);
+		}
+		.bb-ia-desc {
+			font-size: var(--bb-ia-desc-size-d, 15px);
+		}
+	}
+
+	// Tablet typography step.
+	@media (min-width: 600px) and (max-width: 767.98px) {
+		.bb-ia-title {
+			font-size: var(--bb-ia-title-size-t, 18px);
+		}
+		.bb-ia-desc {
+			font-size: var(--bb-ia-desc-size-t, 14px);
+		}
+	}
+
+	// Vertical orientation above the breakpoint: tall stacked panels that grow.
+	@media (min-width: 768px) {
+		&.bb-ia--vertical {
+			.bb-ia-strip {
+				flex-direction: column;
+			}
+			.bb-ia-panel {
+				min-height: var(--bb-ia-collapsed-w, 80px);
+				flex: 1 1 0;
+				transition: flex-grow var(--bb-ia-duration, 400ms) ease;
+			}
+			.bb-ia-panel.is-collapsed {
+				flex-grow: 0;
+			}
+			.bb-ia-panel.is-active {
+				flex-grow: 5;
+				min-height: var(--bb-ia-min-height, 480px);
+			}
+		}
+	}
+
+	// Reduced motion: instant transitions.
+	&.bb-ia--no-motion {
+		.bb-ia-panel,
+		.bb-ia-content,
+		.bb-ia-btn {
+			transition: none !important;
+		}
+	}
+}
+
+// Visually-hidden helper (matches WP core).
+.bb-ia .screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-ia {
+		.bb-ia-panel,
+		.bb-ia-content,
+		.bb-ia-btn {
+			transition: none !important;
+		}
+	}
+}

@@ -1,0 +1,249 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/article-card",
+	"version": "1.0.0",
+	"title": "Article Card",
+	"category": "bBlocks",
+	"description": "A single static article, resource, or featured-page preview card — image, category badge, heading, excerpt, optional meta line, and CTA link — in horizontal or vertical layout. No JavaScript required.",
+	"keywords": [
+		"article",
+		"card",
+		"resource",
+		"read also",
+		"featured",
+		"preview",
+		"link"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"imagePosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "16/9"
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"badgeColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Article title goes here"
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"excerpt": {
+			"type": "string",
+			"default": ""
+		},
+		"meta": {
+			"type": "string",
+			"default": ""
+		},
+		"metaIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"linkTarget": {
+			"type": "boolean",
+			"default": false
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"ctaStyle": {
+			"type": "string",
+			"default": "button"
+		},
+		"cardLinkMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 640
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"imageSplitRatio": {
+			"type": "string",
+			"default": "40"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"headingColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#374151"
+		},
+		"metaColor": {
+			"type": "string",
+			"default": "#6b7280"
+		},
+		"ctaBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"ctaColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"ctaHoverBg": {
+			"type": "string",
+			"default": "#1d4ed8"
+		},
+		"ctaHoverColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"shadow": {
+			"type": "string",
+			"default": "sm"
+		},
+		"paddingV": {
+			"type": "number",
+			"default": 20
+		},
+		"paddingH": {
+			"type": "number",
+			"default": 20
+		},
+		"headingSizeDesktop": {
+			"type": "number",
+			"default": 18
+		},
+		"headingSizeTablet": {
+			"type": "number",
+			"default": 17
+		},
+		"headingSizeMobile": {
+			"type": "number",
+			"default": 16
+		},
+		"headingWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"excerptSizeDesktop": {
+			"type": "number",
+			"default": 14
+		},
+		"excerptSizeMobile": {
+			"type": "number",
+			"default": 13
+		},
+		"excerptWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"ctaFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"ctaWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"ctaPaddingV": {
+			"type": "number",
+			"default": 8
+		},
+		"ctaPaddingH": {
+			"type": "number",
+			"default": 18
+		},
+		"ctaBorderRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"mobileStack": {
+			"type": "boolean",
+			"default": true
+		},
+		"mobileImagePosition": {
+			"type": "string",
+			"default": "top"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

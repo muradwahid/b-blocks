@@ -1,0 +1,102 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/sticky-sidebar",
+	"title": "Sticky Sidebar",
+	"description": "A two-column layout where one column stays pinned with CSS position:sticky while the adjacent content column scrolls. Perfect for a sticky table of contents, buy box, or summary card.",
+	"category": "bBlocks",
+	"keywords": [
+		"sticky sidebar",
+		"two column",
+		"sticky column",
+		"table of contents",
+		"layout"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"sidebarSide": {
+			"type": "string",
+			"default": "right"
+		},
+		"splitRatio": {
+			"type": "string",
+			"default": "30/70"
+		},
+		"stickyTop": {
+			"type": "integer",
+			"default": 32
+		},
+		"stickyMaxHeight": {
+			"type": "integer",
+			"default": 0
+		},
+		"gap": {
+			"type": "integer",
+			"default": 40
+		},
+		"mobileStackOrder": {
+			"type": "string",
+			"default": "main-first"
+		},
+		"mobileBreakpoint": {
+			"type": "integer",
+			"default": 767
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"mainBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sidebarBg": {
+			"type": "string",
+			"default": ""
+		},
+		"mainPaddingV": {
+			"type": "integer",
+			"default": 0
+		},
+		"mainPaddingH": {
+			"type": "integer",
+			"default": 0
+		},
+		"sidebarPaddingV": {
+			"type": "integer",
+			"default": 0
+		},
+		"sidebarPaddingH": {
+			"type": "integer",
+			"default": 0
+		},
+		"sidebarBorderRadius": {
+			"type": "integer",
+			"default": 0
+		},
+		"sidebarBorderWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"sidebarBorderColor": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

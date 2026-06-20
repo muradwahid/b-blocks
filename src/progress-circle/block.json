@@ -1,0 +1,122 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/progress-circle",
+	"title": "Progress Circle",
+	"description": "Display a circular (radial) progress indicator with customizable size, stroke, colors, animated fill, and an accessible center label.",
+	"category": "bBlocks",
+	"keywords": [
+		"progress",
+		"progress circle",
+		"radial",
+		"donut",
+		"percentage",
+		"circular progress"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"percentage": {
+			"type": "number",
+			"default": 70
+		},
+		"size": {
+			"type": "number",
+			"default": 160
+		},
+		"strokeWidth": {
+			"type": "number",
+			"default": 12
+		},
+		"fillColor": {
+			"type": "string",
+			"default": "#4f46e5"
+		},
+		"trackColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"lineCap": {
+			"type": "string",
+			"default": "round"
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": true
+		},
+		"labelType": {
+			"type": "string",
+			"default": "percentage"
+		},
+		"customLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"labelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"labelFontSize": {
+			"type": "number",
+			"default": 28
+		},
+		"prefix": {
+			"type": "string",
+			"default": ""
+		},
+		"suffix": {
+			"type": "string",
+			"default": "%"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"title": {
+			"type": "string",
+			"default": "Progress"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"animate": {
+			"type": "boolean",
+			"default": true
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 1200
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,156 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/key-takeaways",
+	"version": "2.0.79",
+	"title": "Key Takeaways",
+	"category": "bBlocks",
+	"description": "A titled summary card listing the most important points of an article as a checkmark, numbered, or bullet list. Built for the blog \"Key Takeaways\" / \"TL;DR\" pattern with heading, accent color, icon, and full typography controls.",
+	"keywords": [
+		"key takeaways",
+		"takeaways",
+		"summary",
+		"tldr",
+		"tl;dr",
+		"highlights",
+		"key points",
+		"summary box",
+		"styled box",
+		"notification box"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"headingText": {
+			"type": "string",
+			"default": "Key Takeaways"
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"listStyle": {
+			"type": "string",
+			"default": "check"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "kt-default-1",
+					"text": "Summarize your first key point here."
+				},
+				{
+					"_key": "kt-default-2",
+					"text": "Add the second takeaway readers should remember."
+				},
+				{
+					"_key": "kt-default-3",
+					"text": "Close with a final actionable insight."
+				}
+			]
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fas fa-check-circle"
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#0d6efd"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#f0f6ff"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#1e293b"
+		},
+		"headingColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"itemFontSize": {
+			"type": "integer",
+			"default": 16
+		},
+		"itemFontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"headingFontSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"headingFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"iconSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"paddingVertical": {
+			"type": "integer",
+			"default": 20
+		},
+		"paddingHorizontal": {
+			"type": "integer",
+			"default": 24
+		},
+		"itemGap": {
+			"type": "integer",
+			"default": 10
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

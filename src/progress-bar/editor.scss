@@ -1,0 +1,14 @@
+// Editor-only adjustments for the Progress Bar block.
+
+@import './style.scss';
+
+.wp-block-b-blocks-progress-bar {
+	.bBlocksProgressBar {
+		// In the editor we render the bar with its target width directly so
+		// authors can see the result of their percentage setting without
+		// having to scroll the bar into view.
+		.pbFill {
+			transition: width 0.2s ease-out;
+		}
+	}
+}

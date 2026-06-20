@@ -1,0 +1,153 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/feature-tabs",
+	"title": "Feature Tabs",
+	"description": "A tabbed feature showcase: a vertical tab list switches a paired image panel, with keyboard navigation, ARIA tab semantics, and a mobile accordion fallback.",
+	"category": "bBlocks",
+	"keywords": [
+		"feature tabs",
+		"tabs",
+		"tabbed showcase",
+		"feature switcher",
+		"image tabs"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"tabs": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "t0",
+					"iconClass": "fa-solid fa-bolt",
+					"title": "Lightning Fast",
+					"description": "Built for performance.",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": ""
+				},
+				{
+					"_key": "t1",
+					"iconClass": "fa-solid fa-shield-halved",
+					"title": "Secure by Default",
+					"description": "End-to-end encryption.",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": ""
+				},
+				{
+					"_key": "t2",
+					"iconClass": "fa-solid fa-chart-line",
+					"title": "Real-Time Analytics",
+					"description": "Track every interaction.",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": ""
+				}
+			]
+		},
+		"layout": {
+			"type": "string",
+			"default": "tabs-left"
+		},
+		"activeTab": {
+			"type": "number",
+			"default": 0
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"tabBg": {
+			"type": "string",
+			"default": ""
+		},
+		"activeBg": {
+			"type": "string",
+			"default": ""
+		},
+		"imageBg": {
+			"type": "string",
+			"default": ""
+		},
+		"tabGap": {
+			"type": "number",
+			"default": 8
+		},
+		"tabPaddingV": {
+			"type": "number",
+			"default": 16
+		},
+		"tabPaddingH": {
+			"type": "number",
+			"default": 20
+		},
+		"tabMinHeight": {
+			"type": "number",
+			"default": 320
+		},
+		"imageRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"imageFit": {
+			"type": "string",
+			"default": "contain"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 20
+		},
+		"titleSize": {
+			"type": "number",
+			"default": 16
+		},
+		"titleWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"descSize": {
+			"type": "number",
+			"default": 13
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"descColor": {
+			"type": "string",
+			"default": ""
+		},
+		"splitRatio": {
+			"type": "string",
+			"default": "40-60"
+		},
+		"accentBarWidth": {
+			"type": "number",
+			"default": 3
+		},
+		"transitionDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"mobileBreakpoint": {
+			"type": "number",
+			"default": 640
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

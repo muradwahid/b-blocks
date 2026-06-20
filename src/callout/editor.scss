@@ -1,0 +1,26 @@
+// Callout Block — editor-only overrides.
+// Most styling is shared with the frontend via style.scss. This file only
+// fixes things that are different in the Gutenberg canvas (e.g. RichText
+// placeholder, focus rings on inline-editable title field).
+
+.wp-block.wp-block-b-blocks-callout {
+	// The Gutenberg canvas wraps every block in extra margin; keep the
+	// callout self-contained so the preview matches the frontend.
+	margin-bottom: 1em;
+}
+
+.wp-block-b-blocks-callout {
+	// Inline-editable title placeholder color in the editor.
+	.bb-co__title[contenteditable="true"]:empty::before {
+		content: attr( data-placeholder );
+		color: rgba( 0, 0, 0, 0.4 );
+		font-style: italic;
+	}
+
+	// Editor-only: make the icon picker text input look like an editable
+	// chip rather than a raw input.
+	.bb-co__icon i {
+		display: inline-block;
+		line-height: 1;
+	}
+}

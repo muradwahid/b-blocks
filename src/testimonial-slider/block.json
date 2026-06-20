@@ -1,0 +1,220 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/testimonial-slider",
+	"title": "Testimonial Slider",
+	"description": "An auto-advancing, swipeable carousel of customer testimonials with avatar, name, role, company, star rating, and quote per slide.",
+	"category": "bBlocks",
+	"keywords": [
+		"testimonial",
+		"slider",
+		"carousel",
+		"review",
+		"quote",
+		"rating",
+		"social proof"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": []
+		},
+		"layout": {
+			"type": "string",
+			"default": "card"
+		},
+		"slidesVisible": {
+			"type": "object",
+			"default": {
+				"desktop": 2,
+				"tablet": 1,
+				"mobile": 1
+			}
+		},
+		"autoPlay": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoPlaySpeed": {
+			"type": "number",
+			"default": 5000
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"slideGap": {
+			"type": "number",
+			"default": 24
+		},
+		"quoteIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 56
+		},
+		"avatarShape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderRadius": {
+			"type": "number",
+			"default": 12
+		},
+		"cardPaddingV": {
+			"type": "number",
+			"default": 32
+		},
+		"cardPaddingH": {
+			"type": "number",
+			"default": 32
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "medium"
+		},
+		"cardBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"quoteColor": {
+			"type": "string",
+			"default": ""
+		},
+		"quoteFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": 18,
+				"tablet": 16,
+				"mobile": 15
+			}
+		},
+		"quoteFontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"quoteIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"quoteIconSize": {
+			"type": "number",
+			"default": 40
+		},
+		"authorNameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"authorNameFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"authorNameFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"authorMetaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"authorMetaFontSize": {
+			"type": "number",
+			"default": 13
+		},
+		"starColor": {
+			"type": "string",
+			"default": "#F59E0B"
+		},
+		"starSize": {
+			"type": "number",
+			"default": 16
+		},
+		"arrowBg": {
+			"type": "string",
+			"default": ""
+		},
+		"arrowColor": {
+			"type": "string",
+			"default": ""
+		},
+		"arrowSize": {
+			"type": "number",
+			"default": 40
+		},
+		"arrowBorderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"dotColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dotActiveColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dotSize": {
+			"type": "number",
+			"default": 8
+		},
+		"transitionSpeed": {
+			"type": "number",
+			"default": 400
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

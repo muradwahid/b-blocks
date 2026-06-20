@@ -1,0 +1,53 @@
+// Editor-only style adjustments for the Video Popup block.
+
+.wp-block-b-blocks-video-popup {
+	.bb-vp-trigger {
+		// In the editor the trigger is a non-interactive preview;
+		// keep the cursor as default to avoid the misleading pointer.
+		cursor: default;
+		pointer-events: none;
+	}
+
+	.bb-vp-editor-placeholder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		min-height: 220px;
+		border: 1px dashed #c3c4c7;
+		border-radius: 6px;
+		padding: 24px;
+		background: #f6f7f7;
+		color: #50575e;
+		text-align: center;
+		font-size: 14px;
+
+		.bb-vp-editor-icon {
+			width: 48px;
+			height: 48px;
+			color: #8c8f94;
+		}
+
+		.bb-vp-editor-hint {
+			font-size: 13px;
+			color: #646970;
+			max-width: 360px;
+			line-height: 1.4;
+		}
+	}
+
+	.bb-vp-editor-meta {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		padding: 4px 10px;
+		background: #1e1e1e;
+		color: #ffffff;
+		border-radius: 999px;
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+}

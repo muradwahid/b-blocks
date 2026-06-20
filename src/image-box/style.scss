@@ -1,0 +1,286 @@
+// Image Box Block — frontend + editor shared styles.
+// Mobile-first, responsive, WCAG 2.1 AA friendly.
+
+.wp-block-b-blocks-image-box {
+	--bb-ib-cols: 3;
+	--bb-ib-cols-tablet: 2;
+	--bb-ib-cols-mobile: 1;
+	--bb-ib-col-gap: 24px;
+	--bb-ib-row-gap: 24px;
+	--bb-ib-radius: 8px;
+	--bb-ib-aspect: 4 / 3;
+	--bb-ib-overlay-color: #000000;
+	--bb-ib-overlay-opacity: 0.55;
+	--bb-ib-title-color: #ffffff;
+	--bb-ib-title-font-size: 20px;
+	--bb-ib-title-font-size-tablet: 20px;
+	--bb-ib-title-font-size-mobile: 20px;
+	--bb-ib-title-weight: 600;
+	--bb-ib-desc-color: #f1f5f9;
+	--bb-ib-desc-font-size: 15px;
+	--bb-ib-desc-font-size-tablet: 15px;
+	--bb-ib-desc-font-size-mobile: 15px;
+	--bb-ib-zoom: 1.08;
+	--bb-ib-duration: 300ms;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-ib-empty {
+		margin: 0;
+		padding: 12px 16px;
+		font-style: italic;
+		color: #6c757d;
+		background: #f8f9fa;
+		border: 1px dashed #ced4da;
+		border-radius: 6px;
+		text-align: center;
+	}
+
+	.bb-ib-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(var(--bb-ib-cols-mobile), minmax(0, 1fr));
+		column-gap: var(--bb-ib-col-gap);
+		row-gap: var(--bb-ib-row-gap);
+	}
+
+	.bb-ib-item {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		min-width: 0;
+	}
+
+	.bb-ib-card {
+		position: relative;
+		display: block;
+		width: 100%;
+		aspect-ratio: var(--bb-ib-aspect);
+		overflow: hidden;
+		border-radius: var(--bb-ib-radius);
+		background: #1a1a1a;
+		text-decoration: none;
+		color: inherit;
+		isolation: isolate;
+
+		// Reset anchor underlines (the card itself is the link).
+		&:hover,
+		&:focus,
+		&:focus-visible,
+		&:active {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		// Visible keyboard focus ring on the card.
+		&:focus-visible {
+			outline: 3px solid #2563eb;
+			outline-offset: 3px;
+		}
+	}
+
+	.bb-ib-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform var(--bb-ib-duration) ease;
+		transform-origin: center center;
+
+		&--placeholder {
+			background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+		}
+	}
+
+	.bb-ib-overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: stretch;
+		padding: 18px 20px;
+		color: var(--bb-ib-title-color);
+		background: rgba(0, 0, 0, var(--bb-ib-overlay-opacity));
+		// Allow the overlay color to flow through `background` by re-painting.
+		// CSS custom properties can't be used inside rgba() directly, so we
+		// use a layered gradient over the user-defined overlay color.
+		background-image: linear-gradient(
+			to top,
+			color-mix(in srgb, var(--bb-ib-overlay-color) calc(var(--bb-ib-overlay-opacity) * 100%), transparent),
+			color-mix(in srgb, var(--bb-ib-overlay-color) calc(var(--bb-ib-overlay-opacity) * 60%), transparent)
+		);
+		background-color: transparent;
+		transition: opacity var(--bb-ib-duration) ease, transform var(--bb-ib-duration) ease;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.bb-ib-title {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		margin: 0;
+		font-size: var(--bb-ib-title-font-size-mobile);
+		font-weight: var(--bb-ib-title-weight);
+		line-height: 1.3;
+		color: var(--bb-ib-title-color);
+		word-break: break-word;
+
+		&__text {
+			flex: 1 1 auto;
+		}
+
+		&__arrow {
+			flex: 0 0 auto;
+			display: inline-block;
+			font-size: 0.9em;
+			transition: transform var(--bb-ib-duration) ease;
+		}
+	}
+
+	.bb-ib-desc {
+		display: block;
+		margin: 6px 0 0;
+		font-size: var(--bb-ib-desc-font-size-mobile);
+		line-height: 1.5;
+		color: var(--bb-ib-desc-color);
+		word-break: break-word;
+	}
+
+	.bb-ib-cta-label {
+		display: inline-block;
+		margin: 10px 0 0;
+		padding: 6px 14px;
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: #0f172a;
+		background: #ffffff;
+		border-radius: 999px;
+		align-self: flex-start;
+	}
+
+	// ===================================================================
+	// Overlay reveal modes
+	// ===================================================================
+
+	// Mode: always — overlay is always visible (no hover required).
+	&.bb-ib-overlay--always {
+		.bb-ib-overlay {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	// Mode: hover — overlay fades in on hover OR keyboard focus.
+	&.bb-ib-overlay--hover {
+		.bb-ib-overlay {
+			opacity: 0;
+		}
+
+		.bb-ib-card:hover .bb-ib-overlay,
+		.bb-ib-card:focus-visible .bb-ib-overlay,
+		.bb-ib-card:focus .bb-ib-overlay {
+			opacity: 1;
+		}
+
+		.bb-ib-card:hover .bb-ib-title__arrow,
+		.bb-ib-card:focus-visible .bb-ib-title__arrow {
+			transform: translateX(3px);
+		}
+	}
+
+	// Mode: slide-up — overlay slides up from bottom on hover/focus.
+	&.bb-ib-overlay--slide-up {
+		.bb-ib-overlay {
+			opacity: 0;
+			transform: translateY(20%);
+		}
+
+		.bb-ib-card:hover .bb-ib-overlay,
+		.bb-ib-card:focus-visible .bb-ib-overlay,
+		.bb-ib-card:focus .bb-ib-overlay {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.bb-ib-card:hover .bb-ib-title__arrow,
+		.bb-ib-card:focus-visible .bb-ib-title__arrow {
+			transform: translateX(3px);
+		}
+	}
+
+	// ===================================================================
+	// Hover zoom on image
+	// ===================================================================
+	&.has-zoom {
+		.bb-ib-card:hover .bb-ib-img,
+		.bb-ib-card:focus-visible .bb-ib-img {
+			transform: scale(var(--bb-ib-zoom));
+		}
+	}
+
+	// ===================================================================
+	// Tablet breakpoint
+	// ===================================================================
+	@media (min-width: 600px) {
+		.bb-ib-grid {
+			grid-template-columns: repeat(var(--bb-ib-cols-tablet), minmax(0, 1fr));
+		}
+
+		.bb-ib-title {
+			font-size: var(--bb-ib-title-font-size-tablet);
+		}
+
+		.bb-ib-desc {
+			font-size: var(--bb-ib-desc-font-size-tablet);
+		}
+	}
+
+	// ===================================================================
+	// Desktop breakpoint
+	// ===================================================================
+	@media (min-width: 960px) {
+		.bb-ib-grid {
+			grid-template-columns: repeat(var(--bb-ib-cols), minmax(0, 1fr));
+		}
+
+		.bb-ib-title {
+			font-size: var(--bb-ib-title-font-size);
+		}
+
+		.bb-ib-desc {
+			font-size: var(--bb-ib-desc-font-size);
+		}
+	}
+
+	// ===================================================================
+	// Reduced motion: skip the overlay reveal animation and the zoom.
+	// Always-visible mode is honored regardless.
+	// ===================================================================
+	@media (prefers-reduced-motion: reduce) {
+		.bb-ib-img,
+		.bb-ib-overlay,
+		.bb-ib-title__arrow {
+			transition: none !important;
+		}
+
+		// Show the overlay outright instead of animating, so reduced-motion
+		// users still see all the content.
+		&.bb-ib-overlay--hover .bb-ib-overlay,
+		&.bb-ib-overlay--slide-up .bb-ib-overlay {
+			opacity: 1;
+			transform: none;
+		}
+
+		&.has-zoom .bb-ib-card:hover .bb-ib-img,
+		&.has-zoom .bb-ib-card:focus-visible .bb-ib-img {
+			transform: none;
+		}
+	}
+}

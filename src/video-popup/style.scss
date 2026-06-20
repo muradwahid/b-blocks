@@ -1,0 +1,284 @@
+// Frontend + editor shared styles for the Video Popup block.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+
+.wp-block-b-blocks-video-popup {
+	* {
+		box-sizing: border-box;
+	}
+
+	&.bb-vp-align-left {
+		text-align: left;
+	}
+
+	&.bb-vp-align-center {
+		text-align: center;
+	}
+
+	&.bb-vp-align-right {
+		text-align: right;
+	}
+
+	.bb-vp-trigger {
+		display: inline-block;
+		max-width: 100%;
+		padding: 0;
+		margin: 0;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+		font: inherit;
+		color: inherit;
+
+		&:focus-visible {
+			outline: 3px solid #0073aa;
+			outline-offset: 3px;
+		}
+
+		img,
+		video {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: inherit;
+		}
+
+		// Self-hosted MP4 preview: first-frame via <video preload=metadata>.
+		// Disable native controls — the whole tile is the trigger button.
+		video.bb-vp-poster--video {
+			pointer-events: none;
+			background: #000;
+			// Hide the playback UI; we only want the first frame.
+			&::-webkit-media-controls { display: none !important; }
+		}
+
+		// When no poster is available at all (e.g. Vimeo oEmbed failed and
+		// the user didn't upload one), render a solid tile so the play
+		// icon still has somewhere to sit.
+		&.bb-vp-trigger--no-poster {
+			background-color: #111;
+			aspect-ratio: 16 / 9;
+		}
+
+		// "Play Button Only" trigger type: no poster tile, no aspect-ratio
+		// box — the button shrinks to fit just the play icon. Width/height
+		// are driven entirely by the per-instance play-icon size in the
+		// inline render.php CSS.
+		&.bb-vp-trigger--button-only {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: transparent;
+			width: auto;
+			aspect-ratio: auto;
+			overflow: visible;
+
+			.bb-vp-play {
+				position: static;
+				transform: none;
+			}
+
+			&:hover .bb-vp-play,
+			&:focus-visible .bb-vp-play {
+				transform: scale(1.08);
+			}
+
+			// Suppress the rectangular outline on the button wrapper and
+			// move the focus indicator to the play icon. box-shadow always
+			// respects border-radius (unlike outline on older browsers),
+			// so the ring hugs the play icon's actual shape.
+			&:focus-visible {
+				outline: none;
+			}
+			&:focus-visible .bb-vp-play {
+				box-shadow: 0 0 0 3px #fff, 0 0 0 6px #0073aa;
+			}
+		}
+
+		.bb-vp-play {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			pointer-events: none;
+			color: #ffffff;
+			background-color: rgba(0, 0, 0, 0.55);
+			border-radius: 50%;
+			transition: transform 0.2s ease, background-color 0.2s ease;
+
+			svg {
+				width: 45%;
+				height: 45%;
+				display: block;
+			}
+		}
+
+		&:hover .bb-vp-play,
+		&:focus-visible .bb-vp-play {
+			transform: translate(-50%, -50%) scale(1.08);
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.bb-vp-play {
+				transition: none !important;
+			}
+
+			&:hover .bb-vp-play,
+			&:focus-visible .bb-vp-play {
+				transform: translate(-50%, -50%) !important;
+			}
+		}
+	}
+
+	.bb-vp-placeholder {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		min-height: 180px;
+		padding: 16px;
+		background: #e8e8e8;
+		color: #444;
+		font-size: 14px;
+		line-height: 1.4;
+		border-radius: 4px;
+	}
+}
+
+// Lightbox root is appended to <body> by view.js, so its selector lives
+// at the top level. Instance-specific values (overlay color, ratio,
+// max-width, duration) are injected via inline CSS in render.php.
+.bb-vp-lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 999999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	background-color: var(--bb-vp-overlay, rgba(0, 0, 0, 0.85));
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--bb-vp-anim-dur, 0.3s) ease;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&.is-open {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.bb-vp-container {
+		position: relative;
+		width: 100%;
+		max-width: min(900px, calc(100vw - 32px));
+		aspect-ratio: 16 / 9;
+		max-height: calc(100vh - 80px);
+		background: #000;
+		border-radius: 6px;
+		overflow: hidden;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+		transform: scale(0.92);
+		transition: transform var(--bb-vp-anim-dur, 0.3s) ease;
+	}
+
+	&.is-open .bb-vp-container {
+		transform: scale(1);
+	}
+
+	&.bb-vp-anim-fade .bb-vp-container {
+		transform: none;
+		transition: none;
+	}
+
+	&.bb-vp-anim-none {
+		transition: none;
+
+		.bb-vp-container {
+			transform: none;
+			transition: none;
+		}
+	}
+
+	.bb-vp-frame {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		background: #000;
+	}
+
+	video.bb-vp-frame {
+		object-fit: contain;
+	}
+
+	.bb-vp-close {
+		position: absolute;
+		top: -44px;
+		right: 0;
+		width: 40px;
+		height: 40px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+		color: #ffffff;
+		border: 2px solid rgba(255, 255, 255, 0.8);
+		border-radius: 50%;
+		font-size: 20px;
+		line-height: 1;
+		cursor: pointer;
+		padding: 0;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+
+		svg {
+			width: 18px;
+			height: 18px;
+			display: block;
+		}
+
+		&:hover,
+		&:focus-visible {
+			background-color: rgba(255, 255, 255, 0.15);
+			outline: 2px solid #ffffff;
+			outline-offset: 2px;
+			transform: scale(1.05);
+		}
+
+		@media (max-width: 600px) {
+			top: 8px;
+			right: 8px;
+			background-color: rgba(0, 0, 0, 0.55);
+			border-color: rgba(255, 255, 255, 0.6);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none !important;
+
+		.bb-vp-container {
+			transform: none !important;
+			transition: none !important;
+		}
+
+		.bb-vp-close {
+			transition: none !important;
+		}
+	}
+}
+
+// While any video popup is open, lock body scroll.
+body.bBlocksVideoPopupOpen {
+	overflow: hidden;
+}

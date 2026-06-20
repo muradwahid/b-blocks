@@ -1,0 +1,165 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/milestone-timeline",
+	"version": "1.0.0",
+	"title": "Milestone Timeline",
+	"category": "bBlocks",
+	"description": "Display a horizontal, left-to-right milestone strip for company history, product roadmaps, or career journeys. Stacks vertically on mobile, keyboard-scrollable, with a subtle scroll-in node animation.",
+	"keywords": [
+		"timeline",
+		"milestone",
+		"horizontal",
+		"roadmap",
+		"history",
+		"journey",
+		"steps"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "_key": "mt-default-1", "date": "2021", "title": "Founded", "description": "The company was founded with a small but passionate team.", "icon": "fa-solid fa-rocket", "accentColor": "" },
+				{ "_key": "mt-default-2", "date": "2022", "title": "First Launch", "description": "Shipped our first product to early adopters.", "icon": "fa-solid fa-flag", "accentColor": "" },
+				{ "_key": "mt-default-3", "date": "2023", "title": "10k Users", "description": "Crossed ten thousand active users worldwide.", "icon": "fa-solid fa-users", "accentColor": "" },
+				{ "_key": "mt-default-4", "date": "2024", "title": "Series A", "description": "Closed our Series A to fuel the next chapter.", "icon": "fa-solid fa-circle-check", "accentColor": "" }
+			]
+		},
+		"lineColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"lineHeight": {
+			"type": "number",
+			"default": 3
+		},
+		"nodeSize": {
+			"type": "number",
+			"default": 40
+		},
+		"nodeColor": {
+			"type": "string",
+			"default": "#3b82f6"
+		},
+		"nodeIconColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"nodeShape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"labelPosition": {
+			"type": "string",
+			"default": "alternating"
+		},
+		"dateTag": {
+			"type": "string",
+			"default": "span"
+		},
+		"dateColor": {
+			"type": "string",
+			"default": "#6b7280"
+		},
+		"dateFontSize": {
+			"type": "number",
+			"default": 13
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#1e293b"
+		},
+		"titleFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"descColor": {
+			"type": "string",
+			"default": "#475569"
+		},
+		"descFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"cardBackground": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"cardPaddingV": {
+			"type": "number",
+			"default": 16
+		},
+		"cardPaddingH": {
+			"type": "number",
+			"default": 16
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "small"
+		},
+		"cardMaxWidth": {
+			"type": "number",
+			"default": 220
+		},
+		"gap": {
+			"type": "number",
+			"default": 40
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"mobileBreakpoint": {
+			"type": "number",
+			"default": 640
+		},
+		"mobileStackOrder": {
+			"type": "string",
+			"default": "asc"
+		},
+		"showNodeNumbers": {
+			"type": "boolean",
+			"default": false
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": "Milestones"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

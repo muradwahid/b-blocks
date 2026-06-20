@@ -1,0 +1,432 @@
+/**
+ * Contact Card — frontend + editor shared styles.
+ *
+ * All per-instance values are delivered via CSS custom properties on the
+ * `.bb-cc` wrapper (defined inline by render.php / Edit.js) so this
+ * stylesheet stays static and theme overrides remain easy.
+ */
+
+.bb-cc {
+	--bb-cc-accent: #146EF5;
+	--bb-cc-bg: #ffffff;
+	--bb-cc-text: #1a1a1a;
+	--bb-cc-name-color: #1a1a1a;
+	--bb-cc-link-color: #146EF5;
+	--bb-cc-icon-color: #146EF5;
+	--bb-cc-border-color: #e5e7eb;
+	--bb-cc-border-width: 1px;
+	--bb-cc-radius: 12px;
+	--bb-cc-logo-size: 80px;
+	--bb-cc-logo-radius: 12px;
+	--bb-cc-name-size: 22px;
+	--bb-cc-name-weight: 700;
+	--bb-cc-label-size: 14px;
+	--bb-cc-icon-size: 16px;
+	--bb-cc-pad-top: 32px;
+	--bb-cc-pad-right: 32px;
+	--bb-cc-pad-bottom: 32px;
+	--bb-cc-pad-left: 32px;
+
+	display: block;
+	box-sizing: border-box;
+
+	.bb-cc-card {
+		background-color: var(--bb-cc-bg);
+		color: var(--bb-cc-text);
+		border: var(--bb-cc-border-width) solid var(--bb-cc-border-color);
+		border-radius: var(--bb-cc-radius);
+		padding: var(--bb-cc-pad-top) var(--bb-cc-pad-right) var(--bb-cc-pad-bottom) var(--bb-cc-pad-left);
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		box-sizing: border-box;
+	}
+
+	// --- Header (logo + name + tagline) -------------------------------
+
+	.bb-cc-header {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.bb-cc-logo {
+		flex: 0 0 auto;
+		width: var(--bb-cc-logo-size);
+		height: var(--bb-cc-logo-size);
+		overflow: hidden;
+		border-radius: var(--bb-cc-logo-radius);
+		background: rgba(0, 0, 0, 0.04);
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			border-radius: var(--bb-cc-logo-radius);
+		}
+	}
+
+	.bb-cc-heading {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.bb-cc-name {
+		margin: 0;
+		color: var(--bb-cc-name-color);
+		font-size: var(--bb-cc-name-size);
+		font-weight: var(--bb-cc-name-weight);
+		line-height: 1.25;
+	}
+
+	.bb-cc-tagline {
+		margin: 0;
+		font-size: var(--bb-cc-label-size);
+		color: var(--bb-cc-text);
+		opacity: 0.85;
+		line-height: 1.4;
+	}
+
+	// --- Contact list -------------------------------------------------
+
+	.bb-cc-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.bb-cc-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		font-size: var(--bb-cc-label-size);
+		line-height: 1.5;
+		color: var(--bb-cc-text);
+
+		address {
+			font-style: normal;
+			margin: 0;
+		}
+
+		.bb-cc-link {
+			color: var(--bb-cc-link-color);
+			text-decoration: none;
+			word-break: break-word;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
+
+		.bb-cc-address-link address {
+			color: var(--bb-cc-link-color);
+			text-decoration: none;
+
+			.bb-cc-address-link:hover &,
+			.bb-cc-address-link:focus-visible & {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.bb-cc-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: calc(var(--bb-cc-icon-size) + 14px);
+		height: calc(var(--bb-cc-icon-size) + 14px);
+		border-radius: 8px;
+		background: color-mix(in srgb, var(--bb-cc-accent) 12%, transparent);
+		color: var(--bb-cc-icon-color);
+		font-size: var(--bb-cc-icon-size);
+		line-height: 1;
+		margin-top: 2px;
+
+		i,
+		svg {
+			font-size: var(--bb-cc-icon-size);
+			line-height: 1;
+		}
+	}
+
+	// --- Directions button --------------------------------------------
+
+	.bb-cc-actions {
+		margin: 0;
+	}
+
+	.bb-cc-directions {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 10px 18px;
+		background-color: var(--bb-cc-accent);
+		color: #ffffff;
+		border-radius: 8px;
+		font-size: var(--bb-cc-label-size);
+		font-weight: 600;
+		text-decoration: none;
+		line-height: 1;
+		transition: filter 0.15s ease, transform 0.15s ease;
+
+		&:hover,
+		&:focus-visible {
+			filter: brightness(0.92);
+			color: #ffffff;
+			text-decoration: none;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-cc-accent);
+			outline-offset: 2px;
+		}
+
+		i {
+			font-size: calc(var(--bb-cc-label-size) + 2px);
+		}
+	}
+
+	// --- Alignment modifiers ------------------------------------------
+
+	&.bb-cc-align--center {
+		.bb-cc-header {
+			justify-content: center;
+			text-align: center;
+		}
+
+		.bb-cc-heading {
+			align-items: center;
+			text-align: center;
+		}
+
+		.bb-cc-list {
+			align-items: center;
+		}
+
+		.bb-cc-item {
+			justify-content: center;
+		}
+
+		.bb-cc-actions {
+			text-align: center;
+		}
+	}
+
+	// --- Layout: horizontal (logo left, details right) ----------------
+
+	&.bb-cc-layout--horizontal {
+		.bb-cc-card {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			grid-template-areas:
+				"logo heading"
+				"logo list"
+				"logo actions";
+			align-items: start;
+			column-gap: 24px;
+			row-gap: 14px;
+		}
+
+		.bb-cc-header {
+			display: contents;
+		}
+
+		.bb-cc-logo {
+			grid-area: logo;
+			align-self: start;
+		}
+
+		.bb-cc-heading {
+			grid-area: heading;
+		}
+
+		.bb-cc-list {
+			grid-area: list;
+		}
+
+		.bb-cc-actions {
+			grid-area: actions;
+		}
+
+		// If logo is hidden, the grid still works because grid-area: logo
+		// will simply be empty. To avoid an empty column, collapse:
+		&:not(:has(.bb-cc-logo)) .bb-cc-card {
+			grid-template-columns: 1fr;
+			grid-template-areas:
+				"heading"
+				"list"
+				"actions";
+		}
+	}
+
+	// --- Responsive ---------------------------------------------------
+
+	@media (max-width: 600px) {
+		&.bb-cc-layout--horizontal .bb-cc-card {
+			grid-template-columns: 1fr;
+			grid-template-areas:
+				"logo"
+				"heading"
+				"list"
+				"actions";
+			justify-items: start;
+		}
+
+		&.bb-cc-align--center.bb-cc-layout--horizontal .bb-cc-card {
+			justify-items: center;
+		}
+	}
+
+	// =====================================================================
+	// Theme presets — color & feel. Inspector color controls still cascade.
+	// =====================================================================
+
+	// ---- Classic — clean white card, blue accent (base default) ---------
+	&.bb-cc-theme--classic { /* uses base styles */ }
+
+	// ---- Corporate — navy header strip, gold accent --------------------
+	// For law firms, financial services, professional consultancies.
+	&.bb-cc-theme--corporate {
+		.bb-cc-card {
+			background: #ffffff !important;
+			color: #0f1f3a !important;
+			border: 0 !important;
+			border-radius: 6px !important;
+			padding: 0 !important;
+			overflow: hidden;
+			box-shadow: 0 8px 24px -16px rgba(15, 31, 58, 0.25);
+		}
+		.bb-cc-header {
+			background: #0f1f3a;
+			color: #ffffff;
+			padding: 24px 28px;
+			margin: 0;
+			border-bottom: 3px solid #d4a017;
+		}
+		.bb-cc-name { color: #ffffff !important; font-weight: 600 !important; }
+		.bb-cc-tagline { color: rgba(255, 255, 255, 0.78) !important; font-style: italic; }
+		.bb-cc-list { padding: 20px 28px 24px; }
+		.bb-cc-icon { color: #d4a017 !important; }
+		.bb-cc-list a,
+		.bb-cc-list address { color: #0f1f3a !important; }
+		.bb-cc-list a:hover { color: #d4a017 !important; }
+	}
+
+	// ---- Gradient — purple→pink header, white body ---------------------
+	// For tech startups, SaaS, creative agencies.
+	&.bb-cc-theme--gradient {
+		.bb-cc-card {
+			background: #ffffff !important;
+			border: 0 !important;
+			border-radius: 16px !important;
+			padding: 0 !important;
+			overflow: hidden;
+			box-shadow: 0 12px 32px -16px rgba(118, 75, 162, 0.35);
+		}
+		.bb-cc-header {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: #ffffff;
+			padding: 28px;
+			margin: 0;
+		}
+		.bb-cc-name { color: #ffffff !important; font-weight: 700 !important; }
+		.bb-cc-tagline { color: rgba(255, 255, 255, 0.9) !important; }
+		.bb-cc-logo {
+			border: 3px solid rgba(255, 255, 255, 0.4) !important;
+		}
+		.bb-cc-list { padding: 24px 28px; }
+		.bb-cc-icon { color: #764ba2 !important; }
+		.bb-cc-list a { color: #667eea !important; }
+		.bb-cc-list a:hover { color: #764ba2 !important; }
+	}
+
+	// ---- Elegant — cream paper, serif name, gold accent ----------------
+	// For luxury, hospitality, boutique businesses, restaurants.
+	&.bb-cc-theme--elegant {
+		.bb-cc-card {
+			background: #faf8f3 !important;
+			color: #3e2723 !important;
+			border: 1px solid #e7e1d3 !important;
+			border-radius: 4px !important;
+			box-shadow: none;
+		}
+		.bb-cc-name {
+			font-family: Georgia, 'Times New Roman', 'Source Serif Pro', serif !important;
+			color: #1f1207 !important;
+			font-weight: 700 !important;
+			letter-spacing: -0.01em;
+		}
+		.bb-cc-tagline {
+			font-family: Georgia, 'Times New Roman', serif !important;
+			color: #5d4037 !important;
+			font-style: italic;
+		}
+		.bb-cc-icon { color: #b8860b !important; }
+		.bb-cc-list a,
+		.bb-cc-list address { color: #3e2723 !important; }
+		.bb-cc-list a:hover { color: #b8860b !important; }
+		.bb-cc-logo { border: 2px solid #b8860b !important; }
+		// Subtle gold separator above the contact list.
+		.bb-cc-list {
+			border-top: 1px solid #d4af37;
+			padding-top: 20px;
+			margin-top: 20px;
+		}
+	}
+
+	// ---- Bold — thick border, sharp corners, uppercase name -----------
+	// For creative studios, brutalist/modernist brands.
+	&.bb-cc-theme--bold {
+		.bb-cc-card {
+			background: #ffffff !important;
+			color: #0a0a0a !important;
+			border: 3px solid #0a0a0a !important;
+			border-radius: 0 !important;
+			box-shadow: 8px 8px 0 0 #fbbf24;
+		}
+		.bb-cc-name {
+			color: #0a0a0a !important;
+			font-weight: 800 !important;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+		}
+		.bb-cc-tagline {
+			color: #404040 !important;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-size: 0.85em;
+			font-weight: 500;
+		}
+		.bb-cc-icon { color: #0a0a0a !important; }
+		.bb-cc-list a {
+			color: #0a0a0a !important;
+			font-weight: 600;
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 3px;
+		}
+		.bb-cc-list a:hover {
+			background: #fbbf24;
+		}
+		.bb-cc-logo {
+			border: 3px solid #0a0a0a !important;
+			border-radius: 0 !important;
+		}
+		// Bold separator above the contact list.
+		.bb-cc-list {
+			border-top: 3px solid #0a0a0a;
+			padding-top: 20px;
+			margin-top: 20px;
+		}
+	}
+}

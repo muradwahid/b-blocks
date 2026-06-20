@@ -1,0 +1,169 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/howto-schema",
+	"version": "1.0.0",
+	"title": "HowTo Schema",
+	"category": "bBlocks",
+	"description": "Step-by-step how-to guide with optional JSON-LD HowTo schema for Google rich results. Configurable step numbers, connector line, supplies, tools, and estimated time.",
+	"keywords": [
+		"howto",
+		"how to",
+		"tutorial",
+		"steps",
+		"schema",
+		"jsonld",
+		"rich snippets",
+		"recipe"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"howtoName": {
+			"type": "string",
+			"default": "How to do it"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"totalTime": {
+			"type": "string",
+			"default": ""
+		},
+		"supply": {
+			"type": "array",
+			"default": []
+		},
+		"tool": {
+			"type": "array",
+			"default": []
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "howto-default-1",
+					"name": "Step 1",
+					"text": "Describe this step.",
+					"imageUrl": "",
+					"imageAlt": ""
+				},
+				{
+					"_key": "howto-default-2",
+					"name": "Step 2",
+					"text": "Describe this step.",
+					"imageUrl": "",
+					"imageAlt": ""
+				}
+			]
+		},
+		"enableSchema": {
+			"type": "boolean",
+			"default": true
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"showStepNumbers": {
+			"type": "boolean",
+			"default": true
+		},
+		"numberStyle": {
+			"type": "string",
+			"default": "circle"
+		},
+		"showConnector": {
+			"type": "boolean",
+			"default": true
+		},
+		"stepSpacing": {
+			"type": "number",
+			"default": 24
+		},
+		"numberBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"numberColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"numberSize": {
+			"type": "number",
+			"default": 36
+		},
+		"connectorColor": {
+			"type": "string",
+			"default": "#dee2e6"
+		},
+		"stepTitleColor": {
+			"type": "string",
+			"default": "#212529"
+		},
+		"stepTitleFontSize": {
+			"type": "number",
+			"default": 17
+		},
+		"stepTextColor": {
+			"type": "string",
+			"default": "#495057"
+		},
+		"stepTextFontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"stepBg": {
+			"type": "string",
+			"default": ""
+		},
+		"stepBorderRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"stepPadding": {
+			"type": "object",
+			"default": {
+				"top": 12,
+				"right": 16,
+				"bottom": 12,
+				"left": 16
+			}
+		},
+		"metaColor": {
+			"type": "string",
+			"default": "#6c757d"
+		},
+		"metaFontSize": {
+			"type": "number",
+			"default": 14
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

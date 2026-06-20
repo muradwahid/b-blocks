@@ -1,0 +1,20 @@
+// Editor-only adjustments for the Testimonial Card block.
+
+@import './style.scss';
+
+.wp-block-b-blocks-testimonial-card {
+	.bb-tc {
+		min-height: 40px;
+	}
+
+	// Keep the inline RichText caret legible inside the quote.
+	.bb-tc-quote {
+		[data-rich-text-placeholder]::after {
+			opacity: 0.5;
+		}
+	}
+
+	svg {
+		pointer-events: none;
+	}
+}

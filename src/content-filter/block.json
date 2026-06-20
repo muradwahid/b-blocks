@@ -1,0 +1,125 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/content-filter",
+	"version": "2.0.62",
+	"title": "Content Filter",
+	"category": "bBlocks",
+	"description": "Filter a set of static content panels (portfolio cards, services, team members) with one-click category buttons. No page reload. Pure CSS show/hide with prefers-reduced-motion support.",
+	"keywords": [
+		"filter",
+		"portfolio",
+		"tabs",
+		"isotope",
+		"masonry",
+		"categories",
+		"content filter"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"categories": {
+			"type": "array",
+			"default": ["Web Design", "Photography", "Branding"]
+		},
+		"showAllButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"allLabel": {
+			"type": "string",
+			"default": "All"
+		},
+		"defaultFilter": {
+			"type": "string",
+			"default": "all"
+		},
+		"filterLayout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"buttonAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"gridMinColWidth": {
+			"type": "number",
+			"default": 280
+		},
+		"gridGap": {
+			"type": "number",
+			"default": 24
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"buttonBg": {
+			"type": "string",
+			"default": "#f0f0f0"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"activeBg": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"activeText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"buttonPaddingV": {
+			"type": "number",
+			"default": 8
+		},
+		"buttonPaddingH": {
+			"type": "number",
+			"default": 16
+		},
+		"buttonFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"buttonFontWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"buttonGap": {
+			"type": "number",
+			"default": 8
+		},
+		"buttonBarMarginBottom": {
+			"type": "number",
+			"default": 24
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

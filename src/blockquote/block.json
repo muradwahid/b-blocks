@@ -1,0 +1,158 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/blockquote",
+	"version": "2.0.61",
+	"title": "Blockquote",
+	"category": "bBlocks",
+	"description": "Styled blockquote with an accent bar or large decorative quote-mark, optional author photo, name, and role — the designer alternative to the core Quote block.",
+	"keywords": [
+		"blockquote",
+		"quote",
+		"pullquote",
+		"testimonial",
+		"citation",
+		"author"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"quoteText": {
+			"type": "string",
+			"default": "The details are not the details. They make the design."
+		},
+		"authorName": {
+			"type": "string",
+			"default": "Charles Eames"
+		},
+		"authorRole": {
+			"type": "string",
+			"default": ""
+		},
+		"authorAvatarId": {
+			"type": "number",
+			"default": 0
+		},
+		"authorAvatarUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"authorAvatarAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "border"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"showAvatar": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 48
+		},
+		"avatarShape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"showAuthorRole": {
+			"type": "boolean",
+			"default": true
+		},
+		"quoteIconSize": {
+			"type": "number",
+			"default": 48
+		},
+		"quoteIconColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"accentWidth": {
+			"type": "number",
+			"default": 4
+		},
+		"quoteTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"authorNameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"authorRoleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"quoteFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "20px",
+				"tablet": "18px",
+				"mobile": "16px"
+			}
+		},
+		"quoteFontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"quoteLineHeight": {
+			"type": "string",
+			"default": "1.6"
+		},
+		"authorFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "24px",
+				"right": "24px",
+				"bottom": "24px",
+				"left": "24px"
+			}
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

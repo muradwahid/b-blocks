@@ -1,0 +1,183 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/testimonials-grid",
+	"version": "1.0.0",
+	"title": "Testimonials Grid",
+	"category": "bBlocks",
+	"description": "Display multiple customer testimonials at once in a static, responsive multi-column grid with avatars, star ratings, and quotes.",
+	"keywords": [
+		"testimonials",
+		"reviews",
+		"quotes",
+		"ratings",
+		"social proof",
+		"grid"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "_key": "tg-default-1", "quote": "This product completely changed how our team works. Setup was painless and the results were immediate.", "authorName": "Jane Smith", "authorRole": "Product Manager", "authorCompany": "Acme Inc.", "avatarId": 0, "avatarUrl": "", "avatarAlt": "", "rating": 5 },
+				{ "_key": "tg-default-2", "quote": "Easily the best decision we made this year. Support is responsive and the value is outstanding.", "authorName": "Carlos Reyes", "authorRole": "Founder", "authorCompany": "Bright Labs", "avatarId": 0, "avatarUrl": "", "avatarAlt": "", "rating": 5 },
+				{ "_key": "tg-default-3", "quote": "Reliable, fast, and a joy to use every single day. I recommend it to everyone I work with.", "authorName": "Priya Nair", "authorRole": "Marketing Lead", "authorCompany": "Northwind", "avatarId": 0, "avatarUrl": "", "avatarAlt": "", "rating": 4.5 }
+			]
+		},
+		"style": {
+			"type": "string",
+			"default": "card"
+		},
+		"columnsDesktop": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"gap": {
+			"type": "number",
+			"default": 24
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"showAvatar": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 48
+		},
+		"avatarShape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"ratingColor": {
+			"type": "string",
+			"default": "#f59e0b"
+		},
+		"starSize": {
+			"type": "number",
+			"default": 16
+		},
+		"quoteIconVisible": {
+			"type": "boolean",
+			"default": true
+		},
+		"quoteIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"quoteIconSize": {
+			"type": "number",
+			"default": 32
+		},
+		"cardBackground": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"cardPaddingV": {
+			"type": "number",
+			"default": 24
+		},
+		"cardPaddingH": {
+			"type": "number",
+			"default": 24
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "sm"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"quoteColor": {
+			"type": "string",
+			"default": ""
+		},
+		"quoteFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"quoteFontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"nameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"nameFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"nameFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaFontSize": {
+			"type": "number",
+			"default": 13
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

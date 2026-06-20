@@ -33,11 +33,15 @@ if( !class_exists( 'BBlocksCustomCursor' ) ){
 
 		public function bBlocks_cursor_data_settings(){
 
-			if (!wp_verify_nonce(sanitize_text_field(isset($_POST['nonce']) ? stripcslashes($_POST['nonce']) : null), 'wp_ajax')) {
-				wp_send_json_error('invalid request');
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) ), 'wp_ajax' ) ) {
+				wp_send_json_error( 'invalid request' );
 			}
-			
-			$data = json_decode(sanitize_text_field( stripcslashes($_POST['bBlocksCustomCursor'])), true);
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( 'Unauthorized' );
+			}
+
+			$data = json_decode( sanitize_text_field( wp_unslash( $_POST['bBlocksCustomCursor'] ?? '' ) ), true );
 
 			if(!$data){
 				$data = get_option('bBlocks_custom_cursor_settings', []);
@@ -51,7 +55,7 @@ if( !class_exists( 'BBlocksCustomCursor' ) ){
 		}
 
 		public function bBlocks_get_cursor_data_settings(){
-			if (!wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'wp_ajax')) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) ), 'wp_ajax' ) ) {
 				wp_send_json_error('invalid request');
 			}
 

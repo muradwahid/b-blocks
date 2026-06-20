@@ -1,0 +1,13 @@
+// Content Filter Item Block — frontend styles.
+// The visual styling (grid layout, fade animation) is owned by the parent
+// Content Filter style.scss. This file only declares the bare item rules
+// that should ship even if the item is rendered standalone or copied.
+
+.bb-cf-item {
+	min-width: 0;
+	box-sizing: border-box;
+
+	&.is-hidden {
+		display: none !important;
+	}
+}

@@ -1,0 +1,132 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/divider",
+	"version": "2.0.66",
+	"title": "Divider",
+	"category": "bBlocks",
+	"description": "Inline content-level horizontal rule that sits between paragraphs and sections. Three variants — plain line, line with a centered Font Awesome icon, line with a centered text label (e.g. \"OR\", \"•••\"). Choose solid / dashed / dotted / double line styles, line color, line thickness, divider width, alignment, and independent top / bottom spacing. Distinct from the bBlocks shape-divider (full-width SVG wave section separator) and the WordPress core Separator (bare unstyled hr).",
+	"keywords": [
+		"divider",
+		"separator",
+		"hr",
+		"line",
+		"rule",
+		"horizontal rule",
+		"or",
+		"section divider"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"type": {
+			"type": "string",
+			"default": "line"
+		},
+		"lineStyle": {
+			"type": "string",
+			"default": "solid"
+		},
+		"lineColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"lineWidth": {
+			"type": "number",
+			"default": 2
+		},
+		"width": {
+			"type": "number",
+			"default": 100
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"marginTop": {
+			"type": "number",
+			"default": 24
+		},
+		"marginBottom": {
+			"type": "number",
+			"default": 24
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fa-solid fa-star"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 16
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconPadding": {
+			"type": "number",
+			"default": 8
+		},
+		"iconBorderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"text": {
+			"type": "string",
+			"default": "OR"
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"textFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"textTransform": {
+			"type": "string",
+			"default": "none"
+		},
+		"textPadding": {
+			"type": "number",
+			"default": 12
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": false,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

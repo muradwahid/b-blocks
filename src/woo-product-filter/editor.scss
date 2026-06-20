@@ -1,0 +1,25 @@
+/**
+ * Woo Product Filter — editor-only styles.
+ *
+ * Imports the shared frontend styles so the editor preview matches the front
+ * end, plus a couple of editor-only states (server-side render placeholders).
+ */
+
+@import './style.scss';
+
+.wp-block-b-blocks-woo-product-filter {
+	.bb-wpf-ssr-loading,
+	.bb-wpf-ssr-empty {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 16px;
+		margin: 0;
+		color: #64748b;
+	}
+
+	// The form should not actually navigate while editing.
+	.bb-wpf-form {
+		pointer-events: none;
+	}
+}

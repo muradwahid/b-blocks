@@ -1,0 +1,61 @@
+// Parallax Section — shared frontend + editor base styles.
+// Mobile-first. Per-instance layout (background, overlay, sizing, padding)
+// lives in the inline <style> emitted by render.php / Edit.js, scoped under
+// #bBlocksParallaxSection-<n>.
+
+.wp-block-b-blocks-parallax-section,
+.bb-px {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-px-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+
+	.bb-px-overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.bb-px-content {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 48px 24px;
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// Safety net: kill the parallax transform if a user prefers reduced motion,
+// even before view.js runs.
+@media (prefers-reduced-motion: reduce) {
+	.bb-px[data-parallax-mode='scroll'] .bb-px-bg {
+		transform: none !important;
+		top: 0 !important;
+		height: 100% !important;
+	}
+}

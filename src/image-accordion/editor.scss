@@ -1,0 +1,68 @@
+/**
+ * Image Accordion — editor-only styles.
+ *
+ * The canvas preview shares style.scss; these rules cover the inspector
+ * repeater UI and a couple of editor-only affordances (the static preview is
+ * non-interactive so authors always see the active panel expanded).
+ */
+
+.wp-block-b-blocks-image-accordion {
+	// Make the static editor preview show the active panel expanded without JS.
+	&.bb-ia--editor {
+		.bb-ia-panel.is-collapsed .bb-ia-content {
+			opacity: 0;
+		}
+	}
+
+	// Sidebar repeater UI.
+	.bb-ia-repeater {
+		&__row {
+			padding: 12px;
+			margin-bottom: 12px;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			background: #fff;
+		}
+
+		&__row-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 8px;
+		}
+
+		&__row-title {
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #555;
+		}
+
+		&__row-actions {
+			display: flex;
+			gap: 2px;
+		}
+
+		&__media-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+		}
+
+		&__thumb {
+			display: block;
+			max-width: 100%;
+			max-height: 90px;
+			width: auto;
+			height: auto;
+			object-fit: cover;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+		}
+	}
+
+	.bb-ia-add-item {
+		width: 100%;
+		justify-content: center;
+	}
+}

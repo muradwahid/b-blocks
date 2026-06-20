@@ -1,0 +1,47 @@
+// Coupon Code Block — editor-only styles.
+// Keep the editor canvas visually identical to the frontend; only add
+// rules here for editor affordances (placeholders, inline RichText
+// behaviour) that should not ship to the frontend.
+
+.wp-block-b-blocks-coupon-code {
+	// In the editor the reveal-mode blur would obscure the inline-editable
+	// code field. Unblur it so authors can always read what they're
+	// editing — the blur is only meaningful on the live site.
+	&.bb-cc-has-reveal .bb-cc-code {
+		filter: none !important;
+		user-select: text !important;
+		pointer-events: auto !important;
+	}
+
+	// Inline editable code field styling — mimic the frontend `<code>`.
+	.bb-cc-code-edit {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 60px;
+		padding: 10px 16px;
+		background: transparent;
+		color: var(--bb-cc-code-text, #333333);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			"Liberation Mono", "Courier New", monospace;
+		font-size: var(--bb-cc-code-font-size, 20px);
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		border: 0;
+		outline: none;
+		text-align: center;
+		white-space: pre;
+	}
+
+	// Disable the reveal overlay in the editor so authors can configure
+	// the underlying code without having to "Reveal" it every refresh.
+	.bb-cc-reveal-btn {
+		display: none !important;
+	}
+
+	// Description RichText placeholder color match.
+	.bb-cc-description [data-rich-text-placeholder] {
+		color: currentColor;
+		opacity: 0.55;
+	}
+}

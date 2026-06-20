@@ -1,0 +1,199 @@
+/**
+ * Post Navigation — frontend + editor shared styles. Mobile-first.
+ */
+
+.bb-pn {
+	display: flex;
+	justify-content: var(--bb-pn-justify, center);
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	&.bb-pn--has-max-width .bb-pn-row {
+		max-width: var(--bb-pn-max-width, none);
+	}
+
+	.bb-pn-row {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--bb-pn-gap, 24px);
+		width: 100%;
+
+		@media (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	&.bb-pn--align-top .bb-pn-tile {
+		align-self: start;
+	}
+
+	// --- Tile (the <a>). ---
+	.bb-pn-tile {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		background: var(--bb-pn-card-bg, transparent);
+		border: var(--bb-pn-card-border-width, 1px) solid var(--bb-pn-card-border-color, #e2e8f0);
+		border-radius: var(--bb-pn-card-radius, 8px);
+		box-shadow: var(--bb-pn-card-shadow, none);
+		transition:
+			background-color var(--bb-pn-transition, 200ms) ease,
+			border-color var(--bb-pn-transition, 200ms) ease,
+			box-shadow var(--bb-pn-transition, 200ms) ease,
+			transform var(--bb-pn-transition, 200ms) ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bb-pn-hover-bg, var(--bb-pn-card-bg, transparent));
+
+			.bb-pn-title {
+				color: var(--bb-pn-hover-title, var(--bb-pn-title-color, inherit));
+			}
+
+			.bb-pn-arrow {
+				transform: var(--bb-pn-arrow-shift, none);
+			}
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-pn-accent, #0073aa);
+			outline-offset: 2px;
+		}
+
+		// Next tile reads right-to-left so the arrow sits on the trailing edge.
+		&.bb-pn-tile--next {
+			text-align: right;
+
+			.bb-pn-tile-inner {
+				flex-direction: row-reverse;
+			}
+
+			--bb-pn-arrow-shift: translateX(3px);
+		}
+
+		&.bb-pn-tile--prev {
+			--bb-pn-arrow-shift: translateX(-3px);
+		}
+
+		&.bb-pn-tile--empty {
+			cursor: default;
+			opacity: 0.7;
+		}
+	}
+
+	// --- Thumbnail (card layout). ---
+	.bb-pn-thumb {
+		position: relative;
+		display: block;
+		height: var(--bb-pn-thumb-height, 160px);
+		overflow: hidden;
+		background: rgba(15, 23, 42, 0.05);
+	}
+
+	.bb-pn-thumb-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.bb-pn-thumb-overlay {
+		position: absolute;
+		inset: 0;
+		background: var(--bb-pn-overlay-color, transparent);
+		opacity: var(--bb-pn-overlay-opacity, 0.3);
+		pointer-events: none;
+	}
+
+	// --- Inner content row. ---
+	.bb-pn-tile-inner {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: var(--bb-pn-card-padding-v, 20px) var(--bb-pn-card-padding-h, 20px);
+	}
+
+	.bb-pn-arrow {
+		flex: 0 0 auto;
+		font-size: 1.75rem;
+		line-height: 1;
+		color: var(--bb-pn-accent, #0073aa);
+		transition: transform var(--bb-pn-transition, 200ms) ease;
+	}
+
+	.bb-pn-body {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		min-width: 0;
+		flex: 1 1 auto;
+	}
+
+	.bb-pn-label {
+		display: block;
+		font-size: var(--bb-pn-label-size, 12px);
+		font-weight: var(--bb-pn-label-weight, 500);
+		color: var(--bb-pn-label-color, inherit);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.bb-pn-category {
+		display: block;
+		font-size: var(--bb-pn-meta-size, 12px);
+		color: var(--bb-pn-accent, #0073aa);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+	}
+
+	.bb-pn-title {
+		margin: 0;
+		font-size: var(--bb-pn-title-size, 18px);
+		font-weight: var(--bb-pn-title-weight, 600);
+		line-height: 1.35;
+		color: var(--bb-pn-title-color, inherit);
+		transition: color var(--bb-pn-transition, 200ms) ease;
+
+		@supports (-webkit-line-clamp: 1) {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: var(--bb-pn-title-lines, 2);
+			overflow: hidden;
+		}
+	}
+
+	.bb-pn-date {
+		display: block;
+		font-size: var(--bb-pn-meta-size, 12px);
+		color: var(--bb-pn-meta-color, inherit);
+		opacity: 0.85;
+	}
+
+	.bb-pn-placeholder {
+		display: block;
+		font-size: var(--bb-pn-title-size, 18px);
+		color: var(--bb-pn-meta-color, inherit);
+		opacity: 0.7;
+	}
+
+	// --- Arrow layout: no thumbnail, simpler row. ---
+	&.bb-pn--layout-arrow .bb-pn-thumb {
+		display: none;
+	}
+
+	// --- Reduced motion: zeroed by view.js, plus a CSS fallback. ---
+	@media (prefers-reduced-motion: reduce) {
+		.bb-pn-tile,
+		.bb-pn-title,
+		.bb-pn-arrow {
+			transition-duration: 0ms !important;
+		}
+	}
+}

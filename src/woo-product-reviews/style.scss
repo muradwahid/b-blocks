@@ -1,0 +1,196 @@
+/**
+ * Woo Product Reviews — frontend + shared styles.
+ *
+ * Mobile-first. All visual values are driven by per-instance CSS custom
+ * properties emitted in render.php and scoped under a wp_unique_id() id, so
+ * multiple block instances never collide. Prefix: bb-wpr-.
+ */
+
+.bb-wpr {
+	max-width: var(--bb-wpr-max-width, none);
+	margin: var(--bb-wpr-block-margin, 0);
+
+	.bb-wpr-inner {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-wpr-card-gap, 16px);
+	}
+
+	.bb-wpr-empty,
+	.bb-wpr-no-reviews {
+		margin: 0;
+		padding: 16px 20px;
+		border-radius: 8px;
+		background: #f8fafc;
+		color: #475569;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	/* ---- Summary bar ---- */
+	.bb-wpr-summary {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 16px;
+		padding: 20px 24px;
+		border-radius: 10px;
+		background: var(--bb-wpr-summary-bg, transparent);
+		color: var(--bb-wpr-summary-text, inherit);
+
+		.bb-wpr-summary-score {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.bb-wpr-summary-average {
+			font-size: var(--bb-wpr-summary-size, 36px);
+			font-weight: 700;
+			line-height: 1;
+			color: var(--bb-wpr-summary-accent, #f5a623);
+		}
+
+		.bb-wpr-summary-stars {
+			position: relative;
+			display: inline-block;
+			font-size: 22px;
+			line-height: 1;
+			letter-spacing: 2px;
+			white-space: nowrap;
+
+			.bb-wpr-summary-stars-empty {
+				color: var(--bb-wpr-rating-empty-color, #d1d5db);
+			}
+
+			.bb-wpr-summary-stars-full {
+				position: absolute;
+				inset: 0;
+				width: var(--bb-wpr-summary-fill, 0%);
+				overflow: hidden;
+				color: var(--bb-wpr-summary-accent, #f5a623);
+			}
+		}
+
+		.bb-wpr-summary-count {
+			margin: 0;
+			font-size: var(--bb-wpr-meta-size, 13px);
+			opacity: 0.85;
+		}
+	}
+
+	/* ---- Review list ---- */
+	.bb-wpr-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-wpr-card-gap, 16px);
+	}
+
+	.bb-wpr-card {
+		padding: var(--bb-wpr-card-padding, 20px);
+		background: var(--bb-wpr-review-bg, #fff);
+		border: var(--bb-wpr-card-border-width, 1px) solid var(--bb-wpr-card-border-color, #e2e8f0);
+		border-radius: var(--bb-wpr-card-radius, 8px);
+		color: var(--bb-wpr-review-text, inherit);
+
+		.bb-wpr-card-head {
+			display: flex;
+			align-items: flex-start;
+			gap: 12px;
+			margin-bottom: 12px;
+		}
+
+		.bb-wpr-avatar {
+			flex: 0 0 auto;
+
+			img {
+				display: block;
+				width: var(--bb-wpr-avatar-size, 48px);
+				height: var(--bb-wpr-avatar-size, 48px);
+				border-radius: 50%;
+				object-fit: cover;
+			}
+		}
+
+		.bb-wpr-card-meta {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			min-width: 0;
+		}
+
+		.bb-wpr-card-meta-top {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.bb-wpr-author {
+			font-size: var(--bb-wpr-name-size, 15px);
+			font-weight: 600;
+			color: var(--bb-wpr-review-name, inherit);
+		}
+
+		.bb-wpr-stars {
+			font-size: 16px;
+			line-height: 1;
+			letter-spacing: 1px;
+			color: var(--bb-wpr-rating-empty-color, #d1d5db);
+
+			.bb-wpr-star {
+				&.is-full {
+					color: var(--bb-wpr-rating-color, #f5a623);
+				}
+			}
+		}
+
+		.bb-wpr-date {
+			font-size: var(--bb-wpr-meta-size, 13px);
+			color: var(--bb-wpr-review-meta, #6b7280);
+		}
+
+		.bb-wpr-body {
+			font-size: var(--bb-wpr-body-size, 15px);
+			line-height: 1.6;
+
+			p {
+				margin: 0 0 0.75em;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	/* ---- Verified Owner badge ---- */
+	.bb-wpr-verified {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 2px 8px;
+		border-radius: 999px;
+		background: var(--bb-wpr-verified-bg, #dcfce7);
+		color: var(--bb-wpr-verified-color, #16a34a);
+		font-size: 11px;
+		font-weight: 600;
+		line-height: 1.4;
+
+		.bb-wpr-verified-icon {
+			flex: 0 0 auto;
+		}
+	}
+
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+}

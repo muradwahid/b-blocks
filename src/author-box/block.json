@@ -1,0 +1,188 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/author-box",
+	"version": "2.0.58.2",
+	"title": "Author Box",
+	"category": "bBlocks",
+	"description": "Display a structured author bio card with avatar, name, bio, social links, and post count. Auto-detects the post author or lets you pick any WordPress user.",
+	"keywords": [
+		"author",
+		"author box",
+		"author bio",
+		"writer",
+		"profile",
+		"byline"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"authorId": {
+			"type": "integer",
+			"default": 0
+		},
+		"layout": {
+			"type": "string",
+			"default": "inline"
+		},
+		"theme": {
+			"type": "string",
+			"default": "classic"
+		},
+		"showAvatar": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "integer",
+			"default": 96
+		},
+		"avatarShape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"showName": {
+			"type": "boolean",
+			"default": true
+		},
+		"nameTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"showBio": {
+			"type": "boolean",
+			"default": true
+		},
+		"bioCharLimit": {
+			"type": "integer",
+			"default": 240
+		},
+		"showPostCount": {
+			"type": "boolean",
+			"default": false
+		},
+		"postCountLabel": {
+			"type": "string",
+			"default": "View all posts by %s"
+		},
+		"showAllPostsLink": {
+			"type": "boolean",
+			"default": true
+		},
+		"allPostsLinkLabel": {
+			"type": "string",
+			"default": "View all posts"
+		},
+		"showWebsite": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSocial": {
+			"type": "boolean",
+			"default": true
+		},
+		"socialLinks": {
+			"type": "object",
+			"default": {
+				"twitter": "",
+				"facebook": "",
+				"linkedin": "",
+				"instagram": "",
+				"youtube": "",
+				"github": "",
+				"mastodon": "",
+				"website": ""
+			}
+		},
+		"socialIconSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"socialIconColor": {
+			"type": "string",
+			"default": "#555555"
+		},
+		"socialIconHoverColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"gap": {
+			"type": "integer",
+			"default": 20
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#f9fafb"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"nameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"bioColor": {
+			"type": "string",
+			"default": ""
+		},
+		"linkColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": 24,
+				"right": 24,
+				"bottom": 24,
+				"left": 24
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

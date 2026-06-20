@@ -1,0 +1,218 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/event-card",
+	"version": "1.0.0",
+	"title": "Event Card",
+	"category": "bBlocks",
+	"description": "A single event announcement card with title, date/time, location, description, and a ticket CTA. Optionally outputs schema.org Event JSON-LD for Google rich results.",
+	"keywords": [
+		"event",
+		"schema",
+		"jsonld",
+		"calendar",
+		"webinar",
+		"workshop",
+		"rich results",
+		"tickets"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"eventName": {
+			"type": "string",
+			"default": "Event Name"
+		},
+		"eventDescription": {
+			"type": "string",
+			"default": ""
+		},
+		"startDate": {
+			"type": "string",
+			"default": ""
+		},
+		"startTime": {
+			"type": "string",
+			"default": ""
+		},
+		"endDate": {
+			"type": "string",
+			"default": ""
+		},
+		"endTime": {
+			"type": "string",
+			"default": ""
+		},
+		"timezone": {
+			"type": "string",
+			"default": "UTC"
+		},
+		"venueName": {
+			"type": "string",
+			"default": ""
+		},
+		"venueAddress": {
+			"type": "string",
+			"default": ""
+		},
+		"venueCity": {
+			"type": "string",
+			"default": ""
+		},
+		"venueCountry": {
+			"type": "string",
+			"default": "US"
+		},
+		"isVirtual": {
+			"type": "boolean",
+			"default": false
+		},
+		"virtualUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"organizerName": {
+			"type": "string",
+			"default": ""
+		},
+		"organizerUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"eventStatus": {
+			"type": "string",
+			"default": "EventScheduled"
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Get Tickets"
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"ctaNewTab": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSchema": {
+			"type": "boolean",
+			"default": true
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"mutedColor": {
+			"type": "string",
+			"default": "#6b7280"
+		},
+		"ctaBg": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"ctaTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"ctaHoverBg": {
+			"type": "string",
+			"default": "#0040E3"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "24px",
+				"right": "28px",
+				"bottom": "24px",
+				"left": "28px"
+			}
+		},
+		"maxWidth": {
+			"type": "string",
+			"default": "640px"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"titleFontSize": {
+			"type": "string",
+			"default": "22px"
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"metaFontSize": {
+			"type": "string",
+			"default": "14px"
+		},
+		"descFontSize": {
+			"type": "string",
+			"default": "15px"
+		},
+		"ctaFontSize": {
+			"type": "string",
+			"default": "15px"
+		},
+		"ctaBorderRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"showDateBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"showOrganizer": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,108 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/pricing-toggle",
+	"title": "Pricing Toggle",
+	"description": "An accessible monthly/annual billing period switcher for pricing sections. Emits a data-attribute protocol so theme price elements swap values on click — no page reload.",
+	"category": "bBlocks",
+	"version": "1.0.0",
+	"keywords": [
+		"pricing toggle",
+		"billing switcher",
+		"monthly annual",
+		"price switch",
+		"pricing"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"monthlyLabel": {
+			"type": "string",
+			"default": "Monthly"
+		},
+		"annualLabel": {
+			"type": "string",
+			"default": "Annually"
+		},
+		"defaultPeriod": {
+			"type": "string",
+			"default": "monthly"
+		},
+		"showBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"badgeText": {
+			"type": "string",
+			"default": "Save 20%"
+		},
+		"badgeBg": {
+			"type": "string",
+			"default": "#16a34a"
+		},
+		"badgeText_color": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"badgeBorderRadius": {
+			"type": "integer",
+			"default": 20
+		},
+		"toggleBg": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"toggleActiveBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"knobColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"labelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"activeLabelColor": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"fontSize": {
+			"type": "integer",
+			"default": 16
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"gap": {
+			"type": "integer",
+			"default": 12
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

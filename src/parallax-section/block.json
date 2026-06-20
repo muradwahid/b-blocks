@@ -1,0 +1,122 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/parallax-section",
+	"title": "Parallax Section",
+	"description": "A full-width InnerBlocks section wrapper with a parallax background image, color or gradient overlay, JS scroll-speed control, and responsive / reduced-motion disable.",
+	"category": "bBlocks",
+	"keywords": [
+		"parallax",
+		"section",
+		"background",
+		"scroll",
+		"hero"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"bgImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"bgImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"bgImageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"bgImagePosition": {
+			"type": "string",
+			"default": "center center"
+		},
+		"parallaxMode": {
+			"type": "string",
+			"default": "scroll"
+		},
+		"parallaxSpeed": {
+			"type": "number",
+			"default": 40
+		},
+		"disableOnMobile": {
+			"type": "boolean",
+			"default": true
+		},
+		"minHeight": {
+			"type": "string",
+			"default": "400px"
+		},
+		"minHeightTablet": {
+			"type": "string",
+			"default": ""
+		},
+		"minHeightMobile": {
+			"type": "string",
+			"default": ""
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"contentMaxWidth": {
+			"type": "number",
+			"default": 1200
+		},
+		"paddingTop": {
+			"type": "number",
+			"default": 80
+		},
+		"paddingBottom": {
+			"type": "number",
+			"default": 80
+		},
+		"paddingTopMobile": {
+			"type": "number",
+			"default": 48
+		},
+		"paddingBottomMobile": {
+			"type": "number",
+			"default": 48
+		},
+		"hasOverlay": {
+			"type": "boolean",
+			"default": true
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"overlayOpacity": {
+			"type": "number",
+			"default": 40
+		},
+		"overlayGradient": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string",
+			"default": "#1a1a2e"
+		},
+		"contentAlign": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

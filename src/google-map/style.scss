@@ -1,0 +1,69 @@
+// Frontend + editor shared styles for the Google Map block.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+// Per-instance values (height, aspect-ratio, border-radius, shadow,
+// caption color/size, max-width, alignment) are injected via the inline
+// <style> tag in render.php — these are the defaults / fallbacks only.
+
+.wp-block-b-blocks-google-map {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-gmap-figure {
+		margin: 0;
+		padding: 0;
+	}
+
+	.bb-gmap-wrapper {
+		position: relative;
+		width: 100%;
+		min-height: 100px;
+		background: #f0f0f0;
+		overflow: hidden;
+	}
+
+	.bb-gmap-iframe {
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: 100px;
+		border: 0;
+	}
+
+	.bb-gmap-caption {
+		margin: 8px 0 0;
+		padding: 0;
+		font-size: 14px;
+		line-height: 1.4;
+		color: inherit;
+	}
+
+	.bb-gmap-placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		min-height: 180px;
+		padding: 24px;
+		background: #f0f0f0;
+		color: #50575e;
+		font-size: 14px;
+		line-height: 1.4;
+		border: 1px dashed #c3c4c7;
+		border-radius: 4px;
+	}
+
+	// Alignment helpers — these mainly drive the figure when no max-width
+	// is set so the placeholder / caption follow the block's intent.
+	&.bb-gmap-align-left {
+		text-align: left;
+	}
+
+	&.bb-gmap-align-center {
+		text-align: center;
+	}
+
+	&.bb-gmap-align-right {
+		text-align: right;
+	}
+}

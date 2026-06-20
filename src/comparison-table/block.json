@@ -1,0 +1,220 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/comparison-table",
+	"version": "2.0.60.3",
+	"title": "Comparison Table",
+	"category": "bBlocks",
+	"description": "Feature-by-plan comparison matrix with checkmarks, X icons, or custom text per cell. Highlight one column as 'Most Popular' to draw the eye, scroll horizontally on mobile, and choose between default or striped row styles.",
+	"keywords": [
+		"comparison",
+		"compare",
+		"table",
+		"feature matrix",
+		"pricing",
+		"plan",
+		"versus"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"caption": {
+			"type": "string",
+			"default": "Feature comparison across plans"
+		},
+		"columns": {
+			"type": "array",
+			"default": [
+				{ "_key": "col-default-1", "label": "Basic", "isFeatured": false },
+				{ "_key": "col-default-2", "label": "Pro", "isFeatured": true },
+				{ "_key": "col-default-3", "label": "Enterprise", "isFeatured": false }
+			]
+		},
+		"rows": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "row-default-1",
+					"label": "Feature One",
+					"cells": [
+						{ "value": true, "type": "icon", "text": "" },
+						{ "value": true, "type": "icon", "text": "" },
+						{ "value": true, "type": "icon", "text": "" }
+					]
+				},
+				{
+					"_key": "row-default-2",
+					"label": "Feature Two",
+					"cells": [
+						{ "value": false, "type": "icon", "text": "" },
+						{ "value": true, "type": "icon", "text": "" },
+						{ "value": true, "type": "icon", "text": "" }
+					]
+				},
+				{
+					"_key": "row-default-3",
+					"label": "Feature Three",
+					"cells": [
+						{ "value": false, "type": "icon", "text": "" },
+						{ "value": false, "type": "icon", "text": "" },
+						{ "value": true, "type": "icon", "text": "" }
+					]
+				}
+			]
+		},
+		"featuredLabel": {
+			"type": "string",
+			"default": "Most Popular"
+		},
+		"theme": {
+			"type": "string",
+			"default": "default"
+		},
+		"cellType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"checkIcon": {
+			"type": "string",
+			"default": "check"
+		},
+		"crossIcon": {
+			"type": "string",
+			"default": "times"
+		},
+		"showRowStripes": {
+			"type": "boolean",
+			"default": true
+		},
+		"stickyHeader": {
+			"type": "boolean",
+			"default": false
+		},
+		"stickyFirstColumn": {
+			"type": "boolean",
+			"default": true
+		},
+		"headerBg": {
+			"type": "string",
+			"default": "#1e293b"
+		},
+		"headerTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"featuredBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"featuredTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"featuredColBg": {
+			"type": "string",
+			"default": "#eff6ff"
+		},
+		"featuredLabelBg": {
+			"type": "string",
+			"default": "#f59e0b"
+		},
+		"featuredLabelColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"rowLabelBg": {
+			"type": "string",
+			"default": ""
+		},
+		"rowLabelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"rowStripeBg": {
+			"type": "string",
+			"default": "#f8fafc"
+		},
+		"bodyBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"bodyTextColor": {
+			"type": "string",
+			"default": "#1f2937"
+		},
+		"checkColor": {
+			"type": "string",
+			"default": "#16a34a"
+		},
+		"crossColor": {
+			"type": "string",
+			"default": "#dc2626"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"fontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"headerFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"cellPaddingV": {
+			"type": "number",
+			"default": 12
+		},
+		"cellPaddingH": {
+			"type": "number",
+			"default": 16
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 18
+		},
+		"tableMaxWidth": {
+			"type": "number",
+			"default": 900
+		},
+		"tableAlignment": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

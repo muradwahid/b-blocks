@@ -1,0 +1,17 @@
+// Editor-only adjustments for the Review Box block.
+
+@import './style.scss';
+
+.wp-block-b-blocks-review-box {
+	// Ensure the editor preview honors the wrapper background defaults
+	// even when the block is unselected.
+	.bBlocksReviewBox {
+		min-height: 60px;
+	}
+
+	// Hide the editor placeholder padding around the stars so the
+	// preview matches the frontend pixel-for-pixel.
+	.bb-review-stars__star svg {
+		pointer-events: none;
+	}
+}

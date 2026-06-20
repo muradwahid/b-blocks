@@ -1,0 +1,71 @@
+// Editor-only adjustments for the Interactive Checklist block.
+// Frontend styles ship via style.scss → view.css.
+@import './style.scss';
+
+.wp-block-b-blocks-interactive-checklist {
+	.bb-cl-empty {
+		font-size: 13px;
+	}
+
+	// Keep RichText placeholders subtle in the editor canvas.
+	[data-rich-text-placeholder]::after {
+		opacity: 0.55;
+	}
+
+	.bb-cl-heading {
+		display: block;
+	}
+
+	// Per-item editor action toolbar (move up/down/remove) on the canvas.
+	.bb-cl-editor-item-actions {
+		display: flex;
+		justify-content: flex-start;
+		gap: 4px;
+		flex: 0 0 auto;
+		margin-left: auto;
+	}
+
+	// In the editor the checkbox is a static preview — disable its hit area
+	// so clicks select the block / edit text instead of toggling state.
+	.bb-cl-checkbox {
+		pointer-events: none;
+	}
+}
+
+// Sidebar repeater UI.
+.bb-cl-repeater {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 12px;
+
+	&__row {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 12px;
+		background: #f6f7f7;
+		border-radius: 4px;
+	}
+
+	&__row-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__row-title {
+		font-size: 12px;
+		font-weight: 600;
+	}
+
+	&__row-actions {
+		display: flex;
+		gap: 4px;
+	}
+}
+
+.bb-cl-add-item {
+	margin-top: 8px;
+}

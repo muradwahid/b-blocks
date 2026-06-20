@@ -1,0 +1,33 @@
+/**
+ * Feature Tabs — shared frontend + editor base styles.
+ *
+ * Most layout and themeable values are emitted as per-instance inline CSS in
+ * render.php (scoped under a unique wrapper id). This file only carries
+ * structural resets that should apply regardless of attribute values.
+ */
+
+.bb-ft {
+	width: 100%;
+
+	.bb-ft-tab {
+		font-family: inherit;
+		color: inherit;
+		appearance: none;
+		-webkit-appearance: none;
+	}
+
+	.bb-ft-tab-title,
+	.bb-ft-tab-desc {
+		display: block;
+		word-break: break-word;
+	}
+
+	.bb-ft-stage {
+		min-width: 0;
+	}
+
+	.bb-ft-panel img,
+	.bb-ft-acc-panel img {
+		max-width: 100%;
+	}
+}

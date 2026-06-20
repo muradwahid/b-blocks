@@ -1,0 +1,162 @@
+// Divider Block — frontend + editor shared styles.
+// Mobile-first responsive. Three variants share the same outer wrapper and
+// use Flexbox so the icon / text variants automatically grow equal line
+// segments on either side of the center element.
+
+.wp-block-b-blocks-divider {
+	// ---------- Default CSS custom properties ----------
+	// render.php overrides these per instance via the inline style attribute;
+	// listing them here keeps the editor preview readable even when a token
+	// is missing (e.g. legacy block instances saved before a new field was
+	// added).
+	--bb-dv-line-color: #cccccc;
+	--bb-dv-line-width: 2px;
+	--bb-dv-line-style: solid;
+	--bb-dv-max-width: 100%;
+	--bb-dv-gap: 12px;
+	--bb-dv-margin-top: 24px;
+	--bb-dv-margin-bottom: 24px;
+	--bb-dv-icon-color: var(--bb-dv-line-color);
+	--bb-dv-icon-bg: transparent;
+	--bb-dv-icon-size: 16px;
+	--bb-dv-icon-padding: 8px;
+	--bb-dv-icon-radius: 50px;
+	--bb-dv-text-color: var(--bb-dv-line-color);
+	--bb-dv-text-bg: transparent;
+	--bb-dv-text-size: 14px;
+	--bb-dv-text-weight: 600;
+	--bb-dv-text-transform: none;
+	--bb-dv-text-padding: 12px;
+
+	display: block;
+	margin-top: var(--bb-dv-margin-top);
+	margin-bottom: var(--bb-dv-margin-bottom);
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// ---------- Inner container handles max-width + alignment ----------
+	.bb-dv {
+		display: flex;
+		align-items: center;
+		gap: var(--bb-dv-gap);
+		width: 100%;
+		max-width: var(--bb-dv-max-width);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	// ---------- Alignment ----------
+	&.bb-dv-align--left .bb-dv {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	&.bb-dv-align--center .bb-dv {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.bb-dv-align--right .bb-dv {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	// ---------- Plain line variant ----------
+	&.bb-dv--line .bb-dv {
+		// Single <hr> spanning the full inner container width. We strip the
+		// default user-agent margin so the wrapper's marginTop / marginBottom
+		// are the single source of truth for spacing.
+		.bb-dv-line {
+			flex: 1 1 auto;
+			width: 100%;
+			height: 0;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			border-top: var(--bb-dv-line-width) var(--bb-dv-line-style) var(--bb-dv-line-color);
+			background: transparent;
+		}
+	}
+
+	// ---------- Icon variant ----------
+	&.bb-dv--icon .bb-dv {
+		// Two flex line segments grow equally to fill the space around the
+		// centered icon badge.
+		.bb-dv-line {
+			flex: 1 1 0;
+			min-width: 12px;
+			height: 0;
+			border: 0;
+			border-top: var(--bb-dv-line-width) var(--bb-dv-line-style) var(--bb-dv-line-color);
+		}
+
+		.bb-dv-icon {
+			flex: 0 0 auto;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--bb-dv-icon-color);
+			background: var(--bb-dv-icon-bg);
+			padding: var(--bb-dv-icon-padding);
+			border-radius: var(--bb-dv-icon-radius);
+			font-size: var(--bb-dv-icon-size);
+			line-height: 1;
+
+			i,
+			svg {
+				display: inline-block;
+				font-size: inherit;
+				width: 1em;
+				height: 1em;
+				line-height: 1;
+			}
+		}
+	}
+
+	// ---------- Text variant ----------
+	&.bb-dv--text .bb-dv {
+		.bb-dv-line {
+			flex: 1 1 0;
+			min-width: 12px;
+			height: 0;
+			border: 0;
+			border-top: var(--bb-dv-line-width) var(--bb-dv-line-style) var(--bb-dv-line-color);
+		}
+
+		.bb-dv-text {
+			flex: 0 0 auto;
+			display: inline-block;
+			color: var(--bb-dv-text-color);
+			background: var(--bb-dv-text-bg);
+			padding: 4px var(--bb-dv-text-padding);
+			font-size: var(--bb-dv-text-size);
+			font-weight: var(--bb-dv-text-weight);
+			text-transform: var(--bb-dv-text-transform);
+			line-height: 1.2;
+			letter-spacing: 0.02em;
+			border-radius: 999px;
+			max-width: 80%;
+			overflow-wrap: anywhere;
+			text-align: center;
+		}
+	}
+
+	// ---------- Compact viewports ----------
+	@media ( max-width: 480px ) {
+		.bb-dv {
+			gap: calc( var(--bb-dv-gap) * 0.66 );
+		}
+	}
+
+	// ---------- Reduced motion ----------
+	// The block has no animations by default, but if a theme adds hover
+	// transitions to dividers, neutralize them for motion-sensitive visitors.
+	@media ( prefers-reduced-motion: reduce ) {
+		* {
+			transition: none !important;
+			animation: none !important;
+		}
+	}
+}

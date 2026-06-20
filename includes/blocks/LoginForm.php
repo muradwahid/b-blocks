@@ -9,10 +9,10 @@ if( !class_exists( 'LGFRLoginForm' ) ){
 		}
 
 	function onSubmit(){
-		$nonce = sanitize_text_field($_POST['nonce']);
-		$username = sanitize_text_field($_POST['user_login']);
-		$password = sanitize_text_field($_POST['user_password']);
-		$remember = sanitize_text_field($_POST['remember']) === 'true';
+		$nonce    = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
+		$username = sanitize_text_field( wp_unslash( $_POST['user_login'] ?? '' ) );
+		$password = sanitize_text_field( wp_unslash( $_POST['user_password'] ?? '' ) );
+		$remember = sanitize_text_field( wp_unslash( $_POST['remember'] ?? '' ) ) === 'true';
 
 		if(!wp_verify_nonce($nonce, 'wp_ajax')){
 			wp_send_json_error([
@@ -40,8 +40,8 @@ if( !class_exists( 'LGFRLoginForm' ) ){
 	function reset_password_callback(){
 		global $wpdb, $current_site;
 
-		$nonce = sanitize_text_field($_POST['nonce']);
-		$user_email = sanitize_text_field($_POST['email']);
+		$nonce      = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
+		$user_email = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
 		$user = get_user_by('email', $user_email);
 		$user_login = isset($user->data->user_login) ? $user->data->user_login : false;
 

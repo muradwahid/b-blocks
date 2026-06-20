@@ -2,11 +2,11 @@
 /**
  * Plugin Name: bBlocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.0.40
+ * Version: 2.1.21
  * Author: bPlugins
  * Author URI: https://bplugins.com
- * License: GPLv3
- * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
+ * License: GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: b-blocks
  * @fs_premium_only /includes/posts/Ajax.php, /includes/LicenseActivation.php
  */
@@ -27,7 +27,7 @@ if (function_exists('b_blocks_fs')) {
 	});
 } else {
 	// Constant
-	define( 'B_BLOCKS_VERSION', isset( $_SERVER['HTTP_HOST'] ) && ( 'localhost' === $_SERVER['HTTP_HOST'] || 'murdwahid.local' === $_SERVER['HTTP_HOST'] ) ? time() : '2.0.40' );
+	define( 'B_BLOCKS_VERSION', '2.1.21' );
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_HAS_PRO', 'b-blocks-pro/plugin.php' === plugin_basename(__FILE__));
@@ -96,7 +96,7 @@ if (function_exists('b_blocks_fs')) {
 			foreach (self::$styles as $selector => $style) {
 				$new = '';
 				foreach ($style as $property => $value) {
-					if ($value == '') {
+					if ( '' === $value ) {
 						$new .= "$property ;";
 					} else {
 						$new .= " $property: $value;";
@@ -120,7 +120,20 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/cursor.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ai.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/ApiKeys.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/OptinRateLimit.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/form/FormHandler.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/newsletter/NewsletterHandler.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/popup-optin/PopupOptinHandler.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-filter-grid/PostFilterGrid.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-masonry-grid/PostMasonryGrid.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-add-to-cart/WooAddToCart.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-best-sellers/WooBestSellers.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-featured-product/WooFeaturedProduct.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-mini-cart/WooMiniCart.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-carousel/WooProductCarousel.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-grid/WooProductGrid.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-reviews/WooProductReviews.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-single-product/WooSingleProduct.php';
 
 	// License Activation
 	if (file_exists(B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php') && B_BLOCKS_HAS_PRO ) {
@@ -152,14 +165,6 @@ if (function_exists('b_blocks_fs')) {
 
 
 		function pluginRowMeta( $plugin_meta, $plugin_file ) {
-			if ( strpos( $plugin_file, 'b-blocks' ) !== false && time() < strtotime( '2025-12-06' ) ) {
-				$new_links = array(
-					'deal' => "<a href='https://bblockswp.com/pricing/?from=plugins.php' target='_blank' style='font-weight: 600; color: #ff7a00;'>🎉 Black Friday Sale - Get up to 40% OFF Now!</a>"
-				);
-				
-				$plugin_meta = array_merge( $plugin_meta, $new_links );
-			}
-
 			return $plugin_meta;
 		}
 
@@ -202,12 +207,20 @@ if (function_exists('b_blocks_fs')) {
 
 			$blocks = [
 				'alert',
+				'anchor-nav',
 				'advanced-image',
 				'animated-text',
 				'advanced-tabs',
+				'article-card',
+				'audio-player',
+				'author-box',
+				'blockquote',
 				'button',
 				'button-group',
 				'breadcrumb',
+				'business-hours',
+				'call-to-action',
+				'callout',
 				'cards',
 				'chart',
 				'column',
@@ -218,32 +231,82 @@ if (function_exists('b_blocks_fs')) {
 				// 'data-table',
 				'carousel',
 				'carousel-slide',
+				'click-to-share',
+				'code-highlight',
+				'comparison-table',
+				'contact-card',
+				'content-filter',
+				'content-filter-item',
+				'cookie-consent-bar',
+				'coupon-code',
+				'divider',
 				'dual-color-heading',
 				'emoji-stack-separator',
+				'event-card',
+				'expand-content',
 				'facebook-embed',
 				'facebook-page',
+				'faq-block',
 				'feature-boxes',
+				'feature-tabs',
+				'file-download-card',
 				'flip-boxes',
+				'floating-cta',
 				'gif',
 				'form-builder',
+				'google-map',
+				'hero-section',
+				'howto-schema',
 				'html',
+				'icon',
 				'icon-box',
+				'icon-list',
+				'image-accordion',
+				'image-box',
 				'image-comparison',
 				'image-gallery',
 				'image-hotspot',
+				'image-mask',
 				'image-scroller',
+				'image-slider',
 				'info-box',
 				'input-field',
+				'interactive-checklist',
+				'key-takeaways',
+				'logo-grid',
 				'logo-slider',
 				'lottie-player',
 				'list',
 				'mailto',
+				'marquee',
+				'media-text-section',
+				'milestone-timeline',
+				'modal-popup',
 				'navigation',
 				'news-ticker',
+				'newsletter-optin',
+				'notification-bar',
+				'off-canvas',
+				'parallax-section',
+				'pdf-embed',
+				'popup-optin',
+				'portfolio-gallery',
+				'post-carousel',
+				'post-filter-grid',
+				'post-masonry-grid',
+				'post-navigation',
+				'post-timeline',
 				'posts',
 				'price-lists',
 				'pricing-table',
+				'pricing-toggle',
+				'process-steps',
+				'progress-bar',
+				'progress-circle',
+				'promo-strip',
 				'qr-code',
+				'reading-progress',
+				'review-box',
 				'row',
 				'section-heading',
 				'skill-bar',
@@ -251,20 +314,44 @@ if (function_exists('b_blocks_fs')) {
 				'services',
 				'shape-divider',
 				'slider',
+				'scroll-reveal',
 				'scroll-to-top',
+				'search-bar',
 				'social-share',
+				'social-share-bar',
 				'whatsapp-chat',
+				'woo-add-to-cart',
+				'woo-best-sellers',
+				'woo-category-grid',
+				'woo-featured-product',
+				'woo-mini-cart',
+				'woo-product-carousel',
+				'woo-product-filter',
+				'woo-product-grid',
+				'woo-product-reviews',
+				'woo-sale-badge',
+				'woo-single-product',
 				'star-rating',
 				'stacked-cards',
+				'stat-cards',
+				'sticky-sidebar',
 				'svg-draw',
 				'table-of-content',
+				'taxonomy-grid',
 				'td-viewer',
 				'team-members',
+				'testimonial-card',
+				'testimonial-slider',
 				'testimonials',
+				'testimonials-grid',
+				'timeline',
 				'toggle-content',
 				'accordion-block',
 				'video',
-				'text-path'
+				'video-popup',
+				'text-path',
+				'typing-headline',
+				'urgency-timer'
 			];
 
 			foreach ($blocks as $block) {
@@ -272,6 +359,169 @@ if (function_exists('b_blocks_fs')) {
 					register_block_type(__DIR__ . "/build/$block");
 					wp_deregister_script("b-blocks-$block-editor-script");
 				}
+			}
+
+			// The newsletter-optin view.js uses @wordpress/i18n – register translations
+			// for the auto-generated view-script handle so frontend error/success strings
+			// are translatable. The handle is derived from the block name by WordPress core.
+			if ( ! in_array( 'b-blocks/newsletter-optin', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-newsletter-optin-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The popup-optin view.js imports @wordpress/i18n for frontend
+			// validation / status strings, so its view-script handle needs
+			// translations registered.
+			if ( ! in_array( 'b-blocks/popup-optin', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-popup-optin-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The floating-cta view.js imports @wordpress/i18n (__('Button') and __('Dismiss'))
+			// so its view-script handle also needs translations registered.
+			if ( ! in_array( 'b-blocks/floating-cta', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-floating-cta-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The image-slider view.js imports @wordpress/i18n for lightbox aria-labels
+			// so its view-script handle needs translations registered.
+			if ( ! in_array( 'b-blocks/image-slider', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-image-slider-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The testimonial-slider view.js imports @wordpress/i18n for the
+			// play/pause toggle aria-labels, so its view-script handle needs
+			// translations registered.
+			if ( ! in_array( 'b-blocks/testimonial-slider', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-testimonial-slider-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The post-filter-grid view.js imports @wordpress/i18n for the
+			// aria-live status announcements, so its view-script handle needs
+			// translations registered.
+			if ( ! in_array( 'b-blocks/post-filter-grid', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-post-filter-grid-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The post-masonry-grid view.js imports @wordpress/i18n for the
+			// aria-live status announcements, so its view-script handle needs
+			// translations registered.
+			if ( ! in_array( 'b-blocks/post-masonry-grid', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-post-masonry-grid-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The woo-add-to-cart view.js uses @wordpress/i18n for the aria-live
+			// add-to-cart status announcements, so its view-script handle needs
+			// translations registered.
+			if ( ! in_array( 'b-blocks/woo-add-to-cart', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-woo-add-to-cart-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The woo-mini-cart view.js uses @wordpress/i18n for the cart
+			// aria-label and aria-live announcements, so its view-script
+			// handle needs translations registered.
+			if ( ! in_array( 'b-blocks/woo-mini-cart', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-woo-mini-cart-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The woo-best-sellers view.js imports @wordpress/i18n for the
+			// aria-live add-to-cart status announcements ("added to cart",
+			// error messages), so its view-script handle needs translations
+			// registered.
+			if ( ! in_array( 'b-blocks/woo-best-sellers', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-woo-best-sellers-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The woo-featured-product view.js uses @wordpress/i18n for the
+			// aria-live add-to-cart status announcements, so its view-script
+			// handle needs translations registered.
+			if ( ! in_array( 'b-blocks/woo-featured-product', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-woo-featured-product-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The woo-product-grid view.js uses @wordpress/i18n for the aria-live
+			// add-to-cart status announcements, so its view-script handle needs
+			// translations registered.
+			if ( ! in_array( 'b-blocks/woo-product-grid', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-woo-product-grid-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The woo-product-carousel view.js uses @wordpress/i18n for slide
+			// aria-live announcements and the add-to-cart status region, so its
+			// view-script handle needs translations registered.
+			if ( ! in_array( 'b-blocks/woo-product-carousel', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-woo-product-carousel-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The sticky-sidebar view.js uses @wordpress/i18n for the scrollable
+			// sidebar aria-label, so its view-script handle needs translations registered.
+			if ( ! in_array( 'b-blocks/sticky-sidebar', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-sticky-sidebar-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
+			}
+
+			// The search-bar view.js imports @wordpress/i18n for the live-search
+			// no-results / aria-live result-count strings, so its view-script
+			// handle needs translations registered.
+			if ( ! in_array( 'b-blocks/search-bar', $disabledBlocks ) ) {
+				wp_set_script_translations(
+					'b-blocks-search-bar-view-script',
+					'b-blocks',
+					B_BLOCKS_DIR_PATH . 'languages'
+				);
 			}
 		}
 
@@ -323,11 +573,11 @@ if (function_exists('b_blocks_fs')) {
 				$ext = $f_sp[$f_exp_count - 1];
 			}
 
-			if ($ext == 'glb' || $ext == 'gltf') { // 3D Viewer
+			if ( 'glb' === $ext || 'gltf' === $ext ) { // 3D Viewer
 				$type = 'model/gltf-binary';
 				$proper_filename = '';
 				return compact('ext', 'type', 'proper_filename');
-			} else if ($ext == 'json' || $ext === 'lottie') { // Lottie Player
+			} elseif ( 'json' === $ext || 'lottie' === $ext ) { // Lottie Player
 				$type = 'application/json';
 				$proper_filename = '';
 				return compact('ext', 'type', 'proper_filename');
@@ -339,6 +589,10 @@ if (function_exists('b_blocks_fs')) {
 		public function enableSvgMimeType()
 		{
 			if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? null)), 'wp_ajax')) {
+				wp_send_json_error();
+			}
+
+			if (!current_user_can('manage_options')) {
 				wp_send_json_error();
 			}
 

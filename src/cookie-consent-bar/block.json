@@ -1,0 +1,159 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/cookie-consent-bar",
+	"title": "Cookie Consent Bar",
+	"description": "A fixed cookie-consent notice pinned to the top or bottom of the viewport with Accept and Decline buttons. The visitor's choice is remembered per browser via a named cookie. Note: this bar records consent only — it does not block third-party scripts, so it is not by itself full GDPR compliance.",
+	"category": "bBlocks",
+	"keywords": [
+		"cookie consent",
+		"gdpr",
+		"cookie bar",
+		"privacy notice",
+		"consent banner"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"position": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"message": {
+			"type": "string",
+			"default": "We use cookies to improve your experience. By continuing, you agree to our use of cookies."
+		},
+		"acceptLabel": {
+			"type": "string",
+			"default": "Accept"
+		},
+		"declineLabel": {
+			"type": "string",
+			"default": "Decline"
+		},
+		"showDecline": {
+			"type": "boolean",
+			"default": true
+		},
+		"cookieName": {
+			"type": "string",
+			"default": "bb_cookie_consent"
+		},
+		"cookieDays": {
+			"type": "integer",
+			"default": 365
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"layout": {
+			"type": "string",
+			"default": "inline"
+		},
+		"barBg": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"barText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"barPaddingV": {
+			"type": "integer",
+			"default": 16
+		},
+		"barPaddingH": {
+			"type": "integer",
+			"default": 24
+		},
+		"fontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"acceptBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"acceptText": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"acceptHoverBg": {
+			"type": "string",
+			"default": "#e6e6e6"
+		},
+		"acceptHoverText": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"declineBg": {
+			"type": "string",
+			"default": "transparent"
+		},
+		"declineText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"declineHoverBg": {
+			"type": "string",
+			"default": "rgba(255,255,255,0.1)"
+		},
+		"declineHoverText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"btnFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"btnPaddingV": {
+			"type": "integer",
+			"default": 8
+		},
+		"btnPaddingH": {
+			"type": "integer",
+			"default": 20
+		},
+		"btnRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"btnGap": {
+			"type": "integer",
+			"default": 8
+		},
+		"zIndex": {
+			"type": "integer",
+			"default": 9999
+		},
+		"animationDuration": {
+			"type": "integer",
+			"default": 300
+		}
+	},
+	"supports": {
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

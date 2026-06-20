@@ -1,0 +1,121 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/audio-player",
+	"title": "Audio Player",
+	"description": "A single-track, custom-styled HTML5 audio player with bar or card layouts, accessible play/pause, seek and volume controls, optional download link, autoplay and loop — driven by a dependency-free vanilla view.js.",
+	"category": "bBlocks",
+	"keywords": [
+		"audio player",
+		"podcast",
+		"music",
+		"mp3",
+		"html5 audio"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"audioUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"audioId": {
+			"type": "integer",
+			"default": 0
+		},
+		"trackTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"artistName": {
+			"type": "string",
+			"default": ""
+		},
+		"albumArt": {
+			"type": "object",
+			"default": {
+				"url": "",
+				"id": 0
+			}
+		},
+		"playerStyle": {
+			"type": "string",
+			"default": "bar"
+		},
+		"autoPlay": {
+			"type": "boolean",
+			"default": false
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"showDownload": {
+			"type": "boolean",
+			"default": false
+		},
+		"showTimecode": {
+			"type": "boolean",
+			"default": true
+		},
+		"showVolume": {
+			"type": "boolean",
+			"default": true
+		},
+		"playerBg": {
+			"type": "string",
+			"default": "#1e1e1e"
+		},
+		"controlColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"paddingV": {
+			"type": "integer",
+			"default": 16
+		},
+		"paddingH": {
+			"type": "integer",
+			"default": 20
+		},
+		"titleSize": {
+			"type": "integer",
+			"default": 15
+		},
+		"artistSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"anchor": true
+	},
+	"example": {
+		"attributes": {
+			"trackTitle": "Episode 12 — Building Blocks",
+			"artistName": "The bBlocks Show",
+			"playerStyle": "card"
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

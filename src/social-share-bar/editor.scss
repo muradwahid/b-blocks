@@ -1,0 +1,28 @@
+/**
+ * Editor-only styles for the Social Share Bar block.
+ *
+ * In the editor the bar is rendered inline (not position:fixed) so authors can
+ * style it without it floating over the WP admin chrome. The strip preview is
+ * shown left-aligned inside the block canvas.
+ */
+
+.wp-block-b-blocks-social-share-bar.bb-ssb-editor {
+	display: inline-flex;
+	padding: 8px;
+	border-radius: 6px;
+	background: rgba(0, 0, 0, 0.02);
+
+	.bb-ssb-inner {
+		display: inline-flex;
+	}
+
+	.bb-ssb-list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	// In the editor the share targets are non-navigating placeholders.
+	.bb-ssb-btn {
+		cursor: default;
+	}
+}

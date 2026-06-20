@@ -1,0 +1,218 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/post-filter-grid",
+	"version": "1.0.0",
+	"title": "Post Filter Grid",
+	"category": "bBlocks",
+	"description": "Server-rendered post grid with a front-end category/tag filter pill bar and an optional AJAX Load More button.",
+	"keywords": [
+		"post grid",
+		"posts",
+		"filter",
+		"category",
+		"tag",
+		"ajax",
+		"load more",
+		"blog",
+		"masonry"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"postsPerPage": {
+			"type": "integer",
+			"default": 6
+		},
+		"defaultCategory": {
+			"type": "integer",
+			"default": 0
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "desc"
+		},
+		"excludeCurrentPost": {
+			"type": "boolean",
+			"default": false
+		},
+		"showFilterBar": {
+			"type": "boolean",
+			"default": true
+		},
+		"filterTaxonomy": {
+			"type": "string",
+			"default": "category"
+		},
+		"showAllButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"allButtonLabel": {
+			"type": "string",
+			"default": "All"
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"columnGap": {
+			"type": "integer",
+			"default": 24
+		},
+		"rowGap": {
+			"type": "integer",
+			"default": 24
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "boxed"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardBackground": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "sm"
+		},
+		"showFeaturedImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "16/9"
+		},
+		"imageRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"titleLines": {
+			"type": "integer",
+			"default": 0
+		},
+		"showExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"excerptLength": {
+			"type": "integer",
+			"default": 20
+		},
+		"showMeta": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAuthor": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"showReadMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"readMoreLabel": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"showLoadMore": {
+			"type": "boolean",
+			"default": false
+		},
+		"loadMoreLabel": {
+			"type": "string",
+			"default": "Load More"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"accentTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"excerptColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "18px",
+				"tablet": "17px",
+				"mobile": "16px"
+			}
+		},
+		"noPostsMessage": {
+			"type": "string",
+			"default": "No posts found."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

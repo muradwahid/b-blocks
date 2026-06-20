@@ -1,0 +1,350 @@
+// Code Highlight Block — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA color contrast verified for both
+// bundled themes (dark / light). No external font dependencies — falls
+// back to the system monospace stack.
+
+.wp-block-b-blocks-code-highlight {
+	--bb-ch-font-size: 14px;
+	--bb-ch-radius: 6px;
+	--bb-ch-tab-size: 2;
+	--bb-ch-start-line: 1;
+	--bb-ch-line-gutter-width: 3.25em;
+
+	display: block;
+	margin: 0 0 1.25em;
+	border-radius: var(--bb-ch-radius);
+	overflow: hidden;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// ----- Dark theme (One Dark inspired) -------------------------------
+	&.bb-ch-theme--dark {
+		--bb-ch-bg: #282c34;
+		--bb-ch-text: #abb2bf;
+		--bb-ch-header-bg: #21252b;
+		--bb-ch-header-text: #d7dae0;
+		--bb-ch-header-border: #181a1f;
+		--bb-ch-badge-bg: #3a3f4b;
+		--bb-ch-badge-text: #c5cad3;
+		--bb-ch-gutter-bg: #21252b;
+		--bb-ch-gutter-text: #5c6370;
+		--bb-ch-gutter-border: #181a1f;
+		--bb-ch-btn-bg: rgba(255, 255, 255, 0.08);
+		--bb-ch-btn-bg-hover: rgba(255, 255, 255, 0.16);
+		--bb-ch-btn-text: #e6e8eb;
+		--bb-ch-btn-success-bg: #2ea043;
+		--bb-ch-btn-success-text: #ffffff;
+		--bb-ch-focus-ring: #4f9dff;
+
+		// Prism token colors (One Dark inspired).
+		--bb-ch-tok-comment: #7f848e;
+		--bb-ch-tok-punct: #abb2bf;
+		--bb-ch-tok-prop: #e06c75;
+		--bb-ch-tok-bool: #d19a66;
+		--bb-ch-tok-string: #98c379;
+		--bb-ch-tok-operator: #56b6c2;
+		--bb-ch-tok-keyword: #c678dd;
+		--bb-ch-tok-function: #61afef;
+		--bb-ch-tok-class: #e5c07b;
+		--bb-ch-tok-regex: #98c379;
+		--bb-ch-tok-deleted: #e06c75;
+	}
+
+	// ----- Light theme (GitHub Light inspired) --------------------------
+	&.bb-ch-theme--light {
+		--bb-ch-bg: #f6f8fa;
+		--bb-ch-text: #24292f;
+		--bb-ch-header-bg: #eaeef2;
+		--bb-ch-header-text: #24292f;
+		--bb-ch-header-border: #d0d7de;
+		--bb-ch-badge-bg: #d8dee4;
+		--bb-ch-badge-text: #24292f;
+		--bb-ch-gutter-bg: #eaeef2;
+		--bb-ch-gutter-text: #6e7781;
+		--bb-ch-gutter-border: #d0d7de;
+		--bb-ch-btn-bg: rgba(31, 35, 40, 0.08);
+		--bb-ch-btn-bg-hover: rgba(31, 35, 40, 0.16);
+		--bb-ch-btn-text: #24292f;
+		--bb-ch-btn-success-bg: #1f883d;
+		--bb-ch-btn-success-text: #ffffff;
+		--bb-ch-focus-ring: #0969da;
+
+		// Prism token colors (GitHub Light inspired).
+		--bb-ch-tok-comment: #6e7781;
+		--bb-ch-tok-punct: #24292f;
+		--bb-ch-tok-prop: #0550ae;
+		--bb-ch-tok-bool: #0550ae;
+		--bb-ch-tok-string: #0a3069;
+		--bb-ch-tok-operator: #cf222e;
+		--bb-ch-tok-keyword: #cf222e;
+		--bb-ch-tok-function: #8250df;
+		--bb-ch-tok-class: #953800;
+		--bb-ch-tok-regex: #116329;
+		--bb-ch-tok-deleted: #82071e;
+	}
+
+	// ----- Header bar ---------------------------------------------------
+	.bb-ch-header {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 8px 12px;
+		background: var(--bb-ch-header-bg);
+		color: var(--bb-ch-header-text);
+		border-bottom: 1px solid var(--bb-ch-header-border);
+		font-size: 12px;
+		line-height: 1.4;
+	}
+
+	.bb-ch-lang-badge {
+		display: inline-flex;
+		align-items: center;
+		padding: 2px 8px;
+		background: var(--bb-ch-badge-bg);
+		color: var(--bb-ch-badge-text);
+		border-radius: 999px;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		user-select: none;
+	}
+
+	.bb-ch-filename {
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 12px;
+		opacity: 0.85;
+	}
+
+	&.has-header .bb-ch-header .bb-ch-copy-btn {
+		margin-left: auto;
+	}
+
+	// ----- Copy button --------------------------------------------------
+	.bb-ch-copy-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 4px 10px;
+		background: var(--bb-ch-btn-bg);
+		color: var(--bb-ch-btn-text);
+		border: none;
+		border-radius: 4px;
+		font: inherit;
+		font-size: 12px;
+		line-height: 1.2;
+		cursor: pointer;
+		transition: background-color 120ms ease, color 120ms ease;
+		user-select: none;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bb-ch-btn-bg-hover);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-ch-focus-ring);
+			outline-offset: 2px;
+		}
+
+		&.is-copied {
+			background: var(--bb-ch-btn-success-bg);
+			color: var(--bb-ch-btn-success-text);
+		}
+	}
+
+	.bb-ch-copy-icon {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	// Floating variant: shown when the header is hidden so the copy
+	// button still has a home.
+	.bb-ch-copy-btn--floating {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		z-index: 2;
+	}
+
+	// ----- Code body ----------------------------------------------------
+	.bb-ch-body {
+		position: relative;
+		background: var(--bb-ch-bg);
+		color: var(--bb-ch-text);
+	}
+
+	.bb-ch-pre {
+		margin: 0;
+		padding: 14px 16px;
+		background: var(--bb-ch-bg);
+		color: var(--bb-ch-text);
+		font-family: inherit;
+		font-size: var(--bb-ch-font-size);
+		line-height: 1.55;
+		tab-size: var(--bb-ch-tab-size);
+		-moz-tab-size: var(--bb-ch-tab-size);
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: pre;
+		word-spacing: normal;
+		word-break: normal;
+		text-shadow: none;
+		hyphens: none;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-ch-focus-ring);
+			outline-offset: -2px;
+		}
+	}
+
+	.bb-ch-code {
+		display: block;
+		background: transparent;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		white-space: inherit;
+		text-shadow: none;
+		padding: 0;
+	}
+
+	// ----- Line wrappers (always rendered, gutter shown only when on) ---
+	.bb-ch-line {
+		display: block;
+	}
+
+	// Hide the explicit number span when line numbers are off.
+	.bb-ch-num {
+		display: none;
+	}
+
+	&.has-line-numbers {
+		// Keep horizontal padding on the pre; the gutter sits inline with
+		// the code so there's no separate column to align against.
+		.bb-ch-num {
+			display: inline-block;
+			width: var(--bb-ch-line-gutter-width);
+			padding-right: 12px;
+			margin-right: 12px;
+			text-align: right;
+			color: var(--bb-ch-gutter-text);
+			border-right: 1px solid var(--bb-ch-gutter-border);
+			user-select: none;
+			font-variant-numeric: tabular-nums;
+			pointer-events: none;
+			// Vertical alignment trick: stretch the number's right border
+			// the full line-height so the gutter divider looks continuous.
+			line-height: inherit;
+			vertical-align: top;
+		}
+
+		.bb-ch-text {
+			display: inline;
+		}
+
+		// Left-edge gutter background so horizontal scrolling doesn't
+		// leave a visual gap behind the number column.
+		.bb-ch-pre {
+			background-image: linear-gradient(
+				to right,
+				var(--bb-ch-gutter-bg) 0,
+				var(--bb-ch-gutter-bg) calc(var(--bb-ch-line-gutter-width) + 12px),
+				var(--bb-ch-bg) calc(var(--bb-ch-line-gutter-width) + 12px)
+			);
+			background-repeat: no-repeat;
+			background-attachment: local;
+		}
+	}
+
+	// ----- Screen-reader-only live region -------------------------------
+	.bb-ch-live {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// ----- Prism token color mapping -----------------------------------
+	// Apply the theme palette via the data-* classes Prism emits on its
+	// <span class="token …"> children. Keeping this in our own block scope
+	// avoids monkey-patching a global Prism stylesheet.
+	.token.comment,
+	.token.prolog,
+	.token.doctype,
+	.token.cdata { color: var(--bb-ch-tok-comment); font-style: italic; }
+
+	.token.punctuation { color: var(--bb-ch-tok-punct); }
+
+	.token.property,
+	.token.tag,
+	.token.constant,
+	.token.symbol,
+	.token.deleted { color: var(--bb-ch-tok-prop); }
+
+	.token.boolean,
+	.token.number { color: var(--bb-ch-tok-bool); }
+
+	.token.selector,
+	.token.attr-name,
+	.token.string,
+	.token.char,
+	.token.builtin,
+	.token.inserted { color: var(--bb-ch-tok-string); }
+
+	.token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string { color: var(--bb-ch-tok-operator); }
+
+	.token.atrule,
+	.token.attr-value,
+	.token.keyword { color: var(--bb-ch-tok-keyword); }
+
+	.token.function,
+	.token.class-name { color: var(--bb-ch-tok-function); }
+
+	.token.regex,
+	.token.important,
+	.token.variable { color: var(--bb-ch-tok-regex); }
+
+	.token.important,
+	.token.bold { font-weight: 700; }
+
+	.token.italic { font-style: italic; }
+
+	.token.entity { cursor: help; }
+
+	// ----- Responsive ---------------------------------------------------
+	@media (max-width: 480px) {
+		--bb-ch-line-gutter-width: 2.5em;
+
+		.bb-ch-header {
+			padding: 6px 10px;
+			gap: 8px;
+		}
+
+		.bb-ch-pre {
+			padding: 10px 12px;
+		}
+
+		.bb-ch-copy-btn .bb-ch-copy-text {
+			display: none;
+		}
+	}
+}

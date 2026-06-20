@@ -1,0 +1,19 @@
+// Parallax Section — editor-only styles.
+
+.wp-block-b-blocks-parallax-section {
+	&.bb-px {
+		// In the editor the background is static (no scroll transform) so the
+		// preview reflects the resting state.
+		.bb-px-bg {
+			transform: none;
+			top: 0;
+			height: 100%;
+		}
+
+		.bb-px-content {
+			.block-editor-block-list__layout {
+				min-height: 40px;
+			}
+		}
+	}
+}

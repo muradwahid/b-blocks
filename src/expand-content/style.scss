@@ -1,0 +1,119 @@
+// Expand Content — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+
+.wp-block-b-blocks-expand-content {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-ec-shell {
+		position: relative;
+	}
+
+	.bb-ec-content {
+		position: relative;
+		overflow: hidden;
+		max-height: var(--bb-ec-preview-height, 200px);
+		transition: max-height var(--bb-ec-duration, 300ms) ease;
+
+		// When JS hasn't initialized yet, default to clamped so the
+		// "no-JS" experience still shows the preview and avoids a flash
+		// of unstyled full-height content.
+		&.is-measuring {
+			max-height: none;
+			transition: none;
+		}
+
+		&.is-expanded {
+			max-height: var(--bb-ec-natural-height, none);
+		}
+
+		&.is-uncapped {
+			max-height: none;
+		}
+	}
+
+	.bb-ec-content__inner {
+		// Reset margins on first/last children so the clamp boundary is precise.
+		> *:first-child {
+			margin-top: 0;
+		}
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.bb-ec-fade {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: var(--bb-ec-fade-height, 80px);
+		pointer-events: none;
+		background: linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0) 0%,
+			var(--bb-ec-fade-color, #ffffff) 100%
+		);
+		transition: opacity var(--bb-ec-duration, 300ms) ease;
+		opacity: 1;
+	}
+
+	&.is-expanded .bb-ec-fade,
+	&.bb-ec-no-fade .bb-ec-fade {
+		opacity: 0;
+	}
+
+	&.bb-ec-no-fade .bb-ec-fade {
+		display: none;
+	}
+
+	.bb-ec-toggle-wrap {
+		margin-top: 12px;
+		text-align: center;
+	}
+
+	.bb-ec-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		min-height: 40px;
+		min-width: 40px;
+		border: none;
+		font: inherit;
+		font-weight: 600;
+		line-height: 1.4;
+		cursor: pointer;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease,
+			transform 0.15s ease,
+			filter 0.2s ease;
+
+		&[hidden] {
+			display: none;
+		}
+
+		&:hover {
+			filter: brightness(0.92);
+		}
+
+		&:focus-visible {
+			outline: 3px solid currentColor;
+			outline-offset: 2px;
+		}
+
+		&:active {
+			transform: translateY(1px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bb-ec-content,
+		.bb-ec-fade,
+		.bb-ec-toggle {
+			transition: none !important;
+		}
+	}
+}

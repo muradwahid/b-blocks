@@ -1,0 +1,115 @@
+// Frontend + editor shared styles for the Call to Action block.
+// Mobile-first responsive. WCAG-friendly defaults.
+// Note: prefers-reduced-motion is not relevant in MVP because no
+// animations are included. Add motion-sensitive guards if future
+// hover / transition effects are introduced.
+
+.wp-block-b-blocks-call-to-action {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksCallToAction {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 24px;
+		width: 100%;
+		max-width: 100%;
+		text-align: center;
+
+		// Screen reader only helper for "(opens in new tab)" hint
+		.screen-reader-text {
+			border: 0;
+			clip: rect(1px, 1px, 1px, 1px);
+			-webkit-clip-path: inset(50%);
+			clip-path: inset(50%);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+			word-wrap: normal !important;
+		}
+
+		.ctaContent {
+			flex: 1 1 auto;
+			min-width: 0;
+
+			.ctaHeading {
+				margin: 0 0 12px 0;
+				line-height: 1.2;
+				word-wrap: break-word;
+			}
+
+			.ctaSubText {
+				margin: 0;
+				line-height: 1.5;
+				word-wrap: break-word;
+			}
+		}
+
+		.ctaActions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			justify-content: center;
+			align-items: center;
+
+			.ctaButton {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 12px 24px;
+				font-weight: 600;
+				text-decoration: none;
+				line-height: 1.2;
+				cursor: pointer;
+				transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+				min-height: 44px; // WCAG target size
+				min-width: 44px;
+			}
+
+			.ctaButton:focus-visible {
+				outline: 3px solid currentColor;
+				outline-offset: 2px;
+			}
+		}
+
+		// Horizontal layout: content on the left, actions on the right.
+		// Stacks vertically below 768px for tap-friendly mobile.
+		&.ctaLayout-horizontal {
+			text-align: left;
+			align-items: center;
+
+			@media (min-width: 768px) {
+				flex-direction: row;
+				justify-content: space-between;
+				gap: 32px;
+
+				.ctaContent {
+					text-align: inherit;
+				}
+
+				.ctaActions {
+					flex: 0 0 auto;
+					justify-content: flex-end;
+				}
+			}
+		}
+
+		// Centered layout (default)
+		&.ctaLayout-centered {
+			align-items: center;
+
+			.ctaContent {
+				width: 100%;
+			}
+
+			.ctaActions {
+				justify-content: center;
+			}
+		}
+	}
+}

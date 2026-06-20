@@ -1,0 +1,218 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/taxonomy-grid",
+	"version": "1.0.0",
+	"title": "Taxonomy Grid",
+	"category": "bBlocks",
+	"description": "Display a responsive grid of taxonomy term cards (categories, tags, or any custom taxonomy) with term name, post count, description, optional thumbnail, and a link to the term archive.",
+	"keywords": [
+		"taxonomy",
+		"category",
+		"categories",
+		"tags",
+		"terms",
+		"grid",
+		"browse by",
+		"topics",
+		"shop by category"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"taxonomy": {
+			"type": "string",
+			"default": "category"
+		},
+		"orderby": {
+			"type": "string",
+			"default": "name"
+		},
+		"order": {
+			"type": "string",
+			"default": "ASC"
+		},
+		"number": {
+			"type": "integer",
+			"default": 6
+		},
+		"hideEmpty": {
+			"type": "boolean",
+			"default": true
+		},
+		"includeIds": {
+			"type": "string",
+			"default": ""
+		},
+		"excludeIds": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"columnsDesktop": {
+			"type": "integer",
+			"default": 3
+		},
+		"columnsTablet": {
+			"type": "integer",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "integer",
+			"default": 1
+		},
+		"columnGap": {
+			"type": "integer",
+			"default": 24
+		},
+		"rowGap": {
+			"type": "integer",
+			"default": 24
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "overlay"
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "3/2"
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"fallbackColor": {
+			"type": "string",
+			"default": "#3b82f6"
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.45)"
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"countLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": false
+		},
+		"descriptionLength": {
+			"type": "integer",
+			"default": 80
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"hoverDuration": {
+			"type": "integer",
+			"default": 300
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardPaddingV": {
+			"type": "integer",
+			"default": 16
+		},
+		"cardPaddingH": {
+			"type": "integer",
+			"default": 16
+		},
+		"shadowPreset": {
+			"type": "string",
+			"default": "small"
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"nameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"nameFontSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"nameFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"countColor": {
+			"type": "string",
+			"default": ""
+		},
+		"countBg": {
+			"type": "string",
+			"default": ""
+		},
+		"countFontSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#3b82f6"
+		},
+		"descColor": {
+			"type": "string",
+			"default": ""
+		},
+		"descFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"openInNewTab": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

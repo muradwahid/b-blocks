@@ -14,6 +14,14 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 		}
 	
 		public function get_popular_plugins () {
+			if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'wp_ajax')) {
+				wp_send_json_error(['message' => 'Invalid nonce or request.'], 400);
+			}
+
+			if (!current_user_can('manage_options')) {
+				wp_send_json_error(['message' => 'Insufficient permissions.'], 403);
+			}
+
 			if ( !function_exists( 'plugins_api' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 			}
@@ -22,25 +30,29 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 				'author' => 'bplugins',
 				'per_page' => 100
 			) );
-	
-			wp_send_json_success($cached_plugins->plugins); 
+
+			wp_send_json_success($cached_plugins->plugins);
 		}
 	
 		public function get_active_plugins() {
-			if (!isset($_GET['nonce']) || !wp_verify_nonce(sanitize_text_field($_GET['nonce']), 'wp_ajax')) {
+			if (!isset($_GET['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['nonce'])), 'wp_ajax')) {
                 wp_send_json_error(['message' => 'Invalid nonce or request.'], 400);
             }
-        
+
+            if (!current_user_can('manage_options')) {
+                wp_send_json_error(['message' => 'Insufficient permissions.'], 403);
+            }
+
             // Get the list of all installed plugins
             if (!function_exists('get_plugins')) {
                 include_once ABSPATH . '/wp-admin/includes/plugin.php';
             }
-        
+
             $installed_plugins = get_plugins();
-        
+
             // Return the plugin basenames as an array
             $installed_plugin_slugs = array_keys($installed_plugins);
-        
+
             wp_send_json_success($installed_plugin_slugs);
 		}
 		public function display_activation_notice() {
@@ -63,10 +75,10 @@ if( !class_exists( 'BBlocksDashboard' ) ){
                 // Display notice with activation button
                 ?>
                 <div class="notice notice-success is-dismissible advScrollbar-notice">
-                    <p><?php esc_html_e(" $cleaned_string plugin was successfully installed.", 'advanced-scrollbar'); ?></p>
+                    <p><?php echo esc_html( $cleaned_string . ' ' . __( 'plugin was successfully installed.', 'b-blocks' ) ); ?></p>
                     <p>
                         <a href="<?php echo esc_url($activation_url); ?>" class="button button-primary">
-                            <?php esc_html_e('Activate Plugin', 'advanced-scrollbar'); ?>
+                            <?php esc_html_e('Activate Plugin', 'b-blocks'); ?>
                         </a>
                     </p>
                 </div>
@@ -75,11 +87,15 @@ if( !class_exists( 'BBlocksDashboard' ) ){
     }
 		public function activated_block() {
 			 // Verify nonce
-            if (!isset($_GET['nonce']) || !wp_verify_nonce(sanitize_text_field($_GET['nonce']), 'wp_ajax')) {
+            if (!isset($_GET['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['nonce'])), 'wp_ajax')) {
                 wp_send_json_error(['message' => 'Invalid nonce or request.'], 400);
             }
 
-            $plugin_name = sanitize_text_field($_GET['plugin_name']) ?? false;
+            if (!current_user_can('install_plugins')) {
+                wp_send_json_error(['message' => 'Insufficient permissions.'], 403);
+            }
+
+            $plugin_name = sanitize_text_field($_GET['plugin_name'] ?? '');
 
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
             include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
@@ -114,7 +130,7 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 		}
 	
 		public function bBlocksDisabledBlocks(){
-			$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? '';
+			$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ?? '' ) );
 
 			if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 				wp_send_json_error( 'Invalid Request' );
@@ -124,12 +140,21 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 				wp_send_json_error( 'Unauthorized' );
 			}
 
-			$data = json_decode( stripslashes( $_POST['data'] ), true );
+			$raw    = isset( $_POST['data'] ) ? wp_unslash( $_POST['data'] ) : null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitized below after json_decode
+			$data   = is_string( $raw ) ? json_decode( $raw, true ) : null;
 			$db_data = get_option( 'bBlocksDisabledBlocks', [] );
 
-			if( !isset( $data ) && $db_data ){
+			if ( ! isset( $data ) && $db_data ) {
 				wp_send_json_success( $db_data );
 			}
+
+			// Sanitize: the value is an array of block-name strings (e.g. "b-blocks/alert").
+			if ( is_array( $data ) ) {
+				$data = array_map( 'sanitize_text_field', $data );
+			} else {
+				$data = [];
+			}
+
 			update_option( 'bBlocksDisabledBlocks', $data );
 			wp_send_json_success( $data );
 		
@@ -184,14 +209,14 @@ if( !class_exists( 'BBlocksDashboard' ) ){
 		}
 	
 		function dashboardPage(){ ?>
-			<div id='bBlocksDashboard' data-info=<?php echo esc_attr( wp_json_encode([
+			<div id='bBlocksDashboard' data-info='<?php echo esc_attr( wp_json_encode([
 				'version' => B_BLOCKS_VERSION,
 				'nonce' => wp_create_nonce( 'wp_ajax' ),
 				'dirUrl' => B_BLOCKS_DIR_URL,
 				'isPremium' => Utils::isPro(),
 				'hasPro' => B_BLOCKS_HAS_PRO,
 				'licenseActiveNonce' => wp_create_nonce("bBlocksLicenseActivation")
-			]) ); ?>></div>
+			]) ); ?>'></div>
 		<?php }
 	}
 	new BBlocksDashboard();

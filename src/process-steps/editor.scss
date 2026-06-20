@@ -1,0 +1,56 @@
+// Editor-only adjustments for the Process Steps block.
+// Frontend styles are loaded from style.scss via the build pipeline.
+@import './style.scss';
+
+.wp-block-b-blocks-process-steps {
+	.bb-ps-empty {
+		font-size: 13px;
+	}
+
+	.bb-ps-step__title {
+		margin-top: 0;
+	}
+
+	// Keep RichText placeholders subtle in the editor.
+	[data-rich-text-placeholder]::after {
+		opacity: 0.55;
+	}
+}
+
+// Sidebar steps repeater UI (Inspector panel).
+.bb-ps-repeater {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 12px;
+
+	&__row {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 12px;
+		background: #f6f7f7;
+		border-radius: 4px;
+	}
+
+	&__row-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__row-title {
+		font-size: 12px;
+		font-weight: 600;
+	}
+
+	&__row-actions {
+		display: flex;
+		gap: 4px;
+	}
+}
+
+.bb-ps-add-step {
+	margin-top: 8px;
+}

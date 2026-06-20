@@ -1,0 +1,102 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/google-map",
+	"version": "2.0.55",
+	"title": "Google Map",
+	"category": "bBlocks",
+	"description": "Embed a responsive Google Map by pasting a Google Maps embed URL. Supports fixed heights per breakpoint or a fluid aspect-ratio mode, an optional caption, rounded corners, alignment, and a shadow.",
+	"keywords": [
+		"google map",
+		"map",
+		"embed",
+		"location",
+		"contact"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"embedUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mapHeight": {
+			"type": "number",
+			"default": 450
+		},
+		"mapHeightTablet": {
+			"type": "number",
+			"default": 350
+		},
+		"mapHeightMobile": {
+			"type": "number",
+			"default": 250
+		},
+		"useAspectRatio": {
+			"type": "boolean",
+			"default": false
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "16/9"
+		},
+		"mapAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"caption": {
+			"type": "string",
+			"default": ""
+		},
+		"captionAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"boxShadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"maxWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"captionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"captionFontSize": {
+			"type": "number",
+			"default": 14
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

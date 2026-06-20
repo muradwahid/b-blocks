@@ -1,0 +1,190 @@
+/**
+ * Search Bar — frontend + editor shared styles. Mobile-first.
+ *
+ * All per-instance colors / sizes come in as CSS custom properties emitted by
+ * render.php (and mirrored by Edit.js for the editor preview), so this file only
+ * wires them up. Focus rings are intentionally left to the browser / theme
+ * default `:focus-visible` outline and never removed.
+ */
+
+.bb-search {
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// Width + alignment.
+	&.bb-search--align-left {
+		text-align: left;
+	}
+	&.bb-search--align-center {
+		text-align: center;
+	}
+	&.bb-search--align-right {
+		text-align: right;
+	}
+
+	.bb-search-form {
+		position: relative;
+		display: inline-block;
+		width: var(--bb-sb-width, 100%);
+		max-width: 100%;
+		text-align: left;
+	}
+
+	.bb-search-field {
+		display: flex;
+		align-items: stretch;
+		width: 100%;
+	}
+
+	.bb-search-input {
+		flex: 1 1 auto;
+		min-width: 0;
+		width: 100%;
+		margin: 0;
+		font-size: var(--bb-sb-font, 16px);
+		line-height: 1.4;
+		color: var(--bb-sb-input-text, #333);
+		background-color: var(--bb-sb-input-bg, #fff);
+		border: var(--bb-sb-border-width, 1px) solid var(--bb-sb-border-color, #ccc);
+		border-radius: var(--bb-sb-radius, 4px) 0 0 var(--bb-sb-radius, 4px);
+		padding: var(--bb-sb-pad-top, 10px) var(--bb-sb-pad-right, 14px)
+			var(--bb-sb-pad-bottom, 10px) var(--bb-sb-pad-left, 14px);
+
+		&::placeholder {
+			color: var(--bb-sb-input-text, #333);
+			opacity: 0.6;
+		}
+	}
+
+	.bb-search-submit {
+		flex: 0 0 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
+		margin: 0;
+		cursor: pointer;
+		font-size: var(--bb-sb-font, 16px);
+		line-height: 1.4;
+		color: var(--bb-sb-btn-text, #fff);
+		background-color: var(--bb-sb-btn-bg, #0073aa);
+		border: var(--bb-sb-border-width, 1px) solid var(--bb-sb-btn-bg, #0073aa);
+		border-radius: 0 var(--bb-sb-btn-radius, 4px) var(--bb-sb-btn-radius, 4px) 0;
+		padding: var(--bb-sb-pad-top, 10px) calc(var(--bb-sb-pad-right, 14px) + 0.4em)
+			var(--bb-sb-pad-bottom, 10px) calc(var(--bb-sb-pad-left, 14px) + 0.4em);
+		transition: filter 0.15s ease;
+
+		&:hover {
+			filter: brightness(0.92);
+		}
+	}
+
+	.bb-search-icon {
+		font-size: 1em;
+		line-height: 1;
+	}
+
+	// When the button is icon-only, keep the label out of the visual flow.
+	&.bb-search--btn-icon .bb-search-submit-label {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// Live suggestions dropdown.
+	.bb-search-listbox {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		margin: 4px 0 0;
+		padding: 4px 0;
+		list-style: none;
+		max-height: 320px;
+		overflow-y: auto;
+		background-color: var(--bb-sb-dd-bg, #fff);
+		border: 1px solid var(--bb-sb-border-color, #ccc);
+		border-radius: var(--bb-sb-radius, 4px);
+		box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	.bb-search-option,
+	.bb-search-empty {
+		margin: 0;
+		color: var(--bb-sb-dd-text, #333);
+		font-size: var(--bb-sb-font, 16px);
+	}
+
+	.bb-search-empty {
+		padding: 10px 14px;
+		opacity: 0.8;
+	}
+
+	.bb-search-option {
+		&.is-active,
+		&[aria-selected='true'] {
+			background-color: var(--bb-sb-dd-hover, #f0f0f0);
+		}
+	}
+
+	.bb-search-option-link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 10px 14px;
+		color: inherit;
+		text-decoration: none;
+		line-height: 1.35;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+	}
+
+	.bb-search-option-title {
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.bb-search-type {
+		flex: 0 0 auto;
+		font-size: 0.75em;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		opacity: 0.65;
+	}
+}
+
+// Visually hidden helper (mirrors core .screen-reader-text for themes lacking it).
+.bb-search .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

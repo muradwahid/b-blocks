@@ -1,0 +1,41 @@
+// Editor-only adjustments for the Icon block.
+// Frontend styles ship via style.scss → view.css.
+@import './style.scss';
+
+.wp-block-b-blocks-icon {
+	// Keep an empty/decorative icon visible while editing.
+	min-height: 1em;
+
+	// Live preview of the FA class string under the picker in the sidebar.
+	.bb-icon-editor-preview {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 48px;
+		min-height: 48px;
+		margin-top: 8px;
+		padding: 8px;
+		background: #f6f7f7;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 28px;
+		line-height: 1;
+	}
+}
+
+// Sidebar live preview (rendered outside the canvas wrapper).
+.bb-icon-picker-preview {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 56px;
+	min-height: 56px;
+	margin-top: 8px;
+	padding: 10px;
+	background: #f6f7f7;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 30px;
+	line-height: 1;
+	color: #1e1e1e;
+}

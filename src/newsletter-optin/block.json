@@ -1,0 +1,166 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/newsletter-optin",
+	"title": "Newsletter Optin",
+	"description": "An accessible inline email subscribe form that sends subscriber details to your admin email.",
+	"category": "bBlocks",
+	"keywords": [
+		"newsletter",
+		"optin",
+		"subscribe",
+		"email signup",
+		"mailing list"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": "stacked"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"headline": {
+			"type": "string",
+			"default": "Subscribe to our newsletter"
+		},
+		"subtext": {
+			"type": "string",
+			"default": "Get the latest posts delivered straight to your inbox."
+		},
+		"showHeadline": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSubtext": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNameField": {
+			"type": "boolean",
+			"default": false
+		},
+		"namePlaceholder": {
+			"type": "string",
+			"default": "Your name"
+		},
+		"emailPlaceholder": {
+			"type": "string",
+			"default": "Your email address"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Subscribe"
+		},
+		"successMessage": {
+			"type": "string",
+			"default": "Thank you for subscribing!"
+		},
+		"adminEmail": {
+			"type": "string",
+			"default": ""
+		},
+		"headlineFontSize": {
+			"type": "number",
+			"default": 24
+		},
+		"headlineFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"subtextFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"inputFontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"buttonFontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"buttonFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#f8f9fa"
+		},
+		"headlineColor": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"subtextColor": {
+			"type": "string",
+			"default": "#555555"
+		},
+		"inputBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"inputTextColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"inputBorderColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"buttonBgColor": {
+			"type": "string",
+			"default": "#0461c4"
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonHoverBgColor": {
+			"type": "string",
+			"default": "#0461c4"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"inputBorderRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"paddingVertical": {
+			"type": "number",
+			"default": 40
+		},
+		"paddingHorizontal": {
+			"type": "number",
+			"default": 40
+		},
+		"fieldGap": {
+			"type": "number",
+			"default": 12
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 600
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

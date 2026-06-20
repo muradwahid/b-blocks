@@ -1,0 +1,255 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-product-carousel",
+	"version": "1.0.0",
+	"title": "Woo Product Carousel",
+	"category": "bBlocks",
+	"description": "Server-rendered WooCommerce product carousel with query, card-element, and style controls plus a dependency-free swipeable slider and AJAX add-to-cart for simple products.",
+	"keywords": [
+		"woocommerce",
+		"product carousel",
+		"product slider",
+		"products",
+		"shop",
+		"store",
+		"ecommerce",
+		"add to cart",
+		"featured products",
+		"slider"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"productsToShow": {
+			"type": "integer",
+			"default": 8
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "desc"
+		},
+		"productType": {
+			"type": "string",
+			"default": "all"
+		},
+		"productCategories": {
+			"type": "array",
+			"default": []
+		},
+		"productTags": {
+			"type": "array",
+			"default": []
+		},
+		"excludeOutOfStock": {
+			"type": "boolean",
+			"default": true
+		},
+		"slidesPerView": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"slideGap": {
+			"type": "integer",
+			"default": 24
+		},
+		"isLoop": {
+			"type": "boolean",
+			"default": true
+		},
+		"isAutoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplayDelay": {
+			"type": "integer",
+			"default": 3000
+		},
+		"autoplayPauseOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"transitionSpeed": {
+			"type": "integer",
+			"default": 500
+		},
+		"isArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"isDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"showImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "3/4"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"showPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSaleBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"saleBadgeLabel": {
+			"type": "string",
+			"default": "Sale"
+		},
+		"showAddToCart": {
+			"type": "boolean",
+			"default": true
+		},
+		"addToCartLabel": {
+			"type": "string",
+			"default": "Add to Cart"
+		},
+		"contentAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"cardBG": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "none"
+		},
+		"cardPadding": {
+			"type": "integer",
+			"default": 16
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "17px",
+				"tablet": "16px",
+				"mobile": "15px"
+			}
+		},
+		"titleFontWeight": {
+			"type": "integer",
+			"default": 600
+		},
+		"priceColor": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"regularPriceColor": {
+			"type": "string",
+			"default": "#999999"
+		},
+		"ratingColor": {
+			"type": "string",
+			"default": "#f5a623"
+		},
+		"badgeBG": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"badgeTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnBG": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"btnHoverColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnHoverBG": {
+			"type": "string",
+			"default": "#070127"
+		},
+		"btnRadius": {
+			"type": "integer",
+			"default": 4
+		},
+		"arrowColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"arrowBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"arrowBorderRadius": {
+			"type": "integer",
+			"default": 50
+		},
+		"dotColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"dotInactiveColor": {
+			"type": "string",
+			"default": "#cccccc"
+		},
+		"noProductsMessage": {
+			"type": "string",
+			"default": "No products found."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

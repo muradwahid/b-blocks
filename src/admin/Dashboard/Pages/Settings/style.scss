@@ -1,0 +1,343 @@
+// bBlocks — Settings / API Integrations page.
+// Designed for the dashboard's V4 (sharp-edge) chrome: relies on borders,
+// spacing, color and typography rather than corner radii. Brand colors come
+// from the --bpl-dashboard-* tokens defined in src/admin/style.scss.
+
+.bBlocksSettingPage {
+	width: 100%;
+	max-width: 1180px;
+	margin: 0 auto !important;
+	padding: 30px 24px 48px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	.bbSettingsHead {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+
+		.bBlocksHeading {
+			margin: 0;
+			font-size: 22px;
+			font-weight: 700;
+			line-height: 1.25;
+			color: var(--bpl-dashboard-title-color, #070127);
+		}
+
+		.bbSettingsSub {
+			margin: 0;
+			max-width: 680px;
+			font-size: 14px;
+			line-height: 1.6;
+			color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+		}
+	}
+
+	.bBlocksApiCartContainer {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
+		gap: 20px;
+	}
+
+	.bBlocksApiCart {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 22px;
+		background: #fff;
+		border: 1px solid #e8e6f2;
+		box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+		&:hover {
+			border-color: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.55);
+			box-shadow: 0 10px 28px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.12);
+		}
+
+		&.isConnected {
+			border-color: rgba(34, 197, 94, 0.4);
+		}
+
+		&.isError {
+			border-color: rgba(239, 68, 68, 0.4);
+		}
+
+		// ---- Card header ----
+		.bbCardTop {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+
+			.bbCardIcon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex: 0 0 46px;
+				width: 46px;
+				height: 46px;
+				background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.1);
+
+				svg,
+				.cartIcon {
+					width: 24px;
+					height: 24px;
+				}
+			}
+
+			.bbCardTitle {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+				margin-right: auto;
+				min-width: 0;
+
+				h4 {
+					margin: 0;
+					font-size: 16px;
+					font-weight: 700;
+					line-height: 1.2;
+					color: var(--bpl-dashboard-title-color, #070127);
+				}
+
+				.bbCardKind {
+					font-size: 12px;
+					color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.55);
+				}
+			}
+		}
+
+		// ---- Status pill ----
+		.bbStatus {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			flex: 0 0 auto;
+			padding: 5px 11px;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 1;
+			white-space: nowrap;
+
+			svg {
+				width: 13px;
+				height: 13px;
+			}
+
+			&.isConnected {
+				color: #15803d;
+				background: rgba(34, 197, 94, 0.12);
+			}
+
+			&.isError {
+				color: #b91c1c;
+				background: rgba(239, 68, 68, 0.12);
+			}
+
+			&.isIdle {
+				color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.6);
+				background: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.07);
+			}
+		}
+
+		// ---- Helper / description text ----
+		.bBlocksApiInfo {
+			font-size: 13px;
+			line-height: 1.6;
+			color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.72);
+
+			p {
+				margin: 0 0 6px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			a {
+				color: var(--bpl-dashboard-primary-color, #8c74fd);
+				font-weight: 600;
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			strong {
+				color: var(--bpl-dashboard-title-color, #070127);
+			}
+		}
+
+		// ---- Field ----
+		.bBlocksApiField {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+
+			label {
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--bpl-dashboard-title-color, #070127);
+			}
+
+			.bbInputWrap {
+				position: relative;
+				display: flex;
+				align-items: center;
+				background: #fff;
+				border: 1.5px solid #e2e0ee;
+				transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+				&:focus-within {
+					border-color: var(--bpl-dashboard-primary-color, #8c74fd);
+					box-shadow: 0 0 0 3px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.16);
+				}
+
+				&.hasError {
+					border-color: #ef4444;
+
+					&:focus-within {
+						box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16);
+					}
+				}
+
+				.bbInputIcon {
+					display: flex;
+					align-items: center;
+					padding-left: 12px;
+					color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
+
+					svg {
+						width: 16px;
+						height: 16px;
+					}
+				}
+
+				// Reset WordPress admin input chrome so the wrapper owns the look.
+				.bbInput {
+					flex: 1 1 auto;
+					min-width: 0;
+					margin: 0;
+					padding: 11px 12px;
+					border: 0 !important;
+					outline: 0 !important;
+					background: transparent;
+					box-shadow: none !important;
+					font-size: 14px;
+					line-height: 1.4;
+					color: var(--bpl-dashboard-title-color, #070127);
+
+					&:focus {
+						border: 0 !important;
+						outline: 0 !important;
+						box-shadow: none !important;
+					}
+
+					&::placeholder {
+						color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
+					}
+				}
+
+				.bbReveal {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex: 0 0 auto;
+					padding: 0 12px;
+					align-self: stretch;
+					border: 0;
+					background: transparent;
+					color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.5);
+					cursor: pointer;
+					transition: color 0.15s ease;
+
+					&:hover,
+					&:focus-visible {
+						color: var(--bpl-dashboard-primary-color, #8c74fd);
+					}
+
+					svg {
+						width: 18px;
+						height: 18px;
+					}
+				}
+			}
+		}
+
+		// ---- Footer ----
+		.bBlocksApiFooter {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			margin-top: auto;
+			padding-top: 4px;
+
+			.bbStatusLine {
+				margin: 0;
+				font-size: 13px;
+				line-height: 1.4;
+
+				.bbOk {
+					color: #15803d;
+					font-weight: 600;
+				}
+
+				.bbErr {
+					color: #b91c1c;
+					font-weight: 600;
+				}
+
+				.bbMuted {
+					color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.5);
+				}
+			}
+
+			.bBlocksApiSaveBtn {
+				flex: 0 0 auto;
+				padding: 9px 22px !important;
+				min-width: 92px;
+				border: 0 !important;
+				background-color: var(--bpl-dashboard-primary-color, #8c74fd) !important;
+				color: #fff !important;
+				font-size: 13px !important;
+				font-weight: 600 !important;
+				line-height: 1.4 !important;
+				height: auto !important;
+				cursor: pointer;
+				transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+
+				&:hover {
+					filter: brightness(1.06);
+				}
+
+				&:active {
+					transform: translateY(1px);
+				}
+
+				&.bPlButton-disabled {
+					opacity: 0.65;
+					cursor: default;
+
+					&:hover {
+						filter: none;
+					}
+
+					&:active {
+						transform: none;
+					}
+				}
+			}
+		}
+	}
+
+	// Single column on narrow screens.
+	@media (max-width: 600px) {
+		padding: 22px 16px 40px;
+
+		.bBlocksApiCartContainer {
+			grid-template-columns: 1fr;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+// Blockquote Block — editor-only styles.
+// Mirror the frontend visually; only add editor affordances here.
+
+.wp-block-b-blocks-blockquote {
+	// Inline RichText placeholder color match.
+	.bb-bq__quote-text [data-rich-text-placeholder] {
+		color: currentColor;
+		opacity: 0.55;
+	}
+
+	// Small editor meta caption shown beneath the rendered card so editors
+	// know what they are looking at when the avatar/role are hidden.
+	.bb-bq-editor-meta {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 10px;
+		padding: 2px 8px;
+		font-size: 11px;
+		font-weight: 500;
+		line-height: 1.4;
+		color: #6b7280;
+		background: rgba(99, 102, 241, 0.08);
+		border-radius: 999px;
+	}
+}

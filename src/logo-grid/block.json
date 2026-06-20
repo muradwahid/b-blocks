@@ -1,0 +1,150 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/logo-grid",
+	"version": "1.0.0",
+	"title": "Logo Grid",
+	"category": "bBlocks",
+	"description": "Display a static, responsive grid of client, partner, or sponsor logos for instant social proof.",
+	"keywords": [
+		"logo grid",
+		"logos",
+		"trusted by",
+		"clients",
+		"partners",
+		"social proof"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": false
+		},
+		"labelAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"labelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"labelSize": {
+			"type": "number",
+			"default": 14
+		},
+		"labelWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"labelGap": {
+			"type": "number",
+			"default": 16
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "_key": "lg-default-1", "imageId": 0, "imageUrl": "", "imageAlt": "", "linkUrl": "", "linkNewTab": false },
+				{ "_key": "lg-default-2", "imageId": 0, "imageUrl": "", "imageAlt": "", "linkUrl": "", "linkNewTab": false },
+				{ "_key": "lg-default-3", "imageId": 0, "imageUrl": "", "imageAlt": "", "linkUrl": "", "linkNewTab": false }
+			]
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 5,
+				"tablet": 3,
+				"mobile": 2
+			}
+		},
+		"columnGap": {
+			"type": "number",
+			"default": 32
+		},
+		"rowGap": {
+			"type": "number",
+			"default": 24
+		},
+		"logoMaxHeight": {
+			"type": "number",
+			"default": 60
+		},
+		"logoMaxWidth": {
+			"type": "number",
+			"default": 160
+		},
+		"cellAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": "color"
+		},
+		"transitionDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"filterDefault": {
+			"type": "string",
+			"default": "grayscale"
+		},
+		"logoPadding": {
+			"type": "number",
+			"default": 12
+		},
+		"cellBackground": {
+			"type": "string",
+			"default": ""
+		},
+		"cellBorderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"cellBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"cellBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"blockPaddingTop": {
+			"type": "number",
+			"default": 32
+		},
+		"blockPaddingBottom": {
+			"type": "number",
+			"default": 32
+		},
+		"blockBackground": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

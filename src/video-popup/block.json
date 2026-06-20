@@ -1,0 +1,120 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/video-popup",
+	"version": "2.0.53.3",
+	"title": "Video Popup",
+	"category": "bBlocks",
+	"description": "Display a poster image with a centered play button that opens a YouTube, Vimeo, or self-hosted MP4 video in an accessible lightbox.",
+	"keywords": [
+		"video",
+		"popup",
+		"lightbox",
+		"youtube",
+		"vimeo",
+		"player"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"triggerType": {
+			"type": "string",
+			"default": "first-frame"
+		},
+		"posterId": {
+			"type": "number",
+			"default": 0
+		},
+		"posterUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"posterAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"videoSource": {
+			"type": "string",
+			"default": "youtube"
+		},
+		"videoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"videoTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"videoRatio": {
+			"type": "string",
+			"default": "16/9"
+		},
+		"maxWidth": {
+			"type": "string",
+			"default": "900px"
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"playIcon": {
+			"type": "object",
+			"default": {
+				"size": 72,
+				"color": "#ffffff",
+				"bgColor": "rgba(0,0,0,0.55)",
+				"bgShape": "circle"
+			}
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.85)"
+		},
+		"posterRadius": {
+			"type": "string",
+			"default": "0px"
+		},
+		"posterWidth": {
+			"type": "string",
+			"default": "100%"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"animation": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 0.3
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

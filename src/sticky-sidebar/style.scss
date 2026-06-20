@@ -1,0 +1,43 @@
+// Sticky Sidebar — shared frontend + editor base styles.
+// Mobile-first. Per-instance layout (ratio, sticky offset, colors, padding,
+// breakpoint) lives in the inline <style> emitted by render.php / Edit.js,
+// scoped under #bBlocksStickySidebar-<n>.
+
+.wp-block-b-blocks-sticky-sidebar,
+.bb-ss {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// Mobile-first: single column. Desktop grid is supplied inline.
+	.bb-ss-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 40px;
+		width: 100%;
+
+		> * {
+			min-width: 0;
+
+			> *:first-child {
+				margin-top: 0;
+			}
+
+			> *:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Internally-scrolling sidebar keeps a visible focus ring for keyboard users.
+	.bb-ss-grid > *:nth-child(2):focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
+	}
+}

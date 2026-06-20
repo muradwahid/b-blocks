@@ -1,0 +1,166 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/call-to-action",
+	"title": "Call to Action",
+	"description": "Drive conversions with a styled banner that combines a headline, supporting text, and one or two action buttons.",
+	"category": "bBlocks",
+	"keywords": [
+		"call to action",
+		"cta",
+		"banner",
+		"button",
+		"conversion"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "centered"
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"heading": {
+			"type": "string",
+			"selector": ".ctaHeading",
+			"default": "Ready to get started?"
+		},
+		"subText": {
+			"type": "string",
+			"selector": ".ctaSubText",
+			"default": "Join thousands of happy users today."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Get Started"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"primaryTarget": {
+			"type": "boolean",
+			"default": false
+		},
+		"showSecondary": {
+			"type": "boolean",
+			"default": false
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Learn More"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"secondaryTarget": {
+			"type": "boolean",
+			"default": false
+		},
+		"background": {
+			"type": "object",
+			"default": {
+				"type": "color",
+				"color": "#1a73e8",
+				"gradient": "linear-gradient(135deg, #1a73e8, #6c5ce7)"
+			}
+		},
+		"headingTypography": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": "36px",
+					"tablet": "28px",
+					"mobile": "22px"
+				},
+				"fontWeight": 700
+			}
+		},
+		"subTypography": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": "18px",
+					"tablet": "16px",
+					"mobile": "15px"
+				}
+			}
+		},
+		"headingColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"subColor": {
+			"type": "string",
+			"default": "#e8f0fe"
+		},
+		"primaryBtnColors": {
+			"type": "object",
+			"default": {
+				"color": "#1a73e8",
+				"bg": "#ffffff",
+				"hoverColor": "#ffffff",
+				"hoverBg": "#1557b0"
+			}
+		},
+		"secondaryBtnColors": {
+			"type": "object",
+			"default": {
+				"color": "#ffffff",
+				"bg": "transparent",
+				"hoverColor": "#ffffff",
+				"hoverBg": "rgba(255,255,255,0.15)"
+			}
+		},
+		"btnBorderRadius": {
+			"type": "string",
+			"default": "6px"
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"desktop": "60px 40px",
+				"tablet": "48px 30px",
+				"mobile": "36px 20px"
+			}
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": "12px"
+		},
+		"shadow": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

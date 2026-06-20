@@ -1,0 +1,175 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/image-accordion",
+	"version": "1.0.0",
+	"title": "Image Accordion",
+	"category": "bBlocks",
+	"description": "An expanding horizontal strip of image panels with overlay title, description, and CTA — expands on hover or click and stacks on mobile.",
+	"keywords": [
+		"image accordion",
+		"expanding panels",
+		"image panels",
+		"horizontal accordion",
+		"hover reveal",
+		"showcase"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"panels": {
+			"type": "array",
+			"default": [
+				{ "id": "ia-default-1", "imageId": 0, "imageUrl": "", "imageAlt": "", "title": "Panel One", "description": "Short supporting text for the first panel.", "btnLabel": "", "btnUrl": "", "btnNewTab": false, "overlayColor": "", "objectPosition": "50% 50%" },
+				{ "id": "ia-default-2", "imageId": 0, "imageUrl": "", "imageAlt": "", "title": "Panel Two", "description": "Short supporting text for the second panel.", "btnLabel": "", "btnUrl": "", "btnNewTab": false, "overlayColor": "", "objectPosition": "50% 50%" },
+				{ "id": "ia-default-3", "imageId": 0, "imageUrl": "", "imageAlt": "", "title": "Panel Three", "description": "Short supporting text for the third panel.", "btnLabel": "", "btnUrl": "", "btnNewTab": false, "overlayColor": "", "objectPosition": "50% 50%" }
+			]
+		},
+		"trigger": {
+			"type": "string",
+			"default": "hover"
+		},
+		"orientation": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 480
+		},
+		"collapsedWidth": {
+			"type": "number",
+			"default": 80
+		},
+		"activeIndex": {
+			"type": "number",
+			"default": 0
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 400
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.45)"
+		},
+		"overlayPosition": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "22px",
+				"tablet": "18px",
+				"mobile": "16px"
+			}
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"descColor": {
+			"type": "string",
+			"default": "rgba(255,255,255,0.85)"
+		},
+		"descFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "15px",
+				"tablet": "14px",
+				"mobile": "14px"
+			}
+		},
+		"btnLabel": {
+			"type": "string",
+			"default": "Learn More"
+		},
+		"btnBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnColor": {
+			"type": "string",
+			"default": "#111111"
+		},
+		"btnBgHover": {
+			"type": "string",
+			"default": "#f0f0f0"
+		},
+		"btnColorHover": {
+			"type": "string",
+			"default": "#111111"
+		},
+		"btnPaddingV": {
+			"type": "number",
+			"default": 10
+		},
+		"btnPaddingH": {
+			"type": "number",
+			"default": 22
+		},
+		"btnRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"btnFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"gapBetweenPanels": {
+			"type": "number",
+			"default": 4
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"mobileBreakpoint": {
+			"type": "number",
+			"default": 768
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

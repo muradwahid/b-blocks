@@ -1,0 +1,128 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/image-mask",
+	"version": "2.0.84",
+	"title": "Image Mask",
+	"category": "bBlocks",
+	"description": "Apply creative CSS clip-path and SVG mask shapes — circle, hexagon, blob, wave, star, heart and more — to any media-library image, with optional caption, link, border, shadow, and hover effects.",
+	"keywords": [
+		"image mask",
+		"clip path",
+		"shape",
+		"svg mask",
+		"circle image",
+		"hexagon",
+		"blob"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"imageId": {
+			"type": "integer",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"shape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"customSvgUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageWidth": {
+			"type": "integer",
+			"default": 300
+		},
+		"imageHeight": {
+			"type": "integer",
+			"default": 300
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"caption": {
+			"type": "string",
+			"default": ""
+		},
+		"captionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"captionFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"linkNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": "none"
+		},
+		"hoverDuration": {
+			"type": "integer",
+			"default": 300
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"shadow": {
+			"type": "string",
+			"default": "none"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"objectFit": {
+			"type": "string",
+			"default": "cover"
+		},
+		"objectPosition": {
+			"type": "string",
+			"default": "center center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

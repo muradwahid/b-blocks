@@ -1,0 +1,62 @@
+/**
+ * Anchor Navigation — editor-only styles.
+ *
+ * The editor renders a static preview of the bar (no sticky positioning, no
+ * scroll-spy). Per-instance themeable values are applied inline in Edit.js;
+ * these rules cover editor affordances and the sidebar repeater cards only.
+ */
+
+.wp-block-b-blocks-anchor-nav {
+	.bb-an-list {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: 2px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow-x: auto;
+	}
+
+	.bb-an-item {
+		flex: 0 0 auto;
+		margin: 0;
+	}
+
+	.bb-an-link {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		white-space: nowrap;
+		text-decoration: none;
+		line-height: 1.2;
+		border-bottom: 2px solid transparent;
+		cursor: default;
+	}
+}
+
+// Sidebar repeater cards.
+.bb-an-link-card {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 6px;
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.bb-an-link-card-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	opacity: 0.8;
+}
+
+.bb-an-help {
+	font-size: 11px;
+	opacity: 0.7;
+	margin: -4px 0 8px;
+}

@@ -1,0 +1,190 @@
+/**
+ * Logo Grid — frontend + editor shared styles. Mobile-first.
+ *
+ * All instance-specific values arrive as CSS custom properties set inline by
+ * render.php (frontend) and Edit.js (editor), scoped under the wrapper id.
+ */
+
+.bb-lg {
+	box-sizing: border-box;
+	padding-top: var(--bb-lg-block-pt, 32px);
+	padding-bottom: var(--bb-lg-block-pb, 32px);
+	background-color: var(--bb-lg-block-bg, transparent);
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// Optional section label.
+	.bb-lg-label {
+		margin: 0 auto var(--bb-lg-label-gap, 16px);
+		max-width: var(--bb-lg-max-width, 100%);
+		color: var(--bb-lg-label-color, inherit);
+		font-size: var(--bb-lg-label-size, 14px);
+		font-weight: var(--bb-lg-label-weight, 400);
+		text-align: var(--bb-lg-label-align, center);
+		line-height: 1.4;
+	}
+
+	// Grid container — mobile first.
+	.bb-lg-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--bb-lg-cols-mobile, 2), minmax(0, 1fr));
+		gap: var(--bb-lg-row-gap, 24px) var(--bb-lg-col-gap, 32px);
+		margin: 0 auto;
+		max-width: var(--bb-lg-max-width, 100%);
+		list-style: none;
+		padding: 0;
+	}
+
+	// Single logo cell.
+	.bb-lg-item {
+		display: flex;
+		align-items: center;
+		justify-content: var(--bb-lg-justify, center);
+		padding: var(--bb-lg-cell-padding, 12px);
+		background-color: var(--bb-lg-cell-bg, transparent);
+		border-radius: var(--bb-lg-cell-radius, 0);
+		transition: transform var(--bb-lg-transition, 300ms) ease,
+			box-shadow var(--bb-lg-transition, 300ms) ease;
+	}
+
+	&.bb-lg--has-border .bb-lg-item {
+		border: var(--bb-lg-cell-border-w, 0) solid var(--bb-lg-cell-border-c, transparent);
+	}
+
+	// Link wrapper.
+	.bb-lg-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		max-width: 100%;
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 3px;
+		}
+	}
+
+	// The logo image.
+	.bb-lg-img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-height: var(--bb-lg-logo-max-h, 60px);
+		max-width: var(--bb-lg-logo-max-w, 160px);
+		object-fit: contain;
+		transition: filter var(--bb-lg-transition, 300ms) ease,
+			opacity var(--bb-lg-transition, 300ms) ease;
+	}
+
+	// --- Default filter ---
+	&.bb-lg--filter-grayscale .bb-lg-img {
+		filter: grayscale(100%);
+	}
+	&.bb-lg--filter-none .bb-lg-img {
+		filter: grayscale(0%);
+	}
+
+	// --- Hover: color (grayscale -> full color) ---
+	&.bb-lg--hover-color {
+		.bb-lg-item:hover .bb-lg-img,
+		.bb-lg-item:focus-within .bb-lg-img {
+			filter: grayscale(0%);
+		}
+	}
+
+	// --- Hover: opacity (dim -> full) ---
+	&.bb-lg--hover-opacity {
+		.bb-lg-img {
+			opacity: 0.5;
+		}
+		.bb-lg-item:hover .bb-lg-img,
+		.bb-lg-item:focus-within .bb-lg-img {
+			opacity: 1;
+		}
+	}
+
+	// --- Hover: lift ---
+	&.bb-lg--hover-lift {
+		.bb-lg-item:hover,
+		.bb-lg-item:focus-within {
+			transform: translateY(-3px);
+			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	// Editor placeholder when no image yet.
+	.bb-lg-placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		min-height: var(--bb-lg-logo-max-h, 60px);
+		max-width: var(--bb-lg-logo-max-w, 160px);
+		border: 1px dashed rgba(0, 0, 0, 0.18);
+		border-radius: 4px;
+		color: rgba(0, 0, 0, 0.45);
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bb-lg-empty {
+		margin: 0 auto;
+		max-width: var(--bb-lg-max-width, 100%);
+		text-align: center;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 13px;
+	}
+
+	// Tablet.
+	@media (min-width: 600px) {
+		.bb-lg-grid {
+			grid-template-columns: repeat(var(--bb-lg-cols-tablet, 3), minmax(0, 1fr));
+		}
+	}
+
+	// Desktop.
+	@media (min-width: 1024px) {
+		.bb-lg-grid {
+			grid-template-columns: repeat(var(--bb-lg-cols-desktop, 5), minmax(0, 1fr));
+		}
+	}
+
+	// Reduced motion: suppress all transitions/transforms.
+	&.bb-lg--no-motion {
+		.bb-lg-item,
+		.bb-lg-img,
+		.bb-lg-link {
+			transition: none !important;
+			transform: none !important;
+		}
+	}
+}
+
+// Visually-hidden helper for screen-reader-only text (matches WP core).
+.bb-lg .screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-lg {
+		.bb-lg-item,
+		.bb-lg-img,
+		.bb-lg-link {
+			transition: none !important;
+			transform: none !important;
+		}
+	}
+}

@@ -1,0 +1,191 @@
+// Frontend + editor shared styles for the Testimonial Card block.
+// Mobile-first. All per-instance values come from CSS custom properties so
+// theme styles inherit when an override is unset.
+
+.wp-block-b-blocks-testimonial-card {
+	--bb-tc-accent: #0d6efd;
+	--bb-tc-card-bg: #ffffff;
+	--bb-tc-border-width: 1px;
+	--bb-tc-border-radius: 12px;
+	--bb-tc-pt: 24px;
+	--bb-tc-pr: 24px;
+	--bb-tc-pb: 24px;
+	--bb-tc-pl: 24px;
+	--bb-tc-text-size: 16px;
+	--bb-tc-text-weight: 400;
+	--bb-tc-name-size: 16px;
+	--bb-tc-name-weight: 700;
+	--bb-tc-meta-size: 13px;
+	--bb-tc-star-size: 18px;
+	--bb-tc-avatar-size: 56px;
+	--bb-tc-avatar-radius: 50%;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-tc {
+		margin: 0;
+		max-width: var(--bb-tc-max-width, 100%);
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		background-color: var(--bb-tc-card-bg);
+		padding: var(--bb-tc-pt) var(--bb-tc-pr) var(--bb-tc-pb) var(--bb-tc-pl);
+		border-radius: var(--bb-tc-border-radius);
+		color: var(--bb-tc-text, inherit);
+		font-size: var(--bb-tc-text-size);
+	}
+
+	// Alignment
+	&.bb-tc--align-left .bb-tc { text-align: left; }
+	&.bb-tc--align-center {
+		.bb-tc { text-align: center; }
+		.bb-tc-stars,
+		.bb-tc-caption { justify-content: center; }
+	}
+	&.bb-tc--align-right {
+		.bb-tc { text-align: right; }
+		.bb-tc-stars,
+		.bb-tc-caption { justify-content: flex-end; }
+	}
+
+	// Quote icon
+	.bb-tc-quote-icon {
+		width: 32px;
+		height: 32px;
+		color: var(--bb-tc-quote-color, var(--bb-tc-accent));
+		flex: 0 0 auto;
+	}
+	&.bb-tc--align-center .bb-tc-quote-icon { margin-inline: auto; }
+	&.bb-tc--align-right .bb-tc-quote-icon { margin-inline-start: auto; }
+
+	// Star rating
+	.bb-tc-stars {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		line-height: 1;
+	}
+	.bb-tc-star {
+		width: var(--bb-tc-star-size);
+		height: var(--bb-tc-star-size);
+		flex: 0 0 auto;
+	}
+	.bb-tc-star--on path { fill: var(--bb-tc-accent); }
+	.bb-tc-star--off path { fill: #d1d5db; }
+
+	// Quote text
+	.bb-tc-quote {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		quotes: none;
+		font-size: var(--bb-tc-text-size);
+		font-weight: var(--bb-tc-text-weight);
+		line-height: 1.6;
+		color: var(--bb-tc-text, inherit);
+
+		p { margin: 0 0 0.5em; }
+		p:last-child { margin-bottom: 0; }
+	}
+
+	// Caption / attribution
+	.bb-tc-caption {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: 4px;
+	}
+
+	.bb-tc-avatar {
+		width: var(--bb-tc-avatar-size);
+		height: var(--bb-tc-avatar-size);
+		object-fit: cover;
+		border-radius: var(--bb-tc-avatar-radius);
+		flex: 0 0 auto;
+		display: block;
+	}
+
+	.bb-tc-cite {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		font-style: normal;
+		min-width: 0;
+	}
+
+	.bb-tc-name {
+		font-size: var(--bb-tc-name-size);
+		font-weight: var(--bb-tc-name-weight);
+		line-height: 1.3;
+		color: var(--bb-tc-name-color, inherit);
+	}
+
+	.bb-tc-meta {
+		font-size: var(--bb-tc-meta-size);
+		line-height: 1.3;
+		color: var(--bb-tc-meta-color, #6b7280);
+	}
+
+	// Avatar position variants
+	&.bb-tc--avatar-top .bb-tc-caption {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	&.bb-tc--avatar-top.bb-tc--align-center .bb-tc-caption { align-items: center; }
+	&.bb-tc--avatar-top.bb-tc--align-right .bb-tc-caption { align-items: flex-end; }
+
+	&.bb-tc--avatar-right .bb-tc-caption {
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+	}
+	&.bb-tc--avatar-right.bb-tc--align-center .bb-tc-caption { justify-content: center; }
+	&.bb-tc--avatar-right.bb-tc--align-left .bb-tc-caption { justify-content: flex-start; }
+
+	// Layout: card
+	&.bb-tc--card .bb-tc {
+		border: var(--bb-tc-border-width) solid var(--bb-tc-border-color, #e5e7eb);
+	}
+
+	// Layout: minimal — no background, no border
+	&.bb-tc--minimal .bb-tc {
+		background-color: transparent;
+		border: 0;
+		padding-inline: 0;
+	}
+
+	// Layout: bubble — speech-bubble tail via ::after
+	&.bb-tc--bubble {
+		.bb-tc {
+			position: relative;
+			border: var(--bb-tc-border-width) solid var(--bb-tc-border-color, #e5e7eb);
+			margin-bottom: 16px;
+		}
+		.bb-tc::after {
+			content: '';
+			position: absolute;
+			bottom: -14px;
+			width: 0;
+			height: 0;
+			border-style: solid;
+		}
+		&.bb-tc--tail-bl .bb-tc::after {
+			left: 28px;
+			border-width: 14px 14px 0 0;
+			border-color: var(--bb-tc-card-bg) transparent transparent transparent;
+		}
+		&.bb-tc--tail-br .bb-tc::after {
+			right: 28px;
+			border-width: 14px 0 0 14px;
+			border-color: var(--bb-tc-card-bg) transparent transparent transparent;
+		}
+	}
+
+	@media (min-width: 600px) {
+		.bb-tc-quote-icon {
+			width: 36px;
+			height: 36px;
+		}
+	}
+}

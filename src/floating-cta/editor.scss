@@ -1,0 +1,30 @@
+/**
+ * Editor-only styles for the Floating CTA block.
+ *
+ * In the canvas the button renders inline (not fixed) and is always visible
+ * so the author can preview and edit it without scrolling.
+ */
+
+.wp-block-b-blocks-floating-cta.bb-fc-editor {
+	.bb-fc-wrap {
+		position: relative;
+
+		// Force the preview visible regardless of scroll/animation state.
+		&.is-hidden,
+		&.is-visible {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			transform: none;
+		}
+	}
+
+	.bb-fc-btn {
+		// Keep the button non-navigating inside the editor.
+		pointer-events: none;
+	}
+
+	.bb-fc-dismiss {
+		pointer-events: none;
+	}
+}

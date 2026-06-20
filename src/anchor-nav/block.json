@@ -1,0 +1,116 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/anchor-nav",
+	"title": "Anchor Navigation",
+	"description": "A sticky horizontal in-page anchor navigation bar with smooth-scroll jump links and a scroll-spy active-state indicator.",
+	"category": "bBlocks",
+	"keywords": [
+		"anchor nav",
+		"jump links",
+		"scroll spy",
+		"in-page navigation",
+		"sticky nav"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"links": {
+			"type": "array",
+			"default": [
+				{ "_key": "l0", "label": "Overview", "anchor": "overview" },
+				{ "_key": "l1", "label": "Features", "anchor": "features" },
+				{ "_key": "l2", "label": "Pricing", "anchor": "pricing" }
+			]
+		},
+		"sticky": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAfterPx": {
+			"type": "integer",
+			"default": 0
+		},
+		"scrollOffset": {
+			"type": "integer",
+			"default": 72
+		},
+		"activeColor": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"activeBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"linkColor": {
+			"type": "string",
+			"default": "#374151"
+		},
+		"linkHoverColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"barBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"barBorderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"barBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"fontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"linkPaddingX": {
+			"type": "integer",
+			"default": 16
+		},
+		"linkPaddingY": {
+			"type": "integer",
+			"default": 10
+		},
+		"indicatorStyle": {
+			"type": "string",
+			"default": "underline"
+		},
+		"barPaddingX": {
+			"type": "integer",
+			"default": 16
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"zIndex": {
+			"type": "integer",
+			"default": 100
+		},
+		"barLabel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

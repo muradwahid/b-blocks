@@ -1,0 +1,214 @@
+// HowTo Schema Block — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+
+.wp-block-b-blocks-howto-schema {
+	--bb-howto-step-spacing: 24px;
+	--bb-howto-number-bg: #2563eb;
+	--bb-howto-number-color: #ffffff;
+	--bb-howto-number-size: 36px;
+	--bb-howto-connector-color: #dee2e6;
+	--bb-howto-step-title-color: #212529;
+	--bb-howto-step-title-font-size: 17px;
+	--bb-howto-step-text-color: #495057;
+	--bb-howto-step-text-font-size: 15px;
+	--bb-howto-step-bg: transparent;
+	--bb-howto-step-border-radius: 6px;
+	--bb-howto-step-padding: 12px 16px 12px 16px;
+	--bb-howto-meta-color: #6c757d;
+	--bb-howto-meta-font-size: 14px;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-howto {
+		display: block;
+	}
+
+	.bb-howto__title {
+		margin: 0 0 8px;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	.bb-howto__description {
+		margin: 0 0 16px;
+		color: var(--bb-howto-step-text-color);
+
+		> p {
+			margin: 0 0 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.bb-howto__meta {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin: 0 0 20px;
+		padding: 12px 14px;
+		background: #f8f9fa;
+		border: 1px solid #e9ecef;
+		border-radius: 6px;
+		color: var(--bb-howto-meta-color);
+		font-size: var(--bb-howto-meta-font-size);
+		line-height: 1.5;
+
+		.bb-howto__meta-group {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			gap: 6px;
+		}
+
+		strong {
+			color: inherit;
+			font-weight: 600;
+		}
+
+		.bb-howto__meta-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px 12px;
+
+			> li {
+				margin: 0;
+				padding: 0;
+				position: relative;
+
+				&:not(:last-child)::after {
+					content: '·';
+					margin-left: 12px;
+					opacity: 0.6;
+				}
+			}
+		}
+	}
+
+	.bb-howto__empty {
+		margin: 0;
+		padding: 12px 16px;
+		font-style: italic;
+		color: #6c757d;
+		background: #f8f9fa;
+		border: 1px dashed #ced4da;
+		border-radius: 6px;
+	}
+
+	.bb-howto__steps {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-howto-step-spacing);
+		counter-reset: bb-howto-step;
+	}
+
+	.bb-howto-step {
+		position: relative;
+		display: flex;
+		gap: 14px;
+		padding: var(--bb-howto-step-padding);
+		background: var(--bb-howto-step-bg);
+		border-radius: var(--bb-howto-step-border-radius);
+		counter-increment: bb-howto-step;
+	}
+
+	// Connector line: visually links sequential step badges.
+	&.has-connector.has-numbers .bb-howto-step:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		top: calc(var(--bb-howto-number-size) + 6px);
+		left: calc(var(--bb-howto-step-padding-left, 0px) + (var(--bb-howto-number-size) / 2) - 1px);
+		// Fall back to padding-resolved left via the padding shorthand variable
+		// using a computed value: at minimum 16px + half the number size.
+		left: calc((var(--bb-howto-number-size) / 2) - 1px + 16px);
+		width: 2px;
+		bottom: calc(-1 * var(--bb-howto-step-spacing) + 4px);
+		background: var(--bb-howto-connector-color);
+		pointer-events: none;
+	}
+
+	.bb-howto-step__number {
+		flex: 0 0 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--bb-howto-number-size);
+		height: var(--bb-howto-number-size);
+		background: var(--bb-howto-number-bg);
+		color: var(--bb-howto-number-color);
+		font-weight: 700;
+		font-size: calc(var(--bb-howto-number-size) * 0.42);
+		line-height: 1;
+		user-select: none;
+	}
+
+	&.bb-howto-number--circle .bb-howto-step__number {
+		border-radius: 50%;
+	}
+
+	&.bb-howto-number--square .bb-howto-step__number {
+		border-radius: 6px;
+	}
+
+	&.no-numbers .bb-howto-step__number {
+		display: none;
+	}
+
+	.bb-howto-step__body {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.bb-howto-step__title {
+		margin: 0 0 6px;
+		color: var(--bb-howto-step-title-color);
+		font-size: var(--bb-howto-step-title-font-size);
+		font-weight: 600;
+		line-height: 1.35;
+		word-break: break-word;
+	}
+
+	.bb-howto-step__image {
+		margin: 8px 0;
+
+		> img {
+			display: block;
+			max-width: 100%;
+			height: auto;
+			border-radius: 4px;
+		}
+	}
+
+	.bb-howto-step__text {
+		color: var(--bb-howto-step-text-color);
+		font-size: var(--bb-howto-step-text-font-size);
+		line-height: 1.6;
+
+		> p {
+			margin: 0 0 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	@media (max-width: 480px) {
+		.bb-howto-step {
+			gap: 10px;
+		}
+
+		&.has-connector.has-numbers .bb-howto-step:not(:last-child)::before {
+			left: calc((var(--bb-howto-number-size) / 2) - 1px + 12px);
+		}
+	}
+}

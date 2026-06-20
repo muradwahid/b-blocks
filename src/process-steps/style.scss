@@ -1,0 +1,401 @@
+// Process Steps Block — frontend + editor shared styles.
+// Mobile-first, responsive, WCAG 2.1 AA friendly.
+
+.wp-block-b-blocks-process-steps {
+	--bb-ps-badge-size: 56px;
+	--bb-ps-badge-bg: #2563eb;
+	--bb-ps-badge-color: #ffffff;
+	--bb-ps-badge-font-size: 20px;
+	--bb-ps-badge-radius: 50%;
+	--bb-ps-connector-color: #cbd5e1;
+	--bb-ps-connector-width: 2px;
+	--bb-ps-connector-style: solid;
+	--bb-ps-title-color: inherit;
+	--bb-ps-title-font-size: 18px;
+	--bb-ps-title-font-size-tablet: 18px;
+	--bb-ps-title-font-size-mobile: 18px;
+	--bb-ps-desc-color: inherit;
+	--bb-ps-desc-font-size: 15px;
+	--bb-ps-desc-font-size-tablet: 15px;
+	--bb-ps-desc-font-size-mobile: 15px;
+	--bb-ps-card-bg: transparent;
+	--bb-ps-card-radius: 8px;
+	--bb-ps-card-padding: 16px 16px 16px 16px;
+	--bb-ps-gap: 32px;
+	--bb-ps-gap-tablet: 24px;
+	--bb-ps-gap-mobile: 16px;
+	--bb-ps-cols: 3;
+	--bb-ps-cols-tablet: 2;
+	--bb-ps-cols-mobile: 1;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-ps-empty {
+		margin: 0;
+		padding: 12px 16px;
+		font-style: italic;
+		color: #6c757d;
+		background: #f8f9fa;
+		border: 1px dashed #ced4da;
+		border-radius: 6px;
+	}
+
+	.bb-ps-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--bb-ps-gap-mobile);
+	}
+
+	.bb-ps-step {
+		position: relative;
+		display: flex;
+		gap: 14px;
+		padding: var(--bb-ps-card-padding);
+		background: var(--bb-ps-card-bg);
+		border-radius: var(--bb-ps-card-radius);
+		min-width: 0;
+	}
+
+	.bb-ps-step__badge {
+		flex: 0 0 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--bb-ps-badge-size);
+		height: var(--bb-ps-badge-size);
+		background: var(--bb-ps-badge-bg);
+		color: var(--bb-ps-badge-color);
+		border-radius: var(--bb-ps-badge-radius);
+		font-weight: 700;
+		font-size: var(--bb-ps-badge-font-size);
+		line-height: 1;
+		user-select: none;
+		position: relative;
+		z-index: 1;
+
+		> i {
+			font-size: calc(var(--bb-ps-badge-size) * 0.42);
+			line-height: 1;
+		}
+	}
+
+	.bb-ps-step__number {
+		display: inline-block;
+		line-height: 1;
+	}
+
+	.bb-ps-step__body {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.bb-ps-step__title {
+		margin: 0 0 6px;
+		color: var(--bb-ps-title-color);
+		font-size: var(--bb-ps-title-font-size-mobile);
+		font-weight: 600;
+		line-height: 1.35;
+		word-break: break-word;
+	}
+
+	.bb-ps-step__description {
+		color: var(--bb-ps-desc-color);
+		font-size: var(--bb-ps-desc-font-size-mobile);
+		line-height: 1.6;
+
+		> p {
+			margin: 0 0 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		a {
+			text-decoration: underline;
+
+			&:focus-visible {
+				outline: 2px solid currentColor;
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	// --- Alignment modifiers (apply to step body text) -----------------
+	&.bb-ps-align--left .bb-ps-step__body {
+		text-align: left;
+	}
+
+	&.bb-ps-align--center .bb-ps-step__body {
+		text-align: center;
+	}
+
+	&.bb-ps-align--right .bb-ps-step__body {
+		text-align: right;
+	}
+
+	// ===================================================================
+	// VERTICAL LAYOUT — classic stacked list with a left-side connector.
+	// ===================================================================
+	&.bb-ps-layout--vertical {
+		.bb-ps-list {
+			grid-template-columns: 1fr;
+		}
+
+		.bb-ps-step {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+
+		// Connector: vertical line from this step's badge to the next.
+		&.has-connector .bb-ps-step:not(:last-child)::before {
+			content: '';
+			position: absolute;
+			top: calc(var(--bb-ps-badge-size) + 8px);
+			left: calc(var(--bb-ps-badge-size) / 2);
+			width: 0;
+			height: calc(100% + var(--bb-ps-gap-mobile) - var(--bb-ps-badge-size) - 16px);
+			border-left: var(--bb-ps-connector-width) var(--bb-ps-connector-style) var(--bb-ps-connector-color);
+			transform: translateX(calc(var(--bb-ps-connector-width) / -2));
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		// Vertical layout ignores alignment for badge column but still
+		// applies to body text; keep badge column flush left.
+		&.bb-ps-align--center .bb-ps-step,
+		&.bb-ps-align--right .bb-ps-step {
+			text-align: initial;
+		}
+	}
+
+	// ===================================================================
+	// HORIZONTAL LAYOUT — grid with column-count per breakpoint.
+	// ===================================================================
+	&.bb-ps-layout--horizontal {
+		.bb-ps-list {
+			grid-template-columns: repeat(var(--bb-ps-cols-mobile), minmax(0, 1fr));
+		}
+
+		.bb-ps-step {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.bb-ps-step__body {
+			width: 100%;
+		}
+
+		// Connector: horizontal line linking sibling badges within a row.
+		// Lives at the badge's vertical center, stretching from one badge
+		// to the next in the same row. Hidden on the first step of any row
+		// (no preceding sibling to connect to). The line is purely
+		// decorative; markup remains untouched.
+		&.has-connector .bb-ps-step:not(:first-child)::before {
+			content: '';
+			position: absolute;
+			top: calc(var(--bb-ps-card-padding-top, 16px) + (var(--bb-ps-badge-size) / 2));
+			top: calc(16px + (var(--bb-ps-badge-size) / 2));
+			right: calc(100% - var(--bb-ps-gap-mobile) / 2 - 1px);
+			width: var(--bb-ps-gap-mobile);
+			height: 0;
+			border-top: var(--bb-ps-connector-width) var(--bb-ps-connector-style) var(--bb-ps-connector-color);
+			pointer-events: none;
+			z-index: 0;
+		}
+	}
+
+	// ===================================================================
+	// Tablet breakpoint
+	// ===================================================================
+	@media (min-width: 600px) {
+		.bb-ps-list {
+			gap: var(--bb-ps-gap-tablet);
+		}
+
+		.bb-ps-step__title {
+			font-size: var(--bb-ps-title-font-size-tablet);
+		}
+
+		.bb-ps-step__description {
+			font-size: var(--bb-ps-desc-font-size-tablet);
+		}
+
+		&.bb-ps-layout--horizontal {
+			.bb-ps-list {
+				grid-template-columns: repeat(var(--bb-ps-cols-tablet), minmax(0, 1fr));
+			}
+
+			&.has-connector .bb-ps-step:not(:first-child)::before {
+				right: calc(100% - var(--bb-ps-gap-tablet) / 2 - 1px);
+				width: var(--bb-ps-gap-tablet);
+			}
+		}
+
+		&.bb-ps-layout--vertical.has-connector .bb-ps-step:not(:last-child)::before {
+			height: calc(100% + var(--bb-ps-gap-tablet) - var(--bb-ps-badge-size) - 16px);
+		}
+	}
+
+	// ===================================================================
+	// Desktop breakpoint
+	// ===================================================================
+	@media (min-width: 960px) {
+		.bb-ps-list {
+			gap: var(--bb-ps-gap);
+		}
+
+		.bb-ps-step__title {
+			font-size: var(--bb-ps-title-font-size);
+		}
+
+		.bb-ps-step__description {
+			font-size: var(--bb-ps-desc-font-size);
+		}
+
+		&.bb-ps-layout--horizontal {
+			.bb-ps-list {
+				grid-template-columns: repeat(var(--bb-ps-cols), minmax(0, 1fr));
+			}
+
+			&.has-connector .bb-ps-step:not(:first-child)::before {
+				right: calc(100% - var(--bb-ps-gap) / 2 - 1px);
+				width: var(--bb-ps-gap);
+			}
+		}
+
+		&.bb-ps-layout--vertical.has-connector .bb-ps-step:not(:last-child)::before {
+			height: calc(100% + var(--bb-ps-gap) - var(--bb-ps-badge-size) - 16px);
+		}
+	}
+
+	// First-of-row connector hiding for horizontal layout. Because
+	// grid-template-columns yields N columns, items in column 1 (1st, N+1,
+	// 2N+1, …) are first-of-row. CSS can't easily detect grid row siblings
+	// across breakpoints with :nth-child, so we ride the visible connector
+	// — at narrow widths (1 col) every step except the first has a
+	// ::before, but they are vertically stacked so the line still reads as
+	// a horizontal sliver next to the previous step. To avoid that visual
+	// glitch we hide horizontal-layout connectors entirely on 1-column
+	// mobile widths where the grid is effectively a vertical list.
+	&.bb-ps-layout--horizontal.has-connector .bb-ps-step:not(:first-child)::before {
+		display: none;
+	}
+
+	@media (min-width: 600px) {
+		// At tablet+ we restore the connector for horizontal layout.
+		&.bb-ps-layout--horizontal.has-connector .bb-ps-step:not(:first-child)::before {
+			display: block;
+		}
+	}
+
+	// =====================================================================
+	// Theme presets — color & feel. Layered on top of the layout above.
+	// Inline per-instance custom properties (badge / connector / card
+	// controls) still cascade — themes only override what they care about.
+	// =====================================================================
+
+	// ---- Classic (default) — no overrides, kept for parity --------------
+	&.bb-ps-theme--classic { /* uses base styles */ }
+
+	// ---- Modern: gradient badges + shadowed card -----------------------
+	&.bb-ps-theme--modern {
+		.bb-ps-step {
+			background:
+				linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+			border: 0 !important;
+			border-radius: 16px !important;
+			box-shadow: 0 14px 32px -16px rgba(15, 23, 42, 0.18),
+				0 2px 6px -2px rgba(15, 23, 42, 0.06);
+		}
+		.bb-ps-step__badge {
+			background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+			color: #ffffff !important;
+			box-shadow: 0 8px 20px -6px rgba(236, 72, 153, 0.45);
+		}
+		.bb-ps-step__title {
+			color: #0f172a;
+			font-weight: 700;
+		}
+		.bb-ps-step__description {
+			color: #475569;
+		}
+		// Connector picks up a brand-tinted line.
+		&.has-connector .bb-ps-step::before {
+			background: linear-gradient(90deg, rgba(139, 92, 246, 0.35), rgba(236, 72, 153, 0.35)) !important;
+		}
+	}
+
+	// ---- Minimal: borderless, dotted connector, low-contrast -----------
+	&.bb-ps-theme--minimal {
+		.bb-ps-step {
+			background: transparent !important;
+			border: 0 !important;
+			padding: 16px 12px !important;
+		}
+		.bb-ps-step__badge {
+			background: transparent !important;
+			color: #475569 !important;
+			border: 1px solid currentColor;
+			font-weight: 500;
+			box-shadow: none;
+		}
+		.bb-ps-step__title {
+			font-weight: 500;
+			letter-spacing: -0.01em;
+		}
+		.bb-ps-step__description {
+			color: #64748b;
+		}
+		// Force the connector to a dotted style regardless of user setting.
+		&.has-connector .bb-ps-step::before {
+			background: none !important;
+			border-top: 2px dotted #cbd5e1;
+			height: 0 !important;
+		}
+		&.bb-ps-layout--vertical.has-connector .bb-ps-step::before {
+			border-top: 0;
+			border-left: 2px dotted #cbd5e1;
+			width: 0 !important;
+		}
+	}
+
+	// ---- Bold: high-contrast dark badges, brutalist ---------------------
+	&.bb-ps-theme--bold {
+		.bb-ps-step {
+			background: #ffffff !important;
+			border: 2px solid #0f172a !important;
+			border-radius: 0 !important;
+			box-shadow: 6px 6px 0 0 #0f172a;
+		}
+		.bb-ps-step__badge {
+			background: #0f172a !important;
+			color: #facc15 !important;
+			border-radius: 0 !important;
+			font-weight: 800;
+			font-size: calc(var(--bb-ps-badge-font-size, 20px) * 1.1);
+			box-shadow: 3px 3px 0 0 #facc15;
+		}
+		.bb-ps-step__title {
+			color: #0f172a;
+			font-weight: 800;
+			text-transform: uppercase;
+			letter-spacing: 0.02em;
+		}
+		.bb-ps-step__description {
+			color: #1e293b;
+		}
+		&.has-connector .bb-ps-step::before {
+			background: #0f172a !important;
+			height: 3px !important;
+		}
+		&.bb-ps-layout--vertical.has-connector .bb-ps-step::before {
+			width: 3px !important;
+		}
+	}
+}

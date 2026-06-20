@@ -1,0 +1,148 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/faq-block",
+	"version": "1.0.0",
+	"title": "FAQ",
+	"category": "bBlocks",
+	"description": "A schema-aware FAQ block with collapsible question/answer pairs. Outputs JSON-LD FAQPage markup for Google rich snippets. Keyboard accessible and reduced-motion friendly.",
+	"keywords": [
+		"faq",
+		"faq schema",
+		"accordion",
+		"questions",
+		"jsonld",
+		"rich snippets"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "faq-default-1",
+					"question": "What is bBlocks?",
+					"answer": "bBlocks is a Gutenberg block collection that extends the WordPress editor with custom blocks and page-builder features."
+				},
+				{
+					"_key": "faq-default-2",
+					"question": "Does the FAQ block output schema markup?",
+					"answer": "Yes. When enabled, this block outputs JSON-LD FAQPage markup that Google can use to show rich snippets in search results."
+				}
+			]
+		},
+		"enableSchema": {
+			"type": "boolean",
+			"default": true
+		},
+		"openFirst": {
+			"type": "boolean",
+			"default": false
+		},
+		"allowMultiple": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconStyle": {
+			"type": "string",
+			"default": "chevron"
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"gap": {
+			"type": "number",
+			"default": 8
+		},
+		"itemBorderStyle": {
+			"type": "string",
+			"default": "solid"
+		},
+		"itemBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"itemBorderRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"itemBorderColor": {
+			"type": "string",
+			"default": "#dee2e6"
+		},
+		"questionBg": {
+			"type": "string",
+			"default": "#f8f9fa"
+		},
+		"questionColor": {
+			"type": "string",
+			"default": "#212529"
+		},
+		"questionFontSize": {
+			"type": "number",
+			"default": 17
+		},
+		"answerBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"answerColor": {
+			"type": "string",
+			"default": "#495057"
+		},
+		"answerFontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"questionPadding": {
+			"type": "object",
+			"default": {
+				"top": 14,
+				"right": 16,
+				"bottom": 14,
+				"left": 16
+			}
+		},
+		"answerPadding": {
+			"type": "object",
+			"default": {
+				"top": 12,
+				"right": 16,
+				"bottom": 12,
+				"left": 16
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

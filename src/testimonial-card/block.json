@@ -1,0 +1,195 @@
+{
+	"apiVersion": 3,
+	"version": "2.0.76",
+	"name": "b-blocks/testimonial-card",
+	"title": "Testimonial Card",
+	"description": "Display a single customer testimonial with avatar, name, role, company, star rating, and a quote in card, minimal, or bubble style.",
+	"category": "bBlocks",
+	"keywords": [
+		"testimonial",
+		"review",
+		"quote",
+		"rating",
+		"social proof",
+		"card"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"reviewText": {
+			"type": "string",
+			"default": "This product has completely changed how our team works. Highly recommended to anyone looking for a reliable solution."
+		},
+		"reviewerName": {
+			"type": "string",
+			"default": "Jane Smith"
+		},
+		"reviewerRole": {
+			"type": "string",
+			"default": "Product Manager"
+		},
+		"reviewerCompany": {
+			"type": "string",
+			"default": ""
+		},
+		"avatarId": {
+			"type": "number",
+			"default": 0
+		},
+		"avatarUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"rating": {
+			"type": "number",
+			"default": 5
+		},
+		"layout": {
+			"type": "string",
+			"default": "card"
+		},
+		"avatarPosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 56
+		},
+		"avatarShape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"showCompany": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAvatar": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"quoteIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"quoteIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#0d6efd"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"nameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 12
+		},
+		"paddingTop": {
+			"type": "number",
+			"default": 24
+		},
+		"paddingRight": {
+			"type": "number",
+			"default": 24
+		},
+		"paddingBottom": {
+			"type": "number",
+			"default": 24
+		},
+		"paddingLeft": {
+			"type": "number",
+			"default": 24
+		},
+		"textFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"textFontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"nameFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"nameFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"metaFontSize": {
+			"type": "number",
+			"default": 13
+		},
+		"starSize": {
+			"type": "number",
+			"default": 18
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"bubbleTailPosition": {
+			"type": "string",
+			"default": "bottom-left"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

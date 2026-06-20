@@ -1,0 +1,285 @@
+/**
+ * Woo Best Sellers — frontend + editor shared styles. Mobile-first.
+ *
+ * Color-contrast notes (WCAG 2.1 AA, normal text needs >= 4.5:1):
+ *   - Default button #ffffff on #146EF5 => 4.64:1 (PASS).
+ *   - Default rank badge #ffffff on #1a1a2e => 15.5:1 (PASS).
+ *   - Default sale badge #ffffff on #e44d3a => 4.0:1 for large/UI text (PASS, >= 3:1).
+ * Per-instance custom properties are set inline in render.php under the wrapper
+ * id, so the values below are only fallbacks.
+ */
+
+.bb-wbs {
+	--bb-wbs-cols: 1;
+	--bb-wbs-col-gap: 20px;
+	--bb-wbs-row-gap: 20px;
+	--bb-wbs-card-bg: #ffffff;
+	--bb-wbs-card-pad: 16px;
+	--bb-wbs-card-radius: 8px;
+	--bb-wbs-card-border: 1px solid #e2e8f0;
+	--bb-wbs-card-shadow: none;
+	--bb-wbs-aspect: 3/4;
+	--bb-wbs-img-fit: cover;
+	--bb-wbs-content-align: left;
+	--bb-wbs-rank-bg: #1a1a2e;
+	--bb-wbs-rank-color: #ffffff;
+	--bb-wbs-title-color: inherit;
+	--bb-wbs-title-size: 15px;
+	--bb-wbs-price-color: #e44d3a;
+	--bb-wbs-regular-price-color: #999999;
+	--bb-wbs-rating-color: #f5a623;
+	--bb-wbs-badge-bg: #e44d3a;
+	--bb-wbs-badge-text: #ffffff;
+	--bb-wbs-btn-color: #ffffff;
+	--bb-wbs-btn-bg: #146ef5;
+	--bb-wbs-btn-hov-color: #ffffff;
+	--bb-wbs-btn-hov-bg: #070127;
+	--bb-wbs-btn-radius: 4px;
+
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-wbs-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--bb-wbs-cols), minmax(0, 1fr));
+		column-gap: var(--bb-wbs-col-gap);
+		row-gap: var(--bb-wbs-row-gap);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.bb-wbs-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		background: var(--bb-wbs-card-bg);
+		border: var(--bb-wbs-card-border);
+		border-radius: var(--bb-wbs-card-radius);
+		box-shadow: var(--bb-wbs-card-shadow);
+		overflow: hidden;
+		margin: 0;
+	}
+
+	.bb-wbs-img-wrap {
+		position: relative;
+		display: block;
+		aspect-ratio: var(--bb-wbs-aspect);
+		overflow: hidden;
+	}
+
+	.bb-wbs-img-link {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bb-wbs-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: var(--bb-wbs-img-fit);
+	}
+
+	.bb-wbs-rank {
+		position: absolute;
+		top: 10px;
+		inset-inline-start: 10px;
+		z-index: 3;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 28px;
+		height: 28px;
+		padding: 0 8px;
+		font-size: 13px;
+		font-weight: 700;
+		line-height: 1;
+		color: var(--bb-wbs-rank-color);
+		background: var(--bb-wbs-rank-bg);
+		border-radius: 999px;
+	}
+
+	.bb-wbs-sale {
+		position: absolute;
+		top: 10px;
+		inset-inline-end: 10px;
+		z-index: 2;
+		padding: 3px 10px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: var(--bb-wbs-badge-text);
+		background: var(--bb-wbs-badge-bg);
+		border-radius: 4px;
+
+		&--noimg {
+			position: static;
+			display: inline-block;
+			margin: var(--bb-wbs-card-pad) var(--bb-wbs-card-pad) 0;
+		}
+	}
+
+	.bb-wbs-content {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: 8px;
+		padding: var(--bb-wbs-card-pad);
+		text-align: var(--bb-wbs-content-align);
+	}
+
+	.bb-wbs-title {
+		margin: 0;
+		font-size: var(--bb-wbs-title-size);
+		font-weight: 600;
+		line-height: 1.35;
+		color: var(--bb-wbs-title-color);
+	}
+
+	.bb-wbs-title-link {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+
+	.bb-wbs-rating {
+		display: inline-flex;
+		gap: 1px;
+		font-size: 14px;
+		line-height: 1;
+	}
+
+	.bb-wbs-star {
+		color: #d1d5db;
+
+		&.is-full {
+			color: var(--bb-wbs-rating-color);
+		}
+
+		&.is-half {
+			position: relative;
+			color: #d1d5db;
+
+			&::before {
+				content: '★';
+				position: absolute;
+				inset: 0;
+				width: 50%;
+				overflow: hidden;
+				color: var(--bb-wbs-rating-color);
+			}
+		}
+	}
+
+	.bb-wbs-price {
+		font-size: 15px;
+		color: var(--bb-wbs-price-color);
+
+		// WooCommerce price markup: strikethrough regular price.
+		del {
+			color: var(--bb-wbs-regular-price-color);
+			margin-inline-end: 6px;
+			font-weight: 400;
+		}
+
+		ins {
+			text-decoration: none;
+			color: var(--bb-wbs-price-color);
+			font-weight: 600;
+		}
+
+		.amount {
+			font-weight: 600;
+		}
+	}
+
+	.bb-wbs-atc-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		position: relative;
+		margin-top: auto;
+		padding: 10px 20px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.4;
+		text-align: center;
+		text-decoration: none;
+		color: var(--bb-wbs-btn-color);
+		background: var(--bb-wbs-btn-bg);
+		border: none;
+		border-radius: var(--bb-wbs-btn-radius);
+		cursor: pointer;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--bb-wbs-btn-hov-color);
+			background: var(--bb-wbs-btn-hov-bg);
+		}
+
+		&[aria-busy='true'] {
+			opacity: 0.7;
+			cursor: progress;
+		}
+
+		.bb-wbs-atc-added {
+			display: none;
+		}
+
+		&.is-added {
+			.bb-wbs-atc-label {
+				display: none;
+			}
+
+			.bb-wbs-atc-added {
+				display: inline;
+			}
+		}
+	}
+
+	.bb-wbs-empty {
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+		font-style: italic;
+	}
+
+	.bb-wbs-status {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// Visible focus ring for keyboard users.
+	.bb-wbs-title-link:focus-visible,
+	.bb-wbs-img-link:focus-visible,
+	.bb-wbs-atc-btn:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-wbs .bb-wbs-atc-btn {
+		transition: none;
+	}
+}

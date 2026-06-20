@@ -6,6 +6,7 @@ import Header from '../../../../../bpl-tools/Admin/Header';
 const navigation = [
 	{ name: 'Welcome', href: '/welcome' },
 	{ name: 'Blocks', href: '/blocks' },
+	{ name: 'Demos', href: '/demos' },
 	{ name: 'Cursor and Click Effects', href: '/cursor' },
 	{ name: 'Settings', href: '/settings' },
 	{ name: 'Pricing', href: '/pricing' },
@@ -19,7 +20,7 @@ const Layout = (props) => {
 	const location = useLocation();
 
 	return (
-		<div className="bPlDashboard">
+		<div className="bPlDashboard bPlDashboardV4">
 			<Header {...props}>
 				<nav className="bPlDashboardNav">
 					{navigation

@@ -140,8 +140,8 @@ class Posts{
 									echo self::skeletonArticle( $prefix );
 								} ?>
 							</div>
-							<?php echo $sliderIsPage ? "<div class='swiper-pagination'></div>" : ''; ?>
-							<?php echo $sliderIsPrevNext ? "<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>" : ''; ?>
+							<?php echo $sliderIsPage ? "<div class='swiper-pagination'></div>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static HTML literal, no user data. ?>
+							<?php echo $sliderIsPrevNext ? "<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>" : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static HTML literal, no user data. ?>
 						</div>
 					<?php break;
 					case 'ticker': ?>

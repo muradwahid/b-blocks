@@ -1,0 +1,288 @@
+/**
+ * Milestone Timeline — frontend + editor shared styles. Mobile-first.
+ *
+ * Instance-specific values arrive as CSS custom properties set inline by
+ * render.php (frontend) and Edit.js (editor), scoped under the wrapper id.
+ *
+ * Base (mobile-first) layout is a VERTICAL stacked list with a left-edge line,
+ * the same relative-position trick the existing `timeline` block uses. At the
+ * configured breakpoint (`--bb-mt-breakpoint`) the layout switches to a single
+ * HORIZONTAL row with a full-width connector line at the node midpoint. The
+ * "alternating" label position lifts odd cards above the line and drops even
+ * cards below it via :nth-child — no JavaScript.
+ */
+
+.bb-mt {
+	box-sizing: border-box;
+	width: 100%;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// Scrollable track wrapper.
+	.bb-mt-track {
+		width: 100%;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-mt-node-color, #3b82f6);
+			outline-offset: 3px;
+			border-radius: 6px;
+		}
+	}
+
+	.bb-mt-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	// --- MOBILE-FIRST: vertical stacked list with a left-edge line. ---
+	.bb-mt-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-mt-gap, 40px);
+		position: relative;
+		padding-inline-start: calc(var(--bb-mt-node-size, 40px) + 16px);
+	}
+
+	// Vertical connector line.
+	.bb-mt-list::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		inset-inline-start: calc(var(--bb-mt-node-size, 40px) / 2);
+		width: var(--bb-mt-line-height, 3px);
+		transform: translateX(-50%);
+		background-color: var(--bb-mt-line-color, #e2e8f0);
+		pointer-events: none;
+	}
+
+	.bb-mt-item {
+		position: relative;
+		margin: 0;
+	}
+
+	// Node circle / square.
+	.bb-mt-node {
+		position: absolute;
+		top: 0;
+		inset-inline-start: calc(-1 * (var(--bb-mt-node-size, 40px) + 16px));
+		width: var(--bb-mt-node-size, 40px);
+		height: var(--bb-mt-node-size, 40px);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--bb-mt-node-color, #3b82f6);
+		color: var(--bb-mt-node-icon-color, #ffffff);
+		border-radius: 50%;
+		font-size: calc(var(--bb-mt-node-size, 40px) * 0.42);
+		line-height: 1;
+		z-index: 1;
+
+		i {
+			font-size: inherit;
+			line-height: 1;
+		}
+	}
+
+	.bb-mt-node-num {
+		font-size: calc(var(--bb-mt-node-size, 40px) * 0.42);
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	&.bb-mt--shape-square .bb-mt-node {
+		border-radius: 6px;
+	}
+
+	// Card.
+	.bb-mt-card {
+		background-color: var(--bb-mt-card-bg, #ffffff);
+		border-radius: var(--bb-mt-card-radius, 8px);
+		padding: var(--bb-mt-card-pad-v, 16px) var(--bb-mt-card-pad-h, 16px);
+		box-shadow: var(--bb-mt-card-shadow, none);
+		text-align: var(--bb-mt-text-align, center);
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+		&:hover,
+		&:focus-within {
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14), 0 3px 6px rgba(0, 0, 0, 0.08);
+			transform: translateY(-2px);
+		}
+	}
+
+	.bb-mt-date {
+		display: block;
+		margin: 0 0 4px;
+		font-size: var(--bb-mt-date-size, 13px);
+		color: var(--bb-mt-date-color, #6b7280);
+		line-height: 1.3;
+	}
+
+	.bb-mt-title {
+		display: block;
+		margin: 0 0 6px;
+		font-size: var(--bb-mt-title-size, 16px);
+		font-weight: var(--bb-mt-title-weight, 600);
+		color: var(--bb-mt-title-color, #1e293b);
+		line-height: 1.3;
+	}
+
+	.bb-mt-desc {
+		margin: 0;
+		font-size: var(--bb-mt-desc-size, 14px);
+		color: var(--bb-mt-desc-color, #475569);
+		line-height: 1.5;
+	}
+
+	.bb-mt-empty {
+		margin: 0;
+		text-align: center;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 13px;
+	}
+
+	// Mobile stack order (descending reverses the visual order).
+	&.bb-mt--stack-desc .bb-mt-list {
+		flex-direction: column-reverse;
+	}
+
+	// --- DESKTOP: horizontal row at the configured breakpoint. ---
+	//
+	// Two triggers drive the horizontal layout: a static `min-width: 640px`
+	// media query (the default breakpoint, so the block works with JS disabled)
+	// and a `.bb-mt--horizontal` class that view.js adds/removes against the
+	// configured `mobileBreakpoint` so non-default breakpoints are honored. The
+	// shared rules are placed in a mixin to avoid divergence.
+	@mixin bb-mt-horizontal {
+		.bb-mt-track {
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			padding-block: 40px;
+		}
+
+		.bb-mt-list {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			gap: var(--bb-mt-gap, 40px);
+			padding-inline-start: 0;
+			min-width: max-content;
+		}
+
+		// Reset stack-order reversal on desktop.
+		&.bb-mt--stack-desc .bb-mt-list {
+			flex-direction: row;
+		}
+
+		// Horizontal connector line at the node midpoint.
+		.bb-mt-list::before {
+			top: 50%;
+			bottom: auto;
+			left: 0;
+			right: 0;
+			inset-inline-start: 0;
+			width: auto;
+			height: var(--bb-mt-line-height, 3px);
+			transform: translateY(-50%);
+		}
+
+		.bb-mt-item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex: 0 0 var(--bb-mt-card-max-width, 220px);
+			width: var(--bb-mt-card-max-width, 220px);
+		}
+
+		.bb-mt-node {
+			position: static;
+			inset-inline-start: auto;
+			flex: 0 0 auto;
+		}
+
+		.bb-mt-card {
+			margin-top: 16px;
+			width: 100%;
+			max-width: var(--bb-mt-card-max-width, 220px);
+		}
+
+		// Labels above the line: card sits above the node.
+		&.bb-mt--labels-above .bb-mt-item {
+			flex-direction: column-reverse;
+		}
+		&.bb-mt--labels-above .bb-mt-card {
+			margin-top: 0;
+			margin-bottom: 16px;
+		}
+
+		// Alternating: odd cards above, even cards below.
+		&.bb-mt--labels-alternating .bb-mt-item:nth-child(odd) {
+			flex-direction: column-reverse;
+		}
+		&.bb-mt--labels-alternating .bb-mt-item:nth-child(odd) .bb-mt-card {
+			margin-top: 0;
+			margin-bottom: 16px;
+		}
+	}
+
+	// No-JS fallback at the default breakpoint.
+	// Scoped to :not(.bb-mt--has-js) so that when view.js is active it takes
+	// exclusive control of the horizontal-layout class, preventing the static
+	// media query from forcing horizontal layout when a breakpoint > 640px is
+	// configured (which would contradict the JS matchMedia result).
+	&:not(.bb-mt--has-js) {
+		@media (min-width: 640px) {
+			@include bb-mt-horizontal;
+		}
+	}
+
+	// JS-applied class honoring the configured breakpoint (default 640 or custom).
+	&.bb-mt--horizontal {
+		@include bb-mt-horizontal;
+	}
+
+	// --- Scroll-in entrance (toggled by view.js via .bb-mt-animate). ---
+	&.bb-mt-animate .bb-mt-item {
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.5s ease, transform 0.5s ease;
+	}
+	&.bb-mt-animate .bb-mt-item.is-visible {
+		opacity: 1;
+		transform: none;
+	}
+
+	// Reduced motion: no entrance animation, no hover lift transition.
+	&.bb-mt--reduce-motion.bb-mt-animate .bb-mt-item,
+	&.bb-mt--reduce-motion.bb-mt-animate .bb-mt-item.is-visible {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	&.bb-mt--reduce-motion .bb-mt-card {
+		transition: none;
+	}
+	&.bb-mt--reduce-motion .bb-mt-card:hover,
+	&.bb-mt--reduce-motion .bb-mt-card:focus-within {
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-mt.bb-mt-animate .bb-mt-item,
+	.bb-mt.bb-mt-animate .bb-mt-item.is-visible {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	.bb-mt .bb-mt-card {
+		transition: none;
+	}
+	.bb-mt .bb-mt-card:hover,
+	.bb-mt .bb-mt-card:focus-within {
+		transform: none;
+	}
+}

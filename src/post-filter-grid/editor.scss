@@ -1,0 +1,25 @@
+/**
+ * Post Filter Grid — editor-only styles.
+ *
+ * The block renders server-side via ServerSideRender, so the editor preview
+ * mirrors the frontend. These rules only style the SSR loading / empty states.
+ */
+
+.wp-block-b-blocks-post-filter-grid {
+	.bb-pfg-ssr-loading,
+	.bb-pfg-ssr-empty {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0;
+		padding: 24px;
+		color: #6b7280;
+		font-style: italic;
+	}
+
+	// The grid swap / Load More controls are non-interactive in the editor
+	// preview (wrapped in <Disabled>); show them in their resting state.
+	.bb-pfg-grid {
+		pointer-events: none;
+	}
+}

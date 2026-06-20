@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/content-filter-item",
+	"version": "2.0.62",
+	"title": "Content Filter Item",
+	"category": "bBlocks",
+	"description": "A single filterable item inside a Content Filter. Holds any inner blocks and is tagged with one category for the filter buttons.",
+	"keywords": [
+		"filter item",
+		"content filter item",
+		"filterable card"
+	],
+	"parent": ["b-blocks/content-filter"],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"category": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false,
+		"inserter": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,140 @@
+// Typing Headline Block — frontend + editor shared styles.
+// Mobile-first. WCAG 2.1 AA friendly defaults.
+
+.wp-block-b-blocks-typing-headline {
+	--bb-th-prefix-color: inherit;
+	--bb-th-animated-color: #146EF5;
+	--bb-th-cursor-color: #146EF5;
+	--bb-th-bg: transparent;
+	--bb-th-font-size-desktop: 42px;
+	--bb-th-font-size-tablet: 32px;
+	--bb-th-font-size-mobile: 24px;
+	--bb-th-font-weight: 700;
+	--bb-th-line-height: 1.2;
+	--bb-th-pad-top: 20px;
+	--bb-th-pad-right: 0px;
+	--bb-th-pad-bottom: 20px;
+	--bb-th-pad-left: 0px;
+	--bb-th-text-align: center;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	background: var(--bb-th-bg);
+	padding-top: var(--bb-th-pad-top);
+	padding-right: var(--bb-th-pad-right);
+	padding-bottom: var(--bb-th-pad-bottom);
+	padding-left: var(--bb-th-pad-left);
+
+	.bb-th-empty {
+		margin: 0;
+		padding: 12px 16px;
+		font-style: italic;
+		color: #6c757d;
+		background: #f8f9fa;
+		border: 1px dashed #ced4da;
+		border-radius: 6px;
+	}
+
+	// --- The heading ----------------------------------------------------
+	.bb-th {
+		margin: 0;
+		padding: 0;
+		text-align: var(--bb-th-text-align);
+		font-weight: var(--bb-th-font-weight);
+		line-height: var(--bb-th-line-height);
+		// Mobile first.
+		font-size: var(--bb-th-font-size-mobile);
+		word-break: break-word;
+	}
+
+	.bb-th-prefix,
+	.bb-th-suffix {
+		color: var(--bb-th-prefix-color);
+	}
+
+	.bb-th-animated {
+		color: var(--bb-th-animated-color);
+		// Make sure the animated span stays inline so prefix / suffix
+		// flow with it on the same line when there's room.
+		display: inline;
+	}
+
+	// Typed.js generates these children inside .bb-th-animated.
+	// The cursor element gets `.typed-cursor` from the library.
+	// Typed.js v3 also adds `.typed-cursor--blink` when blinking is active
+	// (removed temporarily while actively typing). We only animate on
+	// --blink so the cursor is steady during typing, matching library intent.
+	.typed-cursor {
+		color: var(--bb-th-cursor-color);
+		opacity: 1;
+		margin-left: 1px;
+
+		&.typed-cursor--blink {
+			animation: bbThBlink 0.7s infinite;
+		}
+	}
+
+	@keyframes bbThBlink {
+		0%, 100% { opacity: 1; }
+		50%      { opacity: 0; }
+	}
+
+	&.no-cursor .typed-cursor {
+		display: none;
+	}
+
+	// Hint badge (editor only — render.php doesn't emit this).
+	.bb-th-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		margin-left: 8px;
+		padding: 2px 8px;
+		font-size: 11px;
+		font-weight: 500;
+		line-height: 1.4;
+		color: #fff;
+		background: #146EF5;
+		border-radius: 4px;
+		vertical-align: middle;
+		user-select: none;
+	}
+
+	// --- Alignment modifiers (also wired via inline --bb-th-text-align)
+	&.bb-th-align--left  .bb-th { text-align: left; }
+	&.bb-th-align--center .bb-th { text-align: center; }
+	&.bb-th-align--right .bb-th { text-align: right; }
+
+	// ===================================================================
+	// Tablet breakpoint
+	// ===================================================================
+	@media (min-width: 600px) {
+		.bb-th {
+			font-size: var(--bb-th-font-size-tablet);
+		}
+	}
+
+	// ===================================================================
+	// Desktop breakpoint
+	// ===================================================================
+	@media (min-width: 960px) {
+		.bb-th {
+			font-size: var(--bb-th-font-size-desktop);
+		}
+	}
+
+	// ===================================================================
+	// Reduced motion — view.js skips Typed.js entirely and writes the
+	// comma-joined words as static text. Belt-and-braces: also kill the
+	// cursor blink at the CSS layer.
+	// ===================================================================
+	@media (prefers-reduced-motion: reduce) {
+		.typed-cursor,
+		.typed-cursor.typed-cursor--blink {
+			animation: none;
+			opacity: 1;
+		}
+	}
+}

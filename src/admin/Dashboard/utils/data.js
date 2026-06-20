@@ -1,4 +1,5 @@
 import {changeLog} from './changeLog'
+import { gsIcons } from '../../Components/GettingStartedTabs';
 
 const slug = 'b-blocks';
 
@@ -22,10 +23,46 @@ export const dashboardInfo = (info) => {
         hasPro,
         info,
         displayOurPlugins: true,
+        tagline:
+            'Power up the block editor with 60+ lightweight, responsive Gutenberg blocks — no code required.',
+        layoutsLabel: 'Popular Blocks',
+        layouts: ['Container', 'Slider', 'Accordion', 'Tabs', 'Countdown', 'Lottie', 'Image Compare'],
+        gettingStartedTabs: [
+            {
+                key: 'gutenberg',
+                label: 'Gutenberg',
+                icon: gsIcons.gutenberg,
+                steps: [
+                    { num: 1, title: 'Open the Block Editor', body: 'Edit any post or page where you want to add a bBlock.' },
+                    { num: 2, title: 'Insert a Block', body: 'Click <strong>+</strong> (Add block), search for <code>bBlocks</code> or a block name, and insert it.' },
+                    { num: 3, title: 'Customize Inline', body: 'Tune options from the sidebar — every change previews live in the editor.' },
+                ],
+            },
+            {
+                key: 'template-library',
+                label: 'Template Library',
+                icon: gsIcons.shortcode,
+                steps: [
+                    { num: 1, title: 'Open the Template Library', body: 'In the editor toolbar, click the <strong>bBlocks Library</strong> button to browse ready-made templates.' },
+                    { num: 2, title: 'Preview &amp; Insert', body: 'Preview any full-page or section template, then click <strong>Insert</strong> to drop it into your page.' },
+                    { num: 3, title: 'Make It Yours', body: 'Swap the placeholder text and images for your own content — every block stays fully editable.' },
+                ],
+            },
+            {
+                key: 'patterns',
+                label: 'Patterns',
+                icon: gsIcons.theme,
+                steps: [
+                    { num: 1, title: 'Open the Inserter', body: 'In the editor, click <strong>+</strong> and switch to the <strong>Patterns</strong> tab.' },
+                    { num: 2, title: 'Pick a bBlocks Pattern', body: 'Browse the bBlocks pattern category and choose a ready-made section.' },
+                    { num: 3, title: 'Insert & Edit', body: 'Click to insert the pattern, then replace the content with your own.' },
+                ],
+            },
+        ],
         media: {
             logo: `https://ps.w.org/${slug}/assets/icon-128x128.png?rev=3471261`,
             banner: `https://ps.w.org/${slug}/assets/banner-772x250.png`,
-            thumbnail: `https://bplugins.com/wp-content/themes/b-technologies/assets/images/products/${slug}.png`,
+            thumbnail: `${info?.dirUrl || ''}assets/welcome-banner.svg`,
             // proThumbnail: `https://bplugins.com/wp-content/themes/b-technologies/assets/images/products/${slug}-pro.png`,
             video: 'https://www.youtube.com/embed/rdPWz1Ekkro',
             isYoutube: true
@@ -52,7 +89,10 @@ export const dashboardInfo = (info) => {
             'Pro features of Button Block.',
             'Pro features of Cards Block.',
             'Pro features of Image Comparison Block.',
-            'Premium Templates.'
+            'Premium Templates.',
+            'Premium Block Patterns Library.',
+            'Priority Email Support.',
+            'Regular New Pro Blocks & Updates.'
         ],
         startButton: {
             label: 'Start Now',

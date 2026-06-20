@@ -10,14 +10,14 @@ class Ajax{
 	}
 
 	function postsAjax(){
-		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ?? '' ) );
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
 
-		$attributes = Functions::sanitize_array( wp_unslash( $_POST['queryAttr'] ) ) ?? [];
-		$pageNumber = (int) sanitize_text_field( wp_unslash( $_POST['pageNumber'] ) ) ?? 1;
+		$attributes = isset( $_POST['queryAttr'] ) ? Functions::sanitize_array( wp_unslash( $_POST['queryAttr'] ) ) : [];
+		$pageNumber  = isset( $_POST['pageNumber'] ) ? (int) sanitize_text_field( wp_unslash( $_POST['pageNumber'] ) ) : 1;
 
 		wp_send_json_success( Posts::getPosts( $attributes, $pageNumber ) );
 	}

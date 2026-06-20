@@ -1,0 +1,17 @@
+// Media & Text Section — editor-only styles.
+
+.wp-block-b-blocks-media-text-section {
+	&.bb-mts {
+		.bb-mts-content {
+			// Let InnerBlocks appender/blocks breathe inside the panel.
+			.block-editor-block-list__layout {
+				min-height: 40px;
+			}
+		}
+
+		// Keep the media element from collapsing in the editor when empty.
+		.bb-mts-media-el {
+			pointer-events: none;
+		}
+	}
+}

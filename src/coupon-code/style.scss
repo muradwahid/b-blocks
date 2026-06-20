@@ -1,0 +1,324 @@
+// Coupon Code Block — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA color contrast verified against
+// the default palette. No external font dependencies — inherits the
+// theme's body font stack.
+
+.wp-block-b-blocks-coupon-code {
+	--bb-cc-bg: #f9f9f9;
+	--bb-cc-text: #333333;
+	--bb-cc-code-bg: #ffffff;
+	--bb-cc-code-text: #333333;
+	--bb-cc-btn-bg: #0073aa;
+	--bb-cc-btn-text: #ffffff;
+	--bb-cc-discount-bg: #0073aa;
+	--bb-cc-discount-text: #ffffff;
+	--bb-cc-border-width: 1px;
+	--bb-cc-border-color: #dddddd;
+	--bb-cc-radius: 8px;
+	--bb-cc-pad-top: 20px;
+	--bb-cc-pad-right: 24px;
+	--bb-cc-pad-bottom: 20px;
+	--bb-cc-pad-left: 24px;
+	--bb-cc-code-font-size: 20px;
+
+	display: block;
+	margin: 0 0 1.25em;
+	color: var(--bb-cc-text);
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// ----- Alignment ----------------------------------------------------
+	&.bb-cc-align--left .bb-cc-card { margin-left: 0; margin-right: auto; }
+	&.bb-cc-align--center .bb-cc-card { margin-left: auto; margin-right: auto; }
+	&.bb-cc-align--right .bb-cc-card { margin-left: auto; margin-right: 0; }
+
+	// ----- Card ---------------------------------------------------------
+	.bb-cc-card {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 16px;
+		max-width: 560px;
+		padding: var(--bb-cc-pad-top) var(--bb-cc-pad-right) var(--bb-cc-pad-bottom) var(--bb-cc-pad-left);
+		background: var(--bb-cc-bg);
+		border: var(--bb-cc-border-width) solid var(--bb-cc-border-color);
+		border-radius: var(--bb-cc-radius);
+		color: var(--bb-cc-text);
+		text-align: left;
+	}
+
+	// ----- Discount badge ----------------------------------------------
+	.bb-cc-discount {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		align-self: flex-start;
+		padding: 6px 14px;
+		background: var(--bb-cc-discount-bg);
+		color: var(--bb-cc-discount-text);
+		border-radius: 999px;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		line-height: 1.2;
+	}
+
+	// ----- Body ---------------------------------------------------------
+	.bb-cc-body {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		min-width: 0;
+	}
+
+	.bb-cc-title {
+		margin: 0;
+		font-size: 20px;
+		line-height: 1.3;
+		font-weight: 700;
+		color: var(--bb-cc-text);
+	}
+
+	.bb-cc-description {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--bb-cc-text);
+		opacity: 0.9;
+
+		p { margin: 0 0 0.5em; }
+		p:last-child { margin-bottom: 0; }
+		a { color: inherit; text-decoration: underline; }
+	}
+
+	// ----- Code row -----------------------------------------------------
+	.bb-cc-code-row {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-items: stretch;
+	}
+
+	// ----- Coupon code button ------------------------------------------
+	.bb-cc-code-btn {
+		display: inline-flex;
+		flex: 1 1 auto;
+		align-items: stretch;
+		gap: 0;
+		padding: 0;
+		min-height: 48px;
+		background: var(--bb-cc-code-bg);
+		color: var(--bb-cc-code-text);
+		border: 1px dashed var(--bb-cc-border-color);
+		border-radius: 6px;
+		font: inherit;
+		cursor: pointer;
+		overflow: hidden;
+		transition: background-color 120ms ease, color 120ms ease;
+
+		&:hover,
+		&:focus-visible {
+			outline: 2px solid var(--bb-cc-btn-bg);
+			outline-offset: 2px;
+		}
+
+		&.is-copied {
+			.bb-cc-copy-label {
+				background: #2ea043;
+				color: #ffffff;
+			}
+		}
+	}
+
+	.bb-cc-code {
+		display: inline-flex;
+		flex: 1 1 auto;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 16px;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			"Liberation Mono", "Courier New", monospace;
+		font-size: var(--bb-cc-code-font-size);
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		color: var(--bb-cc-code-text);
+		background: transparent;
+		user-select: all;
+		word-break: break-all;
+	}
+
+	.bb-cc-copy-label {
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 16px;
+		background: var(--bb-cc-btn-bg);
+		color: var(--bb-cc-btn-text);
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.2;
+		transition: background-color 120ms ease;
+		white-space: nowrap;
+	}
+
+	// ----- Reveal mode (coupon only) -----------------------------------
+	&.bb-cc-has-reveal {
+		.bb-cc-reveal-btn {
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 10px 16px;
+			background: var(--bb-cc-btn-bg);
+			color: var(--bb-cc-btn-text);
+			border: 0;
+			border-radius: 6px;
+			font: inherit;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: filter 120ms ease;
+
+			&:hover,
+			&:focus-visible {
+				filter: brightness(1.08);
+				outline: 2px solid var(--bb-cc-btn-bg);
+				outline-offset: 2px;
+			}
+		}
+
+		&.is-hidden .bb-cc-code {
+			filter: blur(6px);
+			user-select: none;
+			pointer-events: none;
+		}
+
+		&.is-revealed .bb-cc-code {
+			filter: none;
+			user-select: all;
+			pointer-events: auto;
+		}
+	}
+
+	// ----- Deal CTA -----------------------------------------------------
+	.bb-cc-code-row--deal {
+		justify-content: flex-start;
+	}
+
+	.bb-cc-deal-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 12px 24px;
+		min-height: 48px;
+		background: var(--bb-cc-btn-bg);
+		color: var(--bb-cc-btn-text);
+		border: 0;
+		border-radius: 6px;
+		font: inherit;
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1.2;
+		text-decoration: none;
+		cursor: pointer;
+		transition: filter 120ms ease;
+
+		&:hover,
+		&:focus-visible {
+			filter: brightness(1.08);
+			outline: 2px solid var(--bb-cc-btn-bg);
+			outline-offset: 2px;
+			text-decoration: none;
+		}
+
+		&--disabled {
+			opacity: 0.55;
+			cursor: not-allowed;
+			pointer-events: none;
+		}
+	}
+
+	// ----- Expiry -------------------------------------------------------
+	.bb-cc-expiry {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin: 0;
+		font-size: 13px;
+		line-height: 1.4;
+		color: var(--bb-cc-text);
+		opacity: 0.75;
+	}
+
+	.bb-cc-expiry__icon {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	// ----- Screen-reader-only live region ------------------------------
+	.bb-cc-live {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// ----- Screen-reader-only utility ----------------------------------
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// ----- Center-aligned content tweaks -------------------------------
+	&.bb-cc-align--center .bb-cc-card {
+		align-items: center;
+		text-align: center;
+	}
+	&.bb-cc-align--center .bb-cc-body { align-items: center; }
+	&.bb-cc-align--right .bb-cc-card { align-items: flex-end; text-align: right; }
+	&.bb-cc-align--right .bb-cc-body { align-items: flex-end; }
+
+	// ----- Responsive ---------------------------------------------------
+	@media (max-width: 480px) {
+		.bb-cc-card {
+			padding: 16px;
+			gap: 12px;
+		}
+
+		.bb-cc-title {
+			font-size: 18px;
+		}
+
+		.bb-cc-code {
+			padding: 8px 12px;
+		}
+
+		.bb-cc-code-btn {
+			flex-direction: column;
+		}
+
+		.bb-cc-copy-label {
+			width: 100%;
+			padding: 10px 12px;
+		}
+	}
+}

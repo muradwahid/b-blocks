@@ -1,0 +1,100 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/expand-content",
+	"title": "Expand Content",
+	"description": "Wrap any inner blocks in a collapsible reveal. The first portion is visible behind a fade overlay and a Show More / Show Less button toggles the rest. Accessible and reduced-motion aware.",
+	"category": "bBlocks",
+	"keywords": [
+		"expand",
+		"read more",
+		"show more",
+		"collapse",
+		"truncate"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"previewHeight": {
+			"type": "number",
+			"default": 200
+		},
+		"showMoreText": {
+			"type": "string",
+			"default": "Show More"
+		},
+		"showLessText": {
+			"type": "string",
+			"default": "Show Less"
+		},
+		"showToggle": {
+			"type": "boolean",
+			"default": true
+		},
+		"fadeHeight": {
+			"type": "number",
+			"default": 80
+		},
+		"fadeColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"buttonBgColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"buttonBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"buttonPaddingV": {
+			"type": "number",
+			"default": 10
+		},
+		"buttonPaddingH": {
+			"type": "number",
+			"default": 20
+		},
+		"buttonFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"persistState": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

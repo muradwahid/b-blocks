@@ -1,0 +1,149 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/click-to-share",
+	"version": "2.0.56.1",
+	"title": "Click to Share",
+	"category": "bBlocks",
+	"description": "Highlight a quote inside a styled card with one-click share buttons for X, Facebook, LinkedIn, WhatsApp, Email, and Copy Link.",
+	"keywords": [
+		"share",
+		"click to tweet",
+		"click to share",
+		"quote",
+		"social",
+		"twitter",
+		"x"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"viewStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"quoteText": {
+			"type": "string",
+			"default": "Share this insightful quote with your audience."
+		},
+		"shareText": {
+			"type": "string",
+			"default": ""
+		},
+		"citeText": {
+			"type": "string",
+			"default": ""
+		},
+		"platforms": {
+			"type": "object",
+			"default": {
+				"twitter": true,
+				"facebook": true,
+				"linkedin": true,
+				"whatsapp": false,
+				"email": false,
+				"copy": true
+			}
+		},
+		"xHandle": {
+			"type": "string",
+			"default": ""
+		},
+		"emailSubject": {
+			"type": "string",
+			"default": "Thought you'd like this quote"
+		},
+		"layout": {
+			"type": "string",
+			"default": "card"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"showQuoteIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"showButtonLabels": {
+			"type": "boolean",
+			"default": false
+		},
+		"copyButtonLabel": {
+			"type": "string",
+			"default": "Copy Link"
+		},
+		"copiedLabel": {
+			"type": "string",
+			"default": "Copied!"
+		},
+		"colors": {
+			"type": "object",
+			"default": {
+				"bg": "#f0f7ff",
+				"text": "#1a1a1a",
+				"quoteIcon": "#0575e6",
+				"border": "#0575e6",
+				"buttonBg": "#0575e6",
+				"buttonText": "#ffffff"
+			}
+		},
+		"buttonStyle": {
+			"type": "string",
+			"default": "filled"
+		},
+		"border": {
+			"type": "object",
+			"default": {
+				"width": "4px",
+				"radius": "6px"
+			}
+		},
+		"buttonBorderRadius": {
+			"type": "string",
+			"default": "4px"
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "20px",
+				"right": "24px",
+				"bottom": "20px",
+				"left": "24px"
+			}
+		},
+		"fontSize": {
+			"type": "string",
+			"default": "18px"
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "600"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

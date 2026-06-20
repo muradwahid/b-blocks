@@ -1,0 +1,253 @@
+// Icon List Block — frontend + editor shared styles.
+// Mobile-first. WCAG 2.1 AA friendly defaults.
+
+.wp-block-b-blocks-icon-list {
+	--bb-il-cols: 1;
+	--bb-il-cols-tablet: 1;
+	--bb-il-cols-mobile: 1;
+	--bb-il-col-gap: 24px;
+	--bb-il-col-gap-tablet: 24px;
+	--bb-il-col-gap-mobile: 24px;
+	--bb-il-row-gap: 12px;
+	--bb-il-row-gap-tablet: 12px;
+	--bb-il-row-gap-mobile: 12px;
+	--bb-il-icon-size: 18px;
+	--bb-il-icon-size-tablet: 18px;
+	--bb-il-icon-size-mobile: 18px;
+	--bb-il-icon-color: #22c55e;
+	--bb-il-icon-bg: transparent;
+	--bb-il-icon-radius: 50%;
+	--bb-il-icon-padding: 4px;
+	--bb-il-icon-gap: 10px;
+	--bb-il-icon-align: flex-start;
+	--bb-il-text-size: 16px;
+	--bb-il-text-size-tablet: 16px;
+	--bb-il-text-size-mobile: 16px;
+	--bb-il-text-color: inherit;
+	--bb-il-text-weight: 400;
+	--bb-il-desc-size: 13px;
+	--bb-il-desc-size-tablet: 13px;
+	--bb-il-desc-size-mobile: 13px;
+	--bb-il-desc-color: inherit;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-il-empty {
+		margin: 0;
+		padding: 12px 16px;
+		font-style: italic;
+		color: #6c757d;
+		background: #f8f9fa;
+		border: 1px dashed #ced4da;
+		border-radius: 6px;
+	}
+
+	// --- The list -------------------------------------------------------
+	.bb-il {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(var(--bb-il-cols-mobile), minmax(0, 1fr));
+		column-gap: var(--bb-il-col-gap-mobile);
+		row-gap: var(--bb-il-row-gap-mobile);
+	}
+
+	// --- A single list item --------------------------------------------
+	.bb-il-item {
+		display: flex;
+		align-items: var(--bb-il-icon-align);
+		gap: var(--bb-il-icon-gap);
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	// --- The icon "badge" cell -----------------------------------------
+	.bb-il-icon {
+		flex: 0 0 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--bb-il-icon-color);
+		background: var(--bb-il-icon-bg);
+		border-radius: var(--bb-il-icon-radius);
+		padding: var(--bb-il-icon-padding);
+		font-size: var(--bb-il-icon-size-mobile);
+		line-height: 1;
+
+		> i {
+			font-size: inherit;
+			line-height: 1;
+			color: inherit;
+		}
+	}
+
+	// Reserve the icon cell space even when the icon is toggled off so
+	// rows in the same column stay aligned.
+	.bb-il-icon--hidden {
+		visibility: hidden;
+		min-width: 1em;
+		min-height: 1em;
+	}
+
+	// Items with an icon background get a small square boost so the
+	// padding looks intentional (otherwise the icon's tight bbox makes
+	// the bg look squashed).
+	&.has-icon-bg .bb-il-icon,
+	.bb-il-item.has-icon-bg .bb-il-icon {
+		min-width: calc(var(--bb-il-icon-size-mobile) + (var(--bb-il-icon-padding) * 2));
+		min-height: calc(var(--bb-il-icon-size-mobile) + (var(--bb-il-icon-padding) * 2));
+	}
+
+	// --- Body holding text + optional description ----------------------
+	.bb-il-body {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.bb-il-text {
+		display: block;
+		color: var(--bb-il-text-color);
+		font-size: var(--bb-il-text-size-mobile);
+		font-weight: var(--bb-il-text-weight);
+		line-height: 1.5;
+		word-break: break-word;
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+
+			&:focus-visible {
+				outline: 2px solid currentColor;
+				outline-offset: 2px;
+			}
+		}
+
+		strong,
+		b {
+			font-weight: 700;
+		}
+	}
+
+	.bb-il-desc {
+		display: block;
+		color: var(--bb-il-desc-color);
+		font-size: var(--bb-il-desc-size-mobile);
+		line-height: 1.55;
+		opacity: 0.95;
+		word-break: break-word;
+	}
+
+	// --- Per-item link wrapper -----------------------------------------
+	// The <a> wraps both the icon span and the body div (per spec), so it
+	// must be a flex container inheriting the same alignment as .bb-il-item.
+	.bb-il-link {
+		display: flex;
+		flex: 1 1 auto;
+		align-items: var(--bb-il-icon-align);
+		gap: var(--bb-il-icon-gap);
+		min-width: 0;
+		color: inherit;
+		text-decoration: none;
+
+		&:hover .bb-il-text {
+			text-decoration: underline;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 3px;
+			border-radius: 2px;
+		}
+	}
+
+	// --- Alignment modifiers -------------------------------------------
+	&.bb-il-align--left .bb-il-body {
+		text-align: left;
+	}
+
+	&.bb-il-align--center {
+		.bb-il-item {
+			justify-content: center;
+		}
+		.bb-il-body {
+			text-align: center;
+		}
+	}
+
+	&.bb-il-align--right {
+		.bb-il-item {
+			flex-direction: row-reverse;
+		}
+		.bb-il-body {
+			text-align: right;
+		}
+	}
+
+	// ===================================================================
+	// Tablet breakpoint
+	// ===================================================================
+	@media (min-width: 600px) {
+		.bb-il {
+			grid-template-columns: repeat(var(--bb-il-cols-tablet), minmax(0, 1fr));
+			column-gap: var(--bb-il-col-gap-tablet);
+			row-gap: var(--bb-il-row-gap-tablet);
+		}
+
+		.bb-il-icon {
+			font-size: var(--bb-il-icon-size-tablet);
+		}
+
+		&.has-icon-bg .bb-il-icon,
+		.bb-il-item.has-icon-bg .bb-il-icon {
+			min-width: calc(var(--bb-il-icon-size-tablet) + (var(--bb-il-icon-padding) * 2));
+			min-height: calc(var(--bb-il-icon-size-tablet) + (var(--bb-il-icon-padding) * 2));
+		}
+
+		.bb-il-text {
+			font-size: var(--bb-il-text-size-tablet);
+		}
+
+		.bb-il-desc {
+			font-size: var(--bb-il-desc-size-tablet);
+		}
+	}
+
+	// ===================================================================
+	// Desktop breakpoint
+	// ===================================================================
+	@media (min-width: 960px) {
+		.bb-il {
+			grid-template-columns: repeat(var(--bb-il-cols), minmax(0, 1fr));
+			column-gap: var(--bb-il-col-gap);
+			row-gap: var(--bb-il-row-gap);
+		}
+
+		.bb-il-icon {
+			font-size: var(--bb-il-icon-size);
+		}
+
+		&.has-icon-bg .bb-il-icon,
+		.bb-il-item.has-icon-bg .bb-il-icon {
+			min-width: calc(var(--bb-il-icon-size) + (var(--bb-il-icon-padding) * 2));
+			min-height: calc(var(--bb-il-icon-size) + (var(--bb-il-icon-padding) * 2));
+		}
+
+		.bb-il-text {
+			font-size: var(--bb-il-text-size);
+		}
+
+		.bb-il-desc {
+			font-size: var(--bb-il-desc-size);
+		}
+	}
+
+	// No animations are shipped with this block, so prefers-reduced-motion
+	// has nothing to short-circuit. Hover underline is a paint change only.
+}

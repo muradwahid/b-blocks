@@ -1,0 +1,180 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/process-steps",
+	"version": "2.0.59.1",
+	"title": "Process Steps",
+	"category": "bBlocks",
+	"description": "Build a numbered \"How it works\" section. Drop in 3–6 steps with title, description, icon or number badge, and a connector line. Horizontal or vertical layout, fully responsive, accessible <ol> semantics.",
+	"keywords": [
+		"process",
+		"steps",
+		"how it works",
+		"how we work",
+		"numbered",
+		"timeline",
+		"workflow"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"theme": {
+			"type": "string",
+			"default": "classic"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "ps-default-1",
+					"title": "Discovery",
+					"description": "We learn about your goals and challenges.",
+					"icon": "fa-solid fa-magnifying-glass"
+				},
+				{
+					"_key": "ps-default-2",
+					"title": "Strategy",
+					"description": "We craft a tailored plan to meet your needs.",
+					"icon": "fa-solid fa-lightbulb"
+				},
+				{
+					"_key": "ps-default-3",
+					"title": "Delivery",
+					"description": "We execute and iterate until you are thrilled.",
+					"icon": "fa-solid fa-rocket"
+				}
+			]
+		},
+		"showConnector": {
+			"type": "boolean",
+			"default": true
+		},
+		"connectorColor": {
+			"type": "string",
+			"default": "#CBD5E1"
+		},
+		"connectorWidth": {
+			"type": "number",
+			"default": 2
+		},
+		"connectorStyle": {
+			"type": "string",
+			"default": "solid"
+		},
+		"badgeType": {
+			"type": "string",
+			"default": "number"
+		},
+		"badgeSize": {
+			"type": "number",
+			"default": 56
+		},
+		"badgeBg": {
+			"type": "string",
+			"default": "#2563EB"
+		},
+		"badgeColor": {
+			"type": "string",
+			"default": "#FFFFFF"
+		},
+		"badgeFontSize": {
+			"type": "number",
+			"default": 20
+		},
+		"badgeBorderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "18px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"descColor": {
+			"type": "string",
+			"default": ""
+		},
+		"descFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "15px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
+		},
+		"cardPadding": {
+			"type": "object",
+			"default": {
+				"top": "16px",
+				"right": "16px",
+				"bottom": "16px",
+				"left": "16px"
+			}
+		},
+		"cardBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"gap": {
+			"type": "object",
+			"default": {
+				"desktop": "32px",
+				"tablet": "24px",
+				"mobile": "16px"
+			}
+		},
+		"columnCount": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

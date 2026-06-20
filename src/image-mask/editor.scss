@@ -1,0 +1,32 @@
+/**
+ * Image Mask — editor-only styles.
+ */
+
+.wp-block-b-blocks-image-mask {
+	.bb-im-figure {
+		margin: 0 auto;
+		max-width: 100%;
+		padding: 0;
+	}
+
+	.bb-im-mask {
+		display: block;
+		overflow: hidden;
+	}
+
+	.bb-im-img {
+		display: block;
+		width: 100%;
+	}
+
+	.bb-im-caption {
+		margin-top: 10px;
+		text-align: center;
+		line-height: 1.5;
+
+		&[data-rich-text-placeholder]::after,
+		&:empty::before {
+			opacity: 0.6;
+		}
+	}
+}

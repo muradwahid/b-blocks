@@ -1,0 +1,182 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-product-reviews",
+	"version": "1.0.0",
+	"title": "Woo Product Reviews",
+	"category": "bBlocks",
+	"description": "Display a chosen WooCommerce product's average rating summary and a list of its approved customer reviews — anywhere on the site.",
+	"keywords": [
+		"woocommerce",
+		"product reviews",
+		"reviews",
+		"rating",
+		"star rating",
+		"testimonials",
+		"social proof",
+		"shop",
+		"ecommerce"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"productId": {
+			"type": "integer",
+			"default": 0
+		},
+		"reviewCount": {
+			"type": "integer",
+			"default": 5
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "newest"
+		},
+		"showSummary": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAvatar": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"showVerifiedBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"noReviewsMessage": {
+			"type": "string",
+			"default": "No reviews yet."
+		},
+		"noProductMessage": {
+			"type": "string",
+			"default": "Please select a product."
+		},
+		"avatarSize": {
+			"type": "integer",
+			"default": 48
+		},
+		"ratingColor": {
+			"type": "string",
+			"default": "#f5a623"
+		},
+		"ratingEmptyColor": {
+			"type": "string",
+			"default": "#d1d5db"
+		},
+		"summaryBG": {
+			"type": "string",
+			"default": ""
+		},
+		"summaryTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"summaryAccentColor": {
+			"type": "string",
+			"default": "#f5a623"
+		},
+		"reviewBG": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"reviewTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"reviewNameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"reviewMetaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardPadding": {
+			"type": "integer",
+			"default": 20
+		},
+		"cardGap": {
+			"type": "integer",
+			"default": 16
+		},
+		"verifiedBadgeBG": {
+			"type": "string",
+			"default": "#dcfce7"
+		},
+		"verifiedBadgeColor": {
+			"type": "string",
+			"default": "#16a34a"
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"blockAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"nameFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "15px",
+				"tablet": "14px",
+				"mobile": "14px"
+			}
+		},
+		"bodyFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "15px",
+				"tablet": "14px",
+				"mobile": "14px"
+			}
+		},
+		"metaFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "13px",
+				"tablet": "12px",
+				"mobile": "12px"
+			}
+		},
+		"summaryRatingFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "48px",
+				"tablet": "40px",
+				"mobile": "36px"
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

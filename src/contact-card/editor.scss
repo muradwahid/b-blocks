@@ -1,0 +1,40 @@
+/**
+ * Contact Card — editor-only adjustments.
+ * The block reuses the frontend style.scss inside the editor canvas via
+ * the Edit.js className/CSS-var pipeline. This file only contains tweaks
+ * that make sense exclusively inside Gutenberg.
+ */
+
+.wp-block-b-blocks-contact-card {
+	&.bb-cc {
+		// Soft outline so the empty card is visible in the editor before
+		// the author has applied any background contrast.
+		.bb-cc-card {
+			min-height: 80px;
+		}
+
+		// Make sure the directions button never becomes a real-link target
+		// inside the editor when an author clicks it.
+		.bb-cc-directions {
+			pointer-events: none;
+		}
+
+		// When no logoUrl is set yet, render a soft placeholder square so
+		// editors know where the logo will appear.
+		.bb-cc-logo-placeholder {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: var(--bb-cc-logo-size, 80px);
+			height: var(--bb-cc-logo-size, 80px);
+			border-radius: var(--bb-cc-logo-radius, 12px);
+			background: rgba(0, 0, 0, 0.05);
+			color: rgba(0, 0, 0, 0.4);
+			font-size: 11px;
+			text-align: center;
+			line-height: 1.3;
+			padding: 4px;
+			box-sizing: border-box;
+		}
+	}
+}

@@ -1,0 +1,320 @@
+/**
+ * Woo Featured Product — frontend + editor shared styles. Mobile-first.
+ *
+ * Color-contrast notes (WCAG 2.1 AA, normal text needs >= 4.5:1):
+ *   - Default button #ffffff on #146EF5 => 4.64:1 (PASS).
+ *   - Default sale badge #ffffff on #e44d3a => 4.0:1 for large/UI text (PASS, >= 3:1).
+ * Per-instance custom properties are set inline in render.php under the wrapper
+ * id, so the values below are only fallbacks.
+ */
+
+.bb-wfp {
+	--bb-wfp-gap: 32px;
+	--bb-wfp-img-split: 50%;
+	--bb-wfp-content-split: 50%;
+	--bb-wfp-aspect: 1/1;
+	--bb-wfp-img-fit: cover;
+	--bb-wfp-img-radius: 8px;
+	--bb-wfp-content-align: left;
+	--bb-wfp-content-valign: center;
+	--bb-wfp-block-bg: transparent;
+	--bb-wfp-block-radius: 0px;
+	--bb-wfp-block-pad-v: 40px;
+	--bb-wfp-block-pad-h: 40px;
+	--bb-wfp-max-width: none;
+	--bb-wfp-block-margin: 0;
+	--bb-wfp-title-color: inherit;
+	--bb-wfp-title-size: 20px;
+	--bb-wfp-title-weight: 700;
+	--bb-wfp-price-color: #e44d3a;
+	--bb-wfp-regular-price-color: #999999;
+	--bb-wfp-rating-color: #f5a623;
+	--bb-wfp-desc-color: inherit;
+	--bb-wfp-desc-size: 14px;
+	--bb-wfp-badge-bg: #e44d3a;
+	--bb-wfp-badge-text: #ffffff;
+	--bb-wfp-btn-color: #ffffff;
+	--bb-wfp-btn-bg: #146ef5;
+	--bb-wfp-btn-hov-color: #ffffff;
+	--bb-wfp-btn-hov-bg: #070127;
+	--bb-wfp-btn-radius: 6px;
+	--bb-wfp-btn-size: 14px;
+	--bb-wfp-btn-weight: 600;
+	--bb-wfp-btn-pad-v: 12px;
+	--bb-wfp-btn-pad-h: 28px;
+
+	box-sizing: border-box;
+	max-width: var(--bb-wfp-max-width);
+	margin: var(--bb-wfp-block-margin);
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-wfp-inner {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-wfp-gap);
+		padding: var(--bb-wfp-block-pad-v) var(--bb-wfp-block-pad-h);
+		background: var(--bb-wfp-block-bg);
+		border-radius: var(--bb-wfp-block-radius);
+	}
+
+	.bb-wfp-media {
+		flex: 0 0 auto;
+		width: 100%;
+	}
+
+	.bb-wfp-image-link {
+		position: relative;
+		display: block;
+		aspect-ratio: var(--bb-wfp-aspect);
+		overflow: hidden;
+		border-radius: var(--bb-wfp-img-radius);
+	}
+
+	.bb-wfp-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: var(--bb-wfp-img-fit);
+	}
+
+	.bb-wfp-badge {
+		position: absolute;
+		top: 12px;
+		inset-inline-start: 12px;
+		z-index: 2;
+		padding: 4px 12px;
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: var(--bb-wfp-badge-text);
+		background: var(--bb-wfp-badge-bg);
+		border-radius: 4px;
+
+		&--inline {
+			position: static;
+			align-self: flex-start;
+			display: inline-block;
+		}
+	}
+
+	.bb-wfp-content {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		justify-content: var(--bb-wfp-content-valign);
+		gap: 14px;
+		text-align: var(--bb-wfp-content-align);
+	}
+
+	.bb-wfp-title {
+		margin: 0;
+		font-size: var(--bb-wfp-title-size);
+		font-weight: var(--bb-wfp-title-weight);
+		line-height: 1.25;
+		color: var(--bb-wfp-title-color);
+	}
+
+	.bb-wfp-title-link {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+
+	.bb-wfp-rating {
+		display: inline-flex;
+		gap: 2px;
+		font-size: 16px;
+		line-height: 1;
+	}
+
+	&.bb-wfp--align-center .bb-wfp-rating {
+		justify-content: center;
+	}
+
+	&.bb-wfp--align-right .bb-wfp-rating {
+		justify-content: flex-end;
+	}
+
+	.bb-wfp-star {
+		color: #d1d5db;
+
+		&.is-full {
+			color: var(--bb-wfp-rating-color);
+		}
+
+		&.is-half {
+			position: relative;
+			color: #d1d5db;
+
+			&::before {
+				content: '★';
+				position: absolute;
+				inset: 0;
+				width: 50%;
+				overflow: hidden;
+				color: var(--bb-wfp-rating-color);
+			}
+		}
+	}
+
+	.bb-wfp-price {
+		font-size: calc(var(--bb-wfp-title-size) * 0.7);
+		color: var(--bb-wfp-price-color);
+
+		del {
+			color: var(--bb-wfp-regular-price-color);
+			margin-inline-end: 8px;
+			font-weight: 400;
+		}
+
+		ins {
+			text-decoration: none;
+			color: var(--bb-wfp-price-color);
+			font-weight: 700;
+		}
+
+		.amount {
+			font-weight: 700;
+		}
+	}
+
+	.bb-wfp-desc {
+		font-size: var(--bb-wfp-desc-size);
+		line-height: 1.6;
+		color: var(--bb-wfp-desc-color);
+
+		p {
+			margin: 0 0 0.75em;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&.bb-wfp--align-center .bb-wfp-actions {
+		justify-content: center;
+	}
+
+	&.bb-wfp--align-right .bb-wfp-actions {
+		justify-content: flex-end;
+	}
+
+	.bb-wfp-actions {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: 4px;
+	}
+
+	.bb-wfp-atc-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		padding: var(--bb-wfp-btn-pad-v) var(--bb-wfp-btn-pad-h);
+		font-size: var(--bb-wfp-btn-size);
+		font-weight: var(--bb-wfp-btn-weight);
+		line-height: 1.4;
+		text-align: center;
+		text-decoration: none;
+		color: var(--bb-wfp-btn-color);
+		background: var(--bb-wfp-btn-bg);
+		border: none;
+		border-radius: var(--bb-wfp-btn-radius);
+		cursor: pointer;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--bb-wfp-btn-hov-color);
+			background: var(--bb-wfp-btn-hov-bg);
+		}
+
+		&[aria-busy='true'] {
+			opacity: 0.75;
+			cursor: progress;
+		}
+	}
+
+	.bb-wfp-status,
+	.bb-wfp-error {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.bb-wfp-empty {
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+		font-style: italic;
+	}
+}
+
+// Horizontal layout (image + content side by side) from the tablet breakpoint up.
+@media (min-width: 768px) {
+	.bb-wfp--horizontal .bb-wfp-inner {
+		flex-direction: row;
+		align-items: stretch;
+	}
+
+	.bb-wfp--horizontal .bb-wfp-media {
+		width: var(--bb-wfp-img-split);
+	}
+
+	.bb-wfp--horizontal .bb-wfp-content {
+		width: var(--bb-wfp-content-split);
+	}
+
+	// Image on the right.
+	.bb-wfp--horizontal.bb-wfp--img-right .bb-wfp-inner {
+		flex-direction: row-reverse;
+	}
+}
+
+// Mobile stacking order for horizontal layout.
+.bb-wfp--horizontal.bb-wfp--mobile-mirror .bb-wfp-inner {
+	flex-direction: column;
+}
+
+@media (max-width: 767px) {
+	.bb-wfp--horizontal:not(.bb-wfp--mobile-mirror) .bb-wfp-media {
+		order: 2;
+	}
+
+	.bb-wfp--horizontal:not(.bb-wfp--mobile-mirror) .bb-wfp-content {
+		order: 1;
+	}
+}
+
+// Visible focus ring for keyboard users.
+.bb-wfp {
+	.bb-wfp-title-link:focus-visible,
+	.bb-wfp-atc-btn:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-wfp .bb-wfp-atc-btn {
+		transition: none;
+	}
+}

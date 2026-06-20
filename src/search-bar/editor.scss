@@ -1,0 +1,22 @@
+/**
+ * Search Bar — editor-only styles.
+ *
+ * The editor preview reuses the frontend markup, so most styling comes from
+ * style.scss via CSS custom properties set inline on the wrapper. This file
+ * only neutralizes editor-specific quirks.
+ */
+
+.wp-block-b-blocks-search-bar {
+	.bb-search-form {
+		// In the editor the input is non-interactive; keep the cursor neutral.
+		.bb-search-input,
+		.bb-search-submit {
+			pointer-events: none;
+		}
+	}
+
+	// Never show the live dropdown inside the editor canvas.
+	.bb-search-listbox {
+		display: none !important;
+	}
+}

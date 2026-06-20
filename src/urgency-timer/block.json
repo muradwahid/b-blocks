@@ -1,0 +1,219 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/urgency-timer",
+	"title": "Urgency Timer",
+	"description": "A 100% client-side urgency countdown — an evergreen per-visitor deadline (stored in localStorage) or a recurring weekly-reset timer — with styleable digit boxes, labels, and an expiry action.",
+	"category": "bBlocks",
+	"keywords": [
+		"urgency timer",
+		"evergreen timer",
+		"countdown",
+		"recurring timer",
+		"scarcity"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"timerMode": {
+			"type": "string",
+			"default": "evergreen"
+		},
+		"evergreenDays": {
+			"type": "integer",
+			"default": 1
+		},
+		"evergreenHours": {
+			"type": "integer",
+			"default": 0
+		},
+		"evergreenMinutes": {
+			"type": "integer",
+			"default": 0
+		},
+		"evergreenSeconds": {
+			"type": "integer",
+			"default": 0
+		},
+		"recurringResetDay": {
+			"type": "string",
+			"default": "monday"
+		},
+		"recurringResetHour": {
+			"type": "integer",
+			"default": 0
+		},
+		"recurringDays": {
+			"type": "integer",
+			"default": 0
+		},
+		"recurringHours": {
+			"type": "integer",
+			"default": 24
+		},
+		"recurringMinutes": {
+			"type": "integer",
+			"default": 0
+		},
+		"recurringSeconds": {
+			"type": "integer",
+			"default": 0
+		},
+		"storageKey": {
+			"type": "string",
+			"default": ""
+		},
+		"showDays": {
+			"type": "boolean",
+			"default": true
+		},
+		"showHours": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMinutes": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSeconds": {
+			"type": "boolean",
+			"default": true
+		},
+		"daysLabel": {
+			"type": "string",
+			"default": "Days"
+		},
+		"hoursLabel": {
+			"type": "string",
+			"default": "Hours"
+		},
+		"minutesLabel": {
+			"type": "string",
+			"default": "Minutes"
+		},
+		"secondsLabel": {
+			"type": "string",
+			"default": "Seconds"
+		},
+		"expiredAction": {
+			"type": "string",
+			"default": "message"
+		},
+		"expiredMessage": {
+			"type": "string",
+			"default": "This offer has expired."
+		},
+		"prefixText": {
+			"type": "string",
+			"default": ""
+		},
+		"suffixText": {
+			"type": "string",
+			"default": ""
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 600
+		},
+		"boxLayout": {
+			"type": "string",
+			"default": "boxed"
+		},
+		"digitBg": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"digitColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"labelColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"separatorVisible": {
+			"type": "boolean",
+			"default": true
+		},
+		"separatorColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"boxWidth": {
+			"type": "integer",
+			"default": 80
+		},
+		"boxHeight": {
+			"type": "integer",
+			"default": 80
+		},
+		"boxGap": {
+			"type": "integer",
+			"default": 12
+		},
+		"boxRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"digitSize": {
+			"type": "integer",
+			"default": 36
+		},
+		"labelSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"prefixSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"prefixColor": {
+			"type": "string",
+			"default": "#222222"
+		},
+		"suffixSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"suffixColor": {
+			"type": "string",
+			"default": "#555555"
+		},
+		"expiredSize": {
+			"type": "integer",
+			"default": 16
+		},
+		"expiredColor": {
+			"type": "string",
+			"default": "#cc0000"
+		},
+		"paddingV": {
+			"type": "integer",
+			"default": 20
+		},
+		"paddingH": {
+			"type": "integer",
+			"default": 20
+		},
+		"blockBg": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

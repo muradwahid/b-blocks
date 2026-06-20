@@ -1,0 +1,145 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/media-text-section",
+	"title": "Media & Text Section",
+	"description": "A two-panel image/video beside rich content section with sticky media, image effects, per-panel styling, and responsive stacking.",
+	"category": "bBlocks",
+	"keywords": [
+		"media text",
+		"image text",
+		"split content",
+		"feature section",
+		"two column"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"mediaPosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"mediaType": {
+			"type": "string",
+			"default": "image"
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaPosterUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"splitRatio": {
+			"type": "string",
+			"default": "50-50"
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaFit": {
+			"type": "string",
+			"default": "cover"
+		},
+		"mediaFocal": {
+			"type": "object",
+			"default": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"stickyMedia": {
+			"type": "boolean",
+			"default": false
+		},
+		"mediaOverlayColor": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaOverlayOpacity": {
+			"type": "number",
+			"default": 0
+		},
+		"imageBorderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"imageBoxShadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"mediaPanelBg": {
+			"type": "string",
+			"default": ""
+		},
+		"contentPanelBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionBgGradient": {
+			"type": "string",
+			"default": ""
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"contentPaddingTop": {
+			"type": "number",
+			"default": 40
+		},
+		"contentPaddingBottom": {
+			"type": "number",
+			"default": 40
+		},
+		"contentPaddingLeft": {
+			"type": "number",
+			"default": 40
+		},
+		"contentPaddingRight": {
+			"type": "number",
+			"default": 40
+		},
+		"mobileStackOrder": {
+			"type": "string",
+			"default": "media-first"
+		},
+		"gapBetweenPanels": {
+			"type": "number",
+			"default": 0
+		},
+		"sectionLabel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

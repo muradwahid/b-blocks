@@ -1,0 +1,393 @@
+/**
+ * Woo Mini Cart — frontend + editor shared styles. Mobile-first.
+ * Per-instance values come from CSS custom properties emitted in render.php.
+ */
+
+.bb-wmc {
+	--bb-wmc-icon-size: 22px;
+	--bb-wmc-icon-color: inherit;
+	--bb-wmc-icon-hov-color: inherit;
+	--bb-wmc-badge-bg: #c0392b;
+	--bb-wmc-badge-color: #ffffff;
+	--bb-wmc-badge-fs: 11px;
+	--bb-wmc-total-color: inherit;
+	--bb-wmc-total-fs: 14px;
+	--bb-wmc-dropdown-bg: #ffffff;
+	--bb-wmc-dropdown-width: 320px;
+	--bb-wmc-dropdown-radius: 8px;
+	--bb-wmc-dropdown-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+	--bb-wmc-item-name-color: inherit;
+	--bb-wmc-item-price-color: inherit;
+	--bb-wmc-subtotal-label-color: inherit;
+	--bb-wmc-subtotal-value-color: inherit;
+	--bb-wmc-primary-color: #ffffff;
+	--bb-wmc-primary-bg: #146ef5;
+	--bb-wmc-primary-hov-color: #ffffff;
+	--bb-wmc-primary-hov-bg: #070127;
+	--bb-wmc-secondary-color: #333333;
+	--bb-wmc-secondary-bg: #f0f0f0;
+	--bb-wmc-secondary-hov-color: #333333;
+	--bb-wmc-secondary-hov-bg: #dddddd;
+	--bb-wmc-btn-radius: 6px;
+	--bb-wmc-btn-fs: 14px;
+	--bb-wmc-btn-fw: 600;
+
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	display: flex;
+
+	&.bb-wmc--align-center {
+		justify-content: center;
+	}
+
+	&.bb-wmc--align-right {
+		justify-content: flex-end;
+	}
+
+	.bb-wmc-shell {
+		position: relative;
+		display: inline-flex;
+	}
+
+	// Trigger overlay — covers the visible trigger-inner for interaction.
+	.bb-wmc-trigger {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		display: block;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+		appearance: none;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-wmc-primary-bg);
+			outline-offset: 2px;
+			border-radius: 4px;
+		}
+	}
+
+	.bb-wmc-trigger-inner {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 8px;
+		line-height: 1;
+	}
+
+	.bb-wmc-icon {
+		display: inline-block;
+		font-size: var(--bb-wmc-icon-size);
+		color: var(--bb-wmc-icon-color);
+		transition: color 0.2s ease;
+	}
+
+	.bb-wmc-shell:hover .bb-wmc-icon {
+		color: var(--bb-wmc-icon-hov-color);
+	}
+
+	.bb-wmc-badge {
+		position: absolute;
+		top: -4px;
+		left: calc(var(--bb-wmc-icon-size) - 2px);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 18px;
+		height: 18px;
+		padding: 0 5px;
+		font-size: var(--bb-wmc-badge-fs);
+		font-weight: 700;
+		line-height: 1;
+		color: var(--bb-wmc-badge-color);
+		background: var(--bb-wmc-badge-bg);
+		border-radius: 9px;
+	}
+
+	.bb-wmc-total-label {
+		font-size: var(--bb-wmc-total-fs);
+		color: var(--bb-wmc-total-color);
+
+		.amount,
+		bdi {
+			color: inherit;
+		}
+	}
+
+	&.bb-wmc--empty .bb-wmc-badge {
+		display: none;
+	}
+
+	// Dropdown flyout.
+	.bb-wmc-dropdown {
+		position: absolute;
+		top: calc(100% + 8px);
+		z-index: 50;
+		width: var(--bb-wmc-dropdown-width);
+		max-width: calc(100vw - 24px);
+		padding: 16px;
+		background: var(--bb-wmc-dropdown-bg);
+		border-radius: var(--bb-wmc-dropdown-radius);
+		box-shadow: var(--bb-wmc-dropdown-shadow);
+		opacity: 0;
+		transform: translateY(-6px);
+		transition: opacity 0.18s ease, transform 0.18s ease;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&.bb-wmc--pos-right .bb-wmc-dropdown {
+		right: 0;
+	}
+
+	&.bb-wmc--pos-left .bb-wmc-dropdown {
+		left: 0;
+	}
+
+	&.bb-wmc--open .bb-wmc-dropdown {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.bb-wmc-dropdown-body {
+		max-height: 60vh;
+		overflow-y: auto;
+	}
+
+	.bb-wmc-empty-message {
+		margin: 0;
+		padding: 12px 0;
+		text-align: center;
+		color: var(--bb-wmc-item-name-color);
+	}
+
+	.bb-wmc-items {
+		margin: 0 0 12px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.bb-wmc-item {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 10px;
+		padding: 10px 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		&.bb-wmc-item--removing {
+			opacity: 0.45;
+			pointer-events: none;
+		}
+	}
+
+	.bb-wmc-item-info {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		min-width: 0;
+	}
+
+	.bb-wmc-item-name {
+		font-weight: 600;
+		line-height: 1.3;
+		color: var(--bb-wmc-item-name-color);
+		word-break: break-word;
+	}
+
+	.bb-wmc-item-meta {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 13px;
+	}
+
+	.bb-wmc-item-price {
+		color: var(--bb-wmc-item-price-color);
+
+		.amount,
+		bdi {
+			color: inherit;
+		}
+	}
+
+	.bb-wmc-remove {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 22px;
+		height: 22px;
+		font-size: 18px;
+		line-height: 1;
+		text-decoration: none;
+		color: #777;
+		background: transparent;
+		border-radius: 50%;
+		transition: color 0.15s ease, background 0.15s ease;
+
+		&:hover,
+		&:focus-visible {
+			color: #c0392b;
+			background: rgba(192, 57, 58, 0.1);
+		}
+
+		&:focus-visible {
+			outline: 2px solid #c0392b;
+			outline-offset: 1px;
+		}
+	}
+
+	.bb-wmc-subtotal {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		padding: 10px 0;
+		margin-top: 4px;
+		font-weight: 700;
+		border-top: 1px solid rgba(0, 0, 0, 0.12);
+	}
+
+	.bb-wmc-subtotal-label {
+		color: var(--bb-wmc-subtotal-label-color);
+	}
+
+	.bb-wmc-subtotal-value {
+		color: var(--bb-wmc-subtotal-value-color);
+
+		.amount,
+		bdi {
+			color: inherit;
+		}
+	}
+
+	.bb-wmc-footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-top: 12px;
+	}
+
+	.bb-wmc-btn {
+		flex: 1 1 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 14px;
+		font-size: var(--bb-wmc-btn-fs);
+		font-weight: var(--bb-wmc-btn-fw);
+		line-height: 1.2;
+		text-align: center;
+		text-decoration: none;
+		border: 0;
+		border-radius: var(--bb-wmc-btn-radius);
+		cursor: pointer;
+		transition: color 0.18s ease, background 0.18s ease;
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+
+		&.bb-wmc-btn--primary {
+			color: var(--bb-wmc-primary-color);
+			background: var(--bb-wmc-primary-bg);
+
+			&:hover,
+			&:focus-visible {
+				color: var(--bb-wmc-primary-hov-color);
+				background: var(--bb-wmc-primary-hov-bg);
+			}
+		}
+
+		&.bb-wmc-btn--secondary {
+			color: var(--bb-wmc-secondary-color);
+			background: var(--bb-wmc-secondary-bg);
+
+			&:hover,
+			&:focus-visible {
+				color: var(--bb-wmc-secondary-hov-color);
+				background: var(--bb-wmc-secondary-hov-bg);
+			}
+		}
+	}
+
+	// Loading spinner.
+	.bb-wmc-spinner {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		width: 16px;
+		height: 16px;
+		border: 2px solid rgba(0, 0, 0, 0.15);
+		border-top-color: var(--bb-wmc-primary-bg);
+		border-radius: 50%;
+		opacity: 0;
+		pointer-events: none;
+		animation: bb-wmc-spin 0.7s linear infinite;
+	}
+
+	&.bb-wmc--loading {
+		.bb-wmc-spinner {
+			opacity: 1;
+		}
+
+		.bb-wmc-dropdown-body {
+			opacity: 0.55;
+		}
+	}
+
+	// WooCommerce-absent fallback notice.
+	.bb-wmc-notice {
+		margin: 0;
+		padding: 10px 14px;
+		font-size: 14px;
+		color: #614500;
+		background: #fcf4d8;
+		border: 1px solid #f0d98a;
+		border-radius: 4px;
+	}
+}
+
+@keyframes bb-wmc-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-wmc {
+		.bb-wmc-dropdown {
+			transition: none;
+			transform: none;
+		}
+
+		.bb-wmc-spinner {
+			animation: none;
+		}
+
+		.bb-wmc-icon,
+		.bb-wmc-btn,
+		.bb-wmc-remove {
+			transition: none;
+		}
+	}
+}

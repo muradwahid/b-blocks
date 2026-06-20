@@ -1,0 +1,94 @@
+/*
+ * Reading Progress Block — editor-only styles.
+ *
+ * In the editor we never want to render the fixed-position bar (it would
+ * float over the Gutenberg UI). Instead we show a static placeholder card
+ * that demonstrates colors and position.
+ */
+
+.wp-block-b-blocks-reading-progress.bb-rp-editor-placeholder {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 16px 20px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 6px;
+	background: #f6f7f7;
+	color: #1e1e1e;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-rp-editor-header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 10px;
+		font-size: 13px;
+		font-weight: 600;
+	}
+
+	.bb-rp-editor-header__icon {
+		display: inline-flex;
+		align-items: center;
+		font-size: 16px;
+		line-height: 1;
+	}
+
+	.bb-rp-editor-note {
+		margin: 0 0 12px;
+		font-size: 12px;
+		color: #50575e;
+		line-height: 1.4;
+	}
+
+	.bb-rp-editor-preview {
+		--bb-rp-preview-color: #0073aa;
+		--bb-rp-preview-bg: #e0e0e0;
+		--bb-rp-preview-height: 4px;
+		--bb-rp-preview-radius: 0px;
+
+		position: relative;
+		width: 100%;
+		height: var(--bb-rp-preview-height);
+		background-color: var(--bb-rp-preview-bg);
+		border-radius: var(--bb-rp-preview-radius);
+		overflow: hidden;
+	}
+
+	.bb-rp-editor-preview__fill {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 60%;
+		background-color: var(--bb-rp-preview-color);
+		border-radius: inherit;
+	}
+
+	.bb-rp-editor-preview--bottom {
+		margin-top: 24px;
+	}
+
+	.bb-rp-editor-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 16px;
+		margin-top: 12px;
+		font-size: 11px;
+		color: #50575e;
+	}
+
+	.bb-rp-editor-meta__item {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.bb-rp-editor-meta__key {
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+}

@@ -1,0 +1,50 @@
+/**
+ * Woo Add to Cart — editor-only styles.
+ */
+
+.wp-block-b-blocks-woo-add-to-cart {
+	.bb-atc-ssr-empty,
+	.bb-atc-ssr-loading {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0;
+		padding: 12px 16px;
+		font-size: 14px;
+		color: #555;
+		background: #f6f7f7;
+		border: 1px dashed #ccd0d4;
+		border-radius: 4px;
+	}
+
+	// Buttons are non-interactive inside the editor preview (Disabled wrapper).
+	.bb-atc-btn,
+	.bb-atc-qty-btn {
+		pointer-events: none;
+	}
+}
+
+.bb-atc-product-preview {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 8px;
+	padding: 8px;
+	background: #f6f7f7;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+
+	img {
+		width: 40px;
+		height: 40px;
+		object-fit: cover;
+		border-radius: 4px;
+		flex: 0 0 auto;
+	}
+
+	.bb-atc-product-name {
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+}

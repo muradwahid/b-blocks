@@ -1,0 +1,49 @@
+// Editor-only adjustments for the Cookie Consent Bar block.
+// On the canvas the bar renders in-flow (not position:fixed) so editors can
+// see and edit it; the frontend uses position:fixed via style.scss.
+
+@import './style.scss';
+
+.wp-block-b-blocks-cookie-consent-bar {
+	// Override the fixed positioning + slide transform for the editor canvas.
+	&.bb-ccb,
+	&.bb-ccb.bb-ccb-pos-top,
+	&.bb-ccb.bb-ccb-pos-bottom {
+		position: relative;
+		inset: auto;
+		transform: none;
+		transition: none;
+	}
+
+	// The action buttons are visual previews in the editor — block clicks.
+	.bb-ccb-button {
+		pointer-events: none;
+		user-select: none;
+	}
+
+	// Keep the RichText message editable and full-width.
+	.bb-ccb-message {
+		outline: none;
+
+		&:empty::before {
+			content: attr(data-placeholder);
+			opacity: 0.6;
+		}
+	}
+
+	.bb-ccb-editor-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		padding: 4px 10px;
+		font-size: 11px;
+		font-weight: 600;
+		color: #555;
+		background: #f0f0f1;
+		border: 1px dashed #c3c4c7;
+		border-radius: 4px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+}

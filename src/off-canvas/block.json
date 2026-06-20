@@ -1,0 +1,95 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/off-canvas",
+	"title": "Off-Canvas Drawer",
+	"description": "A slide-in drawer panel triggered by a button. Compose any blocks inside. Accessible focus trap, Escape to close, backdrop dismissal, and reduced-motion aware.",
+	"category": "bBlocks",
+	"keywords": [
+		"off-canvas",
+		"drawer",
+		"side panel",
+		"mobile menu",
+		"slide-in"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"drawerSide": {
+			"type": "string",
+			"default": "left"
+		},
+		"drawerWidth": {
+			"type": "number",
+			"default": 320
+		},
+		"showOverlay": {
+			"type": "boolean",
+			"default": true
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.5)"
+		},
+		"triggerLabel": {
+			"type": "string",
+			"default": "Open Menu"
+		},
+		"triggerIcon": {
+			"type": "string",
+			"default": "menu"
+		},
+		"closeLabel": {
+			"type": "string",
+			"default": "Close"
+		},
+		"drawerBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"triggerBgColor": {
+			"type": "string",
+			"default": "#1e1e1e"
+		},
+		"triggerTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"triggerBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"drawerPadding": {
+			"type": "number",
+			"default": 24
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"triggerAlign": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

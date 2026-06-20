@@ -1,0 +1,242 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/post-masonry-grid",
+	"version": "1.0.0",
+	"title": "Post Masonry Grid",
+	"category": "bBlocks",
+	"description": "Server-rendered WP_Query masonry post grid with a client-side category filter and an AJAX Load More button.",
+	"keywords": [
+		"post grid",
+		"posts",
+		"masonry",
+		"blog",
+		"magazine",
+		"filter",
+		"category",
+		"ajax",
+		"load more"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"postsPerPage": {
+			"type": "integer",
+			"default": 9
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "DESC"
+		},
+		"categoryIds": {
+			"type": "array",
+			"default": []
+		},
+		"tagIds": {
+			"type": "array",
+			"default": []
+		},
+		"excludeIds": {
+			"type": "string",
+			"default": ""
+		},
+		"filterEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"filterLabel": {
+			"type": "string",
+			"default": "All"
+		},
+		"loadMoreEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"loadMoreLabel": {
+			"type": "string",
+			"default": "Load More"
+		},
+		"loadMoreStep": {
+			"type": "integer",
+			"default": 6
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "image-top"
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "16-9"
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "large"
+		},
+		"showExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"excerptLength": {
+			"type": "integer",
+			"default": 20
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAuthor": {
+			"type": "boolean",
+			"default": false
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"showReadMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"readMoreLabel": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"colsDesktop": {
+			"type": "integer",
+			"default": 3
+		},
+		"colsTablet": {
+			"type": "integer",
+			"default": 2
+		},
+		"colsMobile": {
+			"type": "integer",
+			"default": 1
+		},
+		"gap": {
+			"type": "integer",
+			"default": 24
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardShadow": {
+			"type": "string",
+			"default": "small"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"excerptColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"metaFontSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"excerptFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.45)"
+		},
+		"filterBarAlignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"filterBarGap": {
+			"type": "integer",
+			"default": 8
+		},
+		"filterActiveBg": {
+			"type": "string",
+			"default": ""
+		},
+		"filterActiveText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"filterInactiveBg": {
+			"type": "string",
+			"default": "#f3f4f6"
+		},
+		"filterInactiveText": {
+			"type": "string",
+			"default": "#374151"
+		},
+		"filterPillRadius": {
+			"type": "integer",
+			"default": 9999
+		},
+		"loadMoreBg": {
+			"type": "string",
+			"default": ""
+		},
+		"loadMoreText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"loadMoreRadius": {
+			"type": "integer",
+			"default": 6
+		},
+		"noPostsText": {
+			"type": "string",
+			"default": "No posts found."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,22 @@
+// Sticky Sidebar — editor-only styles.
+//
+// In the editor, InnerBlocks nests its two column groups inside
+// `.bb-ss-grid > .block-editor-inner-blocks > .block-editor-block-list__layout`.
+// The grid sizing for that layout element is emitted inline by Edit.js (via
+// buildStickyCss(..., true)); here we only neutralize `position: sticky` and
+// the internal max-height scroll so authors can edit both columns freely.
+
+.wp-block-b-blocks-sticky-sidebar {
+	&.bb-ss {
+		.bb-ss-grid .block-editor-block-list__layout {
+			min-height: 40px;
+
+			> * {
+				position: static !important;
+				top: auto !important;
+				max-height: none !important;
+				overflow: visible !important;
+			}
+		}
+	}
+}

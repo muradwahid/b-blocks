@@ -1,0 +1,71 @@
+// Editor-only adjustments for the Comparison Table block.
+// Frontend styles are loaded from style.scss via the build pipeline.
+@import './style.scss';
+
+.wp-block-b-blocks-comparison-table {
+	.bb-ct-empty {
+		font-size: 13px;
+	}
+
+	// Visible label for editor preview (caption hidden on frontend).
+	.bb-ct-editor-caption {
+		display: block;
+		margin: 0 0 6px;
+		font-size: 12px;
+		font-weight: 600;
+		color: #6c757d;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	[data-rich-text-placeholder]::after {
+		opacity: 0.55;
+	}
+}
+
+// Sidebar repeater scaffolding.
+.bb-ct-repeater__row {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 12px;
+	margin-bottom: 12px;
+	background: #f6f7f7;
+	border-radius: 4px;
+}
+
+.bb-ct-repeater__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+}
+
+.bb-ct-repeater__actions {
+	display: flex;
+	gap: 4px;
+}
+
+.bb-ct-cell-editor {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 8px;
+	background: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	margin-bottom: 6px;
+
+	&__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+		font-size: 12px;
+		font-weight: 600;
+	}
+}
+
+.bb-ct-repeater__add {
+	margin-top: 8px;
+}

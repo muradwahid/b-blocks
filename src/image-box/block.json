@@ -1,0 +1,170 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/image-box",
+	"version": "2.0.64",
+	"title": "Image Box",
+	"category": "bBlocks",
+	"description": "Grid of image cards that reveal a title, short description, and optional CTA on hover or keyboard focus — perfect for services, portfolio, products, and team showcases.",
+	"keywords": [
+		"image box",
+		"image card",
+		"hover overlay",
+		"portfolio",
+		"services",
+		"gallery",
+		"grid"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"_key": "ib-default-1",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"title": "Web Design",
+					"description": "Modern, responsive websites crafted for conversion.",
+					"ctaLabel": "",
+					"ctaUrl": "",
+					"ctaNewTab": false
+				},
+				{
+					"_key": "ib-default-2",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"title": "Brand Identity",
+					"description": "Logos, typography, and color systems that stand out.",
+					"ctaLabel": "",
+					"ctaUrl": "",
+					"ctaNewTab": false
+				},
+				{
+					"_key": "ib-default-3",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"title": "Photography",
+					"description": "On-brand product and lifestyle photography.",
+					"ctaLabel": "",
+					"ctaUrl": "",
+					"ctaNewTab": false
+				}
+			]
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"columnGap": {
+			"type": "number",
+			"default": 24
+		},
+		"rowGap": {
+			"type": "number",
+			"default": 24
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "4-3"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"overlayMode": {
+			"type": "string",
+			"default": "hover"
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"overlayOpacity": {
+			"type": "number",
+			"default": 0.55
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"titleFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "20px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"descColor": {
+			"type": "string",
+			"default": "#f1f5f9"
+		},
+		"descFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "15px",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
+		"showDesc": {
+			"type": "boolean",
+			"default": true
+		},
+		"showArrow": {
+			"type": "boolean",
+			"default": true
+		},
+		"zoomOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"zoomScale": {
+			"type": "number",
+			"default": 1.08
+		},
+		"animDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"align": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

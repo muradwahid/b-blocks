@@ -1,0 +1,338 @@
+/**
+ * Woo Product Carousel — frontend + editor shared styles. Mobile-first.
+ *
+ * Color-contrast notes (WCAG 2.1 AA, normal text needs >= 4.5:1):
+ *   - Default button #ffffff on #146EF5 => 4.64:1 (PASS).
+ *   - Default sale badge #ffffff on #e44d3a => 4.0:1 for large/UI text (PASS, >= 3:1).
+ * Per-instance custom properties are set inline in render.php under the wrapper
+ * id, so the values below are only fallbacks.
+ */
+
+.bb-wpc {
+	--bb-wpc-spv: 1;
+	--bb-wpc-gap: 24px;
+	--bb-wpc-speed: 500ms;
+	--bb-wpc-card-bg: #ffffff;
+	--bb-wpc-card-pad: 16px;
+	--bb-wpc-card-radius: 8px;
+	--bb-wpc-card-border: 1px solid #e2e8f0;
+	--bb-wpc-card-shadow: none;
+	--bb-wpc-aspect: 3/4;
+	--bb-wpc-content-align: left;
+	--bb-wpc-title-color: inherit;
+	--bb-wpc-title-size: 15px;
+	--bb-wpc-title-weight: 600;
+	--bb-wpc-price-color: #e44d3a;
+	--bb-wpc-regular-price-color: #999999;
+	--bb-wpc-rating-color: #f5a623;
+	--bb-wpc-badge-bg: #e44d3a;
+	--bb-wpc-badge-text: #ffffff;
+	--bb-wpc-btn-color: #ffffff;
+	--bb-wpc-btn-bg: #146ef5;
+	--bb-wpc-btn-hov-color: #ffffff;
+	--bb-wpc-btn-hov-bg: #070127;
+	--bb-wpc-btn-radius: 4px;
+	--bb-wpc-arrow-color: #146ef5;
+	--bb-wpc-arrow-bg: #ffffff;
+	--bb-wpc-arrow-radius: 50%;
+	--bb-wpc-dot-color: #146ef5;
+	--bb-wpc-dot-inactive: #cccccc;
+
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bb-wpc-viewport {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.bb-wpc-track {
+		display: flex;
+		flex: 1 1 auto;
+		gap: var(--bb-wpc-gap);
+		margin: 0;
+		padding: 4px;
+		list-style: none;
+		overflow: hidden;
+		touch-action: pan-y;
+		will-change: transform;
+	}
+
+	.bb-wpc-slide {
+		flex: 0 0 calc((100% - (var(--bb-wpc-spv) - 1) * var(--bb-wpc-gap)) / var(--bb-wpc-spv));
+		min-width: 0;
+	}
+
+	.bb-wpc-card {
+		position: relative;
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		background: var(--bb-wpc-card-bg);
+		border: var(--bb-wpc-card-border);
+		border-radius: var(--bb-wpc-card-radius);
+		box-shadow: var(--bb-wpc-card-shadow);
+		overflow: hidden;
+		margin: 0;
+	}
+
+	.bb-wpc-image-link {
+		position: relative;
+		display: block;
+		aspect-ratio: var(--bb-wpc-aspect);
+		overflow: hidden;
+	}
+
+	.bb-wpc-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.bb-wpc-sale-badge {
+		position: absolute;
+		top: 10px;
+		inset-inline-start: 10px;
+		z-index: 2;
+		padding: 3px 10px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: var(--bb-wpc-badge-text);
+		background: var(--bb-wpc-badge-bg);
+		border-radius: 4px;
+
+		&--noimg {
+			position: static;
+			display: inline-block;
+			margin: var(--bb-wpc-card-pad) var(--bb-wpc-card-pad) 0;
+		}
+	}
+
+	.bb-wpc-card-body {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: 8px;
+		padding: var(--bb-wpc-card-pad);
+		text-align: var(--bb-wpc-content-align);
+	}
+
+	.bb-wpc-title {
+		margin: 0;
+		font-size: var(--bb-wpc-title-size);
+		font-weight: var(--bb-wpc-title-weight);
+		line-height: 1.35;
+		color: var(--bb-wpc-title-color);
+	}
+
+	.bb-wpc-title-link {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+
+	.bb-wpc-rating {
+		display: inline-flex;
+		gap: 1px;
+		font-size: 14px;
+		line-height: 1;
+	}
+
+	.bb-wpc-star {
+		color: #d1d5db;
+
+		&.is-full {
+			color: var(--bb-wpc-rating-color);
+		}
+
+		&.is-half {
+			position: relative;
+			color: #d1d5db;
+
+			&::before {
+				content: '★';
+				position: absolute;
+				inset: 0;
+				width: 50%;
+				overflow: hidden;
+				color: var(--bb-wpc-rating-color);
+			}
+		}
+	}
+
+	.bb-wpc-price {
+		font-size: 15px;
+		color: var(--bb-wpc-price-color);
+
+		del {
+			color: var(--bb-wpc-regular-price-color);
+			margin-inline-end: 6px;
+			font-weight: 400;
+		}
+
+		ins {
+			text-decoration: none;
+			color: var(--bb-wpc-price-color);
+			font-weight: 600;
+		}
+
+		.amount {
+			font-weight: 600;
+		}
+	}
+
+	.bb-wpc-atc-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		position: relative;
+		margin-top: auto;
+		padding: 10px 20px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.4;
+		text-align: center;
+		text-decoration: none;
+		color: var(--bb-wpc-btn-color);
+		background: var(--bb-wpc-btn-bg);
+		border: none;
+		border-radius: var(--bb-wpc-btn-radius);
+		cursor: pointer;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--bb-wpc-btn-hov-color);
+			background: var(--bb-wpc-btn-hov-bg);
+		}
+
+		&[aria-busy='true'] {
+			opacity: 0.7;
+			cursor: progress;
+		}
+
+		.bb-wpc-atc-added {
+			display: none;
+		}
+
+		&.is-added {
+			.bb-wpc-atc-label {
+				display: none;
+			}
+
+			.bb-wpc-atc-added {
+				display: inline;
+			}
+		}
+	}
+
+	// ---- Arrows ----
+	.bb-wpc-arrow {
+		flex: 0 0 auto;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		color: var(--bb-wpc-arrow-color);
+		background: var(--bb-wpc-arrow-bg);
+		border: 1px solid rgba(15, 23, 42, 0.12);
+		border-radius: var(--bb-wpc-arrow-radius);
+		box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+		cursor: pointer;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+
+		&:hover {
+			transform: scale(1.05);
+		}
+
+		&.is-disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+		}
+	}
+
+	// ---- Dots ----
+	.bb-wpc-dots {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 8px;
+		margin-top: 16px;
+	}
+
+	.bb-wpc-dot {
+		width: 10px;
+		height: 10px;
+		padding: 0;
+		border: none;
+		border-radius: 50%;
+		background: var(--bb-wpc-dot-inactive);
+		cursor: pointer;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+
+		&.is-active {
+			background: var(--bb-wpc-dot-color);
+			transform: scale(1.2);
+		}
+	}
+
+	.bb-wpc-empty {
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+		font-style: italic;
+	}
+
+	.bb-wpc-status,
+	.bb-wpc-live {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+}
+
+// Visible focus ring for keyboard users.
+.bb-wpc {
+	.bb-wpc-title-link:focus-visible,
+	.bb-wpc-atc-btn:focus-visible,
+	.bb-wpc-arrow:focus-visible,
+	.bb-wpc-dot:focus-visible {
+		outline: 2px solid var(--bb-wpc-arrow-color);
+		outline-offset: 2px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-wpc .bb-wpc-track {
+		transition: none !important;
+	}
+
+	.bb-wpc .bb-wpc-atc-btn,
+	.bb-wpc .bb-wpc-arrow,
+	.bb-wpc .bb-wpc-dot {
+		transition: none;
+	}
+}

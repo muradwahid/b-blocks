@@ -1,0 +1,134 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-sale-badge",
+	"version": "1.0.0",
+	"title": "Woo Sale Badge",
+	"category": "bBlocks",
+	"description": "Drop a single WooCommerce product's live price and a custom discount badge (Sale!, percentage off, or amount saved) inline anywhere on a page.",
+	"keywords": [
+		"woocommerce",
+		"sale badge",
+		"discount",
+		"price",
+		"percentage off",
+		"amount saved",
+		"on sale",
+		"shop",
+		"ecommerce"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"productId": {
+			"type": "integer",
+			"default": 0
+		},
+		"showPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"badgeMode": {
+			"type": "string",
+			"default": "sale_label"
+		},
+		"saleLabelText": {
+			"type": "string",
+			"default": "Sale!"
+		},
+		"badgeShape": {
+			"type": "string",
+			"default": "pill"
+		},
+		"badgePosition": {
+			"type": "string",
+			"default": "inline"
+		},
+		"badgeBG": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"badgeTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"badgeFontSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"badgeFontWeight": {
+			"type": "integer",
+			"default": 700
+		},
+		"badgePaddingVertical": {
+			"type": "integer",
+			"default": 4
+		},
+		"badgePaddingHorizontal": {
+			"type": "integer",
+			"default": 10
+		},
+		"salePriceColor": {
+			"type": "string",
+			"default": "#e44d3a"
+		},
+		"regularPriceColor": {
+			"type": "string",
+			"default": "#999999"
+		},
+		"priceFontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "20px",
+				"tablet": "18px",
+				"mobile": "16px"
+			}
+		},
+		"priceFontWeight": {
+			"type": "integer",
+			"default": 700
+		},
+		"priceGap": {
+			"type": "integer",
+			"default": 8
+		},
+		"badgePriceGap": {
+			"type": "integer",
+			"default": 10
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"noProductMessage": {
+			"type": "string",
+			"default": "Please select a product."
+		},
+		"hideBadgeWhenNotOnSale": {
+			"type": "boolean",
+			"default": true
+		},
+		"hidePriceWhenNotOnSale": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

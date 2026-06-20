@@ -1,0 +1,122 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/icon",
+	"version": "2.1.4",
+	"title": "Icon",
+	"category": "bBlocks",
+	"description": "A single configurable Font Awesome icon you can drop anywhere — with size, color, hover color, an optional background shape (circle / square / rounded), border, shadow, alignment, max-width, and an optional accessible link wrapper.",
+	"keywords": [
+		"icon",
+		"font awesome",
+		"glyph",
+		"social icon",
+		"icon link",
+		"single icon"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"iconClass": {
+			"type": "string",
+			"default": "fa-solid fa-star"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 48
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"bgShape": {
+			"type": "string",
+			"default": "none"
+		},
+		"bgSize": {
+			"type": "number",
+			"default": 80
+		},
+		"bgPadding": {
+			"type": "number",
+			"default": 16
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"linkNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"hoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"hoverBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"rotate": {
+			"type": "number",
+			"default": 0
+		},
+		"shadow": {
+			"type": "string",
+			"default": "none"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

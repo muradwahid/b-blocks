@@ -1,0 +1,23 @@
+/**
+ * Post Timeline — editor-only styles.
+ *
+ * In the editor preview the entrance animation must never hide content, so
+ * items are forced visible. A small loading / empty state for the
+ * ServerSideRender preview is also styled here.
+ */
+
+.wp-block-b-blocks-post-timeline {
+	.bb-pt-item {
+		opacity: 1 !important;
+		transform: none !important;
+	}
+
+	.bb-pt-ssr-loading,
+	.bb-pt-ssr-empty {
+		padding: 24px;
+		text-align: center;
+		color: #64748b;
+		border: 1px dashed #cbd5e1;
+		border-radius: 8px;
+	}
+}

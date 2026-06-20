@@ -1,0 +1,61 @@
+// Editor-only adjustments for the Icon List block.
+// Frontend styles ship via style.scss → view.css.
+@import './style.scss';
+
+.wp-block-b-blocks-icon-list {
+	.bb-il-empty {
+		font-size: 13px;
+	}
+
+	// Keep RichText placeholders subtle in the editor canvas.
+	[data-rich-text-placeholder]::after {
+		opacity: 0.55;
+	}
+
+	// In the editor canvas the RichText is rendered inline as <span>; the
+	// browser uses display: inline by default which makes the gap rule on
+	// .bb-il-body collapse. Force a block context so the description sits
+	// neatly under the primary text just like the frontend.
+	.bb-il-text,
+	.bb-il-desc {
+		display: block;
+	}
+}
+
+// Sidebar repeater UI.
+.bb-il-repeater {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 12px;
+
+	&__row {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 12px;
+		background: #f6f7f7;
+		border-radius: 4px;
+	}
+
+	&__row-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__row-title {
+		font-size: 12px;
+		font-weight: 600;
+	}
+
+	&__row-actions {
+		display: flex;
+		gap: 4px;
+	}
+}
+
+.bb-il-add-item {
+	margin-top: 8px;
+}

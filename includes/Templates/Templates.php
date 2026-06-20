@@ -16,10 +16,14 @@ class Templates {
 
 	public function bblocks_templates_main(){
 		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ?? null ) );
-		$type = sanitize_text_field( $_POST['type'] ?? 'patterns');
+		$type = sanitize_text_field( wp_unslash( $_POST['type'] ?? 'patterns' ) );
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
+		}
+
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( 'Unauthorized' );
 		}
 
 		$typeFilter = 'patterns' === $type ? 'patterns-category': 'pages-category';
@@ -37,16 +41,28 @@ class Templates {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( 'Unauthorized' );
+		}
+
 		$type = sanitize_text_field( wp_unslash( $_POST['type'] ?? 'patterns') ) ;
         $category = sanitize_text_field( wp_unslash( $_POST['category'] ?? 'all' ) );
-        $pageNumber = absint( wp_unslash( $_POST['pageNumber'] ) ) ?? 1;
+        $pageNumber = absint( wp_unslash( $_POST['pageNumber'] ?? 1 ) );
+        $pageNumber = $pageNumber > 0 ? $pageNumber : 1;
         $start = $pageNumber - 1;
-        $search = sanitize_text_field( wp_unslash( $_POST['search'] ) ) ?? '';
+        $search = sanitize_text_field( wp_unslash( $_POST['search'] ?? '' ) );
 
 		$typeFilter = 'patterns' === $type ? 'patterns': 'pages';
 
 		try {
-			$response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/blocks?type=$typeFilter&start=$start&end=$pageNumber&category=$category&keywords=$search&fields=ID,category,keywords,original_content,thumbnail,title,type,url" );
+			$response = wp_remote_get( 'https://templates.bplugins.com/wp-json/gutenberg-templates/v1/blocks?' . http_build_query( [
+				'type'     => $typeFilter,
+				'start'    => $start,
+				'end'      => $pageNumber,
+				'category' => $category,
+				'keywords' => $search,
+				'fields'   => 'ID,category,keywords,original_content,thumbnail,title,type,url',
+			] ) );
 			
 			// old
 			// $response = wp_remote_get( "https://templates.bplugins.com/wp-json/gutenberg-templates/v1/$typeFilter?start=$start&end=$pageNumber&category=$category&keywords=$search&fields=ID,category,keywords,original_content,thumbnail,title,type,url" );
@@ -59,14 +75,18 @@ class Templates {
 	}
 
 	public function bblocks_template_import(){
-		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) ?? null;
+		$nonce = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ?? '' ) );
 
 		if( !wp_verify_nonce( $nonce, 'wp_ajax' )){
 			wp_send_json_error( 'Invalid Request' );
 		}
-		
+
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( 'Unauthorized' );
+		}
+
 		try {
-			$data = Image::instance()->maybe_import_images( wp_unslash( $_POST['original_content'] ) ?? '' );
+			$data = Image::instance()->maybe_import_images( wp_unslash( $_POST['original_content'] ?? '' ) );
 			wp_send_json_success( $data );
 		} catch ( \Throwable $th ) {
 			wp_send_json_error( $th->getMessage() );

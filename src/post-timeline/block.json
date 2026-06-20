@@ -1,0 +1,187 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/post-timeline",
+	"version": "1.0.0",
+	"title": "Post Timeline",
+	"category": "bBlocks",
+	"description": "Display WordPress posts on a vertical timeline spine with date badges, featured images, and excerpts.",
+	"keywords": [
+		"post timeline",
+		"posts",
+		"timeline",
+		"chronological",
+		"news",
+		"changelog",
+		"archive"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"postCount": {
+			"type": "integer",
+			"default": 6
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"categoryIds": {
+			"type": "array",
+			"default": []
+		},
+		"tagIds": {
+			"type": "array",
+			"default": []
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "DESC"
+		},
+		"showFeaturedImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"showExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"excerptLength": {
+			"type": "integer",
+			"default": 20
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"dateFormat": {
+			"type": "string",
+			"default": "M j, Y"
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAuthor": {
+			"type": "boolean",
+			"default": false
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"imageAspectRatio": {
+			"type": "string",
+			"default": "16/9"
+		},
+		"layout": {
+			"type": "string",
+			"default": "alternating"
+		},
+		"lineColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"lineWidth": {
+			"type": "integer",
+			"default": 2
+		},
+		"dotSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"dotColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"dateBadgeBg": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"dateBadgeColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardPadding": {
+			"type": "integer",
+			"default": 20
+		},
+		"cardShadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleSize": {
+			"type": "integer",
+			"default": 20
+		},
+		"titleWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"metaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"metaSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"excerptColor": {
+			"type": "string",
+			"default": ""
+		},
+		"excerptSize": {
+			"type": "integer",
+			"default": 15
+		},
+		"readMoreLabel": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"showReadMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"noPostsMessage": {
+			"type": "string",
+			"default": "No posts found."
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 900
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

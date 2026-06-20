@@ -1,0 +1,162 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/image-slider",
+	"title": "Image Slider",
+	"description": "A media-library image carousel with thumbnails, captions, autoplay, and a lightbox.",
+	"category": "bBlocks",
+	"keywords": [
+		"slider",
+		"carousel",
+		"images",
+		"slideshow",
+		"lightbox"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"images": {
+			"type": "array",
+			"default": []
+		},
+		"layout": {
+			"type": "string",
+			"default": "slide"
+		},
+		"slidesPerView": {
+			"type": "object",
+			"default": {
+				"desktop": 1,
+				"tablet": 1,
+				"mobile": 1
+			}
+		},
+		"gap": {
+			"type": "number",
+			"default": 16
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "16:9"
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "large"
+		},
+		"objectFit": {
+			"type": "string",
+			"default": "cover"
+		},
+		"showCaptions": {
+			"type": "boolean",
+			"default": false
+		},
+		"captionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"captionFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"arrowBgColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.4)"
+		},
+		"arrowSize": {
+			"type": "number",
+			"default": 40
+		},
+		"showDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"dotColor": {
+			"type": "string",
+			"default": "rgba(255,255,255,0.5)"
+		},
+		"dotActiveColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"dotSize": {
+			"type": "number",
+			"default": 10
+		},
+		"showThumbnails": {
+			"type": "boolean",
+			"default": false
+		},
+		"thumbnailHeight": {
+			"type": "number",
+			"default": 64
+		},
+		"thumbnailGap": {
+			"type": "number",
+			"default": 8
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplayDelay": {
+			"type": "number",
+			"default": 3000
+		},
+		"pauseOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"speed": {
+			"type": "number",
+			"default": 400
+		},
+		"effect": {
+			"type": "string",
+			"default": "slide"
+		},
+		"lightbox": {
+			"type": "boolean",
+			"default": true
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

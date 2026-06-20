@@ -24,7 +24,7 @@ class GetCSS{
 		if ( 'gradient' === $type && $isGradient ) {
 			$styles = self::isValidCSS('background', $gradient);
 		} elseif ( 'image' === $type && $isImage ) {
-			$imgUrl = $image['url'] ?? '';
+			$imgUrl = esc_url( $image['url'] ?? '' );
 			$styles = "background: url($imgUrl);"
 				. self::isValidCSS('background-color', $overlayColor)
 				. self::isValidCSS('background-position', $position)

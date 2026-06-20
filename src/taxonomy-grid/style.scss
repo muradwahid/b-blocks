@@ -1,0 +1,270 @@
+/**
+ * Taxonomy Grid — frontend + editor shared styles.
+ *
+ * Mobile-first. All per-instance values (columns, colors, sizes, transition)
+ * come from CSS custom properties emitted inline by render.php and scoped under
+ * a unique wrapper id, so these rules stay generic and instance-agnostic.
+ */
+
+.bb-tg {
+	--bb-tg-cols-desktop: 3;
+	--bb-tg-cols-tablet: 2;
+	--bb-tg-cols-mobile: 1;
+	--bb-tg-col-gap: 24px;
+	--bb-tg-row-gap: 24px;
+	--bb-tg-max-width: 100%;
+	--bb-tg-margin: 0 auto;
+	--bb-tg-aspect: 3/2;
+	--bb-tg-fallback: #3b82f6;
+	--bb-tg-overlay: rgba(0, 0, 0, 0.45);
+	--bb-tg-accent: #3b82f6;
+	--bb-tg-card-bg: #ffffff;
+	--bb-tg-card-radius: 8px;
+	--bb-tg-pad-v: 16px;
+	--bb-tg-pad-h: 16px;
+	--bb-tg-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	--bb-tg-border-width: 0px;
+	--bb-tg-border-color: #e5e7eb;
+	--bb-tg-name-color: #ffffff;
+	--bb-tg-name-size: 18px;
+	--bb-tg-name-weight: 600;
+	--bb-tg-count-color: #ffffff;
+	--bb-tg-count-bg: #3b82f6;
+	--bb-tg-count-size: 13px;
+	--bb-tg-desc-color: rgba(255, 255, 255, 0.88);
+	--bb-tg-desc-size: 14px;
+	--bb-tg-transition: 300ms;
+
+	box-sizing: border-box;
+
+	&.bb-tg--has-max-width {
+		max-width: var(--bb-tg-max-width);
+		margin: var(--bb-tg-margin);
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// --- Grid wrapper ------------------------------------------------------
+	.bb-tg-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&.bb-tg--layout-grid .bb-tg-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--bb-tg-cols-mobile), minmax(0, 1fr));
+		column-gap: var(--bb-tg-col-gap);
+		row-gap: var(--bb-tg-row-gap);
+	}
+
+	&.bb-tg--layout-masonry .bb-tg-grid {
+		column-count: var(--bb-tg-cols-mobile);
+		column-gap: var(--bb-tg-col-gap);
+
+		.bb-tg-item {
+			break-inside: avoid;
+			margin-bottom: var(--bb-tg-row-gap);
+		}
+	}
+
+	.bb-tg-item {
+		margin: 0;
+		padding: 0;
+	}
+
+	// --- Card link ---------------------------------------------------------
+	.bb-tg-card {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		height: 100%;
+		text-decoration: none;
+		color: var(--bb-tg-name-color);
+		background-color: var(--bb-tg-card-bg);
+		border-radius: var(--bb-tg-card-radius);
+		border: var(--bb-tg-border-width) solid transparent;
+		box-shadow: var(--bb-tg-shadow);
+		transition: transform var(--bb-tg-transition) ease,
+			box-shadow var(--bb-tg-transition) ease;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-tg-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	&.bb-tg--has-border .bb-tg-card {
+		border-color: var(--bb-tg-border-color);
+	}
+
+	// --- Media area --------------------------------------------------------
+	.bb-tg-media {
+		position: relative;
+		display: block;
+		width: 100%;
+		aspect-ratio: var(--bb-tg-aspect);
+		overflow: hidden;
+		background-color: var(--bb-tg-fallback);
+	}
+
+	.bb-tg-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform var(--bb-tg-transition) ease,
+			filter var(--bb-tg-transition) ease;
+	}
+
+	.bb-tg-fallback {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background-color: var(--bb-tg-fallback);
+		background-image: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.12),
+			rgba(0, 0, 0, 0.12)
+		);
+	}
+
+	.bb-tg-overlay {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background-color: var(--bb-tg-overlay);
+		transition: background-color var(--bb-tg-transition) ease,
+			opacity var(--bb-tg-transition) ease;
+	}
+
+	// --- Text body ---------------------------------------------------------
+	.bb-tg-body {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		padding: var(--bb-tg-pad-v) var(--bb-tg-pad-h);
+	}
+
+	.bb-tg-body--overlay {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.bb-tg-name {
+		display: block;
+		font-size: var(--bb-tg-name-size);
+		font-weight: var(--bb-tg-name-weight);
+		line-height: 1.3;
+		color: var(--bb-tg-name-color);
+	}
+
+	.bb-tg-count {
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		font-size: var(--bb-tg-count-size);
+		font-weight: 600;
+		line-height: 1;
+		color: var(--bb-tg-count-color);
+		background-color: var(--bb-tg-count-bg);
+		padding: 4px 8px;
+		border-radius: 999px;
+	}
+
+	.bb-tg-desc {
+		display: block;
+		font-size: var(--bb-tg-desc-size);
+		font-weight: 400;
+		line-height: 1.45;
+		color: var(--bb-tg-desc-color);
+	}
+
+	// --- "below" and "plain" card colors override overlay defaults ---------
+	&.bb-tg--below,
+	&.bb-tg--plain {
+		.bb-tg-name {
+			color: var(--bb-tg-name-color);
+		}
+	}
+
+	&.bb-tg--plain .bb-tg-card,
+	&.bb-tg--below .bb-tg-card {
+		.bb-tg-body {
+			text-align: left;
+		}
+	}
+
+	// --- Hover effects (CSS only) -----------------------------------------
+	&.bb-tg--hover-zoom .bb-tg-card:hover .bb-tg-image,
+	&.bb-tg--hover-zoom .bb-tg-card:focus-visible .bb-tg-image {
+		transform: scale(1.08);
+	}
+
+	&.bb-tg--hover-lift .bb-tg-card:hover,
+	&.bb-tg--hover-lift .bb-tg-card:focus-visible {
+		transform: translateY(-6px);
+		box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+	}
+
+	&.bb-tg--hover-darken .bb-tg-card:hover .bb-tg-overlay,
+	&.bb-tg--hover-darken .bb-tg-card:focus-visible .bb-tg-overlay {
+		background-color: var(--bb-tg-overlay);
+		opacity: 1;
+		filter: brightness(0.55);
+	}
+
+	// --- Responsive breakpoints -------------------------------------------
+	@media (min-width: 768px) {
+		&.bb-tg--layout-grid .bb-tg-grid {
+			grid-template-columns: repeat(var(--bb-tg-cols-tablet), minmax(0, 1fr));
+		}
+
+		&.bb-tg--layout-masonry .bb-tg-grid {
+			column-count: var(--bb-tg-cols-tablet);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		&.bb-tg--layout-grid .bb-tg-grid {
+			grid-template-columns: repeat(var(--bb-tg-cols-desktop), minmax(0, 1fr));
+		}
+
+		&.bb-tg--layout-masonry .bb-tg-grid {
+			column-count: var(--bb-tg-cols-desktop);
+		}
+	}
+
+	// --- Reduced motion ----------------------------------------------------
+	@media (prefers-reduced-motion: reduce) {
+		.bb-tg-card,
+		.bb-tg-image,
+		.bb-tg-overlay {
+			transition-duration: 0ms !important;
+		}
+	}
+}
+
+// Visually hidden text for screen readers (only define if theme lacks it).
+.bb-tg .screen-reader-text {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

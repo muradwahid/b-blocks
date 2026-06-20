@@ -1,0 +1,332 @@
+/**
+ * Woo Product Filter — frontend + editor shared styles.
+ *
+ * Mobile-first. All per-instance values (colors, sizes, spacing) come from CSS
+ * custom properties emitted inline by render.php and scoped under a unique
+ * wrapper id, so these rules stay generic and instance-agnostic.
+ */
+
+.bb-wpf {
+	--bb-wpf-accent: #146ef5;
+	--bb-wpf-bg: #ffffff;
+	--bb-wpf-border-color: #e2e8f0;
+	--bb-wpf-border-width: 1px;
+	--bb-wpf-radius: 8px;
+	--bb-wpf-pad: 20px;
+	--bb-wpf-text: inherit;
+	--bb-wpf-heading: inherit;
+	--bb-wpf-heading-size: 14px;
+	--bb-wpf-label-size: 14px;
+	--bb-wpf-btn-color: #ffffff;
+	--bb-wpf-btn-bg: #146ef5;
+	--bb-wpf-btn-radius: 4px;
+
+	box-sizing: border-box;
+	background-color: var(--bb-wpf-bg);
+	border-radius: var(--bb-wpf-radius);
+	padding: var(--bb-wpf-pad);
+	color: var(--bb-wpf-text);
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	&.bb-wpf--has-border {
+		border: var(--bb-wpf-border-width) solid var(--bb-wpf-border-color);
+	}
+
+	// --- WooCommerce-missing notice ----------------------------------------
+	.bb-wpf-notice {
+		padding: 16px 20px;
+		border: 1px solid #fcd34d;
+		border-radius: 8px;
+		background-color: #fffbeb;
+		color: #92400e;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	// --- Form ---------------------------------------------------------------
+	.bb-wpf-form {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		margin: 0;
+	}
+
+	.bb-wpf-section {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		min-width: 0;
+
+		&:not(:last-of-type) {
+			padding-bottom: 20px;
+			border-bottom: 1px solid var(--bb-wpf-border-color);
+		}
+	}
+
+	.bb-wpf-legend {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin-bottom: 12px;
+	}
+
+	.bb-wpf-heading {
+		margin: 0;
+		font-size: var(--bb-wpf-heading-size);
+		line-height: 1.3;
+		font-weight: 600;
+		color: var(--bb-wpf-heading);
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	// --- Option lists -------------------------------------------------------
+	.bb-wpf-options {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.bb-wpf-option {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin: 0;
+		font-size: var(--bb-wpf-label-size);
+		line-height: 1.4;
+
+		&.bb-wpf-option--child {
+			padding-left: 18px;
+		}
+
+		input[type='radio'],
+		input[type='checkbox'] {
+			flex: 0 0 auto;
+			width: 18px;
+			height: 18px;
+			margin: 0;
+			accent-color: var(--bb-wpf-accent);
+			cursor: pointer;
+		}
+
+		label {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			flex-wrap: wrap;
+			margin: 0;
+			cursor: pointer;
+			color: var(--bb-wpf-text);
+		}
+	}
+
+	.bb-wpf-count {
+		color: #94a3b8;
+		font-size: 0.85em;
+	}
+
+	// --- Rating stars -------------------------------------------------------
+	.bb-wpf-stars {
+		display: inline-flex;
+		line-height: 1;
+	}
+
+	.bb-wpf-star {
+		color: #cbd5e1;
+
+		&.is-filled {
+			color: #f59e0b;
+		}
+	}
+
+	.bb-wpf-stars-text {
+		font-size: 0.9em;
+		color: var(--bb-wpf-text);
+	}
+
+	// --- Price --------------------------------------------------------------
+	.bb-wpf-price {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	.bb-wpf-price-label {
+		font-size: var(--bb-wpf-label-size);
+		font-weight: 600;
+		color: var(--bb-wpf-text);
+	}
+
+	.bb-wpf-range {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bb-wpf-slider {
+		width: 100%;
+		margin: 0;
+		accent-color: var(--bb-wpf-accent);
+		cursor: pointer;
+	}
+
+	.bb-wpf-price-inputs {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.bb-wpf-price-num {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		flex: 1 1 0;
+		min-width: 0;
+		padding: 6px 10px;
+		border: 1px solid var(--bb-wpf-border-color);
+		border-radius: 4px;
+		background-color: #fff;
+
+		&:focus-within {
+			border-color: var(--bb-wpf-accent);
+			box-shadow: 0 0 0 1px var(--bb-wpf-accent);
+		}
+	}
+
+	.bb-wpf-currency {
+		color: #94a3b8;
+		font-size: var(--bb-wpf-label-size);
+	}
+
+	.bb-wpf-num {
+		flex: 1 1 0;
+		min-width: 0;
+		width: 100%;
+		border: 0;
+		padding: 0;
+		background: transparent;
+		font-size: var(--bb-wpf-label-size);
+		color: var(--bb-wpf-text);
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.bb-wpf-price-dash {
+		color: #94a3b8;
+	}
+
+	// --- Sort select --------------------------------------------------------
+	.bb-wpf-select {
+		width: 100%;
+		padding: 8px 12px;
+		border: 1px solid var(--bb-wpf-border-color);
+		border-radius: 4px;
+		background-color: #fff;
+		font-size: var(--bb-wpf-label-size);
+		color: var(--bb-wpf-text);
+		cursor: pointer;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-wpf-accent);
+			outline-offset: 1px;
+		}
+	}
+
+	// --- Actions ------------------------------------------------------------
+	.bb-wpf-actions {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.bb-wpf-apply {
+		flex: 1 1 auto;
+		padding: 10px 18px;
+		border: 0;
+		border-radius: var(--bb-wpf-btn-radius);
+		background-color: var(--bb-wpf-btn-bg);
+		color: var(--bb-wpf-btn-color);
+		font-size: var(--bb-wpf-label-size);
+		font-weight: 600;
+		cursor: pointer;
+		transition: filter 0.15s ease;
+
+		&:hover {
+			filter: brightness(0.94);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-wpf-accent);
+			outline-offset: 2px;
+		}
+
+		&[aria-busy='true'] {
+			opacity: 0.65;
+			cursor: progress;
+		}
+	}
+
+	.bb-wpf-clear {
+		flex: 0 0 auto;
+		color: var(--bb-wpf-accent);
+		font-size: var(--bb-wpf-label-size);
+		text-decoration: underline;
+
+		&:focus-visible {
+			outline: 2px solid var(--bb-wpf-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	// --- Horizontal (inline) layout ----------------------------------------
+	&.bb-wpf--horizontal {
+		.bb-wpf-form {
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: flex-end;
+			gap: 20px;
+		}
+
+		.bb-wpf-section {
+			flex: 1 1 180px;
+			min-width: 160px;
+
+			&:not(:last-of-type) {
+				padding-bottom: 0;
+				border-bottom: 0;
+			}
+		}
+
+		.bb-wpf-options {
+			gap: 6px;
+		}
+
+		.bb-wpf-actions {
+			flex: 0 0 auto;
+		}
+
+		.bb-wpf-apply {
+			flex: 0 0 auto;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bb-wpf-apply {
+			transition: none;
+		}
+	}
+}

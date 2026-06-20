@@ -1,0 +1,35 @@
+// Divider Block — editor-only overrides.
+// Most styling is shared with the frontend via style.scss. This file only
+// fixes selection edge cases (a 1-px line is nearly invisible in the canvas)
+// and tunes the RichText placeholder for the text variant.
+
+.wp-block.wp-block-b-blocks-divider {
+	// Provide a faint hover outline so the block stays selectable when the
+	// line is very thin (e.g. 1 px solid #fff on a light theme).
+	&:hover::before {
+		content: '';
+		position: absolute;
+		inset: -4px;
+		border: 1px dashed rgba( 0, 0, 0, 0.15 );
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	position: relative;
+}
+
+.wp-block-b-blocks-divider {
+	// Editor-only placeholder color for the inline-editable text variant.
+	.bb-dv-text[contenteditable='true']:empty::before {
+		content: attr( data-placeholder );
+		color: rgba( 0, 0, 0, 0.4 );
+		font-style: italic;
+	}
+
+	// Keep the icon visible in the editor even when its color is the same as
+	// the canvas background (e.g. white-on-white themes).
+	.bb-dv-icon {
+		min-width: 1em;
+		min-height: 1em;
+	}
+}

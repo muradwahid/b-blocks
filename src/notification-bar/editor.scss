@@ -1,0 +1,61 @@
+// Editor-only adjustments for the Notification Bar block.
+// The block is rendered inline in the editor canvas (NOT sticky) so authors
+// can scroll past it and edit normally.
+
+@import './style.scss';
+
+.wp-block-b-blocks-notification-bar {
+	// Always render in-flow inside the editor, regardless of the sticky/position
+	// settings — editing a fixed-positioned bar is hostile.
+	&.bb-nb-sticky {
+		position: relative !important;
+		top: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+		right: auto !important;
+	}
+
+	// The close button in the editor is purely visual — disable interaction so
+	// it doesn't accidentally hide the block while editing.
+	.bb-nb-close {
+		pointer-events: none;
+		opacity: 0.85;
+	}
+
+	.bb-nb-button {
+		pointer-events: none;
+		user-select: none;
+	}
+
+	// Visual hint that the bar will be sticky on the frontend.
+	.bb-nb-editor-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 8px;
+		padding: 4px 10px;
+		font-size: 11px;
+		font-weight: 600;
+		color: #555;
+		background: #f0f0f1;
+		border: 1px dashed #c3c4c7;
+		border-radius: 4px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bb-nb-editor-message-rich {
+		flex: 1 1 auto;
+		min-width: 0;
+		outline: none;
+
+		&:empty::before {
+			content: attr(data-placeholder);
+			opacity: 0.6;
+		}
+	}
+}
+
+.bb-nb-editor-wrapper {
+	position: relative;
+}

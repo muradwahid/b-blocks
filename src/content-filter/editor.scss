@@ -1,0 +1,25 @@
+// Content Filter Block — editor-only styles.
+
+.wp-block-b-blocks-content-filter {
+	.bb-cf-cats-editor {
+		display: block;
+	}
+
+	.bb-cf-bar {
+		// In the editor we keep buttons visually consistent with frontend
+		// but disable the active-on-click behavior (handled in Edit.js).
+		pointer-events: auto;
+	}
+
+	// Show all items in the editor so authors can edit any item regardless
+	// of the chosen default filter. Frontend hides via .is-hidden class.
+	.bb-cf-item {
+		opacity: 1 !important;
+		display: block !important;
+	}
+
+	// Make the grid more visible while editing.
+	.bb-cf-grid {
+		min-height: 80px;
+	}
+}

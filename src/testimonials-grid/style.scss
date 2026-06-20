@@ -1,0 +1,200 @@
+/**
+ * Testimonials Grid — frontend + editor shared styles. Mobile-first.
+ *
+ * All instance-specific values arrive as CSS custom properties set inline by
+ * render.php (frontend) and Edit.js (editor), scoped under the wrapper id.
+ *
+ * Accessibility note: the default #ffffff card background with the quote color
+ * falling back to inherited body text is intended to meet WCAG AA (4.5:1) on
+ * typical themes. Editors overriding colors must maintain that contrast.
+ */
+
+.bb-tg {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	// Grid container — mobile first.
+	.bb-tg-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--bb-tg-cols-mobile, 1), minmax(0, 1fr));
+		gap: var(--bb-tg-gap, 24px);
+		margin: 0 auto;
+		max-width: var(--bb-tg-max-width, 100%);
+		padding: 0;
+		list-style: none;
+		justify-content: var(--bb-tg-justify, flex-start);
+	}
+
+	// Justify the grid block itself when a max-width is set.
+	&.bb-tg--align-center .bb-tg-grid { margin-inline: auto; }
+	&.bb-tg--align-right .bb-tg-grid { margin-inline-start: auto; margin-inline-end: 0; }
+	&.bb-tg--align-left .bb-tg-grid { margin-inline-start: 0; margin-inline-end: auto; }
+
+	.bb-tg-item {
+		display: flex;
+		list-style: none;
+		margin: 0;
+	}
+
+	// Card — equal-height rows via flex stretch.
+	.bb-tg-card {
+		--bb-tg-transition: 200ms;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		width: 100%;
+		padding: var(--bb-tg-card-pv, 24px) var(--bb-tg-card-ph, 24px);
+		border-radius: var(--bb-tg-card-radius, 8px);
+		text-align: var(--bb-tg-text-align, left);
+		color: var(--bb-tg-quote-color, inherit);
+		transition: transform var(--bb-tg-transition, 200ms) ease,
+			box-shadow var(--bb-tg-transition, 200ms) ease;
+	}
+
+	// Center alignment of inline rows (stars / caption).
+	&.bb-tg--text-center {
+		.bb-tg-stars,
+		.bb-tg-caption { justify-content: center; }
+		.bb-tg-quote-icon { margin-inline: auto; }
+	}
+
+	// --- Style: card (shadow box) ---
+	&.bb-tg--card .bb-tg-card {
+		background-color: var(--bb-tg-card-bg, #ffffff);
+		box-shadow: var(--bb-tg-card-shadow, none);
+	}
+
+	&.bb-tg--card.bb-tg--has-border .bb-tg-card {
+		border: var(--bb-tg-border-width, 0) solid var(--bb-tg-border-color, transparent);
+	}
+
+	// Hover lift (card style only).
+	&.bb-tg--card .bb-tg-card:hover,
+	&.bb-tg--card .bb-tg-card:focus-within {
+		transform: translateY(-2px);
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.08);
+	}
+
+	// --- Style: minimal (flat) ---
+	&.bb-tg--minimal .bb-tg-card {
+		background-color: transparent;
+		box-shadow: none;
+		padding-inline: 0;
+	}
+	&.bb-tg--minimal.bb-tg--has-border .bb-tg-card {
+		border: var(--bb-tg-border-width, 0) solid var(--bb-tg-border-color, transparent);
+		padding-inline: var(--bb-tg-card-ph, 24px);
+	}
+
+	// Decorative quote icon (minimal style).
+	.bb-tg-quote-icon {
+		width: var(--bb-tg-quote-icon-size, 32px);
+		height: var(--bb-tg-quote-icon-size, 32px);
+		color: var(--bb-tg-quote-icon-color, var(--bb-tg-accent, #6366f1));
+		flex: 0 0 auto;
+	}
+
+	// Star rating.
+	.bb-tg-stars {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		line-height: 1;
+	}
+	.bb-tg-star {
+		width: var(--bb-tg-star-size, 16px);
+		height: var(--bb-tg-star-size, 16px);
+		flex: 0 0 auto;
+	}
+	.bb-tg-star--on path { fill: var(--bb-tg-rating-color, #f59e0b); }
+	.bb-tg-star--off path { fill: #d1d5db; }
+
+	// Quote text.
+	.bb-tg-quote {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		quotes: none;
+		font-size: var(--bb-tg-quote-size, 16px);
+		font-weight: var(--bb-tg-quote-weight, 400);
+		line-height: 1.6;
+		color: var(--bb-tg-quote-color, inherit);
+
+		p { margin: 0 0 0.5em; }
+		p:last-child { margin-bottom: 0; }
+	}
+
+	// Caption / attribution.
+	.bb-tg-caption {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: auto;
+		padding-top: 4px;
+	}
+
+	.bb-tg-avatar {
+		width: var(--bb-tg-avatar-size, 48px);
+		height: var(--bb-tg-avatar-size, 48px);
+		object-fit: cover;
+		border-radius: var(--bb-tg-avatar-radius, 50%);
+		flex: 0 0 auto;
+		display: block;
+	}
+
+	.bb-tg-cite {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		font-style: normal;
+		min-width: 0;
+	}
+
+	.bb-tg-name {
+		font-size: var(--bb-tg-name-size, 14px);
+		font-weight: var(--bb-tg-name-weight, 600);
+		line-height: 1.3;
+		color: var(--bb-tg-name-color, inherit);
+	}
+
+	.bb-tg-meta {
+		font-size: var(--bb-tg-meta-size, 13px);
+		line-height: 1.3;
+		color: var(--bb-tg-meta-color, #6b7280);
+	}
+
+	// Editor empty-state notice.
+	.bb-tg-empty {
+		margin: 0 auto;
+		max-width: var(--bb-tg-max-width, 100%);
+		text-align: center;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 13px;
+	}
+
+	// Tablet.
+	@media (min-width: 600px) {
+		.bb-tg-grid {
+			grid-template-columns: repeat(var(--bb-tg-cols-tablet, 2), minmax(0, 1fr));
+		}
+	}
+
+	// Desktop.
+	@media (min-width: 1024px) {
+		.bb-tg-grid {
+			grid-template-columns: repeat(var(--bb-tg-cols-desktop, 3), minmax(0, 1fr));
+		}
+	}
+
+	// Reduced motion: suppress hover lift transition.
+	.bb-tg-card {
+		@media (prefers-reduced-motion: reduce) {
+			transition: none !important;
+			transform: none !important;
+		}
+	}
+}

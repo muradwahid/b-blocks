@@ -1,0 +1,148 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/floating-cta",
+	"version": "1.0.0",
+	"title": "Floating CTA",
+	"category": "bBlocks",
+	"description": "Add a persistent, corner-anchored floating call-to-action button that stays in view as visitors scroll.",
+	"keywords": [
+		"floating button",
+		"sticky cta",
+		"call to action",
+		"fixed button",
+		"floating cta"
+	],
+	"textdomain": "b-blocks",
+	"example": {
+		"attributes": {
+			"label": "Get a Quote",
+			"iconClass": "fas fa-comment",
+			"position": "bottom-right",
+			"bgColor": "#0073aa",
+			"textColor": "#ffffff",
+			"scrollTrigger": 0
+		}
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Get a Quote"
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"newTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fas fa-comment"
+		},
+		"position": {
+			"type": "string",
+			"default": "bottom-right"
+		},
+		"offsetX": {
+			"type": "number",
+			"default": 24
+		},
+		"offsetY": {
+			"type": "number",
+			"default": 24
+		},
+		"scrollTrigger": {
+			"type": "number",
+			"default": 300
+		},
+		"showDismiss": {
+			"type": "boolean",
+			"default": false
+		},
+		"dismissKey": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string",
+			"default": "#0073aa"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"hoverBgColor": {
+			"type": "string",
+			"default": "#005a87"
+		},
+		"hoverTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"fontSize": {
+			"type": "number",
+			"default": 15
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 18
+		},
+		"iconGap": {
+			"type": "number",
+			"default": 8
+		},
+		"paddingV": {
+			"type": "number",
+			"default": 14
+		},
+		"paddingH": {
+			"type": "number",
+			"default": 20
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"shadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"zIndex": {
+			"type": "number",
+			"default": 9999
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"animateIn": {
+			"type": "string",
+			"default": "fade"
+		},
+		"animateDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"cId": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

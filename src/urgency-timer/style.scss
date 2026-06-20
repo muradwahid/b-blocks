@@ -1,0 +1,189 @@
+// Urgency Timer — frontend + editor shared styles.
+// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
+
+.wp-block-b-blocks-urgency-timer,
+.bb-ut {
+	* {
+		box-sizing: border-box;
+	}
+
+	width: 100%;
+	padding: var(--bb-ut-pad-y, 20px) var(--bb-ut-pad-x, 20px);
+	background-color: var(--bb-ut-bg, transparent);
+
+	// Hidden entirely when expired action === "hide".
+	&.bb-ut--expired-hidden {
+		display: none;
+	}
+
+	.bb-ut-inner {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		width: 100%;
+		max-width: var(--bb-ut-max-w, 600px);
+	}
+
+	// --- Alignment ---
+	&.bb-ut-align-left .bb-ut-inner {
+		align-items: flex-start;
+		margin-inline: 0 auto;
+	}
+
+	&.bb-ut-align-center .bb-ut-inner {
+		align-items: center;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	&.bb-ut-align-right .bb-ut-inner {
+		align-items: flex-end;
+		margin-inline: auto 0;
+		text-align: right;
+	}
+
+	// --- Prefix / suffix ---
+	.bb-ut-prefix {
+		margin: 0;
+		color: var(--bb-ut-prefix-color, #222222);
+		font-size: var(--bb-ut-prefix-size, 18px);
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.bb-ut-suffix {
+		margin: 0;
+		color: var(--bb-ut-suffix-color, #555555);
+		font-size: var(--bb-ut-suffix-size, 14px);
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	// --- Timer row ---
+	.bb-ut-timer {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
+		gap: var(--bb-ut-box-gap, 12px);
+	}
+
+	.bb-ut-unit {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.bb-ut-box {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--bb-ut-box-w, 80px);
+		height: var(--bb-ut-box-h, 80px);
+		background: var(--bb-ut-digit-bg, #146EF5);
+		border-radius: var(--bb-ut-box-radius, 8px);
+	}
+
+	.bb-ut-digit {
+		color: var(--bb-ut-digit-color, #ffffff);
+		font-size: var(--bb-ut-digit-size, 36px);
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		font-feature-settings: "tnum";
+		line-height: 1;
+		transition: opacity 0.2s ease;
+	}
+
+	.bb-ut-unit-label {
+		color: var(--bb-ut-label-color, #ffffff);
+		font-size: var(--bb-ut-label-size, 13px);
+		font-weight: 500;
+		line-height: 1.2;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bb-ut-sep {
+		align-self: center;
+		height: var(--bb-ut-box-h, 80px);
+		display: inline-flex;
+		align-items: center;
+		color: var(--bb-ut-sep-color, #146EF5);
+		font-size: var(--bb-ut-digit-size, 36px);
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	// --- Plain layout: no box background, label color follows digit context ---
+	&.bb-ut-layout-plain {
+		.bb-ut-box {
+			width: auto;
+			min-width: var(--bb-ut-box-w, 80px);
+			height: auto;
+			background: transparent;
+			border-radius: 0;
+		}
+
+		.bb-ut-digit {
+			color: var(--bb-ut-digit-bg, #146EF5);
+		}
+
+		.bb-ut-unit-label {
+			color: var(--bb-ut-label-color, #222222);
+		}
+
+		.bb-ut-sep {
+			height: auto;
+		}
+	}
+
+	// --- Expired message ---
+	.bb-ut-expired {
+		color: var(--bb-ut-expired-color, #cc0000);
+		font-size: var(--bb-ut-expired-size, 16px);
+		font-weight: 600;
+		line-height: 1.4;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	// Visually hidden helper for screen-reader-only text.
+	.screen-reader-text {
+		position: absolute !important;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	// Respect prefers-reduced-motion — suppress digit transitions.
+	&.bb-ut--reduced-motion .bb-ut-digit {
+		transition: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bb-ut-digit {
+			transition: none;
+		}
+	}
+
+	// Mobile-first: shrink the boxes on narrow screens.
+	@media (max-width: 600px) {
+		.bb-ut-box {
+			width: auto;
+			min-width: var(--bb-ut-box-w, 80px);
+		}
+
+		.bb-ut-timer {
+			gap: calc(var(--bb-ut-box-gap, 12px) * 0.75);
+		}
+	}
+}

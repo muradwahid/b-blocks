@@ -1,0 +1,26 @@
+// Editor-only adjustments for the Audio Player block.
+// The canvas renders a static preview of the player; live playback is
+// frontend-only, so editor controls are non-interactive placeholders.
+
+@import './style.scss';
+
+.wp-block-b-blocks-audio-player {
+	.bb-ap-seek,
+	.bb-ap-volume {
+		pointer-events: none;
+	}
+
+	// Editor hint shown when no audio file has been selected yet.
+	.bb-ap-editor-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 14px 18px;
+		font-size: 12px;
+		font-weight: 600;
+		color: #555;
+		background: #f0f0f1;
+		border: 1px dashed #c3c4c7;
+		border-radius: 6px;
+	}
+}

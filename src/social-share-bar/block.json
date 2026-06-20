@@ -1,0 +1,130 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/social-share-bar",
+	"version": "1.0.0",
+	"title": "Social Share Bar",
+	"category": "bBlocks",
+	"description": "Add a viewport-fixed vertical social share strip that appears after the reader scrolls, with Twitter/X, Facebook, LinkedIn, WhatsApp, Pinterest, Email and Copy Link buttons.",
+	"keywords": [
+		"social share",
+		"sticky share",
+		"floating share bar",
+		"share buttons",
+		"social sharing"
+	],
+	"textdomain": "b-blocks",
+	"example": {
+		"attributes": {
+			"side": "left",
+			"scrollThreshold": 0,
+			"platforms": [ "twitter", "facebook", "linkedin", "whatsapp", "email", "copy" ]
+		}
+	},
+	"attributes": {
+		"side": {
+			"type": "string",
+			"default": "left"
+		},
+		"offset": {
+			"type": "number",
+			"default": 120
+		},
+		"scrollThreshold": {
+			"type": "number",
+			"default": 300
+		},
+		"platforms": {
+			"type": "array",
+			"default": [ "twitter", "facebook", "linkedin", "whatsapp", "email", "copy" ]
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 20
+		},
+		"buttonSize": {
+			"type": "number",
+			"default": 44
+		},
+		"buttonRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"gap": {
+			"type": "number",
+			"default": 8
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"hoverBackgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"showLabels": {
+			"type": "boolean",
+			"default": false
+		},
+		"labelSize": {
+			"type": "number",
+			"default": 12
+		},
+		"labelColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"animation": {
+			"type": "string",
+			"default": "fade"
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"zIndex": {
+			"type": "number",
+			"default": 9999
+		},
+		"shareTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"shareUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"twitterVia": {
+			"type": "string",
+			"default": ""
+		},
+		"emailSubject": {
+			"type": "string",
+			"default": ""
+		},
+		"copyLabel": {
+			"type": "string",
+			"default": "Copy"
+		},
+		"copiedLabel": {
+			"type": "string",
+			"default": "Copied!"
+		},
+		"persistKey": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"customClassName": true
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./style.scss",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

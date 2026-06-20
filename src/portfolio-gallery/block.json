@@ -1,0 +1,186 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/portfolio-gallery",
+	"version": "2.0.70",
+	"title": "Portfolio Gallery",
+	"category": "bBlocks",
+	"description": "Filterable portfolio gallery for photographers, designers, agencies, and restaurants. Pick images from the WordPress media library, tag each with one category, and visitors filter by category and open images in a native <dialog> lightbox with keyboard navigation.",
+	"keywords": [
+		"portfolio",
+		"gallery",
+		"filterable",
+		"gallery filter",
+		"masonry",
+		"lightbox",
+		"images",
+		"photography"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": []
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"columnGap": {
+			"type": "number",
+			"default": 16
+		},
+		"rowGap": {
+			"type": "number",
+			"default": 16
+		},
+		"imageRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "auto"
+		},
+		"showCaptions": {
+			"type": "boolean",
+			"default": false
+		},
+		"captionPosition": {
+			"type": "string",
+			"default": "below"
+		},
+		"captionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"captionFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"showFilter": {
+			"type": "boolean",
+			"default": true
+		},
+		"filterAllLabel": {
+			"type": "string",
+			"default": "All"
+		},
+		"showAllButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"defaultFilter": {
+			"type": "string",
+			"default": "all"
+		},
+		"filterAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"filterBarGap": {
+			"type": "number",
+			"default": 24
+		},
+		"btnActiveBg": {
+			"type": "string",
+			"default": "#0d6efd"
+		},
+		"btnActiveColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnInactiveBg": {
+			"type": "string",
+			"default": "#f0f0f0"
+		},
+		"btnInactiveColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"btnFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"btnFontWeight": {
+			"type": "string",
+			"default": "500"
+		},
+		"btnPaddingV": {
+			"type": "number",
+			"default": 8
+		},
+		"btnPaddingH": {
+			"type": "number",
+			"default": 20
+		},
+		"btnBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"btnGap": {
+			"type": "number",
+			"default": 8
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"hoverDuration": {
+			"type": "number",
+			"default": 300
+		},
+		"lightbox": {
+			"type": "boolean",
+			"default": true
+		},
+		"lightboxOverlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.9)"
+		},
+		"lightboxShowCaption": {
+			"type": "boolean",
+			"default": true
+		},
+		"filterTransitionDuration": {
+			"type": "number",
+			"default": 400
+		},
+		"align": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

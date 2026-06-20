@@ -1,0 +1,60 @@
+/**
+ * Testimonials Grid — editor-only styles.
+ */
+
+.wp-block-b-blocks-testimonials-grid {
+	// Repeater UI in the inspector.
+	.bb-tg-repeater {
+		&__row {
+			padding: 12px;
+			margin-bottom: 12px;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			background: #fff;
+		}
+
+		&__row-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 8px;
+			gap: 8px;
+		}
+
+		&__row-title {
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #555;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		&__row-actions {
+			display: flex;
+			gap: 2px;
+			flex: 0 0 auto;
+		}
+
+		&__media-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+		}
+
+		&__thumb {
+			display: block;
+			width: 48px;
+			height: 48px;
+			object-fit: cover;
+			border-radius: 50%;
+			border: 1px solid #e0e0e0;
+		}
+	}
+
+	.bb-tg-add-item {
+		width: 100%;
+		justify-content: center;
+	}
+}

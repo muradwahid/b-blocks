@@ -1,0 +1,108 @@
+/**
+ * Feature Tabs — editor-only styles.
+ *
+ * The editor renders a simplified static preview (tab list + active image
+ * panel). Inline per-instance CSS from buildCss handles themeable values;
+ * these rules cover editor affordances only.
+ */
+
+.wp-block-b-blocks-feature-tabs {
+	.bb-ft-inner {
+		display: flex;
+		flex-direction: row;
+		gap: 24px;
+		width: 100%;
+
+		&.is-reverse {
+			flex-direction: row-reverse;
+		}
+	}
+
+	.bb-ft-tablist {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.bb-ft-tab {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		width: 100%;
+		text-align: left;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		border-radius: 6px;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.04);
+		}
+	}
+
+	.bb-ft-tab-body {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	.bb-ft-stage {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.bb-ft-panel img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bb-ft-panel-empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		color: rgba(0, 0, 0, 0.45);
+		font-size: 14px;
+		padding: 24px;
+		text-align: center;
+	}
+
+	.bb-ft-icon-help {
+		font-size: 11px;
+		opacity: 0.7;
+		margin: -4px 0 8px;
+	}
+
+	.bb-ft-tab-card {
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-radius: 6px;
+		padding: 12px;
+		margin-bottom: 12px;
+	}
+
+	.bb-ft-tab-card-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 8px;
+		font-weight: 600;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		opacity: 0.8;
+	}
+
+	.bb-ft-tab-thumb {
+		display: block;
+		width: 100%;
+		height: 80px;
+		object-fit: cover;
+		border-radius: 4px;
+		margin-top: 8px;
+	}
+}

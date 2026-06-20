@@ -1,0 +1,103 @@
+/**
+ * Woo Single Product — frontend + editor shared styles. Mobile-first.
+ *
+ * IMPORTANT: this block renders WooCommerce's OWN native product markup so that
+ * the embedded purchase area looks identical to the theme's product page. The
+ * rules below therefore only style the block's own layout wrappers
+ * (`.bb-wsp-*`); they deliberately do NOT restyle WooCommerce's native
+ * elements (gallery, price, variation form, add-to-cart button, meta). Per-
+ * instance layout custom properties are set inline in render.php under the
+ * wrapper id, so the values here are only fallbacks.
+ */
+
+.bb-wsp {
+	--bb-wsp-gap: 32px;
+	--bb-wsp-gallery-split: 50%;
+	--bb-wsp-summary-split: 50%;
+	--bb-wsp-max-width: none;
+	--bb-wsp-block-margin: 0;
+	--bb-wsp-pad-v: 0px;
+	--bb-wsp-pad-h: 0px;
+	--bb-wsp-block-bg: transparent;
+	--bb-wsp-block-radius: 0px;
+
+	box-sizing: border-box;
+	max-width: var(--bb-wsp-max-width);
+	margin: var(--bb-wsp-block-margin);
+
+	.bb-wsp-wrap {
+		padding: var(--bb-wsp-pad-v) var(--bb-wsp-pad-h);
+		background: var(--bb-wsp-block-bg);
+		border-radius: var(--bb-wsp-block-radius);
+	}
+
+	.bb-wsp-inner {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bb-wsp-gap);
+	}
+
+	.bb-wsp-gallery {
+		flex: 0 0 auto;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.bb-wsp-summary {
+		flex: 1 1 auto;
+		width: 100%;
+		min-width: 0;
+	}
+
+	// after-summary (tabs + upsells) always spans the full width below the
+	// two columns.
+	.bb-wsp-after-summary {
+		flex: 0 0 100%;
+		width: 100%;
+		min-width: 0;
+	}
+
+	// Empty / fallback notice (WooCommerce inactive or no product chosen).
+	.bb-wsp-empty {
+		margin: 0;
+		padding: 24px;
+		text-align: center;
+		color: #6b7280;
+		font-style: italic;
+	}
+
+	// Horizontal layout: gallery and summary side by side from the tablet
+	// breakpoint up. Below it (and for the .bb-wsp-layout-vertical variant)
+	// the columns stack via the default column flex-direction above. The
+	// per-instance mobile breakpoint is enforced by the inline <style> in
+	// render.php, so this rule only provides the desktop split.
+	&.bb-wsp-layout-horizontal {
+		@media (min-width: 768px) {
+			.bb-wsp-inner {
+				flex-direction: row;
+				flex-wrap: wrap;
+				align-items: flex-start;
+			}
+
+			.bb-wsp-gallery {
+				width: var(--bb-wsp-gallery-split);
+			}
+
+			.bb-wsp-summary {
+				width: calc(var(--bb-wsp-summary-split) - var(--bb-wsp-gap));
+			}
+		}
+
+		&.bb-wsp--single-col .bb-wsp-gallery,
+		&.bb-wsp--single-col .bb-wsp-summary {
+			width: 100%;
+		}
+	}
+
+	// Vertical layout: gallery above summary at every width.
+	&.bb-wsp-layout-vertical {
+		.bb-wsp-inner {
+			flex-direction: column;
+		}
+	}
+}

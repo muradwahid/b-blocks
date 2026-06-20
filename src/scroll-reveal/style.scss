@@ -1,0 +1,45 @@
+// Scroll Reveal — shared frontend + editor base styles.
+//
+// The actual entrance animation (opacity / transform / transition) is applied
+// per-instance inline by view.js so it can read each block's data-* config and
+// stays correct with multiple blocks on one page. These rules only provide the
+// box model and a will-change hint, plus a safety net for reduced-motion.
+
+.wp-block-b-blocks-scroll-reveal,
+.bb-scroll-reveal {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+
+	.bb-sr-inner {
+		display: block;
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// Only hint the compositor once JS has put the block in its initial state.
+	&.bb-sr-init {
+		will-change: opacity, transform;
+	}
+
+	&.bb-sr-revealed {
+		will-change: auto;
+	}
+}
+
+// Belt-and-braces: if the OS prefers reduced motion, never animate even if a
+// stray inline transition slipped through.
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-scroll-reveal,
+	.bb-scroll-reveal {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+	}
+}

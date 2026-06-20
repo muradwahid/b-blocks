@@ -1,0 +1,104 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/code-highlight",
+	"version": "2.0.52",
+	"title": "Code Highlight",
+	"category": "bBlocks",
+	"description": "Render syntax-highlighted code with optional line numbers, copy-to-clipboard button, and language badge. Powered by Prism.js (client-side).",
+	"keywords": [
+		"code",
+		"syntax",
+		"highlight",
+		"prism",
+		"snippet",
+		"pre",
+		"developer"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"code": {
+			"type": "string",
+			"default": ""
+		},
+		"language": {
+			"type": "string",
+			"default": "javascript"
+		},
+		"theme": {
+			"type": "string",
+			"default": "dark"
+		},
+		"showLineNumbers": {
+			"type": "boolean",
+			"default": true
+		},
+		"startingLineNumber": {
+			"type": "integer",
+			"default": 1
+		},
+		"showCopyButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"copyButtonLabel": {
+			"type": "string",
+			"default": "Copy"
+		},
+		"copiedLabel": {
+			"type": "string",
+			"default": "Copied!"
+		},
+		"showHeader": {
+			"type": "boolean",
+			"default": true
+		},
+		"filename": {
+			"type": "string",
+			"default": ""
+		},
+		"maxHeight": {
+			"type": "integer",
+			"default": 0
+		},
+		"fontSize": {
+			"type": "string",
+			"default": "14px"
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": "6px"
+		},
+		"tabSize": {
+			"type": "integer",
+			"default": 2
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,117 @@
+// Frontend + editor shared styles for the Progress Bar block.
+// Mobile-first. Accessibility: when percentage is rendered inside the bar,
+// ensure the chosen percentageColor contrasts with fillColor (WCAG 2.1 AA).
+
+.wp-block-b-blocks-progress-bar {
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksProgressBar {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+	}
+
+	.pbHeader {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		min-height: 1em;
+	}
+
+	.pbTitle {
+		font-weight: 600;
+		line-height: 1.3;
+		word-wrap: break-word;
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.pbPercentageEnd {
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		flex: 0 0 auto;
+	}
+
+	.pbTrack {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		// height, background-color, border-radius are inlined from PHP
+	}
+
+	.pbFill {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		height: 100%;
+		min-width: 0;
+		padding: 0 8px;
+		font-weight: 600;
+		font-size: 12px;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+		transition-property: width;
+		transition-timing-function: ease-out;
+		// width, background-color, border-radius, color, transition-duration
+		// are inlined from PHP.
+	}
+
+	.pbPercentageInside {
+		color: inherit;
+		line-height: 1;
+	}
+
+	// Inline title layout: place label + bar in a single row.
+	&.pb-title-inline {
+		.bBlocksProgressBar {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 8px;
+		}
+
+		@media (min-width: 640px) {
+			.bBlocksProgressBar {
+				grid-template-columns: minmax(80px, 1fr) 3fr;
+				align-items: center;
+				gap: 16px;
+			}
+
+			.pbHeader {
+				justify-content: flex-start;
+				min-height: 0;
+			}
+
+			.pbTrack {
+				margin-top: 0;
+			}
+		}
+	}
+
+	// Static diagonal stripe pattern on the fill (no animation).
+	&.pb-striped {
+		.pbFill {
+			background-image: linear-gradient(
+				45deg,
+				rgba(255, 255, 255, 0.2) 25%,
+				transparent 25%,
+				transparent 50%,
+				rgba(255, 255, 255, 0.2) 50%,
+				rgba(255, 255, 255, 0.2) 75%,
+				transparent 75%,
+				transparent
+			);
+			background-size: 1rem 1rem;
+		}
+	}
+
+	// Respect reduced motion: skip the width transition entirely.
+	@media (prefers-reduced-motion: reduce) {
+		.pbFill {
+			transition: none !important;
+		}
+	}
+}

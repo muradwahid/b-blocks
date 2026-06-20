@@ -1,0 +1,159 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/popup-optin",
+	"title": "Popup Optin",
+	"description": "An auto-triggered lead-capture popup with time-delay, scroll-depth, or exit-intent triggers. Captures email leads in an accessible dialog and remembers dismissal per browser so visitors are not pestered.",
+	"category": "bBlocks",
+	"keywords": [
+		"popup",
+		"optin",
+		"lead capture",
+		"exit intent",
+		"email subscribe"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"triggerType": {
+			"type": "string",
+			"default": "time"
+		},
+		"triggerDelay": {
+			"type": "integer",
+			"default": 5
+		},
+		"triggerScrollPct": {
+			"type": "integer",
+			"default": 50
+		},
+		"suppressDays": {
+			"type": "integer",
+			"default": 7
+		},
+		"suppressKey": {
+			"type": "string",
+			"default": "bb-popup-optin"
+		},
+		"headline": {
+			"type": "string",
+			"default": "Don't miss out!"
+		},
+		"headlineTag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"subtext": {
+			"type": "string",
+			"default": "Subscribe for updates and exclusive offers."
+		},
+		"showNameField": {
+			"type": "boolean",
+			"default": false
+		},
+		"namePlaceholder": {
+			"type": "string",
+			"default": "Your name"
+		},
+		"emailPlaceholder": {
+			"type": "string",
+			"default": "Your email address"
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Subscribe"
+		},
+		"dismissLabel": {
+			"type": "string",
+			"default": "No thanks"
+		},
+		"successMessage": {
+			"type": "string",
+			"default": "Thanks! You're on the list."
+		},
+		"adminEmail": {
+			"type": "string",
+			"default": ""
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 480
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.6)"
+		},
+		"overlayCloseOnClick": {
+			"type": "boolean",
+			"default": true
+		},
+		"bgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#1a1a1a"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"accentTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"borderRadius": {
+			"type": "integer",
+			"default": 12
+		},
+		"padding": {
+			"type": "integer",
+			"default": 32
+		},
+		"headlineFontSize": {
+			"type": "integer",
+			"default": 24
+		},
+		"headlineFontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"subtextFontSize": {
+			"type": "integer",
+			"default": 15
+		},
+		"inputBorderColor": {
+			"type": "string",
+			"default": "#dddddd"
+		},
+		"inputBorderRadius": {
+			"type": "integer",
+			"default": 6
+		},
+		"showCloseButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"openAnimation": {
+			"type": "string",
+			"default": "fade-scale"
+		},
+		"animationDuration": {
+			"type": "integer",
+			"default": 300
+		}
+	},
+	"supports": {
+		"html": false,
+		"className": true,
+		"customClassName": true
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

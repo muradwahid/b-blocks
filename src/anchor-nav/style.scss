@@ -1,0 +1,30 @@
+/**
+ * Anchor Navigation — shared frontend + editor base styles.
+ *
+ * Most themeable values are emitted as per-instance inline CSS in render.php
+ * (scoped under a unique wrapper id). This file only carries structural
+ * resets that should apply regardless of attribute values. Mobile-first: the
+ * link row scrolls horizontally on narrow viewports without any JS.
+ */
+
+.bb-an {
+	width: 100%;
+	box-sizing: border-box;
+
+	.bb-an-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.bb-an-item {
+		margin: 0;
+	}
+
+	.bb-an-link {
+		font-family: inherit;
+		text-decoration: none;
+		appearance: none;
+		-webkit-appearance: none;
+	}
+}

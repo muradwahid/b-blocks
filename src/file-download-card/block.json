@@ -1,0 +1,230 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/file-download-card",
+	"version": "1.0.0",
+	"title": "File Download Card",
+	"category": "bBlocks",
+	"description": "A styled single-file download card — file-type badge, title, description, auto-detected file size, and a native download button — for PDFs, ebooks, ZIPs, docs, and more from the media library. No JavaScript required.",
+	"keywords": [
+		"download",
+		"file",
+		"pdf",
+		"ebook",
+		"zip",
+		"document",
+		"attachment",
+		"button"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"fileUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"fileId": {
+			"type": "number",
+			"default": 0
+		},
+		"fileName": {
+			"type": "string",
+			"default": ""
+		},
+		"fileType": {
+			"type": "string",
+			"default": ""
+		},
+		"fileSize": {
+			"type": "string",
+			"default": ""
+		},
+		"cardTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"cardDescription": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": "Download"
+		},
+		"openNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"showFileType": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFileSize": {
+			"type": "boolean",
+			"default": true
+		},
+		"layout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"iconStyle": {
+			"type": "string",
+			"default": "filled"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 480
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": "#e0e0e0"
+		},
+		"cardBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"cardBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"paddingV": {
+			"type": "number",
+			"default": 20
+		},
+		"paddingH": {
+			"type": "number",
+			"default": 24
+		},
+		"shadow": {
+			"type": "string",
+			"default": "sm"
+		},
+		"iconBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 48
+		},
+		"iconRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"titleSize": {
+			"type": "number",
+			"default": 16
+		},
+		"titleWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"descColor": {
+			"type": "string",
+			"default": "#6b7280"
+		},
+		"descSize": {
+			"type": "number",
+			"default": 14
+		},
+		"metaColor": {
+			"type": "string",
+			"default": "#9ca3af"
+		},
+		"metaSize": {
+			"type": "number",
+			"default": 12
+		},
+		"btnBg": {
+			"type": "string",
+			"default": "#2563eb"
+		},
+		"btnText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnHoverBg": {
+			"type": "string",
+			"default": "#1d4ed8"
+		},
+		"btnHoverText": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"btnRadius": {
+			"type": "number",
+			"default": 6
+		},
+		"btnPaddingV": {
+			"type": "number",
+			"default": 10
+		},
+		"btnPaddingH": {
+			"type": "number",
+			"default": 20
+		},
+		"btnSize": {
+			"type": "number",
+			"default": 14
+		},
+		"btnWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"addID": {
+			"type": "string",
+			"default": ""
+		},
+		"addClass": {
+			"type": "string",
+			"default": ""
+		},
+		"addCSS": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,143 @@
+// Frontend + editor shared styles for the PDF Embed block.
+// Mobile-first. All per-instance values come from CSS custom properties emitted
+// inline (scoped under the unique wrapper id) in render.php / the editor.
+
+.wp-block-b-blocks-pdf-embed,
+.bb-pe {
+	--bb-pe-width: 100%;
+	--bb-pe-max-width: 100%;
+	--bb-pe-h-desktop: 600px;
+	--bb-pe-h-tablet: 500px;
+	--bb-pe-h-mobile: 400px;
+	--bb-pe-radius: 4px;
+	--bb-pe-border-width: 1px;
+	--bb-pe-border-color: #e0e0e0;
+	--bb-pe-shadow: none;
+}
+
+.bb-pe {
+	* {
+		box-sizing: border-box;
+	}
+
+	// --- Wrapper alignment ---
+	&.bb-pe--align-center .bb-pe-frame-wrap,
+	&.bb-pe--align-center .bb-pe-download {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.bb-pe--align-right .bb-pe-frame-wrap,
+	&.bb-pe--align-right .bb-pe-download {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	&.bb-pe--align-left .bb-pe-frame-wrap,
+	&.bb-pe--align-left .bb-pe-download {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	// --- Frame ---
+	.bb-pe-frame-wrap {
+		width: var(--bb-pe-width);
+		max-width: var(--bb-pe-max-width);
+		border-radius: var(--bb-pe-radius);
+		box-shadow: var(--bb-pe-shadow);
+		overflow: hidden;
+		background-color: #f5f5f5;
+	}
+
+	&.bb-pe--has-border .bb-pe-frame-wrap {
+		border: var(--bb-pe-border-width) solid var(--bb-pe-border-color);
+	}
+
+	.bb-pe-frame {
+		display: block;
+		width: 100%;
+		height: var(--bb-pe-h-mobile);
+		border: 0;
+	}
+
+	.bb-pe-fallback {
+		margin: 0;
+		padding: 16px 20px;
+		font-size: 14px;
+		line-height: 1.6;
+		color: #444444;
+
+		a {
+			color: #1d4ed8;
+			text-decoration: underline;
+		}
+	}
+
+	// --- Download button ---
+	.bb-pe-download {
+		width: var(--bb-pe-width);
+		max-width: var(--bb-pe-max-width);
+		margin-top: 12px;
+	}
+
+	&.bb-pe--align-center .bb-pe-download {
+		text-align: center;
+	}
+
+	&.bb-pe--align-right .bb-pe-download {
+		text-align: right;
+	}
+
+	.bb-pe-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 10px 20px;
+		border-radius: 6px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.2;
+		text-decoration: none;
+		white-space: nowrap;
+		background-color: #ffffff;
+		color: #1d4ed8;
+		border: 1px solid #1d4ed8;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: #1d4ed8;
+			color: #ffffff;
+		}
+
+		&:focus-visible {
+			outline: 2px solid #1d4ed8;
+			outline-offset: 2px;
+		}
+	}
+
+	.bb-pe-btn-icon {
+		width: 1.05em;
+		height: 1.05em;
+		flex: 0 0 auto;
+	}
+
+	// --- Responsive height ---
+	@media (min-width: 600px) {
+		.bb-pe-frame {
+			height: var(--bb-pe-h-tablet);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.bb-pe-frame {
+			height: var(--bb-pe-h-desktop);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bb-pe-btn {
+			transition: none !important;
+		}
+	}
+}

@@ -1,0 +1,204 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-mini-cart",
+	"version": "1.0.0",
+	"title": "Woo Mini Cart",
+	"category": "bBlocks",
+	"description": "A live-updating WooCommerce mini cart with a count badge, item dropdown, remove buttons, and view-cart / checkout actions, droppable into any header, drawer, or template.",
+	"keywords": [
+		"woocommerce",
+		"mini cart",
+		"cart",
+		"basket",
+		"shop",
+		"ecommerce",
+		"checkout",
+		"header"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"triggerMode": {
+			"type": "string",
+			"default": "dropdown"
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fa-solid fa-cart-shopping"
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTotal": {
+			"type": "boolean",
+			"default": false
+		},
+		"showEmptyCart": {
+			"type": "boolean",
+			"default": false
+		},
+		"emptyMessage": {
+			"type": "string",
+			"default": "Your cart is empty."
+		},
+		"showItemList": {
+			"type": "boolean",
+			"default": true
+		},
+		"showItemPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSubtotal": {
+			"type": "boolean",
+			"default": true
+		},
+		"showViewCartBtn": {
+			"type": "boolean",
+			"default": true
+		},
+		"viewCartLabel": {
+			"type": "string",
+			"default": "View Cart"
+		},
+		"showCheckoutBtn": {
+			"type": "boolean",
+			"default": true
+		},
+		"checkoutLabel": {
+			"type": "string",
+			"default": "Checkout"
+		},
+		"dropdownPosition": {
+			"type": "string",
+			"default": "right"
+		},
+		"iconSize": {
+			"type": "integer",
+			"default": 22
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeBG": {
+			"type": "string",
+			"default": "#c0392b"
+		},
+		"badgeTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"badgeFontSize": {
+			"type": "integer",
+			"default": 11
+		},
+		"totalColor": {
+			"type": "string",
+			"default": ""
+		},
+		"totalFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"dropdownBG": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"dropdownWidth": {
+			"type": "integer",
+			"default": 320
+		},
+		"dropdownBorderRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"dropdownShadow": {
+			"type": "string",
+			"default": "medium"
+		},
+		"itemNameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"itemPriceColor": {
+			"type": "string",
+			"default": ""
+		},
+		"subtotalLabelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"subtotalValueColor": {
+			"type": "string",
+			"default": ""
+		},
+		"primaryBtnColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"primaryBtnBG": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"primaryBtnHovColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"primaryBtnHovBG": {
+			"type": "string",
+			"default": "#070127"
+		},
+		"secondaryBtnColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"secondaryBtnBG": {
+			"type": "string",
+			"default": "#f0f0f0"
+		},
+		"secondaryBtnHovColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"secondaryBtnHovBG": {
+			"type": "string",
+			"default": "#dddddd"
+		},
+		"btnBorderRadius": {
+			"type": "integer",
+			"default": 6
+		},
+		"btnFontSize": {
+			"type": "integer",
+			"default": 14
+		},
+		"btnFontWeight": {
+			"type": "integer",
+			"default": 600
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"html": false,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

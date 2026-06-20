@@ -1,0 +1,17 @@
+// Click to Share Block — editor-only styles.
+// Mirror the frontend visually; only add editor affordances here.
+
+.wp-block-b-blocks-click-to-share {
+	// Inline RichText placeholder color match.
+	.bb-cts-quote-text [data-rich-text-placeholder] {
+		color: currentColor;
+		opacity: 0.55;
+	}
+
+	// Disabled-looking buttons inside the editor preview — authors don't
+	// expect a real popup to open when clicking the preview canvas.
+	.bb-cts-btn {
+		cursor: default;
+		user-select: none;
+	}
+}

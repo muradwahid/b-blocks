@@ -16,9 +16,10 @@ import FeatureCompare from '../../../../bpl-tools/Admin/FeatureCompare';
 import Activation from '../../../../bpl-tools/Admin/Activation';
 import OurPlugins from '../../../../bpl-tools/Admin/OurPlugins';
 import Blocks from '../../../../bpl-tools/Admin/Blocks';
+import Demos from '../../../../bpl-tools/Admin/Demos';
 
 import Welcome from '../Components/Welcome';
-import { pricingInfo } from './utils/data';
+import { pricingInfo, demoInfo } from './utils/data';
 import Settings from './Pages/Settings/Settings';
 import CursorEffect from './Pages/CursorEffect/CursorEffect';
 import { useEffect, useState } from 'react';
@@ -47,6 +48,13 @@ const Dashboard = (props) => {
 		}
 	}, [data, isLoading, error]);
 
+	// Total number of published blocks shown on the Blocks page (counts children of grouped categories)
+	const totalBlocksCount = blocks.reduce((acc, b) => acc + (
+		Array.isArray(b.children)
+			? b.children.filter(child => 'published' === child.status || !child.status).length
+			: ('published' === b.status || !b.status ? 1 : 0)
+	), 0);
+
 	const handleCheckboxChange = (blockName) => {
 		setStatus('loading');
 		setDisableBlockName(blockName);
@@ -70,16 +78,17 @@ const Dashboard = (props) => {
 				<Route index element={<Navigate to='welcome' replace />} />
 				<Route path='welcome' element={<Welcome {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />} />
 				<Route path='blocks' element={<>
-					<Blocks {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />
+					<Blocks {...props} pageTitle={`All Blocks (${totalBlocksCount})`} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />
 					{!isPremium && <ProModal />}
 				</>} />
+				<Route path='demos' element={<Demos {...props} demoInfo={demoInfo} />} />
 				<Route path='cursor' element={<CursorEffect info={info} />} />
 				<Route path='settings' element={<Settings info={info} />} />
 				{!isPremium && <Route
 					path="feature-comparison"
 					element={<FeatureCompare plans={["free", "pro"]} {...props} />}
 				/>}
-				{!isPremium && <Route path='pricing' element={<Pricing pricingInfo={pricingInfo} freemius={freemius} />} />}
+				{!isPremium && <Route path='pricing' element={<Pricing {...props} pricingInfo={pricingInfo} freemius={freemius} options={{}} />} />}
 
 				{
 					hasPro &&

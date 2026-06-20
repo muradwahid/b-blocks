@@ -1,0 +1,15 @@
+// Editor-only adjustments for the FAQ block.
+// Frontend styles are loaded from style.scss via the build pipeline.
+@import './style.scss';
+
+.wp-block-b-blocks-faq-block {
+	// In the editor, the user clicks the question to preview the open/closed
+	// state, so the button is fully interactive there too.
+	.bb-faq-question {
+		cursor: pointer;
+	}
+
+	.bb-faq-empty {
+		font-size: 13px;
+	}
+}

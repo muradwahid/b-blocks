@@ -1,0 +1,14 @@
+// Editor-only adjustments for the Progress Circle block.
+
+@import './style.scss';
+
+.wp-block-b-blocks-progress-circle {
+	.bBlocksProgressCircle {
+		// In the editor we render the circle at its target value directly so
+		// authors can see the result of their percentage setting without
+		// having to scroll the block into view.
+		.pcFill {
+			transition: stroke-dashoffset 0.2s ease-out;
+		}
+	}
+}

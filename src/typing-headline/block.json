@@ -1,0 +1,143 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/typing-headline",
+	"version": "2.0.69",
+	"title": "Typing Headline",
+	"category": "bBlocks",
+	"description": "Hero-section heading with a static prefix, a list of typewriter-rotating words, and a static suffix. Powered by Typed.js (bundled, no CDN). Distinct from the Animated Text block, which animates a single static string at the character level.",
+	"keywords": [
+		"typing",
+		"typewriter",
+		"rotator",
+		"rotating headline",
+		"cycle",
+		"hero",
+		"headline",
+		"animated heading",
+		"typed text"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"prefix": {
+			"type": "string",
+			"default": "We help you "
+		},
+		"suffix": {
+			"type": "string",
+			"default": ""
+		},
+		"words": {
+			"type": "array",
+			"default": [
+				{ "_key": "th-default-1", "text": "grow faster", "color": "" },
+				{ "_key": "th-default-2", "text": "save time", "color": "" },
+				{ "_key": "th-default-3", "text": "close deals", "color": "" }
+			]
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"typeSpeed": {
+			"type": "integer",
+			"default": 80
+		},
+		"backSpeed": {
+			"type": "integer",
+			"default": 40
+		},
+		"backDelay": {
+			"type": "integer",
+			"default": 1500
+		},
+		"startDelay": {
+			"type": "integer",
+			"default": 300
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCursor": {
+			"type": "boolean",
+			"default": true
+		},
+		"cursorChar": {
+			"type": "string",
+			"default": "|"
+		},
+		"smartBackspace": {
+			"type": "boolean",
+			"default": true
+		},
+		"fontSize": {
+			"type": "object",
+			"default": {
+				"desktop": "42px",
+				"tablet": "32px",
+				"mobile": "24px"
+			}
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": "700"
+		},
+		"lineHeight": {
+			"type": "string",
+			"default": "1.2"
+		},
+		"prefixColor": {
+			"type": "string",
+			"default": ""
+		},
+		"animatedColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"cursorColor": {
+			"type": "string",
+			"default": "#146EF5"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "20px",
+				"bottom": "20px",
+				"left": "0px",
+				"right": "0px"
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

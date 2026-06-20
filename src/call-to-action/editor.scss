@@ -1,0 +1,21 @@
+// Editor-only style adjustments for the Call to Action block.
+
+.wp-block-b-blocks-call-to-action {
+	.bBlocksCallToAction {
+		.ctaContent {
+			.ctaHeading,
+			.ctaSubText {
+				// Keep RichText placeholders readable on dark backgrounds.
+				min-height: 1em;
+			}
+		}
+
+		.ctaActions {
+			// Disable navigation when clicking buttons inside the editor.
+			.ctaButton {
+				pointer-events: none;
+				user-select: none;
+			}
+		}
+	}
+}

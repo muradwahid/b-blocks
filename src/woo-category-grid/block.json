@@ -1,0 +1,225 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-category-grid",
+	"version": "1.0.0",
+	"title": "Woo Category Grid",
+	"category": "bBlocks",
+	"description": "Display a responsive 'Shop by Category' grid of WooCommerce product categories with native category thumbnails, product counts, and an optional Shop Now CTA, each linking to the category archive.",
+	"keywords": [
+		"woocommerce",
+		"product categories",
+		"shop by category",
+		"category grid",
+		"product_cat",
+		"store",
+		"ecommerce",
+		"category tiles"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"orderby": {
+			"type": "string",
+			"default": "name"
+		},
+		"order": {
+			"type": "string",
+			"default": "ASC"
+		},
+		"number": {
+			"type": "integer",
+			"default": 8
+		},
+		"hideEmpty": {
+			"type": "boolean",
+			"default": true
+		},
+		"topLevelOnly": {
+			"type": "boolean",
+			"default": true
+		},
+		"includeIds": {
+			"type": "string",
+			"default": ""
+		},
+		"excludeIds": {
+			"type": "string",
+			"default": ""
+		},
+		"columnsDesktop": {
+			"type": "integer",
+			"default": 4
+		},
+		"columnsTablet": {
+			"type": "integer",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "integer",
+			"default": 1
+		},
+		"columnGap": {
+			"type": "integer",
+			"default": 20
+		},
+		"rowGap": {
+			"type": "integer",
+			"default": 20
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "overlay"
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": "1/1"
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "medium"
+		},
+		"fallbackColor": {
+			"type": "string",
+			"default": "#7c3aed"
+		},
+		"fallbackIconClass": {
+			"type": "string",
+			"default": "fa-solid fa-tag"
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.40)"
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"hoverDuration": {
+			"type": "integer",
+			"default": 300
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"countLabel": {
+			"type": "string",
+			"default": "Products"
+		},
+		"showCta": {
+			"type": "boolean",
+			"default": false
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Shop Now"
+		},
+		"openInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"maxWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"cardBg": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"cardRadius": {
+			"type": "integer",
+			"default": 8
+		},
+		"cardPaddingV": {
+			"type": "integer",
+			"default": 16
+		},
+		"cardPaddingH": {
+			"type": "integer",
+			"default": 16
+		},
+		"shadowPreset": {
+			"type": "string",
+			"default": "small"
+		},
+		"borderWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"nameColor": {
+			"type": "string",
+			"default": ""
+		},
+		"nameFontSize": {
+			"type": "integer",
+			"default": 18
+		},
+		"nameFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"countColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"countBg": {
+			"type": "string",
+			"default": ""
+		},
+		"countFontSize": {
+			"type": "integer",
+			"default": 12
+		},
+		"ctaColor": {
+			"type": "string",
+			"default": ""
+		},
+		"ctaFontSize": {
+			"type": "integer",
+			"default": 13
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#7c3aed"
+		},
+		"noWooMessage": {
+			"type": "string",
+			"default": "WooCommerce is required for this block."
+		},
+		"noTermsMessage": {
+			"type": "string",
+			"default": "No product categories found."
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,163 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/business-hours",
+	"version": "2.0.57.1",
+	"title": "Business Hours",
+	"category": "bBlocks",
+	"description": "Display a clean, accessible weekly opening-hours schedule with an optional live Open Now / Closed badge computed in the business's timezone.",
+	"keywords": [
+		"business hours",
+		"opening hours",
+		"schedule",
+		"open now",
+		"timetable"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"viewStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"title": {
+			"type": "string",
+			"default": "Business Hours"
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"timezone": {
+			"type": "string",
+			"default": "UTC"
+		},
+		"timeFormat": {
+			"type": "string",
+			"default": "12h"
+		},
+		"showBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"openLabel": {
+			"type": "string",
+			"default": "Open Now"
+		},
+		"closedLabel": {
+			"type": "string",
+			"default": "Closed"
+		},
+		"highlightToday": {
+			"type": "boolean",
+			"default": true
+		},
+		"showClosedDays": {
+			"type": "boolean",
+			"default": true
+		},
+		"closedText": {
+			"type": "string",
+			"default": "Closed"
+		},
+		"separatorShow": {
+			"type": "boolean",
+			"default": true
+		},
+		"days": {
+			"type": "array",
+			"default": [
+				{ "day": "Monday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
+				{ "day": "Tuesday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
+				{ "day": "Wednesday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
+				{ "day": "Thursday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
+				{ "day": "Friday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
+				{ "day": "Saturday", "open": false, "timeFrom": "10:00", "timeTo": "14:00" },
+				{ "day": "Sunday", "open": false, "timeFrom": "10:00", "timeTo": "14:00" }
+			]
+		},
+		"badgeOpenBg": {
+			"type": "string",
+			"default": "#22c55e"
+		},
+		"badgeClosedBg": {
+			"type": "string",
+			"default": "#ef4444"
+		},
+		"badgeTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"headerBg": {
+			"type": "string",
+			"default": ""
+		},
+		"rowBg": {
+			"type": "string",
+			"default": ""
+		},
+		"rowBgAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"todayBg": {
+			"type": "string",
+			"default": "#eff6ff"
+		},
+		"dayColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"timeColor": {
+			"type": "string",
+			"default": "#374151"
+		},
+		"separatorColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": 16,
+				"right": 16,
+				"bottom": 16,
+				"left": 16
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

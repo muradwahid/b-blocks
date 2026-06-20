@@ -1,0 +1,222 @@
+/**
+ * Marquee — frontend + editor shared styles. Mobile-first.
+ *
+ * Instance-specific values arrive as CSS custom properties set inline by
+ * render.php (frontend) and Edit.js (editor), scoped under the wrapper id.
+ * The infinite scroll is a single `@keyframes bb-mq-scroll` that translates
+ * the duplicated track by one set's width (`--bb-mq-loop`, default 50% for two
+ * sets, refined by view.js). Animation only runs once view.js adds
+ * `.bb-mq--animate`, so a no-JS / reduced-motion visitor sees a static strip.
+ */
+
+@keyframes bb-mq-scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(calc(-1 * var(--bb-mq-loop, 50%)));
+	}
+}
+
+.bb-mq {
+	box-sizing: border-box;
+	padding-top: var(--bb-mq-pt, 20px);
+	padding-bottom: var(--bb-mq-pb, 20px);
+	background-color: var(--bb-mq-bg, transparent);
+	border-radius: var(--bb-mq-radius, 0);
+	overflow: hidden;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bb-mq-inner {
+		display: flex;
+		align-items: center;
+		gap: var(--bb-mq-gap, 48px);
+		width: 100%;
+	}
+
+	// Optional static label to the left of the track.
+	.bb-mq-label {
+		flex: 0 0 auto;
+		padding-left: 4px;
+		color: var(--bb-mq-label-color, inherit);
+		font-size: var(--bb-mq-label-size, 14px);
+		font-weight: var(--bb-mq-label-weight, 600);
+		line-height: 1.3;
+		white-space: nowrap;
+	}
+
+	// Clipping viewport for the scrolling track.
+	.bb-mq-viewport {
+		position: relative;
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	// The moving track: holds N duplicated sets laid out in a single row.
+	.bb-mq-track {
+		display: flex;
+		flex-wrap: nowrap;
+		width: max-content;
+		will-change: transform;
+	}
+
+	.bb-mq-set {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
+	// Single item.
+	.bb-mq-item {
+		display: inline-flex;
+		align-items: center;
+		flex: 0 0 auto;
+		padding: 0 calc(var(--bb-mq-gap, 48px) / 2);
+		white-space: nowrap;
+	}
+
+	// Link wrapper.
+	.bb-mq-link {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+		color: inherit;
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 3px;
+		}
+	}
+
+	// Logo image.
+	.bb-mq-img {
+		display: block;
+		width: auto;
+		height: var(--bb-mq-img-h, 40px);
+		max-width: none;
+		object-fit: contain;
+		transition: filter 0.3s ease;
+	}
+
+	// Text badge.
+	.bb-mq-badge {
+		display: inline-flex;
+		align-items: center;
+		color: var(--bb-mq-text-color, inherit);
+		font-size: var(--bb-mq-text-size, 16px);
+		font-weight: var(--bb-mq-text-weight, 500);
+		line-height: 1.3;
+		background-color: var(--bb-mq-badge-bg, transparent);
+		border-radius: var(--bb-mq-badge-radius, 4px);
+		padding: var(--bb-mq-badge-pv, 6px) var(--bb-mq-badge-ph, 12px);
+	}
+
+	// Separator icon between items.
+	.bb-mq-sep {
+		margin-left: calc(var(--bb-mq-gap, 48px) / 2);
+		color: var(--bb-mq-sep-color, currentColor);
+		font-size: var(--bb-mq-sep-size, 8px);
+		line-height: 1;
+	}
+
+	// --- Grayscale logos ---
+	&.bb-mq--gray .bb-mq-img {
+		filter: grayscale(100%);
+	}
+	&.bb-mq--gray-hover {
+		.bb-mq-item:hover .bb-mq-img,
+		.bb-mq-item:focus-within .bb-mq-img {
+			filter: grayscale(0%);
+		}
+	}
+
+	// --- Edge fade ---
+	&.bb-mq--fade .bb-mq-viewport {
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent 0,
+			#000 var(--bb-mq-fade-w, 80px),
+			#000 calc(100% - var(--bb-mq-fade-w, 80px)),
+			transparent 100%
+		);
+		mask-image: linear-gradient(
+			to right,
+			transparent 0,
+			#000 var(--bb-mq-fade-w, 80px),
+			#000 calc(100% - var(--bb-mq-fade-w, 80px)),
+			transparent 100%
+		);
+	}
+
+	// --- Animation (enabled by view.js) ---
+	&.bb-mq--animate .bb-mq-track {
+		animation: bb-mq-scroll var(--bb-mq-duration, 20s) linear infinite;
+	}
+
+	// Right direction simply reverses the same keyframe.
+	&.bb-mq--dir-right.bb-mq--animate .bb-mq-track {
+		animation-direction: reverse;
+	}
+
+	&.is-paused .bb-mq-track {
+		animation-play-state: paused;
+	}
+
+	// Editor static preview — single set, no animation.
+	&.bb-mq--editor .bb-mq-track--static {
+		animation: none;
+	}
+
+	// Editor placeholder for an empty logo.
+	.bb-mq-placeholder {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: var(--bb-mq-img-h, 40px);
+		min-width: 64px;
+		padding: 0 12px;
+		border: 1px dashed rgba(0, 0, 0, 0.18);
+		border-radius: 4px;
+		color: rgba(0, 0, 0, 0.45);
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bb-mq-empty {
+		margin: 0;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 13px;
+	}
+
+	// Reduced motion: never animate.
+	&.bb-mq--no-motion .bb-mq-track {
+		animation: none !important;
+		transform: none !important;
+	}
+}
+
+// Visually-hidden helper for screen-reader-only text (matches WP core).
+.bb-mq .screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bb-mq .bb-mq-track {
+		animation: none !important;
+		transform: none !important;
+	}
+}

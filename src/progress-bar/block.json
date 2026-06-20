@@ -1,0 +1,109 @@
+{
+	"apiVersion": 3,
+	"name": "b-blocks/progress-bar",
+	"title": "Progress Bar",
+	"description": "Display a single percentage-based progress bar with an optional label, animated fill, and full color customization.",
+	"category": "bBlocks",
+	"keywords": [
+		"progress",
+		"progress bar",
+		"percentage",
+		"goal",
+		"milestone"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": "Progress"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"percentage": {
+			"type": "number",
+			"default": 70
+		},
+		"showPercentage": {
+			"type": "boolean",
+			"default": true
+		},
+		"percentagePosition": {
+			"type": "string",
+			"default": "end"
+		},
+		"titlePosition": {
+			"type": "string",
+			"default": "above"
+		},
+		"height": {
+			"type": "number",
+			"default": 20
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"fillColor": {
+			"type": "string",
+			"default": "#4f46e5"
+		},
+		"trackColor": {
+			"type": "string",
+			"default": "#e5e7eb"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"percentageColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"titleFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"animate": {
+			"type": "boolean",
+			"default": true
+		},
+		"animationDuration": {
+			"type": "number",
+			"default": 1200
+		},
+		"striped": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"className": true,
+		"customClassName": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": [
+		"file:./view.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,29 @@
+// Editor-only adjustments for the HowTo Schema block.
+// Frontend styles are loaded from style.scss via the build pipeline.
+@import './style.scss';
+
+.wp-block-b-blocks-howto-schema {
+	.bb-howto__empty {
+		font-size: 13px;
+	}
+
+	.bb-howto-step__title {
+		margin-top: 0;
+	}
+
+	// Keep RichText placeholders subtle in the editor.
+	[data-rich-text-placeholder]::after {
+		opacity: 0.55;
+	}
+
+	.bb-howto-editor-step-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 4px;
+		margin-top: 4px;
+	}
+
+	.bb-howto-editor-add-step {
+		margin-top: 12px;
+	}
+}
