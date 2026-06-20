@@ -1,29 +1,72 @@
-<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="bBlocks — Essential Gutenberg Blocks">
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Getting Started with bBlocks — video">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8c74fd"/><stop offset="0.55" stop-color="#5b3cf0"/><stop offset="1" stop-color="#3a16d8"/>
+      <stop offset="0" stop-color="#271559"/><stop offset="0.5" stop-color="#3f22c4"/><stop offset="1" stop-color="#160a39"/>
     </linearGradient>
-    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 140) rotate(90) scale(520)">
-      <stop stop-color="#b9a7ff" stop-opacity="0.5"/><stop offset="1" stop-color="#b9a7ff" stop-opacity="0"/>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1300 110) rotate(90) scale(560)">
+      <stop stop-color="#b9a7ff" stop-opacity="0.45"/><stop offset="1" stop-color="#b9a7ff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(180 780) rotate(90) scale(460)">
-      <stop stop-color="#3aa0ff" stop-opacity="0.4"/><stop offset="1" stop-color="#3aa0ff" stop-opacity="0"/>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 840) rotate(90) scale(520)">
+      <stop stop-color="#3aa0ff" stop-opacity="0.34"/><stop offset="1" stop-color="#3aa0ff" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="panel" x1="900" y1="200" x2="1420" y2="700" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.98"/><stop offset="1" stop-color="#eef0ff" stop-opacity="0.94"/>
-    </linearGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.78">
+      <stop offset="0.5" stop-color="#0a0620" stop-opacity="0"/><stop offset="1" stop-color="#0a0620" stop-opacity="0.5"/>
+    </radialGradient>
+    <radialGradient id="playGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 450) scale(150)">
+      <stop stop-color="#ffffff" stop-opacity="0.22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
     <filter id="logoShadow" x="-20%" y="-20%" width="140%" height="160%">
-      <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#1a0c52" flood-opacity="0.28"/>
+      <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#0a0433" flood-opacity="0.34"/>
     </filter>
   </defs>
 
+  <!-- Background -->
   <rect width="1600" height="900" fill="url(#bg)"/>
   <rect width="1600" height="900" fill="url(#glowA)"/>
   <rect width="1600" height="900" fill="url(#glowB)"/>
 
-  <!-- Logo in a white pill -->
-  <rect x="100" y="84" width="272" height="78" rx="39" fill="#ffffff" filter="url(#logoShadow)"/>
-  <svg x="129" y="102" width="214" height="42.8" viewBox="0 0 200 40">
+  <!-- Faint block-editor UI mock (this is a tutorial about the editor) -->
+  <g opacity="0.85">
+    <rect x="934" y="150" width="548" height="522" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+    <!-- title bar -->
+    <circle cx="968" cy="184" r="6" fill="#ffffff" fill-opacity="0.30"/>
+    <circle cx="990" cy="184" r="6" fill="#ffffff" fill-opacity="0.22"/>
+    <circle cx="1012" cy="184" r="6" fill="#ffffff" fill-opacity="0.16"/>
+    <rect x="1052" y="176" width="396" height="17" rx="8.5" fill="#ffffff" fill-opacity="0.10"/>
+    <line x1="934" y1="212" x2="1482" y2="212" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+    <!-- inserter rail -->
+    <rect x="934" y="214" width="70" height="458" fill="#ffffff" fill-opacity="0.05"/>
+    <rect x="957" y="244" width="24" height="24" rx="6" fill="#ffffff" fill-opacity="0.16"/>
+    <line x1="969" y1="250" x2="969" y2="262" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+    <line x1="963" y1="256" x2="975" y2="256" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+    <rect x="957" y="292" width="24" height="24" rx="6" fill="#ffffff" fill-opacity="0.10"/>
+    <rect x="957" y="332" width="24" height="24" rx="6" fill="#ffffff" fill-opacity="0.10"/>
+    <!-- canvas content -->
+    <rect x="1036" y="246" width="286" height="30" rx="7" fill="#ffffff" fill-opacity="0.22"/>
+    <rect x="1036" y="296" width="402" height="12" rx="6" fill="#ffffff" fill-opacity="0.12"/>
+    <rect x="1036" y="320" width="372" height="12" rx="6" fill="#ffffff" fill-opacity="0.12"/>
+    <rect x="1036" y="344" width="250" height="12" rx="6" fill="#ffffff" fill-opacity="0.12"/>
+    <!-- image placeholder -->
+    <rect x="1036" y="392" width="200" height="130" rx="10" fill="#ffffff" fill-opacity="0.10"/>
+    <circle cx="1078" cy="430" r="13" fill="#ffffff" fill-opacity="0.5"/>
+    <path d="M1056 502 L1100 458 L1132 490 L1160 466 L1216 502 Z" fill="#ffffff" fill-opacity="0.42"/>
+    <!-- two-column block -->
+    <rect x="1256" y="392" width="182" height="62" rx="10" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="1256" y="462" width="182" height="60" rx="10" fill="#ffffff" fill-opacity="0.07"/>
+    <rect x="1036" y="556" width="402" height="12" rx="6" fill="#ffffff" fill-opacity="0.10"/>
+    <rect x="1036" y="580" width="318" height="12" rx="6" fill="#ffffff" fill-opacity="0.10"/>
+  </g>
+
+  <!-- Vignette to lift the play button + text -->
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+
+  <!-- Play affordance behind the (overlaid) white play button at center -->
+  <circle cx="800" cy="450" r="150" fill="url(#playGlow)"/>
+  <circle cx="800" cy="450" r="60" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.5" stroke-width="3"/>
+
+  <!-- Brand: logo in a white pill -->
+  <rect x="100" y="70" width="272" height="78" rx="39" fill="#ffffff" filter="url(#logoShadow)"/>
+  <svg x="129" y="88" width="214" height="42.8" viewBox="0 0 200 40">
   <path d="M37.4506 10.2852C37.4429 13.1251 36.1918 15.7041 34.2269 17.5539C32.3003 19.3883 29.683 20.5166 26.8891 20.5166H25.6687C22.5909 20.5166 20.0963 23.0111 20.0963 26.089V35.2689H12.9735C12.1139 35.2689 11.4231 34.5704 11.4231 33.7184V22.259C11.4231 21.5605 11.0393 20.8774 10.3869 20.6241C9.72678 20.3631 9.04367 20.555 8.61384 20.9695C8.59849 20.9925 8.58314 21.0002 8.56779 21.0155C7.66208 21.9903 6.38028 22.5967 4.95264 22.5967C2.02061 22.5967 -0.305059 20.0561 0.032662 17.0703C0.293628 14.7677 2.20482 12.9256 4.50746 12.7183C6.11931 12.5802 7.593 13.2096 8.59081 14.2918C8.97458 14.6679 9.55025 14.8675 10.1489 14.7293C10.9165 14.5528 11.4307 13.8236 11.4307 13.033V1.55821C11.4307 0.698559 12.1292 0.00776578 12.9812 0.00776578H18.024C18.9066 0.00776578 19.7126 0.652504 19.7816 1.53518C19.82 2.04944 19.6358 2.51764 19.3058 2.84769C18.3233 3.75339 17.7093 5.04287 17.7093 6.47819C17.7093 9.21833 19.9275 11.4289 22.66 11.4289C25.4001 11.4289 27.6106 9.21833 27.6106 6.47819C27.6106 5.04287 27.0043 3.76107 26.0295 2.86304C26.0141 2.84769 26.0065 2.83234 25.9834 2.81699C25.6073 2.42554 25.4231 1.8422 25.5843 1.24352C25.7762 0.483645 26.5284 -0.0075868 27.3113 8.86678e-05C30.0975 0.038466 32.615 1.17444 34.4418 3.0012C36.3069 4.87401 37.4583 7.43762 37.4506 10.2852Z" fill="#146EF5" />
   <path d="M37.4507 25.0145C37.4507 30.679 32.8607 35.2689 27.1962 35.2689H20.0964V26.0891C20.0964 23.0112 22.591 20.5167 25.6688 20.5167H26.8892C29.6831 20.5167 32.3004 19.3884 34.227 17.554C34.2961 17.623 34.3728 17.6921 34.4419 17.7689C36.2994 19.6187 37.4507 22.1823 37.4507 25.0145Z" fill="#FF7A00" />
 
@@ -38,20 +81,13 @@
   <path d="M199.418 24.0474C199.019 21.7141 197.4 20.4476 195.335 19.7799C194.237 19.4268 193.109 19.1812 191.981 18.9509C190.776 18.6976 188.665 18.6976 188.082 17.3621C187.568 16.1877 188.581 15.1132 189.648 14.8138C191.751 14.2305 193.409 14.8906 194.475 16.7941C194.759 17.293 195.089 17.4695 195.611 17.2853C196.571 16.9399 197.369 16.6022 198.329 16.2491C198.92 16.0342 199.096 15.6274 198.789 15.0825C198.421 14.4224 198.098 13.7086 197.599 13.1559C194.775 10.0013 188.466 9.73267 185.111 12.5112C182.563 14.6296 181.857 20.0408 186.27 22.0288C187.115 22.4049 187.936 22.5047 188.842 22.7196C190.208 23.0496 191.597 23.2492 192.963 23.5715C193.739 23.7558 194.591 24.224 194.66 25.2218C194.721 26.1044 194.276 26.8336 193.232 27.202C191.336 27.8852 188.182 27.7317 187.069 25.2064C186.792 24.5924 186.409 24.4619 185.81 24.6922C184.935 25.0222 184.052 25.3523 183.162 25.6209C182.448 25.8358 182.525 26.1966 182.732 26.8413C183.607 29.5124 186.255 31.1319 188.888 31.6692C188.918 31.6768 188.957 31.6845 188.987 31.6922C189.057 31.7075 189.126 31.7152 189.195 31.7306C190.584 31.9685 191.866 32.0146 193.247 31.7306C194.115 31.554 194.959 31.2777 195.75 30.8863C195.949 30.7865 196.133 30.6714 196.325 30.5716C198.712 29.3281 199.887 26.7645 199.418 24.0474Z" fill="#101828" />
 </svg>
 
-  <!-- Plugin info -->
-  <text x="100" y="430" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="88" font-weight="800" fill="#ffffff" letter-spacing="-1">130+ Blocks</text>
-  <text x="102" y="490" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="32" font-weight="500" fill="#ffffff" opacity="0.95">Essential Gutenberg blocks &amp; patterns to</text>
-  <text x="102" y="532" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="32" font-weight="500" fill="#ffffff" opacity="0.95">build any page — fast, lightweight, no code.</text>
+  <!-- Title block (lower-left, clear of the centered play button) -->
+  <g font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+    <rect x="100" y="586" width="246" height="40" rx="20" fill="#ffffff" fill-opacity="0.14"/>
+    <circle cx="124" cy="606" r="6" fill="#7cf0c0"/>
+    <text x="142" y="613" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="3">GETTING STARTED</text>
 
-  <!-- Right: block-library panel -->
-  <g opacity="0.9">
-    <rect x="1430" y="250" width="150" height="120" rx="16" fill="#ffffff" opacity="0.14"/>
-    <rect x="838" y="300" width="120" height="100" rx="16" fill="#ffffff" opacity="0.13"/>
+    <text x="98" y="700" font-size="78" font-weight="800" fill="#ffffff" letter-spacing="-1">Build your first page</text>
+    <text x="100" y="752" font-size="31" font-weight="500" fill="#ffffff" opacity="0.9">Blocks, patterns &amp; the block editor — explained.</text>
   </g>
-  <rect x="900" y="200" width="520" height="500" rx="26" fill="url(#panel)"/>
-  <rect x="924" y="232" width="472" height="40" rx="12" fill="#eef0fb"/>
-  <circle cx="950" cy="252" r="8" fill="none" stroke="#9aa1c9" stroke-width="3"/>
-  <line x1="956" y1="258" x2="963" y2="265" stroke="#9aa1c9" stroke-width="3" stroke-linecap="round"/>
-  <rect x="978" y="247" width="150" height="10" rx="5" fill="#cdd1ee"/>
-  <g transform="translate(924 240)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#8c74fd"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(1084 240)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#4017f2"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(1244 240)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#3aa0ff"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(924 380)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#14b8a6"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(1084 380)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#ec4899"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(1244 380)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#f59e0b"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(924 520)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#ef4444"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(1084 520)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#10b981"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g><g transform="translate(1244 520)"><rect width="148" height="128" rx="14" fill="#f5f6ff"/><circle cx="30" cy="34" r="15" fill="#6366f1"/><rect x="16" y="64" width="104" height="11" rx="5" fill="#d7daf2"/><rect x="16" y="84" width="74" height="9" rx="4" fill="#e4e7fb"/></g>
 </svg>
