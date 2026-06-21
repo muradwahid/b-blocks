@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { __ } from '@wordpress/i18n';
 import { BlockPreview } from '@wordpress/block-editor';
 import { parse } from '@wordpress/blocks';
 import { Spinner } from '@wordpress/components';
@@ -6,12 +7,21 @@ import { Spinner } from '@wordpress/components';
 import { externalIcon } from '../utils/icons';
 import { pricingPage } from '../../../utils/data';
 
-const Templates = ({ isPremium, type, setShow, mainLoading, templates, templatesLoading, children }) => {
+const isProItem = (item) => Array.isArray(item.category) && item.category.includes('pro');
+
+const Templates = ({ isPremium, type, setShow, mainLoading, templates, templatesLoading, access = 'all', children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [isTempLoading, setIsTempLoading] = useState(false);
 
 	const nonce = window.bBlocksCursorDataConfig?.nonce
+
+	// Free/Pro is a client-side filter so it can combine with any category.
+	const visible = (templates || []).filter((item) => {
+		if ('pro' === access) return isProItem(item);
+		if ('free' === access) return !isProItem(item);
+		return true;
+	});
 
 	useEffect(() => {
 		if (templatesLoading) {
@@ -24,8 +34,8 @@ const Templates = ({ isPremium, type, setShow, mainLoading, templates, templates
 	}, [templatesLoading]);
 	return <div className='modalBodyTemplates'>
 		{templates?.length ? <>
-			<div className='grid columns-3 columns-tablet-1 columns-mobile-1'>
-				{templates.map((item, index) => {
+			{visible.length ? <div className='grid columns-3 columns-tablet-1 columns-mobile-1'>
+				{visible.map((item, index) => {
 					// const { ID, original_content, category } = type === 'patterns' ? item : item.category[0] ==='landing-page' ? item : {};
 					const { ID, original_content, category, thumbnail } = item;
 					const isPro = category?.includes('pro');
@@ -78,8 +88,10 @@ const Templates = ({ isPremium, type, setShow, mainLoading, templates, templates
 
 					return <div className={`modalBodyTemplateItem ${type === 'pages'?'isPages':''}`} key={index}>
 						<div className='modalBodyTemplateItemPreviewWrap'>
+							{isPro && <span className='modalBodyTemplateItemProBadge'>{__('Pro', 'b-blocks')}</span>}
+
 							<div className='modalBodyTemplateItemPreview'>
-								{thumbnail && <img src={thumbnail} alt={item.name} className='modalBodyTemplateItemPreviewImg' />}
+								{thumbnail && <img src={thumbnail} alt={item.title} className='modalBodyTemplateItemPreviewImg' />}
 								{!thumbnail && <BlockPreview blocks={parse(original_content)} viewportWidth={1600} />}
 							</div>
 
@@ -99,14 +111,16 @@ const Templates = ({ isPremium, type, setShow, mainLoading, templates, templates
 								{isLoading === ID && <Spinner className='bPlSpinner' />}
 							</div>
 						</div>
+
+						{item.title && <div className='modalBodyTemplateItemTitle' dangerouslySetInnerHTML={{ __html: item.title }} />}
 					</div>
 				})}
-			</div>
+			</div> : <div className='modalBodyTemplateNotFound'>{'pro' === access ? __('No Pro templates on this page. Try “Load More”.', 'b-blocks') : __('No Free templates on this page. Try “Load More”.', 'b-blocks')}</div>}
 			{children}
 		</> : <>
 			{mainLoading || isTempLoading ? <div className='bPlPlaceCenter'>
 				<Spinner className='bPlSpinner' />
-			</div> : <div className='bPlPlaceCenter modalBodyTemplateNotFound'>No Templates Found!!</div>}
+			</div> : <div className='modalBodyTemplateNotFound'>{__('No templates found.', 'b-blocks')}</div>}
 		</>}
 	</div>
 };

@@ -49,7 +49,7 @@ const Playground = ({ info }) => {
   }
   // console.log(csbIsPremium)
   return <div className='custom-cursor-playground-container' >
-    <h3 className='custom-cursor-title'>Playground</h3>
+    <h3 className='custom-cursor-title'>Preview Area - Please move the mouse pointer inside the box below and click to see the changes.</h3>
     <div className='custom-cursor-playground' ref={dashboardRef} style={cursorCssVar} >
       <div className='custom-cursor-playground-contents-wrapper'>
         <div>

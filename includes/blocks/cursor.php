@@ -66,7 +66,7 @@ if( !class_exists( 'BBlocksCustomCursor' ) ){
 		}
 
 		public function bBlocksEnqueueBlockAssets() {
-			wp_enqueue_script( 'bBlocks-cursor', B_BLOCKS_DIR_URL . 'build/cursor/cursor.js', array('react', 'react-dom', 'wp-util'), B_BLOCKS_VERSION, true);
+			wp_enqueue_script( 'bBlocks-cursor', B_BLOCKS_DIR_URL . 'build/cursor/cursor.js', array('react', 'react-dom', 'react-jsx-runtime', 'wp-util'), B_BLOCKS_VERSION, true);
 			wp_enqueue_style( 'bBlocks-cursor', B_BLOCKS_DIR_URL . 'build/cursor/cursor.css', array(), B_BLOCKS_VERSION);
 
 			wp_localize_script( 'bBlocks-cursor', 'bBlocksCursorDataConfig', array(
@@ -77,7 +77,7 @@ if( !class_exists( 'BBlocksCustomCursor' ) ){
 		}
 		
 		function bBlocksEnqueueBlockEditorAssets(){
-			wp_enqueue_script('bBlocks-cursor-settings', B_BLOCKS_DIR_URL . 'build/cursor/settings.js', array('wp-compose','wp-data','wp-editor','wp-plugins','wp-components','wp-i18n','react','react-dom'), B_BLOCKS_VERSION, true);
+			wp_enqueue_script('bBlocks-cursor-settings', B_BLOCKS_DIR_URL . 'build/cursor/settings.js', array('wp-compose','wp-data','wp-editor','wp-plugins','wp-components','wp-i18n','react','react-dom','react-jsx-runtime'), B_BLOCKS_VERSION, true);
 			wp_enqueue_style("bBlocks-cursor-settings", B_BLOCKS_DIR_URL . 'build/cursor/settings.css', array(), B_BLOCKS_VERSION);
 		}
 	}

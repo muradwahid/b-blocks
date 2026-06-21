@@ -26,8 +26,12 @@ if (function_exists('b_blocks_fs')) {
 		}
 	});
 } else {
-	// Constant
-	define( 'B_BLOCKS_VERSION', '2.1.21' );
+	// Constant. On a local dev host, use a changing version so the browser
+	// always loads freshly-built assets (no stale-bundle caching). Production
+	// keeps the real, stable version.
+	$bb_host    = isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
+	$bb_isLocal = $bb_host && ( 0 === strpos( $bb_host, 'localhost' ) || 0 === strpos( $bb_host, '127.0.0.1' ) || (bool) preg_match( '/\.(local|test|ddev\.site)(:\d+)?$/', $bb_host ) );
+	define( 'B_BLOCKS_VERSION', $bb_isLocal ? (string) time() : '2.1.21' );
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_HAS_PRO', 'b-blocks-pro/plugin.php' === plugin_basename(__FILE__));
