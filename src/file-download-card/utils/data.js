@@ -60,6 +60,8 @@ export const badgeForMime = (mime, url) => {
 	return 'FILE';
 };
 
+export const prefix = 'b-blocks-file-download-card';
+
 export const fontWeightOptions = [
 	{ label: '400', value: '400' },
 	{ label: '500', value: '500' },

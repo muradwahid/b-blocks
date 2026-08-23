@@ -2,12 +2,13 @@ import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TabPanel, TextControl, SelectControl, RangeControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { ColorControl, BtnGroup, ShadowControl, Typography, BoxControl } from '../../../../../../bpl-tools/Components'
+import { ColorControl, BtnGroup, ShadowControl, Typography, BoxControl, Label } from '../../../../../../bpl-tools/Components'
 import { emUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
 
 import { generalStyleTabs } from '../../../../utils/options';
 import { solidStar, outlineStar } from '../../../utils/icons';
 import { ratingScales } from '../../../utils/options';
+import { Flex } from '@wordpress/components';
 
 const iconOptions = [
 	{ label: __('Solid', 'b-blocks'), value: 'solid', icon: solidStar },
@@ -21,7 +22,7 @@ const iconAlignments = [
 
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { ratingScale, rating, iconStyle, prefix, gap, alignment, margin, textTypo, textColor, textShadow, iconColor ='#f0ad4e' } = attributes;
+	const { ratingScale, rating, iconStyle, prefix, gap, alignment, margin, textTypo, textColor, textShadow, iconColor = '#f0ad4e', iconSize = '20px', unmarkedColor = '#ccd6df' } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -42,11 +43,25 @@ const Settings = ({ attributes, setAttributes }) => {
 
 					{tab.name === 'style' && <>
 						<PanelBody className='bPlPanelBody' title={__('Star Rating', 'b-blocks')}>
-							<BoxControl label={__('Margin','b-blocks')} values={margin} onChange={val=>setAttributes({margin:val})} />
+
+							<Flex>
+								<Label className='flex2'>{__('Icon Size', 'b-blocks')}</Label>
+								<UnitControl className='flex1' value={iconSize} onChange={val => setAttributes({ iconSize: val })} units={[pxUnit(10), emUnit(1)]} isResetValueOnUnitChange={true} />
+							</Flex>
+
+							<Flex className='mt10'>
+								<Label className='flex2'>{__('Gap', 'b-blocks')}</Label>
+								<UnitControl className='flex1' value={gap} onChange={val => setAttributes({ gap: val })} units={[pxUnit(10), emUnit(1)]} isResetValueOnUnitChange={true} />
+							</Flex>
+
+							<BoxControl label={__('Margin', 'b-blocks')} values={margin} onChange={val => setAttributes({ margin: val })} />
 
 							<BtnGroup label={__('Alignment', 'b-blocks')} value={alignment} onChange={val => setAttributes({ alignment: val })} options={iconAlignments} isIcon={true} />
 
-							<ColorControl label={__('Icon Color', 'b-blocks')} value={iconColor} onChange={val => setAttributes({ iconColor:val})} />
+							<ColorControl label={__('Icon Color', 'b-blocks')} value={iconColor} onChange={val => setAttributes({ iconColor: val })} />
+
+							<ColorControl label={__('Unmarked Icon Color', 'b-blocks')} value={unmarkedColor} onChange={val => setAttributes({ unmarkedColor: val })} />
+
 						</PanelBody>
 
 

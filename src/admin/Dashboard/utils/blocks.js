@@ -1,8 +1,57 @@
-import { advancedTabsIcon, alertIcon, animationIcon, authorBoxIcon, blockquoteIcon, breadcrumbIcon, businessHoursIcon, buttonGroupIcon, buttonIcon, callToActionIcon, calloutIcon, cardIcon, carouselBlockIcon, chartIcon, clickToShareIcon, codeHighlightIcon, comparisonTableIcon, contactCardIcon, containerIcon, contentFilterIcon, contentTickerIcon, countdownIcon, countersIcon, couponCodeIcon, dividerIcon, dualColorHeadingIcon, emojiStack, expandContentIcon, facebookEmbedIcon, facebookPageIcon, faqBlockIcon, featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon, googleMapIcon, heroSectionIcon, howtoSchemaIcon, htmlIcon, iconBoxIcon, iconListIcon, imageBoxIcon, imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon, modalPopupIcon, navigationIcon, newsTicker, notificationBarIcon, offCanvasIcon, portfolioGalleryIcon, postsIcon, priceListIcon, pricingTableIcon, processStepsIcon, progressBarIcon, progressCircleIcon, qrCodeIcon, readingProgressIcon, reviewBoxIcon, rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon, typingHeadlineIcon, videoIcon, videoPopupIcon, whatsappChatIcon } from '../../../utils/blocksIcon';
+import {
+    advancedTabsIcon, alertIcon, animationIcon,
+    // authorBoxIcon,
+    blockquoteIcon, breadcrumbIcon,
+    // businessHoursIcon,
+    buttonGroupIcon, buttonIcon,
+    // callToActionIcon, calloutIcon,
+    cardIcon, carouselBlockIcon, chartIcon,
+    // clickToShareIcon, codeHighlightIcon, comparisonTableIcon, contactCardIcon,
+    containerIcon,
+    // contentFilterIcon,
+    contentTickerIcon, countdownIcon, countersIcon,
+    // couponCodeIcon,
+    dividerIcon, dualColorHeadingIcon, emojiStack, expandContentIcon, facebookEmbedIcon, facebookPageIcon,
+    // faqBlockIcon,
+    featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon,
+    // googleMapIcon, 
+    heroSectionIcon,
+    // howtoSchemaIcon,
+    htmlIcon, iconBoxIcon,
+    // iconListIcon, imageBoxIcon,
+    imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon,
+    // modalPopupIcon,
+    navigationIcon, newsTicker,
+    // notificationBarIcon, offCanvasIcon, portfolioGalleryIcon,
+    postsIcon, priceListIcon, pricingTableIcon, processStepsIcon,
+    // progressBarIcon, progressCircleIcon,
+    qrCodeIcon,
+    // readingProgressIcon, reviewBoxIcon,
+    rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon,
+    // typingHeadlineIcon,
+    videoIcon,
+    // videoPopupIcon,
+    whatsappChatIcon, tableIcon
+} from '../../../utils/blocksIcon';
 
-import { pricingToggleIcon, newsletterOptinIcon, floatingCtaIcon, mediaTextSectionIcon, testimonialCardIcon, logoGridIcon, postTimelineIcon, keyTakeawaysIcon, imageSliderIcon, promoStripIcon, marqueeIcon, postCarouselIcon, imageMaskIcon, testimonialSliderIcon, featureTabsIcon, cookieConsentBarIcon, postFilterGridIcon, popupOptinIcon, testimonialsGridIcon, statCardsIcon, imageAccordionIcon, anchorNavIcon, urgencyTimerIcon, interactiveChecklistIcon, stickySidebarIcon, milestoneTimelineIcon, postNavigationIcon, socialShareBarIcon, taxonomyGridIcon, articleCardIcon, postMasonryGridIcon, searchBarIcon, iconIcon, eventCardIcon, scrollRevealIcon, audioPlayerIcon, fileDownloadCardIcon, parallaxSectionIcon, pdfEmbedIcon } from '../../../utils/blocksIcon';
+import {
+    // pricingToggleIcon, newsletterOptinIcon, floatingCtaIcon,
+    mediaTextSectionIcon,
+    // testimonialCardIcon, logoGridIcon, postTimelineIcon,
+    keyTakeawaysIcon,
+    // imageSliderIcon, promoStripIcon, marqueeIcon, postCarouselIcon, imageMaskIcon, testimonialSliderIcon, featureTabsIcon, cookieConsentBarIcon, postFilterGridIcon, popupOptinIcon, testimonialsGridIcon,
+    statCardsIcon,
+    // imageAccordionIcon, anchorNavIcon, urgencyTimerIcon,
+    interactiveChecklistIcon,
+    // stickySidebarIcon, milestoneTimelineIcon, postNavigationIcon, socialShareBarIcon, taxonomyGridIcon,
+    articleCardIcon,
+    // postMasonryGridIcon, searchBarIcon, iconIcon,
+    eventCardIcon,
+    fileDownloadCardIcon,
+    // scrollRevealIcon, audioPlayerIcon, parallaxSectionIcon, pdfEmbedIcon
+} from '../../../utils/blocksIcon';
 
-import { wooProductGridIcon, wooAddToCartIcon, wooProductCarouselIcon, wooFeaturedProductIcon, wooCategoryGridIcon, wooMiniCartIcon, wooProductFilterIcon, wooBestSellersIcon, wooSingleProductIcon, wooSaleBadgeIcon, wooProductReviewsIcon } from '../../../utils/blocksIcon';
+// import { wooProductGridIcon, wooAddToCartIcon, wooProductCarouselIcon, wooFeaturedProductIcon, wooCategoryGridIcon, wooMiniCartIcon, wooProductFilterIcon, wooBestSellersIcon, wooSingleProductIcon, wooSaleBadgeIcon, wooProductReviewsIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
 
@@ -51,24 +100,24 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            {
-                name: `${pluginSlug}/sticky-sidebar`,
-                title: 'Sticky Sidebar',
-                icon: stickySidebarIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/parallax-section`,
-                title: 'Parallax Section',
-                icon: parallaxSectionIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/sticky-sidebar`,
+            //     title: 'Sticky Sidebar',
+            //     icon: stickySidebarIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/parallax-section`,
+            //     title: 'Parallax Section',
+            //     icon: parallaxSectionIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
         ]
     },
     {
@@ -209,15 +258,15 @@ export default [
                 // docs: `${docsURL}/testimonials-block/`,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/faq-block`,
-                title: 'FAQ',
-                icon: faqBlockIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/faq-block`,
+            //     title: 'FAQ',
+            //     icon: faqBlockIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/expand-content`,
                 title: 'Expand Content',
@@ -227,15 +276,15 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            {
-                name: `${pluginSlug}/howto-schema`,
-                title: 'HowTo Schema',
-                icon: howtoSchemaIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/howto-schema`,
+            //     title: 'HowTo Schema',
+            //     icon: howtoSchemaIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/process-steps`,
                 title: 'Process Steps',
@@ -245,15 +294,15 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            {
-                name: `${pluginSlug}/code-highlight`,
-                title: 'Code Highlight',
-                icon: codeHighlightIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/code-highlight`,
+            //     title: 'Code Highlight',
+            //     icon: codeHighlightIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/team-members`,
                 title: 'Team Members',
@@ -295,15 +344,15 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            {
-                name: `${pluginSlug}/callout`,
-                title: 'Callout',
-                icon: calloutIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/callout`,
+            //     title: 'Callout',
+            //     icon: calloutIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/divider`,
                 title: 'Divider',
@@ -313,24 +362,24 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            {
-                name: `${pluginSlug}/icon-list`,
-                title: 'Icon List',
-                icon: iconListIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/typing-headline`,
-                title: 'Typing Headline',
-                icon: typingHeadlineIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/icon-list`,
+            //     title: 'Icon List',
+            //     icon: iconListIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/typing-headline`,
+            //     title: 'Typing Headline',
+            //     icon: typingHeadlineIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/key-takeaways`,
                 title: 'Key Takeaways',
@@ -338,17 +387,18 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW'
+                badge: 'NEW',
+                isPremium: true
             },
-            {
-                name: `${pluginSlug}/feature-tabs`,
-                title: 'Feature Tabs',
-                icon: featureTabsIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/feature-tabs`,
+            //     title: 'Feature Tabs',
+            //     icon: featureTabsIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/stat-cards`,
                 title: 'Stat Cards',
@@ -356,17 +406,18 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW'
+                badge: 'NEW',
+                isPremium: true
             },
-            {
-                name: `${pluginSlug}/anchor-nav`,
-                title: 'Anchor Navigation',
-                icon: anchorNavIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/anchor-nav`,
+            //     title: 'Anchor Navigation',
+            //     icon: anchorNavIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/interactive-checklist`,
                 title: 'Interactive Checklist',
@@ -376,15 +427,15 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            {
-                name: `${pluginSlug}/milestone-timeline`,
-                title: 'Milestone Timeline',
-                icon: milestoneTimelineIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/milestone-timeline`,
+            //     title: 'Milestone Timeline',
+            //     icon: milestoneTimelineIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/article-card`,
                 title: 'Article Card',
@@ -392,7 +443,8 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW'
+                badge: 'NEW',
+                isPremium: true
             },
             {
                 name: `${pluginSlug}/event-card`,
@@ -401,7 +453,8 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW'
+                badge: 'NEW',
+                isPremium: true
             },
             {
                 name: `${pluginSlug}/file-download-card`,
@@ -410,7 +463,8 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW'
+                badge: 'NEW',
+                isPremium: true
             },
         ]
     },
@@ -425,15 +479,15 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/pdf-embed`,
-                title: 'PDF Embed',
-                icon: pdfEmbedIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/pdf-embed`,
+            //     title: 'PDF Embed',
+            //     icon: pdfEmbedIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/td-viewer`,
                 title: '3D Viewer',
@@ -474,15 +528,15 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/video-popup`,
-                title: 'Video Popup',
-                icon: videoPopupIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/video-popup`,
+            //     title: 'Video Popup',
+            //     icon: videoPopupIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/image-comparison`,
                 title: 'Image Comparison',
@@ -500,24 +554,24 @@ export default [
                 status: 'published',
                 isPremium: true
             },
-            {
-                name: `${pluginSlug}/image-box`,
-                title: 'Image Box',
-                icon: imageBoxIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/portfolio-gallery`,
-                title: 'Portfolio Gallery',
-                icon: portfolioGalleryIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/image-box`,
+            //     title: 'Image Box',
+            //     icon: imageBoxIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/portfolio-gallery`,
+            //     title: 'Portfolio Gallery',
+            //     icon: portfolioGalleryIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/gif`,
                 title: 'Gif Image',
@@ -598,24 +652,24 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/progress-bar`,
-                title: 'Progress Bar',
-                icon: progressBarIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/progress-circle`,
-                title: 'Progress Circle',
-                icon: progressCircleIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/progress-bar`,
+            //     title: 'Progress Bar',
+            //     icon: progressBarIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/progress-circle`,
+            //     title: 'Progress Circle',
+            //     icon: progressCircleIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/stacked-cards`,
                 title: 'Stacked Cards',
@@ -634,96 +688,96 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/modal-popup`,
-                title: 'Modal Popup',
-                icon: modalPopupIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/off-canvas`,
-                title: 'Off-Canvas Drawer',
-                icon: offCanvasIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/logo-grid`,
-                title: 'Logo Grid',
-                icon: logoGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/image-slider`,
-                title: 'Image Slider',
-                icon: imageSliderIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/marquee`,
-                title: 'Marquee',
-                icon: marqueeIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/image-mask`,
-                title: 'Image Mask',
-                icon: imageMaskIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/image-accordion`,
-                title: 'Image Accordion',
-                icon: imageAccordionIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/icon`,
-                title: 'Icon',
-                icon: iconIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/scroll-reveal`,
-                title: 'Scroll Reveal',
-                icon: scrollRevealIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/audio-player`,
-                title: 'Audio Player',
-                icon: audioPlayerIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/modal-popup`,
+            //     title: 'Modal Popup',
+            //     icon: modalPopupIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/off-canvas`,
+            //     title: 'Off-Canvas Drawer',
+            //     icon: offCanvasIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/logo-grid`,
+            //     title: 'Logo Grid',
+            //     icon: logoGridIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/image-slider`,
+            //     title: 'Image Slider',
+            //     icon: imageSliderIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/marquee`,
+            //     title: 'Marquee',
+            //     icon: marqueeIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/image-mask`,
+            //     title: 'Image Mask',
+            //     icon: imageMaskIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/image-accordion`,
+            //     title: 'Image Accordion',
+            //     icon: imageAccordionIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/icon`,
+            //     title: 'Icon',
+            //     icon: iconIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/scroll-reveal`,
+            //     title: 'Scroll Reveal',
+            //     icon: scrollRevealIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/audio-player`,
+            //     title: 'Audio Player',
+            //     icon: audioPlayerIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
         ]
     },
     {
@@ -734,6 +788,14 @@ export default [
                 title: 'Breadcrumb',
                 icon: breadcrumbIcon,
                 status: 'published'
+            },
+            {
+                name: `${pluginSlug}/table`,
+                title: 'Table',
+                icon: tableIcon,
+                // demo: `${demoLink}/breadcrumb/`,
+                status: 'published',
+                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/chart`,
@@ -768,42 +830,42 @@ export default [
                 docs: `${docsURL}/posts-block/`,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/google-map`,
-                title: 'Google Map',
-                icon: googleMapIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/business-hours`,
-                title: 'Business Hours',
-                icon: businessHoursIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/author-box`,
-                title: 'Author Box',
-                icon: authorBoxIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/contact-card`,
-                title: 'Contact Card',
-                icon: contactCardIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/google-map`,
+            //     title: 'Google Map',
+            //     icon: googleMapIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/business-hours`,
+            //     title: 'Business Hours',
+            //     icon: businessHoursIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/author-box`,
+            //     title: 'Author Box',
+            //     icon: authorBoxIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/contact-card`,
+            //     title: 'Contact Card',
+            //     icon: contactCardIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/html`,
                 title: 'HTML',
@@ -812,88 +874,87 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/content-filter`,
-                title: 'Content Filter',
-                icon: contentFilterIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/reading-progress`,
-                title: 'Reading Progress',
-                icon: readingProgressIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-
-            {
-                name: `${pluginSlug}/post-timeline`,
-                title: 'Post Timeline',
-                icon: postTimelineIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/post-carousel`,
-                title: 'Post Carousel',
-                icon: postCarouselIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/post-filter-grid`,
-                title: 'Post Filter Grid',
-                icon: postFilterGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/post-masonry-grid`,
-                title: 'Post Masonry Grid',
-                icon: postMasonryGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/post-navigation`,
-                title: 'Post Navigation',
-                icon: postNavigationIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/taxonomy-grid`,
-                title: 'Taxonomy Grid',
-                icon: taxonomyGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/search-bar`,
-                title: 'Search Bar',
-                icon: searchBarIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/content-filter`,
+            //     title: 'Content Filter',
+            //     icon: contentFilterIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/reading-progress`,
+            //     title: 'Reading Progress',
+            //     icon: readingProgressIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/post-timeline`,
+            //     title: 'Post Timeline',
+            //     icon: postTimelineIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/post-carousel`,
+            //     title: 'Post Carousel',
+            //     icon: postCarouselIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/post-filter-grid`,
+            //     title: 'Post Filter Grid',
+            //     icon: postFilterGridIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/post-masonry-grid`,
+            //     title: 'Post Masonry Grid',
+            //     icon: postMasonryGridIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/post-navigation`,
+            //     title: 'Post Navigation',
+            //     icon: postNavigationIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/taxonomy-grid`,
+            //     title: 'Taxonomy Grid',
+            //     icon: taxonomyGridIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/search-bar`,
+            //     title: 'Search Bar',
+            //     icon: searchBarIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
         ]
     },
     {
@@ -907,29 +968,29 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/newsletter-optin`,
-                title: 'Newsletter Optin',
-                icon: newsletterOptinIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/newsletter-optin`,
+            //     title: 'Newsletter Optin',
+            //     icon: newsletterOptinIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
         ]
     },
     {
         title: 'Marketing Blocks',
         children: [
-            {
-                name: `${pluginSlug}/call-to-action`,
-                title: 'Call to Action',
-                icon: callToActionIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/call-to-action`,
+            //     title: 'Call to Action',
+            //     icon: callToActionIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
             {
                 name: `${pluginSlug}/pricing-table`,
                 title: 'Pricing Table',
@@ -970,123 +1031,123 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/review-box`,
-                title: 'Review Box',
-                icon: reviewBoxIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/notification-bar`,
-                title: 'Notification Bar',
-                icon: notificationBarIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/coupon-code`,
-                title: 'Coupon Code',
-                icon: couponCodeIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/comparison-table`,
-                title: 'Comparison Table',
-                icon: comparisonTableIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/pricing-toggle`,
-                title: 'Pricing Toggle',
-                icon: pricingToggleIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/floating-cta`,
-                title: 'Floating CTA',
-                icon: floatingCtaIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/testimonial-card`,
-                title: 'Testimonial Card',
-                icon: testimonialCardIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/testimonial-slider`,
-                title: 'Testimonial Slider',
-                icon: testimonialSliderIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/testimonials-grid`,
-                title: 'Testimonials Grid',
-                icon: testimonialsGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/promo-strip`,
-                title: 'Promo Strip',
-                icon: promoStripIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/urgency-timer`,
-                title: 'Urgency Timer',
-                icon: urgencyTimerIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/popup-optin`,
-                title: 'Popup Optin',
-                icon: popupOptinIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/cookie-consent-bar`,
-                title: 'Cookie Consent Bar',
-                icon: cookieConsentBarIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/review-box`,
+            //     title: 'Review Box',
+            //     icon: reviewBoxIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/notification-bar`,
+            //     title: 'Notification Bar',
+            //     icon: notificationBarIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/coupon-code`,
+            //     title: 'Coupon Code',
+            //     icon: couponCodeIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/comparison-table`,
+            //     title: 'Comparison Table',
+            //     icon: comparisonTableIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/pricing-toggle`,
+            //     title: 'Pricing Toggle',
+            //     icon: pricingToggleIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/floating-cta`,
+            //     title: 'Floating CTA',
+            //     icon: floatingCtaIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/testimonial-card`,
+            //     title: 'Testimonial Card',
+            //     icon: testimonialCardIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/testimonial-slider`,
+            //     title: 'Testimonial Slider',
+            //     icon: testimonialSliderIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/testimonials-grid`,
+            //     title: 'Testimonials Grid',
+            //     icon: testimonialsGridIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/promo-strip`,
+            //     title: 'Promo Strip',
+            //     icon: promoStripIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/urgency-timer`,
+            //     title: 'Urgency Timer',
+            //     icon: urgencyTimerIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/popup-optin`,
+            //     title: 'Popup Optin',
+            //     icon: popupOptinIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/cookie-consent-bar`,
+            //     title: 'Cookie Consent Bar',
+            //     icon: cookieConsentBarIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
         ]
     },
     {
@@ -1125,130 +1186,130 @@ export default [
                 docs: `${docsURL}/social-share-block/`,
                 status: 'published'
             },
-            {
-                name: `${pluginSlug}/click-to-share`,
-                title: 'Click to Share',
-                icon: clickToShareIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/social-share-bar`,
-                title: 'Social Share Bar',
-                icon: socialShareBarIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
+            // {
+            //     name: `${pluginSlug}/click-to-share`,
+            //     title: 'Click to Share',
+            //     icon: clickToShareIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/social-share-bar`,
+            //     title: 'Social Share Bar',
+            //     icon: socialShareBarIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
         ]
     },
-    {
-        title: 'WooCommerce Blocks',
-        children: [
-            {
-                name: `${pluginSlug}/woo-product-grid`,
-                title: 'Product Grid',
-                icon: wooProductGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-product-carousel`,
-                title: 'Product Carousel',
-                icon: wooProductCarouselIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-best-sellers`,
-                title: 'Best Selling Products',
-                icon: wooBestSellersIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-featured-product`,
-                title: 'Featured Product',
-                icon: wooFeaturedProductIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-single-product`,
-                title: 'Single Product',
-                icon: wooSingleProductIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-category-grid`,
-                title: 'Product Categories',
-                icon: wooCategoryGridIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-product-filter`,
-                title: 'Product Filter',
-                icon: wooProductFilterIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-add-to-cart`,
-                title: 'Add to Cart Button',
-                icon: wooAddToCartIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-mini-cart`,
-                title: 'Mini Cart',
-                icon: wooMiniCartIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-sale-badge`,
-                title: 'Sale / Price Badge',
-                icon: wooSaleBadgeIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-            {
-                name: `${pluginSlug}/woo-product-reviews`,
-                title: 'Product Reviews',
-                icon: wooProductReviewsIcon,
-                demo: ``,
-                docs: ``,
-                status: 'published',
-                badge: 'NEW'
-            },
-        ]
-    },
+    // {
+    //     title: 'WooCommerce Blocks',
+    //     children: [
+    // {
+    //     name: `${pluginSlug}/woo-product-grid`,
+    //     title: 'Product Grid',
+    //     icon: wooProductGridIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-product-carousel`,
+    //     title: 'Product Carousel',
+    //     icon: wooProductCarouselIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-best-sellers`,
+    //     title: 'Best Selling Products',
+    //     icon: wooBestSellersIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-featured-product`,
+    //     title: 'Featured Product',
+    //     icon: wooFeaturedProductIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-single-product`,
+    //     title: 'Single Product',
+    //     icon: wooSingleProductIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-category-grid`,
+    //     title: 'Product Categories',
+    //     icon: wooCategoryGridIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-product-filter`,
+    //     title: 'Product Filter',
+    //     icon: wooProductFilterIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-add-to-cart`,
+    //     title: 'Add to Cart Button',
+    //     icon: wooAddToCartIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-mini-cart`,
+    //     title: 'Mini Cart',
+    //     icon: wooMiniCartIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-sale-badge`,
+    //     title: 'Sale / Price Badge',
+    //     icon: wooSaleBadgeIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    // {
+    //     name: `${pluginSlug}/woo-product-reviews`,
+    //     title: 'Product Reviews',
+    //     icon: wooProductReviewsIcon,
+    //     demo: ``,
+    //     docs: ``,
+    //     status: 'published',
+    //     badge: 'NEW'
+    // },
+    //     ]
+    // },
     // {
     //     name: `${pluginSlug}/data-table`,
     //     title: 'Data Table',

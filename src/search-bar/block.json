@@ -31,7 +31,10 @@
 		},
 		"searchPostTypes": {
 			"type": "array",
-			"default": ["post", "page"]
+			"default": [
+				"post",
+				"page"
+			]
 		},
 		"liveSearch": {
 			"type": "boolean",
@@ -116,7 +119,10 @@
 		}
 	},
 	"supports": {
-		"align": ["wide", "full"],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false,
 		"className": true,
 		"customClassName": true
@@ -127,8 +133,12 @@
 			"buttonLabel": "Search"
 		}
 	},
-	"editorScript": "file:../index.js",
-	"style": ["file:./view.css", "fontAwesome"],
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": [
+		"file:./view.css",
+		"fontAwesome"
+	],
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"
 }

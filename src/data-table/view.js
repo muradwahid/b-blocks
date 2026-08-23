@@ -1,20 +1,31 @@
 import { createRoot } from 'react-dom/client';
 
-import Style from './Components/Common/Style';
-import DataTable from './Components/Frontend/DataTable';
 import './style.scss';
+import Style from './Components/Common/Style';
+import Frontend from './Components/Frontend/Frontend';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const dataTableEls = document.querySelectorAll('.wp-block-b-blocks-data-table');
-	dataTableEls.forEach(dataTableEl => {
-		const attributes = JSON.parse(dataTableEl.dataset.attributes);
+	const tableEls = document.querySelectorAll('.wp-block-b-blocks-table[data-attributes]');
+	tableEls.forEach(tableEl => {
+    let attributes = {};
+    try {
+      const raw = tableEl.dataset.attributes;
+      if (raw && raw !== 'undefined' && raw !== '') {
+        attributes = JSON.parse(raw);
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn('table: Invalid attributes JSON', e);
+    }
+    const templateContent = tableEl.querySelector('.b-blocks-table-innerBlocks-contents>table');
+    if (!templateContent) return;
 
-		createRoot(dataTableEl).render(<>
-			<Style attributes={attributes} id={dataTableEl.id} />
+		createRoot(tableEl).render(<>
+			<Style attributes={attributes} id={tableEl.id} />
 
-			<DataTable attributes={attributes} />
+      <Frontend attributes={attributes} templateContent={templateContent} />
 		</>);
 
-		dataTableEl?.removeAttribute('data-attributes');
+		tableEl?.removeAttribute('data-attributes');
 	});
 });

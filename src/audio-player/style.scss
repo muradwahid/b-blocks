@@ -1,51 +1,55 @@
-// Audio Player — frontend + editor shared styles.
-// Mobile-first responsive. WCAG 2.1 AA accessible.
+// ============================================================================
+// 1. TOKENS
+// ============================================================================
+$c: inherit;
+$a: #146EF5;
+$bg: #1e1e1e;
+$grey: #7f7f7f;
 
-.wp-block-b-blocks-audio-player,
-.bb-ap {
+$track-h: 6px;
+$thumb: 14px;
+
+.b-blocks-audio-player {
+	// ------------------------------------------------------------------------
+	// 2. ROOT
+	// ------------------------------------------------------------------------
+	width: 100%;
+	box-sizing: border-box;
+
 	* {
 		box-sizing: border-box;
 	}
 
-	width: 100%;
-
-	// --- Block alignment ---
-	&.bb-ap-align-center {
-		.bb-ap-player,
-		.bb-ap-empty {
-			margin-inline: auto;
-		}
+	// Remove the focus outline on every button in the player.
+	button {
+		outline: none !important;
 	}
 
-	&.bb-ap-align-right {
-		.bb-ap-player,
-		.bb-ap-empty {
-			margin-inline: auto 0;
-		}
+	&.b-blocks-audio-player--align-left .b-blocks-audio-player-player {
+		margin-inline: 0 auto;
 	}
 
-	&.bb-ap-align-left {
-		.bb-ap-player,
-		.bb-ap-empty {
-			margin-inline: 0 auto;
-		}
+	&.b-blocks-audio-player--align-center .b-blocks-audio-player-player {
+		margin-inline: auto;
 	}
 
-	.bb-ap-player {
+	&.b-blocks-audio-player--align-right .b-blocks-audio-player-player {
+		margin-inline: auto 0;
+	}
+
+	// ------------------------------------------------------------------------
+	// 3. LAYOUT
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-player {
+		position: relative;
 		display: flex;
 		gap: 16px;
 		align-items: center;
 		width: 100%;
-		max-width: var(--bb-ap-max-w, none);
-		padding: var(--bb-ap-pad-y, 16px) var(--bb-ap-pad-x, 20px);
-		background: var(--bb-ap-bg, #1e1e1e);
-		color: var(--bb-ap-control, #ffffff);
-		border-radius: var(--bb-ap-radius, 8px);
 	}
 
-	// Native audio element stays in the DOM but is visually removed; the custom
-	// controls drive it through the HTMLMediaElement API.
-	.bb-ap-audio {
+	// Visually-hidden native <audio> element (JS drives playback).
+	.b-blocks-audio-player-audio {
 		position: absolute;
 		width: 1px;
 		height: 1px;
@@ -53,7 +57,7 @@
 		clip: rect(0, 0, 0, 0);
 	}
 
-	.bb-ap-body {
+	.b-blocks-audio-player-body {
 		display: flex;
 		flex: 1 1 auto;
 		flex-direction: column;
@@ -61,190 +65,210 @@
 		min-width: 0;
 	}
 
-	.bb-ap-meta {
+	.b-blocks-audio-player-meta {
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
 		min-width: 0;
 	}
 
-	.bb-ap-title {
-		margin: 0;
-		color: var(--bb-ap-control, #ffffff);
-		font-size: var(--bb-ap-title-size, 15px);
-		font-weight: 600;
-		line-height: 1.3;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
-	.bb-ap-artist {
-		margin: 0;
-		color: var(--bb-ap-control, #ffffff);
-		font-size: var(--bb-ap-artist-size, 13px);
-		font-weight: 400;
-		line-height: 1.3;
-		opacity: 0.75;
-	}
-
-	.bb-ap-controls {
+	.b-blocks-audio-player-controls {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 10px;
 	}
 
-	// --- Play / pause button ---
-	.bb-ap-playpause {
+	.b-blocks-audio-player-transport {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.b-blocks-audio-player-volume-row {
+		display: flex;
+		justify-content: center;
+	}
+
+	// ------------------------------------------------------------------------
+	// 4. TYPOGRAPHY
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-title {
+		margin: 0;
+		font-weight: 600;
+		line-height: 1.3;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.b-blocks-audio-player-artist {
+		margin: 0;
+		font-weight: 400;
+		line-height: 1.3;
+	}
+
+	// ------------------------------------------------------------------------
+	// 5. BUTTONS
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-playpause {
 		display: inline-flex;
 		flex: 0 0 auto;
 		align-items: center;
 		justify-content: center;
-		width: 44px;
-		height: 44px;
+		min-width: 44px;
+		min-height: 44px;
 		padding: 0;
-		color: var(--bb-ap-bg, #1e1e1e);
-		background: var(--bb-ap-accent, #146EF5);
 		border: 0;
 		border-radius: 50%;
 		cursor: pointer;
-
-		&:focus-visible {
-			outline: 2px solid var(--bb-ap-control, #ffffff);
-			outline-offset: 2px;
-		}
+		background: #{$a};
+		color: #{$bg};
 
 		svg {
 			width: 22px;
 			height: 22px;
 			display: block;
 		}
+	}
 
-		.bb-ap-icon[hidden] {
-			display: none;
+	.b-blocks-audio-player-skip,
+	.b-blocks-audio-player-restart,
+	.b-blocks-audio-player-repeat,
+	.b-blocks-audio-player-stop {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 36px;
+		min-height: 36px;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		cursor: pointer;
+		background: transparent;
+		color: #{$c};
+
+		svg {
+			width: 20px;
+			height: 20px;
+			display: block;
+		}
+
+		&:hover {
+			opacity: 0.8;
 		}
 	}
 
-	.bb-ap-spinner {
+	.b-blocks-audio-player-repeat.is-active {
+		color: #{$a};
+	}
+
+	.b-blocks-audio-player-speed {
+		flex: 0 0 auto;
+		padding: 3px 8px;
+		min-width: 34px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1;
+		cursor: pointer;
+		color: #{$c};
+		background: transparent;
+		border: 1px solid currentColor;
+		border-radius: 6px;
+	}
+
+	.b-blocks-audio-player-spinner {
 		width: 20px;
 		height: 20px;
 		border: 2px solid currentColor;
 		border-top-color: transparent;
 		border-radius: 50%;
 		animation: bbApSpin 0.8s linear infinite;
-
-		&[hidden] {
-			display: none;
-		}
 	}
 
-	// --- Seek scrubber ---
-	.bb-ap-seek-wrap {
+	// ------------------------------------------------------------------------
+	// 6. RANGES
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-seek-wrap {
 		flex: 1 1 120px;
 		min-width: 100px;
 		display: flex;
 		align-items: center;
 	}
 
-	input[type='range'].bb-ap-seek,
-	input[type='range'].bb-ap-volume {
+	// Seek + volume share the same plain range-input styling (a gradient track
+	// whose fill is driven by the --progress variable, plus a round thumb).
+	input[type='range'].b-blocks-audio-player-seek,
+	input[type='range'].b-blocks-audio-player-volume {
 		-webkit-appearance: none;
 		appearance: none;
 		width: 100%;
-		height: 6px;
+		height: $track-h;
 		margin: 0;
+		padding: 0;
 		background: transparent;
 		cursor: pointer;
+		outline: none !important;
 
-		&:focus-visible {
-			outline: 2px solid var(--bb-ap-control, #ffffff);
-			outline-offset: 4px;
-		}
-
-		// WebKit track
 		&::-webkit-slider-runnable-track {
-			height: 6px;
+			height: $track-h;
 			border-radius: 3px;
-			background: linear-gradient(
-				to right,
-				var(--bb-ap-accent, #146EF5) 0%,
-				var(--bb-ap-accent, #146EF5) var(--progress, 0%),
-				rgba(255, 255, 255, 0.25) var(--progress, 0%),
-				rgba(255, 255, 255, 0.25) 100%
-			);
+			background: linear-gradient(to right, #{$a} 0%, #{$a} var(--b-blocks-audio-player-var-progress, 0%), rgba($grey, 0.3) var(--b-blocks-audio-player-var-progress, 0%), rgba($grey, 0.3) 100%);
 		}
+		&::-moz-range-track { height: $track-h; border-radius: 3px; background: rgba($grey, 0.3); }
+		&::-moz-range-progress { height: $track-h; border-radius: 3px; background: #{$a}; }
 
-		// Firefox track + progress
-		&::-moz-range-track {
-			height: 6px;
-			border-radius: 3px;
-			background: rgba(255, 255, 255, 0.25);
-		}
-
-		&::-moz-range-progress {
-			height: 6px;
-			border-radius: 3px;
-			background: var(--bb-ap-accent, #146EF5);
-		}
-
-		// WebKit thumb
 		&::-webkit-slider-thumb {
 			-webkit-appearance: none;
 			appearance: none;
-			width: 14px;
-			height: 14px;
+			width: $thumb;
+			height: $thumb;
 			margin-top: -4px;
-			background: var(--bb-ap-control, #ffffff);
-			border: 2px solid var(--bb-ap-accent, #146EF5);
+			background: #{$c};
+			border: 2px solid #{$a};
 			border-radius: 50%;
 		}
 
-		// Firefox thumb
 		&::-moz-range-thumb {
-			width: 14px;
-			height: 14px;
-			background: var(--bb-ap-control, #ffffff);
-			border: 2px solid var(--bb-ap-accent, #146EF5);
+			width: $thumb;
+			height: $thumb;
+			background: #{$c};
+			border: 2px solid #{$a};
 			border-radius: 50%;
 		}
 	}
 
-	.bb-ap-volume {
+	input[type='range'].b-blocks-audio-player-volume {
 		flex: 0 0 90px;
 		max-width: 90px;
 	}
 
-	// --- Timecode ---
-	.bb-ap-time {
+	// ------------------------------------------------------------------------
+	// 7. TIMECODE
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-time {
 		flex: 0 0 auto;
-		color: var(--bb-ap-control, #ffffff);
+		color: #{$c};
 		font-size: 13px;
 		font-variant-numeric: tabular-nums;
-		font-feature-settings: "tnum";
 		white-space: nowrap;
-		opacity: 0.85;
 	}
 
-	// --- Download link ---
-	.bb-ap-download {
+	// ------------------------------------------------------------------------
+	// 8. DOWNLOAD
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-download {
 		display: inline-flex;
 		flex: 0 0 auto;
 		align-items: center;
 		justify-content: center;
 		width: 36px;
 		height: 36px;
-		color: var(--bb-ap-control, #ffffff);
+		color: #{$c};
 		text-decoration: none;
 		border-radius: 6px;
 
 		&:hover {
 			opacity: 0.8;
-		}
-
-		&:focus-visible {
-			outline: 2px solid var(--bb-ap-control, #ffffff);
-			outline-offset: 2px;
 		}
 
 		svg {
@@ -254,14 +278,10 @@
 		}
 	}
 
-	// --- Card style ---
-	&.bb-ap-style-card .bb-ap-player {
-		flex-direction: column;
-		align-items: stretch;
-		text-align: left;
-	}
-
-	.bb-ap-art {
+	// ------------------------------------------------------------------------
+	// 9. ARTWORK
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-art {
 		flex: 0 0 auto;
 		width: 100%;
 		aspect-ratio: 16 / 9;
@@ -269,20 +289,19 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: calc(var(--bb-ap-radius, 8px) - 2px);
+		background: rgba($grey, 0.12);
+		border-radius: 8px;
 	}
 
-	.bb-ap-art-img {
+	.b-blocks-audio-player-art-img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		display: block;
 	}
 
-	.bb-ap-art-placeholder {
+	.b-blocks-audio-player-art-placeholder {
 		display: inline-flex;
-		color: var(--bb-ap-control, #ffffff);
 		opacity: 0.5;
 
 		svg {
@@ -291,19 +310,51 @@
 		}
 	}
 
-	// --- Empty / no-source state ---
-	.bb-ap-empty {
-		display: inline-flex;
+	// ------------------------------------------------------------------------
+	// 10. UTILITIES
+	// ------------------------------------------------------------------------
+	.b-blocks-audio-player-empty {
+		display: flex;
+		flex-direction: column;
 		align-items: center;
-		padding: 14px 18px;
-		color: #555;
-		font-size: 13px;
-		background: #f0f0f1;
-		border: 1px dashed #c3c4c7;
-		border-radius: 6px;
+		justify-content: center;
+		gap: 6px;
+		width: 100%;
+		padding: 32px 24px;
+		text-align: center;
+		background: rgba($grey, 0.07);
+		border: 1px dashed rgba($grey, 0.5);
+		border-radius: 12px;
 	}
 
-	// Visually hidden helper for screen-reader-only text.
+	.b-blocks-audio-player-empty-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		margin-bottom: 4px;
+		border-radius: 50%;
+		background: rgba($grey, 0.15);
+		color: #{$a};
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+
+	.b-blocks-audio-player-empty-title {
+		font-size: 15px;
+		font-weight: 600;
+		color: inherit;
+	}
+
+	.b-blocks-audio-player-empty-text {
+		font-size: 13px;
+		opacity: 0.7;
+	}
+
 	.screen-reader-text {
 		position: absolute !important;
 		width: 1px;
@@ -316,27 +367,441 @@
 		border: 0;
 	}
 
-	// On coarse pointers (touch), the OS handles volume — hide the slider by
-	// default. The showVolume toggle still controls whether it is rendered at all.
+	// ========================================================================
+	// 11. THEMES
+	// ========================================================================
+	&.b-blocks-audio-player--style-card .b-blocks-audio-player-player {
+		flex-direction: column;
+		align-items: stretch;
+		text-align: left;
+	}
+
+	// --- Sound Bars (live spectrum visualiser) ------------------------------
+	&.b-blocks-audio-player--style-bars .b-blocks-audio-player-player {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 14px;
+
+		.b-blocks-audio-player-meta {
+			align-items: center;
+			text-align: center;
+		}
+
+		.b-blocks-audio-player-title {
+			font-size: 22px;
+			white-space: normal;
+		}
+
+		.b-blocks-audio-player-wave-seek {
+			position: relative;
+		}
+
+		.b-blocks-audio-player-bars {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 2px;
+			height: 60px;
+		}
+
+		.b-blocks-audio-player-bar {
+			flex: 1 1 0;
+			min-width: 2px;
+			height: 40%;
+			border-radius: 2px;
+			background: rgba($grey, 0.35);
+			transition: height 0.08s ease-out;
+			will-change: height;
+
+			&.is-played {
+				background: #{$a};
+			}
+		}
+
+		// Transparent range overlaid on the bars for click / drag seeking.
+		.b-blocks-audio-player-seek--overlay {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			cursor: pointer;
+		}
+
+		.b-blocks-audio-player-controls {
+			flex-wrap: nowrap;
+		}
+
+		.b-blocks-audio-player-playpause {
+			width: auto;
+			height: auto;
+			min-width: 0;
+			min-height: 0;
+			background: transparent;
+			color: #{$c};
+
+			svg {
+				width: 26px;
+				height: 26px;
+			}
+		}
+
+		.b-blocks-audio-player-transport {
+			gap: 6px;
+		}
+	}
+
+	// --- Vinyl (spinning record) --------------------------------------------
+	&.b-blocks-audio-player--style-vinyl .b-blocks-audio-player-player {
+		align-items: center;
+		gap: 18px;
+		border-radius: 999px;
+
+		.b-blocks-audio-player-vinyl {
+			position: relative;
+			flex: 0 0 auto;
+			width: 120px;
+			height: 120px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.b-blocks-audio-player-vinyl-disc {
+			width: 112px;
+			height: 112px;
+			border-radius: 50%;
+			position: relative;
+			overflow: hidden;
+			box-sizing: border-box;
+			background: radial-gradient(circle, #2a2a2a 0 22%, #111 22% 24%, #1c1c1c 24% 100%);
+			border: 4px solid #{$a};
+			transform-origin: 50% 50%;
+		}
+
+		.b-blocks-audio-player-vinyl-art {
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			width: 64%;
+			height: 64%;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.b-blocks-audio-player-vinyl-center {
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			width: 18px;
+			height: 18px;
+			border-radius: 50%;
+			background: #{$a};
+			z-index: 1;
+			box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+		}
+
+		.b-blocks-audio-player-vinyl-arm {
+			position: absolute;
+			top: 14px;
+			right: 14px;
+			width: 24px;
+			height: 50px;
+			pointer-events: none;
+			z-index: 3;
+			transform-origin: 12px 6px;
+			transform: rotate(32deg);
+			transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+			.b-blocks-audio-player-vinyl-arm-base {
+				position: absolute;
+				top: 0px;
+				left: 6px;
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d0d0d0 50%, #888888 100%);
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+				z-index: 2;
+			}
+
+			.b-blocks-audio-player-vinyl-arm-stick {
+				position: absolute;
+				top: 6px;
+				left: 10.5px;
+				width: 3px;
+				height: 36px;
+				background: linear-gradient(to right, #ffffff, #aaaaaa);
+				border-radius: 2px;
+				box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+				z-index: 1;
+			}
+
+			.b-blocks-audio-player-vinyl-arm-head {
+				position: absolute;
+				top: 38px;
+				left: 8px;
+				width: 8px;
+				height: 11px;
+				background: #1c1c1c;
+				border: 1px solid #444;
+				border-radius: 2px;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+				z-index: 2;
+			}
+		}
+
+		.b-blocks-audio-player-title--pill {
+			display: inline-block;
+			padding: 4px 12px;
+			background: rgba($grey, 0.18);
+			border-radius: 999px;
+		}
+
+		.b-blocks-audio-player-vinyl-row {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.b-blocks-audio-player-time--pill {
+			padding: 4px 12px;
+			background: rgba($grey, 0.18);
+			border-radius: 999px;
+		}
+	}
+
+	&.b-blocks-audio-player--style-vinyl.is-playing,
+	&.is-playing {
+		.b-blocks-audio-player-vinyl-disc {
+			animation: bbApSpinDisc 3s linear infinite !important;
+		}
+
+		.b-blocks-audio-player-vinyl-arm {
+			transform: rotate(2deg) !important;
+		}
+	}
+
+	// --- Coverflow (multi-track 3D carousel) --------------------------------
+	&.b-blocks-audio-player--style-coverflow .b-blocks-audio-player-player {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 16px;
+		text-align: center;
+
+		.b-blocks-audio-player-coverflow {
+			position: relative;
+			height: 210px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+		}
+
+		.b-blocks-audio-player-cover {
+			position: absolute;
+			width: 150px;
+			height: 150px;
+			padding: 0;
+			border: 0;
+			background: transparent;
+			cursor: pointer;
+			outline: none !important;
+			transition: transform 0.4s ease, opacity 0.4s ease;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 14px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+				-webkit-box-reflect: below 4px linear-gradient(transparent 55%, rgba(0, 0, 0, 0.25));
+			}
+		}
+
+		.b-blocks-audio-player-cover--pos0 {
+			transform: translateX(0) rotateY(0) scale(1);
+			z-index: 3;
+		}
+
+		.b-blocks-audio-player-cover--pos-1 {
+			transform: translateX(-120px) rotateY(42deg) scale(0.82);
+			z-index: 2;
+			opacity: 0.9;
+		}
+
+		.b-blocks-audio-player-cover--pos1 {
+			transform: translateX(120px) rotateY(-42deg) scale(0.82);
+			z-index: 2;
+			opacity: 0.9;
+		}
+
+		.b-blocks-audio-player-cover--pos-2 {
+			transform: translateX(-215px) rotateY(52deg) scale(0.64);
+			z-index: 1;
+			opacity: 0.6;
+		}
+
+		.b-blocks-audio-player-cover--pos2 {
+			transform: translateX(215px) rotateY(-52deg) scale(0.64);
+			z-index: 1;
+			opacity: 0.6;
+		}
+
+
+		@media (max-width: 600px) {
+			.b-blocks-audio-player-coverflow { height: 170px; }
+			.b-blocks-audio-player-cover { width: 110px; height: 110px; }
+			.b-blocks-audio-player-cover--pos-1 { transform: translateX(-72px) rotateY(42deg) scale(0.8); }
+			.b-blocks-audio-player-cover--pos1 { transform: translateX(72px) rotateY(-42deg) scale(0.8); }
+			.b-blocks-audio-player-cover--pos-2 { transform: translateX(-128px) rotateY(52deg) scale(0.6); }
+			.b-blocks-audio-player-cover--pos2 { transform: translateX(128px) rotateY(-52deg) scale(0.6); }
+		}
+
+		.b-blocks-audio-player-meta {
+			align-items: center;
+		}
+
+		.b-blocks-audio-player-title {
+			font-size: 20px;
+			white-space: normal;
+		}
+
+		.b-blocks-audio-player-controls {
+			flex-wrap: nowrap;
+			justify-content: center;
+		}
+
+		.b-blocks-audio-player-transport {
+			justify-content: center;
+		}
+
+		.b-blocks-audio-player-playpause {
+			background: #{$c};
+			color: #{$bg};
+		}
+
+		.b-blocks-audio-player-skip {
+			background: rgba($grey, 0.22);
+		}
+	}
+
+	// --- Playlist (multi-track list) ----------------------------------------
+	&.b-blocks-audio-player--style-playlist .b-blocks-audio-player-player {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 12px;
+
+		.b-blocks-audio-player-nowplaying {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			padding-bottom: 8px;
+			border-bottom: 1px solid rgba($grey, 0.25);
+		}
+
+		.b-blocks-audio-player-np-title {
+			flex: 1;
+			text-align: center;
+			font-weight: 700;
+			font-size: 18px;
+		}
+
+		.b-blocks-audio-player-transport {
+			justify-content: center;
+		}
+
+		.b-blocks-audio-player-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			max-height: 280px;
+			overflow-y: auto;
+		}
+
+		.b-blocks-audio-player-list-item {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 9px 12px;
+			border-radius: 8px;
+			background: rgba($grey, 0.12);
+			cursor: pointer;
+
+			&.is-active {
+				background: #7a1f2b;
+				font-weight: 700;
+			}
+		}
+
+		.b-blocks-audio-player-list-play {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 28px;
+			height: 28px;
+			padding: 0;
+			border: 0;
+			background: transparent;
+			color: #{$c};
+			cursor: pointer;
+
+			svg {
+				width: 16px;
+				height: 16px;
+			}
+		}
+
+		.b-blocks-audio-player-list-title {
+			flex: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.b-blocks-audio-player-list-time {
+			flex: 0 0 auto;
+			font-variant-numeric: tabular-nums;
+			opacity: 0.85;
+		}
+	}
+
+	// ========================================================================
+	// 12. RESPONSIVE
+	// ========================================================================
+	// Hide the volume slider on touch devices (they have hardware controls).
 	@media (pointer: coarse) {
-		.bb-ap-volume {
+		.b-blocks-audio-player-volume {
 			display: none;
 		}
 	}
 }
 
+//============================================================================
+// MOTION
+// ============================================================================
 @keyframes bbApSpin {
 	to {
 		transform: rotate(360deg);
 	}
 }
 
-// Respect reduced-motion: suppress the buffering spinner animation.
+@keyframes bbApSpinDisc {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.wp-block-b-blocks-audio-player,
-	.bb-ap {
-		.bb-ap-spinner {
-			animation: none;
-		}
+
+	.b-blocks-audio-player .b-blocks-audio-player-spinner,
+	.b-blocks-audio-player .b-blocks-audio-player-vinyl-disc {
+		animation: none;
 	}
 }

@@ -1,152 +1,111 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, RichText, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
+import { withSelect } from '@wordpress/data';
 
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import { quoteIconPath } from '../../utils/options';
+import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 
-const LAYOUT_VALUES = [ 'border', 'quotation' ];
-const ALIGN_VALUES = [ 'left', 'center', 'right' ];
+const LAYOUT_VALUES = ['border', 'quotation'];
+const ALIGN_VALUES = ['left', 'center', 'right'];
 
-const Edit = ( props ) => {
-	const { attributes, setAttributes } = props;
-	const {
-		quoteText,
-		authorName,
-		authorRole,
-		authorAvatarUrl,
-		authorAvatarAlt,
-		layout,
-		alignment,
-		showAvatar,
-		avatarSize,
-		avatarShape,
-		showAuthorRole,
-		quoteIconSize,
-		quoteIconColor,
-		accentColor,
-		accentWidth,
-		quoteTextColor,
-		authorNameColor,
-		authorRoleColor,
-		backgroundColor,
-		quoteFontSize = {},
-		quoteFontWeight,
-		quoteLineHeight,
-		authorFontSize,
-		padding = {},
-		borderRadius
-	} = attributes;
+const Edit = (props) => {
+	const { attributes, setAttributes, clientId, device } = props;
+	const { quote = {}, authorName = {}, authorRole = {}, avatar = {}, layout = {} } = attributes;
 
-	const safeLayout = LAYOUT_VALUES.includes( layout ) ? layout : 'border';
-	const safeAlign = ALIGN_VALUES.includes( alignment ) ? alignment : 'left';
+	const { text: quoteText } = quote;
+	const { text: name } = authorName;
+	const { text: role, show: showRole } = authorRole;
+	const { show: showAvatar, url: avatarUrl, alt: avatarAlt, size: avatarSize } = avatar;
+	const avatarPx = parseInt(avatarSize, 10) || 48;
 
-	const wrapperClasses = [
-		'bb-blockquote',
-		`bb-bq-layout--${ safeLayout }`,
-		`bb-bq-align--${ safeAlign }`
-	].join( ' ' );
+	const isPremium = bBlocksPremiumChecker;
+	const updateObj = updateAttributes(attributes, setAttributes);
 
-	const avatarRadius = avatarShape === 'circle'
-		? '50%'
-		: ( avatarShape === 'rounded' ? '12px' : '0' );
+	const safeLayout = LAYOUT_VALUES.includes(layout.type) ? layout.type : 'border';
+	const safeAlign = ALIGN_VALUES.includes(layout.alignment) ? layout.alignment : 'left';
 
-	const wrapperStyle = {
-		'--bb-bq-accent': accentColor || '#6366f1',
-		'--bb-bq-accent-width': `${ accentWidth ?? 4 }px`,
-		'--bb-bq-radius': `${ borderRadius ?? 8 }px`,
-		'--bb-bq-pad-top': padding.top || '24px',
-		'--bb-bq-pad-right': padding.right || '24px',
-		'--bb-bq-pad-bottom': padding.bottom || '24px',
-		'--bb-bq-pad-left': padding.left || '24px',
-		'--bb-bq-quote-size-desktop': quoteFontSize.desktop || '20px',
-		'--bb-bq-quote-size-tablet': quoteFontSize.tablet || '18px',
-		'--bb-bq-quote-size-mobile': quoteFontSize.mobile || '16px',
-		'--bb-bq-quote-weight': quoteFontWeight || '400',
-		'--bb-bq-quote-line-height': quoteLineHeight || '1.6',
-		'--bb-bq-author-size': `${ authorFontSize ?? 14 }px`,
-		'--bb-bq-avatar-size': `${ avatarSize ?? 48 }px`,
-		'--bb-bq-avatar-radius': avatarRadius,
-		'--bb-bq-quote-icon-size': `${ quoteIconSize ?? 48 }px`,
-		'--bb-bq-quote-icon-color': quoteIconColor || '#6366f1',
-		...( backgroundColor ? { '--bb-bq-bg': backgroundColor } : {} ),
-		...( quoteTextColor ? { '--bb-bq-text': quoteTextColor } : {} ),
-		...( authorNameColor ? { '--bb-bq-name': authorNameColor } : {} ),
-		...( authorRoleColor ? { '--bb-bq-role': authorRoleColor } : {} )
-	};
+	const figureClasses = [
+		'bBlocks-blockquote-wrapper',
+		`bBlocks-blockquote-layout-${safeLayout}`,
+		`bBlocks-blockquote-align-${safeAlign}`,
+	].join(' ');
 
-	const blockProps = useBlockProps( {
-		className: wrapperClasses,
-		style: wrapperStyle
-	} );
-
-	const hasAvatar = showAvatar && !! authorAvatarUrl;
-	const hasName = !! ( authorName && authorName.trim() );
-	const hasRole = showAuthorRole && !! ( authorRole && authorRole.trim() );
+	const hasAvatar = showAvatar && !!avatarUrl;
+	const hasName = !!(name && name.trim());
+	const hasRole = showRole && !!(role && role.trim());
 	const hasCite = hasAvatar || hasName || hasRole;
 
-	const avatarAltText = authorAvatarAlt
-		|| ( hasName
-			? sprintf( /* translators: %s: author display name */ __( 'Photo of %s', 'b-blocks' ), authorName )
-			: '' );
+	const avatarAltText = avatarAlt
+		|| (hasName
+			? sprintf(__('Photo of %s', 'b-blocks'), name)
+			: '');
 
-	return (
-		<>
-			<BlockControls>
-				<AlignmentToolbar
-					value={ safeAlign }
-					onChange={ ( val ) => setAttributes( { alignment: val || 'left' } ) }
-				/>
-			</BlockControls>
+	return <>
+		<BlockControls>
+			<AlignmentToolbar value={safeAlign} onChange={(val) => updateObj('layout', val || 'left', 'alignment')} />
+		</BlockControls>
 
-			<Settings attributes={ attributes } setAttributes={ setAttributes } />
+		<Settings {...{ attributes, setAttributes, updateObj, isPremium, device }} />
 
-			<div { ...blockProps }>
-				<figure className='bb-bq'>
-					{ safeLayout === 'quotation' && (
-						<span className='bb-bq__icon' aria-hidden='true'>
-							<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' focusable='false'>
-								<path d='M9.17 6.5H4.5C3.4 6.5 2.5 7.4 2.5 8.5v4.67c0 1.1.9 2 2 2h2.83c0 2.21-1.62 4-3.83 4v2.83c4.05 0 7.33-3.28 7.33-7.33V8.5c0-1.1-.9-2-1.66-2zm12 0H16.5c-1.1 0-2 .9-2 2v4.67c0 1.1.9 2 2 2h2.83c0 2.21-1.62 4-3.83 4v2.83c4.05 0 7.33-3.28 7.33-7.33V8.5c0-1.1-.9-2-1.66-2z' />
-							</svg>
-						</span>
-					) }
+		<div {...useBlockProps()}>
+			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
+			<div>
+				<div>
 
-					<blockquote className='bb-bq__quote'>
-						<RichText
-							tagName='p'
-							className='bb-bq__quote-text'
-							value={ quoteText || '' }
-							onChange={ ( val ) => setAttributes( { quoteText: val } ) }
-							placeholder={ __( 'Type the quote…', 'b-blocks' ) }
-							allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
-						/>
-					</blockquote>
+					<figure className={figureClasses}>
+						{'quotation' === safeLayout && (
+							<span className='bBlocks-blockquote-icon' aria-hidden='true'>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 435 332" fill='currentColor' focusable='false'><path d={quoteIconPath} /></svg>
+							</span>
+						)}
 
-					{ hasCite && (
-						<figcaption className='bb-bq__caption'>
-							{ hasAvatar && (
-								<img
-									className='bb-bq__avatar'
-									src={ authorAvatarUrl }
-									alt={ avatarAltText }
-									width={ avatarSize ?? 48 }
-									height={ avatarSize ?? 48 }
-								/>
-							) }
-							{ ( hasName || hasRole ) && (
-								<cite className='bb-bq__cite'>
-									{ hasName && (
-										<span className='bb-bq__author'>{ authorName }</span>
-									) }
-									{ hasRole && (
-										<span className='bb-bq__role'>{ authorRole }</span>
-									) }
-								</cite>
-							) }
-						</figcaption>
-					) }
-				</figure>
+						<blockquote className='bBlocks-blockquote-quote'>
+							<RichText
+								tagName='p'
+								className='bBlocks-blockquote-quoteText'
+								value={quoteText || ''}
+								onChange={(val) => updateObj('quote', val, 'text')}
+								placeholder={__('Type the quote…', 'b-blocks')}
+								allowedFormats={['core/bold', 'core/italic', 'core/link']}
+							/>
+						</blockquote>
+
+						{hasCite && (
+							<figcaption className='bBlocks-blockquote-caption'>
+								{hasAvatar && (
+									<img
+										className='bBlocks-blockquote-avatar'
+										src={avatarUrl}
+										alt={avatarAltText}
+										width={avatarPx}
+										height={avatarPx}
+									/>
+								)}
+								{(hasName || hasRole) && (
+									<cite className='bBlocks-blockquote-cite'>
+										{hasName && (
+											<span className='bBlocks-blockquote-author'>{name}</span>
+										)}
+										{hasRole && (
+											<span className='bBlocks-blockquote-role'>{role}</span>
+										)}
+									</cite>
+								)}
+							</figcaption>
+						)}
+					</figure>
+				</div>
 			</div>
-		</>
-	);
+		</div>
+	</>;
 };
 
-export default Edit;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase(),
+	};
+})(Edit);

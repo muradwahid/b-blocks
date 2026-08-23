@@ -1,0 +1,49 @@
+$primaryColor: #146ef5;
+
+// Floating three-dot row action button
+.b-blocks-row-action-popover {
+	.components-popover__content {
+		min-width: unset !important;
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		padding: 0 4px !important;
+	}
+
+	// Three-dot trigger button
+	.b-blocks-row-action-menu > button.components-button {
+		width: 28px;
+		height: 28px;
+		min-width: 28px;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		color: #555;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+		opacity: 0.85;
+		transition: opacity 0.15s, border-color 0.15s, color 0.15s;
+	}
+}
+
+// Dropdown menu popup
+.b-blocks-row-action-menu .components-dropdown-menu__menu {
+	min-width: 160px;
+	padding: 4px 0;
+
+	.components-menu-item__button {
+		padding: 8px 14px;
+		font-size: 13px;
+		color: #1e1e1e;
+		gap: 8px;
+
+		// Red tint for the Delete option
+		&:last-child {
+			color: #cc1818;
+			&:hover { background: #fff5f5; }
+		}
+	}
+}

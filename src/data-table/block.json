@@ -1,14 +1,15 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "b-blocks/data-table",
-	"description": "Data Table allows you to create and manage tables on your website.",
-	"title": "Data Table",
+	"name": "b-blocks/table",
+	"version": "1.0.0",
+	"title": "Table",
 	"category": "bBlocks",
+	"description": "Make responsive and feature-rich tables on the go with B Blocks Table, offering styling, typography, and layout options tailored for modern web design.",
 	"keywords": [
-		"data table",
 		"table",
-		"data"
+		"b-blocks",
+		"b-table"
 	],
 	"textdomain": "b-blocks",
 	"attributes": {
@@ -16,246 +17,811 @@
 			"type": "string",
 			"default": ""
 		},
-		"tableSort": {
-			"type": "boolean",
-			"default": false
-		},
-		"headings": {
-			"type": "array",
-			"default": [
-				{
-					"clName": "Table Header 1",
-					"clSpan": "1",
-					"width": "0%",
-					"enableIcon": false,
-					"icon": "",
-					"image": "",
-					"iconType": "icon",
-					"size": 20
-				},
-				{
-					"clName": "Table Header 2",
-					"clSpan": "1",
-					"width": "0%",
-					"enableIcon": false,
-					"icon": "",
-					"image": "",
-					"iconType": "icon",
-					"size": 20
-				}
-			]
-		},
-		"bodyItems": {
-			"type": "array",
-			"default": [
-				[
-					{
-						"clSpan": 1,
-						"contentType": "edit",
-						"rowSpan": 1,
-						"icon": "",
-						"text": "Content 1"
-					},
-					{
-						"clSpan": 1,
-						"contentType": "edit",
-						"rowSpan": 1,
-						"icon": "",
-						"text": "Content 2"
-					}
-				],
-				[
-					{
-						"clSpan": 1,
-						"contentType": "edit",
-						"rowSpan": 1,
-						"icon": "",
-						"text": "Content 1"
-					},
-					{
-						"clSpan": 1,
-						"contentType": "edit",
-						"rowSpan": 1,
-						"icon": "",
-						"text": "Content 2"
-					}
-				]
-			]
-		},
-		"table": {
+		"content": {
 			"type": "object",
 			"default": {
-				"width": {
-					"desktop": "100%",
-					"tablet": "100%",
-					"mobile": "100%"
-				},
-				"alignment": "left",
-				"borderSeparator": true
+				"cellBorderType": "collapse"
 			}
 		},
-		"headerStyle": {
+		"options": {
 			"type": "object",
 			"default": {
-				"bRadius": 0,
-				"padding": {
-					"desktop": {
-						"top": "15px",
-						"right": "15px",
-						"bottom": "15px",
-						"left": "15px"
-					},
-					"tablet": {
-						"top": "15px",
-						"right": "15px",
-						"bottom": "15px",
-						"left": "15px"
-					},
-					"mobile": {
-						"top": "15px",
-						"right": "15px",
-						"bottom": "15px",
-						"left": "15px"
-					}
-				},
-				"color": {
-					"normal": "#fff",
-					"hover": "#fff"
-				},
-				"bg": {
-					"normal": "#0000ff",
-					"hover": "#0000ff"
-				},
-				"borderType": {
-					"normal": "default",
-					"hover": "default"
-				},
-				"border": {
-					"normal": {
-						"width": 1,
-						"color": "#000"
-					},
-					"hover": {
-						"width": 1,
-						"color": "#000"
-					}
-				},
-				"iconSize": {
-					"desktop": 25,
-					"tablet": 25,
-					"mobile": 25
-				},
-				"iconSpace": {
-					"desktop": 10,
-					"tablet": 10,
-					"mobile": 10
-				},
-				"iconColor": "#fff",
-				"titleAlign": "left"
+				"isEnableHeader": true,
+				"isEnableFooter": true,
+				"isEnableCaption": true,
+				"isStickyHeader": false
 			}
 		},
-		"bodyStyle": {
+		"styles": {
 			"type": "object",
 			"default": {
-				"oddCell": {
+				"content": {
+					"width": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					},
+					"align": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					},
 					"normal": {
-						"color": "#000",
-						"bg": ""
+						"border": {
+							"color": "#acacac",
+							"style": "solid",
+							"width": "1px"
+						},
+						"radius": {
+							"desktop": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"tablet": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"mobile": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"transition": 0.2
 					},
 					"hover": {
-						"color": "#000",
-						"bg": ""
+						"border": {},
+						"radius": {
+							"desktop": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"tablet": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"mobile": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
 					}
 				},
-				"evenCell": {
+				"header": {
+					"typography": {
+						"fontSize": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
 					"normal": {
-						"color": "#000",
-						"bg": ""
+						"color": "",
+						"bg": {
+							"color": "#d4d4d4"
+						},
+						"padding": {
+							"desktop": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"tablet": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"mobile": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"transition": 0.2
 					},
 					"hover": {
-						"color": "#000",
-						"bg": ""
+						"color": "",
+						"bg": {},
+						"padding": {
+							"desktop": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"tablet": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"mobile": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
 					}
 				},
-				"borderType": {
-					"normal": "default",
-					"hover": "default"
-				},
-				"border": {
-					"normal": {
-						"width": 1,
-						"color": "#000"
-					},
-					"hover": {
-						"width": 1,
-						"color": "#000"
-					}
-				},
-				"padding": {
-					"desktop": {
-						"top": "15px",
-						"right": "15px",
-						"bottom": "15px",
-						"left": "15px"
-					},
-					"tablet": {
-						"top": "15px",
-						"right": "15px",
-						"bottom": "15px",
-						"left": "15px"
-					},
-					"mobile": {
-						"top": "15px",
-						"right": "15px",
-						"bottom": "15px",
-						"left": "15px"
-					}
-				},
-				"linkColor": {
-					"normal": "#4949bd",
-					"hover": "#4949bd"
-				},
-				"textAlign": {
-					"desktop": "left",
-					"tablet": "left",
-					"mobile": "left"
-				},
-				"icon": {
-					"size": {
-						"desktop": 25,
-						"tablet": 25,
-						"mobile": 25
-					},
-					"color": {
-						"normal": "#4949bd",
-						"hover": "#4949bd"
-					}
-				}
-			}
-		},
-		"advanced": {
-			"type": "object",
-			"default": {
-				"dimension": {
+				"body": {
 					"padding": {
 						"desktop": {
-							"top": "0px",
-							"right": "0px",
-							"bottom": "0px",
-							"left": "0px"
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
 						},
 						"tablet": {
-							"top": "0px",
-							"right": "0px",
-							"bottom": "0px",
-							"left": "0px"
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
 						},
 						"mobile": {
-							"top": "0px",
-							"right": "0px",
-							"bottom": "0px",
-							"left": "0px"
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
 						}
+					},
+					"normal": {
+						"bg": {},
+						"oddBg": {},
+						"evenBg": {},
+						"transition": 0.2
+					},
+					"hover": {
+						"bg": {},
+						"oddBg": {},
+						"evenBg": {}
+					}
+				},
+				"column": [
+					{
+						"type": "",
+						"color": "",
+						"bg": {}
+					}
+				],
+				"cells": {
+					"typography": {
+						"fontSize": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"border": {},
+					"desktop": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"oddCell": {
+						"normal": {
+							"color": "",
+							"bg": {},
+							"transition": 0.2
+						},
+						"hover": {
+							"color": "",
+							"bg": {}
+						}
+					},
+					"evenCell": {
+						"normal": {
+							"color": "",
+							"bg": {},
+							"transition": 0.2
+						},
+						"hover": {
+							"color": "",
+							"bg": {}
+						}
+					}
+				},
+				"footer": {
+					"typography": {
+						"fontSize": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"normal": {
+						"bg": {
+							"color": "#d4d4d4"
+						},
+						"color": "",
+						"transition": 0.2
+					},
+					"hover": {
+						"bg": {},
+						"color": ""
+					}
+				},
+				"caption": {
+					"position": "bottom",
+					"typography": {
+						"fontSize": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"color": "",
+					"bg": {},
+					"border": {},
+					"desktop": {
+						"alignment": "right",
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"alignment": "right",
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"alignment": "right",
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
+		},
+		"datatables": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"paging": {
+					"enabled": true,
+					"pageLength": 10,
+					"pagingType": "simple_numbers"
+				},
+				"searching": {
+					"enabled": true,
+					"smart": true,
+					"regex": false,
+					"caseInsensitive": true
+				},
+				"ordering": {
+					"enabled": true,
+					"multiColumn": false
+				},
+				"info": true,
+				"layout": {
+					"topStart": "pageLength",
+					"topEnd": "search",
+					"bottomStart": "info",
+					"bottomEnd": "paging"
+				},
+				"stateSave": false,
+				"autoWidth": true,
+				"searchDelay": 400,
+				"responsive": true,
+				"fixedHeader": false,
+				"select": {
+					"enabled": false,
+					"style": "single"
+				},
+				"buttons": {
+					"enabled": false,
+					"copy": false,
+					"csv": false,
+					"excel": false,
+					"pdf": false,
+					"print": false,
+					"colvis": false
+				},
+				"serverSide": {
+					"enabled": false,
+					"endpoint": ""
+				},
+				"language": {
+					"search": "Search:",
+					"lengthMenu": "Show _MENU_ entries",
+					"info": "Showing _START_ to _END_ of _TOTAL_ entries",
+					"emptyTable": "No data available in table",
+					"zeroRecords": "No matching records found",
+					"paginate": {
+						"first": "First",
+						"last": "Last",
+						"next": "Next",
+						"previous": "Previous"
+					}
+				}
+			}
+		},
+		"datatableStyles": {
+			"type": "object",
+			"default": {
+				"search": {
+					"label": {
+						"typo": {
+							"fontSize": {
+								"desktop": "15px",
+								"tablet": "",
+								"mobile": ""
+							}
+						},
+						"color": "",
+						"bg": {},
+						"desktop": {
+							"padding": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"margin": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"tablet": {
+							"padding": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"margin": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"mobile": {
+							"padding": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"margin": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
+					},
+					"input": {
+						"typo": {
+							"fontSize": {
+								"desktop": "15px",
+								"tablet": "",
+								"mobile": ""
+							}
+						},
+						"desktop": {
+							"padding": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"margin": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"tablet": {
+							"padding": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"margin": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"mobile": {
+							"padding": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							},
+							"margin": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"normal": {
+							"color": "",
+							"bg": {},
+							"transition": 0.2,
+							"border": {},
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"hover": {
+							"color": "",
+							"bg": {},
+							"transition": 0.2,
+							"border": {},
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"focus": {
+							"color": "",
+							"bg": {},
+							"transition": 0.2,
+							"border": {},
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
+					}
+				},
+				"recordInfo": {
+					"typo": {
+						"fontSize": {
+							"desktop": "15px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"color": "",
+					"bg": {},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						},
+						"margin": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						},
+						"margin": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						},
+						"margin": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					}
+				},
+				"pageLength": {
+					"typo": {
+						"fontSize": {
+							"desktop": "15px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"color": "",
+					"bg": {},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						},
+						"margin": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						},
+						"margin": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						},
+						"margin": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					}
+				},
+				"column": [
+					{
+						"typo": "",
+						"color": "",
+						"bg": {}
+					}
+				],
+				"pagination": {
+					"typo": {
+						"fontSize": {
+							"desktop": "15px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"normal": {
+						"color": "",
+						"bg": {},
+						"border": {},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"transition": 0.2
+					},
+					"hover": {
+						"color": "",
+						"bg": {},
+						"border": {},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"active": {
+						"color": "",
+						"bg": {},
+						"border": {},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"buttons": {
+					"typo": {
+						"fontSize": {
+							"desktop": "15px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"left": "",
+							"bottom": "",
+							"right": ""
+						}
+					},
+					"normal": {
+						"bg": {},
+						"color": "",
+						"border": {},
+						"radius": {},
+						"transition": 0.2
+					},
+					"hover": {
+						"bg": {},
+						"color": "",
+						"border": {},
+						"radius": {}
 					}
 				}
 			}
@@ -271,15 +837,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": [
-		"file:../index.js",
-		"aos"
-	],
+	"editorScript": "file:../index.js",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
-	"viewScript": [
-		"file:./view.js",
-		"react",
-		"react-dom"
-	]
+	"viewScript": "file:./view.js"
 }

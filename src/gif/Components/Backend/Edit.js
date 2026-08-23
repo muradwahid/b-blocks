@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useBlockProps, InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 import { PanelBody, __experimentalUnitControl as UnitControl, Button, TextControl } from '@wordpress/components';
 
@@ -13,6 +13,8 @@ const Edit = props => {
 	const { attributes: { gif, gifAlign, gifWidth }, setAttributes, clientId } = props;
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
+
+	const blockRef = useRef(null);
 
 	const [search, setSearch] = useState('');
 	const [gifData, setGifData] = useState([]);
@@ -40,25 +42,44 @@ const Edit = props => {
 		}).catch(err => alert(err.message));
 	}, [search]);
 
-	const thisBlock = document.getElementById(id); // This Block
-	const modal = document.getElementById(`gifModal-${clientId}`); // Get the modal
-
 	const setPopup = () => {
+		const doc = blockRef.current?.ownerDocument;
+		if (!doc) return;
+
+		const thisBlock = doc.getElementById(id);
+		const modal = doc.getElementById(`gifModal-${clientId}`);
 		thisBlock.style.minHeight = '720px';
 		modal.style.display = 'block';
 	}
 
 	const removePopup = () => {
+		const doc = blockRef.current?.ownerDocument;
+		if (!doc) return;
+
+		const thisBlock = doc.getElementById(id);
+		const modal = doc.getElementById(`gifModal-${clientId}`);
+
 		thisBlock.style.minHeight = 'auto';
 		modal.style.display = 'none';
 	}
 
-	window.addEventListener('click', e => {
-		if (e.target == modal) {
-			thisBlock.style.minHeight = 'auto';
-			modal.style.display = 'none';
-		}
-	});
+	// Close modal when clicking outside of it
+	useEffect(() => {
+		const doc = blockRef.current?.ownerDocument;
+		if (!doc) return;
+
+		const onClick = e => {
+			const thisBlock = doc.getElementById(id);
+			const modal = doc.getElementById(`gifModal-${clientId}`);
+			if (modal && e.target === modal) {
+				thisBlock.style.minHeight = 'auto';
+				modal.style.display = 'none';
+			}
+		};
+
+		doc.defaultView.addEventListener('click', onClick);
+		return () => doc.defaultView.removeEventListener('click', onClick);
+	}, [id, clientId]);
 
 	return <>
 		<InspectorControls>
@@ -81,7 +102,7 @@ const Edit = props => {
 		</BlockControls>
 
 
-		<div {...useBlockProps()}>
+		<div {...useBlockProps({ ref: blockRef })}>
 			<style dangerouslySetInnerHTML={{
 				__html: `
 				#${id} .${prefix}{
@@ -121,11 +142,10 @@ const Edit = props => {
 
 						<div className='gifModalBody'>
 							<div className='gifData'>
-								{0 !== gifData.length && gifData.map(gif => <figure key={gif.id} onClick={() => setAttributes({
-									gif,
-									width: `${parseInt(gif.images.original.width)}px`,
-									return: (modal.style.display = 'none', thisBlock.style.minHeight = 'auto')
-								})}>
+								{0 !== gifData.length && gifData.map(gif => <figure key={gif.id} onClick={() => {
+									setAttributes({ gif, width: `${parseInt(gif.images.original.width)}px` });
+									removePopup();
+								}}>
 									<img src={gif.images.downsized.url} alt={gif.title} />
 									<figcaption>{gif.title}</figcaption>
 								</figure>)}

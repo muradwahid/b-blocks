@@ -1,73 +1,229 @@
-.wp-block-b-blocks-data-table {
+$primaryColor: #146ef5;
+
+@import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+@import 'datatables.net-responsive-dt/css/responsive.dataTables.min.css';
+@import 'datatables.net-fixedheader-dt/css/fixedHeader.dataTables.min.css';
+@import 'datatables.net-buttons-dt/css/buttons.dataTables.min.css';
+@import 'datatables.net-select-dt/css/select.dataTables.min.css';
+
+@mixin bbl-dt-wrapper {
+	width: 100%;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+
+	// Toolbar rows
+	.dataTables_length,
+	.dataTables_filter,
+	.dataTables_info,
+	.dataTables_paginate {
+		font-size: 0.875em;
+		margin-bottom: 6px;
+		margin-top: 6px;
+	}
+
+	// Search input
+	.dataTables_filter input {
+		border: 1px solid #acacac;
+		border-radius: 4px;
+		padding: 4px 8px;
+		font-size: inherit;
+
+		&:focus {
+			outline: 2px solid $primaryColor;
+			outline-offset: 1px;
+			border-color: $primaryColor;
+		}
+	}
+
+	// Page-length select
+	.dataTables_length select {
+		border: 1px solid #acacac;
+		border-radius: 4px;
+		padding: 3px 6px;
+		font-size: inherit;
+	}
+
+	// Pagination buttons
+	.dataTables_paginate .paginate_button {
+		cursor: pointer;
+		padding: 4px 8px;
+		border-radius: 4px;
+		border: 1px solid transparent;
+		color: inherit;
+
+		&:hover,
+		&.current {
+			background: $primaryColor;
+			color: #fff !important;
+			border-color: $primaryColor;
+		}
+
+		&.disabled,
+		&.disabled:hover {
+			opacity: 0.4;
+			cursor: not-allowed;
+			background: none;
+			color: inherit !important;
+		}
+	}
+
+	// Export buttons row
+	.dt-buttons {
+		margin-bottom: 6px;
+	}
+
+	.dt-button {
+		border: 1px solid #acacac;
+		border-radius: 4px;
+		padding: 4px 10px;
+		font-size: 0.875em;
+		cursor: pointer;
+		background: #f9f9f9;
+		color: inherit;
+
+		&:hover {
+			background: $primaryColor;
+			color: #fff;
+			border-color: $primaryColor;
+		}
+	}
+
+	// Responsive child-row toggle
+	table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control,
+	table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control {
+		cursor: pointer;
+
+		&::before {
+			background-color: $primaryColor;
+		}
+	}
+
+	// Selected row (Select extension)
+	table.dataTable tbody tr.selected > * {
+		background-color: rgba($primaryColor, 0.12);
+		box-shadow: inset 0 0 0 9999px rgba($primaryColor, 0.12);
+	}
+}
+
+@mixin bbl-dt-sort-icons {
+	table.dataTable thead {
+		// Sortable, not yet sorted → show ↕ (bidirectional hint)
+		th.dt-orderable-asc:not(.dt-ordering-asc):not(.dt-ordering-desc),
+		th.dt-orderable-desc:not(.dt-ordering-asc):not(.dt-ordering-desc) {
+			// span.dt-column-order {
+			// 	&::before { content: '\2195'; opacity: 0.4; }
+			// 	&::after  { content: ''; }
+			// }
+		}
+
+		// Sorted ascending → show ↑
+		// th.dt-ordering-asc span.dt-column-order {
+		// 	&::before { content: '\2191'; opacity: 1; }
+		// 	&::after  { content: ''; }
+		// }
+
+		// // Sorted descending → show ↓
+		// th.dt-ordering-desc span.dt-column-order {
+		// 	&::before { content: '\2193'; opacity: 1; }
+		// 	&::after  { content: ''; }
+		// }
+	}
+}
+
+.wp-block-b-blocks-table {
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+
 	* {
 		box-sizing: border-box;
 	}
 
-	.bpdt-table-wrapper {
-		border-collapse: separate;
-		// border-spacing: 0;
-		table-layout: auto;
+	.icon {
+		font-style: inherit;
+	}
+
+	img {
 		width: 100%;
-		// border: 1px solid #ddd;
-		background: #ccc;
+		max-width: 100%;
+	}
 
-		.table-header {
-			text-align: left;
+	.b-blocks-table-main-container {
+		display: table;
+		width: 100%;
+		table-layout: fixed;
 
-			// border-collapse: collapse;
-			th {
-				// border-collapse: collapse;
-				background: blue;
-				color: white;
-				position: relative;
+		.wp-block-b-blocks-table-head {
+			display: table-header-group;
+		}
 
-				.table-header-sortIcon {
-					position: absolute;
-					top: 50%;
-					right: 10px;
-					transform: translateY(-50%);
-					display: flex;
-					flex-direction: column;
+		.wp-block-b-blocks-table-body {
+			display: table-row-group;
+		}
 
-					svg {
-						pointer-events: unset !important;
+		.wp-block-b-blocks-table-footer {
+			display: table-footer-group;
+		}
+
+		.wp-block-b-blocks-table-row {
+			display: table-row;
+			width: 100%;
+			.b-blocks-table-head-cell{
+				.dt-column-order{
+					&::before{
+						font-size: 9px !important;
 					}
-
-					svg:first-child {
-						margin-bottom: -4px;
-					}
-
-					svg:last-child {
-						margin-top: -4px;
+					&::after{
+						font-size: 9px !important;
 					}
 				}
 			}
 		}
 
-		.bpdt-table-body {
-			tr {
-				td {
-					padding: 12px 10px;
+		.wp-block-b-blocks-table-cell,
+		th {
+			display: table-cell;
+			word-break: break-word;
+			padding: 8px;
+		}
 
-					p {
-						margin: 0px;
-					}
-				}
-
-				.removeColumn {
-					position: relative;
-					border: 2px solid #c93636;
-
-					.bpdt-bodydeleteIcon {
-						position: absolute;
-						top: 5px;
-						right: 5px;
-						color: #c93636;
-						cursor: pointer;
-						pointer-events: unset;
-					}
-				}
-			}
+		.wp-block-b-blocks-table-cell p,
+		th p {
+			margin: 0;
+			font-size: 16px;
 		}
 	}
+
+	.dataTables_wrapper { @include bbl-dt-wrapper; }
+
+	@include bbl-dt-sort-icons;
+}
+
+.b-blocks-dt-editor-preview {
+	display: block;
+	width: 100%;
+
+	table.b-blocks-table-main-container,
+	.dataTables_wrapper table.dataTable {
+		width: 100%;
+		table-layout: auto;
+	}
+
+	td, th {
+		border: 1px solid rgba(0, 0, 0, 0.15);
+		padding: 8px;
+		word-break: break-word;
+		vertical-align: top;
+	}
+
+	td img, th img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	.dataTables_wrapper { @include bbl-dt-wrapper; }
+
+	@include bbl-dt-sort-icons;
 }

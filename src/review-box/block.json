@@ -49,18 +49,31 @@
 		"criteria": {
 			"type": "array",
 			"default": [
-				{ "label": "Quality", "score": 5 },
-				{ "label": "Value", "score": 4 },
-				{ "label": "Performance", "score": 4 }
+				{
+					"label": "Quality",
+					"score": 5
+				},
+				{
+					"label": "Value",
+					"score": 4
+				},
+				{
+					"label": "Performance",
+					"score": 4
+				}
 			]
 		},
 		"pros": {
 			"type": "array",
-			"default": [ "Pro item" ]
+			"default": [
+				"Pro item"
+			]
 		},
 		"cons": {
 			"type": "array",
-			"default": [ "Con item" ]
+			"default": [
+				"Con item"
+			]
 		},
 		"ctaLabel": {
 			"type": "string",
@@ -128,7 +141,8 @@
 			"preview": true
 		}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": [
 		"file:./view.css"
 	],

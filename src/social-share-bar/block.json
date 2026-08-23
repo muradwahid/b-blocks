@@ -18,7 +18,14 @@
 		"attributes": {
 			"side": "left",
 			"scrollThreshold": 0,
-			"platforms": [ "twitter", "facebook", "linkedin", "whatsapp", "email", "copy" ]
+			"platforms": [
+				"twitter",
+				"facebook",
+				"linkedin",
+				"whatsapp",
+				"email",
+				"copy"
+			]
 		}
 	},
 	"attributes": {
@@ -36,7 +43,14 @@
 		},
 		"platforms": {
 			"type": "array",
-			"default": [ "twitter", "facebook", "linkedin", "whatsapp", "email", "copy" ]
+			"default": [
+				"twitter",
+				"facebook",
+				"linkedin",
+				"whatsapp",
+				"email",
+				"copy"
+			]
 		},
 		"iconSize": {
 			"type": "number",
@@ -123,7 +137,8 @@
 		"html": false,
 		"customClassName": true
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./style.scss",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

@@ -10,16 +10,16 @@ import { generalStyleTabs } from '../../../../utils/options';
 import General from './General/General';
 
 const Settings = (props) => {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, device } = props;
 	const { advanced } = attributes;
-	const updateObj = updateAttributes(attributes,setAttributes);
+	const updateObj = updateAttributes(attributes, setAttributes);
 
 	return <InspectorControls>
 		<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs}>{tab => <>
 			{'general' === tab.name && <>
 				<HelpPanel slug={pluginSlug} />
 
-				<General attributes={attributes} setAttributes={setAttributes} updateObj={updateObj} />
+				<General attributes={attributes} setAttributes={setAttributes} updateObj={updateObj} device={device} />
 			</>}
 
 			{'style' === tab.name && <Advanced advanced={advanced} onChange={val => setAttributes({ advanced: val })} enabled={{ dimension: ['padding', 'margin'], background: ['normal', 'hover'], borderShadow: ['normal', 'hover', 'border', 'shadow'], visibility: ['zIndex'] }} />}

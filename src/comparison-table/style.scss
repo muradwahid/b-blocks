@@ -2,29 +2,6 @@
 // Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
 
 .wp-block-b-blocks-comparison-table {
-	--bb-ct-header-bg: #1e293b;
-	--bb-ct-header-text: #ffffff;
-	--bb-ct-featured-bg: #2563eb;
-	--bb-ct-featured-text: #ffffff;
-	--bb-ct-featured-col-bg: #eff6ff;
-	--bb-ct-featured-label-bg: #f59e0b;
-	--bb-ct-featured-label-color: #ffffff;
-	--bb-ct-row-label-bg: transparent;
-	--bb-ct-row-label-color: inherit;
-	--bb-ct-row-stripe-bg: #f8fafc;
-	--bb-ct-body-bg: #ffffff;
-	--bb-ct-body-text: #1f2937;
-	--bb-ct-check-color: #16a34a;
-	--bb-ct-cross-color: #dc2626;
-	--bb-ct-border-color: #e2e8f0;
-	--bb-ct-border-width: 1px;
-	--bb-ct-border-radius: 8px;
-	--bb-ct-font-size: 15px;
-	--bb-ct-header-font-size: 16px;
-	--bb-ct-cell-padding-v: 12px;
-	--bb-ct-cell-padding-h: 16px;
-	--bb-ct-icon-size: 18px;
-	--bb-ct-max-width: 900px;
 
 	* {
 		box-sizing: border-box;
@@ -33,29 +10,38 @@
 	display: block;
 	width: 100%;
 
-	&.bb-ct-align--left .bb-ct-scroll {
+	// `width: 100%` leaves auto margins nothing to distribute, so an aligned
+	// table has to shrink to its content first — capped by max-width, which is
+	// what the Max Width control sets.
+	&.b-blocks-comparison-table-align--left .b-blocks-comparison-table-scroll,
+	&.b-blocks-comparison-table-align--right .b-blocks-comparison-table-scroll {
+		width: fit-content;
+		max-width: 100%;
+	}
+
+	&.b-blocks-comparison-table-align--left .b-blocks-comparison-table-scroll {
 		margin-left: 0;
 		margin-right: auto;
 	}
 
-	&.bb-ct-align--center .bb-ct-scroll {
+	&.b-blocks-comparison-table-align--center .b-blocks-comparison-table-scroll {
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	&.bb-ct-align--right .bb-ct-scroll {
+	&.b-blocks-comparison-table-align--right .b-blocks-comparison-table-scroll {
 		margin-left: auto;
 		margin-right: 0;
 	}
 
-	.bb-ct-scroll {
+	.b-blocks-comparison-table-scroll {
 		width: 100%;
-		max-width: var(--bb-ct-max-width);
+		max-width: 900px;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
-		border-radius: var(--bb-ct-border-radius);
-		border: var(--bb-ct-border-width) solid var(--bb-ct-border-color);
-		background: var(--bb-ct-body-bg);
+		border-radius: 8px;
+		border: 1px solid #e2e8f0;
+		background: #ffffff;
 
 		&:focus-visible {
 			outline: 2px solid #2563eb;
@@ -65,23 +51,23 @@
 
 	// When the block uses WP's wide/full alignment, drop the max-width
 	// cap so the table actually fills the available space.
-	&.alignwide .bb-ct-scroll,
-	&.alignfull .bb-ct-scroll {
+	&.alignwide .b-blocks-comparison-table-scroll,
+	&.alignfull .b-blocks-comparison-table-scroll {
 		max-width: none;
 	}
 
-	.bb-ct-table {
+	.b-blocks-comparison-table-table {
 		width: 100%;
 		min-width: max-content;
 		border-collapse: separate;
 		border-spacing: 0;
-		font-size: var(--bb-ct-font-size);
-		color: var(--bb-ct-body-text);
-		background: var(--bb-ct-body-bg);
+		font-size: 15px;
+		color: #1f2937;
+		background: #ffffff;
 		table-layout: auto;
 	}
 
-	.bb-ct-caption {
+	.b-blocks-comparison-table-caption {
 		// Visually hidden but available to screen readers.
 		// Mirror WP's .screen-reader-text utility in case the theme strips it.
 		position: absolute !important;
@@ -95,15 +81,15 @@
 		border: 0;
 	}
 
-	.bb-ct-table thead th {
-		background: var(--bb-ct-header-bg);
-		color: var(--bb-ct-header-text);
-		font-size: var(--bb-ct-header-font-size);
+	.b-blocks-comparison-table-table thead th {
+		background: #1e293b;
+		color: #ffffff;
+		font-size: 16px;
 		font-weight: 700;
 		text-align: center;
-		padding: var(--bb-ct-cell-padding-v) var(--bb-ct-cell-padding-h);
-		border-bottom: var(--bb-ct-border-width) solid var(--bb-ct-border-color);
-		border-right: var(--bb-ct-border-width) solid var(--bb-ct-border-color);
+		padding: 12px 16px;
+		border-bottom: 1px solid #e2e8f0;
+		border-right: 1px solid #e2e8f0;
 		vertical-align: middle;
 
 		&:last-child {
@@ -111,25 +97,56 @@
 		}
 
 		&.is-featured {
-			background: var(--bb-ct-featured-bg);
-			color: var(--bb-ct-featured-text);
+			background: #2563eb;
+			color: #ffffff;
 			position: relative;
 		}
 	}
 
-	&.has-sticky-header .bb-ct-table thead th {
+	&.has-sticky-header .b-blocks-comparison-table-table thead th {
 		position: sticky;
 		top: 0;
 		z-index: 5;
 	}
 
-	.bb-ct-col__label {
+	// Column header icon. `above` stacks it over the label, `inline` sits it
+	// beside — size comes from Style → Icons so all columns stay consistent.
+	// Icon + label. Direction is emitted per breakpoint by Common/Style.js,
+	// which is what makes top / bottom / left / right responsive.
+	.b-blocks-comparison-table-col__head {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	.b-blocks-comparison-table-col__icon {
+		flex: none;
+		line-height: 0;
+		color: inherit;
+
+		svg, img {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		// Library icons paint with currentColor, so the wrapper's colour is
+		// what the per-column Icon Color sets.
+		svg {
+			fill: currentColor;
+		}
+
+
+	}
+
+	.b-blocks-comparison-table-col__label {
 		display: block;
 		font-weight: 700;
 		line-height: 1.3;
 	}
 
-	.bb-ct-col__featured-badge {
+	.b-blocks-comparison-table-col__featured-badge {
 		display: inline-block;
 		margin-bottom: 6px;
 		padding: 3px 10px;
@@ -138,16 +155,16 @@
 		line-height: 1.2;
 		text-transform: uppercase;
 		letter-spacing: 0.04em;
-		background: var(--bb-ct-featured-label-bg);
-		color: var(--bb-ct-featured-label-color);
+		background: #f59e0b;
+		color: #ffffff;
 		border-radius: 999px;
 	}
 
-	.bb-ct-table tbody td,
-	.bb-ct-table tbody th {
-		padding: var(--bb-ct-cell-padding-v) var(--bb-ct-cell-padding-h);
-		border-bottom: var(--bb-ct-border-width) solid var(--bb-ct-border-color);
-		border-right: var(--bb-ct-border-width) solid var(--bb-ct-border-color);
+	.b-blocks-comparison-table-table tbody td,
+	.b-blocks-comparison-table-table tbody th {
+		padding: 12px 16px;
+		border-bottom: 1px solid #e2e8f0;
+		border-right: 1px solid #e2e8f0;
 		vertical-align: middle;
 		text-align: center;
 		line-height: 1.5;
@@ -157,107 +174,82 @@
 		}
 	}
 
-	.bb-ct-table tbody tr:last-child td,
-	.bb-ct-table tbody tr:last-child th {
+	.b-blocks-comparison-table-table tbody tr:last-child td,
+	.b-blocks-comparison-table-table tbody tr:last-child th {
 		border-bottom: 0;
 	}
 
-	.bb-ct-table tbody th.bb-ct-row-label {
+	.b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
 		text-align: left;
 		font-weight: 600;
-		background: var(--bb-ct-row-label-bg);
-		color: var(--bb-ct-row-label-color);
+		background: transparent;
+		color: inherit;
 	}
 
-	&.has-sticky-first-col .bb-ct-table thead th:first-child,
-	&.has-sticky-first-col .bb-ct-table tbody th.bb-ct-row-label {
+	&.has-sticky-first-col .b-blocks-comparison-table-table thead th:first-child,
+	&.has-sticky-first-col .b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
 		position: sticky;
 		left: 0;
 		z-index: 2;
-		background: var(--bb-ct-body-bg);
+		background: #ffffff;
 	}
 
-	&.has-sticky-first-col .bb-ct-table thead th:first-child {
-		background: var(--bb-ct-header-bg);
-		color: var(--bb-ct-header-text);
+	&.has-sticky-first-col .b-blocks-comparison-table-table thead th:first-child {
+		background: #1e293b;
+		color: #ffffff;
 		z-index: 6;
 	}
 
 	// Generic toggle (separate from the theme): per-block "alternate rows"
 	// option uses the same near-white stripe as a soft accent.
-	&.has-row-stripes .bb-ct-table tbody tr:nth-child(even) td,
-	&.has-row-stripes.has-sticky-first-col .bb-ct-table tbody tr:nth-child(even) th.bb-ct-row-label {
-		background: var(--bb-ct-row-stripe-bg);
+	&.has-row-stripes .b-blocks-comparison-table-table tbody tr:nth-child(even) td,
+	&.has-row-stripes.has-sticky-first-col .b-blocks-comparison-table-table tbody tr:nth-child(even) th.b-blocks-comparison-table-row-label {
+		background: #f8fafc;
 	}
 
 	// ---- Striped theme — visibly distinct zebra rows -------------------
 	// Use a meaningfully tinted background (not the near-white stripe var)
 	// plus a thicker accent header band so it never reads as "default".
-	&.bb-ct-theme--striped {
-		.bb-ct-table tbody tr:nth-child(even) td,
-		.bb-ct-table tbody tr:nth-child(even) th {
-			background: #eff6ff !important;
-		}
-		.bb-ct-table tbody tr:nth-child(odd) td,
-		.bb-ct-table tbody tr:nth-child(odd) th {
-			background: #ffffff !important;
-		}
+	&.b-blocks-comparison-table-theme--striped {
+		.b-blocks-comparison-table-table tbody tr:nth-child(even) td,
+		.b-blocks-comparison-table-table tbody tr:nth-child(odd) td,
 		// Remove vertical lines so the horizontal stripe pattern reads cleanly.
-		.bb-ct-table tbody td,
-		.bb-ct-table tbody th {
+		.b-blocks-comparison-table-table tbody td,
+		.b-blocks-comparison-table-table tbody th {
 			border-right: 0 !important;
 			border-bottom: 0 !important;
 		}
 		// Stronger header band for separation from the body.
-		.bb-ct-table thead th {
-			border-bottom: 3px solid #2563eb !important;
-		}
 		// Highlighted column wins over the zebra background.
-		.bb-ct-table .is-highlighted {
-			background: #dbeafe !important;
-		}
 	}
 
 	// ---- Bordered theme — full grid, dark visible lines ----------------
 	// Default body borders are #e2e8f0 / 1px (barely visible). Bordered
 	// promotes them to 2px slate so the grid is genuinely the feature.
-	&.bb-ct-theme--bordered {
-		.bb-ct-scroll {
-			border-width: 2px !important;
-			border-color: #475569 !important;
-		}
-		.bb-ct-table thead th,
-		.bb-ct-table tbody td,
-		.bb-ct-table tbody th {
-			border: 2px solid #475569 !important;
-		}
+	&.b-blocks-comparison-table-theme--bordered {
+		.b-blocks-comparison-table-table thead th,
+		.b-blocks-comparison-table-table tbody td,
 		// Eliminate inherited border-collapse gaps.
-		.bb-ct-table {
+		.b-blocks-comparison-table-table {
 			border-collapse: collapse !important;
 		}
-		.bb-ct-table thead th {
-			background: #334155 !important;
-			color: #ffffff !important;
-		}
-		.bb-ct-table tbody th.bb-ct-row-label {
-			background: #f1f5f9 !important;
+		.b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
 			font-weight: 700;
 		}
 	}
 
 	// Featured column body cells.
-	.bb-ct-table tbody td.is-featured {
-		background: var(--bb-ct-featured-col-bg);
+	.b-blocks-comparison-table-table tbody td.is-featured {
 		font-weight: 600;
 	}
 
 	// Yes / No icon cells.
-	.bb-ct-cell-icon {
+	.b-blocks-comparison-table-cell-icon {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--bb-ct-icon-size);
-		height: var(--bb-ct-icon-size);
+		width: 18px;
+		height: 18px;
 
 		svg {
 			width: 100%;
@@ -266,92 +258,315 @@
 		}
 
 		&.is-yes svg {
-			color: var(--bb-ct-check-color);
 			fill: currentColor;
 		}
 
 		&.is-no svg {
-			color: var(--bb-ct-cross-color);
 			fill: currentColor;
 		}
 	}
 
-	// Feature-name tooltip styling (uses <abbr title="...">).
-	abbr.bb-ct-tooltip {
-		text-decoration: underline dotted;
-		text-underline-offset: 3px;
-		cursor: help;
+	// Feature-name tooltip. The trigger only carries the affordance — the
+	// bubble itself is rendered outside .…-scroll and positioned fixed,
+	// because overflow-x: auto on that box forces overflow-y to auto and
+	// would clip anything absolutely positioned inside it.
+	// .b-blocks-comparison-table-tooltip {
+	// 	display: inline-block;
+	// 	text-decoration: underline dotted;
+	// 	text-underline-offset: 3px;
+	// 	cursor: help;
+	// 	outline-offset: 2px;
+	// }
+
+	// Rendered as a sibling of the scroll box and positioned in viewport
+	// coordinates, so no ancestor's overflow can clip it.
+	.b-blocks-comparison-table-tooltip-bubble {
+		position: fixed;
+		z-index: 999;
+		transform: translate(-50%, 0);
+		width: max-content;
+		max-width: 240px;
+		padding: 7px 10px;
+		border-radius: 6px;
+		background: #1e293b;
+		color: #fff;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: left;
+		pointer-events: none;
+
+		&.is-flipped {
+			transform: translate(-50%, -100%);
+		}
 	}
 
-	.bb-ct-empty {
+	.b-blocks-comparison-table-tooltip-arrow {
+		position: absolute;
+		left: 50%;
+		top: -4px;
+		width: 9px;
+		height: 9px;
+		transform: translateX(-50%) rotate(45deg);
+		background: inherit;
+	}
+
+	.b-blocks-comparison-table-tooltip-bubble.is-flipped .b-blocks-comparison-table-tooltip-arrow {
+		top: auto;
+		bottom: -4px;
+	}
+
+	.b-blocks-comparison-table-empty {
 		margin: 0;
-		padding: 16px;
 		font-style: italic;
-		color: #6c757d;
 		text-align: center;
 	}
 
-	// Mobile: shrink padding & font-size a touch so cells stay legible.
-	@media (max-width: 600px) {
-		--bb-ct-cell-padding-v: 10px;
-		--bb-ct-cell-padding-h: 12px;
+	// ---- Clean theme — borderless and airy -----------------------------
+	// Not a repaint: the frame, the header band and every vertical rule are
+	// removed, and the grid is held together by whitespace and one hairline
+	// instead. Padding is scaled up from the author's value rather than
+	// replaced, so the sizing controls still do something here.
+	&.b-blocks-comparison-table-theme--clean {
+		.b-blocks-comparison-table-scroll {
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+
+		.b-blocks-comparison-table-table {
+			border-collapse: collapse !important;
+		}
+
+		.b-blocks-comparison-table-table thead th {
+			border: 0 !important;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+		}
+
+		.b-blocks-comparison-table-table tbody td,
+		.b-blocks-comparison-table-table tbody th {
+			border: 0 !important;
+		}
+
+		// One hairline per row, stopping short of the last one.
+		.b-blocks-comparison-table-table tbody tr:not(:last-child) td,
+
+		// The featured column is marked by a rule and a tint, not a box.
+
+
+		.b-blocks-comparison-table-col__featured-badge {
+			letter-spacing: 0.08em;
+		}
 	}
 
-	// ---- Dark — slate background, amber accent -------------------------
-	&.bb-ct-theme--dark {
-		--bb-ct-body-bg: #0f172a;
-		--bb-ct-body-text: #e2e8f0;
+	// ---- Cards theme — columns as separate elevated cards ---------------
+	// The genuinely different layout: border-spacing splits the columns into
+	// standalone cards, and the featured one lifts out of the row.
+	&.b-blocks-comparison-table-theme--cards {
+		.b-blocks-comparison-table-scroll {
+			border: 0 !important;
+		}
 
-		.bb-ct-scroll {
-			background: #0f172a !important;
-			border-color: #1e293b !important;
+		.b-blocks-comparison-table-table {
+			border-collapse: separate !important;
+			border-spacing: 10px 0 !important;
 		}
-		.bb-ct-table {
-			background: #0f172a !important;
-			color: #e2e8f0 !important;
+
+		.b-blocks-comparison-table-table thead th {
+			border: 0 !important;
+			border-radius: 8px 8px 0 0 !important;
+			box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.06);
 		}
-		.bb-ct-table thead th {
-			background: #1e293b !important;
-			color: #f1f5f9 !important;
-			border-color: #334155 !important;
+
+		.b-blocks-comparison-table-table tbody td,
+		.b-blocks-comparison-table-table tbody th {
+			border: 0 !important;
 		}
-		.bb-ct-table tbody th,
-		.bb-ct-table tbody td {
-			background: #0f172a !important;
-			color: #e2e8f0 !important;
-			border-color: rgba(255, 255, 255, 0.06) !important;
+
+		.b-blocks-comparison-table-table tbody tr:last-child td,
+		.b-blocks-comparison-table-table tbody tr:last-child th {
+			border-bottom: 0 !important;
+			border-radius: 0 0 8px 8px !important;
 		}
-		.bb-ct-table tbody th.bb-ct-row-label {
-			color: #cbd5e1 !important;
+
+		// The row-label column is a label, not a card.
+		.b-blocks-comparison-table-table thead th:first-child,
+		.b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
+			box-shadow: none !important;
 		}
-		// CTA buttons get an amber inverted look so they pop on dark.
-		.bb-ct-cta {
-			background: #fbbf24 !important;
-			color: #0f172a !important;
-			border-color: #fbbf24 !important;
+
+		// Featured column physically lifts.
+		.b-blocks-comparison-table-table thead th.is-featured {
+			transform: translateY(-10px);
 		}
-		.bb-ct-cta:hover,
-		.bb-ct-cta:focus-visible {
-			background: #f59e0b !important;
-			border-color: #f59e0b !important;
+
+	}
+
+
+	// ---- Ribbon theme --------------------------------------------------
+	// The table sits on a solid panel and each column header becomes a
+	// coloured tab notched into it, so the columns read as separate offers
+	// rather than cells of one grid.
+	&.b-blocks-comparison-table-theme--ribbon {
+		.b-blocks-comparison-table-scroll {
+			// background: #1e293b !important;
+			border: 0 !important;
 		}
-		// Highlighted column uses the amber accent.
-		.bb-ct-table .is-highlighted {
-			background: rgba(251, 191, 36, 0.1) !important;
-			border-color: #fbbf24 !important;
+
+		.b-blocks-comparison-table-table {
+			border-collapse: separate !important;
+			border-spacing: 8px 0 !important;
 		}
-		.bb-ct-table thead th.is-highlighted {
-			background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%) !important;
-			color: #0f172a !important;
+
+		.b-blocks-comparison-table-table thead th {
+			position: relative;
+			border: 0 !important;
+			border-radius: 6px 6px 0 0 !important;
+			text-align: center;
+
+			// The notch that makes it a ribbon rather than a box. `inherit` is
+			// structural, not a colour: it picks up whatever the tab's own
+			// background attribute resolved to, so the point always matches.
+			&::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				bottom: -6px;
+				width: 14px;
+				height: 14px;
+				transform: translateX(-50%) rotate(45deg);
+				background: inherit;
+			}
 		}
-		.bb-ct-badge {
-			background: #fbbf24 !important;
-			color: #0f172a !important;
+
+		// The feature column's own header is a lighter plate, not a ribbon.
+		.b-blocks-comparison-table-table thead th:first-child {
+
+			&::after { display: none; }
 		}
-		// Stripe-like even-row tint for readability on dark.
-		.bb-ct-table tbody tr:nth-child(even) td,
-		.bb-ct-table tbody tr:nth-child(even) th {
-			background: rgba(255, 255, 255, 0.025) !important;
+
+		.b-blocks-comparison-table-table tbody td {
+			border: 0 !important;
+			text-align: center;
+		}
+
+		.b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
+			border: 0 !important;
+			// color: rgba(255, 255, 255, 0.92) !important;
+		}
+
+	}
+
+	// ---- Stacked theme -------------------------------------------------
+	// Each column is a physical card: accent header block, its own body, its
+	// own shadow, standing on a recessed backdrop.
+	&.b-blocks-comparison-table-theme--stacked {
+		.b-blocks-comparison-table-scroll {
+			border: 0 !important;
+		}
+
+		.b-blocks-comparison-table-table {
+			border-collapse: separate !important;
+			border-spacing: 10px 0 !important;
+		}
+
+		.b-blocks-comparison-table-table thead th {
+			border: 0 !important;
+			border-radius: 8px 8px 0 0 !important;
+			text-align: center;
+			box-shadow: 0 -3px 12px rgba(15, 23, 42, 0.18);
+		}
+
+		.b-blocks-comparison-table-col__label {
+			display: block;
+			font-weight: 800;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		.b-blocks-comparison-table-col__subtitle {
+			display: block;
+			opacity: 0.95;
+			font-weight: 700;
+		}
+
+		.b-blocks-comparison-table-table tbody td {
+			border: 0 !important;
+			text-align: center;
+		}
+
+
+		.b-blocks-comparison-table-table tbody tr:last-child td {
+			border-radius: 0 0 8px 8px !important;
+			box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+		}
+
+		// The row-label column is the legend, not a card.
+		.b-blocks-comparison-table-table thead th:first-child,
+		.b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
+			box-shadow: none !important;
+			text-align: left;
+		}
+
+		.b-blocks-comparison-table-col__cta {
+			font-weight: 700;
+		}
+	}
+
+
+	// ---- Stack on mobile ------------------------------------------------
+	// A comparison table is the worst offender for phone usability: it either
+	// overflows or squeezes to nothing. Below the mobile breakpoint each
+	// column becomes its own card, with the plan name printed beside every
+	// value from the data-label the component emits.
+	&.is-stacked-mobile {
+		@media only screen and (max-width: 640px) {
+			.b-blocks-comparison-table-scroll { overflow: visible !important; }
+
+			.b-blocks-comparison-table-table,
+			.b-blocks-comparison-table-table thead,
+			.b-blocks-comparison-table-table tbody,
+			.b-blocks-comparison-table-table tr,
+			.b-blocks-comparison-table-table th,
+			.b-blocks-comparison-table-table td {
+				display: block !important;
+				width: auto !important;
+			}
+
+			// The header row is redundant once each cell is labelled.
+			.b-blocks-comparison-table-table thead { display: none !important; }
+
+			.b-blocks-comparison-table-table tbody tr {
+				margin-bottom: 14px;
+				border: 1px solid #e2e8f0;
+				border-radius: 8px;
+				overflow: hidden;
+			}
+
+			.b-blocks-comparison-table-table tbody th.b-blocks-comparison-table-row-label {
+				position: static !important;
+				background: #1e293b !important;
+				color: #ffffff !important;
+				font-weight: 700;
+			}
+
+			.b-blocks-comparison-table-table tbody td {
+				display: flex !important;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				text-align: right;
+				border: 0 !important;
+				border-top: 1px solid #e2e8f0 !important;
+
+				// The plan name, carried on the cell as data-label.
+				&::before {
+					content: attr(data-label);
+					font-weight: 600;
+					text-align: left;
+					opacity: 0.75;
+				}
+			}
 		}
 	}
 }

@@ -24,9 +24,36 @@
 		"items": {
 			"type": "array",
 			"default": [
-				{ "_key": "mq-default-1", "type": "text", "imageId": 0, "imageUrl": "", "imageAlt": "", "text": "Free shipping", "linkUrl": "", "linkNewTab": false },
-				{ "_key": "mq-default-2", "type": "text", "imageId": 0, "imageUrl": "", "imageAlt": "", "text": "No contracts", "linkUrl": "", "linkNewTab": false },
-				{ "_key": "mq-default-3", "type": "text", "imageId": 0, "imageUrl": "", "imageAlt": "", "text": "24/7 support", "linkUrl": "", "linkNewTab": false }
+				{
+					"_key": "mq-default-1",
+					"type": "text",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"text": "Free shipping",
+					"linkUrl": "",
+					"linkNewTab": false
+				},
+				{
+					"_key": "mq-default-2",
+					"type": "text",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"text": "No contracts",
+					"linkUrl": "",
+					"linkNewTab": false
+				},
+				{
+					"_key": "mq-default-3",
+					"type": "text",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"text": "24/7 support",
+					"linkUrl": "",
+					"linkNewTab": false
+				}
 			]
 		},
 		"itemType": {
@@ -156,7 +183,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

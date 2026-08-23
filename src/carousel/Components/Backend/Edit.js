@@ -22,7 +22,7 @@ const Edit = props => {
 	const swiperElRef = useRef(null);
 	const swiperInstanceRef = useRef(null)
 	const swiperWrapperRef = useRef(null)
-	
+
 	const CHILD_TAB_BLOCK = 'b-blocks/carousel-slide';
 
 	const TEMPLATE = [
@@ -56,7 +56,7 @@ const Edit = props => {
 	useLayoutEffect(() => {
 		const el = swiperElRef.current;
 		const blockWrapper = swiperWrapperRef.current;
-		if (!(el instanceof Element) || !blockWrapper) return;
+		if (!el || !blockWrapper) return;
 
 		// Wait until slides exist (Gutenberg renders async)
 		const wrapper = el.querySelector('.swiper-wrapper');
@@ -78,7 +78,7 @@ const Edit = props => {
 			speed: options.speed * 1000,
 			autoHeight: options.autoHeight,
 
-			autoplay:false,
+			autoplay: false,
 			breakpoints: {
 				641: {
 					slidesPerView: layout.slideView.tablet,
@@ -94,24 +94,24 @@ const Edit = props => {
 				prevEl: blockWrapper.querySelector('.swiper-button-prev'),
 			},
 
-			pagination: pagination.pagination? {
+			pagination: pagination.pagination ? {
 				el: blockWrapper.querySelector('.swiper-pagination'),
 				clickable: pagination.clickable,
 				dynamicBullets: pagination.dynamicPagination,
 
 
-			}:false,
+			} : false,
 
 			scrollbar: {
 				el: el.querySelector('.swiper-scrollbar'),
 				draggable: false,
 			},
 
-			allowTouchMove: false,              
+			allowTouchMove: false,
 			simulateTouch: false,
-			preventClicks: true,            
-			preventClicksPropagation: false,     
-			touchStartPreventDefault: false,  
+			preventClicks: true,
+			preventClicksPropagation: false,
+			touchStartPreventDefault: false,
 			touchStartForcePreventDefault: false,
 
 			// observer: true,
@@ -129,9 +129,9 @@ const Edit = props => {
 		};
 	}, [clientId, innerBlockCount, JSON.stringify(layout.slideView), JSON.stringify(layout.space), JSON.stringify(options), JSON.stringify(autoplay), JSON.stringify(pagination)]);
 
-	useEffect(() => { 
-		setAttributes({clientId})
-	},[])
+	useEffect(() => {
+		setAttributes({ clientId })
+	}, [])
 
 	const updateObj = updateAttributes(attributes, setAttributes);
 
@@ -157,7 +157,7 @@ const Edit = props => {
 						{pagination.pagination && <div className="swiper-pagination swiper-pagination-horizontal" />}
 					</div>
 				</div>
-		</div>
+			</div>
 		</div>
 	</>;
 }

@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "b-blocks/table-of-content",
     "title": "Table of Contents",
     "category": "bBlocks",
@@ -17,9 +17,9 @@
             "type": "string",
             "default": ""
         },
-        "isNested":{
-            "type":"boolean",
-            "default":false
+        "isNested": {
+            "type": "boolean",
+            "default": false
         },
         "rendered": {
             "type": "boolean",

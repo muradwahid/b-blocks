@@ -2,15 +2,18 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/google-map",
-	"version": "2.0.55",
+	"version": "2.1.2",
 	"title": "Google Map",
 	"category": "bBlocks",
-	"description": "Embed a responsive Google Map by pasting a Google Maps embed URL. Supports fixed heights per breakpoint or a fluid aspect-ratio mode, an optional caption, rounded corners, alignment, and a shadow.",
+	"description": "A fully interactive Google Map: custom markers with rich info windows, clustering, category filtering, map themes, traffic/transit/KML/GeoJSON layers, shapes, directions, search and geolocation — plus the classic embed-URL mode.",
 	"keywords": [
 		"google map",
 		"map",
-		"embed",
+		"marker",
 		"location",
+		"directions",
+		"store locator",
+		"embed",
 		"contact"
 	],
 	"textdomain": "b-blocks",
@@ -19,61 +22,380 @@
 			"type": "string",
 			"default": ""
 		},
-		"embedUrl": {
-			"type": "string",
-			"default": ""
+		"source": {
+			"type": "object",
+			"default": {
+				"type": "interactive",
+				"embedUrl": "",
+				"center": {
+					"lat": "",
+					"lng": "",
+					"address": ""
+				},
+				"mapId": "",
+				"language": "",
+				"region": ""
+			}
 		},
-		"mapHeight": {
-			"type": "number",
-			"default": 450
+		"map": {
+			"type": "object",
+			"default": {
+				"zoom": 12,
+				"minZoom": "",
+				"maxZoom": "",
+				"mapType": "roadmap",
+				"allowTypeSwitch": true,
+				"gestureHandling": "cooperative",
+				"draggable": true,
+				"scrollwheel": false,
+				"fitBounds": false,
+				"desktop": {
+					"height": "450px",
+					"maxWidth": "",
+					"align": "center"
+				},
+				"tablet": {
+					"height": "350px",
+					"maxWidth": "",
+					"align": ""
+				},
+				"mobile": {
+					"height": "250px",
+					"maxWidth": "",
+					"align": ""
+				},
+				"useAspectRatio": false,
+				"aspectRatio": {
+					"desktop": "16/9",
+					"tablet": "",
+					"mobile": ""
+				},
+				"borderRadius": {
+					"desktop": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"tablet": {},
+					"mobile": {}
+				},
+				"shadow": []
+			}
 		},
-		"mapHeightTablet": {
-			"type": "number",
-			"default": 350
+		"controls": {
+			"type": "object",
+			"default": {
+				"disableDefaultUI": false,
+				"zoom": true,
+				"zoomPosition": "RIGHT_BOTTOM",
+				"mapType": true,
+				"streetView": true,
+				"fullscreen": true,
+				"scale": false,
+				"rotate": false,
+				"keyboardShortcuts": true
+			}
 		},
-		"mapHeightMobile": {
-			"type": "number",
-			"default": 250
+		"markers": {
+			"type": "array",
+			"default": [
+				{
+					"id": "marker-1",
+					"title": "Our Office",
+					"content": "<p>Drop by any weekday between 9am and 5pm.</p>",
+					"address": "",
+					"lat": 23.8103,
+					"lng": 90.4125,
+					"category": "",
+					"icon": {
+						"type": "default",
+						"url": {
+							"library": "",
+							"upload": ""
+						}
+					},
+					"image": {
+						"url": "",
+						"alt": ""
+					},
+					"pinColor": "",
+					"glyphColor": "",
+					"animation": "",
+					"draggable": true,
+					"openByDefault": false
+				}
+			]
 		},
-		"useAspectRatio": {
-			"type": "boolean",
-			"default": false
+		"marker": {
+			"type": "object",
+			"default": {
+				"pinColor": "#8a2be2",
+				"glyphColor": "#ffffff",
+				"borderColor": "#ffffff",
+				"scale": 1,
+				"animation": "none",
+				"desktop": {
+					"size": "40px"
+				},
+				"tablet": {
+					"size": ""
+				},
+				"mobile": {
+					"size": ""
+				}
+			}
 		},
-		"aspectRatio": {
-			"type": "string",
-			"default": "16/9"
+		"infoWindow": {
+			"type": "object",
+			"default": {
+				"trigger": "click",
+				"singleOpen": true,
+				"bgColor": "#ffffff",
+				"textColor": "#1e1e1e",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					}
+				},
+				"border": {
+					"width": "0px"
+				},
+				"shadow": [],
+				"desktop": {
+					"maxWidth": "280px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"maxWidth": "",
+					"padding": {},
+					"radius": {}
+				},
+				"mobile": {
+					"maxWidth": "",
+					"padding": {},
+					"radius": {}
+				}
+			}
 		},
-		"mapAlign": {
-			"type": "string",
-			"default": "center"
+		"clustering": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"background": {
+					"type": "solid",
+					"color": "#8a2be2"
+				},
+				"color": "#8a2be2",
+				"size": "40px",
+				"textColor": "#ffffff",
+				"clickToZoom": true
+			}
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"filterBar": {
+			"type": "object",
+			"default": {
+				"show": false,
+				"align": "left",
+				"showAll": true,
+				"allLabel": "All",
+				"activeColor": "#8a2be2",
+				"color": "#1e1e1e",
+				"bgColor": "#f0f0f0",
+				"activeTextColor": "#ffffff",
+				"typo": {
+					"fontSize": {
+						"desktop": "13px"
+					}
+				},
+				"desktop": {
+					"gap": "8px",
+					"padding": {
+						"top": "6px",
+						"right": "14px",
+						"bottom": "6px",
+						"left": "14px"
+					},
+					"radius": {
+						"top": "999px",
+						"right": "999px",
+						"bottom": "999px",
+						"left": "999px"
+					}
+				},
+				"tablet": {
+					"gap": "",
+					"padding": {},
+					"radius": {}
+				},
+				"mobile": {
+					"gap": "",
+					"padding": {},
+					"radius": {}
+				}
+			}
+		},
+		"theme": {
+			"type": "object",
+			"default": {
+				"preset": "default",
+				"customJson": "",
+				"grayscale": 0,
+				"saturation": 0,
+				"hue": ""
+			}
+		},
+		"layers": {
+			"type": "object",
+			"default": {
+				"traffic": false,
+				"transit": false,
+				"bicycling": false,
+				"kmlUrl": "",
+				"geoJson": "",
+				"fitGeoJson": true,
+				"heatmap": {
+					"enabled": false,
+					"radius": 20,
+					"opacity": 0.6
+				}
+			}
+		},
+		"shapes": {
+			"type": "array",
+			"default": []
+		},
+		"directions": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"mode": "DRIVING",
+				"origin": {
+					"address": "",
+					"lat": "",
+					"lng": ""
+				},
+				"destination": {
+					"address": "",
+					"lat": "",
+					"lng": ""
+				},
+				"waypoints": [],
+				"showPanel": false,
+				"routeColor": "#2A6DF0"
+			}
+		},
+		"tools": {
+			"type": "object",
+			"default": {
+				"searchBox": false,
+				"geolocation": false,
+				"nearbyRadius": 0
+			}
+		},
+		"performance": {
+			"type": "object",
+			"default": {
+				"lazyLoad": "onView"
+			}
 		},
 		"caption": {
-			"type": "string",
-			"default": ""
+			"type": "object",
+			"default": {
+				"text": "",
+				"align": "center",
+				"color": "",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					}
+				}
+			}
 		},
-		"captionAlign": {
-			"type": "string",
-			"default": "center"
-		},
-		"borderRadius": {
-			"type": "number",
-			"default": 0
-		},
-		"boxShadow": {
-			"type": "boolean",
-			"default": false
-		},
-		"maxWidth": {
-			"type": "string",
-			"default": ""
-		},
-		"captionColor": {
-			"type": "string",
-			"default": ""
-		},
-		"captionFontSize": {
-			"type": "number",
-			"default": 14
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"tablet": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"mobile": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"shadow": [
+							{
+								"hOffset": "0px",
+								"vOffset": "0px",
+								"blur": "0px",
+								"spreed": "0px",
+								"color": "#7090b000",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "",
+						"gradient": {
+							"type": "linear",
+							"colors": [
+								{
+									"color": "rgba(58, 66, 222, 1)",
+									"position": "0"
+								},
+								{
+									"color": "rgba(176, 195, 235, 1)",
+									"position": "80"
+								}
+							],
+							"angel": 90
+						},
+						"img": {
+							"url": ""
+						}
+					}
+				}
+			}
 		}
 	},
 	"supports": {
@@ -81,14 +403,7 @@
 			"wide",
 			"full"
 		],
-		"html": false,
-		"anchor": true,
-		"className": true,
-		"customClassName": true,
-		"spacing": {
-			"margin": true,
-			"padding": false
-		}
+		"html": false
 	},
 	"example": {
 		"attributes": {

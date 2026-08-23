@@ -21,16 +21,230 @@
 			"type": "string",
 			"default": ""
 		},
-		"caption": {
-			"type": "string",
-			"default": "Feature comparison across plans"
+		"content": {
+			"type": "object",
+			"default": {
+				"caption": "Feature comparison across plans",
+				"captionPosition": "hidden",
+				"captionColor": "",
+				"captionTypo": {},
+				"featuredLabel": "Most Popular",
+				"featureColumnLabel": ""
+			}
+		},
+		"table": {
+			"type": "object",
+			"default": {
+				"theme": "default",
+				"alignment": "center",
+				"cellBorderType": "collapse",
+				"stackOnMobile": false,
+				"stickyHeader": false,
+				"stickyFirstColumn": true,
+				"showRowStripes": true,
+				"desktop": {
+					"width": "900px",
+					"radius": {
+						"top": "8px",
+						"right": "8px",
+						"bottom": "8px",
+						"left": "8px"
+					},
+					"iconPosition": "top"
+				},
+				"tablet": {
+					"width": "",
+					"radius": {},
+					"iconPosition": ""
+				},
+				"mobile": {
+					"width": "",
+					"radius": {},
+					"iconPosition": ""
+				},
+				"borderColor": "#e2e8f0",
+				"border": {},
+				"shadow": [],
+				"bg": {}
+			}
+		},
+		"header": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"bg": {
+						"type": "solid",
+						"color": "#1e293b"
+					},
+					"color": "#ffffff"
+				},
+				"hover": {
+					"bg": {},
+					"color": ""
+				},
+				"typo": {}
+			}
+		},
+		"body": {
+			"type": "object",
+			"default": {
+				"bg": {
+					"type": "solid",
+					"color": "#ffffff"
+				},
+				"color": "#1f2937",
+				"typo": {},
+				"desktop": {
+					"padding": {
+						"top": "12px",
+						"right": "16px",
+						"bottom": "12px",
+						"left": "16px"
+					}
+				},
+				"tablet": {
+					"padding": {}
+				},
+				"mobile": {
+					"padding": {}
+				}
+			}
+		},
+		"rowLabel": {
+			"type": "object",
+			"default": {
+				"bg": {
+					"type": "solid",
+					"color": "transparent"
+				},
+				"color": "",
+				"typo": {}
+			}
+		},
+		"rowColors": {
+			"type": "object",
+			"default": {
+				"odd": {
+					"color": "",
+					"bg": ""
+				},
+				"even": {
+					"color": "",
+					"bg": ""
+				},
+				"hover": {
+					"color": "",
+					"bg": ""
+				},
+				"stripe": {
+					"type": "solid",
+					"color": "#f8fafc"
+				},
+				"transition": 0.2
+			}
+		},
+		"featured": {
+			"type": "object",
+			"default": {
+				"bg": {
+					"type": "solid",
+					"color": "#2563eb"
+				},
+				"color": "#ffffff",
+				"columnBg": {
+					"type": "solid",
+					"color": "#eff6ff"
+				},
+				"labelBg": {
+					"type": "solid",
+					"color": "#f59e0b"
+				},
+				"labelColor": "#ffffff"
+			}
+		},
+		"icons": {
+			"type": "object",
+			"default": {
+				"check": "check",
+				"cross": "times",
+				"checkSvg": "",
+				"crossSvg": "",
+				"checkColor": "#16a34a",
+				"crossColor": "#dc2626",
+				"desktop": {
+					"size": "18px",
+					"headerSize": "32px"
+				},
+				"tablet": {
+					"size": "",
+					"headerSize": ""
+				},
+				"mobile": {
+					"size": "",
+					"headerSize": ""
+				}
+			}
+		},
+		"tooltip": {
+			"type": "object",
+			"default": {
+				"bg": {},
+				"color": "",
+				"typo": {},
+				"arrow": true,
+				"underline": true,
+				"shadow": [],
+				"desktop": {
+					"width": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"width": "",
+					"padding": {},
+					"radius": {}
+				},
+				"mobile": {
+					"width": "",
+					"padding": {},
+					"radius": {}
+				}
+			}
 		},
 		"columns": {
 			"type": "array",
 			"default": [
-				{ "_key": "col-default-1", "label": "Basic", "isFeatured": false },
-				{ "_key": "col-default-2", "label": "Pro", "isFeatured": true },
-				{ "_key": "col-default-3", "label": "Enterprise", "isFeatured": false }
+				{
+					"_key": "col-default-1",
+					"label": "Basic",
+					"isFeatured": false,
+					"icon": "",
+					"iconColor": ""
+				},
+				{
+					"_key": "col-default-2",
+					"label": "Pro",
+					"isFeatured": true,
+					"icon": "",
+					"iconColor": ""
+				},
+				{
+					"_key": "col-default-3",
+					"label": "Enterprise",
+					"isFeatured": false,
+					"icon": "",
+					"iconColor": ""
+				}
 			]
 		},
 		"rows": {
@@ -40,158 +254,136 @@
 					"_key": "row-default-1",
 					"label": "Feature One",
 					"cells": [
-						{ "value": true, "type": "icon", "text": "" },
-						{ "value": true, "type": "icon", "text": "" },
-						{ "value": true, "type": "icon", "text": "" }
+						{
+							"value": true,
+							"type": "icon",
+							"text": ""
+						},
+						{
+							"value": true,
+							"type": "icon",
+							"text": ""
+						},
+						{
+							"value": true,
+							"type": "icon",
+							"text": ""
+						}
 					]
 				},
 				{
 					"_key": "row-default-2",
 					"label": "Feature Two",
 					"cells": [
-						{ "value": false, "type": "icon", "text": "" },
-						{ "value": true, "type": "icon", "text": "" },
-						{ "value": true, "type": "icon", "text": "" }
+						{
+							"value": false,
+							"type": "icon",
+							"text": ""
+						},
+						{
+							"value": true,
+							"type": "icon",
+							"text": ""
+						},
+						{
+							"value": true,
+							"type": "icon",
+							"text": ""
+						}
 					]
 				},
 				{
 					"_key": "row-default-3",
 					"label": "Feature Three",
 					"cells": [
-						{ "value": false, "type": "icon", "text": "" },
-						{ "value": false, "type": "icon", "text": "" },
-						{ "value": true, "type": "icon", "text": "" }
+						{
+							"value": false,
+							"type": "icon",
+							"text": ""
+						},
+						{
+							"value": false,
+							"type": "icon",
+							"text": ""
+						},
+						{
+							"value": true,
+							"type": "icon",
+							"text": ""
+						}
 					]
 				}
 			]
 		},
-		"featuredLabel": {
-			"type": "string",
-			"default": "Most Popular"
-		},
-		"theme": {
-			"type": "string",
-			"default": "default"
-		},
-		"cellType": {
-			"type": "string",
-			"default": "icon"
-		},
-		"checkIcon": {
-			"type": "string",
-			"default": "check"
-		},
-		"crossIcon": {
-			"type": "string",
-			"default": "times"
-		},
-		"showRowStripes": {
-			"type": "boolean",
-			"default": true
-		},
-		"stickyHeader": {
-			"type": "boolean",
-			"default": false
-		},
-		"stickyFirstColumn": {
-			"type": "boolean",
-			"default": true
-		},
-		"headerBg": {
-			"type": "string",
-			"default": "#1e293b"
-		},
-		"headerTextColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"featuredBg": {
-			"type": "string",
-			"default": "#2563eb"
-		},
-		"featuredTextColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"featuredColBg": {
-			"type": "string",
-			"default": "#eff6ff"
-		},
-		"featuredLabelBg": {
-			"type": "string",
-			"default": "#f59e0b"
-		},
-		"featuredLabelColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"rowLabelBg": {
-			"type": "string",
-			"default": ""
-		},
-		"rowLabelColor": {
-			"type": "string",
-			"default": ""
-		},
-		"rowStripeBg": {
-			"type": "string",
-			"default": "#f8fafc"
-		},
-		"bodyBg": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"bodyTextColor": {
-			"type": "string",
-			"default": "#1f2937"
-		},
-		"checkColor": {
-			"type": "string",
-			"default": "#16a34a"
-		},
-		"crossColor": {
-			"type": "string",
-			"default": "#dc2626"
-		},
-		"borderColor": {
-			"type": "string",
-			"default": "#e2e8f0"
-		},
-		"borderWidth": {
-			"type": "number",
-			"default": 1
-		},
-		"borderRadius": {
-			"type": "number",
-			"default": 8
-		},
-		"fontSize": {
-			"type": "number",
-			"default": 15
-		},
-		"headerFontSize": {
-			"type": "number",
-			"default": 16
-		},
-		"cellPaddingV": {
-			"type": "number",
-			"default": 12
-		},
-		"cellPaddingH": {
-			"type": "number",
-			"default": 16
-		},
-		"iconSize": {
-			"type": "number",
-			"default": 18
-		},
-		"tableMaxWidth": {
-			"type": "number",
-			"default": 900
-		},
-		"tableAlignment": {
-			"type": "string",
-			"default": "center"
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"tablet": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"mobile": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {
+							"top": "0px",
+							"right": "0px",
+							"bottom": "0px",
+							"left": "0px"
+						},
+						"shadow": [
+							{
+								"hOffset": "0px",
+								"vOffset": "0px",
+								"blur": "0px",
+								"spreed": "0px",
+								"color": "#7090b000",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "",
+						"gradient": {
+							"type": "linear",
+							"colors": [
+								{
+									"color": "rgba(58, 66, 222, 1)",
+									"position": "0"
+								},
+								{
+									"color": "rgba(176, 195, 235, 1)",
+									"position": "80"
+								}
+							],
+							"angel": 90
+						},
+						"img": {
+							"url": ""
+						}
+					}
+				}
+			}
 		}
 	},
 	"supports": {
@@ -201,12 +393,7 @@
 		],
 		"html": false,
 		"anchor": true,
-		"className": true,
-		"customClassName": true,
-		"spacing": {
-			"margin": true,
-			"padding": false
-		}
+		"className": true
 	},
 	"example": {
 		"attributes": {

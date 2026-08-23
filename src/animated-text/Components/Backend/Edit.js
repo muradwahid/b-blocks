@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useBlockProps } from '@wordpress/block-editor';
 const $ = jQuery;
 
@@ -13,8 +13,12 @@ const Edit = props => {
 
 	const id = `block-${clientId}`;
 
+	const contentRef = useRef(null);
+
 	useEffect(() => {
-		$(`#${id} .content`).textillate(textillateConfig(attributes));
+		if (contentRef.current) {
+			$(contentRef.current).textillate(textillateConfig(attributes));
+		}
 	}, [loop, animateIn, inEffect, inSequence, outEffect, outSequence, content]);
 
 	return <>
@@ -24,7 +28,7 @@ const Edit = props => {
 			<Style attributes={attributes} id={id} />
 
 			<div className={prefix}>
-				<p className='content'>{content}</p>
+				<p className='content' ref={contentRef}>{content}</p>
 			</div>
 		</div>
 	</>;

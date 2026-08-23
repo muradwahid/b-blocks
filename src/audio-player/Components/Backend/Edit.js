@@ -1,130 +1,72 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
+import { AlignmentToolbar, BlockControls, useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
+import { withSelect } from '@wordpress/data';
+import { useState } from '@wordpress/element';
 
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import Style from '../Common/Style';
+import AudioPlayer from '../Frontend/AudioPlayer';
 import Settings from './Settings/Settings';
 
-const clamp = ( val, min, max, fallback ) => {
-	const n = parseInt( val, 10 );
-	if ( isNaN( n ) ) return fallback;
-	return Math.max( min, Math.min( max, n ) );
-};
+const AudioMark = () => (
+	<svg viewBox='0 0 24 24' fill='none' aria-hidden='true' focusable='false'>
+		<path d='M9 18V6l10-2v12' stroke='currentColor' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
+		<circle cx='6' cy='18' r='3' stroke='currentColor' strokeWidth='1.6' />
+		<circle cx='16' cy='16' r='3' stroke='currentColor' strokeWidth='1.6' />
+	</svg>
+);
 
-const Edit = ( props ) => {
+const Edit = (props) => {
 	const { attributes, setAttributes, clientId } = props;
-	const {
-		audioUrl, trackTitle, artistName, albumArt,
-		playerStyle, showDownload, showTimecode, showVolume,
-		playerBg, controlColor, accentColor,
-		borderRadius, paddingV, paddingH, titleSize, artistSize,
-		alignment, maxWidth
-	} = attributes;
+	const { layout = {}, audio = {}, tracks = [] } = attributes;
+	const [activeIndex, setActiveIndex] = useState(0);
 
-	const id = `block-${ clientId }`;
-	const maxW = clamp( maxWidth, 0, 1200, 0 );
+	const isPremium = typeof bBlocksPremiumChecker !== 'undefined' ? bBlocksPremiumChecker : false;
+	const updateObj = updateAttributes(attributes, setAttributes);
 
-	const css = `
-		#${ id }.bb-ap {
-			--bb-ap-bg: ${ playerBg || '#1e1e1e' };
-			--bb-ap-control: ${ controlColor || '#ffffff' };
-			--bb-ap-accent: ${ accentColor || '#146EF5' };
-			--bb-ap-radius: ${ clamp( borderRadius, 0, 60, 8 ) }px;
-			--bb-ap-pad-y: ${ clamp( paddingV, 0, 80, 16 ) }px;
-			--bb-ap-pad-x: ${ clamp( paddingH, 0, 80, 20 ) }px;
-			--bb-ap-title-size: ${ clamp( titleSize, 10, 40, 15 ) }px;
-			--bb-ap-artist-size: ${ clamp( artistSize, 8, 32, 13 ) }px;
-			--bb-ap-max-w: ${ maxW > 0 ? `${ maxW }px` : 'none' };
-		}
-	`;
+	const blockProps = useBlockProps({ id: `block-${clientId}` });
 
-	const wrapperClasses = [
-		'bb-ap',
-		`bb-ap-style-${ playerStyle || 'bar' }`,
-		`bb-ap-align-${ alignment || 'left' }`
-	].join( ' ' );
-
-	const blockProps = useBlockProps( {
-		id,
-		className: wrapperClasses
-	} );
-
-	const hasMeta = !! trackTitle || !! artistName;
-	const hasArt = !! ( albumArt && albumArt.url );
+	// Playable when the single audio file OR any playlist/coverflow track has a URL.
+	const hasAudio = !!(audio.url || tracks.some((t) => t?.url));
 
 	return <>
-		<Settings attributes={ attributes } setAttributes={ setAttributes } />
+		<Settings {...{ ...props, updateObj, isPremium, activeIndex, setActiveIndex }} />
 
 		<BlockControls>
-			<AlignmentToolbar
-				value={ alignment }
-				onChange={ ( val ) => setAttributes( { alignment: val || 'left' } ) }
-			/>
+			<AlignmentToolbar value={layout.alignment} onChange={(val) => updateObj('layout', val, 'alignment')} />
 		</BlockControls>
 
-		<div { ...blockProps }>
-			<style dangerouslySetInnerHTML={ { __html: css } } />
+		<div {...blockProps}>
+			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
-			{ ! audioUrl ? (
-				<div className='bb-ap-editor-hint'>
-					{ __( 'Select an audio file from the Audio panel in the block settings to build your player.', 'b-blocks' ) }
-				</div>
-			) : (
-				<div className='bb-ap-player' role='region' aria-label={ __( 'Audio player', 'b-blocks' ) }>
-					{ 'card' === playerStyle && (
-						<div className='bb-ap-art'>
-							{ hasArt ? (
-								<img className='bb-ap-art-img' src={ albumArt.url } alt='' />
-							) : (
-								<span className='bb-ap-art-placeholder' aria-hidden='true'>
-									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<path d='M9 18V6l10-2v12' stroke='currentColor' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' />
-										<circle cx='6' cy='18' r='3' stroke='currentColor' strokeWidth='1.6' />
-										<circle cx='16' cy='16' r='3' stroke='currentColor' strokeWidth='1.6' />
-									</svg>
-								</span>
-							) }
-						</div>
-					) }
-
-					<div className='bb-ap-body'>
-						{ hasMeta && (
-							<div className='bb-ap-meta'>
-								{ trackTitle && <p className='bb-ap-title'>{ trackTitle }</p> }
-								{ artistName && <p className='bb-ap-artist'>{ artistName }</p> }
-							</div>
-						) }
-
-						<div className='bb-ap-controls'>
-							<button type='button' className='bb-ap-playpause' aria-label={ __( 'Play', 'b-blocks' ) } aria-pressed='false' disabled>
-								<span className='bb-ap-icon bb-ap-icon-play' aria-hidden='true'>
-									<svg viewBox='0 0 24 24' fill='currentColor'><path d='M8 5v14l11-7z' /></svg>
-								</span>
-							</button>
-
-							<div className='bb-ap-seek-wrap'>
-								<input type='range' className='bb-ap-seek' min='0' max='100' defaultValue='30' aria-label={ __( 'Seek', 'b-blocks' ) } style={ { '--progress': '30%' } } readOnly />
-							</div>
-
-							{ showTimecode && (
-								<span className='bb-ap-time' aria-hidden='true'>
-									<span className='bb-ap-current'>0:00</span> / <span className='bb-ap-duration'>0:00</span>
-								</span>
-							) }
-
-							{ showVolume && (
-								<input type='range' className='bb-ap-volume' min='0' max='1' step='0.01' defaultValue='1' aria-label={ __( 'Volume', 'b-blocks' ) } style={ { '--progress': '100%' } } readOnly />
-							) }
-
-							{ showDownload && (
-								<span className='bb-ap-download' aria-hidden='true'>
-									<svg viewBox='0 0 24 24' fill='none'><path d='M12 3v12m0 0l-4-4m4 4l4-4M5 21h14' stroke='currentColor' strokeWidth='1.7' strokeLinecap='round' strokeLinejoin='round' /></svg>
-								</span>
-							) }
-						</div>
+			{hasAudio
+				? <AudioPlayer attributes={attributes} isBackend={true} />
+				: (
+					<div className='b-blocks-audio-player-placeholder'>
+						<span className='b-blocks-audio-player-placeholder-icon' aria-hidden='true'><AudioMark /></span>
+						<h4 className='b-blocks-audio-player-placeholder-title'>{__('Audio Player', 'b-blocks')}</h4>
+						<p className='b-blocks-audio-player-placeholder-text'>{__('Upload an audio file or pick one from your media library.', 'b-blocks')}</p>
+						<MediaUploadCheck>
+							<MediaUpload
+								allowedTypes={['audio']}
+								value={audio.id}
+								onSelect={(m) => setAttributes({ audio: { ...audio, url: m?.url || '', id: m?.id || 0, trackTitle: audio.trackTitle || m?.title || '' } })}
+								render={({ open }) => (
+									<Button variant='primary' icon='upload' onClick={open}>{__('Select Audio', 'b-blocks')}</Button>
+								)}
+							/>
+						</MediaUploadCheck>
 					</div>
-				</div>
-			) }
+				)}
 		</div>
-	</>;
+	</>
 };
 
-export default Edit;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase()
+	};
+})(Edit);

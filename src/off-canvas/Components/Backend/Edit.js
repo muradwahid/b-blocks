@@ -1,97 +1,42 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { withSelect } from '@wordpress/data';
 
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 
-const TEMPLATE = [
-	[ 'core/heading', { level: 3, placeholder: 'Drawer heading...' } ],
-	[ 'core/paragraph', { placeholder: 'Add the drawer content here. You can drop any blocks inside — navigation, filters, mini-cart, etc.' } ]
-];
+const Edit = (props) => {
+	const { attributes, setAttributes, clientId, innerBlocks } = props;
+	const { trigger = {}, drawer = {}, options = {} } = attributes;
 
-const renderTriggerIcon = ( iconSlug ) => {
-	if ( ! iconSlug || 'none' === iconSlug ) {
-		return null;
-	}
-	if ( 'menu' === iconSlug ) {
-		return <svg className='bb-oc-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' width='18' height='18'>
-			<path fill='currentColor' d='M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z' />
-		</svg>;
-	}
-	if ( 'arrow-right' === iconSlug ) {
-		return <svg className='bb-oc-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' width='18' height='18'>
-			<path fill='currentColor' d='M5 11h11.17l-4.88-4.88L13 5l7 7-7 7-1.41-1.41L16.17 13H5z' />
-		</svg>;
-	}
-	if ( 'arrow-left' === iconSlug ) {
-		return <svg className='bb-oc-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' width='18' height='18'>
-			<path fill='currentColor' d='M19 11H7.83l4.88-4.88L11 5l-7 7 7 7 1.41-1.41L7.83 13H19z' />
-		</svg>;
-	}
-	return null;
-};
-
-const Edit = ( { attributes, setAttributes, clientId } ) => {
-	const {
-		drawerSide, drawerWidth, showOverlay, overlayColor,
-		triggerLabel, triggerIcon, triggerAlign,
-		closeLabel, drawerBgColor, drawerPadding,
-		triggerBgColor, triggerTextColor, triggerBorderRadius
-	} = attributes;
-
-	const id = `block-${ clientId }`;
-	const safeWidth = Math.max( 200, Math.min( 600, parseInt( drawerWidth, 10 ) || 320 ) );
-	const safeRadius = Math.max( 0, Math.min( 50, parseInt( triggerBorderRadius, 10 ) || 0 ) );
-	const safePadding = Math.max( 0, Math.min( 80, parseInt( drawerPadding, 10 ) || 0 ) );
-
-	const css = `
-		#${ id } { text-align: ${ triggerAlign || 'left' }; }
-		#${ id } .bb-oc-trigger {
-			background-color: ${ triggerBgColor || '#1e1e1e' };
-			color: ${ triggerTextColor || '#ffffff' };
-			border-radius: ${ safeRadius }px;
-		}
-		#${ id } .bb-oc-editor-preview {
-			background-color: ${ drawerBgColor || '#ffffff' };
-			padding: ${ safePadding }px;
-			width: ${ safeWidth }px;
-			max-width: 100%;
-		}
-		#${ id } .bb-oc-editor-preview-wrap {
-			--bb-oc-overlay: ${ showOverlay ? overlayColor || 'rgba(0,0,0,0.5)' : 'transparent' };
-		}
-	`;
+	const isPremium = typeof bBlocksPremiumChecker !== 'undefined' ? bBlocksPremiumChecker : false;
+	const updateObj = updateAttributes(attributes, setAttributes);
+	const blockProps = useBlockProps({ id: `block-${clientId}` });
 
 	return <>
-		<Settings attributes={ attributes } setAttributes={ setAttributes } />
+		<Settings {...{ ...props, updateObj, isPremium }} />
 
-		<div { ...useBlockProps() }>
-			<style dangerouslySetInnerHTML={ { __html: css } } />
+		<div {...blockProps}>
+			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
-			<button type='button' className='bb-oc-trigger' aria-disabled='true' tabIndex={ -1 }>
-				{ renderTriggerIcon( triggerIcon ) }
-				{ triggerLabel && <span>{ triggerLabel }</span> }
+			<button type='button' className='b-blocks-off-canvas-trigger' aria-disabled='true' tabIndex={-1}>
+				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition !== 'right' && <span className='b-blocks-off-canvas-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: trigger.icon }} />}
+				{trigger.label && <span className='b-blocks-off-canvas-trigger-label'>{trigger.label}</span>}
+				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition === 'right' && <span className='b-blocks-off-canvas-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: trigger.icon }} />}
 			</button>
 
-			<div className='bb-oc-editor-preview-wrap' data-side={ drawerSide || 'left' }>
-				<div className='bb-oc-editor-preview-header'>
-					<span className='bb-oc-editor-preview-label'>
-						{ __( 'Drawer content (editor preview)', 'b-blocks' ) }
-					</span>
-					<span className='bb-oc-editor-preview-hint'>
-						{ __( 'Hidden until the trigger is clicked on the frontend.', 'b-blocks' ) }
-					</span>
+			<div className='b-blocks-off-canvas-editor-preview-wrap' data-side={drawer.side}>
+				<div className='b-blocks-off-canvas-editor-preview-header'>
+					<span className='b-blocks-off-canvas-editor-preview-label'>{__('Drawer content (editor preview)', 'b-blocks')}</span>
+					<span className='b-blocks-off-canvas-editor-preview-hint'>{__('Hidden until the trigger is clicked on the frontend.', 'b-blocks')}</span>
 				</div>
-				<div className='bb-oc-editor-preview'>
-					<button
-						type='button'
-						className='bb-oc-editor-close'
-						aria-label={ closeLabel || __( 'Close', 'b-blocks' ) }
-						tabIndex={ -1 }
-					>
+				<div className='b-blocks-off-canvas-editor-preview'>
+					<button type='button' className='b-blocks-off-canvas-editor-close' aria-label={options.closeLabel} tabIndex={-1}>
 						<span aria-hidden='true'>&times;</span>
 					</button>
-					<div className='bb-oc-editor-content'>
-						<InnerBlocks template={ TEMPLATE } templateLock={ false } />
+					<div className='b-blocks-off-canvas-editor-content bBlocksOffCanvasInnerBlocksContent'>
+						<InnerBlocks renderAppender={() => !innerBlocks?.length ? <InnerBlocks.ButtonBlockAppender /> : <InnerBlocks.DefaultBlockAppender />} />
 					</div>
 				</div>
 			</div>
@@ -99,4 +44,12 @@ const Edit = ( { attributes, setAttributes, clientId } ) => {
 	</>;
 };
 
-export default Edit;
+export default withSelect((select, { clientId }) => {
+	const { getDeviceType } = select('core/editor');
+	const { getBlocks } = select('core/block-editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase(),
+		innerBlocks: getBlocks(clientId)
+	};
+})(Edit);

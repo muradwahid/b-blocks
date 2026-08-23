@@ -1,160 +1,245 @@
-import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
-import { getBoxCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 
-const Style = ({ attributes, id, isBackend = false }) => {
-	const { table, headerStyle, bodyStyle, advanced } = attributes;
+const Style = ({ attributes, id }) => {
+	const { content, styles, datatableStyles } = attributes;
+	const { content: contentStyle, header, body, cells, footer } = styles;
+	const { column, search, recordInfo, pageLength, pagination, buttons } = datatableStyles;
+
 
 	const mainSl = `#${id}`;
-	const blockSl = `${mainSl} .bpdt-dataTable-wrapper`;
-	const tableContainer = `${blockSl} .bpdt-table-wrapper`;
-	const tableBody = `${blockSl} .bpdt-table-body`;
+	const containerSl = `${mainSl} .b-blocks-table-main-container`;
+	const tHeadSl = `${containerSl} :where(.wp-block-b-blocks-table-head)`;
+	const tBodySl = `${containerSl} .wp-block-b-blocks-table-body`;
+	const tFooterSl = `${containerSl} :where(.wp-block-b-blocks-table-footer)`;
+	const tRow = `${tBodySl} .wp-block-b-blocks-table-row`;
+	const tCell = `${tRow} .wp-block-b-blocks-table-cell`;
+	const tHeadCell = `${containerSl} :where(.b-blocks-table-head-cell)`;
+	const tFooterCell = `${containerSl} :where(.b-blocks-table-footer-cell)`;
 
-	return <style>
-		{`
-		${generateCSS(id, advanced, isBackend)}
-		${blockSl}{
-			display:grid;
-			justify-items:${table.alignment === 'left'
-				? 'start'
-				: table.alignment === 'center'
-					? 'center'
-					: 'end'
-			};
+	//data table styles 
+	const dtContainerSl = `${mainSl} .dt-container`;
+	const dtRowSl = `${dtContainerSl} .dt-layout-row`;
+	const dtCellSl = `${dtRowSl} .dt-layout-cell`;
+	const dtSearchSl = `${dtCellSl} .dt-search`;
+	const dtLengthSl = `${dtCellSl} .dt-length`;
+	const dtInfoSl = `${dtCellSl} .dt-info`;
+	const paginationBtnSl = `${dtCellSl}>.dt-paging>nav>.dt-paging-button`;
+	const exportBtnSl = `${dtCellSl} .dt-buttons .dt-button`;
+
+	const columnSl = `${containerSl}>colgroup>col`;
+
+	return <style dangerouslySetInnerHTML={{
+		__html: `
+
+		${getTypoCSS('', cells.typography).googleFontLink}
+		${getTypoCSS('', header.typography).googleFontLink}
+		${getTypoCSS('', search.label.typo).googleFontLink}
+		${getTypoCSS('', search.input.typo).googleFontLink}
+		${getTypoCSS('', recordInfo.typo).googleFontLink}
+		${getTypoCSS('', pageLength.typo).googleFontLink}
+		${getTypoCSS('', pagination.typo).googleFontLink}
+		${getTypoCSS('', buttons.typo).googleFontLink}
+
+		${getTypoCSS(tCell, cells.typography).styles}
+		${getTypoCSS(`${tHeadCell} .wp-block-paragraph`, header.typography).styles}
+		${getTypoCSS(`${dtSearchSl}>label`, search.label.typo).styles}
+		${getTypoCSS(`${dtSearchSl}>.dt-input`, search.input.typo).styles}
+		${getTypoCSS(`${dtInfoSl}`, recordInfo.typo).styles}
+		${getTypoCSS(`${dtLengthSl}>label`, pageLength.typo).styles}
+		${getTypoCSS(`${paginationBtnSl}`, pagination.typo).styles}
+		${getTypoCSS(`${exportBtnSl}`, buttons.typo).styles}
+
+		${mainSl}{
+			${isValidCSS('justify-content', contentStyle.align.desktop)}
 		}
-		${blockSl} .bpdt-dataTable{
-			width:${table.width.desktop};
+
+		${containerSl}{
+			${isValidCSS('width', contentStyle.width.desktop)}
+			${isValidCSS('border-radius', getBoxCSS(contentStyle.normal.radius.desktop))}
 		}
-		${tableContainer}{
-			border-collapse:${table.borderSeparator ? 'separate' : 'collapse'};
+			
+		${containerSl}, ${containerSl} .wp-block-b-blocks-table-cell{
+			border-collapse: ${content.cellBorderType};
+			${content.cellBorderType === 'separate' ? 'border-spacing: 2px;' : ''}
+			${getBorderBoxCSS(contentStyle.normal.border)}
 		}
-		${tableContainer} thead>tr>th:first-child{
-			border-radius:${headerStyle.bRadius}px 0 0 0;
+
+		${containerSl}:hover,
+		${containerSl}:hover .wp-block-b-blocks-table-cell{
+			${getBorderBoxCSS(contentStyle.hover.border)}
+			border-collapse: ${content.cellBorderType};
+			${content.cellBorderType === 'separate' ? 'border-spacing: 2px;' : ''}
 		}
-		${tableContainer} thead>tr>th:last-child{
-			border-radius:0 ${headerStyle.bRadius}px 0 0;
+
+		${tHeadSl}>.wp-block-b-blocks-table-row {
+			${getBackgroundCSS(header.normal.bg)}
+			transition:all ${header.normal.transition}s ease-in-out;
 		}
-		${tableContainer} thead>tr>th{
-				padding:${getBoxCSS(headerStyle.padding.desktop)};
-		color:${headerStyle.color.normal};
-		background-color:${headerStyle.bg.normal};
-		border:${headerStyle.border.normal.width}px ${headerStyle.borderType.normal
-			} ${headerStyle.border.normal.color};
-		text-align:${headerStyle.titleAlign === 'left'
-				? 'left'
-				: headerStyle.titleAlign === 'center'
-					? 'center'
-					: 'right'
-			};
+		${tHeadSl}>.wp-block-b-blocks-table-row:hover{
+			${getBackgroundCSS(header.hover.bg)}
 		}
-		${tableContainer} thead>tr>th:hover{
-			color:${headerStyle.color.hover};
-			background-color:${headerStyle.bg.hover};
-			border:${headerStyle.border.hover.width}px ${headerStyle.borderType.hover
-			} ${headerStyle.border.hover.color};
+
+		${tHeadCell}{
+			${isValidCSS('color', header.normal.color)}
+			${isValidCSS('padding', getBoxCSS(header.normal.padding.desktop))}
 		}
-		${tableContainer} thead>tr>th :where(.bpdt-headerIcon,img){
-			width:${headerStyle.iconSize.desktop}px;
-			margin-right:${headerStyle.iconSpace.desktop}px;
+
+		${tHeadCell}:hover{
+			${isValidCSS('color', header.hover.color)}
+			${isValidCSS('padding', getBoxCSS(header.hover.padding.desktop))}
 		}
-		${tableBody} tr>td{
-			border:${bodyStyle.border.normal.width}px ${bodyStyle.borderType.normal
-			} ${bodyStyle.border.normal.color};
-					padding:${getBoxCSS(bodyStyle.padding.desktop)};
-			text-align:${bodyStyle.textAlign.desktop === 'left'
-				? 'left'
-				: bodyStyle.textAlign.desktop === 'center'
-					? 'center'
-					: 'right'
-			};
+
+		${tBodySl}{
+			${getBackgroundCSS(body.normal.bg)}
+			transition:all ${body.normal.transition}s ease-in-out;
 		}
-		${tableBody} tr>td:hover{
-			border:${bodyStyle.border.hover.width}px ${bodyStyle.borderType.hover
-			} ${bodyStyle.border.hover.color};
+
+		${tBodySl}:hover{
+			${getBackgroundCSS(body.hover.bg)}
 		}
-		${tableBody} tr>td a{
-			color:${bodyStyle.linkColor.normal};
-			cursor:pointer;
-		}
-		${tableBody} tr>td a:hover{
-			color:${bodyStyle.linkColor.hover};
+
+		${tCell}{
+			${getBorderBoxCSS(tCell.border)}
+			${isValidCSS('padding', getBoxCSS(cells.desktop.padding))}
+			${isValidCSS('border-radius', getBoxCSS(cells.desktop.radius))}
+			transition: all ${cells.evenCell.normal.transition}s ease-in-out;
 			
 		}
-		${tableBody} tr:nth-child(odd){
-			color:${bodyStyle.oddCell.normal.color};
-			background-color:${bodyStyle.oddCell.normal.bg || '#fff'};
+
+		${tRow}:nth-of-type(even){
+			${getBackgroundCSS(cells.evenCell.normal.bg)}
 		}
-		${tableBody} tr:nth-child(odd)>td:hover{
-			color:${bodyStyle.oddCell.hover.color};
-			background-color:${bodyStyle.oddCell.hover.bg || '#fff'};
-		}
-		${tableBody} tr:nth-child(even){
-			color:${bodyStyle.evenCell.normal?.color};
-			background-color:${bodyStyle.evenCell.normal.bg || '#fff'};
-		}
-		${tableBody} tr:nth-child(even)>td:hover{
-			color:${bodyStyle.evenCell.hover.color};
-			background-color:${bodyStyle.evenCell.hover.bg || '#fff'};
-		}
-		${tableBody} .bpdt-bodyIcon{
-			width:${bodyStyle.icon.size.desktop}px;
-			fill:${bodyStyle.icon.color.normal};
-			color:${bodyStyle.icon.color.normal};
-		}
-		${tableBody} .bpdt-bodyIcon:hover{
-			fill:${bodyStyle.icon.color.hover};
-			color:${bodyStyle.icon.color.hover};
+		
+		${tRow}:nth-of-type(even):hover{
+			${getBackgroundCSS(cells.evenCell.hover.bg)}
 		}
 
-		@media only screen and (min-width:641px) and (max-width: 1024px) {
-		${blockSl} .bpdt-dataTable{
-			width:${table.width.tablet};
+		${tRow}:nth-of-type(odd){
+			${getBackgroundCSS(cells.oddCell.normal.bg)}
 		}
-		${tableContainer} thead>tr>th{
-					padding:${getBoxCSS(headerStyle.padding.tablet)};
-			}
-		${tableContainer} thead>tr>th :where(.bpdt-headerIcon,img){
-			width:${headerStyle.iconSize.tablet}px;
-			margin-right:${headerStyle.iconSpace.tablet}px;
-		}
-		${tableBody} tr>td{
-				padding:${getBoxCSS(bodyStyle.padding.tablet)};
-			text-align:${bodyStyle.textAlign.tablet === 'left'
-				? 'left'
-				: bodyStyle.textAlign.tablet === 'center'
-					? 'center'
-					: 'right'
-			};
-		}
-		${tableBody} .bpdt-bodyIcon{
-			width:${bodyStyle.icon.size.tablet}px;
-		}
+		${tRow}:nth-of-type(odd):hover{
+			${getBackgroundCSS(cells.oddCell.hover.bg)}
 		}
 
-		@media only screen and (max-width: 640px) {
-				${blockSl} .bpdt-dataTable{
-			width:${table.width.mobile};
+		${tRow}:nth-of-type(even) .wp-block-b-blocks-table-cell{
+			${isValidCSS('color', cells.evenCell.normal.color)}
 		}
-		${tableContainer} thead>tr>th{
-				padding:${getBoxCSS(headerStyle.padding.mobile)};
+		
+		${tRow}:nth-of-type(even):hover .wp-block-b-blocks-table-cell{
+			${isValidCSS('color', cells.evenCell.hover.color)}
+		}
+
+		${tRow}:nth-of-type(odd) .wp-block-b-blocks-table-cell{
+			${isValidCSS('color', cells.oddCell.normal.color)}
+		}
+		${tRow}:nth-of-type(odd):hover .wp-block-b-blocks-table-cell{
+			${isValidCSS('color', cells.oddCell.hover.color)}
+		}
+
+		${tFooterSl}>.wp-block-b-blocks-table-row{
+			${getBackgroundCSS(footer.normal.bg)}
+		}
+		${tFooterSl}>.wp-block-b-blocks-table-row:hover{
+			${getBackgroundCSS(footer.hover.bg)}
+		}
+		${tFooterCell}{
+			${isValidCSS('padding', getBoxCSS(footer.padding.desktop))}
+			${isValidCSS('color', footer.normal.color)}
+		}
+		${tFooterCell}:hover{
+			${isValidCSS('color', footer.hover.color)}
+		}
+
+		${dtSearchSl}>label{
+			${isValidCSS('color', search.label.color)}
+			${getBackgroundCSS(search.label.bg)}
+			${isValidCSS('padding',getBoxCSS(search.label.desktop.padding))}
+			${isValidCSS('margin',getBoxCSS(search.label.desktop.margin))}
+		}
+
+		${dtSearchSl}>.dt-input{
+				${isValidCSS('padding', getBoxCSS(search.input.desktop.padding))}
+				${isValidCSS('margin', getBoxCSS(search.input.desktop.margin))}
+				${isValidCSS('color', search.input.normal.color)}
+				${getBackgroundCSS(search.input.normal.bg)}
+				${getBorderBoxCSS(search.input.normal.border)}
+				${isValidCSS('border-radius', getBoxCSS(search.input.normal.radius))}
+				transition: all ${search.input.normal.transition}s ease-in-out;
+				
+		}
+
+		${dtSearchSl}>.dt-input:hover{
+			${isValidCSS('color', search.input.hover.color)}
+			${getBackgroundCSS(search.input.hover.bg)}
+			${getBorderBoxCSS(search.input.hover.border)}
+			${isValidCSS('border-radius', getBoxCSS(search.input.hover.radius))}
+		}
+
+		${dtSearchSl}>.dt-input:focus{
+			${isValidCSS('color', search.input.focus.color)}
+			${getBackgroundCSS(search.input.focus.bg)}
+			${getBorderBoxCSS(search.input.focus.border)}
+			${isValidCSS('border-radius', getBoxCSS(search.input.focus.radius))}
+		}
+
+		${dtInfoSl}{
+			${isValidCSS('padding', getBoxCSS(recordInfo.desktop.padding))}
+			${isValidCSS('margin', getBoxCSS(recordInfo.desktop.margin))}
+			${isValidCSS('color', recordInfo.color)}
+			${getBackgroundCSS(recordInfo.bg)}
+		}
+
+		${dtLengthSl}>label{
+			${isValidCSS('color', pageLength.color)}
+			${getBackgroundCSS(pageLength.bg)}
+			${isValidCSS('padding',getBoxCSS(pageLength.desktop.padding))}
+			${isValidCSS('margin',getBoxCSS(pageLength.desktop.margin))}
+		}
+
+		${paginationBtnSl}{
+			${isValidCSS('padding', getBoxCSS(pagination.desktop.padding),true)}
+			${isValidCSS('margin', getBoxCSS(pagination.desktop.margin),true)}
+			${isValidCSS('color', pagination.normal.color,true)}
+			${getBackgroundCSS(pagination.normal.bg)}
+			${getBorderBoxCSS(pagination.normal.border)}
+			${isValidCSS('border-radius', getBoxCSS(pagination.normal.radius))}
+			transition: all ${pagination.normal.transition}s ease-in-out;
+		}
+		${paginationBtnSl}:hover{
+			${isValidCSS('color', pagination.hover.color,true)}
+			${getBackgroundCSS(pagination.hover.bg)}
+			${getBorderBoxCSS(pagination.hover.border)}
+			${isValidCSS('border-radius', getBoxCSS(pagination.hover.radius))}
+		}
+		${paginationBtnSl}.current{
+			${isValidCSS('color', pagination.active.color,true)}
+			${getBackgroundCSS(pagination.active.bg)}
+			${getBorderBoxCSS(pagination.active.border)}
+			${isValidCSS('border-radius', getBoxCSS(pagination.active.radius))}
+		}
+
+		${exportBtnSl}{
+			${isValidCSS('padding', getBoxCSS(buttons.desktop.padding))}
+			${isValidCSS('color', buttons.normal.color)}
+			${getBackgroundCSS(buttons.normal.bg)}
+			${getBorderBoxCSS(buttons.normal.border)}
+			${isValidCSS('border-radius', getBoxCSS(buttons.normal.radius))}
+			transition: all ${buttons.normal.transition}s ease-in-out;
+		}
+		${exportBtnSl}:hover{
+			${isValidCSS('color', buttons.hover.color)}
+			${getBackgroundCSS(buttons.hover.bg)}
+			${getBorderBoxCSS(buttons.hover.border)}
+			${isValidCSS('border-radius', getBoxCSS(buttons.hover.radius))}
+		}
+
+		${column.map((cl,idx) => `
+			${columnSl}[data-dt-column="${idx}"]{
+				${isValidCSS('color', cl.color)}
+				${getBackgroundCSS(cl.bg)}
 			}
-		${tableContainer} thead>tr>th :where(.bpdt-headerIcon,img){
-			width:${headerStyle.iconSize.mobile}px;
-			margin-right:${headerStyle.iconSpace.mobile}px;
-		}
-		${tableBody} tr>td{
-				padding:${getBoxCSS(bodyStyle.padding.mobile)};
-			text-align:${bodyStyle.textAlign.mobile === 'left'
-				? 'left'
-				: bodyStyle.textAlign.mobile === 'center'
-					? 'center'
-					: 'right'
-			};
-		}
-		${tableBody} .bpdt-bodyIcon{
-			width:${bodyStyle.icon.size.mobile}px;
-		}
-		}
-		`}
-	</style>
-};
+		`).join('')}
+
+	`}} />;
+}
 export default Style;

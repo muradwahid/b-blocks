@@ -24,8 +24,13 @@
 			"default": ""
 		},
 		"taxonomy": {
-			"type": "string",
-			"default": "category"
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"category"
+			]
 		},
 		"orderby": {
 			"type": "string",
@@ -211,7 +216,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

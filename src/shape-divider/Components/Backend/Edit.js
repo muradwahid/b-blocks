@@ -48,6 +48,7 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 
 	return <>
+
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 
 		<div {...useBlockProps()}>
@@ -56,20 +57,10 @@ const Edit = props => {
 			<Shape attributes={attributes} />
 
 			<div className='shapeContent'>
-				<InnerBlocks
-					template={innerBlocksTemplate}
-					renderAppender={() => <Inserter
-						rootClientId={clientId}
-						isAppender
-						renderToggle={({ onToggle, disabled }) => <Button
-							onClick={onToggle}
-							disabled={disabled}
-							icon='plus-alt'>
-						</Button>}
-					/>}
-				/>
+				<InnerBlocks template={innerBlocksTemplate} renderAppender={() => <Inserter rootClientId={clientId} isAppender renderToggle={({ onToggle, disabled }) => <Button onClick={onToggle} disabled={disabled} icon='plus-alt'> </Button>} />}/>
 			</div>
 		</div>
+
 	</>;
 };
 export default Edit;

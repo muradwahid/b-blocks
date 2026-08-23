@@ -1,31 +1,12 @@
-// Blockquote Block — frontend + editor shared styles.
-// Mobile-first responsive. WCAG 2.1 AA color contrast verified for the
-// default palette (default body inherits theme text on transparent bg;
-// accent #6366f1 is a decorative element, not body text).
+// Blockquote Block — frontend + editor shared structural styles.
+//
+// Following the image-hotspot convention, all attribute-driven values
+// (colors, sizes, padding, border-radius, accent bar, responsive font
+// sizes) are injected per-instance by Components/Common/Style.js. This
+// stylesheet only carries the layout structure that never changes.
+// Layout / alignment modifier classes live on the `.bBlocks-blockquote-wrapper` <figure>.
 
 .wp-block-b-blocks-blockquote {
-	--bb-bq-accent: #6366f1;
-	--bb-bq-accent-width: 4px;
-	--bb-bq-bg: transparent;
-	--bb-bq-text: inherit;
-	--bb-bq-name: inherit;
-	--bb-bq-role: inherit;
-	--bb-bq-radius: 8px;
-	--bb-bq-pad-top: 24px;
-	--bb-bq-pad-right: 24px;
-	--bb-bq-pad-bottom: 24px;
-	--bb-bq-pad-left: 24px;
-	--bb-bq-quote-size-desktop: 20px;
-	--bb-bq-quote-size-tablet: 18px;
-	--bb-bq-quote-size-mobile: 16px;
-	--bb-bq-quote-weight: 400;
-	--bb-bq-quote-line-height: 1.6;
-	--bb-bq-author-size: 14px;
-	--bb-bq-avatar-size: 48px;
-	--bb-bq-avatar-radius: 50%;
-	--bb-bq-quote-icon-size: 48px;
-	--bb-bq-quote-icon-color: #6366f1;
-
 	display: block;
 	margin: 0 0 1.25em;
 
@@ -34,23 +15,17 @@
 	}
 
 	// ---------- Root figure wrapper ----------
-	.bb-bq {
+	.bBlocks-blockquote-wrapper {
 		position: relative;
 		margin: 0;
-		padding: var(--bb-bq-pad-top) var(--bb-bq-pad-right) var(--bb-bq-pad-bottom) var(--bb-bq-pad-left);
-		background: var(--bb-bq-bg);
-		border-radius: var(--bb-bq-radius);
-		color: var(--bb-bq-text);
+		display: flex;
+		flex-direction: column;
 	}
 
 	// ---------- Quote body ----------
-	.bb-bq__quote {
+	.bBlocks-blockquote-quote {
 		margin: 0;
 		padding: 0;
-		font-size: var(--bb-bq-quote-size-mobile);
-		font-weight: var(--bb-bq-quote-weight);
-		line-height: var(--bb-bq-quote-line-height);
-		color: var(--bb-bq-text);
 		quotes: none;
 
 		// Strip default browser quotes; the decorative SVG (when present)
@@ -61,7 +36,7 @@
 		}
 	}
 
-	.bb-bq__quote-text {
+	.bBlocks-blockquote-quoteText {
 		margin: 0;
 		padding: 0;
 
@@ -75,131 +50,62 @@
 	}
 
 	// ---------- Caption: avatar + cite ----------
-	.bb-bq__caption {
+	.bBlocks-blockquote-caption {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 12px;
 		margin-top: 16px;
 		padding: 0;
-		font-size: var(--bb-bq-author-size);
 		line-height: 1.4;
 	}
 
-	.bb-bq__avatar {
+	.bBlocks-blockquote-avatar {
 		flex: 0 0 auto;
 		display: block;
-		width: var(--bb-bq-avatar-size);
-		height: var(--bb-bq-avatar-size);
 		object-fit: cover;
-		border-radius: var(--bb-bq-avatar-radius);
 		background: #e5e7eb;
 	}
 
-	.bb-bq__cite {
+	.bBlocks-blockquote-cite {
 		display: inline-flex;
 		flex-direction: column;
 		font-style: normal;
 		min-width: 0;
 	}
 
-	.bb-bq__author {
+	.bBlocks-blockquote-author {
 		font-weight: 600;
-		color: var(--bb-bq-name);
 	}
 
-	.bb-bq__role {
+	.bBlocks-blockquote-role {
 		font-weight: 400;
 		font-size: 0.9em;
 		opacity: 0.85;
-		color: var(--bb-bq-role);
 		margin-top: 2px;
 	}
 
-	// ---------- Alignment ----------
-	&.bb-bq-align--left .bb-bq { text-align: left; }
-	&.bb-bq-align--center .bb-bq { text-align: center; }
-	&.bb-bq-align--right .bb-bq { text-align: right; }
+	// ---------- Alignment (modifier on the figure) ----------
+	.bBlocks-blockquote-wrapper.bBlocks-blockquote-align-left { text-align: left; }
+	.bBlocks-blockquote-wrapper.bBlocks-blockquote-align-center { text-align: center; }
+	.bBlocks-blockquote-wrapper.bBlocks-blockquote-align-right { text-align: right; }
 
-	&.bb-bq-align--center .bb-bq__caption { justify-content: center; }
-	&.bb-bq-align--right .bb-bq__caption { justify-content: flex-end; }
-
-	// ---------- Layout: border (default) ----------
-	// Left accent vertical bar to the left of the quote; padding-left
-	// scales with the accent width so the text never crashes into the bar.
-	&.bb-bq-layout--border .bb-bq {
-		border-left: var(--bb-bq-accent-width) solid var(--bb-bq-accent);
-		padding-left: calc(var(--bb-bq-pad-left) + var(--bb-bq-accent-width));
-	}
+	.bBlocks-blockquote-wrapper.bBlocks-blockquote-align-center .bBlocks-blockquote-caption { justify-content: center; }
+	.bBlocks-blockquote-wrapper.bBlocks-blockquote-align-right .bBlocks-blockquote-caption { justify-content: flex-end; }
 
 	// ---------- Layout: quotation ----------
-	// Large decorative ❝ SVG positioned top-left of the figure.
-	// Quote text gets a top offset so the mark visually overlaps the corner
-	// rather than colliding with the first line.
-	&.bb-bq-layout--quotation .bb-bq {
-		padding-top: calc(var(--bb-bq-pad-top) + var(--bb-bq-quote-icon-size) * 0.5);
-	}
-
-	.bb-bq__icon {
-		position: absolute;
-		top: calc(var(--bb-bq-pad-top) * 0.5);
-		left: calc(var(--bb-bq-pad-left) * 0.5);
+	// Large decorative ❝ SVG that sits in normal flow above the quote. Its
+	// size, color and horizontal alignment (align-self) come from Style.js.
+	.bBlocks-blockquote-icon {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--bb-bq-quote-icon-size);
-		height: var(--bb-bq-quote-icon-size);
-		color: var(--bb-bq-quote-icon-color);
-		pointer-events: none;
+		margin-bottom: 12px;
 
 		svg {
 			display: block;
 			width: 100%;
 			height: 100%;
-		}
-	}
-
-	// When the figure is center-aligned, anchor the icon at the visual
-	// top-center so it reads as a heading mark rather than a corner badge.
-	&.bb-bq-align--center .bb-bq__icon {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	// Right-aligned mirrors the corner placement to the right.
-	&.bb-bq-align--right .bb-bq__icon {
-		left: auto;
-		right: calc(var(--bb-bq-pad-right) * 0.5);
-	}
-
-	// ---------- Responsive typography ----------
-	// Mobile-first: the base font-size above is mobile; scale up at
-	// breakpoints to the tablet/desktop tokens supplied per instance.
-	@media (min-width: 600px) {
-		.bb-bq__quote {
-			font-size: var(--bb-bq-quote-size-tablet);
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.bb-bq__quote {
-			font-size: var(--bb-bq-quote-size-desktop);
-		}
-	}
-
-	// ---------- Compact viewports ----------
-	@media (max-width: 480px) {
-		.bb-bq {
-			padding: 16px;
-		}
-		&.bb-bq-layout--border .bb-bq {
-			padding-left: calc(16px + var(--bb-bq-accent-width));
-		}
-		&.bb-bq-layout--quotation .bb-bq {
-			padding-top: calc(16px + var(--bb-bq-quote-icon-size) * 0.5);
-		}
-		.bb-bq__caption {
-			gap: 10px;
 		}
 	}
 

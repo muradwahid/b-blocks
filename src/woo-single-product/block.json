@@ -2,7 +2,6 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/woo-single-product",
-	"version": "1.0.0",
 	"title": "Woo Single Product",
 	"category": "bBlocks",
 	"description": "Embed a full, theme-consistent WooCommerce product purchase area — native gallery, variation form, quantity stepper, add-to-cart and meta — for any product anywhere, rendered through WooCommerce's own template hooks.",
@@ -95,7 +94,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

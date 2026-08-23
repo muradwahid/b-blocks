@@ -1,5 +1,6 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const removeBlocksFromBuild = require('./remove-block-in-build');
 
 const plugins = defaultConfig.plugins.filter(p => {
 	if (Object.values(p).length === 2 && Object.values(p)?.[1]['filename'] && Object.values(p)?.[1]['filename'] === '[name]-rtl.css') {
@@ -21,7 +22,7 @@ const entry = {
 	advanced: '../bpl-tools/Advanced/style.js',
 	'cursor/cursor': './src/customCursor/customCursor.js',
 	'cursor/settings': './src/customCursor/Settings.js',
-	'b-blocks-ai/content-generate-ai':'./src/backend/ContentGenerateApi/ContentGenerateApi.js'
+	'b-blocks-ai/content-generate-ai': './src/backend/ContentGenerateApi/ContentGenerateApi.js'
 };
 
 module.exports = {
@@ -29,7 +30,12 @@ module.exports = {
 	entry,
 	plugins: [
 		...plugins,
-		new ESLintPlugin()
+		new ESLintPlugin(),
+		{
+			apply(compiler) {
+				compiler.hooks.afterEmit.tap('RemoveBlocksFromBuild', removeBlocksFromBuild);
+			}
+		}
 	],
 	optimization: {}
 };

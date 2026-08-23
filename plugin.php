@@ -2,7 +2,7 @@
 /**
  * Plugin Name: bBlocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.1.21
+ * Version: 2.1.1
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3 or later
@@ -31,7 +31,7 @@ if (function_exists('b_blocks_fs')) {
 	// keeps the real, stable version.
 	$bb_host    = isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
 	$bb_isLocal = $bb_host && ( 0 === strpos( $bb_host, 'localhost' ) || 0 === strpos( $bb_host, '127.0.0.1' ) || (bool) preg_match( '/\.(local|test|ddev\.site)(:\d+)?$/', $bb_host ) );
-	define( 'B_BLOCKS_VERSION', $bb_isLocal ? (string) time() : '2.1.21' );
+	define( 'B_BLOCKS_VERSION', $bb_isLocal ? (string) time() : '2.1.0' );
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_HAS_PRO', 'b-blocks-pro/plugin.php' === plugin_basename(__FILE__));
@@ -127,17 +127,17 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/OptinRateLimit.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/form/FormHandler.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/newsletter/NewsletterHandler.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/popup-optin/PopupOptinHandler.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-filter-grid/PostFilterGrid.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-masonry-grid/PostMasonryGrid.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-add-to-cart/WooAddToCart.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-best-sellers/WooBestSellers.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-featured-product/WooFeaturedProduct.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-mini-cart/WooMiniCart.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-carousel/WooProductCarousel.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-grid/WooProductGrid.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-reviews/WooProductReviews.php';
-	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-single-product/WooSingleProduct.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/popup-optin/PopupOptinHandler.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-filter-grid/PostFilterGrid.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-masonry-grid/PostMasonryGrid.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-add-to-cart/WooAddToCart.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-best-sellers/WooBestSellers.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-featured-product/WooFeaturedProduct.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-mini-cart/WooMiniCart.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-carousel/WooProductCarousel.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-grid/WooProductGrid.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-reviews/WooProductReviews.php';
+	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-single-product/WooSingleProduct.php';
 
 	// License Activation
 	if (file_exists(B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php') && B_BLOCKS_HAS_PRO ) {
@@ -198,7 +198,7 @@ if (function_exists('b_blocks_fs')) {
 
 			$disabledBlocks = get_option('bBlocksDisabledBlocks', []);
 			$disabledBlocks = is_array($disabledBlocks) ? $disabledBlocks : [];
-			$premiumBlocks = BBlocks\Inc\Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards'];
+			$premiumBlocks = BBlocks\Inc\Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards','b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card'];
 
 			// Add dependent blocks
 			if (in_array('b-blocks/row', $disabledBlocks) && !in_array('b-blocks/column', $disabledBlocks)) {
@@ -208,23 +208,22 @@ if (function_exists('b_blocks_fs')) {
 				$disabledBlocks[] = 'b-blocks/service';
 			}
 
-
 			$blocks = [
 				'alert',
-				'anchor-nav',
+				// 'anchor-nav',
 				'advanced-image',
 				'animated-text',
 				'advanced-tabs',
 				'article-card',
 				'audio-player',
-				'author-box',
+				// 'author-box',
 				'blockquote',
 				'button',
 				'button-group',
 				'breadcrumb',
-				'business-hours',
-				'call-to-action',
-				'callout',
+				// 'business-hours',
+				// 'call-to-action',
+				// 'callout',
 				'cards',
 				'chart',
 				'column',
@@ -232,17 +231,22 @@ if (function_exists('b_blocks_fs')) {
 				'content-ticker',
 				'countdown',
 				'counters',
-				// 'data-table',
+				'data-table',
+				'table-head',
+				'table-body',
+				'table-row',
+				'table-cell',
+				'table-footer',
 				'carousel',
 				'carousel-slide',
-				'click-to-share',
-				'code-highlight',
+				// 'click-to-share',
+				// 'code-highlight',
 				'comparison-table',
-				'contact-card',
-				'content-filter',
-				'content-filter-item',
-				'cookie-consent-bar',
-				'coupon-code',
+				// 'contact-card',
+				// 'content-filter',
+				// 'content-filter-item',
+				// 'cookie-consent-bar',
+				// 'coupon-code',
 				'divider',
 				'dual-color-heading',
 				'emoji-stack-separator',
@@ -250,67 +254,67 @@ if (function_exists('b_blocks_fs')) {
 				'expand-content',
 				'facebook-embed',
 				'facebook-page',
-				'faq-block',
+				// 'faq-block',
 				'feature-boxes',
-				'feature-tabs',
+				// 'feature-tabs',
 				'file-download-card',
 				'flip-boxes',
-				'floating-cta',
+				// 'floating-cta',
 				'gif',
 				'form-builder',
 				'google-map',
 				'hero-section',
-				'howto-schema',
+				// 'howto-schema',
 				'html',
-				'icon',
+				// 'icon',
 				'icon-box',
-				'icon-list',
-				'image-accordion',
-				'image-box',
+				// 'icon-list',
+				// 'image-accordion',
+				// 'image-box',
 				'image-comparison',
 				'image-gallery',
 				'image-hotspot',
-				'image-mask',
+				// 'image-mask',
 				'image-scroller',
-				'image-slider',
+				// 'image-slider',
 				'info-box',
 				'input-field',
 				'interactive-checklist',
 				'key-takeaways',
-				'logo-grid',
+				// 'logo-grid',
 				'logo-slider',
 				'lottie-player',
 				'list',
 				'mailto',
-				'marquee',
+				// 'marquee',
 				'media-text-section',
-				'milestone-timeline',
-				'modal-popup',
+				// 'milestone-timeline',
+				// 'modal-popup',
 				'navigation',
 				'news-ticker',
-				'newsletter-optin',
-				'notification-bar',
+				// 'newsletter-optin',
+				// 'notification-bar',
 				'off-canvas',
-				'parallax-section',
-				'pdf-embed',
-				'popup-optin',
-				'portfolio-gallery',
-				'post-carousel',
-				'post-filter-grid',
-				'post-masonry-grid',
-				'post-navigation',
-				'post-timeline',
+				// 'parallax-section',
+				// 'pdf-embed',
+				// 'popup-optin',
+				// 'portfolio-gallery',
+				// 'post-carousel',
+				// 'post-filter-grid',
+				// 'post-masonry-grid',
+				// 'post-navigation',
+				// 'post-timeline',
 				'posts',
 				'price-lists',
 				'pricing-table',
-				'pricing-toggle',
+				// 'pricing-toggle',
 				'process-steps',
-				'progress-bar',
-				'progress-circle',
-				'promo-strip',
+				// 'progress-bar',
+				// 'progress-circle',
+				// 'promo-strip',
 				'qr-code',
-				'reading-progress',
-				'review-box',
+				// 'reading-progress',
+				// 'review-box',
 				'row',
 				'section-heading',
 				'skill-bar',
@@ -318,44 +322,44 @@ if (function_exists('b_blocks_fs')) {
 				'services',
 				'shape-divider',
 				'slider',
-				'scroll-reveal',
+				// 'scroll-reveal',
 				'scroll-to-top',
-				'search-bar',
+				// 'search-bar',
 				'social-share',
-				'social-share-bar',
+				// 'social-share-bar',
 				'whatsapp-chat',
-				'woo-add-to-cart',
-				'woo-best-sellers',
-				'woo-category-grid',
-				'woo-featured-product',
-				'woo-mini-cart',
-				'woo-product-carousel',
-				'woo-product-filter',
-				'woo-product-grid',
-				'woo-product-reviews',
-				'woo-sale-badge',
-				'woo-single-product',
+				// 'woo-add-to-cart',
+				// 'woo-best-sellers',
+				// 'woo-category-grid',
+				// 'woo-featured-product',
+				// 'woo-mini-cart',
+				// 'woo-product-carousel',
+				// 'woo-product-filter',
+				// 'woo-product-grid',
+				// 'woo-product-reviews',
+				// 'woo-sale-badge',
+				// 'woo-single-product',
 				'star-rating',
 				'stacked-cards',
 				'stat-cards',
-				'sticky-sidebar',
+				// 'sticky-sidebar',
 				'svg-draw',
 				'table-of-content',
-				'taxonomy-grid',
+				// 'taxonomy-grid',
 				'td-viewer',
 				'team-members',
-				'testimonial-card',
-				'testimonial-slider',
+				// 'testimonial-card',
+				// 'testimonial-slider',
 				'testimonials',
-				'testimonials-grid',
+				// 'testimonials-grid',
 				'timeline',
 				'toggle-content',
 				'accordion-block',
 				'video',
-				'video-popup',
+				// 'video-popup',
 				'text-path',
-				'typing-headline',
-				'urgency-timer'
+				// 'typing-headline',
+				// 'urgency-timer'
 			];
 
 			foreach ($blocks as $block) {
@@ -368,165 +372,165 @@ if (function_exists('b_blocks_fs')) {
 			// The newsletter-optin view.js uses @wordpress/i18n – register translations
 			// for the auto-generated view-script handle so frontend error/success strings
 			// are translatable. The handle is derived from the block name by WordPress core.
-			if ( ! in_array( 'b-blocks/newsletter-optin', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-newsletter-optin-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/newsletter-optin', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-newsletter-optin-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The popup-optin view.js imports @wordpress/i18n for frontend
 			// validation / status strings, so its view-script handle needs
 			// translations registered.
-			if ( ! in_array( 'b-blocks/popup-optin', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-popup-optin-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/popup-optin', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-popup-optin-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The floating-cta view.js imports @wordpress/i18n (__('Button') and __('Dismiss'))
 			// so its view-script handle also needs translations registered.
-			if ( ! in_array( 'b-blocks/floating-cta', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-floating-cta-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/floating-cta', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-floating-cta-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The image-slider view.js imports @wordpress/i18n for lightbox aria-labels
 			// so its view-script handle needs translations registered.
-			if ( ! in_array( 'b-blocks/image-slider', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-image-slider-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/image-slider', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-image-slider-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The testimonial-slider view.js imports @wordpress/i18n for the
 			// play/pause toggle aria-labels, so its view-script handle needs
 			// translations registered.
-			if ( ! in_array( 'b-blocks/testimonial-slider', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-testimonial-slider-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/testimonial-slider', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-testimonial-slider-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The post-filter-grid view.js imports @wordpress/i18n for the
 			// aria-live status announcements, so its view-script handle needs
 			// translations registered.
-			if ( ! in_array( 'b-blocks/post-filter-grid', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-post-filter-grid-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/post-filter-grid', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-post-filter-grid-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The post-masonry-grid view.js imports @wordpress/i18n for the
 			// aria-live status announcements, so its view-script handle needs
 			// translations registered.
-			if ( ! in_array( 'b-blocks/post-masonry-grid', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-post-masonry-grid-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/post-masonry-grid', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-post-masonry-grid-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The woo-add-to-cart view.js uses @wordpress/i18n for the aria-live
 			// add-to-cart status announcements, so its view-script handle needs
 			// translations registered.
-			if ( ! in_array( 'b-blocks/woo-add-to-cart', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-woo-add-to-cart-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/woo-add-to-cart', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-woo-add-to-cart-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The woo-mini-cart view.js uses @wordpress/i18n for the cart
 			// aria-label and aria-live announcements, so its view-script
 			// handle needs translations registered.
-			if ( ! in_array( 'b-blocks/woo-mini-cart', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-woo-mini-cart-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/woo-mini-cart', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-woo-mini-cart-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The woo-best-sellers view.js imports @wordpress/i18n for the
 			// aria-live add-to-cart status announcements ("added to cart",
 			// error messages), so its view-script handle needs translations
 			// registered.
-			if ( ! in_array( 'b-blocks/woo-best-sellers', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-woo-best-sellers-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/woo-best-sellers', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-woo-best-sellers-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The woo-featured-product view.js uses @wordpress/i18n for the
 			// aria-live add-to-cart status announcements, so its view-script
 			// handle needs translations registered.
-			if ( ! in_array( 'b-blocks/woo-featured-product', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-woo-featured-product-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/woo-featured-product', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-woo-featured-product-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The woo-product-grid view.js uses @wordpress/i18n for the aria-live
 			// add-to-cart status announcements, so its view-script handle needs
 			// translations registered.
-			if ( ! in_array( 'b-blocks/woo-product-grid', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-woo-product-grid-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/woo-product-grid', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-woo-product-grid-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The woo-product-carousel view.js uses @wordpress/i18n for slide
 			// aria-live announcements and the add-to-cart status region, so its
 			// view-script handle needs translations registered.
-			if ( ! in_array( 'b-blocks/woo-product-carousel', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-woo-product-carousel-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/woo-product-carousel', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-woo-product-carousel-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The sticky-sidebar view.js uses @wordpress/i18n for the scrollable
 			// sidebar aria-label, so its view-script handle needs translations registered.
-			if ( ! in_array( 'b-blocks/sticky-sidebar', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-sticky-sidebar-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/sticky-sidebar', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-sticky-sidebar-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 
 			// The search-bar view.js imports @wordpress/i18n for the live-search
 			// no-results / aria-live result-count strings, so its view-script
 			// handle needs translations registered.
-			if ( ! in_array( 'b-blocks/search-bar', $disabledBlocks ) ) {
-				wp_set_script_translations(
-					'b-blocks-search-bar-view-script',
-					'b-blocks',
-					B_BLOCKS_DIR_PATH . 'languages'
-				);
-			}
+			// if ( ! in_array( 'b-blocks/search-bar', $disabledBlocks ) ) {
+			// 	wp_set_script_translations(
+			// 		'b-blocks-search-bar-view-script',
+			// 		'b-blocks',
+			// 		B_BLOCKS_DIR_PATH . 'languages'
+			// 	);
+			// }
 		}
 
 		function registerSettings()

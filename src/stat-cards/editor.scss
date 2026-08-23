@@ -1,55 +1,6 @@
 /**
  * Stat Cards — editor-only styles.
+ *
+ * The inspector repeater UI is now the shared bpl-tools ItemsPanel, which
+ * carries its own styling, so no block-specific editor CSS is needed.
  */
-
-.wp-block-b-blocks-stat-cards {
-	// Repeater UI in the inspector.
-	.bb-sc-repeater {
-		&__row {
-			padding: 12px;
-			margin-bottom: 12px;
-			border: 1px solid #e0e0e0;
-			border-radius: 4px;
-			background: #fff;
-		}
-
-		&__row-head {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			margin-bottom: 8px;
-			gap: 8px;
-		}
-
-		&__row-title {
-			font-size: 12px;
-			text-transform: uppercase;
-			letter-spacing: 0.04em;
-			color: #555;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-
-		&__row-actions {
-			display: flex;
-			gap: 2px;
-			flex: 0 0 auto;
-		}
-
-		&__cols {
-			display: flex;
-			gap: 8px;
-
-			> * {
-				flex: 1 1 0;
-				min-width: 0;
-			}
-		}
-	}
-
-	.bb-sc-add-item {
-		width: 100%;
-		justify-content: center;
-	}
-}

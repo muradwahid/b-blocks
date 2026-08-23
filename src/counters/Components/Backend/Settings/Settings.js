@@ -26,8 +26,6 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 		label: { text: 'Awards', color: '#fff' }
 	}
 
-
-
 	const updateAllCounters = (params) => {
 		const newCounters = produce(counters, draft => {
 			draft.map((_, index) => {
@@ -42,13 +40,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 		setAttributes({ counters: newCounters });
 	}
 
-
 	return <>
 		<InspectorControls>
 			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>{tab => <>
 				{'general' === tab.name && <>
-					<HelpPanel slug={pluginSlug} docsLink={countersDocs} />
 
+					<HelpPanel slug={pluginSlug} docsLink={countersDocs} />
 
 					<PanelBody className='bPlPanelBody addRemoveItems editItem' title={__('Add or Remove counters', 'b-blocks')}>
 						<ItemsPanel
@@ -64,7 +61,6 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 						/>
 						{!isPremium && <small> <b><a href={pricingPage} target='__blank'>Upgrade to Premium</a></b> to unlock sorting and more features.</small>}
 					</PanelBody>
-
 
 					<PanelBody className='bPlPanelBody' title={__('Layout Settings', 'b-blocks')} initialOpen={false}>
 						<PanelRow>
@@ -151,14 +147,12 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 						<UnitControl className='mt20' label={__('Row Gap:', 'b-blocks')} labelPosition='left' value={rowGap} onChange={val => setAttributes({ rowGap: val })} units={[pxUnit(), perUnit(), emUnit()]} />
 					</PanelBody>
 
-
 					<PanelBody className='bPlPanelBody' title={__('Counters Settings', 'b-blocks')} initialOpen={false}>
 						<NumberControl label={__('Duration:', 'b-blocks')} labelPosition='left' value={duration} onChange={val => setAttributes({ duration: parseFloat(val) })} />
 						<small>{__('Duration in milliseconds:', 'b-blocks')}</small>
 
 						<SelectControl className='mt20' label={__('Separator', 'b-blocks')} labelPosition='left' value={separator.char} onChange={val => setAttributes({ separator: { ...separator, char: val } })} options={sepChars} />
 					</PanelBody>
-
 
 					<PanelBody className='bPlPanelBody' title={__('Counter Elements', 'b-blocks')} initialOpen={false}>
 						<ToggleControl label={__('Show Icon', 'b-blocks')} checked={isIcon} onChange={val => setAttributes({ isIcon: val })} />
@@ -181,8 +175,8 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex, isPr
 
 						{isLabel && <Typography label={__('Label Typography:', 'b-blocks')} value={labelTypo} onChange={val => setAttributes({ labelTypo: val })} defaults={{ fontSize: { desktop: 22, tablet: 20, mobile: 18 } }} />}
 					</PanelBody>
-				</>}
 
+				</>}
 
 				{'style' === tab.name && <>
 					<PanelBody className='bPlPanelBody' title={__('Counters', 'b-blocks')}>

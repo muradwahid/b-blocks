@@ -9,20 +9,21 @@ const RenderChart = ({ attributes, id, isBackend = false }) => {
 	const chartCtxWrap = useRef(null);
 	const downloadChart = useRef(null);
 
-	const dependency = isBackend ? [data, type, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload] : []
+	const dependency = isBackend ? [data, type, textColor, isXScale, isXGridLine, isYScale, isYGridLine, gridLineColor, isTitle, title, titleFontSize, titleColor, isSubtitle, subtitle, subtitleFontSize, subtitleColor, isDownload, chartCtxWrap.current] : []
 
 	useEffect(() => {
 		if (isBackend) {
 			chartCtxWrap.current.innerHTML = '';
 			chartCtxWrap.current.innerHTML = `<canvas>Your browser does not support the canvas element.</canvas>`;
 		}
+		const doc = chartCtxWrap.current.ownerDocument;
 
-		const chartCtx = document.querySelector(`#${id} .${prefix} canvas`);
+		const chartCtx = doc.querySelector(`#${id} .${prefix} canvas`);
 
 		const bChart = chartCtx && new Chart(chartCtx, chartConfig(attributes));
 
 		isDownload && downloadChart?.current.addEventListener('click', () => {
-			const a = document.createElement('a');
+			const a = doc.createElement('a');
 			a.href = bChart.toBase64Image();
 			a.download = 'b-chart.png';
 			a.click();

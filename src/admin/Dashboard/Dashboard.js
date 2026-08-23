@@ -16,10 +16,13 @@ import FeatureCompare from '../../../../bpl-tools/Admin/FeatureCompare';
 import Activation from '../../../../bpl-tools/Admin/Activation';
 import OurPlugins from '../../../../bpl-tools/Admin/OurPlugins';
 import Blocks from '../../../../bpl-tools/Admin/Blocks';
-import Demos from '../../../../bpl-tools/Admin/Demos';
+// import Demos from '../../../../bpl-tools/Admin/Demos';
 
 import Welcome from '../Components/Welcome';
-import { pricingInfo, demoInfo } from './utils/data';
+import {
+	pricingInfo,
+	// demoInfo
+} from './utils/data';
 import Settings from './Pages/Settings/Settings';
 import CursorEffect from './Pages/CursorEffect/CursorEffect';
 import { useEffect, useState } from 'react';
@@ -81,7 +84,7 @@ const Dashboard = (props) => {
 					<Blocks {...props} pageTitle={`All Blocks (${totalBlocksCount})`} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />
 					{!isPremium && <ProModal />}
 				</>} />
-				<Route path='demos' element={<Demos {...props} demoInfo={demoInfo} />} />
+				{/* <Route path='demos' element={<Demos {...props} demoInfo={demoInfo} />} /> */}
 				<Route path='cursor' element={<CursorEffect info={info} />} />
 				<Route path='settings' element={<Settings info={info} />} />
 				{!isPremium && <Route

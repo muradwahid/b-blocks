@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
-import { Label, ColorControl, BtnGroup, ColorsControl, IconControl, Typography, HelpPanel } from '../../../../../../bpl-tools/Components';
+import { PanelBody, PanelRow, TabPanel, TextControl, ToggleControl, __experimentalUnitControl as UnitControl, Flex, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon } from '@wordpress/components';
+
+import { Label, ColorControl, BtnGroup, ColorsControl, IconControl, Typography, HelpPanel, Device } from '../../../../../../bpl-tools/Components';
 import { BorderControl, SpaceControl } from '../../../../../../bpl-tools/Components/Deprecated';
 import { pxUnit, perUnit, emUnit } from '../../../../../../bpl-tools/utils/options';
 import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/data';
@@ -17,8 +18,8 @@ const btnGroupTabs = [
 	{ name: 'btn-two', title: __('Button Two', 'b-blocks') }
 ];
 
-const Settings = ({ attributes, setAttributes }) => {
-	const { width, btnAlign, btnType, btnTypo, btnPadding, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepBGColor } = attributes;
+const Settings = ({ attributes, setAttributes, device, updateObj }) => {
+	const { width, btnAlign, btnType, btnTypo, btnPadding, btnOneLink, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoLink, btnTwoBorder, btnTwoColors, btnTwoHovColors, isSep, sepType, sepText, sepTextTypo, sepTextColor, sepIcon, sepBGColor, layout = 'row', alignment = {}, gap = {} } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -27,6 +28,44 @@ const Settings = ({ attributes, setAttributes }) => {
 
 			<PanelBody className='bPlPanelBody' title={__('Button Settings', 'b-blocks')}>
 				<UnitControl label={__('Container Width:', 'b-blocks')} labelPosition='left' value={width} onChange={val => setAttributes({ width: val })} units={[pxUnit(), perUnit(), emUnit()]} />
+
+				<Flex align="center" className='mt10'>
+					<Label className='flex1'>{__('Layout', 'b-blocks')}</Label>
+					<ToggleGroupControl className='flex1' __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout} onChange={(val) => setAttributes({ layout: val })}>
+
+						<ToggleGroupControlOption label="Vertical" value="column" />
+						<ToggleGroupControlOption label="Horizontal" value="row" />
+
+					</ToggleGroupControl>
+				</Flex>
+
+				{layout === 'column' && <Flex className='mt10' gap={2}>
+					<Flex><Label className='flex1'>{__('Alignment', 'b-blocks')}<Device /></Label></Flex>
+					<ToggleGroupControl className='flex1' size='default' __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={alignment?.[device]?.vertical} onChange={(val) => updateObj('alignment', val, device, 'vertical')}>
+
+						<ToggleGroupControlOptionIcon label="Left" value="left" icon='editor-alignleft' />
+						<ToggleGroupControlOptionIcon label="Center" value="center" icon='editor-aligncenter' />
+						<ToggleGroupControlOptionIcon label="Right" value="right" icon='editor-alignright' />
+
+					</ToggleGroupControl>
+				</Flex>}
+
+				{layout === 'row' && <Flex className='mt10' gap={2}>
+					<Flex><Label className='flex1'>{__('Alignment', 'b-blocks')}<Device /></Label></Flex>
+					<ToggleGroupControl className='flex1' size='default' __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={alignment?.[device]?.horizontal} onChange={(val) => updateObj('alignment', val, device, 'horizontal')}>
+
+						<ToggleGroupControlOptionIcon label="Left" value="flex-start" icon='editor-alignleft' />
+						<ToggleGroupControlOptionIcon label="Center" value="center" icon='editor-aligncenter' />
+						<ToggleGroupControlOptionIcon label="Right" value="flex-end" icon='editor-alignright' />
+						<ToggleGroupControlOptionIcon label="Space Between" value="space-between" icon='editor-justify' />
+
+					</ToggleGroupControl>
+				</Flex>}
+
+				<Flex className='mt10'>
+					<Label className='flex2'>{__('Gap:', 'b-blocks')} <Device /></Label>
+					<UnitControl className='flex1' value={gap?.[device] || ''} onChange={(val) => updateObj('gap', val, device)} />
+				</Flex>
 
 				<PanelRow>
 					<Label className=''>{__('Type:', 'b-blocks')}</Label>
@@ -58,7 +97,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				<Label>{__('Buttons:', 'b-blocks')}</Label>
 				<TabPanel className='bPlTabPanel small' activeClass='activeTab' tabs={btnGroupTabs}>{tab => <>
 					{'btn-one' == tab.name && <>
-						<PanelRow>
+						<PanelRow className='mt10'>
 							<Label className=''>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={btnOneLink} onChange={val => setAttributes({ btnOneLink: val })} />
 						</PanelRow>
@@ -71,7 +110,7 @@ const Settings = ({ attributes, setAttributes }) => {
 					</>}
 
 					{'btn-two' == tab.name && <>
-						<PanelRow>
+						<PanelRow className='mt10'>
 							<Label className=''>{__('Link:', 'b-blocks')}</Label>
 							<TextControl value={btnTwoLink} onChange={val => setAttributes({ btnTwoLink: val })} />
 						</PanelRow>

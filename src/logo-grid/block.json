@@ -51,9 +51,30 @@
 		"items": {
 			"type": "array",
 			"default": [
-				{ "_key": "lg-default-1", "imageId": 0, "imageUrl": "", "imageAlt": "", "linkUrl": "", "linkNewTab": false },
-				{ "_key": "lg-default-2", "imageId": 0, "imageUrl": "", "imageAlt": "", "linkUrl": "", "linkNewTab": false },
-				{ "_key": "lg-default-3", "imageId": 0, "imageUrl": "", "imageAlt": "", "linkUrl": "", "linkNewTab": false }
+				{
+					"_key": "lg-default-1",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"linkUrl": "",
+					"linkNewTab": false
+				},
+				{
+					"_key": "lg-default-2",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"linkUrl": "",
+					"linkNewTab": false
+				},
+				{
+					"_key": "lg-default-3",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"linkUrl": "",
+					"linkNewTab": false
+				}
 			]
 		},
 		"columns": {
@@ -143,7 +164,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

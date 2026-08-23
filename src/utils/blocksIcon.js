@@ -1056,3 +1056,5 @@ export const wooProductCarouselIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<rect x='16.5' y='7' width='5' height='10' rx='1.5' fill='none' stroke='currentColor' strokeWidth='1.4' opacity='0.45' />
 	<path d='M10.4 15.4h3.2M10.4 17h2' stroke='#ffffff' strokeWidth='1.2' strokeLinecap='round' opacity='0.9' />
 </svg>
+
+export const tableIcon = <svg {...svgProps} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 2h-12l-.5.5v11l.5.5h12l.5-.5v-11l-.5-.5zM2 3h11v1H2V3zm7 4H6V5h3v2zm0 1v2H6V8h3zM2 5h3v2H2V5zm0 3h3v2H2V8zm0 5v-2h3v2H2zm4 0v-2h3v2H6zm7 0h-3v-2h3v2zm0-3h-3V8h3v2zm-3-3V5h3v2h-3z"></path></svg>

@@ -17,116 +17,306 @@
 			"type": "string",
 			"default": "full"
 		},
-		"mediaPosition": {
-			"type": "string",
-			"default": "left"
-		},
-		"mediaType": {
-			"type": "string",
-			"default": "image"
-		},
-		"mediaId": {
-			"type": "number",
-			"default": 0
-		},
-		"mediaUrl": {
-			"type": "string",
-			"default": ""
-		},
-		"mediaAlt": {
-			"type": "string",
-			"default": ""
-		},
-		"mediaPosterUrl": {
-			"type": "string",
-			"default": ""
-		},
-		"splitRatio": {
-			"type": "string",
-			"default": "50-50"
-		},
-		"minHeight": {
-			"type": "number",
-			"default": 0
-		},
-		"mediaFit": {
-			"type": "string",
-			"default": "cover"
-		},
-		"mediaFocal": {
+		"layout": {
 			"type": "object",
 			"default": {
-				"x": 0.5,
-				"y": 0.5
+				"desktop": {
+					"direction": "row",
+					"alignItems": "center"
+				},
+				"tablet": {
+					"direction": "",
+					"alignItems": ""
+				},
+				"mobile": {
+					"direction": "",
+					"alignItems": ""
+				}
 			}
 		},
-		"stickyMedia": {
-			"type": "boolean",
-			"default": false
+		"styles": {
+			"type": "object",
+			"default": {
+				"layout": {
+					"desktop": {
+						"ratio": {
+							"media": "50%",
+							"content": "50%",
+							"splitRatio": "50-50"
+						},
+						"gap": "20px"
+					},
+					"tablet": {
+						"ratio": {
+							"media": "",
+							"content": "",
+							"splitRatio": ""
+						},
+						"gap": ""
+					},
+					"mobile": {
+						"ratio": {
+							"media": "",
+							"content": "",
+							"splitRatio": ""
+						},
+						"gap": ""
+					}
+				},
+				"media": {
+					"image": {
+						"objFit": "contain"
+					},
+					"video": {
+						"objFit": "contain"
+					},
+					"shadow": {},
+					"overlay": {
+						"bg": {},
+						"opacity": 0.5,
+						"isOverlay": false
+					},
+					"bg": {},
+					"border": {},
+					"radius": {
+						"left": "",
+						"right": "",
+						"top": "",
+						"bottom": ""
+					},
+					"desktop": {
+						"padding": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						}
+					}
+				},
+				"content": {
+					"bg": {},
+					"desktop": {
+						"padding": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						},
+						"radius": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						},
+						"radius": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						},
+						"radius": {
+							"left": "",
+							"right": "",
+							"top": "",
+							"bottom": ""
+						}
+					},
+					"border": {},
+					"shadow": {}
+				}
+			}
 		},
-		"mediaOverlayColor": {
-			"type": "string",
-			"default": ""
+		"media": {
+			"type": "object",
+			"default": {
+				"mediaType": "image",
+				"image": {},
+				"video": {
+					"url": "",
+					"poster": {},
+					"autoplay": false,
+					"loop": true,
+					"muted": true,
+					"controls": true,
+					"allowDownload": false,
+					"allowFullscreen": true,
+					"allowPip": true,
+					"controlsOnHover": false
+				},
+				"stickyMedia": false
+			}
 		},
-		"mediaOverlayOpacity": {
-			"type": "number",
-			"default": 0
-		},
-		"imageBorderRadius": {
-			"type": "number",
-			"default": 0
-		},
-		"imageBoxShadow": {
-			"type": "boolean",
-			"default": false
-		},
-		"mediaPanelBg": {
-			"type": "string",
-			"default": ""
-		},
-		"contentPanelBg": {
-			"type": "string",
-			"default": ""
-		},
-		"sectionBg": {
-			"type": "string",
-			"default": ""
-		},
-		"sectionBgGradient": {
-			"type": "string",
-			"default": ""
-		},
-		"verticalAlign": {
-			"type": "string",
-			"default": "center"
-		},
-		"contentPaddingTop": {
-			"type": "number",
-			"default": 40
-		},
-		"contentPaddingBottom": {
-			"type": "number",
-			"default": 40
-		},
-		"contentPaddingLeft": {
-			"type": "number",
-			"default": 40
-		},
-		"contentPaddingRight": {
-			"type": "number",
-			"default": 40
-		},
-		"mobileStackOrder": {
-			"type": "string",
-			"default": "media-first"
-		},
-		"gapBetweenPanels": {
-			"type": "number",
-			"default": 0
-		},
-		"sectionLabel": {
-			"type": "string",
-			"default": ""
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": { "top": "", "right": "", "bottom": "", "left": "" },
+						"tablet": { "top": "", "right": "", "bottom": "", "left": "" },
+						"mobile": { "top": "", "right": "", "bottom": "", "left": "" }
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": { "z": "", "y": "", "x": "" },
+							"tablet": { "z": "", "y": "", "x": "" },
+							"mobile": { "z": "", "y": "", "x": "" },
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": { "x": "", "y": "" },
+							"tablet": { "x": "", "y": "" },
+							"mobile": { "x": "", "y": "" }
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": { "x": "", "y": "", "scale": "" },
+							"tablet": { "x": "", "y": "", "scale": "" },
+							"mobile": { "x": "", "y": "", "scale": "" }
+						},
+						"skew": {
+							"desktop": { "x": "", "y": "" },
+							"tablet": { "x": "", "y": "" },
+							"mobile": { "x": "", "y": "" }
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": { "z": "", "y": "", "x": "" },
+							"tablet": { "z": "", "y": "", "x": "" },
+							"mobile": { "z": "", "y": "", "x": "" },
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": { "x": "", "y": "" },
+							"tablet": { "x": "", "y": "" },
+							"mobile": { "x": "", "y": "" }
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": { "x": "", "y": "", "scale": "" },
+							"tablet": { "x": "", "y": "", "scale": "" },
+							"mobile": { "x": "", "y": "", "scale": "" }
+						},
+						"skew": {
+							"desktop": { "x": "", "y": "" },
+							"tablet": { "x": "", "y": "" },
+							"mobile": { "x": "", "y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {"top": "", "right": "", "bottom": "", "left": ""},
+						"shadow": [
+							{
+								"hOffset": "",
+								"vOffset": "",
+								"blur": "",
+								"spreed": "",
+								"color": "#7090b0",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "",
+						"gradient": {
+							"type": "radial",
+							"radialType": "ellipse",
+							"colors": [
+								{
+									"color": "rgba(58, 66, 222, 1)",
+									"position": "0"
+								},
+								{
+									"color": "rgba(176, 195, 235, 1)",
+									"position": "80"
+								}
+							],
+							"centerPositions": { "x": 50, "y": 50 },
+							"angel": 90
+						},
+						"img": {
+							"url": "",
+							"desktop": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": ""
+							},
+							"tablet": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": ""
+							},
+							"mobile": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": ""
+							}
+						},
+						"video": {
+							"url": "",
+							"loop": false
+						},
+						"transition": 0.3
+					}
+				}
+			}
 		}
 	},
 	"supports": {

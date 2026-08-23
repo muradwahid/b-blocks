@@ -24,10 +24,38 @@
 		"items": {
 			"type": "array",
 			"default": [
-				{ "_key": "mt-default-1", "date": "2021", "title": "Founded", "description": "The company was founded with a small but passionate team.", "icon": "fa-solid fa-rocket", "accentColor": "" },
-				{ "_key": "mt-default-2", "date": "2022", "title": "First Launch", "description": "Shipped our first product to early adopters.", "icon": "fa-solid fa-flag", "accentColor": "" },
-				{ "_key": "mt-default-3", "date": "2023", "title": "10k Users", "description": "Crossed ten thousand active users worldwide.", "icon": "fa-solid fa-users", "accentColor": "" },
-				{ "_key": "mt-default-4", "date": "2024", "title": "Series A", "description": "Closed our Series A to fuel the next chapter.", "icon": "fa-solid fa-circle-check", "accentColor": "" }
+				{
+					"_key": "mt-default-1",
+					"date": "2021",
+					"title": "Founded",
+					"description": "The company was founded with a small but passionate team.",
+					"icon": "fa-solid fa-rocket",
+					"accentColor": ""
+				},
+				{
+					"_key": "mt-default-2",
+					"date": "2022",
+					"title": "First Launch",
+					"description": "Shipped our first product to early adopters.",
+					"icon": "fa-solid fa-flag",
+					"accentColor": ""
+				},
+				{
+					"_key": "mt-default-3",
+					"date": "2023",
+					"title": "10k Users",
+					"description": "Crossed ten thousand active users worldwide.",
+					"icon": "fa-solid fa-users",
+					"accentColor": ""
+				},
+				{
+					"_key": "mt-default-4",
+					"date": "2024",
+					"title": "Series A",
+					"description": "Closed our Series A to fuel the next chapter.",
+					"icon": "fa-solid fa-circle-check",
+					"accentColor": ""
+				}
 			]
 		},
 		"lineColor": {
@@ -158,7 +186,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

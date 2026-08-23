@@ -8,5 +8,6 @@ import { isBlockEnabled } from '../utils/functions';
 
 isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: keyTakeawaysIcon,
-	edit: Edit
+	edit: Edit,
+	save: () => null
 });

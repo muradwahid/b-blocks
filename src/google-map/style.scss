@@ -1,20 +1,23 @@
 // Frontend + editor shared styles for the Google Map block.
-// Mobile-first responsive. WCAG 2.1 AA accessibility friendly.
-// Per-instance values (height, aspect-ratio, border-radius, shadow,
-// caption color/size, max-width, alignment) are injected via the inline
-// <style> tag in render.php — these are the defaults / fallbacks only.
+// Structural only — every per-instance value (height, aspect-ratio, radius,
+// shadow, colours, typography, spacing) comes from Components/Common/Style.js.
 
 .wp-block-b-blocks-google-map {
 	* {
 		box-sizing: border-box;
 	}
 
-	.bb-gmap-figure {
+	// Direct child of the block wrapper — this is what the Advanced tab styles.
+	.b-blocks-google-map-container {
+		width: 100%;
+	}
+
+	.b-blocks-google-map-figure {
 		margin: 0;
 		padding: 0;
 	}
 
-	.bb-gmap-wrapper {
+	.b-blocks-google-map-wrapper {
 		position: relative;
 		width: 100%;
 		min-height: 100px;
@@ -22,7 +25,8 @@
 		overflow: hidden;
 	}
 
-	.bb-gmap-iframe {
+	.b-blocks-google-map-canvas,
+	.b-blocks-google-map-iframe {
 		display: block;
 		width: 100%;
 		height: 100%;
@@ -30,40 +34,246 @@
 		border: 0;
 	}
 
-	.bb-gmap-caption {
+	.b-blocks-google-map-caption {
 		margin: 8px 0 0;
 		padding: 0;
-		font-size: 14px;
 		line-height: 1.4;
 		color: inherit;
 	}
 
-	.bb-gmap-placeholder {
+	// ------------------------------------------------------------ tools bar
+	.b-blocks-google-map-tools {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+
+	.b-blocks-google-map-search {
+		flex: 1 1 220px;
+		min-width: 0;
+
+		gmp-place-autocomplete,
+		.b-blocks-google-map-search-input {
+			width: 100%;
+		}
+	}
+
+	.b-blocks-google-map-locate {
+		flex: 0 0 auto;
+		padding: 8px 14px;
+		border: 1px solid #c3c4c7;
+		border-radius: 4px;
+		background: #fff;
+		color: #1e1e1e;
+		font-size: 13px;
+		line-height: 1.2;
+		cursor: pointer;
+
+		&:disabled {
+			opacity: 0.6;
+			cursor: progress;
+		}
+
+		&:focus-visible {
+			outline: 2px solid #146ef5;
+			outline-offset: 2px;
+		}
+	}
+
+	// ----------------------------------------------------------- filter bar
+	.b-blocks-google-map-filter-bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+
+	.b-blocks-google-map-filter-dot {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		margin-right: 6px;
+		border-radius: 50%;
+		background: currentColor;
+		vertical-align: middle;
+	}
+
+	.b-blocks-google-map-filter-chip {
+		display: flex;
+		align-items: center;
+		padding: 6px 14px;
+		border: 0;
+		border-radius: 999px;
+		background: #f0f0f0;
+		color: #1e1e1e;
+		font-size: 13px;
+		line-height: 1.2;
+		cursor: pointer;
+		transition: background 0.2s ease, color 0.2s ease;
+
+		&:focus-visible {
+			outline: 2px solid #146ef5;
+			outline-offset: 2px;
+		}
+	}
+
+	// --------------------------------------------------------------- pins
+	.b-blocks-google-map-pin {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		text-align: center;
+		line-height: 0;
+
+		svg,
+		img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: contain;
+		}
+
+		.b-blocks-google-map-pin-svg {
+			outline: none !important;
+		}
+	}
+
+	.b-blocks-google-map-cluster {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+	}
+
+	// -------------------------------------------------------- info window
+	.b-blocks-google-map-info {
+		max-width: 100%;
+
+		.b-blocks-google-map-info-image {
+			display: block;
+			width: 100%;
+			height: auto;
+			margin-bottom: 8px;
+			border-radius: 4px;
+		}
+
+		.b-blocks-google-map-info-title {
+			margin: 0 0 4px;
+			font-size: 1.1em;
+			line-height: 1.3;
+		}
+
+		.b-blocks-google-map-info-body>*:last-child {
+			margin-bottom: 0;
+		}
+
+		.b-blocks-google-map-info-address {
+			margin: 6px 0 0;
+			opacity: 0.75;
+			font-size: 0.9em;
+		}
+	}
+
+	.b-blocks-google-map-directions-panel {
+		max-height: 320px;
+		margin-top: 12px;
+		overflow-y: auto;
+		font-size: 13px;
+	}
+
+	// ------------------------------------------------- fallback / no-script
+	.b-blocks-google-map-fallback,
+	.b-blocks-google-map-placeholder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
 		min-height: 180px;
 		padding: 24px;
 		background: #f0f0f0;
 		color: #50575e;
 		font-size: 14px;
 		line-height: 1.4;
+		text-align: center;
 		border: 1px dashed #c3c4c7;
 		border-radius: 4px;
 	}
 
-	// Alignment helpers — these mainly drive the figure when no max-width
-	// is set so the placeholder / caption follow the block's intent.
-	&.bb-gmap-align-left {
-		text-align: left;
+	.b-blocks-google-map-fallback-message {
+		margin: 0;
 	}
 
-	&.bb-gmap-align-center {
-		text-align: center;
+	.b-blocks-google-map-fallback-address {
+		margin: 0;
+		font-weight: 600;
+		color: #1e1e1e;
 	}
 
-	&.bb-gmap-align-right {
-		text-align: right;
+	.b-blocks-google-map-fallback-button {
+		padding: 8px 16px;
+		border: 0;
+		border-radius: 4px;
+		background: #146ef5;
+		color: #fff;
+		font-size: 13px;
+		cursor: pointer;
+
+		&:focus-visible {
+			outline: 2px solid #1e1e1e;
+			outline-offset: 2px;
+		}
+	}
+
+	// ---------------------------------------------------------- animations
+	.b-blocks-google-map-anim-drop {
+		animation: bBlocksGoogleMapDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+	}
+
+	.b-blocks-google-map-anim-bounce {
+		animation: bBlocksGoogleMapBounce 1.2s ease-in-out infinite;
+	}
+}
+
+@keyframes bBlocksGoogleMapDrop {
+	from {
+		transform: translateY(-40px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes bBlocksGoogleMapBounce {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-8px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-google-map {
+
+		.b-blocks-google-map-anim-drop,
+		.b-blocks-google-map-anim-bounce {
+			animation: none;
+		}
+
+		.b-blocks-google-map-filter-chip {
+			transition: none;
+		}
 	}
 }

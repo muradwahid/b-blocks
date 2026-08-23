@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/table-head",
+	"version": "1.0.0",
+	"title": "Table Head",
+	"category": "bBlocks",
+	"description": "Make responsive and feature-rich tables on the go with B Blocks Table, offering styling, typography, and layout options tailored for modern web design.",
+	"parent": [
+		"b-blocks/table"
+	],
+	"keywords": [
+		"key1",
+		"key2",
+		"key3",
+		"key4",
+		"key5"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"settings": {
+			"type": "object",
+			"default": {
+				"rowSpan": 1,
+				"colSpan": 1
+			}
+		},
+		"styles": {
+			"type": "object",
+			"default": {
+				"alignment": {
+					"desktop": "",
+					"tablet": "",
+					"mobile": ""
+				},
+				"normal": {
+					"bg": ""
+				},
+				"hover": {
+					"bg": "",
+					"transition": 0.2
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

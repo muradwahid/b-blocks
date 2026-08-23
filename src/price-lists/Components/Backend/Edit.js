@@ -6,7 +6,7 @@ import { isBlobURL } from '@wordpress/blob';
 import { produce } from 'immer';
 
 import { ImagePlaceholder } from '../../../../../bpl-tools/Components/Deprecated';
-import { getBackgroundCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getBackgroundCSS, getBorderCSS, getSeparatorCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
 
 import Settings from './Settings/Settings';
 import { prefix } from '../../utils/data';
@@ -74,7 +74,7 @@ const Edit = props => {
 								${getBackgroundCSS(background)}
 							}
 							${priceSl} .productImage{
-								${getSpaceCSS(imgBorder)}
+								${getBorderCSS(imgBorder)}
 							}
 							${priceSl} .productName{
 								color: ${nameColor};

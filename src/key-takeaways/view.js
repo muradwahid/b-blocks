@@ -1,11 +1,21 @@
-/**
- * Key Takeaways Block — frontend entry point.
- *
- * No interactive JavaScript. The file exists so the build pipeline emits
- * style.scss as view.css (the file the block.json "style" field points to).
- *
- * The block renders as a static <section> with a heading bar and a
- * semantic <ul>/<ol>; all per-instance styling is delivered via CSS
- * custom properties written into the wrapper from render.php.
- */
+import { createRoot } from 'react-dom/client';
+
 import './style.scss';
+import Style from './Components/Common/Style';
+import KeyTakeaways from './Components/Frontend/KeyTakeaways';
+
+document.addEventListener( 'DOMContentLoaded', () => {
+	const els = document.querySelectorAll( '.wp-block-b-blocks-key-takeaways' );
+
+	els.forEach( ( el ) => {
+		const attributes = JSON.parse( el.dataset.attributes );
+
+		createRoot( el ).render( <>
+			<Style attributes={ attributes } id={ el.id } />
+
+			<KeyTakeaways attributes={ attributes } />
+		</> );
+
+		el?.removeAttribute( 'data-attributes' );
+	} );
+} );

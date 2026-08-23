@@ -1,141 +1,58 @@
 import { __ } from '@wordpress/i18n';
-import {
-	useBlockProps,
-	RichText,
-	AlignmentToolbar,
-	BlockControls
-} from '@wordpress/block-editor';
+import { useBlockProps, RichText, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
+import { withSelect } from '@wordpress/data';
 
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import Style from '../Common/Style';
+import Divider from '../Frontend/Divider';
 import Settings from './Settings/Settings';
 
-const TYPE_VALUES = [ 'line', 'icon', 'text' ];
-const LINE_STYLE_VALUES = [ 'solid', 'dashed', 'dotted', 'double' ];
-const ALIGN_VALUES = [ 'left', 'center', 'right' ];
-const FONT_WEIGHT_VALUES = [ '400', '500', '600', '700' ];
-const TEXT_TRANSFORM_VALUES = [ 'none', 'uppercase', 'capitalize', 'lowercase' ];
+const ALIGN_VALUES = ['left', 'center', 'right'];
 
-const Edit = ( props ) => {
-	const { attributes, setAttributes } = props;
-	const {
-		type,
-		lineStyle,
-		lineColor,
-		lineWidth,
-		width,
-		alignment,
-		marginTop,
-		marginBottom,
-		iconClass,
-		iconSize,
-		iconColor,
-		iconBgColor,
-		iconPadding,
-		iconBorderRadius,
-		text,
-		textColor,
-		textBgColor,
-		textFontSize,
-		textFontWeight,
-		textTransform,
-		textPadding
-	} = attributes;
+const Edit = (props) => {
+	const { attributes, setAttributes, clientId, device } = props;
+	const { type = 'line', layout = {}, text = {} } = attributes;
 
-	const safeType = TYPE_VALUES.includes( type ) ? type : 'line';
-	const safeLineStyle = LINE_STYLE_VALUES.includes( lineStyle ) ? lineStyle : 'solid';
-	const safeAlign = ALIGN_VALUES.includes( alignment ) ? alignment : 'center';
-	const safeWeight = FONT_WEIGHT_VALUES.includes( textFontWeight ) ? textFontWeight : '600';
-	const safeTransform = TEXT_TRANSFORM_VALUES.includes( textTransform ) ? textTransform : 'none';
+	const isPremium = bBlocksPremiumChecker;
+	const updateObj = updateAttributes(attributes, setAttributes);
 
-	const resolvedLineColor = lineColor || '#cccccc';
-	const resolvedIconColor = iconColor || resolvedLineColor;
-	const resolvedTextColor = textColor || resolvedLineColor;
-	const resolvedIconBg = iconBgColor || 'transparent';
-	const resolvedTextBg = textBgColor || 'transparent';
+	const safeAlign = ALIGN_VALUES.includes(layout.alignment) ? layout.alignment : 'center';
 
-	const wrapperClasses = [
-		'bb-divider',
-		`bb-dv--${ safeType }`,
-		`bb-dv-style--${ safeLineStyle }`,
-		`bb-dv-align--${ safeAlign }`
-	].join( ' ' );
+	const textSlot = 'text' === type ? (
+		<RichText
+			tagName='span'
+			className='b-blocks-divider-text'
+			value={text.content || ''}
+			onChange={(val) => updateObj('text', val, 'content')}
+			placeholder={__('OR', 'b-blocks')}
+			allowedFormats={[]}
+		/>
+	) : null;
 
-	const wrapperStyle = {
-		'--bb-dv-line-color': resolvedLineColor,
-		'--bb-dv-line-width': `${ lineWidth ?? 2 }px`,
-		'--bb-dv-line-style': safeLineStyle,
-		'--bb-dv-max-width': `${ width ?? 100 }%`,
-		'--bb-dv-margin-top': `${ marginTop ?? 24 }px`,
-		'--bb-dv-margin-bottom': `${ marginBottom ?? 24 }px`,
-		'--bb-dv-icon-color': resolvedIconColor,
-		'--bb-dv-icon-bg': resolvedIconBg,
-		'--bb-dv-icon-size': `${ iconSize ?? 16 }px`,
-		'--bb-dv-icon-padding': `${ iconPadding ?? 8 }px`,
-		'--bb-dv-icon-radius': `${ iconBorderRadius ?? 50 }px`,
-		'--bb-dv-text-color': resolvedTextColor,
-		'--bb-dv-text-bg': resolvedTextBg,
-		'--bb-dv-text-size': `${ textFontSize ?? 14 }px`,
-		'--bb-dv-text-weight': safeWeight,
-		'--bb-dv-text-transform': safeTransform,
-		'--bb-dv-text-padding': `${ textPadding ?? 12 }px`
-	};
-
-	const blockProps = useBlockProps( {
-		className: wrapperClasses,
-		style: wrapperStyle
-	} );
-
-	return (
-		<>
-			<BlockControls>
-				<AlignmentToolbar
-					value={ safeAlign }
-					onChange={ ( val ) => setAttributes( { alignment: val || 'center' } ) }
-				/>
-			</BlockControls>
-
-			<Settings
-				attributes={ attributes }
-				setAttributes={ setAttributes }
+	return <>
+		<BlockControls>
+			<AlignmentToolbar
+				value={safeAlign}
+				onChange={(val) => updateObj('layout', val || 'center', 'alignment')}
 			/>
+		</BlockControls>
 
-			<div { ...blockProps }>
-				{ 'line' === safeType && (
-					<div className='bb-dv' role='separator'>
-						<hr className='bb-dv-line' aria-hidden='true' />
-					</div>
-				) }
+		<Settings {...{ attributes, setAttributes, updateObj, isPremium, device }} />
 
-				{ 'icon' === safeType && (
-					<div className='bb-dv' role='separator'>
-						<span className='bb-dv-line' aria-hidden='true'></span>
-						<span className='bb-dv-icon' aria-hidden='true'>
-							<i className={ iconClass || 'fa-solid fa-star' } />
-						</span>
-						<span className='bb-dv-line' aria-hidden='true'></span>
-					</div>
-				) }
+		<div {...useBlockProps()}>
+			<div>
+				<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
-				{ 'text' === safeType && (
-					<div
-						className='bb-dv'
-						role='separator'
-						aria-label={ text || __( 'Section divider', 'b-blocks' ) }
-					>
-						<span className='bb-dv-line' aria-hidden='true'></span>
-						<RichText
-							tagName='span'
-							className='bb-dv-text'
-							value={ text || '' }
-							onChange={ ( val ) => setAttributes( { text: val } ) }
-							placeholder={ __( 'OR', 'b-blocks' ) }
-							allowedFormats={ [] }
-						/>
-						<span className='bb-dv-line' aria-hidden='true'></span>
-					</div>
-				) }
+				<Divider attributes={attributes} textSlot={textSlot} />
 			</div>
-		</>
-	);
+		</div>
+	</>;
 };
 
-export default Edit;
+export default withSelect((select) => {
+	const { getDeviceType } = select('core/editor');
+
+	return {
+		device: getDeviceType()?.toLowerCase(),
+	};
+})(Edit);

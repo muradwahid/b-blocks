@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { TabPanel, PanelBody, TextareaControl, ToggleControl, TextControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { TabPanel, PanelBody, TextareaControl, Flex, ToggleControl, TextControl, __experimentalUnitControl as UnitControl, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon } from '@wordpress/components';
 
 //bpl tools
 import { Background, ColorControl, ColorsControl, IconControl, InlineDetailMediaUpload, Label } from '../../../../../../bpl-tools/Components';
@@ -29,6 +29,17 @@ const ItemSettings = (props) => {
 
 
     return <>
+        <Flex align="center" className='mt10' gap={10}>
+            <Label className='flex1'>{__('Direction', 'b-blocks')}</Label>
+            <ToggleGroupControl className='flex1' __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={boxes[index].direction} onChange={(val) => updateFlipBox('direction', val)}>
+
+                <ToggleGroupControlOptionIcon label="Right" value="right" icon={'arrow-right-alt'} />
+                <ToggleGroupControlOptionIcon label="Bottom" value="bottom" icon={'arrow-down-alt'} />
+                <ToggleGroupControlOptionIcon label="Left" value="left" icon={'arrow-left-alt'} />
+                <ToggleGroupControlOptionIcon label="Top" value="top" icon={'arrow-up-alt'} />
+
+            </ToggleGroupControl>
+        </Flex>
         <BorderControl label={__('Border:', 'b-blocks')} value={border} onChange={val => updateFlipBox('border', val)} />
 
         <ShadowControl label={__('Shadow:', 'b-blocks')} value={shadow} onChange={val => updateFlipBox('shadow', val)} />

@@ -1,4 +1,5 @@
 import { isExist } from '../../../../../bpl-tools/utils/common';
+import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 import { getShadowCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 import { prefix } from '../../utils/data';
 
@@ -19,6 +20,9 @@ const Style = ({ attributes, id, extraCSS = '' }) => {
 				width: ${!width || 0 === parseInt(width) ? 'auto' : width};
 				height: ${!height || 0 === parseInt(height) ? 'auto' : height};
 			}
+			#${id}{
+				${isValidCSS('justify-content', wrapper?.alignment?.desktop)}
+			}
 			${svgSl}{
 				fill: ${color};
 				height: ${size};
@@ -26,7 +30,7 @@ const Style = ({ attributes, id, extraCSS = '' }) => {
 				filter: drop-shadow(${getShadowCSS(shadow, 'text')});
 			}
 
-			${mainSl}:hover> svg {
+			${mainSl}:hover svg {
 				${isValidCSS('fill', icon?.hover?.color)}
 				${isValidCSS('filter', isExist(icon?.hover?.shadow) ? `drop-shadow(${getShadowCSS(icon?.hover?.shadow, 'text')})` : '')}
 			}
@@ -38,6 +42,19 @@ const Style = ({ attributes, id, extraCSS = '' }) => {
 			${mainSl}.${hover?.type}:hover{
 				animation: ${animationFunc('h', hover?.type, hover?.duration, hover?.delay, hover?.iteration === 'number' ? hover?.iterationCount : hover?.iteration)}
 			}
+
+			${tabBreakpoint}{
+				#${id}{
+					${isValidCSS('justify-content', wrapper?.alignment?.tablet)}
+				}
+			}
+
+			${mobileBreakpoint}{
+				#${id}{
+					${isValidCSS('justify-content', wrapper?.alignment?.mobile)}
+				}
+			}
+
 `.replace(/\s+/g, ' ')
 	}} />;
 }

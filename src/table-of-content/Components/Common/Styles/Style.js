@@ -59,7 +59,6 @@ const Style = ({ attributes, id }) => {
         ${panelLists}{
           list-style-type:none;
           margin:0px;
-          margin-left:${boxList.padding.desktop?.left};
         }
         ${panelItem}::marker{
           color:${markup.color};
@@ -143,11 +142,6 @@ const Style = ({ attributes, id }) => {
       }
       ${markup.view === "decimal"
             ? `
-          
-        ${panelLists}{
-
-          margin-left:${boxList.padding.desktop?.left};
-        }
         ${panelItem}::marker{
           font-size:${markup.markupSize.desktop};
         }
@@ -200,10 +194,6 @@ const Style = ({ attributes, id }) => {
       }
       ${markup.view === "decimal"
             ? `
-          
-        ${panelLists}{
-          margin-left:${boxList.padding.tablet?.left};
-        }
         ${panelItem}::marker{
           font-size:${markup.markupSize.tablet};
         }
@@ -256,9 +246,6 @@ const Style = ({ attributes, id }) => {
       }
       ${markup.view === "decimal"
             ? `
-        ${panelLists}{
-          margin-left:${boxList.padding.mobile?.left};
-        }
         ${panelItem}::marker{
           font-size:${markup.markupSize.mobile};
         }

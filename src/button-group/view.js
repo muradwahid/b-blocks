@@ -10,19 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	const allButtonGroupEls = document.querySelectorAll('.wp-block-b-blocks-button-group');
 	allButtonGroupEls.forEach(buttonGroupEl => {
 		const attributes = JSON.parse(buttonGroupEl.dataset.attributes);
-		const { btnType, btnOne, btnOneLink, btnTwo, btnTwoLink, isSep, sepType, sepText, sepIcon } = attributes;
+		const { btnType, btnOne, btnOneLink, btnTwo, btnTwoLink, isSep, sepType, sepText, sepIcon, layout = 'row' } = attributes;
 
 		createRoot(buttonGroupEl).render(<>
 			<Style attributes={attributes} id={buttonGroupEl.id} />
 
-			<div className={prefix}>
+			<div className={`${prefix} layout-${layout}`}>
 				<div className='bBlocksBtn firstBtn'>
 					<a className={`btnOne btn-${btnType}`} href={sanitizeURL(btnOneLink)} dangerouslySetInnerHTML={{ __html: sanitizeHTML(btnOne) }} />
 
-					{isSep && <div className='btnSeparator'>
+					{/* {isSep && <div className='btnSeparator'>
 						{'text' === sepType ? <span>{sepText}</span> : 'icon' === sepType && sepIcon?.class ? <i className={sepIcon?.class}></i> : ''}
-					</div>}
+					</div>} */}
 				</div>
+
+				{isSep && <div className='btnSeparator'>
+					{'text' === sepType ? <span>{sepText}</span> : 'icon' === sepType && sepIcon?.class ? <i className={sepIcon?.class}></i> : ''}
+				</div>}
 
 				<div className='bBlocksBtn secondBtn'>
 					<a className={`btnTwo btn-${btnType}`} href={sanitizeURL(btnTwoLink)} dangerouslySetInnerHTML={{ __html: sanitizeHTML(btnTwo) }} />

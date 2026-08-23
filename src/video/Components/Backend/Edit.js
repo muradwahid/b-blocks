@@ -4,13 +4,14 @@ import { MediaPlaceholder } from '../../../../../bpl-tools/Components';
 
 import Settings from './Settings/Settings';
 import Style from '../Common/Style';
-import Video from '../Common/Video';
+// import Video from '../Common/Video';
+import VideoBackend from './VideoBackend';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { source } = attributes;
 
-	const VideoEl = () => <Video attributes={attributes} />
+	const VideoEl = () => <VideoBackend attributes={attributes} />
 
 	return source ? <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />

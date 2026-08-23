@@ -4,12 +4,13 @@ import { prefix } from '../../utils/data';
 
 const FlipBoxes = ({ attributes, isBackend = false, custom }) => {
 	const { boxes, columns, isIcon, isDesc, isBtn, isLinkNewTab } = attributes;
-	
+
 	return <div className={`${prefix} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 		{boxes.map((item, index) => {
-			const { isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, isBackUpIcon = false, backIcon = {}, upBackIcon = {}, frontTitle, backTitle, desc, btn, btnLink } = item;
+			const { isFrontUpIcon = false, frontIcon = {}, upFrontIcon = {}, isBackUpIcon = false, backIcon = {}, upBackIcon = {}, frontTitle, backTitle, desc, btn, btnLink, direction = 'right' } = item;
 
-			return <div key={index} onClick={() => isBackend && custom.setActiveIndex(index)} className={`flipBox ${isBackend && index === custom.activeIndex ? 'bPlNowEditing' : ''}`} id={`flipBox-${index}`}>
+			return <div key={index} onClick={() => isBackend && custom.setActiveIndex(index)} className={`flipBox ${isBackend && index === custom.activeIndex ? 'bPlNowEditing' : ''}`} id={`flipBox-${index}`} data-direction={direction}>
+
 				<div className='box front'>
 					<div className='frontContent'>
 						{isIcon && <>

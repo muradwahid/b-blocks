@@ -1,0 +1,12 @@
+1. cookie-consent-bar
+2. woo-add-to-cart
+3. woo-best-sellers
+4. woo-category-grid
+5. woo-featured-product
+6. woo-mini-cart
+7. woo-product-carousel
+8. woo-product-filter
+9. woo-product-grid
+10. woo-product-reviews
+11. woo-sale-badge
+12. woo-single-product

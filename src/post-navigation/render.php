@@ -66,8 +66,17 @@ $pickFrom = static function ( $value, array $allowed, $fallback ) {
 	return in_array( $value, $allowed, true ) ? $value : $fallback;
 };
 
+// --- Diagnostic helper: explain (only with WP_DEBUG) why nothing rendered. ---
+$debugSkip = static function ( $reason ) {
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		return '<!-- b-blocks/post-navigation: ' . esc_html( $reason ) . ' -->';
+	}
+	return '';
+};
+
 // This block only makes sense on a single post / singular view.
 if ( ! is_singular() ) {
+	echo $debugSkip( 'not rendered — current view is not singular() (only renders on single posts/pages)' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
 	return;
 }
 
@@ -143,6 +152,11 @@ $nextPost = ( $nextPost instanceof WP_Post ) ? $nextPost : null;
 $hasAnyTile = ( $showPrev && ( $prevPost || '' !== $noPostsText ) )
 	|| ( $showNext && ( $nextPost || '' !== $noPostsText ) );
 if ( ! $hasAnyTile ) {
+	echo $debugSkip( sprintf(
+		'not rendered — no adjacent post found (prev=%s, next=%s) and "Text when no post" is empty. This view must be a single blog POST with an older/newer post, or set the no-post text.',
+		$prevPost ? 'yes' : 'none',
+		$nextPost ? 'yes' : 'none'
+	) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
 	return;
 }
 
@@ -166,10 +180,15 @@ $arrowGlyphs = [
 ];
 
 // --- Per-instance CSS variables. ---
+//
+// These are emitted as an inline `style` attribute on the wrapper (below) rather
+// than via a <style> element. Custom properties set on the wrapper cascade to all
+// descendants, and a style attribute survives content sanitizers / optimization
+// plugins that strip <style> tags out of the_content — a common cause of "styles
+// apply in the editor but not on the frontend".
 $alignMap = [ 'left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end' ];
 
-$css  = "#$id.bb-pn{";
-$css .= "--bb-pn-gap:{$gap}px;";
+$css  = "--bb-pn-gap:{$gap}px;";
 $css .= '--bb-pn-max-width:' . ( $maxWidth > 0 ? "{$maxWidth}px" : 'none' ) . ';';
 $css .= '--bb-pn-justify:' . $alignMap[ $blockAlign ] . ';';
 $css .= "--bb-pn-thumb-height:{$thumbnailHeight}px;";
@@ -195,7 +214,6 @@ $css .= "--bb-pn-accent:$accentColor;";
 $css .= "--bb-pn-hover-bg:$hoverBgValue;";
 $css .= "--bb-pn-hover-title:$hoverTitleValue;";
 $css .= "--bb-pn-transition:{$transitionDuration}ms;";
-$css .= '}';
 
 $wrapperClasses = trim(
 	'bb-pn'
@@ -334,20 +352,17 @@ $prevTile = $showPrev ? $renderTile( $prevPost, 'prev' ) : '';
 $nextTile = $showNext ? $renderTile( $nextPost, 'next' ) : '';
 
 if ( '' === $prevTile && '' === $nextTile ) {
+	echo $debugSkip( 'not rendered — both tiles are empty (both "Show Previous"/"Show Next" disabled, or no posts to show).' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
 	return;
 }
 ?>
 <nav
-	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped. ?>
-	<?php echo get_block_wrapper_attributes( [ 'class' => $wrapperClasses ] ); ?>
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() escapes class and style. ?>
+	<?php echo get_block_wrapper_attributes( [ 'class' => $wrapperClasses, 'style' => wp_strip_all_tags( $css ) ] ); ?>
 	id="<?php echo esc_attr( $id ); ?>"
 	aria-label="<?php echo esc_attr__( 'Post navigation', 'b-blocks' ); ?>"
 	data-bb-pn-init="1"
 >
-	<style>
-		<?php echo wp_strip_all_tags( $css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CSS-only output, HTML tags stripped. ?>
-	</style>
-
 	<div class="bb-pn-row">
 		<?php
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- tiles built from escaped pieces above.

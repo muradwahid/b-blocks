@@ -41,6 +41,13 @@ const Settings = ( { attributes, setAttributes } ) => {
 		} ).catch( () => {} );
 	}, [] );
 
+	// Migrate legacy single-string taxonomy to an array.
+	useEffect( () => {
+		if ( ! Array.isArray( taxonomy ) ) {
+			setAttributes( { taxonomy: taxonomy ? [ taxonomy ] : [ 'category' ] } );
+		}
+	}, [] );
+
 	const showAll = 0 === number;
 
 	return <InspectorControls>
@@ -50,9 +57,10 @@ const Settings = ( { attributes, setAttributes } ) => {
 			<PanelRow>
 				<Label className=''>{ __( 'Taxonomy:', 'b-blocks' ) }</Label>
 				<SelectControl
-					value={ taxonomy }
+					multiple
+					value={ Array.isArray( taxonomy ) ? taxonomy : [ taxonomy ] }
 					options={ taxonomyOptions }
-					onChange={ ( val ) => setAttributes( { taxonomy: val } ) }
+					onChange={ ( val ) => setAttributes( { taxonomy: Array.isArray( val ) ? val : [ val ] } ) }
 				/>
 			</PanelRow>
 

@@ -3,29 +3,41 @@
 @import './style.scss';
 
 .wp-block-b-blocks-article-card {
-	.bb-ac-card {
+	.b-blocks-article-card-card {
 		min-height: 40px;
 	}
 
 	// Keep the inline RichText caret legible.
-	.bb-ac-heading,
-	.bb-ac-excerpt {
+	.b-blocks-article-card-heading,
+	.b-blocks-article-card-excerpt {
 		[data-rich-text-placeholder]::after {
 			opacity: 0.5;
 		}
 	}
 
-	// Image placeholder when no media is selected.
-	.bb-ac-media-placeholder {
+	// Image placeholder when no media is selected (aspect-ratio from Style.js).
+	.b-blocks-article-card-media-placeholder {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		aspect-ratio: var(--bb-ac-img-ratio);
-		background-color: #f3f4f6;
-		color: #9ca3af;
-		font-size: 13px;
+		min-height: 180px;
+		width: 100%;
+		padding: 24px 16px;
+		box-sizing: border-box;
+		background: #f8fafc;
+		border: 2px dashed #cbd5e1;
+		border-radius: 8px;
+		color: #475569;
 		text-align: center;
-		padding: 12px;
+		transition: all 0.2s ease-in-out;
+		cursor: pointer;
+
+		&:hover {
+			background: #f1f5f9;
+			border-color: #94a3b8;
+			color: #1e293b;
+		}
 	}
 
 	svg {

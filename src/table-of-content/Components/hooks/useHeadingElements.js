@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingSl) => {
+const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingSl, blockWrapper) => {
   const [content, setContent] = useState([]);
   const [savedElements, setSavedElements] = useState([]);
 
@@ -30,7 +30,6 @@ const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingS
       if (headingElement.className == titleHeadingSl) return;
       if (headingElement?.children) {
         const hasExistingId = Array.from(headingElement?.children).some(child => child.getAttribute("id")?.startsWith("bppb-heading-anchor-"))
-
         if (!hasExistingId) {
           const span = document.createElement("span");
           span.setAttribute("id", `bppb-heading-anchor-${index}`);
@@ -72,12 +71,13 @@ const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingS
       // setSavedElements(elements);
       // addAnchorsToHeadings(headingElements);
 
-
-      const root = document.querySelector(".wp-block-post-content");
-      if (!root) return;
+      // const root = document.querySelector(".wp-block-post-content");
+      const doc = blockWrapper?.ownerDocument || blockWrapper || document;
+      const root = doc?.querySelector(".wp-block-post-content");
+      if (!root && !blockWrapper) return;
 
       const selectorString = tagName.join(", ");
-      const headingElements = root.querySelectorAll(selectorString);
+      const headingElements = root?.querySelectorAll(selectorString);
       if (!headingElements?.length) return;
 
       // Process heading elements
@@ -97,7 +97,7 @@ const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingS
     };
 
     fetchAndProcessHeadings();
-  }, [tagName, titleTag, titleText, titleSl, processHeadingElement, addAnchorsToHeadings, processTitleHeading]);
+  }, [tagName, titleTag, titleText, titleSl, processHeadingElement, addAnchorsToHeadings, processTitleHeading, blockWrapper]);
 
   return { savedElements, content };
 };

@@ -8,7 +8,7 @@ const ItemSettings = (props) => {
     const { attributes, setAttributes, index } = props;
     const { counters } = attributes;
     const counter = counters[index];
-    const { singleBG, icon, number, label } = counter;
+    const { background: singleBG, icon, number, label } = counter;
 
     const updateCounter = (key, value, ...keys) => {
         setAttributes({ counters: updateData(counters, value, index, key, ...keys) });

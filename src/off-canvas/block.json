@@ -1,4 +1,5 @@
 {
+	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/off-canvas",
 	"title": "Off-Canvas Drawer",
@@ -17,61 +18,179 @@
 			"type": "string",
 			"default": ""
 		},
-		"drawerSide": {
-			"type": "string",
-			"default": "left"
+		"trigger": {
+			"type": "object",
+			"default": {
+				"label": "Open Menu",
+				"showIcon": true,
+				"iconPosition": "left",
+				"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z' /></svg>",
+				"iconStyle": {
+					"color": "",
+					"size": { "desktop": "18px", "tablet": "", "mobile": "" },
+					"gap": "8px"
+				},
+				"align": "left",
+				"typo": {
+					"fontSize": {
+						"desktop": "15px",
+						"tablet": null,
+						"mobile": null
+					}
+				},
+				"transition": 200,
+				"normal": {
+					"bg": {
+						"type": "solid",
+						"color": "#1e1e1e"
+					},
+					"color": "#ffffff",
+					"border": {},
+					"padding": {
+						"desktop": {
+							"top": "10px",
+							"right": "18px",
+							"bottom": "10px",
+							"left": "18px"
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"borderRadius": {
+						"desktop": {
+							"top": "4px",
+							"right": "4px",
+							"bottom": "4px",
+							"left": "4px"
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"bg": {},
+					"color": "",
+					"border": {},
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"borderRadius": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
 		},
-		"drawerWidth": {
-			"type": "number",
-			"default": 320
+		"drawer": {
+			"type": "object",
+			"default": {
+				"side": "left",
+				"width": {
+					"desktop": "320px",
+					"tablet": "",
+					"mobile": "85vw"
+				},
+				"height": {
+					"desktop": "",
+					"tablet": "",
+					"mobile": ""
+				},
+				"bg": {
+					"type": "solid",
+					"color": "#ffffff"
+				},
+				"padding": {
+					"desktop": {
+						"top": "24px",
+						"right": "24px",
+						"bottom": "24px",
+						"left": "24px"
+					},
+					"tablet": {},
+					"mobile": {}
+				},
+				"border": {},
+				"borderRadius": {
+					"desktop": {},
+					"tablet": {},
+					"mobile": {}
+				}
+			}
 		},
-		"showOverlay": {
-			"type": "boolean",
-			"default": true
+		"overlay": {
+			"type": "object",
+			"default": {
+				"show": true,
+				"color": "rgba(0,0,0,0.5)"
+			}
 		},
-		"overlayColor": {
-			"type": "string",
-			"default": "rgba(0,0,0,0.5)"
+		"options": {
+			"type": "object",
+			"default": {
+				"closeLabel": "Close",
+				"triggerEvent": "click"
+			}
 		},
-		"triggerLabel": {
-			"type": "string",
-			"default": "Open Menu"
-		},
-		"triggerIcon": {
-			"type": "string",
-			"default": "menu"
-		},
-		"closeLabel": {
-			"type": "string",
-			"default": "Close"
-		},
-		"drawerBgColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"triggerBgColor": {
-			"type": "string",
-			"default": "#1e1e1e"
-		},
-		"triggerTextColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"triggerBorderRadius": {
-			"type": "number",
-			"default": 4
-		},
-		"drawerPadding": {
-			"type": "number",
-			"default": 24
-		},
-		"animationDuration": {
-			"type": "number",
-			"default": 300
-		},
-		"triggerAlign": {
-			"type": "string",
-			"default": "left"
+		"transition": {
+			"type": "object",
+			"default": {
+				"type": "default",
+				"duration": 400,
+				"easing": "ease"
+			}
 		}
 	},
 	"supports": {
@@ -79,9 +198,7 @@
 			"wide",
 			"full"
 		],
-		"html": false,
-		"className": true,
-		"customClassName": true
+		"html": false
 	},
 	"example": {
 		"attributes": {

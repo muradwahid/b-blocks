@@ -19,6 +19,35 @@
 			"type": "string",
 			"default": "0px"
 		},
+		"layout": {
+			"type": "string",
+			"default": "row"
+		},
+		"alignment": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"vertical": "center",
+					"horizontal": "center"
+				},
+				"tablet": {
+					"vertical": "",
+					"horizontal": ""
+				},
+				"mobile": {
+					"vertical": "",
+					"horizontal": ""
+				}
+			}
+		},
+		"gap": {
+			"type": "object",
+			"default": {
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			}
+		},
 		"btnAlign": {
 			"type": "string",
 			"default": "center"

@@ -1,9 +1,11 @@
 // Editor-only style adjustments for the Off-Canvas Drawer block.
 
 .wp-block-b-blocks-off-canvas {
-	.bb-oc-trigger {
-		// Block the trigger inside the editor — actual open/close is frontend only.
-		pointer-events: none;
+	.b-blocks-off-canvas-trigger {
+		// The trigger is inert in the editor (no onClick), but keep pointer events
+		// enabled so the :hover styles can be previewed. `pointer-events: none`
+		// would suppress :hover entirely.
+		cursor: default;
 		user-select: none;
 		display: inline-flex;
 		align-items: center;
@@ -14,34 +16,41 @@
 		font-weight: 600;
 		min-height: 44px;
 
-		.bb-oc-icon {
+		.b-blocks-off-canvas-icon {
+			display: inline-flex;
 			width: 18px;
 			height: 18px;
+
+			svg {
+				width: 100%;
+				height: 100%;
+				fill: currentColor;
+			}
 		}
 	}
 
-	.bb-oc-editor-preview-wrap {
+	.b-blocks-off-canvas-editor-preview-wrap {
 		margin-top: 12px;
 		padding: 12px;
 		border: 1px dashed #d2d6dc;
 		border-radius: 6px;
 		background: #fafafa;
-		--bb-oc-overlay: rgba(0, 0, 0, 0.5);
+		--b-blocks-off-canvas-overlay: rgba(0, 0, 0, 0.5);
 
 		&[data-side='right'] {
 			text-align: right;
 
-			.bb-oc-editor-preview {
+			.b-blocks-off-canvas-editor-preview {
 				margin-left: auto;
 			}
 		}
 
-		&[data-side='left'] .bb-oc-editor-preview {
+		&[data-side='left'] .b-blocks-off-canvas-editor-preview {
 			margin-right: auto;
 		}
 	}
 
-	.bb-oc-editor-preview-header {
+	.b-blocks-off-canvas-editor-preview-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -51,7 +60,7 @@
 		border-bottom: 1px solid #e6e6e6;
 	}
 
-	.bb-oc-editor-preview-label {
+	.b-blocks-off-canvas-editor-preview-label {
 		font-size: 12px;
 		font-weight: 600;
 		color: #555;
@@ -59,19 +68,19 @@
 		letter-spacing: 0.04em;
 	}
 
-	.bb-oc-editor-preview-hint {
+	.b-blocks-off-canvas-editor-preview-hint {
 		font-size: 11px;
 		color: #888;
 	}
 
-	.bb-oc-editor-preview {
+	.b-blocks-off-canvas-editor-preview {
 		position: relative;
 		border-radius: 4px;
 		min-height: 100px;
 		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 	}
 
-	.bb-oc-editor-close {
+	.b-blocks-off-canvas-editor-close {
 		position: absolute;
 		top: 6px;
 		right: 6px;
@@ -88,7 +97,7 @@
 		pointer-events: none;
 	}
 
-	.bb-oc-editor-content {
+	.b-blocks-off-canvas-editor-content {
 		padding: 28px 4px 4px;
 	}
 }

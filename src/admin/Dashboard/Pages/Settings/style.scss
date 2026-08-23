@@ -295,6 +295,8 @@
 			}
 
 			.bBlocksApiSaveBtn {
+				display: flex;
+				justify-content: center;
 				flex: 0 0 auto;
 				padding: 9px 22px !important;
 				min-width: 92px;

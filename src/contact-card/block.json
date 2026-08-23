@@ -2,7 +2,6 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/contact-card",
-	"version": "2.0.67.1",
 	"title": "Contact Card",
 	"category": "bBlocks",
 	"description": "Display a styled contact card (logo, address, phone, email, website, directions) with optional LocalBusiness JSON-LD schema for Google rich results.",
@@ -224,7 +223,8 @@
 			"preview": true
 		}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"viewScript": "file:./view.js",
 	"render": "file:./render.php"

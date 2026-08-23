@@ -11,7 +11,9 @@
 		"content filter item",
 		"filterable card"
 	],
-	"parent": ["b-blocks/content-filter"],
+	"parent": [
+		"b-blocks/content-filter"
+	],
 	"textdomain": "b-blocks",
 	"attributes": {
 		"category": {
@@ -27,7 +29,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"viewScript": "file:./view.js",
 	"render": "file:./render.php"

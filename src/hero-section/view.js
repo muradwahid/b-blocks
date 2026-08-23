@@ -1,11 +1,21 @@
-/**
- * Hero Section block — frontend view script.
- *
- * The hero is a pure CSS block — no JavaScript behavior is needed at runtime
- * (the optional muted video background is handled natively by the browser).
- *
- * This file exists so the build pipeline emits view.css alongside the block
- * (the bundler routes the SCSS imported here into the front-end stylesheet
- * referenced from block.json `"style": "file:./view.css"`).
- */
+import { createRoot } from 'react-dom/client';
+
 import './style.scss';
+import Style from './Components/Common/Style';
+import HeroSection from './Components/Frontend/HeroSection';
+
+document.addEventListener('DOMContentLoaded', () => {
+	const heroEls = document.querySelectorAll('.wp-block-b-blocks-hero-section');
+
+	heroEls.forEach((heroEl) => {
+		const attributes = JSON.parse(heroEl.dataset.attributes);
+
+		createRoot(heroEl).render(<>
+			<Style attributes={attributes} id={heroEl.id} />
+
+			<HeroSection attributes={attributes} id={heroEl.id} />
+		</>);
+
+		heroEl?.removeAttribute('data-attributes');
+	});
+});

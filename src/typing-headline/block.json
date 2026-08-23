@@ -30,9 +30,21 @@
 		"words": {
 			"type": "array",
 			"default": [
-				{ "_key": "th-default-1", "text": "grow faster", "color": "" },
-				{ "_key": "th-default-2", "text": "save time", "color": "" },
-				{ "_key": "th-default-3", "text": "close deals", "color": "" }
+				{
+					"_key": "th-default-1",
+					"text": "grow faster",
+					"color": ""
+				},
+				{
+					"_key": "th-default-2",
+					"text": "save time",
+					"color": ""
+				},
+				{
+					"_key": "th-default-3",
+					"text": "close deals",
+					"color": ""
+				}
 			]
 		},
 		"headingTag": {
@@ -136,7 +148,8 @@
 			"preview": true
 		}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"viewScript": "file:./view.js",
 	"render": "file:./render.php"

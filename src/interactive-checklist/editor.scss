@@ -1,9 +1,10 @@
 // Editor-only adjustments for the Interactive Checklist block.
-// Frontend styles ship via style.scss → view.css.
+// Frontend styles ship via style.scss → view.css. The sidebar items UI is the
+// shared bpl-tools ItemsPanel, which brings its own styling.
 @import './style.scss';
 
 .wp-block-b-blocks-interactive-checklist {
-	.bb-cl-empty {
+	.bBlocks-interactive-checklist-empty {
 		font-size: 13px;
 	}
 
@@ -12,12 +13,12 @@
 		opacity: 0.55;
 	}
 
-	.bb-cl-heading {
+	.bBlocks-interactive-checklist-heading {
 		display: block;
 	}
 
 	// Per-item editor action toolbar (move up/down/remove) on the canvas.
-	.bb-cl-editor-item-actions {
+	.bBlocks-interactive-checklist-editor-item-actions {
 		display: flex;
 		justify-content: flex-start;
 		gap: 4px;
@@ -25,47 +26,8 @@
 		margin-left: auto;
 	}
 
-	// In the editor the checkbox is a static preview — disable its hit area
-	// so clicks select the block / edit text instead of toggling state.
-	.bb-cl-checkbox {
-		pointer-events: none;
+	// The checkbox is clickable in the editor to preview the checked state.
+	.bBlocks-interactive-checklist-checkbox {
+		cursor: pointer;
 	}
-}
-
-// Sidebar repeater UI.
-.bb-cl-repeater {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin-bottom: 12px;
-
-	&__row {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		padding: 12px;
-		background: #f6f7f7;
-		border-radius: 4px;
-	}
-
-	&__row-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 8px;
-	}
-
-	&__row-title {
-		font-size: 12px;
-		font-weight: 600;
-	}
-
-	&__row-actions {
-		display: flex;
-		gap: 4px;
-	}
-}
-
-.bb-cl-add-item {
-	margin-top: 8px;
 }

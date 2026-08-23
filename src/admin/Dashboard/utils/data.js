@@ -24,7 +24,7 @@ export const dashboardInfo = (info) => {
         info,
         displayOurPlugins: true,
         tagline:
-            'Power up the block editor with 60+ lightweight, responsive Gutenberg blocks — no code required.',
+            'Power up the block editor with 80+ lightweight, responsive Gutenberg blocks — no code required.',
         layoutsLabel: 'Popular Blocks',
         layouts: ['Container', 'Slider', 'Accordion', 'Tabs', 'Countdown', 'Lottie', 'Image Compare'],
         gettingStartedTabs: [

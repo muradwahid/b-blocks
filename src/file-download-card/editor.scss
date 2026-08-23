@@ -3,12 +3,12 @@
 @import './style.scss';
 
 .wp-block-b-blocks-file-download-card {
-	.bb-fdc-card {
+	.b-blocks-file-download-card-card {
 		min-height: 40px;
 	}
 
 	// Placeholder shown when no file is selected yet.
-	.bb-fdc-placeholder {
+	.b-blocks-file-download-card-placeholder {
 		display: flex;
 		align-items: center;
 		gap: 12px;
@@ -20,7 +20,7 @@
 		font-size: 13px;
 	}
 
-	.bb-fdc-placeholder-icon {
+	.b-blocks-file-download-card-placeholder-icon {
 		flex: 0 0 auto;
 		width: 40px;
 		height: 40px;

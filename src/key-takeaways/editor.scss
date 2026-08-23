@@ -1,25 +1,19 @@
-// Editor-only adjustments for the Key Takeaways block.
-// Frontend styles ship via style.scss → view.css.
 @import './style.scss';
 
 .wp-block-b-blocks-key-takeaways {
-	.bb-kt-empty {
+	.bBlocks-key-takeaways-empty {
 		font-size: 13px;
 	}
 
-	// Keep RichText placeholders subtle in the editor canvas.
 	[data-rich-text-placeholder]::after {
 		opacity: 0.55;
 	}
 
-	// The heading RichText renders inline; force block context so its bar
-	// padding sits correctly like the frontend.
-	.bb-kt-heading {
+	.bBlocks-key-takeaways-heading {
 		display: block;
 	}
 
-	// Per-item editor action toolbar (move up/down/remove).
-	.bb-kt-editor-item-actions {
+	.bBlocks-key-takeaways-editor-item-actions {
 		display: flex;
 		justify-content: flex-start;
 		gap: 4px;
@@ -27,8 +21,7 @@
 	}
 }
 
-// Sidebar repeater UI.
-.bb-kt-repeater {
+.bBlocks-key-takeaways-repeater {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -61,6 +54,6 @@
 	}
 }
 
-.bb-kt-add-item {
+.bBlocks-key-takeaways-add-item {
 	margin-top: 8px;
 }

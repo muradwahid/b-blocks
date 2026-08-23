@@ -3,16 +3,10 @@
 @import './style.scss';
 
 .wp-block-b-blocks-hero-section {
-	// Pause/hide background videos inside the editor canvas so the editor
-	// stays still while authors are writing.
-	.bb-hs-bg video {
-		display: none !important;
-	}
-
 	// RichText placeholders inside the hero should pick up the editor styles.
-	.bb-hs-headline,
-	.bb-hs-subheadline,
-	.bb-hs-eyebrow {
+	.b-blocks-hero-section-heading,
+	.b-blocks-hero-section-subheading,
+	.b-blocks-hero-section-eyebrow {
 		&[contenteditable='true']:focus {
 			outline: 1px dashed currentColor;
 			outline-offset: 4px;
@@ -20,7 +14,7 @@
 	}
 
 	// Don't let CTAs in edit-mode preview navigate away on click.
-	.bb-hs-cta {
+	.b-blocks-hero-section-cta {
 		pointer-events: auto;
 	}
 }

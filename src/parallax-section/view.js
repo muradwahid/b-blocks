@@ -49,6 +49,12 @@ const init = () => {
 		return;
 	}
 
+	// Must match the background overscan in render.php / Common/style.js:
+	// the .bb-px-bg is sized `top:-30%;height:160%`, giving 30% of the section
+	// height of spare buffer above and below. Travel is clamped to this so the
+	// image can never slide out of its container and reveal the fallback color.
+	const OVERSCAN = 0.3;
+
 	let ticking = false;
 
 	const update = () => {
@@ -62,12 +68,20 @@ const init = () => {
 				return;
 			}
 
+			const height = rect.height;
+
 			// How far the section center has travelled relative to viewport center.
-			const sectionCenter = rect.top + rect.height / 2;
+			const sectionCenter = rect.top + height / 2;
 			const fromCenter = sectionCenter - viewportHeight / 2;
 
-			// Reduced rate: lower speed = subtler movement.
-			const offset = -(fromCenter * (speed / 100) * 0.3);
+			// Normalise to [-1, 1] over the full passage of the section through
+			// the viewport (center at bottom edge → 1, at top edge → -1).
+			const range = (viewportHeight + height) / 2 || 1;
+			const normalized = Math.max(-1, Math.min(1, fromCenter / range));
+
+			// Bound the travel to the overscan buffer; speed scales intensity.
+			const maxTravel = height * OVERSCAN;
+			const offset = -normalized * maxTravel * (speed / 100);
 			bg.style.setProperty('--bblocks-parallax-offset', `${offset.toFixed(2)}px`);
 		});
 

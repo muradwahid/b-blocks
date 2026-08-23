@@ -103,8 +103,19 @@ $shadowFor = static function ( $preset ) {
 };
 
 // --- Resolve query attributes. ---
-$taxonomyRaw = isset( $attributes['taxonomy'] ) ? sanitize_key( (string) $attributes['taxonomy'] ) : 'category';
-$taxonomy    = taxonomy_exists( $taxonomyRaw ) ? $taxonomyRaw : 'category';
+// Accept either a single taxonomy (legacy string) or a list of taxonomies (array).
+$taxonomyRaw = $attributes['taxonomy'] ?? 'category';
+$taxonomyRaw = is_array( $taxonomyRaw ) ? $taxonomyRaw : [ $taxonomyRaw ];
+$taxonomy    = [];
+foreach ( $taxonomyRaw as $tax ) {
+	$tax = sanitize_key( (string) $tax );
+	if ( '' !== $tax && taxonomy_exists( $tax ) && ! in_array( $tax, $taxonomy, true ) ) {
+		$taxonomy[] = $tax;
+	}
+}
+if ( empty( $taxonomy ) ) {
+	$taxonomy = [ 'category' ];
+}
 
 $orderby = $pickFrom( $attributes['orderby'] ?? 'name', [ 'name', 'count', 'term_id', 'slug' ], 'name' );
 $order   = $pickFrom( strtoupper( (string) ( $attributes['order'] ?? 'ASC' ) ), [ 'ASC', 'DESC' ], 'ASC' );
@@ -233,10 +244,14 @@ $css .= "--bb-tg-transition:{$hoverDuration}ms;";
 $css .= '}';
 
 // --- Accessible list label from the taxonomy. ---
-$taxObject = get_taxonomy( $taxonomy );
-$taxLabel  = ( $taxObject && ! empty( $taxObject->labels->name ) )
-	? $taxObject->labels->name
-	: $taxonomy;
+$taxLabels = [];
+foreach ( $taxonomy as $tax ) {
+	$taxObject   = get_taxonomy( $tax );
+	$taxLabels[] = ( $taxObject && ! empty( $taxObject->labels->name ) )
+		? $taxObject->labels->name
+		: $tax;
+}
+$taxLabel = implode( ', ', $taxLabels );
 /* translators: %s: taxonomy label (e.g. Categories). */
 $listLabel = sprintf( __( 'Browse by %s', 'b-blocks' ), $taxLabel );
 

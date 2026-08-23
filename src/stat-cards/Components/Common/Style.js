@@ -1,81 +1,118 @@
-/**
- * Builds the per-instance inline CSS for a Stat Cards block.
- *
- * Shared by the editor (Edit.js) so the canvas preview matches the frontend
- * output produced by render.php. All values are clamped to their safe ranges
- * before being written into CSS custom properties scoped under the wrapper id.
- */
-const clamp = ( value, min, max, fallback ) => {
-	const num = parseInt( value, 10 );
-	if ( Number.isNaN( num ) ) return fallback;
-	return Math.max( min, Math.min( max, num ) );
+import { generateCSS } from '../../../../../bpl-tools/Advanced/generateCSS';
+import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
+import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
+
+const num = ( v, fb ) => ( Number.isFinite( parseInt( v, 10 ) ) ? parseInt( v, 10 ) : fb );
+
+// Background / border / border-radius / padding / margin shared by each element.
+const boxStyleCSS = ( v = {} ) => `
+	${ getBackgroundCSS( v.bg ) }
+	${ getBorderBoxCSS( v.border ) }
+	${ isValidCSS( 'border-radius', getBoxCSS( v.borderRadius ) ) }
+	${ isValidCSS( 'padding', getBoxCSS( v.padding ) ) }
+	${ isValidCSS( 'margin', getBoxCSS( v.margin ) ) }
+`;
+
+const Style = ( { attributes, id, isBackend = false } ) => {
+	const { layout = {}, card = {}, number = {}, label = {}, description = {}, icon = {}, advanced } = attributes;
+
+	const cols = layout.columns || {};
+	const colGap = layout.columnGap || {};
+	const rowGap = layout.rowGap || {};
+	const align = [ 'left', 'center', 'right' ].includes( layout.align ) ? layout.align : 'center';
+	const itemsAlign = 'left' === align ? 'flex-start' : ( 'right' === align ? 'flex-end' : 'center' );
+	const cardStyle = card.style || 'flat';
+	const hasBorder = 'outlined' === cardStyle || 'accent-top' === cardStyle;
+
+	const cardPad = card.padding || {};
+	const cardRadius = card.borderRadius || {};
+	const cardMargin = card.margin || {};
+
+	const numTypo = number.typography || {};
+	const numTablet = numTypo.fontSize?.tablet;
+	const numMobile = numTypo.fontSize?.mobile;
+
+	const mainSl = `#${ id }`;
+	const wrapperSl = `${ mainSl } .bBlocks-stat-cards-wrapper`;
+	const gridSl = `${ wrapperSl } .bBlocks-stat-cards-grid`;
+	const itemSl = `${ wrapperSl } .bBlocks-stat-cards-item`;
+	const iconSl = `${ wrapperSl } .bBlocks-stat-cards-icon`;
+	const numberSl = `${ wrapperSl } .bBlocks-stat-cards-number`;
+	const labelSl = `${ wrapperSl } .bBlocks-stat-cards-label`;
+	const descSl = `${ wrapperSl } .bBlocks-stat-cards-desc`;
+
+	return <style
+		dangerouslySetInnerHTML={ {
+			__html: `
+			${ getTypoCSS( '', numTypo ).googleFontLink }
+			${ getTypoCSS( '', label.typography ).googleFontLink }
+			${ getTypoCSS( '', description.typography ).googleFontLink }
+			${ gridSl }{
+				grid-template-columns: repeat(${ num( cols.desktop, 3 ) }, minmax(0, 1fr));
+				column-gap: ${ colGap.desktop || '24px' };
+				row-gap: ${ rowGap.desktop || '24px' };
+			}
+			${ itemSl }{
+				align-items: ${ itemsAlign };
+				text-align: ${ align };
+				${ isValidCSS( 'padding', getBoxCSS( cardPad.desktop ) ) }
+				${ isValidCSS( 'margin', getBoxCSS( cardMargin.desktop ) ) }
+				${ isValidCSS( 'border-radius', getBoxCSS( cardRadius.desktop ) ) }
+				${ getBackgroundCSS( card.bg ) }
+				${ isValidCSS( 'box-shadow', getMultiShadowCSS( card.shadow ) ) }
+				${ hasBorder ? getBorderBoxCSS( card.border ) : '' }
+				${ 'accent-top' === cardStyle ? `border-top: ${ num( card.accentWidth, 4 ) }px solid ${ card.accentColor };` : '' }
+			}
+			${ iconSl }{
+				${ isValidCSS( 'color', icon.color ) }
+				font-size: ${ icon.size };
+				${ boxStyleCSS( icon ) }
+			}
+			${ getTypoCSS( numberSl, numTypo ).styles }
+			${ numberSl }{
+				${ isValidCSS( 'color', number.color ) }
+				justify-content: ${ itemsAlign };
+				${ boxStyleCSS( number ) }
+			}
+			${ getTypoCSS( labelSl, label.typography ).styles }
+			${ labelSl }{
+				${ isValidCSS( 'color', label.color ) }
+				${ boxStyleCSS( label ) }
+			}
+			${ getTypoCSS( descSl, description.typography ).styles }
+			${ descSl }{
+				${ isValidCSS( 'color', description.color ) }
+				${ boxStyleCSS( description ) }
+			}
+			${ tabBreakpoint }{
+				${ gridSl }{
+					grid-template-columns: repeat(${ num( cols.tablet, 2 ) }, minmax(0, 1fr));
+					column-gap: ${ colGap.tablet || colGap.desktop || '24px' };
+					row-gap: ${ rowGap.tablet || rowGap.desktop || '24px' };
+				}
+				${ itemSl }{
+					${ isValidCSS( 'padding', getBoxCSS( cardPad.tablet ) ) }
+					${ isValidCSS( 'margin', getBoxCSS( cardMargin.tablet ) ) }
+					${ isValidCSS( 'border-radius', getBoxCSS( cardRadius.tablet ) ) }
+				}
+				${ numTablet ? `${ numberSl }{ font-size: ${ numTablet }; }` : '' }
+			}
+			${ mobileBreakpoint }{
+				${ gridSl }{
+					grid-template-columns: repeat(${ num( cols.mobile, 1 ) }, minmax(0, 1fr));
+					column-gap: ${ colGap.mobile || colGap.tablet || colGap.desktop || '24px' };
+					row-gap: ${ rowGap.mobile || rowGap.tablet || rowGap.desktop || '24px' };
+				}
+				${ itemSl }{
+					${ isValidCSS( 'padding', getBoxCSS( cardPad.mobile ) ) }
+					${ isValidCSS( 'margin', getBoxCSS( cardMargin.mobile ) ) }
+					${ isValidCSS( 'border-radius', getBoxCSS( cardRadius.mobile ) ) }
+				}
+				${ numMobile ? `${ numberSl }{ font-size: ${ numMobile }; }` : '' }
+			}
+			${ generateCSS( id, advanced, isBackend, false ) }
+			`,
+		} }
+	/>;
 };
-
-const SHADOW_PRESETS = {
-	none: 'none',
-	sm: '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)',
-	md: '0 4px 12px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06)',
-	lg: '0 12px 28px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.08)'
-};
-
-export const shadowFor = ( preset ) =>
-	SHADOW_PRESETS[ preset ] || SHADOW_PRESETS.none;
-
-export const buildStatCardsCss = ( id, attributes ) => {
-	const {
-		columnsDesktop, columnsTablet, columnsMobile, columnGap, rowGap,
-		alignment, iconSize,
-		numberSizeDesktop, numberSizeTablet, numberSizeMobile, numberWeight,
-		labelSize, labelWeight, descriptionSize,
-		cardBackground, cardBorder, borderWidth, accentColor, accentWidth,
-		borderRadius, cardPaddingV, cardPaddingH, shadowPreset,
-		numberColor, labelColor, descriptionColor, iconColor,
-		maxWidth, blockAlign
-	} = attributes;
-
-	const mw = clamp( maxWidth, 0, 1600, 0 );
-	const textAlign = alignment === 'left'
-		? 'left'
-		: alignment === 'right' ? 'right' : 'center';
-	const itemsAlign = textAlign === 'left'
-		? 'flex-start'
-		: textAlign === 'right' ? 'flex-end' : 'center';
-	const justify = blockAlign === 'left'
-		? 'flex-start'
-		: blockAlign === 'right' ? 'flex-end' : 'center';
-
-	const vars = [
-		`--bb-sc-cols-desktop: ${ clamp( columnsDesktop, 1, 6, 3 ) }`,
-		`--bb-sc-cols-tablet: ${ clamp( columnsTablet, 1, 6, 2 ) }`,
-		`--bb-sc-cols-mobile: ${ clamp( columnsMobile, 1, 6, 1 ) }`,
-		`--bb-sc-col-gap: ${ clamp( columnGap, 0, 80, 24 ) }px`,
-		`--bb-sc-row-gap: ${ clamp( rowGap, 0, 80, 24 ) }px`,
-		`--bb-sc-max-width: ${ mw === 0 ? '100%' : `${ mw }px` }`,
-		`--bb-sc-justify: ${ justify }`,
-		`--bb-sc-text-align: ${ textAlign }`,
-		`--bb-sc-items-align: ${ itemsAlign }`,
-		`--bb-sc-icon-size: ${ clamp( iconSize, 12, 64, 32 ) }px`,
-		`--bb-sc-number-size-desktop: ${ clamp( numberSizeDesktop, 16, 96, 48 ) }px`,
-		`--bb-sc-number-size-tablet: ${ clamp( numberSizeTablet, 16, 96, 40 ) }px`,
-		`--bb-sc-number-size-mobile: ${ clamp( numberSizeMobile, 16, 96, 32 ) }px`,
-		`--bb-sc-number-weight: ${ numberWeight || '700' }`,
-		`--bb-sc-label-size: ${ clamp( labelSize, 10, 28, 16 ) }px`,
-		`--bb-sc-label-weight: ${ labelWeight || '400' }`,
-		`--bb-sc-desc-size: ${ clamp( descriptionSize, 10, 20, 14 ) }px`,
-		`--bb-sc-card-bg: ${ cardBackground || 'transparent' }`,
-		`--bb-sc-card-border: ${ cardBorder || '#e2e8f0' }`,
-		`--bb-sc-border-width: ${ clamp( borderWidth, 0, 8, 1 ) }px`,
-		`--bb-sc-accent: ${ accentColor || '#146EF5' }`,
-		`--bb-sc-accent-width: ${ clamp( accentWidth, 2, 12, 4 ) }px`,
-		`--bb-sc-radius: ${ clamp( borderRadius, 0, 48, 12 ) }px`,
-		`--bb-sc-pad-v: ${ clamp( cardPaddingV, 8, 96, 28 ) }px`,
-		`--bb-sc-pad-h: ${ clamp( cardPaddingH, 8, 96, 24 ) }px`,
-		`--bb-sc-shadow: ${ shadowFor( shadowPreset ) }`,
-		`--bb-sc-number-color: ${ numberColor || '#111827' }`,
-		`--bb-sc-label-color: ${ labelColor || '#374151' }`,
-		`--bb-sc-desc-color: ${ descriptionColor || '#6B7280' }`,
-		`--bb-sc-icon-color: ${ iconColor || '#146EF5' }`
-	].join( ';' );
-
-	return `#${ id }.bb-sc{${ vars };}`;
-};
+export default Style;

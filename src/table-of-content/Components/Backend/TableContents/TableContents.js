@@ -11,9 +11,13 @@ const TableContents = ({ attributes, setAttributes, id }) => {
     const [toggle, setToggle] = useState(true);
     // const [content, setContent] = useState([]);
     const [contentsAttr, setContentsAttr] = useState();
-    const { boxList, header, title, tagName, minimize, markup, sticky, isNested=false } = attributes;
+    const { boxList, header, title, tagName, minimize, markup, sticky, isNested = false } = attributes;
 
-    const { content, savedElements } = useHeadingElements(tagName, title.tag, title.text, '.bblocks-tbcn-accordion-title', 'bblocks-tbcn-content-table-title');
+    const accordion = useRef();
+    const titleRef = useRef();
+    const accordionPanel = useRef();
+
+    const { content, savedElements } = useHeadingElements(tagName, title.tag, title.text, '.bblocks-tbcn-accordion-title', 'bblocks-tbcn-content-table-title',accordion?.current);
 
 
     useEffect(() => {
@@ -21,10 +25,6 @@ const TableContents = ({ attributes, setAttributes, id }) => {
             setAttributes({ headings: savedElements });
         }
     }, [savedElements]);
-
-    const accordion = useRef();
-    const titleRef = useRef();
-    const accordionPanel = useRef();
 
     useEffect(() => {
         const panel = accordionPanel.current;

@@ -36,12 +36,12 @@ const ArrowRightIcon = () => <svg viewBox='0 0 24 24' width={13} height={13} fil
     <line x1='5' y1='12' x2='19' y2='12' />
     <polyline points='12 5 19 12 12 19' />
 </svg>;
-const GridIcon = () => <svg viewBox='0 0 24 24' width={14} height={14} fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round' strokeLinejoin='round'>
-    <rect x='3' y='3' width='7' height='7' rx='1' />
-    <rect x='14' y='3' width='7' height='7' rx='1' />
-    <rect x='3' y='14' width='7' height='7' rx='1' />
-    <rect x='14' y='14' width='7' height='7' rx='1' />
-</svg>;
+// const GridIcon = () => <svg viewBox='0 0 24 24' width={14} height={14} fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round' strokeLinejoin='round'>
+//     <rect x='3' y='3' width='7' height='7' rx='1' />
+//     <rect x='14' y='3' width='7' height='7' rx='1' />
+//     <rect x='3' y='14' width='7' height='7' rx='1' />
+//     <rect x='14' y='14' width='7' height='7' rx='1' />
+// </svg>;
 
 const FACEBOOK_ICON = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 292 512' fill='#1877F2' width={18} height={18}>
     <path d='m66 299.3v212.7h116v-212.7h86.5l18-97.8h-104.5v-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 0.4 37 1.2v-88.7c-14.3-3.9-49.3-7.9-69.5-7.9-106.9 0-156.2 50.5-156.2 159.4v42.1h-66v97.8z' />
@@ -173,10 +173,10 @@ const Welcome = (props) => {
                             {primaryCtaLabel}
                         </Button>}
 
-                        <Button className='bp3dWelcomeBtn bp3dWelcomeBtnSecondary' href='#/demos'>
+                        {/* <Button className='bp3dWelcomeBtn bp3dWelcomeBtnSecondary' href='#/demos'>
                             <GridIcon />
                             View Demos
-                        </Button>
+                        </Button> */}
 
                         {!isPremium && <a className='bp3dWelcomeBtnGhost' href='#pricing'>
                             <CrownIcon />

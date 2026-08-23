@@ -70,13 +70,48 @@
 		"days": {
 			"type": "array",
 			"default": [
-				{ "day": "Monday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
-				{ "day": "Tuesday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
-				{ "day": "Wednesday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
-				{ "day": "Thursday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
-				{ "day": "Friday", "open": true, "timeFrom": "09:00", "timeTo": "17:00" },
-				{ "day": "Saturday", "open": false, "timeFrom": "10:00", "timeTo": "14:00" },
-				{ "day": "Sunday", "open": false, "timeFrom": "10:00", "timeTo": "14:00" }
+				{
+					"day": "Monday",
+					"open": true,
+					"timeFrom": "09:00",
+					"timeTo": "17:00"
+				},
+				{
+					"day": "Tuesday",
+					"open": true,
+					"timeFrom": "09:00",
+					"timeTo": "17:00"
+				},
+				{
+					"day": "Wednesday",
+					"open": true,
+					"timeFrom": "09:00",
+					"timeTo": "17:00"
+				},
+				{
+					"day": "Thursday",
+					"open": true,
+					"timeFrom": "09:00",
+					"timeTo": "17:00"
+				},
+				{
+					"day": "Friday",
+					"open": true,
+					"timeFrom": "09:00",
+					"timeTo": "17:00"
+				},
+				{
+					"day": "Saturday",
+					"open": false,
+					"timeFrom": "10:00",
+					"timeTo": "14:00"
+				},
+				{
+					"day": "Sunday",
+					"open": false,
+					"timeFrom": "10:00",
+					"timeTo": "14:00"
+				}
 			]
 		},
 		"badgeOpenBg": {
@@ -156,7 +191,8 @@
 			"preview": true
 		}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"viewScript": "file:./view.js",
 	"render": "file:./render.php"

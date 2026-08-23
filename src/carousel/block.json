@@ -24,9 +24,9 @@
 			"type": "string",
 			"default": ""
 		},
-		"clientId":{
-			"type":"string",
-			"default":""
+		"clientId": {
+			"type": "string",
+			"default": ""
 		},
 		"pagination": {
 			"type": "object",
@@ -88,7 +88,7 @@
 				"speed": 1,
 				"loop": true,
 				"touchMove": true,
-				"autoHeight":false
+				"autoHeight": false
 			}
 		},
 		"styles": {
@@ -201,7 +201,7 @@
 						},
 						"desktop": {
 							"radius": {
-								"top": "50%",	
+								"top": "50%",
 								"right": "50%",
 								"bottom": "50%",
 								"left": "50%"
@@ -274,9 +274,9 @@
 				}
 			}
 		},
-		"advanced":{
-			"type":"object",
-			"default":{
+		"advanced": {
+			"type": "object",
+			"default": {
 				"dimension": {
 					"padding": {
 						"desktop": {
@@ -553,7 +553,11 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": [
+		"file:../index.js",
+		"swiper"
+	],
+	"script": "swiper",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

@@ -3,11 +3,11 @@
 @import './style.scss';
 
 .wp-block-b-blocks-process-steps {
-	.bb-ps-empty {
+	.bBlocksProcessStepsEmpty {
 		font-size: 13px;
 	}
 
-	.bb-ps-step__title {
+	.bBlocksProcessStepsTitle {
 		margin-top: 0;
 	}
 
@@ -18,7 +18,7 @@
 }
 
 // Sidebar steps repeater UI (Inspector panel).
-.bb-ps-repeater {
+.bBlocksProcessStepsRepeater {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -51,6 +51,6 @@
 	}
 }
 
-.bb-ps-add-step {
+.bBlocksProcessStepsAddStep {
 	margin-top: 8px;
 }

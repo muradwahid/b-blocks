@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { produce } from 'immer';
@@ -13,15 +13,18 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
 	const { counters = [], columns, duration, separator = {}, isLabel } = attributes;
 
+	const editorRef = useRef();
+
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	const isPremium = bBlocksPremiumChecker;
 
 	useEffect(() => {
-		const counterEl = document.querySelectorAll(`.${prefix} .counterNumber .number`);
-
+		if (!editorRef.current) return;
+		const doc = editorRef.current.ownerDocument;
+		const counterEl = doc.querySelectorAll(`.${prefix} .counterNumber .number`);
 		performCounter(counterEl, duration, separator);
-	}, [counters, duration, separator]);
+	}, [counters, duration, separator, editorRef]);
 
 	const updateCounter = (type, val, otherType = false) => {
 		const newCounters = produce(counters, draft => {
@@ -37,7 +40,7 @@ const Edit = props => {
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} activeIndex={activeIndex} setActiveIndex={setActiveIndex} isPremium={isPremium} />
 
-		<div {...useBlockProps()}>
+		<div {...useBlockProps({ ref: editorRef })}>
 			<Style attributes={attributes} id={`block-${clientId}`} />
 
 			<div className={`${prefix} columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>

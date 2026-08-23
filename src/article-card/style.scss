@@ -1,71 +1,27 @@
 // Frontend + editor shared styles for the Article Card block.
-// Mobile-first. All per-instance values come from CSS custom properties emitted
-// inline (scoped under the unique wrapper id) in render.php.
+// Structural rules only — every per-instance value (colors, sizing, background,
+// padding, border, radius, shadow, typography, split basis) is emitted as real
+// CSS scoped to the wrapper id by Components/Common/Style.js. No CSS variables.
 
-.wp-block-b-blocks-article-card,
-.bb-ac {
-	--bb-ac-max-width: 640px;
-	--bb-ac-img-ratio: 16/9;
-	--bb-ac-img-basis: 40%;
-	--bb-ac-body-basis: 60%;
-	--bb-ac-card-bg: #ffffff;
-	--bb-ac-heading-color: #111827;
-	--bb-ac-text-color: #374151;
-	--bb-ac-meta-color: #6b7280;
-	--bb-ac-badge-bg: #2563eb;
-	--bb-ac-badge-color: #ffffff;
-	--bb-ac-cta-bg: #2563eb;
-	--bb-ac-cta-color: #ffffff;
-	--bb-ac-cta-hover-bg: #1d4ed8;
-	--bb-ac-cta-hover-color: #ffffff;
-	--bb-ac-border-color: #e5e7eb;
-	--bb-ac-border-width: 1px;
-	--bb-ac-radius: 8px;
-	--bb-ac-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-	--bb-ac-pad-v: 20px;
-	--bb-ac-pad-h: 20px;
-	--bb-ac-head-size-d: 18px;
-	--bb-ac-head-size-t: 17px;
-	--bb-ac-head-size-m: 16px;
-	--bb-ac-head-weight: 600;
-	--bb-ac-exc-size-d: 14px;
-	--bb-ac-exc-size-m: 13px;
-	--bb-ac-exc-weight: 400;
-	--bb-ac-cta-size: 14px;
-	--bb-ac-cta-weight: 600;
-	--bb-ac-cta-pad-v: 8px;
-	--bb-ac-cta-pad-h: 18px;
-	--bb-ac-cta-radius: 6px;
-}
-
-.wp-block-b-blocks-article-card {
-	&.bb-ac--align-center { display: flex; justify-content: center; }
-	&.bb-ac--align-right { display: flex; justify-content: flex-end; }
-}
-
-.bb-ac {
+.b-blocks-article-card {
 	* {
 		box-sizing: border-box;
 	}
 
-	.bb-ac-card {
+	// Center / right-align the card within its wrapper.
+	&.b-blocks-article-card--align-center { display: flex; justify-content: center; }
+	&.b-blocks-article-card--align-right { display: flex; justify-content: flex-end; }
+
+	.b-blocks-article-card-card {
 		margin: 0;
-		max-width: var(--bb-ac-max-width);
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
-		background-color: var(--bb-ac-card-bg);
-		border-radius: var(--bb-ac-radius);
-		box-shadow: var(--bb-ac-shadow);
-	}
-
-	&.bb-ac--has-border .bb-ac-card {
-		border: var(--bb-ac-border-width) solid var(--bb-ac-border-color);
 	}
 
 	// Whole-card link wrapper inherits the card flex layout.
-	.bb-ac-link {
+	.b-blocks-article-card-link {
 		display: flex;
 		flex-direction: column;
 		text-decoration: none;
@@ -74,202 +30,135 @@
 	}
 
 	// --- Media ---
-	.bb-ac-media {
+	.b-blocks-article-card-media {
 		flex: 0 0 auto;
 		overflow: hidden;
 		background-color: #f3f4f6;
 	}
 
-	.bb-ac-img {
+	// <picture> is a passthrough wrapper so the <img> lays out as the media's child.
+	.b-blocks-article-card-picture {
+		display: contents;
+	}
+
+	.b-blocks-article-card-img {
 		display: block;
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		aspect-ratio: var(--bb-ac-img-ratio);
 	}
 
 	// --- Body ---
-	.bb-ac-body {
+	.b-blocks-article-card-body {
 		flex: 1 1 auto;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		padding: var(--bb-ac-pad-v) var(--bb-ac-pad-h);
 		min-width: 0;
 	}
 
-	.bb-ac-badge {
+	.b-blocks-article-card-badge {
 		display: inline-block;
 		align-self: flex-start;
-		padding: 3px 10px;
 		font-size: 12px;
 		font-weight: 600;
 		line-height: 1.4;
-		border-radius: 999px;
-		background-color: var(--bb-ac-badge-bg);
-		color: var(--bb-ac-badge-color);
 	}
 
-	.bb-ac-heading {
+	.b-blocks-article-card-heading {
 		margin: 0;
-		font-size: var(--bb-ac-head-size-m);
-		font-weight: var(--bb-ac-head-weight);
 		line-height: 1.35;
-		color: var(--bb-ac-heading-color);
 
 		a { color: inherit; }
 	}
 
-	.bb-ac-excerpt {
+	.b-blocks-article-card-excerpt {
 		margin: 0;
-		font-size: var(--bb-ac-exc-size-m);
-		font-weight: var(--bb-ac-exc-weight);
 		line-height: 1.6;
-		color: var(--bb-ac-text-color);
 
 		a { color: inherit; }
 	}
 
-	.bb-ac-meta {
+	.b-blocks-article-card-meta {
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
 		font-size: 13px;
 		line-height: 1.4;
-		color: var(--bb-ac-meta-color);
 	}
 
-	.bb-ac-meta-icon {
-		font-size: 0.95em;
+	.b-blocks-article-card-meta-icon {
+		display: inline-flex;
+		align-items: center;
+
+		svg {
+			width: 1em;
+			height: 1em;
+			fill: currentColor;
+		}
 	}
 
 	// --- CTA ---
-	.bb-ac-cta {
+	.b-blocks-article-card-cta {
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
 		align-self: flex-start;
 		margin-top: 4px;
-		font-size: var(--bb-ac-cta-size);
-		font-weight: var(--bb-ac-cta-weight);
 		line-height: 1.2;
 		text-decoration: none;
 		transition: background-color 0.2s ease, color 0.2s ease;
 	}
 
-	.bb-ac-cta-arrow {
+	.b-blocks-article-card-cta-arrow {
 		width: 1em;
 		height: 1em;
 		transition: transform 0.2s ease;
 	}
 
-	// Button style CTA
-	&.bb-ac--cta-button .bb-ac-cta {
-		padding: var(--bb-ac-cta-pad-v) var(--bb-ac-cta-pad-h);
-		border-radius: var(--bb-ac-cta-radius);
-		background-color: var(--bb-ac-cta-bg);
-		color: var(--bb-ac-cta-color);
-
-		&:hover,
-		&:focus-visible {
-			background-color: var(--bb-ac-cta-hover-bg);
-			color: var(--bb-ac-cta-hover-color);
-		}
-	}
-
-	// Arrow-link style CTA
-	&.bb-ac--cta-link .bb-ac-cta {
-		color: var(--bb-ac-cta-bg);
-
-		&:hover .bb-ac-cta-arrow,
-		&:focus-visible .bb-ac-cta-arrow {
+	// Arrow-link CTA: nudge the arrow on hover (colors come from Style.js).
+	&.b-blocks-article-card--cta-link .b-blocks-article-card-cta {
+		&:hover .b-blocks-article-card-cta-arrow,
+		&:focus-visible .b-blocks-article-card-cta-arrow {
 			transform: translateX(3px);
 		}
 	}
 
 	// --- Alignment of body content ---
-	&.bb-ac--align-center .bb-ac-body {
+	&.b-blocks-article-card--align-center .b-blocks-article-card-body {
 		align-items: center;
 		text-align: center;
 
-		.bb-ac-badge,
-		.bb-ac-cta { align-self: center; }
+		.b-blocks-article-card-badge,
+		.b-blocks-article-card-cta { align-self: center; }
 	}
 
-	&.bb-ac--align-right .bb-ac-body {
+	&.b-blocks-article-card--align-right .b-blocks-article-card-body {
 		align-items: flex-end;
 		text-align: right;
 
-		.bb-ac-badge,
-		.bb-ac-cta { align-self: flex-end; }
-	}
-
-	// --- Focus ring ---
-	.bb-ac-cta:focus-visible,
-	.bb-ac-link:focus-visible {
-		outline: 2px solid var(--bb-ac-cta-bg);
-		outline-offset: 2px;
+		.b-blocks-article-card-badge,
+		.b-blocks-article-card-cta { align-self: flex-end; }
 	}
 
 	// --- Card-link hover lift ---
-	&.bb-ac--cta-link .bb-ac-link,
-	.bb-ac-link {
+	.b-blocks-article-card-link {
 		transition: box-shadow 0.25s ease, transform 0.25s ease;
-	}
-	.bb-ac-link.is-hover {
-		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-		transform: translateY(-2px);
-	}
 
-	// --- Horizontal layout (desktop) ---
-	@media (min-width: 600px) {
-		&.bb-ac--horizontal {
-			.bb-ac-card { flex-direction: row; }
-			.bb-ac-link { flex-direction: row; }
-
-			.bb-ac-media {
-				flex: 0 0 var(--bb-ac-img-basis);
-				align-self: stretch;
-			}
-			.bb-ac-img { height: 100%; }
-			.bb-ac-body { flex: 1 1 var(--bb-ac-body-basis); justify-content: center; }
-		}
-
-		&.bb-ac--horizontal.bb-ac--img-right {
-			.bb-ac-card { flex-direction: row-reverse; }
-			.bb-ac-link { flex-direction: row-reverse; }
-		}
-
-		.bb-ac-heading { font-size: var(--bb-ac-head-size-d); }
-		.bb-ac-excerpt { font-size: var(--bb-ac-exc-size-d); }
-	}
-
-	@media (min-width: 600px) and (max-width: 781px) {
-		.bb-ac-heading { font-size: var(--bb-ac-head-size-t); }
-	}
-
-	// Mobile: when stacking is disabled, keep horizontal even on small screens.
-	&.bb-ac--horizontal:not(.bb-ac--mobile-stack) {
-		@media (max-width: 599px) {
-			.bb-ac-card { flex-direction: row; }
-			.bb-ac-link { flex-direction: row; }
-			.bb-ac-media { flex: 0 0 var(--bb-ac-img-basis); align-self: stretch; }
+		&:hover {
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+			transform: translateY(-2px);
 		}
 	}
 
-	// Mobile: hide image entirely when configured.
-	&.bb-ac--mobile-hide-img {
-		@media (max-width: 599px) {
-			.bb-ac-media { display: none; }
-		}
-	}
+	// Layout direction, image basis and aspect ratio (per device) are emitted as
+	// scoped CSS by Components/Common/Style.js.
 
 	@media (prefers-reduced-motion: reduce) {
-		.bb-ac-cta,
-		.bb-ac-cta-arrow,
-		.bb-ac-link {
+		.b-blocks-article-card-cta,
+		.b-blocks-article-card-cta-arrow,
+		.b-blocks-article-card-link {
 			transition: none !important;
 		}
-		.bb-ac-link.is-hover { transform: none; }
+		.b-blocks-article-card-link:hover { transform: none; }
 	}
 }

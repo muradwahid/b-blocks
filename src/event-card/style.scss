@@ -1,60 +1,39 @@
-/**
- * Event Card — frontend + shared styles. Mobile-first.
- */
-
 .wp-block-b-blocks-event-card {
-	&.bb-event-card {
-		max-width: var(--bb-ec-max-width, 640px);
-		margin-left: 0;
-		margin-right: 0;
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
 	}
 
-	&.bb-event-card--align-center {
+	.b-blocks-event-card--align-center {
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	&.bb-event-card--align-right {
+	.b-blocks-event-card--align-right {
 		margin-left: auto;
 		margin-right: 0;
 	}
 
-	.bb-event-card__inner {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		background-color: var(--bb-ec-bg, #ffffff);
-		color: var(--bb-ec-text, #1a1a1a);
-		border-radius: var(--bb-ec-radius, 8px);
-		padding: var(--bb-ec-padding, 24px 28px);
-		overflow: hidden;
-	}
-
-	// Card style variants.
-	&.bb-event-card--default .bb-event-card__inner {
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.06);
-		border-top: 4px solid var(--bb-ec-accent, #146ef5);
-	}
-
-	&.bb-event-card--outlined .bb-event-card__inner {
-		border: 1px solid rgba(0, 0, 0, 0.12);
-		border-top: 4px solid var(--bb-ec-accent, #146ef5);
-	}
-
-	&.bb-event-card--flat .bb-event-card__inner {
-		border: 0;
-		box-shadow: none;
+	// Optional cover image at the top of the card.
+	.b-blocks-event-card-cover {
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: 6px;
+			object-fit: cover;
+		}
 	}
 
 	// Header: badge + heading.
-	.bb-event-card__header {
+	.b-blocks-event-card-header {
 		display: flex;
 		align-items: flex-start;
 		gap: 16px;
 	}
 
-	.bb-event-card__badge {
+	.b-blocks-event-card-badge {
 		flex: 0 0 auto;
 		display: flex;
 		flex-direction: column;
@@ -63,33 +42,33 @@
 		min-width: 56px;
 		padding: 8px 10px;
 		border-radius: 8px;
-		background-color: var(--bb-ec-accent, #146ef5);
+		background-color: #146ef5;
 		color: #ffffff;
 		line-height: 1.1;
 		text-align: center;
 	}
 
-	.bb-event-card__badge-month {
+	.b-blocks-event-card-badge-month {
 		font-size: 12px;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.04em;
+		color: inherit;
 	}
 
-	.bb-event-card__badge-day {
+	.b-blocks-event-card-badge-day {
 		font-size: 24px;
 		font-weight: 700;
+		color: inherit;
 	}
 
-	.bb-event-card__heading {
+	.b-blocks-event-card-heading {
 		flex: 1 1 auto;
 		min-width: 0;
 	}
 
-	.bb-event-card__title {
+	.b-blocks-event-card-title {
 		margin: 0 0 6px;
-		font-size: var(--bb-ec-title-size, 22px);
-		font-weight: var(--bb-ec-title-weight, 700);
 		line-height: 1.25;
 		color: inherit;
 		display: flex;
@@ -98,7 +77,7 @@
 		gap: 8px;
 	}
 
-	.bb-event-card__status {
+	.b-blocks-event-card-status {
 		display: inline-block;
 		font-size: 12px;
 		font-weight: 600;
@@ -109,62 +88,60 @@
 		line-height: 1.6;
 	}
 
-	&.is-cancelled .bb-event-card__status {
+	&.is-cancelled .b-blocks-event-card-status {
 		background-color: #fdecec;
 		color: #b91c1c;
 	}
 
-	&.is-postponed .bb-event-card__status {
+	&.is-postponed .b-blocks-event-card-status {
 		background-color: #fef3c7;
 		color: #92400e;
 	}
 
-	&.is-moved-online .bb-event-card__status {
+	&.is-moved-online .b-blocks-event-card-status {
 		background-color: #e0edff;
 		color: #1d4ed8;
 	}
 
-	&.is-cancelled .bb-event-card__title {
+	&.is-cancelled .b-blocks-event-card-title {
 		text-decoration: line-through;
 		text-decoration-color: rgba(185, 28, 28, 0.5);
 	}
 
 	// Meta rows (date, location, organizer).
-	.bb-event-card__meta {
+	.b-blocks-event-card-meta {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 6px;
 		margin: 0;
-		font-size: var(--bb-ec-meta-size, 14px);
 		font-style: normal;
-		color: var(--bb-ec-muted, #6b7280);
+		color: #6b7280;
 		line-height: 1.5;
 	}
 
-	.bb-event-card__meta-icon {
+	.b-blocks-event-card-meta-icon {
 		flex: 0 0 auto;
 		width: 16px;
 		height: 16px;
-		color: var(--bb-ec-accent, #146ef5);
+		color: #146ef5;
 	}
 
-	.bb-event-card__meta a {
+	.b-blocks-event-card-meta a {
 		color: inherit;
 		text-decoration: underline;
 		text-underline-offset: 2px;
 	}
 
-	.bb-event-card__country {
+	.b-blocks-event-card-country {
 		opacity: 0.8;
 	}
 
-	.bb-event-card__organizer-label {
+	.b-blocks-event-card-organizer-label {
 		opacity: 0.85;
 	}
 
-	.bb-event-card__description {
-		font-size: var(--bb-ec-desc-size, 15px);
+	.b-blocks-event-card-description {
 		line-height: 1.6;
 		color: inherit;
 
@@ -178,46 +155,46 @@
 	}
 
 	// CTA button.
-	.bb-event-card__cta {
+	.b-blocks-event-card-cta {
 		margin-top: 4px;
 	}
 
-	.bb-event-card__btn {
+	.b-blocks-event-card-btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		padding: 10px 22px;
-		font-size: var(--bb-ec-cta-size, 15px);
+		font-size: 15px;
 		font-weight: 600;
 		line-height: 1.4;
 		text-decoration: none;
-		color: var(--bb-ec-cta-text, #ffffff);
-		background-color: var(--bb-ec-cta-bg, #146ef5);
+		color: #ffffff;
+		background-color: #146ef5;
 		border: 0;
-		border-radius: var(--bb-ec-cta-radius, 6px);
+		border-radius: 6px;
 		cursor: pointer;
 
 		&:hover,
 		&:focus {
-			color: var(--bb-ec-cta-text, #ffffff);
-			background-color: var(--bb-ec-cta-hover-bg, #0040e3);
+			color: #ffffff;
+			background-color: #0040e3;
 		}
 
 		&:focus-visible {
-			outline: 2px solid var(--bb-ec-accent, #146ef5);
+			outline: 2px solid #146ef5;
 			outline-offset: 2px;
 		}
 	}
 
 	// Center / right alignment of inner content.
-	&.bb-event-card--align-center .bb-event-card__inner,
-	&.bb-event-card--align-right .bb-event-card__inner {
+	&.b-blocks-event-card--align-center .b-blocks-event-card-inner,
+	&.b-blocks-event-card--align-right .b-blocks-event-card-inner {
 		text-align: inherit;
 	}
 
 	// Respect reduced-motion: only animate hover when the user allows it.
 	@media (prefers-reduced-motion: no-preference) {
-		.bb-event-card__btn {
+		.b-blocks-event-card-btn {
 			transition: background-color 0.18s ease;
 		}
 	}
@@ -237,11 +214,11 @@
 
 // Small screens: stack badge above heading for breathing room.
 @media (max-width: 480px) {
-	.wp-block-b-blocks-event-card .bb-event-card__header {
+	.wp-block-b-blocks-event-card .b-blocks-event-card-header {
 		gap: 12px;
 	}
 
-	.wp-block-b-blocks-event-card .bb-event-card__badge {
+	.wp-block-b-blocks-event-card .b-blocks-event-card-badge {
 		min-width: 48px;
 	}
 }

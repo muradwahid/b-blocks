@@ -1,96 +1,49 @@
-// Key Takeaways Block — frontend + editor shared styles.
-// Mobile-first. WCAG 2.1 AA friendly defaults. Pure static — no animations.
-
-.wp-block-b-blocks-key-takeaways {
-	--bb-kt-accent: #0d6efd;
-	--bb-kt-card-bg: #f0f6ff;
-	--bb-kt-text-color: #1e293b;
-	--bb-kt-heading-color: #ffffff;
-	--bb-kt-icon-color: #ffffff;
-	--bb-kt-radius: 8px;
-	--bb-kt-border-width: 0px;
-	--bb-kt-border-color: transparent;
-	--bb-kt-item-size: 16px;
-	--bb-kt-item-weight: 400;
-	--bb-kt-heading-size: 18px;
-	--bb-kt-heading-weight: 700;
-	--bb-kt-icon-size: 18px;
-	--bb-kt-pad-v: 20px;
-	--bb-kt-pad-h: 24px;
-	--bb-kt-item-gap: 10px;
-	--bb-kt-max-width: none;
-
+.bBlocks-key-takeaways-wrapper {
 	* {
 		box-sizing: border-box;
 	}
 
-	// --- The card ------------------------------------------------------
-	&.bb-kt-block {
-		max-width: var(--bb-kt-max-width);
-		margin-left: 0;
-		margin-right: 0;
-		background: var(--bb-kt-card-bg);
-		border-radius: var(--bb-kt-radius);
-		border: var(--bb-kt-border-width) solid var(--bb-kt-border-color);
-		overflow: hidden;
-	}
+	// --- The card
+	margin-left: 0;
+	margin-right: 0;
+	overflow: hidden;
 
-	// When a max-width is set, center the card within its column for the
-	// centered alignment so it doesn't hug the left edge.
-	&.bb-kt-align--center.bb-kt-block {
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	// --- Heading bar ---------------------------------------------------
-	.bb-kt-heading {
+	// --- Heading bar 
+	.bBlocks-key-takeaways-heading {
 		margin: 0;
-		padding: calc(var(--bb-kt-pad-v) * 0.6) var(--bb-kt-pad-h);
-		background: var(--bb-kt-accent);
-		color: var(--bb-kt-heading-color);
-		font-size: var(--bb-kt-heading-size);
-		font-weight: var(--bb-kt-heading-weight);
 		line-height: 1.3;
 		word-break: break-word;
+		padding: 20px 24px;
 	}
 
-	// --- Card body -----------------------------------------------------
-	.bb-kt-body {
-		padding: var(--bb-kt-pad-v) var(--bb-kt-pad-h);
-	}
-
-	.bb-kt-empty {
+	.bBlocks-key-takeaways-empty {
 		margin: 0;
 		font-style: italic;
 		color: #6c757d;
 	}
 
-	// --- The list ------------------------------------------------------
-	.bb-kt-list {
+	// --- The list
+	.bBlocks-key-takeaways-list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: var(--bb-kt-item-gap);
-		counter-reset: bb-kt-counter;
+		counter-reset: bBlocks-key-takeaways-counter;
 	}
 
-	// --- A single item -------------------------------------------------
-	.bb-kt-item {
+	// --- A single item 
+	.bBlocks-key-takeaways-item {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		gap: 10px;
 		margin: 0;
 		padding: 0;
-		counter-increment: bb-kt-counter;
-		color: var(--bb-kt-text-color);
-		font-size: var(--bb-kt-item-size);
-		font-weight: var(--bb-kt-item-weight);
+		counter-increment: bBlocks-key-takeaways-counter;
 		line-height: 1.5;
 	}
 
-	.bb-kt-text {
+	.bBlocks-key-takeaways-text {
 		flex: 1 1 auto;
 		min-width: 0;
 		word-break: break-word;
@@ -111,64 +64,45 @@
 		}
 	}
 
-	// --- Check icon badge ----------------------------------------------
-	.bb-kt-icon {
+	// --- Check icon badge 
+	.bBlocks-key-takeaways-icon {
 		flex: 0 0 auto;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--bb-kt-icon-color);
-		font-size: var(--bb-kt-icon-size);
 		line-height: 1.5;
-		min-height: calc(var(--bb-kt-item-size) * 1.5);
 
-		> i {
+		>i {
 			font-size: inherit;
 			line-height: 1;
 			color: inherit;
 		}
+
+		>svg {
+			width: 1em;
+			height: 1em;
+			fill: currentColor;
+		}
 	}
 
-	// --- Numbered badge ------------------------------------------------
-	.bb-kt-num {
+	// --- Numbered badge 
+	.bBlocks-key-takeaways-num {
 		flex: 0 0 auto;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: calc(var(--bb-kt-icon-size) + 10px);
-		height: calc(var(--bb-kt-icon-size) + 10px);
 		border-radius: 50%;
-		background: var(--bb-kt-accent);
-		color: var(--bb-kt-icon-color);
-		font-size: calc(var(--bb-kt-icon-size) * 0.8);
 		font-weight: 700;
 		line-height: 1;
 
 		&::before {
-			content: counter(bb-kt-counter);
+			content: counter(bBlocks-key-takeaways-counter);
 		}
 	}
 
-	// --- Bullet disc ---------------------------------------------------
-	.bb-kt-bullet {
+	// --- Bullet disc 
+	.bBlocks-key-takeaways-bullet {
 		flex: 0 0 auto;
-		width: calc(var(--bb-kt-icon-size) * 0.45);
-		height: calc(var(--bb-kt-icon-size) * 0.45);
-		margin-top: calc(var(--bb-kt-item-size) * 0.55);
 		border-radius: 50%;
-		background: var(--bb-kt-accent);
-	}
-
-	// --- Centered alignment of item text -------------------------------
-	&.bb-kt-align--center {
-		.bb-kt-heading {
-			text-align: center;
-		}
-		.bb-kt-item {
-			justify-content: center;
-		}
-		.bb-kt-text {
-			flex: 0 1 auto;
-		}
 	}
 }

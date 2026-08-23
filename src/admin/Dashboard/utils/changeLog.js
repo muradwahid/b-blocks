@@ -1,5 +1,70 @@
 export const changeLog = [
     {
+        version: '2.1.1 - 02 August 2026',
+        list: [
+            'Added: 4 new blocks',
+            '> Hero Section',
+            '> File Download Card',
+            '> Off-Canvas Drawer',
+            '> Audio Player'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.1.0 - 26 July 2026',
+        list: [
+            'Added: 10 new blocks',
+            '> Media & Text Section',
+            '> Expand Content',
+            '> Process Steps',
+            '> Blockquote',
+            '> Divider',
+            '> Key Takeaways',
+            '> Stat Cards',
+            '> Interactive Checklist',
+            '> Article Card',
+            '> Event Card',
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.0.44 - 18 June 2026',
+        list: [
+            'Compatible apiVersion 3 Carousel Block.'
+        ],
+        type: 'fix'
+    },
+    {
+        version: '2.0.43 - 14 June 2026',
+        list: [
+            'Compatible apiVersion 3 Table of Content, Video Block & Chart Block.',
+            'Added: Icon Size, Gap, and Unmarked Color settings to the Star Rating block.',
+            'Added: Icon Box Alignment option.',
+            'Added: Button Group layout option.',
+            'Fixed: Table Block issues.',
+            'Added: Flip Box direction option.',
+            'Fixed: Column width drag & drop issue.',
+        ],
+        type: 'update'
+    },
+    {
+        version: '2.0.42 - 08 June 2026',
+        list: [
+            'Added: Table Block.',
+            'Fixed: minor bug.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.0.41 - 16 May 2026',
+        list: [
+            'Fixed: Minor bug.',
+            'Added: Template Library pattern counts & template page counts.',
+            'Fixed: Template Library filter style issues.'
+        ],
+        type: 'fix'
+    },
+    {
         version: '2.0.40 - 29 Apr 2026',
         list: [
             'Added: WhatsApp Chat Block.'

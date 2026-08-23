@@ -16,9 +16,21 @@
 		"links": {
 			"type": "array",
 			"default": [
-				{ "_key": "l0", "label": "Overview", "anchor": "overview" },
-				{ "_key": "l1", "label": "Features", "anchor": "features" },
-				{ "_key": "l2", "label": "Pricing", "anchor": "pricing" }
+				{
+					"_key": "l0",
+					"label": "Overview",
+					"anchor": "overview"
+				},
+				{
+					"_key": "l1",
+					"label": "Features",
+					"anchor": "features"
+				},
+				{
+					"_key": "l2",
+					"label": "Pricing",
+					"anchor": "pricing"
+				}
 			]
 		},
 		"sticky": {
@@ -107,7 +119,8 @@
 		"anchor": true,
 		"customClassName": true
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": [
 		"file:./view.css"
 	],

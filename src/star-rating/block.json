@@ -27,9 +27,9 @@
 			"type": "string",
 			"default": "solid"
 		},
-		"iconColor":{
-			"type":"string",
-			"default":"#f0ad4e"
+		"iconColor": {
+			"type": "string",
+			"default": "#f0ad4e"
 		},
 		"prefix": {
 			"type": "string",
@@ -37,19 +37,19 @@
 		},
 		"gap": {
 			"type": "string",
-			"default": "10px"
+			"default": "0px"
 		},
 		"alignment": {
 			"type": "string",
 			"default": "center"
 		},
-		"margin":{
-			"type":"object",
-			"default":{
-				"top":"",
-				"right":"",
-				"bottom":"",
-				"left":""
+		"margin": {
+			"type": "object",
+			"default": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
 			}
 		},
 		"textTypo": {
@@ -67,6 +67,14 @@
 		"textShadow": {
 			"type": "array",
 			"default": []
+		},
+		"iconSize": {
+			"type": "string",
+			"default": "20px"
+		},
+		"unmarkedColor": {
+			"type": "string",
+			"default": "#ccd6df"
 		}
 	},
 	"supports": {

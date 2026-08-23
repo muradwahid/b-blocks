@@ -1,10 +1,23 @@
-/**
- * File Download Card — frontend behavior.
- *
- * The card is rendered entirely server-side as static HTML + CSS. The download
- * CTA is a native `<a href download>` element, so there is intentionally no
- * client-side JavaScript: hover states are driven by native CSS `:hover`
- * against scoped custom properties. Importing the stylesheet here is what
- * causes the build to emit the view.css referenced by block.json.
- */
+import { createRoot } from 'react-dom/client';
+
 import './style.scss';
+import Style from './Components/Common/Style';
+import FileDownloadCard from './Components/Frontend/FileDownloadCard';
+
+document.addEventListener('DOMContentLoaded', () => {
+	const cardEls = document.querySelectorAll('.wp-block-b-blocks-file-download-card');
+
+	cardEls.forEach((cardEl) => {
+		if (!cardEl.dataset.attributes) return;
+
+		const attributes = JSON.parse(cardEl.dataset.attributes);
+
+		createRoot(cardEl).render(<>
+			<Style attributes={attributes} id={cardEl.id} />
+
+			<FileDownloadCard attributes={attributes} />
+		</>);
+
+		cardEl?.removeAttribute('data-attributes');
+	});
+});

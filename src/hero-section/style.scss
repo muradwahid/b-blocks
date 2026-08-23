@@ -1,9 +1,10 @@
-// Hero Section block — shared frontend + editor styles.
-// Mobile-first. Per-instance overrides live in the inline <style> block
-// emitted by render.php, scoped under #bBlocksHeroSection-<n>.
+// Hero Section block — shared frontend + editor structural styles.
+// Mobile-first. All attribute-driven values (colors, sizes, spacing,
+// typography, background, alignment) are injected per-instance by
+// Components/Common/Style.js, scoped under `#<id> .b-blocks-hero-section …`.
+// This stylesheet carries only the layout structure.
 
-.wp-block-b-blocks-hero-section,
-.bb-hs {
+.b-blocks-hero-section {
 	display: flex;
 	position: relative;
 	width: 100%;
@@ -16,28 +17,7 @@
 		box-sizing: border-box;
 	}
 
-	.bb-hs-bg {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		pointer-events: none;
-
-		video {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			display: block;
-		}
-	}
-
-	.bb-hs-overlay {
-		position: absolute;
-		inset: 0;
-		z-index: 1;
-		pointer-events: none;
-	}
-
-	.bb-hs-container {
+	.b-blocks-hero-section-container {
 		position: relative;
 		z-index: 2;
 		width: 100%;
@@ -50,32 +30,28 @@
 		padding-right: 24px;
 	}
 
-	// Eyebrow label.
-	.bb-hs-eyebrow {
+	.b-blocks-hero-section-eyebrow {
 		display: inline-block;
 		text-transform: uppercase;
-		padding: 6px 14px;
-		border-radius: 999px;
 		line-height: 1.4;
 	}
 
-	.bb-hs-headline {
+	.b-blocks-hero-section-heading {
 		margin: 0;
 	}
 
-	.bb-hs-subheadline {
+	.b-blocks-hero-section-subheading {
 		margin: 0;
 		line-height: 1.55;
 	}
 
-	.bb-hs-actions {
+	.b-blocks-hero-section-actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 16px;
 		margin-top: 8px;
 	}
 
-	.bb-hs-cta {
+	.b-blocks-hero-section-cta {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -91,43 +67,6 @@
 		}
 	}
 
-	.bb-hs-cta--secondary.bb-hs-cta--outline {
-		background: transparent;
-	}
-
-	.bb-hs-cta--secondary.bb-hs-cta--ghost {
-		background: transparent;
-		border: none;
-	}
-
-	// Default horizontal alignment.
-	&.bb-hs-align--center {
-		.bb-hs-container {
-			text-align: center;
-			align-items: center;
-		}
-		.bb-hs-actions { justify-content: center; }
-	}
-	&.bb-hs-align--left {
-		.bb-hs-container {
-			text-align: left;
-			align-items: flex-start;
-		}
-		.bb-hs-actions { justify-content: flex-start; }
-	}
-	&.bb-hs-align--right {
-		.bb-hs-container {
-			text-align: right;
-			align-items: flex-end;
-		}
-		.bb-hs-actions { justify-content: flex-end; }
-	}
-
-	// Vertical alignment of the inner container.
-	&.bb-hs-valign--top { align-items: flex-start; }
-	&.bb-hs-valign--middle { align-items: center; }
-	&.bb-hs-valign--bottom { align-items: flex-end; }
-
 	// Screen-reader-only text.
 	.screen-reader-text {
 		border: 0;
@@ -142,19 +81,8 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.bb-hs-cta {
+		.b-blocks-hero-section-cta {
 			transition: none;
-		}
-		.bb-hs-bg video {
-			display: none;
-		}
-	}
-
-	// Mobile: hide background video to save bandwidth — poster fallback
-	// (when set) remains as the still background.
-	@media (max-width: 600px) {
-		.bb-hs-bg video {
-			display: none;
 		}
 	}
 }

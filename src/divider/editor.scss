@@ -20,7 +20,7 @@
 
 .wp-block-b-blocks-divider {
 	// Editor-only placeholder color for the inline-editable text variant.
-	.bb-dv-text[contenteditable='true']:empty::before {
+	.b-blocks-divider-text[contenteditable='true']:empty::before {
 		content: attr( data-placeholder );
 		color: rgba( 0, 0, 0, 0.4 );
 		font-style: italic;
@@ -28,7 +28,7 @@
 
 	// Keep the icon visible in the editor even when its color is the same as
 	// the canvas background (e.g. white-on-white themes).
-	.bb-dv-icon {
+	.b-blocks-divider-icon {
 		min-width: 1em;
 		min-height: 1em;
 	}

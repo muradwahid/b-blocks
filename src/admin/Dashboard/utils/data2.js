@@ -1,4 +1,4 @@
-import { FaFacebook, OpenAiIcon } from './icons';
+import { FaFacebook, GoogleMapsIcon, OpenAiIcon } from './icons';
 
 export const changelogs = [
     {
@@ -390,5 +390,11 @@ export const apiKeyData = [
     {
         name: 'openAi', label: 'Open Ai', icon: <OpenAiIcon className="cartIcon" />,inputLabel: 'Api Key',infoEl: `<p>Enter your Api Key. get it from <a target='_blank' rel='noreferrer' href='https://platform.openai.com/account/api-keys'>Open Ai Platform</a></p>
             <p><strong>Note:</strong> You need to add credits to your account after getting the API key.</p>`},
-    { name: 'facebook', label: 'Facebook', icon: <FaFacebook className="cartIcon" />, inputLabel: 'App ID', infoEl: `<p>Enter your App ID. get it from <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Facebook Platform</a></p>`}
+    { name: 'facebook', label: 'Facebook', icon: <FaFacebook className="cartIcon" />, inputLabel: 'App ID', infoEl: `<p>Enter your App ID. get it from <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Facebook Platform</a></p>`},
+    {
+        name: 'googleMaps', label: 'Google Maps', icon: <GoogleMapsIcon className="cartIcon" />, inputLabel: 'Api Key', infoEl: `<p>Enter your Google Maps API key. Create one in the <a target='_blank' rel='noreferrer' href='https://console.cloud.google.com/google/maps-apis/credentials'>Google Cloud console</a>.</p>
+            <p><strong>Enable these APIs:</strong> Maps JavaScript API (required), plus Geocoding, Places (New) and Directions if you use address lookup, the search box or routes.</p>
+            <p><strong>Map ID:</strong> markers need one — create it under <a target='_blank' rel='noreferrer' href='https://console.cloud.google.com/google/maps-apis/studio/maps'>Map Management</a> and paste it into the block's Map Source panel.</p>
+            <p><strong>Restrict your key:</strong> this key is public on the front end, so add an HTTP referrer restriction for your domain and limit it to the APIs above.</p>`
+    }
 ]

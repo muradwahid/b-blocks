@@ -23,9 +23,39 @@
 		"items": {
 			"type": "array",
 			"default": [
-				{ "_key": "tg-default-1", "quote": "This product completely changed how our team works. Setup was painless and the results were immediate.", "authorName": "Jane Smith", "authorRole": "Product Manager", "authorCompany": "Acme Inc.", "avatarId": 0, "avatarUrl": "", "avatarAlt": "", "rating": 5 },
-				{ "_key": "tg-default-2", "quote": "Easily the best decision we made this year. Support is responsive and the value is outstanding.", "authorName": "Carlos Reyes", "authorRole": "Founder", "authorCompany": "Bright Labs", "avatarId": 0, "avatarUrl": "", "avatarAlt": "", "rating": 5 },
-				{ "_key": "tg-default-3", "quote": "Reliable, fast, and a joy to use every single day. I recommend it to everyone I work with.", "authorName": "Priya Nair", "authorRole": "Marketing Lead", "authorCompany": "Northwind", "avatarId": 0, "avatarUrl": "", "avatarAlt": "", "rating": 4.5 }
+				{
+					"_key": "tg-default-1",
+					"quote": "This product completely changed how our team works. Setup was painless and the results were immediate.",
+					"authorName": "Jane Smith",
+					"authorRole": "Product Manager",
+					"authorCompany": "Acme Inc.",
+					"avatarId": 0,
+					"avatarUrl": "",
+					"avatarAlt": "",
+					"rating": 5
+				},
+				{
+					"_key": "tg-default-2",
+					"quote": "Easily the best decision we made this year. Support is responsive and the value is outstanding.",
+					"authorName": "Carlos Reyes",
+					"authorRole": "Founder",
+					"authorCompany": "Bright Labs",
+					"avatarId": 0,
+					"avatarUrl": "",
+					"avatarAlt": "",
+					"rating": 5
+				},
+				{
+					"_key": "tg-default-3",
+					"quote": "Reliable, fast, and a joy to use every single day. I recommend it to everyone I work with.",
+					"authorName": "Priya Nair",
+					"authorRole": "Marketing Lead",
+					"authorCompany": "Northwind",
+					"avatarId": 0,
+					"avatarUrl": "",
+					"avatarAlt": "",
+					"rating": 4.5
+				}
 			]
 		},
 		"style": {
@@ -176,7 +206,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

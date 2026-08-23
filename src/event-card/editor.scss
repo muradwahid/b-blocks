@@ -3,19 +3,16 @@
 @import './style.scss';
 
 .wp-block-b-blocks-event-card {
-	.bb-event-card__inner {
-		min-height: 60px;
-	}
 
 	// Make the inline-editable title/description read as editable in canvas.
-	.bb-event-card__title[contenteditable='true']:empty::before,
-	.bb-event-card__description[contenteditable='true']:empty::before {
+	.b-blocks-event-card-title[contenteditable='true']:empty::before,
+	.b-blocks-event-card-description[contenteditable='true']:empty::before {
 		content: attr(data-rich-text-placeholder);
 		opacity: 0.55;
 		pointer-events: none;
 	}
 
-	.bb-event-card__meta-icon {
+	.b-blocks-event-card-meta-icon {
 		pointer-events: none;
 	}
 }

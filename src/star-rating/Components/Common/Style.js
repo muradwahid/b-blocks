@@ -4,7 +4,7 @@ import { getArrFromNum } from '../../utils/functions';
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
-	const { rating, gap, alignment, margin, textTypo, textColor, textShadow, iconColor ='#f0ad4e' } = attributes;
+	const { rating, gap, alignment, margin, textTypo, textColor, textShadow, iconColor = '#f0ad4e', iconSize = '20px', unmarkedColor = '#ccd6df' } = attributes;
 
 	const ratingSl = `#${id} .${prefix}`;
 	const starSl = `${ratingSl} .stars .star`;
@@ -21,15 +21,32 @@ const Style = ({ attributes, id }) => {
 			justify-content: ${alignment};
 			gap: ${gap};
 			color: ${textColor};
-			${isValidCSS('margin',getBoxCSS(margin))}
+			${isValidCSS('margin', getBoxCSS(margin))}
 		}
 
 		${ratingSl} .ratingPrefix{
 			text-shadow: ${getMultiShadowCSS(textShadow, 'text')}
 		}
 
+		${ratingSl} .stars{
+			${isValidCSS('gap', gap)}
+		}
+
 		${starSl}>.starFill>svg{
 			${isValidCSS('fill', iconColor)}
+			${isValidCSS('width', iconSize)}
+			${isValidCSS('height', iconSize)}
+		}
+
+		${starSl}>svg{
+			${isValidCSS('fill', unmarkedColor)}
+			${isValidCSS('width', iconSize)}
+			${isValidCSS('height', iconSize)}
+		}
+
+		${starSl}{
+			${isValidCSS('width', iconSize)}
+			${isValidCSS('height', iconSize)}
 		}
 
 		${getArrFromNum(ratingInt).map((index) => `${starSl}:nth-child(${index}) .starFill`).join(', ')}{

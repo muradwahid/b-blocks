@@ -1,26 +1,45 @@
 // Editor-only adjustments for the Audio Player block.
-// The canvas renders a static preview of the player; live playback is
-// frontend-only, so editor controls are non-interactive placeholders.
 
-@import './style.scss';
+// Custom upload placeholder shown in the canvas when no audio is set.
+.b-blocks-audio-player-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 40px 24px;
+	text-align: center;
+	background: rgba(127, 127, 127, 0.06);
+	border: 1px dashed rgba(127, 127, 127, 0.5);
+	border-radius: 12px;
 
-.wp-block-b-blocks-audio-player {
-	.bb-ap-seek,
-	.bb-ap-volume {
-		pointer-events: none;
-	}
-
-	// Editor hint shown when no audio file has been selected yet.
-	.bb-ap-editor-hint {
+	&-icon {
 		display: inline-flex;
 		align-items: center;
-		gap: 6px;
-		padding: 14px 18px;
-		font-size: 12px;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		margin-bottom: 6px;
+		border-radius: 50%;
+		background: rgba(20, 110, 245, 0.12);
+		color: #146EF5;
+
+		svg {
+			width: 28px;
+			height: 28px;
+		}
+	}
+
+	&-title {
+		margin: 0;
+		font-size: 16px;
 		font-weight: 600;
-		color: #555;
-		background: #f0f0f1;
-		border: 1px dashed #c3c4c7;
-		border-radius: 6px;
+	}
+
+	&-text {
+		margin: 0 0 8px;
+		font-size: 13px;
+		opacity: 0.7;
+		max-width: 320px;
 	}
 }

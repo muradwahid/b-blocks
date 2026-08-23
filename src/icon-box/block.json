@@ -20,7 +20,18 @@
 			"type": "object",
 			"default": {
 				"width": "",
-				"height": ""
+				"height": "",
+				"alignment": {
+					"desktop": "flex-start",
+					"tablet": "",
+					"mobile": ""
+				},
+				"wrapperLink": {
+					"url": "",
+					"linkText": "",
+					"openInNewTab": false,
+					"nofollow": false
+				}
 			}
 		},
 		"icon": {

@@ -3,14 +3,14 @@
 
 .wp-block-b-blocks-blockquote {
 	// Inline RichText placeholder color match.
-	.bb-bq__quote-text [data-rich-text-placeholder] {
+	.bBlocks-blockquote-quoteText [data-rich-text-placeholder] {
 		color: currentColor;
 		opacity: 0.55;
 	}
 
 	// Small editor meta caption shown beneath the rendered card so editors
 	// know what they are looking at when the avatar/role are hidden.
-	.bb-bq-editor-meta {
+	.bBlocks-blockquote-editor-meta {
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;

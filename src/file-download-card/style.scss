@@ -1,96 +1,37 @@
-// Frontend + editor shared styles for the File Download Card block.
-// Mobile-first. All per-instance values come from CSS custom properties emitted
-// inline (scoped under the unique wrapper id) in render.php.
+// File Download Card — frontend + editor structural styles.
+// Mobile-first. All attribute-driven values (colors, sizes, spacing, radius,
+// typography, background, border, shadow) are injected per-instance by
+// Components/Common/Style.js, scoped under `#<id> .b-blocks-file-download-card`.
+// This stylesheet carries only the layout structure.
 
-.wp-block-b-blocks-file-download-card,
-.bb-fdc {
-	--bb-fdc-max-width: 480px;
-	--bb-fdc-card-bg: #ffffff;
-	--bb-fdc-border-color: #e0e0e0;
-	--bb-fdc-border-width: 1px;
-	--bb-fdc-radius: 8px;
-	--bb-fdc-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-	--bb-fdc-pad-v: 20px;
-	--bb-fdc-pad-h: 24px;
-	--bb-fdc-icon-bg: #2563eb;
-	--bb-fdc-icon-color: #ffffff;
-	--bb-fdc-icon-size: 48px;
-	--bb-fdc-icon-radius: 8px;
-	--bb-fdc-title-color: #111827;
-	--bb-fdc-title-size: 16px;
-	--bb-fdc-title-weight: 600;
-	--bb-fdc-desc-color: #6b7280;
-	--bb-fdc-desc-size: 14px;
-	--bb-fdc-meta-color: #9ca3af;
-	--bb-fdc-meta-size: 12px;
-	--bb-fdc-btn-bg: #2563eb;
-	--bb-fdc-btn-text: #ffffff;
-	--bb-fdc-btn-hover-bg: #1d4ed8;
-	--bb-fdc-btn-hover-text: #ffffff;
-	--bb-fdc-btn-radius: 6px;
-	--bb-fdc-btn-pad-v: 10px;
-	--bb-fdc-btn-pad-h: 20px;
-	--bb-fdc-btn-size: 14px;
-	--bb-fdc-btn-weight: 600;
-}
-
-.wp-block-b-blocks-file-download-card {
-	&.bb-fdc--align-center { display: flex; justify-content: center; }
-	&.bb-fdc--align-right { display: flex; justify-content: flex-end; }
-}
-
-.bb-fdc {
+.b-blocks-file-download-card {
 	* {
 		box-sizing: border-box;
 	}
 
-	.bb-fdc-card {
+	.b-blocks-file-download-card-card {
 		margin: 0;
-		max-width: var(--bb-fdc-max-width);
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		gap: 16px;
-		padding: var(--bb-fdc-pad-v) var(--bb-fdc-pad-h);
-		background-color: var(--bb-fdc-card-bg);
-		border-radius: var(--bb-fdc-radius);
-		box-shadow: var(--bb-fdc-shadow);
-	}
-
-	&.bb-fdc--has-border .bb-fdc-card {
-		border: var(--bb-fdc-border-width) solid var(--bb-fdc-border-color);
 	}
 
 	// --- File-type badge ---
-	.bb-fdc-badge {
+	.b-blocks-file-download-card-badge {
 		flex: 0 0 auto;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--bb-fdc-icon-size);
-		height: var(--bb-fdc-icon-size);
-		border-radius: var(--bb-fdc-icon-radius);
-		font-size: calc(var(--bb-fdc-icon-size) * 0.28);
 		font-weight: 700;
 		letter-spacing: 0.02em;
 		line-height: 1;
 		text-transform: uppercase;
 	}
 
-	&.bb-fdc--icon-filled .bb-fdc-badge {
-		background-color: var(--bb-fdc-icon-bg);
-		color: var(--bb-fdc-icon-color);
-	}
-
-	&.bb-fdc--icon-outline .bb-fdc-badge {
-		background-color: transparent;
-		color: var(--bb-fdc-icon-bg);
-		border: 2px solid var(--bb-fdc-icon-bg);
-	}
-
 	// --- Body ---
-	.bb-fdc-body {
+	.b-blocks-file-download-card-body {
 		flex: 1 1 auto;
 		display: flex;
 		flex-direction: column;
@@ -98,121 +39,98 @@
 		min-width: 0;
 	}
 
-	.bb-fdc-title {
+	.b-blocks-file-download-card-title {
 		margin: 0;
-		font-size: var(--bb-fdc-title-size);
-		font-weight: var(--bb-fdc-title-weight);
 		line-height: 1.35;
-		color: var(--bb-fdc-title-color);
 		word-break: break-word;
 	}
 
-	.bb-fdc-desc {
+	.b-blocks-file-download-card-desc {
 		margin: 0;
-		font-size: var(--bb-fdc-desc-size);
 		line-height: 1.5;
-		color: var(--bb-fdc-desc-color);
 	}
 
-	.bb-fdc-meta {
+	.b-blocks-file-download-card-meta {
 		margin: 2px 0 0;
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
-		font-size: var(--bb-fdc-meta-size);
 		line-height: 1.4;
-		color: var(--bb-fdc-meta-color);
 	}
 
-	.bb-fdc-meta-sep {
+	.b-blocks-file-download-card-meta-sep {
 		opacity: 0.7;
 	}
 
 	// --- Action / button ---
-	.bb-fdc-action {
+	.b-blocks-file-download-card-action {
 		flex: 0 0 auto;
 	}
 
-	.bb-fdc-btn {
+	.b-blocks-file-download-card-btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		padding: var(--bb-fdc-btn-pad-v) var(--bb-fdc-btn-pad-h);
-		border-radius: var(--bb-fdc-btn-radius);
-		font-size: var(--bb-fdc-btn-size);
-		font-weight: var(--bb-fdc-btn-weight);
 		line-height: 1.2;
 		text-decoration: none;
 		white-space: nowrap;
-		background-color: var(--bb-fdc-btn-bg);
-		color: var(--bb-fdc-btn-text);
+		cursor: pointer;
 		transition: background-color 0.2s ease, color 0.2s ease;
 
-		&:hover,
 		&:focus-visible {
-			background-color: var(--bb-fdc-btn-hover-bg);
-			color: var(--bb-fdc-btn-hover-text);
-		}
-
-		&:focus-visible {
-			outline: 2px solid var(--bb-fdc-btn-bg);
+			outline: 2px solid currentColor;
 			outline-offset: 2px;
 		}
 	}
 
-	.bb-fdc-btn-icon {
+	.b-blocks-file-download-card-btn-icon {
 		width: 1.05em;
 		height: 1.05em;
 		flex: 0 0 auto;
 	}
 
 	// --- Vertical layout (icon on top, action below) ---
-	&.bb-fdc--vertical .bb-fdc-card {
+	&.b-blocks-file-download-card--vertical .b-blocks-file-download-card-card {
 		flex-direction: column;
 		align-items: stretch;
 		text-align: left;
 	}
 
-	&.bb-fdc--vertical .bb-fdc-badge {
+	&.b-blocks-file-download-card--vertical .b-blocks-file-download-card-badge,
+	&.b-blocks-file-download-card--vertical .b-blocks-file-download-card-action {
 		align-self: flex-start;
-	}
-
-	&.bb-fdc--vertical .bb-fdc-action {
-		align-self: flex-start;
-	}
-
-	// --- Body content alignment ---
-	&.bb-fdc--align-center.bb-fdc--vertical {
-		.bb-fdc-card { text-align: center; }
-		.bb-fdc-badge,
-		.bb-fdc-action { align-self: center; }
-		.bb-fdc-meta { justify-content: center; }
-	}
-
-	&.bb-fdc--align-right.bb-fdc--vertical {
-		.bb-fdc-card { text-align: right; }
-		.bb-fdc-badge,
-		.bb-fdc-action { align-self: flex-end; }
-		.bb-fdc-meta { justify-content: flex-end; }
 	}
 
 	// --- Mobile: stack the horizontal layout for small screens ---
 	@media (max-width: 599px) {
-		&.bb-fdc--horizontal .bb-fdc-card {
+		&.b-blocks-file-download-card--horizontal .b-blocks-file-download-card-card {
 			flex-direction: column;
 			align-items: stretch;
 		}
-		&.bb-fdc--horizontal .bb-fdc-badge {
+		&.b-blocks-file-download-card--horizontal .b-blocks-file-download-card-badge {
 			align-self: flex-start;
 		}
-		&.bb-fdc--horizontal .bb-fdc-btn {
+		&.b-blocks-file-download-card--horizontal .b-blocks-file-download-card-btn {
 			justify-content: center;
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.bb-fdc-btn {
+		.b-blocks-file-download-card-btn {
 			transition: none !important;
 		}
+	}
+
+	// --- Screen-reader-only text ---
+	.screen-reader-text {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+		word-wrap: normal !important;
 	}
 }

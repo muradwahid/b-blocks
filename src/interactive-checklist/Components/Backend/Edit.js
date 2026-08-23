@@ -1,207 +1,141 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
+import { withSelect } from '@wordpress/data';
 
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 
-const num = (val, fb) => (Number.isFinite(parseInt(val, 10)) ? parseInt(val, 10) : fb);
+const CN = 'bBlocks-interactive-checklist';
+const TAGS = ['h2', 'h3', 'h4'];
 
 const Edit = (props) => {
-	const { attributes, setAttributes, clientId } = props;
-	const {
-		headingText,
-		headingTag,
-		items = [],
-		showProgress,
-		showReset,
-		persistKey,
-		checkboxStyle,
-		accentColor,
-		cardBg,
-		textColor,
-		strikeChecked,
-		headingFontSize,
-		headingFontWeight,
-		itemFontSize,
-		itemFontWeight,
-		progressFontSize,
-		checkboxSize,
-		itemGap,
-		paddingVertical,
-		paddingHorizontal,
-		borderRadius,
-		borderColor,
-		borderWidth,
-		maxWidth,
-		alignment,
-	} = attributes;
+  const { attributes, setAttributes, clientId, device } = props;
+  const { heading = {}, items = [], checkbox = {}, item = {}, progress = {}, reset = {}, persistKey } = attributes;
 
-	// Generate a stable per-instance localStorage key on first insert so
-	// multiple checklists on the same page persist independently.
-	useEffect(() => {
-		if (!persistKey) {
-			setAttributes({ persistKey: `cl-${clientId.slice(0, 8)}` });
-		}
-	}, [persistKey, clientId, setAttributes]);
+  const isPremium = bBlocksPremiumChecker;
+  const updateObj = updateAttributes(attributes, setAttributes);
 
-	const safeAlignment = ['left', 'center', 'right'].includes(alignment) ? alignment : 'left';
-	const safeCheckboxStyle = checkboxStyle === 'round' ? 'round' : 'square';
-	const safeHeadingTag = ['h2', 'h3', 'h4'].includes(headingTag) ? headingTag : 'h3';
-	const safeItemWeight = ['400', '500', '600', '700'].includes(itemFontWeight) ? itemFontWeight : '400';
-	const safeHeadingWeight = ['400', '500', '600', '700'].includes(headingFontWeight) ? headingFontWeight : '700';
-	const mw = num(maxWidth, 0) >= 0 ? num(maxWidth, 0) : 0;
+  // Local, non-persisted checked state so the canvas can preview the checked look.
+  const [preview, setPreview] = useState({});
+  const togglePreview = (itemId) => setPreview((p) => ({ ...p, [itemId]: !p[itemId] }));
 
-	const total = items.length;
+  useEffect(() => {
+    if (!persistKey) {
+      setAttributes({ persistKey: `cl-${clientId.slice(0, 8)}` });
+    }
+  }, [persistKey, clientId, setAttributes]);
 
-	const wrapperStyle = {
-		'--bb-cl-accent': accentColor || '#4f46e5',
-		'--bb-cl-card-bg': cardBg || '#ffffff',
-		'--bb-cl-text-color': textColor || '#1a1a1a',
-		'--bb-cl-border-width': `${num(borderWidth, 1)}px`,
-		'--bb-cl-border-color': (borderColor || '').toString().trim() || 'transparent',
-		'--bb-cl-radius': `${num(borderRadius, 12)}px`,
-		'--bb-cl-heading-size': `${num(headingFontSize, 20)}px`,
-		'--bb-cl-heading-weight': safeHeadingWeight,
-		'--bb-cl-item-size': `${num(itemFontSize, 16)}px`,
-		'--bb-cl-item-weight': safeItemWeight,
-		'--bb-cl-progress-size': `${num(progressFontSize, 13)}px`,
-		'--bb-cl-checkbox-size': `${num(checkboxSize, 20)}px`,
-		'--bb-cl-item-gap': `${num(itemGap, 12)}px`,
-		'--bb-cl-pad-v': `${num(paddingVertical, 24)}px`,
-		'--bb-cl-pad-h': `${num(paddingHorizontal, 28)}px`,
-		'--bb-cl-max-width': mw > 0 ? `${mw}px` : 'none',
-		'--bb-cl-progress-pct': '0%',
-	};
+  const cbStyle = 'round' === checkbox.style ? 'round' : 'square';
+  const strike = item.strike === true;
+  const HeadingTag = TAGS.includes(heading.tag) ? heading.tag : 'h3';
+  const total = items.length;
+  const doneCount = items.filter((it) => it && preview[it.id]).length;
+  
+  const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
 
-	const wrapperClasses = [
-		'bb-cl',
-		`bb-cl-align--${safeAlignment}`,
-		`bb-cl-checkbox--${safeCheckboxStyle}`,
-		num(borderWidth, 1) > 0 ? 'has-border' : '',
-		strikeChecked !== false ? 'has-strike' : '',
-	].filter(Boolean).join(' ');
+  const wrapperClasses = [
+    `${CN}-wrapper`,
+    `${CN}-checkbox-${cbStyle}`,
+    strike ? `${CN}-has-strike` : '',
+  ].filter(Boolean).join(' ');
 
-	const blockProps = useBlockProps({
-		className: wrapperClasses,
-		style: wrapperStyle,
-	});
+  const updateItem = (index, key, next) => {
+    setAttributes({ items: items.map((row, i) => (i === index ? { ...(row || {}), [key]: next } : row)) });
+  };
+  const removeItem = (index) => setAttributes({ items: items.filter((_, i) => i !== index) });
+  const moveItem = (from, to) => {
+    if (to < 0 || to >= items.length) return;
+    const copy = items.slice();
+    const [moved] = copy.splice(from, 1);
+    copy.splice(to, 0, moved);
+    setAttributes({ items: copy });
+  };
 
-	const updateItem = (index, key, next) => {
-		const copy = items.map((row, i) => (
-			i === index ? { ...(row || {}), [key]: next } : row
-		));
-		setAttributes({ items: copy });
-	};
+  return <>
+    <Settings {...{ attributes, setAttributes, updateObj, isPremium, device }} />
 
-	const removeItem = (index) => {
-		setAttributes({ items: items.filter((_, i) => i !== index) });
-	};
+    <div {...useBlockProps()}>
+      <Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
+      <div>
 
-	const moveItem = (from, to) => {
-		if (to < 0 || to >= items.length) return;
-		const copy = items.slice();
-		const [moved] = copy.splice(from, 1);
-		copy.splice(to, 0, moved);
-		setAttributes({ items: copy });
-	};
+        <div className={wrapperClasses}>
+          <RichText
+            tagName={HeadingTag}
+            className={`${CN}-heading`}
+            value={heading.text || ''}
+            onChange={(val) => updateObj('heading', val, 'text')}
+            placeholder={__('Your Checklist', 'b-blocks')}
+            allowedFormats={['core/bold', 'core/italic']}
+          />
 
-	const HeadingTag = safeHeadingTag;
+          {progress.show !== false && total > 0 && (
+            <div className={`${CN}-progress`}>
+              <p className={`${CN}-progress-text`}>
+                {sprintf( /* translators: 1: done, 2: total */ __('%1$s of %2$s complete', 'b-blocks'), doneCount, total)}
+              </p>
+              <div className={`${CN}-progress-track`} aria-hidden='true'>
+                <span className={`${CN}-progress-fill`} style={{ width: `${pct}%` }} />
+              </div>
+            </div>
+          )}
 
-	return (
-		<>
-			<Settings attributes={attributes} setAttributes={setAttributes} />
+          {0 === total ? (
+            <p className={`${CN}-empty`}>
+              {__('No checklist items yet. Add the first one from the sidebar.', 'b-blocks')}
+            </p>
+          ) : (
+            <ul className={`${CN}-list`}>
+              {items.map((it, idx) => {
+                const isChecked = !!(it && preview[it.id]);
+                return (
+                  <li key={(it && it.id) || idx} className={`${CN}-item ${isChecked ? 'is-checked' : ''}`}>
+                    <div className={`${CN}-label`}>
+                      <input
+                        type='checkbox'
+                        className={`${CN}-checkbox`}
+                        checked={isChecked}
+                        onChange={() => { }}
+                        onClick={(e) => { e.stopPropagation(); togglePreview(it.id); }}
+                      />
+                      <span className={`${CN}-box`} aria-hidden='true' />
+                      <RichText
+                        tagName='span'
+                        className={`${CN}-text`}
+                        value={(it && it.label) || ''}
+                        onChange={(val) => updateItem(idx, 'label', val)}
+                        placeholder={__('Checklist item', 'b-blocks')}
+                        allowedFormats={[]}
+                      />
+                      <div className={`${CN}-editor-item-actions`}>
+                        <Button variant='tertiary' size='small' icon='arrow-up-alt2' label={__('Move item up', 'b-blocks')} onClick={() => moveItem(idx, idx - 1)} disabled={0 === idx} />
+                        <Button variant='tertiary' size='small' icon='arrow-down-alt2' label={__('Move item down', 'b-blocks')} onClick={() => moveItem(idx, idx + 1)} disabled={idx === items.length - 1} />
+                        <Button variant='tertiary' isDestructive size='small' icon='trash' label={__('Remove item', 'b-blocks')} onClick={() => removeItem(idx)} />
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
 
-			<div {...blockProps}>
-				<RichText
-					tagName={HeadingTag}
-					className='bb-cl-heading'
-					value={headingText || ''}
-					onChange={(val) => setAttributes({ headingText: val })}
-					placeholder={__('Your Checklist', 'b-blocks')}
-					allowedFormats={['core/bold', 'core/italic']}
-				/>
-
-				{showProgress !== false && total > 0 && (
-					<div className='bb-cl-progress'>
-						<p className='bb-cl-progress-text'>
-							{sprintf(
-								/* translators: 1: completed count, 2: total count. */
-								__('%1$s of %2$s complete', 'b-blocks'),
-								0,
-								total,
-							)}
-						</p>
-						<div className='bb-cl-progress-track' aria-hidden='true'>
-							<span className='bb-cl-progress-fill' />
-						</div>
-					</div>
-				)}
-
-				{total === 0 ? (
-					<p className='bb-cl-empty'>
-						{__('No checklist items yet. Add the first one from the sidebar.', 'b-blocks')}
-					</p>
-				) : (
-					<ul className='bb-cl-list'>
-						{items.map((item, idx) => (
-							<li key={(item && item.id) || idx} className='bb-cl-item'>
-								<div className='bb-cl-label'>
-									<input
-										type='checkbox'
-										className='bb-cl-checkbox'
-										tabIndex={-1}
-										readOnly
-									/>
-									<span className='bb-cl-box' aria-hidden='true' />
-									<RichText
-										tagName='span'
-										className='bb-cl-text'
-										value={(item && item.label) || ''}
-										onChange={(val) => updateItem(idx, 'label', val)}
-										placeholder={__('Checklist item', 'b-blocks')}
-										allowedFormats={[]}
-									/>
-									<div className='bb-cl-editor-item-actions'>
-										<Button
-											variant='tertiary'
-											size='small'
-											icon='arrow-up-alt2'
-											label={__('Move item up', 'b-blocks')}
-											onClick={() => moveItem(idx, idx - 1)}
-											disabled={idx === 0}
-										/>
-										<Button
-											variant='tertiary'
-											size='small'
-											icon='arrow-down-alt2'
-											label={__('Move item down', 'b-blocks')}
-											onClick={() => moveItem(idx, idx + 1)}
-											disabled={idx === items.length - 1}
-										/>
-										<Button
-											variant='tertiary'
-											isDestructive
-											size='small'
-											icon='trash'
-											label={__('Remove item', 'b-blocks')}
-											onClick={() => removeItem(idx)}
-										/>
-									</div>
-								</div>
-							</li>
-						))}
-					</ul>
-				)}
-
-				{showReset !== false && total > 0 && (
-					<button type='button' className='bb-cl-reset' disabled>
-						{__('Reset progress', 'b-blocks')}
-					</button>
-				)}
-			</div>
-		</>
-	);
+          {reset.show !== false && total > 0 && (
+            <button type='button' className={`${CN}-reset`} disabled>
+              {__('Reset progress', 'b-blocks')}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  </>;
 };
 
-export default Edit;
+export default withSelect((select) => {
+  const { getDeviceType } = select('core/editor');
+
+  return {
+    device: getDeviceType()?.toLowerCase(),
+  };
+})(Edit);

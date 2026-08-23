@@ -9,3 +9,6 @@ update function in function.js
 whatsapp chat block
 
 flip boxes, gift image, logo slider
+
+Custom map
+https://snazzymaps.com/

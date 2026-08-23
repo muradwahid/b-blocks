@@ -92,8 +92,9 @@ export const buildSectionCss = (id, attrs) => {
 		css += 'background-attachment:fixed;';
 	}
 	if (parallaxMode === 'scroll') {
-		// Oversize so the translate travel never reveals an edge gap.
-		css += 'top:-5%;height:110%;will-change:transform;transform:translate3d(0,var(--bblocks-parallax-offset,0px),0);';
+		// 30% overscan each side (see OVERSCAN in view.js) so the clamped
+		// translate travel never reveals an edge gap.
+		css += 'top:-30%;height:160%;will-change:transform;transform:translate3d(0,var(--bblocks-parallax-offset,0px),0);';
 	}
 	css += '}';
 

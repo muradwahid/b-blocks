@@ -1,14 +1,25 @@
-import { getColorsCSS, getBorderCSS, getIconCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/utils/getCSS';
+import { getColorsCSS, getBorderCSS, getIconCSS, getSpaceCSS, getTypoCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
-	const { width, btnAlign, btnTypo, btnPadding, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoBorder, btnTwoColors, btnTwoHovColors, sepType, sepTextTypo, sepTextColor, sepIcon, sepBGColor } = attributes;
+	const { width, btnAlign, btnTypo, btnPadding, btnOneBorder, btnOneColors, btnOneHovColors, btnTwoBorder, btnTwoColors, btnTwoHovColors, sepType, sepTextTypo, sepTextColor, sepIcon, sepBGColor, alignment = {}, layout = 'row', gap = {} } = attributes;
 
 	const mainSl = `#${id}`;
 	const btnGroupSl = `${mainSl} .${prefix}`;
 	const btnSeparatorSl = `${btnGroupSl} .btnSeparator`;
 
 	const sepTextFontSize = sepTextTypo?.fontSize?.desktop || sepTextTypo?.fontSize;
+
+	const sepMargin = () => {
+		const column = `margin-top: -${'text' === sepType ? (sepTextFontSize * 1.75) / 2 : (sepIcon?.fontSize * 1.65) / 2}px;
+			margin-bottom: -${'text' === sepType ? (sepTextFontSize * 1.75) / 2 : (sepIcon?.fontSize * 1.65) / 2}px;`
+
+		const row = `margin-left: -${'text' === sepType ? (sepTextFontSize * 1.75) / 2 : (sepIcon?.fontSize * 1.65) / 2}px;
+			margin-right: -${'text' === sepType ? (sepTextFontSize * 1.75) / 2 : (sepIcon?.fontSize * 1.65) / 2}px;`
+
+		return layout === 'row' ? row : column;
+
+	}
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
@@ -19,9 +30,17 @@ const Style = ({ attributes, id }) => {
 
 		${mainSl}{
 			text-align: ${btnAlign};
+			${layout === 'column' ? isValidCSS('text-align', alignment.desktop.vertical) : ``}
 		}
 		${btnGroupSl}{
 			width: ${'0px' !== width && '0%' !== width && '0em' !== width ? width : 'auto'};
+			${isValidCSS('gap', gap?.desktop)}
+		}
+		${btnGroupSl}.layout-row{
+			${isValidCSS('justify-content', alignment.desktop.horizontal)}
+		}
+		${btnGroupSl}.layout-column{
+			${isValidCSS('justify-content', alignment.desktop.vertical)}
 		}
 		${btnGroupSl} .bBlocksBtn{
 			min-width: ${'0px' !== width && '0%' !== width && '0em' !== width ? '50%' : 'auto'};
@@ -52,6 +71,7 @@ const Style = ({ attributes, id }) => {
 			width: ${'text' === sepType ? `${sepTextFontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
 			height: ${'text' === sepType ? `${sepTextFontSize * 1.75}px` : `${sepIcon?.fontSize * 1.65}px`};
 			background-color: ${sepBGColor};
+			${sepMargin()}
 		}
 		${btnSeparatorSl} span{
 			color: ${sepTextColor};

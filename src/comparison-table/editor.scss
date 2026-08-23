@@ -3,12 +3,12 @@
 @import './style.scss';
 
 .wp-block-b-blocks-comparison-table {
-	.bb-ct-empty {
+	.b-blocks-comparison-table-empty {
 		font-size: 13px;
 	}
 
 	// Visible label for editor preview (caption hidden on frontend).
-	.bb-ct-editor-caption {
+	.b-blocks-comparison-table-editor-caption {
 		display: block;
 		margin: 0 0 6px;
 		font-size: 12px;
@@ -24,7 +24,7 @@
 }
 
 // Sidebar repeater scaffolding.
-.bb-ct-repeater__row {
+.b-blocks-comparison-table-repeater__row {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -34,19 +34,19 @@
 	border-radius: 4px;
 }
 
-.bb-ct-repeater__header {
+.b-blocks-comparison-table-repeater__header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 8px;
 }
 
-.bb-ct-repeater__actions {
+.b-blocks-comparison-table-repeater__actions {
 	display: flex;
 	gap: 4px;
 }
 
-.bb-ct-cell-editor {
+.b-blocks-comparison-table-cell-editor {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
@@ -66,6 +66,6 @@
 	}
 }
 
-.bb-ct-repeater__add {
+.b-blocks-comparison-table-repeater__add {
 	margin-top: 8px;
 }

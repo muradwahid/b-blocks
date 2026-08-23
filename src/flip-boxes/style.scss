@@ -1,3 +1,105 @@
+// .wp-block-b-blocks-flip-boxes .bBlocksFlipBoxes {
+// 	display: grid;
+
+// 	* {
+// 		box-sizing: border-box;
+// 	}
+
+// 	.flipBox {
+// 		width: 100%;
+// 		position: relative;
+// 		perspective: 1000;
+// 		transform: perspective(1000px);
+// 		transform-style: preserve-3d;
+// 		float: left;
+
+// 		.front,
+// 		.back {
+// 			background-blend-mode: overlay;
+// 			position: absolute;
+// 			top: 0;
+// 			overflow: hidden;
+// 			width: 100%;
+// 			height: 100%;
+// 			transition: transform 0.60s cubic-bezier(.5, .3, .3, 1);
+// 			backface-visibility: hidden;
+// 			transform-style: preserve-3d;
+// 			z-index: 1;
+// 		}
+
+// 		.front {
+// 			transform: rotateY(0deg);
+// 		}
+
+// 		.back {
+// 			transform: rotateY(180deg);
+// 		}
+
+// 		/* Content */
+// 		.frontContent,
+// 		.backContent {
+// 			position: relative;
+// 			top: 50%;
+// 			transition: transform 0.60s cubic-bezier(.5, .3, .3, 1);
+// 			transform-style: preserve-3d;
+// 			z-index: 2;
+// 		}
+
+// 		.frontContent {
+// 			transform: translateY(-50%) translateX(0px) scale(1);
+// 		}
+
+// 		.backContent {
+// 			transform: translateY(-50%) translateX(650px) translateZ(60px) scale(.88);
+// 		}
+
+// 		/* On Hover */
+// 		&:hover {
+// 			.front {
+// 				transform: rotateY(-180deg);
+// 			}
+
+// 			.back {
+// 				transform: rotateY(0deg);
+// 			}
+
+// 			.frontContent {
+// 				transform: translateY(-50%) translateX(-650px) scale(.88);
+// 			}
+
+// 			.backContent {
+// 				transform: translateY(-50%) translateX(0px) translateZ(0px) scale(1);
+// 			}
+// 		}
+
+// 		/* Style Text */
+// 		.flipIcon {
+// 			font-style: normal;
+// 			display: inline-block;
+// 		}
+
+// 		.flipTitle {
+// 			font-family: 'Open Sans';
+// 			font-weight: 700;
+// 			margin: 0;
+// 		}
+
+// 		.flipDescription {
+// 			font-family: 'Open Sans';
+// 			font-weight: 500;
+// 			margin: 0;
+// 		}
+
+// 		.flipBtn {
+// 			font-family: 'Open Sans';
+// 			display: inline-block;
+// 			text-decoration: none;
+// 			font-weight: 600;
+// 			transition: all .3s ease;
+// 		}
+// 	}
+// }
+
 .wp-block-b-blocks-flip-boxes .bBlocksFlipBoxes {
 	display: grid;
 
@@ -8,8 +110,8 @@
 	.flipBox {
 		width: 100%;
 		position: relative;
-		perspective: 1000;
-		transform: perspective(1000px);
+		perspective: 1000px;
+		/* Fixed: added unit */
 		transform-style: preserve-3d;
 		float: left;
 
@@ -18,6 +120,8 @@
 			background-blend-mode: overlay;
 			position: absolute;
 			top: 0;
+			left: 0;
+			/* Added for absolute positioning safety */
 			overflow: hidden;
 			width: 100%;
 			height: 100%;
@@ -27,15 +131,7 @@
 			z-index: 1;
 		}
 
-		.front {
-			transform: rotateY(0deg);
-		}
-
-		.back {
-			transform: rotateY(180deg);
-		}
-
-		/* Content */
+		/* Content Base Styling */
 		.frontContent,
 		.backContent {
 			position: relative;
@@ -45,30 +141,155 @@
 			z-index: 2;
 		}
 
-		.frontContent {
-			transform: translateY(-50%) translateX(0px) scale(1);
-		}
+		/* ==========================================================
+           DIRECTIONS CONFIGURATION
+           ========================================================== */
 
-		.backContent {
-			transform: translateY(-50%) translateX(650px) translateZ(60px) scale(.88);
-		}
-
-		/* On Hover */
-		&:hover {
+		/* --- RIGHT (Default Horizontal) --- */
+		&[data-direction="right"] {
 			.front {
-				transform: rotateY(-180deg);
-			}
-
-			.back {
 				transform: rotateY(0deg);
 			}
 
+			.back {
+				transform: rotateY(180deg);
+			}
+
 			.frontContent {
-				transform: translateY(-50%) translateX(-650px) scale(.88);
+				transform: translateY(-50%) translateX(0px) scale(1);
 			}
 
 			.backContent {
-				transform: translateY(-50%) translateX(0px) translateZ(0px) scale(1);
+				transform: translateY(-50%) translateX(650px) translateZ(60px) scale(.88);
+			}
+
+			&:hover {
+				.front {
+					transform: rotateY(-180deg);
+				}
+
+				.back {
+					transform: rotateY(0deg);
+				}
+
+				.frontContent {
+					transform: translateY(-50%) translateX(-650px) scale(.88);
+				}
+
+				.backContent {
+					transform: translateY(-50%) translateX(0px) translateZ(0px) scale(1);
+				}
+			}
+		}
+
+		/* --- LEFT --- */
+		&[data-direction="left"] {
+			.front {
+				transform: rotateY(0deg);
+			}
+
+			.back {
+				transform: rotateY(-180deg);
+			}
+
+			.frontContent {
+				transform: translateY(-50%) translateX(0px) scale(1);
+			}
+
+			.backContent {
+				transform: translateY(-50%) translateX(-650px) translateZ(60px) scale(.88);
+			}
+
+			&:hover {
+				.front {
+					transform: rotateY(180deg);
+				}
+
+				.back {
+					transform: rotateY(0deg);
+				}
+
+				.frontContent {
+					transform: translateY(-50%) translateX(650px) scale(.88);
+				}
+
+				.backContent {
+					transform: translateY(-50%) translateX(0px) translateZ(0px) scale(1);
+				}
+			}
+		}
+
+		/* --- TOP --- */
+		&[data-direction="top"] {
+			.front {
+				transform: rotateX(0deg);
+			}
+
+			.back {
+				transform: rotateX(-180deg);
+			}
+
+			.frontContent {
+				transform: translateY(-50%) scale(1);
+			}
+
+			.backContent {
+				transform: translateY(650px) translateZ(60px) scale(.88);
+			}
+
+			&:hover {
+				.front {
+					transform: rotateX(180deg);
+				}
+
+				.back {
+					transform: rotateX(0deg);
+				}
+
+				.frontContent {
+					transform: translateY(-650px) scale(.88);
+				}
+
+				.backContent {
+					transform: translateY(-50%) translateZ(0px) scale(1);
+				}
+			}
+		}
+
+		/* --- BOTTOM --- */
+		&[data-direction="bottom"] {
+			.front {
+				transform: rotateX(0deg);
+			}
+
+			.back {
+				transform: rotateX(180deg);
+			}
+
+			.frontContent {
+				transform: translateY(-50%) scale(1);
+			}
+
+			.backContent {
+				transform: translateY(-650px) translateZ(60px) scale(.88);
+			}
+
+			&:hover {
+				.front {
+					transform: rotateX(-180deg);
+				}
+
+				.back {
+					transform: rotateX(0deg);
+				}
+
+				.frontContent {
+					transform: translateY(650px) scale(.88);
+				}
+
+				.backContent {
+					transform: translateY(-50%) translateZ(0px) scale(1);
+				}
 			}
 		}
 

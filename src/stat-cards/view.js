@@ -1,11 +1,21 @@
-/**
- * Stat Cards — frontend behavior.
- *
- * The block is entirely static HTML + CSS rendered server-side. There is no
- * count-up animation, no scroll trigger, and no runtime dependency — numbers
- * appear immediately on page load. This file only imports the shared stylesheet
- * so the frontend bundle (view.css) is generated. No frontend JS is needed.
- */
-import './style.scss';
+import { createRoot } from 'react-dom/client';
 
-// no frontend JS needed
+import './style.scss';
+import Style from './Components/Common/Style';
+import StatCards from './Components/Frontend/StatCards';
+
+document.addEventListener( 'DOMContentLoaded', () => {
+	const els = document.querySelectorAll( '.wp-block-b-blocks-stat-cards' );
+
+	els.forEach( ( el ) => {
+		const attributes = JSON.parse( el.dataset.attributes );
+
+		createRoot( el ).render( <>
+			<Style attributes={ attributes } id={ el.id } />
+
+			<StatCards attributes={ attributes } />
+		</> );
+
+		el?.removeAttribute( 'data-attributes' );
+	} );
+} );

@@ -1,181 +1,106 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
+import { withSelect } from '@wordpress/data';
 
+import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 
+const TAG_VALUES = ['h2', 'h3', 'h4'];
+const STYLE_VALUES = ['check', 'numbered', 'bullet'];
+
 const Edit = (props) => {
-	const { attributes, setAttributes } = props;
-	const {
-		headingText,
-		headingTag,
-		listStyle,
-		items = [],
-		iconClass,
-		iconColor,
-		accentColor,
-		cardBg,
-		textColor,
-		headingColor,
-		borderRadius,
-		borderColor,
-		borderWidth,
-		itemFontSize,
-		itemFontWeight,
-		headingFontSize,
-		headingFontWeight,
-		iconSize,
-		paddingVertical,
-		paddingHorizontal,
-		itemGap,
-		alignment,
-		maxWidth,
-		showIcon,
-	} = attributes;
+  const { attributes, setAttributes, clientId, device } = props;
+  const { heading = {}, list = {}, items = [] } = attributes;
 
-	const safeAlignment = alignment === 'center' ? 'center' : 'left';
-	const safeListStyle = ['check', 'numbered', 'bullet'].includes(listStyle) ? listStyle : 'check';
-	const safeHeadingTag = ['h2', 'h3', 'h4'].includes(headingTag) ? headingTag : 'h3';
-	const safeItemWeight = ['400', '500', '600', '700'].includes(itemFontWeight) ? itemFontWeight : '400';
-	const safeHeadingWeight = ['400', '500', '600', '700'].includes(headingFontWeight) ? headingFontWeight : '700';
-	const showPrefix = showIcon !== false;
-	const resolvedIcon = (iconClass || '').toString().trim() || 'fas fa-check-circle';
-	const mw = parseInt(maxWidth, 10) >= 0 ? parseInt(maxWidth, 10) : 0;
+  const isPremium = bBlocksPremiumChecker;
+  const updateObj = updateAttributes(attributes, setAttributes);
 
-	const num = (val, fb) => (Number.isFinite(parseInt(val, 10)) ? parseInt(val, 10) : fb);
+  const listStyle = STYLE_VALUES.includes(list.style) ? list.style : 'check';
+  const HeadingTag = TAG_VALUES.includes(heading.tag) ? heading.tag : 'h3';
+  const ListTag = 'numbered' === listStyle ? 'ol' : 'ul';
+  const showPrefix = list.showIcon !== false;
 
-	const wrapperStyle = {
-		'--bb-kt-accent': accentColor || '#0d6efd',
-		'--bb-kt-card-bg': cardBg || '#f0f6ff',
-		'--bb-kt-text-color': textColor || '#1e293b',
-		'--bb-kt-heading-color': headingColor || '#ffffff',
-		'--bb-kt-icon-color': iconColor || '#ffffff',
-		'--bb-kt-radius': `${num(borderRadius, 8)}px`,
-		'--bb-kt-border-width': `${num(borderWidth, 0)}px`,
-		'--bb-kt-border-color': (borderColor || '').toString().trim() || 'transparent',
-		'--bb-kt-item-size': `${num(itemFontSize, 16)}px`,
-		'--bb-kt-item-weight': safeItemWeight,
-		'--bb-kt-heading-size': `${num(headingFontSize, 18)}px`,
-		'--bb-kt-heading-weight': safeHeadingWeight,
-		'--bb-kt-icon-size': `${num(iconSize, 18)}px`,
-		'--bb-kt-pad-v': `${num(paddingVertical, 20)}px`,
-		'--bb-kt-pad-h': `${num(paddingHorizontal, 24)}px`,
-		'--bb-kt-item-gap': `${num(itemGap, 10)}px`,
-		'--bb-kt-max-width': mw > 0 ? `${mw}px` : 'none',
-	};
+  const wrapperClasses = [
+    'bBlocks-key-takeaways-wrapper',
+    `bBlocks-key-takeaways-style-${listStyle}`,
+  ].filter(Boolean).join(' ');
 
-	const wrapperClasses = [
-		'bb-kt-block',
-		`bb-kt-align--${safeAlignment}`,
-		`bb-kt-style--${safeListStyle}`,
-		num(borderWidth, 0) > 0 ? 'has-border' : '',
-	].filter(Boolean).join(' ');
+  const updateItem = (index, key, next) => {
+    setAttributes({ items: items.map((row, i) => (i === index ? { ...(row || {}), [key]: next } : row)) });
+  };
+  const removeItem = (index) => setAttributes({ items: items.filter((_, i) => i !== index) });
+  const moveItem = (from, to) => {
+    if (to < 0 || to >= items.length) return;
+    const copy = items.slice();
+    const [moved] = copy.splice(from, 1);
+    copy.splice(to, 0, moved);
+    setAttributes({ items: copy });
+  };
 
-	const blockProps = useBlockProps({
-		className: wrapperClasses,
-		style: wrapperStyle,
-	});
+  return <>
+    <Settings {...{ attributes, setAttributes, updateObj, isPremium, device }} />
 
-	const updateItem = (index, key, next) => {
-		const copy = items.map((row, i) => (
-			i === index ? { ...(row || {}), [key]: next } : row
-		));
-		setAttributes({ items: copy });
-	};
+    <div {...useBlockProps()}>
+      <div>
+        <Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
-	const removeItem = (index) => {
-		setAttributes({ items: items.filter((_, i) => i !== index) });
-	};
+        <div className={wrapperClasses} role='region'>
+          <RichText tagName={HeadingTag} className='bBlocks-key-takeaways-heading' value={heading.text || ''} onChange={(val) => updateObj('heading', val, 'text')} placeholder={__('Key Takeaways', 'b-blocks')} allowedFormats={['core/bold', 'core/italic']} />
 
-	const moveItem = (from, to) => {
-		if (to < 0 || to >= items.length) return;
-		const copy = items.slice();
-		const [moved] = copy.splice(from, 1);
-		copy.splice(to, 0, moved);
-		setAttributes({ items: copy });
-	};
+          <div className='bBlocks-key-takeaways-body'>
+            {0 === items.length ? (
+              <p className='bBlocks-key-takeaways-empty'>
+                {__('No takeaways yet. Add the first one from the sidebar.', 'b-blocks')}
+              </p>
+            ) : (
+              <ListTag className='bBlocks-key-takeaways-list' role='list'>
+                {items.map((item, idx) => (
+                  <li key={(item && item._key) || idx} className='bBlocks-key-takeaways-item'>
+                    {showPrefix && 'check' === listStyle && (
+                      <span
+                        className='bBlocks-key-takeaways-icon'
+                        aria-hidden='true'
+                        dangerouslySetInnerHTML={{ __html: (item && item.icon) || '' }}
+                      />
+                    )}
+                    {showPrefix && 'numbered' === listStyle && (
+                      <span className='bBlocks-key-takeaways-num' aria-hidden='true' />
+                    )}
+                    {showPrefix && 'bullet' === listStyle && (
+                      <span className='bBlocks-key-takeaways-bullet' aria-hidden='true' />
+                    )}
 
-	const ListTag = safeListStyle === 'numbered' ? 'ol' : 'ul';
-	const HeadingTag = safeHeadingTag;
+                    <RichText
+                      tagName='span'
+                      className='bBlocks-key-takeaways-text'
+                      value={(item && item.text) || ''}
+                      onChange={(val) => updateItem(idx, 'text', val)}
+                      placeholder={__('Takeaway text', 'b-blocks')}
+                      allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                    />
 
-	return (
-		<>
-			<Settings attributes={attributes} setAttributes={setAttributes} />
-
-			<div {...blockProps}>
-				<RichText
-					tagName={HeadingTag}
-					className='bb-kt-heading'
-					value={headingText || ''}
-					onChange={(val) => setAttributes({ headingText: val })}
-					placeholder={__('Key Takeaways', 'b-blocks')}
-					allowedFormats={['core/bold', 'core/italic']}
-				/>
-
-				<div className='bb-kt-body'>
-					{items.length === 0 ? (
-						<p className='bb-kt-empty'>
-							{__('No takeaways yet. Add the first one from the sidebar.', 'b-blocks')}
-						</p>
-					) : (
-						<ListTag className='bb-kt-list' role='list'>
-							{items.map((item, idx) => (
-								<li key={(item && item._key) || idx} className='bb-kt-item'>
-									{showPrefix && safeListStyle === 'check' && (
-										<span className='bb-kt-icon' aria-hidden='true'>
-											<i className={resolvedIcon} />
-										</span>
-									)}
-									{showPrefix && safeListStyle === 'numbered' && (
-										<span className='bb-kt-num' aria-hidden='true' />
-									)}
-									{showPrefix && safeListStyle === 'bullet' && (
-										<span className='bb-kt-bullet' aria-hidden='true' />
-									)}
-
-									<RichText
-										tagName='span'
-										className='bb-kt-text'
-										value={(item && item.text) || ''}
-										onChange={(val) => updateItem(idx, 'text', val)}
-										placeholder={__('Takeaway text', 'b-blocks')}
-										allowedFormats={['core/bold', 'core/italic', 'core/link']}
-									/>
-
-									<div className='bb-kt-editor-item-actions'>
-										<Button
-											variant='tertiary'
-											size='small'
-											icon='arrow-up-alt2'
-											label={__('Move item up', 'b-blocks')}
-											onClick={() => moveItem(idx, idx - 1)}
-											disabled={idx === 0}
-										/>
-										<Button
-											variant='tertiary'
-											size='small'
-											icon='arrow-down-alt2'
-											label={__('Move item down', 'b-blocks')}
-											onClick={() => moveItem(idx, idx + 1)}
-											disabled={idx === items.length - 1}
-										/>
-										<Button
-											variant='tertiary'
-											isDestructive
-											size='small'
-											icon='trash'
-											label={__('Remove item', 'b-blocks')}
-											onClick={() => removeItem(idx)}
-										/>
-									</div>
-								</li>
-							))}
-						</ListTag>
-					)}
-				</div>
-			</div>
-		</>
-	);
+                    <div className='bBlocks-key-takeaways-editor-item-actions'>
+                      <Button variant='tertiary' size='small' icon='arrow-up-alt2' label={__('Move item up', 'b-blocks')} onClick={() => moveItem(idx, idx - 1)} disabled={0 === idx} />
+                      <Button variant='tertiary' size='small' icon='arrow-down-alt2' label={__('Move item down', 'b-blocks')} onClick={() => moveItem(idx, idx + 1)} disabled={idx === items.length - 1} />
+                      <Button variant='tertiary' isDestructive size='small' icon='trash' label={__('Remove item', 'b-blocks')} onClick={() => removeItem(idx)} />
+                    </div>
+                  </li>
+                ))}
+              </ListTag>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </>;
 };
 
-export default Edit;
+export default withSelect((select) => {
+  const { getDeviceType } = select('core/editor');
+
+  return {
+    device: getDeviceType()?.toLowerCase(),
+  };
+})(Edit);

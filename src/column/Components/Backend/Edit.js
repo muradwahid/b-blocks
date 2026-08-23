@@ -25,6 +25,12 @@ const Edit = props => {
 	const columns = context['b-blocks/rowColumns'];
 	const columnGap = context['b-blocks/rowColumnGap'];
 
+	const containerRef = useRef(null);
+
+	const container = containerRef?.current;
+	const doc = container?.ownerDocument || document;
+
+
 	useEffect(() => tabController(), [isSelected]);
 	// const [colWidth, setColWidth] = useState(initialWidth);
 	// const [nextColWidth, setNextColWidth] = useState(nextWidth);
@@ -37,8 +43,8 @@ const Edit = props => {
 	const id = `block-${clientId}`;
 	// const columnEl = document.querySelector(`#${id}`);
 	// const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
-	const columnEl = document.querySelector(`#block-${clientId}`);
-	const nextColumnEl = document.querySelector(`#block-${nextClientId}`);
+	const columnEl = doc?.querySelector(`#block-${clientId}`);
+	const nextColumnEl = doc?.querySelector(`#block-${nextClientId}`);
 	// const prevColumnEl = document.querySelector(`#block-${prevClientId}`);
 
 	// Initial things
@@ -172,7 +178,7 @@ const Edit = props => {
 	return <>
 		<Settings {...props} {...{ attributes, setAttributes, nextClientId, columns, updateColumns, updateColumnWidth, MINWIDTH }} />
 
-		<div {...useBlockProps()}>
+		<div {...useBlockProps({ ref: containerRef })}>
 			{/* <div className={'wp-block-b-blocks-column'} id={id}> */}
 			<style dangerouslySetInnerHTML={{ __html: style(attributes, id, columns, columnGap, true) }} />
 
@@ -192,7 +198,7 @@ const Edit = props => {
 				onResizeStop={(event, direction, elt, delta) => onResizeStop(event, direction, elt, delta)}
 				onResizeStart={(event, direction, elt) => onResizeStartEvent(event, direction, elt)}
 				size={{ width: 'auto', height: '100%' }}
-				style={{ transition: 'all .2s ease' }}
+				// style={{ transition: 'all .2s ease' }}
 				minWidth={(rowWidth / MINWIDTH) - getInt(columnGap || '0px')}
 			>
 				<div className={colPrefix} style={innerBlocks?.length === 0 ? { padding: '10px', background: '#fff' } : {}}>
@@ -211,8 +217,11 @@ export default compose(
 		const { clientId } = props;
 		const { getBlocks, getBlockParents, getBlockIndex, getBlockAttributes, getPreviousBlockClientId, getNextBlockClientId } = select('core/block-editor');
 
+		const iframeEl = document.querySelector('iframe[name="editor-canvas"]');
+		const currentDoc = iframeEl ? iframeEl?.contentDocument : document;
+
 		const parentBlockId = getBlockParents(clientId)[0];
-		const parentBlockEl = document.querySelector(`#block-${parentBlockId}`);
+		const parentBlockEl = currentDoc?.querySelector(`#block-${parentBlockId}`);
 		const parentWidth = parentBlockEl ? "100%" : '0px';
 		// const parentWidth = parentBlockEl ? getComputedStyle(parentBlockEl.querySelector(`.${rowPrefix}`), null).getPropertyValue('width') : '0px';
 

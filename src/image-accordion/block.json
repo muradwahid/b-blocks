@@ -19,9 +19,45 @@
 		"panels": {
 			"type": "array",
 			"default": [
-				{ "id": "ia-default-1", "imageId": 0, "imageUrl": "", "imageAlt": "", "title": "Panel One", "description": "Short supporting text for the first panel.", "btnLabel": "", "btnUrl": "", "btnNewTab": false, "overlayColor": "", "objectPosition": "50% 50%" },
-				{ "id": "ia-default-2", "imageId": 0, "imageUrl": "", "imageAlt": "", "title": "Panel Two", "description": "Short supporting text for the second panel.", "btnLabel": "", "btnUrl": "", "btnNewTab": false, "overlayColor": "", "objectPosition": "50% 50%" },
-				{ "id": "ia-default-3", "imageId": 0, "imageUrl": "", "imageAlt": "", "title": "Panel Three", "description": "Short supporting text for the third panel.", "btnLabel": "", "btnUrl": "", "btnNewTab": false, "overlayColor": "", "objectPosition": "50% 50%" }
+				{
+					"id": "ia-default-1",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"title": "Panel One",
+					"description": "Short supporting text for the first panel.",
+					"btnLabel": "",
+					"btnUrl": "",
+					"btnNewTab": false,
+					"overlayColor": "",
+					"objectPosition": "50% 50%"
+				},
+				{
+					"id": "ia-default-2",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"title": "Panel Two",
+					"description": "Short supporting text for the second panel.",
+					"btnLabel": "",
+					"btnUrl": "",
+					"btnNewTab": false,
+					"overlayColor": "",
+					"objectPosition": "50% 50%"
+				},
+				{
+					"id": "ia-default-3",
+					"imageId": 0,
+					"imageUrl": "",
+					"imageAlt": "",
+					"title": "Panel Three",
+					"description": "Short supporting text for the third panel.",
+					"btnLabel": "",
+					"btnUrl": "",
+					"btnNewTab": false,
+					"overlayColor": "",
+					"objectPosition": "50% 50%"
+				}
 			]
 		},
 		"trigger": {
@@ -168,7 +204,8 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:../index.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"
