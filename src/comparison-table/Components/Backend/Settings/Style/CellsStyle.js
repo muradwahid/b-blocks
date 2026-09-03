@@ -6,11 +6,6 @@ import { Background, BoxControl, ColorControl, Device, Typography } from '../../
 
 import { EMPTY_BOX } from '../../../../utils/options';
 
-/**
- * Mirrors data-table's "Cells" panel: responsive padding, typography, and the
- * odd/even row pair with a hover state — finer than the single stripe colour
- * the block shipped with.
- */
 const CellsStyle = ({ attributes, updateObj, device = 'desktop' }) => {
 	const { body = {}, rowColors = {} } = attributes;
 

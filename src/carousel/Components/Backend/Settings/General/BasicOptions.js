@@ -2,14 +2,17 @@ import { SelectControl, ToggleControl } from '@wordpress/components';
 import { RangeControl } from '@wordpress/components';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { easingOptions } from '../../../../utils/options';
 
 const BasicOptions = ({ attributes, updateObj }) => {
-  const { options } = attributes;
+  const { options, autoplay } = attributes;
   return <PanelBody className='bPlPanelBody' title={__('Basic Options', 'b-blocks')} initialOpen={false}>
 
-    <SelectControl label={__('Direction', 'b-blocks')} value={options?.direction} options={[{ label: "Horizontal", value: 'horizontal' }, { label: "Vertical", value: 'vertical' }]} onChange={val => updateObj('options', val, 'direction')} />
+    <SelectControl label={__('Direction', 'b-blocks')} value={options?.direction} options={[{ label: "Horizontal", value: 'horizontal' }, { label: "Vertical", value: 'vertical' }]} labelPosition='edge' onChange={val => updateObj('options', val, 'direction')} />
+    
+    <SelectControl className='mt10' label={__('Easing', 'b-blocks')} labelPosition='edge' value={autoplay.easing} options={easingOptions} onChange={(value) => updateObj('autoplay', value, 'easing')}/>
 
-    <ToggleControl label={__('Enable Loop', 'b-blocks')} value={options.loop} checked={options.loop} onChange={val => updateObj('options', val, 'loop')} help="This feature will work on frontend only."/>
+    <ToggleControl className='mt10' label={__('Enable Loop', 'b-blocks')} value={options.loop} checked={options.loop} onChange={val => updateObj('options', val, 'loop')} help="This feature will work on frontend only."/>
     
     <ToggleControl className='mt10' label={__('Enable Touch Move', 'b-blocks')} value={options.touchMove} checked={options.touchMove} onChange={val => updateObj('options', val, 'touchMove')} help="This feature will work on frontend only."/>
     

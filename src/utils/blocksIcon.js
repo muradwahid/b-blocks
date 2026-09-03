@@ -743,12 +743,7 @@ export const calloutIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<rect x='10.8' y='10.4' width='2.4' height='4.4' rx='1' fill={primaryColor} opacity='0.85' />
 </svg>
 
-export const comparisonTableIcon = <svg {...svgProps} viewBox='0 0 24 24'>
-	<path d='M3 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4zm2 0v3h14V4H5zm0 5v3h6V9H5zm8 0v3h6V9h-6zm-8 5v3h6v-3H5zm8 0v3h6v-3h-6zm-8 5v1h6v-1H5zm8 0v1h6v-1h-6z' />
-	<path d='M13 4h6v3h-6V4z' opacity='0.55' />
-	<path d='M7.4 10.6l1.1 1.1 2.1-2.1-0.7-0.7-1.4 1.4-0.4-0.4-0.7 0.7z' fill='#16a34a' />
-	<path d='M14.6 15.6l1.4-1.4 1.4 1.4 0.7-0.7-1.4-1.4 1.4-1.4-0.7-0.7-1.4 1.4-1.4-1.4-0.7 0.7 1.4 1.4-1.4 1.4 0.7 0.7z' fill='#dc2626' />
-</svg>
+export const comparisonTableIcon = <svg {...svgProps} viewBox="0 0 6.82666 6.82666"><g fillRule="nonzero"><path d="m3.533.962028v4.906662h-.21333v-4.906662z" /><path d="m4.03509 3.393.395.395 1.19472-1.19472.15083.15083-1.27014 1.27014-.07541.07542-.07542-.07542-.47042-.47042z" /><path d="m4.03509 5.10953.395.395 1.19472-1.19472.15083.15083-1.27014 1.27014-.07541.07542-.07542-.07542-.47042-.47042z" /><path d="m1.37758 5.57994 1.27014-1.27013.15084.15083-1.27014 1.27014z" /><path d="m2.64772 5.73078-1.27014-1.27014.15084-.15083 1.27014 1.27013z" /><path d="m4.03509 1.68227.395.395 1.19472-1.194719.15083.150839-1.27014 1.27013-.07541.07542-.07542-.07542-.47042-.47041z" /><path d="m1.20185 1.68227.395.395 1.19472-1.194719.15084.150839-1.27014 1.27013-.07542.07542-.07542-.07542-.47041-.47041z" /><path d="m1.20185 3.393.395.395 1.19472-1.19472.15084.15083-1.27014 1.27014-.07542.07542-.07542-.07542-.47041-.47042z" /></g><path d="m0 0h6.827v6.827h-6.827z" fill="none" /></svg>
 
 export const contentFilterIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<path d='M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 .8 1.6l-6.3 8.4a1 1 0 0 0-.2.6V20a1 1 0 0 1-1.45.9l-3-1.5A1 1 0 0 1 9.4 18.5v-4a1 1 0 0 0-.2-.6L2.9 5.5A1 1 0 0 1 3 5z' />
@@ -1058,3 +1053,20 @@ export const wooProductCarouselIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 </svg>
 
 export const tableIcon = <svg {...svgProps} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 2h-12l-.5.5v11l.5.5h12l.5-.5v-11l-.5-.5zM2 3h11v1H2V3zm7 4H6V5h3v2zm0 1v2H6V8h3zM2 5h3v2H2V5zm0 3h3v2H2V8zm0 5v-2h3v2H2zm4 0v-2h3v2H6zm7 0h-3v-2h3v2zm0-3h-3V8h3v2zm-3-3V5h3v2h-3z"></path></svg>
+
+export const timelineIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M12 3v18' stroke='currentColor' strokeWidth='1.4' strokeLinecap='round' opacity='0.45' />
+	<circle cx='12' cy='6.5' r='2.6' fill={primaryColor} />
+	<circle cx='12' cy='12' r='2.6' fill={primaryColor} opacity='0.75' />
+	<circle cx='12' cy='17.5' r='2.6' fill={primaryColor} opacity='0.55' />
+	<rect x='1.5' y='4.5' width='7' height='4' rx='1' fill='currentColor' opacity='0.35' />
+	<rect x='15.5' y='10' width='7' height='4' rx='1' fill='currentColor' opacity='0.35' />
+	<rect x='1.5' y='15.5' width='7' height='4' rx='1' fill='currentColor' opacity='0.35' />
+</svg>
+
+export const timelineItemIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<path d='M19 3v18' stroke='currentColor' strokeWidth='1.4' strokeLinecap='round' opacity='0.45' />
+	<circle cx='19' cy='12' r='2.8' fill={primaryColor} />
+	<rect x='2' y='8' width='12' height='8' rx='1.5' fill='currentColor' opacity='0.35' />
+	<path d='M14 12l2.2 0' stroke='currentColor' strokeWidth='1.4' strokeLinecap='round' opacity='0.45' />
+</svg>

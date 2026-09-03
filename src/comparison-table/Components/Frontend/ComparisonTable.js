@@ -1,16 +1,27 @@
 import { useCallback, useState } from 'react';
 
-import { defaultCaption, migrate, P, wrapperClasses } from '../../utils/data';
+import { defaultCaption, migrate, P, splitColumns, wrapperClasses } from '../../utils/data';
 import { checkIcon, crossIcon } from '../../utils/icons';
 
-const ComparisonTable = ({ attributes }) => {
-	// One shape regardless of when the block was saved — see utils/data.js.
-	const { content = {}, icons = {}, columns = [], rows = [] } = migrate(attributes);
+const ComparisonTable = ({ attributes, isBackend = false }) => {
+
+	const { content = {}, icons = {}, cta = {}, columns = [], rows = [] } = migrate(attributes);
+
+	const { feature, plans } = splitColumns(columns);
+
+	const ctaPosition = cta.position || 'top';
+
+	const ctaFor = (column) => {
+		if (!column?.ctaLabel) return null;
+
+		return (isBackend || !column.ctaUrl)
+			? <span className={`${P}-col__cta`} aria-hidden={isBackend ? 'true' : undefined}>{column.ctaLabel}</span>
+			: <a className={`${P}-col__cta`} href={column.ctaUrl} rel='noopener'>{column.ctaLabel}</a>;
+	};
 
 
 	const caption = content.caption;
 	const featuredLabel = content.featuredLabel;
-	const featureColumnLabel = content.featureColumnLabel || '';
 	const checkStyle = icons.check || 'check';
 	const crossStyle = icons.cross || 'times';
 	const checkIconSvg = icons.checkSvg || '';
@@ -24,10 +35,6 @@ const ComparisonTable = ({ attributes }) => {
 			: (isYes ? checkIcon(checkStyle) : crossIcon(crossStyle));
 	};
 
-	// The bubble is rendered outside the table and positioned with fixed
-	// coordinates. A CSS-only tooltip cannot work here: .…-scroll sets
-	// overflow-x: auto, which forces overflow-y to compute to auto, so an
-	// absolutely-positioned bubble is clipped by the scroll box on every row.
 	const [tip, setTip] = useState(null);
 
 	const showTip = useCallback((event, text) => {
@@ -44,8 +51,24 @@ const ComparisonTable = ({ attributes }) => {
 
 	const hideTip = useCallback(() => setTip(null), []);
 
-	const featuredIndex = columns.findIndex((column) => column?.isFeatured);
-	const hasData = columns.length > 0 && rows.length > 0;
+	const headContent = (column, isFeatured) => <>
+		{isFeatured && (column?.badge || featuredLabel)
+			? <span className={`${P}-col__featured-badge`} aria-hidden='true'>{column?.badge || featuredLabel}</span>
+			: null}
+
+		{(column?.icon || column?.label) ? <span className={`${P}-col__head`}>
+			{column?.icon ? <span className={`${P}-col__icon`} dangerouslySetInnerHTML={{ __html: column.icon }} /> : null}
+
+			{column?.label ? <span className={`${P}-col__label`}>{column.label}</span> : null}
+		</span> : null}
+
+		{column?.subtitle ? <span className={`${P}-col__subtitle`}>{column.subtitle}</span> : null}
+
+		{'top' === ctaPosition ? ctaFor(column) : null}
+	</>;
+
+	const featuredIndex = plans.findIndex((column) => column?.isFeatured);
+	const hasData = plans.length > 0 && rows.length > 0;
 	const captionText = caption || defaultCaption();
 
 	if (!hasData) {
@@ -72,37 +95,18 @@ const ComparisonTable = ({ attributes }) => {
 
 				<thead>
 					<tr>
-						{/* The feature-name column. Its heading is optional — left empty
-					    it stays screen-reader-only, which is how the block shipped. */}
-						<th scope='col' className={`${P}-feature-col`}>
-							{featureColumnLabel
-								? <span className={`${P}-col__label`}>{featureColumnLabel}</span>
+						<th scope='col' data-col='feature' className={`${P}-feature-col`}>
+							{feature?.label || feature?.icon
+								? headContent(feature, !!feature?.isFeatured)
 								: <span className='screen-reader-text'>Feature</span>}
 						</th>
 
-						{columns.map((column, index) => {
+						{plans.map((column, index) => {
 							const isFeatured = !!column?.isFeatured;
 
 							return <th key={column?._key || `col-${index}`} scope='col' data-col={index} className={`${P}-col${isFeatured ? ' is-featured' : ''}`}>
-								{isFeatured && (column?.badge || featuredLabel)
-									? <span className={`${P}-col__featured-badge`} aria-hidden='true'>{column?.badge || featuredLabel}</span>
-									: null}
-
-								{/* Icon and label share a flex box so the icon can be placed
-							    on any of its four sides per breakpoint, while the
-							    subtitle and CTA stay below regardless. */}
-							{(column?.icon || column?.label) ? <span className={`${P}-col__head`}>
-								{column?.icon ? <span className={`${P}-col__icon`} dangerouslySetInnerHTML={{ __html: column.icon }} /> : null}
-
-								{column?.label ? <span className={`${P}-col__label`}>{column.label}</span> : null}
-							</span> : null}
-
-								{column?.subtitle ? <span className={`${P}-col__subtitle`}>{column.subtitle}</span> : null}
-
-								{column?.ctaUrl && column?.ctaLabel
-									? <a className={`${P}-col__cta`} href={column.ctaUrl} rel='noopener'>{column.ctaLabel}</a>
-									: null}
-							</th>;
+							{headContent(column, isFeatured)}
+						</th>;
 						})}
 					</tr>
 				</thead>
@@ -120,19 +124,18 @@ const ComparisonTable = ({ attributes }) => {
 									onBlur={hideTip}
 								>
 									{row?.label || <span className='screen-reader-text'>Feature</span>}
-									{/* data-tooltip is CSS-only, so the text needs a real
-								    node for assistive tech to reach it. */}
+	
 									<span className='screen-reader-text'>{row.tooltip}</span>
 								</span>
 								: row?.label || <span className='screen-reader-text'>Feature</span>}
 						</th>
 
-						{columns.map((_column, cellIndex) => {
+						{plans.map((_column, cellIndex) => {
 							const cell = row?.cells?.[cellIndex] || { type: 'icon', value: false, text: '' };
 							const cellClass = `${P}-cell${cellIndex === featuredIndex ? ' is-featured' : ''}`;
 
 							if ('text' === cell.type) {
-								return <td key={cellIndex} data-col={cellIndex} data-label={columns[cellIndex]?.label || ''} className={cellClass}>
+								return <td key={cellIndex} data-col={cellIndex} data-label={plans[cellIndex]?.label || ''} className={cellClass}>
 									{cell.text || <>
 										<span aria-hidden='true'>&mdash;</span>
 										<span className='screen-reader-text'>Not specified</span>
@@ -140,7 +143,7 @@ const ComparisonTable = ({ attributes }) => {
 								</td>;
 							}
 
-							return <td key={cellIndex} data-col={cellIndex} data-label={columns[cellIndex]?.label || ''} className={cellClass}>
+							return <td key={cellIndex} data-col={cellIndex} data-label={plans[cellIndex]?.label || ''} className={cellClass}>
 								<span className={`${P}-cell-icon ${cell.value ? 'is-yes' : 'is-no'}`}>
 									{mark(!!cell.value)}
 									<span className='screen-reader-text'>{cell.value ? 'Yes' : 'No'}</span>
@@ -149,6 +152,22 @@ const ComparisonTable = ({ attributes }) => {
 						})}
 					</tr>)}
 				</tbody>
+
+			{'bottom' === ctaPosition && plans.some((column) => column?.ctaLabel) ? <tfoot>
+				<tr>
+					<th scope='row' data-col='feature' className={`${P}-row-label`}>
+						{ctaFor(feature)}
+					</th>
+
+					{plans.map((column, index) => <td
+						key={column?._key || `cta-${index}`}
+						data-col={index}
+						className={`${P}-cell ${P}-cta-cell${index === featuredIndex ? ' is-featured' : ''}`}
+					>
+						{ctaFor(column)}
+					</td>)}
+				</tr>
+			</tfoot> : null}
 			</table>
 		</div>
 

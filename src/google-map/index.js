@@ -9,7 +9,6 @@ import { isBlockEnabled } from '../utils/functions';
 isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: googleMapIcon,
 
-	// Build In Functions
 	edit: Edit,
 
 	save: () => null

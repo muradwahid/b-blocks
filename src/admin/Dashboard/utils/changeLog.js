@@ -1,5 +1,30 @@
 export const changeLog = [
     {
+        version: '2.1.4 - 3 September 2026',
+        list: [
+            'Fixed: Container Layout issue',
+            'Added: Carousel block direction'
+        ],
+        type: 'fix'
+    },
+    {
+        version: '2.1.3 - 31 August 2026',
+        list: [
+            'Added: 2 new blocks',
+            '> Comparison Table',
+            '> Timeline',
+        ],
+        type: 'new'
+    },
+    {
+    version: '2.1.2 - 24 August 2026',
+        list: [
+            'Added: 2 new blocks',
+            '> Google Map'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.1 - 02 August 2026',
         list: [
             'Added: 4 new blocks',

@@ -1,4 +1,4 @@
-import { RangeControl, PanelBody, Flex, __experimentalUnitControl as UnitControl, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon } from '@wordpress/components';
+import { RangeControl, PanelBody, Flex, __experimentalUnitControl as UnitControl, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon, __experimentalToggleGroupControlOption as ToggleGroupControlOption } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Device, Label } from '../../../../../../../bpl-tools/Components';
 import { AlignCenterIcon, AlignEndIcon, AlignStartIcon } from '../../../../utils/icons';
@@ -6,14 +6,26 @@ import { AlignCenterIcon, AlignEndIcon, AlignStartIcon } from '../../../../utils
 const LayoutOptions = ({ attributes, updateObj, device }) => {
   const {layout, styles } = attributes;
   const { container } = styles;
+  const { direction = 'horizontal' } = layout;
   
   return <PanelBody className='bPlPanelBody' title={__('Layout', 'b-blocks')} initialOpen={true}>
-    <RangeControl label={<Flex>{__('Slide View', 'b-blocks')} <Device /></Flex>} value={layout.slideView[device]} onChange={val=>updateObj('layout',val,'slideView',device)} beforeIcon='grid-view' min={1} max={12} />
 
-    <RangeControl label={<Flex>{__('Slide Gap', 'b-blocks')} <Device /></Flex>}
+    <Flex align="center" className='mt10'>
+      <Label className='flex1'>{__('Direction', 'b-blocks')}</Label>
+      <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={direction} onChange={(val) => updateObj('layout', val, 'direction')}>
+
+        <ToggleGroupControlOption label="Horizontal" value="horizontal" />
+        <ToggleGroupControlOption label="Vertical" value="vertical" />
+
+      </ToggleGroupControl>
+    </Flex>
+
+    <RangeControl className='mt10' label={<Flex>{__('Slide View', 'b-blocks')} <Device /></Flex>} value={layout.slideView[device]} onChange={val=>updateObj('layout',val,'slideView',device)} beforeIcon='grid-view' min={1} max={12} />
+
+    <RangeControl className='mt10' label={<Flex>{__('Slide Gap', 'b-blocks')} <Device /></Flex>}
      value={layout.space[device]} onChange={val=>updateObj('layout',val,'space',device)}  min={0} max={250} />
     
-    <Flex>
+    <Flex className='mt10'>
       <Label className='mb0 flex3'>{__('Width', 'b-blocks')}<Device /></Label>
     <UnitControl className='flex1' labelPosition='edge' value={container[device].width} onChange={val => updateObj('styles', val, 'container', device, 'width')} />
     </Flex>

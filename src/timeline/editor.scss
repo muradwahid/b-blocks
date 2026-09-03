@@ -1,87 +1,86 @@
 /**
- * Editor-only styles for the Timeline block.
+ * Timeline Block — editor-only styles for the Timeline and its Timeline Item
+ * children.
  *
- * These styles refine the in-editor representation of the block and
- * surface controls (e.g., remove buttons, reorder controls) that should
- * not appear on the front-end.
+ * The visual design lives in style.scss (loaded in the editor too) and the
+ * configured values in Components/Common/Style.js. What is here only smooths
+ * over the editor's own chrome: block list margins and the empty-state
+ * appender that stands in for a card's content.
  */
 
 .wp-block-b-blocks-timeline {
-	.timeline-item {
-		position: relative;
-		transition: all 0.2s ease;
-
-		&:hover {
-			.timeline-item-controls {
-				opacity: 1;
-				visibility: visible;
-			}
-		}
+	// The editor positions this appender absolutely and gives it a fixed
+	// width, which leaves it parked off to one side of the entries column and
+	// deaf to `align-self`. Returning it to flow is what lets it sit under the
+	// last entry and centre on the line.
+	// In a horizontal timeline the entries grid flows in columns, so the
+	// appender takes one of its own and has to span all three rows.
+	.b-blocks-timeline-horizontal & .b-blocks-timeline-items > .block-list-appender,
+	&.b-blocks-timeline-horizontal .b-blocks-timeline-items > .block-list-appender {
+		grid-row: 1 / -1;
+		align-self: center;
 	}
 
-	.timeline-item-controls {
-		position: absolute;
-		top: 8px;
-		right: 8px;
-		display: flex;
-		gap: 4px;
-		z-index: 10;
-		opacity: 0;
-		visibility: hidden;
-		transition: all 0.2s ease;
-
-		.components-button {
-			min-width: auto;
-			padding: 4px 8px;
-			height: auto;
-			font-size: 12px;
-			line-height: 1;
-		}
-
-		.components-button.is-destructive {
-			background: #dc3545 !important;
-			color: #ffffff !important;
-		}
-
-		.components-button.is-destructive:hover {
-			background: #c82333 !important;
-		}
-	}
-
-	.timeline-date,
-	.timeline-title,
-	.timeline-description {
-		&:focus {
-			outline: 2px solid #0d6efd;
-			outline-offset: 2px;
-		}
-	}
-
-	.timeline-empty {
-		text-align: center;
-		padding: 40px 20px;
-		background: #f8f9fa;
-		border-radius: 8px;
-		border: 2px dashed #dee2e6;
-
-		p {
-			margin: 0 0 16px 0;
-			color: #6c757d;
-		}
-	}
-
-	.timeline-add-item {
-		margin-top: 16px;
+	.b-blocks-timeline-items > .block-list-appender {
+		position: static;
 		display: flex;
 		justify-content: center;
+		width: auto;
+		max-width: none;
+		margin: 0;
+
+		// Left to stretch, the button becomes a full-width outlined slab under
+		// the timeline. A compact one reads as a control rather than a region.
+		.block-editor-button-block-appender {
+			width: auto;
+			padding-inline: 16px;
+		}
 	}
 
-	/* Editor inspector adjustments */
-	.components-base-control {
-		margin-bottom: 16px;
+	// Entries are laid out by the grid in style.scss; the editor adds its own
+	// margins to every block in a list, which would break the rhythm.
+	.b-blocks-timeline-item {
+		margin-block: 0;
+	}
+}
+
+.wp-block-b-blocks-timeline-item {
+	// The card is the inner-blocks container in the editor.
+	.b-blocks-timeline-card {
+		// Return the appender to flow: the editor positions it absolutely,
+		// which leaves it hanging off the card's edge.
+		.block-list-appender {
+			position: static;
+			width: auto;
+			margin: 0;
+		}
+
+		// Only an *empty* card shows the button appender, so the visible drop
+		// area belongs on the button rather than on the wrapper — on the
+		// wrapper it also lands on the default appender in a filled card,
+		// drawing a stray box beside the content.
+		.block-editor-button-block-appender {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			min-height: 60px;
+			border: 1px solid rgba(30, 30, 30, 0.25);
+			border-radius: 2px;
+			box-shadow: none;
+			background: transparent;
+			color: inherit;
+		}
 	}
 
-	.components-color-palette {
-		margin-bottom: 16px;
+	// The date is a RichText field in the editor; keep the empty placeholder
+	// from collapsing so the field stays clickable.
+	.b-blocks-timeline-date {
+		min-width: 40px;
+
+		&:focus {
+			outline: 1px solid var(--wp-admin-theme-color, #007cba);
+			outline-offset: 2px;
+		}
 	}
 }

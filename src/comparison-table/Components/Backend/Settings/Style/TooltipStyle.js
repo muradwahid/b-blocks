@@ -5,7 +5,7 @@ import { Background, BoxControl, ColorControl, Device, Label, Notice, ShadowCont
 
 import { EMPTY_BOX } from '../../../../utils/options';
 
-/** Styling for the feature-name tooltip bubble (General → Feature Rows → Tooltip). */
+
 const TooltipStyle = ({ attributes, updateObj, device = 'desktop' }) => {
 	const { rows = [], tooltip = {} } = attributes;
 

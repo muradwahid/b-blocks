@@ -9,7 +9,7 @@ import { isUnreachableUrl, parseGeoJson } from '../../../../utils/data';
 
 const Layers = ({ layers = {}, updateObj,
 	// markerCount = 0, plottableCount = 0
-}) => <PanelBody className='bPlPanelBody' title={__('Layers', 'b-blocks')} initialOpen={true}>
+}) => <PanelBody className='bPlPanelBody' title={__('Layers', 'b-blocks')} initialOpen={false}>
 	<ToggleControl label={__('Traffic', 'b-blocks')} checked={!!layers.traffic} onChange={(val) => updateObj('layers', !!val, 'traffic')} __nextHasNoMarginBottom />
 
 	<ToggleControl className='mt10' label={__('Transit', 'b-blocks')} checked={!!layers.transit} onChange={(val) => updateObj('layers', !!val, 'transit')} __nextHasNoMarginBottom />

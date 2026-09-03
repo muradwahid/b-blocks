@@ -4,8 +4,10 @@ import { getBackgroundCSS, getBorderBoxCSS, getBoxCSS, isValidCSS } from '../../
 import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
 
 const Style = ({ attributes, id, isBackend=false }) => {
-	const { styles, advanced } = attributes;
+	const { styles, advanced, layout } = attributes;
 	const { container, navigation, pagination } = styles;
+
+	const isVertical = 'vertical' === layout?.direction;
 
 	const mainSl = `#${id}`;
 	const advancedStyleSl = `${id} .bBlock-carousel-main-wrapper`;
@@ -36,6 +38,9 @@ const Style = ({ attributes, id, isBackend=false }) => {
 			${swiperWrapperSl}{
 				${isValidCSS('align-items', container.desktop.alignItems)}
 			}
+			${isVertical ? `${swiperWrapperSl} .swiper-slide{
+				height: auto;
+			}` : ''}
 			${prevNavigationSl}{
 			${isValidCSS('height', 'unset', true)}
 				${isValidCSS('left', navigation.desktop.arrow.positionX.prev)}

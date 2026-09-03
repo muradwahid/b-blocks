@@ -2,7 +2,7 @@
 /**
  * Plugin Name: bBlocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.1.1
+ * Version: 2.1.4
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3 or later
@@ -30,8 +30,8 @@ if (function_exists('b_blocks_fs')) {
 	// always loads freshly-built assets (no stale-bundle caching). Production
 	// keeps the real, stable version.
 	$bb_host    = isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
-	$bb_isLocal = $bb_host && ( 0 === strpos( $bb_host, 'localhost' ) || 0 === strpos( $bb_host, '127.0.0.1' ) || (bool) preg_match( '/\.(local|test|ddev\.site)(:\d+)?$/', $bb_host ) );
-	define( 'B_BLOCKS_VERSION', $bb_isLocal ? (string) time() : '2.1.0' );
+	$bb_isLocal = $bb_host && ( 0 === strpos( $bb_host, 'localhost' ) || 0 === strpos( $bb_host, '127.0.0.1' ) || preg_match( '/\.(local|test|ddev\.site)(:\d+)?$/', $bb_host ) );
+	define( 'B_BLOCKS_VERSION', $bb_isLocal ? time() : '2.1.4' );
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_HAS_PRO', 'b-blocks-pro/plugin.php' === plugin_basename(__FILE__));
@@ -56,7 +56,6 @@ if (function_exists('b_blocks_fs')) {
 					'public_key' => 'pk_d6426b344df4918bc066a7a0b4719',
 					'is_premium' => true,
 					'premium_suffix' => 'Pro',
-					// If your plugin is a serviceware, set this option to false.
 					'has_premium_version' => true,
 					'has_addons' => false,
 					'has_paid_plans' => true,
@@ -143,8 +142,6 @@ if (function_exists('b_blocks_fs')) {
 	if (file_exists(B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php') && B_BLOCKS_HAS_PRO ) {
 		require_once B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php';
 	}
-	
-
 
 	class BBlocks
 	{
@@ -353,6 +350,7 @@ if (function_exists('b_blocks_fs')) {
 				'testimonials',
 				// 'testimonials-grid',
 				'timeline',
+				'timeline-item',
 				'toggle-content',
 				'accordion-block',
 				'video',
@@ -364,8 +362,17 @@ if (function_exists('b_blocks_fs')) {
 
 			foreach ($blocks as $block) {
 				if (!in_array("b-blocks/$block", $disabledBlocks) && !in_array("b-blocks/$block", $premiumBlocks)) {
-					register_block_type(__DIR__ . "/build/$block");
-					wp_deregister_script("b-blocks-$block-editor-script");
+					$registered = register_block_type(__DIR__ . "/build/$block");
+
+					// Every block shares one editor bundle, so the per-block
+					// handle is dropped to keep it from being loaded again.
+					// The handle WordPress generates comes from the block's
+					// NAME, which is not always its directory — data-table is
+					// registered as b-blocks/table — so deriving it from the
+					// directory silently misses those and the bundle runs
+					// twice, re-registering every inline format.
+					$name = ($registered instanceof WP_Block_Type) ? $registered->name : "b-blocks/$block";
+					wp_deregister_script(generate_block_asset_handle($name, 'editorScript'));
 				}
 			}
 

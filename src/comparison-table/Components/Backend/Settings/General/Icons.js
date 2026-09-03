@@ -35,9 +35,6 @@ const Icons = ({ attributes, updateObj }) => {
 
 		<hr />
 
-		{/* Adopted from article-card / scroll-to-top: the built-in pair is two
-		    shapes, the library is the whole set. Empty falls back to the
-		    selects above, so nothing changes until an icon is picked. */}
 		<IconLibrary
 			label={__('Custom “Yes” Icon', 'b-blocks')}
 			value={icons.checkSvg}

@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
 Tested up to: 6.9
-Stable tag: 2.1.1
+Stable tag: 2.1.4
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -411,15 +411,18 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 == Changelog ==
 
-= 2.1.2 - 18 August 2026 =
-* Improved: Google Map block rebuilt on the Google Maps JavaScript API
-	* Interactive maps with custom markers, rich info windows and marker clustering
-	* Categories with an optional visitor-facing filter bar
-	* Map themes (Silver, Retro, Dark, Night, Aubergine) plus custom style JSON, grayscale, saturation and hue
-	* Traffic, transit, bicycling, KML and GeoJSON layers, a canvas heatmap, and polyline/polygon/circle/rectangle shapes
-	* Directions with waypoints and an optional turn-by-turn panel
-	* Places search box, find-my-location, and lazy loading on view or on click
-	* Existing embed-URL maps keep working unchanged
+= 2.1.4 - 3 September 2026 =
+* Fixed: Container Layout issue
+* Added: Carousel block direction
+
+= 2.1.3 - 31 August 2026 =
+* Added: 2 new blocks
+	* Comparison Table
+	* Timeline
+
+= 2.1.2 - 24 August 2026 =
+* Added: 1 new blocks
+	* Google Map
 
 = 2.1.1 - 02 August 2026 =
 * Added: 4 new blocks

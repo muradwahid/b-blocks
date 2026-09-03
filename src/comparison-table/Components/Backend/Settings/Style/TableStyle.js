@@ -4,16 +4,13 @@ import { BorderBoxControl, Flex, PanelBody, SelectControl, __experimentalUnitCon
 import { Background, BoxControl, ColorControl, Device, Label, Notice, ShadowControl } from '../../../../../../../bpl-tools/Components';
 
 import { EMPTY_BOX } from '../../../../utils/options';
-import { THEME_CELL_BORDER } from '../../../../utils/themes';
+import { THEME_CELL_BORDER, THEME_NO_BORDER } from '../../../../utils/themes';
 
-/** Mirrors data-table's "Table Style" panel: width, border, radius, collapse. */
 const TableStyle = ({ attributes, updateObj, device = 'desktop' }) => {
 	const { table = {} } = attributes;
 
-	// Some themes pin this value in their stylesheet, so the control would be
-	// a no-op there. Show the value in force and say why rather than let it
-	// look broken.
 	const lockedBy = THEME_CELL_BORDER[table.theme];
+	const borderLocked = THEME_NO_BORDER.includes(table.theme);
 
 
 	return <PanelBody className='bPlPanelBody' title={__('Table Style', 'b-blocks')} initialOpen={true}>
@@ -42,6 +39,10 @@ const TableStyle = ({ attributes, updateObj, device = 'desktop' }) => {
 		</Notice>}
 
 		<ColorControl className='mt10' label={__('Grid Line Color:', 'b-blocks')} value={table.borderColor} onChange={(val) => updateObj('table', val, 'borderColor')} />
+
+		{borderLocked && <Notice status='info' isIcon={true}>
+			{__('This theme removes the outer frame so its cards stand free, so the border below has no effect. Grid Line Color still applies to the cells.', 'b-blocks')}
+		</Notice>}
 
 		<BorderBoxControl className='mt10' label={__('Border', 'b-blocks')} value={table.border || {}} onChange={(val) => updateObj('table', val, 'border')} />
 

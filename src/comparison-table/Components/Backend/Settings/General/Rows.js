@@ -12,8 +12,6 @@ const Rows = ({ attributes, setAttributes }) => {
 	const columns = attributes.columns || [];
 	const rows = attributes.rows || [];
 
-	// Rows reorder independently of columns, so the sortable needs no mirroring
-	// — only add and copy are intercepted.
 	const onChange = (next) => setAttributes({ rows: next });
 
 	const handleAdd = useCallback((next) => {
@@ -34,8 +32,6 @@ const Rows = ({ attributes, setAttributes }) => {
 		setAttributes({ rows: [...rows.slice(0, index + 1), duplicate, ...rows.slice(index + 1)] });
 	}, [JSON.stringify(rows)]);
 
-	// Bound so ItemSettings can render one cell editor per column; ItemsPanel
-	// only forwards its own props in the non-sortable designs.
 	const ItemSettings = useCallback(
 		(itemProps) => <RowItemSettings {...itemProps} columns={columns} />,
 		[JSON.stringify(columns)]

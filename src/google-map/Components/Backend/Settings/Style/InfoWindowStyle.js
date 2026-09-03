@@ -1,21 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { Flex, PanelBody, SelectControl, ToggleControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { Flex, PanelBody, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 import { BoxControl, ColorControl, Device, Label, ShadowControl, Typography } from '../../../../../../../bpl-tools/Components';
 
-import { EMPTY_BOX, infoTriggers, UNITS } from '../../../../utils/options';
+import { EMPTY_BOX, UNITS } from '../../../../utils/options';
 
 const InfoWindowStyle = ({ infoWindow = {}, updateObj, device = 'desktop' }) => <PanelBody className='bPlPanelBody' title={__('Info Window', 'b-blocks')} initialOpen={false}>
-	<SelectControl label={__('Open On', 'b-blocks')} value={infoWindow.trigger || 'click'} options={infoTriggers} onChange={(val) => updateObj('infoWindow', val, 'trigger')} __nextHasNoMarginBottom />
-
-	<ToggleControl
-		className='mt10'
-		label={__('Only one open at a time', 'b-blocks')}
-		checked={false !== infoWindow.singleOpen}
-		onChange={(val) => updateObj('infoWindow', !!val, 'singleOpen')}
-		__nextHasNoMarginBottom
-	/>
-
 	<ColorControl className='mt10' label={__('Background:', 'b-blocks')} value={infoWindow.bgColor} onChange={(val) => updateObj('infoWindow', val, 'bgColor')} />
 
 	<ColorControl className='mt10' label={__('Text Color:', 'b-blocks')} value={infoWindow.textColor} onChange={(val) => updateObj('infoWindow', val, 'textColor')} />

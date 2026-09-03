@@ -3,7 +3,6 @@ import { PanelBody } from '@wordpress/components';
 
 import { Background, ColorControl } from '../../../../../../../bpl-tools/Components';
 
-/** The table body surface — mirrors data-table's own "Body" panel. */
 const BodyStyle = ({ attributes, updateObj }) => {
 	const { body = {} } = attributes;
 

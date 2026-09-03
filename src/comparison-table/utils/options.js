@@ -6,12 +6,9 @@ export const generalStyleTabs = [
 	{ name: 'advanced', title: __('Advanced', 'b-blocks') }
 ];
 
-// Ordered light → heavy so the picker reads as a spectrum of density.
+
 export const themeOptions = [
 	{ label: __('Default — classic grid', 'b-blocks'), value: 'default' },
-	{ label: __('Clean — borderless, airy', 'b-blocks'), value: 'clean' },
-	{ label: __('Striped — zebra rows', 'b-blocks'), value: 'striped' },
-	{ label: __('Bordered — full grid', 'b-blocks'), value: 'bordered' },
 	{ label: __('Cards — columns as cards', 'b-blocks'), value: 'cards' },
 	{ label: __('Ribbon — tabbed headers on a panel', 'b-blocks'), value: 'ribbon' },
 	{ label: __('Stacked — elevated coloured cards', 'b-blocks'), value: 'stacked' }
@@ -51,11 +48,19 @@ export const addNewColumn = (makeKey) => ({
 	subtitle: '',
 	badge: '',
 	isFeatured: false,
-	accent: '',
 	icon: '',
 	iconColor: '',
+	iconSize: { desktop: '', tablet: '', mobile: '' },
 	ctaUrl: '',
-	ctaLabel: ''
+	ctaLabel: '',
+	cta: {
+		normal: { bg: {}, color: '' },
+		hover: { bg: {}, color: '' },
+		typo: {}, border: {}, transition: '',
+		alignment: { desktop: '', tablet: '', mobile: '' },
+		padding: { top: '', right: '', bottom: '', left: '' },
+		radius: { top: '', right: '', bottom: '', left: '' }
+	}
 });
 
 export const addNewRow = (makeKey, columnCount = 0) => ({

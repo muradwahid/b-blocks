@@ -4,6 +4,7 @@ import Settings from './Settings/Settings';
 import Style from '../Common/Style';
 import { Button } from '@wordpress/components';
 import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
+import { getVerticalSlidesHeight } from '../../utils/functions';
 import { useSelect, withSelect, useDispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 
@@ -18,7 +19,15 @@ import Swiper from 'swiper';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, device } = props;
-	const { navigation, layout, options, autoplay, pagination } = attributes;
+	const { navigation, layout, options, autoplay, pagination, styles } = attributes;
+
+	const isVertical = 'vertical' === layout?.direction;
+
+	const customHeight = styles?.container?.desktop?.height;
+
+	const activeDevice = ['desktop', 'tablet', 'mobile'].includes(device) ? device : 'desktop';
+	const slideView = layout?.slideView?.[activeDevice] ?? layout?.slideView?.desktop ?? 1;
+	const space = layout?.space?.[activeDevice] ?? layout?.space?.desktop ?? 0;
 	const swiperElRef = useRef(null);
 	const swiperInstanceRef = useRef(null)
 	const swiperWrapperRef = useRef(null)
@@ -58,7 +67,6 @@ const Edit = props => {
 		const blockWrapper = swiperWrapperRef.current;
 		if (!el || !blockWrapper) return;
 
-		// Wait until slides exist (Gutenberg renders async)
 		const wrapper = el.querySelector('.swiper-wrapper');
 		const slides = wrapper?.querySelectorAll('.swiper-slide');
 
@@ -70,25 +78,24 @@ const Edit = props => {
 			swiperInstanceRef.current = null;
 		}
 
+		if (isVertical && !customHeight) {
+			const height = getVerticalSlidesHeight(el, slideView, space);
+			el.style.height = height ? `${height}px` : '';
+		} else {
+			el.style.height = '';
+		}
+
 		swiperInstanceRef.current = new Swiper(el, {
 			modules: [A11y, Autoplay, Navigation, Pagination],
-			slidesPerView: layout.slideView.mobile,
-			spaceBetween: layout.space.mobile,
+
+			slidesPerView: isVertical ? 'auto' : slideView,
+			spaceBetween: space,
+
 			loop: false,
 			speed: options.speed * 1000,
-			autoHeight: options.autoHeight,
-
+			autoHeight: isVertical ? false : options.autoHeight,
+			direction: isVertical ? 'vertical' : 'horizontal',
 			autoplay: false,
-			breakpoints: {
-				641: {
-					slidesPerView: layout.slideView.tablet,
-					spaceBetween: layout.space.tablet,
-				},
-				1025: {
-					slidesPerView: layout.slideView.desktop,
-					spaceBetween: layout.space.desktop,
-				},
-			},
 			navigation: {
 				nextEl: blockWrapper.querySelector('.swiper-button-next'),
 				prevEl: blockWrapper.querySelector('.swiper-button-prev'),
@@ -127,13 +134,17 @@ const Edit = props => {
 				swiperInstanceRef.current = null;
 			}
 		};
-	}, [clientId, innerBlockCount, JSON.stringify(layout.slideView), JSON.stringify(layout.space), JSON.stringify(options), JSON.stringify(autoplay), JSON.stringify(pagination)]);
+	}, [clientId, innerBlockCount, slideView, space, JSON.stringify(options), JSON.stringify(autoplay), JSON.stringify(pagination), isVertical, customHeight, layout?.direction, layout?.slideView[device], swiperInstanceRef?.current]);
 
 	useEffect(() => {
 		setAttributes({ clientId })
 	}, [])
 
 	const updateObj = updateAttributes(attributes, setAttributes);
+
+	const style = {
+		'--swiper-wrapper-transition-timing-function': autoplay?.easing,
+	};
 
 	return <>
 		<Settings {...{ attributes, setAttributes, updateObj, device }} />
@@ -147,7 +158,7 @@ const Edit = props => {
 			</div>
 			<div className='bBlock-carousel-main-wrapper'>
 				<div>
-					<div className='bBlocks-carousel-wrapper' ref={swiperWrapperRef}>
+					<div className='bBlocks-carousel-wrapper' style={style} ref={swiperWrapperRef}>
 						<div className="swiper" ref={swiperElRef}>
 							<div {...innerBlocksProps} />
 							{/* <div className="swiper-scrollbar" /> */}

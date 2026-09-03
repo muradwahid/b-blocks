@@ -6,7 +6,9 @@ import {
     buttonGroupIcon, buttonIcon,
     // callToActionIcon, calloutIcon,
     cardIcon, carouselBlockIcon, chartIcon,
-    // clickToShareIcon, codeHighlightIcon, comparisonTableIcon, contactCardIcon,
+    // clickToShareIcon, codeHighlightIcon, 
+    comparisonTableIcon,
+    // contactCardIcon,
     containerIcon,
     // contentFilterIcon,
     contentTickerIcon, countdownIcon, countersIcon,
@@ -14,7 +16,7 @@ import {
     dividerIcon, dualColorHeadingIcon, emojiStack, expandContentIcon, facebookEmbedIcon, facebookPageIcon,
     // faqBlockIcon,
     featureBoxIcon, flipBoxIcon, formBuilderIcon, galleryIcon, gifIcon,
-    // googleMapIcon, 
+    googleMapIcon,
     heroSectionIcon,
     // howtoSchemaIcon,
     htmlIcon, iconBoxIcon,
@@ -27,7 +29,7 @@ import {
     // progressBarIcon, progressCircleIcon,
     qrCodeIcon,
     // readingProgressIcon, reviewBoxIcon,
-    rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, toggleContentIcon,
+    rowIcon, scrollToTopIcon, sectionHeadingIcon, servicesIcon, shapeDividerIcon, skillBarIcon, sliderIcon, socialShareIcon, stackedCardIcon, starRatingIcon, svgDrawIcon, tableOfContentIcon, tDViewerIcon, teamMembersIcon, telexAccordionIcon, testimonialsIcon, textPathIcon, timelineIcon, toggleContentIcon,
     // typingHeadlineIcon,
     videoIcon,
     // videoPopupIcon,
@@ -48,7 +50,9 @@ import {
     // postMasonryGridIcon, searchBarIcon, iconIcon,
     eventCardIcon,
     fileDownloadCardIcon,
-    // scrollRevealIcon, audioPlayerIcon, parallaxSectionIcon, pdfEmbedIcon
+    // scrollRevealIcon,
+    audioPlayerIcon,
+    //  parallaxSectionIcon, pdfEmbedIcon
 } from '../../../utils/blocksIcon';
 
 // import { wooProductGridIcon, wooAddToCartIcon, wooProductCarouselIcon, wooFeaturedProductIcon, wooCategoryGridIcon, wooMiniCartIcon, wooProductFilterIcon, wooBestSellersIcon, wooSingleProductIcon, wooSaleBadgeIcon, wooProductReviewsIcon } from '../../../utils/blocksIcon';
@@ -57,7 +61,7 @@ const pluginSlug = 'b-blocks';
 
 
 const siteURL = 'https://bblockswp.com';
-const demoLink = `${siteURL}/demo`;
+const demoLink = `${siteURL}/blocks`;
 const docsURL = `${siteURL}/docs`;
 
 export default [
@@ -68,7 +72,7 @@ export default [
                 name: `${pluginSlug}/container`,
                 title: 'Container',
                 icon: containerIcon,
-                demo: ``,
+                demo: `${demoLink}/container`,
                 docs: ``,
                 status: 'published',
                 required: true
@@ -77,7 +81,7 @@ export default [
                 name: `${pluginSlug}/row`,
                 title: 'Row',
                 icon: rowIcon,
-                demo: `${demoLink}/row/`,
+                demo: `${demoLink}/row-columns/`,
                 docs: `${docsURL}/row-block/`,
                 status: 'published',
                 required: true
@@ -127,7 +131,7 @@ export default [
                 name: `${pluginSlug}/accordion-block`,
                 title: 'Accordion Block',
                 icon: telexAccordionIcon,
-                // demo: `${demoLink}/animated-text/`,
+                demo: `${demoLink}/accordion-block/`,
                 // docs: `${docsURL}/animated-text-block/`,
                 status: 'published'
             },
@@ -143,7 +147,7 @@ export default [
                 name: `${pluginSlug}/dual-color-heading`,
                 title: 'Dual Color Heading',
                 icon: dualColorHeadingIcon,
-                demo: ``,
+                demo: `${demoLink}/dual-color-heading/`,
                 docs: ``,
                 status: 'published'
             },
@@ -175,7 +179,7 @@ export default [
                 name: `${pluginSlug}/text-path`,
                 title: 'Text Path',
                 icon: textPathIcon,
-                demo: ``,
+                demo: `${demoLink}/text-path/`,
                 docs: ``,
                 status: 'published'
             },
@@ -191,13 +195,14 @@ export default [
                 name: `${pluginSlug}/advanced-tabs`,
                 title: 'Advanced Tabs',
                 icon: advancedTabsIcon,
+                demo: `${demoLink}/advanced-tabs/`,
                 status: 'published'
             },
             {
                 name: `${pluginSlug}/flip-boxes`,
                 title: 'Flip Boxes',
                 icon: flipBoxIcon,
-                demo: `${demoLink}/flip-boxes/`,
+                demo: `${demoLink}/flip-box/`,
                 docs: ``,
                 status: 'published'
             },
@@ -221,7 +226,7 @@ export default [
                 name: `${pluginSlug}/carousel`,
                 title: 'Carousel',
                 icon: carouselBlockIcon,
-                // demo: `${demoLink}/counters/`,
+                demo: `${demoLink}/carousel/`,
                 // docs: `${docsURL}/counters-block/`,
                 status: 'published'
             },
@@ -229,7 +234,7 @@ export default [
                 name: `${pluginSlug}/logo-slider`,
                 title: 'Logo Slider',
                 icon: logoSliderIcon,
-                demo: ``,
+                demo: `${demoLink}/logo-slider/`,
                 docs: ``,
                 status: 'published',
                 isPremium: true
@@ -246,7 +251,7 @@ export default [
                 name: `${pluginSlug}/testimonials`,
                 title: 'Testimonials',
                 icon: testimonialsIcon,
-                // demo: `${demoLink}/testimonials/`,
+                demo: `${demoLink}/testimonial/`,
                 // docs: `${docsURL}/testimonials-block/`,
                 status: 'published'
             },
@@ -254,7 +259,7 @@ export default [
                 name: `${pluginSlug}/toggle-content`,
                 title: 'Toggle Content',
                 icon: toggleContentIcon,
-                // demo: `${demoLink}/testimonials/`,
+                demo: `${demoLink}/toggle-content/`,
                 // docs: `${docsURL}/testimonials-block/`,
                 status: 'published'
             },
@@ -291,8 +296,7 @@ export default [
                 icon: processStepsIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/code-highlight`,
@@ -307,7 +311,7 @@ export default [
                 name: `${pluginSlug}/team-members`,
                 title: 'Team Members',
                 icon: teamMembersIcon,
-                demo: `${demoLink}/team-members/`,
+                demo: `${demoLink}/team-member/`,
                 docs: `${docsURL}/team-block/`,
                 status: 'published'
             },
@@ -315,15 +319,24 @@ export default [
                 name: `${pluginSlug}/table-of-content`,
                 title: 'Table Of Content',
                 icon: tableOfContentIcon,
-                demo: ``,
+                demo: `${demoLink}/table-of-content/`,
                 docs: ``,
                 status: 'published'
+            },
+            {
+                name: `${pluginSlug}/timeline`,
+                title: 'Timeline',
+                icon: timelineIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/list`,
                 title: 'List',
                 icon: listIcon,
-                demo: ``,
+                demo: `${demoLink}/list/`,
                 docs: ``,
                 status: 'published'
             },
@@ -387,7 +400,6 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW',
                 isPremium: true
             },
             // {
@@ -406,7 +418,6 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW',
                 isPremium: true
             },
             // {
@@ -424,8 +435,7 @@ export default [
                 icon: interactiveChecklistIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/milestone-timeline`,
@@ -475,7 +485,7 @@ export default [
                 name: `${pluginSlug}/advanced-image`,
                 title: 'Advanced Image',
                 icon: imageIcon,
-                demo: ``,
+                demo: `${demoLink}/advanced-image`,
                 docs: ``,
                 status: 'published'
             },
@@ -508,7 +518,7 @@ export default [
                 name: `${pluginSlug}/navigation`,
                 title: 'bBlocks Navigation',
                 icon: navigationIcon,
-                demo: ``,
+                demo: `${demoLink}/bblocks-navigation/`,
                 docs: ``,
                 status: 'published'
             },
@@ -516,7 +526,7 @@ export default [
                 name: `${pluginSlug}/scroll-to-top`,
                 title: 'Scroll To Top',
                 icon: scrollToTopIcon,
-                demo: ``,
+                demo: `${demoLink}/scroll-to-top/`,
                 docs: ``,
                 status: 'published'
             },
@@ -524,7 +534,7 @@ export default [
                 name: `${pluginSlug}/video`,
                 title: 'Video',
                 icon: videoIcon,
-                demo: ``,
+                demo: `${demoLink}/video/`,
                 docs: ``,
                 status: 'published'
             },
@@ -549,7 +559,7 @@ export default [
                 name: `${pluginSlug}/image-hotspot`,
                 title: 'Image Hotspot',
                 icon: imageHotspotIcon,
-                demo: ``,
+                demo: `${demoLink}/image-hotspot/`,
                 docs: ``,
                 status: 'published',
                 isPremium: true
@@ -576,7 +586,7 @@ export default [
                 name: `${pluginSlug}/gif`,
                 title: 'Gif Image',
                 icon: gifIcon,
-                demo: `${demoLink}/gif-image/`,
+                demo: `${demoLink}/gift-image/`,
                 docs: `${docsURL}/gif-block/`,
                 status: 'published'
             },
@@ -584,7 +594,7 @@ export default [
                 name: `${pluginSlug}/svg-draw`,
                 title: 'Svg Draw',
                 icon: svgDrawIcon,
-                demo: ``,
+                demo: `${demoLink}/svg-draw/`,
                 docs: ``,
                 status: 'published'
             },
@@ -592,7 +602,7 @@ export default [
                 name: `${pluginSlug}/image-scroller`,
                 title: 'Image Scroller',
                 icon: imageScrollerIcon,
-                demo: ``,
+                demo: `${demoLink}/image-scroller/`,
                 docs: ``,
                 status: 'published'
             },
@@ -632,7 +642,7 @@ export default [
                 name: `${pluginSlug}/emoji-stack-separator`,
                 title: 'Emoji Stack Separator',
                 icon: emojiStack,
-                demo: ``,
+                demo: `${demoLink}/emoji-stack-separator/`,
                 docs: ``,
                 status: 'published'
             },
@@ -640,7 +650,7 @@ export default [
                 name: `${pluginSlug}/icon-box`,
                 title: 'Icon Box',
                 icon: iconBoxIcon,
-                demo: ``,
+                demo: `${demoLink}/icon-box/`,
                 docs: ``,
                 status: 'published'
             },
@@ -648,7 +658,7 @@ export default [
                 name: `${pluginSlug}/skill-bar`,
                 title: 'Skill Bar',
                 icon: skillBarIcon,
-                demo: ``,
+                demo: `${demoLink}/skill-bar/`,
                 docs: ``,
                 status: 'published'
             },
@@ -674,7 +684,7 @@ export default [
                 name: `${pluginSlug}/stacked-cards`,
                 title: 'Stacked Cards',
                 icon: stackedCardIcon,
-                demo: ``,
+                demo: `${demoLink}/stacked-cards/`,
                 docs: ``,
                 status: 'published',
                 isPremium: true,
@@ -684,7 +694,7 @@ export default [
                 name: `${pluginSlug}/shape-divider`,
                 title: 'Shape Divider',
                 icon: shapeDividerIcon,
-                demo: ``,
+                demo: `${demoLink}/shape-divider/`,
                 docs: ``,
                 status: 'published'
             },
@@ -769,15 +779,15 @@ export default [
             //     status: 'published',
             //     badge: 'NEW'
             // },
-            // {
-            //     name: `${pluginSlug}/audio-player`,
-            //     title: 'Audio Player',
-            //     icon: audioPlayerIcon,
-            //     demo: ``,
-            //     docs: ``,
-            //     status: 'published',
-            //     badge: 'NEW'
-            // },
+            {
+                name: `${pluginSlug}/audio-player`,
+                title: 'Audio Player',
+                icon: audioPlayerIcon,
+                demo: `https://bblockswp.com/blocks/audio-player/`,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
         ]
     },
     {
@@ -787,6 +797,7 @@ export default [
                 name: `${pluginSlug}/breadcrumb`,
                 title: 'Breadcrumb',
                 icon: breadcrumbIcon,
+                demo: `${demoLink}/breadcrumb/`,
                 status: 'published'
             },
             {
@@ -794,8 +805,7 @@ export default [
                 title: 'Table',
                 icon: tableIcon,
                 // demo: `${demoLink}/breadcrumb/`,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             {
                 name: `${pluginSlug}/chart`,
@@ -809,7 +819,7 @@ export default [
                 name: `${pluginSlug}/content-ticker`,
                 title: 'Content Ticker',
                 icon: contentTickerIcon,
-                demo: ``,
+                demo: `${demoLink}/content-ticker`,
                 docs: ``,
                 status: 'published',
                 isPremium: true
@@ -818,7 +828,7 @@ export default [
                 name: `${pluginSlug}/news-ticker`,
                 title: 'News Ticker',
                 icon: newsTicker,
-                demo: ``,
+                demo: `${demoLink}/news-ticker`,
                 docs: ``,
                 status: 'published'
             },
@@ -830,15 +840,16 @@ export default [
                 docs: `${docsURL}/posts-block/`,
                 status: 'published'
             },
-            // {
-            //     name: `${pluginSlug}/google-map`,
-            //     title: 'Google Map',
-            //     icon: googleMapIcon,
-            //     demo: ``,
-            //     docs: ``,
-            //     status: 'published',
-            //     badge: 'NEW'
-            // },
+            {
+                name: `${pluginSlug}/google-map`,
+                title: 'Google Map',
+                icon: googleMapIcon,
+                demo: `https://bblockswp.com/blocks/google-map`,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW',
+                isPremium: true
+            },
             // {
             //     name: `${pluginSlug}/business-hours`,
             //     title: 'Business Hours',
@@ -870,7 +881,7 @@ export default [
                 name: `${pluginSlug}/html`,
                 title: 'HTML',
                 icon: htmlIcon,
-                demo: ``,
+                demo: `${demoLink}/html`,
                 docs: ``,
                 status: 'published'
             },
@@ -964,7 +975,7 @@ export default [
                 name: `${pluginSlug}/form-builder`,
                 title: 'Form',
                 icon: formBuilderIcon,
-                demo: ``,
+                demo: `${demoLink}/form`,
                 docs: ``,
                 status: 'published'
             },
@@ -1011,7 +1022,7 @@ export default [
                 name: `${pluginSlug}/services`,
                 title: 'Services',
                 icon: servicesIcon,
-                demo: `${demoLink}/services-section/`,
+                demo: `${demoLink}/services/`,
                 docs: `${docsURL}/services-section-block/`,
                 status: 'published'
             },
@@ -1027,7 +1038,7 @@ export default [
                 name: `${pluginSlug}/star-rating`,
                 title: 'Star Rating',
                 icon: starRatingIcon,
-                demo: ``,
+                demo: `${demoLink}/star-rating`,
                 docs: ``,
                 status: 'published'
             },
@@ -1058,15 +1069,15 @@ export default [
             //     status: 'published',
             //     badge: 'NEW'
             // },
-            // {
-            //     name: `${pluginSlug}/comparison-table`,
-            //     title: 'Comparison Table',
-            //     icon: comparisonTableIcon,
-            //     demo: ``,
-            //     docs: ``,
-            //     status: 'published',
-            //     badge: 'NEW'
-            // },
+            {
+                name: `${pluginSlug}/comparison-table`,
+                title: 'Comparison Table',
+                icon: comparisonTableIcon,
+                demo: `https://bblockswp.com/blocks/comparison-table/`,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
             // {
             //     name: `${pluginSlug}/pricing-toggle`,
             //     title: 'Pricing Toggle',
@@ -1160,13 +1171,12 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/facebook-embed`,
                 title: 'Facebook Embed',
                 icon: facebookEmbedIcon,
-                demo: ``,
+                demo: `${demoLink}/facebook-embed`,
                 docs: ``,
                 status: 'published'
             },
@@ -1174,7 +1184,7 @@ export default [
                 name: `${pluginSlug}/facebook-page`,
                 title: 'Facebook Page',
                 icon: facebookPageIcon,
-                demo: ``,
+                demo: `${demoLink}/facebook-page`,
                 docs: ``,
                 status: 'published'
             },
@@ -1343,7 +1353,7 @@ export const overviewBlocks = [
         name: `${pluginSlug}/container`,
         title: 'Container',
         icon: containerIcon,
-        demo: ``,
+        demo: `${demoLink}/container`,
         docs: ``,
         status: 'published'
     },
@@ -1351,7 +1361,7 @@ export const overviewBlocks = [
         name: `${pluginSlug}/row`,
         title: 'Row',
         icon: rowIcon,
-        demo: `${demoLink}/row/`,
+        demo: `${demoLink}/row-columns/`,
         docs: `${docsURL}/row-block/`,
         status: 'published'
     },
@@ -1367,7 +1377,7 @@ export const overviewBlocks = [
         name: `${pluginSlug}/advanced-image`,
         title: 'Advanced Image',
         icon: imageIcon,
-        demo: ``,
+        demo: `${demoLink}/advanced-image`,
         docs: ``,
         status: 'published'
     },
@@ -1391,7 +1401,7 @@ export const overviewBlocks = [
         name: `${pluginSlug}/accordion-block`,
         title: 'Accordion Block',
         icon: telexAccordionIcon,
-        // demo: `${demoLink}/animated-text/`,
+        demo: `${demoLink}/accordion-block/`,
         // docs: `${docsURL}/animated-text-block/`,
         status: 'published'
     },
@@ -1399,12 +1409,14 @@ export const overviewBlocks = [
         name: `${pluginSlug}/advanced-tabs`,
         title: 'Advanced Tabs',
         icon: advancedTabsIcon,
+        demo: `${demoLink}/advanced-tabs/`,
         status: 'published'
     },
     {
         name: `${pluginSlug}/breadcrumb`,
         title: 'Breadcrumb',
         icon: breadcrumbIcon,
+        demo: `${demoLink}/breadcrumb/`,
         status: 'published'
     },
     {

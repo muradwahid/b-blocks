@@ -1,6 +1,5 @@
 const svgProps = { xmlns: 'http://www.w3.org/2000/svg', 'aria-hidden': 'true', focusable: 'false' };
 
-// Previously duplicated: JSX in Edit.js and PHP path strings in render.php.
 export const checkIcons = {
 	check: <svg {...svgProps} viewBox='0 0 512 512'><path fill='currentColor' d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z' /></svg>,
 
@@ -16,8 +15,6 @@ export const crossIcons = {
 export const checkIcon = (style = 'check') => checkIcons[style] || checkIcons.check;
 export const crossIcon = (style = 'times') => crossIcons[style] || crossIcons.times;
 
-// Alignment glyphs, matching the set data-table uses for its own alignment
-// ToggleGroupControl so the two blocks read the same way.
 const alignProps = { stroke: 'currentColor', fill: 'currentColor', strokeWidth: '0', viewBox: '0 0 24 24', height: '1em', width: '1em', xmlns: 'http://www.w3.org/2000/svg' };
 
 export const AlignStartIcon = (props) => <svg {...alignProps} {...props}><path fill='none' d='M0 0h24v24H0z' /><path d='M22 2v2H2V2h20zM7 22h3V6H7v16zm7-6h3V6h-3v10z' /></svg>;

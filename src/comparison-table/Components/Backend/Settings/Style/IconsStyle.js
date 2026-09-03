@@ -3,8 +3,6 @@ import { Flex, PanelBody, __experimentalUnitControl as UnitControl } from '@word
 
 import { ColorControl, Device, Label } from '../../../../../../../bpl-tools/Components';
 
-
-/** Yes/No mark colours and size. Which icon shape is chosen lives in General. */
 const IconsStyle = ({ attributes, updateObj, device = 'desktop' }) => {
 	const { icons = {} } = attributes;
 
@@ -13,8 +11,6 @@ const IconsStyle = ({ attributes, updateObj, device = 'desktop' }) => {
 
 		<ColorControl className='mt10' label={__('“No” Color:', 'b-blocks')} value={icons.crossColor} onChange={(val) => updateObj('icons', val, 'crossColor')} />
 
-		{/* Desktop falls back to the flat legacy value so an existing table
-		    shows its real size here rather than an empty field. */}
 		<Flex className='mt10'>
 			<Label className='flex2 mb0'><Flex justify='flex-start' gap={0}>{__('Icon Size', 'b-blocks')} <Device /></Flex></Label>
 			<UnitControl

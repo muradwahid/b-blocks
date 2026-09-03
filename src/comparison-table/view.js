@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			attributes = {};
 		}
 
-		// Theme / alignment / sticky modifiers are class-driven, and render.php
-		// no longer knows the attributes, so they are applied on hydrate.
 		el.className = `${el.className} ${wrapperClasses(attributes)}`.trim();
 
 		createRoot(el).render(<>

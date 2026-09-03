@@ -1,6 +1,7 @@
 import BodyStyle from './BodyStyle';
 import CaptionStyle from './CaptionStyle';
 import CellsStyle from './CellsStyle';
+import CtaStyle from './CtaStyle';
 import FeaturedStyle from './FeaturedStyle';
 import HeaderStyle from './HeaderStyle';
 import IconsStyle from './IconsStyle';
@@ -20,6 +21,8 @@ const Style = (props) => <>
 	<RowLabelStyle {...props} />
 
 	<FeaturedStyle {...props} />
+
+	<CtaStyle {...props} />
 
 	<IconsStyle {...props} />
 

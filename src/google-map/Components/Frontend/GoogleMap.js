@@ -305,8 +305,16 @@ const GoogleMap = ({ attributes, apiKey = '', isBackend = false, device = 'deskt
 		const created = [];
 		const reduceMotion = prefersReducedMotion();
 
-		const info = InfoWindow ? new InfoWindow({ maxWidth: parseInt(infoWindow.desktop?.maxWidth, 10) || 280 }) : null;
-		infoRef.current = info;
+		// One InfoWindow per marker rather than one shared between them. A
+		// single instance can only be attached to one anchor at a time, so a
+		// shared one can never show two at once — which is what "Always" asks
+		// for, and why more than one Open By Default marker only ever left the
+		// last one showing.
+		const maxWidth = parseInt(infoWindow.desktop?.maxWidth, 10) || 280;
+		const windows = [];
+		const closeAll = () => windows.forEach((win) => win?.close());
+
+		infoRef.current = { close: closeAll };
 
 		markers.forEach((item, index) => {
 			if (activeCategory && item.category !== activeCategory) return;
@@ -335,21 +343,24 @@ const GoogleMap = ({ attributes, apiKey = '', isBackend = false, device = 'deskt
 			});
 
 			const trigger = infoWindow.trigger || 'click';
+			const always = 'always' === trigger;
+
+			const info = InfoWindow ? new InfoWindow({ maxWidth }) : null;
+			windows.push(info);
 
 			const openInfo = () => {
 				if (!info) return;
-				if (false !== infoWindow.singleOpen) info.close();
+				// Always means every window stays up, so nothing closes.
+				if (!always && false !== infoWindow.singleOpen) closeAll();
 				info.setContent(buildInfoContent(item));
 				info.open({ map: instance, anchor: advanced });
 			};
 
-			if ('none' !== trigger) {
-				if ('hover' === trigger && advanced.content) {
-					advanced.content.addEventListener('mouseenter', openInfo);
-					advanced.content.addEventListener('mouseleave', () => info?.close());
-				} else {
-					localListeners.push(advanced.addListener('gmp-click', openInfo));
-				}
+			if ('hover' === trigger && advanced.content) {
+				advanced.content.addEventListener('mouseenter', openInfo);
+				advanced.content.addEventListener('mouseleave', () => info?.close());
+			} else if ('click' === trigger) {
+				localListeners.push(advanced.addListener('gmp-click', openInfo));
 			}
 
 			if (isBackend && onMarkerDrag && false !== item.draggable) {
@@ -359,7 +370,7 @@ const GoogleMap = ({ attributes, apiKey = '', isBackend = false, device = 'deskt
 				}));
 			}
 
-			if (item.openByDefault) openInfo();
+			if (always || item.openByDefault) openInfo();
 
 			created.push(advanced);
 		});
@@ -398,8 +409,8 @@ const GoogleMap = ({ attributes, apiKey = '', isBackend = false, device = 'deskt
 			localListeners.forEach((listener) => listener?.remove?.());
 			listeners.current = listeners.current.filter((listener) => !localListeners.includes(listener));
 
-			info?.close();
-			if (infoRef.current === info) infoRef.current = null;
+			closeAll();
+			infoRef.current = null;
 
 			clustererRef.current?.clearMarkers();
 			clustererRef.current = null;

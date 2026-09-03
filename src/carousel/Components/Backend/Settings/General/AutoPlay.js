@@ -7,7 +7,6 @@ import { __ } from '@wordpress/i18n';
 const AutoPlay = ({ attributes, updateObj }) => {
   const { autoplay } = attributes;
   return <PanelBody className='bPlPanelBody' title={__('Autoplay', 'b-blocks')} initialOpen={false}>
-    <div style={{ color:'#595959', marginBottom:10}}> This feature will work on frontend only.</div>
     <ToggleControl label={__('Enable Autoplay', 'b-blocks')} value={autoplay.autoplay} checked={autoplay.autoplay} onChange={val => updateObj('autoplay', val, 'autoplay')} />
 
     <SelectControl label={__('Direction', 'b-blocks')} labelPosition='edge' value={autoplay.direction} onChange={val => updateObj('autoplay', val, 'direction')} options={[{ label: __('Left To Right', 'b-blocks'), value: 'left' }, { label: __('Right To Left', 'b-blocks'), value: 'right' }]} />

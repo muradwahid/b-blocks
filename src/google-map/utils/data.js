@@ -101,6 +101,23 @@ const asFeature = (item) => {
  * are wrapped here rather than rejected. Returns `{ data, error }` so the
  * inspector and the renderer agree on what is wrong.
  */
+/**
+ * A Google Maps style array — the `featureType` / `elementType` / `stylers`
+ * shape that Snazzy Maps and the Cloud console hand out. It is JSON, and it is
+ * an array, so it gets this far before failing; saying only that it holds no
+ * features leaves the author with no idea that the paste was right and the
+ * field was wrong.
+ */
+const isMapStyleEntry = (entry) => !!entry && 'object' === typeof entry && !Array.isArray(entry)
+	&& (undefined !== entry.stylers || undefined !== entry.featureType || undefined !== entry.elementType);
+
+// The whole array, or a single rule out of one — pasting just one entry is an
+// easy slip, and on its own it reached the generic "no type property" message
+// with nothing to say it was the right JSON in the wrong box.
+const isMapStyle = (parsed) => (Array.isArray(parsed)
+	? parsed.length > 0 && parsed.every(isMapStyleEntry)
+	: isMapStyleEntry(parsed));
+
 export const parseGeoJson = (raw) => {
 	if (!raw || !String(raw).trim()) return { data: null, error: '' };
 
@@ -114,9 +131,14 @@ export const parseGeoJson = (raw) => {
 	if (Array.isArray(parsed)) {
 		const features = parsed.map(asFeature).filter(Boolean);
 
-		return features.length
-			? { data: { type: 'FeatureCollection', features }, error: '' }
-			: { data: null, error: __('This array holds no recognisable GeoJSON features.', 'b-blocks') };
+		if (features.length) return { data: { type: 'FeatureCollection', features }, error: '' };
+
+		return {
+			data: null,
+			error: isMapStyle(parsed)
+				? __('This is a Google Maps style, not GeoJSON. Paste it into Theme → Custom JSON to recolour the map.', 'b-blocks')
+				: __('This array holds no recognisable GeoJSON features. GeoJSON describes places — each entry needs a "geometry" with coordinates.', 'b-blocks')
+		};
 	}
 
 	if (!parsed || 'object' !== typeof parsed) {
@@ -127,6 +149,10 @@ export const parseGeoJson = (raw) => {
 
 	const wrapped = asFeature(parsed);
 	if (wrapped) return { data: wrapped, error: '' };
+
+	if (isMapStyle(parsed)) {
+		return { data: null, error: __('This is a Google Maps style, not GeoJSON. Paste it into Theme → Custom JSON to recolour the map.', 'b-blocks') };
+	}
 
 	return {
 		data: null,

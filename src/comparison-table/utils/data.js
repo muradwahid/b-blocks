@@ -1,18 +1,15 @@
-import { __ } from '@wordpress/i18n';
-
 export const prefix = 'bBlocksComparisonTable';
 
-// CSS class prefix every element in this block uses.
 export const P = 'b-blocks-comparison-table';
 
 export const MAX_COLUMNS = 6;
 export const MIN_COLUMNS = 2;
 export const MAX_ROWS = 30;
 
-export const themes = ['default', 'clean', 'striped', 'bordered', 'cards', 'ribbon', 'stacked'];
+export const themes = ['default', 'cards', 'ribbon', 'stacked'];
 export const alignments = ['left', 'center', 'right'];
 
-/** Stable key for repeater items — kept out of Edit.js so panels can import it. */
+
 export const makeKey = (keyPrefix = 'ct') => `${keyPrefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
 export const safeTheme = (value) => (themes.includes(value) ? value : 'default');
@@ -20,15 +17,7 @@ export const safeAlignment = (value) => (alignments.includes(value) ? value : 'c
 
 export const toPx = (value, fallback) => `${parseInt(value, 10) || fallback}px`;
 
-/**
- * Reduce a bpl-tools Background object to one CSS value.
- *
- * Every consumer in style.scss uses the `background:` shorthand rather than
- * `background-color:`, so a custom property can legitimately hold a gradient
- * or an image shorthand — which is what lets these stay CSS variables instead
- * of needing their own rules. Plain strings pass through, so colour-only
- * content saved before this keeps working.
- */
+
 export const bgValue = (bg, fallback = '') => {
 	if (!bg) return fallback;
 	if ('string' === typeof bg) return bg || fallback;
@@ -41,15 +30,7 @@ export const bgValue = (bg, fallback = '') => {
 	return color || fallback;
 };
 
-/**
- * Map the pre-nesting flat attributes onto the grouped shape.
- *
- * Content saved before the block adopted the image-hotspot convention still
- * holds `headerBg`, `cellPaddingV`, `tooltipColor` and 45 others at the top
- * level. Rather than drop them, they are folded into the group they now belong
- * to — a nested value that has already been set always wins, so this only
- * fills gaps and never fights the current controls.
- */
+
 const pick = (a, b) => (undefined !== a && '' !== a && null !== a ? a : b);
 const solid = (colour) => (colour ? { type: 'solid', color: colour } : undefined);
 const boxOf = (v, h) => ((v || h) ? { top: v, right: h, bottom: v, left: h } : undefined);
@@ -59,7 +40,6 @@ export const migrate = (attributes = {}) => {
 	const a = attributes;
 	const has = (k) => undefined !== a[k] && '' !== a[k] && null !== a[k];
 
-	// Nothing flat left over — already migrated content short-circuits.
 	if (!['headerBg', 'cellPaddingV', 'tooltipColor', 'tableMaxWidth', 'theme'].some(has)) return a;
 
 	const t = a.table || {};
@@ -68,14 +48,14 @@ export const migrate = (attributes = {}) => {
 
 	return {
 		...a,
+		columns: withFeatureColumn(a.columns),
 		content: {
 			...(a.content || {}),
 			caption: pick(a.content?.caption, a.caption),
 			captionPosition: pick(a.content?.captionPosition, a.captionPosition),
 			captionColor: pick(a.content?.captionColor, a.captionColor),
 			captionTypo: a.content?.captionTypo || a.captionTypo,
-			featuredLabel: pick(a.content?.featuredLabel, a.featuredLabel),
-			featureColumnLabel: pick(a.content?.featureColumnLabel, a.featureColumnLabel)
+			featuredLabel: pick(a.content?.featuredLabel, a.featuredLabel)
 		},
 		table: {
 			...t,
@@ -92,7 +72,6 @@ export const migrate = (attributes = {}) => {
 			bg: t.bg || a.tableBg,
 			desktop: {
 				...(t.desktop || {}),
-				// 'above'/'inline' predate the four-way responsive control.
 				iconPosition: pick(t.desktop?.iconPosition, { above: 'top', inline: 'left', hidden: 'hidden' }[a.headerIconPosition]),
 				width: pick(t.desktop?.width, a.tableWidth?.desktop || px(a.tableMaxWidth)),
 				radius: t.desktop?.radius?.top ? t.desktop.radius : (a.tableRadius?.desktop || boxOf(px(a.borderRadius), px(a.borderRadius)))
@@ -160,7 +139,20 @@ export const migrate = (attributes = {}) => {
 	};
 };
 
-/** Wrapper classes, shared so the editor and front end can never diverge. */
+
+export const splitColumns = (columns = []) => {
+	const feature = columns.find((column) => column?.isFeatureColumn) || null;
+	const plans = columns.filter((column) => !column?.isFeatureColumn);
+
+	return { feature, plans };
+};
+
+export const withFeatureColumn = (columns = [], label = 'Features') => (
+	columns.some((column) => column?.isFeatureColumn)
+		? columns
+		: [{ _key: 'col-feature', isFeatureColumn: true, label: label || 'Features' }, ...columns]
+);
+
 export const wrapperClasses = (attributes = {}) => {
 	const t = migrate(attributes).table || {};
 
@@ -175,4 +167,4 @@ export const wrapperClasses = (attributes = {}) => {
 	].filter(Boolean).join(' ');
 };
 
-export const defaultCaption = () => __('Feature comparison across plans', 'b-blocks');
+export const defaultCaption = () => 'Feature comparison across plans'

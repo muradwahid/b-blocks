@@ -65,7 +65,7 @@ const Source = ({ source = {}, updateObj, apiKey = '' }) => {
 		return () => clearTimeout(timer);
 	}, [address, type, apiKey]);
 
-	return <PanelBody className='bPlPanelBody' title={__('Map Source', 'b-blocks')} initialOpen={false}>
+	return <PanelBody className='bPlPanelBody' title={__('Map Source', 'b-blocks')} initialOpen={true}>
 		<BtnGroup label={__('Mode', 'b-blocks')} options={sourceTypes} value={type} onChange={(val) => updateObj('source', val, 'type')} />
 
 		{'embed' === type ? <>

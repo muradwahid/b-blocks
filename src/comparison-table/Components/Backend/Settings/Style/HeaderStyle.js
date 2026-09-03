@@ -4,7 +4,6 @@ import { PanelBody, __experimentalToggleGroupControl as ToggleGroupControl, __ex
 
 import { Background, ColorControl, Typography } from '../../../../../../../bpl-tools/Components';
 
-/** Mirrors data-table's "Header" panel: typography plus normal/hover colours. */
 const HeaderStyle = ({ attributes, updateObj }) => {
 	const { header = {} } = attributes;
 	const [state, setState] = useState('normal');
@@ -25,8 +24,6 @@ const HeaderStyle = ({ attributes, updateObj }) => {
 			onChange={(val) => updateObj('header', val, state, 'color')}
 		/>
 
-		{/* Solid, gradient or image — the CSS custom property carries any of
-		    them because style.scss uses the `background:` shorthand. */}
 		<Background
 			className='mt10'
 			label={__('Background', 'b-blocks')}

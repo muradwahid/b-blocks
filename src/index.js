@@ -145,6 +145,7 @@ import './team-members';
 import './testimonials';
 // import './testimonials-grid';
 import './timeline';
+import './timeline-item';
 import './toggle-content';
 // import './typing-headline';
 // import './urgency-timer';

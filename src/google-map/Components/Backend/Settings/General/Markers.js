@@ -1,16 +1,16 @@
 import { useCallback } from 'react';
 import { __ } from '@wordpress/i18n';
-import { PanelBody } from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 
 import { ItemsPanel, Notice } from '../../../../../../../bpl-tools/Components';
 
 import { pricingPage } from '../../../../../utils/data';
 import { buildMapStyles } from '../../../../utils/data';
-import { addNewMarker } from '../../../../utils/options';
+import { addNewMarker, infoTriggers } from '../../../../utils/options';
 import MarkerItemSettings from '../Panel/MarkerItemSettings/MarkerItemSettings';
 
-const Markers = ({ attributes, setAttributes, activeIdx, setActiveIdx, device, isPremium, apiKey }) => {
-	const { source = {} } = attributes;
+const Markers = ({ attributes, setAttributes, updateObj, activeIdx, setActiveIdx, device, isPremium, apiKey }) => {
+	const { source = {}, infoWindow = {} } = attributes;
 	const nextId = (attributes.markers?.length || 0) + 1;
 
 	// An active theme suppresses the Map ID, which in turn hides these markers.
@@ -30,6 +30,24 @@ const Markers = ({ attributes, setAttributes, activeIdx, setActiveIdx, device, i
 			{__('Your Map ID is active, so markers work but the Style tab’s themes are ignored. Style this map in the Google Cloud console instead.', 'b-blocks')}
 		</Notice>}
 
+		<SelectControl
+			label={__('Info Window Opens On', 'b-blocks')}
+			help={__('Always open shows every marker’s info window as soon as the map loads.', 'b-blocks')}
+			value={infoWindow.trigger || 'click'}
+			options={infoTriggers}
+			onChange={(val) => updateObj('infoWindow', val, 'trigger')}
+			__nextHasNoMarginBottom
+			__next40pxDefaultSize
+		/>
+
+		{'always' !== (infoWindow.trigger || 'click') && 'none' !== infoWindow.trigger && <ToggleControl
+			className='mt10'
+			label={__('Only one open at a time', 'b-blocks')}
+			checked={false !== infoWindow.singleOpen}
+			onChange={(val) => updateObj('infoWindow', !!val, 'singleOpen')}
+			__nextHasNoMarginBottom
+		/>}
+
 		<ItemsPanel
 			attributes={attributes}
 			setAttributes={setAttributes}
@@ -40,6 +58,7 @@ const Markers = ({ attributes, setAttributes, activeIdx, setActiveIdx, device, i
 			newItem={addNewMarker(nextId, source.center)}
 			activeIndex={activeIdx}
 			setActiveIndex={setActiveIdx}
+			minItem={0}
 		/>
 
 		{!isPremium && <small>

@@ -3,7 +3,7 @@ import { PanelBody } from '@wordpress/components';
 
 import { Background, ColorControl, Typography } from '../../../../../../../bpl-tools/Components';
 
-/** The first column — the feature names, which are <th> not <td>. */
+
 const RowLabelStyle = ({ attributes, updateObj }) => {
 	const { rowLabel = {} } = attributes;
 

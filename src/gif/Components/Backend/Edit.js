@@ -42,43 +42,44 @@ const Edit = props => {
 		}).catch(err => alert(err.message));
 	}, [search]);
 
-	const setPopup = () => {
+	// Both elements are looked up by id rather than held in a ref, so either
+	// can be missing — mid-render, or once the canvas has been rebuilt.
+	const togglePopup = (open) => {
 		const doc = blockRef.current?.ownerDocument;
 		if (!doc) return;
 
 		const thisBlock = doc.getElementById(id);
 		const modal = doc.getElementById(`gifModal-${clientId}`);
-		thisBlock.style.minHeight = '720px';
-		modal.style.display = 'block';
+		if (!thisBlock || !modal) return;
+
+		thisBlock.style.minHeight = open ? '720px' : 'auto';
+		modal.style.display = open ? 'block' : 'none';
 	}
 
-	const removePopup = () => {
-		const doc = blockRef.current?.ownerDocument;
-		if (!doc) return;
-
-		const thisBlock = doc.getElementById(id);
-		const modal = doc.getElementById(`gifModal-${clientId}`);
-
-		thisBlock.style.minHeight = 'auto';
-		modal.style.display = 'none';
-	}
+	const setPopup = () => togglePopup(true);
+	const removePopup = () => togglePopup(false);
 
 	// Close modal when clicking outside of it
 	useEffect(() => {
+		// The editor renders the canvas in an iframe, and that iframe can be
+		// torn down before this effect cleans up — switching device preview
+		// does it. A detached document's `defaultView` is null, so the window
+		// is captured here instead of read again on the way out.
 		const doc = blockRef.current?.ownerDocument;
-		if (!doc) return;
+		const view = doc?.defaultView;
+		if (!view) return undefined;
 
 		const onClick = e => {
 			const thisBlock = doc.getElementById(id);
 			const modal = doc.getElementById(`gifModal-${clientId}`);
-			if (modal && e.target === modal) {
+			if (thisBlock && modal && e.target === modal) {
 				thisBlock.style.minHeight = 'auto';
 				modal.style.display = 'none';
 			}
 		};
 
-		doc.defaultView.addEventListener('click', onClick);
-		return () => doc.defaultView.removeEventListener('click', onClick);
+		view.addEventListener('click', onClick);
+		return () => view.removeEventListener('click', onClick);
 	}, [id, clientId]);
 
 	return <>

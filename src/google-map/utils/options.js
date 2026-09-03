@@ -63,6 +63,7 @@ export const markerAnimations = [
 export const infoTriggers = [
 	{ label: __('Click', 'b-blocks'), value: 'click' },
 	{ label: __('Hover', 'b-blocks'), value: 'hover' },
+	{ label: __('Always open', 'b-blocks'), value: 'always' },
 	{ label: __('Never', 'b-blocks'), value: 'none' }
 ];
 

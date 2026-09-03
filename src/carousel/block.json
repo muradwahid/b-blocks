@@ -79,7 +79,8 @@
 					"desktop": 30,
 					"tablet": 25,
 					"mobile": 15
-				}
+				},
+				"direction":"horizontal"
 			}
 		},
 		"options": {

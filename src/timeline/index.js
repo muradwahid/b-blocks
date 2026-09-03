@@ -1,12 +1,14 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks } from '@wordpress/block-editor';
 
-import './style.scss';
-import Edit from './Components/Backend/Edit';
+import './editor.scss';
 import metadata from './block.json';
-import { telexAccordionIcon } from '../utils/blocksIcon';
+import Edit from './Components/Backend/Edit';
 import { isBlockEnabled } from '../utils/functions';
+import { timelineIcon } from '../utils/blocksIcon';
 
-isBlockEnabled( metadata.name ) && registerBlockType( metadata.name, {
-	icon: telexAccordionIcon,
-	edit: Edit
+isBlockEnabled( metadata.name ) && registerBlockType( metadata, {
+	icon: timelineIcon,
+	edit: Edit,
+	save: InnerBlocks.Content
 } );

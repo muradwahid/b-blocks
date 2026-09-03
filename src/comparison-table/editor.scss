@@ -1,5 +1,3 @@
-// Editor-only adjustments for the Comparison Table block.
-// Frontend styles are loaded from style.scss via the build pipeline.
 @import './style.scss';
 
 .wp-block-b-blocks-comparison-table {
@@ -7,7 +5,6 @@
 		font-size: 13px;
 	}
 
-	// Visible label for editor preview (caption hidden on frontend).
 	.b-blocks-comparison-table-editor-caption {
 		display: block;
 		margin: 0 0 6px;
@@ -23,7 +20,6 @@
 	}
 }
 
-// Sidebar repeater scaffolding.
 .b-blocks-comparison-table-repeater__row {
 	display: flex;
 	flex-direction: column;

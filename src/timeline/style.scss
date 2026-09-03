@@ -1,284 +1,876 @@
-/**
- * Frontend styles for the Timeline block.
- *
- * Mobile-first: the default layout is a single column with the timeline
- * line on the left. At >=768px the alternating, left-only, and right-only
- * layouts kick in.
- *
- * CSS custom properties are exposed so themes can override colors without
- * touching the block markup.
- */
-
-.timeline-block {
-	--bBlocks-timeline-line-color: #dee2e6;
-	--bBlocks-timeline-line-width: 2px;
-	--bBlocks-timeline-marker-size: 16px;
-	--bBlocks-timeline-card-bg: #ffffff;
-	--bBlocks-timeline-card-border: #e9ecef;
-	--bBlocks-timeline-card-radius: 12px;
-	--bBlocks-timeline-card-padding: 20px;
-	--bBlocks-timeline-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-	--bBlocks-timeline-text-color: #495057;
-	--bBlocks-timeline-title-color: #212529;
-	--bBlocks-timeline-date-color: #6c757d;
-	--bBlocks-timeline-gap: 32px;
-
-	position: relative;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	box-sizing: border-box;
-
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
+// The direction can differ per breakpoint, and a wider breakpoint's rules sit
+// outside every media query. So each of these states every property the other
+// direction sets — the row placement, the cross-axis padding and where the
+// arrow sits — rather than only the ones it needs. Anything left unsaid keeps
+// the wider breakpoint's value and the layout ends up half-turned.
+@mixin tl-side-left {
+	.b-blocks-timeline-content {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: auto;
+		justify-content: flex-end;
+		padding-inline: 0 14px;
+		padding-block: 0;
 	}
 
-	.timeline-items {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: var(--bBlocks-timeline-gap);
-		padding: 8px 0;
-		list-style: none;
-		margin: 0;
+	.b-blocks-timeline-card::after {
+		inset-inline-end: auto;
+		inset-inline-start: 100%;
+		top: 50%;
+		bottom: auto;
+		transform: translateY(-50%);
+		clip-path: polygon(0 0, 100% 50%, 0 100%);
 	}
 
-	/* The vertical line - mobile-first: anchored to the left */
-	.timeline-items::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 16px;
-		width: var(--bBlocks-timeline-line-width);
-		background-color: var(--bBlocks-timeline-line-color);
-		border-radius: var(--bBlocks-timeline-line-width);
+	// A polygon is measured from the left whatever the writing direction, so
+	// the arrow has to be re-pointed by hand once the grid has mirrored.
+	[dir='rtl'] & .b-blocks-timeline-card::after {
+		clip-path: polygon(100% 0, 0 50%, 100% 100%);
 	}
 
-	.timeline-item {
-		position: relative;
-		padding-left: 48px;
-		min-height: 32px;
+	.b-blocks-timeline-date {
+		grid-column: 3;
+		grid-row: 1;
+		align-self: auto;
+		justify-self: start;
+		text-align: start;
+		padding-inline: 16px 0;
+		padding-block: 0;
 	}
 
-	.timeline-marker {
-		position: absolute;
-		top: 4px;
-		left: 8px;
-		width: var(--bBlocks-timeline-marker-size);
-		height: var(--bBlocks-timeline-marker-size);
-		border-radius: 50%;
-		background-color: var(--bBlocks-timeline-accent, #0d6efd);
-		border: 3px solid #ffffff;
-		box-shadow: 0 0 0 2px var(--bBlocks-timeline-accent, #0d6efd);
-		display: flex;
-		align-items: center;
+}
+
+@mixin tl-side-right {
+	.b-blocks-timeline-content {
+		grid-column: 3;
+		grid-row: 1;
+		align-self: auto;
+		justify-content: flex-start;
+		padding-inline: 14px 0;
+		padding-block: 0;
+	}
+
+	.b-blocks-timeline-card::after {
+		inset-inline-start: auto;
+		inset-inline-end: 100%;
+		top: 50%;
+		bottom: auto;
+		transform: translateY(-50%);
+		clip-path: polygon(100% 0, 0 50%, 100% 100%);
+	}
+
+	[dir='rtl'] & .b-blocks-timeline-card::after {
+		clip-path: polygon(0 0, 100% 50%, 0 100%);
+	}
+
+	.b-blocks-timeline-date {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: auto;
+		justify-self: end;
+		text-align: end;
+		padding-inline: 0 16px;
+		padding-block: 0;
+	}
+
+}
+
+// The horizontal equivalents: the card sits above or below the line rather
+// than left or right of it, so the grid runs in rows and the pointer moves to
+// the card's bottom or top edge.
+@mixin tl-h-side-top {
+	.b-blocks-timeline-content {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: end;
 		justify-content: center;
-		font-size: 12px;
-		color: #ffffff;
-		font-weight: 700;
-		z-index: 2;
+		padding-inline: 0;
+		padding-block: 0 14px;
 	}
 
-	.timeline-marker.has-icon {
-		width: 36px;
-		height: 36px;
-		left: -2px;
-		top: -2px;
-		font-size: 14px;
-		line-height: 1;
+	.b-blocks-timeline-card::after {
+		top: 100%;
+		bottom: auto;
+		left: 50%;
+		right: auto;
+		transform: translateX(-50%);
+		clip-path: polygon(0 0, 100% 0, 50% 100%);
 	}
 
-	.timeline-card {
-		background: var(--bBlocks-timeline-card-bg);
-		border: 1px solid var(--bBlocks-timeline-card-border);
-		border-radius: var(--bBlocks-timeline-card-radius);
-		padding: var(--bBlocks-timeline-card-padding);
-		box-shadow: var(--bBlocks-timeline-card-shadow);
-		position: relative;
-	}
-
-	.timeline-date {
-		font-size: 13px;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		color: var(--bBlocks-timeline-date-color);
-		margin: 0 0 6px 0;
-		display: inline-block;
-		padding: 2px 8px;
-		background: rgba(0, 0, 0, 0.04);
-		border-radius: 4px;
-	}
-
-	.timeline-title {
-		font-size: 18px;
-		font-weight: 700;
-		color: var(--bBlocks-timeline-title-color);
-		margin: 0 0 8px 0;
-		line-height: 1.3;
-	}
-
-	.timeline-description {
-		font-size: 15px;
-		line-height: 1.6;
-		color: var(--bBlocks-timeline-text-color);
-		margin: 0;
-
-		p {
-			margin: 0 0 8px 0;
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
-	}
-
-	.timeline-empty {
+	.b-blocks-timeline-date {
+		grid-column: 1;
+		grid-row: 3;
+		align-self: start;
+		justify-self: center;
 		text-align: center;
-		padding: 32px 16px;
-		color: #6c757d;
+		padding-inline: 0;
+		padding-block: 16px 0;
 	}
 
-	/* ------------------------------------------------------------- */
-	/* Tablet and up: enable two-sided / right-aligned layouts.       */
-	/* Below this breakpoint, all layouts collapse to a single column */
-	/* with the line on the left (mobile-first).                     */
-	/* ------------------------------------------------------------- */
-	@media (min-width: 768px) {
+}
 
-		/* Alternating layout */
-		&.timeline-layout-alternating {
-			.timeline-items::before {
-				left: 50%;
-				transform: translateX(-50%);
-			}
-
-			.timeline-item {
-				width: 50%;
-				padding-left: 0;
-				padding-right: 0;
-			}
-
-			.timeline-item:nth-child(odd) {
-				align-self: flex-start;
-				padding-right: 40px;
-				text-align: right;
-			}
-
-			.timeline-item:nth-child(odd) .timeline-marker {
-				left: auto;
-				right: -8px;
-			}
-
-			.timeline-item:nth-child(odd) .timeline-marker.has-icon {
-				right: -18px;
-			}
-
-			.timeline-item:nth-child(odd) .timeline-date {
-				/* keep date alignment readable on the right side */
-			}
-
-			.timeline-item:nth-child(even) {
-				align-self: flex-end;
-				padding-left: 40px;
-				text-align: left;
-			}
-
-			.timeline-item:nth-child(even) .timeline-marker {
-				left: -8px;
-			}
-
-			.timeline-item:nth-child(even) .timeline-marker.has-icon {
-				left: -18px;
-			}
-		}
-
-		/* Right-only layout */
-		&.timeline-layout-right {
-			.timeline-items::before {
-				left: auto;
-				right: 16px;
-			}
-
-			.timeline-item {
-				padding-left: 0;
-				padding-right: 48px;
-				text-align: right;
-			}
-
-			.timeline-item .timeline-marker {
-				left: auto;
-				right: 8px;
-			}
-
-			.timeline-item .timeline-marker.has-icon {
-				right: -2px;
-			}
-
-			.timeline-date {
-				/* date pill still renders on its baseline */
-			}
-		}
-
-		/* Left-only layout shares the mobile default but tightens spacing. */
-		&.timeline-layout-left {
-			.timeline-item {
-				padding-left: 56px;
-			}
-		}
+@mixin tl-h-side-bottom {
+	.b-blocks-timeline-content {
+		grid-column: 1;
+		grid-row: 3;
+		align-self: start;
+		justify-content: center;
+		padding-inline: 0;
+		padding-block: 14px 0;
 	}
 
-	/* ------------------------------------------------------------- */
-	/* Variants                                                       */
-	/* ------------------------------------------------------------- */
-	&.timeline-variant-modern {
-		--bBlocks-timeline-card-radius: 12px;
-		--bBlocks-timeline-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	.b-blocks-timeline-card::after {
+		top: auto;
+		bottom: 100%;
+		left: 50%;
+		right: auto;
+		transform: translateX(-50%);
+		clip-path: polygon(50% 0, 100% 100%, 0 100%);
 	}
 
-	&.timeline-variant-classic {
-		--bBlocks-timeline-card-radius: 6px;
-		--bBlocks-timeline-card-border: #ced4da;
-		--bBlocks-timeline-card-shadow: none;
-
-		.timeline-card {
-			border-width: 2px;
-		}
+	.b-blocks-timeline-date {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: end;
+		justify-self: center;
+		text-align: center;
+		padding-inline: 0;
+		padding-block: 0 16px;
 	}
 
-	&.timeline-variant-minimal {
-		--bBlocks-timeline-card-bg: transparent;
-		--bBlocks-timeline-card-shadow: none;
-		--bBlocks-timeline-card-padding: 0;
+}
 
-		.timeline-card {
-			border: none;
-			padding: 0;
-		}
+// How much space a card gives up so its arrow can sit between it and the
+// marker instead of being buried under it. Derived from the arrow's own size,
+// which Style.js sets on this same element, so it tracks the Arrow Size
+// control rather than assuming a default.
+// Keep the marker with the arrow. The arrow is offset from the card's leading
+// edge and is `arrow-size` deep, so its centre sits `offset + size` in. The
+// marker is aligned to that same point and then pulled back by half its own
+// height with a transform — which needs no knowledge of the marker's size and
+// leaves the row's height alone. The date travels with it so the three stay
+// in line.
+@mixin tl-anchor-start {
+	.b-blocks-timeline-marker,
+	.b-blocks-timeline-date {
+		align-self: start;
+		margin-block: 30px 0;
+		transform: translateY(-50%);
+	}
+}
 
-		.timeline-date {
-			background: transparent;
-			padding: 0;
-		}
+@mixin tl-anchor-center {
+	.b-blocks-timeline-marker,
+	.b-blocks-timeline-date {
+		align-self: center;
+		margin-block: 0;
+		transform: none;
+	}
+}
+
+@mixin tl-anchor-end {
+	.b-blocks-timeline-marker,
+	.b-blocks-timeline-date {
+		align-self: end;
+		margin-block: 0 30px;
+		transform: translateY(50%);
+	}
+}
+
+@mixin tl-h-anchor-start {
+	.b-blocks-timeline-marker,
+	.b-blocks-timeline-date {
+		justify-self: start;
+		margin-inline: 30px 0;
+		transform: translateX(-50%);
+	}
+}
+
+@mixin tl-h-anchor-center {
+	.b-blocks-timeline-marker,
+	.b-blocks-timeline-date {
+		justify-self: center;
+		margin-inline: 0;
+		transform: none;
+	}
+}
+
+@mixin tl-h-anchor-end {
+	.b-blocks-timeline-marker,
+	.b-blocks-timeline-date {
+		justify-self: end;
+		margin-inline: 0 30px;
+		transform: translateX(50%);
+	}
+}
+
+.b-blocks-timeline {
+}
+
+// The entry's <style> mount point is a real element in the server markup and
+// would otherwise become a fourth cell in the grid.
+// `box-sizing` is not inherited, and a theme setting it on `body` does not
+// reach these. Left at content-box, padding and borders are added on top of
+// whatever width was asked for — Card Width 150px renders 182px once the
+// card's own padding lands, and a bordered marker outgrows its Size.
+.b-blocks-timeline,
+.b-blocks-timeline-items,
+.b-blocks-timeline-item,
+.b-blocks-timeline-content,
+.b-blocks-timeline-card,
+.b-blocks-timeline-marker,
+.b-blocks-timeline-date {
+	box-sizing: border-box;
+}
+
+.b-blocks-timeline-item-style {
+	display: none;
+}
+
+// A plain holder for the server-rendered entries until view.js adopts them;
+// it must not interfere with the layout while it still has them.
+.b-blocks-timeline-innerBlocks-contents {
+	display: contents;
+}
+
+// The line is drawn on the items container rather than per item so it stays
+// continuous across the gaps between entries.
+.b-blocks-timeline-items {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 17px;
+		bottom: 17px;
+		transform: translateX(-50%);
+		width: 2px;
+		background-color: #d9d9d9;
+		pointer-events: none;
+		z-index: 1;
+	}
+}
+
+.b-blocks-timeline-item {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	grid-template-rows: auto;
+	align-items: center;
+	column-gap: 10px;
+	row-gap: 0;
+	margin: 0;
+}
+
+.b-blocks-timeline-content {
+	grid-row: 1;
+	display: flex;
+	min-width: 0;
+}
+
+.b-blocks-timeline-card {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	min-width: 0;
+	padding: 16px;
+	background-color: #efefef;
+	border-radius: 4px;
+
+	// The pointer that ties the card to the line. Which edge is coloured is
+	// decided by the side mixins; the whole thing is dropped when the pointer
+	// is switched off.
+	// A clipped rectangle rather than a border triangle: a border can only
+	// take a flat colour, and the arrow has to be able to carry whatever
+	// background the card or the entry gives it — a gradient included.
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: 14px;
+		height: 28px;
+		background: #efefef;
+		transform: translateY(-50%);
+		pointer-events: none;
 	}
 
-	/* ------------------------------------------------------------- */
-	/* Accessibility & motion                                         */
-	/* ------------------------------------------------------------- */
-	.timeline-item:focus-within .timeline-card {
-		outline: 2px solid #0d6efd;
-		outline-offset: 2px;
+	> :first-child {
+		margin-block-start: 0;
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.timeline-item,
-		.timeline-card,
-		.timeline-marker {
-			transition: none !important;
+	> :last-child {
+		margin-block-end: 0;
+	}
+}
+
+.b-blocks-timeline-marker {
+	grid-column: 2;
+	grid-row: 1;
+	position: relative;
+	// The line is two stacked layers — the track at 1, the progress fill at 2
+	// — so the marker sits above both and the fill passes behind it rather
+	// than being drawn across it.
+	z-index: 3;
+	display: flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	background-color: #efefef;
+	border-radius: 50%;
+	color: #1e1e1e;
+	font-size: 16px;
+	line-height: 1;
+
+	// The ring is an outline, declared here in full because an outline with no
+	// style is not drawn at all. Stating the style up front — at zero width,
+	// so nothing shows — means setting only a Width is enough to make a ring
+	// appear, and setting only a Style or a Colour changes the ring already
+	// there instead of needing the other parts restated.
+	outline-width: 0;
+	outline-style: solid;
+
+	svg {
+		width: 1em;
+		height: 1em;
+		fill: currentColor;
+	}
+
+	// The pulse halo. A negative z-index inside the marker's own stacking
+	// context puts it behind the marker's background but still in front of
+	// the line, so it reads as a glow spreading out from under the marker
+	// rather than a disc drawn over it. It is inert until the dynamic style
+	// gives it a colour and an animation.
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		border-radius: inherit;
+		background-color: currentColor;
+		opacity: 0;
+		pointer-events: none;
+
+		// Everything about the animation except its name, so the Timeline
+		// switches the pulse on by naming it and an entry can override the
+		// name, the duration or the colour on its own without having to
+		// restate the other two.
+		animation-duration: 2400ms;
+		animation-timing-function: ease-out;
+		animation-iteration-count: infinite;
+	}
+}
+
+// Scaled from the marker's own box, so the halo keeps the marker's shape
+// whatever the Shape setting made it.
+@keyframes bb-tl-marker-pulse {
+	0% {
+		opacity: 0.5;
+		transform: scale(1);
+	}
+
+	70%,
+	100% {
+		opacity: 0;
+		transform: scale(2.4);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.b-blocks-timeline-marker {
+		transition: none !important;
+
+		&::after {
 			animation: none !important;
 		}
 	}
+}
+
+.b-blocks-timeline-date {
+	grid-row: 1;
+	color: #1e1e1e;
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+// Default side, then the layout rules. `:where()` keeps the layout selectors
+// at the same weight as the defaults so an explicit per-entry override below
+// always wins regardless of source order.
+//
+// Alternation counts by type rather than by child index, so that anything the
+// editor adds alongside the entries — an appender, a placeholder — cannot
+// shift the count and flip which side each entry lands on.
+// Each breakpoint carries its own side class, so the ladder repeats once per
+// breakpoint. `left` and `alternate` both start every entry on the left; only
+// the even ones move for `alternate`. Stating the left case explicitly is what
+// lets a narrower breakpoint undo a wider one.
+@mixin tl-side-ladder( $at ) {
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-#{ $at }-left .b-blocks-timeline-item,
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-#{ $at }-alternate .b-blocks-timeline-item {
+		@include tl-side-left;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-#{ $at }-right .b-blocks-timeline-item,
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-#{ $at }-alternate .b-blocks-timeline-item:where(:nth-of-type(even)) {
+		@include tl-side-right;
+	}
+}
+
+.b-blocks-timeline-item {
+	@include tl-side-left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// The line runs between the first and last marker by default; full length
+// takes it edge to edge instead.
+.b-blocks-timeline-line-full .b-blocks-timeline-items::before {
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+}
+
+
+// Every line style is painted rather than bordered: a border's dash length is
+// chosen by the browser and cannot be spaced out, a border cannot step
+// sideways off its own centre line or be split into a track and a progress
+// fill, and it cannot take a gradient. Style.js paints the bar and applies the
+// mask that shapes dashes and dots.
+//
+// The sizes and colours below are the pre-JavaScript defaults and match
+// block.json; Components/Common/Style.js re-states each of them at `#id`
+// weight from the block's actual settings.
+// Progress is an overlay rather than a style of its own: a second bar over
+// the track, revealed to `--bb-tl-line-progress` (0 to 1), which view.js
+// drives from the scroll position.
+//
+// It is clipped rather than scaled. A transform would scale the mask along
+// with the box, squashing the fill's dashes so they no longer
+// registered with the track beneath — the pattern got denser the less
+// progress there was. Clipping leaves the fill drawn at full size and simply
+// hides the unreached part, so the two always line up. It inherits the same mask as the track from
+// Style.js, so the fill follows the line's shape — dashes stay dashes, a
+// dashes stay dashes. The editor gets a fixed preview value instead of a
+// scroll position.
+.b-blocks-timeline-progress .b-blocks-timeline-items::after {
+	content: '';
+	position: absolute;
+	// Above the track. The track carries z-index 1 to clear the entries, and
+	// without a higher one here the fill is painted underneath it — the two
+	// sit on the same element, at the same place, so the grey hides the fill
+	// completely however far it has filled.
+	z-index: 2;
+	left: 50%;
+	top: 17px;
+	bottom: 17px;
+	width: 2px;
+	background-color: #1e1e1e;
+	transform: translateX(-50%);
+	clip-path: inset(0 0 calc((1 - var(--bb-tl-line-progress, 0)) * 100%) 0);
+	pointer-events: none;
+}
+
+.b-blocks-timeline-progress.b-blocks-timeline-line-full .b-blocks-timeline-items::after {
+	top: 0;
+	bottom: 0;
+}
+
+// Fade dissolves the trailing end of the fill into the track, leaving a
+// travelling beam rather than a hard-edged bar.
+.b-blocks-timeline-progress-fade .b-blocks-timeline-items::after {
+	// Fading is done with a mask rather than by painting a gradient, so it
+	// composes with whatever the fill is — a flat colour or a gradient of its
+	// own — instead of replacing it.
+	-webkit-mask-image: linear-gradient(to bottom, transparent, #000);
+	mask-image: linear-gradient(to bottom, transparent, #000);
+	-webkit-mask-size: 100% calc(var(--bb-tl-line-progress, 0) * 100%);
+	mask-size: 100% calc(var(--bb-tl-line-progress, 0) * 100%);
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: left top;
+	mask-position: left top;
+}
+
+
+
+
+
+
+.b-blocks-timeline-no-line .b-blocks-timeline-items::after {
+	display: none;
+}
+
+.b-blocks-timeline-no-line .b-blocks-timeline-items::before {
+	display: none;
+}
+
+.b-blocks-timeline-no-arrow {
+	.b-blocks-timeline-card::after {
+		display: none;
+	}
+}
+
+// The date element is always rendered so a Timeline Item does not need to
+// know the parent's setting; the parent simply hides it.
+.b-blocks-timeline-no-date .b-blocks-timeline-date {
+	display: none;
+}
+
+// The narrower breakpoints repeat the ladders with their own side class. They
+// come after the desktop pass and carry the same weight, so at those widths
+// they win on source order alone.
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 640px) {
+}
+
+// Per-entry overrides picked in the Timeline Item sidebar. Declared last so a
+// single entry outranks every breakpoint the Timeline set above.
+.b-blocks-timeline-item.b-blocks-timeline-side-left {
+	@include tl-side-left;
+}
+
+.b-blocks-timeline-item.b-blocks-timeline-side-right {
+	@include tl-side-right;
+}
+
+@mixin tl-h-side-ladder( $at ) {
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-#{ $at }-left .b-blocks-timeline-item,
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-#{ $at }-alternate .b-blocks-timeline-item {
+		@include tl-h-side-top;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-#{ $at }-right .b-blocks-timeline-item,
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-#{ $at }-alternate .b-blocks-timeline-item:where(:nth-of-type(even)) {
+		@include tl-h-side-bottom;
+	}
+}
+
+// Everything the direction decides, gathered so it can be stated once per
+// breakpoint. A narrower breakpoint that switches back to vertical needs the
+// vertical geometry spelled out too — the unprefixed base rules sit outside
+// every media query, so they cannot undo a wider breakpoint's horizontal.
+@mixin tl-direction( $at ) {
+	.b-blocks-timeline-#{ $at }-vertical {
+		.b-blocks-timeline-items {
+			// A wider breakpoint's horizontal rules sit outside every media
+			// query, so going back to vertical means undoing the column grid
+			// it built, not just re-stating the flex direction.
+			display: flex;
+			flex-direction: column;
+			grid-auto-flow: row;
+			grid-auto-columns: auto;
+			grid-template-rows: none;
+
+			&::before {
+				left: 50%;
+				right: auto;
+				top: var(--bb-tl-line-start, 17px);
+				bottom: var(--bb-tl-line-end, 17px);
+				transform: translateX(-50%);
+				width: 2px;
+				height: auto;
+			}
+		}
+
+		.b-blocks-timeline-item {
+			flex: initial;
+			min-width: auto;
+			grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+			grid-template-rows: auto;
+			grid-row: auto;
+			column-gap: 10px;
+			row-gap: 0;
+		}
+
+		.b-blocks-timeline-marker {
+			grid-column: 2;
+			grid-row: 1;
+			justify-self: auto;
+		}
+
+		// Same reason: the fill is clipped along the axis it runs on.
+		&.b-blocks-timeline-progress .b-blocks-timeline-items::after {
+			clip-path: inset(0 0 calc((1 - var(--bb-tl-line-progress, 0)) * 100%) 0);
+		}
+
+		&.b-blocks-timeline-progress-fade .b-blocks-timeline-items::after {
+			-webkit-mask-image: linear-gradient(to bottom, transparent, #000);
+			mask-image: linear-gradient(to bottom, transparent, #000);
+			-webkit-mask-size: 100% calc(var(--bb-tl-line-progress, 0) * 100%);
+			mask-size: 100% calc(var(--bb-tl-line-progress, 0) * 100%);
+		}
+
+		&.b-blocks-timeline-line-full .b-blocks-timeline-items::before,
+		&.b-blocks-timeline-progress.b-blocks-timeline-line-full .b-blocks-timeline-items::after {
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			right: auto;
+		}
+	}
+
+	// Horizontal direction. Every rule carries the extra `--horizontal` class so
+	// it outranks the vertical ladder above, and the ladder repeats in the same
+	// order so a per-entry override still wins inside it.
+	.b-blocks-timeline-#{ $at }-horizontal {
+		.b-blocks-timeline-items {
+			flex-direction: row;
+			align-items: stretch;
+	
+			&::before {
+				left: 17px;
+				right: 17px;
+				top: var(--bb-tl-line-cross, 50%);
+				bottom: auto;
+				transform: translateY(-50%);
+				width: auto;
+				height: 2px;
+				z-index: 1;
+			}
+		}
+	
+		.b-blocks-timeline-item {
+			flex: 1 1 0;
+			min-width: 0;
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+			column-gap: 0;
+			row-gap: 0;
+		}
+	
+		.b-blocks-timeline-marker {
+			grid-column: 1;
+			grid-row: 2;
+			justify-self: center;
+		}
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item {
+		@include tl-h-side-top;
+	}
+
+	// Horizontal entries each lay their card, marker and date into three rows. On
+	// their own those rows are `1fr auto 1fr`, which mirrors the two sides: a tall
+	// card below the line reserves an equally tall empty band above it.
+	//
+	// Sharing one set of rows across every entry sizes each side to its own
+	// content instead — the band above is only as tall as the tallest card above.
+	// Entries keep their own grid so the side rules still apply to them.
+	@supports (grid-template-rows: subgrid) {
+		.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-items {
+			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: minmax(0, 1fr);
+			grid-template-rows: auto auto auto;
+		}
+	
+		.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item {
+			grid-row: 1 / -1;
+			grid-template-rows: subgrid;
+		}
+	}
+
+	// Arrow alignment along the card edge it points from. Declared after both
+	// side ladders and one class heavier, so it outranks the `top: 50%` /
+	// `left: 50%` centring those rules apply. Center is the default and needs no
+	// rule of its own.
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-arrow-start .b-blocks-timeline-item {
+		@include tl-anchor-start;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-arrow-start .b-blocks-timeline-item .b-blocks-timeline-card::after {
+		top: 16px;
+		bottom: auto;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-arrow-end .b-blocks-timeline-item {
+		@include tl-anchor-end;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical.b-blocks-timeline-arrow-end .b-blocks-timeline-item .b-blocks-timeline-card::after {
+		top: auto;
+		bottom: 16px;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-arrow-start .b-blocks-timeline-item {
+		@include tl-h-anchor-start;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-arrow-start .b-blocks-timeline-item .b-blocks-timeline-card::after {
+		inset-inline-start: 16px;
+		inset-inline-end: auto;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-arrow-end .b-blocks-timeline-item {
+		@include tl-h-anchor-end;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-arrow-end .b-blocks-timeline-item .b-blocks-timeline-card::after {
+		inset-inline-start: auto;
+		inset-inline-end: 16px;
+		transform: none;
+	}
+
+	// A Timeline Item may override the alignment above for itself. These carry
+	// the same class count as the wrapper rules and sit after them, so they win
+	// on source order; `center` needs a rule of its own because it has to undo a
+	// start or end set on the wrapper rather than simply not apply.
+	.b-blocks-timeline-#{ $at }-vertical .b-blocks-timeline-item.b-blocks-timeline-item-arrow-start {
+		@include tl-anchor-start;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical .b-blocks-timeline-item.b-blocks-timeline-item-arrow-start .b-blocks-timeline-card::after {
+		top: 16px;
+		bottom: auto;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical .b-blocks-timeline-item.b-blocks-timeline-item-arrow-center {
+		@include tl-anchor-center;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical .b-blocks-timeline-item.b-blocks-timeline-item-arrow-center .b-blocks-timeline-card::after {
+		top: 50%;
+		bottom: auto;
+		transform: translateY(-50%);
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical .b-blocks-timeline-item.b-blocks-timeline-item-arrow-end {
+		@include tl-anchor-end;
+	}
+
+	.b-blocks-timeline-#{ $at }-vertical .b-blocks-timeline-item.b-blocks-timeline-item-arrow-end .b-blocks-timeline-card::after {
+		top: auto;
+		bottom: 16px;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-item-arrow-start {
+		@include tl-h-anchor-start;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-item-arrow-start .b-blocks-timeline-card::after {
+		inset-inline-start: 16px;
+		inset-inline-end: auto;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-item-arrow-center {
+		@include tl-h-anchor-center;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-item-arrow-center .b-blocks-timeline-card::after {
+		left: 50%;
+		right: auto;
+		transform: translateX(-50%);
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-item-arrow-end {
+		@include tl-h-anchor-end;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-item-arrow-end .b-blocks-timeline-card::after {
+		inset-inline-start: auto;
+		inset-inline-end: 16px;
+		transform: none;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-line-full .b-blocks-timeline-items::before {
+		top: var(--bb-tl-line-cross, 50%);
+		bottom: auto;
+		left: 0;
+		right: 0;
+		z-index: 1;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-progress .b-blocks-timeline-items::after {
+		left: 17px;
+		right: 17px;
+		top: var(--bb-tl-line-cross, 50%);
+		bottom: auto;
+		width: auto;
+		height: 2px;
+		transform: translateY(-50%);
+		clip-path: inset(0 calc((1 - var(--bb-tl-line-progress, 0)) * 100%) 0 0);
+	}
+
+	// `inset()` is physical too: the fill is clipped from the right so it grows
+	// left to right, which has to be turned around when the run itself does.
+	[dir='rtl'] .b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-progress .b-blocks-timeline-items::after {
+		clip-path: inset(0 0 0 calc((1 - var(--bb-tl-line-progress, 0)) * 100%));
+	}
+
+	[dir='rtl'] .b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-progress-fade .b-blocks-timeline-items::after {
+		-webkit-mask-image: linear-gradient(to left, transparent, #000);
+		mask-image: linear-gradient(to left, transparent, #000);
+		-webkit-mask-position: right center;
+		mask-position: right center;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-progress.b-blocks-timeline-line-full .b-blocks-timeline-items::after {
+		left: 0;
+		right: 0;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal.b-blocks-timeline-progress-fade .b-blocks-timeline-items::after {
+		-webkit-mask-image: linear-gradient(to right, transparent, #000);
+		mask-image: linear-gradient(to right, transparent, #000);
+		-webkit-mask-size: calc(var(--bb-tl-line-progress, 0) * 100%) 100%;
+		mask-size: calc(var(--bb-tl-line-progress, 0) * 100%) 100%;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-side-left {
+		@include tl-h-side-top;
+	}
+
+	.b-blocks-timeline-#{ $at }-horizontal .b-blocks-timeline-item.b-blocks-timeline-side-right {
+		@include tl-h-side-bottom;
+	}
+
+	@include tl-side-ladder( $at );
+	@include tl-h-side-ladder( $at );
+}
+
+@include tl-direction( 'desktop' );
+
+@media only screen and (max-width: 1024px) {
+	@include tl-direction( 'tablet' );
+}
+
+@media only screen and (max-width: 640px) {
+	@include tl-direction( 'mobile' );
 }

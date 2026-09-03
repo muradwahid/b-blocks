@@ -19,9 +19,6 @@ const Layout = ({ attributes, setAttributes, updateObj, device = 'desktop' }) =>
 			label={__('Visual theme', 'b-blocks')}
 			value={table.theme || 'default'}
 			options={themeOptions}
-			// Writes the preset's values into the attributes rather than relying
-			// on a stylesheet override, so everything it sets stays editable in
-			// the Style tab afterwards.
 			onChange={(val) => setAttributes(applyTheme(val, attributes))}
 			__nextHasNoMarginBottom
 		/>

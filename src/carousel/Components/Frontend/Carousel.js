@@ -1,13 +1,18 @@
 import Swiper from 'swiper';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { getResponsiveValue, getVerticalSlidesHeight } from '../../utils/functions';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const Carousel = ({ attributes, slidesHost }) => {
-	const { navigation, layout, options, autoplay, pagination } = attributes;
+	const { navigation, layout, options, autoplay, pagination, styles } = attributes;
+
+	const isVertical = 'vertical' === layout?.direction;
+
+	const customHeight = styles?.container?.desktop?.height;
 
 	const rootRef = useRef(null);
 	const swiperRef = useRef(null);
@@ -42,7 +47,6 @@ const Carousel = ({ attributes, slidesHost }) => {
 		const slides = wrapper.querySelectorAll('.swiper-slide');
 		if (!slides.length) return;
 
-		// prevent double init
 		if (swiperEl.swiper) return;
 
 		const nextEl = root.querySelector('.swiper-button-next');
@@ -51,15 +55,27 @@ const Carousel = ({ attributes, slidesHost }) => {
 
 		const delayMs = Math.round((autoplay?.delay ?? 2.5) * 1000);
 
+		const applyVerticalHeight = () => {
+			if (!isVertical || customHeight) {
+				swiperEl.style.height = '';
+				return;
+			}
+			const height = getVerticalSlidesHeight(swiperEl, getResponsiveValue(layout?.slideView), getResponsiveValue(layout?.space));
+			swiperEl.style.height = height ? `${height}px` : '';
+		};
+
+		applyVerticalHeight();
+
 		swiperInstanceRef.current = new Swiper(swiperEl, {
 			modules: [A11y, Autoplay, Navigation, Pagination],
 
-			slidesPerView: layout?.slideView?.mobile ?? 1,
+			slidesPerView: isVertical ? 'auto' : layout?.slideView?.mobile ?? 1,
 			spaceBetween: layout?.space?.mobile ?? 15,
 			loop: !!options?.loop,
 			speed: Math.round((options?.speed ?? 0.5) * 1000),
-			autoHeight: !!options?.autoHeight,
 
+			autoHeight: isVertical ? false : !!options?.autoHeight,
+			direction: isVertical ? 'vertical' : 'horizontal',
 			autoplay: autoplay?.autoplay
 				? {
 					delay: delayMs,
@@ -69,8 +85,11 @@ const Carousel = ({ attributes, slidesHost }) => {
 				}
 				: false,
 
-			breakpoints: {
-				641: {
+			breakpoints: isVertical ? {
+				645: { spaceBetween: layout?.space?.tablet ?? 25 },
+				1025: { spaceBetween: layout?.space?.desktop ?? 30 },
+			} : {
+				645: {
 					slidesPerView: layout?.slideView?.tablet ?? 2,
 					spaceBetween: layout?.space?.tablet ?? 25,
 				},
@@ -90,15 +109,32 @@ const Carousel = ({ attributes, slidesHost }) => {
 
 		requestAnimationFrame(() => swiperInstanceRef.current?.update());
 
+		const remeasure = () => {
+			applyVerticalHeight();
+			swiperInstanceRef.current?.update();
+		};
+
+		const resizeObserver = isVertical && !customHeight ? new ResizeObserver(remeasure) : null;
+		if (resizeObserver) {
+			wrapper.querySelectorAll('.swiper-slide').forEach(slide => resizeObserver.observe(slide));
+			window.addEventListener('resize', remeasure);
+		}
+
 		return () => {
+			resizeObserver?.disconnect();
+			if (resizeObserver) window.removeEventListener('resize', remeasure);
 			swiperInstanceRef.current?.destroy(true, true);
 			swiperInstanceRef.current = null;
 		};
 	}, [ready, attributes]);
 
+	const style = {
+		'--swiper-wrapper-transition-timing-function': autoplay?.easing,
+	};
+
 	return (
 		<div className="bBlock-carousel-main-wrapper" ref={rootRef}>
-			<div className="bBlocks-carousel-wrapper">
+			<div className="bBlocks-carousel-wrapper" style={style}>
 				<div className="swiper" ref={swiperRef}>
 					<div className="swiper-wrapper" ref={wrapperRef} />
 				</div>

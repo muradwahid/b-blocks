@@ -5,7 +5,7 @@
 	"version": "2.0.60.3",
 	"title": "Comparison Table",
 	"category": "bBlocks",
-	"description": "Feature-by-plan comparison matrix with checkmarks, X icons, or custom text per cell. Highlight one column as 'Most Popular' to draw the eye, scroll horizontally on mobile, and choose between default or striped row styles.",
+	"description": "Compare plans side by side with check, cross, or text cells and a highlighted featured column.",
 	"keywords": [
 		"comparison",
 		"compare",
@@ -28,8 +28,7 @@
 				"captionPosition": "hidden",
 				"captionColor": "",
 				"captionTypo": {},
-				"featuredLabel": "Most Popular",
-				"featureColumnLabel": ""
+				"featuredLabel": "Most Popular"
 			}
 		},
 		"table": {
@@ -225,25 +224,170 @@
 			"type": "array",
 			"default": [
 				{
+					"_key": "col-feature",
+					"isFeatureColumn": true,
+					"label": "Features",
+					"iconSize": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					},
+					"cta": {
+						"normal": {
+							"bg": {},
+							"color": ""
+						},
+						"hover": {
+							"bg": {},
+							"color": ""
+						},
+						"typo": {},
+						"border": {},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"transition": "",
+						"alignment": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					}
+				},
+				{
 					"_key": "col-default-1",
 					"label": "Basic",
 					"isFeatured": false,
 					"icon": "",
-					"iconColor": ""
+					"iconColor": "",
+					"cta": {
+						"normal": {
+							"bg": {},
+							"color": ""
+						},
+						"hover": {
+							"bg": {},
+							"color": ""
+						},
+						"typo": {},
+						"border": {},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"transition": "",
+						"alignment": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"iconSize": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					}
 				},
 				{
 					"_key": "col-default-2",
 					"label": "Pro",
 					"isFeatured": true,
 					"icon": "",
-					"iconColor": ""
+					"iconColor": "",
+					"cta": {
+						"normal": {
+							"bg": {},
+							"color": ""
+						},
+						"hover": {
+							"bg": {},
+							"color": ""
+						},
+						"typo": {},
+						"border": {},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"transition": "",
+						"alignment": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"iconSize": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					}
 				},
 				{
 					"_key": "col-default-3",
 					"label": "Enterprise",
 					"isFeatured": false,
 					"icon": "",
-					"iconColor": ""
+					"iconColor": "",
+					"cta": {
+						"normal": {
+							"bg": {},
+							"color": ""
+						},
+						"hover": {
+							"bg": {},
+							"color": ""
+						},
+						"typo": {},
+						"border": {},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"transition": "",
+						"alignment": {
+							"desktop": "",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"iconSize": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					}
 				}
 			]
 		},
@@ -314,6 +458,69 @@
 					]
 				}
 			]
+		},
+		"cta": {
+			"type": "object",
+			"default": {
+				"position": "top",
+				"normal": {
+					"bg": {
+						"type": "solid",
+						"color": "#2563eb"
+					},
+					"color": "#ffffff"
+				},
+				"hover": {
+					"bg": {},
+					"color": ""
+				},
+				"typo": {},
+				"border": {},
+				"desktop": {
+					"padding": {
+						"top": "8px",
+						"right": "18px",
+						"bottom": "8px",
+						"left": "18px"
+					},
+					"radius": {
+						"top": "6px",
+						"right": "6px",
+						"bottom": "6px",
+						"left": "6px"
+					},
+					"alignment": "center",
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"padding": {},
+					"radius": {},
+					"alignment": "",
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {},
+					"radius": {},
+					"alignment": "",
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"transition": 0.2
+			}
 		},
 		"advanced": {
 			"type": "object",

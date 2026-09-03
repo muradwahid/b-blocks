@@ -3,7 +3,7 @@ import { PanelBody } from '@wordpress/components';
 
 import { Background, ColorControl } from '../../../../../../../bpl-tools/Components';
 
-/** Everything that only applies to the highlighted column and its badge. */
+
 const FeaturedStyle = ({ attributes, updateObj }) => {
 	const { featured = {} } = attributes;
 

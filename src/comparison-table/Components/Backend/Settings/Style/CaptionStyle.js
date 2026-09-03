@@ -3,11 +3,6 @@ import { PanelBody, SelectControl } from '@wordpress/components';
 
 import { ColorControl, Notice, Typography } from '../../../../../../../bpl-tools/Components';
 
-/**
- * Mirrors data-table's caption position control. The caption exists in the
- * markup already but was screen-reader-only, so this makes it optional visible
- * content rather than adding a new element.
- */
 const CaptionStyle = ({ attributes, updateObj }) => {
 	const { content = {} } = attributes;
 	const captionPosition = content.captionPosition || 'hidden';

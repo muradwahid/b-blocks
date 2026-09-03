@@ -24,10 +24,8 @@ const Edit = (props) => {
 
 		<div {...blockProps}>
 			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
-
-			{/* Nesting matches generateCSS's `#id>div>div` editor selector. */}
 			<div>
-				<ComparisonTable attributes={attributes} />
+				<ComparisonTable attributes={attributes} isBackend={true} />
 			</div>
 		</div>
 	</>;
