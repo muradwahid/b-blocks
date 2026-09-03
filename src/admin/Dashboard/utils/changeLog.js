@@ -5,7 +5,7 @@ export const changeLog = [
             'Fixed: Container Layout issue',
             'Added: Carousel block direction'
         ],
-        type: 'fix'
+        type: ''
     },
     {
         version: '2.1.3 - 31 August 2026',
