@@ -1,0 +1,19 @@
+// Editor-only adjustments. The frontend sheet is imported so the canvas renders
+// the block exactly as the page will.
+@import './style.scss';
+
+.wp-block-b-blocks-instagram {
+	/* The tile is a button in the canvas too, so the editor's own button reset
+	   has to be undone or every thumbnail picks up an admin border. */
+	.b-blocks-instagram-open {
+		box-shadow: none;
+	}
+
+	/* A click in the canvas selects the block; it must not also open a post. */
+	.b-blocks-instagram-follow,
+	.b-blocks-instagram-username,
+	.b-blocks-instagram-photo,
+	.b-blocks-instagram-tag {
+		pointer-events: none;
+	}
+}

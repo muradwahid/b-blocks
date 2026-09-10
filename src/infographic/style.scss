@@ -1,0 +1,603 @@
+.wp-block-b-blocks-infographic {
+	.b-blocks-infographic {
+		* {
+			box-sizing: border-box;
+		}
+
+		.b-blocks-infographic-circle {
+			position: relative;
+			display: inline-block;
+			max-width: 100%;
+			vertical-align: top;
+			// The outermost boundary, so its border and shadow must read as a circle.
+			border-radius: 50%;
+			// content-box, against the * rule above, so padding opens a real gap.
+			// border-box would eat into a box the ring does not scale with.
+			box-sizing: content-box;
+		}
+
+		.b-blocks-infographic-center-disc {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			overflow: hidden;
+			z-index: 1;
+		}
+
+		.b-blocks-infographic-center-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			width: 78%;
+			text-align: center;
+		}
+
+		.b-blocks-infographic-center-image img {
+			width: auto;
+			max-width: 100%;
+			object-fit: contain;
+			display: block;
+		}
+
+		.b-blocks-infographic-center-title {
+			margin: 0;
+		}
+
+		.b-blocks-infographic-center-text {
+			margin: 0;
+		}
+
+		.b-blocks-infographic-center-divider {
+			display: block;
+			border-radius: 999px;
+		}
+
+		.b-blocks-infographic-segment {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 6px;
+			margin: 0;
+			border: none;
+			border-radius: 50%;
+			text-align: center;
+			text-decoration: none;
+			line-height: 1.25;
+			cursor: pointer;
+			z-index: 2;
+
+			&:focus-visible {
+				outline: 2px solid currentColor;
+				outline-offset: 2px;
+			}
+		}
+
+		.b-blocks-infographic-segment-inner {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+		}
+
+		/* A custom Border Radius overrides these, coming from the scoped sheet. */
+		&.b-blocks-infographic-segment-shape-circle .b-blocks-infographic-segment {
+			border-radius: 50%;
+		}
+
+		&.b-blocks-infographic-segment-shape-square .b-blocks-infographic-segment {
+			border-radius: 0;
+		}
+
+		&.b-blocks-infographic-segment-shape-rounded .b-blocks-infographic-segment {
+			border-radius: 8px;
+		}
+
+		/* Icon position within a segment. */
+		&.b-blocks-infographic-icon-pos-top .b-blocks-infographic-segment-inner {
+			flex-direction: column;
+		}
+
+		&.b-blocks-infographic-icon-pos-bottom .b-blocks-infographic-segment-inner {
+			flex-direction: column-reverse;
+		}
+
+		&.b-blocks-infographic-icon-pos-left .b-blocks-infographic-segment-inner {
+			flex-direction: row;
+		}
+
+		&.b-blocks-infographic-icon-pos-right .b-blocks-infographic-segment-inner {
+			flex-direction: row-reverse;
+		}
+
+		/* Each segment becomes a pie wedge spanning the whole disc and clipped
+		   to its slice, so the centre disc sits on top as the hole. */
+		&.b-blocks-infographic-has-segments {
+			.b-blocks-infographic-segment {
+				padding: 0;
+				border-radius: 0;
+				overflow: visible;
+				z-index: 0;
+			}
+
+			.b-blocks-infographic-center-disc {
+				z-index: 1;
+			}
+
+			.b-blocks-infographic-segment-inner {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) rotate(var(--bbInfographicMid, 0deg)) translateY(calc(var(--bbInfographicContentRadius, 0px) * -1)) rotate(var(--bbInfographicMidCounter, 0deg));
+			}
+		}
+
+		.b-blocks-infographic-segment-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+
+			> svg,
+			> img {
+				display: block;
+				object-fit: contain;
+			}
+		}
+
+		.b-blocks-infographic-segment-label {
+			display: block;
+			word-break: break-word;
+		}
+
+		/* Icon views */
+		&.b-blocks-infographic-icon-view-stacked .b-blocks-infographic-segment-icon {
+			padding: 6px;
+			background: var(--bbInfographicIconPlate, rgba(255, 255, 255, 0.22));
+		}
+
+		&.b-blocks-infographic-icon-view-framed .b-blocks-infographic-segment-icon {
+			padding: 6px;
+			border: 1px solid currentColor;
+		}
+
+		/* Icon shapes */
+		&.b-blocks-infographic-icon-shape-circle .b-blocks-infographic-segment-icon {
+			border-radius: 50%;
+		}
+
+		&.b-blocks-infographic-icon-shape-square .b-blocks-infographic-segment-icon {
+			border-radius: 0;
+		}
+
+		&.b-blocks-infographic-icon-shape-rounded .b-blocks-infographic-segment-icon {
+			border-radius: 6px;
+		}
+
+		/* Parked before arming, or the segments flash in and then animate. */
+		&.b-blocks-infographic-awaiting-view .b-blocks-infographic-segment {
+			opacity: 0;
+		}
+
+		/* The per-segment delay is inline; the duration comes from the variable. */
+		&.b-blocks-infographic-has-animation .b-blocks-infographic-segment {
+			opacity: 0;
+			animation-duration: var(--bbInfographicSpeed, 500ms);
+			animation-timing-function: var(--bbInfographicEasing, ease);
+			animation-fill-mode: forwards;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-spread .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicSpread;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-fade .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicFade;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-zoom .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicZoom;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-spin .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicSpin;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-drop .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicDrop;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-bounce .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicBounce;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-flip .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicFlip;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-swing .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicSwing;
+		}
+
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-roll .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicRoll;
+		}
+
+		/* All segments start stacked at 12 o'clock and travel to their own angle.
+		   The start frame hard-codes 0deg; the variable would need @property. */
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-anim-unfold .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicUnfold;
+		}
+
+		/* Opacity and filter only, so a clip-path wedge runs these as well as a circle. */
+		&.b-blocks-infographic-anim-fade .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicFade;
+		}
+
+		&.b-blocks-infographic-anim-blur .b-blocks-infographic-segment {
+			animation-name: bBlocksInfographicBlur;
+		}
+
+		/* A second animation behind the entrance, so it composes with every type.
+		   Last in the list, it wins the transform once its delay elapses. That
+		   delay is inline on the segment, carrying both its place in the stagger
+		   queue and the moment the ring starts turning. */
+		&:not(.b-blocks-infographic-has-segments).b-blocks-infographic-has-rotation .b-blocks-infographic-segment {
+			animation-name: var(--bbInfographicEntranceName, none), bBlocksInfographicRotate;
+			animation-duration: var(--bbInfographicSpeed, 500ms), var(--bbInfographicRotateSpeed, 20s);
+			animation-timing-function: var(--bbInfographicEasing, ease), linear;
+			animation-iteration-count: 1, infinite;
+			animation-fill-mode: forwards, none;
+		}
+
+		/* Only the rotation reverses; the entrance still plays forwards. */
+		&.b-blocks-infographic-rotate-reverse .b-blocks-infographic-segment {
+			animation-direction: normal, reverse;
+		}
+
+		/* A turning segment travels away from the pointer, so hold the ring still. */
+		&.b-blocks-infographic-pause-on-hover .b-blocks-infographic-circle:hover .b-blocks-infographic-segment,
+		&.b-blocks-infographic-pause-on-hover .b-blocks-infographic-circle:focus-within .b-blocks-infographic-segment {
+			animation-play-state: paused;
+		}
+
+		/* On the icon and label, not the segment, whose transform holds it on the
+		   ring. scale, translate and rotate are separate properties, so they
+		   compose with that placement rather than replacing it. */
+		.b-blocks-infographic-segment-inner {
+			transition: scale var(--bbInfographicMotionSpeed, 250ms) ease, translate var(--bbInfographicMotionSpeed, 250ms) ease, rotate var(--bbInfographicMotionSpeed, 250ms) ease;
+		}
+
+		&.b-blocks-infographic-hover-motion-grow .b-blocks-infographic-segment:hover .b-blocks-infographic-segment-inner,
+		&.b-blocks-infographic-hover-motion-grow .b-blocks-infographic-segment:focus-visible .b-blocks-infographic-segment-inner {
+			scale: 1.18;
+		}
+
+		&.b-blocks-infographic-hover-motion-lift .b-blocks-infographic-segment:hover .b-blocks-infographic-segment-inner,
+		&.b-blocks-infographic-hover-motion-lift .b-blocks-infographic-segment:focus-visible .b-blocks-infographic-segment-inner {
+			translate: 0 -6px;
+		}
+
+		&.b-blocks-infographic-hover-motion-rotate .b-blocks-infographic-segment:hover .b-blocks-infographic-segment-inner,
+		&.b-blocks-infographic-hover-motion-rotate .b-blocks-infographic-segment:focus-visible .b-blocks-infographic-segment-inner {
+			rotate: 12deg;
+		}
+
+		&.b-blocks-infographic-hover-motion-pulse .b-blocks-infographic-segment:hover .b-blocks-infographic-segment-inner,
+		&.b-blocks-infographic-hover-motion-pulse .b-blocks-infographic-segment:focus-visible .b-blocks-infographic-segment-inner {
+			animation: bBlocksInfographicMotionPulse var(--bbInfographicMotionSpeed, 250ms) ease-in-out infinite alternate;
+		}
+
+		&.b-blocks-infographic-hover-motion-wobble .b-blocks-infographic-segment:hover .b-blocks-infographic-segment-inner,
+		&.b-blocks-infographic-hover-motion-wobble .b-blocks-infographic-segment:focus-visible .b-blocks-infographic-segment-inner {
+			animation: bBlocksInfographicMotionWobble calc(var(--bbInfographicMotionSpeed, 250ms) * 2) ease-in-out infinite;
+		}
+
+		/* Anchors the eye on the segment driving the centre. */
+		&.b-blocks-infographic-has-active-pulse .b-blocks-infographic-segment.active .b-blocks-infographic-segment-inner {
+			animation: bBlocksInfographicMotionPulse 900ms ease-in-out infinite alternate;
+		}
+
+		/* Re-keyed on the active item, so this restarts on every selection. */
+		&.b-blocks-infographic-content-anim-fade .b-blocks-infographic-center-content {
+			animation: bBlocksInfographicContentFade var(--bbInfographicContentSpeed, 300ms) ease both;
+		}
+
+		&.b-blocks-infographic-content-anim-slide-up .b-blocks-infographic-center-content {
+			animation: bBlocksInfographicContentSlideUp var(--bbInfographicContentSpeed, 300ms) ease both;
+		}
+
+		&.b-blocks-infographic-content-anim-slide-side .b-blocks-infographic-center-content {
+			animation: bBlocksInfographicContentSlideSide var(--bbInfographicContentSpeed, 300ms) ease both;
+		}
+
+		&.b-blocks-infographic-content-anim-zoom .b-blocks-infographic-center-content {
+			animation: bBlocksInfographicContentZoom var(--bbInfographicContentSpeed, 300ms) ease both;
+		}
+
+		&.b-blocks-infographic-content-anim-flip .b-blocks-infographic-center-content {
+			animation: bBlocksInfographicContentFlip var(--bbInfographicContentSpeed, 300ms) ease both;
+			transform-origin: center;
+		}
+	}
+}
+
+/* Every keyframe restates the ring placement, or the segment snaps to the middle
+   for the duration. $placed is where it belongs; $centred collapses the radius. */
+$placed: translate(-50%, -50%) rotate(var(--bbInfographicAngle, 0deg)) translateY(calc(var(--bbInfographicRadius, 0px) * -1)) rotate(var(--bbInfographicCounter, 0deg));
+$centred: translate(-50%, -50%) rotate(var(--bbInfographicAngle, 0deg)) translateY(0) rotate(var(--bbInfographicCounter, 0deg));
+
+@keyframes bBlocksInfographicSpread {
+	from {
+		opacity: 0;
+		transform: #{$centred};
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed};
+	}
+}
+
+@keyframes bBlocksInfographicFade {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes bBlocksInfographicZoom {
+	from {
+		opacity: 0;
+		transform: #{$placed} scale(0.3);
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed} scale(1);
+	}
+}
+
+@keyframes bBlocksInfographicSpin {
+	from {
+		opacity: 0;
+		transform: #{$placed} rotate(-180deg) scale(0.4);
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed} rotate(0deg) scale(1);
+	}
+}
+
+@keyframes bBlocksInfographicDrop {
+	from {
+		opacity: 0;
+		transform: #{$placed} translateY(-40px);
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed} translateY(0);
+	}
+}
+
+@keyframes bBlocksInfographicBounce {
+	0% {
+		opacity: 0;
+		transform: #{$placed} scale(0.3);
+	}
+
+	60% {
+		opacity: 1;
+		transform: #{$placed} scale(1.15);
+	}
+
+	80% {
+		transform: #{$placed} scale(0.94);
+	}
+
+	100% {
+		opacity: 1;
+		transform: #{$placed} scale(1);
+	}
+}
+
+@keyframes bBlocksInfographicFlip {
+	from {
+		opacity: 0;
+		transform: #{$placed} perspective(600px) rotateY(-90deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed} perspective(600px) rotateY(0deg);
+	}
+}
+
+/* Opacity and filter only, so this is safe on a wedge too. */
+@keyframes bBlocksInfographicBlur {
+	from {
+		opacity: 0;
+		filter: blur(12px);
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+@keyframes bBlocksInfographicSwing {
+	0% {
+		opacity: 0;
+		transform: #{$placed} rotate(-18deg);
+	}
+
+	55% {
+		opacity: 1;
+		transform: #{$placed} rotate(10deg);
+	}
+
+	80% {
+		transform: #{$placed} rotate(-4deg);
+	}
+
+	100% {
+		opacity: 1;
+		transform: #{$placed} rotate(0deg);
+	}
+}
+
+/* Spread and Spin at once: it arrives from the centre while turning. */
+@keyframes bBlocksInfographicRoll {
+	from {
+		opacity: 0;
+		transform: #{$centred} rotate(-240deg) scale(0.4);
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed} rotate(0deg) scale(1);
+	}
+}
+
+/* Every segment starts stacked at 12 o'clock — the hard-coded 0deg — and
+   rotates round to its own angle, so the ring draws itself. */
+@keyframes bBlocksInfographicUnfold {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -50%) rotate(0deg) translateY(calc(var(--bbInfographicRadius, 0px) * -1)) rotate(var(--bbInfographicCounter, 0deg));
+	}
+
+	to {
+		opacity: 1;
+		transform: #{$placed};
+	}
+}
+
+/* Animates scale and rotate, not transform, so the placement is undisturbed. */
+@keyframes bBlocksInfographicMotionPulse {
+	from {
+		scale: 1;
+	}
+
+	to {
+		scale: 1.12;
+	}
+}
+
+@keyframes bBlocksInfographicMotionWobble {
+	0%,
+	100% {
+		rotate: 0deg;
+	}
+
+	25% {
+		rotate: -9deg;
+	}
+
+	75% {
+		rotate: 9deg;
+	}
+}
+
+/* Played on remount, when the shown item changes. */
+@keyframes bBlocksInfographicContentFade {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes bBlocksInfographicContentSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes bBlocksInfographicContentSlideSide {
+	from {
+		opacity: 0;
+		transform: translateX(18px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes bBlocksInfographicContentZoom {
+	from {
+		opacity: 0;
+		transform: scale(0.86);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes bBlocksInfographicContentFlip {
+	from {
+		opacity: 0;
+		transform: perspective(600px) rotateX(-70deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: perspective(600px) rotateX(0deg);
+	}
+}
+
+/* Nothing moves, whichever options are set: everything still shows, it just
+   arrives in place. !important rather than a longer selector, because these must
+   outrank every animation class at once, hover ones included. */
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-infographic .b-blocks-infographic .b-blocks-infographic-segment,
+	.wp-block-b-blocks-infographic .b-blocks-infographic .b-blocks-infographic-segment .b-blocks-infographic-segment-inner,
+	.wp-block-b-blocks-infographic .b-blocks-infographic .b-blocks-infographic-center-content {
+		opacity: 1 !important;
+		animation: none !important;
+		transition: none !important;
+		scale: none !important;
+		rotate: none !important;
+		translate: none !important;
+	}
+}
+
+$rotateAngle: calc(var(--bbInfographicAngle, 0deg) + 360deg);
+
+/* One full trip around the ring, ending where it started. */
+@keyframes bBlocksInfographicRotate {
+	from {
+		transform: #{$placed};
+	}
+
+	to {
+		transform: translate(-50%, -50%) rotate(#{$rotateAngle}) translateY(calc(var(--bbInfographicRadius, 0px) * -1)) rotate(var(--bbInfographicCounterEnd, -360deg));
+	}
+}

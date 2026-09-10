@@ -3,8 +3,8 @@ Contributors: bplugins, abuhayat, charlescormier, muradwahid, adnankhan7792, fre
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
-Tested up to: 6.9
-Stable tag: 2.1.4
+Tested up to: 7.1
+Stable tag: 2.1.6
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -410,6 +410,12 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 
 == Changelog ==
+
+= 2.1.6 - 7 September 2026 =
+* Added: Code Highlight Block.
+
+= 2.1.5 - 7 September 2026 =
+* Added: Infographic Block.
 
 = 2.1.4 - 3 September 2026 =
 * Fixed: Container Layout issue

@@ -1,16 +1,14 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-import './editor.scss';
+import { codeHighlightIcon } from '../utils/blocksIcon';
+
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';
-import { codeHighlightIcon } from '../utils/blocksIcon';
+import './editor.scss';
 import { isBlockEnabled } from '../utils/functions';
 
 isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: codeHighlightIcon,
-
-	// Build In Functions
 	edit: Edit,
-
 	save: () => null
 });

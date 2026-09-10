@@ -1,350 +1,655 @@
-// Code Highlight Block — frontend + editor shared styles.
-// Mobile-first responsive. WCAG 2.1 AA color contrast verified for both
-// bundled themes (dark / light). No external font dependencies — falls
-// back to the system monospace stack.
-
+/* Themes ported from the code-snippets-block plugin. Each one only redefines a
+   set of role variables; the token rules below are written once and read them,
+   so a new theme is a variable block rather than another copy of every rule. */
 .wp-block-b-blocks-code-highlight {
-	--bb-ch-font-size: 14px;
-	--bb-ch-radius: 6px;
-	--bb-ch-tab-size: 2;
-	--bb-ch-start-line: 1;
-	--bb-ch-line-gutter-width: 3.25em;
+	.b-blocks-code-highlight {
+		--bbChLine: 1.6;
+		--bbChPreY: 14px;
 
-	display: block;
-	margin: 0 0 1.25em;
-	border-radius: var(--bb-ch-radius);
-	overflow: hidden;
-	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-		"Liberation Mono", "Courier New", monospace;
-
-	* {
 		box-sizing: border-box;
+		max-width: 100%;
+		margin: 0;
+		border-radius: 6px;
+		/* Without this the header bar's square background paints outside the
+		   rounded corners — the radius would only ever round the bottom. The
+		   caption, toggle and floating copy button all sit inside this box, so
+		   clipping here costs nothing. */
+		overflow: hidden;
+		background: var(--bbChBg);
+		color: var(--bbChFg);
+
+		* {
+			box-sizing: border-box;
+		}
+
 	}
 
-	// ----- Dark theme (One Dark inspired) -------------------------------
-	&.bb-ch-theme--dark {
-		--bb-ch-bg: #282c34;
-		--bb-ch-text: #abb2bf;
-		--bb-ch-header-bg: #21252b;
-		--bb-ch-header-text: #d7dae0;
-		--bb-ch-header-border: #181a1f;
-		--bb-ch-badge-bg: #3a3f4b;
-		--bb-ch-badge-text: #c5cad3;
-		--bb-ch-gutter-bg: #21252b;
-		--bb-ch-gutter-text: #5c6370;
-		--bb-ch-gutter-border: #181a1f;
-		--bb-ch-btn-bg: rgba(255, 255, 255, 0.08);
-		--bb-ch-btn-bg-hover: rgba(255, 255, 255, 0.16);
-		--bb-ch-btn-text: #e6e8eb;
-		--bb-ch-btn-success-bg: #2ea043;
-		--bb-ch-btn-success-text: #ffffff;
-		--bb-ch-focus-ring: #4f9dff;
-
-		// Prism token colors (One Dark inspired).
-		--bb-ch-tok-comment: #7f848e;
-		--bb-ch-tok-punct: #abb2bf;
-		--bb-ch-tok-prop: #e06c75;
-		--bb-ch-tok-bool: #d19a66;
-		--bb-ch-tok-string: #98c379;
-		--bb-ch-tok-operator: #56b6c2;
-		--bb-ch-tok-keyword: #c678dd;
-		--bb-ch-tok-function: #61afef;
-		--bb-ch-tok-class: #e5c07b;
-		--bb-ch-tok-regex: #98c379;
-		--bb-ch-tok-deleted: #e06c75;
+	/* The body clips the code; the figure must not, or a floating copy button
+	   and the caption would be cut off with it. */
+	.b-blocks-code-highlight-body {
+		position: relative;
+		overflow: hidden;
+		border-radius: inherit;
 	}
 
-	// ----- Light theme (GitHub Light inspired) --------------------------
-	&.bb-ch-theme--light {
-		--bb-ch-bg: #f6f8fa;
-		--bb-ch-text: #24292f;
-		--bb-ch-header-bg: #eaeef2;
-		--bb-ch-header-text: #24292f;
-		--bb-ch-header-border: #d0d7de;
-		--bb-ch-badge-bg: #d8dee4;
-		--bb-ch-badge-text: #24292f;
-		--bb-ch-gutter-bg: #eaeef2;
-		--bb-ch-gutter-text: #6e7781;
-		--bb-ch-gutter-border: #d0d7de;
-		--bb-ch-btn-bg: rgba(31, 35, 40, 0.08);
-		--bb-ch-btn-bg-hover: rgba(31, 35, 40, 0.16);
-		--bb-ch-btn-text: #24292f;
-		--bb-ch-btn-success-bg: #1f883d;
-		--bb-ch-btn-success-text: #ffffff;
-		--bb-ch-focus-ring: #0969da;
-
-		// Prism token colors (GitHub Light inspired).
-		--bb-ch-tok-comment: #6e7781;
-		--bb-ch-tok-punct: #24292f;
-		--bb-ch-tok-prop: #0550ae;
-		--bb-ch-tok-bool: #0550ae;
-		--bb-ch-tok-string: #0a3069;
-		--bb-ch-tok-operator: #cf222e;
-		--bb-ch-tok-keyword: #cf222e;
-		--bb-ch-tok-function: #8250df;
-		--bb-ch-tok-class: #953800;
-		--bb-ch-tok-regex: #116329;
-		--bb-ch-tok-deleted: #82071e;
+	.b-blocks-code-highlight-caption {
+		padding: 8px 2px;
+		color: var(--bbChComment);
+		font-size: 13px;
+		text-align: center;
 	}
 
-	// ----- Header bar ---------------------------------------------------
-	.bb-ch-header {
+	/* Overflow ------------------------------------------------------------ */
+	.b-blocks-code-highlight-toggle {
+		display: block;
+		width: 100%;
+		padding: 7px 12px;
+		border: 0;
+		border-top: 1px solid var(--bbChRule);
+		background: var(--bbChHeaderBg);
+		color: var(--bbChFg);
+		font-family: var(--bbChMono);
+		font-size: 12px;
+		cursor: pointer;
+	}
+
+	/* Header ------------------------------------------------------------- */
+	.b-blocks-code-highlight-header {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-		padding: 8px 12px;
-		background: var(--bb-ch-header-bg);
-		color: var(--bb-ch-header-text);
-		border-bottom: 1px solid var(--bb-ch-header-border);
-		font-size: 12px;
-		line-height: 1.4;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 8px 14px;
+		background: var(--bbChHeaderBg);
+		border-bottom: 1px solid var(--bbChRule);
 	}
 
-	.bb-ch-lang-badge {
+	.b-blocks-code-highlight-dots {
 		display: inline-flex;
-		align-items: center;
-		padding: 2px 8px;
-		background: var(--bb-ch-badge-bg);
-		color: var(--bb-ch-badge-text);
-		border-radius: 999px;
-		font-size: 11px;
-		font-weight: 600;
-		letter-spacing: 0.03em;
-		text-transform: uppercase;
-		user-select: none;
+		flex: none;
+		gap: 6px;
+
+		i {
+			width: 11px;
+			height: 11px;
+			border-radius: 50%;
+			background: currentColor;
+			opacity: 0.55;
+
+			&:nth-child(1) { color: #ff5f56; opacity: 1; }
+			&:nth-child(2) { color: #ffbd2e; opacity: 1; }
+			&:nth-child(3) { color: #27c93f; opacity: 1; }
+		}
 	}
 
-	.bb-ch-filename {
+	.b-blocks-code-highlight-badge {
+		flex: none;
+		margin-left: auto;
+		padding: 2px 8px;
+		border-radius: 3px;
+		background: var(--bbChBg);
+		color: var(--bbChComment);
+		font-family: var(--bbChMono);
+		font-size: 11px;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	/* The filename takes the slack so the badge and button stay to the right. */
+	.b-blocks-code-highlight-filename {
 		flex: 1 1 auto;
-		min-width: 0;
+		font-family: var(--bbChMono);
+		font-size: 12px;
+		color: var(--bbChComment);
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		font-size: 12px;
-		opacity: 0.85;
 	}
 
-	&.has-header .bb-ch-header .bb-ch-copy-btn {
-		margin-left: auto;
-	}
-
-	// ----- Copy button --------------------------------------------------
-	.bb-ch-copy-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		padding: 4px 10px;
-		background: var(--bb-ch-btn-bg);
-		color: var(--bb-ch-btn-text);
-		border: none;
+	/* Copy button -------------------------------------------------------- */
+	.b-blocks-code-highlight-copy {
+		flex: none;
+		padding: 4px 12px;
+		border: 1px solid var(--bbChRule);
 		border-radius: 4px;
-		font: inherit;
+		background: transparent;
+		color: var(--bbChFg);
+		font-family: var(--bbChMono);
 		font-size: 12px;
-		line-height: 1.2;
+		line-height: 1.6;
 		cursor: pointer;
-		transition: background-color 120ms ease, color 120ms ease;
-		user-select: none;
+		transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
 
-		&:hover,
-		&:focus-visible {
-			background: var(--bb-ch-btn-bg-hover);
+		&:hover { border-color: var(--bbChFg); }
+
+		&.is-copied { color: var(--bbChString); border-color: var(--bbChString); }
+
+		/* No header means no bar to sit in, so it floats over the corner. */
+		&.b-blocks-code-highlight-copy-floating {
+			position: absolute;
+			right: 10px;
+			z-index: 3;
+			background: var(--bbChHeaderBg);
 		}
 
-		&:focus-visible {
-			outline: 2px solid var(--bb-ch-focus-ring);
-			outline-offset: 2px;
+		&.b-blocks-code-highlight-has-icon {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
 		}
 
-		&.is-copied {
-			background: var(--bb-ch-btn-success-bg);
-			color: var(--bb-ch-btn-success-text);
-		}
+		/* Reversing the row puts the icon after the label without moving the
+		   label out of reading order for a screen reader. */
+		&.b-blocks-code-highlight-icon-right { flex-direction: row-reverse; }
 	}
 
-	.bb-ch-copy-icon {
+	.b-blocks-code-highlight-btn-icon {
+		/* Rotate is a per-state value, so the change between them is eased. */
+		transition: rotate 200ms ease, color 150ms ease, background 150ms ease, border-color 150ms ease;
 		display: inline-flex;
 		align-items: center;
-	}
+		justify-content: center;
+		flex: none;
+		line-height: 0;
 
-	// Floating variant: shown when the header is hidden so the copy
-	// button still has a home.
-	.bb-ch-copy-btn--floating {
-		position: absolute;
-		top: 8px;
-		right: 8px;
-		z-index: 2;
-	}
-
-	// ----- Code body ----------------------------------------------------
-	.bb-ch-body {
-		position: relative;
-		background: var(--bb-ch-bg);
-		color: var(--bb-ch-text);
-	}
-
-	.bb-ch-pre {
-		margin: 0;
-		padding: 14px 16px;
-		background: var(--bb-ch-bg);
-		color: var(--bb-ch-text);
-		font-family: inherit;
-		font-size: var(--bb-ch-font-size);
-		line-height: 1.55;
-		tab-size: var(--bb-ch-tab-size);
-		-moz-tab-size: var(--bb-ch-tab-size);
-		overflow-x: auto;
-		overflow-y: hidden;
-		white-space: pre;
-		word-spacing: normal;
-		word-break: normal;
-		text-shadow: none;
-		hyphens: none;
-
-		&:focus-visible {
-			outline: 2px solid var(--bb-ch-focus-ring);
-			outline-offset: -2px;
+		svg, img {
+			display: block;
+			width: 13px;
+			height: 13px;
+			fill: currentColor;
 		}
 	}
 
-	.bb-ch-code {
+	.b-blocks-code-highlight-copy-at-top-right .b-blocks-code-highlight-copy-floating { top: 10px; }
+	.b-blocks-code-highlight-copy-at-bottom-right .b-blocks-code-highlight-copy-floating { bottom: 10px; }
+
+	/* Code surface ------------------------------------------------------- */
+	.b-blocks-code-highlight-pre {
+		/* One text row, whatever set it. Typography writes line-height as a unit
+		   string — em, %, px or rem — so multiplying a stored number cannot work;
+		   1lh is the row height the element actually resolved to. The calc is the
+		   fallback for engines without it, and matches the default line-height. */
+		--bbCodeLine: calc(1em * var(--bbChLine));
+
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		gap: 0;
+		margin: 0;
+		padding: var(--bbChPreY) 0;
+		overflow: auto;
+		background: none;
+		border: 0;
+		font-family: var(--bbChMono);
+		line-height: var(--bbChLine);
+		tab-size: 2;
+	}
+
+	/* Highlight marks sit behind the text as one row-height bar per line, so
+	   Prism can rewrite the code element without disturbing them. */
+	/* No z-index on the layer itself: giving it one opens a stacking context the
+	   edge bar could not escape, and the bar has to paint above the gutter. */
+	.b-blocks-code-highlight-marks {
+		position: absolute;
+		inset: var(--bbChPreY) 0 auto;
 		display: block;
-		background: transparent;
+		pointer-events: none;
+
+		span {
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: var(--bbCodeLine);
+			top: calc(var(--bbChMark, 0) * var(--bbCodeLine));
+			/* Derived from the text colour, not a fixed white: the same value has
+			   to read on a light theme's paper and a dark theme's ink. */
+			background: color-mix(in srgb, var(--bbChFg) 11%, transparent);
+		}
+
+		/* The gutter is sticky and paints an opaque background over the far left,
+		   so the bar is drawn on top of it rather than behind. The tint stays
+		   below, which keeps the line numbers clean. */
+		span::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 2;
+			width: 3px;
+			background: var(--bbChNumber);
+		}
+	}
+
+	.b-blocks-code-highlight-gutter {
+		display: flex;
+		flex-direction: column;
+		flex: none;
+		position: sticky;
+		left: 0;
+		z-index: 1;
+		z-index: 1;
+		padding: 0 12px 0 14px;
+		border-right: 1px solid var(--bbChRule);
+		background: var(--bbChBg);
+		color: var(--bbChComment);
+		text-align: right;
+		user-select: none;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.b-blocks-code-highlight-code {
+		position: relative;
+		z-index: 1;
+		display: block;
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 0 14px;
+		background: none;
 		color: inherit;
 		font-family: inherit;
 		font-size: inherit;
 		line-height: inherit;
-		white-space: inherit;
-		text-shadow: none;
-		padding: 0;
+		white-space: pre;
+		word-break: normal;
 	}
 
-	// ----- Line wrappers (always rendered, gutter shown only when on) ---
-	.bb-ch-line {
-		display: block;
-	}
-
-	// Hide the explicit number span when line numbers are off.
-	.bb-ch-num {
-		display: none;
-	}
-
-	&.has-line-numbers {
-		// Keep horizontal padding on the pre; the gutter sits inline with
-		// the code so there's no separate column to align against.
-		.bb-ch-num {
-			display: inline-block;
-			width: var(--bb-ch-line-gutter-width);
-			padding-right: 12px;
-			margin-right: 12px;
-			text-align: right;
-			color: var(--bb-ch-gutter-text);
-			border-right: 1px solid var(--bb-ch-gutter-border);
-			user-select: none;
-			font-variant-numeric: tabular-nums;
-			pointer-events: none;
-			// Vertical alignment trick: stretch the number's right border
-			// the full line-height so the gutter divider looks continuous.
-			line-height: inherit;
-			vertical-align: top;
-		}
-
-		.bb-ch-text {
-			display: inline;
-		}
-
-		// Left-edge gutter background so horizontal scrolling doesn't
-		// leave a visual gap behind the number column.
-		.bb-ch-pre {
-			background-image: linear-gradient(
-				to right,
-				var(--bb-ch-gutter-bg) 0,
-				var(--bb-ch-gutter-bg) calc(var(--bb-ch-line-gutter-width) + 12px),
-				var(--bb-ch-bg) calc(var(--bb-ch-line-gutter-width) + 12px)
-			);
-			background-repeat: no-repeat;
-			background-attachment: local;
+	.b-blocks-code-highlight-is-wrapped {
+		.b-blocks-code-highlight-code {
+			white-space: pre-wrap;
+			overflow-wrap: anywhere;
 		}
 	}
 
-	// ----- Screen-reader-only live region -------------------------------
-	.bb-ch-live {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border: 0;
+	/* Prism tokens — one set of rules, coloured by the theme variables. */
+	.b-blocks-code-highlight-code {
+		.token.comment,
+		.token.prolog,
+		.token.cdata,
+		.token.doctype { color: var(--bbChComment); font-style: italic; }
+
+		.token.punctuation { color: var(--bbChPunct); }
+
+		.token.operator,
+		.token.entity,
+		.token.url { color: var(--bbChPunct); }
+
+		.token.tag,
+		.token.selector,
+		.token.deleted,
+		.token.variable { color: var(--bbChTag); }
+
+		.token.number,
+		.token.boolean,
+		.token.constant,
+		.token.symbol,
+		.token.attr-name { color: var(--bbChNumber); }
+
+		.token.class-name,
+		.token.title { color: var(--bbChTitle); }
+
+		.token.string,
+		.token.char,
+		.token.attr-value,
+		.token.inserted { color: var(--bbChString); }
+
+		.token.regex,
+		.token.atrule,
+		.token.quote { color: var(--bbChRegex); }
+
+		.token.function,
+		.token.property,
+		.token.attribute { color: var(--bbChFunction); }
+
+		.token.keyword,
+		.token.important,
+		.token.rule { color: var(--bbChKeyword); }
+
+		.token.namespace { opacity: 0.7; }
+
+		.token.bold { font-weight: 700; }
+
+		.token.italic { font-style: italic; }
 	}
 
-	// ----- Prism token color mapping -----------------------------------
-	// Apply the theme palette via the data-* classes Prism emits on its
-	// <span class="token …"> children. Keeping this in our own block scope
-	// avoids monkey-patching a global Prism stylesheet.
-	.token.comment,
-	.token.prolog,
-	.token.doctype,
-	.token.cdata { color: var(--bb-ch-tok-comment); font-style: italic; }
+	/* Palettes ------------------------------------------------------------ */
+	.b-blocks-code-highlight {
+		--bbChMono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+	}
 
-	.token.punctuation { color: var(--bb-ch-tok-punct); }
+	.b-blocks-code-highlight-theme-default {
+		--bbChBg: #f3f3f3;
+		--bbChFg: #444;
+		--bbChHeaderBg: #e8e8e8;
+		--bbChRule: #d5d5d5;
+		--bbChComment: #697070;
+		--bbChPunct: #ab5656;
+		--bbChTag: #444;
+		--bbChNumber: #880000;
+		--bbChTitle: #880000;
+		--bbChString: #880000;
+		--bbChRegex: #ab5656;
+		--bbChFunction: #397300;
+		--bbChKeyword: #1f7199;
+	}
 
-	.token.property,
-	.token.tag,
-	.token.constant,
-	.token.symbol,
-	.token.deleted { color: var(--bb-ch-tok-prop); }
+	.b-blocks-code-highlight-theme-dark {
+		--bbChBg: #303030;
+		--bbChFg: #ddd;
+		--bbChHeaderBg: #3a3a3a;
+		--bbChRule: #4a4a4a;
+		--bbChComment: #979797;
+		--bbChPunct: #ddd;
+		--bbChTag: #d88;
+		--bbChNumber: #d88;
+		--bbChTitle: #d88;
+		--bbChString: #d88;
+		--bbChRegex: #d88;
+		--bbChFunction: #d88;
+		--bbChKeyword: #fff;
+	}
 
-	.token.boolean,
-	.token.number { color: var(--bb-ch-tok-bool); }
+	.b-blocks-code-highlight-theme-tomorrow {
+		--bbChBg: #fff;
+		--bbChFg: #4d4d4c;
+		--bbChHeaderBg: #f2f2f2;
+		--bbChRule: #e0e0e0;
+		--bbChComment: #8e908c;
+		--bbChPunct: #4d4d4c;
+		--bbChTag: #c82829;
+		--bbChNumber: #f5871f;
+		--bbChTitle: #eab700;
+		--bbChString: #718c00;
+		--bbChRegex: #3e999f;
+		--bbChFunction: #4271ae;
+		--bbChKeyword: #8959a8;
+	}
 
-	.token.selector,
-	.token.attr-name,
-	.token.string,
-	.token.char,
-	.token.builtin,
-	.token.inserted { color: var(--bb-ch-tok-string); }
+	.b-blocks-code-highlight-theme-solarized-light {
+		--bbChBg: #fdf6e3;
+		--bbChFg: #586e75;
+		--bbChHeaderBg: #f2ead3;
+		--bbChRule: #e3dbc3;
+		--bbChComment: #839496;
+		--bbChPunct: #586e75;
+		--bbChTag: #dc322f;
+		--bbChNumber: #cb4b16;
+		--bbChTitle: #b58900;
+		--bbChString: #859900;
+		--bbChRegex: #2aa198;
+		--bbChFunction: #268bd2;
+		--bbChKeyword: #6c71c4;
+	}
 
-	.token.operator,
-	.token.entity,
-	.token.url,
-	.language-css .token.string,
-	.style .token.string { color: var(--bb-ch-tok-operator); }
+	.b-blocks-code-highlight-theme-twilight {
+		--bbChBg: #1e1e1e;
+		--bbChFg: #a7a7a7;
+		--bbChHeaderBg: #282828;
+		--bbChRule: #3a3a3a;
+		--bbChComment: #5f5a60;
+		--bbChPunct: #a7a7a7;
+		--bbChTag: #cf6a4c;
+		--bbChNumber: #cda869;
+		--bbChTitle: #f9ee98;
+		--bbChString: #8f9d6a;
+		--bbChRegex: #afc4db;
+		--bbChFunction: #7587a6;
+		--bbChKeyword: #9b859d;
+	}
 
-	.token.atrule,
-	.token.attr-value,
-	.token.keyword { color: var(--bb-ch-tok-keyword); }
+	.b-blocks-code-highlight-theme-porple {
+		--bbChBg: #292c36;
+		--bbChFg: #d8d8d8;
+		--bbChHeaderBg: #32353f;
+		--bbChRule: #3f4250;
+		--bbChComment: #65568a;
+		--bbChPunct: #d8d8d8;
+		--bbChTag: #f84547;
+		--bbChNumber: #d28e5d;
+		--bbChTitle: #efa16b;
+		--bbChString: #95c76f;
+		--bbChRegex: #64878f;
+		--bbChFunction: #8485ce;
+		--bbChKeyword: #b74989;
+	}
 
-	.token.function,
-	.token.class-name { color: var(--bb-ch-tok-function); }
+	/* Ported from the official PrismJS theme set (PrismJS/prism-themes), each
+	   palette read straight from its stylesheet rather than eyeballed. */
 
-	.token.regex,
-	.token.important,
-	.token.variable { color: var(--bb-ch-tok-regex); }
+	.b-blocks-code-highlight-theme-dracula {
+		--bbChBg: #282a36;
+		--bbChFg: #f8f8f2;
+		--bbChHeaderBg: #333545;
+		--bbChRule: #3e4153;
+		--bbChComment: #6272a4;
+		--bbChPunct: #f8f8f2;
+		--bbChTag: #ff79c6;
+		--bbChNumber: #bd93f9;
+		--bbChTitle: #f1fa8c;
+		--bbChString: #50fa7b;
+		--bbChRegex: #ffb86c;
+		--bbChFunction: #f1fa8c;
+		--bbChKeyword: #8be9fd;
+	}
 
-	.token.important,
-	.token.bold { font-weight: 700; }
+	.b-blocks-code-highlight-theme-one-dark {
+		--bbChBg: #282c34;
+		--bbChFg: #abb2bf;
+		--bbChHeaderBg: #333842;
+		--bbChRule: #3e4451;
+		--bbChComment: #5c6370;
+		--bbChPunct: #abb2bf;
+		--bbChTag: #e06c75;
+		--bbChNumber: #d19a66;
+		--bbChTitle: #d19a66;
+		--bbChString: #98c379;
+		--bbChRegex: #98c379;
+		--bbChFunction: #61afef;
+		--bbChKeyword: #c678dd;
+	}
 
-	.token.italic { font-style: italic; }
+	.b-blocks-code-highlight-theme-one-light {
+		--bbChBg: #fafafa;
+		--bbChFg: #383a42;
+		--bbChHeaderBg: #ededed;
+		--bbChRule: #e0e0e0;
+		--bbChComment: #a0a1a7;
+		--bbChPunct: #383a42;
+		--bbChTag: #e45649;
+		--bbChNumber: #b76b01;
+		--bbChTitle: #b76b01;
+		--bbChString: #50a14f;
+		--bbChRegex: #50a14f;
+		--bbChFunction: #4078f2;
+		--bbChKeyword: #a626a4;
+	}
 
-	.token.entity { cursor: help; }
+	.b-blocks-code-highlight-theme-nord {
+		--bbChBg: #2e3440;
+		--bbChFg: #f8f8f2;
+		--bbChHeaderBg: #39404f;
+		--bbChRule: #434c5e;
+		--bbChComment: #636f88;
+		--bbChPunct: #81a1c1;
+		--bbChTag: #81a1c1;
+		--bbChNumber: #b48ead;
+		--bbChTitle: #88c0d0;
+		--bbChString: #a3be8c;
+		--bbChRegex: #ebcb8b;
+		--bbChFunction: #88c0d0;
+		--bbChKeyword: #81a1c1;
+	}
 
-	// ----- Responsive ---------------------------------------------------
-	@media (max-width: 480px) {
-		--bb-ch-line-gutter-width: 2.5em;
+	.b-blocks-code-highlight-theme-night-owl {
+		--bbChBg: #011627;
+		--bbChFg: #ffffff;
+		--bbChHeaderBg: #022440;
+		--bbChRule: #023259;
+		--bbChComment: #637777;
+		--bbChPunct: #c792ea;
+		--bbChTag: #7fdbca;
+		--bbChNumber: #f78c6c;
+		--bbChTitle: #ffcb8b;
+		--bbChString: #addb67;
+		--bbChRegex: #d6deeb;
+		--bbChFunction: #82aaff;
+		--bbChKeyword: #7fdbca;
+	}
 
-		.bb-ch-header {
-			padding: 6px 10px;
-			gap: 8px;
-		}
+	.b-blocks-code-highlight-theme-material-oceanic {
+		--bbChBg: #263238;
+		--bbChFg: #c3cee3;
+		--bbChHeaderBg: #304047;
+		--bbChRule: #3b4d56;
+		--bbChComment: #546e7a;
+		--bbChPunct: #89ddff;
+		--bbChTag: #f07178;
+		--bbChNumber: #fd9170;
+		--bbChTitle: #f2ff00;
+		--bbChString: #c3e88d;
+		--bbChRegex: #f2ff00;
+		--bbChFunction: #c792ea;
+		--bbChKeyword: #c792ea;
+	}
 
-		.bb-ch-pre {
-			padding: 10px 12px;
-		}
+	.b-blocks-code-highlight-theme-vsc-dark-plus {
+		--bbChBg: #1e1e1e;
+		--bbChFg: #d4d4d4;
+		--bbChHeaderBg: #2b2b2b;
+		--bbChRule: #383838;
+		--bbChComment: #6a9955;
+		--bbChPunct: #d4d4d4;
+		--bbChTag: #b5cea8;
+		--bbChNumber: #b5cea8;
+		--bbChTitle: #4ec9b0;
+		--bbChString: #ce9178;
+		--bbChRegex: #d16969;
+		--bbChFunction: #dcdcaa;
+		--bbChKeyword: #569cd6;
+	}
 
-		.bb-ch-copy-btn .bb-ch-copy-text {
-			display: none;
-		}
+	.b-blocks-code-highlight-theme-gruvbox-dark {
+		--bbChBg: #1d2021;
+		--bbChFg: #ebdbb2;
+		--bbChHeaderBg: #292d2f;
+		--bbChRule: #353a3c;
+		--bbChComment: #a89984;
+		--bbChPunct: #a89984;
+		--bbChTag: #fabd2f;
+		--bbChNumber: #d3869b;
+		--bbChTitle: #d3869b;
+		--bbChString: #b8bb26;
+		--bbChRegex: #fb4934;
+		--bbChFunction: #fabd2f;
+		--bbChKeyword: #fb4934;
+	}
+
+	.b-blocks-code-highlight-theme-atom-dark {
+		--bbChBg: #1d1f21;
+		--bbChFg: #c5c8c6;
+		--bbChHeaderBg: #292c2f;
+		--bbChRule: #35383c;
+		--bbChComment: #7c7c7c;
+		--bbChPunct: #c5c8c6;
+		--bbChTag: #96cbfe;
+		--bbChNumber: #ff73fd;
+		--bbChTitle: #ffffb6;
+		--bbChString: #a8ff60;
+		--bbChRegex: #e9c062;
+		--bbChFunction: #dad085;
+		--bbChKeyword: #96cbfe;
+	}
+
+	.b-blocks-code-highlight-theme-solarized-dark-atom {
+		--bbChBg: #002b36;
+		--bbChFg: #839496;
+		--bbChHeaderBg: #003f50;
+		--bbChRule: #005469;
+		--bbChComment: #586e75;
+		--bbChPunct: #93a1a1;
+		--bbChTag: #268bd2;
+		--bbChNumber: #859900;
+		--bbChTitle: #ffffb6;
+		--bbChString: #859900;
+		--bbChRegex: #e9c062;
+		--bbChFunction: #268bd2;
+		--bbChKeyword: #268bd2;
+	}
+
+	.b-blocks-code-highlight-theme-ghcolors {
+		--bbChBg: #f8f8f8;
+		--bbChFg: #393a34;
+		--bbChHeaderBg: #ebebeb;
+		--bbChRule: #dedede;
+		--bbChComment: #999988;
+		--bbChPunct: #393a34;
+		--bbChTag: #9a050f;
+		--bbChNumber: #36acaa;
+		--bbChTitle: #36acaa;
+		--bbChString: #e3116c;
+		--bbChRegex: #36acaa;
+		--bbChFunction: #9a050f;
+		--bbChKeyword: #00a4db;
+	}
+
+	.b-blocks-code-highlight-theme-coldark-cold {
+		--bbChBg: #e3eaf2;
+		--bbChFg: #111b27;
+		--bbChHeaderBg: #d2ddea;
+		--bbChRule: #c0d0e2;
+		--bbChComment: #3c526d;
+		--bbChPunct: #111b27;
+		--bbChTag: #006d6d;
+		--bbChNumber: #755f00;
+		--bbChTitle: #005a8e;
+		--bbChString: #116b00;
+		--bbChRegex: #af00af;
+		--bbChFunction: #7c00aa;
+		--bbChKeyword: #a04900;
+	}
+
+	.b-blocks-code-highlight-theme-shades-of-purple {
+		--bbChBg: #1e1e3f;
+		--bbChFg: #9efeff;
+		--bbChHeaderBg: #262650;
+		--bbChRule: #2e2e62;
+		--bbChComment: #b362ff;
+		--bbChPunct: #ffffff;
+		--bbChTag: #ff9d00;
+		--bbChNumber: #ff628c;
+		--bbChTitle: #fb94ff;
+		--bbChString: #a5ff90;
+		--bbChRegex: #ff9d00;
+		--bbChFunction: #fad000;
+		--bbChKeyword: #ff9d00;
+	}
+
+	.b-blocks-code-highlight-theme-laserwave {
+		--bbChBg: #27212e;
+		--bbChFg: #ffffff;
+		--bbChHeaderBg: #342c3d;
+		--bbChRule: #40364c;
+		--bbChComment: #91889b;
+		--bbChPunct: #7b6995;
+		--bbChTag: #74dfc4;
+		--bbChNumber: #b381c5;
+		--bbChTitle: #74dfc4;
+		--bbChString: #b4dce7;
+		--bbChRegex: #b4dce7;
+		--bbChFunction: #eb64b9;
+		--bbChKeyword: #40b4c4;
+	}
+
+}
+
+@supports (height: 1lh) {
+	.wp-block-b-blocks-code-highlight .b-blocks-code-highlight-pre {
+		--bbCodeLine: 1lh;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-code-highlight .b-blocks-code-highlight-copy {
+		transition: none !important;
 	}
 }

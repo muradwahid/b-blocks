@@ -1,11 +1,25 @@
 export const changeLog = [
     {
+        version: '2.1.6 - 10 September 2026',
+        list: [
+            'Added: Code Highlight Block.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.1.5 - 7 September 2026',
+        list: [
+            'Added: Infographic Block.'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.4 - 3 September 2026',
         list: [
             'Fixed: Container Layout issue',
             'Added: Carousel block direction'
         ],
-        type: ''
+        type: 'fix'
     },
     {
         version: '2.1.3 - 31 August 2026',

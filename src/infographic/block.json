@@ -1,0 +1,895 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/infographic",
+	"version": "1.0.0",
+	"title": "Infographic Block",
+	"category": "bBlocks",
+	"description": "Build a circular infographic. Segment circles sit evenly around two decorative rings and reveal their title, divider, text and image inside the center disc on click or hover.",
+	"keywords": [
+		"infographic",
+		"circle",
+		"circular",
+		"segments",
+		"diagram",
+		"process",
+		"wheel"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"blockId": {
+			"type": "string",
+			"default": ""
+		},
+		"general": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"alignment": "center"
+				},
+				"tablet": {
+					"alignment": ""
+				},
+				"mobile": {
+					"alignment": ""
+				},
+				"itemTriggerType": "click"
+			}
+		},
+		"defaults": {
+			"type": "object",
+			"default": {
+				"item": "Title 1",
+				"itemTitle": "Info Title",
+				"itemText": "Select any segment around the circle to reveal its details right here.",
+				"image": {
+					"id": null,
+					"url": "",
+					"alt": ""
+				}
+			}
+		},
+		"button": {
+			"type": "object",
+			"default": {
+				"showIcon": true,
+				"showText": true
+			}
+		},
+		"wheel": {
+			"type": "object",
+			"default": {
+				"startAngle": "0deg",
+				"direction": "clockwise",
+				"sweep": "360deg",
+				"radiusOffset": "0px",
+				"rotateLabels": false,
+				"enableSegmentsType": false,
+				"wedgeGap": "3deg"
+			}
+		},
+		"animation": {
+			"type": "object",
+			"default": {
+				"enable": false,
+				"trigger": "load",
+				"delay": "0ms",
+				"type": "spread",
+				"easing": "ease",
+				"speed": "500ms",
+				"stagger": "",
+				"order": "clockwise",
+				"rotate": false,
+				"rotateSpeed": "20s",
+				"rotateDirection": "clockwise",
+				"pauseOnHover": true,
+				"hoverMotion": "none",
+				"activePulse": false,
+				"contentType": "fade",
+				"contentSpeed": "300ms"
+			}
+		},
+		"elements": {
+			"type": "object",
+			"default": {
+				"title": true,
+				"divider": true,
+				"text": true,
+				"image": false
+			}
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"id": "bBlocksInfographic-item-1",
+					"enable": true,
+					"buttonLabel": "Title 1",
+					"position": "",
+					"buttonIcon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120v136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z'/></svg>",
+						"url": ""
+					},
+					"title": "Info Title 1",
+					"description": "Describe the first part of your process, service or story in a sentence or two.",
+					"image": {
+						"id": null,
+						"url": "",
+						"alt": ""
+					},
+					"imageHeight": "",
+					"imagePosition": "top",
+					"link": {
+						"url": "",
+						"target": false,
+						"nofollow": false,
+						"title": ""
+					},
+					"styles": {
+						"normal": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"hover": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"active": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						}
+					}
+				},
+				{
+					"id": "bBlocksInfographic-item-2",
+					"enable": true,
+					"buttonLabel": "Title 2",
+					"position": "",
+					"buttonIcon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z'/></svg>",
+						"url": ""
+					},
+					"title": "Info Title 2",
+					"description": "Describe the second part of your process, service or story in a sentence or two.",
+					"image": {
+						"id": null,
+						"url": "",
+						"alt": ""
+					},
+					"imageHeight": "",
+					"imagePosition": "top",
+					"link": {
+						"url": "",
+						"target": false,
+						"nofollow": false,
+						"title": ""
+					},
+					"styles": {
+						"normal": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"hover": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"active": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						}
+					}
+				},
+				{
+					"id": "bBlocksInfographic-item-3",
+					"enable": true,
+					"buttonLabel": "Title 3",
+					"position": "",
+					"buttonIcon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM169.8 165.3c-7.9 22.3 3.7 46.8 26 54.6l9.9 3.5c11.1 3.9 18.5 14.4 18.5 26.2s-7.4 22.3-18.5 26.2l-9.9 3.5c-22.3 7.9-33.9 32.3-26 54.6s32.3 33.9 54.6 26l9.9-3.5c11.1-3.9 23.4-.6 31.1 8.3l6.8 7.9c15.4 17.9 42.5 19.9 60.4 4.5s19.9-42.5 4.5-60.4l-6.8-7.9c-7.7-8.9-9.4-21.6-4.2-32.2l4.6-9.4c10.4-21.2 1.6-46.8-19.6-57.2s-46.8-1.6-57.2 19.6l-4.6 9.4c-5.2 10.6-16 17.3-27.8 17.3H209.6c-16.4 0-31-10.4-36.4-25.9l-3.4-9.1z'/></svg>",
+						"url": ""
+					},
+					"title": "Info Title 3",
+					"description": "Describe the third part of your process, service or story in a sentence or two.",
+					"image": {
+						"id": null,
+						"url": "",
+						"alt": ""
+					},
+					"imageHeight": "",
+					"imagePosition": "top",
+					"link": {
+						"url": "",
+						"target": false,
+						"nofollow": false,
+						"title": ""
+					},
+					"styles": {
+						"normal": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"hover": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"active": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						}
+					}
+				},
+				{
+					"id": "bBlocksInfographic-item-4",
+					"enable": true,
+					"buttonLabel": "Title 4",
+					"position": "",
+					"buttonIcon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-24-136V232c0-13.3 10.7-24 24-24s24 10.7 24 24v144c0 13.3-10.7 24-24 24s-24-10.7-24-24zm24-224a32 32 0 1 1 0-64 32 32 0 1 1 0 64z'/></svg>",
+						"url": ""
+					},
+					"title": "Info Title 4",
+					"description": "Describe the fourth part of your process, service or story in a sentence or two.",
+					"image": {
+						"id": null,
+						"url": "",
+						"alt": ""
+					},
+					"imageHeight": "",
+					"imagePosition": "top",
+					"link": {
+						"url": "",
+						"target": false,
+						"nofollow": false,
+						"title": ""
+					},
+					"styles": {
+						"normal": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"hover": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						},
+						"active": {
+							"color": {
+								"label": "",
+								"icon": "",
+								"title": "",
+								"divider": "",
+								"desc": ""
+							},
+							"background": {},
+							"border": {}
+						}
+					}
+				}
+			]
+		},
+		"icon": {
+			"type": "object",
+			"default": {
+				"view": "framed",
+				"shape": "circle",
+				"desktop": {
+					"size": "20px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"size": "18px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"size": "16px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"color": "",
+				"border": {
+					"normal": {},
+					"hover": {}
+				},
+				"transition": "300ms",
+				"background": {
+					"type": "solid",
+					"color": ""
+				},
+				"position": "top",
+				"plateColor": "rgba(255, 255, 255, 0.22)"
+			}
+		},
+		"segment": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"background": {
+						"type": "solid",
+						"color": "#BFA83B"
+					},
+					"color": "#FFFFFF",
+					"border": {},
+					"shadow": []
+				},
+				"hover": {
+					"background": {},
+					"color": "",
+					"border": {},
+					"shadow": []
+				},
+				"active": {
+					"background": {},
+					"color": "",
+					"border": {},
+					"shadow": []
+				},
+				"desktop": {
+					"size": "118px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"size": "96px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"size": "76px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"spacing": "6px",
+				"margin": {
+					"top": "",
+					"right": "",
+					"bottom": "",
+					"left": ""
+				},
+				"transition": "300ms",
+				"shape": "circle",
+				"radius": {
+					"top": "",
+					"right": "",
+					"bottom": "",
+					"left": ""
+				},
+				"labelTypo": {
+					"fontSize": {
+						"desktop": 13,
+						"tablet": 12,
+						"mobile": 11
+					},
+					"fontWeight": "600"
+				}
+			}
+		},
+		"outerDisc": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"size": "560px",
+					"ringGap": "0px"
+				},
+				"tablet": {
+					"size": "460px",
+					"ringGap": "0px"
+				},
+				"mobile": {
+					"size": "330px",
+					"ringGap": "0px"
+				},
+				"background": {
+					"type": "solid",
+					"color": ""
+				},
+				"borderColor": "#7E57C2",
+				"borderWidth": "2px",
+				"borderStyle": "solid",
+				"transition": "300ms",
+				"shadow": {
+					"normal": [],
+					"hover": []
+				}
+			}
+		},
+		"innerDisc": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"size": "276px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"size": "220px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"size": "130px",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"background": {
+					"type": "solid",
+					"color": "#F2F0E4"
+				},
+				"borderColor": "#3F8F4B",
+				"borderWidth": "2px",
+				"borderStyle": "solid",
+				"contentWidth": "78%",
+				"contentGap": "10px",
+				"contentAlign": "center",
+				"transition": "300ms",
+				"shadow": {
+					"normal": [],
+					"hover": []
+				}
+			}
+		},
+		"content": {
+			"type": "object",
+			"default": {
+				"title": {
+					"color": "#1F2937",
+					"typo": {
+						"fontSize": {
+							"desktop": 34,
+							"tablet": 28,
+							"mobile": 22
+						},
+						"fontWeight": "700",
+						"lineHeight": "1.2"
+					},
+					"tag": "h3"
+				},
+				"text": {
+					"color": "#4B5563",
+					"typo": {
+						"fontSize": {
+							"desktop": 14,
+							"tablet": 13,
+							"mobile": 12
+						},
+						"lineHeight": "1.6"
+					}
+				},
+				"divider": {
+					"color": "#BFA83B",
+					"width": "60px",
+					"height": "3px",
+					"style": "solid"
+				},
+				"image": {
+					"desktop": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"width": "",
+						"height": "107px"
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"width": "",
+						"height": ""
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"width": "",
+						"height": ""
+					},
+					"fit": "cover"
+				}
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"shadow": [
+							{
+								"hOffset": "",
+								"vOffset": "",
+								"blur": "",
+								"spreed": "",
+								"color": "",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "",
+						"gradient": {
+							"type": "radial",
+							"radialType": "ellipse",
+							"colors": [
+								{
+									"color": "",
+									"position": "0"
+								},
+								{
+									"color": "",
+									"position": "80"
+								}
+							],
+							"centerPositions": {
+								"x": 50,
+								"y": 50
+							},
+							"angel": 90
+						},
+						"img": {
+							"url": "",
+							"desktop": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"tablet": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"mobile": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							}
+						},
+						"video": {
+							"url": "",
+							"loop": false
+						},
+						"transition": 0.3
+					}
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

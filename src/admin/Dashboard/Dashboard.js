@@ -78,19 +78,25 @@ const Dashboard = (props) => {
 
 		<Routes>
 			<Route path='/' element={<Layout {...props} />}>
+				
 				<Route index element={<Navigate to='welcome' replace />} />
+
 				<Route path='welcome' element={<Welcome {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />} />
+
 				<Route path='blocks' element={<>
 					<Blocks {...props} pageTitle={`All Blocks (${totalBlocksCount})`} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />
 					{!isPremium && <ProModal />}
 				</>} />
 				{/* <Route path='demos' element={<Demos {...props} demoInfo={demoInfo} />} /> */}
 				<Route path='cursor' element={<CursorEffect info={info} />} />
+
 				<Route path='settings' element={<Settings info={info} />} />
+
 				{!isPremium && <Route
 					path="feature-comparison"
 					element={<FeatureCompare plans={["free", "pro"]} {...props} />}
 				/>}
+
 				{!isPremium && <Route path='pricing' element={<Pricing {...props} pricingInfo={pricingInfo} freemius={freemius} options={{}} />} />}
 
 				{

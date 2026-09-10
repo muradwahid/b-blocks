@@ -28,7 +28,7 @@ import './counters';
 import './carousel';
 import './carousel-slide';
 // import './click-to-share';
-// import './code-highlight';
+import './code-highlight';
 import './comparison-table';
 // import './contact-card';
 // import './content-filter';
@@ -72,7 +72,9 @@ import './image-hotspot';
 import './image-scroller';
 // import './image-slider';
 import './info-box';
+import './infographic';
 import './input-field';
+import './instagram';
 import './interactive-checklist';
 import './key-takeaways';
 // import './logo-grid';
@@ -170,4 +172,3 @@ import './inline';
 
 // Update Block Category Icon
 wp.blocks.updateCategory('bBlocks', { icon: pluginIcon });
-

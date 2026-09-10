@@ -6,7 +6,8 @@ import {
     buttonGroupIcon, buttonIcon,
     // callToActionIcon, calloutIcon,
     cardIcon, carouselBlockIcon, chartIcon,
-    // clickToShareIcon, codeHighlightIcon, 
+    // clickToShareIcon, 
+    codeHighlightIcon,
     comparisonTableIcon,
     // contactCardIcon,
     containerIcon,
@@ -21,7 +22,7 @@ import {
     // howtoSchemaIcon,
     htmlIcon, iconBoxIcon,
     // iconListIcon, imageBoxIcon,
-    imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon,
+    imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, infographicIcon, instagramIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon,
     // modalPopupIcon,
     navigationIcon, newsTicker,
     // notificationBarIcon, offCanvasIcon, portfolioGalleryIcon,
@@ -298,15 +299,25 @@ export default [
                 docs: ``,
                 status: 'published'
             },
-            // {
-            //     name: `${pluginSlug}/code-highlight`,
-            //     title: 'Code Highlight',
-            //     icon: codeHighlightIcon,
-            //     demo: ``,
-            //     docs: ``,
-            //     status: 'published',
-            //     badge: 'NEW'
-            // },
+            {
+                name: `${pluginSlug}/infographic`,
+                title: 'Infographic',
+                icon: infographicIcon,
+                demo: `https://bblockswp.com/blocks/infographic-block`,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
+            {
+                name: `${pluginSlug}/code-highlight`,
+                title: 'Code Highlight',
+                icon: codeHighlightIcon,
+                demo: `https://bblockswp.com/blocks/code-highlight/`,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW',
+                isPremium: true
+            },
             {
                 name: `${pluginSlug}/team-members`,
                 title: 'Team Members',
@@ -1171,6 +1182,15 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
+            },
+            {
+                name: `${pluginSlug}/instagram`,
+                title: 'Instagram Feed',
+                icon: instagramIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/facebook-embed`,

@@ -1,0 +1,327 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/instagram",
+	"title": "Instagram Feed",
+	"category": "bBlocks",
+	"description": "Show an Instagram feed as a responsive gallery, with profile header, captions and a lightbox.",
+	"keywords": [
+		"instagram",
+		"feed",
+		"social",
+		"gallery",
+		"photos"
+	],
+	"textdomain": "b-blocks",
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"source": {
+			"type": "object",
+			"default": {
+				"account": "",
+				"limit": 24,
+				"perPage": 12,
+				"cacheMinutes": 30
+			}
+		},
+		"elements": {
+			"type": "object",
+			"default": {
+				"profile": true,
+				"profilePhoto": true,
+				"profileName": false,
+				"profileBio": false,
+				"followButton": true,
+				"followInFooter": false,
+				"followLabel": "Follow On Instagram",
+				"caption": true,
+				"stripHashtags": false,
+				"linkHashtags": true,
+				"captionLength": 65,
+				"mediaIcon": true,
+				"loadMore": true,
+				"loadMoreLabel": "Load More",
+				"lightbox": true,
+				"linkPosts": true,
+				"openInNewTab": true
+			}
+		},
+		"grid": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"columns": 4,
+					"columnGap": "15px",
+					"rowGap": "15px",
+					"ratio": "1/1"
+				},
+				"tablet": {
+					"columns": 2,
+					"columnGap": "",
+					"rowGap": "",
+					"ratio": ""
+				},
+				"mobile": {
+					"columns": 1,
+					"columnGap": "",
+					"rowGap": "",
+					"ratio": ""
+				}
+			}
+		},
+		"box": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"background": {
+					"color": ""
+				},
+				"border": {},
+				"shadow": {
+					"normal": [],
+					"hover": []
+				}
+			}
+		},
+		"item": {
+			"type": "object",
+			"default": {
+				"hoverEffect": "zoom-in",
+				"desktop": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"border": {},
+				"shadow": {
+					"normal": [],
+					"hover": []
+				},
+				"overlayColor": "",
+				"iconColor": "#ffffff",
+				"iconSize": "22px"
+			}
+		},
+		"caption": {
+			"type": "object",
+			"default": {
+				"style": "overlay-center",
+				"align": "center",
+				"color": "#ffffff",
+				"linkColor": "#ffffff",
+				"background": {
+					"color": "#00000099"
+				},
+				"padding": {
+					"top": "12px",
+					"right": "12px",
+					"bottom": "12px",
+					"left": "12px"
+				},
+				"typo": {
+					"fontSize": {
+						"desktop": 15,
+						"tablet": 14,
+						"mobile": 13
+					}
+				}
+			}
+		},
+		"profile": {
+			"type": "object",
+			"default": {
+				"photo": "",
+				"photoSize": "55px",
+				"gap": "12px",
+				"usernameColor": "#4527a4",
+				"nameColor": "",
+				"nameText": "",
+				"bioColor": "",
+				"bioText": "",
+				"usernameTypo": {
+					"fontSize": {
+						"desktop": 18,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"metaTypo": {
+					"fontSize": {
+						"desktop": 14,
+						"tablet": "",
+						"mobile": ""
+					}
+				}
+			}
+		},
+		"followBtn": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"color": "#ffffff",
+					"background": {
+						"color": "#4527a4"
+					},
+					"border": {}
+				},
+				"hover": {
+					"color": "#ffffff",
+					"background": {
+						"color": "#8344c5"
+					},
+					"border": {}
+				},
+				"typo": {
+					"fontSize": {
+						"desktop": 13,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"padding": {
+					"top": "10px",
+					"right": "18px",
+					"bottom": "10px",
+					"left": "18px"
+				},
+				"radius": {
+					"top": "4px",
+					"right": "4px",
+					"bottom": "4px",
+					"left": "4px"
+				}
+			}
+		},
+		"loadMoreBtn": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"color": "#ffffff",
+					"background": {
+						"color": "#4527a4"
+					},
+					"border": {}
+				},
+				"hover": {
+					"color": "#ffffff",
+					"background": {
+						"color": "#8344c5"
+					},
+					"border": {}
+				},
+				"typo": {
+					"fontSize": {
+						"desktop": 14,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"padding": {
+					"top": "10px",
+					"right": "22px",
+					"bottom": "10px",
+					"left": "22px"
+				},
+				"radius": {
+					"top": "4px",
+					"right": "4px",
+					"bottom": "4px",
+					"left": "4px"
+				}
+			}
+		},
+		"lightbox": {
+			"type": "object",
+			"default": {
+				"backdrop": "#000000e6",
+				"showCaption": true,
+				"showProfile": true,
+				"showLink": true
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"css": ""
+			}
+		}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

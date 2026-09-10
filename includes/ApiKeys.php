@@ -10,6 +10,9 @@ class BBlocksApiKeys{
         if ($key == 'openAi') {
             return BBlocksAi::get_instance()->test_api_key($value);
         }
+        if ($key == 'instagram') {
+            return BBlocksInstagram::test_token($value);
+        }
     }
 
     function bBlocksApiKeys(){

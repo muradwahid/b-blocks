@@ -32,17 +32,16 @@ const Layout = (props) => {
 
         {/* Flex */}
         {layout.type === 'flex' && <>
-            <Flex align="center" className='mt10'>
-                <Label className='flex1'>{<Flex justify='flex-start' gap={0}>{__('Direction', 'b-blocks')} <Device /></Flex>}</Label>
-                <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.direction} onChange={(val) => updateObj('layout', val, device, 'direction')}>
+            <Label className='flex1 mt10'>{<Flex justify='flex-start' gap={0}>{__('Direction', 'b-blocks')} <Device /></Flex>}</Label>
+            <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.direction} onChange={(val) => updateObj('layout', val, device, 'direction')}>
 
-                    <ToggleGroupControlOptionIcon label="Row" value="row" icon={arrowRightIcon} />
-                    <ToggleGroupControlOptionIcon label="Column" value="column" icon={arrowDownIcon} />
-                    <ToggleGroupControlOptionIcon label="Row Reverse" value="row-reverse" icon={arrowLeftIcon} />
-                    <ToggleGroupControlOptionIcon label="Column Reverse" value="column-reverse" icon={arrowUpIcon} />
+                <ToggleGroupControlOptionIcon label="Row" value="row" icon={arrowRightIcon} />
+                <ToggleGroupControlOptionIcon label="Column" value="column" icon={arrowDownIcon} />
+                <ToggleGroupControlOptionIcon label="Row Reverse" value="row-reverse" icon={arrowLeftIcon} />
+                <ToggleGroupControlOptionIcon label="Column Reverse" value="column-reverse" icon={arrowUpIcon} />
 
-                </ToggleGroupControl>
-            </Flex>
+            </ToggleGroupControl>
+
 
             <Label><Flex>{__('Justify Content', 'b-blocks')} <Device /></Flex></Label>
             <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.justify} onChange={(val) => updateObj('layout', val, device, 'justify')}>
@@ -56,18 +55,16 @@ const Layout = (props) => {
 
             </ToggleGroupControl>
 
+            <Label className='flex1 mt10'>{<Flex justify='flex-start' gap={0}>{__('Align Items', 'b-blocks')} <Device /></Flex>}</Label>
+            <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.alignItems} onChange={(val) => updateObj('layout', val, device, 'alignItems')}>
 
-            <Flex align="center" className="mt10">
-                <Label className='flex1'>{<Flex justify='flex-start' gap={0}>{__('Align Items', 'b-blocks')} <Device /></Flex>}</Label>
-                <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.alignItems} onChange={(val) => updateObj('layout', val, device, 'alignItems')}>
+                <ToggleGroupControlOptionIcon label="Start" value="flex-start" icon={<AlignStartIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
+                <ToggleGroupControlOptionIcon label="Center" value="center" icon={<AlignCenterIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
+                <ToggleGroupControlOptionIcon label="End" value="flex-end" icon={<AlignEndIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
+                <ToggleGroupControlOptionIcon label="Stretch" value="stretch" icon={<AlignStretchIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
 
-                    <ToggleGroupControlOptionIcon label="Start" value="flex-start" icon={<AlignStartIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
-                    <ToggleGroupControlOptionIcon label="Center" value="center" icon={<AlignCenterIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
-                    <ToggleGroupControlOptionIcon label="End" value="flex-end" icon={<AlignEndIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
-                    <ToggleGroupControlOptionIcon label="Stretch" value="stretch" icon={<AlignStretchIcon style={{ rotate: layout[device]?.direction === 'column' || layout[device]?.direction === 'column-reverse' ? '-90deg' : '0deg' }} />} />
+            </ToggleGroupControl>
 
-                </ToggleGroupControl>
-            </Flex>
             {!columnVal.includes(layout[device]?.direction) &&
                 <Flex align="center" className="mt10">
                     <Label className='flex1'>{<Flex gap={0}>{__('Wrap', 'b-blocks')} <Device /></Flex>}</Label>
@@ -80,7 +77,7 @@ const Layout = (props) => {
                     </ToggleGroupControl>
                 </Flex>}
             <Flex className="mt10">
-                <Label className='mb0 flex2'>{<Flex gap={5} justify='flex-start'>{__('Gap:', 'b-blocks')}<Device/></Flex>}</Label>
+                <Label className='mb0 flex2'>{<Flex gap={5} justify='flex-start'>{__('Gap:', 'b-blocks')}<Device /></Flex>}</Label>
                 {device === 'desktop' && <UnitControl className='flex1' labelPosition='left' value={columnGap} onChange={val => setAttributes({ columnGap: val })} units={[pxUnit()]} />}
                 {
                     device !== 'desktop' && <UnitControl className='flex1' labelPosition='left' value={layout[device]?.columnGap} onChange={val => updateObj('layout', val, device, 'columnGap')} units={[pxUnit()]} />
@@ -118,17 +115,15 @@ const Layout = (props) => {
 
             </ToggleGroupControl>
 
-            <Flex align="center" className="mt10">
-                <Label className='flex1'>{<Flex justify='flex-start' gap={0}>{__('Align Items', 'b-blocks')} <Device /></Flex>}</Label>
-                <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.gridAlignItems} onChange={(val) => updateObj('layout', val, device, 'gridAlignItems')}>
+            <Label className='flex1 mt10'>{<Flex justify='flex-start' gap={0}>{__('Align Items', 'b-blocks')} <Device /></Flex>}</Label>
+            <ToggleGroupControl className='flex1' size='small' style={{ padding: '2px' }} __next40pxDefaultSize __nextHasNoMarginBottom isBlock isDeselectable value={layout[device]?.gridAlignItems} onChange={(val) => updateObj('layout', val, device, 'gridAlignItems')}>
 
-                    <ToggleGroupControlOptionIcon label="Start" value="flex-start" icon={<AlignStartIcon />} />
-                    <ToggleGroupControlOptionIcon label="Center" value="center" icon={<AlignCenterIcon />} />
-                    <ToggleGroupControlOptionIcon label="End" value="flex-end" icon={<AlignEndIcon />} />
-                    <ToggleGroupControlOptionIcon label="Stretch" value="stretch" icon={<AlignStretchIcon />} />
+                <ToggleGroupControlOptionIcon label="Start" value="flex-start" icon={<AlignStartIcon />} />
+                <ToggleGroupControlOptionIcon label="Center" value="center" icon={<AlignCenterIcon />} />
+                <ToggleGroupControlOptionIcon label="End" value="flex-end" icon={<AlignEndIcon />} />
+                <ToggleGroupControlOptionIcon label="Stretch" value="stretch" icon={<AlignStretchIcon />} />
 
-                </ToggleGroupControl>
-            </Flex>
+            </ToggleGroupControl>
 
             <RangeControl className='mt10' label={__('Columns', 'b-blocks')} min={0} max={12} value={layout[device]?.gridColumns} onChange={(val) => updateObj('layout', val, device, 'gridColumns')} />
 

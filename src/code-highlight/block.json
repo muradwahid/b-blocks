@@ -2,104 +2,452 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/code-highlight",
-	"version": "2.0.52",
 	"title": "Code Highlight",
 	"category": "bBlocks",
-	"description": "Render syntax-highlighted code with optional line numbers, copy-to-clipboard button, and language badge. Powered by Prism.js (client-side).",
+	"description": "Show a syntax-highlighted code snippet with themes, line numbers and a copy button.",
 	"keywords": [
 		"code",
+		"snippet",
 		"syntax",
 		"highlight",
 		"prism",
-		"snippet",
-		"pre",
-		"developer"
+		"pre"
 	],
 	"textdomain": "b-blocks",
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
 	"attributes": {
+		"blockId": {
+			"type": "string",
+			"default": ""
+		},
 		"align": {
 			"type": "string",
 			"default": ""
 		},
-		"code": {
-			"type": "string",
-			"default": ""
+		"content": {
+			"type": "object",
+			"default": {
+				"code": "function greet(name) {\n\tconsole.log(`Hello, ${name}!`);\n}\n\ngreet('World');",
+				"language": "javascript",
+				"filename": "example.js",
+				"caption": ""
+			}
 		},
-		"language": {
-			"type": "string",
-			"default": "javascript"
+		"options": {
+			"type": "object",
+			"default": {
+				"header": true,
+				"showLanguage": false,
+				"windowDots": false,
+				"lineNumbers": true,
+				"startLine": 1,
+				"highlightLines": "",
+				"wordWrap": false,
+				"tabSize": 2,
+				"maxLines": 0,
+				"collapsible": false,
+				"expandLabel": "Show all",
+				"collapseLabel": "Show less",
+				"copyButton": true,
+				"copyPosition": "header",
+				"copyLabel": "Copy",
+				"copiedLabel": "Copied!",
+				"captionPosition": "bottom"
+			}
 		},
 		"theme": {
 			"type": "string",
-			"default": "dark"
+			"default": "porple"
 		},
-		"showLineNumbers": {
-			"type": "boolean",
-			"default": true
+		"box": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"align": "center",
+					"width": "100%",
+					"height": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"align": "",
+					"width": "",
+					"height": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"align": "",
+					"width": "",
+					"height": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"background": {},
+				"border": {},
+				"shadow": {
+					"normal": [],
+					"hover": []
+				}
+			}
 		},
-		"startingLineNumber": {
-			"type": "integer",
-			"default": 1
+		"codeTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": {
+					"desktop": 15,
+					"tablet": 14,
+					"mobile": 13
+				}
+			}
 		},
-		"showCopyButton": {
-			"type": "boolean",
-			"default": true
+		"headerStyle": {
+			"type": "object",
+			"default": {
+				"background": {},
+				"filenameColor": "",
+				"filenameTypo": {
+					"fontSize": {
+						"desktop": 12,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"badgeColor": "",
+				"badgeBackground": {}
+			}
 		},
-		"copyButtonLabel": {
-			"type": "string",
-			"default": "Copy"
+		"lineNumber": {
+			"type": "object",
+			"default": {
+				"color": "",
+				"background": {},
+				"borderColor": ""
+			}
 		},
-		"copiedLabel": {
-			"type": "string",
-			"default": "Copied!"
+		"highlight": {
+			"type": "object",
+			"default": {
+				"background": {},
+				"borderColor": ""
+			}
 		},
-		"showHeader": {
-			"type": "boolean",
-			"default": true
+		"copyBtn": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"color": "",
+					"background": {},
+					"border": {}
+				},
+				"hover": {
+					"color": "",
+					"background": {},
+					"border": {}
+				},
+				"copied": {
+					"color": "",
+					"background": {},
+					"border": {}
+				},
+				"typo": {
+					"fontSize": {
+						"desktop": 12,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"padding": {
+					"top": "",
+					"right": "",
+					"bottom": "",
+					"left": ""
+				},
+				"radius": {
+					"top": "",
+					"right": "",
+					"bottom": "",
+					"left": ""
+				}
+			}
 		},
-		"filename": {
-			"type": "string",
-			"default": ""
+		"buttonIcon": {
+			"type": "object",
+			"default": {
+				"enable": true,
+				"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='9' y='9' width='13' height='13' rx='2'></rect><path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'></path></svg>",
+				"position": "left",
+				"size": "13px",
+				"spacing": "6px",
+				"desktop": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"normal": {
+					"color": "",
+					"background": {},
+					"border": {},
+					"rotate": "0deg"
+				},
+				"hover": {
+					"color": "",
+					"background": {},
+					"border": {},
+					"rotate": "0deg"
+				}
+			}
 		},
-		"maxHeight": {
-			"type": "integer",
-			"default": 0
+		"caption": {
+			"type": "object",
+			"default": {
+				"color": "",
+				"typo": {
+					"fontSize": {
+						"desktop": 13,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"align": "center"
+			}
 		},
-		"fontSize": {
-			"type": "string",
-			"default": "14px"
-		},
-		"borderRadius": {
-			"type": "string",
-			"default": "6px"
-		},
-		"tabSize": {
-			"type": "integer",
-			"default": 2
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": { "top": "", "right": "", "bottom": "", "left": ""},
+						"tablet": { "top": "", "right": "", "bottom": "", "left": ""},
+						"mobile": { "top": "", "right": "", "bottom": "", "left": ""}
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": { "z": "", "y": "", "x": ""},
+							"tablet": { "z": "", "y": "", "x": ""},
+							"mobile": { "z": "", "y": "", "x": ""},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": { "x": "", "y": ""},
+							"tablet": { "x": "", "y": ""},
+							"mobile": { "x": "", "y": ""}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": { "x": "", "y": "", "scale": ""},
+							"tablet": { "x": "", "y": "", "scale": ""},
+							"mobile": { "x": "", "y": "", "scale": "" }
+						},
+						"skew": {
+							"desktop": { "x": "", "y": ""},
+							"tablet": {"x": "","y": ""},
+							"mobile": {"x": "","y": ""}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {"z": "","y": "","x": ""},
+							"tablet": {"z": "","y": "","x": ""},
+							"mobile": {"z": "","y": "","x": ""},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {"x": "","y": ""},
+							"tablet": {"x": "","y": ""},
+							"mobile": {"x": "","y": ""}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {"x": "","y": "","scale": ""},
+							"tablet": {"x": "","y": "","scale": ""},
+							"mobile": {"x": "","y": "","scale": ""}
+						},
+						"skew": {
+							"desktop": {"x": "","y": ""},
+							"tablet": {"x": "","y": ""},
+							"mobile": {"x": "","y": ""}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {"top": "","right": "","bottom": "","left": ""},
+						"shadow": [
+							{
+								"hOffset": "",
+								"vOffset": "",
+								"blur": "",
+								"spreed": "",
+								"color": "",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "",
+						"gradient": {
+							"type": "radial",
+							"radialType": "ellipse",
+							"colors": [
+								{
+									"color": "",
+									"position": "0"
+								},
+								{
+									"color": "",
+									"position": "80"
+								}
+							],
+							"centerPositions": {
+								"x": 50,
+								"y": 50
+							},
+							"angel": 90
+						},
+						"img": {
+							"url": "",
+							"desktop": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"tablet": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"mobile": {
+								"position": "center center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							}
+						},
+						"video": {
+							"url": "",
+							"loop": false
+						},
+						"transition": 0.3
+					}
+				}
+			}
 		}
 	},
-	"supports": {
-		"align": [
-			"wide",
-			"full"
-		],
-		"html": false,
-		"anchor": true,
-		"className": true,
-		"customClassName": true,
-		"spacing": {
-			"margin": true,
-			"padding": false
-		}
-	},
-	"example": {
-		"attributes": {
-			"preview": true
-		}
-	},
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
+	"editorScript": "file:../index.js",
 	"style": "file:./view.css",
-	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
 }

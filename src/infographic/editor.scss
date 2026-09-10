@@ -1,0 +1,27 @@
+// Editor-only adjustments. The frontend sheet is imported so the canvas renders
+// the block exactly as the page will.
+@import './style.scss';
+
+.wp-block-b-blocks-infographic {
+	.b-blocks-infographic .b-blocks-infographic-segment.bPlNowEditing {
+		box-shadow: 0 0 0 2px #007cba;
+	}
+
+	// Segments are buttons, and admin button styling would break the circles.
+	.b-blocks-infographic .b-blocks-infographic-segment {
+		background-image: none;
+		text-shadow: none;
+		min-height: 0;
+	}
+}
+
+.bPlTabPanel.bBlocksSettingInfographicSettings{
+	.infographicItemsPanelTabPanel{
+		.components-tab-panel__tabs{
+			.components-button{
+				padding-left: 0px !important;
+				padding-right: 0px !important;
+			}
+		}
+	}
+}

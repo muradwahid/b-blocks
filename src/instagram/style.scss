@@ -1,0 +1,470 @@
+/**
+ * Static frontend styles. Everything an inspector control can change is written
+ * at runtime by Components/Common/Style.js; this sheet only holds the layout and
+ * the pieces that have no control of their own.
+ */
+.wp-block-b-blocks-instagram {
+	.b-blocks-instagram {
+		position: relative;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.b-blocks-instagram-notice {
+		margin: 0 0 15px;
+		padding: 10px 14px;
+		border-radius: 4px;
+		background: #0000000d;
+		font-size: 13px;
+		text-align: center;
+	}
+
+	/* Header */
+	.b-blocks-instagram-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-bottom: 15px;
+	}
+
+	.b-blocks-instagram-profile {
+		display: flex;
+		align-items: center;
+		gap: inherit;
+		min-width: 0;
+	}
+
+	/* In the lightbox there is no header gap to inherit, so it states its own. */
+	.b-blocks-instagram-profile-compact {
+		gap: 12px;
+	}
+
+	.b-blocks-instagram-photo {
+		display: block;
+		flex: none;
+		width: 55px;
+		height: 55px;
+		border-radius: 50%;
+		overflow: hidden;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.b-blocks-instagram-identity {
+		min-width: 0;
+	}
+
+	.b-blocks-instagram-username {
+		display: inline-block;
+		font-weight: 600;
+		text-decoration: none;
+		word-break: break-word;
+	}
+
+	.b-blocks-instagram-name,
+	.b-blocks-instagram-bio {
+		margin-top: 2px;
+		opacity: .85;
+	}
+
+	/* Grid */
+	.b-blocks-instagram-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 15px;
+	}
+
+	.b-blocks-instagram-item {
+		position: relative;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	.b-blocks-instagram-open {
+		display: block;
+		width: 100%;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		text-align: inherit;
+		cursor: pointer;
+	}
+
+	.b-blocks-instagram-figure {
+		position: relative;
+		display: block;
+		margin: 0;
+		aspect-ratio: 1 / 1;
+		overflow: hidden;
+	}
+
+	.b-blocks-instagram-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform .4s ease, filter .4s ease;
+	}
+
+	/* Sits above the photo, below the caption, so a tint never hides the text. */
+	.b-blocks-instagram-overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: #0000;
+		opacity: 0;
+		transition: opacity .3s ease;
+		pointer-events: none;
+	}
+
+	.b-blocks-instagram-item:hover .b-blocks-instagram-overlay {
+		opacity: 1;
+	}
+
+	.b-blocks-instagram-type {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 3;
+		display: flex;
+		font-size: 22px;
+		line-height: 1;
+		color: #fff;
+		filter: drop-shadow(0 1px 2px #0009);
+		pointer-events: none;
+	}
+
+	/* Caption */
+	.b-blocks-instagram-caption {
+		padding: 12px;
+		color: #fff;
+		word-break: break-word;
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.b-blocks-instagram-figure .b-blocks-instagram-caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: opacity .3s ease;
+	}
+
+	/* The caption only appears on hover, and only over the photo. */
+	.b-blocks-instagram-item:hover .b-blocks-instagram-figure .b-blocks-instagram-caption,
+	.b-blocks-instagram-open:focus-visible .b-blocks-instagram-caption {
+		opacity: 1;
+	}
+
+	.b-blocks-instagram-caption-overlay-top .b-blocks-instagram-figure .b-blocks-instagram-caption {
+		top: 0;
+	}
+
+	.b-blocks-instagram-caption-overlay-center .b-blocks-instagram-figure .b-blocks-instagram-caption {
+		top: 0;
+		bottom: 0;
+	}
+
+	.b-blocks-instagram-caption-overlay-bottom .b-blocks-instagram-figure .b-blocks-instagram-caption {
+		bottom: 0;
+	}
+
+	/* Footer */
+	.b-blocks-instagram-footer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	.b-blocks-instagram-follow,
+	.b-blocks-instagram-load-more {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 10px 20px;
+		border: 0;
+		border-radius: 4px;
+		background: #4527a4;
+		color: #fff;
+		font: inherit;
+		line-height: 1.2;
+		text-decoration: none;
+		cursor: pointer;
+		transition: background .25s ease, color .25s ease;
+	}
+
+	/* Loading */
+	.b-blocks-instagram-skeleton {
+		aspect-ratio: 1 / 1;
+		border-radius: 4px;
+		background: linear-gradient(100deg, #0000000d 30%, #00000014 50%, #0000000d 70%);
+		background-size: 300% 100%;
+		animation: bBlocksInstagramShimmer 1.4s ease-in-out infinite;
+	}
+}
+
+/* Hover effects */
+.wp-block-b-blocks-instagram {
+	.b-blocks-instagram-hover-zoom-in .b-blocks-instagram-item:hover .b-blocks-instagram-image {
+		transform: scale(1.1);
+	}
+
+	.b-blocks-instagram-hover-zoom-out .b-blocks-instagram-image {
+		transform: scale(1.1);
+	}
+
+	.b-blocks-instagram-hover-zoom-out .b-blocks-instagram-item:hover .b-blocks-instagram-image {
+		transform: scale(1);
+	}
+
+	.b-blocks-instagram-hover-rotate .b-blocks-instagram-item:hover .b-blocks-instagram-image {
+		transform: scale(1.15) rotate(4deg);
+	}
+
+	.b-blocks-instagram-hover-grayscale .b-blocks-instagram-image {
+		filter: grayscale(1);
+	}
+
+	.b-blocks-instagram-hover-grayscale .b-blocks-instagram-item:hover .b-blocks-instagram-image {
+		filter: grayscale(0);
+	}
+
+	.b-blocks-instagram-hover-blur .b-blocks-instagram-item:hover .b-blocks-instagram-image {
+		filter: blur(3px);
+	}
+
+	.b-blocks-instagram-hover-lift .b-blocks-instagram-item {
+		transition: transform .3s ease;
+	}
+
+	.b-blocks-instagram-hover-lift .b-blocks-instagram-item:hover {
+		transform: translateY(-6px);
+	}
+
+	/* A light band swept across the tile; ::after keeps it off the overlay. */
+	.b-blocks-instagram-hover-shine .b-blocks-instagram-figure::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -75%;
+		z-index: 2;
+		width: 50%;
+		background: linear-gradient(100deg, #fff0 0%, #ffffff4d 100%);
+		transform: skewX(-25deg);
+		pointer-events: none;
+	}
+
+	.b-blocks-instagram-hover-shine .b-blocks-instagram-item:hover .b-blocks-instagram-figure::after {
+		animation: bBlocksInstagramShine .8s ease;
+	}
+}
+
+/* Lightbox — fixed, so it is styled from the page root rather than the wrapper. */
+.b-blocks-instagram-lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	background: #000000e6;
+	opacity: 0;
+	transition: opacity .2s ease;
+
+	&.is-open {
+		opacity: 1;
+	}
+
+	.b-blocks-instagram-dialog {
+		display: flex;
+		width: min(1000px, 100%);
+		max-height: 100%;
+		border-radius: 6px;
+		background: #fff;
+		overflow: hidden;
+	}
+
+	.b-blocks-instagram-media {
+		flex: 1 1 60%;
+		min-width: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #000;
+
+		img,
+		video {
+			display: block;
+			width: 100%;
+			max-height: 80vh;
+			object-fit: contain;
+		}
+	}
+
+	.b-blocks-instagram-details {
+		flex: 1 1 40%;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		padding: 20px;
+		overflow-y: auto;
+		color: #1e1e1e;
+	}
+
+	.b-blocks-instagram-full-caption {
+		font-size: 14px;
+		line-height: 1.6;
+		word-break: break-word;
+
+		a {
+			color: #4527a4;
+			text-decoration: none;
+		}
+	}
+
+	.b-blocks-instagram-permalink {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-top: auto;
+		color: #4527a4;
+		font-size: 14px;
+		text-decoration: none;
+	}
+
+	.b-blocks-instagram-profile img {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	.b-blocks-instagram-close,
+	.b-blocks-instagram-nav {
+		position: absolute;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		border: 0;
+		border-radius: 50%;
+		background: #ffffff26;
+		color: #fff;
+		cursor: pointer;
+		transition: background .2s ease;
+
+		&:hover {
+			background: #ffffff40;
+		}
+	}
+
+	.b-blocks-instagram-close {
+		top: 16px;
+		right: 16px;
+	}
+
+	> .b-blocks-instagram-nav-prev {
+		left: 16px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	> .b-blocks-instagram-nav-next {
+		right: 16px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	/* Album carousel: scroll-snap does the paging, the arrows only nudge it. */
+	.b-blocks-instagram-carousel {
+		position: relative;
+		width: 100%;
+	}
+
+	.b-blocks-instagram-slides {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	.b-blocks-instagram-slide {
+		flex: 0 0 100%;
+		scroll-snap-align: center;
+	}
+
+	.b-blocks-instagram-carousel .b-blocks-instagram-nav-prev {
+		left: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.b-blocks-instagram-carousel .b-blocks-instagram-nav-next {
+		right: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+@media (max-width: 767px) {
+	.b-blocks-instagram-lightbox .b-blocks-instagram-dialog {
+		flex-direction: column;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-instagram .b-blocks-instagram-image,
+	.wp-block-b-blocks-instagram .b-blocks-instagram-item,
+	.wp-block-b-blocks-instagram .b-blocks-instagram-overlay,
+	.wp-block-b-blocks-instagram .b-blocks-instagram-caption {
+		transition: none;
+	}
+
+	.wp-block-b-blocks-instagram .b-blocks-instagram-skeleton,
+	.wp-block-b-blocks-instagram .b-blocks-instagram-figure::after {
+		animation: none;
+	}
+}
+
+@keyframes bBlocksInstagramShimmer {
+	0% { background-position: 100% 0; }
+	100% { background-position: 0 0; }
+}
+
+@keyframes bBlocksInstagramShine {
+	100% { left: 125%; }
+}
