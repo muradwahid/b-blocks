@@ -32,6 +32,8 @@ const Edit = props => {
 	const swiperInstanceRef = useRef(null)
 	const swiperWrapperRef = useRef(null)
 
+	const isPremium = typeof bBlocksPremiumChecker !== 'undefined' ? bBlocksPremiumChecker : false;
+
 	const CHILD_TAB_BLOCK = 'b-blocks/carousel-slide';
 
 	const TEMPLATE = [
@@ -147,7 +149,7 @@ const Edit = props => {
 	};
 
 	return <>
-		<Settings {...{ attributes, setAttributes, updateObj, device }} />
+		<Settings {...{ attributes, setAttributes, updateObj, device, isPremium }} />
 
 		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />

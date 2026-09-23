@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 import { prefix } from '../../utils/data';
 import { carouselIcon, playIcon } from '../../utils/icons';
 import { captionNodes, mediaThumb, trimCaption } from '../../utils/options';
@@ -7,12 +9,14 @@ import { captionNodes, mediaThumb, trimCaption } from '../../utils/options';
  * tile is a button, otherwise a link out to Instagram, and failing both a plain
  * figure so the markup never carries an interactive element that does nothing.
  */
-const Item = ({ attributes, feed = {}, index, onOpen }) => {
+const Item = ({ attributes, feed = {}, index, isBackend = false, onOpen }) => {
 	const { elements = {}, caption = {} } = attributes;
 	const { media_type: type = 'IMAGE', caption: text = '' } = feed;
 
 	const style = caption.style || 'overlay-center';
-	const body = elements.caption ? trimCaption(text, elements) : '';
+	const previewText = isBackend ? __('Instagram caption preview text with #hashtags', 'b-blocks') : '';
+	const rawText = text || previewText;
+	const body = elements.caption && rawText ? trimCaption(rawText, elements) : '';
 
 	const Caption = () => body
 		? <div className={`${prefix}-caption`}><p>{captionNodes(body, elements.linkHashtags)}</p></div>
@@ -20,7 +24,7 @@ const Item = ({ attributes, feed = {}, index, onOpen }) => {
 
 	const inner = <>
 		<figure className={`${prefix}-figure`}>
-			<img className={`${prefix}-image`} src={mediaThumb(feed)} alt={trimCaption(text, { stripHashtags: true, captionLength: 120 })} loading='lazy' />
+			<img className={`${prefix}-image`} src={mediaThumb(feed)} alt={trimCaption(rawText, { stripHashtags: true, captionLength: 120 })} loading='lazy' />
 
 			<span className={`${prefix}-overlay`} />
 

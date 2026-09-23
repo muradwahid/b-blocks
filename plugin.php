@@ -2,7 +2,7 @@
 /**
  * Plugin Name: bBlocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.1.6
+ * Version: 2.1.7
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3 or later
@@ -31,7 +31,7 @@ if (function_exists('b_blocks_fs')) {
 	// keeps the real, stable version.
 	$bb_host    = isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
 	$bb_isLocal = $bb_host && ( 0 === strpos( $bb_host, 'localhost' ) || 0 === strpos( $bb_host, '127.0.0.1' ) || preg_match( '/\.(local|test|ddev\.site)(:\d+)?$/', $bb_host ) );
-	define( 'B_BLOCKS_VERSION', $bb_isLocal ? time() : '2.1.6' );
+	define( 'B_BLOCKS_VERSION', $bb_isLocal ? time() : '2.1.7' );
 	define('B_BLOCKS_DIR_PATH', plugin_dir_path(__FILE__));
 	define('B_BLOCKS_DIR_URL', plugin_dir_url(__FILE__));
 	define('B_BLOCKS_HAS_PRO', 'b-blocks-pro/plugin.php' === plugin_basename(__FILE__));
@@ -196,7 +196,7 @@ if (function_exists('b_blocks_fs')) {
 
 			$disabledBlocks = get_option('bBlocksDisabledBlocks', []);
 			$disabledBlocks = is_array($disabledBlocks) ? $disabledBlocks : [];
-			$premiumBlocks = BBlocks\Inc\Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight'];
+			$premiumBlocks = BBlocks\Inc\Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation'];
 
 			// Add dependent blocks
 			if (in_array('b-blocks/row', $disabledBlocks) && !in_array('b-blocks/column', $disabledBlocks)) {
@@ -295,6 +295,7 @@ if (function_exists('b_blocks_fs')) {
 				// 'newsletter-optin',
 				// 'notification-bar',
 				'off-canvas',
+				'one-page-navigation',
 				// 'parallax-section',
 				// 'pdf-embed',
 				// 'popup-optin',

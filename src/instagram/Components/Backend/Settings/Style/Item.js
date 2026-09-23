@@ -5,13 +5,15 @@ import { BoxControl, ColorControl, Device, Label, ShadowControl } from '../../..
 import { emUnit, pxUnit, remUnit } from '../../../../../../../bpl-tools/utils/options';
 
 import { hoverEffects } from '../../../../utils/options';
+import { Flex } from '@wordpress/components';
 
 // One tile: its shape, what happens on hover, and the marker on video posts.
 const Item = ({ attributes, updateObj, device = 'desktop' }) => {
 	const { item = {} } = attributes;
 
-	return <PanelBody className='bPlPanelBody' title={__('Item', 'b-blocks')} initialOpen={false}>
-		<SelectControl label={__('Hover Effect', 'b-blocks')} value={item.hoverEffect || 'none'} options={hoverEffects} onChange={(val) => updateObj('item', val, 'hoverEffect')} />
+	return <PanelBody className='bPlPanelBody' title={__('Item', 'b-blocks')} initialOpen={true}>
+
+		<SelectControl label={__('Hover Effect', 'b-blocks')} labelPosition='edge' value={item.hoverEffect || 'none'} options={hoverEffects} onChange={(val) => updateObj('item', val, 'hoverEffect')} />
 
 		<BoxControl label={<>{__('Border Radius', 'b-blocks')} <Device /></>} values={item?.[device]?.radius || {}} onChange={(val) => updateObj('item', val, device, 'radius')} />
 
@@ -25,9 +27,19 @@ const Item = ({ attributes, updateObj, device = 'desktop' }) => {
 
 		<ColorControl className='mt10' label={__('Media Icon Color', 'b-blocks')} value={item.iconColor} onChange={(val) => updateObj('item', val, 'iconColor')} />
 
-		<Label className='mb0 mt10'>{__('Media Icon Size', 'b-blocks')}</Label>
+		<Flex className='mt10'>
+			<Label className='mb0 flex2'>{__('Media Icon Size', 'b-blocks')} <Device /></Label>
 
-		<UnitControl labelPosition='edge' isUnitSelectTabbable value={item.iconSize || ''} onChange={(val) => updateObj('item', val, 'iconSize')} units={[pxUnit(), emUnit(), remUnit()]} />
+			<UnitControl
+				className='flex1'
+				labelPosition='edge'
+				isUnitSelectTabbable
+				value={item?.[device]?.iconSize ?? ('desktop' === device ? (item.iconSize || '') : '')}
+				onChange={(val) => updateObj('item', val, device, 'iconSize')}
+				units={[pxUnit(), emUnit(), remUnit()]}
+			/>
+		</Flex>
+
 	</PanelBody>;
 };
 

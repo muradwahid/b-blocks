@@ -10,6 +10,9 @@ import Advanced from '../../../../../../bpl-tools/Advanced';
 
 const enabledAdvOptions = {
 	dimension: ['padding', 'margin', 'height', 'minHeight', 'maxHeight'],
+	floating: true,
+	motion: true,
+	position: true,
 	transform: true,
 	background: ['normal', 'hover', 'overlay'],
 	borderShadow: ['normal', 'hover', 'border', 'shadow'],

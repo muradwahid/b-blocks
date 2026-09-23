@@ -85,20 +85,24 @@ class BBlocksInstagram {
 	private function token_for( $account ) {
 		$dashboard = self::dashboard_token();
 
-		return '' === $dashboard ? (string) ( $account['token'] ?? '' ) : $dashboard;
+		return '' !== $dashboard ? $dashboard : (string) ( $account['token'] ?? '' );
 	}
 
 	/** Matches the account the block asked for, by username or by id. */
 	private function find_account( $wanted ) {
+		$dashboard = self::dashboard_token();
+
+		if ( '' !== $dashboard ) {
+			return [ 'id' => '', 'username' => $wanted, 'token' => $dashboard ];
+		}
+
 		foreach ( $this->accounts() as $account ) {
 			if ( '' === $wanted || ( $account['username'] ?? '' ) === $wanted || (string) ( $account['id'] ?? '' ) === (string) $wanted ) {
 				return $account;
 			}
 		}
 
-		// With a token in the dashboard, the feed works before any account has been
-		// saved on the block itself — the token already identifies the account.
-		return '' === self::dashboard_token() ? null : [ 'id' => '', 'username' => $wanted, 'token' => '' ];
+		return null;
 	}
 
 	/** Only an administrator may see or change which account is connected. */
@@ -115,15 +119,20 @@ class BBlocksInstagram {
 	 * in the editor's DOM for anyone looking over the author's shoulder.
 	 */
 	public function get_account() {
-		$this->guard();
+		$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
 
-		$account = $this->accounts()[0] ?? [];
+		if ( ! wp_verify_nonce( $nonce, 'wp_ajax' ) || ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( __( 'Invalid request.', 'b-blocks' ) );
+		}
+
+		$account   = $this->accounts()[0] ?? [];
+		$dashboard = self::dashboard_token();
 
 		wp_send_json_success(
 			[
-				'username' => $account['username'] ?? '',
-				'hasToken' => '' !== $this->token_for( $account ),
-				'fromDashboard' => '' !== self::dashboard_token(),
+				'username'      => $account['username'] ?? '',
+				'hasToken'      => '' !== $dashboard || '' !== ( $account['token'] ?? '' ),
+				'fromDashboard' => '' !== $dashboard,
 			]
 		);
 	}
@@ -310,7 +319,7 @@ class BBlocksInstagram {
 	}
 
 	/** A changed account or token must not keep serving the old feed. */
-	private static function flush() {
+	public static function flush() {
 		global $wpdb;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- transients have no bulk delete API.

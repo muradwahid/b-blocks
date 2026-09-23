@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
 
-import Box from './Box';
 import Button from './Button';
 import Caption from './Caption';
 import Item from './Item';
@@ -8,8 +7,6 @@ import Lightbox from './Lightbox';
 import Profile from './Profile';
 
 const Style = (props) => <>
-	<Box {...props} />
-
 	<Item {...props} />
 
 	<Caption {...props} />

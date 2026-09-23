@@ -1,0 +1,734 @@
+// Static frontend styles: the layout, the per-preset look and the values the
+// block ships with. Anything an inspector control changes is written as a real
+// declaration by Components/Common/Style.js, scoped to the block id, so it wins
+// over what is here without a custom property in between.
+.wp-block-b-blocks-one-page-navigation {
+	// The block's own wrapper is what floats, so there is one positioned element
+	// in both contexts and the editor shows the block exactly where it will sit.
+	// The class is doubled because the editor gives every block wrapper
+	// `position: relative` at the same weight and later in the sheet; on the
+	// front end nothing competes and the repeat costs nothing.
+	&.wp-block-b-blocks-one-page-navigation {
+		position: fixed;
+	}
+
+	z-index: 99;
+
+	// Where it sits is responsive, so the offsets are written per breakpoint by
+	// Style.js; the pos/align classes on this wrapper name the desktop choice and
+	// are left as a hook for styling the block from outside.
+	top: 50%;
+	right: 24px;
+	transform: translateY(-50%);
+
+	// The block's own defaults live here as plain declarations; Components/Common
+	// /Style.js writes the inspector's values over them, scoped to the block id.
+	.b-blocks-one-page-navigation {
+		display: flex;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	.b-blocks-one-page-navigation-list {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.b-blocks-one-page-navigation-item {
+		position: relative;
+		margin: 0;
+		list-style: none;
+	}
+
+	// An item with no section links nowhere, so it does not offer to be clicked.
+	// It is normally hidden outright; this is for when auto-hide is turned off.
+	.b-blocks-one-page-navigation-item.is-unlinked .b-blocks-one-page-navigation-link {
+		cursor: default;
+	}
+
+	.b-blocks-one-page-navigation-link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		// The editor renders a button rather than a link, so the two are levelled
+		// here and every preset below styles one element.
+		appearance: none;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		font: inherit;
+		text-align: inherit;
+		color: #9aa0ae;
+		text-decoration: none;
+		cursor: pointer;
+		transition: color .25s ease, background .25s ease, transform .25s ease;
+	}
+
+	// The items are not outlined when focused. Keyboard focus still shows itself
+	// through the item's own active styling and, on the icon-only presets, by
+	// revealing the label — see the tooltip rule below.
+	.b-blocks-one-page-navigation-item,
+	.b-blocks-one-page-navigation-item:focus,
+	.b-blocks-one-page-navigation-item:focus-visible,
+	.b-blocks-one-page-navigation-link:focus,
+	.b-blocks-one-page-navigation-link:focus-visible {
+		outline: none;
+	}
+
+	.b-blocks-one-page-navigation-marker {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: none;
+		transition: background .25s ease, color .25s ease, transform .25s ease;
+	}
+
+	.b-blocks-one-page-navigation-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 1em;
+		height: 1em;
+		line-height: 1;
+		// Whatever the icon holds is clipped to the corner radius set for it.
+		overflow: hidden;
+
+		svg {
+			width: 100%;
+			height: 100%;
+			fill: currentColor;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			// The picture fills its box by default, so a corner radius rounds the
+			// picture itself. `contain` fits the whole picture inside instead,
+			// which leaves the rounded corners empty.
+			object-fit: cover;
+			border-radius: inherit;
+		}
+	}
+
+	// The tooltip variant is the label for icon-only presets: read by assistive
+	// tech from the link's aria-label, and shown on hover for everyone else.
+	.b-blocks-one-page-navigation-tooltip {
+		position: absolute;
+		top: 50%;
+		right: calc(100% + 12px);
+		white-space: nowrap;
+		padding: 6px 10px;
+		border-radius: 4px;
+		background: #1e2230;
+		color: #fff;
+		opacity: 0;
+		transform: translateY(-50%);
+		transition: opacity .2s ease;
+		pointer-events: none;
+	}
+
+	.b-blocks-one-page-navigation-link:hover .b-blocks-one-page-navigation-tooltip,
+	.b-blocks-one-page-navigation-link:focus-visible .b-blocks-one-page-navigation-tooltip {
+		opacity: 1;
+	}
+
+	.b-blocks-one-page-navigation-warning {
+		display: block;
+		margin-top: 4px;
+		font-size: 11px;
+		color: #b32d2e;
+	}
+
+	// ---------------------------------------------------------------- Bullseye
+	.b-blocks-one-page-navigation-preset-glassBullseye {
+		// The glass: a pill behind the dots, which is what sets this look apart
+		// from a bare column of markers.
+		padding: 16px 15px;
+		border-radius: 999px;
+		background: #fff;
+		box-shadow: 0 6px 22px #00000014;
+
+		// The marker is the ring's box; the dot inside it is drawn on ::before so
+		// the two can be sized and coloured apart.
+		.b-blocks-one-page-navigation-marker {
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			background: none;
+
+			// A fifth of the ring across, which is what keeps the dot reading as a
+			// bullseye centre rather than a filled disc.
+			&::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 31%;
+				height: 31%;
+				border-radius: 50%;
+				background: currentColor;
+				transform: translate(-50%, -50%);
+				transition: width .25s ease, height .25s ease, background .25s ease;
+			}
+		}
+
+		// The section being read grows a little and fills; the ones already read
+		// keep their small dot coloured behind it.
+		.is-active .b-blocks-one-page-navigation-marker {
+			transform: scale(1.17);
+		}
+
+		.is-active .b-blocks-one-page-navigation-marker::before {
+			width: 73%;
+			height: 73%;
+		}
+
+		.is-passed .b-blocks-one-page-navigation-link {
+			color: #4b33f5;
+		}
+
+		.b-blocks-one-page-navigation-icon {
+			display: none;
+		}
+
+		.b-blocks-one-page-navigation-link:hover {
+			color: #4b33f5;
+		}
+
+		.is-active .b-blocks-one-page-navigation-link {
+			color: #4b33f5;
+		}
+
+		// The ring sits outside the dot, so the dot keeps its exact size. Every
+		// item carries one: the track is drawn for all of them and the bar fills
+		// it as the active section is scrolled through.
+		.b-blocks-one-page-navigation-ring {
+			position: absolute;
+			// The ring sits a fifth outside the dot's box, which puts it a little
+			// wider than the marker rather than twice its size.
+			inset: -20%;
+			width: auto;
+			height: auto;
+			transform: rotate(-90deg);
+			transition: opacity .25s ease;
+		}
+
+		.b-blocks-one-page-navigation-ring circle {
+			fill: none;
+			// The ring is this preset's defining line, so it is drawn heavier than
+			// the track thickness the other presets take literally.
+			stroke-width: 3;
+		}
+
+		// The ring of a section not yet reached reads as its dot does, so the two
+		// share a grey. A colour set in Line / Track overrides it.
+		.b-blocks-one-page-navigation-ring-track {
+			stroke: #9aa0ae;
+		}
+
+		.b-blocks-one-page-navigation-ring-bar {
+			stroke: #4b33f5;
+			stroke-dasharray: 100;
+			stroke-dashoffset: 100;
+			stroke-linecap: round;
+		}
+	}
+
+	// ---------------------------------------------------------------- Magnetic
+	.b-blocks-one-page-navigation-preset-magneticBubble {
+		// The track and the bubble run through the centre of the nodes, which is
+		// half of the 28px box the node draws at the default size.
+		.b-blocks-one-page-navigation-list::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			// The same font-size as the node below, so a marker sized in em puts
+			// its centre and this track's position in the same context. Without
+			// it the two resolve em against different sizes and part company.
+			font-size: 14px;
+			left: 14px;
+			width: 2px;
+			background: #e3e6ef;
+			transform: translateX(-50%);
+		}
+
+		// A node on the track: a ring with the page behind it, which the section
+		// being read fills in.
+		.b-blocks-one-page-navigation-marker {
+			box-sizing: border-box;
+			// Above the track, so the node sits on the line rather than under it —
+			// and a stacking context for the active disc drawn behind its icon.
+			z-index: 1;
+			width: 28px;
+			height: 28px;
+			border-radius: 50%;
+			// The ring is drawn at the track's own weight, so node and line read as
+			// one piece of furniture.
+			border: 2px solid #e3e6ef;
+			background: #fff;
+			font-size: 14px;
+		}
+
+		// Filled rather than washed, because the icon inside it is knocked out to
+		// white on hover and a 10% tint would not carry that.
+		.b-blocks-one-page-navigation-link:hover .b-blocks-one-page-navigation-marker {
+			background: #4b33f5;
+			color: #fff;
+		}
+
+		.b-blocks-one-page-navigation-link:hover {
+			color: #4b33f5;
+		}
+
+		// The section being read is a filled disc half again as wide, drawn on
+		// ::before rather than by resizing or scaling the node: the nodes stay
+		// evenly spaced down the track and the icon inside keeps its own size.
+		.is-active .b-blocks-one-page-navigation-marker {
+			color: #fff;
+			border-color: transparent;
+			background: none;
+
+			&::before {
+				content: '';
+				position: absolute;
+				// Half again the node across: 8px each side of the 28px it draws at
+				// the default marker size.
+				inset: -8px;
+				z-index: -1;
+				border-radius: 50%;
+				background: #4b33f5;
+			}
+		}
+
+		// An icon lifted out of the bubble is read against the page, not against
+		// the disc, so it keeps the active colour rather than the disc's.
+		&.b-blocks-one-page-navigation-bubble-outside .is-active .b-blocks-one-page-navigation-icon {
+			color: #4b33f5;
+		}
+
+		.is-active .b-blocks-one-page-navigation-link {
+			color: #4b33f5;
+		}
+
+		// The sliding bubble; view.js only sets translateY, the rest is here.
+		.b-blocks-one-page-navigation-bubble {
+			position: absolute;
+			top: 0;
+			left: 14px;
+			z-index: -1;
+			width: 56px;
+			height: 56px;
+			margin: -28px 0 0 -28px;
+			border-radius: 50%;
+			background: #4b33f5;
+			opacity: 0;
+			transition: transform .35s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
+		}
+	}
+
+	// The icon can be lifted out of the node and nudged; how far, and to which
+	// side, is written per breakpoint by Style.js.
+	.b-blocks-one-page-navigation-bubble-outside .b-blocks-one-page-navigation-icon {
+		position: relative;
+	}
+
+	// ----------------------------------------------------------------- Numbers
+	.b-blocks-one-page-navigation-preset-numberedSteps {
+		// The track runs through the middle of the 44px step boxes.
+		.b-blocks-one-page-navigation-list::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 22px;
+			width: 2px;
+			background: #e3e6ef;
+			transform: translateX(-50%);
+		}
+
+		// A step is a rounded box rather than a bubble, wide enough for two digits.
+		// Marker ▸ Size drives it: the box is the size plus its own padding.
+		.b-blocks-one-page-navigation-marker {
+			box-sizing: border-box;
+			z-index: 1;
+			width: 44px;
+			height: 36px;
+			border-radius: 10px;
+			border: 2px solid #e3e6ef;
+			background: #fff;
+		}
+
+		.b-blocks-one-page-navigation-number {
+			color: #4b33f5;
+			font-variant-numeric: tabular-nums;
+			line-height: 1;
+		}
+
+		// The label is a pill beside the step, shown on hover like the other
+		// presets' tooltips.
+		.b-blocks-one-page-navigation-tooltip {
+			padding: 9px 14px;
+			border-radius: 10px;
+		}
+
+		.b-blocks-one-page-navigation-link:hover .b-blocks-one-page-navigation-marker {
+			background: #4b33f51a;
+			border-color: #4b33f5;
+		}
+
+		.b-blocks-one-page-navigation-link:hover {
+			color: #4b33f5;
+		}
+
+		.is-active .b-blocks-one-page-navigation-marker {
+			background: #4b33f5;
+			border-color: #4b33f5;
+		}
+
+		// The icon stands in for the number when it is switched on, so it takes the
+		// same colour against the filled marker.
+		.is-active .b-blocks-one-page-navigation-number,
+		.is-active .b-blocks-one-page-navigation-icon {
+			color: #fff;
+		}
+
+		.is-active .b-blocks-one-page-navigation-link {
+			color: #4b33f5;
+		}
+	}
+
+	// ------------------------------------------------------------------- Pills
+	.b-blocks-one-page-navigation-preset-expandablePills {
+		// The items sit on a panel of their own: icons only until it is hovered,
+		// when it widens and every label comes out at once.
+		padding: 6px 8px;
+		border-radius: 16px;
+		background: #fff;
+		box-shadow: 0 6px 22px #00000014;
+		// The row being read is drawn wider than the panel and cut by it, so it
+		// takes the panel's own curve where the two meet.
+		overflow: hidden;
+
+		.b-blocks-one-page-navigation-link {
+			padding: 10px 12px;
+			border-radius: 10px;
+			// Read as a menu entry rather than as a marker, so it is text-dark.
+			color: #1e2230;
+		}
+
+		.b-blocks-one-page-navigation-marker {
+			font-size: 14px;
+		}
+
+		// The label is laid out but clipped, so expanding is a width transition
+		// rather than a reflow.
+		.b-blocks-one-page-navigation-label {
+			max-width: 0;
+			overflow: hidden;
+			white-space: nowrap;
+			opacity: 0;
+			transition: max-width .3s ease, opacity .25s ease, margin .3s ease;
+		}
+
+		// The panel expands as one — hovering anywhere on it, or tabbing to any
+		// item, brings out every label rather than just the one under the cursor.
+		&:hover .b-blocks-one-page-navigation-label,
+		&:focus-within .b-blocks-one-page-navigation-label {
+			max-width: 12em;
+			opacity: 1;
+		}
+
+		.b-blocks-one-page-navigation-link:hover {
+			color: #4b33f5;
+			background: #4b33f51a;
+		}
+
+		.is-active .b-blocks-one-page-navigation-link {
+			color: #fff;
+			background: #4b33f5;
+		}
+	}
+
+	// The row being read runs out to the edge of the panel rather than sitting
+	// inset like the others — it reads as a tab off the panel, cut by the panel's
+	// own curve. It attaches on the side the block is pinned to: Behavior ▸
+	// Position right puts it against the right edge, left against the left.
+	// A hovered row is given the same shape, so the two read as one treatment
+	// rather than two differently sized pills.
+	&.b-blocks-one-page-navigation-pos-right .b-blocks-one-page-navigation-preset-expandablePills .is-active .b-blocks-one-page-navigation-link,
+	&.b-blocks-one-page-navigation-pos-right .b-blocks-one-page-navigation-preset-expandablePills .b-blocks-one-page-navigation-link:hover,
+	&.b-blocks-one-page-navigation-pos-right .b-blocks-one-page-navigation-preset-expandablePills .b-blocks-one-page-navigation-link:focus-visible {
+		margin-right: -12px;
+		padding-right: 24px;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		box-shadow: 0 4px 12px #4b33f533;
+	}
+
+	&.b-blocks-one-page-navigation-pos-left .b-blocks-one-page-navigation-preset-expandablePills .is-active .b-blocks-one-page-navigation-link,
+	&.b-blocks-one-page-navigation-pos-left .b-blocks-one-page-navigation-preset-expandablePills .b-blocks-one-page-navigation-link:hover,
+	&.b-blocks-one-page-navigation-pos-left .b-blocks-one-page-navigation-preset-expandablePills .b-blocks-one-page-navigation-link:focus-visible {
+		margin-left: -12px;
+		padding-left: 24px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		box-shadow: 0 4px 12px #4b33f533;
+	}
+
+	// ------------------------------------------------------------------- Cards
+	.b-blocks-one-page-navigation-preset-stackedCards {
+		// The cards sit on a panel of their own, as the pills do.
+		padding: 10px;
+		border-radius: 16px;
+		background: #fff;
+		box-shadow: 0 6px 22px #00000014;
+
+		.b-blocks-one-page-navigation-link {
+			box-sizing: border-box;
+			min-width: 200px;
+			padding: 14px 16px;
+			border-radius: 12px;
+			// A hairline, so the card reads as paper rather than as a button.
+			border: 1px solid #e3e6ef;
+			color: #1e2230;
+			background: #fff;
+			transition: transform .25s ease, color .25s ease, background .25s ease;
+		}
+
+		.b-blocks-one-page-navigation-marker {
+			font-size: 18px;
+		}
+
+		.b-blocks-one-page-navigation-link:hover {
+			color: #4b33f5;
+			background: #f4f5fa;
+		}
+
+		.is-active .b-blocks-one-page-navigation-link {
+			color: #fff;
+			border-color: #4b33f5;
+			background: #4b33f5;
+		}
+	}
+
+	// The card being read sits out to the left and the rest are stacked to the
+	// right of it, which is where this preset gets its name. The stagger is a
+	// transform, so the panel stays the width of one card whichever side the
+	// block is pinned to.
+	.b-blocks-one-page-navigation-preset-stackedCards .b-blocks-one-page-navigation-item:not(.is-active) .b-blocks-one-page-navigation-link {
+		transform: translateX(30px);
+	}
+
+	// Hovering a stacked card slides it forward into line with the one being
+	// read, so it comes out of the stack under the cursor.
+	.b-blocks-one-page-navigation-preset-stackedCards .b-blocks-one-page-navigation-item:not(.is-active) .b-blocks-one-page-navigation-link:hover,
+	.b-blocks-one-page-navigation-preset-stackedCards .b-blocks-one-page-navigation-item:not(.is-active) .b-blocks-one-page-navigation-link:focus-visible {
+		transform: translateX(0);
+	}
+
+	// -------------------------------------------------------------------- Rail
+	.b-blocks-one-page-navigation-preset-sideRail {
+		// A rail down the side with a tick branching off it for each section. The
+		// ticks start on the rail, so it is only seen between them.
+		.b-blocks-one-page-navigation-list::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 4px;
+			background: #e3e6ef;
+		}
+
+		.b-blocks-one-page-navigation-icon,
+		.b-blocks-one-page-navigation-number {
+			display: none;
+		}
+
+		// Square ends, so the tick reads as a mark off the rail rather than a pill.
+		.b-blocks-one-page-navigation-marker {
+			width: 32px;
+			height: 4px;
+			border-radius: 0;
+			background: #9aa0ae;
+			transition: width .25s ease, background .25s ease;
+		}
+
+		.b-blocks-one-page-navigation-link:hover .b-blocks-one-page-navigation-marker {
+			width: 40px;
+			background: #4b33f5;
+		}
+
+		// The section being read reaches furthest off the rail.
+		.is-active .b-blocks-one-page-navigation-marker {
+			width: 48px;
+			background: #4b33f5;
+		}
+	}
+
+	// ------------------------------------------------- Icons on icon-less looks
+	// The bullseye, the steps and the rail draw a dot, a number and a bar of
+	// their own and hide the item's icon. `is-icon-visible` is the Icon / Image
+	// panel's switch asking each of them to show it after all.
+	.b-blocks-one-page-navigation-preset-glassBullseye.is-icon-visible {
+		.b-blocks-one-page-navigation-marker {
+			// The dot becomes the icon's box rather than a filled circle.
+			background: none;
+		}
+
+		.b-blocks-one-page-navigation-icon {
+			display: flex;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.b-blocks-one-page-navigation-preset-numberedSteps.is-icon-visible {
+		.b-blocks-one-page-navigation-icon {
+			display: flex;
+		}
+	}
+
+	.b-blocks-one-page-navigation-preset-sideRail.is-icon-visible {
+		.b-blocks-one-page-navigation-icon {
+			display: flex;
+		}
+
+		// The bar moves to ::before so the marker can hold the icon above it.
+		.b-blocks-one-page-navigation-marker {
+			flex-direction: column;
+			gap: 6px;
+			width: auto;
+			height: auto;
+			border-radius: 0;
+			background: none;
+
+			&::before {
+				content: '';
+				display: block;
+				width: 32px;
+				height: 4px;
+				border-radius: 0;
+				background: #9aa0ae;
+				transition: width .25s ease, background .25s ease;
+			}
+		}
+
+		.b-blocks-one-page-navigation-link:hover .b-blocks-one-page-navigation-marker::before {
+			width: 40px;
+			background: #4b33f5;
+		}
+
+		.is-active .b-blocks-one-page-navigation-marker::before {
+			width: 48px;
+			background: #4b33f5;
+		}
+	}
+
+	// -------------------------------------------------------------- Animations
+	// Each pulse is drawn on ::after so it never affects the marker's own box.
+	.b-blocks-one-page-navigation-preset-glassBullseye,
+	.b-blocks-one-page-navigation-preset-magneticBubble {
+		.is-active .b-blocks-one-page-navigation-marker::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			pointer-events: none;
+		}
+	}
+
+	.b-blocks-one-page-navigation-pulse-pulseRing .is-active .b-blocks-one-page-navigation-marker::after {
+		border: 2px solid #4b33f5;
+		animation: bBlocksOpnPulseRing 1.8s ease-out infinite;
+	}
+
+	.b-blocks-one-page-navigation-pulse-radar .is-active .b-blocks-one-page-navigation-marker::after {
+		background: #4b33f5;
+		animation: bBlocksOpnRadar 1.8s ease-out infinite;
+	}
+
+	.b-blocks-one-page-navigation-pulse-breathingGlow .is-active .b-blocks-one-page-navigation-marker::after {
+		color: #4b33f5;
+		animation: bBlocksOpnGlow 2.4s ease-in-out infinite;
+	}
+
+	.b-blocks-one-page-navigation-pulse-heartbeat .is-active .b-blocks-one-page-navigation-marker {
+		animation: bBlocksOpnHeartbeat 1.6s ease-in-out infinite;
+	}
+}
+
+// Narrow screens: the label-carrying presets give back their horizontal room.
+@media (max-width: 767px) {
+	.wp-block-b-blocks-one-page-navigation {
+		.b-blocks-one-page-navigation-preset-stackedCards .b-blocks-one-page-navigation-link {
+			min-width: 0;
+		}
+
+		.b-blocks-one-page-navigation-preset-stackedCards .b-blocks-one-page-navigation-label,
+		.b-blocks-one-page-navigation-preset-expandablePills .b-blocks-one-page-navigation-label {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			padding: 0;
+			overflow: hidden;
+			clip-path: inset(50%);
+			white-space: nowrap;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-one-page-navigation {
+		.b-blocks-one-page-navigation-marker,
+		.b-blocks-one-page-navigation-link,
+		.b-blocks-one-page-navigation-label,
+		.b-blocks-one-page-navigation-bubble,
+		.b-blocks-one-page-navigation-ring {
+			transition: none;
+		}
+
+		.b-blocks-one-page-navigation-marker,
+		.b-blocks-one-page-navigation-marker::after {
+			animation: none;
+		}
+	}
+}
+
+@keyframes bBlocksOpnPulseRing {
+	0% { opacity: .9; transform: scale(1); }
+	100% { opacity: 0; transform: scale(2.4); }
+}
+
+@keyframes bBlocksOpnRadar {
+	0% { opacity: .5; transform: scale(1); }
+	70% { opacity: 0; transform: scale(2.8); }
+	100% { opacity: 0; transform: scale(2.8); }
+}
+
+// currentColor so the glow takes the colour Style.js sets on the ::after,
+// which is what lets the keyframes stay free of a custom property.
+@keyframes bBlocksOpnGlow {
+	0%, 100% { box-shadow: 0 0 0 0 transparent; }
+	50% { box-shadow: 0 0 12px 4px currentColor; }
+}
+
+@keyframes bBlocksOpnHeartbeat {
+	0%, 100% { transform: scale(1); }
+	14% { transform: scale(1.25); }
+	28% { transform: scale(1); }
+	42% { transform: scale(1.18); }
+	56% { transform: scale(1); }
+}

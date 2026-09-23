@@ -1,5 +1,6 @@
 import {
     FaFacebook, GoogleMapsIcon,
+    InstagramIcon,
     // InstagramIcon,
     OpenAiIcon
 } from './icons';
@@ -395,11 +396,11 @@ export const apiKeyData = [
         name: 'openAi', label: 'Open Ai', icon: <OpenAiIcon className="cartIcon" />,inputLabel: 'Api Key',infoEl: `<p>Enter your Api Key. get it from <a target='_blank' rel='noreferrer' href='https://platform.openai.com/account/api-keys'>Open Ai Platform</a></p>
             <p><strong>Note:</strong> You need to add credits to your account after getting the API key.</p>`},
     { name: 'facebook', label: 'Facebook', icon: <FaFacebook className="cartIcon" />, inputLabel: 'App ID', infoEl: `<p>Enter your App ID. get it from <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Facebook Platform</a></p>`},
-    // {
-    //     name: 'instagram', label: 'Instagram', icon: <InstagramIcon className="cartIcon" />, inputLabel: 'Access Token', infoEl: `<p>Enter a long-lived Instagram access token. Create one from the <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Meta for Developers</a> console, under Instagram &rsaquo; API setup.</p>
-    //         <p><strong>Used by:</strong> The Instagram Feed block. The token is kept on your server and every request to Instagram is made from PHP, so it is never exposed on a published page.</p>
-    //         <p><strong>Note:</strong> Long-lived tokens expire after 60 days unless refreshed. Saving a new token here clears the cached feed straight away.</p>`
-    // },
+    {
+        name: 'instagram', label: 'Instagram', icon: <InstagramIcon className="cartIcon" />, inputLabel: 'Access Token', infoEl: `<p>Enter a long-lived Instagram access token. Create one from the <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Meta for Developers</a> console, under Instagram &rsaquo; API setup.</p>
+            <p><strong>Used by:</strong> The Instagram Feed block. The token is kept on your server and every request to Instagram is made from PHP, so it is never exposed on a published page.</p>
+            <p><strong>Note:</strong> Long-lived tokens expire after 60 days unless refreshed. Saving a new token here clears the cached feed straight away.</p>`
+    },
     {
         name: 'googleMaps', label: 'Google Maps', icon: <GoogleMapsIcon className="cartIcon" />, inputLabel: 'Api Key', infoEl: `<p>Enter your Google Maps API key. Create one in the <a target='_blank' rel='noreferrer' href='https://console.cloud.google.com/google/maps-apis/credentials'>Google Cloud console</a>.</p>
             <p><strong>Enable these APIs:</strong> Maps JavaScript API (required), plus Geocoding, Places (New) and Directions if you use address lookup, the search box or routes.</p>

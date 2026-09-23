@@ -8,7 +8,7 @@ const ProfileHeader = ({ attributes, updateObj }) => {
 	const { elements = {}, profile = {} } = attributes;
 
 	return <PanelBody className='bPlPanelBody' title={__('Profile', 'b-blocks')} initialOpen={false}>
-		<ToggleControl label={__('Show Profile', 'b-blocks')} checked={elements.profile} onChange={(val) => updateObj('elements', val, 'profile')} />
+		<ToggleControl className='mt10' label={__('Show Profile', 'b-blocks')} checked={elements.profile} onChange={(val) => updateObj('elements', val, 'profile')} />
 
 		{elements.profile && <>
 			<ToggleControl className='mt10' label={__('Show Photo', 'b-blocks')} checked={elements.profilePhoto} onChange={(val) => updateObj('elements', val, 'profilePhoto')} />
@@ -21,13 +21,13 @@ const ProfileHeader = ({ attributes, updateObj }) => {
 				<small>{__('Used only when Instagram returns no picture for the account.', 'b-blocks')}</small>
 			</>}
 
-			<ToggleControl className='mt20' label={__('Show Name', 'b-blocks')} checked={elements.profileName} onChange={(val) => updateObj('elements', val, 'profileName')} />
+			<ToggleControl className='mt10' label={__('Show Name', 'b-blocks')} checked={elements.profileName} onChange={(val) => updateObj('elements', val, 'profileName')} />
 
-			{elements.profileName && <TextControl value={profile.nameText || ''} onChange={(val) => updateObj('profile', val, 'nameText')} placeholder={__('Display name', 'b-blocks')} help={__('Shown only when the account itself returns no name.', 'b-blocks')} />}
+			{elements.profileName && <TextControl className='mt10' value={profile.nameText || ''} onChange={(val) => updateObj('profile', val, 'nameText')} placeholder={__('Display name', 'b-blocks')} help={__('Shown only when the account itself returns no name.', 'b-blocks')} />}
 
 			<ToggleControl className='mt10' label={__('Show Biography', 'b-blocks')} checked={elements.profileBio} onChange={(val) => updateObj('elements', val, 'profileBio')} />
 
-			{elements.profileBio && <TextControl value={profile.bioText || ''} onChange={(val) => updateObj('profile', val, 'bioText')} placeholder={__('Short bio', 'b-blocks')} help={__('Shown only when the account itself returns no biography.', 'b-blocks')} />}
+			{elements.profileBio && <TextControl className='mt10' value={profile.bioText || ''} onChange={(val) => updateObj('profile', val, 'bioText')} placeholder={__('Short bio', 'b-blocks')} help={__('Shown only when the account itself returns no biography.', 'b-blocks')} />}
 		</>}
 	</PanelBody>;
 };

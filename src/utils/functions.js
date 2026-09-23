@@ -10,7 +10,6 @@ import { premiumBlocks } from './data';
 // 	return !disabledBlocks.includes(name);
 // }
 
-
 export const isBlockEnabled = (name) => {
 	const isPremium = typeof bBlocksPremiumChecker !== 'undefined' ? bBlocksPremiumChecker : false;
 	const disabledBlocks = typeof bBlocksDisabledBlocks !== 'undefined' ? (bBlocksDisabledBlocks || []) : [];

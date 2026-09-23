@@ -91,6 +91,7 @@ import './news-ticker';
 // import './newsletter-optin';
 // import './notification-bar';
 import './off-canvas';
+import './one-page-navigation';
 // import './parallax-section';
 // import './pdf-embed';
 // import './popup-optin';

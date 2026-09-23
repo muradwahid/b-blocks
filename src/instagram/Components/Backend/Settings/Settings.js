@@ -18,9 +18,10 @@ const Settings = (props) => {
 	const { advanced } = attributes;
 
 	return <InspectorControls>
-		<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={allTabs} onSelect={tabController}>
+		<TabPanel className='bPlTabPanel' activeClass='activeTab' initialTabName='advanced' tabs={allTabs} onSelect={tabController}>
 			{(tab) => <>
 				{'general' === tab.name && <>
+
 					<Account {...props} />
 
 					<Grid {...props} />
@@ -32,6 +33,7 @@ const Settings = (props) => {
 					<Buttons {...props} />
 
 					<Interaction {...props} />
+
 				</>}
 
 				{'style' === tab.name && <Style {...props} />}

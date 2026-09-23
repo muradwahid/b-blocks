@@ -12,7 +12,7 @@
  * @var WP_Block $block      Block instance.
  */
 
-$id = wp_unique_id( 'event-card-' );
+$id = wp_unique_id( 'bBlocksEventCard-' );
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

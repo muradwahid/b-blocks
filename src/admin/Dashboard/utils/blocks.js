@@ -24,7 +24,7 @@ import {
     // iconListIcon, imageBoxIcon,
     imageCompareIcon, imageHotspotIcon, imageIcon, imageScrollerIcon, infoBoxIcon, infographicIcon, instagramIcon, listIcon, logoSliderIcon, lottieIcon, mailIcon,
     // modalPopupIcon,
-    navigationIcon, newsTicker,
+    navigationIcon, newsTicker, onePageNavigationIcon,
     // notificationBarIcon, offCanvasIcon, portfolioGalleryIcon,
     postsIcon, priceListIcon, pricingTableIcon, processStepsIcon,
     // progressBarIcon, progressCircleIcon,
@@ -532,6 +532,15 @@ export default [
                 demo: `${demoLink}/bblocks-navigation/`,
                 docs: ``,
                 status: 'published'
+            },
+            {
+                name: `${pluginSlug}/one-page-navigation`,
+                title: 'One Page Navigation',
+                icon: onePageNavigationIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/scroll-to-top`,

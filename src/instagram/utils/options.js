@@ -116,6 +116,7 @@ export const getWrapperClasses = (attributes) => {
 		prefix,
 		`${prefix}-hover-${item.hoverEffect || 'none'}`,
 		`${prefix}-caption-${caption.style || 'overlay-center'}`,
+		caption.onHover && 'below' !== caption.style ? `${prefix}-caption-on-hover` : '',
 		elements.caption ? `${prefix}-has-caption` : '',
 		elements.profile ? `${prefix}-has-profile` : ''
 	].filter(Boolean).join(' ');

@@ -1,0 +1,584 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/one-page-navigation",
+	"title": "One Page Navigation",
+	"category": "bBlocks",
+	"description": "A floating scroll-spy navigation for one-page sites: links to on-page sections, highlights the one in view and smooth-scrolls to it.",
+	"keywords": [
+		"navigation",
+		"scroll spy",
+		"one page",
+		"anchor",
+		"menu"
+	],
+	"textdomain": "b-blocks",
+	"supports": {
+		"html": false,
+		"align": false,
+		"multiple": true
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "object",
+			"default": {
+				"preset": "glassBullseye",
+				"desktop": {
+					"position": "right",
+					"verticalAlign": "center",
+					"offsetX": "",
+					"offsetY": ""
+				},
+				"tablet": {
+					"position": "",
+					"verticalAlign": "",
+					"offsetX": "",
+					"offsetY": ""
+				},
+				"mobile": {
+					"position": "",
+					"verticalAlign": "",
+					"offsetX": "",
+					"offsetY": ""
+				}
+			}
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"id": "opn-overview",
+					"label": "Overview",
+					"sectionId": "overview",
+					"icon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'><path d='M575 236.9 308.5 26.6a33 33 0 0 0-41 0L1 236.9a12 12 0 0 0-2 16.9l21 26.6a12 12 0 0 0 16.9 2L64 260.5V464a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V352h64v112a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V260.5l27.1 21.9a12 12 0 0 0 16.9-2l21-26.6a12 12 0 0 0-2-16.9z'/></svg>",
+						"img": {
+							"url": "",
+							"id": ""
+						},
+						"svg": ""
+					}
+				},
+				{
+					"id": "opn-features",
+					"label": "Features",
+					"sectionId": "features",
+					"icon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M264.5 5.2a24 24 0 0 0-17 0L28.7 84.5a16 16 0 0 0 0 30l218.8 79.3a24 24 0 0 0 17 0l218.8-79.3a16 16 0 0 0 0-30zm219 175.1-58.3-21.1-140.4 50.9a56 56 0 0 1-39.6 0L104.8 159.2l-58.3 21.1a16 16 0 0 0 0 30l218.8 79.3a24 24 0 0 0 17 0l218.8-79.3a16 16 0 0 0 0-30zm0 116.6-58.1-21-140.6 51a56 56 0 0 1-39.6 0l-140.6-51-58.1 21a16 16 0 0 0 0 30l218.8 79.3a24 24 0 0 0 17 0l218.8-79.3a16 16 0 0 0 0-30z'/></svg>",
+						"img": {
+							"url": "",
+							"id": ""
+						},
+						"svg": ""
+					}
+				},
+				{
+					"id": "opn-pricing",
+					"label": "Pricing",
+					"sectionId": "pricing",
+					"icon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M0 80v149.5a48 48 0 0 0 14 33.9l195 195a48 48 0 0 0 67.9 0l131-131a48 48 0 0 0 0-67.9l-195-195A48 48 0 0 0 179.5 32H48A48 48 0 0 0 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 0 1 0-64z'/></svg>",
+						"img": {
+							"url": "",
+							"id": ""
+						},
+						"svg": ""
+					}
+				},
+				{
+					"id": "opn-faq",
+					"label": "FAQ",
+					"sectionId": "faq",
+					"icon": {
+						"type": "icon",
+						"icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 8a248 248 0 1 0 0 496 248 248 0 0 0 0-496zm0 400a32 32 0 1 1 0-64 32 32 0 0 1 0 64zm53.9-197.2-29.9 19v18.2a16 16 0 0 1-16 16h-16a16 16 0 0 1-16-16v-27.3a16 16 0 0 1 7.4-13.5l40.9-26c5.6-3.5 8.9-9.5 8.9-16 0-10.5-8.5-19-19-19h-35.6c-7.4 0-14.2 4.2-17.5 10.9l-3.5 7a16 16 0 0 1-21.5 7.2l-14.3-7.2a16 16 0 0 1-7.2-21.5l3.5-7A83 83 0 0 1 234.6 96h35.6c37.1 0 67.3 30.2 67.3 67.3 0 23-11.7 44.1-31.1 56.5z'/></svg>",
+						"img": {
+							"url": "",
+							"id": ""
+						},
+						"svg": ""
+					}
+				}
+			]
+		},
+		"behavior": {
+			"type": "object",
+			"default": {
+				"scrollSpy": true,
+				"smoothScroll": true,
+				"hideMissingSections": true,
+				"scrollSpeed": 600,
+				"desktop": {
+					"scrollOffset": "80px"
+				},
+				"tablet": {
+					"scrollOffset": ""
+				},
+				"mobile": {
+					"scrollOffset": ""
+				}
+			}
+		},
+		"item": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"color": "",
+					"background": {},
+					"markerColor": "",
+					"ringColor": "",
+					"border": {},
+					"shadow": []
+				},
+				"hover": {
+					"color": "",
+					"background": {},
+					"markerColor": "",
+					"ringColor": "",
+					"border": {},
+					"shadow": []
+				},
+				"active": {
+					"color": "",
+					"background": {},
+					"markerColor": "",
+					"ringColor": "",
+					"border": {},
+					"shadow": []
+				},
+				"desktop": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"width": "",
+					"height": "",
+					"ringSize": "",
+					"spacing": "18px"
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"width": "",
+					"height": "",
+					"ringSize": "",
+					"spacing": ""
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"width": "",
+					"height": "",
+					"ringSize": "",
+					"spacing": ""
+				}
+			}
+		},
+		"marker": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"size": ""
+				},
+				"tablet": {
+					"size": ""
+				},
+				"mobile": {
+					"size": ""
+				}
+			}
+		},
+		"media": {
+			"type": "object",
+			"default": {
+				"showIcon": false,
+				"color": "",
+				"hoverColor": "",
+				"activeColor": "",
+				"desktop": {
+					"size": "",
+					"width": "",
+					"height": "",
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"objectFit": "cover"
+				},
+				"tablet": {
+					"size": "",
+					"width": "",
+					"height": "",
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"objectFit": ""
+				},
+				"mobile": {
+					"size": "",
+					"width": "",
+					"height": "",
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"objectFit": ""
+				}
+			}
+		},
+		"label": {
+			"type": "object",
+			"default": {
+				"tooltipBackground": {},
+				"tooltipText": "",
+				"border": {},
+				"typo": {
+					"fontSize": {
+						"desktop": 13,
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"desktop": {
+					"gap": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"gap": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"gap": "",
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				}
+			}
+		},
+		"line": {
+			"type": "object",
+			"default": {
+				"color": "",
+				"progressColor": "",
+				"desktop": {
+					"thickness": ""
+				},
+				"tablet": {
+					"thickness": ""
+				},
+				"mobile": {
+					"thickness": ""
+				}
+			}
+		},
+		"number": {
+			"type": "object",
+			"default": {
+				"normal": {
+					"color": ""
+				},
+				"hover": {
+					"color": ""
+				},
+				"active": {
+					"color": ""
+				},
+				"typo": {
+					"fontSize": {
+						"desktop": 15,
+						"tablet": "",
+						"mobile": ""
+					}
+				}
+			}
+		},
+		"bubble": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"iconPosition": "auto",
+					"x": "32px",
+					"y": "0px"
+				},
+				"tablet": {
+					"iconPosition": "",
+					"x": "",
+					"y": ""
+				},
+				"mobile": {
+					"iconPosition": "",
+					"x": "",
+					"y": ""
+				}
+			}
+		},
+		"animation": {
+			"type": "object",
+			"default": {
+				"pulse": false,
+				"style": "pulseRing",
+				"speed": ""
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"border": {
+							"width": "",
+							"style": "",
+							"color": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"shadow": []
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"position": {}
+			}
+		}
+	},
+	"example": {
+		"attributes": {
+			"layout": {
+				"preset": "glassBullseye",
+				"desktop": {
+					"position": "right",
+					"verticalAlign": "center"
+				}
+			}
+		}
+	},
+	"editorScript": "file:../index.js",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php",
+	"style": "file:./view.css",
+	"version": "1.0.41"
+}

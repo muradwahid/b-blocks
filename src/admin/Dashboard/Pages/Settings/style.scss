@@ -239,16 +239,17 @@
 					}
 				}
 
-				.bbReveal {
+				.bbReveal,
+				.bbDelete {
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					flex: 0 0 auto;
-					padding: 0 12px;
+					padding: 0 9px;
 					align-self: stretch;
 					border: 0;
 					background: transparent;
-					color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.5);
+					color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.45);
 					cursor: pointer;
 					transition: color 0.15s ease;
 
@@ -258,8 +259,17 @@
 					}
 
 					svg {
-						width: 18px;
-						height: 18px;
+						width: 16px;
+						height: 16px;
+					}
+				}
+
+				.bbDelete {
+					padding-right: 12px;
+
+					&:hover,
+					&:focus-visible {
+						color: #ef4444;
 					}
 				}
 			}

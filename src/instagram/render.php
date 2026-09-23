@@ -13,7 +13,7 @@
  */
 
 $prefix = 'b-blocks-instagram';
-$id     = empty( $attributes['blockId'] ) ? wp_unique_id( "$prefix-" ) : "$prefix-" . $attributes['blockId'];
+$id = wp_unique_id( 'bBlocksInstagram-' );
 
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
 

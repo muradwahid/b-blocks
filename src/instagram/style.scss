@@ -1,8 +1,3 @@
-/**
- * Static frontend styles. Everything an inspector control can change is written
- * at runtime by Components/Common/Style.js; this sheet only holds the layout and
- * the pieces that have no control of their own.
- */
 .wp-block-b-blocks-instagram {
 	.b-blocks-instagram {
 		position: relative;
@@ -168,14 +163,22 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		opacity: 0;
+		opacity: 1;
 		transition: opacity .3s ease;
 	}
 
-	/* The caption only appears on hover, and only over the photo. */
-	.b-blocks-instagram-item:hover .b-blocks-instagram-figure .b-blocks-instagram-caption,
-	.b-blocks-instagram-open:focus-visible .b-blocks-instagram-caption {
+	/* The caption only hides when Show on Hover Only is enabled */
+	.b-blocks-instagram-caption-on-hover .b-blocks-instagram-figure .b-blocks-instagram-caption {
+		opacity: 0;
+	}
+
+	.b-blocks-instagram-caption-on-hover .b-blocks-instagram-item:hover .b-blocks-instagram-figure .b-blocks-instagram-caption,
+	.b-blocks-instagram-caption-on-hover .b-blocks-instagram-open:focus-visible .b-blocks-instagram-caption {
 		opacity: 1;
+	}
+
+	.b-blocks-instagram-caption-below .b-blocks-instagram-caption {
+		color: #1e1e1e;
 	}
 
 	.b-blocks-instagram-caption-overlay-top .b-blocks-instagram-figure .b-blocks-instagram-caption {
@@ -209,13 +212,13 @@
 		padding: 10px 20px;
 		border: 0;
 		border-radius: 4px;
-		background: #4527a4;
+		background: #146ef5;
 		color: #fff;
 		font: inherit;
 		line-height: 1.2;
 		text-decoration: none;
 		cursor: pointer;
-		transition: background .25s ease, color .25s ease;
+		transition: background .25s ease, color .25s ease, border .25s ease, border-radius .25s ease, padding .25s ease, box-shadow .25s ease;
 	}
 
 	/* Loading */
@@ -345,7 +348,7 @@
 		word-break: break-word;
 
 		a {
-			color: #4527a4;
+			color: #146ef5;
 			text-decoration: none;
 		}
 	}
@@ -355,7 +358,7 @@
 		align-items: center;
 		gap: 8px;
 		margin-top: auto;
-		color: #4527a4;
+		color: #146ef5;
 		font-size: 14px;
 		text-decoration: none;
 	}
@@ -381,7 +384,12 @@
 		background: #ffffff26;
 		color: #fff;
 		cursor: pointer;
-		transition: background .2s ease;
+		transition: background .2s ease, color .2s ease;
+
+		svg {
+			fill: currentColor;
+			pointer-events: none;
+		}
 
 		&:hover {
 			background: #ffffff40;

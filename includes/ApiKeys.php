@@ -29,11 +29,17 @@ class BBlocksApiKeys{
         $key   = sanitize_text_field(wp_unslash($_POST['key'] ?? ''));
         $value = sanitize_text_field(wp_unslash($_POST['value'] ?? ''));
         $apiKeys = get_option('bBlocksApiKeys',[]);
-        $error = $this->bBlocksTestApiKeys($key,$value);
-        
-        if (isset($error['valid']) && !$error['valid']) {
-            wp_send_json_error([$key=>$error]);
+
+        if ( '' !== $value ) {
+            $error = $this->bBlocksTestApiKeys($key,$value);
+            
+            if (isset($error['valid']) && !$error['valid']) {
+                wp_send_json_error([$key=>$error]);
+            }
+        } elseif ( 'instagram' === $key && class_exists( __NAMESPACE__ . '\BBlocksInstagram' ) ) {
+            BBlocksInstagram::flush();
         }
+
         if ($key) {
             $apiKeys[$key] = ['key'=> $value];
             update_option( 'bBlocksApiKeys',$apiKeys);

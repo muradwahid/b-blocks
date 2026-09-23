@@ -1,0 +1,10 @@
+// Editor-only adjustments. The frontend sheet is imported so the canvas renders
+// the block exactly as the page will.
+@import './style.scss';
+
+// The nav keeps its real fixed positioning in the canvas, so an author sees it
+// pinned to the same edge and alignment the page will use. Inside the editor's
+// iframe that is the canvas viewport, which is what they are judging against.
+//
+// The in-flow marker's own styles live in style.scss, because this sheet is part
+// of the shared editor bundle and that bundle never reaches the canvas iframe.

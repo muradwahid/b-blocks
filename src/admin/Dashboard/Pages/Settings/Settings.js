@@ -37,6 +37,14 @@ const AlertIcon = () => (
 		<line x1='12' y1='16' x2='12.01' y2='16' />
 	</svg>
 );
+const TrashIcon = () => (
+	<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+		<polyline points='3 6 5 6 21 6' />
+		<path d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2' />
+		<line x1='10' y1='11' x2='10' y2='17' />
+		<line x1='14' y1='11' x2='14' y2='17' />
+	</svg>
+);
 
 const Settings = ({ info }) => {
 	const { nonce } = info;
@@ -44,7 +52,7 @@ const Settings = ({ info }) => {
 	const [apiData, setApiData] = useState({});
 	const [dataKey, setDataKey] = useState('');
 	const [revealed, setRevealed] = useState({});
-	const [savedKey, setSavedKey] = useState('');
+	const [lastAction, setLastAction] = useState({ key: '', type: '' });
 
 	const wasLoading = useRef(false);
 	const savedTimer = useRef(null);
@@ -59,6 +67,14 @@ const Settings = ({ info }) => {
 		saveData({ key, value: apiData[key]?.key ?? '' });
 	};
 
+	// Remove/delete an integration's key.
+	const handleDelete = (key) => {
+		if (isLoading) return;
+		setApiData((prev) => ({ ...prev, [key]: { key: '' } }));
+		setDataKey(key);
+		saveData({ key, value: '' });
+	};
+
 	const toggleReveal = (name) => setRevealed((prev) => ({ ...prev, [name]: !prev[name] }));
 
 	// Mirror server-side saved keys into local field state.
@@ -68,15 +84,16 @@ const Settings = ({ info }) => {
 		}
 	}, [isLoading, data, error]);
 
-	// Brief "Saved" confirmation when a save request resolves without error.
+	// Brief confirmation when a save or delete request resolves without error.
 	useEffect(() => {
 		if (wasLoading.current && !isLoading && dataKey && !isError) {
-			setSavedKey(dataKey);
+			const wasDeleting = !apiData[dataKey]?.key;
+			setLastAction({ key: dataKey, type: wasDeleting ? 'deleted' : 'saved' });
 			clearTimeout(savedTimer.current);
-			savedTimer.current = setTimeout(() => setSavedKey(''), 2200);
+			savedTimer.current = setTimeout(() => setLastAction({ key: '', type: '' }), 2200);
 		}
 		wasLoading.current = isLoading;
-	}, [isLoading, isError, dataKey]);
+	}, [isLoading, isError, dataKey, apiData]);
 
 	useEffect(() => () => clearTimeout(savedTimer.current), []);
 
@@ -138,15 +155,29 @@ const Settings = ({ info }) => {
 									/>
 
 									{value && (
-										<button
-											type='button'
-											className='bbReveal'
-											aria-pressed={isRevealed}
-											aria-label={isRevealed ? 'Hide key' : 'Show key'}
-											onClick={() => toggleReveal(item.name)}
-										>
-											{isRevealed ? <EyeOffIcon /> : <EyeIcon />}
-										</button>
+										<>
+											<button
+												type='button'
+												className='bbReveal'
+												aria-pressed={isRevealed}
+												aria-label={isRevealed ? 'Hide key' : 'Show key'}
+												onClick={() => toggleReveal(item.name)}
+												title={isRevealed ? 'Hide' : 'Show'}
+											>
+												{isRevealed ? <EyeOffIcon /> : <EyeIcon />}
+											</button>
+
+											<button
+												type='button'
+												className='bbDelete'
+												aria-label={`Remove ${item.label} ${item.inputLabel}`}
+												onClick={() => handleDelete(item.name)}
+												title='Remove / Delete'
+												disabled={saving}
+											>
+												<TrashIcon />
+											</button>
+										</>
 									)}
 								</div>
 							</div>
@@ -155,8 +186,8 @@ const Settings = ({ info }) => {
 								<p className='bbStatusLine'>
 									{hasError ? (
 										<span className='bbErr'>{error?.[item.name]?.message || 'Could not validate this key'}</span>
-									) : savedKey === item.name ? (
-										<span className='bbOk'>Saved</span>
+									) : lastAction.key === item.name ? (
+										<span className='bbOk'>{lastAction.type === 'deleted' ? 'Removed' : 'Saved'}</span>
 									) : isConnected ? (
 										<span className='bbOk'>Valid key saved</span>
 									) : (

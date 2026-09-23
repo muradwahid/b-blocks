@@ -1,5 +1,14 @@
 export const changeLog = [
     {
+        version: '2.1.7 - 22 September, 2026',
+        list: [
+            'Added: Instagram Feed block.',
+            'Added : One Page Navigation Block.',
+            'Added : Advanced Option Motion Effects, Floating Effects and position.',
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.6 - 10 September 2026',
         list: [
             'Added: Code Highlight Block.'

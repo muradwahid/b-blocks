@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { __ } from '@wordpress/i18n';
 
-import { demoFeed, prefix } from '../../utils/data';
+import { prefix } from '../../utils/data';
 import { fetchFeed } from '../../utils/fetch';
 import { getWrapperClasses } from '../../utils/options';
 import FollowBtn from './FollowBtn';
@@ -17,11 +17,11 @@ const Skeleton = ({ count = 12 }) => <div className={`${prefix}-grid`}>
  * Shared by the editor and the frontend. The feed is asked of our own endpoint,
  * which holds the token — nothing here ever talks to Graph directly.
  *
- * `isBackend` decides what is shown when no account is connected — the editor
- * gets placeholder tiles to lay out against, the frontend gets nothing — and it
- * keeps the lightbox shut in the canvas, where a click belongs to the editor.
+ * `isBackend` keeps the lightbox shut in the canvas, where a click belongs to the editor.
  */
+
 const Instagram = ({ attributes, id = '', isBackend = false }) => {
+	const wrapperRef = useRef(null);
 	const { source = {}, elements = {} } = attributes;
 
 	const [state, setState] = useState({ status: 'loading', user: {}, media: [], error: '' });
@@ -47,8 +47,7 @@ const Instagram = ({ attributes, id = '', isBackend = false }) => {
 	// reader partway down a feed they have not seen.
 	useEffect(() => setPage(1), [account, perPage]);
 
-	const isDemo = 'ready' !== state.status || !state.media.length;
-	const feed = isDemo && isBackend ? demoFeed : { user: state.user, media: state.media };
+	const feed = { user: state.user, media: state.media };
 
 	const step = parseInt(perPage, 10) || 12;
 	const visible = useMemo(() => feed.media.slice(0, step * page), [feed.media, step, page]);
@@ -77,30 +76,31 @@ const Instagram = ({ attributes, id = '', isBackend = false }) => {
 	const header = elements.profile || (elements.followButton && !elements.followInFooter);
 	const footer = (elements.loadMore && hasMore) || (elements.followButton && elements.followInFooter);
 
-	return <div className={classes}>
-		{isBackend && isDemo && <p className={`${prefix}-notice`}>
-			{state.error || __('Showing sample posts. Connect an Instagram account in the block settings.', 'b-blocks')}
-		</p>}
-
+	return <div className={classes} ref={wrapperRef}>
 		{header && <div className={`${prefix}-header`}>
+
 			{elements.profile && <Profile attributes={attributes} user={feed.user} />}
 
-			{!elements.followInFooter && <FollowBtn attributes={attributes} username={feed.user?.username} />}
+			{!elements.followInFooter && <FollowBtn attributes={attributes} username={feed.user?.username} isBackend={isBackend} />}
+
 		</div>}
 
 		<div className={`${prefix}-grid`}>
-			{visible.map((post, index) => <Item key={post.id} attributes={attributes} feed={post} index={index} onOpen={isBackend ? () => {} : setOpen} />)}
+			{visible.map((post, index) => <Item key={post.id} attributes={attributes} feed={post} index={index} isBackend={isBackend} onOpen={setOpen} />)}
 		</div>
 
-		{footer && <div className={`${prefix}-footer`}>
-			{elements.loadMore && hasMore && <button type='button' className={`${prefix}-load-more`} onClick={() => setPage(page + 1)}>
+		{ footer && <div className={`${prefix}-footer`}>
+
+			{ elements.loadMore && hasMore && <button type='button' className={`${prefix}-load-more`} onClick={() => isBackend ? {} : setPage(page + 1)}>
 				{elements.loadMoreLabel || __('Load More', 'b-blocks')}
-			</button>}
+			</button> }
 
-			{elements.followInFooter && <FollowBtn attributes={attributes} username={feed.user?.username} />}
-		</div>}
+			{elements.followInFooter && <FollowBtn attributes={attributes} username={feed.user?.username} isBackend={isBackend} />}
 
-		{elements.lightbox && -1 < open && <Lightbox attributes={attributes} user={feed.user} feeds={visible} index={open} blockId={id} onClose={() => setOpen(-1)} onMove={move} />}
+		</div> }
+
+		{elements.lightbox && -1 < open && <Lightbox attributes={attributes} user={feed.user} feeds={visible} index={open} blockId={id} container={wrapperRef.current} isBackend={isBackend} onClose={() => setOpen(-1)} onMove={move} />}
+
 	</div>;
 };
 
