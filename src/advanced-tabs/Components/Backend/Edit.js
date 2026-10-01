@@ -1,7 +1,5 @@
-
 import { useBlockProps, RichText, InnerBlocks } from "@wordpress/block-editor";
 import { useEffect, useMemo, useRef, useState } from "react";
-
 
 import Settings from "./Settings/Settings";
 import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
@@ -12,14 +10,10 @@ import { addTab } from '../../utils/functions';
 import '../../editor.scss';
 import style from '../Common/Style';
 
-
 const Edit = (props) => {
 	const { attributes, setAttributes, clientId, device } = props;
 
-	const {
-		tabLists = [],
-		tabs
-	} = attributes;
+	const { tabLists = [], tabs } = attributes;
 
 	const tabWrapRef = useRef(null);
 
@@ -28,10 +22,12 @@ const Edit = (props) => {
 
 	const tabContentRef = useRef(null);
 
-
 	const activeDefaultTabId = useMemo(() => {
+
 		const defaultItem = (tabLists || []).find((t) => t.isDefault);
+
 		return tabs.isCloseAllTab ? '' : (defaultItem || { id: 1 })?.id;
+
 	}, [tabLists]);
 
 	useEffect(() => {

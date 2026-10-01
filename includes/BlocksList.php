@@ -1,0 +1,193 @@
+<?php
+
+namespace BBlocks\Inc;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+class BlocksList
+{
+
+	public static function disabled()
+	{
+		$disabledBlocks = get_option( 'bBlocksDisabledBlocks', [] );
+		$disabledBlocks = is_array( $disabledBlocks ) ? $disabledBlocks : [];
+
+		// Add dependent blocks
+		if ( in_array( 'b-blocks/row', $disabledBlocks ) && !in_array( 'b-blocks/column', $disabledBlocks ) ) {
+			$disabledBlocks[] = 'b-blocks/column';
+		}
+		if ( in_array( 'b-blocks/services', $disabledBlocks ) && !in_array( 'b-blocks/service', $disabledBlocks ) ) {
+			$disabledBlocks[] = 'b-blocks/service';
+		}
+
+		return $disabledBlocks;
+	}
+
+	public static function premium()
+	{
+		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation'];
+	}
+
+	public static function all()
+	{
+		return [
+			'alert',
+			// 'anchor-nav',
+			'advanced-image',
+			'animated-text',
+			'advanced-tabs',
+			'article-card',
+			'audio-player',
+			// 'author-box',
+			'blockquote',
+			'button',
+			'button-group',
+			'breadcrumb',
+			// 'business-hours',
+			// 'call-to-action',
+			// 'callout',
+			'cards',
+			'chart',
+			'column',
+			'container',
+			'content-ticker',
+			'countdown',
+			'counters',
+			'data-table',
+			'table-head',
+			'table-body',
+			'table-row',
+			'table-cell',
+			'table-footer',
+			'carousel',
+			'carousel-slide',
+			// 'click-to-share',
+			'code-highlight',
+			'comparison-table',
+			// 'contact-card',
+			// 'content-filter',
+			// 'content-filter-item',
+			// 'cookie-consent-bar',
+			// 'coupon-code',
+			'divider',
+			'dual-color-heading',
+			'emoji-stack-separator',
+			'event-card',
+			'expand-content',
+			'facebook-embed',
+			'facebook-page',
+			// 'faq-block',
+			'feature-boxes',
+			// 'feature-tabs',
+			'file-download-card',
+			'flip-boxes',
+			// 'floating-cta',
+			'gif',
+			'form-builder',
+			'google-map',
+			'hero-section',
+			// 'howto-schema',
+			'html',
+			// 'icon',
+			'icon-box',
+			// 'icon-list',
+			// 'image-accordion',
+			// 'image-box',
+			'image-comparison',
+			'image-gallery',
+			'image-hotspot',
+			// 'image-mask',
+			'image-scroller',
+			// 'image-slider',
+			'info-box',
+			'infographic',
+			'input-field',
+			'instagram',
+			'interactive-checklist',
+			'key-takeaways',
+			// 'logo-grid',
+			'logo-slider',
+			'lottie-player',
+			'list',
+			'mailto',
+			// 'marquee',
+			'media-text-section',
+			// 'milestone-timeline',
+			// 'modal-popup',
+			'navigation',
+			'news-ticker',
+			// 'newsletter-optin',
+			// 'notification-bar',
+			'off-canvas',
+			'one-page-navigation',
+			// 'parallax-section',
+			// 'pdf-embed',
+			// 'popup-optin',
+			// 'portfolio-gallery',
+			// 'post-carousel',
+			// 'post-filter-grid',
+			// 'post-masonry-grid',
+			// 'post-navigation',
+			// 'post-timeline',
+			'posts',
+			'price-lists',
+			'pricing-table',
+			// 'pricing-toggle',
+			'process-steps',
+			// 'progress-bar',
+			// 'progress-circle',
+			// 'promo-strip',
+			'qr-code',
+			// 'reading-progress',
+			// 'review-box',
+			'row',
+			'section-heading',
+			'skill-bar',
+			'service',
+			'services',
+			'shape-divider',
+			'slider',
+			// 'scroll-reveal',
+			'scroll-to-top',
+			// 'search-bar',
+			'social-share',
+			// 'social-share-bar',
+			'whatsapp-chat',
+			// 'woo-add-to-cart',
+			// 'woo-best-sellers',
+			// 'woo-category-grid',
+			// 'woo-featured-product',
+			// 'woo-mini-cart',
+			// 'woo-product-carousel',
+			// 'woo-product-filter',
+			'woo-product-grid',
+			// 'woo-product-reviews',
+			// 'woo-sale-badge',
+			// 'woo-single-product',
+			'star-rating',
+			'stacked-cards',
+			'stat-cards',
+			// 'sticky-sidebar',
+			'svg-draw',
+			'table-of-content',
+			// 'taxonomy-grid',
+			'td-viewer',
+			'team-members',
+			// 'testimonial-card',
+			// 'testimonial-slider',
+			'testimonials',
+			// 'testimonials-grid',
+			'timeline',
+			'timeline-item',
+			'toggle-content',
+			'accordion-block',
+			'video',
+			// 'video-popup',
+			'text-path',
+			// 'typing-headline',
+			// 'urgency-timer'
+		];
+	}
+}

@@ -1,5 +1,6 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const removeBlocksFromBuild = require('./remove-block-in-build');
 
 const plugins = defaultConfig.plugins.filter(p => {
@@ -7,6 +8,11 @@ const plugins = defaultConfig.plugins.filter(p => {
 		return false;
 	}
 	return true;
+}).map(p => {
+	if (p.constructor?.name === 'MiniCssExtractPlugin') {
+		p.options.ignoreOrder = true;
+	}
+	return p;
 });
 
 const defaultEntry = Object.fromEntries(
@@ -37,5 +43,20 @@ module.exports = {
 			}
 		}
 	],
-	optimization: {}
+	optimization: {
+		minimizer: [
+			new TerserPlugin({
+				extractComments: false,
+				parallel: true,
+				terserOptions: {
+					compress: { passes: 2 },
+					mangle: { reserved: ['__', '_n', '_nx', '_x'] },
+					format: {
+						comments: /translators:/i,
+						max_line_len: 8000,
+					},
+				},
+			}),
+		],
+	},
 };

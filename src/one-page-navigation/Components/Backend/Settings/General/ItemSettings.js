@@ -6,6 +6,7 @@ import { SVGSanitizer } from '../../../../../../../bpl-tools/utils/common';
 import { updateData } from '../../../../../../../bpl-tools/utils/functions';
 
 import { IMAGE_MIME_TYPES, SVG_MIME_TYPES, cleanSectionId, iconTypes } from '../../../../utils/options';
+import { allowSvgInUploader } from '../../../../../utils/helpers';
 
 const ItemSettings = ({ attributes, setAttributes, index }) => {
 	const { items = [] } = attributes;
@@ -14,7 +15,11 @@ const ItemSettings = ({ attributes, setAttributes, index }) => {
 
 	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
 	const { refetch } = useWPAjax('b-blocks-enable-svg-mime-type', { _wpnonce: bBlocksUtils?.nonce }, false);
-	const enableSVGUpload = async () => refetch();
+
+	const enableSVGUpload = async () => {
+		allowSvgInUploader();
+		return refetch()
+	};
 
 	const svgSanitizer = new SVGSanitizer();
 

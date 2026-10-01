@@ -1,23 +1,10 @@
 <?php
-/**
- * Google Map block server-side render.
- *
- * Emits an empty wrapper carrying the block attributes; view.js hydrates it
- * with React (Components/Common/Style.js + Components/Frontend/GoogleMap.js).
- * The API key is injected here as a data attribute so it never lives in post
- * content, and a static address + deep link is printed inside the wrapper so
- * no-JS / no-key visitors still get something useful before hydration wipes it.
- *
- * @package bBlocks
- *
- * @var array $attributes Block attributes.
- */
 
 $prefix    = 'bBlocksGoogleMap';
 $id        = wp_unique_id( "$prefix-" );
 $api_keys  = get_option( 'bBlocksApiKeys', [] );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
-
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 $source  = isset( $attributes['source'] ) && is_array( $attributes['source'] ) ? $attributes['source'] : [];
 $markers = isset( $attributes['markers'] ) && is_array( $attributes['markers'] ) ? $attributes['markers'] : [];
 $caption = isset( $attributes['caption'] ) && is_array( $attributes['caption'] ) ? $attributes['caption'] : [];

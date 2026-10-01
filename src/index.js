@@ -131,7 +131,7 @@ import './whatsapp-chat';
 // import './woo-mini-cart';
 // import './woo-product-carousel';
 // import './woo-product-filter';
-// import './woo-product-grid';
+import './woo-product-grid';
 // import './woo-product-reviews';
 // import './woo-sale-badge';
 // import './woo-single-product';

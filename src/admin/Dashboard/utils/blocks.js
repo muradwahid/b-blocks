@@ -53,6 +53,7 @@ import {
     fileDownloadCardIcon,
     // scrollRevealIcon,
     audioPlayerIcon,
+    wooProductGridIcon,
     //  parallaxSectionIcon, pdfEmbedIcon
 } from '../../../utils/blocksIcon';
 
@@ -1245,135 +1246,110 @@ export default [
             // },
         ]
     },
-    // {
-    //     title: 'WooCommerce Blocks',
-    //     children: [
-    // {
-    //     name: `${pluginSlug}/woo-product-grid`,
-    //     title: 'Product Grid',
-    //     icon: wooProductGridIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-product-carousel`,
-    //     title: 'Product Carousel',
-    //     icon: wooProductCarouselIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-best-sellers`,
-    //     title: 'Best Selling Products',
-    //     icon: wooBestSellersIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-featured-product`,
-    //     title: 'Featured Product',
-    //     icon: wooFeaturedProductIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-single-product`,
-    //     title: 'Single Product',
-    //     icon: wooSingleProductIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-category-grid`,
-    //     title: 'Product Categories',
-    //     icon: wooCategoryGridIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-product-filter`,
-    //     title: 'Product Filter',
-    //     icon: wooProductFilterIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-add-to-cart`,
-    //     title: 'Add to Cart Button',
-    //     icon: wooAddToCartIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-mini-cart`,
-    //     title: 'Mini Cart',
-    //     icon: wooMiniCartIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-sale-badge`,
-    //     title: 'Sale / Price Badge',
-    //     icon: wooSaleBadgeIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    // {
-    //     name: `${pluginSlug}/woo-product-reviews`,
-    //     title: 'Product Reviews',
-    //     icon: wooProductReviewsIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'published',
-    //     badge: 'NEW'
-    // },
-    //     ]
-    // },
-    // {
-    //     name: `${pluginSlug}/data-table`,
-    //     title: 'Data Table',
-    //     icon: dataTableIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'inDev'
-    // },
-    // {
-    //     name: `${pluginSlug}/login-form`,
-    //     title: 'Login Form',
-    //     icon: loginFormIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'inDev'
-    // },
-
-    // {
-    //     name: `${pluginSlug}/register-form`,
-    //     title: 'Register Form',
-    //     icon: registerFormIcon,
-    //     demo: ``,
-    //     docs: ``,
-    //     status: 'inDev'
-    // },
+    {
+        title: 'WooCommerce Blocks',
+        children: [
+            {
+                name: `${pluginSlug}/woo-product-grid`,
+                title: 'Woo Product Grid',
+                icon: wooProductGridIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
+            // {
+            //     name: `${pluginSlug}/woo-product-carousel`,
+            //     title: 'Product Carousel',
+            //     icon: wooProductCarouselIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-best-sellers`,
+            //     title: 'Best Selling Products',
+            //     icon: wooBestSellersIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-featured-product`,
+            //     title: 'Featured Product',
+            //     icon: wooFeaturedProductIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-single-product`,
+            //     title: 'Single Product',
+            //     icon: wooSingleProductIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-category-grid`,
+            //     title: 'Product Categories',
+            //     icon: wooCategoryGridIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-product-filter`,
+            //     title: 'Product Filter',
+            //     icon: wooProductFilterIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-add-to-cart`,
+            //     title: 'Add to Cart Button',
+            //     icon: wooAddToCartIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-mini-cart`,
+            //     title: 'Mini Cart',
+            //     icon: wooMiniCartIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-sale-badge`,
+            //     title: 'Sale / Price Badge',
+            //     icon: wooSaleBadgeIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+            // {
+            //     name: `${pluginSlug}/woo-product-reviews`,
+            //     title: 'Product Reviews',
+            //     icon: wooProductReviewsIcon,
+            //     demo: ``,
+            //     docs: ``,
+            //     status: 'published',
+            //     badge: 'NEW'
+            // },
+        ]
+    }
 ];
 
 

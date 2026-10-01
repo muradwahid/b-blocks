@@ -1,110 +1,75 @@
 <?php
-/**
- * Woo Product Grid block server-side render.
- *
- * Renders a sanitized WooCommerce product grid using wc_get_products(). Card
- * markup is produced by the shared `BBlocks\Inc\Blocks\WooProductGrid` renderer.
- * Per-instance CSS custom properties are emitted inline, scoped under a
- * `wp_unique_id()` wrapper id, so multiple grids on one page never collide.
- * All dynamic output is escaped.
- *
- * @package bBlocks
- *
- * @var array    $attributes Block attributes.
- * @var WP_Block $block      Block instance.
- */
 
 use BBlocks\Inc\Blocks\WooProductGrid;
+use BBlocks\Inc\Sanitize;
 
 if ( ! class_exists( WooProductGrid::class ) ) {
 	return;
 }
 
-$prefix    = 'bBlocksWooProductGrid';
-$id        = wp_unique_id( "$prefix-" );
-$planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
+$id = wp_unique_id( 'bBlocksWooProductGrid-' );
 
-$a = WooProductGrid::resolveAttributes( $attributes );
+$currentId = get_the_ID();
+if ( $currentId && 'product' === get_post_type( $currentId ) ) {
+	$attributes['query']['currentProductId'] = (int) $currentId;
+}
 
-// WooCommerce missing — show a friendly notice instead of fataling.
-if ( ! function_exists( 'wc_get_products' ) ) {
+if ( ! function_exists( 'wc_get_product' ) ) {
+	if ( ! current_user_can( 'activate_plugins' ) && ! current_user_can( 'install_plugins' ) ) {
+		return;
+	}
+
+	$installUrl = WooProductGrid::wooInstallUrl();
+
+	$linkOpen  = $installUrl ? '<a href="' . esc_url( $installUrl ) . '" target="_blank" rel="noreferrer noopener">' : '<strong>';
+	$linkClose = $installUrl ? '</a>' : '</strong>';
+
+	$message = __( 'WooCommerce is not installed/activated on your site. Please install and activate <a>WooCommerce</a> first.', 'b-blocks' );
+	$message = str_replace( [ '<a>', '</a>' ], [ $linkOpen, $linkClose ], $message );
 	?>
 	<div
 		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped. ?>
-		<?php echo get_block_wrapper_attributes( [ 'class' => "$planClass bb-wpg" ] ); ?>
+		<?php echo get_block_wrapper_attributes(); ?>
 	>
-		<p class='bb-wpg-empty'><?php echo esc_html__( 'WooCommerce is required to display the product grid.', 'b-blocks' ); ?></p>
+		<p class='b-blocks-woo-product-grid-notice'>
+			<?php
+			echo wp_kses(
+				$message,
+				[
+					'a'      => [ 'href' => [], 'target' => [], 'rel' => [] ],
+					'strong' => [],
+				]
+			);
+			?>
+		</p>
 	</div>
 	<?php
 	return;
 }
 
-// Shadow presets.
-$shadowMap = [
-	'none' => 'none',
-	'sm'   => '0 1px 3px rgba(15, 23, 42, 0.08)',
-	'md'   => '0 4px 12px rgba(15, 23, 42, 0.1)',
-	'lg'   => '0 8px 24px rgba(15, 23, 42, 0.14)',
-];
-$shadowValue = $shadowMap[ $a['cardShadow'] ] ?? $shadowMap['none'];
-$cardBorder  = ( $a['cardBorderWidth'] > 0 ) ? ( $a['cardBorderWidth'] . 'px solid ' . $a['cardBorderColor'] ) : 'none';
+$a = WooProductGrid::resolveAttributes( $attributes );
 
-// Per-instance CSS variables.
-$css  = "#$id.bb-wpg{";
-$css .= '--bb-wpg-cols:' . $a['columnsMobile'] . ';';
-$css .= '--bb-wpg-col-gap:' . $a['columnGap'] . 'px;';
-$css .= '--bb-wpg-row-gap:' . $a['rowGap'] . 'px;';
-$css .= '--bb-wpg-card-bg:' . $a['cardBG'] . ';';
-$css .= '--bb-wpg-card-pad:' . $a['cardPadding'] . 'px;';
-$css .= '--bb-wpg-card-radius:' . $a['cardRadius'] . 'px;';
-$css .= '--bb-wpg-card-border:' . $cardBorder . ';';
-$css .= '--bb-wpg-card-shadow:' . $shadowValue . ';';
-$css .= '--bb-wpg-aspect:' . $a['imageRatio'] . ';';
-$css .= '--bb-wpg-img-fit:' . $a['imageFit'] . ';';
-$css .= '--bb-wpg-content-align:' . $a['contentAlign'] . ';';
-$css .= '--bb-wpg-title-color:' . $a['titleColor'] . ';';
-$css .= '--bb-wpg-title-size:' . $a['titleSizeMobile'] . 'px;';
-$css .= '--bb-wpg-price-color:' . $a['priceColor'] . ';';
-$css .= '--bb-wpg-regular-price-color:' . $a['regularPriceColor'] . ';';
-$css .= '--bb-wpg-rating-color:' . $a['ratingColor'] . ';';
-$css .= '--bb-wpg-badge-bg:' . $a['badgeBG'] . ';';
-$css .= '--bb-wpg-badge-text:' . $a['badgeTextColor'] . ';';
-$css .= '--bb-wpg-btn-color:' . $a['btnColor'] . ';';
-$css .= '--bb-wpg-btn-bg:' . $a['btnBG'] . ';';
-$css .= '--bb-wpg-btn-hov-color:' . $a['btnHovColor'] . ';';
-$css .= '--bb-wpg-btn-hov-bg:' . $a['btnHovBG'] . ';';
-$css .= '--bb-wpg-btn-radius:' . $a['btnRadius'] . 'px;';
-$css .= '}';
-$css .= "@media (min-width:768px){#$id.bb-wpg{--bb-wpg-cols:" . $a['columnsTablet'] . ';--bb-wpg-title-size:' . $a['titleSizeTablet'] . 'px;}}';
-$css .= "@media (min-width:1024px){#$id.bb-wpg{--bb-wpg-cols:" . $a['columnsDesktop'] . ';--bb-wpg-title-size:' . $a['titleSizeDesktop'] . 'px;}}';
+$attributes = Sanitize::attributes( WooProductGrid::viewAttributes( $attributes, $a ) );
 
-// Query products.
-$args     = WooProductGrid::buildQueryArgs( $a );
-$products = wc_get_products( $args );
-if ( ! is_array( $products ) ) {
-	$products = [];
+if ( wp_script_is( 'wc-add-to-cart', 'registered' ) ) {
+	wp_enqueue_script( 'wc-add-to-cart' );
 }
 
-$wrapperClasses = trim( $planClass . ' bb-wpg' . ' bb-wpg--align-' . $a['contentAlign'] );
+$firstData           = WooProductGrid::getProducts( $a, 0, 1 );
+$firstData['terms']  = WooProductGrid::filterTerms( $a );
+$firstData['labels'] = WooProductGrid::labels();
+$firstData           = Sanitize::attributes( $firstData );
+
+wp_reset_postdata();
+
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped. ?>
-	<?php echo get_block_wrapper_attributes( [ 'class' => $wrapperClasses ] ); ?>
+	<?php echo get_block_wrapper_attributes(); ?>
 	id='<?php echo esc_attr( $id ); ?>'
-	data-bb-wpg-nonce='<?php echo esc_attr( wp_create_nonce( 'bb_wpg_add_to_cart' ) ); ?>'
-	data-bb-wpg-ajax='<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>'
->
-	<style>
-		<?php echo wp_strip_all_tags( $css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CSS-only output, HTML tags stripped. ?>
-	</style>
-
-	<div class='bb-wpg-status' aria-live='polite' aria-atomic='true'></div>
-
-	<?php if ( ! empty( $products ) ) : ?>
-		<div class='bb-wpg-grid' role='list' aria-label='<?php echo esc_attr__( 'Product grid', 'b-blocks' ); ?>'>
-			<?php echo wp_kses_post( WooProductGrid::renderCards( $products, $a ) ); ?>
-		</div>
-	<?php else : ?>
-		<p class='bb-wpg-empty'><?php echo esc_html( $a['noProductsMessage'] ); ?></p>
-	<?php endif; ?>
-</div>
+	data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'
+	data-nonce='<?php echo esc_attr( wp_json_encode( wp_create_nonce( 'wp_ajax' ) ) ); ?>'
+	data-ajax-url='<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>'
+	data-first-products='<?php echo esc_attr( wp_json_encode( $firstData ) ); ?>'
+	data-bblocks-advanced='<?php echo esc_attr( wp_json_encode( $attributes['advanced'] ?? [] ) ); ?>'
+></div>

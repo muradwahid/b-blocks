@@ -23,7 +23,14 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			$disabledBlocks = is_array( $disabledBlocks ) ? $disabledBlocks : [];
 			wp_localize_script( 'b-blocks-index-script', 'bBlocksDisabledBlocks', $disabledBlocks );
 
-			wp_localize_script( 'b-blocks-index-script', 'bBlocksGlobal', [ 'assetsUrl' => B_BLOCKS_ASSETS ] );
+			// `canUnfilteredHtml` gates the HTML block's script activation in the
+			// editor preview (see src/html/Components/hooks/useRunJs.js). Note
+			// that wp_localize_script() casts scalars to strings, so this
+			// arrives in JS as '1' or '' - read it for truthiness, not === true.
+			wp_localize_script( 'b-blocks-index-script', 'bBlocksGlobal', [
+				'assetsUrl'         => B_BLOCKS_ASSETS,
+				'canUnfilteredHtml' => current_user_can( 'unfiltered_html' ),
+			] );
 
 			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );
 

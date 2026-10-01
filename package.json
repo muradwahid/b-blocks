@@ -17,8 +17,8 @@
     "i18n-mo": "wp i18n make-mo languages/",
     "i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",
     "plugin-zip": "wp-scripts plugin-zip",
-    "mac-zip": "zip -r b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
-    "zip": "tar.exe acvf b-blocks.zip assets build freemius includes languages index.php plugin.php readme.txt",
+    "mac-zip": "zip -r b-blocks.zip assets build freemius includes languages vendor index.php plugin.php readme.txt -x '*.map' '*.DS_Store'",
+    "zip": "tar.exe acvf b-blocks.zip --exclude=*.map --exclude=.DS_Store assets build freemius includes languages vendor index.php plugin.php readme.txt",
     "bundle": "gulp clean && npm run lint && npm run build && npm run i18n && npm run zip",
     "fs-deploy": "gulp freemius-deploy",
     "remove-ds": "find . -name \".DS_Store\" -delete"

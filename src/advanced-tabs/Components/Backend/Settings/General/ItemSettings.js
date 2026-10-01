@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { IconLibrary, Label, MediaArea } from '../../../../../../../bpl-tools/Components';
 import { SVGSanitizer } from "../../../../../../../bpl-tools/utils/common";
 import { useWPOptionQuery, useWPAjax } from '../../../../../../../bpl-tools/hooks';
+import { allowSvgInUploader } from '../../../../../utils/helpers';
 
 const ItemSettings = ({ attributes, setAttributes, index, updateObj }) => {
   const { tabLists, tabs } = attributes;
@@ -22,14 +23,15 @@ const ItemSettings = ({ attributes, setAttributes, index, updateObj }) => {
     }
   }
 
-
   const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
 
   const { refetch } = useWPAjax('b-blocks-enable-svg-mime-type', { _wpnonce: bBlocksUtils?.nonce }, false)
 
+  const enableSVGUpload = () => {
 
-  const enableSVGUpload = async () => {
-    await refetch();
+    allowSvgInUploader();
+
+    return refetch();
   }
 
   const svgSanitizer = new SVGSanitizer();
@@ -52,8 +54,7 @@ const ItemSettings = ({ attributes, setAttributes, index, updateObj }) => {
       tab.iconType === 'svg' && <>
         <MediaArea className='mt10' label={__('Upload SVG', 'b-blocks')} types={['image/svg+xml']} onClick={enableSVGUpload} value={{ url: tab.svg }} onChange={async (value) => {
           const svgStr = value?.url ? await svgSanitizer.sanitizeFile(value?.url) : '';
-          updateObj('tabLists', svgStr, index, 'svg')
-
+          updateObj('tabLists', svgStr, index, 'svg');
         }} isSvgEnabled={true} />
       </>
     }

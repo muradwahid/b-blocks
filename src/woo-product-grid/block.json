@@ -2,10 +2,9 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/woo-product-grid",
-	"version": "1.0.0",
 	"title": "Woo Product Grid",
 	"category": "bBlocks",
-	"description": "Server-rendered WooCommerce product grid with query, card-element, and style controls plus AJAX add-to-cart for simple products.",
+	"description": "Display WooCommerce products in a stunning, organized grid or list. Let shoppers filter by category, browse more without reloading, and add to cart right from the page.",
 	"keywords": [
 		"woocommerce",
 		"product grid",
@@ -19,177 +18,1284 @@
 	],
 	"textdomain": "b-blocks",
 	"attributes": {
-		"align": {
+		"theme": {
 			"type": "string",
-			"default": "wide"
+			"default": "default"
 		},
-		"columns": {
+		"layout": {
 			"type": "object",
 			"default": {
-				"desktop": 3,
-				"tablet": 2,
-				"mobile": 1
+				"type": "grid",
+				"titleTag": "h4",
+				"actionPosition": "overlay",
+				"actionAlign": "center",
+				"actionFull": false,
+				"actionIconOnly": false,
+				"actionOrder": "cart",
+				"imageSize": "default",
+				"desktop": {
+					"columns": 4,
+					"contentAlign": "left",
+					"columnGap": "20px",
+					"rowGap": "20px"
+				},
+				"tablet": {
+					"columns": 2,
+					"contentAlign": "",
+					"columnGap": "",
+					"rowGap": ""
+				},
+				"mobile": {
+					"columns": 1,
+					"contentAlign": "",
+					"columnGap": "",
+					"rowGap": ""
+				}
 			}
 		},
-		"columnGap": {
-			"type": "integer",
-			"default": 20
-		},
-		"rowGap": {
-			"type": "integer",
-			"default": 20
-		},
-		"productsPerPage": {
-			"type": "integer",
-			"default": 9
-		},
-		"orderBy": {
-			"type": "string",
-			"default": "date"
-		},
-		"order": {
-			"type": "string",
-			"default": "desc"
-		},
-		"productCategories": {
-			"type": "array",
-			"default": []
-		},
-		"productTags": {
-			"type": "array",
-			"default": []
-		},
-		"onSaleOnly": {
-			"type": "boolean",
-			"default": false
-		},
-		"featuredOnly": {
-			"type": "boolean",
-			"default": false
-		},
-		"showImage": {
-			"type": "boolean",
-			"default": true
-		},
-		"imageFit": {
-			"type": "string",
-			"default": "cover"
-		},
-		"imageRatio": {
-			"type": "string",
-			"default": "3/4"
-		},
-		"showTitle": {
-			"type": "boolean",
-			"default": true
-		},
-		"showPrice": {
-			"type": "boolean",
-			"default": true
-		},
-		"showRating": {
-			"type": "boolean",
-			"default": true
-		},
-		"showSaleBadge": {
-			"type": "boolean",
-			"default": true
-		},
-		"saleBadgeLabel": {
-			"type": "string",
-			"default": "Sale"
-		},
-		"showAddToCart": {
-			"type": "boolean",
-			"default": true
-		},
-		"addToCartLabel": {
-			"type": "string",
-			"default": "Add to Cart"
-		},
-		"contentAlign": {
-			"type": "string",
-			"default": "left"
-		},
-		"cardBG": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"cardPadding": {
-			"type": "integer",
-			"default": 16
-		},
-		"cardBorderWidth": {
-			"type": "integer",
-			"default": 1
-		},
-		"cardBorderColor": {
-			"type": "string",
-			"default": "#e2e8f0"
-		},
-		"cardRadius": {
-			"type": "integer",
-			"default": 8
-		},
-		"cardShadow": {
-			"type": "string",
-			"default": "none"
-		},
-		"titleColor": {
-			"type": "string",
-			"default": ""
-		},
-		"titleFontSize": {
+		"elements": {
 			"type": "object",
 			"default": {
-				"desktop": "17px",
-				"tablet": "16px",
-				"mobile": "15px"
+				"image": true,
+				"category": false,
+				"rating": true,
+				"price": true,
+				"saleBadge": true,
+				"soldCount": false,
+				"progressBar": false,
+				"viewButton": false,
+				"title": true,
+				"cart": true
 			}
 		},
-		"priceColor": {
-			"type": "string",
-			"default": "#e44d3a"
+		"query": {
+			"type": "object",
+			"default": {
+				"type": "custom",
+				"orderBy": "date",
+				"order": "desc",
+				"perPage": 4,
+				"offset": 0,
+				"include": [],
+				"exclude": [],
+				"categoryMode": "include",
+				"categories": [],
+				"tagMode": "include",
+				"tags": [],
+				"onSaleOnly": false,
+				"featuredOnly": false,
+				"currentProductId": 0,
+				"noProductsMessage": "No products found."
+			}
 		},
-		"regularPriceColor": {
-			"type": "string",
-			"default": "#999999"
+		"contentOrder": {
+			"type": "array",
+			"default": [
+				"price",
+				"rating",
+				"title",
+				"category",
+				"soldCount"
+			]
 		},
-		"ratingColor": {
-			"type": "string",
-			"default": "#f5a623"
+		"cart": {
+			"type": "object",
+			"default": {
+				"useCustomText": false,
+				"simple": "Buy Now",
+				"variable": "Select options",
+				"grouped": "View products",
+				"external": "Buy now",
+				"default": "Read more",
+				"showIcon": true,
+				"icon": "",
+				"iconColor": "",
+				"iconPosition": "left",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					},
+					"fontWeight": 500
+				},
+				"transition": 0.2,
+				"normal": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#146EF5"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "13px",
+							"right": "14px",
+							"bottom": "13px",
+							"left": "14px"
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "4px",
+							"right": "4px",
+							"bottom": "4px",
+							"left": "4px"
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#070127"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"desktop": {
+					"iconSize": ""
+				},
+				"tablet": {
+					"iconSize": ""
+				},
+				"mobile": {
+					"iconSize": ""
+				}
+			}
 		},
-		"badgeBG": {
-			"type": "string",
-			"default": "#e44d3a"
+		"viewButton": {
+			"type": "object",
+			"default": {
+				"text": "Visit Product",
+				"showIcon": true,
+				"icon": "",
+				"iconColor": "",
+				"iconPosition": "left",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					},
+					"fontWeight": 500
+				},
+				"transition": 0.2,
+				"normal": {
+					"color": "#070127",
+					"bg": {
+						"type": "solid",
+						"color": "#ffffff"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "13px",
+							"right": "14px",
+							"bottom": "13px",
+							"left": "14px"
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "4px",
+							"right": "4px",
+							"bottom": "4px",
+							"left": "4px"
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#146EF5"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"margin": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"desktop": {
+					"iconSize": ""
+				},
+				"tablet": {
+					"iconSize": ""
+				},
+				"mobile": {
+					"iconSize": ""
+				}
+			}
 		},
-		"badgeTextColor": {
-			"type": "string",
-			"default": "#ffffff"
+		"badge": {
+			"type": "object",
+			"default": {
+				"align": "top",
+				"text": "Sale",
+				"content": "text",
+				"bg": {
+					"type": "solid",
+					"color": "#e44d3a"
+				},
+				"color": "#ffffff",
+				"typo": {
+					"fontSize": {
+						"desktop": "12px"
+					},
+					"fontWeight": 500
+				},
+				"desktop": {
+					"radius": {
+						"top": "4px",
+						"right": "4px",
+						"bottom": "4px",
+						"left": "4px"
+					},
+					"padding": {
+						"top": "3px",
+						"right": "10px",
+						"bottom": "3px",
+						"left": "10px"
+					},
+					"offset": "10px"
+				},
+				"tablet": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"offset": ""
+				},
+				"mobile": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"offset": ""
+				}
+			}
 		},
-		"btnColor": {
-			"type": "string",
-			"default": "#ffffff"
+		"pager": {
+			"type": "object",
+			"default": {
+				"enable": true,
+				"type": "button",
+				"text": "Load More",
+				"align": "center",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					},
+					"fontWeight": 500
+				},
+				"transition": 0.2,
+				"normal": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#146EF5"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "8px",
+							"right": "18px",
+							"bottom": "8px",
+							"left": "18px"
+						},
+						"radius": {
+							"top": "4px",
+							"right": "4px",
+							"bottom": "4px",
+							"left": "4px"
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#070127"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"active": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#070127"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
 		},
-		"btnBG": {
-			"type": "string",
-			"default": "#146EF5"
+		"filter": {
+			"type": "object",
+			"default": {
+				"enable": false,
+				"taxonomy": "product_cat",
+				"allText": "All",
+				"align": "left",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					},
+					"fontWeight": 400
+				},
+				"transition": 0.2,
+				"normal": {
+					"color": "#070127",
+					"bg": {
+						"type": "solid",
+						"color": "#f1f5f9"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "6px",
+							"right": "14px",
+							"bottom": "6px",
+							"left": "14px"
+						},
+						"radius": {
+							"top": "4px",
+							"right": "4px",
+							"bottom": "4px",
+							"left": "4px"
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#146EF5"
+					},
+					"border": {
+						"width": "",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
 		},
-		"btnHovColor": {
-			"type": "string",
-			"default": "#ffffff"
+		"card": {
+			"type": "object",
+			"default": {
+				"transition": 0.25,
+				"bodyBg": {
+					"type": "solid",
+					"color": ""
+				},
+				"normal": {
+					"bg": {
+						"type": "solid",
+						"color": "#ffffff"
+					},
+					"border": {
+						"width": "1px",
+						"style": "solid",
+						"color": "#e2e8f0"
+					},
+					"shadow": [],
+					"desktop": {
+						"padding": {
+							"top": "16px",
+							"right": "16px",
+							"bottom": "16px",
+							"left": "16px"
+						},
+						"radius": {
+							"top": "8px",
+							"right": "8px",
+							"bottom": "8px",
+							"left": "8px"
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"bg": {
+						"type": "solid",
+						"color": "#ffffff"
+					},
+					"border": {
+						"width": "1px",
+						"style": "solid",
+						"color": "#146EF5"
+					},
+					"shadow": [
+						{
+							"hOffset": "0px",
+							"vOffset": "6px",
+							"blur": "18px",
+							"spreed": "0px",
+							"color": "rgba(15, 23, 42, 0.12)",
+							"isInset": false
+						}
+					],
+					"desktop": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"desktop": {
+					"bodyMargin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"bodyMargin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"bodyMargin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"divider": "#f1f5f9"
+			}
 		},
-		"btnHovBG": {
-			"type": "string",
-			"default": "#070127"
+		"media": {
+			"type": "object",
+			"default": {
+				"ratio": "3/4",
+				"fit": "cover",
+				"bg": {
+					"type": "solid",
+					"color": "#f1f5f9"
+				},
+				"overlay": {
+					"type": "solid",
+					"color": "rgba(7, 1, 39, 0.45)"
+				},
+				"desktop": {
+					"radius": {
+						"top": "8px",
+						"right": "8px",
+						"bottom": "8px",
+						"left": "8px"
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				}
+			}
 		},
-		"btnRadius": {
-			"type": "integer",
-			"default": 4
+		"title": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					},
+					"fontWeight": 600
+				},
+				"transition": 0.2,
+				"normal": {
+					"color": "#070127"
+				},
+				"hover": {
+					"color": "#146EF5"
+				}
+			}
 		},
-		"noProductsMessage": {
-			"type": "string",
-			"default": "No products found."
+		"price": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "16px"
+					},
+					"fontWeight": 700
+				},
+				"color": "#e44d3a",
+				"regularColor": "#999999"
+			}
+		},
+		"rating": {
+			"type": "object",
+			"default": {
+				"style": "star",
+				"showEmpty": true,
+				"color": "#f5a623",
+				"emptyColor": "#d1d5db",
+				"countColor": "#64748b",
+				"size": 14
+			}
+		},
+		"category": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "12px"
+					}
+				},
+				"transition": 0.2,
+				"normal": {
+					"color": "#6b7280"
+				},
+				"hover": {
+					"color": "#146EF5"
+				}
+			}
+		},
+		"sold": {
+			"type": "object",
+			"default": {
+				"prefix": "Sold",
+				"suffix": "+",
+				"withoutStock": 50,
+				"typo": {
+					"fontSize": {
+						"desktop": "12px"
+					}
+				},
+				"color": "#6b7280",
+				"bg": {
+					"type": "solid",
+					"color": ""
+				},
+				"progress": {
+					"trackColor": "#e2e8f0",
+					"fillColor": "#146EF5",
+					"height": 6,
+					"desktop": {
+						"radius": {
+							"top": "3px",
+							"right": "3px",
+							"bottom": "3px",
+							"left": "3px"
+						}
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"border": {
+							"width": "",
+							"style": "",
+							"color": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"shadow": []
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"position": {}
+			}
 		}
 	},
 	"supports": {
@@ -203,8 +1309,7 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
+	"editorScript": "file:../index.js",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

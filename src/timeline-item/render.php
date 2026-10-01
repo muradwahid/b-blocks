@@ -1,28 +1,10 @@
 <?php
-/**
- * Timeline Item Block server-side render.
- *
- * One entry on a Timeline: the card holding the inner blocks, the SVG marker
- * that sits on the line, and the date beside it. Like its parent the markup is
- * rendered here rather than on the client — the card's content is InnerBlocks
- * — and view.js only mounts the generated <style> into the empty host below.
- *
- * The side an entry sits on is normally decided in CSS from its position in
- * the list, so nothing about ordering needs to be known at render time. A
- * `side` set in the sidebar adds a class that outranks that rule; it mirrors
- * utils/functions.js.
- *
- * @package bBlocks
- *
- * @var array  $attributes Block attributes.
- * @var string $content    Rendered inner blocks.
- */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$id = wp_unique_id( 'timeline-item-' );
+$id = wp_unique_id( 'bBlocksTimelineItem-' );
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 
 $item = isset( $attributes['item'] ) && is_array( $attributes['item'] ) ? $attributes['item'] : array();
 

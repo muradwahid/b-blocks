@@ -10,6 +10,7 @@ import { SVGSanitizer } from '../../../../../../../bpl-tools/utils/common';
 
 import { easingOptions, proEasings } from '../../../../utils/options';
 import { cloudIcon } from '../../../../utils/icons';
+import { allowSvgInUploader } from '../../../../../utils/helpers';
 const General = (props) => {
     const { attributes, setAttributes, isPremium,setIsProModalOpen } = props;
     const { icon, options } = attributes;
@@ -20,6 +21,7 @@ const General = (props) => {
 
 
     const enableSVGUpload = async () => {
+        allowSvgInUploader();
         await refetch();
     }
 

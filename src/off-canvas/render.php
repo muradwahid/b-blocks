@@ -1,6 +1,6 @@
 <?php
-
 $id        = wp_unique_id( 'bBlocksOffCanvas-' );
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
 ?>
 <div

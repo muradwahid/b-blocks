@@ -1,5 +1,6 @@
 <?php
 $prefix = 'bBlocksInfographic';
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 $id     = empty( $attributes['blockId'] ) ? wp_unique_id( "$prefix-" ) : "$prefix-" . $attributes['blockId'];
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
 ?>

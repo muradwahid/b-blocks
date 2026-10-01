@@ -2,7 +2,6 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/comparison-table",
-	"version": "2.0.60.3",
 	"title": "Comparison Table",
 	"category": "bBlocks",
 	"description": "Compare plans side by side with check, cross, or text cells and a highlighted featured column.",

@@ -1,6 +1,6 @@
 <?php
 $id = wp_unique_id( 'bBlocksBreadcrumb-' );
-
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 if ( ! function_exists( 'bBlocks_breadcrumb_build_crumbs' ) ) {
 
 	function bBlocks_breadcrumb_build_crumbs( $show_home, $home_label ) {

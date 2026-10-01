@@ -1,5 +1,6 @@
 <?php
 $id = wp_unique_id( 'bBlocksSvgDraw-' );
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

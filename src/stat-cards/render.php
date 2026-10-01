@@ -1,16 +1,7 @@
 <?php
-/**
- * Stat Cards Block — server-side render.
- *
- * Emits only a wrapper carrying the block attributes as a JSON data-attribute.
- * view.js hydrates it on the frontend with React (Components/Frontend/StatCards)
- * and injects per-instance dynamic CSS (Components/Common/Style).
- *
- * @package bBlocks
- */
-
 $id        = wp_unique_id( 'bBlocksStatCards-' );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

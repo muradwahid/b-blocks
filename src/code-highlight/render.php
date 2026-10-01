@@ -1,15 +1,7 @@
 <?php
-/**
- * Code Highlight block server-side render.
- *
- * Emits only an empty wrapper carrying the block attributes as JSON. The markup
- * is rendered on the client by view.js from the same shared component the editor
- * uses, matching the b-blocks convention (see image-hotspot / infographic).
- *
- * @package bBlocks
- */
 
 $prefix = 'b-blocks-code-highlight';
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 $id     = empty( $attributes['blockId'] ) ? wp_unique_id( "$prefix-" ) : "$prefix-" . $attributes['blockId'];
 
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';

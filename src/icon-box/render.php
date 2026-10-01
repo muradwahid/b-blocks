@@ -1,6 +1,8 @@
 <?php
 $id = wp_unique_id( 'bBlocksIconBox-' );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
+
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

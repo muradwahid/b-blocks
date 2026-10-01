@@ -7,6 +7,7 @@ import { FaRegImage, FaStar, IoText } from '../../../../../utils/icons';
 import { toolbarPositions } from '../../../../../utils/options';
 import { useWPAjax, useWPOptionQuery } from '../../../../../../../../bpl-tools/hooks';
 import { SVGSanitizer } from '../../../../../../../../bpl-tools/utils/common';
+import { allowSvgInUploader } from '../../../../../../utils/helpers';
 
 const SpotItemSettings = (props) => {
 	const { attributes, setAttributes, arrKey, index, setActiveIndex } = props;
@@ -18,7 +19,8 @@ const SpotItemSettings = (props) => {
 		const { refetch, } = useWPAjax('b-blocks-enable-svg-mime-type', { _wpnonce: bBlocksUtils?.nonce }, false)
 	
 	
-		const enableSVGUpload = async () => {
+	const enableSVGUpload = async () => {
+			allowSvgInUploader();
 			await refetch();
 		}
 	

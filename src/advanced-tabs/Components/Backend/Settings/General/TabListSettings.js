@@ -72,8 +72,6 @@ const TabListSettings = (props) => {
         }
       })
     }
-
-
   }
 
   return <PanelBody className='bPlPanelBody' title={__('Tab Lists', 'b-blocks')} initialOpen={false}>

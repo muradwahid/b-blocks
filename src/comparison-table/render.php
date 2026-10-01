@@ -1,6 +1,7 @@
 <?php
 $prefix    = 'bBlocksComparisonTable';
 $id        = wp_unique_id( "$prefix-" );
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
 ?>
 <div

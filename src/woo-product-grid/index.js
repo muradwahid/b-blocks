@@ -6,11 +6,11 @@ import Edit from './Components/Backend/Edit';
 import { wooProductGridIcon } from '../utils/blocksIcon';
 import { isBlockEnabled } from '../utils/functions';
 
-isBlockEnabled( metadata.name ) && registerBlockType( metadata, {
+isBlockEnabled(metadata.name) && registerBlockType(metadata, {
 	icon: wooProductGridIcon,
 
 	// Build In Functions
 	edit: Edit,
 
 	save: () => null
-} );
+});

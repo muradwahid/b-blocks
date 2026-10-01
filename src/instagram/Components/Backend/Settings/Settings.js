@@ -18,7 +18,7 @@ const Settings = (props) => {
 	const { advanced } = attributes;
 
 	return <InspectorControls>
-		<TabPanel className='bPlTabPanel' activeClass='activeTab' initialTabName='advanced' tabs={allTabs} onSelect={tabController}>
+		<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={allTabs} onSelect={tabController}>
 			{(tab) => <>
 				{'general' === tab.name && <>
 

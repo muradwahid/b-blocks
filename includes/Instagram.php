@@ -1,16 +1,4 @@
 <?php
-/**
- * Instagram feed data for the Instagram block.
- *
- * The access token never reaches the browser: it is kept in a site option and
- * every Graph API call is made here, server-side. The block only ever asks this
- * endpoint for already-fetched media, so a published page carries no credential.
- *
- * Ported from bPlugins/my-social-feeds (includes/Instagram.php), minus the OAuth
- * connect screen — the token is entered in the block's own settings.
- *
- * @package bBlocks
- */
 
 namespace BBlocks\Inc;
 
@@ -21,6 +9,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 class BBlocksInstagram {
 	const OPTION    = 'b_blocks_instagram';
 	const CACHE_KEY = 'b_blocks_instagram_feed_';
+
+	/**
+	 * Nonce action for every endpoint in this class.
+	 *
+	 * Deliberately NOT the generic 'wp_ajax' the rest of the plugin used to
+	 * share: a nonce minted for one endpoint should not authenticate a
+	 * different one. The feed is a nopriv endpoint, so this nonce is public
+	 * by construction (wp_create_nonce() for a logged-out visitor is the same
+	 * value for every anonymous visitor) - it is CSRF friction, never access
+	 * control. Authorization on the privileged endpoints comes from the
+	 * capability checks below, and abuse of the public endpoint is bounded by
+	 * the cache floor and the rate limiter in feed().
+	 */
+	const NONCE_ACTION = 'b_blocks_instagram_feed';
+
+	const CACHE_MIN_MINUTES = 5;
+
+	const CACHE_MAX_MINUTES = 10080;
+
+	const LOCK_SECONDS = 20;
+
+	/**
+	 * Upstream Instagram fetches allowed per IP, per window, for callers who
+	 * cannot edit posts. Cache *hits* are never counted - only a cache miss
+	 * that would hit graph.instagram.com consumes budget, so ordinary visitors
+	 * loading a cached feed are unaffected no matter how many times they load
+	 * the page.
+	 */
+	const PUBLIC_FETCH_MAX    = 5;
+	const PUBLIC_FETCH_WINDOW = 300;
 
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_option' ] );
@@ -33,11 +51,6 @@ class BBlocksInstagram {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'localize' ], 20 );
 	}
 
-	/**
-	 * Registered so the option is a known site setting, but deliberately kept out
-	 * of REST: the token is only ever written through save_account() below, and is
-	 * never read back to the browser at all.
-	 */
 	public function register_option() {
 		register_setting(
 			'options',
@@ -58,7 +71,7 @@ class BBlocksInstagram {
 					'bBlocksInstagram',
 					[
 						'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-						'nonce'   => wp_create_nonce( 'wp_ajax' ),
+						'nonce'   => wp_create_nonce( self::NONCE_ACTION ),
 					]
 				);
 			}
@@ -71,24 +84,21 @@ class BBlocksInstagram {
 		return isset( $data['accounts'] ) && is_array( $data['accounts'] ) ? $data['accounts'] : [];
 	}
 
-	/** The token saved on Dashboard -> Settings -> API Integrations, if any. */
+
 	public static function dashboard_token() {
 		$keys = get_option( 'bBlocksApiKeys', [] );
 
 		return is_array( $keys ) ? (string) ( $keys['instagram']['key'] ?? '' ) : '';
 	}
 
-	/**
-	 * The dashboard card wins, since that is the site-wide place a token is meant
-	 * to be entered; a token stored on the block itself keeps older setups working.
-	 */
+
 	private function token_for( $account ) {
 		$dashboard = self::dashboard_token();
 
 		return '' !== $dashboard ? $dashboard : (string) ( $account['token'] ?? '' );
 	}
 
-	/** Matches the account the block asked for, by username or by id. */
+
 	private function find_account( $wanted ) {
 		$dashboard = self::dashboard_token();
 
@@ -105,23 +115,18 @@ class BBlocksInstagram {
 		return null;
 	}
 
-	/** Only an administrator may see or change which account is connected. */
 	private function guard() {
 		$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
 
-		if ( ! wp_verify_nonce( $nonce, 'wp_ajax' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( ! wp_verify_nonce( $nonce, self::NONCE_ACTION ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( __( 'Invalid request.', 'b-blocks' ) );
 		}
 	}
 
-	/**
-	 * Reports whether a token is stored, never the token itself — it would end up
-	 * in the editor's DOM for anyone looking over the author's shoulder.
-	 */
 	public function get_account() {
 		$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
 
-		if ( ! wp_verify_nonce( $nonce, 'wp_ajax' ) || ! current_user_can( 'edit_posts' ) ) {
+		if ( ! wp_verify_nonce( $nonce, self::NONCE_ACTION ) || ! current_user_can( 'edit_posts' ) ) {
 			wp_send_json_error( __( 'Invalid request.', 'b-blocks' ) );
 		}
 
@@ -144,8 +149,6 @@ class BBlocksInstagram {
 		$username = sanitize_text_field( wp_unslash( $_POST['username'] ?? '' ) );
 		$token    = sanitize_text_field( wp_unslash( $_POST['token'] ?? '' ) );
 
-		// An empty token field means "leave the stored one alone", so the account
-		// can be renamed without retyping the credential.
 		$saved = [
 			'id'       => $account['id'] ?? '',
 			'username' => $username,
@@ -159,10 +162,6 @@ class BBlocksInstagram {
 		wp_send_json_success( [ 'username' => $saved['username'], 'hasToken' => ! empty( $saved['token'] ) ] );
 	}
 
-	/**
-	 * Validates a token for the dashboard's API Integrations card. Graph answers
-	 * with a 200 and an error in the body, so the body is what decides.
-	 */
 	public static function test_token( $token ) {
 		$token = trim( (string) $token );
 
@@ -189,7 +188,6 @@ class BBlocksInstagram {
 			return [ 'valid' => false, 'message' => __( 'Instagram did not return an account for this token', 'b-blocks' ) ];
 		}
 
-		// A new token must not keep serving the feed the old one fetched.
 		self::flush();
 
 		return [ 'valid' => true, 'message' => sprintf( '%s @%s', __( 'Connected as', 'b-blocks' ), $body['username'] ) ];
@@ -198,13 +196,13 @@ class BBlocksInstagram {
 	public function feed() {
 		$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
 
-		if ( ! wp_verify_nonce( $nonce, 'wp_ajax' ) ) {
+		if ( ! wp_verify_nonce( $nonce, self::NONCE_ACTION ) ) {
 			wp_send_json_error( __( 'Invalid request.', 'b-blocks' ) );
 		}
 
 		$wanted  = sanitize_text_field( wp_unslash( $_POST['account'] ?? '' ) );
 		$limit   = min( 100, max( 1, absint( $_POST['limit'] ?? 50 ) ) );
-		$minutes = min( 10080, max( 0, absint( $_POST['cache'] ?? 30 ) ) );
+		$minutes = $this->cache_minutes( $_POST['cache'] ?? 30 );
 		$account = $this->find_account( $wanted );
 
 		$token = $account ? $this->token_for( $account ) : '';
@@ -213,14 +211,35 @@ class BBlocksInstagram {
 			wp_send_json_error( __( 'No Instagram account is connected. Add an access token under Dashboard → Settings → API Integrations.', 'b-blocks' ) );
 		}
 
-		$cache_key = self::CACHE_KEY . md5( $token . '|' . $limit );
-		$cached    = $minutes ? get_transient( $cache_key ) : false;
+		$privileged = current_user_can( 'edit_posts' );
+		$bucket     = $this->fetch_bucket( $limit, $privileged );
+		$cache_key  = self::CACHE_KEY . md5( $token . '|' . $bucket );
+		$cached     = $minutes ? get_transient( $cache_key ) : false;
 
 		if ( false !== $cached ) {
-			wp_send_json_success( $cached );
+			wp_send_json_success( $this->take( $cached, $limit ) );
 		}
 
-		$payload = $this->fetch( $token, $limit );
+		$lock = $cache_key . '_lock';
+
+		if ( get_transient( $lock ) ) {
+			wp_send_json_error( __( 'The Instagram feed is being refreshed. Please try again in a moment.', 'b-blocks' ) );
+		}
+
+		// Past this point the request costs an outbound call to Instagram.
+		// Everything above is served from cache, so the limiter sits here
+		// rather than at the top of the method: normal visitors on a warm
+		// cache never touch it, and only the callers actually driving
+		// upstream traffic spend budget.
+		if ( ! $privileged ) {
+			$this->throttle_fetch();
+		}
+
+		set_transient( $lock, 1, self::LOCK_SECONDS );
+
+		$payload = $this->fetch( $token, $bucket );
+
+		delete_transient( $lock );
 
 		if ( is_wp_error( $payload ) ) {
 			wp_send_json_error( $payload->get_error_message() );
@@ -230,14 +249,107 @@ class BBlocksInstagram {
 			set_transient( $cache_key, $payload, $minutes * MINUTE_IN_SECONDS );
 		}
 
-		wp_send_json_success( $payload );
+		wp_send_json_success( $this->take( $payload, $limit ) );
+	}
+
+	private function cache_minutes( $requested ) {
+		$minutes = min( self::CACHE_MAX_MINUTES, absint( $requested ) );
+
+		if ( current_user_can( 'edit_posts' ) ) {
+			return $minutes;
+		}
+
+		$floor = (int) apply_filters( 'b_blocks_instagram_min_cache_minutes', self::CACHE_MIN_MINUTES );
+
+		return max( $floor, $minutes );
 	}
 
 	/**
-	 * Asks for the richer profile first. Graph rejects the whole request when a
-	 * field is not available to the token's account type, so a plain token falls
-	 * back to the fields every account has rather than returning nothing.
+	 * Per-IP throttle on cache-missing feed requests.
+	 *
+	 * Sends a 429 and exits when the caller is over budget. Mirrors the
+	 * counter in BBlocksOptinRateLimit but with its own window, because a
+	 * feed refresh and a form submission are not the same kind of traffic.
 	 */
+	private function throttle_fetch() {
+		$max    = (int) apply_filters( 'b_blocks_instagram_public_fetch_max', self::PUBLIC_FETCH_MAX );
+		$window = (int) apply_filters( 'b_blocks_instagram_public_fetch_window', self::PUBLIC_FETCH_WINDOW );
+
+		if ( $max <= 0 || $window <= 0 ) {
+			return;
+		}
+
+		$key  = 'bb_ig_rl_' . md5( $this->client_ip() );
+		$hits = (int) get_transient( $key );
+
+		if ( $hits >= $max ) {
+			wp_send_json_error( __( 'Too many Instagram refreshes. Please wait a moment and try again.', 'b-blocks' ), 429 );
+		}
+
+		// The expiry is never refreshed on later hits, so the window rolls
+		// from the first request rather than sliding forward forever.
+		set_transient( $key, $hits + 1, $window );
+	}
+
+	/**
+	 * Client IP for the throttle key, validated so a spoofed proxy header
+	 * cannot inject arbitrary text into the transient name. A spoofed value
+	 * only changes which bucket the caller lands in; it does not skip the
+	 * check.
+	 */
+	private function client_ip() {
+		$candidates = [];
+
+		if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+			$candidates[] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_CF_CONNECTING_IP'] ) );
+		}
+
+		if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$forwarded    = explode( ',', sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) );
+			$candidates[] = trim( $forwarded[0] );
+		}
+
+		if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+			$candidates[] = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+		}
+
+		foreach ( $candidates as $candidate ) {
+			$ip = filter_var( trim( $candidate ), FILTER_VALIDATE_IP );
+
+			if ( false !== $ip ) {
+				return $ip;
+			}
+		}
+
+		return '0.0.0.0';
+	}
+
+	/**
+	 * Size of the upstream request, which is also what varies the cache key.
+	 *
+	 * For callers who cannot edit posts this is pinned to the maximum, so a
+	 * public caller gets exactly one cache entry per token. Letting `limit`
+	 * pick the bucket gave them four (25/50/75/100) and therefore four ways
+	 * to force an upstream fetch inside one cache window. take() slices the
+	 * payload back down to the requested count either way, so the response
+	 * is unchanged.
+	 */
+	private function fetch_bucket( $limit, $privileged = false ) {
+		if ( ! $privileged ) {
+			return 100;
+		}
+
+		return (int) min( 100, ceil( $limit / 25 ) * 25 );
+	}
+
+	private function take( $payload, $limit ) {
+		if ( isset( $payload['media'] ) && is_array( $payload['media'] ) ) {
+			$payload['media'] = array_slice( $payload['media'], 0, $limit );
+		}
+
+		return $payload;
+	}
+
 	private function user( $token ) {
 		$sets = [
 			'id,username,media_count,account_type,name,profile_picture_url,followers_count',
@@ -286,8 +398,6 @@ class BBlocksInstagram {
 
 		$media = json_decode( wp_remote_retrieve_body( $media_res ), true );
 
-		// Graph reports its own failures in the body with a 200, so the error has
-		// to be read out rather than inferred from the status code.
 		if ( isset( $media['error']['message'] ) ) {
 			return new \WP_Error( 'b_blocks_instagram', $media['error']['message'] );
 		}
@@ -309,7 +419,7 @@ class BBlocksInstagram {
 	public function clear_cache() {
 		$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
 
-		if ( ! wp_verify_nonce( $nonce, 'wp_ajax' ) || ! current_user_can( 'edit_posts' ) ) {
+		if ( ! wp_verify_nonce( $nonce, self::NONCE_ACTION ) || ! current_user_can( 'edit_posts' ) ) {
 			wp_send_json_error( __( 'Invalid request.', 'b-blocks' ) );
 		}
 
@@ -318,11 +428,9 @@ class BBlocksInstagram {
 		wp_send_json_success();
 	}
 
-	/** A changed account or token must not keep serving the old feed. */
 	public static function flush() {
 		global $wpdb;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- transients have no bulk delete API.
 		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", '_transient_' . self::CACHE_KEY . '%' ) );
 	}
 }

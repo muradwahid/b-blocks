@@ -2,7 +2,6 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/google-map",
-	"version": "2.1.2",
 	"title": "Google Map",
 	"category": "bBlocks",
 	"description": "A fully interactive Google Map: custom markers with rich info windows, clustering, category filtering, map themes, traffic/transit/KML/GeoJSON layers, shapes, directions, search and geolocation — plus the classic embed-URL mode.",

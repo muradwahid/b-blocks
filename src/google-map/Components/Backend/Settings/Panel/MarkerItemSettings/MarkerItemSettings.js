@@ -11,6 +11,7 @@ import { debounce } from '../../../../../../../../bpl-tools/utils/functions';
 import { geocodeErrorMessage, toNumber } from '../../../../../utils/data';
 import { loadGoogleMaps } from '../../../../../utils/loadGoogleMaps';
 import { iconTypes, markerAnimations, markerTabs } from '../../../../../utils/options';
+import { allowSvgInUploader } from '../../../../../../utils/helpers';
 
 const MarkerItemSettings = (props) => {
 	const { attributes, setAttributes, arrKey = 'markers', index, setActiveIndex, apiKey = '' } = props;
@@ -25,22 +26,13 @@ const MarkerItemSettings = (props) => {
 	const [status, setStatus] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
 
-	// TinyEditor fires onChange on keyup/input/change/paste — i.e. per keystroke —
-	// so writing straight through means one store update and one full re-render
-	// per character. The debounced wrapper has to be created once (a fresh one
-	// each render would reset its own timer and never fire late) yet still call
-	// the current updateItem, hence the ref indirection. Declared above the
-	// `!item` guard so the hook order stays stable.
 	const updateItemRef = useRef(null);
 	const updateContent = useMemo(
 		() => debounce((val) => updateItemRef.current?.('content', val), 600),
 		[]
 	);
 
-	// Alt text needs a local draft as well as a debounce: TextControl is a
-	// controlled input, so a delayed attribute write would leave `value` stale
-	// and every keystroke would be reverted on the next render. The draft keeps
-	// typing responsive while the store write waits.
+
 	const [altDraft, setAltDraft] = useState('');
 	const altPending = useRef(false);
 
@@ -52,9 +44,7 @@ const MarkerItemSettings = (props) => {
 		[]
 	);
 
-	// Re-sync the draft from the attribute when switching markers, or when the
-	// value changes underneath us (undo/redo) — but never while a write is
-	// still pending, or the in-flight value would clobber what is being typed.
+
 	const storedAlt = items[index]?.image?.alt || '';
 	useEffect(() => {
 		if (altPending.current) return;
@@ -80,7 +70,6 @@ const MarkerItemSettings = (props) => {
 		setActiveIndex && setActiveIndex(index);
 	};
 
-	// Keep the debounced closure pointed at the latest updater.
 	updateItemRef.current = updateItem;
 
 	const geocode = async () => {
@@ -190,8 +179,11 @@ const MarkerItemSettings = (props) => {
 					{'upload' === item.icon?.type && <MediaArea
 						label={__('Upload SVG', 'b-blocks')}
 						types={['image/svg+xml']}
-						value={{ url: item.icon.url.upload }}
-						onClick={async () => { await refetch(); }}
+						value={{ url: item?.icon?.url?.upload }}
+						onClick={ async () => {
+							allowSvgInUploader();
+							return await refetch();
+						}}
 						onChange={async (val) => {
 							const svg = val?.url ? await svgSanitizer.sanitizeFile(val.url) : '';
 							updateItem('icon', svg, 'url', 'upload');

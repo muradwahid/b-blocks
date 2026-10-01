@@ -1,10 +1,12 @@
 import { isExist } from '../../../../../bpl-tools/utils/common';
 import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/data';
 import { getShadowCSS, isValidCSS } from '../../../../../bpl-tools/utils/getCSS';
+import generateCSS from '../../../../../bpl-tools/Advanced/generateCSS';
+
 import { prefix } from '../../utils/data';
 
-const Style = ({ attributes, id, extraCSS = '' }) => {
-	const { wrapper, icon, animation } = attributes;
+const Style = ({ attributes, id, isBackend= false }) => {
+	const { wrapper, icon, animation, advanced } = attributes;
 	const { size, color, shadow } = icon;
 	const { width, height } = wrapper;
 	const { duration, delay, type, iteration, iterationCount, hover } = animation;
@@ -15,7 +17,6 @@ const Style = ({ attributes, id, extraCSS = '' }) => {
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-			${extraCSS}
 			${mainSl}{
 				width: ${!width || 0 === parseInt(width) ? 'auto' : width};
 				height: ${!height || 0 === parseInt(height) ? 'auto' : height};
@@ -54,6 +55,7 @@ const Style = ({ attributes, id, extraCSS = '' }) => {
 					${isValidCSS('justify-content', wrapper?.alignment?.mobile)}
 				}
 			}
+			${generateCSS(id, advanced, isBackend)}
 
 `.replace(/\s+/g, ' ')
 	}} />;

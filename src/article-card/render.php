@@ -1,18 +1,6 @@
 <?php
-/**
- * Article Card block server-side render.
- *
- * Following the bplugins convention (see image-hotspot), the server only emits
- * an empty wrapper carrying the block attributes as JSON. React hydrates the
- * card on the frontend via view.js.
- *
- * @package bBlocks
- *
- * @var array    $attributes Block attributes.
- * @var WP_Block $block      Block instance.
- */
-
 $id = wp_unique_id( 'article-card-' );
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

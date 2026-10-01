@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.1.7
+Stable tag: 2.1.9
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -410,6 +410,17 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 
 == Changelog ==
+
+= 2.1.9 - 1 October 2026 =
+* Added: Woo Product Grid Block.
+
+= 2.1.8 - 27 September, 2026 =
+* Security: Sanitized SVG output.
+* Security: Sanitized pricing feature titles in the admin dashboard.
+* Security: Fixed Instagram Feed cache bypass.
+* Security: Restricted SVG uploads to administrators and added sanitization.
+* Security: Removed eval() from the HTML code preview.
+* Improved: Optimized JavaScript build size.
 
 = 2.1.7 - 22 September, 2026 =
 * Added: Instagram Feed block.

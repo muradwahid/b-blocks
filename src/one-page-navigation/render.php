@@ -2,7 +2,7 @@
 
 $prefix = 'b-blocks-one-page-navigation';
 $id = wp_unique_id( 'bBlocksOnePageNavigation-' );
-
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
 
 $layout    = isset( $attributes['layout'] ) && is_array( $attributes['layout'] ) ? $attributes['layout'] : [];

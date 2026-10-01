@@ -1,5 +1,17 @@
 export const changeLog = [
     {
+        version: '2.1.8 - 22 September, 2026',
+        list: [
+            'Security: Sanitized SVG output.',
+            'Security: Sanitized pricing feature titles in the admin dashboard.',
+            'Security: Fixed Instagram Feed cache bypass.',
+            'Security: Restricted SVG uploads to administrators and added sanitization.',
+            'Security: Removed eval() from the HTML code preview.',
+            'Improved: Optimized JavaScript build size.',
+        ],
+        type: 'fix'
+    },
+    {
         version: '2.1.7 - 22 September, 2026',
         list: [
             'Added: Instagram Feed block.',
@@ -40,7 +52,7 @@ export const changeLog = [
         type: 'new'
     },
     {
-    version: '2.1.2 - 24 August 2026',
+        version: '2.1.2 - 24 August 2026',
         list: [
             'Added: 2 new blocks',
             '> Google Map'

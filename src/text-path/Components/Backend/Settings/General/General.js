@@ -8,6 +8,7 @@ import { pathTypeOptions } from '../../../../utils/options';
 import { Flex } from '@wordpress/components';
 import { CenterIcon, LeftIcon, RightIcon } from '../../../../utils/icons';
 import { SVGSanitizer } from '../../../../../../../bpl-tools/utils/common';
+import { allowSvgInUploader } from '../../../../../utils/helpers';
 
 const General = (props) => {
 	const { attributes, updateObj, device } = props;
@@ -16,10 +17,10 @@ const General = (props) => {
 
 	const { data: bBlocksUtils } = useWPOptionQuery('bBlocksUtils');
 
-	const { refetch, } = useWPAjax('b-blocks-enable-svg-mime-type', { _wpnonce: bBlocksUtils?.nonce }, false)
-
+	const { refetch } = useWPAjax('b-blocks-enable-svg-mime-type', { _wpnonce: bBlocksUtils?.nonce }, false)
 
 	const enableSVGUpload = async () => {
+		allowSvgInUploader();
 		await refetch();
 	}
 
@@ -49,7 +50,6 @@ const General = (props) => {
 							const svgStr = value?.url ? await svgSanitizer.sanitizeFile(value?.url) : '';
 							updateObj('icon', svgStr, 'upload')
 						}} isSvgEnabled={true} />
-
 					}
 				</>
 			}
