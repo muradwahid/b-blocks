@@ -55,12 +55,13 @@ import {
     audioPlayerIcon,
     wooProductGridIcon,
     //  parallaxSectionIcon, pdfEmbedIcon
+    wooAddToCartIcon,
+    wooProductImagesIcon
 } from '../../../utils/blocksIcon';
 
 // import { wooProductGridIcon, wooAddToCartIcon, wooProductCarouselIcon, wooFeaturedProductIcon, wooCategoryGridIcon, wooMiniCartIcon, wooProductFilterIcon, wooBestSellersIcon, wooSingleProductIcon, wooSaleBadgeIcon, wooProductReviewsIcon } from '../../../utils/blocksIcon';
 
 const pluginSlug = 'b-blocks';
-
 
 const siteURL = 'https://bblockswp.com';
 const demoLink = `${siteURL}/blocks`;
@@ -94,8 +95,7 @@ export default [
                 icon: heroSectionIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             {
                 name: `${pluginSlug}/media-text-section`,
@@ -103,8 +103,7 @@ export default [
                 icon: mediaTextSectionIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/sticky-sidebar`,
@@ -280,8 +279,7 @@ export default [
                 icon: expandContentIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/howto-schema`,
@@ -306,8 +304,7 @@ export default [
                 icon: infographicIcon,
                 demo: `https://bblockswp.com/blocks/infographic-block`,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             {
                 name: `${pluginSlug}/code-highlight`,
@@ -316,7 +313,6 @@ export default [
                 demo: `https://bblockswp.com/blocks/code-highlight/`,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW',
                 isPremium: true
             },
             {
@@ -341,8 +337,7 @@ export default [
                 icon: timelineIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             {
                 name: `${pluginSlug}/list`,
@@ -366,8 +361,7 @@ export default [
                 icon: blockquoteIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/callout`,
@@ -384,8 +378,7 @@ export default [
                 icon: dividerIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/icon-list`,
@@ -465,7 +458,6 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW',
                 isPremium: true
             },
             {
@@ -475,7 +467,6 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW',
                 isPremium: true
             },
             {
@@ -485,7 +476,6 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                badge: 'NEW',
                 isPremium: true
             },
         ]
@@ -540,8 +530,7 @@ export default [
                 icon: onePageNavigationIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             {
                 name: `${pluginSlug}/scroll-to-top`,
@@ -708,8 +697,7 @@ export default [
                 demo: `${demoLink}/stacked-cards/`,
                 docs: ``,
                 status: 'published',
-                isPremium: true,
-                badge: 'NEW'
+                isPremium: true
             },
             {
                 name: `${pluginSlug}/shape-divider`,
@@ -806,8 +794,7 @@ export default [
                 icon: audioPlayerIcon,
                 demo: `https://bblockswp.com/blocks/audio-player/`,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
         ]
     },
@@ -1096,8 +1083,7 @@ export default [
                 icon: comparisonTableIcon,
                 demo: `https://bblockswp.com/blocks/comparison-table/`,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             // {
             //     name: `${pluginSlug}/pricing-toggle`,
@@ -1199,8 +1185,7 @@ export default [
                 icon: instagramIcon,
                 demo: ``,
                 docs: ``,
-                status: 'published',
-                badge: 'NEW'
+                status: 'published'
             },
             {
                 name: `${pluginSlug}/facebook-embed`,
@@ -1253,6 +1238,24 @@ export default [
                 name: `${pluginSlug}/woo-product-grid`,
                 title: 'Woo Product Grid',
                 icon: wooProductGridIcon,
+                demo: `https://bblockswp.com/blocks/woo-product-grid/`,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
+            {
+                name: `${pluginSlug}/woo-add-to-cart`,
+                title: 'Add to Cart Button',
+                icon: wooAddToCartIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
+            {
+                name: `${pluginSlug}/woo-product-images`,
+                title: 'Woo Product Images',
+                icon: wooProductImagesIcon,
                 demo: ``,
                 docs: ``,
                 status: 'published',
@@ -1313,15 +1316,6 @@ export default [
             //     badge: 'NEW'
             // },
             // {
-            //     name: `${pluginSlug}/woo-add-to-cart`,
-            //     title: 'Add to Cart Button',
-            //     icon: wooAddToCartIcon,
-            //     demo: ``,
-            //     docs: ``,
-            //     status: 'published',
-            //     badge: 'NEW'
-            // },
-            // {
             //     name: `${pluginSlug}/woo-mini-cart`,
             //     title: 'Mini Cart',
             //     icon: wooMiniCartIcon,
@@ -1351,7 +1345,6 @@ export default [
         ]
     }
 ];
-
 
 export const overviewBlocks = [
     {

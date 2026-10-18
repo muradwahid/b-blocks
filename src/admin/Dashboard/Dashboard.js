@@ -30,6 +30,7 @@ import { useEffect, useState } from 'react';
 import { useWPAjax, useWPOptionQuery } from '../../../../bpl-tools/hooks';
 import blocks from './utils/blocks';
 import ProModal from '../Components/ProModal';
+import ScrollToTop from './Parts/ScrollToTop';
 
 const dataFetched = new CustomEvent('dataFetched');
 
@@ -75,6 +76,7 @@ const Dashboard = (props) => {
 	};
 
 	return <HashRouter>
+		<ScrollToTop />
 		<Toaster position='bottom-center' />
 
 		<Routes>

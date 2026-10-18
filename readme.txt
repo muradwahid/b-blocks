@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.1.9
+Stable tag: 2.1.11
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -410,6 +410,12 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 
 == Changelog ==
+
+= 2.1.11 - 18 October 2026 =
+* Added: Woo Product Images Block.
+
+= 2.1.10 - 5 October 2026 =
+* Added: Add to Cart Button Block.
 
 = 2.1.9 - 1 October 2026 =
 * Added: Woo Product Grid Block.

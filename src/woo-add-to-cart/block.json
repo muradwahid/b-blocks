@@ -2,10 +2,9 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "b-blocks/woo-add-to-cart",
-	"version": "1.0.0",
 	"title": "Woo Add to Cart",
 	"category": "bBlocks",
-	"description": "Standalone WooCommerce Add to Cart button for a single product, with optional quantity stepper and AJAX add-to-cart, usable on any page or post.",
+	"description": "WooCommerce Add to Cart for a chosen product, or for the product in context on the Single Product page — simple, variable, grouped and external products, with optional quantity and inline or stacked layout.",
 	"keywords": [
 		"woocommerce",
 		"add to cart",
@@ -18,114 +17,690 @@
 	],
 	"textdomain": "b-blocks",
 	"attributes": {
-		"productId": {
-			"type": "integer",
-			"default": 0
-		},
-		"buttonLabel": {
-			"type": "string",
-			"default": "Add to Cart"
-		},
-		"addedLabel": {
-			"type": "string",
-			"default": "Added!"
-		},
-		"showQuantity": {
-			"type": "boolean",
-			"default": false
-		},
-		"quantityDefault": {
-			"type": "integer",
-			"default": 1
-		},
-		"redirectToCart": {
-			"type": "boolean",
-			"default": false
-		},
-		"alignment": {
-			"type": "string",
-			"default": "left"
-		},
-		"isFullWidth": {
-			"type": "boolean",
-			"default": false
-		},
-		"btnColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"btnBG": {
-			"type": "string",
-			"default": "#146EF5"
-		},
-		"btnHovColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"btnHovBG": {
-			"type": "string",
-			"default": "#070127"
-		},
-		"fontSize": {
+		"product": {
 			"type": "object",
 			"default": {
-				"desktop": "16px",
-				"tablet": "15px",
-				"mobile": "14px"
+				"id": 0,
+				"previewType": "simple"
 			}
 		},
-		"fontWeight": {
-			"type": "integer",
-			"default": 600
-		},
-		"padding": {
+		"content": {
 			"type": "object",
 			"default": {
-				"vertical": "12px",
-				"horizontal": "24px"
+				"buttonText": "Add to Cart",
+				"addedText": "Added!",
+				"viewCartText": "View cart"
 			}
 		},
-		"borderRadius": {
-			"type": "string",
-			"default": "6px"
+		"options": {
+			"type": "object",
+			"default": {
+				"showQuantity": false,
+				"quantity": 1,
+				"quantityStyle": "stepper",
+				"redirectToCart": false,
+				"viewCart": false
+			}
 		},
-		"borderWidth": {
-			"type": "string",
-			"default": "0px"
+		"layout": {
+			"type": "object",
+			"default": {
+				"alignment": "left",
+				"fullWidth": false,
+				"desktop": {
+					"displayType": "inline",
+					"gap": ""
+				},
+				"tablet": {
+					"displayType": "",
+					"gap": ""
+				},
+				"mobile": {
+					"displayType": "",
+					"gap": ""
+				}
+			}
 		},
-		"borderColor": {
-			"type": "string",
-			"default": "#146EF5"
+		"button": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "16px",
+						"tablet": "",
+						"mobile": ""
+					},
+					"fontWeight": 600,
+					"fontVariant": "600"
+				},
+				"normal": {
+					"color": {
+						"text": "#ffffff"
+					},
+					"bg": {
+						"type": "solid",
+						"color": "#146EF5"
+					},
+					"border": {
+						"width": "0px",
+						"style": "solid",
+						"color": "#146EF5"
+					}
+				},
+				"hover": {
+					"color": {
+						"text": "#ffffff"
+					},
+					"bg": {
+						"type": "solid",
+						"color": "#070127"
+					},
+					"border": {}
+				},
+				"desktop": {
+					"padding": {
+						"top": "12px",
+						"right": "24px",
+						"bottom": "12px",
+						"left": "24px"
+					},
+					"radius": {
+						"top": "6px",
+						"right": "6px",
+						"bottom": "6px",
+						"left": "6px"
+					},
+					"width": ""
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"width": ""
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"width": ""
+				},
+				"shadow": [],
+				"icon": {
+					"svg": "",
+					"position": "before",
+					"size": "16px",
+					"gap": "8px",
+					"color": {
+						"text": ""
+					},
+					"hover": {
+						"color": {
+							"text": ""
+						}
+					}
+				},
+				"added": {
+					"color": {
+						"text": ""
+					},
+					"bg": {
+						"type": "solid",
+						"color": ""
+					}
+				}
+			}
 		},
-		"qtyBtnColor": {
-			"type": "string",
-			"default": "#333333"
+		"quantity": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "16px",
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"color": {
+					"text": ""
+				},
+				"bg": {
+					"type": "solid",
+					"color": ""
+				},
+				"border": {
+					"width": "1px",
+					"style": "solid",
+					"color": "#dddddd"
+				},
+				"desktop": {
+					"width": "",
+					"height": "",
+					"radius": {
+						"top": "4px",
+						"right": "4px",
+						"bottom": "4px",
+						"left": "4px"
+					}
+				},
+				"tablet": {
+					"width": "",
+					"height": "",
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"width": "",
+					"height": "",
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"hover": {
+					"color": {
+						"text": ""
+					},
+					"bg": {
+						"type": "solid",
+						"color": ""
+					},
+					"border": {}
+				}
+			}
 		},
-		"qtyBtnBG": {
-			"type": "string",
-			"default": "#f0f0f0"
+		"stepper": {
+			"type": "object",
+			"default": {
+				"color": {
+					"text": "#333333"
+				},
+				"bg": {
+					"type": "solid",
+					"color": "#f0f0f0"
+				},
+				"hover": {
+					"color": {
+						"text": ""
+					},
+					"bg": {
+						"type": "solid",
+						"color": ""
+					}
+				},
+				"desktop": {
+					"width": ""
+				},
+				"tablet": {
+					"width": ""
+				},
+				"mobile": {
+					"width": ""
+				}
+			}
 		},
-		"qtyInputBorderColor": {
-			"type": "string",
-			"default": "#dddddd"
+		"variations": {
+			"type": "object",
+			"default": {
+				"table": {
+					"desktop": {
+						"rowGap": "",
+						"labelWidth": "",
+						"bottomGap": ""
+					},
+					"tablet": {
+						"rowGap": "",
+						"labelWidth": "",
+						"bottomGap": ""
+					},
+					"mobile": {
+						"rowGap": "",
+						"labelWidth": "",
+						"bottomGap": ""
+					}
+				},
+				"label": {
+					"color": {
+						"text": ""
+					},
+					"typo": {
+						"fontSize": {
+							"desktop": "15px",
+							"tablet": "",
+							"mobile": ""
+						},
+						"fontWeight": 600,
+						"fontVariant": "600"
+					},
+					"hover": {
+						"color": {
+							"text": ""
+						}
+					}
+				},
+				"select": {
+					"typo": {
+						"fontSize": {
+							"desktop": "15px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"color": {
+						"text": ""
+					},
+					"bg": {
+						"type": "solid",
+						"color": ""
+					},
+					"border": {
+						"width": "1px",
+						"style": "solid",
+						"color": ""
+					},
+					"desktop": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"width": ""
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"width": ""
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"width": ""
+					},
+					"hover": {
+						"color": {
+							"text": ""
+						},
+						"bg": {
+							"type": "solid",
+							"color": ""
+						},
+						"border": {}
+					}
+				},
+				"clear": {
+					"typo": {
+						"fontSize": {
+							"desktop": "13px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"color": {
+						"text": ""
+					},
+					"hover": {
+						"color": {
+							"text": ""
+						}
+					}
+				},
+				"price": {
+					"color": {
+						"text": ""
+					},
+					"typo": {
+						"fontSize": {
+							"desktop": "18px",
+							"tablet": "",
+							"mobile": ""
+						},
+						"fontWeight": 700,
+						"fontVariant": "700"
+					}
+				}
+			}
 		},
-		"qtyBorderRadius": {
-			"type": "string",
-			"default": "4px"
+		"grouped": {
+			"type": "object",
+			"default": {
+				"table": {
+					"border": {},
+					"desktop": {
+						"rowGap": "",
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"rowGap": "",
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"rowGap": "",
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"bg": {
+						"type": "solid",
+						"color": ""
+					}
+				},
+				"name": {
+					"color": {
+						"text": ""
+					},
+					"typo": {
+						"fontSize": {
+							"desktop": "16px",
+							"tablet": "",
+							"mobile": ""
+						},
+						"fontWeight": 400,
+						"fontVariant": "400"
+					},
+					"hover": {
+						"color": {
+							"text": ""
+						}
+					}
+				},
+				"price": {
+					"color": {
+						"text": ""
+					},
+					"typo": {
+						"fontSize": {
+							"desktop": "16px",
+							"tablet": "",
+							"mobile": ""
+						}
+					}
+				}
+			}
+		},
+		"messages": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "14px",
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"color": {
+					"text": "",
+					"inStock": "",
+					"outOfStock": ""
+				}
+			}
+		},
+		"viewCart": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "14px",
+						"tablet": "",
+						"mobile": ""
+					}
+				},
+				"color": {
+					"text": ""
+				},
+				"hover": {
+					"color": {
+						"text": ""
+					}
+				}
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"border": {
+							"width": "",
+							"style": "",
+							"color": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"shadow": []
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"position": {}
+			}
 		}
 	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"supports": {
 		"html": false,
-		"customClassName": true,
-		"spacing": {
-			"margin": true
-		}
+		"customClassName": true
 	},
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
+	"editorScript": "file:../index.js",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"

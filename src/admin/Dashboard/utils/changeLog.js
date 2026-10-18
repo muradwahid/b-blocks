@@ -1,5 +1,26 @@
 export const changeLog = [
     {
+        version: '2.1.11 - 18 October 2026',
+        list: [
+            'Added: Woo Product Images Block.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.1.10 - 5 October 2026',
+        list: [
+            'Added: Add to Cart Button.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.1.9 - 1 October 2026',
+        list: [
+            'Added: Woo Product Grid Block.'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.8 - 22 September, 2026',
         list: [
             'Security: Sanitized SVG output.',
