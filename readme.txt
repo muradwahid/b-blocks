@@ -4,28 +4,28 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.1.11
+Stable tag: 2.1.12
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-bBlocks enhances the Gutenberg editor with over 80 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
+bBlocks enhances the Gutenberg editor with over 90 custom blocks for layout, content, and design, turning it into a powerful WordPress page builder
 
 == Description ==
-**bBlocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 80+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
+**bBlocks – Advanced Gutenberg Blocks Plugin to Extend the WordPress Block Editor with Page Builder Features, 90+ Customizable Blocks, Layout Controls, Animations, Sliders, Countdowns, and More**
 
 
 [**bBlocks**](https://bblockswp.com/) | [**Documentation**](https://bblockswp.com/docs/) | [**Pricing**](https://bblockswp.com/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/#demos)
 
 https://www.youtube.com/watch?v=Ml4UehEwI-s
 
-[**bBlocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, bBlocks extends the capabilities of core blocks by adding 80+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
+[**bBlocks**](https://bblockswp.com/) is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, bBlocks extends the capabilities of core blocks by adding 90+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.
 
 Whether you're building a landing page, blog layout, portfolio, or full website, bBlocks helps you design faster using customizable blocks, reusable patterns, and layout-ready components. It’s an ideal page builder for Gutenberg users who want more control while keeping their sites fast and efficient.
 
 
 ## Key Features – Free Version
-- **80+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
+- **90+ Custom Blocks**: Enhance your content with blocks for Posts, Sliders, Buttons, Countdowns, Cards, Charts, and more.
 
 - **Advanced Block Customization**: Adjust typography, spacing, color, and visibility. Fine-tune every block to match your brand identity.
 
@@ -65,7 +65,7 @@ Upload Lottie JSON files from the media library, hover triggers, bounce or norma
 
 
 ## Available Blocks
-bBlocks adds over 80+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
+bBlocks adds over 90+ custom blocks to your Gutenberg block editor, designed to extend the functionality of core blocks and help you build engaging layouts with ease. Below is a list of all available blocks, each offering intuitive controls and flexible design options:
 
 - [**Row Columns**](https://bblockswp.com/blocks/row-columns/): Create responsive multi-column layouts with flexible width, spacing, and alignment options. Ideal for building custom grid structures.
 
@@ -410,6 +410,9 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 
 == Changelog ==
+
+= 2.1.12 - 24 October 2026 =
+* Added: Woo Product Price Block.
 
 = 2.1.11 - 18 October 2026 =
 * Added: Woo Product Images Block.

@@ -34,7 +34,8 @@ import {
     // typingHeadlineIcon,
     videoIcon,
     // videoPopupIcon,
-    whatsappChatIcon, tableIcon
+    whatsappChatIcon, tableIcon,
+    wooProductPriceIcon
 } from '../../../utils/blocksIcon';
 
 import {
@@ -1256,6 +1257,15 @@ export default [
                 name: `${pluginSlug}/woo-product-images`,
                 title: 'Woo Product Images',
                 icon: wooProductImagesIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
+            {
+                name: `${pluginSlug}/woo-product-price`,
+                title: 'Woo Product Price',
+                icon: wooProductPriceIcon,
                 demo: ``,
                 docs: ``,
                 status: 'published',

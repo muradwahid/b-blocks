@@ -133,6 +133,7 @@ import './woo-add-to-cart';
 // import './woo-product-filter';
 import './woo-product-grid';
 import './woo-product-images';
+import './woo-product-price';
 // import './woo-product-reviews';
 // import './woo-sale-badge';
 // import './woo-single-product';

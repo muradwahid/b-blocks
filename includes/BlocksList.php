@@ -164,6 +164,7 @@ class BlocksList
 			// 'woo-product-filter',
 			'woo-product-grid',
 			'woo-product-images',
+			'woo-product-price',
 			// 'woo-product-reviews',
 			// 'woo-sale-badge',
 			// 'woo-single-product',

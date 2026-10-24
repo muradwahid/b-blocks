@@ -1,0 +1,73 @@
+.b-blocks-woo-product-price {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 0;
+	line-height: 1.3;
+
+	.b-blocks-woo-product-price-prefix,
+	.b-blocks-woo-product-price-suffix {
+		display: inline-flex;
+		align-items: center;
+		color: #334155;
+	}
+
+	.b-blocks-woo-product-price-savings {
+		display: inline-flex;
+		align-items: center;
+		line-height: 1.4;
+	}
+
+	.b-blocks-woo-product-price-prefix--icon,
+	.b-blocks-woo-product-price-suffix--icon {
+		svg {
+			display: block;
+			width: 18px;
+			height: 18px;
+
+			&:not([fill]) {
+				fill: currentColor;
+			}
+		}
+	}
+
+	.b-blocks-woo-product-price-price {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: center;
+		column-gap: 0.4em;
+
+		del,
+		ins {
+			background: transparent;
+		}
+
+		del {
+			text-decoration: line-through;
+		}
+
+		ins {
+			text-decoration: none;
+		}
+
+		.woocommerce-Price-currencySymbol {
+			font-size: 25px;
+		}
+
+		.screen-reader-text {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			padding: 0;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+	}
+
+	&.b-blocks-woo-product-price--sale-before .b-blocks-woo-product-price-price ins {
+		order: -1;
+	}
+}

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: bBlocks
  * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.1.11
+ * Version: 2.1.12
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3 or later
@@ -60,6 +60,7 @@ if (function_exists('b_blocks_fs')) {
 	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-carousel/WooProductCarousel.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-grid/WooProductGrid.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-images/WooProductImages.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-price/WooProductPrice.php';
 	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-product-reviews/WooProductReviews.php';
 	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/woo-single-product/WooSingleProduct.php';
 
