@@ -1,0 +1,275 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-product-details",
+	"title": "Woo Product Details",
+	"category": "bBlocks",
+	"description": "The WooCommerce description, additional information and reviews of the product in context, in tabs.",
+	"keywords": [
+		"woocommerce",
+		"product",
+		"tabs",
+		"description",
+		"reviews",
+		"attributes",
+		"details",
+		"detail"
+	],
+	"textdomain": "b-blocks",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"options": {
+			"type": "object",
+			"default": {
+				"showDescription": true,
+				"showAdditional": true,
+				"showReviews": true
+			}
+		},
+		"tabTitle": {
+			"type": "object",
+			"default": {
+				"typo": {"fontSize": {"desktop": "16px"}},
+				"divider": {"width": "1px", "style": "solid", "color": "#e5e7eb"},
+				"normal": {
+					"color": {"text": "#6b7280", "bg": {}, "activeText": "#111827", "activeBg": {}},
+					"border": {},
+					"shadow": [],
+					"desktop": {"radius": {}},
+					"tablet": {"radius": {}},
+					"mobile": {"radius": {}}
+				},
+				"hover": {
+					"color": {"text": "#111827", "bg": {}, "activeText": "", "activeBg": {}},
+					"border": {},
+					"shadow": [],
+					"desktop": {"radius": {}},
+					"tablet": {"radius": {}},
+					"mobile": {"radius": {}}
+				},
+				"desktop": {"padding": {"top": "12px", "right": "0px", "bottom": "12px", "left": "0px"}, "margin": {}},
+				"tablet": {"padding": {}, "margin": {}},
+				"mobile": {"padding": {}, "margin": {}}
+			}
+		},
+		"content": {
+			"type": "object",
+			"default": {
+				"typo": {"fontSize": {"desktop": ""}},
+				"normal": {
+					"color": {"text": "#334155", "bg": {}},
+					"border": {},
+					"shadow": [],
+					"desktop": {"radius": {}},
+					"tablet": {"radius": {}},
+					"mobile": {"radius": {}}
+				},
+				"hover": {
+					"color": {"text": "", "bg": {}},
+					"border": {},
+					"shadow": [],
+					"desktop": {"radius": {}},
+					"tablet": {"radius": {}},
+					"mobile": {"radius": {}}
+				},
+				"desktop": {"padding": {"top": "24px", "right": "0px", "bottom": "0px", "left": "0px"}, "margin": {}},
+				"tablet": {"padding": {}, "margin": {}},
+				"mobile": {"padding": {}, "margin": {}}
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"border": {
+							"width": "",
+							"style": "",
+							"color": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"shadow": []
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"position": {}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": [
+		"file:../index.js"
+	],
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

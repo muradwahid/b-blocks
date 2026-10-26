@@ -131,6 +131,7 @@ import './woo-add-to-cart';
 // import './woo-mini-cart';
 // import './woo-product-carousel';
 // import './woo-product-filter';
+import './woo-product-details';
 import './woo-product-grid';
 import './woo-product-images';
 import './woo-product-price';

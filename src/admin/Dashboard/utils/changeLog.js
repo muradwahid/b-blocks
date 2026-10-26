@@ -1,5 +1,12 @@
 export const changeLog = [
     {
+        version: '2.1.13 - 26 October 2026',
+        list: [
+            'Added: Woo Product Details Block.'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.12 - 24 October 2026',
         list: [
             'Added: Woo Product Price Block.'

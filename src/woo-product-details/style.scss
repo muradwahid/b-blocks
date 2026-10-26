@@ -1,0 +1,97 @@
+.wp-block-b-blocks-woo-product-details {
+	.b-blocks-woo-product-details {
+		width: 100%;
+	}
+
+	.b-blocks-woo-product-details-tablist {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 32px;
+		margin: 0;
+		padding: 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: thin;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.b-blocks-woo-product-details-tab {
+		all: unset;
+		position: relative;
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		box-sizing: border-box;
+		color: #6b7280;
+		font-family: inherit;
+		line-height: 1.4;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset-inline: 0;
+			bottom: 0;
+			height: 2px;
+			background: currentColor;
+			transform: scaleX(0);
+			transition: transform 0.2s ease;
+		}
+
+		&.is-active {
+			font-weight: 600;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: -2px;
+		}
+
+		@media (forced-colors: active) {
+			&::after {
+				forced-color-adjust: none;
+				background: CanvasText;
+			}
+		}
+	}
+
+	.b-blocks-woo-product-details-panel {
+		display: block;
+		box-sizing: border-box;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+		&[hidden] {
+			display: none !important;
+		}
+	}
+
+	.b-blocks-woo-product-details-panel-content {
+		> :first-child {
+			margin-top: 0;
+		}
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+
+		table.shop_attributes {
+			width: 100%;
+			border-collapse: collapse;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.b-blocks-woo-product-details-tab,
+		.b-blocks-woo-product-details-tab::after,
+		.b-blocks-woo-product-details-panel {
+			transition: none;
+		}
+	}
+}

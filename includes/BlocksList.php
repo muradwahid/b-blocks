@@ -162,6 +162,7 @@ class BlocksList
 			// 'woo-mini-cart',
 			// 'woo-product-carousel',
 			// 'woo-product-filter',
+			'woo-product-details',
 			'woo-product-grid',
 			'woo-product-images',
 			'woo-product-price',
