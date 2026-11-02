@@ -1,0 +1,259 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/woo-product-rating",
+	"title": "Woo Product Rating",
+	"category": "bBlocks",
+	"description": "The star rating of the product in context, with an optional link to its reviews — four layouts, five star styles and fractional stars.",
+	"keywords": [
+		"woocommerce",
+		"rating",
+		"stars",
+		"reviews",
+		"product",
+		"shop"
+	],
+	"textdomain": "b-blocks",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"options": {
+			"type": "object",
+			"default": {
+				"showEmpty": false,
+				"showCount": true
+			}
+		},
+		"layout": {
+			"type": "object",
+			"default": {
+				"starsType": "style-1",
+				"display": "inline",
+				"alignment": "left",
+				"countGap": {
+					"desktop": "5px",
+					"tablet": "",
+					"mobile": ""
+				}
+			}
+		},
+		"link": {
+			"type": "object",
+			"default": {
+				"color": "#334155",
+				"hoverColor": "",
+				"typo": {
+					"fontSize": {
+						"desktop": "14px",
+						"tablet": "",
+						"mobile": ""
+					}
+				}
+			}
+		},
+		"stars": {
+			"type": "object",
+			"default": {
+				"color": "#d1d5db",
+				"ratedColor": "#f5a623",
+				"size": {
+					"desktop": "18px",
+					"tablet": "",
+					"mobile": ""
+				},
+				"gap": {
+					"desktop": "3px",
+					"tablet": "",
+					"mobile": ""
+				}
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"border": {
+							"width": "",
+							"style": "",
+							"color": ""
+						},
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"shadow": []
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				},
+				"position": {}
+			}
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:../index.js",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

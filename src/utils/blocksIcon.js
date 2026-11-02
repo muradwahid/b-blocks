@@ -1109,3 +1109,10 @@ export const wooProductDetailsIcon = <svg {...svgProps} viewBox='0 0 32 32' fill
 	<rect x='4.2' y='10.2' width='7.6' height='1.6' rx='.8' />
 	<path d='M7.6 15h16.8a.6.6 0 0 1 0 1.2H7.6a.6.6 0 0 1 0-1.2M7.6 18.6h16.8a.6.6 0 0 1 0 1.2H7.6a.6.6 0 0 1 0-1.2M7.6 22.2h10.8a.6.6 0 0 1 0 1.2H7.6a.6.6 0 0 1 0-1.2' />
 </svg>;
+
+export const wooProductRatingIcon = <svg {...svgProps} viewBox='0 0 24 24' fill='none'>
+	<path d='M7 3.6l1.4 2.9 3.2.5-2.3 2.2.5 3.2L7 10.9l-2.8 1.5.5-3.2L2.4 7l3.2-.5L7 3.6z' />
+	<path d='M17 3.6l1.4 2.9 3.2.5-2.3 2.2.5 3.2-2.8-1.5-2.8 1.5.5-3.2L12.4 7l3.2-.5L17 3.6z' opacity='.35' />
+	<rect x='2.5' y='15' width='19' height='2' rx='1' />
+	<rect x='2.5' y='18.5' width='12' height='2' rx='1' opacity='.6' />
+</svg>;

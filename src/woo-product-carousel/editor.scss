@@ -1,32 +1,25 @@
-/**
- * Woo Product Carousel — editor-only styles.
- *
- * The block is server-rendered through ServerSideRender in the editor; the SSR
- * output does not run view.js, so the track is shown as a static, wrapping row
- * of cards for a usable preview. Frontend styles live in style.scss.
- */
+@use './style.scss';
 
 .wp-block-b-blocks-woo-product-carousel {
-	.bb-wpc-ssr-loading,
-	.bb-wpc-ssr-empty {
+	.b-blocks-woo-product-carousel-notice {
 		display: flex;
 		align-items: center;
 		gap: 8px;
 		margin: 0;
 		padding: 24px;
-		color: #6b7280;
-		font-style: italic;
+		color: #475569;
+		background: #f8fafc;
+		border: 1px dashed #cbd5e1;
+		border-radius: 8px;
+
+		.components-spinner {
+			margin: 0;
+		}
 	}
 
-	// In the editor the carousel cannot be swiped; show all cards in a wrapping
-	// grid so every product remains visible and editable.
-	.bb-wpc .bb-wpc-track {
-		flex-wrap: wrap;
-		overflow: visible;
-	}
-
-	.bb-wpc .bb-wpc-arrow {
-		pointer-events: none;
-		opacity: 0.6;
+	// New products on their way: the current ones stay, dimmed.
+	.is-loading {
+		opacity: 0.55;
+		transition: opacity 0.2s ease;
 	}
 }

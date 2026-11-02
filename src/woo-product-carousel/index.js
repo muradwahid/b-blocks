@@ -10,7 +10,5 @@ isBlockEnabled( metadata.name ) && registerBlockType( metadata, {
 	icon: wooProductCarouselIcon,
 
 	// Build In Functions
-	edit: Edit,
-
-	save: () => null
+	edit: Edit
 } );

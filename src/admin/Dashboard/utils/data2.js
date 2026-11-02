@@ -390,12 +390,12 @@ export const freemius = {
     public_key: 'pk_d6426b344df4918bc066a7a0b4719',
 }
 
-
 export const apiKeyData = [
     {
-        name: 'openAi', label: 'Open Ai', icon: <OpenAiIcon className="cartIcon" />,inputLabel: 'Api Key',infoEl: `<p>Enter your Api Key. get it from <a target='_blank' rel='noreferrer' href='https://platform.openai.com/account/api-keys'>Open Ai Platform</a></p>
-            <p><strong>Note:</strong> You need to add credits to your account after getting the API key.</p>`},
-    { name: 'facebook', label: 'Facebook', icon: <FaFacebook className="cartIcon" />, inputLabel: 'App ID', infoEl: `<p>Enter your App ID. get it from <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Facebook Platform</a></p>`},
+        name: 'openAi', label: 'Open Ai', model: '', tokenLabel: 'Set Max Tokens', tokenDes:`<p>Content will be generated based on the Token Limits you have set. For more information on Token Limits, you can check out this <a target='_blank' rel='noreferrer' href='https://platform.openai.com/settings/organization/limits'>link.</a></p>`, icon: <OpenAiIcon className="cartIcon" />, inputLabel: 'Api Key', infoEl: `<p>Enter your Api Key. get it from <a target='_blank' rel='noreferrer' href='https://platform.openai.com/account/api-keys'>Open Ai Platform</a></p>
+            <p><strong>Note:</strong> You need to add credits to your account after getting the API key.</p>`
+    },
+    { name: 'facebook', label: 'Facebook', icon: <FaFacebook className="cartIcon" />, inputLabel: 'App ID', infoEl: `<p>Enter your App ID. get it from <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Facebook Platform</a></p>` },
     {
         name: 'instagram', label: 'Instagram', icon: <InstagramIcon className="cartIcon" />, inputLabel: 'Access Token', infoEl: `<p>Enter a long-lived Instagram access token. Create one from the <a target='_blank' rel='noreferrer' href='https://developers.facebook.com/apps'>Meta for Developers</a> console, under Instagram &rsaquo; API setup.</p>
             <p><strong>Used by:</strong> The Instagram Feed block. The token is kept on your server and every request to Instagram is made from PHP, so it is never exposed on a published page.</p>
@@ -407,4 +407,15 @@ export const apiKeyData = [
             <p><strong>Map ID:</strong> markers need one — create it under <a target='_blank' rel='noreferrer' href='https://console.cloud.google.com/google/maps-apis/studio/maps'>Map Management</a> and paste it into the block's Map Source panel.</p>
             <p><strong>Restrict your key:</strong> this key is public on the front end, so add an HTTP referrer restriction for your domain and limit it to the APIs above.</p>`
     }
+]
+
+export const openAiModel = [
+    { value: 'gpt-4.1-mini', label:'GPT-4.1 Mini (Recommended)'},
+    { value: 'gpt-4.1', label:'GPT-4.1'},
+    { value: 'gpt-4o-mini', label:'GPT-4o Mini'},
+    { value: 'gpt-4o', label:'GPT-4o'},
+    { value: 'gpt-5-nano', label:'GPT-5 Nano'},
+    { value: 'gpt-5-mini', label:'GPT-5 Mini'},
+    { value: 'gpt-5', label:'GPT-5'},
+    { value: 'gpt-5.5', label:'GPT-5.5'},
 ]

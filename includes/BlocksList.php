@@ -27,7 +27,7 @@ class BlocksList
 
 	public static function premium()
 	{
-		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation'];
+		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation','woo-product-carousel'];
 	}
 
 	public static function all()
@@ -160,12 +160,13 @@ class BlocksList
 			// 'woo-category-grid',
 			// 'woo-featured-product',
 			// 'woo-mini-cart',
-			// 'woo-product-carousel',
+			'woo-product-carousel',
 			// 'woo-product-filter',
 			'woo-product-details',
 			'woo-product-grid',
 			'woo-product-images',
 			'woo-product-price',
+			'woo-product-rating',
 			// 'woo-product-reviews',
 			// 'woo-sale-badge',
 			// 'woo-single-product',

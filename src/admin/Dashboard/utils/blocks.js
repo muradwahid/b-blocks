@@ -36,7 +36,9 @@ import {
     // videoPopupIcon,
     whatsappChatIcon, tableIcon,
     wooProductPriceIcon,
-    wooProductDetailsIcon
+    wooProductDetailsIcon,
+    wooProductRatingIcon,
+    wooProductCarouselIcon
 } from '../../../utils/blocksIcon';
 
 import {
@@ -1281,15 +1283,25 @@ export default [
                 status: 'published',
                 badge: 'NEW'
             },
-            // {
-            //     name: `${pluginSlug}/woo-product-carousel`,
-            //     title: 'Product Carousel',
-            //     icon: wooProductCarouselIcon,
-            //     demo: ``,
-            //     docs: ``,
-            //     status: 'published',
-            //     badge: 'NEW'
-            // },
+            {
+                name: `${pluginSlug}/woo-product-rating`,
+                title: 'Woo Product Rating',
+                icon: wooProductRatingIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW'
+            },
+            {
+                name: `${pluginSlug}/woo-product-carousel`,
+                title: 'Woo Product Carousel',
+                icon: wooProductCarouselIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                badge: 'NEW',
+                isPremium:true
+            },
             // {
             //     name: `${pluginSlug}/woo-best-sellers`,
             //     title: 'Best Selling Products',

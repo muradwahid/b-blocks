@@ -6,9 +6,9 @@ class BBlocksApiKeys{
 		// nopriv hook intentionally omitted — this action requires manage_options capability.
 	}
 
-    function bBlocksTestApiKeys($key,$value){
+    function bBlocksTestApiKeys($key,$value,$model = ''){
         if ($key == 'openAi') {
-            return BBlocksAi::get_instance()->test_api_key($value);
+            return BBlocksAi::get_instance()->test_api_key($value, $model);
         }
         if ($key == 'instagram') {
             return BBlocksInstagram::test_token($value);
@@ -30,8 +30,11 @@ class BBlocksApiKeys{
         $value = sanitize_text_field(wp_unslash($_POST['value'] ?? ''));
         $apiKeys = get_option('bBlocksApiKeys',[]);
 
+        // Model ids are like "gpt-4.1-mini"; reject anything else.
+        $model = sanitize_text_field( wp_unslash( $_POST['model'] ?? 'gpt-4.1-mini' ) );
+
         if ( '' !== $value ) {
-            $error = $this->bBlocksTestApiKeys($key,$value);
+            $error = $this->bBlocksTestApiKeys($key,$value,$model);
             
             if (isset($error['valid']) && !$error['valid']) {
                 wp_send_json_error([$key=>$error]);
@@ -42,6 +45,16 @@ class BBlocksApiKeys{
 
         if ($key) {
             $apiKeys[$key] = ['key'=> $value];
+
+            $maxToken = absint( wp_unslash( $_POST['maxToken'] ?? 0 ) );
+            if ( 'openAi' === $key && $maxToken ) {
+                $apiKeys[$key]['maxToken'] = $maxToken;
+            }
+
+            if ( 'openAi' === $key && $model ) {
+                $apiKeys[$key]['model'] = $model;
+            }
+
             update_option( 'bBlocksApiKeys',$apiKeys);
         }
         wp_send_json_success($apiKeys);

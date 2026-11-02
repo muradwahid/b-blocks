@@ -1,0 +1,84 @@
+.b-blocks-woo-product-rating {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 5px;
+	margin: 0;
+	line-height: 1.4;
+
+	.b-blocks-woo-product-rating-stars {
+		display: inline-flex;
+		flex-shrink: 0;
+		align-items: center;
+		gap: 3px;
+		line-height: 0;
+	}
+
+	.b-blocks-woo-product-rating-star {
+		position: relative;
+		display: inline-block;
+		flex-shrink: 0;
+		width: 18px;
+		height: 18px;
+		color: #d1d5db;
+
+		svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+		}
+	}
+
+	// The rated part: the same star over the base one, clipped to this star's share of the rating.
+	.b-blocks-woo-product-rating-star-fill {
+		position: absolute;
+		inset: 0;
+		color: #f5a623;
+		clip-path: inset(0 calc(100% - var(--b-blocks-rating-fill, 0%)) 0 0);
+	}
+
+	.b-blocks-woo-product-rating-count {
+		color: #334155;
+	}
+
+	a.b-blocks-woo-product-rating-count {
+		text-decoration: none;
+		box-shadow: none;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+			border-radius: 2px;
+		}
+	}
+}
+
+// High contrast: forced colours would draw base and fill alike (every rating as five full stars), so system colours tell them apart.
+@media (forced-colors: active) {
+	.b-blocks-woo-product-rating .b-blocks-woo-product-rating-star {
+		forced-color-adjust: none;
+		color: GrayText !important;
+	}
+
+	.b-blocks-woo-product-rating .b-blocks-woo-product-rating-star-fill {
+		color: CanvasText !important;
+	}
+}
+
+// Right-to-left: stars fill from the right.
+[dir="rtl"] .b-blocks-woo-product-rating .b-blocks-woo-product-rating-star-fill {
+	clip-path: inset(0 0 0 calc(100% - var(--b-blocks-rating-fill, 0%)));
+}
+
+// Styles 2, 3 and 5 (half stars) face right too: the fill from the right covers the shape, the solid half leads.
+[dir="rtl"] .b-blocks-woo-product-rating .b-blocks-woo-product-rating-stars--style-2 svg,
+[dir="rtl"] .b-blocks-woo-product-rating .b-blocks-woo-product-rating-stars--style-3 svg,
+[dir="rtl"] .b-blocks-woo-product-rating .b-blocks-woo-product-rating-stars--style-5 svg {
+	transform: scaleX(-1);
+}

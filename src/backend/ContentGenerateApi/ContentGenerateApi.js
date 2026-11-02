@@ -1,24 +1,44 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from 'react';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { TextareaControl, Flex, ToolbarGroup, ToolbarButton, Popover } from '@wordpress/components';
+import { TextareaControl, SelectControl, __experimentalNumberControl as NumberControl, Flex, FlexBlock, ToolbarGroup, ToolbarButton, Popover } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BlockControls } from '@wordpress/block-editor';
 
-import Button  from '../../../../bpl-tools/Components/Button/Button';
+import Button from '../../../../bpl-tools/Components/Button/Button';
 import { useWPAjax } from '../../../../bpl-tools/hooks';
 
-import {useOutsideDetect} from '../../../../bpl-tools/hooks/useOutsideDetect';
+import { useOutsideDetect } from '../../../../bpl-tools/hooks/useOutsideDetect';
 
 import { AiIcon, pluginIcon } from '../../utils/icons';
 import { apiSettingsPage } from '../../utils/data';
 import './style.scss';
 
+// Values must match the whitelists in includes/Ai.php
+const lengthOptions = [
+    { label: __('Short (3-8 words)'), value: 'short' },
+    { label: __('Medium (10-15 words)'), value: 'medium' },
+    { label: __('Large (20-30 words)'), value: 'large' },
+    { label: __('Big (40-60 words)'), value: 'big' },
+    { label: __('Custom'), value: 'custom' }
+];
+const toneOptions = [
+    { label: __('Informative'), value: 'informative' },
+    { label: __('Casual'), value: 'casual' },
+    { label: __('Friendly'), value: 'friendly' },
+    { label: __('Professional'), value: 'professional' },
+    { label: __('Inspirational'), value: 'inspirational' },
+    { label: __('Minimal'), value: 'minimal' }
+];
+
+// The editor canvas is an iframe in newer WP versions; fall back to the main document otherwise
+const getEditorDocument = () => document.querySelector('iframe[name="editor-canvas"]')?.contentDocument || document;
+
 const getSelectedRichText = (props) => {
     const { clientId, name, attributes } = props;
-    if (!clientId) return;
-    const blockEl = document.querySelector(`[data-block="${clientId}"]`);
-    if (!blockEl) return [];
+    if (!clientId) return {};
+    const blockEl = getEditorDocument().querySelector(`[data-block="${clientId}"]`);
+    if (!blockEl) return {};
     const isEditable = blockEl.getAttribute('contenteditable');
     if (isEditable === 'true') {
         return {
@@ -47,24 +67,30 @@ const getSelectedRichText = (props) => {
 const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         const { clientId, isSelected } = props;
-
         const [isModalOpen, setIsModalOpen] = useState(false);
         const [prompt, setPrompt] = useState('');
+        const [length, setLength] = useState('medium');
+        const [customWords, setCustomWords] = useState(50);
+        const [tone, setTone] = useState('informative');
         const [contents, setContents] = useState('')
+        const [showError, setShowError] = useState(false);
         const [targetedEl, setTargetedEl] = useState(null);
         const { data, isLoading, error: ajaxError, refetch } = useWPAjax('generate_ai_content', { nonce: aiContentGenerator.nonce }, false);
-        const { data: apiKeys } = useWPAjax('bblocks_api_keys', { _wpnonce: aiContentGenerator.nonce }, true);
 
-        const { ref, btnRef } = useOutsideDetect(() => { 
+        const { ref, btnRef } = useOutsideDetect(() => {
             setIsModalOpen(false)
         })
 
         const generateContent = () => {
-            return refetch({ prompt })
+            // Drop the previous result so it isn't shown next to a new error
+            setContents('');
+            setShowError(true);
+            return refetch({ prompt, length, tone, ...('custom' === length && { customWords }) })
         };
 
         useEffect(() => {
-            if (!isLoading && data) {
+            // useWPAjax keeps the last successful data after a failed request
+            if (!isLoading && data && !ajaxError) {
                 setContents(data.content);
             }
         }, [data, ajaxError, isLoading])
@@ -72,34 +98,34 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
         const replaceCurrentContent = (type) => {
             if (contents && targetedEl) {
                 targetedEl.focus();
+                // The AI is asked for plain text, so escape it: tags in the output must stay
+                // visible text (as in the preview), never become real markup in the post
+                const escaper = document.createElement('div');
+                escaper.textContent = contents;
+                const safeContents = escaper.innerHTML;
                 const checkTypeContent = () => {
                     const prevContent = targetedEl.textContent;
                     if (type === 'replace') {
-                        return contents;
+                        return safeContents;
                     } else if (type === 'end') {
                         if (prevContent === '') {
-                            return contents;
+                            return safeContents;
                         } else {
-                            return prevContent + ' ' + contents;
+                            // innerHTML keeps the existing bold/italic/links
+                            return targetedEl.innerHTML + ' ' + safeContents;
                         }
                     }
                 }
-                const looksLikeHtml = /<\/?[a-z][\s\S]*>/i.test(checkTypeContent());
                 let fragment;
-                if (looksLikeHtml) {
-                    const tmpRange = document.createRange();
-                    tmpRange.selectNodeContents(targetedEl);
-                    try {
-                        fragment = tmpRange.createContextualFragment(checkTypeContent());
-                    } catch (e) {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(checkTypeContent(), 'text/html');
-                        fragment = document.createDocumentFragment();
-                        Array.from(doc.body.childNodes).forEach(n => fragment.appendChild(n));
-                    }
-                } else {
+                const tmpRange = document.createRange();
+                tmpRange.selectNodeContents(targetedEl);
+                try {
+                    fragment = tmpRange.createContextualFragment(checkTypeContent());
+                } catch (e) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(checkTypeContent(), 'text/html');
                     fragment = document.createDocumentFragment();
-                    fragment.appendChild(document.createTextNode(checkTypeContent()));
+                    Array.from(doc.body.childNodes).forEach(n => fragment.appendChild(n));
                 }
                 const sel = window.getSelection();
                 const delRange = document.createRange();
@@ -135,19 +161,20 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
         const closeModal = () => {
             setIsModalOpen(false);
             setPrompt('');
-            // setError('');
+            // useWPAjax has no way to clear its error, so hide it until the next request
+            setShowError(false);
             setContents('')
         };
 
         useEffect(() => {
             if (isModalOpen) return;
-            const { editableEl=[] } = getSelectedRichText(props);
+            const { editableEl = [] } = getSelectedRichText(props);
 
             if (isSelected && editableEl) {
                 // if (Array.isArray(editableEl)>0) {
-                    Array.from(editableEl).forEach(el => {
-                        el.onclick = () => setTargetedEl(el)
-                    })
+                Array.from(editableEl).forEach(el => {
+                    el.onclick = () => setTargetedEl(el)
+                })
                 // }
             } else {
                 setTargetedEl(null)
@@ -158,7 +185,7 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
                 });
             };
         }, [clientId, isModalOpen, isSelected])
-        const suggestion = ['Write a short description for', 'Create a product overview for', 'Generate a service intro for'] 
+        const suggestion = ['Write a short description for', 'Create a product overview for', 'Generate a service intro for']
         return <>
             {targetedEl && isSelected && <BlockControls>
                 <ToolbarGroup>
@@ -172,17 +199,21 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
                     {isModalOpen && (
                         <Popover
                             title={__('Generate AI Content')}
-                            onRequestClose={closeModal}
+                            onClose={closeModal}
+                            // Without this, focus leaving the popover calls onClose. Safari and macOS
+                            // Firefox don't focus a clicked button, so clicking "Generate Content" moved
+                            // focus to <body> and closed it. Outside clicks are handled by useOutsideDetect.
+                            onFocusOutside={() => {}}
                             className="bBlocksContentGenerateAiContainer"
                             ref={ref}
                         >
                             <div className="bBlocksContentGenerateAiContent">
                                 <div className='bBlocksContentGenerateAiHeader'>
-                                    
+
                                     {pluginIcon}
                                     <h2>bBlocks Ai Content Generator</h2>
                                 </div>
-                                {apiKeys?.openAi?.key ? '' : <div className='bBlocksContentGenerateWarning'>
+                                {aiContentGenerator.hasApiKey ? '' : <div className='bBlocksContentGenerateWarning'>
                                     <p>Please add your OpenAi Api Key. <a href={apiSettingsPage} target='_blank' rel='noreferrer'>Go to Settings</a></p>
                                 </div>}
                                 <TextareaControl
@@ -194,7 +225,7 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
                                     disabled={isLoading}
                                 />
 
-                                {ajaxError && (
+                                {showError && ajaxError && (
                                     <div className="bBlocksContentGenerateAiError" >
                                         <strong>{__('Error:')}</strong> {ajaxError?.message}
                                     </div>
@@ -205,8 +236,43 @@ const aiContentEditorControls = createHigherOrderComponent((BlockEdit) => {
                                     {suggestion.map((item, index) => <p key={index} onClick={() => setPrompt(item)}>{item}</p>)}
                                 </div>
 
+                                <Flex className='bBlocksContentGenerateAiOptions' align='flex-start'>
+                                    <FlexBlock>
+                                        <SelectControl
+                                            label={__('Length')}
+                                            value={length}
+                                            options={lengthOptions}
+                                            onChange={setLength}
+                                            disabled={isLoading}
+                                            __nextHasNoMarginBottom
+                                        />
+                                    </FlexBlock>
+                                    <FlexBlock>
+                                        <SelectControl
+                                            label={__('Tone')}
+                                            value={tone}
+                                            options={toneOptions}
+                                            onChange={setTone}
+                                            disabled={isLoading}
+                                            __nextHasNoMarginBottom
+                                        />
+                                    </FlexBlock>
+                                </Flex>
+
+                                {'custom' === length && (
+                                    <NumberControl
+                                        className='bBlocksContentGenerateAiOptions'
+                                        label={__('Number of Words')}
+                                        value={customWords}
+                                        min={1}
+                                        max={500}
+                                        onChange={(val) => setCustomWords(val)}
+                                        disabled={isLoading}
+                                    />
+                                )}
+
                                 <Flex>
-                                    <Button variant='secondary' onClick={generateContent} size='medium' disabled={isLoading || !prompt} >
+                                    <Button variant='secondary' onClick={generateContent} size='medium' disabled={isLoading || !prompt || ('custom' === length && !customWords)} >
                                         {isLoading && prompt ? __('Generating...', 'b-blocks') : __('Generate Content', 'b-blocks')}
                                     </Button>
 

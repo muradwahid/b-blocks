@@ -1,5 +1,22 @@
 export const changeLog = [
     {
+        version: '2.1.15 - 02 November 2026',
+        list: [
+            'Added: Woo Product Carousel Block.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.1.14 - 28 October 2026',
+        list: [
+            'Added: Woo Product Ratings Block.',
+            'Added: OpenAI model selection in the API Integrations settings.',
+            'Added: OpenAI Max Tokens option to control AI content generation length.',
+            'Fixed: AI content generator error in the iframed block editor.',
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.13 - 26 October 2026',
         list: [
             'Added: Woo Product Details Block.'

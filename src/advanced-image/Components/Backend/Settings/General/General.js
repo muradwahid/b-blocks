@@ -11,6 +11,7 @@ const General = ({ attributes, setAttributes, updateObj }) => {
 
 	return <>
 		<PanelBody className='bPlPanelBody' title={__('Image', 'b-blocks')}>
+
 			<SelectControl
 				label={__('Source', 'b-blocks')}
 				labelPosition='left'

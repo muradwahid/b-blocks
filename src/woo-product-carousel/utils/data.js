@@ -1,53 +1,45 @@
-import { __ } from '@wordpress/i18n';
+export const BOX = 'b-blocks-woo-product-carousel';
 
-export const prefix = 'bBlocksWooProductCarousel';
+export const queryAction = 'bb_wpc_query';
+export const searchAction = 'bb_wpc_search';
 
-export const productTypeOptions = [
-	{ label: __( 'All', 'b-blocks' ), value: 'all' },
-	{ label: __( 'Featured', 'b-blocks' ), value: 'featured' },
-	{ label: __( 'On Sale', 'b-blocks' ), value: 'on_sale' },
-	{ label: __( 'Best Selling', 'b-blocks' ), value: 'best_selling' },
-	{ label: __( 'Top Rated', 'b-blocks' ), value: 'top_rated' }
-];
+// Card elements a preset's design leaves out, whatever their settings say. 'view' is the View Product
+// button. Category and rating are left to their Show toggles in every preset.
+export const PRESET_HIDDEN = {
+	'preset-2': [ 'view' ],
+	'preset-3': [ 'view' ],
+	'preset-4': [ 'view' ]
+};
+// Presets whose content is a panel that slides up over the image on hover / focus.
+export const HOVER_PRESETS = [ 'preset-1' ];
+// Presets whose active slide sits in the middle, as wide as the image, with as many slides around it as fit.
+export const CENTERED_PRESETS = [ 'preset-2' ];
+// Presets whose grey content box sits apart from the image (Content Space).
+export const CONTENT_SPACE_PRESETS = [ 'preset-3' ];
+// Presets that show the first product large beside a headed carousel of the rest.
+export const FEATURED_PRESETS = [ 'preset-4' ];
+export const DOT_PRESETS = [ 'style-1', 'style-2', 'style-3' ];
+export const titleTags = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
 
-export const orderByOptions = [
-	{ label: __( 'Newest', 'b-blocks' ), value: 'date' },
-	{ label: __( 'Popularity', 'b-blocks' ), value: 'popularity' },
-	{ label: __( 'Rating', 'b-blocks' ), value: 'rating' },
-	{ label: __( 'Price (low–high)', 'b-blocks' ), value: 'price' },
-	{ label: __( 'Price (high–low)', 'b-blocks' ), value: 'price-desc' },
-	{ label: __( 'Title', 'b-blocks' ), value: 'title' },
-	{ label: __( 'Random', 'b-blocks' ), value: 'rand' }
-];
+// Slides To Show per device when nothing (or nonsense) is saved.
+export const slidesFallback = { desktop: 3, tablet: 2, mobile: 1 };
 
-export const orderOptions = [
-	{ label: __( 'Descending', 'b-blocks' ), value: 'desc' },
-	{ label: __( 'Ascending', 'b-blocks' ), value: 'asc' }
-];
+// Swiper breakpoints, matching bpl-tools' tabBreakpoint (≤1024px) and mobileBreakpoint (≤640px).
+export const TABLET_MIN = 641;
+export const DESKTOP_MIN = 1025;
 
-export const aspectRatioOptions = [
-	{ label: '3:4', value: '3/4' },
-	{ label: '1:1', value: '1/1' },
-	{ label: '4:3', value: '4/3' },
-	{ label: '16:9', value: '16/9' }
-];
-
-export const contentAlignOptions = [
-	{ label: __( 'Left', 'b-blocks' ), value: 'left' },
-	{ label: __( 'Center', 'b-blocks' ), value: 'center' }
-];
-
-export const cardShadowOptions = [
-	{ label: __( 'None', 'b-blocks' ), value: 'none' },
-	{ label: __( 'Small', 'b-blocks' ), value: 'sm' },
-	{ label: __( 'Medium', 'b-blocks' ), value: 'md' },
-	{ label: __( 'Large', 'b-blocks' ), value: 'lg' }
-];
-
-export const titleWeightOptions = [
-	{ label: '400', value: 400 },
-	{ label: '500', value: 500 },
-	{ label: '600', value: 600 },
-	{ label: '700', value: 700 },
-	{ label: '800', value: 800 }
-];
+// What the editor shows until the first products load.
+export const fallbackLabels = {
+	carousel: 'Products',
+	roleCarousel: 'carousel',
+	roleSlide: 'slide',
+	prev: 'Previous products',
+	next: 'Next products',
+	first: 'This is the first slide',
+	last: 'This is the last slide',
+	goTo: 'Go to slide %d',
+	slideOf: '%1$d of %2$d',
+	buttonAria: '%1$s: %2$s',
+	pause: 'Pause autoplay',
+	play: 'Play autoplay'
+};

@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.1.13
+Stable tag: 2.1.15
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -410,6 +410,15 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 
 == Changelog ==
+
+= 2.1.15 - 02 November 2026 =
+* Added: Woo Product Carousel Block.
+
+= 2.1.14 - 28 October 2026 =
+* Added: Woo Product Ratings Block.
+* Added: OpenAI model selection in the API Integrations settings.
+* Added: OpenAI Max Tokens option to control AI content generation length.
+* Fixed: AI content generator error in the iframed block editor.
 
 = 2.1.13 - 26 October 2026 =
 * Added: Woo Product Details Block.
