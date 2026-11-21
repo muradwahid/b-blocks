@@ -882,10 +882,11 @@
 // V4 sharp-edge + hero ordering
 // V4 — sharp-edge variant
 // ==============================================================
+// Not inside the cursor preview: its round cursors and click effects (dot, ring, ripple…) must look as on the site.
 .bPlDashboardV4,
-.bPlDashboardV4 *,
-.bPlDashboardV4 *::before,
-.bPlDashboardV4 *::after {
+.bPlDashboardV4 *:not(.custom-cursor-playground *),
+.bPlDashboardV4 *:not(.custom-cursor-playground *)::before,
+.bPlDashboardV4 *:not(.custom-cursor-playground *)::after {
     border-radius: 0 !important;
 }
 

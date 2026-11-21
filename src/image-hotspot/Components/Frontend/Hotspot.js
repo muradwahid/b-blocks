@@ -1,6 +1,7 @@
 import SVG from 'react-inlinesvg';
 import { placeholderImg } from '../../../utils/data';
 import { Fragment } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 
 const Hotspot = ({ attributes }) => {
@@ -64,13 +65,13 @@ const Hotspot = ({ attributes }) => {
 										>
 											<div
 												className='b-blocks-bphb-tooltip-content'
-												dangerouslySetInnerHTML={{ __html: element.tooltip }}
+												dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.tooltip ) }}
 											></div>
 										</div>
 									)}
 									<span
 										className='b-blocks-imghp-text-icon'
-										dangerouslySetInnerHTML={{ __html: element.spotText }}
+										dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.spotText ) }}
 									></span>
 								</div>
 							</div>
@@ -118,18 +119,18 @@ const Hotspot = ({ attributes }) => {
 										>
 											<div
 												className='bphb-tooltip-content'
-												dangerouslySetInnerHTML={{ __html: element.tooltip }}
+												dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.tooltip ) }}
 											></div>
 										</div>
 									)}
 									{element.icon.type === 'upload' && (
-										element.icon.type === 'upload' && <span className='b-blocks-imghp-upload-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.upload }}></span>
+										element.icon.type === 'upload' && <span className='b-blocks-imghp-upload-icon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.icon.url.upload ) }}></span>
 									)}
 									{element.icon.type === 'library' && (
 										<span
 											className='b-blocks-imghp-library-icon'
 											dangerouslySetInnerHTML={{
-												__html: element.icon.url.library,
+												__html: sanitizeHtml( element.icon.url.library ),
 											}}
 										></span>
 									)}
@@ -180,7 +181,7 @@ const Hotspot = ({ attributes }) => {
 										>
 											<div
 												className='b-blocks-bphb-tooltip-content'
-												dangerouslySetInnerHTML={{ __html: element.tooltip }}
+												dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.tooltip ) }}
 											></div>
 										</div>
 									)}

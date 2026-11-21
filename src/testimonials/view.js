@@ -6,6 +6,7 @@ import './style.scss';
 import Style from './Components/Common/Style';
 import Layout from './Components/Common/Layout/Layout';
 import ExpandButton from './Components/Common/ExpandButton';
+import { sanitizeHtml } from '../utils/sanitizeHtml';
 
 //b testimonials Directory
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,7 +40,7 @@ const TestimonialsDir = ({ attributes }) => {
 			const text = expandBtn ? showText : reviewText;
 
 			return (elements?.reviewText && reviewText) && <>
-				<p className='reviewText' dangerouslySetInnerHTML={{ __html: text }} />
+				<p className='reviewText' dangerouslySetInnerHTML={{ __html: sanitizeHtml( text ) }} />
 
 				{contentLength > textLength && <ExpandButton attributes={attributes} reviewText={reviewText} expanded={expanded} onChange={() => setExpanded(!expanded)} />}
 			</>
@@ -47,8 +48,8 @@ const TestimonialsDir = ({ attributes }) => {
 
 		return {
 			img: <></>,
-			name: (elements?.name && name) && <h3 className='name' dangerouslySetInnerHTML={{ __html: name }} />,
-			deg: (elements?.deg && deg) && <h5 className='deg' dangerouslySetInnerHTML={{ __html: deg }} />,
+			name: (elements?.name && name) && <h3 className='name' dangerouslySetInnerHTML={{ __html: sanitizeHtml( name ) }} />,
+			deg: (elements?.deg && deg) && <h5 className='deg' dangerouslySetInnerHTML={{ __html: sanitizeHtml( deg ) }} />,
 			reviewText: <ReviewText />
 		}
 	})

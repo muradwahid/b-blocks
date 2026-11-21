@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { codeLines, getHighlightMarks, getWrapperClasses, languages, safeLanguage } from '../../utils/options';
 import { tokenise } from '../../utils/prism';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 /**
  * The one source of the markup and the behaviour: Edit renders it in the editor
@@ -71,7 +72,7 @@ const CodeHighlight = ({ attributes }) => {
 		onClick={onCopy}
 	>
 		{/* IconLibrary stores the icon as markup, so it goes in as markup. */}
-		{showIcon && <span className='b-blocks-code-highlight-btn-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: buttonIcon.icon }} />}
+		{showIcon && <span className='b-blocks-code-highlight-btn-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( buttonIcon.icon ) }} />}
 
 		<span className='b-blocks-code-highlight-copy-text'>{copied ? (options.copiedLabel || 'Copied!') : (options.copyLabel || 'Copy')}</span>
 	</button>;

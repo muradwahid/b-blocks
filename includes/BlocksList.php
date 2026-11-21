@@ -27,7 +27,7 @@ class BlocksList
 
 	public static function premium()
 	{
-		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation','woo-product-carousel'];
+		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation','b-blocks/woo-product-carousel','b-blocks/document-embed'];
 	}
 
 	public static function all()
@@ -36,6 +36,7 @@ class BlocksList
 			'alert',
 			// 'anchor-nav',
 			'advanced-image',
+			'advanced-search',
 			'animated-text',
 			'advanced-tabs',
 			'article-card',
@@ -72,6 +73,8 @@ class BlocksList
 			// 'cookie-consent-bar',
 			// 'coupon-code',
 			'divider',
+			'document-embed',
+			'document-library',
 			'dual-color-heading',
 			'emoji-stack-separator',
 			'event-card',

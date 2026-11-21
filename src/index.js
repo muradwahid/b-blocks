@@ -6,6 +6,7 @@ import './row';
 import './column';
 import './td-viewer';
 import './advanced-image';
+import './advanced-search';
 import './alert';
 // import './anchor-nav';
 import './animated-text';
@@ -42,6 +43,8 @@ import './table-row';
 import './table-cell';
 import './table-footer';
 import './divider';
+import './document-embed';
+import './document-library';
 import './dual-color-heading';
 import './emoji-stack-separator'
 import './event-card';

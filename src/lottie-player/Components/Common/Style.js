@@ -3,7 +3,7 @@ import { getColorsCSS, getSpaceCSS, getTypoCSS } from '../../../../../bpl-tools/
 import { prefix } from '../../utils/data';
 
 const Style = ({ attributes, id }) => {
-	const { playerAlign, link, width, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor, capAlign = 'center', capTypo = {}, capColors = { color: '#333' }, capPadding = {}, capMargin = {} } = attributes;
+	const { playerAlign, link, width, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor, capAlign = 'center', capTypo = {}, capColors = { color: '#333' }, capPadding = {}, capMargin = {}, isSeeker = true } = attributes;
 
 	const lottiePlayerSl = `#${id} .${prefix}`;
 
@@ -25,6 +25,7 @@ const Style = ({ attributes, id }) => {
 			--lottie-player-toolbar-icon-active-color: ${controlsIconActiveColor};
 			--lottie-player-seeker-track-color: ${controlsTrackColor};
 			--lottie-player-seeker-thumb-color: ${controlsThumbColor};
+			${isSeeker ? '' : '--lottie-player-seeker-display: none;'}
 		}
 		${lottiePlayerSl} .caption{
 			width: ${width};

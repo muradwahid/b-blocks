@@ -6,6 +6,7 @@ import Style from "../Common/Styles/Style";
 import useHeading from "../hooks/useHeading";
 import RenderNestedList from '../Common/RenderNestedList';
 import { headingTree } from '../../utils/functions';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const TableFront = ({ attributes, id }) => {
     const accordion = useRef();
@@ -27,7 +28,7 @@ const TableFront = ({ attributes, id }) => {
         <Style toggle={toggle} attributes={attributes} id={id} />
         <div ref={accordion} className={`bblocks-tbcn-accordion ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}`}>
             <div ref={titleRef} onClick={() => setToggle(!toggle)} className="bblocks-tbcn-accordion-title">
-                <DynamicTag className="bblocks-tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+                <DynamicTag className="bblocks-tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: sanitizeHtml( title?.text ) }} />
                 {/* {minimize.toggle && <>{!toggle ? <i style={{ color: header.iconColor }} className={minimize.collapseIcon}></i> : <i style={{ color: header.iconColor }} className={minimize.expandIcon}></i>}</>} */}
                 {minimize.toggle && <>{!toggle ? collapseIcons.map(({ value: val, icon }) => val === minimize.collapseIcon && icon) : expandIcons.map(({ value: val, icon }) => val === minimize.expandIcon && icon)}</>}
             </div>

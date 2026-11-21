@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const AdvancedTabs = ({ attributes, templateContent }) => {
 	const { tabLists = [], tabs } = attributes;
@@ -76,13 +77,13 @@ const AdvancedTabs = ({ attributes, templateContent }) => {
 									data-active-tab={item.isDefault}
 									onClick={() => handleTabTitleClick(item.id)}
 								>
-									{(tabs.isShowIcon && item.iconType !== 'none') && <p className="b-blocks-advanced-tabs-button-icon" dangerouslySetInnerHTML={{ __html: item?.[item.iconType] }}>
+									{(tabs.isShowIcon && item.iconType !== 'none') && <p className="b-blocks-advanced-tabs-button-icon" dangerouslySetInnerHTML={{ __html: sanitizeHtml( item?.[item.iconType] ) }}>
 									</p>}
 									<div className="b-blocks-advanced-tabs-button-title-container">
 										{tabs.isShowTitle && <span
 											className="b-blocks-advanced-tabs-button-title"
 											placeholder="Tab Title"
-											dangerouslySetInnerHTML={{ __html: item.title }}
+											dangerouslySetInnerHTML={{ __html: sanitizeHtml( item.title ) }}
 										/>}
 
 										{tabs.isShowSubTitle && <p className="b-blocks-advanced-tabs-button-subTitle">

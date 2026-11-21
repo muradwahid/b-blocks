@@ -1,5 +1,6 @@
 import { cartIcon, externalIcon } from '../../../utils/icons';
 import { asText } from '../../../utils/functions';
+import { sanitizeHtml } from '../../../../utils/sanitizeHtml';
 
 const Actions = ( { product, attributes, isBackend = false, only = '' } ) => {
 	const { cart: cartOn, viewButton: viewOn } = attributes.elements || {};
@@ -24,7 +25,7 @@ const Actions = ( { product, attributes, isBackend = false, only = '' } ) => {
 		if ( false === group.showIcon && ! actionIconOnly ) return null;
 
 		return group.icon
-			? <span className='b-blocks-woo-product-grid-icon' aria-hidden='true' dangerouslySetInnerHTML={ { __html: group.icon } } />
+			? <span className='b-blocks-woo-product-grid-icon' aria-hidden='true' dangerouslySetInnerHTML={ { __html: sanitizeHtml( group.icon ) } } />
 			: fallback;
 	};
 

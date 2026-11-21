@@ -161,6 +161,18 @@
 				"side": 4,
 				"top": "5px"
 			}
+		},
+		"renderer": {
+			"type": "string",
+			"default": ""
+		},
+		"activeAnimationId": {
+			"type": "string",
+			"default": ""
+		},
+		"isSeeker": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {

@@ -7,6 +7,7 @@ import { ToolbarGroup, ToolbarButton, Dashicon } from '@wordpress/components';
 import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const at = (obj, d) => {
 	if (typeof obj === 'string') return obj;
@@ -91,7 +92,7 @@ const Edit = (props) => {
 
 			{meta ? (
 				<span className='b-blocks-article-card-meta'>
-					{metaIcon ? <span className='b-blocks-article-card-meta-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: metaIcon }} /> : null}
+					{metaIcon ? <span className='b-blocks-article-card-meta-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( metaIcon ) }} /> : null}
 					<span className='b-blocks-article-card-meta-text'>{meta}</span>
 				</span>
 			) : null}

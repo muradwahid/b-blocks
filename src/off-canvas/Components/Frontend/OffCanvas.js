@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const P = 'b-blocks-off-canvas';
 
@@ -97,9 +98,9 @@ const OffCanvas = ({ attributes, templateContent }) => {
 				onClick={() => setOpen((o) => !o)}
 				onMouseEnter={() => { if (triggerEvent === 'hover') setOpen(true); }}
 			>
-				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition !== 'right' ? <span className={`${P}-icon`} aria-hidden='true' dangerouslySetInnerHTML={{ __html: trigger.icon }} /> : null}
+				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition !== 'right' ? <span className={`${P}-icon`} aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( trigger.icon ) }} /> : null}
 				{label ? <span className={`${P}-trigger-label`}>{label}</span> : null}
-				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition === 'right' ? <span className={`${P}-icon`} aria-hidden='true' dangerouslySetInnerHTML={{ __html: trigger.icon }} /> : null}
+				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition === 'right' ? <span className={`${P}-icon`} aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( trigger.icon ) }} /> : null}
 			</button>
 
 			{showOverlay ? (

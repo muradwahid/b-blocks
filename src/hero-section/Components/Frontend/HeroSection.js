@@ -9,6 +9,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const NewTabHint = () => <span className='screen-reader-text'>{__('(opens in a new tab)', 'b-blocks')}</span>;
 
@@ -26,19 +27,19 @@ const HeroSection = ({ attributes, id }) => {
 		<div className='b-blocks-hero-section' {...(headingId ? { 'aria-labelledby': headingId } : {})}>
 			<div className='b-blocks-hero-section-container'>
 				{!!eyebrow.show && hasText(eyebrow.text) ? (
-					<span className='b-blocks-hero-section-eyebrow' dangerouslySetInnerHTML={{ __html: eyebrow.text }} />
+					<span className='b-blocks-hero-section-eyebrow' dangerouslySetInnerHTML={{ __html: sanitizeHtml( eyebrow.text ) }} />
 				) : null}
 
 				{hasText(heading.text) ? (
 					<HeadingTag
 						id={headingId}
 						className='b-blocks-hero-section-heading'
-						dangerouslySetInnerHTML={{ __html: heading.text }}
+						dangerouslySetInnerHTML={{ __html: sanitizeHtml( heading.text ) }}
 					/>
 				) : null}
 
 				{!!subHeading.show && hasText(subHeading.text) ? (
-					<p className='b-blocks-hero-section-subheading' dangerouslySetInnerHTML={{ __html: subHeading.text }} />
+					<p className='b-blocks-hero-section-subheading' dangerouslySetInnerHTML={{ __html: sanitizeHtml( subHeading.text ) }} />
 				) : null}
 
 				{showPrimary ? (
@@ -48,7 +49,7 @@ const HeroSection = ({ attributes, id }) => {
 							href={button.url || '#'}
 							{...(button.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
 						>
-							<span dangerouslySetInnerHTML={{ __html: button.text }} />
+							<span dangerouslySetInnerHTML={{ __html: sanitizeHtml( button.text ) }} />
 							{button.newTab ? <NewTabHint /> : null}
 						</a>
 					</div>

@@ -20,6 +20,8 @@
  *
  * @package bBlocks
  */
+// Attribute HTML is shown as HTML in the browser: unsafe markup out for authors without unfiltered_html.
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 
 $prefix    = 'bBlocksAuthorBox';
 $id        = wp_unique_id( "$prefix-" );

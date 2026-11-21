@@ -42,6 +42,35 @@
 				"horizontalAlign": "center"
 			}
 		},
+		"itemsLayout": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"direction": "",
+					"justify": "",
+					"align": "",
+					"wrap": "",
+					"columnGap": "",
+					"rowGap": ""
+				},
+				"tablet": {
+					"direction": "",
+					"justify": "",
+					"align": "",
+					"wrap": "",
+					"columnGap": "",
+					"rowGap": ""
+				},
+				"mobile": {
+					"direction": "",
+					"justify": "",
+					"align": "",
+					"wrap": "",
+					"columnGap": "",
+					"rowGap": ""
+				}
+			}
+		},
 		"shape": {
 			"type": "object",
 			"default": {

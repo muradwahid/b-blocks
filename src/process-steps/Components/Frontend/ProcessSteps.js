@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { sanitizeHTML } from '../../../../../bpl-tools/utils/common';
 
 import { TITLE_TAGS, getWrapperClasses } from '../../utils/options';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 /**
  * Shared, read-only render of the Process Steps list. Used by view.js on the
@@ -35,7 +36,7 @@ const ProcessSteps = ({ attributes }) => {
 					<li className='bBlocksProcessStepsItem'>
 						<div className='bBlocksProcessStepsBadge' aria-hidden='true'>
 							{safeBadgeType === 'icon' && step?.icon ? (
-								<span className='bBlocksProcessStepsIcon' dangerouslySetInnerHTML={{ __html: step.icon }} />
+								<span className='bBlocksProcessStepsIcon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( step.icon ) }} />
 							) : (
 								<span className='bBlocksProcessStepsNumber'>{idx + 1}</span>
 							)}

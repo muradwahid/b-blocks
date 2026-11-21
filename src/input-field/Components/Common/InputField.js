@@ -3,6 +3,7 @@ import { useFieldValidate } from "../hooks/useFieldValidate";
 import { ImEye, ImEyeBlocked } from "../../utils/icons";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
 import PasswordStrengthMeterText from "./PasswordStrengthMeterText";
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const InputField = ({ attributes }) => {
   const [isPassVisible, setIsPassVisible] = useState(false);
@@ -29,7 +30,7 @@ const InputField = ({ attributes }) => {
   return <div data-iserror={isValid} className={`b-blocks-input-field-container label-position-${position} b-blocks-input-field-validation-${name}`}>
     {(text && isLabel) && <label htmlFor={name} className='b-blocks-input-field-label'>{text} {(isRequired && isShowRequiredIcon) && <span className='b-blocks-input-field-required'>*</span> } </label>}
     <div className='b-blocks-input-field'>
-        {(icon && isIcon) && <span className='b-blocks-input-field-icon' dangerouslySetInnerHTML={{ __html: icon }}/>}
+        {(icon && isIcon) && <span className='b-blocks-input-field-icon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon ) }}/>}
       <input onChange={(e) => setInputValues(e.target.value)} type={passVisible(type)} name={name} id={name} placeholder={placeholder} {...(value && { value })} {...(type === 'email' ? { noValidate: true } : {})} {...(type === 'password' ? { autoComplete:"current-password" }:{ })} />
 
       {(type === 'password' && passOptions.isVisibilityIcon) && (isPassVisible ? <ImEye onClick={() => setIsPassVisible(!isPassVisible)} className='b-blocks-input-field-passVisibilityIcon' /> : <ImEyeBlocked onClick={() => setIsPassVisible(!isPassVisible)} className='b-blocks-input-field-passVisibilityIcon' />)}

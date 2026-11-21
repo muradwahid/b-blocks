@@ -1,6 +1,11 @@
 <?php
+use BBlocks\Inc\Sanitize;
+
 $id = wp_unique_id( 'bBlocksAccordionBlock-' );
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';
+
+$attributes = Sanitize::attributes($attributes);
+
 ?>
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is properly escaped ?>

@@ -8,6 +8,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { formatEventLabel, badgeFromDate, getEventStatus, getLocationLabel } from '../../utils/functions';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const CalendarIcon = () => <svg className='b-blocks-event-card-meta-icon' viewBox='0 0 24 24' aria-hidden='true' focusable='false'><path fill='currentColor' d='M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 7v10H5V9h14Z' /></svg>;
 const PinIcon = () => <svg className='b-blocks-event-card-meta-icon' viewBox='0 0 24 24' aria-hidden='true' focusable='false'><path fill='currentColor' d='M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z' /></svg>;
@@ -107,7 +108,7 @@ const EventCard = ({ attributes }) => {
 				)}
 
 				{eventDescription && (
-					<div className='b-blocks-event-card-description' dangerouslySetInnerHTML={{ __html: eventDescription }} />
+					<div className='b-blocks-event-card-description' dangerouslySetInnerHTML={{ __html: sanitizeHtml( eventDescription ) }} />
 				)}
 
 				{showButton && (

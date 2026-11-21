@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { TITLE_TAGS, getActiveAnimation, getActiveItem, getDefaultItemId, getSegmentAngle, getSegmentWedges, getStaggerOrder, getVisibleItems, getWrapperClasses, isScrollTriggered, toMs, withUnit } from '../../utils/options';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const SegmentIcon = ({ buttonIcon = {}, label }) => {
 	const { type = 'icon', icon = '', url = '' } = buttonIcon;
@@ -9,7 +10,7 @@ const SegmentIcon = ({ buttonIcon = {}, label }) => {
 		return url ? <span className='b-blocks-infographic-segment-icon'><img src={url} alt={label || ''} /></span> : null;
 	}
 
-	return icon ? <span className='b-blocks-infographic-segment-icon' dangerouslySetInnerHTML={{ __html: icon }} /> : null;
+	return icon ? <span className='b-blocks-infographic-segment-icon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon ) }} /> : null;
 };
 
 // A per-item height overrides the global one; left empty it falls through.

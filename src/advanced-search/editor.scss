@@ -1,0 +1,19 @@
+// The editor preview: links and the form do nothing, so they show no pointer.
+.wp-block-b-blocks-advanced-search {
+	.b-blocks-advanced-search-item a,
+	.b-blocks-advanced-search-view-all {
+		cursor: default;
+	}
+
+	// The open results sit in the flow, so they push the blocks below
+	// instead of covering them. The page's 8px gap (from "top") comes
+	// from the form here: the Margin setting owns the results' margin.
+	.b-blocks-advanced-search-results {
+		position: relative;
+		top: auto;
+	}
+
+	.b-blocks-advanced-search.is-open .b-blocks-advanced-search-form {
+		margin-bottom: 8px;
+	}
+}

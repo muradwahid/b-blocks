@@ -25,7 +25,7 @@ const Edit = props => {
 		<Settings attributes={attributes} setAttributes={setAttributes} device={device} id={blockProps.id} isPremium={isPremium} />
 
 		<div ref={ref}>
-			<Style attributes={attributes} id={blockProps.id} isBackend={true} />
+			<Style attributes={attributes} id={blockProps.id} isBackend={true} device={device} />
 
 			<div className={prefix}>
 				{!!top?.uploadSvg?.url || 'none' !== top?.type && <div className='shaped topShaped'>

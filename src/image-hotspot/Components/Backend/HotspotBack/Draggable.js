@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { sanitizeHtml } from '../../../../utils/sanitizeHtml';
 const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx, index, wrapperEl, align, isSelected, ...props }) => {
 	const [position, setPosition] = useState(value || { x: 0, y: 0 });
 	const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -99,7 +100,7 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 						>
 							<div
 								className='b-blocks-bphb-tooltip-content'
-								dangerouslySetInnerHTML={{ __html: element.tooltip }}
+								dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.tooltip ) }}
 							></div>
 						</div>
 					)}
@@ -148,16 +149,16 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 						>
 							<div
 								className='b-blocks-bphb-tooltip-content'
-								dangerouslySetInnerHTML={{ __html: element.tooltip }}
+								dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.tooltip ) }}
 							></div>
 						</div>
 					)}
 					{
 						// element.icon.type === 'upload' && <SVG src={element.icon.url.upload} height='auto' />
-						element.icon.type === 'upload' && <span className='b-blocks-imghp-upload-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.upload }}></span>
+						element.icon.type === 'upload' && <span className='b-blocks-imghp-upload-icon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.icon.url.upload ) }}></span>
 					}
 					{
-						element.icon.type === 'library' && <span className='b-blocks-imghp-library-icon' dangerouslySetInnerHTML={{ __html: element.icon.url.library }} ></span>
+						element.icon.type === 'library' && <span className='b-blocks-imghp-library-icon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.icon.url.library ) }} ></span>
 					}
 
 				</div>
@@ -203,7 +204,7 @@ const Draggable = ({ value, onChange = () => { }, preset, element, setActiveIdx,
 						>
 							<div
 								className='b-blocks-bphb-tooltip-content'
-								dangerouslySetInnerHTML={{ __html: element.tooltip }}
+								dangerouslySetInnerHTML={{ __html: sanitizeHtml( element.tooltip ) }}
 							></div>
 						</div>
 					)}

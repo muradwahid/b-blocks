@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: bBlocks
- * Description: Gutenberg Blocks Collection and Page Builder.
- * Version: 2.1.15
+ * Description: Gutenberg blocks plugin with 90+ customizable blocks, patterns and templates that turn the WordPress block editor into a fast, lightweight page builder.
+ * Version: 2.1.17
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3 or later
@@ -46,10 +46,15 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/cursor.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Ai.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/ApiKeys.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/Performance.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/SiteScanner.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/Instagram.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/OptinRateLimit.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/form/FormHandler.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/newsletter/NewsletterHandler.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/document-embed/DocumentEmbedHandler.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/document-embed/DocumentEmbedCloud.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/blocks/advanced-search/AdvancedSearch.php';
 	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/popup-optin/PopupOptinHandler.php';
 	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-filter-grid/PostFilterGrid.php';
 	// require_once B_BLOCKS_DIR_PATH . 'includes/blocks/post-masonry-grid/PostMasonryGrid.php';
@@ -71,6 +76,7 @@ if (function_exists('b_blocks_fs')) {
 	require_once B_BLOCKS_DIR_PATH . 'includes/RegisterBlocks.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/RegisterSettings.php';
 	require_once B_BLOCKS_DIR_PATH . 'includes/UploadFileTypes.php';
+	require_once B_BLOCKS_DIR_PATH . 'includes/Campaign.php';
 
 	// License Activation
 	if (file_exists(B_BLOCKS_DIR_PATH . 'includes/LicenseActivation.php') && B_BLOCKS_HAS_PRO ) {

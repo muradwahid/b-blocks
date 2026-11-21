@@ -3,7 +3,7 @@ import { useEffect, forwardRef } from 'react';
 import { toggleAttr } from '../../utils/functions';
 
 const DotLottiePlayer = ({ attributes }, ref) => {
-	const { file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, background } = attributes;
+	const { file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, background, renderer = '', activeAnimationId = '' } = attributes;
 
 	useEffect(() => {
 		if (ref?.current) {
@@ -27,6 +27,8 @@ const DotLottiePlayer = ({ attributes }, ref) => {
 		direction={direction}
 		intermission={intermission * 1000}
 		background={background}
+		renderer={renderer || undefined}
+		activeanimationid={activeAnimationId || undefined}
 		debug
 	></dotlottie-player>
 }

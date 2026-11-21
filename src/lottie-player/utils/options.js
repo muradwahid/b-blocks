@@ -33,3 +33,8 @@ export const interactivityTypes = [
 	{ label: __('Stop', 'b-blocks'), value: 'stop' },
 	{ label: __('Loop', 'b-blocks'), value: 'loop' }
 ];
+
+export const renderers = [
+	{ label: __('SVG', 'b-blocks'), value: '' },
+	{ label: __('Canvas', 'b-blocks'), value: 'canvas' }
+];

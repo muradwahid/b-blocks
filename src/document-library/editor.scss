@@ -1,0 +1,7 @@
+.wp-block-b-blocks-document-library {
+	// The editor shows buttons as live, but they never navigate away from it.
+	.b-blocks-document-library-btn.is-download {
+		cursor: default;
+	}
+}
+

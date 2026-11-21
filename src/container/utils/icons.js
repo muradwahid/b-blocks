@@ -27,3 +27,24 @@ export const AsymmetricCurve = () => {
 		<path d='M646.99 79.145C766.266 62.962 906.985 26.462 1000 0H0c211.255 131.265 460.086 104.501 646.99 79.145Z' />
 	</svg>
 }
+
+// Items Layout icons (24×24, drawn for a row: the Items Layout panel turns them for a column).
+// Justify Content
+export const justifyStartIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M9 9v6h11V9H9zM4 20h1.5V4H4v16z' /></svg>;
+export const justifyCenterIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M12.5 15v5H11v-5H4V9h7V4h1.5v5h7v6h-7Z' /></svg>;
+export const justifyEndIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 15h11V9H4v6zM18.5 4v16H20V4h-1.5z' /></svg>;
+export const justifySpaceBetweenIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 4h1.5v16H4zM18.5 4H20v16h-1.5zM5.5 9H9v6H5.5zM15 9h3.5v6H15z' /></svg>;
+export const justifySpaceAroundIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 4h1.5v16H4zM18.5 4H20v16h-1.5zM6.5 9H10v6H6.5zM14 9h3.5v6H14z' /></svg>;
+export const justifySpaceEvenlyIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 4h1.5v16H4zM18.5 4H20v16h-1.5zM7.5 9H11v6H7.5zM13 9h3.5v6H13z' /></svg>;
+
+// Align Items
+export const alignStartIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M9 20h6V9H9v11zM4 4v1.5h16V4H4z' /></svg>;
+export const alignCenterIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M20 11h-5V4H9v7H4v1.5h5V20h6v-7.5h5z' /></svg>;
+export const alignEndIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M15 4H9v11h6V4zM4 18.5V20h16v-1.5H4z' /></svg>;
+export const alignStretchIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 4L20 4L20 5.5L4 5.5L4 4ZM10 7L14 7L14 17L10 17L10 7ZM20 18.5L4 18.5L4 20L20 20L20 18.5Z' /></svg>;
+export const alignBaselineIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M5 8h4v6H5zM10.5 10h4v4h-4zM16 5h3.5v9H16zM4 15.5h16V17H4z' /></svg>;
+
+// Wrap
+export const noWrapIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M2.5 9h5.5v6H2.5zM9.25 9h5.5v6h-5.5zM16 9h5.5v6H16z' /></svg>;
+export const wrapIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 5h7v6H4zM13 5h7v6h-7zM4 13h7v6H4z' /></svg>;
+export const wrapReverseIcon = <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor'><path d='M4 5h7v6H4zM4 13h7v6H4zM13 13h7v6h-7z' /></svg>;

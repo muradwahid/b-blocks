@@ -14,11 +14,11 @@ import { primaryColor, secondaryColor } from '../../../../../../bpl-tools/utils/
 import ProModal from '../../../../backend/ProModal/ProModal';
 import { pluginSlug } from '../../../../utils/data';
 import { aligns, generalStyleTabs } from '../../../../utils/options';
-import { directions, interactivities, modes } from '../../../utils/options';
+import { directions, interactivities, modes, renderers } from '../../../utils/options';
 import { actionsOnInteractivityChange } from '../../../utils/functions';
 
-const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
-	const { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, link, isLinkInNewTab = false, interactivity = 'noInteractivity', interactivityContainer = '.wp-block-b-blocks-lottie-player', interactivityActions = [], width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor, isCap = false, caption = '', capAlign = 'center', capTypo = {}, capColors = { color: '#333' }, capPadding = {}, capMargin = {} } = attributes;
+const Settings = ({ attributes, setAttributes, fileFrameSize, animationIds = [], isPremium }) => {
+	const { playerAlign, file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, link, isLinkInNewTab = false, interactivity = 'noInteractivity', interactivityContainer = '.wp-block-b-blocks-lottie-player', interactivityActions = [], width, background, controlsHeight, controlsBG, controlsIconColor, controlsIconHoverColor, controlsIconActiveColor, controlsTrackColor, controlsThumbColor, isCap = false, caption = '', capAlign = 'center', capTypo = {}, capColors = { color: '#333' }, capPadding = {}, capMargin = {}, renderer = '', activeAnimationId = '', isSeeker = true } = attributes;
 
 	const [isProModalOpen, setIsProModalOpen] = useState(false);
 
@@ -53,11 +53,13 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 					<PanelBody className='bPlPanelBody' title={__('Player', 'b-blocks')}>
 						<Label className='mb5'>{__('Lottie file url:', 'b-blocks')}</Label>
 						{isPremium ?
-							<InlineMediaUpload value={file} types={['application/json']} onChange={val => setAttributes({ file: val })} placeholder={__('Enter lottie file url', 'b-blocks')} /> :
-							<TextControl value={file} onChange={val => setAttributes({ file: val })} />}
+							<InlineMediaUpload value={file} types={['application/json']} onChange={val => setAttributes({ file: val, activeAnimationId: '' })} placeholder={__('Enter lottie file url', 'b-blocks')} /> :
+							<TextControl value={file} onChange={val => setAttributes({ file: val, activeAnimationId: '' })} />}
 						<small>{__('Support only .json or .lottie file!', 'b-blocks')}</small>
 
 						<ToggleControl className='mt20' label={__('Show Controls', 'b-blocks')} checked={isControls} onChange={val => setAttributes({ isControls: val })} />
+
+						{isControls && <ToggleControl className='mt10' label={__('Show Seek Bar', 'b-blocks')} checked={isSeeker} onChange={val => setAttributes({ isSeeker: val })} />}
 
 						<ToggleControl className='mt10' label={__('Enable Autoplay', 'b-blocks')} checked={isAutoplay} onChange={val => setAttributes({ isAutoplay: val })} />
 
@@ -74,6 +76,10 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 						<BControlPro className='mt20' label={__('Speed:', 'b-blocks')} value={speed} onChange={val => setAttributes({ speed: val })} min={0.01} max={20} step={.01} {...premiumProps} Component={RangeControl} />
 
 						<BControlPro className='mt20' label={__('Interval (s):', 'b-blocks')} value={intermission} onChange={val => setAttributes({ intermission: val })} min={0} max={20} step={.01} {...premiumProps} Component={RangeControl} />
+
+						<BControlPro className='mt20' label={__('Renderer:', 'b-blocks')} value={renderer} onChange={val => setAttributes({ renderer: val })} options={renderers} help={__('Canvas can be faster for large or complex animations.', 'b-blocks')} {...premiumProps} Component={SelectControl} />
+
+						{1 < animationIds.length && <BControlPro className='mt20' label={__('Animation:', 'b-blocks')} value={activeAnimationId} onChange={val => setAttributes({ activeAnimationId: val })} options={[{ label: __('First', 'b-blocks'), value: '' }, ...animationIds.map(animationId => ({ label: animationId, value: animationId }))]} help={__('This .lottie file holds several animations. Choose the one to play.', 'b-blocks')} {...premiumProps} Component={SelectControl} />}
 
 						<Label>{__('Link the player:', 'b-blocks')}</Label>
 						<TextControl value={link} onChange={val => setAttributes({ link: val })} />
@@ -184,6 +190,10 @@ const Settings = ({ attributes, setAttributes, fileFrameSize, isPremium }) => {
 			<li>&emsp;<strong>{__('Speed ', 'b-blocks')}</strong>{__('Adjust the player speed.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Interval ', 'b-blocks')}</strong>{__('Set the autoplay interval.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Renderer ', 'b-blocks')}</strong>{__('Draw the animation with SVG or Canvas.', 'b-blocks')}</li>
+
+			<li>&emsp;<strong>{__('Animation ', 'b-blocks')}</strong>{__('Choose which animation to play from a .lottie file that holds several.', 'b-blocks')}</li>
 
 			<li>&emsp;<strong>{__('Link Tab ', 'b-blocks')}</strong>{__('Option to open the link in a new tab.', 'b-blocks')}</li>
 

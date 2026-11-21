@@ -1,4 +1,5 @@
 import { __, sprintf } from '@wordpress/i18n';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const TrendIcon = ( { direction } ) => {
 	let path = 'M18 15l-6-6-6 6';
@@ -68,7 +69,7 @@ const StatCards = ( { attributes } ) => {
 					return (
 						<div className={ `bBlocks-stat-cards-item bBlocks-stat-cards-item-${ orientation }` } key={ safe._key || idx }>
 							{ showIcon && safe.icon && (
-								<span className='bBlocks-stat-cards-icon' aria-hidden='true' dangerouslySetInnerHTML={ { __html: safe.icon } } />
+								<span className='bBlocks-stat-cards-icon' aria-hidden='true' dangerouslySetInnerHTML={ { __html: sanitizeHtml( safe.icon ) } } />
 							) }
 
 							{ safe.linkUrl ? (

@@ -1,0 +1,593 @@
+.wp-block-b-blocks-document-library {
+	.b-blocks-document-library {
+		box-sizing: border-box;
+		// The toolbar and list answer to the block's width, not the window's.
+		container-type: inline-size;
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		.screen-reader-text {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			padding: 0;
+			overflow: hidden;
+			clip: rect(0 0 0 0);
+			white-space: nowrap;
+			border: 0;
+		}
+
+		svg {
+			flex: none;
+		}
+	}
+
+	/* Header */
+	.b-blocks-document-library-header {
+		.b-blocks-document-library-title,
+		.b-blocks-document-library-subtitle {
+			margin: 0;
+		}
+
+		.b-blocks-document-library-subtitle {
+			margin-top: 4px;
+		}
+	}
+
+	/* Toolbar */
+	.b-blocks-document-library-toolbar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px;
+
+		input,
+		select {
+			height: 46px;
+			margin: 0;
+			border: 1px solid #d1d5db;
+			border-radius: 8px;
+			font-size: 15px;
+			line-height: 1.2;
+			outline: none;
+
+			&:focus {
+				border-color: #0f766e;
+				box-shadow: 0 0 0 1px #0f766e;
+			}
+		}
+
+		select {
+			flex: 0 1 170px;
+			min-width: 120px;
+			padding: 0 32px 0 14px;
+		}
+	}
+
+	.b-blocks-document-library-search {
+		position: relative;
+		flex: 1 1 220px;
+		min-width: 0;
+
+		svg {
+			position: absolute;
+			top: 50%;
+			left: 12px;
+			width: 20px;
+			height: 20px;
+			color: #9ca3af;
+			transform: translateY(-50%);
+			pointer-events: none;
+		}
+
+		input {
+			width: 100%;
+			padding: 0 14px 0 40px;
+		}
+	}
+
+	.b-blocks-document-library-empty {
+		margin: 0;
+		padding: 30px 0;
+		color: #6b7280;
+		font-size: 17px;
+		text-align: center;
+
+		p {
+			margin: 0;
+		}
+
+		button {
+			margin: 14px 0 0;
+			padding: 8px 16px;
+			background: transparent;
+			border: 1px solid currentColor;
+			border-radius: 8px;
+			color: #0f766e;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+
+			&:focus-visible {
+				outline: 2px solid #0f766e;
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	.b-blocks-document-library-copy {
+		flex: 0 0 auto;
+		height: 46px;
+		padding: 0 16px;
+		background: #fff;
+		border: 1px solid #d1d5db;
+		border-radius: 8px;
+		color: #0f766e;
+		font-size: 15px;
+		font-weight: 600;
+		cursor: pointer;
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: default;
+		}
+
+		&:focus-visible {
+			outline: 2px solid #0f766e;
+			outline-offset: 2px;
+		}
+	}
+
+	/* Grid */
+	.b-blocks-document-library-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 20px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.b-blocks-document-library-card {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		overflow: hidden;
+		transition: all 0.3s ease;
+
+		.b-blocks-document-library-icon svg {
+			display: block;
+			width: 32px;
+			height: 32px;
+		}
+
+		.b-blocks-document-library-name {
+			margin: 15px 0 8px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.b-blocks-document-library-desc {
+			margin: 0 0 8px;
+			color: #6b7280;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.b-blocks-document-library-size,
+		.b-blocks-document-library-date,
+		.b-blocks-document-library-author {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			margin: 0 0 8px;
+		}
+
+		.b-blocks-document-library-date svg {
+			width: 16px;
+			height: 16px;
+		}
+
+		.b-blocks-document-library-actions {
+			margin-top: auto;
+			padding-top: 12px;
+
+			.b-blocks-document-library-btn {
+				flex: 1;
+			}
+		}
+	}
+
+	.b-blocks-document-library-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	.b-blocks-document-library-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding: 7px 14px;
+		border: none;
+		line-height: 1.4;
+		text-decoration: none;
+		cursor: pointer;
+		transition: all 0.2s ease;
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+
+		// Stated, so a theme that resets outlines cannot hide where focus is.
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	}
+
+	.b-blocks-document-library-thumb {
+		display: block;
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		border-radius: 6px;
+	}
+
+	/* List */
+	.b-blocks-document-library-list {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		border: 1px solid #e5e7eb;
+		list-style: none;
+	}
+
+	.b-blocks-document-library-row {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin: 0;
+		padding: 16px 18px;
+		border-bottom: 1px solid #e5e7eb;
+		transition: background 0.2s ease;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		.b-blocks-document-library-name {
+			margin: 0;
+			line-height: 1.35;
+			overflow-wrap: anywhere;
+		}
+
+		.b-blocks-document-library-desc {
+			margin: 0;
+			overflow: hidden;
+			color: #6b7280;
+			font-size: 14px;
+			line-height: 1.45;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.b-blocks-document-library-actions {
+			flex: none;
+		}
+	}
+
+	.b-blocks-document-library-list.is-compact .b-blocks-document-library-row {
+		gap: 12px;
+		padding: 9px 14px;
+	}
+
+	.b-blocks-document-library-row-body {
+		display: grid;
+		flex: 1;
+		gap: 3px;
+		min-width: 0;
+	}
+
+	.b-blocks-document-library-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 4px 14px;
+		color: #6b7280;
+		font-size: 13px;
+
+		> span {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+		}
+
+		svg {
+			width: 13px;
+			height: 13px;
+		}
+	}
+
+	.b-blocks-document-library-type {
+		font-weight: 600;
+		letter-spacing: 0.03em;
+	}
+
+	.b-blocks-document-library-badge {
+		position: relative;
+		display: inline-grid;
+		flex: none;
+		place-items: end center;
+		width: 36px;
+		height: 44px;
+		padding-bottom: 6px;
+		background: #64748b;
+		border-radius: 5px;
+		color: #fff;
+		font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		letter-spacing: 0.02em;
+
+		// Folded corner.
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 11px;
+			height: 11px;
+			background: rgba(255, 255, 255, 0.35);
+			border-bottom-left-radius: 4px;
+		}
+
+		&.is-small {
+			width: 28px;
+			height: 34px;
+			padding-bottom: 4px;
+			font-size: 8.5px;
+
+			&::before {
+				width: 8px;
+				height: 8px;
+			}
+		}
+
+		&.is-pdf { background: #d93025; }
+		&.is-word { background: #2b579a; }
+		&.is-sheet { background: #217346; }
+		&.is-slide { background: #c43e1c; }
+		&.is-image { background: #8e44ad; }
+		&.is-video { background: #d35400; }
+		&.is-audio { background: #0f766e; }
+		&.is-archive { background: #6b7280; }
+	}
+
+	/* Load more */
+	.b-blocks-document-library-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 20px;
+
+		button {
+			padding: 10px 22px;
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 6px;
+			color: #1f2937;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+
+			&:hover {
+				border-color: currentColor;
+			}
+		}
+	}
+
+	.b-blocks-document-library-featured,
+	.b-blocks-document-library-new {
+		display: inline-block;
+		align-self: flex-start;
+		margin: 10px 0 0;
+		padding: 2px 8px;
+		background: #fef3c7;
+		border-radius: 999px;
+		color: #78350f;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.5;
+		vertical-align: middle;
+	}
+
+	.b-blocks-document-library-new {
+		background: #dcfce7;
+		color: #14532d;
+	}
+
+	.b-blocks-document-library-row .b-blocks-document-library-featured,
+	.b-blocks-document-library-row .b-blocks-document-library-new {
+		margin: 0 0 0 6px;
+	}
+
+	/* Page numbers */
+	.b-blocks-document-library-page {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.b-blocks-document-library-gap {
+		color: #6b7280;
+	}
+
+	.b-blocks-document-library-pages {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 6px;
+		margin-top: 20px;
+
+		button {
+			min-width: 38px;
+			height: 38px;
+			padding: 0 10px;
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 6px;
+			color: #1f2937;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+
+			&:hover {
+				border-color: currentColor;
+			}
+
+			&.is-current {
+				background: #0f766e;
+				border-color: #0f766e;
+				color: #fff;
+			}
+
+			&:focus-visible {
+				outline: 2px solid #0f766e;
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	/* View modal */
+	.b-blocks-document-library-modal-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 99999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 16px;
+		background: rgba(0, 0, 0, 0.6);
+	}
+
+	.b-blocks-document-library-modal {
+		display: flex;
+		flex-direction: column;
+		width: 900px;
+		max-width: 100%;
+		height: min(760px, 90vh);
+		padding: 16px 20px 20px;
+		background: #fff;
+		border-radius: 12px;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	}
+
+	.b-blocks-document-library-modal-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-bottom: 12px;
+
+		h3 {
+			margin: 0;
+			overflow: hidden;
+			font-size: 17px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	.b-blocks-document-library-modal-close {
+		display: inline-flex;
+		padding: 4px;
+		background: transparent;
+		border: none;
+		color: #333;
+		cursor: pointer;
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+
+	.b-blocks-document-library-modal-body {
+		flex: 1;
+		min-height: 0;
+
+		.wp-block-b-blocks-document-embed,
+		.b-blocks-document-embed {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.b-blocks-document-library-audio {
+		width: 100%;
+	}
+}
+
+// Narrow: search on its own line; List actions under the text.
+@mixin narrow {
+	.b-blocks-document-library-search {
+		flex: 1 1 100%;
+	}
+
+	.b-blocks-document-library-toolbar select {
+		flex: 1 1 140px;
+		min-width: 0;
+	}
+
+	.b-blocks-document-library-row {
+		flex-wrap: wrap;
+
+		.b-blocks-document-library-actions {
+			width: 100%;
+			padding-left: 52px;
+		}
+	}
+}
+
+@container (max-width: 560px) {
+	.wp-block-b-blocks-document-library .b-blocks-document-library {
+		@include narrow;
+	}
+}
+
+@media (max-width: 560px) {
+	.wp-block-b-blocks-document-library .b-blocks-document-library {
+		@include narrow;
+	}
+}
+
+// No hover fades or slides for visitors who ask for less motion.
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-b-blocks-document-library * {
+		transition: none !important;
+	}
+}
+
+// Printed, the list keeps the documents and drops what only works on screen.
+@media print {
+	.wp-block-b-blocks-document-library {
+		.b-blocks-document-library-toolbar,
+		.b-blocks-document-library-actions,
+		.b-blocks-document-library-more,
+		.b-blocks-document-library-pages {
+			display: none;
+		}
+
+		.b-blocks-document-library-card,
+		.b-blocks-document-library-row {
+			break-inside: avoid;
+			box-shadow: none;
+		}
+	}
+}

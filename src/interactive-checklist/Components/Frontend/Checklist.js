@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const CN = 'bBlocks-interactive-checklist';
 const STORAGE = 'bb_checklist_';
@@ -72,7 +73,7 @@ const Checklist = ( { attributes, id } ) => {
 	return (
 		<div className={ wrapperClasses }>
 			{ headingHtml && (
-				<HeadingTag className={ `${ CN }-heading` } dangerouslySetInnerHTML={ { __html: headingHtml } } />
+				<HeadingTag className={ `${ CN }-heading` } dangerouslySetInnerHTML={ { __html: sanitizeHtml( headingHtml ) } } />
 			) }
 
 			{ showProgress && total > 0 && (

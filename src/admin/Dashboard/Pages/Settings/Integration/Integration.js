@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
 import { SelectControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { useWPAjax } from '../../../../../../../bpl-tools/hooks';
 import { Button } from '../../../../../../../bpl-tools/Components';
@@ -45,22 +46,37 @@ const TrashIcon = () => (
     </svg>
 );
 
+const PlugIcon = () => (
+    <svg viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+        <path d='M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0V8zM12 18v4' />
+    </svg>
+);
+const ChevronIcon = () => (
+    <svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+        <polyline points='6 9 12 15 18 9' />
+    </svg>
+);
+
 const Integration = ({ nonce }) => {
 
     const [apiData, setApiData] = useState({});
     const [dataKey, setDataKey] = useState('');
     const [revealed, setRevealed] = useState({});
     const [lastAction, setLastAction] = useState({ key: '', type: '' });
+    const [copied, setCopied] = useState('');
 
     const wasLoading = useRef(false);
     const savedTimer = useRef(null);
+    const copiedTimer = useRef(null);
 
     const { data, saveData, isLoading, isError, error } = useWPAjax('bblocks_api_keys', { _wpnonce: nonce }, true);
 
     // Extra per-integration settings sent along with the key (only used by openAi for now).
     // A saved model that is no longer in the list (e.g. a retired one) falls back to the default
     const openAiModelValue = openAiModel.some((m) => m.value === apiData?.openAi?.model) ? apiData.openAi.model : openAiModel[0].value;
-    const extraSettings = (key) => ({ maxToken: apiData[key]?.maxToken ?? '', model: 'openAi' === key ? openAiModelValue : (apiData[key]?.model ?? '') });
+    // Cloud picker cards carry more than one field (client ID, app ID, secret); they go with the key.
+    const extraFields = (key) => Object.fromEntries((apiKeyData.find((i) => i.name === key)?.fields || []).map((f) => [f.name, apiData[key]?.[f.name] ?? '']));
+    const extraSettings = (key) => ({ maxToken: apiData[key]?.maxToken ?? '', model: 'openAi' === key ? openAiModelValue : (apiData[key]?.model ?? ''), ...extraFields(key) });
 
     // Persist a single integration's key.
     // { key: <integration name>, value: <api key string>, maxToken?: <number>, model?: <string> }
@@ -73,7 +89,7 @@ const Integration = ({ nonce }) => {
     // Remove/delete an integration's key (keeps other settings like maxToken and model).
     const handleDelete = (key) => {
         if (isLoading) return;
-        setApiData((prev) => ({ ...prev, [key]: { ...prev[key], key: '' } }));
+        setApiData((prev) => ({ ...prev, [key]: { ...prev[key], key: '', ...Object.fromEntries((apiKeyData.find((i) => i.name === key)?.fields || []).map((f) => [f.name, ''])) } }));
         setDataKey(key);
         saveData({ key, value: '', ...extraSettings(key) });
     };
@@ -97,139 +113,223 @@ const Integration = ({ nonce }) => {
         }
         wasLoading.current = isLoading;
     }, [isLoading, isError, dataKey, apiData]);
-    useEffect(() => () => clearTimeout(savedTimer.current), []);
+    useEffect(() => () => { clearTimeout(savedTimer.current); clearTimeout(copiedTimer.current); }, []);
+
+    // Each integration is a route: #/settings/integration/<name>. Settings.js redirects anything else to the first one.
+    const { section } = useParams();
+    const [navOpen, setNavOpen] = useState(true);
+
+    const statusLabels = { isConnected: 'Connected', isError: 'Invalid', isIdle: 'Not connected' };
+    const statuses = Object.fromEntries(apiKeyData.map((i) => [i.name, Boolean(data?.[i.name]?.key) && !error?.[i.name] ? 'isConnected' : error?.[i.name] ? 'isError' : 'isIdle']));
+
+    // Skeleton: the real layout classes with placeholder bars, so nothing jumps when the keys arrive.
+    if (!data && !isError) {
+        return (
+            <div className='bBlocksIntegration bBlocksIntegration__skeleton' role='status' aria-busy='true'>
+                <span className='screen-reader-text'>Loading integrations…</span>
+
+                <aside className='bBlocksIntegration__sidebar' aria-hidden='true'>
+                    <span className='bBlocksIntegration__bone isGroup' />
+                    {apiKeyData.map((i) => <span key={i.name} className='bBlocksIntegration__bone isNav' />)}
+                </aside>
+
+                <section className='bBlocksIntegration__panel' aria-hidden='true'>
+                    <div className='bBlocksIntegration__head'>
+                        <span className='bBlocksIntegration__bone isIcon' />
+                        <span className='bBlocksIntegration__bone isTitle' />
+                    </div>
+                    <span className='bBlocksIntegration__bone isGuide' />
+                    <span className='bBlocksIntegration__bone isLabel' />
+                    <span className='bBlocksIntegration__bone isInput' />
+                    <span className='bBlocksIntegration__bone isButton' />
+                </section>
+            </div>
+        );
+    }
+
+    const item = apiKeyData.find((i) => i.name === section) || apiKeyData[0];
+    const value = apiData[item.name]?.key ?? '';
+    const hasError = Boolean(error?.[item.name]);
+    const isConnected = 'isConnected' === statuses[item.name];
+    const saving = isLoading && dataKey === item.name;
+    const isRevealed = Boolean(revealed[item.name]);
+    const statusClass = statuses[item.name];
+
     return (
-        <div className='bBlocks-admin-integration-wrapper'>
-            <header className='bBlocks-admin-integration-Head'>
-                <h2 className='bBlocks-admin-integration-Heading'>API Integrations</h2>
-                <p className='bBlocks-admin-integration-Sub'>
+        <div className='bBlocksIntegration'>
+            <aside className='bBlocksIntegration__sidebar'>
+
+                <button type='button' className={`bBlocksIntegration__group${navOpen ? ' isOpen' : ''}`} aria-expanded={navOpen} aria-controls='bBlocksIntegration-nav' onClick={() => setNavOpen(!navOpen)}>
+                    <span className='bBlocksIntegration__groupIcon'><PlugIcon /></span>
+                    <span className='bBlocksIntegration__groupLabel'>API Integrations</span>
+                    <span className='bBlocksIntegration__chevron'><ChevronIcon /></span>
+                </button>
+
+                {navOpen && <nav id='bBlocksIntegration-nav' className='bBlocksIntegration__nav' aria-label='Integrations'>
+                    {apiKeyData.map((i) => <NavLink key={i.name} to={`/settings/integration/${i.name}`} className='bBlocksIntegration__navItem'>
+                        <span className='bBlocksIntegration__navIcon' aria-hidden='true'>{i.icon}</span>
+                        <span className='bBlocksIntegration__navLabel'>{i.label}</span>
+                        <span className={`bBlocksIntegration__marker ${statuses[i.name]}`} title={statusLabels[statuses[i.name]]}>
+                            {'isConnected' === statuses[i.name] ? <CheckIcon /> : 'isError' === statuses[i.name] ? <AlertIcon /> : null}
+                            <span className='screen-reader-text'>{statusLabels[statuses[i.name]]}</span>
+                        </span>
+                    </NavLink>)}
+                </nav>}
+
+                <p className='bBlocksIntegration__privacy'>
                     Connect bBlocks to external services to power features like AI content and social embeds.
                     Your keys are stored in this site&rsquo;s database and are never shared with us.
                 </p>
-            </header>
+            </aside>
 
-            <div className='bBlocks-admin-integration-ApiCartContainer'>
-                {apiKeyData.map((item) => {
-                    const value = apiData[item.name]?.key ?? '';
-                    const hasError = Boolean(error?.[item.name]);
-                    const isConnected = Boolean(data?.[item.name]?.key) && !hasError;
-                    const saving = isLoading && dataKey === item.name;
-                    const isRevealed = Boolean(revealed[item.name]);
+            <section id='bBlocksIntegration-panel' className={`bBlocksIntegration__panel ${statusClass}`} aria-labelledby='bBlocksIntegration-title'>
+                <header className='bBlocksIntegration__head'>
+                    <span className='bBlocksIntegration__icon'>{item.icon}</span>
 
-                    const statusClass = isConnected ? 'isConnected' : hasError ? 'isError' : 'isIdle';
-                    const statusLabel = isConnected ? 'Connected' : hasError ? 'Invalid' : 'Not connected';
+                    <div className='bBlocksIntegration__titleWrap'>
+                        <h2 id='bBlocksIntegration-title' className='bBlocksIntegration__title'>{item.label}</h2>
+                        <span className='bBlocksIntegration__kind'>{item.inputLabel}</span>
+                    </div>
 
-                    return (
-                        <section key={item.name} className={`bBlocks-admin-integration-ApiCart ${statusClass}`}>
-                            <div className='bbCardTop'>
-                                <span className='bbCardIcon'>{item.icon}</span>
+                    <span className={`bbStatus ${statusClass}`}>
+                        {isConnected ? <CheckIcon /> : hasError ? <AlertIcon /> : null}
+                        {statusLabels[statusClass]}
+                    </span>
+                </header>
 
-                                <div className='bbCardTitle'>
-                                    <h4>{item.label}</h4>
-                                    <span className='bbCardKind'>{item.inputLabel}</span>
-                                </div>
+                <div className='bBlocksIntegration__guide'>
+                    <h3 className='bBlocksIntegration__guideTitle'>How to connect</h3>
+                    <div className='bBlocksApiInfo' dangerouslySetInnerHTML={{ __html: item.infoEl }} />
+                </div>
 
-                                <span className={`bbStatus ${statusClass}`}>
-                                    {isConnected ? <CheckIcon /> : hasError ? <AlertIcon /> : null}
-                                    {statusLabel}
-                                </span>
-                            </div>
+                <div className='bBlocksIntegration__fields'>
+                    {
+                        item.name === 'openAi' && <div className='bBlocksApiField settingsTokenWrapper'>
 
-                            <div className='bBlocksApiInfo' dangerouslySetInnerHTML={{ __html: item.infoEl }} />
+                            <label>Model</label>
+                            <p>Select the OpenAI model to use for AI content generation. Different models offer varying capabilities and performance.</p>
 
-                            {
-                                item.name === 'openAi' && <div className='bBlocksApiField settingsTokenWrapper'>
+                            <SelectControl options={openAiModel} value={openAiModelValue} onChange={(val) => setApiData({ ...apiData, openAi: { ...apiData?.openAi, model: val } })} onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }} />
 
-                                    <label>Model</label>
-                                    <p>Select the OpenAI model to use for AI content generation. Different models offer varying capabilities and performance.</p>
+                        </div>
+                    }
 
-                                    <SelectControl options={openAiModel} value={openAiModelValue} onChange={(val) => setApiData({ ...apiData, openAi: { ...apiData?.openAi, model: val } })} onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }} />
+                    <div className='bBlocksApiField'>
+                        <label htmlFor={`bb-api-${item.name}`}>{item.inputLabel}</label>
 
-                                </div>
-                            }
+                        <div className={`bbInputWrap ${hasError ? 'hasError' : ''}`}>
+                            <span className='bbInputIcon'><KeyIcon /></span>
 
-                            <div className='bBlocksApiField'>
-                                <label htmlFor={`bb-api-${item.name}`}>{item.inputLabel}</label>
+                            <input
+                                id={`bb-api-${item.name}`}
+                                className='bbInput'
+                                type={isRevealed ? 'text' : 'password'}
+                                value={value}
+                                placeholder={`Enter your ${item.label} ${item.inputLabel}`}
+                                autoComplete='off'
+                                spellCheck={false}
+                                onChange={(e) => setApiData({ ...apiData, [item.name]: { ...apiData[item.name], key: e.target.value } })}
+                                onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }}
+                            />
 
-                                <div className={`bbInputWrap ${hasError ? 'hasError' : ''}`}>
-                                    <span className='bbInputIcon'><KeyIcon /></span>
+                            {value && (
+                                <>
+                                    <button
+                                        type='button'
+                                        className='bbReveal'
+                                        aria-pressed={isRevealed}
+                                        aria-label={isRevealed ? 'Hide key' : 'Show key'}
+                                        onClick={() => toggleReveal(item.name)}
+                                        title={isRevealed ? 'Hide' : 'Show'}
+                                    >
+                                        {isRevealed ? <EyeOffIcon /> : <EyeIcon />}
+                                    </button>
 
-                                    <input
-                                        id={`bb-api-${item.name}`}
-                                        className='bbInput'
-                                        type={isRevealed ? 'text' : 'password'}
-                                        value={value}
-                                        placeholder={`Enter your ${item.label} ${item.inputLabel}`}
-                                        autoComplete='off'
-                                        spellCheck={false}
-                                        onChange={(e) => setApiData({ ...apiData, [item.name]: { ...apiData[item.name], key: e.target.value } })}
-                                        onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }}
-                                    />
+                                    <button
+                                        type='button'
+                                        className='bbDelete'
+                                        aria-label={`Remove ${item.label} ${item.inputLabel}`}
+                                        onClick={() => handleDelete(item.name)}
+                                        title='Remove / Delete'
+                                        disabled={saving}
+                                    >
+                                        <TrashIcon />
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
 
-                                    {value && (
-                                        <>
-                                            <button
-                                                type='button'
-                                                className='bbReveal'
-                                                aria-pressed={isRevealed}
-                                                aria-label={isRevealed ? 'Hide key' : 'Show key'}
-                                                onClick={() => toggleReveal(item.name)}
-                                                title={isRevealed ? 'Hide' : 'Show'}
-                                            >
-                                                {isRevealed ? <EyeOffIcon /> : <EyeIcon />}
-                                            </button>
+                    {item.fields?.map((field) => <div key={field.name} className='bBlocksApiField'>
+                        <label htmlFor={`bb-api-${item.name}-${field.name}`}>{field.label}</label>
 
-                                            <button
-                                                type='button'
-                                                className='bbDelete'
-                                                aria-label={`Remove ${item.label} ${item.inputLabel}`}
-                                                onClick={() => handleDelete(item.name)}
-                                                title='Remove / Delete'
-                                                disabled={saving}
-                                            >
-                                                <TrashIcon />
-                                            </button>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
+                        <div className='bbInputWrap'>
+                            <span className='bbInputIcon'><KeyIcon /></span>
 
-                            {
-                                item.name === 'openAi' && <div className='bBlocksApiField settingsTokenWrapper'>
+                            <input
+                                id={`bb-api-${item.name}-${field.name}`}
+                                className='bbInput'
+                                type={field.secret ? 'password' : 'text'}
+                                value={apiData[item.name]?.[field.name] ?? ''}
+                                // A saved secret is never sent back: leaving it empty keeps it.
+                                placeholder={field.secret && data?.[item.name]?.hasSecret ? 'Saved. Leave empty to keep it.' : (field.placeholder || `Enter your ${item.label} ${field.label}`)}
+                                autoComplete='off'
+                                spellCheck={false}
+                                onChange={(e) => setApiData({ ...apiData, [item.name]: { ...apiData[item.name], [field.name]: e.target.value } })}
+                                onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }}
+                            />
+                        </div>
+                    </div>)}
 
-                                    <label>{item?.tokenLabel}</label>
-                                    <p dangerouslySetInnerHTML={{ __html: item?.tokenDes }}></p>
-                                    <NumberControl value={apiData?.[item.name]?.maxToken ?? 1500} onChange={(val) => setApiData({ ...apiData, openAi: { ...apiData?.openAi, maxToken: val } })} onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }} />
+                    {item.redirect && <div className='bBlocksApiField'>
+                        <label htmlFor={`bb-api-${item.name}-redirect`}>Redirect URI</label>
 
-                                </div>
-                            }
+                        <div className='bbInputWrap'>
+                            <input id={`bb-api-${item.name}-redirect`} className='bbInput' type='text' readOnly value={new URL(item.redirect, window.location.href).href} onFocus={(e) => e.target.select()} />
 
-                            <div className='bBlocksApiFooter'>
-                                <p className='bbStatusLine'>
-                                    {hasError ? (
-                                        <span className='bbErr'>{error?.[item.name]?.message || 'Could not validate this key'}</span>
-                                    ) : lastAction.key === item.name ? (
-                                        <span className='bbOk'>{lastAction.type === 'deleted' ? 'Removed' : 'Saved'}</span>
-                                    ) : isConnected ? (
-                                        <span className='bbOk'>Valid key saved</span>
-                                    ) : (
-                                        <span className='bbMuted'>No key saved yet</span>
-                                    )}
-                                </p>
+                            <button type='button' className={`bbReveal${copied === item.name ? ' isCopied' : ''}`} title={copied === item.name ? 'Copied' : 'Copy'} aria-label='Copy redirect URI' onClick={() => navigator.clipboard?.writeText(new URL(item.redirect, window.location.href).href).then(() => {
+                                setCopied(item.name);
+                                clearTimeout(copiedTimer.current);
+                                copiedTimer.current = setTimeout(() => setCopied(''), 2000);
+                            })}>{copied === item.name ? 'Copied!' : 'Copy'}</button>
+                            <span className='screen-reader-text' aria-live='polite'>{copied === item.name ? 'Redirect URI copied' : ''}</span>
+                        </div>
+                    </div>}
 
-                                <Button
-                                    className={`bBlocksApiSaveBtn ${!apiData?.[item.name]?.key ? 'isDisabled' : ''}`}
-                                    type='button'
-                                    disabled={!apiData?.[item.name]?.key || saving}
-                                    onClick={() => apiData?.[item.name]?.key && handleApiData(item.name)}
-                                >
-                                    {saving ? 'Saving…' : 'Save'}
-                                </Button>
-                            </div>
-                        </section>
-                    );
-                })}
-            </div>
+                    {
+                        item.name === 'openAi' && <div className='bBlocksApiField settingsTokenWrapper'>
+
+                            <label>{item?.tokenLabel}</label>
+                            <p dangerouslySetInnerHTML={{ __html: item?.tokenDes }}></p>
+                            <NumberControl value={apiData?.[item.name]?.maxToken ?? 1500} onChange={(val) => setApiData({ ...apiData, openAi: { ...apiData?.openAi, maxToken: val } })} onKeyDown={(e) => { if ('Enter' === e.key) handleApiData(item.name); }} />
+
+                        </div>
+                    }
+                </div>
+
+                <div className='bBlocksApiFooter'>
+                    <p className='bbStatusLine' role='status'>
+                        {hasError ? (
+                            <span className='bbErr'>{error?.[item.name]?.message || 'Could not validate this key'}</span>
+                        ) : lastAction.key === item.name ? (
+                            <span className='bbOk'>{lastAction.type === 'deleted' ? 'Removed' : 'Saved'}</span>
+                        ) : isConnected ? (
+                            <span className='bbOk'>Valid key saved</span>
+                        ) : (
+                            <span className='bbMuted'>No key saved yet</span>
+                        )}
+                    </p>
+
+                    <Button
+                        className={`bBlocksApiSaveBtn ${!apiData?.[item.name]?.key ? 'isDisabled' : ''}`}
+                        type='button'
+                        disabled={!apiData?.[item.name]?.key || saving}
+                        onClick={() => apiData?.[item.name]?.key && handleApiData(item.name)}
+                    >
+                        {saving ? 'Saving…' : 'Save'}
+                    </Button>
+                </div>
+            </section>
         </div>
     )
 }

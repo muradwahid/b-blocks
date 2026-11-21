@@ -8,6 +8,7 @@ import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import { TITLE_TAGS, getWrapperClasses } from '../../utils/options';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Edit = (props) => {
 	const { attributes, setAttributes, clientId, device } = props;
@@ -56,7 +57,7 @@ const Edit = (props) => {
 							return <li key={(step && step._key) || idx} className='bBlocksProcessStepsItem'>
 								<div className='bBlocksProcessStepsBadge' aria-hidden='true'>
 									{safeBadgeType === 'icon' && step && step.icon ? (
-										<span className='bBlocksProcessStepsIcon' dangerouslySetInnerHTML={{ __html: step.icon }} />
+										<span className='bBlocksProcessStepsIcon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( step.icon ) }} />
 									) : (
 										<span className='bBlocksProcessStepsNumber'>{idx + 1}</span>
 									)}

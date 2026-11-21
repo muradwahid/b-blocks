@@ -1,0 +1,691 @@
+// Follows the dashboard tokens from src/admin/style.scss and the look of the sibling
+// Settings nav + Integration page. Note: `.bPlDashboard *` (bpl-tools/Admin) zeroes every
+// padding/margin and loads after wp-components, so WP buttons/inputs get their spacing back here.
+// `.bPlDashboardV4 *` also forces square corners, so nothing here sets border-radius.
+
+.bBlocksPerformance {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: start;
+
+    // ---------- Sidebar ----------
+    .bBlocksPerformance__sidebar {
+        position: sticky;
+        top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 6px;
+        background: #fff;
+        border: 1px solid #e8e6f2;
+    }
+
+    .bBlocksPerformance__group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 9px 12px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--bpl-dashboard-title-color, #070127);
+        text-align: start;
+        background: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.05);
+        border: 0;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.08);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--bpl-dashboard-primary-color, #8c74fd);
+            outline-offset: 1px;
+        }
+
+        .bBlocksPerformance__groupIcon,
+        .bBlocksPerformance__chevron {
+            display: inline-flex;
+            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+        }
+
+        .bBlocksPerformance__groupLabel {
+            flex: 1;
+        }
+
+        .bBlocksPerformance__chevron {
+            transition: transform 0.2s ease;
+        }
+
+        &.isOpen .bBlocksPerformance__chevron {
+            transform: rotate(180deg);
+        }
+    }
+
+    .bBlocksPerformance__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin: 2px 0 4px;
+        margin-inline-start: 20px;
+        padding-inline-start: 10px;
+        border-inline-start: 1px solid #e8e6f2;
+    }
+
+    .bBlocksPerformance__navItem {
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+        text-align: start;
+        text-decoration: none;
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            color: var(--bpl-dashboard-title-color, #070127);
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.08);
+        }
+
+        &:focus,
+        &:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &.active {
+            font-weight: 600;
+            color: var(--bpl-dashboard-primary-color, #8c74fd);
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.1);
+        }
+    }
+
+    // ---------- Panel ----------
+    .bBlocksPerformance__panel {
+        position: relative;
+        min-width: 0;
+        padding: 24px;
+        background: #fff;
+        border: 1px solid #e8e6f2;
+        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    .bBlocksPerformance__title {
+        margin: 0 0 20px;
+        padding-bottom: 14px;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.25;
+        color: var(--bpl-dashboard-title-color, #070127);
+        border-bottom: 1px solid #e8e6f2;
+    }
+
+    // ---------- Shared buttons (Integration's save-button pattern) ----------
+    .bBlocksPerformance__applyBtn,
+    .bBlocksPerformance__purgeBtn,
+    .bBlocksPerformance__savebar .components-button.is-primary {
+        display: inline-flex;
+        justify-content: center;
+        height: auto !important;
+        padding: 9px 22px !important;
+        border: 0 !important;
+        background-color: var(--bpl-dashboard-primary-color, #8c74fd) !important;
+        color: #fff !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        line-height: 1.4 !important;
+        white-space: nowrap;
+        box-shadow: none !important;
+        transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+
+        &:hover:not(:disabled) {
+            filter: brightness(1.06);
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        &:disabled {
+            opacity: 0.65;
+        }
+    }
+
+    .bBlocksPerformance__purgeBtn {
+        background-color: var(--bpl-dashboard-secondary-color, #4017f2) !important;
+    }
+
+    .components-button.is-tertiary,
+    .bBlocksPerformance__savebar .components-button.is-tertiary {
+        height: auto;
+        padding: 9px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+
+        &:hover:not(:disabled) {
+            color: var(--bpl-dashboard-primary-color, #8c74fd);
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.08);
+        }
+    }
+
+    // ---------- Banner ----------
+    .bBlocksPerformance__banner {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+        padding: 16px 18px;
+        background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.07);
+        border: 1px solid rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.28);
+
+        .bBlocksPerformance__bannerIcon {
+            display: inline-flex;
+            align-self: flex-start;
+        }
+
+        .bBlocksPerformance__bannerText {
+            flex: 1;
+
+            strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--bpl-dashboard-title-color, #070127);
+            }
+
+            p {
+                margin: 0;
+                font-size: 13px;
+                line-height: 1.6;
+                color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.72);
+            }
+        }
+
+        .bBlocksPerformance__bannerActions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+    }
+
+    // ---------- Rows ----------
+    .bBlocksPerformance__rows {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .bBlocksPerformance__label,
+    .components-toggle-control .components-toggle-control__label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--bpl-dashboard-title-color, #070127);
+    }
+
+    .bBlocksPerformance__help,
+    .components-toggle-control .components-base-control__help {
+        max-width: 70%;
+        margin: 6px 0 0;
+        font-size: 13px;
+        font-style: normal;
+        line-height: 1.6;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.72);
+    }
+
+    // Toggle rows: label on the left, switch on the right.
+    .components-toggle-control {
+        .components-form-toggle {
+            order: 2;
+            margin-inline-start: auto;
+        }
+
+        .components-toggle-control__label {
+            order: 1;
+        }
+    }
+
+    // Select / number / text rows.
+    .bBlocksPerformance__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+
+        .bBlocksPerformance__rowText {
+            flex: 1;
+            min-width: 0;
+
+            .bBlocksPerformance__help {
+                max-width: 100%;
+            }
+        }
+
+        .bBlocksPerformance__rowControl {
+            flex-shrink: 0;
+            width: 260px;
+
+            &.isSmall {
+                width: 64px;
+            }
+        }
+    }
+
+    .bBlocksPerformance__child {
+        margin-top: -8px;
+        padding-inline-start: 16px;
+        border-inline-start: 2px solid rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.25);
+        animation: bBlocksPerformanceReveal 0.2s ease;
+    }
+
+    .isDisabled {
+        opacity: 0.5;
+    }
+
+    .bBlocksPerformance__section {
+        margin: 10px 0 0;
+        padding-top: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--bpl-dashboard-title-color, #070127);
+        border-top: 1px solid #e8e6f2;
+
+        &.isFirst {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 0;
+        }
+    }
+
+    .bBlocksPerformance__footnote {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.6;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.55);
+
+        .components-button.is-link {
+            padding: 0;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--bpl-dashboard-primary-color, #8c74fd);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    // ---------- Inputs (Integration's .bbInputWrap look) ----------
+    .components-text-control__input {
+        height: 40px;
+        padding: 0 12px;
+        font-size: 14px;
+        color: var(--bpl-dashboard-title-color, #070127);
+        border: 1.5px solid #e2e0ee;
+        box-shadow: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+        &:focus {
+            border-color: var(--bpl-dashboard-primary-color, #8c74fd);
+            box-shadow: 0 0 0 3px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.16);
+            outline: 0;
+        }
+
+        &::placeholder {
+            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
+        }
+    }
+
+    // SelectControl + NumberControl draw their border on the backdrop element.
+    .components-input-control__container {
+        .components-input-control__backdrop {
+            border: 1.5px solid #e2e0ee !important;
+        }
+
+        &:focus-within .components-input-control__backdrop {
+            border-color: var(--bpl-dashboard-primary-color, #8c74fd) !important;
+            box-shadow: 0 0 0 3px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.16) !important;
+        }
+
+        .components-input-control__input,
+        .components-select-control__input {
+            font-size: 14px !important;
+            color: var(--bpl-dashboard-title-color, #070127);
+        }
+    }
+
+    // ---------- Caching status strip ----------
+    .bBlocksPerformance__status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.72);
+        background: #f7f8fb;
+        border: 1px solid #e8e6f2;
+    }
+
+    // ---------- Warning notice (amber, like the welcome page) ----------
+    .bBlocksPerformance__notice {
+        margin-top: -8px;
+        padding: 10px 14px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: #92400e;
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    // ---------- Save bar ----------
+    .bBlocksPerformance__savebar {
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 24px -24px -24px;
+        padding: 14px 24px;
+        background: #fff;
+        border-top: 1px solid #e8e6f2;
+        box-shadow: 0 -6px 16px rgba(16, 24, 40, 0.05);
+        animation: bBlocksPerformanceReveal 0.2s ease;
+
+        .bBlocksPerformance__savebarText {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--bpl-dashboard-title-color, #070127);
+
+            &.isError {
+                color: #b91c1c;
+            }
+        }
+
+        .bBlocksPerformance__savebarActions {
+            display: flex;
+            gap: 8px;
+        }
+
+        // Success state uses Integration's "Connected" green.
+        .components-notice {
+            flex: 1;
+            margin: 0;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #15803d;
+            background: rgba(34, 197, 94, 0.12);
+            border-inline-start: 3px solid #15803d;
+        }
+    }
+
+    // Toggles: the same square switch as the Blocks page (bpl-tools/Admin/Blocks `.toggleSwitch`) —
+    // 34×20 track, #ccc off / dashboard primary on, 14px white knob inset 3px, 0.4s slide.
+    .components-form-toggle {
+        width: 34px;
+        height: 20px;
+
+        .components-form-toggle__track {
+            width: 34px;
+            height: 20px;
+            background-color: #ccc;
+            border: 0;
+            transition: background-color 0.4s;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        .components-form-toggle__thumb {
+            top: 3px;
+            left: 3px;
+            width: 14px;
+            height: 14px;
+            background-color: #fff;
+            border: 0;
+            box-shadow: none;
+            transition: transform 0.4s;
+        }
+
+        &.is-checked {
+            .components-form-toggle__track {
+                background-color: var(--bpl-dashboard-primary-color, #8c74fd);
+            }
+
+            .components-form-toggle__thumb {
+                background-color: #fff;
+                transform: translateX(14px);
+            }
+        }
+
+        // WordPress dims a disabled switch to 0.3; the row's `.isDisabled` already dims it to 0.5
+        // (like a disabled block on the Blocks page), so the switch itself stays at full strength.
+        &.is-disabled {
+            opacity: 1;
+        }
+
+        .components-form-toggle__input:focus-visible+.components-form-toggle__track {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--bpl-dashboard-primary-color, #8c74fd);
+        }
+    }
+
+    // ---------- Loading skeleton (same grid, sidebar and panel as the real screen) ----------
+    &.bBlocksPerformance__skeleton {
+        .bBlocksPerformance__bone {
+            display: block;
+            background: linear-gradient(90deg, #efeef6 25%, #f8f7fc 37%, #efeef6 63%);
+            background-size: 400% 100%;
+            animation: bBlocksPerformanceShimmer 1.4s ease infinite;
+
+            &.isGroup {
+                height: 40px;
+            }
+
+            &.isNav {
+                width: 60%;
+                height: 14px;
+                margin: 11px 0 11px 32px;
+            }
+
+            &.isTitle {
+                width: 160px;
+                height: 26px;
+                margin-bottom: 34px;
+            }
+
+            &.isBanner {
+                height: 92px;
+                margin-bottom: 24px;
+            }
+
+            &.isStatus {
+                height: 62px;
+            }
+
+            &.isLabel {
+                width: 38%;
+                height: 16px;
+                margin-bottom: 10px;
+            }
+
+            &.isLine {
+                width: 92%;
+                height: 12px;
+                margin-bottom: 7px;
+
+                &.isShort {
+                    width: 58%;
+                }
+            }
+
+            &.isToggle {
+                flex-shrink: 0;
+                width: 34px;
+                height: 20px;
+            }
+
+            &.isInput {
+                flex-shrink: 0;
+                width: 260px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 782px) {
+            .bBlocksPerformance__sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            // Rows stack on small screens; the text column must keep the full width for its bars.
+            .bBlocksPerformance__rowText {
+                width: 100%;
+            }
+
+            // A real toggle stays to the right of its label on phones — only inputs drop below.
+            .bBlocksPerformance__row.isToggleRow {
+                flex-direction: row;
+            }
+
+            .bBlocksPerformance__bone {
+                &.isGroup {
+                    width: 100%;
+                }
+
+                &.isNav {
+                    width: 56px;
+                    margin: 4px;
+                }
+
+                &.isInput {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    // ---------- Small screens ----------
+    @media (max-width: 782px) {
+        // minmax(0, …) so the nowrap tab row scrolls instead of widening the column.
+        grid-template-columns: minmax(0, 1fr);
+
+        .bBlocksPerformance__sidebar {
+            position: static;
+            min-width: 0;
+        }
+
+        .bBlocksPerformance__nav {
+            flex-direction: row;
+            margin-inline-start: 0;
+            padding-inline-start: 0;
+            overflow-x: auto;
+            border-inline-start: 0;
+            white-space: nowrap;
+        }
+
+        .bBlocksPerformance__panel {
+            padding: 16px;
+        }
+
+        .bBlocksPerformance__banner {
+            flex-wrap: wrap;
+
+            .bBlocksPerformance__bannerActions {
+                width: 100%;
+            }
+        }
+
+        .bBlocksPerformance__status {
+            flex-wrap: wrap;
+        }
+
+        .bBlocksPerformance__row {
+            flex-direction: column;
+            gap: 10px;
+
+            .bBlocksPerformance__rowControl {
+                width: 100%;
+            }
+        }
+
+        .bBlocksPerformance__help,
+        .components-toggle-control .components-base-control__help {
+            max-width: 100%;
+        }
+
+        .bBlocksPerformance__savebar {
+            margin: 16px -16px -16px;
+            padding: 12px 16px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        .bBlocksPerformance__child,
+        .bBlocksPerformance__savebar {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+@keyframes bBlocksPerformanceReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// Shown until the saved settings arrive from includes/Performance.php.
+.bBlocksPerformance__loading {
+    display: flex;
+    justify-content: center;
+    padding: 48px 24px;
+    background: #fff;
+    border: 1px solid #e8e6f2;
+}
+
+@keyframes bBlocksPerformanceShimmer {
+    from {
+        background-position: 100% 50%;
+    }
+
+    to {
+        background-position: 0 50%;
+    }
+}
+
+// RTL admin (WordPress adds `rtl` to <body>): the switch knob starts on the right and slides left.
+.rtl .bBlocksPerformance .components-form-toggle {
+    .components-form-toggle__thumb {
+        right: 3px;
+        left: auto;
+    }
+
+    &.is-checked .components-form-toggle__thumb {
+        transform: translateX(-14px);
+    }
+}

@@ -5,6 +5,7 @@ import "swiper/css/scrollbar";
 import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { placeholderImg } from '../../../utils/data';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 const SliderFront = ({ attributes }) => {
     const { options, logo, sliderStyles } = attributes;
     const { caption } = sliderStyles;
@@ -64,7 +65,7 @@ const SliderFront = ({ attributes }) => {
                         <div className='b-blocks-logo-slider-wrapper' >
                             <div className="b-blocks-slider-logo-wrapper">
                                 <img className={`b-blocks-losl-logo ${sliderStyles.logo.hover} `} src={img?.url || placeholderImg} alt={img?.alt} />
-                                {img?.url && <div className={`b-blocks-logo-slider-block-caption  ${caption.hover === "hover" ? "b-blocks-caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} dangerouslySetInnerHTML={{ __html: img?.caption }} />}
+                                {img?.url && <div className={`b-blocks-logo-slider-block-caption  ${caption.hover === "hover" ? "b-blocks-caption-hover" : ""} ${!options.isCaptionVisible ? "hidden" : ""}`} dangerouslySetInnerHTML={{ __html: sanitizeHtml( img?.caption ) }} />}
                             </div>
                         </div>
                         </AnchorEl>

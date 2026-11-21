@@ -5,6 +5,7 @@ import { withSelect } from '@wordpress/data';
 import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Edit = (props) => {
 	const { attributes, setAttributes, clientId, innerBlocks } = props;
@@ -21,9 +22,9 @@ const Edit = (props) => {
 			<Style attributes={attributes} id={`block-${clientId}`} isBackend={true} />
 
 			<button type='button' className='b-blocks-off-canvas-trigger' aria-disabled='true' tabIndex={-1}>
-				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition !== 'right' && <span className='b-blocks-off-canvas-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: trigger.icon }} />}
+				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition !== 'right' && <span className='b-blocks-off-canvas-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( trigger.icon ) }} />}
 				{trigger.label && <span className='b-blocks-off-canvas-trigger-label'>{trigger.label}</span>}
-				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition === 'right' && <span className='b-blocks-off-canvas-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: trigger.icon }} />}
+				{trigger.showIcon !== false && trigger.icon && trigger.iconPosition === 'right' && <span className='b-blocks-off-canvas-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( trigger.icon ) }} />}
 			</button>
 
 			<div className='b-blocks-off-canvas-editor-preview-wrap' data-side={drawer.side}>

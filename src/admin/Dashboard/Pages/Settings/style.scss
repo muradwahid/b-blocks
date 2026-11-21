@@ -16,17 +16,29 @@
 		border: 1px solid #e8e6f2;
 		border-radius: 8px;
 
-		button {
+		a {
+			display: inline-block;
 			padding: 8px 18px;
 			font-size: 14px;
 			font-weight: 600;
 			line-height: 1.2;
 			color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+			text-decoration: none;
 			background: transparent;
 			border: 0;
 			border-radius: 6px;
 			cursor: pointer;
 			transition: background 0.2s ease, color 0.2s ease;
+
+			// wp-admin rings every focused link; keep the ring for keyboard focus only.
+			&:focus {
+				box-shadow: none;
+				outline: none;
+			}
+
+			&:focus-visible {
+				box-shadow: 0 0 0 2px rgb(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253));
+			}
 
 			&:hover {
 				color: var(--bpl-dashboard-title-color, #070127);

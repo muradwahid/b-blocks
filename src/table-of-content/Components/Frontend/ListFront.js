@@ -4,6 +4,7 @@ import DynamicTag from '../../../../../bpl-tools/Components/DynamicTag/DynamicTa
 import NoHeading from "../Common/NoHeading/NoHeading";
 import ListStyle from "../Common/Styles/ListStyle";
 import useHeading from "../hooks/useHeading";
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const ListFront = ({ attributes, id }) => {
     const { title, slideTitle, tagName, sticky, headings } = attributes;
@@ -13,7 +14,7 @@ const ListFront = ({ attributes, id }) => {
         <ListStyle attributes={attributes} id={id} />
         <div className={`bblocks-tbcn-list-container ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}`}>
             <div className="bblocks-tbcn-list-title">
-                <DynamicTag className="bblocks-tbcn-list-title-heading" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+                <DynamicTag className="bblocks-tbcn-list-title-heading" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: sanitizeHtml( title?.text ) }} />
             </div>
             <>
                 {headings?.length > 0 ? (

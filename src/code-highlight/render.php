@@ -1,7 +1,8 @@
 <?php
 
 $prefix = 'b-blocks-code-highlight';
-$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
+// `code` is shown as text (escaped by React), never as HTML: a code sample keeps its <script> tags.
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes, [ 'code' ] );
 $id     = empty( $attributes['blockId'] ) ? wp_unique_id( "$prefix-" ) : "$prefix-" . $attributes['blockId'];
 
 $planClass = BBlocks\Inc\Utils::isPro() ? 'pro' : 'free';

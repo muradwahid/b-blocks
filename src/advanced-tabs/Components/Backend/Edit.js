@@ -9,6 +9,7 @@ import { addTab } from '../../utils/functions';
 
 import '../../editor.scss';
 import style from '../Common/Style';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Edit = (props) => {
 	const { attributes, setAttributes, clientId, device } = props;
@@ -114,7 +115,7 @@ const Edit = (props) => {
 										}}
 										className={`b-blocks-advanced-tabs-button ${activeTabId == item.id ? 'b-blocks-advanced-tabs-button-active' : 'b-blocks-advanced-tabs-button-normal'}`}
 									>
-										{(tabs.isShowIcon && item.iconType !== 'none') && <p className="b-blocks-advanced-tabs-button-icon" dangerouslySetInnerHTML={{ __html: item?.[item.iconType] }}>
+										{(tabs.isShowIcon && item.iconType !== 'none') && <p className="b-blocks-advanced-tabs-button-icon" dangerouslySetInnerHTML={{ __html: sanitizeHtml( item?.[item.iconType] ) }}>
 										</p>}
 										<div className="b-blocks-advanced-tabs-button-title-container">
 											{tabs.isShowTitle && <RichText

@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	const accordions = document.querySelectorAll('.wp-block-b-blocks-accordion-block');
 
 	accordions.forEach(accordion => {
-		const attributes = JSON.parse(accordion.dataset.attributes);
+		let attributes = {};
+		try {
+			const raw = accordion.dataset.attributes;
+			if (raw && raw !== 'undefined' && raw !== '') {
+				attributes = JSON.parse(raw);
+			}
+		} catch (e) {
+			attributes = {};
+		}
 
 		createRoot(accordion).render(<>
 			<FrontEnd attributes={attributes} />

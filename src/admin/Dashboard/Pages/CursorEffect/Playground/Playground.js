@@ -14,7 +14,7 @@ import { pricingPage } from '../../../../../utils/data';
 const Playground = ({ info }) => {
   const { nonce } = info;
 
-  const { data, isLoading } = useWPAjax('csb_get_adv_scrollbar_cursor_data_settings', { nonce }); //authorize
+  const { data, isLoading } = useWPAjax('bBlocks_get_cursor_data_settings', { nonce }); //authorize
   const [cursorData, setCursorData] = useState(null);
   const isCursorVisible = useCursorVisibility();
   const dashboardRef = useRef(null);
@@ -45,7 +45,7 @@ const Playground = ({ info }) => {
   const cursorCssVar = {
     ...((isSet(cursorData?.shape?.customImg?.img) && cursorData?.source == "predefined") && { cursor: `url(${cursorData?.shape?.customImg?.img}), pointer` }),
     ...(cursorData?.source == "shape" && { cursor: enableCursor ? "auto" : "none" }),
-    ...(cursorData?.source == "customUrl" && { cursor: `url(${cursorData?.shape?.customImg?.url}), pointer` }),
+    ...((isSet(cursorData?.shape?.customImg?.url) && cursorData?.source == "customUrl") && { cursor: `url(${cursorData?.shape?.customImg?.url}), pointer` }),
   }
   // console.log(csbIsPremium)
   return <div className='custom-cursor-playground-container' >

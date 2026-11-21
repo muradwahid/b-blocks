@@ -3,6 +3,7 @@ import anime from 'animejs';
 import SVG from 'react-inlinesvg';
 
 import defaultSvg from '../../../../assets/icons/cloud-solid.svg';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const SVGDraw = ({ attributes }) => {
 	const { icon, options, style } = attributes;
@@ -40,7 +41,7 @@ const SVGDraw = ({ attributes }) => {
 		{type.svgType === 'icon' &&
 			type.iconType === 'library' &&
 			icon.library && (
-				<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} dangerouslySetInnerHTML={{ __html: icon.library }} ></div>
+				<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon.library ) }} ></div>
 			)}
 		{type.svgType === 'icon' && type.iconType === 'upload' && (
 			<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} >
@@ -48,7 +49,7 @@ const SVGDraw = ({ attributes }) => {
 			</div>
 		)}
 		{type.svgType === 'custom' && (
-			<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} dangerouslySetInnerHTML={{ __html: icon.custom }} ></div>
+			<div ref={svgRef} className='react-svg-drawing svdr-svg-wrapper' style={SVGStyle} dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon.custom ) }} ></div>
 		)}
 	</div>
 };

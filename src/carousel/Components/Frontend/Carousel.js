@@ -6,6 +6,7 @@ import { getResponsiveValue, getVerticalSlidesHeight } from '../../utils/functio
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Carousel = ({ attributes, slidesHost }) => {
 	const { navigation, layout, options, autoplay, pagination, styles } = attributes;
@@ -141,8 +142,8 @@ const Carousel = ({ attributes, slidesHost }) => {
 
 				{navigation?.navigation && (
 					<>
-						<div className="swiper-button-prev" dangerouslySetInnerHTML={{ __html: navigation?.prevIcon?.library }} />
-						<div className="swiper-button-next" dangerouslySetInnerHTML={{ __html: navigation?.nextIcon?.library }} />
+						<div className="swiper-button-prev" dangerouslySetInnerHTML={{ __html: sanitizeHtml( navigation?.prevIcon?.library ) }} />
+						<div className="swiper-button-next" dangerouslySetInnerHTML={{ __html: sanitizeHtml( navigation?.nextIcon?.library ) }} />
 					</>
 				)}
 

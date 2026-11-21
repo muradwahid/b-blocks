@@ -54,6 +54,154 @@
 		"loadingType": {
 			"type": "string",
 			"default": "auto"
+		},
+		"poster": {
+			"type": "string",
+			"default": ""
+		},
+		"reveal": {
+			"type": "string",
+			"default": ""
+		},
+		"isProgressBar": {
+			"type": "boolean",
+			"default": true
+		},
+		"isLoadingPercent": {
+			"type": "boolean",
+			"default": false
+		},
+		"isAutoRotate": {
+			"type": "boolean",
+			"default": true
+		},
+		"rotationSpeed": {
+			"type": "string",
+			"default": ""
+		},
+		"autoRotateDelay": {
+			"type": "string",
+			"default": ""
+		},
+		"cameraOrbit": {
+			"type": "string",
+			"default": ""
+		},
+		"fieldOfView": {
+			"type": "string",
+			"default": ""
+		},
+		"interactionPrompt": {
+			"type": "string",
+			"default": ""
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"animationName": {
+			"type": "string",
+			"default": ""
+		},
+		"isAnimationSelector": {
+			"type": "boolean",
+			"default": false
+		},
+		"variantName": {
+			"type": "string",
+			"default": ""
+		},
+		"isVariantSelector": {
+			"type": "boolean",
+			"default": false
+		},
+		"environmentImage": {
+			"type": "string",
+			"default": ""
+		},
+		"environmentImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"skyboxImage": {
+			"type": "string",
+			"default": ""
+		},
+		"exposure": {
+			"type": ["number", "string"],
+			"default": ""
+		},
+		"shadowIntensity": {
+			"type": ["number", "string"],
+			"default": ""
+		},
+		"shadowSoftness": {
+			"type": ["number", "string"],
+			"default": ""
+		},
+		"isAR": {
+			"type": "boolean",
+			"default": false
+		},
+		"arMode": {
+			"type": "string",
+			"default": ""
+		},
+		"arPlacement": {
+			"type": "string",
+			"default": ""
+		},
+		"iosSrc": {
+			"type": "string",
+			"default": ""
+		},
+		"isFullscreen": {
+			"type": "boolean",
+			"default": false
+		},
+		"isZoomBtns": {
+			"type": "boolean",
+			"default": false
+		},
+		"isScreenshotBtn": {
+			"type": "boolean",
+			"default": false
+		},
+		"isDownloadBtn": {
+			"type": "boolean",
+			"default": false
+		},
+		"background": {
+			"type": "object",
+			"default": {}
+		},
+		"progressBarColor": {
+			"type": "string",
+			"default": ""
+		},
+		"posterColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnBg": {
+			"type": "object",
+			"default": {}
+		},
+		"btnBorder": {
+			"type": "object",
+			"default": {}
+		},
+		"btnRadius": {
+			"type": "object",
+			"default": {}
+		},
+		"btnShadow": {
+			"type": "array",
+			"default": []
 		}
 	},
 	"supports": {

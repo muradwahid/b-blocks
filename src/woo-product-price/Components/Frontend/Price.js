@@ -1,4 +1,5 @@
 import { BOX } from '../../utils/functions';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Price = ( { attributes } ) => {
 	const { options = {}, prefix = {}, suffix = {}, savings = {}, product = {} } = attributes;
@@ -14,7 +15,7 @@ const Price = ( { attributes } ) => {
 		const className = `${ BOX }-${ which }`;
 
 		if ( 'icon' === affix.type ) {
-			return affix.icon ? <span className={ `${ className } ${ className }--icon` } aria-hidden='true' dangerouslySetInnerHTML={ { __html: affix.icon } } /> : null;
+			return affix.icon ? <span className={ `${ className } ${ className }--icon` } aria-hidden='true' dangerouslySetInnerHTML={ { __html: sanitizeHtml( affix.icon ) } } /> : null;
 		}
 
 		const text = String( affix.text ?? '' ).trim();

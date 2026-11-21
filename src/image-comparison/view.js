@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './style.scss';
 import { ImageCompare } from './Components/Common/ImageCompare';
 import Style from './Components/Common/Style';
+import { sanitizeHtml } from '../utils/sanitizeHtml';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const imageCompareEls = document.querySelectorAll('.wp-block-b-blocks-image-comparison');
@@ -11,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		const { isLabel, label, beforeLabel, afterLabel, isCap, cap, orientation } = attributes;
 		const { hAlign, vAlign } = label;
 
-		const beforeLabelEl = isLabel && beforeLabel && <div className={`b-blocks-label b-blocks-before-label b-blocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: beforeLabel }} />
+		const beforeLabelEl = isLabel && beforeLabel && <div className={`b-blocks-label b-blocks-before-label b-blocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: sanitizeHtml( beforeLabel ) }} />
 
-		const afterLabelEl = isLabel && afterLabel && <div className={`b-blocks-label b-blocks-after-label b-blocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: afterLabel }} />
+		const afterLabelEl = isLabel && afterLabel && <div className={`b-blocks-label b-blocks-after-label b-blocks-${orientation} ${orientation === "horizontal" ? hAlign : vAlign}`} dangerouslySetInnerHTML={{ __html: sanitizeHtml( afterLabel ) }} />
 
-		const captionEl = isCap && cap && <div className='b-blocks-caption' dangerouslySetInnerHTML={{ __html: cap }} />
+		const captionEl = isCap && cap && <div className='b-blocks-caption' dangerouslySetInnerHTML={{ __html: sanitizeHtml( cap ) }} />
 
 		createRoot(imgCompareEl).render(<>
 			<Style attributes={attributes} id={imgCompareEl.id} />

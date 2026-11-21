@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Frontend = ({ attributes }) => {
 	const { items = [], marker, styles } = attributes;
@@ -9,7 +10,7 @@ const Frontend = ({ attributes }) => {
 			case 'emoji':
 					return <span className='bBlocksListMarkerEmoji'>{marker.emoji}</span>;
 				case 'icon':
-					return listIcon ? <span className='bBlocksListMarkerIcon' dangerouslySetInnerHTML={{ __html: listIcon }} />:null;
+					return listIcon ? <span className='bBlocksListMarkerIcon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( listIcon ) }} />:null;
 				case 'disc':
 					return <span className='bBlocksListMarkerDisc bBlocksListMarker' />
 				case 'square':
@@ -25,7 +26,7 @@ const Frontend = ({ attributes }) => {
 					items.length > 0 && items.map((item, index) => <Fragment key={index}>
 						<a className='bBlocksListItem' rel='noopener noreferrer' {...(item.link ? {href: item.link, target: item.newWindow ? '_blank' : '_self'} : {})}>
 							{getMarkerEl(item.icon)}
-							<span className='bBlocksListItemText' placeholder='Write your list text' dangerouslySetInnerHTML={{__html: item.text}} /> </a>
+							<span className='bBlocksListItemText' placeholder='Write your list text' dangerouslySetInnerHTML={{__html: sanitizeHtml( item.text )}} /> </a>
 						{(index < items.length - 1 && divider.isEnabled) && <div className="bBlocksListItemDivider"></div>}
 					</Fragment>)
 				}

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const ScrollToTop = (props) => {
   const { attributes, doc = document, win = window, isBackend = false } = props;
@@ -45,7 +46,7 @@ const ScrollToTop = (props) => {
 
   return <div className='b-blocks-scroll-to-top-main-wrapper' onClick={scrollToTop} style={{ ...(!isBackend ? { opacity: isMounted ? 1 : 0 } : {}) }}>
     <div className={`b-blocks-scroll-to-top-wrapper ${scrollType === 'progress' ? 'b-blocks-scroll-to-top-progress-wrapper' : ''}`}>
-      {(scrollType === 'icon' || scrollType === 'progress') && <div className='b-blocks-scroll-to-top-icon' dangerouslySetInnerHTML={{ __html: icon.svg }} />}
+      {(scrollType === 'icon' || scrollType === 'progress') && <div className='b-blocks-scroll-to-top-icon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon.svg ) }} />}
       {scrollType === 'progress' && <svg viewBox="0 0 100 100" >
         <circle
           cx="50" cy="50" r={radius}
@@ -64,7 +65,7 @@ const ScrollToTop = (props) => {
           className="b-blocks-scroll-to-top-progress-circle"
         />
       </svg>}
-      {scrollType === 'text' && <div className='b-blocks-scroll-to-top-text' dangerouslySetInnerHTML={{ __html: icon.text }} />}
+      {scrollType === 'text' && <div className='b-blocks-scroll-to-top-text' dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon.text ) }} />}
     </div>
   </div>
 };

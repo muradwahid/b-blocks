@@ -36,7 +36,7 @@ const Layout = (props) => {
 							<Link
 								key={index}
 								to={item.href}
-								className={`navLink ${location.pathname === item.href ? "active" : ""
+								className={`navLink ${location.pathname === item.href || location.pathname.startsWith(`${item.href}/`) ? "active" : ""
 									}`}
 							>
 								{item.name}

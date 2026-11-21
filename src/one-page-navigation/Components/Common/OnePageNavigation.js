@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 
 import { prefix } from '../../utils/data';
 import { cleanSectionId, getWrapperClasses, stepNumber, usesTooltip } from '../../utils/options';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const ItemIcon = ({ icon = {}, label }) => {
 	const { type = 'icon', icon: library = '', img = {}, url = '', alt = '', svg = '' } = icon;
@@ -17,7 +18,7 @@ const ItemIcon = ({ icon = {}, label }) => {
 
 	const markup = 'svg' === type ? svg : library;
 
-	return markup ? <span className={`${prefix}-icon is-${'svg' === type ? 'svg' : 'icon'}`} dangerouslySetInnerHTML={{ __html: markup }} /> : null;
+	return markup ? <span className={`${prefix}-icon is-${'svg' === type ? 'svg' : 'icon'}`} dangerouslySetInnerHTML={{ __html: sanitizeHtml( markup ) }} /> : null;
 };
 
 const ProgressRing = () => <svg className={`${prefix}-ring`} viewBox='0 0 24 24' aria-hidden='true'>

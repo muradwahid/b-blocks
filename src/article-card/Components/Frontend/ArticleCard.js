@@ -8,6 +8,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const NewTabHint = () => <span className='screen-reader-text'>{__('(opens in a new tab)', 'b-blocks')}</span>;
 
@@ -73,20 +74,20 @@ const ArticleCard = ({ attributes }) => {
 			{heading ? (
 				<HeadingTag
 					className='b-blocks-article-card-heading'
-					dangerouslySetInnerHTML={{ __html: heading }}
+					dangerouslySetInnerHTML={{ __html: sanitizeHtml( heading ) }}
 				/>
 			) : null}
 
 			{excerpt ? (
 				<p
 					className='b-blocks-article-card-excerpt'
-					dangerouslySetInnerHTML={{ __html: excerpt }}
+					dangerouslySetInnerHTML={{ __html: sanitizeHtml( excerpt ) }}
 				/>
 			) : null}
 
 			{meta ? (
 				<span className='b-blocks-article-card-meta'>
-					{metaIcon ? <span className='b-blocks-article-card-meta-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: metaIcon }} /> : null}
+					{metaIcon ? <span className='b-blocks-article-card-meta-icon' aria-hidden='true' dangerouslySetInnerHTML={{ __html: sanitizeHtml( metaIcon ) }} /> : null}
 					<span className='b-blocks-article-card-meta-text'>{meta}</span>
 				</span>
 			) : null}

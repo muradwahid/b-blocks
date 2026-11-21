@@ -24,3 +24,20 @@
 	padding-left: 20px !important;
 	padding-right: 20px !important;
 }
+
+// WordPress components inside the dashboard. `.bPlDashboard *` (bpl-tools) gives every element Roboto, which hid
+// every Dashicon (trash, edit, …) as an empty box, and `.bPlDashboardV4 *` squares every corner, which turned
+// radio buttons into checkboxes.
+.bPlDashboard {
+	.dashicons,
+	.dashicon,
+	.dashicons-before::before {
+		font-family: dashicons;
+		line-height: 1;
+	}
+
+	input[type="radio"],
+	input[type="radio"]::before {
+		border-radius: 50% !important;
+	}
+}

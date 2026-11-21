@@ -1,14 +1,226 @@
-.bBlocks-admin-integration-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+// Settings → Integration: left menu of integrations, right panel for the open one.
+// Mirrors the Performance tab (sidebar / group / nav / panel), with its own class names.
+// `.bPlDashboardV4 *` forces square corners and `.bPlDashboard *` zeroes margins, so spacing is set here.
 
-    .bBlocks-admin-integration-Head {
+.bBlocksIntegration {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+
+    // ---------- Sidebar ----------
+    .bBlocksIntegration__sidebar {
+        position: sticky;
+        top: 32px;
         display: flex;
         flex-direction: column;
         gap: 6px;
+        padding: 6px;
+        background: #fff;
+        border: 1px solid #e8e6f2;
+    }
 
-        .bBlocks-admin-integration-Heading {
+    .bBlocksIntegration__group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 9px 12px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--bpl-dashboard-title-color, #070127);
+        text-align: start;
+        background: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.05);
+        border: 0;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.08);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--bpl-dashboard-primary-color, #8c74fd);
+            outline-offset: 1px;
+        }
+
+        .bBlocksIntegration__groupIcon,
+        .bBlocksIntegration__chevron {
+            display: inline-flex;
+            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+        }
+
+        .bBlocksIntegration__groupLabel {
+            flex: 1;
+        }
+
+        .bBlocksIntegration__chevron {
+            transition: transform 0.2s ease;
+        }
+
+        &.isOpen .bBlocksIntegration__chevron {
+            transform: rotate(180deg);
+        }
+    }
+
+    // Positioned so the hidden status text (absolute) stays inside the scrolling row on phones.
+    .bBlocksIntegration__nav {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin: 2px 0 4px;
+    }
+
+    .bBlocksIntegration__navItem {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.75);
+        text-decoration: none;
+        background: transparent;
+        border: 0;
+        outline: none;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            color: var(--bpl-dashboard-title-color, #070127);
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.08);
+        }
+
+        // wp-admin rings every focused link; keep a ring for keyboard focus only.
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--bpl-dashboard-primary-color, #8c74fd);
+            outline-offset: -2px;
+        }
+
+        &.active {
+            font-weight: 600;
+            color: var(--bpl-dashboard-primary-color, #8c74fd);
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.1);
+        }
+
+        .bBlocksIntegration__navIcon {
+            display: inline-flex;
+            flex: 0 0 20px;
+
+            svg,
+            .cartIcon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .bBlocksIntegration__navLabel {
+            flex: 1;
+            min-width: 0;
+        }
+    }
+
+    // Status in the menu: an icon or an empty ring, plus hidden text for screen readers.
+    .bBlocksIntegration__marker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 18px;
+        width: 18px;
+        height: 18px;
+
+        svg {
+            width: 11px;
+            height: 11px;
+        }
+
+        &.isConnected {
+            color: #fff;
+            background: #16a34a;
+        }
+
+        &.isError {
+            color: #fff;
+            background: #dc2626;
+        }
+
+        &.isIdle {
+            width: 10px;
+            height: 10px;
+            flex-basis: 10px;
+            margin: 4px;
+            border: 1.5px solid rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.35);
+        }
+    }
+
+    // The selected integration's marker takes the dashboard primary color.
+    .bBlocksIntegration__navItem.active .bBlocksIntegration__marker {
+        color: #fff;
+        background: var(--bpl-dashboard-primary-color, #8c74fd);
+
+        &.isIdle {
+            border-color: var(--bpl-dashboard-primary-color, #8c74fd);
+        }
+    }
+
+    .bBlocksIntegration__privacy {
+        margin: 4px 0 0;
+        padding: 10px 12px 8px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.65);
+        border-top: 1px solid #e8e6f2;
+    }
+
+    // ---------- Panel ----------
+    .bBlocksIntegration__panel {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 0;
+        padding: 24px;
+        background: #fff;
+        border: 1px solid #e8e6f2;
+        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    }
+
+    .bBlocksIntegration__head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e8e6f2;
+
+        .bBlocksIntegration__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 48px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.1);
+
+            svg,
+            .cartIcon {
+                width: 26px;
+                height: 26px;
+            }
+        }
+
+        .bBlocksIntegration__titleWrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+            margin-inline-end: auto;
+        }
+
+        .bBlocksIntegration__title {
             margin: 0;
             font-size: 22px;
             font-weight: 700;
@@ -16,343 +228,401 @@
             color: var(--bpl-dashboard-title-color, #070127);
         }
 
-        .bBlocks-admin-integration-Sub {
-            margin: 0;
-            max-width: 680px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.7);
+        .bBlocksIntegration__kind {
+            font-size: 13px;
+            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.55);
         }
     }
 
-    .bBlocks-admin-integration-ApiCartContainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
-        gap: 20px;
+    .bBlocksIntegration__guide {
+        padding: 16px 18px;
+        background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.06);
+        border: 1px solid rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.22);
+
+        .bBlocksIntegration__guideTitle {
+            margin: 0 0 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--bpl-dashboard-title-color, #070127);
+        }
     }
 
-    .bBlocks-admin-integration-ApiCart {
+    .bBlocksIntegration__fields {
         display: flex;
         flex-direction: column;
-        gap: 16px;
-        padding: 22px;
-        background: #fff;
-        border: 1px solid #e8e6f2;
-        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        gap: 18px;
+        max-width: 640px;
+    }
 
-        &:hover {
-            border-color: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.55);
-            box-shadow: 0 10px 28px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.12);
+    // ---------- Fields (unchanged from the card layout) ----------
+    // ---- Status pill ----
+    .bbStatus {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        flex: 0 0 auto;
+        padding: 5px 11px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1;
+        white-space: nowrap;
+
+        svg {
+            width: 13px;
+            height: 13px;
         }
 
         &.isConnected {
-            border-color: rgba(34, 197, 94, 0.4);
+            color: #15803d;
+            background: rgba(34, 197, 94, 0.12);
         }
 
         &.isError {
-            border-color: rgba(239, 68, 68, 0.4);
+            color: #b91c1c;
+            background: rgba(239, 68, 68, 0.12);
         }
 
-        // ---- Card header ----
-        .bbCardTop {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        &.isIdle {
+            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.6);
+            background: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.07);
+        }
+    }
 
-            .bbCardIcon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex: 0 0 46px;
-                width: 46px;
-                height: 46px;
-                background: rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.1);
+    // ---- Helper / description text ----
+    .bBlocksApiInfo {
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.72);
 
-                svg,
-                .cartIcon {
-                    width: 24px;
-                    height: 24px;
-                }
-            }
+        p {
+            margin: 0 0 6px;
 
-            .bbCardTitle {
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-                margin-right: auto;
-                min-width: 0;
-
-                h4 {
-                    margin: 0;
-                    font-size: 16px;
-                    font-weight: 700;
-                    line-height: 1.2;
-                    color: var(--bpl-dashboard-title-color, #070127);
-                }
-
-                .bbCardKind {
-                    font-size: 12px;
-                    color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.55);
-                }
+            &:last-child {
+                margin-bottom: 0;
             }
         }
 
-        // ---- Status pill ----
-        .bbStatus {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            flex: 0 0 auto;
-            padding: 5px 11px;
-            font-size: 12px;
+        a {
+            color: var(--bpl-dashboard-primary-color, #8c74fd);
             font-weight: 600;
-            line-height: 1;
-            white-space: nowrap;
+            text-decoration: none;
 
-            svg {
-                width: 13px;
-                height: 13px;
-            }
-
-            &.isConnected {
-                color: #15803d;
-                background: rgba(34, 197, 94, 0.12);
-            }
-
-            &.isError {
-                color: #b91c1c;
-                background: rgba(239, 68, 68, 0.12);
-            }
-
-            &.isIdle {
-                color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.6);
-                background: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.07);
+            &:hover {
+                text-decoration: underline;
             }
         }
 
-        // ---- Helper / description text ----
-        .bBlocksApiInfo {
-            font-size: 13px;
-            line-height: 1.6;
-            color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.72);
+        strong {
+            color: var(--bpl-dashboard-title-color, #070127);
+        }
+    }
 
+    // ---- Field ----
+    .bBlocksApiField {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        &.settingsTokenWrapper {
             p {
-                margin: 0 0 6px;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-
-            a {
-                color: var(--bpl-dashboard-primary-color, #8c74fd);
-                font-weight: 600;
-                text-decoration: none;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
-            strong {
-                color: var(--bpl-dashboard-title-color, #070127);
+                color: #1b2e4bb8;
+                font-size: 13px;
+                line-height: 1.6;
             }
         }
 
-        // ---- Field ----
-        .bBlocksApiField {
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--bpl-dashboard-title-color, #070127);
+        }
+
+        .bbInputWrap {
+            position: relative;
             display: flex;
-            flex-direction: column;
-            gap: 7px;
+            align-items: center;
+            background: #fff;
+            border: 1.5px solid #e2e0ee;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
-            &.settingsTokenWrapper {
-                p {
-                    color: #1b2e4bb8;
-                    font-size: 13px;
-                    line-height: 1.6;
-                }
+            &:focus-within {
+                border-color: var(--bpl-dashboard-primary-color, #8c74fd);
+                box-shadow: 0 0 0 3px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.16);
             }
 
-            label {
-                font-size: 13px;
-                font-weight: 600;
-                color: var(--bpl-dashboard-title-color, #070127);
-            }
-
-            .bbInputWrap {
-                position: relative;
-                display: flex;
-                align-items: center;
-                background: #fff;
-                border: 1.5px solid #e2e0ee;
-                transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            &.hasError {
+                border-color: #ef4444;
 
                 &:focus-within {
-                    border-color: var(--bpl-dashboard-primary-color, #8c74fd);
-                    box-shadow: 0 0 0 3px rgba(var(--bpl-dashboard-primary-color-rgb, 140, 116, 253), 0.16);
+                    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16);
                 }
+            }
 
-                &.hasError {
-                    border-color: #ef4444;
+            .bbInputIcon {
+                display: flex;
+                align-items: center;
+                padding-left: 12px;
+                color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
 
-                    &:focus-within {
-                        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16);
-                    }
+                svg {
+                    width: 16px;
+                    height: 16px;
                 }
+            }
 
-                .bbInputIcon {
-                    display: flex;
-                    align-items: center;
-                    padding-left: 12px;
-                    color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
+            // Reset WordPress admin input chrome so the wrapper owns the look.
+            .bbInput {
+                flex: 1 1 auto;
+                min-width: 0;
+                margin: 0;
+                padding: 11px 12px;
+                border: 0 !important;
+                outline: 0 !important;
+                background: transparent;
+                box-shadow: none !important;
+                font-size: 14px;
+                line-height: 1.4;
+                color: var(--bpl-dashboard-title-color, #070127);
 
-                    svg {
-                        width: 16px;
-                        height: 16px;
-                    }
-                }
-
-                // Reset WordPress admin input chrome so the wrapper owns the look.
-                .bbInput {
-                    flex: 1 1 auto;
-                    min-width: 0;
-                    margin: 0;
-                    padding: 11px 12px;
+                &:focus {
                     border: 0 !important;
                     outline: 0 !important;
-                    background: transparent;
                     box-shadow: none !important;
-                    font-size: 14px;
-                    line-height: 1.4;
-                    color: var(--bpl-dashboard-title-color, #070127);
-
-                    &:focus {
-                        border: 0 !important;
-                        outline: 0 !important;
-                        box-shadow: none !important;
-                    }
-
-                    &::placeholder {
-                        color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
-                    }
                 }
 
-                .bbReveal,
-                .bbDelete {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex: 0 0 auto;
-                    padding: 0 9px;
-                    align-self: stretch;
-                    border: 0;
-                    background: transparent;
-                    color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.45);
-                    cursor: pointer;
-                    transition: color 0.15s ease;
-
-                    &:hover,
-                    &:focus-visible {
-                        color: var(--bpl-dashboard-primary-color, #8c74fd);
-                    }
-
-                    svg {
-                        width: 16px;
-                        height: 16px;
-                    }
-                }
-
-                .bbDelete {
-                    padding-right: 12px;
-
-                    &:hover,
-                    &:focus-visible {
-                        color: #ef4444;
-                    }
-                }
-            }
-        }
-
-        // ---- Footer ----
-        .bBlocksApiFooter {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: auto;
-            padding-top: 4px;
-
-            .bbStatusLine {
-                margin: 0;
-                font-size: 13px;
-                line-height: 1.4;
-
-                .bbOk {
-                    color: #15803d;
-                    font-weight: 600;
-                }
-
-                .bbErr {
-                    color: #b91c1c;
-                    font-weight: 600;
-                }
-
-                .bbMuted {
-                    color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.5);
+                &::placeholder {
+                    color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.4);
                 }
             }
 
-            .bBlocksApiSaveBtn {
+            .bbReveal,
+            .bbDelete {
                 display: flex;
+                align-items: center;
                 justify-content: center;
                 flex: 0 0 auto;
-                padding: 9px 22px !important;
-                min-width: 92px;
-                border: 0 !important;
-                background-color: var(--bpl-dashboard-primary-color, #8c74fd) !important;
-                color: #fff !important;
-                font-size: 13px !important;
-                font-weight: 600 !important;
-                line-height: 1.4 !important;
-                height: auto !important;
+                padding: 0 9px;
+                align-self: stretch;
+                border: 0;
+                background: transparent;
+                color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.45);
                 cursor: pointer;
-                transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+                transition: color 0.15s ease;
 
-                &.isDisabled {
-                    opacity: 0.5;
+                &:hover,
+                &:focus-visible {
+                    color: var(--bpl-dashboard-primary-color, #8c74fd);
                 }
 
-                &:hover {
-                    filter: brightness(1.06);
+                // Copy confirmation, shown for 2 seconds after the redirect URI is copied.
+                &.isCopied {
+                    color: #16a34a;
                 }
 
-                &:active {
-                    transform: translateY(1px);
+                svg {
+                    width: 16px;
+                    height: 16px;
                 }
+            }
 
-                &.bPlButton-disabled {
-                    opacity: 0.65;
-                    cursor: default;
+            .bbDelete {
+                padding-right: 12px;
 
-                    &:hover {
-                        filter: none;
-                    }
-
-                    &:active {
-                        transform: none;
-                    }
+                &:hover,
+                &:focus-visible {
+                    color: #ef4444;
                 }
             }
         }
     }
 
-    // Single column on narrow screens.
-    @media (max-width: 600px) {
-        padding: 22px 16px 40px;
+    // ---- Footer ----
+    .bBlocksApiFooter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 4px;
 
-        .bBlocksApiCartContainer {
-            grid-template-columns: 1fr;
+        .bbStatusLine {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.4;
+
+            .bbOk {
+                color: #15803d;
+                font-weight: 600;
+            }
+
+            .bbErr {
+                color: #b91c1c;
+                font-weight: 600;
+            }
+
+            .bbMuted {
+                color: rgba(var(--bpl-dashboard-content-color-rgb, 27, 46, 75), 0.5);
+            }
         }
+
+        .bBlocksApiSaveBtn {
+            display: flex;
+            justify-content: center;
+            flex: 0 0 auto;
+            padding: 9px 22px !important;
+            min-width: 92px;
+            border: 0 !important;
+            background-color: var(--bpl-dashboard-primary-color, #8c74fd) !important;
+            color: #fff !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
+            height: auto !important;
+            cursor: pointer;
+            transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+
+            &.isDisabled {
+                opacity: 0.5;
+            }
+
+            &:hover {
+                filter: brightness(1.06);
+            }
+
+            &:active {
+                transform: translateY(1px);
+            }
+
+            &.bPlButton-disabled {
+                opacity: 0.65;
+                cursor: default;
+
+                &:hover {
+                    filter: none;
+                }
+
+                &:active {
+                    transform: none;
+                }
+            }
+        }
+    }
+
+    .bBlocksApiFooter {
+        padding-top: 16px;
+        border-top: 1px solid #e8e6f2;
+    }
+
+    // ---------- Loading skeleton (same grid, sidebar and panel as the real screen) ----------
+    &.bBlocksIntegration__skeleton {
+        .bBlocksIntegration__bone {
+            display: block;
+            background: linear-gradient(90deg, #efeef6 25%, #f8f7fc 37%, #efeef6 63%);
+            background-size: 400% 100%;
+            animation: bBlocksIntegrationShimmer 1.4s ease infinite;
+
+            &.isGroup {
+                height: 40px;
+            }
+
+            &.isNav {
+                width: 70%;
+                height: 14px;
+                margin: 11px 12px;
+            }
+
+            &.isIcon {
+                flex: 0 0 48px;
+                height: 48px;
+            }
+
+            &.isTitle {
+                width: 180px;
+                height: 26px;
+            }
+
+            &.isGuide {
+                height: 110px;
+            }
+
+            &.isLabel {
+                width: 120px;
+                height: 14px;
+            }
+
+            &.isInput {
+                max-width: 640px;
+                height: 44px;
+            }
+
+            &.isButton {
+                align-self: flex-end;
+                width: 92px;
+                height: 38px;
+            }
+        }
+
+        @media (max-width: 782px) {
+            .bBlocksIntegration__sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .bBlocksIntegration__bone.isNav {
+                width: 64px;
+                margin: 4px;
+            }
+        }
+    }
+
+    // ---------- Small screens: menu above the panel ----------
+    @media (max-width: 782px) {
+        grid-template-columns: minmax(0, 1fr);
+
+        .bBlocksIntegration__sidebar {
+            position: static;
+            min-width: 0;
+        }
+
+        // One scrolling row of integrations instead of a tall list.
+        .bBlocksIntegration__nav {
+            flex-direction: row;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .bBlocksIntegration__navItem {
+            flex: 0 0 auto;
+        }
+
+        .bBlocksIntegration__panel {
+            padding: 16px;
+        }
+
+        .bBlocksIntegration__head {
+            flex-wrap: wrap;
+        }
+
+        .bBlocksApiFooter {
+            flex-wrap: wrap;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+@keyframes bBlocksIntegrationShimmer {
+    from {
+        background-position: 100% 50%;
+    }
+
+    to {
+        background-position: 0 50%;
     }
 }

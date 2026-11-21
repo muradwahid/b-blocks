@@ -7,6 +7,7 @@ import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 import { getTimelineItemClasses, withItemDefaults } from '../../utils/functions';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Edit = ( props ) => {
 	const { attributes, setAttributes, clientId, device } = props;
@@ -49,7 +50,7 @@ const Edit = ( props ) => {
 			</div>
 
 			<div className='b-blocks-timeline-marker'>
-				{ icon && <span dangerouslySetInnerHTML={ { __html: icon } } /> }
+				{ icon && <span dangerouslySetInnerHTML={ { __html: sanitizeHtml( icon ) } } /> }
 			</div>
 
 			<RichText

@@ -1,5 +1,31 @@
 export const changeLog = [
     {
+        version: '2.1.17 - 19 November 2026',
+        list: [
+            'Added: 3D Viewer Block options: poster with show on click, progress bar, loading percentage, auto rotate, rotation speed and delay, camera angle, field of view, interaction hint, animation and variant selection, environment image, HDR skybox, exposure, shadow and AR.',
+            'Added: 3D Viewer Block fullscreen, zoom, screenshot and download buttons.',
+            'Added: 3D Viewer Block style options: viewer background, progress bar and poster colors, and button color, background, border, radius and shadow.',
+            'Security: Sanitized 3D Viewer Block model links.',
+            'Added: Document Embed Block.',
+            'Added: Document Library Block.',
+            'Added: Promotional campaign banner.'
+        ],
+        type: 'new'
+    },
+    {
+        version: '2.1.16 - 09 November 2026',
+        list: [
+            'Added: Performance settings with Caching, Images, Assets, Fonts and Platform options.',
+            'Added: Site Scanner in the settings to check the site and turn on suggested fixes.',
+            'Added: Container Block Layout options for direction, justify content, align items, wrap, column gap and row gap, per device.',
+            'Improved: Container Block width, height and alignment options moved into the new Layout panel.',
+            'Fixed: Container Block width on tablet and mobile in the editor now matches the front end.',
+            'Security: Sanitized Accordion Block title and content.',
+            'Fixed: Accordion Block no longer breaks when its saved settings cannot be read.'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.15 - 02 November 2026',
         list: [
             'Added: Woo Product Carousel Block.'

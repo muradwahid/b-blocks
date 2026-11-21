@@ -30,15 +30,17 @@ const Settings = ({ info, isProModalOpen, setIsProModalOpen, isPremium }) => {
   }, [isLoading])
 
 
+  // "Most Popular" and "Custom Url" are Pro sources.
+  const isProSource = ['predefined', 'customUrl'].includes(bBlocksCursor?.source);
+
   const saveInformation = () => {
-    if (!bBlocksCursor?.source === 'predefined' && !bBlocksCursor?.source === 'customUrl' && !isPremium) return;
+    if (isProSource && !isPremium) return setIsProModalOpen(true);
     saveData({ bBlocksCustomCursor: JSON.stringify(bBlocksCursor), save: true });
   }
 
   useEffect(() => {
     // saveInformation();
     // console.log(bBlocksCursor)
-    if (!bBlocksCursor?.source === 'predefined' && !bBlocksCursor?.source === 'customUrl' && !isPremium) return;
     window.dispatchEvent(new CustomEvent("bBlocksCursorPlayground", {
       detail: {
         data: bBlocksCursor

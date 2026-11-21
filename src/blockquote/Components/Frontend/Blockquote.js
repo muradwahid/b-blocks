@@ -1,6 +1,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 
 import { quoteIconPath } from '../../utils/options';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const LAYOUT_VALUES = ['border', 'quotation'];
 const ALIGN_VALUES = ['left', 'center', 'right'];
@@ -49,7 +50,7 @@ const Blockquote = ({ attributes }) => {
 				)}
 
 				<blockquote className='bBlocks-blockquote-quote'>
-					<p className='bBlocks-blockquote-quoteText' dangerouslySetInnerHTML={{ __html: quoteText || '' }} />
+					<p className='bBlocks-blockquote-quoteText' dangerouslySetInnerHTML={{ __html: sanitizeHtml( quoteText || '' ) }} />
 				</blockquote>
 
 				{hasCite && (

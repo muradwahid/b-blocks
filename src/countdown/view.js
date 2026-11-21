@@ -7,6 +7,7 @@ import Style from './Components/Common/Style';
 import Countdown from './Components/Common/Countdown';
 import { isMobile, isTablet } from './utils/functions';
 import { closeIcon } from './utils/icons';
+import { sanitizeHtml } from '../utils/sanitizeHtml';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const countdownEls = document.querySelectorAll('.wp-block-b-blocks-countdown');
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Style attributes={attributes} id={countdownEl.id} />
 
 			<Countdown attributes={attributes} Box={Box} closeEl={closeEl}>
-				<div className='countdownExpired' dangerouslySetInnerHTML={{ __html: content }} />
+				<div className='countdownExpired' dangerouslySetInnerHTML={{ __html: sanitizeHtml( content ) }} />
 			</Countdown>
 		</> : <></>);
 

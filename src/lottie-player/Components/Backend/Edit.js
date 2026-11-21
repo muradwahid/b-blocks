@@ -9,12 +9,14 @@ import { prefix } from '../../utils/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
-	const { file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, background, isCap = false, caption = '' } = attributes;
+	const { file, isControls, isAutoplay, isLoop, isHover, mode, direction = 1, count, speed, intermission, background, isCap = false, caption = '', renderer = '', activeAnimationId = '' } = attributes;
 
 		const isPremium = bBlocksPremiumChecker;
 
 	const lottieEl = useRef(null);
 	const [fileFrameSize, setFileFrameSize] = useState(0);
+	// Animation ids inside the loaded file (a .lottie file can hold several), for the Animation setting.
+	const [animationIds, setAnimationIds] = useState([]);
 
 	const setFrameSize = (player) => {
 		player.addEventListener('ready', () => {
@@ -26,16 +28,20 @@ const Edit = props => {
 
 	const id = `block-${clientId}`;
 
-	// Set or Remove attributes
-	const lottieWrapper = document.querySelector(`#${id} .${prefix} .lottieHolder`);
+	// The block is inside the editor iframe, so look the holder up by ref (a document.querySelector here searched the parent page and found nothing).
+	const holderRef = useRef(null);
 
+	// Set or Remove attributes
 	useEffect(() => {
+		const lottieWrapper = holderRef.current;
+
 		lottieWrapper ? lottieWrapper.innerHTML = '' : '';
 
 		const loopCount = 0 < count ? count : true;
 		const loopVal = isLoop ? loopCount : false;
 
-		const reInitPlayer = document.createElement('dotlottie-player');
+		// Created by the iframe document: a player made by the parent window cannot attach its styles inside the iframe.
+		const reInitPlayer = (lottieWrapper?.ownerDocument || document).createElement('dotlottie-player');
 		toggleAttr(reInitPlayer, file, 'src', file);
 		toggleAttr(reInitPlayer, isControls, 'controls', '');
 		toggleAttr(reInitPlayer, isAutoplay, 'autoplay', '');
@@ -47,11 +53,14 @@ const Edit = props => {
 		toggleAttr(reInitPlayer, intermission, 'intermission', intermission * 1000);
 		toggleAttr(reInitPlayer, background, 'background', background);
 		toggleAttr(reInitPlayer, true, 'debug');
+		toggleAttr(reInitPlayer, renderer, 'renderer', renderer);
+		toggleAttr(reInitPlayer, activeAnimationId, 'activeanimationid', activeAnimationId);
 
 		lottieWrapper ? lottieWrapper.appendChild(reInitPlayer) : '';
 
 		setFrameSize(reInitPlayer);
-	}, [file, isControls, isAutoplay, isLoop, isHover, mode, direction, count, speed, intermission, background]);
+		reInitPlayer.addEventListener('ready', () => setAnimationIds((reInitPlayer.getManifest()?.animations || []).map(animation => animation.id)));
+	}, [file, isControls, isAutoplay, isLoop, isHover, mode, direction, count, speed, intermission, background, renderer, activeAnimationId]);
 
 	// Set Total Frame
 	useEffect(() => {
@@ -61,13 +70,13 @@ const Edit = props => {
 	}, []);
 
 	return <>
-		<Settings attributes={attributes} setAttributes={setAttributes} fileFrameSize={fileFrameSize} isPremium={isPremium} />
+		<Settings attributes={attributes} setAttributes={setAttributes} fileFrameSize={fileFrameSize} animationIds={animationIds} isPremium={isPremium} />
 
 		<div {...useBlockProps()}>
 			<Style attributes={attributes} id={id} />
 
 			<div className={prefix}>
-				<span className='lottieHolder'>
+				<span className='lottieHolder' ref={holderRef}>
 					<DotLottiePlayer ref={lottieEl} attributes={attributes} />
 				</span>
 

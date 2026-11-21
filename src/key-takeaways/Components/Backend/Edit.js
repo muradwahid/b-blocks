@@ -6,6 +6,7 @@ import { withSelect } from '@wordpress/data';
 import { updateAttributes } from '../../../../../bpl-tools/utils/functions';
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const TAG_VALUES = ['h2', 'h3', 'h4'];
 const STYLE_VALUES = ['check', 'numbered', 'bullet'];
@@ -62,7 +63,7 @@ const Edit = (props) => {
                       <span
                         className='bBlocks-key-takeaways-icon'
                         aria-hidden='true'
-                        dangerouslySetInnerHTML={{ __html: (item && item.icon) || '' }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml( (item && item.icon) || '' ) }}
                       />
                     )}
                     {showPrefix && 'numbered' === listStyle && (

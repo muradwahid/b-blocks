@@ -3,6 +3,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 
 import Settings from './Settings/Settings';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const ALLOWED_NAME_TAGS = [ 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ];
 const ALLOWED_LAYOUTS = [ 'inline', 'stacked' ];
@@ -180,7 +181,7 @@ const Edit = ( props ) => {
 									className='bb-ab-bio'
 									style={ bioStyle }
 									// eslint-disable-next-line react/no-danger
-									dangerouslySetInnerHTML={ { __html: bioForEditor } }
+									dangerouslySetInnerHTML={ { __html: sanitizeHtml( bioForEditor ) } }
 								/>
 							) }
 

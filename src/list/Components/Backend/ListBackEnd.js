@@ -1,5 +1,6 @@
 import { RichText } from '@wordpress/block-editor';
 import { Fragment } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const ListBackEnd = ({ attributes, updateObj }) => {
   const { items = [], marker, styles } = attributes;
@@ -10,7 +11,7 @@ const ListBackEnd = ({ attributes, updateObj }) => {
       case 'emoji':
         return <span className='bBlocksListMarkerEmoji'>{marker.emoji}</span>;
       case 'icon':
-        return listIcon ? <span className='bBlocksListMarkerIcon' dangerouslySetInnerHTML={{ __html: listIcon }} />:null;
+        return listIcon ? <span className='bBlocksListMarkerIcon' dangerouslySetInnerHTML={{ __html: sanitizeHtml( listIcon ) }} />:null;
       case 'disc':
         return <span className='bBlocksListMarkerDisc bBlocksListMarker' />
       case 'square':

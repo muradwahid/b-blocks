@@ -3,6 +3,7 @@ import DynamicTag from '../../../../../bpl-tools/Components/DynamicTag/DynamicTa
 import NoHeading from "../Common/NoHeading/NoHeading";
 import TimelineStyle from "../Common/Styles/TimelineStyle";
 import useHeading from "../hooks/useHeading";
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const TimelineFront = ({ attributes, id }) => {
     const { title, slideTitle, tagName, sticky, headings } = attributes;
@@ -13,7 +14,7 @@ const TimelineFront = ({ attributes, id }) => {
         <TimelineStyle attributes={attributes} id={id} />
         <div onClick={() => setRendered(!rendered)} className={`bblocks-tbcn-timeline-container ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}  `}>
             <div className="bblocks-tbcn-timeline-title-container">
-                <DynamicTag className="bblocks-tbcn-timeline-title" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+                <DynamicTag className="bblocks-tbcn-timeline-title" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: sanitizeHtml( title?.text ) }} />
             </div>
             <>
                 {headings?.length > 0 ? (

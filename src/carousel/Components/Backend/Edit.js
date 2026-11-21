@@ -16,6 +16,7 @@ import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import Swiper from 'swiper';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, device } = props;
@@ -165,8 +166,8 @@ const Edit = props => {
 							<div {...innerBlocksProps} />
 							{/* <div className="swiper-scrollbar" /> */}
 						</div>
-						{navigation.navigation && <><div className="swiper-button-prev" dangerouslySetInnerHTML={{ __html: navigation.prevIcon.library }} />
-							<div className="swiper-button-next" dangerouslySetInnerHTML={{ __html: navigation.nextIcon.library }} /></>}
+						{navigation.navigation && <><div className="swiper-button-prev" dangerouslySetInnerHTML={{ __html: sanitizeHtml( navigation.prevIcon.library ) }} />
+							<div className="swiper-button-next" dangerouslySetInnerHTML={{ __html: sanitizeHtml( navigation.nextIcon.library ) }} /></>}
 						{pagination.pagination && <div className="swiper-pagination swiper-pagination-horizontal" />}
 					</div>
 				</div>

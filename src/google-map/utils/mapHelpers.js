@@ -1,31 +1,12 @@
 import { toNumber } from './data';
+import { sanitizeHtml } from '../../utils/sanitizeHtml';
 
 /**
- * Strip anything script-like out of author-supplied HTML before it goes into
- * an InfoWindow. bpl-tools' sanitizeHTML allows only inline tags, which would
- * gut TinyEditor content, so this keeps structural markup and removes the
- * executable parts instead.
+ * Author-supplied HTML for an InfoWindow or a marker icon: the plugin's shared sanitizer, which keeps structural
+ * markup (TinyEditor content) and SVG, and removes the executable parts — including links bpl-tools' sanitizeHTML
+ * would keep and the old regex here missed (java&#9;script:, entity-encoded schemes).
  */
-export const sanitizeRichHTML = (html = '') => {
-	if (!html || typeof html !== 'string') return '';
-
-	const doc = new DOMParser().parseFromString(html, 'text/html');
-
-	doc.body.querySelectorAll('script, style, iframe, object, embed, form, link, meta').forEach((node) => node.remove());
-
-	doc.body.querySelectorAll('*').forEach((node) => {
-		[...node.attributes].forEach(({ name, value }) => {
-			const isEventHandler = /^on/i.test(name);
-			const isJsUrl = /^\s*javascript:/i.test(value || '');
-
-			if (isEventHandler || (isJsUrl && ('href' === name || 'src' === name))) {
-				node.removeAttribute(name);
-			}
-		});
-	});
-
-	return doc.body.innerHTML;
-};
+export const sanitizeRichHTML = (html = '') => sanitizeHtml(html);
 
 /** Resolve a ControlPosition by member name, guarded for pre-load calls. */
 export const resolveControlPosition = (name) => window.google?.maps?.ControlPosition?.[name] ?? undefined;

@@ -909,6 +909,25 @@ export const fileDownloadCardIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<rect x='7.5' y='16' width='7' height='1.6' rx='0.8' fill='#fff' opacity='0.9' />
 </svg>;
 
+export const documentEmbedIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='3' width='19' height='18' rx='2' fill={primaryColor} opacity='0.85' />
+	<rect x='2.5' y='3' width='19' height='3.2' rx='1.2' fill={primaryColor} />
+	<path d='M8 8.2h6l3 3v7a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z' fill='#fff' opacity='0.95' />
+	<path d='M14 8.2l3 3h-2.2a.8.8 0 0 1-.8-.8z' fill={primaryColor} opacity='0.45' />
+	<path d='M9 13h6M9 15h6M9 17h4' stroke={primaryColor} strokeWidth='0.9' strokeLinecap='round' opacity='0.6' />
+</svg>;
+
+export const documentLibraryIcon = <svg {...svgProps} viewBox='0 0 24 24'>
+	<rect x='2.5' y='3' width='8.5' height='8.5' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<rect x='13' y='3' width='8.5' height='8.5' rx='1.5' fill={primaryColor} opacity='0.6' />
+	<rect x='2.5' y='13.5' width='8.5' height='8.5' rx='1.5' fill={primaryColor} opacity='0.6' />
+	<rect x='13' y='13.5' width='8.5' height='8.5' rx='1.5' fill={primaryColor} opacity='0.85' />
+	<path d='M5 5.5h2.6l1.4 1.4v2.6H5z' fill='#fff' opacity='0.95' />
+	<path d='M15.5 5.5h2.6l1.4 1.4v2.6h-4z' fill='#fff' opacity='0.95' />
+	<path d='M5 16h2.6l1.4 1.4V20H5z' fill='#fff' opacity='0.95' />
+	<path d='M15.5 16h2.6l1.4 1.4V20h-4z' fill='#fff' opacity='0.95' />
+</svg>;
+
 export const pdfEmbedIcon = <svg {...svgProps} viewBox='0 0 24 24'>
 	<rect x='3' y='3.5' width='18' height='17' rx='2' fill={primaryColor} opacity='0.85' />
 	<rect x='5.5' y='6' width='13' height='9.5' rx='1' fill='#fff' opacity='0.95' />

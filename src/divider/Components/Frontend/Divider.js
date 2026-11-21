@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const TYPE_VALUES = [ 'line', 'icon', 'text' ];
 const LINE_STYLE_VALUES = [ 'solid', 'dashed', 'dotted', 'double' ];
@@ -32,7 +33,7 @@ const Divider = ( { attributes, textSlot = null } ) => {
 					<span
 						className='b-blocks-divider-icon'
 						aria-hidden='true'
-						dangerouslySetInnerHTML={ { __html: icon.svg || '' } }
+						dangerouslySetInnerHTML={ { __html: sanitizeHtml( icon.svg || '' ) } }
 					/>
 					<span className='b-blocks-divider-line' aria-hidden='true'></span>
 				</div>

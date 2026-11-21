@@ -7,10 +7,12 @@ import Advanced from '../../../../../../bpl-tools/Advanced';
 
 import { generalStyleTabs } from '../../../../utils/options';
 import ProModal from '../../../../backend/ProModal/ProModal';
-import Content from './General/Content';
+// import Content from './General/Content';
+// import ItemsLayout from './General/ItemsLayout';
 import Wrapper from './General/Wrapper';
 import Shape from './General/Shape';
 import { enabledAdvOptions } from '../../../utils/options';
+import Layout from './General/Layout';
 
 const Settings = (props) => {
 	const { attributes, setAttributes, id, isPremium } = props;
@@ -29,7 +31,9 @@ const Settings = (props) => {
 				{'general' === tab.name && <>
 					<Wrapper {...props} />
 
-					<Content {...props} />
+					{/* <Content {...props} />
+					<ItemsLayout {...props} /> */}
+					<Layout {...props} />
 					<Shape {...props} premiumProps={premiumProps} />
 				</>}
 
@@ -39,7 +43,6 @@ const Settings = (props) => {
 				</>}
 			</>}</TabPanel>
 		</InspectorControls>
-
 
 		<ProModal isProModalOpen={isProModalOpen} setIsProModalOpen={setIsProModalOpen} block='Countdown'>
 			<li>&emsp;<strong>{__(': ', 'b-blocks')}</strong>{__('', 'b-blocks')}</li>

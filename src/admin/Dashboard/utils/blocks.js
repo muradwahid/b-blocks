@@ -40,6 +40,7 @@ import {
     wooProductRatingIcon,
     wooProductCarouselIcon
 } from '../../../utils/blocksIcon';
+import { advancedSearchIcon } from '../../../advanced-search/utils/icons';
 
 import {
     // pricingToggleIcon, newsletterOptinIcon, floatingCtaIcon,
@@ -55,6 +56,8 @@ import {
     // postMasonryGridIcon, searchBarIcon, iconIcon,
     eventCardIcon,
     fileDownloadCardIcon,
+    documentEmbedIcon,
+    documentLibraryIcon,
     // scrollRevealIcon,
     audioPlayerIcon,
     wooProductGridIcon,
@@ -482,6 +485,24 @@ export default [
                 status: 'published',
                 isPremium: true
             },
+            {
+                name: `${pluginSlug}/document-embed`,
+                title: 'Document Embed',
+                icon: documentEmbedIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                isPremium: true
+            },
+            {
+                name: `${pluginSlug}/document-library`,
+                title: 'Document Library',
+                icon: documentLibraryIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                isPremium: false
+            },
         ]
     },
     {
@@ -805,6 +826,15 @@ export default [
     {
         title: 'Dynamic Blocks',
         children: [
+            {
+                name: `${pluginSlug}/advanced-search`,
+                title: 'Advanced Search',
+                icon: advancedSearchIcon,
+                demo: ``,
+                docs: ``,
+                status: 'published',
+                isPremium: false
+            },
             {
                 name: `${pluginSlug}/breadcrumb`,
                 title: 'Breadcrumb',

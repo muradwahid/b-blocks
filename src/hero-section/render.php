@@ -11,6 +11,8 @@
  * @var array    $attributes Block attributes.
  * @var WP_Block $block      Block instance.
  */
+// Attribute HTML is shown as HTML in the browser: unsafe markup out for authors without unfiltered_html.
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes );
 
 $id = wp_unique_id( 'hero-section-' );
 ?>

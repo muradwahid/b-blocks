@@ -6,6 +6,7 @@ import { isExist } from '../../../../../../bpl-tools/utils/common';
 import svgIcon from '../../../../../assets/icons/christmas-star-icon.svg';
 import oktaIconSvg from '../../../../../assets/icons/okta-icon.svg';
 import { isSVGFile } from '../../../utils/functions';
+import { sanitizeHtml } from '../../../../utils/sanitizeHtml';
 
 const DualColorHeading = ({ attributes }) => {
 	const { sortElements, heading, icon, separator, subHeading } = attributes;
@@ -35,7 +36,7 @@ const DualColorHeading = ({ attributes }) => {
 							{separator.iconType === 'library' && <span 
 								className='dch-separator-icon'
 								dangerouslySetInnerHTML={{
-									__html: separator.icon?.library,
+									__html: sanitizeHtml( separator.icon?.library ),
 								}}
 							/>}
 						</Fragment>}
@@ -43,7 +44,7 @@ const DualColorHeading = ({ attributes }) => {
 				case 'subHeading':
 					return <div key={index}
 						className='dch-dual-color-subcontent'
-						dangerouslySetInnerHTML={{ __html: subHeading.text }}
+						dangerouslySetInnerHTML={{ __html: sanitizeHtml( subHeading.text ) }}
 					></div>
 				case 'icon':
 					return icon.show && <Fragment key={index}>
@@ -58,7 +59,7 @@ const DualColorHeading = ({ attributes }) => {
 						</span>}
 
 						{
-							icon.iconType === 'library' && <span className='dch-dual-color-icon-svg' dangerouslySetInnerHTML={{ __html: icon.icon.library }} />
+							icon.iconType === 'library' && <span className='dch-dual-color-icon-svg' dangerouslySetInnerHTML={{ __html: sanitizeHtml( icon.icon.library ) }} />
 						}
 					</Fragment>
 			}

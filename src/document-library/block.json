@@ -1,0 +1,1211 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b-blocks/document-library",
+	"title": "Document Library",
+	"category": "bBlocks",
+	"description": "A searchable, filterable grid or list of documents to view and download.",
+	"keywords": [
+		"document",
+		"library",
+		"download",
+		"files",
+		"pdf",
+		"word",
+		"excel",
+		"powerpoint",
+		"viewer"
+	],
+	"textdomain": "b-blocks",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "array",
+			"default": []
+		},
+		"layout": {
+			"type": "object",
+			"default": {
+				"template": "grid",
+				"perPage": 0,
+				"listDensity": "comfortable",
+				"desktop": {
+					"columns": 3,
+					"gap": "20px"
+				},
+				"tablet": {
+					"columns": 2,
+					"gap": ""
+				},
+				"mobile": {
+					"columns": 1,
+					"gap": ""
+				},
+				"paging": "loadMore",
+				"titleTag": "h3"
+			}
+		},
+		"header": {
+			"type": "object",
+			"default": {
+				"show": true,
+				"title": "Document Library",
+				"description": "The default subtitle text for my Document Library.",
+				"align": "",
+				"preset": "ink"
+			}
+		},
+		"toolbar": {
+			"type": "object",
+			"default": {
+				"show": true,
+				"showTypeFilter": true,
+				"showSearch": true,
+				"showSort": true,
+				"defaultSort": "default",
+				"filterBy": "type",
+				"showCopyList": false
+			}
+		},
+		"itemOptions": {
+			"type": "object",
+			"default": {
+				"showIcon": true,
+				"showSize": true,
+				"showDate": true,
+				"showAuthor": false,
+				"showDescription": true,
+				"showType": true,
+				"newDays": 0
+			}
+		},
+		"downloadButton": {
+			"type": "object",
+			"default": {
+				"show": true,
+				"showText": true,
+				"text": "Download"
+			}
+		},
+		"viewButton": {
+			"type": "object",
+			"default": {
+				"show": true,
+				"showText": true,
+				"text": "View",
+				"viewer": "default",
+				"action": "modal"
+			}
+		},
+		"container": {
+			"type": "object",
+			"default": {
+				"bg": {},
+				"desktop": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				}
+			}
+		},
+		"headerStyle": {
+			"type": "object",
+			"default": {
+				"bg": {
+					"type": "solid",
+					"color": "#0f1f1b"
+				},
+				"title": {
+					"typo": {
+						"fontSize": {
+							"desktop": "25px",
+							"tablet": "20px",
+							"mobile": "18px"
+						},
+						"fontWeight": 500
+					},
+					"color": "#ffffff"
+				},
+				"description": {
+					"typo": {
+						"fontSize": {
+							"desktop": "16px"
+						}
+					},
+					"color": "#b9ccc4"
+				},
+				"desktop": {
+					"padding": {
+						"top": "20px",
+						"right": "20px",
+						"bottom": "20px",
+						"left": "20px"
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				}
+			}
+		},
+		"toolbarStyle": {
+			"type": "object",
+			"default": {
+				"bg": {},
+				"field": {
+					"typo": {
+						"fontSize": {
+							"desktop": "15px"
+						}
+					},
+					"placeholder": "",
+					"icon": "",
+					"desktop": {
+						"height": "46px",
+						"padding": {
+							"top": "0px",
+							"right": "14px",
+							"bottom": "0px",
+							"left": "14px"
+						}
+					},
+					"tablet": {
+						"height": "",
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"height": "",
+						"padding": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"transition": 0,
+					"normal": {
+						"color": "",
+						"bg": {},
+						"border": {
+							"color": "#d1d5db",
+							"style": "solid",
+							"width": "1px"
+						},
+						"desktop": {
+							"radius": {
+								"top": "8px",
+								"right": "8px",
+								"bottom": "8px",
+								"left": "8px"
+							}
+						},
+						"tablet": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"mobile": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
+					},
+					"focus": {
+						"color": "",
+						"bg": {},
+						"border": {},
+						"ring": "#0f766e",
+						"desktop": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"tablet": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						},
+						"mobile": {
+							"radius": {
+								"top": "",
+								"right": "",
+								"bottom": "",
+								"left": ""
+							}
+						}
+					}
+				},
+				"desktop": {
+					"padding": {
+						"top": "20px",
+						"right": "0px",
+						"bottom": "20px",
+						"left": "0px"
+					},
+					"gap": "12px"
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"gap": ""
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"gap": ""
+				}
+			}
+		},
+		"card": {
+			"type": "object",
+			"default": {
+				"desktop": {
+					"padding": {
+						"top": "20px",
+						"right": "20px",
+						"bottom": "20px",
+						"left": "20px"
+					},
+					"radius": {
+						"top": "10px",
+						"right": "10px",
+						"bottom": "10px",
+						"left": "10px"
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"normal": {
+					"bg": {
+						"type": "solid",
+						"color": "#ffffff"
+					},
+					"border": {
+						"top": {
+							"color": "#0f766e",
+							"style": "solid",
+							"width": "1px"
+						},
+						"right": {
+							"color": "#0f766e",
+							"style": "solid",
+							"width": "1px"
+						},
+						"bottom": {
+							"color": "#0f766e",
+							"style": "solid",
+							"width": "1px"
+						},
+						"left": {
+							"color": "#0f766e",
+							"style": "solid",
+							"width": "1px"
+						}
+					},
+					"shadow": []
+				},
+				"hover": {
+					"bg": {},
+					"border": {},
+					"shadow": []
+				}
+			}
+		},
+		"row": {
+			"type": "object",
+			"default": {
+				"divider": "#e5e7eb",
+				"normal": {
+					"bg": {}
+				},
+				"hover": {
+					"bg": {
+						"type": "solid",
+						"color": "#f8fafc"
+					}
+				},
+				"desktop": {
+					"radius": {
+						"top": "10px",
+						"right": "10px",
+						"bottom": "10px",
+						"left": "10px"
+					}
+				},
+				"tablet": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				}
+			}
+		},
+		"icon": {
+			"type": "object",
+			"default": {
+				"size": "32px",
+				"normal": {
+					"color": "#000000"
+				},
+				"hover": {
+					"color": "#0f766e"
+				}
+			}
+		},
+		"fileName": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "20px"
+					},
+					"fontWeight": 600
+				},
+				"normal": {
+					"color": "#000000"
+				},
+				"hover": {
+					"color": "#0f766e"
+				}
+			}
+		},
+		"size": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "15px"
+					}
+				},
+				"normal": {
+					"color": "#000000"
+				},
+				"hover": {
+					"color": "#0f766e"
+				}
+			}
+		},
+		"date": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "15px"
+					}
+				},
+				"normal": {
+					"color": "#000000"
+				},
+				"hover": {
+					"color": "#0f766e"
+				}
+			}
+		},
+		"description": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					}
+				},
+				"normal": {
+					"color": "#6b7280"
+				},
+				"hover": {
+					"color": ""
+				}
+			}
+		},
+		"author": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "15px"
+					}
+				},
+				"normal": {
+					"color": "#000000"
+				},
+				"hover": {
+					"color": "#0f766e"
+				}
+			}
+		},
+		"fileType": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "13px"
+					}
+				},
+				"normal": {
+					"color": "#6b7280"
+				},
+				"hover": {
+					"color": ""
+				}
+			}
+		},
+		"badges": {
+			"type": "object",
+			"default": {
+				"featured": {
+					"color": "#78350f",
+					"bg": {
+						"type": "solid",
+						"color": "#fef3c7"
+					}
+				},
+				"new": {
+					"color": "#14532d",
+					"bg": {
+						"type": "solid",
+						"color": "#dcfce7"
+					}
+				}
+			}
+		},
+		"pagination": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "14px"
+					}
+				},
+				"normal": {
+					"color": "#1f2937",
+					"bg": {
+						"type": "solid",
+						"color": "#ffffff"
+					},
+					"border": {
+						"color": "#e5e7eb",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"hover": {
+					"color": "",
+					"bg": {},
+					"border": {}
+				},
+				"active": {
+					"color": "#ffffff",
+					"bg": {
+						"type": "solid",
+						"color": "#0f766e"
+					},
+					"border": {
+						"color": "#0f766e",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"desktop": {
+					"radius": {
+						"top": "6px",
+						"right": "6px",
+						"bottom": "6px",
+						"left": "6px"
+					},
+					"padding": {
+						"top": "10px",
+						"right": "22px",
+						"bottom": "10px",
+						"left": "22px"
+					},
+					"margin": {
+						"top": "20px",
+						"right": "0px",
+						"bottom": "0px",
+						"left": "0px"
+					}
+				},
+				"tablet": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"radius": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"margin": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				}
+			}
+		},
+		"downloadBtn": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "15px"
+					}
+				},
+				"desktop": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"normal": {
+					"color": {
+						"text": "#ffffff",
+						"bg": {
+							"type": "solid",
+							"color": "#0f766e"
+						}
+					},
+					"border": {},
+					"desktop": {
+						"radius": {
+							"top": "6px",
+							"right": "6px",
+							"bottom": "6px",
+							"left": "6px"
+						}
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"color": {
+						"text": "#ffffff",
+						"bg": {
+							"type": "solid",
+							"color": "#0b5a54"
+						}
+					},
+					"border": {},
+					"desktop": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
+		},
+		"viewBtn": {
+			"type": "object",
+			"default": {
+				"typo": {
+					"fontSize": {
+						"desktop": "15px"
+					}
+				},
+				"desktop": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"tablet": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"mobile": {
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					}
+				},
+				"normal": {
+					"color": {
+						"text": "#ffffff",
+						"bg": {
+							"type": "solid",
+							"color": "#0f766e"
+						}
+					},
+					"border": {},
+					"desktop": {
+						"radius": {
+							"top": "6px",
+							"right": "6px",
+							"bottom": "6px",
+							"left": "6px"
+						}
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"hover": {
+					"color": {
+						"text": "#ffffff",
+						"bg": {
+							"type": "solid",
+							"color": "#0b5a54"
+						}
+					},
+					"border": {},
+					"desktop": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"tablet": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					},
+					"mobile": {
+						"radius": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				}
+			}
+		},
+		"advanced": {
+			"type": "object",
+			"default": {
+				"dimension": {
+					"padding": {
+						"desktop": {
+							"top": "20px",
+							"right": "25px",
+							"bottom": "20px",
+							"left": "25px"
+						},
+						"tablet": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						},
+						"mobile": {
+							"top": "",
+							"right": "",
+							"bottom": "",
+							"left": ""
+						}
+					}
+				},
+				"borderShadow": {
+					"normal": {
+						"radius": {
+							"top": "5px",
+							"right": "5px",
+							"bottom": "5px",
+							"left": "5px"
+						},
+						"shadow": [
+							{
+								"hOffset": "0px",
+								"vOffset": "0px",
+								"blur": "5px",
+								"spreed": "0px",
+								"color": "rgba(113, 144, 176, 0.43)",
+								"isInset": false
+							}
+						]
+					}
+				},
+				"background": {
+					"normal": {
+						"type": "color",
+						"color": "rgba(255, 255, 255, 0)",
+						"gradient": {
+							"type": "radial",
+							"radialType": "ellipse",
+							"colors": [
+								{
+									"color": "rgba(58, 66, 222, 1)",
+									"position": "0"
+								},
+								{
+									"color": "rgba(176, 195, 235, 1)",
+									"position": "80"
+								}
+							],
+							"centerPositions": {
+								"x": 50,
+								"y": 50
+							},
+							"angel": 90
+						},
+						"img": {
+							"url": "",
+							"desktop": {
+								"position": "center-center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"tablet": {
+								"position": "center-center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							},
+							"mobile": {
+								"position": "center-center",
+								"xPosition": 0,
+								"yPosition": 0,
+								"attachment": "",
+								"repeat": "no-repeat",
+								"size": "",
+								"customSize": "0px"
+							}
+						},
+						"transition": 0.3
+					}
+				},
+				"transform": {
+					"normal": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"hover": {
+						"rotate": {
+							"desktop": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"tablet": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"mobile": {
+								"z": "",
+								"y": "",
+								"x": ""
+							},
+							"threeDRotate": false
+						},
+						"offset": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"scale": {
+							"isProportion": true,
+							"desktop": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": "",
+								"scale": ""
+							}
+						},
+						"skew": {
+							"desktop": {
+								"x": "",
+								"y": ""
+							},
+							"tablet": {
+								"x": "",
+								"y": ""
+							},
+							"mobile": {
+								"x": "",
+								"y": ""
+							}
+						},
+						"flipX": false,
+						"flipY": false
+					},
+					"transition": 200
+				}
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"header": {
+				"show": true,
+				"title": "Company Documents",
+				"description": "Policies, reports and forms in one place.",
+				"align": "",
+				"preset": "ink"
+			},
+			"items": [
+				{
+					"id": 0,
+					"url": "https://example.com/files/annual-report.pdf",
+					"title": "Annual Report",
+					"description": "",
+					"mime": "",
+					"size": "2 MB",
+					"date": "January 15, 2026",
+					"author": "",
+					"image": {
+						"id": 0,
+						"url": ""
+					},
+					"category": "",
+					"featured": true,
+					"hidden": false,
+					"viewAction": ""
+				},
+				{
+					"id": 0,
+					"url": "https://example.com/files/price-list.xlsx",
+					"title": "Price List",
+					"description": "",
+					"mime": "",
+					"size": "48 KB",
+					"date": "March 2, 2026",
+					"author": "",
+					"image": {
+						"id": 0,
+						"url": ""
+					},
+					"category": "",
+					"featured": false,
+					"hidden": false,
+					"viewAction": ""
+				},
+				{
+					"id": 0,
+					"url": "https://example.com/files/brand-guide.pptx",
+					"title": "Brand Guide",
+					"description": "",
+					"mime": "",
+					"size": "6 MB",
+					"date": "April 20, 2026",
+					"author": "",
+					"image": {
+						"id": 0,
+						"url": ""
+					},
+					"category": "",
+					"featured": false,
+					"hidden": false,
+					"viewAction": ""
+				}
+			],
+			"layout": {
+				"template": "grid",
+				"perPage": 0,
+				"listDensity": "comfortable",
+				"desktop": {
+					"columns": 3,
+					"gap": "20px"
+				},
+				"tablet": {
+					"columns": 2,
+					"gap": ""
+				},
+				"mobile": {
+					"columns": 1,
+					"gap": ""
+				},
+				"paging": "loadMore",
+				"titleTag": "h3"
+			}
+		}
+	},
+	"editorScript": [
+		"file:../index.js"
+	],
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

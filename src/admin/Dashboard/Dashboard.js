@@ -81,7 +81,7 @@ const Dashboard = (props) => {
 
 		<Routes>
 			<Route path='/' element={<Layout {...props} />}>
-				
+
 				<Route index element={<Navigate to='welcome' replace />} />
 
 				<Route path='welcome' element={<Welcome {...props} allBlocks={blocks} disabledBlocks={disableBlockName} status={status} onChange={handleCheckboxChange} />} />
@@ -93,7 +93,7 @@ const Dashboard = (props) => {
 				{/* <Route path='demos' element={<Demos {...props} demoInfo={demoInfo} />} /> */}
 				<Route path='cursor' element={<CursorEffect info={info} />} />
 
-				<Route path='settings' element={<Settings info={info} />} />
+				<Route path='settings/:tab?/:section?' element={<Settings info={info} />} />
 
 				{!isPremium && <Route
 					path="feature-comparison"

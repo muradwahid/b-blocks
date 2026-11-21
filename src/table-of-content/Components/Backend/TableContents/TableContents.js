@@ -7,6 +7,7 @@ import Style from "../../Common/Styles/Style";
 import useHeadingElements from "../../hooks/useHeadingElements";
 import { headingTree } from '../../../utils/functions';
 import RenderNestedList from '../../Common/RenderNestedList';
+import { sanitizeHtml } from '../../../../utils/sanitizeHtml';
 const TableContents = ({ attributes, setAttributes, id }) => {
     const [toggle, setToggle] = useState(true);
     // const [content, setContent] = useState([]);
@@ -51,7 +52,7 @@ const TableContents = ({ attributes, setAttributes, id }) => {
         <Style attributes={attributes} id={id} />
         <div ref={accordion} className={`bblocks-tbcn-accordion ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}  `}>
             <div ref={titleRef} className="bblocks-tbcn-accordion-title">
-                <DynamicTag className="bblocks-tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+                <DynamicTag className="bblocks-tbcn-content-table-title" style={{ margin: "0", color: header.txtColor }} tagName={title?.tag} dangerouslySetInnerHTML={{ __html: sanitizeHtml( title?.text ) }} />
                 {/* {minimize.toggle && <>{toggle ? <i style={{ color: header.iconColor }} className={minimize.collapseIcon}></i> : <i style={{ color: header.iconColor }} className={minimize.expandIcon}></i>}</>} */}
 
                 {minimize.toggle && <>{toggle ? collapseIcons.map(({ value: val, icon }, idx) => val === minimize.collapseIcon && <span key={`expand-${idx}`}>{icon}</span>) : expandIcons.map(({ value: val, icon }, idx) => val === minimize.expandIcon && <span key={`expand-${idx}`}>{icon}</span>)}</>}

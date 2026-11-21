@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { sanitizeHtml } from '../utils/sanitizeHtml';
 
 const FrontEnd = ({ attributes }) => {
     const { items, theme, customStyles } = attributes;
@@ -112,7 +113,6 @@ const FrontEnd = ({ attributes }) => {
         };
     }, [accordionRef]);
 
-
     return <div ref={accordionRef} {...{
         className: `accordion-block accordion-theme-${theme}`,
         style: getInlineStyles()
@@ -127,7 +127,7 @@ const FrontEnd = ({ attributes }) => {
                         aria-expanded="false"
                     >
                         <span
-                            dangerouslySetInnerHTML={{ __html: item.title }}
+                            dangerouslySetInnerHTML={{ __html: sanitizeHtml( item.title ) }}
                             className="accordion-title"
                         />
                         <span className="accordion-icon" aria-hidden="true">+</span>
@@ -135,7 +135,7 @@ const FrontEnd = ({ attributes }) => {
                     <div className="accordion-content" data-accordion-content>
                         <div className="accordion-text">
                             <div
-                                dangerouslySetInnerHTML={{ __html: item.content }}
+                                dangerouslySetInnerHTML={{ __html: sanitizeHtml( item.content ) }}
                             />
                         </div>
                     </div>

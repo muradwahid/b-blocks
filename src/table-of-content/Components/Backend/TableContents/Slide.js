@@ -4,6 +4,7 @@ import DynamicTag from '../../../../../../bpl-tools/Components/DynamicTag/Dynami
 import NoHeading from "../../Common/NoHeading/NoHeading";
 import SlideStyle from "../../Common/Styles/SlideStyle";
 import useHeadingElements from "../../hooks/useHeadingElements";
+import { sanitizeHtml } from '../../../../utils/sanitizeHtml';
 
 const Slide = ({ attributes, setAttributes, id }) => {
     const { title, slideTitle, tagName, sticky } = attributes;
@@ -21,7 +22,7 @@ const Slide = ({ attributes, setAttributes, id }) => {
             <div className={`slide-container ${sticky.toggle ? "sticky" : ""} ${sticky.horizonAlign} ${sticky.verticalAlign}`}>
                 <div className="slide-titleSubWrapper">
                     <div className="slide-title">
-                        <DynamicTag className="slide-title-heading" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: title?.text }} />
+                        <DynamicTag className="slide-title-heading" style={{ color: slideTitle.titleColor }} tagName={title.tag} dangerouslySetInnerHTML={{ __html: sanitizeHtml( title?.text ) }} />
                     </div>
                 </div>
                 <>

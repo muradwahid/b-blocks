@@ -1,4 +1,4 @@
-import {changeLog} from './changeLog'
+import { changeLog } from './changeLog'
 import { gsIcons } from '../../Components/GettingStartedTabs';
 
 const slug = 'b-blocks';
@@ -72,6 +72,7 @@ export const dashboardInfo = (info) => {
             landing: `https://bblockswp.com/`,
             docs: `https://bblockswp.com/docs/`,
             pricing: `https://bblockswp.com/pricing/`,
+            // featureRequest: `https://bplugins.com/products/${slug}/roadmap-and-ideas/`
         },
         freemius: {
             product_id: 12845,
@@ -81,16 +82,16 @@ export const dashboardInfo = (info) => {
         licenseActiveNonce,
         changelogs: changeLog,
         proFeatures: [
-            '4 Premium Blocks.',
-            'Pro features of Posts Block.',
-            'Pro features of Countdown Block.',
-            'Pro features of Slider Block.',
-            'Pro features of Lottie Player Block.',
-            'Pro features of Button Block.',
-            'Pro features of Cards Block.',
-            'Pro features of Image Comparison Block.',
+            '12 Premium Blocks',
+            'Pro features of Posts Block',
+            'Pro features of Countdown Block',
+            'Pro features of Slider Block',
+            'Pro features of Lottie Player Block',
+            'Pro features of Button Block',
+            'Pro features of Cards Block',
+            'Pro Document Embed Block',
+            'Pro features of Image Comparison Block',
             'Premium Templates.',
-            'Premium Block Patterns Library.',
             'Priority Email Support.',
             'Regular New Pro Blocks & Updates.'
         ],
@@ -100,8 +101,6 @@ export const dashboardInfo = (info) => {
         }
     }
 }
-
-
 
 export const demoInfo = {
     title: 'Live Overview',

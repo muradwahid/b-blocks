@@ -8,6 +8,7 @@ import usePremium from '../hooks/usePremium';
 import Button from './Components/Common/Button';
 import Style from './Components/Common/Style';
 import Popup from './Components/Frontend/Popup';
+import { sanitizeHtml } from '../utils/sanitizeHtml';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const buttonEls = document.querySelectorAll('.wp-block-b-blocks-button');
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		createRoot(buttonEl).render(<>
 			<Style attributes={attributes} id={buttonEl.id} />
 
-			<RenderButton {...{ nonce, attributes, info, popupContent: <div className='content' dangerouslySetInnerHTML={{ __html: content }} /> }} />
+			<RenderButton {...{ nonce, attributes, info, popupContent: <div className='content' dangerouslySetInnerHTML={{ __html: sanitizeHtml( content ) }} /> }} />
 		</>);
 
 		buttonEl?.removeAttribute('data-attributes');

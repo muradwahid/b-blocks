@@ -7,6 +7,7 @@ import Button, { RenderPopup } from '../Common/Button';
 import Style from '../Common/Style';
 import BackendContent from './BackendContent';
 import Settings from './Settings/Settings';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
@@ -79,6 +80,6 @@ const Popup = ({ isOpen, onClose, caption, children }) => {
 			{children}
 		</div>
 
-		{caption && <p className='popupCaption' dangerouslySetInnerHTML={{ __html: caption }} />}
+		{caption && <p className='popupCaption' dangerouslySetInnerHTML={{ __html: sanitizeHtml( caption ) }} />}
 	</Modal>;
 };

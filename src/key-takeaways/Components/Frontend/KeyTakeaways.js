@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const TAG_VALUES = [ 'h2', 'h3', 'h4' ];
 const STYLE_VALUES = [ 'check', 'numbered', 'bullet' ];
@@ -28,7 +29,7 @@ const KeyTakeaways = ( { attributes } ) => {
 
 	return (
 		<div className={ wrapperClasses } role='region' aria-label={ plain( headingHtml ) }>
-			<HeadingTag className='bBlocks-key-takeaways-heading' dangerouslySetInnerHTML={ { __html: headingHtml } } />
+			<HeadingTag className='bBlocks-key-takeaways-heading' dangerouslySetInnerHTML={ { __html: sanitizeHtml( headingHtml ) } } />
 
 			<div className='bBlocks-key-takeaways-body'>
 				{ 0 === cleanItems.length ? (
@@ -41,7 +42,7 @@ const KeyTakeaways = ( { attributes } ) => {
 									<span
 										className='bBlocks-key-takeaways-icon'
 										aria-hidden='true'
-										dangerouslySetInnerHTML={ { __html: ( item && item.icon ) || '' } }
+										dangerouslySetInnerHTML={ { __html: sanitizeHtml( ( item && item.icon ) || '' ) } }
 									/>
 								) }
 								{ showIcon && 'numbered' === listStyle && (
@@ -51,7 +52,7 @@ const KeyTakeaways = ( { attributes } ) => {
 									<span className='bBlocks-key-takeaways-bullet' aria-hidden='true' />
 								) }
 
-								<span className='bBlocks-key-takeaways-text' dangerouslySetInnerHTML={ { __html: ( item && item.text ) || '' } } />
+								<span className='bBlocks-key-takeaways-text' dangerouslySetInnerHTML={ { __html: sanitizeHtml( ( item && item.text ) || '' ) } } />
 							</li>
 						) ) }
 					</ListTag>

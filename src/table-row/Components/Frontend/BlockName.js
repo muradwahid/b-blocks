@@ -1,3 +1,4 @@
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 const BlockName = ({ attributes }) => {
 	const { items, columns, layout, content, icon, img } = attributes;
 
@@ -8,12 +9,12 @@ const BlockName = ({ attributes }) => {
 			return <div key={index} id={`bBlocksBlockNameItem-${index}`}>
 				<div className='bBlocksBlockNameItem'>
 					<span className='number'>{number}</span>
-					<span className='text' dangerouslySetInnerHTML={{ __html: text }} />
+					<span className='text' dangerouslySetInnerHTML={{ __html: sanitizeHtml( text ) }} />
 				</div>
 			</div>;
 		})}
 
-		{content && <p className='content' dangerouslySetInnerHTML={{ __html: content }} />}
+		{content && <p className='content' dangerouslySetInnerHTML={{ __html: sanitizeHtml( content ) }} />}
 
 		{img?.url && <img src={img.url} alt={img?.alt} />}
 

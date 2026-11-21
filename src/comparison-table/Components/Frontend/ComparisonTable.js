@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { defaultCaption, migrate, P, splitColumns, wrapperClasses } from '../../utils/data';
 import { checkIcon, crossIcon } from '../../utils/icons';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const ComparisonTable = ({ attributes, isBackend = false }) => {
 
@@ -31,7 +32,7 @@ const ComparisonTable = ({ attributes, isBackend = false }) => {
 		const custom = isYes ? checkIconSvg : crossIconSvg;
 
 		return custom
-			? <span className={`${P}-cell-glyph`} dangerouslySetInnerHTML={{ __html: custom }} />
+			? <span className={`${P}-cell-glyph`} dangerouslySetInnerHTML={{ __html: sanitizeHtml( custom ) }} />
 			: (isYes ? checkIcon(checkStyle) : crossIcon(crossStyle));
 	};
 
@@ -57,7 +58,7 @@ const ComparisonTable = ({ attributes, isBackend = false }) => {
 			: null}
 
 		{(column?.icon || column?.label) ? <span className={`${P}-col__head`}>
-			{column?.icon ? <span className={`${P}-col__icon`} dangerouslySetInnerHTML={{ __html: column.icon }} /> : null}
+			{column?.icon ? <span className={`${P}-col__icon`} dangerouslySetInnerHTML={{ __html: sanitizeHtml( column.icon ) }} /> : null}
 
 			{column?.label ? <span className={`${P}-col__label`}>{column.label}</span> : null}
 		</span> : null}

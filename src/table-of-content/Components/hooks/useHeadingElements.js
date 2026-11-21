@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { sanitizeHtml } from '../../../utils/sanitizeHtml';
 
 const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingSl, blockWrapper) => {
   const [content, setContent] = useState([]);
@@ -47,7 +48,7 @@ const useHeadingElements = (tagName, titleTag, titleText, titleSl, titleHeadingS
       removeSpan?.remove();
     }
 
-    removeAttrHeading.innerHTML = titleText;
+    removeAttrHeading.innerHTML = sanitizeHtml( titleText );
   }, []);
 
   useEffect(() => {

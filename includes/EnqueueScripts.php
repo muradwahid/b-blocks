@@ -30,10 +30,17 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_localize_script( 'b-blocks-index-script', 'bBlocksGlobal', [
 				'assetsUrl'         => B_BLOCKS_ASSETS,
 				'canUnfilteredHtml' => current_user_can( 'unfiltered_html' ),
+				// Document Embed loads dFlip (a jQuery plugin) into the editor canvas on demand.
+				'jqueryUrl'         => includes_url( 'js/jquery/jquery.min.js' ),
+				// Document Embed cloud pickers: public ids only (never the Box secret), editor users only.
+				'cloud'             => class_exists( 'BBlocksDocumentEmbedCloud' ) ? BBlocksDocumentEmbedCloud::editorConfig() : [],
 			] );
 
 			wp_enqueue_style( 'b-blocks-index-style', B_BLOCKS_BUILD . 'index.css', [ 'fontAwesome', 'b-blocks-style' ], B_BLOCKS_VERSION );
 
+			// Document Embed / Library: the texts their shared preview components read (labels.<key>), the same map
+			// the page gets, so the editor preview shows exactly what visitors see.
+			class_exists( 'BBlocksDocumentEmbedHandler' ) && wp_add_inline_script( 'b-blocks-index-script', 'window.bBlocksDocumentLabels = ' . wp_json_encode( BBlocksDocumentEmbedHandler::labels(), JSON_HEX_TAG | JSON_UNESCAPED_UNICODE ) . ';', 'before' );
 			wp_add_inline_script('b-blocks-index-script', 'const bBlocksPremiumChecker = ' . wp_json_encode( BBlocks\Inc\Utils::isPro() ) . '; ', 'before' );
 		}
 
@@ -42,6 +49,11 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_register_script( 'swiper', B_BLOCKS_ASSETS . 'js/swiper.min.js', [], '8.0.7', true ); // Slider
 			wp_register_script( 'dotLottiePlayer', B_BLOCKS_ASSETS . 'js/dotlottie-player.js', [], '1.5.7', true ); // Lottie Player
 			wp_register_script( 'lottieInteractivity', B_BLOCKS_ASSETS . 'js/lottie-interactivity.min.js', [ 'dotLottiePlayer' ], '1.5.2', true ); // Lottie Player
+			// The editor content is in an iframe, which only gets scripts enqueued here. Load the Lottie player there too,
+			// otherwise the Lottie Player block cannot render in the editor (a player made by the parent window cannot style itself inside the iframe).
+			if ( is_admin() ) {
+				wp_enqueue_script( 'dotLottiePlayer' );
+			}
 			wp_register_script( 'chartJS', B_BLOCKS_ASSETS . 'js/chart.min.js', [], '3.5.1', true ); // Chart
 			wp_register_script( 'plyr', B_BLOCKS_ASSETS . 'js/plyr.js', [], '3.7.2', true ); // Video
 			wp_register_script( 'textillate', B_BLOCKS_ASSETS . 'js/jquery.textillate.min.js', [ 'jquery' ], '0.6.1', true ); // Animated Text
@@ -55,6 +67,12 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 
 			//Accordion
 			wp_register_script('zebra_accordion', B_BLOCKS_ASSETS . 'js/zebra_accordion.min.js', ['jquery'], B_BLOCKS_VERSION, true);
+
+			// Document Embed: dFlip (Flipbook / Slider engines). dFlip loads its own libs from dFlipLocation.
+			wp_register_script( 'bBlocksDflip', B_BLOCKS_ASSETS . 'js/dflip/js/dflip.min.js', [ 'jquery' ], B_BLOCKS_VERSION, true );
+			wp_add_inline_script( 'bBlocksDflip', 'window.dFlipLocation = ' . wp_json_encode( B_BLOCKS_ASSETS . 'js/dflip/' ) . ';', 'before' );
+			wp_register_style( 'bBlocksDflip', B_BLOCKS_ASSETS . 'js/dflip/css/dflip.min.css', [], B_BLOCKS_VERSION );
+			// In the editor the block adds dFlip to the canvas iframe itself, the first time a flipbook shows.
 			
 			wp_register_style( 'fontAwesome', B_BLOCKS_ASSETS . 'css/font-awesome.min.css', [], '6.4.2' ); // Icon
 			wp_register_style( 'swiper', B_BLOCKS_ASSETS . 'css/swiper.min.css', [], '8.0.7' ); // Slider
@@ -70,6 +88,16 @@ if( !class_exists('BBlocksEnqueueScripts') ){
 			wp_enqueue_script( 'b-blocks-advanced-script', B_BLOCKS_BUILD . 'advanced.js', [], B_BLOCKS_VERSION, true );
 			wp_enqueue_script( 'b-blocks-script', B_BLOCKS_BUILD . 'script.js', [], B_BLOCKS_VERSION, true );
 			wp_add_inline_script('b-blocks-script', 'const bBlocksPremiumChecker = ' . wp_json_encode( BBlocks\Inc\Utils::isPro() ) . '; ', 'before' );
+
+			// Document Embed: printed only on pages where the block's view script loads.
+			wp_script_is( 'b-blocks-document-embed-view-script', 'registered' ) && wp_localize_script( 'b-blocks-document-embed-view-script', 'bBlocksDocumentEmbed', [
+				'assetsUrl'  => B_BLOCKS_ASSETS,
+				'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
+				'restUrl'    => rest_url( 'b-blocks/v1/' ),
+				'trackNonce' => wp_create_nonce( 'bb_de_track_download' ),
+				// Signed-in visitors need it for the download route to see who they are.
+				'restNonce'  => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
+			] );
 		}
 
 		function scriptLoaderTag( $tag, $handle, $src ){
