@@ -245,6 +245,68 @@
 		margin: 0;
 	}
 
+	// Above the posts offered when nothing matched (styled with the Not Found message).
+	.b-blocks-advanced-search-fallback-title {
+		margin: 16px 0 12px;
+		font-weight: 600;
+	}
+
+	// The filter dropdown inside the field, before the text: it takes the field's text style.
+	.b-blocks-advanced-search-filter {
+		flex: none;
+		max-width: 40%;
+		margin: 0;
+		padding: 0 8px 0 0;
+		background: transparent;
+		border: 0;
+		border-inline-end: 1px solid rgba(148, 163, 184, 0.6);
+		border-radius: 0;
+		box-shadow: none;
+		color: inherit;
+		font: inherit;
+		cursor: pointer;
+	}
+
+	// Grouped results (Pro): a heading per post type, across the whole row in a grid.
+	.b-blocks-advanced-search-group {
+		grid-column: 1 / -1;
+		margin: 0 0 12px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.b-blocks-advanced-search-group-title {
+		display: block;
+		margin: 0 0 10px;
+		color: #64748b;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+	}
+
+	.b-blocks-advanced-search-group-items {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	// The "/" key hint: hidden while the field is in use.
+	.b-blocks-advanced-search-hint {
+		flex: none;
+		padding: 1px 7px;
+		border: 1px solid currentColor;
+		border-radius: 4px;
+		color: #94a3b8;
+		font-size: 12px;
+		line-height: 1.4;
+		opacity: 0.8;
+	}
+
+	.b-blocks-advanced-search-field:focus-within .b-blocks-advanced-search-hint {
+		display: none;
+	}
+
 	.b-blocks-advanced-search-footer {
 		display: flex;
 		flex-wrap: wrap;

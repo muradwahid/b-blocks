@@ -2,7 +2,7 @@
 /**
  * Plugin Name: bBlocks
  * Description: Gutenberg blocks plugin with 90+ customizable blocks, patterns and templates that turn the WordPress block editor into a fast, lightweight page builder.
- * Version: 2.1.17
+ * Version: 2.1.18
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3 or later

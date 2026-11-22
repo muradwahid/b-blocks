@@ -492,7 +492,8 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                isPremium: true
+                isPremium: true,
+                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/document-library`,
@@ -501,7 +502,8 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                isPremium: false
+                isPremium: false,
+                badge: 'NEW'
             },
         ]
     },
@@ -833,7 +835,8 @@ export default [
                 demo: ``,
                 docs: ``,
                 status: 'published',
-                isPremium: false
+                isPremium: true,
+                badge: 'NEW'
             },
             {
                 name: `${pluginSlug}/breadcrumb`,

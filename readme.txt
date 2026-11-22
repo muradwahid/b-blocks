@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, editor, gutenberg blocks, page builder, gutenberg page builder
 Requires at least: 6.7
 Tested up to: 7.1
-Stable tag: 2.1.17
+Stable tag: 2.1.18
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -378,38 +378,91 @@ Freemius Privacy Policy: https://freemius.com/privacy/
 
 == Screenshots ==
 
-1. Posts- Grid- Default layout
-2. Posts- Grid- Title Meta layout, Customize
-3. Posts- Slider- Overlay layout
-4. Posts- Slider- Overlay Box layout
-5. Posts- Masonry- Overlay layout
-6. Posts- Masonry- Overlay Box layout
-7. Slider- Default, Image Background
-8. Slider- Image Slider
-9. 3D Viewer
-10. Image Gallery
-11. Image Comparison
-12. Flip Boxes
-13. Team Members
-14. Team Members- Horizontal layout
-15. Cards- Default
-16. Cards- Horizontal layout
-17. Pricing Table
-18. Pricing Table- Ultimate Style
-19. Price Lists
-20. Price Lists- Horizontal layout
-21. Feature Boxes
-22. Info Box
-23. Lottie Player
-24. Countdown- Default, Layout 1
-25. Countdown- Layout 2, 3
-26. Counters- Default, Theme 2
-27. Counters- Theme 3
-28. Mail To
-29. Alert
+1. 90+ blocks in one plugin, each can be turned on or off
+2. Ready-made templates and sections from the Template Library
+3. Slider block with image backgrounds, effects and Pro options
+4. Posts block: grid, slider and masonry layouts (Grid 1 and Overlay Half Content are Pro)
+5. Advanced Tabs with icons and full style controls
+6. Pricing Table block
+7. Testimonials block: slider and grid layouts
+8. Team Members block, vertical and horizontal layouts
+9. 3D Viewer block with auto rotate, zoom, screenshot and fullscreen
+10. Image Hotspot block with tooltips (Pro)
+11. Image Gallery block with lightbox
+12. Flip Boxes block
+13. Hero Section block
+14. Timeline block
+15. Chart block: line, bar, doughnut and more
+16. Advanced Search block with live results (Pro)
+17. Image Comparison block
+18. Stacked Cards block (Pro)
+19. Carousel block
+20. Logo Slider block (Pro)
+21. Cards block, vertical and horizontal layouts
+22. Feature Boxes block
+23. Info Box and Icon Box blocks
+24. Services and Price Lists blocks
+25. Comparison Table block
+26. Countdown Timer layouts
+27. Counters block themes
+28. Process Steps block
+29. Infographic block
+30. Accordion block
+31. Toggle Content and Expand Content blocks
+32. Section Heading and Dual Color Heading blocks
+33. Animated Text and Text Path blocks
+34. Button and Button Group blocks
+35. Table of Contents block styles
+36. Key Takeaways block, three list styles (Pro)
+37. Stat Cards block (Pro)
+38. Article Card, Event Card and File Download Card blocks (Pro)
+39. Document Embed block (Pro)
+40. Document Library block
+41. Code Highlight block with 20 themes (Pro)
+42. Table block
+43. List and Interactive Checklist blocks
+44. Alert and Blockquote blocks
+45. Divider, Shape Divider and Emoji Stack Separator blocks
+46. Video and Audio Player blocks
+47. Lottie Player, SVG Draw and GIF blocks
+48. Advanced Image block shapes
+49. Image Scroller block
+50. Media & Text Section block
+51. Container and Row layout blocks
+52. bBlocks Navigation and Breadcrumb blocks
+53. One Page Navigation and Scroll To Top blocks
+54. Content Ticker block (Pro)
+55. News Ticker block
+56. Google Map block (embed) and theme settings (Pro)
+57. Form block
+58. QR Code and Mail To blocks
+59. HTML block
+60. Social Share, WhatsApp Chat, Star Rating and Skill Bar blocks
+61. Instagram Feed block
+62. Facebook Embed and Facebook Page blocks
+63. WooCommerce Product Grid block
+64. WooCommerce Product Carousel block (Pro)
+65. WooCommerce single product blocks
+66. bBlocks dashboard
+67. Cursor and Click Effects with live playground
+68. Performance: page caching
+69. Performance: image optimization
+70. Performance: assets and fonts
+71. Performance: platform settings
+72. Site Scanner
+73. API integrations
+74. Generate content with AI in the editor
+75. Free vs Pro feature comparison
 
 
 == Changelog ==
+
+= 2.1.18 - 22 November 2026 =
+* Added: Advanced Search Block.
+* Added: New screenshots.
+* Fixed: Button Block link options (rel, referrer policy, download file name and tooltip position) now work on the front end.
+* Fixed: Password-protected Button Block no longer opens its link before the password is entered.
+* Fixed: Woo Add to Cart Block now shows the variation, quantity and add to cart form for variable products.
 
 = 2.1.17 - 19 November 2026 =
 * Added: 3D Viewer Block options: poster with show on click, progress bar, loading percentage, auto rotate, rotation speed and delay, camera angle, field of view, interaction hint, animation and variant selection, environment image, HDR skybox, exposure, shadow and AR.

@@ -27,7 +27,7 @@ class BlocksList
 
 	public static function premium()
 	{
-		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation','b-blocks/woo-product-carousel','b-blocks/document-embed'];
+		return Utils::isPro() ? [] : ['b-blocks/logo-slider', 'b-blocks/content-ticker', 'b-blocks/image-hotspot', 'b-blocks/stacked-cards', 'b-blocks/key-takeaways', 'b-blocks/stat-cards', 'b-blocks/article-card', 'b-blocks/event-card', 'b-blocks/file-download-card', 'b-blocks/google-map', 'b-blocks/code-highlight','b-blocks/one-page-navigation','b-blocks/woo-product-carousel','b-blocks/document-embed','b-blocks/advanced-search'];
 	}
 
 	public static function all()

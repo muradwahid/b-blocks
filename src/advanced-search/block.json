@@ -26,7 +26,7 @@
 			"default": {
 				"postType": "all",
 				"initialResult": 5,
-				"showImage": true,
+				"showImage": false,
 				"notFoundText": "No Record Found",
 				"minChars": 2,
 				"delay": 300,
@@ -39,7 +39,17 @@
 				"highlight": true,
 				"newTab": false,
 				"showDate": false,
-				"showType": false
+				"showType": false,
+				"searchIn": "all",
+				"excludePosts": [],
+				"showAuthor": false,
+				"showCategory": false,
+				"showTerms": false,
+				"termsLimit": 3,
+				"fallback": "none",
+				"fallbackPosts": [],
+				"fallbackTitle": "You might like",
+				"groupByType": false
 			}
 		},
 		"totalResults": {
@@ -64,7 +74,11 @@
 				"placeholder": "Search ....",
 				"showIcon": true,
 				"shortcut": false,
-				"autofocus": false
+				"autofocus": false,
+				"placeholders": "",
+				"shortcutHint": false,
+				"filter": "",
+				"filterAllText": "All"
 			}
 		},
 		"button": {
@@ -261,7 +275,9 @@
 						"bottom": "0px",
 						"left": "0px"
 					},
-					"maxHeight": ""
+					"maxHeight": "",
+					"columns": "",
+					"gap": ""
 				},
 				"tablet": {
 					"width": "",
@@ -277,7 +293,9 @@
 						"bottom": "",
 						"left": ""
 					},
-					"maxHeight": ""
+					"maxHeight": "",
+					"columns": "",
+					"gap": ""
 				},
 				"mobile": {
 					"width": "",
@@ -293,7 +311,9 @@
 						"bottom": "",
 						"left": ""
 					},
-					"maxHeight": ""
+					"maxHeight": "",
+					"columns": "",
+					"gap": ""
 				},
 				"normal": {
 					"border": {

@@ -47,16 +47,18 @@ const RenderButton = ({ nonce, attributes, info, popupContent }) => {
 	return <>
 		<Button attributes={attributes} security={security} securityPass={securityPass} setSecurityPass={setSecurityPass} securityPop={securityPop} isPremium={isPremium} Popup={securityPass ? Popup : null} popupContent={popupContent} ref={buttonEl} onClick={val => {
 			if ('none' === security) {
+				// A link opens through its own href (with target, rel and download).
 				if (actionType === 'popup') {
 					setSecurityPass(true);
-				} else {
-					window.open(sanitizeURL(url), target);
-					setSecurityPass(false);
 				}
 			} else {
 				if (security == 'login') {
 					if (info.userRoles[0] === securityRole || securityRole === 'default') {
-						setSecurityPass(true);
+						if (actionType === 'popup') {
+							setSecurityPass(true);
+						} else {
+							window.open(sanitizeURL(url), target);
+						}
 					} else {
 						setSecurityPop(val);
 					}

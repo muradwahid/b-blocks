@@ -173,7 +173,9 @@ export const PRESET_STYLES = {
 					bottom: '0px',
 					left: '0px'
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			tablet: {
 				width: '',
@@ -189,7 +191,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			mobile: {
 				width: '',
@@ -205,7 +209,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			normal: {
 				border: {
@@ -834,7 +840,9 @@ export const PRESET_STYLES = {
 					bottom: '0px',
 					left: '0px'
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			tablet: {
 				width: '',
@@ -850,7 +858,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			mobile: {
 				width: '',
@@ -866,7 +876,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			normal: {
 				border: {
@@ -1495,7 +1507,9 @@ export const PRESET_STYLES = {
 					bottom: '0px',
 					left: '0px'
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			tablet: {
 				width: '',
@@ -1511,7 +1525,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			mobile: {
 				width: '',
@@ -1527,7 +1543,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			normal: {
 				border: {
@@ -2194,7 +2212,9 @@ export const PRESET_STYLES = {
 					bottom: '0px',
 					left: '0px'
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			tablet: {
 				width: '',
@@ -2210,7 +2230,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			mobile: {
 				width: '',
@@ -2226,7 +2248,9 @@ export const PRESET_STYLES = {
 					bottom: '',
 					left: ''
 				},
-				maxHeight: ''
+				maxHeight: '',
+				columns: '',
+				gap: ''
 			},
 			normal: {
 				border: {

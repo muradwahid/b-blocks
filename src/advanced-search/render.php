@@ -6,7 +6,7 @@ if ( ! class_exists( 'BBlocksAdvancedSearch' ) ) {
 $id = wp_unique_id( 'bBlocksAdvancedSearch-' );
 // Texts are shown as text by the page script (React escapes them), so they are kept as written; the button icon is
 // markup and goes through the filter.
-$attributes = BBlocks\Inc\Sanitize::attributes( $attributes, [ 'placeholder', 'text', 'textOne', 'notFoundText' ] );
+$attributes = BBlocks\Inc\Sanitize::attributes( $attributes, [ 'placeholder', 'placeholders', 'text', 'textOne', 'notFoundText', 'fallbackTitle', 'filterAllText' ] );
 
 // Only a public, searchable post type, several of them ('multiple' + postTypes), or All; 1–20 live results.
 $allowedTypes = BBlocksAdvancedSearch::postTypes();
@@ -24,7 +24,26 @@ $attributes['search']['excerptLength'] = min( 55, max( 5, absint( $attributes['s
 $attributes['search']['orderBy']       = in_array( $attributes['search']['orderBy'] ?? '', [ 'date', 'title' ], true ) ? $attributes['search']['orderBy'] : 'relevance';
 $attributes['search']['includeTerms']  = BBlocksAdvancedSearch::termIds( (array) ( $attributes['search']['includeTerms'] ?? [] ) );
 $attributes['search']['excludeTerms']  = BBlocksAdvancedSearch::termIds( (array) ( $attributes['search']['excludeTerms'] ?? [] ) );
+$attributes['search']['searchIn']      = 'title' === ( $attributes['search']['searchIn'] ?? 'all' ) ? 'title' : 'all';
+$attributes['search']['excludePosts']  = BBlocksAdvancedSearch::postIds( $attributes['search']['excludePosts'] ?? [] );
+$attributes['search']['termsLimit']    = min( 10, max( 1, absint( $attributes['search']['termsLimit'] ?? 3 ) ) );
+$attributes['search']['fallback']      = in_array( $attributes['search']['fallback'] ?? 'none', [ 'recent', 'chosen' ], true ) ? $attributes['search']['fallback'] : 'none';
+$attributes['search']['fallbackPosts'] = BBlocksAdvancedSearch::postIds( $attributes['search']['fallbackPosts'] ?? [] );
 $searchTypes = 'multiple' === $postType ? $postTypes : ( 'all' === $postType ? [] : [ $postType ] );
+
+// The filter dropdown: the terms of one public taxonomy (up to 100, used ones only). Its query var lets the full
+// results page follow the pick (category_name, tag, product_cat…).
+$filterTax   = is_string( $attributes['searchField']['filter'] ?? '' ) ? ( $attributes['searchField']['filter'] ?? '' ) : '';
+$filterObj   = '' !== $filterTax ? get_taxonomy( $filterTax ) : false;
+$filterTerms = [];
+if ( $filterObj && is_taxonomy_viewable( $filterObj ) ) {
+	$found = get_terms( [ 'taxonomy' => $filterTax, 'hide_empty' => true, 'number' => 100, 'orderby' => 'name' ] );
+	foreach ( is_array( $found ) ? $found : [] as $filterTerm ) {
+		$filterTerms[] = [ 'id' => $filterTerm->term_id, 'slug' => $filterTerm->slug, 'name' => html_entity_decode( $filterTerm->name, ENT_QUOTES, 'UTF-8' ) ];
+	}
+}
+$attributes['searchField']['filter'] = $filterTerms ? $filterTax : '';
+$filterAll = is_scalar( $attributes['searchField']['filterAllText'] ?? 'All' ) ? (string) ( $attributes['searchField']['filterAllText'] ?? 'All' ) : 'All';
 
 // View All goes to the WordPress search page, which can only filter categories (cat=2,-5); other terms are left out.
 $cat = [];
@@ -41,6 +60,7 @@ $attributes['context'] = [
 	'api'    => esc_url_raw( rest_url( 'b-blocks/v1/search' ) ),
 	'home'   => esc_url_raw( home_url( '/' ) ),
 	'cat'    => implode( ',', $cat ),
+	'filter' => $filterTerms ? [ 'name' => (string) $filterObj->query_var, 'label' => $filterObj->labels->singular_name, 'terms' => $filterTerms ] : null,
 	'labels' => [
 		'search'       => 'Search',
 		'clear'        => 'Clear search',
@@ -68,6 +88,14 @@ $isSeparate     = 'separate' === $buttonPosition;
 			<div class='b-blocks-advanced-search-field'>
 				<?php if ( $attributes['searchField']['showIcon'] ?? true ) : ?>
 					<span class='b-blocks-advanced-search-icon' aria-hidden='true'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' focusable='false'><circle cx='11' cy='11' r='7' /><path d='m20 20-3.5-3.5' /></svg></span>
+				<?php endif; ?>
+				<?php if ( $filterTerms ) : ?>
+					<select class='b-blocks-advanced-search-filter' name='<?php echo esc_attr( (string) $filterObj->query_var ); ?>' aria-label='<?php echo esc_attr( $filterObj->labels->singular_name ); ?>'>
+						<option value=''><?php echo esc_html( $filterAll ); ?></option>
+						<?php foreach ( $filterTerms as $filterTerm ) : ?>
+							<option value='<?php echo esc_attr( $filterTerm['slug'] ); ?>'><?php echo esc_html( $filterTerm['name'] ); ?></option>
+						<?php endforeach; ?>
+					</select>
 				<?php endif; ?>
 				<input class='b-blocks-advanced-search-input' type='search' name='s' maxlength='<?php echo esc_attr( BBlocksAdvancedSearch::MAX_QUERY ); ?>' placeholder='<?php echo esc_attr( $placeholder ); ?>' aria-label='<?php echo esc_attr( '' !== $placeholder ? $placeholder : 'Search' ); ?>' />
 				<?php if ( ! $isSeparate && ( $attributes['button']['show'] ?? true ) ) : ?>

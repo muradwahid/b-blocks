@@ -13,7 +13,12 @@ if ( ! $attributes ) {
 	return;
 }
 
-$attributes = Sanitize::attributes( $attributes );
+// WooCommerce's own add-to-cart form (variable / grouped / external), printed
+// by its template rather than written by the author. Sanitize::attributes()
+// strips its <form>, <select> and <input>, so it is kept as WooCommerce made it.
+$productHtml = $attributes['product']['html'] ?? '';
+$attributes  = Sanitize::attributes( $attributes );
+$attributes['product']['html'] = $productHtml;
 
 $json = wp_json_encode( $attributes, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT );
 ?>

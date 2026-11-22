@@ -47,3 +47,14 @@ export const alignOptions = [
 	{ label: __( 'Center', 'b-blocks' ), value: 'center' },
 	{ label: __( 'Right', 'b-blocks' ), value: 'right' }
 ];
+
+export const searchInOptions = [
+	{ label: __( 'Title & Content', 'b-blocks' ), value: 'all' },
+	{ label: __( 'Title Only', 'b-blocks' ), value: 'title' }
+];
+
+export const fallbackOptions = [
+	{ label: __( 'Nothing More', 'b-blocks' ), value: 'none' },
+	{ label: __( 'Recent Posts', 'b-blocks' ), value: 'recent' },
+	{ label: __( 'Chosen Posts', 'b-blocks' ), value: 'chosen' }
+];

@@ -3,7 +3,7 @@ import { mobileBreakpoint, tabBreakpoint } from '../../../../../bpl-tools/utils/
 import { generateCSS } from '../../../../../bpl-tools/Advanced/generateCSS';
 
 const Style = ( { attributes, id, isBackend = false } ) => {
-	const { field = {}, searchIcon = {}, closeIcon = {}, loader = {}, resultBox = {}, item = {}, thumb = {}, total = {}, notFound = {}, searchBtn = {}, viewAllBtn = {}, advanced } = attributes;
+	const { search = {}, searchField = {}, field = {}, searchIcon = {}, closeIcon = {}, loader = {}, resultBox = {}, item = {}, thumb = {}, total = {}, notFound = {}, searchBtn = {}, viewAllBtn = {}, advanced } = attributes;
 
 	const root = `#${ id } .b-blocks-advanced-search`;
 	const fieldSl = `${ root } .b-blocks-advanced-search-field`;
@@ -12,6 +12,8 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 	// Focus (typing): written after Hover, so a Focus value wins while typing; an empty one leaves the Hover look.
 	const fieldFocusSl = `${ fieldSl }:focus-within`;
 	const inputSl = `${ fieldSl } .b-blocks-advanced-search-input`;
+	// The filter dropdown takes the field's text style and colour (only printed when there is one).
+	const filterSl = searchField.filter ? `, ${ fieldSl } .b-blocks-advanced-search-filter` : '';
 	const boxSl = `${ root } .b-blocks-advanced-search-results`;
 	const itemSl = `${ root } .b-blocks-advanced-search-item`;
 	// A result highlighted with the arrow keys looks like a hovered one.
@@ -20,6 +22,8 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 	const btnHoverSl = `${ btnSl }:hover, ${ btnSl }:focus-visible`;
 	const viewSl = `${ root } .b-blocks-advanced-search-view-all`;
 	const viewHoverSl = `${ viewSl }:hover, ${ viewSl }:focus-visible`;
+	// Grouped results (Pro): the type headings ("Posts (8)") take the Meta Line style.
+	const groupTitleSl = search.groupByType ? `, ${ root } .b-blocks-advanced-search-group-title` : '';
 
 	// An empty Border control would print "border: 0px solid #000" over the stylesheet's border.
 	const borderCSS = ( border ) => [ border, border?.top, border?.right, border?.bottom, border?.left ].some( ( side ) => side?.width || side?.color ) ? getBorderBoxCSS( border ) : '';
@@ -42,6 +46,8 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 			${ isValidCSS( 'border-radius', getBoxCSS( resultBox.normal?.[ device ]?.radius ) ) }
 		}
 		${ boxSl } .b-blocks-advanced-search-list{ ${ resultBox[ device ]?.maxHeight ? `${ isValidCSS( 'max-height', resultBox[ device ].maxHeight ) } overflow-y: auto;` : '' } }
+		${ 1 < parseInt( resultBox[ device ]?.columns, 10 ) ? `${ boxSl } .b-blocks-advanced-search-list, ${ boxSl } .b-blocks-advanced-search-group-items{ display: grid; grid-template-columns: repeat(${ Math.min( 6, parseInt( resultBox[ device ].columns, 10 ) ) }, minmax(0, 1fr)); ${ isValidCSS( 'gap', resultBox[ device ]?.gap ) } }` : '' }
+		${ 1 >= parseInt( resultBox[ device ]?.columns, 10 ) || ( 'mobile' === device && ! resultBox.mobile?.columns && ( 1 < parseInt( resultBox.desktop?.columns, 10 ) || 1 < parseInt( resultBox.tablet?.columns, 10 ) ) ) ? `${ boxSl } .b-blocks-advanced-search-list, ${ boxSl } .b-blocks-advanced-search-group-items{ display: block; }` : '' }
 		${ boxSl }:hover{ ${ isValidCSS( 'border-radius', getBoxCSS( resultBox.hover?.[ device ]?.radius ) ) } }
 		${ itemSl }{
 			${ isValidCSS( 'padding', getBoxCSS( item[ device ]?.padding ) ) }
@@ -81,7 +87,7 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 			${ borderCSS( field.hover?.border ) }
 			${ shadowCSS( field.hover?.shadow ) }
 		}
-		${ inputSl }{ ${ isValidCSS( 'color', field.normal?.color ) } }
+		${ inputSl }${ filterSl }{ ${ isValidCSS( 'color', field.normal?.color ) } }
 		${ inputSl }::placeholder{ ${ isValidCSS( 'color', field.normal?.placeholder ) } }
 		${ fieldSl }:hover .b-blocks-advanced-search-input, ${ fieldSl }:focus-within .b-blocks-advanced-search-input{ ${ isValidCSS( 'color', field.hover?.color ) } }
 		${ fieldSl }:hover .b-blocks-advanced-search-input::placeholder, ${ fieldSl }:focus-within .b-blocks-advanced-search-input::placeholder{ ${ isValidCSS( 'color', field.hover?.placeholder ) } }
@@ -91,7 +97,7 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 		}
 		${ fieldFocusSl } .b-blocks-advanced-search-input{ ${ isValidCSS( 'color', field.focus?.color ) } }
 		${ fieldFocusSl } .b-blocks-advanced-search-input::placeholder{ ${ isValidCSS( 'color', field.focus?.placeholder ) } }
-		${ getTypoCSS( inputSl, field.typo )?.styles }
+		${ getTypoCSS( `${ inputSl }${ filterSl }`, field.typo )?.styles }
 
 		${ fieldSl } .b-blocks-advanced-search-icon{ ${ isValidCSS( 'color', searchIcon.color ) } }
 		${ fieldSl } .b-blocks-advanced-search-clear{ ${ isValidCSS( 'color', closeIcon.color ) } ${ isValidCSS( 'background-color', closeIcon.bg ) } }
@@ -123,9 +129,9 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 		${ itemSl }:hover .b-blocks-advanced-search-excerpt, ${ itemSl }.is-active .b-blocks-advanced-search-excerpt{ ${ isValidCSS( 'color', item.hover?.content ) } }
 		${ getTypoCSS( `${ itemSl } .b-blocks-advanced-search-title`, item.titleTypo )?.styles }
 		${ getTypoCSS( `${ itemSl } .b-blocks-advanced-search-excerpt`, item.contentTypo )?.styles }
-		${ itemSl } .b-blocks-advanced-search-meta{ ${ isValidCSS( 'color', item.normal?.meta ) } }
+		${ itemSl } .b-blocks-advanced-search-meta${ groupTitleSl }{ ${ isValidCSS( 'color', item.normal?.meta ) } }
 		${ itemSl }:hover .b-blocks-advanced-search-meta, ${ itemSl }.is-active .b-blocks-advanced-search-meta{ ${ isValidCSS( 'color', item.hover?.meta ) } }
-		${ getTypoCSS( `${ itemSl } .b-blocks-advanced-search-meta`, item.metaTypo )?.styles }
+		${ getTypoCSS( `${ itemSl } .b-blocks-advanced-search-meta${ groupTitleSl }`, item.metaTypo )?.styles }
 		${ 'right' === thumb.position ? `${ itemSl } a{ flex-direction: row-reverse; }` : '' }
 		${ root } .b-blocks-advanced-search-footer{ ${ isValidCSS( 'justify-content', resultBox.footerAlign ) } }
 		${ itemSl } mark{ ${ isValidCSS( 'color', item.highlight?.color ) } ${ isValidCSS( 'background-color', item.highlight?.bg ) } }
@@ -133,8 +139,8 @@ const Style = ( { attributes, id, isBackend = false } ) => {
 		${ root } .b-blocks-advanced-search-total{ ${ isValidCSS( 'color', total.color ) } }
 		${ getTypoCSS( `${ root } .b-blocks-advanced-search-total`, total.typo )?.styles }
 
-		${ root } .b-blocks-advanced-search-not-found{ ${ isValidCSS( 'color', notFound.color ) } ${ isValidCSS( 'text-align', notFound.align ) } }
-		${ getTypoCSS( `${ root } .b-blocks-advanced-search-not-found`, notFound.typo )?.styles }
+		${ root } .b-blocks-advanced-search-not-found, ${ root } .b-blocks-advanced-search-fallback-title{ ${ isValidCSS( 'color', notFound.color ) } ${ isValidCSS( 'text-align', notFound.align ) } }
+		${ getTypoCSS( `${ root } .b-blocks-advanced-search-not-found, ${ root } .b-blocks-advanced-search-fallback-title`, notFound.typo )?.styles }
 
 		${ btnSl }{
 			${ isValidCSS( 'color', searchBtn.normal?.color ) }

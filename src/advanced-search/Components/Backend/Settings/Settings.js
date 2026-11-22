@@ -9,20 +9,21 @@ import General from './General/General';
 import Style from './Style/Style';
 
 const Settings = (props) => {
-	const { attributes, setAttributes } = props;
-	const isPremium = 'undefined' !== typeof bBlocksPremiumChecker ? bBlocksPremiumChecker : false;
+	const { attributes, setAttributes, isPremium = false } = props;
 
-	return <InspectorControls>
+	return <>
+		<InspectorControls>
 
-		<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleAdvancedTabs} onSelect={tabController}>
-			{(tab) => <>
-				{'general' === tab.name && <General {...props} />}
+			<TabPanel className='bPlTabPanel' activeClass='activeTab' tabs={generalStyleAdvancedTabs} onSelect={tabController}>
+				{(tab) => <>
+					{'general' === tab.name && <General {...props} />}
 
-				{'style' === tab.name && <Style {...props} />}
+					{'style' === tab.name && <Style {...props} />}
 
-				{'advanced' === tab.name && <Advanced advanced={attributes.advanced} onChange={(advanced) => setAttributes({ advanced })} isPremium={isPremium} />}
-			</>}
-		</TabPanel>
-	</InspectorControls>;
+					{'advanced' === tab.name && <Advanced advanced={attributes.advanced} onChange={(advanced) => setAttributes({ advanced })} isPremium={isPremium} />}
+				</>}
+			</TabPanel>
+		</InspectorControls>
+	</>;
 };
 export default Settings;

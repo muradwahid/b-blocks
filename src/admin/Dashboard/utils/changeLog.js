@@ -1,5 +1,16 @@
 export const changeLog = [
     {
+        version: '2.1.18 - 22 November 2026',
+        list: [
+            'Added: Advanced Search Block.',
+            'Added: New screenshots.',
+            'Fixed: Button Block link options (rel, referrer policy, download file name and tooltip position) now work on the front end.',
+            'Fixed: Password-protected Button Block no longer opens its link before the password is entered.',
+            'Fixed: Woo Add to Cart Block now shows the variation, quantity and add to cart form for variable products.'
+        ],
+        type: 'new'
+    },
+    {
         version: '2.1.17 - 19 November 2026',
         list: [
             'Added: 3D Viewer Block options: poster with show on click, progress bar, loading percentage, auto rotate, rotation speed and delay, camera angle, field of view, interaction hint, animation and variant selection, environment image, HDR skybox, exposure, shadow and AR.',

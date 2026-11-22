@@ -20,7 +20,7 @@ if (!function_exists('b_blocks_fs')) {
 				'premium_slug' => 'b-blocks-pro',
 				'type' => 'plugin',
 				'public_key' => 'pk_d6426b344df4918bc066a7a0b4719',
-				'is_premium' => false,
+				'is_premium' => true,
 				'premium_suffix' => 'Pro',
 				'has_premium_version' => true,
 				'has_addons' => false,
